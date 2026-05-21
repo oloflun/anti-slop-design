@@ -1,0 +1,301 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width,initial-scale=1" />
+<title>Calyx — Botanical Architecture, Stockholm</title>
+<link rel="preconnect" href="https://fonts.googleapis.com" />
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+<link href="https://fonts.googleapis.com/css2?family=Cardo:ital,wght@0,400;0,700;1,400&family=PT+Mono&display=swap" rel="stylesheet" />
+<script src="https://cdn.tailwindcss.com"></script>
+<script>
+tailwind.config = {
+  theme: {
+    extend: {
+      colors: {
+        cream:  'oklch(0.965 0.012 88)',
+        bone:   'oklch(0.93 0.014 86)',
+        moss:   'oklch(0.34 0.062 154)',
+        ink:    'oklch(0.18 0.014 110)',
+        ink2:   'oklch(0.26 0.014 110)',
+        sage:   'oklch(0.55 0.045 154)',
+        stone:  'oklch(0.46 0.012 110)',
+        rust:   'oklch(0.46 0.108 38)',
+      },
+      fontFamily: {
+        display: ['Cardo','ui-serif','Georgia','serif'],
+        mono: ['PT Mono','ui-monospace','monospace'],
+      },
+    }
+  }
+}
+</script>
+<style>
+  html, body { background: oklch(0.965 0.012 88); color: oklch(0.18 0.014 110); font-family: 'Cardo', serif; }
+  .kicker { font-family: 'PT Mono', monospace; font-size: 10.5px; letter-spacing: 0.22em; text-transform: uppercase; }
+  .display { letter-spacing: -0.02em; }
+  .italic-disp { font-style: italic; }
+  .rule { background: currentColor; height: 1px; opacity: 0.2; }
+  .num { font-feature-settings: "tnum"; }
+  .grain::before {
+    content: ""; position: fixed; inset: 0; pointer-events: none; z-index: 50;
+    background-image: url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='240' height='240'><filter id='n'><feTurbulence type='fractalNoise' baseFrequency='0.85' numOctaves='2' stitchTiles='stitch'/><feColorMatrix type='matrix' values='0 0 0 0 0.14 0 0 0 0 0.13 0 0 0 0 0.10 0 0 0 0.08 0'/></filter><rect width='100%' height='100%' filter='url(%23n)'/></svg>");
+    mix-blend-mode: multiply; opacity: 0.5;
+  }
+  .reveal { opacity: 0; transform: translateY(28px); transition: opacity 1.2s cubic-bezier(.16,1,.3,1), transform 1.2s cubic-bezier(.16,1,.3,1); }
+  .reveal.in { opacity: 1; transform: none; }
+  /* All photo IDs below are verified-existing botanical/floral Unsplash photos */
+  .hero-photo { background-image: linear-gradient(to bottom, oklch(0.18 0.014 110 / .25), oklch(0.18 0.014 110 / .05) 30%, oklch(0.965 0.012 88 / .5)), url('https://images.unsplash.com/photo-1487530811176-3780de880c2d?auto=format&fit=crop&w=2400&q=80'); background-size: cover; background-position: center 40%; }
+  .photo-1 { background-image: url('https://images.unsplash.com/photo-1561181286-d3fee7d55364?auto=format&fit=crop&w=1600&q=80'); background-size: cover; background-position: center; }
+  .photo-2 { background-image: url('https://images.unsplash.com/photo-1574684891174-df6b02ab38d7?auto=format&fit=crop&w=1600&q=80'); background-size: cover; background-position: center; }
+  .photo-3 { background-image: url('https://images.unsplash.com/photo-1469371670807-013ccf25f16a?auto=format&fit=crop&w=2000&q=80'); background-size: cover; background-position: center; }
+  @media (prefers-reduced-motion: reduce) { .reveal { opacity:1; transform:none; transition:none; } }
+  .duo:hover .duo-img { transform: scale(1.02); }
+  .duo-img { transition: transform 1.4s cubic-bezier(.16,1,.3,1); }
+</style>
+</head>
+<body class="grain antialiased">
+
+<!-- Editorial nav, two anchors and a wordmark -->
+<header class="border-b border-ink/20">
+  <div class="max-w-[1480px] mx-auto px-8 py-6 grid grid-cols-12 items-baseline">
+    <div class="col-span-3 kicker text-stone">Vol. ix · spring</div>
+    <a href="#" class="col-span-6 text-center font-display italic-disp text-3xl tighten">Calyx</a>
+    <nav class="col-span-3 text-right kicker text-stone flex justify-end gap-7">
+      <a href="#index" class="hover:text-ink">Index</a>
+      <a href="#studio" class="hover:text-ink">Studio</a>
+      <a href="#commission" class="hover:text-ink">Commission</a>
+    </nav>
+  </div>
+</header>
+
+<!-- HERO: layered photograph with floating editorial overlay -->
+<section class="relative">
+  <div class="hero-photo h-[88vh] min-h-[640px] relative">
+    <div class="absolute inset-0 bg-gradient-to-b from-ink/10 via-transparent to-cream/40"></div>
+    <div class="absolute inset-x-0 bottom-0 px-8 pb-14 max-w-[1480px] mx-auto">
+      <div class="grid grid-cols-12 items-end gap-x-8">
+        <div class="col-span-12 md:col-span-7">
+          <h1 class="font-display text-cream text-[clamp(3rem,9vw,9.5rem)] leading-[0.92] display drop-shadow-[0_2px_30px_rgba(0,0,0,0.5)]">
+            Botanical<br>
+            <span class="italic-disp">architecture</span>,<br>
+            from Stockholm.
+          </h1>
+        </div>
+        <div class="col-span-12 md:col-span-4 md:col-start-9 md:pl-6 md:border-l border-cream/50 text-cream/90">
+          <p class="kicker text-cream/70 mb-4">No. 042 — Spring Edition</p>
+          <p class="text-[17px] leading-[1.55] max-w-[36ch]">
+            Living sculpture for restaurants, hotels and private commissions across Östermalm,
+            Söder, Djurgården. Site-specific. Cut yesterday. Never a generic arrangement.
+          </p>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- MANIFESTO: large quiet quote with a single accent rule -->
+<section id="studio" class="max-w-[1480px] mx-auto px-8 pt-28 pb-24">
+  <div class="grid grid-cols-12 gap-x-8">
+    <div class="col-span-12 md:col-span-3 md:pt-2">
+      <div class="kicker text-stone">A note from the atelier</div>
+      <div class="rule mt-3 text-ink"></div>
+      <p class="kicker text-stone mt-3 leading-snug">Idun &amp; Marit Lindström<br>Founders, est. 2018</p>
+    </div>
+    <div class="col-span-12 md:col-span-9 mt-12 md:mt-0">
+      <p class="font-display text-[clamp(2.2rem,4.2vw,3.4rem)] italic-disp tighten leading-[1.06] text-ink/90 max-w-[26ch]">
+        “A bouquet is a conversation between three flowers
+        and the silence between them.”
+      </p>
+      <p class="mt-10 text-[17px] leading-[1.7] max-w-[58ch] text-ink/80">
+        Calyx is a two-sister atelier in Vasastan, working only with what is cut that morning at the
+        market hall in Stockholm and pulled from our growing partners in Småland and Skåne. We accept
+        eleven commissions a week. The eleventh is a wedding.
+      </p>
+    </div>
+  </div>
+</section>
+
+<!-- DUO IMAGERY: two large photographs in an editorial split, with a hairline caption -->
+<section class="max-w-[1480px] mx-auto px-8 py-12">
+  <div class="grid grid-cols-12 gap-x-8 gap-y-12">
+    <figure class="col-span-12 md:col-span-7 duo overflow-hidden">
+      <div class="photo-1 duo-img aspect-[4/5] md:aspect-[4/3.2]"></div>
+      <figcaption class="mt-3 flex items-baseline justify-between kicker text-stone">
+        <span>Cmsn. 0211 — Hotel Pigalle, Drottninggatan</span>
+        <span>02 / 14</span>
+      </figcaption>
+    </figure>
+    <figure class="col-span-12 md:col-span-5 duo overflow-hidden md:mt-24">
+      <div class="photo-2 duo-img aspect-[4/5]"></div>
+      <figcaption class="mt-3 flex items-baseline justify-between kicker text-stone">
+        <span>Cmsn. 0188 — Private, Strandvägen 7B</span>
+        <span>02 / 14</span>
+      </figcaption>
+    </figure>
+  </div>
+</section>
+
+<!-- INDEX: a typeset price list / commission ledger — NOT a card row -->
+<section id="index" class="max-w-[1480px] mx-auto px-8 pt-28 pb-12">
+  <div class="grid grid-cols-12 gap-x-8 mb-14">
+    <div class="col-span-12 md:col-span-3">
+      <div class="kicker text-stone">Index — Available now</div>
+      <div class="rule mt-3 text-ink"></div>
+    </div>
+    <div class="col-span-12 md:col-span-9 mt-6 md:mt-0">
+      <h2 class="font-display text-[clamp(2rem,4vw,3.2rem)] leading-[1.04] italic-disp tighten">
+        Eleven cuttings, this week.
+      </h2>
+    </div>
+  </div>
+
+  <div class="rule text-ink"></div>
+  <ul class="num">
+    <li class="grid grid-cols-12 gap-x-6 py-7 items-baseline border-b border-ink/20">
+      <div class="col-span-1 font-display text-2xl italic-disp text-stone">.01</div>
+      <div class="col-span-12 md:col-span-5">
+        <h3 class="font-display text-3xl italic-disp tighten">Midnight Orchid</h3>
+        <p class="text-stone text-[15px] mt-1 max-w-[50ch] leading-snug">Phalaenopsis, ranunculus, dusty miller — black ceramic, hand-thrown by Bodil Sjöö in Visby.</p>
+      </div>
+      <div class="col-span-6 md:col-span-3 kicker text-stone mt-2 md:mt-0">cut 14.iv · serves a long table for 12</div>
+      <div class="col-span-6 md:col-span-3 text-right font-display text-3xl tighten">2 480 kr<span class="kicker text-stone ml-3">SEK</span></div>
+    </li>
+    <li class="grid grid-cols-12 gap-x-6 py-7 items-baseline border-b border-ink/20">
+      <div class="col-span-1 font-display text-2xl italic-disp text-stone">.02</div>
+      <div class="col-span-12 md:col-span-5">
+        <h3 class="font-display text-3xl italic-disp tighten text-rust">Old Lavender, New Pine</h3>
+        <p class="text-stone text-[15px] mt-1 max-w-[50ch] leading-snug">Last lavender of the season, fresh pine from Tyresta, dried sea holly. For a long Easter dinner.</p>
+      </div>
+      <div class="col-span-6 md:col-span-3 kicker text-stone mt-2 md:mt-0">cut 13.iv · serves a console or mantel</div>
+      <div class="col-span-6 md:col-span-3 text-right font-display text-3xl tighten">1 740 kr<span class="kicker text-stone ml-3">SEK</span></div>
+    </li>
+    <li class="grid grid-cols-12 gap-x-6 py-7 items-baseline border-b border-ink/20">
+      <div class="col-span-1 font-display text-2xl italic-disp text-stone">.03</div>
+      <div class="col-span-12 md:col-span-5">
+        <h3 class="font-display text-3xl italic-disp tighten">Hyacinth, in Spite of April</h3>
+        <p class="text-stone text-[15px] mt-1 max-w-[50ch] leading-snug">A single colour study in blue-grey hyacinth, against pewter. Small, deliberate, smells like a memory.</p>
+      </div>
+      <div class="col-span-6 md:col-span-3 kicker text-stone mt-2 md:mt-0">cut 14.iv · for a bedside or desk</div>
+      <div class="col-span-6 md:col-span-3 text-right font-display text-3xl tighten">920 kr<span class="kicker text-stone ml-3">SEK</span></div>
+    </li>
+    <li class="grid grid-cols-12 gap-x-6 py-7 items-baseline border-b border-ink/20">
+      <div class="col-span-1 font-display text-2xl italic-disp text-stone">.04</div>
+      <div class="col-span-12 md:col-span-5">
+        <h3 class="font-display text-3xl italic-disp tighten">Untitled, for a Restaurant</h3>
+        <p class="text-stone text-[15px] mt-1 max-w-[50ch] leading-snug">Six arrangements, one a week, six weeks. We come on Sundays before service. Restaurants only.</p>
+      </div>
+      <div class="col-span-6 md:col-span-3 kicker text-stone mt-2 md:mt-0">contract · six visits · seasonal</div>
+      <div class="col-span-6 md:col-span-3 text-right font-display text-3xl tighten">12 600 kr<span class="kicker text-stone ml-3">SEK</span></div>
+    </li>
+  </ul>
+</section>
+
+<!-- IMMERSION: a large landscape image as section break -->
+<section class="max-w-[1480px] mx-auto px-8 py-16">
+  <div class="photo-3 aspect-[16/7] w-full"></div>
+  <div class="flex items-baseline justify-between mt-3 kicker text-stone">
+    <span>The growing partners — Söderåsen, May ’25</span>
+    <span>—</span>
+  </div>
+</section>
+
+<!-- TESTIMONIAL LEDGER: typeset notes with initial-anchors (NOT card grid) -->
+<section class="max-w-[1480px] mx-auto px-8 py-24 grid grid-cols-12 gap-x-8">
+  <div class="col-span-12 md:col-span-3">
+    <div class="kicker text-stone">Some recent notes</div>
+    <div class="rule mt-3 text-ink"></div>
+  </div>
+  <div class="col-span-12 md:col-span-9 grid grid-cols-1 md:grid-cols-2 gap-12 mt-6 md:mt-0">
+
+    <blockquote class="flex items-start gap-6">
+      <div class="font-display italic-disp text-[88px] leading-[0.7] text-rust">A</div>
+      <div>
+        <p class="text-[17px] leading-[1.65] italic-disp font-display text-ink/85">
+          “I asked for ‘something the colour of a tired Sunday,’ and the next week they delivered.
+          Three weeks later a guest is still talking about it.”
+        </p>
+        <p class="kicker text-stone mt-4">Anna L., Östermalm — twice-yearly client</p>
+      </div>
+    </blockquote>
+
+    <blockquote class="flex items-start gap-6">
+      <div class="font-display italic-disp text-[88px] leading-[0.7] text-rust">M</div>
+      <div>
+        <p class="text-[17px] leading-[1.65] italic-disp font-display text-ink/85">
+          “We replaced our weekly florist after a year of slow argument. Calyx took six visits to
+          rewrite what a restaurant smells like in spring.”
+        </p>
+        <p class="kicker text-stone mt-4">Magnus K. — Aira, Djurgården</p>
+      </div>
+    </blockquote>
+
+    <blockquote class="flex items-start gap-6">
+      <div class="font-display italic-disp text-[88px] leading-[0.7] text-rust">J</div>
+      <div>
+        <p class="text-[17px] leading-[1.65] italic-disp font-display text-ink/85">
+          “They write a card for every commission, by hand, in iron-gall ink. I keep them in a
+          drawer. The flowers are gone, the cards are not.”
+        </p>
+        <p class="kicker text-stone mt-4">Johan B., Söder — wedding, 14.vi.2024</p>
+      </div>
+    </blockquote>
+
+    <blockquote class="flex items-start gap-6">
+      <div class="font-display italic-disp text-[88px] leading-[0.7] text-rust">E</div>
+      <div>
+        <p class="text-[17px] leading-[1.65] italic-disp font-display text-ink/85">
+          “Honest pricing, honest answers, and a willingness to say no. ‘That bloom isn’t in this
+          week.’ I have, somehow, never been told that before.”
+        </p>
+        <p class="kicker text-stone mt-4">Emma S., Bromma — Easter table, ’24</p>
+      </div>
+    </blockquote>
+  </div>
+</section>
+
+<!-- COMMISSION: long-form CTA -->
+<section id="commission" class="bg-ink text-cream relative">
+  <div class="max-w-[1480px] mx-auto px-8 py-28 grid grid-cols-12 gap-x-8">
+    <div class="col-span-12 md:col-span-7">
+      <h2 class="font-display text-[clamp(3rem,7vw,7rem)] leading-[0.93] tighten">
+        Commission<br>
+        <span class="italic-disp">a thing</span><br>
+        that lasts a week.
+      </h2>
+    </div>
+    <div class="col-span-12 md:col-span-5 mt-8 md:mt-0 md:pl-10 md:border-l border-cream/30 flex flex-col justify-between gap-10">
+      <p class="text-[17px] leading-[1.65] text-cream/85 max-w-[40ch]">
+        We accept private and trade commissions on Mondays only. You write us about the room, the
+        light, the meal, the person. We write back about what is cuttable that week. If a fit
+        exists, we make a proposal in a single email. No portal, no calendar link.
+      </p>
+      <div>
+        <a href="mailto:atelier@calyx.se" class="inline-flex items-baseline gap-3 font-display italic-disp text-4xl tighten">
+          atelier@calyx.se
+          <span class="kicker text-cream/60">↗</span>
+        </a>
+        <div class="kicker text-cream/60 mt-6 max-w-[42ch] leading-snug">
+          Atelier · Surbrunnsgatan 50 · Vasastan · Stockholm. Open by appointment, Tue–Fri.
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="border-t border-cream/20">
+    <div class="max-w-[1480px] mx-auto px-8 py-6 grid grid-cols-12 kicker text-cream/55">
+      <div class="col-span-6 md:col-span-3">© Calyx Atelier MMXXVI</div>
+      <div class="col-span-6 md:col-span-3 md:text-center">Cmsn. seq. 0001 – 1124</div>
+      <div class="col-span-6 md:col-span-3 md:text-center">Photography: Linn Berggren</div>
+      <div class="col-span-6 md:col-span-3 md:text-right">Set in Cardo &amp; PT Mono</div>
+    </div>
+  </div>
+</section>
+
+<script>
+  const io = new IntersectionObserver(es => {
+    es.forEach(e => { if (e.isIntersecting) { e.target.classList.add('in'); io.unobserve(e.target); } });
+  }, { threshold: 0.12 });
+  document.querySelectorAll('section, h1, h2, h3, blockquote, figure, li').forEach(el => { el.classList.add('reveal'); io.observe(el); });
+</script>
+</body>
+</html>

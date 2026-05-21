@@ -1,0 +1,497 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width,initial-scale=1" />
+<title>Hōrai — A Three-Sister Restaurant, Stockholm</title>
+<link rel="preconnect" href="https://fonts.googleapis.com" />
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+<link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@400;500;600;700;800&family=Vollkorn:ital,wght@0,400;0,500;0,600;1,400;1,500&family=Noto+Serif+JP:wght@400;500;700&display=swap" rel="stylesheet" />
+<script src="https://cdn.tailwindcss.com"></script>
+<script>
+tailwind.config = {
+  theme: {
+    extend: {
+      colors: {
+        paper:   'oklch(0.93 0.025 80)',
+        paper2:  'oklch(0.89 0.028 78)',
+        cream:   'oklch(0.96 0.015 75)',
+        walnut:  'oklch(0.22 0.022 38)',
+        walnut2: 'oklch(0.32 0.022 38)',
+        umber:   'oklch(0.45 0.022 38)',
+        lacquer: 'oklch(0.45 0.20 25)',
+        lacquer2:'oklch(0.33 0.16 25)',
+        jade:    'oklch(0.42 0.06 165)',
+        ash:     'oklch(0.55 0.012 60)',
+      },
+      fontFamily: {
+        display: ['Cinzel','ui-serif','Georgia','serif'],
+        body:    ['Vollkorn','ui-serif','Georgia','serif'],
+        jp:      ['"Noto Serif JP"','serif'],
+      },
+      maxWidth: {
+        wide: '1880px',
+      }
+    }
+  }
+}
+</script>
+<style>
+  html, body { background: oklch(0.93 0.025 80); color: oklch(0.22 0.022 38); font-family: 'Vollkorn', serif; font-size: 19px; line-height: 1.55; }
+  html { scroll-behavior: smooth; }
+  .display { font-family: 'Cinzel', serif; letter-spacing: 0.06em; }
+  .display-tight { font-family: 'Cinzel', serif; letter-spacing: 0.03em; }
+  .jp { font-family: 'Noto Serif JP', serif; }
+  .num { font-family: 'Cinzel', serif; font-feature-settings: "lnum"; letter-spacing: 0.04em; }
+  .rule { background: currentColor; height: 1px; opacity: 0.22; }
+  .rule2 { background: currentColor; height: 1.5px; opacity: 0.45; }
+
+  /* Verified-existing Unsplash food + interior photos */
+  .hero-img { background-image: url('https://images.unsplash.com/photo-1414235077428-338989a2e8c0?auto=format&fit=crop&w=2600&q=88'); background-size: cover; background-position: center 35%; }
+  .room-img { background-image: url('https://images.unsplash.com/photo-1517248135467-4c7edcad34c4?auto=format&fit=crop&w=2400&q=88'); background-size: cover; background-position: center; }
+  /* darker, moodier photo for the quote section (was bright meat plate which conflicted with overlay text) */
+  .quote-img { background-image: url('https://images.unsplash.com/photo-1551183053-bf91a1d81141?auto=format&fit=crop&w=2400&q=88'); background-size: cover; background-position: center; }
+  .dish-1 { background-image: url('https://images.unsplash.com/photo-1546069901-ba9599a7e63c?auto=format&fit=crop&w=1800&q=88'); background-size: cover; background-position: center; }
+  /* dish-3 swapped to the meat plate (contained figure, brightness no longer a problem) */
+  .dish-3 { background-image: url('https://images.unsplash.com/photo-1580554530778-ca36943938b2?auto=format&fit=crop&w=1800&q=88'); background-size: cover; background-position: center; }
+
+  /* Parallax via fixed background where supported (desktop). Mobile falls back to scroll. */
+  .parallax {
+    background-attachment: fixed;
+    background-size: cover;
+    background-position: center;
+  }
+  @supports (-webkit-touch-callout: none) {
+    .parallax { background-attachment: scroll; }
+  }
+  @media (max-width: 900px) {
+    .parallax { background-attachment: scroll; }
+  }
+
+  /* JS-driven parallax for the hero (smoother than bg-fixed) */
+  .pl-bg { will-change: transform; transition: transform .12s ease-out; }
+
+  .reveal { opacity: 0; transform: translateY(28px); transition: opacity 1.3s cubic-bezier(.16,1,.3,1), transform 1.3s cubic-bezier(.16,1,.3,1); }
+  .reveal.in { opacity: 1; transform: none; }
+
+  .word { display: inline-block; opacity: 0.18; transition: opacity .9s cubic-bezier(.16,1,.3,1); }
+  .word.lit { opacity: 1; }
+
+  .grain::before {
+    content: ""; position: fixed; inset: 0; pointer-events: none; z-index: 60;
+    background-image: url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='240' height='240'><filter id='n'><feTurbulence type='fractalNoise' baseFrequency='0.85' numOctaves='2' stitchTiles='stitch'/><feColorMatrix type='matrix' values='0 0 0 0 0.20 0 0 0 0 0.12 0 0 0 0 0.06 0 0 0 0.06 0'/></filter><rect width='100%' height='100%' filter='url(%23n)'/></svg>");
+    mix-blend-mode: multiply; opacity: 0.42;
+  }
+
+  .dish-frame:hover .dish-img { transform: scale(1.025); }
+  .dish-img { transition: transform 1.4s cubic-bezier(.16,1,.3,1); }
+
+  @media (prefers-reduced-motion: reduce) {
+    .reveal { opacity:1; transform:none; transition:none; }
+    .pl-bg { transform: none !important; }
+    .word { opacity: 1; }
+  }
+</style>
+</head>
+<body class="grain antialiased">
+
+<!-- Minimal sticky nav -->
+<header class="fixed top-0 left-0 right-0 z-30">
+  <div class="transition-all duration-500" id="nav">
+    <div class="max-w-wide mx-auto px-10 lg:px-14 py-7 flex items-center justify-between text-cream">
+      <a href="#" class="display text-2xl tracking-[0.18em]">HŌRAI</a>
+      <a href="#reservations" class="display text-[13px] tracking-[0.28em] border border-cream/55 px-6 py-3 hover:bg-cream hover:text-walnut transition-colors duration-500">RESERVATIONS</a>
+    </div>
+  </div>
+</header>
+
+<!-- HERO with JS parallax -->
+<section class="relative overflow-hidden h-screen min-h-[680px] max-h-[1020px]">
+  <div class="hero-img pl-bg absolute -inset-y-20 inset-x-0" id="hero-bg" style="background-position: center 38%;"></div>
+  <div class="absolute inset-0 bg-gradient-to-b from-walnut/55 via-walnut/15 to-walnut/70 pointer-events-none"></div>
+
+  <div class="relative max-w-wide mx-auto w-full h-full px-10 lg:px-14 pb-24 md:pb-32 grid grid-cols-12 gap-x-10 items-end">
+    <div class="col-span-12 md:col-span-9 text-cream">
+      <p class="jp text-cream/70 text-[15px] md:text-[17px] tracking-[0.55em] mb-9" lang="ja">蓬莱</p>
+      <h1 class="display text-[clamp(4.5rem,15vw,15rem)] leading-[0.9]" id="hero-title">HŌRAI</h1>
+      <p class="display text-[clamp(1.3rem,2.2vw,1.9rem)] leading-snug text-cream/90 max-w-[44ch] mt-10 tracking-[0.14em]">
+        A&nbsp;THREE-SISTER<br>
+        RESTAURANT,&nbsp;STOCKHOLM
+      </p>
+    </div>
+    <div class="col-span-12 md:col-span-3 md:self-end mt-12 md:mt-0 md:text-right text-cream/85">
+      <p class="text-[clamp(1rem,1.2vw,1.2rem)] leading-relaxed max-w-[28ch] md:ml-auto">
+        Open from Wednesday to Sunday, six o&apos;clock until late. Twenty-six covers, two seatings, one menu a night.
+      </p>
+      <p class="display text-[12px] tracking-[0.3em] text-cream/55 mt-8 hidden md:block">↓ SCROLL</p>
+    </div>
+  </div>
+</section>
+
+<!-- THE HOUSE — confident centred editorial block, generous wide layout -->
+<section class="relative">
+  <div class="max-w-wide mx-auto px-10 lg:px-14 pt-32 md:pt-44 pb-32 md:pb-40 grid grid-cols-12 gap-x-12">
+    <div class="col-span-12 md:col-span-3 md:sticky md:top-32 md:self-start">
+      <p class="jp text-lacquer text-[clamp(2.5rem,4vw,3.6rem)] leading-none mb-6" lang="ja">家</p>
+      <h2 class="display text-[clamp(2.2rem,3.6vw,3.4rem)] leading-[1] text-lacquer">THE<br>HOUSE</h2>
+      <div class="rule2 mt-7 text-walnut/80 w-20"></div>
+      <p class="display text-[12px] tracking-[0.3em] text-umber mt-7">est. mmxxiv</p>
+    </div>
+    <div class="col-span-12 md:col-span-9 mt-12 md:mt-0">
+      <p class="text-[clamp(1.5rem,2.2vw,2.05rem)] leading-[1.5] font-body text-walnut max-w-[62ch]" id="house-lede">
+        <span class="word">Hōrai</span> <span class="word">is</span> <span class="word">a</span> <span class="word">single</span> <span class="word">dining</span> <span class="word">room</span> <span class="word">on</span> <span class="word">the</span> <span class="word">top</span> <span class="word">floor</span> <span class="word">of</span> <span class="word">a</span> <span class="word">former</span> <span class="word">bookbinder&apos;s</span> <span class="word">workshop</span> <span class="word">on</span> <span class="word">Hornsgatan.</span> <span class="word">The</span> <span class="word">chefs</span> <span class="word">are</span> <span class="word">three</span> <span class="word">sisters</span> <span class="word">—</span> <span class="word">Ines,</span> <span class="word">Mai</span> <span class="word">and</span> <span class="word">Linnea</span> <span class="word">Bergström,</span> <span class="word">born</span> <span class="word">in</span> <span class="word">Stockholm,</span> <span class="word">raised</span> <span class="word">between</span> <span class="word">Kyoto</span> <span class="word">and</span> <span class="word">Bangkok</span> <span class="word">—</span> <span class="word">cooking</span> <span class="word italic">what</span> <span class="word italic">each</span> <span class="word italic">thinks</span> <span class="word italic">the</span> <span class="word italic">others</span> <span class="word italic">meant.</span> <span class="word">The</span> <span class="word">menu</span> <span class="word">changes</span> <span class="word">weekly.</span> <span class="word">There</span> <span class="word">is</span> <span class="word">no</span> <span class="word">à</span> <span class="word">la</span> <span class="word">carte.</span> <span class="word">The</span> <span class="word">wine</span> <span class="word">list</span> <span class="word">is</span> <span class="word">short</span> <span class="word">on</span> <span class="word">purpose;</span> <span class="word">the</span> <span class="word">sake</span> <span class="word">list</span> <span class="word">is</span> <span class="word">not.</span>
+      </p>
+      <p class="text-[clamp(1.25rem,1.7vw,1.55rem)] leading-[1.6] font-body text-umber max-w-[60ch] mt-12 italic">
+        Named for the immortal mountain in the eastern sea — a place no one has ever quite been to, only described.
+      </p>
+    </div>
+  </div>
+</section>
+
+<!-- LAYERED EDITORIAL CHAPTER BREAK: narrow text column over deep-vignetted dark photo -->
+<section id="quote-section" class="relative overflow-hidden h-[130vh] min-h-[1000px] bg-walnut">
+  <div class="quote-img absolute inset-0 parallax opacity-65"></div>
+  <!-- Stacked overlays: top + bottom gradient + radial vignette + base wash -->
+  <div class="absolute inset-0 bg-gradient-to-b from-walnut via-walnut/30 to-walnut pointer-events-none"></div>
+  <div class="absolute inset-0 pointer-events-none" style="background:radial-gradient(ellipse at center, transparent 0%, rgba(0,0,0,0.45) 60%, rgba(0,0,0,0.85) 100%);"></div>
+
+  <div class="sticky top-0 h-screen flex items-center justify-center text-center text-cream px-8">
+    <div class="max-w-[820px] w-full">
+      <!-- Kicker -->
+      <p id="quote-kicker" class="display text-cream/55 text-[clamp(0.7rem,0.8vw,0.85rem)] tracking-[0.42em] mb-12">A KITCHEN NOTE &middot; CHAPTER ONE</p>
+
+      <!-- thin gold rule (top) — expands from 0 → 48px as it enters -->
+      <div id="quote-rule-top" class="mx-auto h-px bg-lacquer/70 mb-12" style="width:0px;"></div>
+
+      <p id="quote-jp" class="jp text-lacquer text-[clamp(1.3rem,2vw,1.9rem)] leading-none mb-12 font-medium" style="letter-spacing:0.55em;text-shadow:0 2px 24px rgba(0,0,0,0.7);" lang="ja">料理は対話である</p>
+
+      <blockquote id="quote-text" class="display text-cream leading-[1.28] origin-center" style="font-size:clamp(1.5rem,2.8vw,3rem);font-weight:500;letter-spacing:0.12em;text-shadow:0 4px 32px rgba(0,0,0,0.75);will-change:transform,filter,opacity;">
+        COOKING&nbsp;IS&nbsp;A&nbsp;CONVERSATION<br>
+        BETWEEN&nbsp;THREE&nbsp;FLOWERS<br>
+        AND&nbsp;THE&nbsp;SILENCE&nbsp;BETWEEN&nbsp;THEM.
+      </blockquote>
+
+      <!-- thin gold rule (bottom) — expands from 0 → 48px -->
+      <div id="quote-rule-bottom" class="mx-auto h-px bg-lacquer/70 mt-14 mb-7" style="width:0px;"></div>
+
+      <p id="quote-author" class="display text-cream/65 text-[clamp(0.7rem,0.85vw,0.9rem)] tracking-[0.42em]" style="text-shadow:0 2px 16px rgba(0,0,0,0.6);">LINNEA BERGSTRÖM &middot; 14&middot;IV&middot;MMXXVI</p>
+    </div>
+  </div>
+</section>
+
+<!-- THE SET MENUS -->
+<section class="relative bg-paper">
+  <div class="max-w-wide mx-auto px-10 lg:px-14 py-32 md:py-44">
+    <div class="grid grid-cols-12 gap-x-12 mb-24">
+      <div class="col-span-12 md:col-span-3">
+        <p class="jp text-lacquer text-[clamp(2.5rem,4vw,3.6rem)] leading-none mb-6" lang="ja">献</p>
+        <h2 class="display text-[clamp(2.2rem,3.6vw,3.4rem)] leading-[1] text-lacquer">THE<br>MENUS</h2>
+        <div class="rule2 mt-7 text-walnut/80 w-20"></div>
+      </div>
+      <div class="col-span-12 md:col-span-9 mt-10 md:mt-0">
+        <p class="text-[clamp(1.4rem,2vw,1.75rem)] leading-[1.55] font-body text-walnut max-w-[58ch]">
+          Three menus, one of which is served each evening — chosen by what the market gave us at dawn. Pairings on request. Allergies handled in advance, not at the table.
+        </p>
+      </div>
+    </div>
+
+    <!-- Menu 1 -->
+    <article class="grid grid-cols-12 gap-x-12 gap-y-10 mb-24 items-start">
+      <div class="col-span-12 md:col-span-1 num text-7xl md:text-8xl text-lacquer/85">I</div>
+      <div class="col-span-12 md:col-span-7">
+        <h3 class="display-tight text-[clamp(2.6rem,4.6vw,4.4rem)] leading-[1] text-walnut">SANSAI</h3>
+        <p class="display text-[clamp(0.85rem,1vw,1rem)] tracking-[0.36em] text-umber mt-5">山菜 &middot; SEVEN COURSES &middot; VEGETABLE-LED</p>
+        <p class="text-[clamp(1.2rem,1.6vw,1.4rem)] leading-[1.6] mt-8 text-walnut max-w-[54ch]">
+          Mountain vegetables, river fish, koji-aged tofu and the season&apos;s first nettle — a quiet menu, mostly green, finishing with a single piece of fruit and a thirty-year hōjicha. Served in the corner by the window.
+        </p>
+        <p class="display text-[12px] tracking-[0.32em] text-umber/80 mt-7">
+          wednesday &middot; thursday &middot; sunday
+        </p>
+      </div>
+      <div class="col-span-12 md:col-span-4 md:text-right md:pt-3">
+        <p class="num text-[clamp(3.8rem,7vw,6rem)] leading-[0.9] text-lacquer">1,480</p>
+        <p class="display text-[12px] tracking-[0.3em] text-umber mt-4">SEK &middot; PER GUEST</p>
+        <p class="display text-[12px] tracking-[0.28em] text-jade mt-2">+ SAKE 680 SEK</p>
+      </div>
+    </article>
+
+    <div class="rule text-walnut mb-24"></div>
+
+    <!-- Menu 2 -->
+    <article class="grid grid-cols-12 gap-x-12 gap-y-10 mb-24 items-start">
+      <div class="col-span-12 md:col-span-1 num text-7xl md:text-8xl text-lacquer/85">II</div>
+      <div class="col-span-12 md:col-span-7">
+        <h3 class="display-tight text-[clamp(2.6rem,4.6vw,4.4rem)] leading-[1] text-walnut">SEKAI</h3>
+        <p class="display text-[clamp(0.85rem,1vw,1rem)] tracking-[0.36em] text-umber mt-5">世界 &middot; NINE COURSES &middot; THE HOUSE MENU</p>
+        <p class="text-[clamp(1.2rem,1.6vw,1.4rem)] leading-[1.6] mt-8 text-walnut max-w-[54ch]">
+          The full conversation between the three sisters. Opens with Mai&apos;s otoshi, finishes with Linnea&apos;s burnt-sugar custard. Ines, in the middle, cooks the fish. Three hours, eaten slowly, drunk slower.
+        </p>
+        <p class="display text-[12px] tracking-[0.32em] text-umber/80 mt-7">
+          friday &middot; saturday &middot; both seatings
+        </p>
+      </div>
+      <div class="col-span-12 md:col-span-4 md:text-right md:pt-3">
+        <p class="num text-[clamp(3.8rem,7vw,6rem)] leading-[0.9] text-lacquer">2,180</p>
+        <p class="display text-[12px] tracking-[0.3em] text-umber mt-4">SEK &middot; PER GUEST</p>
+        <p class="display text-[12px] tracking-[0.28em] text-jade mt-2">+ PAIRING 1,240 SEK</p>
+      </div>
+    </article>
+
+    <div class="rule text-walnut mb-24"></div>
+
+    <!-- Menu 3 -->
+    <article class="grid grid-cols-12 gap-x-12 gap-y-10 items-start">
+      <div class="col-span-12 md:col-span-1 num text-7xl md:text-8xl text-lacquer/85">III</div>
+      <div class="col-span-12 md:col-span-7">
+        <h3 class="display-tight text-[clamp(2.6rem,4.6vw,4.4rem)] leading-[1] text-walnut">UMI</h3>
+        <p class="display text-[clamp(0.85rem,1vw,1rem)] tracking-[0.36em] text-umber mt-5">海 &middot; FIVE COURSES &middot; FROM THE COAST</p>
+        <p class="text-[clamp(1.2rem,1.6vw,1.4rem)] leading-[1.6] mt-8 text-walnut max-w-[54ch]">
+          The shortest menu, the longest sourcing list. Whatever came in from Smögen and Grebbestad on Thursday morning, finished with a single dessert built around the season&apos;s sea buckthorn. Served at the kitchen counter.
+        </p>
+        <p class="display text-[12px] tracking-[0.32em] text-umber/80 mt-7">
+          thursday only &middot; six seats
+        </p>
+      </div>
+      <div class="col-span-12 md:col-span-4 md:text-right md:pt-3">
+        <p class="num text-[clamp(3.8rem,7vw,6rem)] leading-[0.9] text-lacquer">1,840</p>
+        <p class="display text-[12px] tracking-[0.3em] text-umber mt-4">SEK &middot; PER GUEST</p>
+        <p class="display text-[12px] tracking-[0.28em] text-jade mt-2">+ SAKE FLIGHT 920 SEK</p>
+      </div>
+    </article>
+  </div>
+</section>
+
+<!-- PHOTOGRAPHY SPREAD: two plates, asymmetric on wide -->
+<section class="bg-paper2/55 py-32 md:py-44">
+  <div class="max-w-wide mx-auto px-10 lg:px-14">
+    <div class="grid grid-cols-12 gap-x-10 gap-y-20">
+      <figure class="col-span-12 md:col-span-7 dish-frame overflow-hidden">
+        <div class="dish-1 dish-img aspect-[5/4]"></div>
+        <figcaption class="mt-6 display text-[clamp(0.8rem,0.95vw,1rem)] tracking-[0.3em] text-umber">SANSAI &middot; SECOND COURSE &middot; PICKLED MOUNTAIN VEGETABLES, SOFT TOFU</figcaption>
+      </figure>
+      <figure class="col-span-12 md:col-span-5 dish-frame overflow-hidden md:mt-44">
+        <div class="dish-3 dish-img aspect-[4/5]"></div>
+        <figcaption class="mt-6 display text-[clamp(0.8rem,0.95vw,1rem)] tracking-[0.3em] text-umber">SEKAI &middot; FIFTH COURSE &middot; HAND-CUT YAKISOBA WITH WAGYU SCRAPS</figcaption>
+      </figure>
+    </div>
+  </div>
+</section>
+
+<!-- THE ROOM -->
+<section class="relative">
+  <div class="room-img parallax min-h-[820px] h-[110vh] max-h-[1100px] relative">
+    <div class="absolute inset-0 bg-gradient-to-r from-walnut/85 via-walnut/45 to-walnut/10"></div>
+    <div class="absolute inset-0 max-w-wide mx-auto px-10 lg:px-14 grid grid-cols-12 gap-x-12 items-end pb-28 md:pb-40">
+      <div class="col-span-12 md:col-span-7 text-cream">
+        <p class="jp text-cream/70 text-[clamp(2.4rem,4vw,3.4rem)] leading-none mb-7" lang="ja">部屋</p>
+        <h2 class="display text-[clamp(2.6rem,5.6vw,5rem)] leading-[1]">THE&nbsp;ROOM</h2>
+        <div class="rule2 mt-8 text-cream w-20"></div>
+        <p class="text-[clamp(1.3rem,1.7vw,1.55rem)] leading-[1.6] font-body mt-10 max-w-[58ch]">
+          The dining room is built from raw ash and oxidised brass, twenty-six covers around a single kitchen pass. Lacquer-red walls, dim and warm, with a single window that looks across the Riddarfjärden to Gamla Stan. The architect was Olof Almgren; the lighting is by Hanna Rune.
+        </p>
+        <p class="text-[clamp(1.15rem,1.5vw,1.4rem)] leading-[1.6] font-body italic text-cream/85 mt-8 max-w-[54ch]">
+          The room is loud at the start of the evening and quiet by the end. We close the door at half past six.
+        </p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- RESERVATIONS — single big CTA -->
+<section id="reservations" class="bg-walnut text-cream py-32 md:py-44 relative">
+  <div class="max-w-wide mx-auto px-10 lg:px-14 grid grid-cols-12 gap-x-12">
+    <div class="col-span-12 md:col-span-7">
+      <p class="jp text-cream/55 text-[clamp(1.8rem,2.6vw,2.4rem)] leading-none mb-7" lang="ja">予約</p>
+      <h2 class="display text-[clamp(3.2rem,6.4vw,6.8rem)] leading-[0.95]">
+        RESERVATIONS<br>
+        <span class="text-lacquer">OPEN MONDAYS</span>
+      </h2>
+      <p class="text-[clamp(1.3rem,1.8vw,1.6rem)] leading-[1.55] font-body text-cream/85 mt-10 max-w-[50ch]">
+        We release each week&apos;s seats every Monday at noon Stockholm time. Tables of two and four; a single chef&apos;s counter of six on Thursdays. Written enquiries for private dinners answered on Tuesdays.
+      </p>
+    </div>
+    <div class="col-span-12 md:col-span-5 mt-12 md:mt-0 md:pl-14 md:border-l border-cream/25 flex flex-col gap-12 justify-between">
+      <div>
+        <p class="display text-[12px] tracking-[0.32em] text-cream/55">TO BOOK</p>
+        <a href="https://book.horai.se" class="display text-[clamp(2.4rem,3.6vw,3.2rem)] tracking-[0.04em] text-lacquer mt-4 block hover:text-cream transition-colors">book.horai.se</a>
+        <p class="text-[clamp(1.15rem,1.45vw,1.35rem)] leading-[1.55] font-body text-cream/80 mt-7 max-w-[38ch]">
+          Or write us at hej@horai.se for private dinners, allergies declared in advance, and matters that don&apos;t fit a form.
+        </p>
+      </div>
+      <div>
+        <p class="display text-[12px] tracking-[0.32em] text-cream/55">FIND US</p>
+        <p class="display text-[clamp(1.4rem,2vw,1.8rem)] tracking-[0.06em] mt-4 leading-[1.4]">
+          HORNSGATAN&nbsp;58<br>
+          118&nbsp;49&nbsp;STOCKHOLM
+        </p>
+        <p class="text-[clamp(1.1rem,1.45vw,1.3rem)] font-body text-cream/80 mt-5 leading-[1.5]">
+          Top floor &middot; press the brass bell. <span class="italic">No sign on the street.</span>
+        </p>
+      </div>
+    </div>
+  </div>
+
+  <div class="border-t border-cream/20 mt-24">
+    <div class="max-w-wide mx-auto px-10 lg:px-14 py-8 flex flex-wrap items-baseline justify-between gap-y-3 text-cream/55">
+      <p class="display text-[12px] tracking-[0.3em]">© HŌRAI &middot; MMXXVI</p>
+      <p class="display text-[12px] tracking-[0.3em]">CHEFS &middot; INES, MAI &amp; LINNEA BERGSTRÖM</p>
+      <p class="display text-[12px] tracking-[0.3em]">SET IN CINZEL &amp; VOLLKORN</p>
+    </div>
+  </div>
+</section>
+
+<script>
+  // Hero parallax — translate hero-bg slower than scroll
+  const heroBg = document.getElementById('hero-bg');
+  const heroTitle = document.getElementById('hero-title');
+  let ticking = false;
+  function onScroll() {
+    if (!ticking) {
+      window.requestAnimationFrame(() => {
+        const y = window.scrollY;
+        if (heroBg) heroBg.style.transform = `translate3d(0, ${y * 0.32}px, 0)`;
+        if (heroTitle) heroTitle.style.transform = `translate3d(0, ${y * 0.12}px, 0)`;
+
+        // Nav: darken once past hero
+        const navWrap = document.getElementById('nav');
+        if (navWrap) {
+          if (y > window.innerHeight * 0.85) {
+            navWrap.classList.add('bg-walnut/92','backdrop-blur-md','shadow-lg');
+          } else {
+            navWrap.classList.remove('bg-walnut/92','backdrop-blur-md','shadow-lg');
+          }
+        }
+
+        ticking = false;
+      });
+      ticking = true;
+    }
+  }
+  window.addEventListener('scroll', onScroll, { passive: true });
+
+  // Scroll-scrubbed quote — prominent staggered arrival:
+  //   1. kicker fades in
+  //   2. top rule expands 0 → 48px
+  //   3. JP characters rise + brighten, letter-space widens
+  //   4. quote text rises significantly + scales up + un-blurs + letter-space tightens
+  //   5. bottom rule expands
+  //   6. byline fades in
+  const quoteSection = document.getElementById('quote-section');
+  const quoteKicker = document.getElementById('quote-kicker');
+  const quoteRuleTop = document.getElementById('quote-rule-top');
+  const quoteRuleBottom = document.getElementById('quote-rule-bottom');
+  const quoteJp = document.getElementById('quote-jp');
+  const quoteText = document.getElementById('quote-text');
+  const quoteAuthor = document.getElementById('quote-author');
+  function lerp(a, b, t) { return a + (b - a) * t; }
+  function clamp01(x) { return Math.max(0, Math.min(1, x)); }
+  function ease(t) { return t < 0.5 ? 2*t*t : 1 - Math.pow(-2*t + 2, 2)/2; }
+  function easeOut(t) { return 1 - Math.pow(1 - t, 3); }
+
+  function initQuote() {
+    if (quoteKicker) quoteKicker.style.opacity = '0';
+    if (quoteRuleTop) quoteRuleTop.style.width = '0px';
+    if (quoteRuleBottom) quoteRuleBottom.style.width = '0px';
+    if (quoteJp) { quoteJp.style.opacity = '0'; quoteJp.style.transform = 'translateY(40px) scale(0.82)'; quoteJp.style.letterSpacing = '0.26em'; }
+    if (quoteText) { quoteText.style.opacity = '0'; quoteText.style.transform = 'translateY(80px) scale(0.66)'; quoteText.style.filter = 'blur(12px)'; quoteText.style.letterSpacing = '0.36em'; }
+    if (quoteAuthor) quoteAuthor.style.opacity = '0';
+  }
+  initQuote();
+
+  function smoothstep(x) { x = clamp01(x); return x * x * (3 - 2 * x); }
+
+  function updateQuote() {
+    if (!quoteSection) return;
+    const rect = quoteSection.getBoundingClientRect();
+    const vh = window.innerHeight;
+
+    // Symmetric bell-curve proximity:
+    //   1 when section is perfectly centered in viewport
+    //   0 when section is fully above or below the viewport
+    // This makes the reveal SCRUB IN as the section enters, peak when centered,
+    // and SCRUB OUT as it exits — every frame is a continuous interpolation.
+    const sectionCenter = rect.top + rect.height / 2;
+    const viewportCenter = vh / 2;
+    const offset = Math.abs(sectionCenter - viewportCenter);
+    const halfRange = (rect.height + vh) / 2;
+    const proximity = clamp01(1 - offset / halfRange);
+
+    // Smoothstep gives a gentle ease-in/out at the proximity extremes
+    // (slow start near edges, faster through middle, slow ease into peak).
+    const t = smoothstep(proximity);
+
+    // Each element has a slight bias: small things (kicker, rules) reach 1 a bit
+    // before the headline, so the composition "sets" naturally even though
+    // everything is driven by the same proximity scrub.
+    const tEarly  = smoothstep(clamp01((proximity - 0.05) / 0.85));
+    const tMid    = smoothstep(clamp01((proximity - 0.10) / 0.85));
+    const tLate   = smoothstep(clamp01((proximity - 0.15) / 0.80));
+
+    // Kicker
+    if (quoteKicker) quoteKicker.style.opacity = lerp(0, 0.95, tEarly).toFixed(3);
+
+    // Top rule — expands 0 → 48px
+    if (quoteRuleTop) quoteRuleTop.style.width = `${lerp(0, 48, tEarly).toFixed(1)}px`;
+
+    // Japanese characters
+    if (quoteJp) {
+      quoteJp.style.opacity = lerp(0, 1, tMid).toFixed(3);
+      quoteJp.style.transform = `translateY(${lerp(40, 0, tMid).toFixed(2)}px) scale(${lerp(0.82, 1.04, tMid).toFixed(3)})`;
+      quoteJp.style.letterSpacing = lerp(0.26, 0.58, tMid).toFixed(3) + 'em';
+    }
+
+    // Quote text — the big move. Same proximity but with deeper amplitudes.
+    if (quoteText) {
+      quoteText.style.opacity = lerp(0, 1, tLate).toFixed(3);
+      quoteText.style.transform = `translateY(${lerp(80, 0, tLate).toFixed(2)}px) scale(${lerp(0.66, 1.02, tLate).toFixed(3)})`;
+      quoteText.style.filter = `blur(${lerp(12, 0, tLate).toFixed(2)}px)`;
+      quoteText.style.letterSpacing = lerp(0.36, 0.12, tLate).toFixed(3) + 'em';
+    }
+
+    // Bottom rule — expands with main t
+    if (quoteRuleBottom) quoteRuleBottom.style.width = `${lerp(0, 48, t).toFixed(1)}px`;
+
+    // Byline
+    if (quoteAuthor) quoteAuthor.style.opacity = lerp(0, 0.95, t).toFixed(3);
+  }
+  window.addEventListener('scroll', updateQuote, { passive: true });
+  window.addEventListener('resize', updateQuote);
+  updateQuote();
+  // Debug-only: ?preview=quote forces the quote to its final formed state
+  if (location.search.includes('preview=quote')) {
+    setTimeout(() => {
+      if (quoteSection) window.scrollTo(0, quoteSection.offsetTop + window.innerHeight * 0.4);
+      if (quoteKicker) quoteKicker.style.opacity = '0.95';
+      if (quoteRuleTop) quoteRuleTop.style.width = '48px';
+      if (quoteRuleBottom) quoteRuleBottom.style.width = '48px';
+      if (quoteJp) { quoteJp.style.opacity = '1'; quoteJp.style.transform = 'translateY(0) scale(1.06)'; quoteJp.style.letterSpacing = '0.58em'; }
+      if (quoteText) { quoteText.style.opacity = '1'; quoteText.style.transform = 'translateY(0) scale(1.04)'; quoteText.style.filter = 'blur(0)'; quoteText.style.letterSpacing = '0.12em'; }
+      if (quoteAuthor) quoteAuthor.style.opacity = '0.95';
+    }, 200);
+  }
+
+  // Word-by-word scrubbing reveal for THE HOUSE lede
+  const lede = document.getElementById('house-lede');
+  if (lede) {
+    const words = Array.from(lede.querySelectorAll('.word'));
+    function updateLede() {
+      const rect = lede.getBoundingClientRect();
+      const vh = window.innerHeight;
+      // 0 = top hits bottom of viewport; 1 = bottom hits top of viewport
+      const progress = Math.max(0, Math.min(1, 1 - (rect.top - vh * 0.15) / (vh * 0.65)));
+      const lit = Math.floor(progress * words.length);
+      words.forEach((w, i) => { w.classList.toggle('lit', i <= lit); });
+    }
+    window.addEventListener('scroll', updateLede, { passive: true });
+    window.addEventListener('resize', updateLede);
+    updateLede();
+  }
+
+  // Standard reveals
+  const io = new IntersectionObserver(es => {
+    es.forEach(e => { if (e.isIntersecting) { e.target.classList.add('in'); io.unobserve(e.target); } });
+  }, { threshold: 0.1 });
+  document.querySelectorAll('article, figure, h2, h3').forEach(el => { el.classList.add('reveal'); io.observe(el); });
+</script>
+</body>
+</html>

@@ -1,0 +1,855 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width,initial-scale=1" />
+<title>The Anti-Slop Design Stack — Three sites, one router</title>
+<link rel="preconnect" href="https://fonts.googleapis.com" />
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,400..700;1,9..144,400..600&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet" />
+<style>
+  :root {
+    --paper:   oklch(0.965 0.008 88);
+    --paper2:  oklch(0.93 0.012 88);
+    --paper3:  oklch(0.89 0.018 84);
+    --ink:     oklch(0.20 0.018 252);
+    --ink2:    oklch(0.28 0.018 252);
+    --mineral: oklch(0.55 0.015 252);
+    --ochre:   oklch(0.74 0.16 64);
+    --lacquer: oklch(0.45 0.20 25);
+    --rule:    oklch(0.20 0.018 252 / .18);
+  }
+  *, *::before, *::after { box-sizing: border-box; }
+  html, body { margin: 0; background: var(--paper); color: var(--ink); font-family: Fraunces, ui-serif, Georgia, serif; font-size: 18px; line-height: 1.6; -webkit-font-smoothing: antialiased; }
+  html { scroll-behavior: smooth; }
+  a { color: inherit; }
+
+  /* Sticky nav — scope to the SITE header only, not any <header> on the page.
+     (The bug: a bare `header` selector made <header.antagonist-header> sticky.) */
+  .site-nav {
+    position: sticky; top: 0; z-index: 50;
+    background: oklch(0.965 0.008 88 / 0.88);
+    backdrop-filter: saturate(140%) blur(14px);
+    -webkit-backdrop-filter: saturate(140%) blur(14px);
+    border-bottom: 1px solid var(--rule);
+  }
+  .nav {
+    max-width: 1440px; margin: 0 auto; padding: 1.1rem 2rem;
+    display: flex; align-items: center; justify-content: space-between; gap: 1.5rem;
+  }
+  /* Wordmark — italic Fraunces. "Anti-Slop" sits 2 sizes bigger; the leading "A"
+     and trailing "p" are upright Fraunces (same family, font-style: normal),
+     creating a sharp contrast against the cursive interior letters.
+     "Design" picks up ochre weight to echo "one router" in the hero. */
+  .brand {
+    font-family: Fraunces, ui-serif, Georgia, serif;
+    font-style: italic;
+    font-size: clamp(1.55rem, 2.2vw, 2.25rem);
+    font-weight: 500;
+    font-variation-settings: "opsz" 144, "SOFT" 50, "wght" 500;
+    letter-spacing: -0.012em;
+    color: var(--ink);
+    text-decoration: none;
+    line-height: 0.95;
+    display: inline-flex; align-items: baseline; gap: 0.32rem;
+  }
+  .brand .anti-slop {
+    /* 2 sizes bigger — relative to brand's clamp */
+    font-size: 1.35em;
+    line-height: 0.92;
+  }
+  .brand .up {
+    /* The leading 'A' and trailing 'p' — upright Fraunces, same family */
+    font-style: normal;
+    font-weight: 500;
+    font-variation-settings: "opsz" 144, "SOFT" 30, "wght" 500;
+  }
+  .brand .design {
+    /* One step bigger than the base — still smaller than "Anti-Slop" (1.35em) */
+    font-size: 1.18em;
+    font-weight: 600;
+    color: var(--ochre);
+    font-variation-settings: "opsz" 144, "SOFT" 80, "wght" 600;
+    line-height: 0.95;
+  }
+  .nav-actions { display: flex; gap: 1.3rem; align-items: center; font-family: 'JetBrains Mono', monospace; font-size: 10.5px; letter-spacing: 0.22em; text-transform: uppercase; }
+  .nav-actions a { color: var(--ink); text-decoration: none; transition: color .3s; }
+  .nav-actions a:hover { color: var(--ochre); }
+  .nav-actions a.gh {
+    border: 1px solid oklch(0.20 0.018 252 / .35); padding: 0.55rem 0.95rem;
+    transition: all .4s cubic-bezier(.16,1,.3,1);
+  }
+  .nav-actions a.gh:hover { background: var(--ink); color: var(--paper); border-color: var(--ink); }
+
+  /* Layout */
+  .wrap { max-width: 1280px; margin: 0 auto; padding: 0 2rem; }
+  .wrap-wide { max-width: 1400px; margin: 0 auto; padding: 0 2rem; }
+  section { padding: 6rem 0; }
+
+  .kicker {
+    font-family: 'JetBrains Mono', monospace; font-size: 10.5px;
+    letter-spacing: 0.26em; text-transform: uppercase; color: var(--mineral);
+  }
+  h1 { font-family: Fraunces, serif; font-weight: 400; font-size: clamp(3rem, 7vw, 6rem); line-height: 0.94; letter-spacing: -0.025em; margin: 1.4rem 0 2rem; }
+  h2 { font-family: Fraunces, serif; font-weight: 400; font-size: clamp(2.2rem, 4.4vw, 3.6rem); line-height: 1; letter-spacing: -0.02em; margin: 1rem 0 1.5rem; }
+  h3 { font-family: Fraunces, serif; font-weight: 500; font-size: clamp(1.5rem, 2vw, 2rem); margin: 0; font-style: italic; }
+
+  .em-ochre { font-style: italic; color: var(--ochre); }
+  .em-lacquer { font-style: italic; color: var(--lacquer); }
+
+  code.k {
+    font-family: 'JetBrains Mono', monospace;
+    background: var(--paper2); padding: 1px 7px; border-radius: 3px;
+    font-size: 0.92em; color: var(--ink2);
+  }
+
+  /* Hero */
+  .hero { padding-top: 6rem; padding-bottom: 4rem; }
+  .lede p { font-size: 1.18rem; line-height: 1.7; color: var(--ink2); margin: 0 0 1.3rem; max-width: 65ch; }
+  .lede p:last-child { margin-bottom: 0; }
+  .lede a { color: var(--ochre); text-decoration: underline; text-decoration-color: oklch(0.74 0.16 64 / .4); text-decoration-thickness: 1px; text-underline-offset: 4px; transition: color .3s; }
+  .lede a:hover { color: var(--lacquer); }
+  .hero .cta-row { margin-top: 2.6rem; display: flex; gap: 1rem; flex-wrap: wrap; }
+  .btn {
+    font-family: 'JetBrains Mono', monospace; font-size: 11px; letter-spacing: 0.22em;
+    text-transform: uppercase; text-decoration: none;
+    padding: 0.9rem 1.4rem; display: inline-flex; align-items: center; gap: 0.7rem;
+    transition: all .35s cubic-bezier(.16,1,.3,1);
+  }
+  .btn.primary { background: var(--ink); color: var(--paper); border: 1px solid var(--ink); }
+  .btn.primary:hover { background: var(--ochre); color: var(--ink); border-color: var(--ochre); }
+  .btn.ghost { background: transparent; color: var(--ink); border: 1px solid oklch(0.20 0.018 252 / .35); }
+  .btn.ghost:hover { border-color: var(--ink); }
+
+  .rule { height: 1px; background: var(--rule); margin: 0; border: 0; }
+
+  /* Antagonist section — NO box. Same paper bg as the rest of the page.
+     Visual separation comes from spacing + typography only. */
+  .antagonist {
+    position: relative;
+    background: var(--paper);
+    padding: 6rem 0 4rem;
+    border: none;
+  }
+
+  .antagonist-header {
+    max-width: 880px; margin: 0 auto 2.4rem; text-align: center;
+  }
+  /* The slop ceiling. — balanced editorial scale, static, Fraunces */
+  .antagonist-header h2 {
+    font-family: Fraunces, ui-serif, Georgia, serif;
+    font-weight: 400;
+    font-size: clamp(2.6rem, 5vw, 4.4rem);
+    font-variation-settings: "opsz" 80, "SOFT" 30;
+    line-height: 0.96;
+    letter-spacing: -0.025em;
+    margin: 0 auto 1.4rem;
+    color: var(--ink);
+  }
+  .antagonist-header h2 .em-lacquer {
+    font-style: italic;
+    font-weight: 500;
+    font-variation-settings: "opsz" 80, "SOFT" 100;
+    color: var(--lacquer);
+  }
+  .antagonist-header p {
+    font-size: clamp(1.05rem, 1.25vw, 1.2rem);
+    line-height: 1.65; color: var(--ink2);
+    margin: 0 auto; max-width: 62ch;
+  }
+  .antagonist-frame-wrap {
+    max-width: 1080px; margin: 0 auto 2.5rem;
+  }
+  .antagonist-body {
+    max-width: 760px; margin: 0 auto; text-align: center;
+  }
+  .antagonist-body p {
+    font-size: 1.05rem; line-height: 1.65; color: var(--ink2); margin: 0 0 1.2rem;
+    text-align: left;
+  }
+  .antagonist-body p:last-of-type { margin-bottom: 0; }
+  .antagonist-body p strong { color: var(--ink); font-weight: 600; }
+
+  /* Browser-chrome frame */
+  .frame {
+    width: 100%;
+    background: var(--ink); color: var(--paper);
+    border: 1px solid oklch(0.20 0.018 252 / .25);
+    box-shadow: 0 22px 70px oklch(0.20 0.018 252 / .14), 0 4px 12px oklch(0.20 0.018 252 / .06);
+    display: flex; flex-direction: column;
+    border-radius: 6px; overflow: hidden;
+  }
+  .frame-bar {
+    display: flex; align-items: center; gap: 0.8rem;
+    padding: 0.55rem 0.9rem;
+    background: var(--ink);
+    border-bottom: 1px solid oklch(0.92 0.008 88 / .12);
+    font-family: 'JetBrains Mono', monospace; font-size: 10px;
+    letter-spacing: 0.16em; text-transform: uppercase;
+  }
+  .frame-bar .dots { display: inline-flex; gap: 6px; }
+  .frame-bar .dot { width: 10px; height: 10px; border-radius: 50%; background: oklch(0.55 0.015 252); }
+  .frame-bar .dot.red { background: oklch(0.62 0.20 22); }
+  .frame-bar .dot.yel { background: oklch(0.82 0.16 88); }
+  .frame-bar .dot.grn { background: oklch(0.72 0.13 145); }
+  .frame-bar .url {
+    flex: 1; color: oklch(0.92 0.008 88 / .8); text-transform: none;
+    letter-spacing: 0.06em; font-family: 'JetBrains Mono', monospace;
+    background: oklch(0.92 0.008 88 / .06); padding: 0.3rem 0.7rem; border-radius: 4px;
+    text-align: center;
+  }
+  .frame-bar .url::before { content: "🔒  "; opacity: 0.7; font-size: 8px; letter-spacing: 0; }
+  .frame-bar .open-live {
+    color: var(--ink); background: var(--ochre);
+    padding: 0.3rem 0.65rem; text-decoration: none;
+    transition: all .3s; border-radius: 3px;
+  }
+  .frame-bar .open-live:hover { background: var(--paper); }
+
+  .frame-viewport {
+    position: relative;
+    width: 100%;
+    aspect-ratio: 1440/900;
+    overflow: hidden;
+    background: var(--paper2);
+    --scale: 0.5;
+  }
+  .frame-viewport iframe {
+    width: 1440px; height: 900px;
+    transform: scale(var(--scale));
+    transform-origin: top left;
+    border: 0; display: block;
+    pointer-events: none;
+  }
+  .frame.live .frame-viewport iframe { pointer-events: auto; }
+
+  .frame-toggle {
+    width: 100%; cursor: pointer; border: 0;
+    border-top: 1px solid oklch(0.92 0.008 88 / .15);
+    background: oklch(0.20 0.018 252);
+    color: oklch(0.92 0.008 88 / .8);
+    font-family: 'JetBrains Mono', monospace; font-size: 10px;
+    letter-spacing: 0.22em; text-transform: uppercase;
+    padding: 0.8rem 0.9rem;
+    transition: background .3s, color .3s;
+  }
+  .frame-toggle:hover { background: oklch(0.28 0.018 252); color: var(--paper); }
+  .frame.live .frame-toggle { background: var(--ochre); color: var(--ink); }
+  .frame.live .frame-toggle::before { content: "● LIVE  ·  "; color: var(--lacquer); }
+
+  /* Chapter break — two separate hairlines (left & right of central diamond),
+     each with curls that loop into the line itself. Lines are gently curved
+     and have a second small curl near each end. Drawn via stroke-dashoffset
+     so the lines appear to draw out from the diamond as the user enters the
+     section, and retract back as they scroll past. Slower, more dynamic. */
+  .chapter-break {
+    width: 100%;
+    background: var(--paper);
+    padding: 5rem 2rem 4.5rem;
+  }
+  .cb-svg {
+    display: block;
+    width: 100%;
+    max-width: 1100px;
+    height: 56px;
+    margin: 0 auto;
+    color: var(--ochre);
+    overflow: visible;
+  }
+  .cb-line {
+    fill: none;
+    stroke: currentColor;
+    stroke-width: 1;
+    stroke-linecap: round;
+    stroke-linejoin: round;
+    /* stroke-dasharray + stroke-dashoffset set in JS once we have path length */
+    will-change: stroke-dashoffset;
+  }
+  .cb-diamond {
+    fill: currentColor;
+    opacity: 0;
+    transform-origin: 400px 30px;
+    transform: scale(0);
+    will-change: transform, opacity;
+  }
+
+  /* Demos section */
+  #demos { padding-top: 3rem; }
+  .demos-intro { max-width: 760px; margin-bottom: 4rem; }
+  .demos-intro p { font-size: 1.1rem; color: var(--ink2); margin: 0; }
+
+  /* Demos use grid-template-areas + data-layout so alternation is explicit.
+     Iframes capped at max-width so text gets room to breathe on wide viewports. */
+  .demo {
+    display: grid;
+    grid-template-areas: "text frame";
+    grid-template-columns: 1fr 1.1fr;
+    gap: 3.5rem;
+    align-items: center;
+    margin-bottom: 6rem;
+  }
+  .demo[data-layout="text-right"] {
+    grid-template-areas: "frame text";
+    grid-template-columns: 1.1fr 1fr;
+  }
+  .demo .demo-text  { grid-area: text; }
+  .demo .demo-frame { grid-area: frame; max-width: 680px; width: 100%; }
+  .demo[data-layout="text-left"]  .demo-frame { margin-left: auto; }
+  .demo[data-layout="text-right"] .demo-frame { margin-right: auto; }
+  .demo-num { font-family: 'JetBrains Mono', monospace; color: var(--mineral); font-size: 11px; letter-spacing: 0.22em; }
+  .demo-lane {
+    font-family: 'JetBrains Mono', monospace; color: var(--ochre);
+    font-size: 11px; letter-spacing: 0.22em; text-transform: uppercase;
+    margin-top: 0.4rem; display: block;
+  }
+  .demo h3 { margin: 1rem 0 1.2rem; font-size: clamp(1.7rem, 2.6vw, 2.6rem); font-style: italic; line-height: 1.1; }
+  .demo .story { color: var(--ink2); margin: 0 0 1.6rem; line-height: 1.65; font-size: 1.05rem; }
+  .demo .stack {
+    font-family: 'JetBrains Mono', monospace; font-size: 10.5px;
+    letter-spacing: 0.18em; color: var(--mineral); text-transform: uppercase;
+    margin: 0 0 2rem; line-height: 1.7; padding-left: 0.9rem;
+    border-left: 2px solid var(--ochre);
+  }
+
+  /* About + Read more */
+  #about { padding: 8rem 0; background: linear-gradient(180deg, var(--paper) 0%, var(--paper2) 100%); border-top: 1px solid var(--rule); }
+  .about-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 5rem; }
+  .about-grid .lede p { font-size: 1.05rem; }
+  .about-grid h2 { margin-top: 1rem; }
+  .reads { list-style: none; padding: 0; margin: 2rem 0 0; }
+  .reads li { border-top: 1px solid var(--rule); }
+  .reads li:last-child { border-bottom: 1px solid var(--rule); }
+  .reads a {
+    display: block; padding: 1.4rem 0; text-decoration: none; color: var(--ink);
+    transition: background .3s, padding .3s;
+  }
+  .reads a:hover { background: oklch(0.74 0.16 64 / .08); padding-left: 1rem; padding-right: 1rem; }
+  .reads .read-tag { font-family: 'JetBrains Mono', monospace; font-size: 10px; letter-spacing: 0.24em; text-transform: uppercase; color: var(--ochre); }
+  .reads .read-title { font-family: Fraunces, serif; font-style: italic; font-size: 1.45rem; margin-top: 0.3rem; line-height: 1.2; }
+  .reads .read-desc { color: var(--mineral); font-size: 0.95rem; margin-top: 0.4rem; line-height: 1.5; }
+
+  /* Stack stars row */
+  .stack-stars {
+    display: flex; flex-wrap: wrap; gap: 1.4rem; margin: 2rem 0 0;
+    padding-top: 2rem; border-top: 1px solid var(--rule);
+  }
+  .stack-stars a {
+    text-decoration: none; color: var(--ink); display: flex; align-items: baseline; gap: 0.4rem;
+    font-family: 'JetBrains Mono', monospace; font-size: 11px; letter-spacing: 0.16em;
+    text-transform: uppercase; transition: color .3s;
+  }
+  .stack-stars a:hover { color: var(--ochre); }
+  .stack-stars .stars { color: var(--ochre); font-weight: 500; }
+
+  /* Footer */
+  footer {
+    background: var(--ink); color: var(--paper);
+    padding: 4rem 0 3rem; margin: 0;
+  }
+  .footer-grid {
+    display: grid; grid-template-columns: 2.2fr 1fr 1fr 1fr; gap: 3rem;
+    max-width: 1280px; margin: 0 auto; padding: 0 2rem;
+  }
+  footer h4 {
+    font-family: 'JetBrains Mono', monospace; font-size: 10px;
+    letter-spacing: 0.26em; text-transform: uppercase;
+    color: oklch(0.92 0.008 88 / .5); margin: 0 0 1.2rem; font-weight: 500;
+  }
+  footer ul { list-style: none; padding: 0; margin: 0; }
+  footer ul a {
+    display: block; color: oklch(0.92 0.008 88 / .85); text-decoration: none;
+    font-family: 'JetBrains Mono', monospace; font-size: 11px;
+    letter-spacing: 0.15em; text-transform: uppercase; line-height: 2.4;
+    transition: color .3s;
+  }
+  footer ul a:hover { color: var(--ochre); }
+  footer .colophon {
+    font-family: Fraunces, serif; font-style: italic; font-size: 1rem;
+    line-height: 1.65; color: oklch(0.92 0.008 88 / .8); margin: 0 0 1.5rem;
+    max-width: 42ch;
+  }
+  footer .credit {
+    font-family: 'JetBrains Mono', monospace; font-size: 10px;
+    letter-spacing: 0.18em; color: oklch(0.92 0.008 88 / .5);
+    margin: 2rem 0 0; padding: 1.5rem 0 0;
+    border-top: 1px solid oklch(0.92 0.008 88 / .14);
+    max-width: 1280px; margin-left: auto; margin-right: auto; padding-left: 2rem; padding-right: 2rem;
+    display: flex; flex-wrap: wrap; justify-content: space-between; gap: 1rem;
+  }
+
+  /* Responsive */
+  @media (max-width: 1100px) {
+    .demo, .demo[data-layout="text-right"] {
+      grid-template-areas: "frame" "text";
+      grid-template-columns: 1fr;
+      gap: 2.5rem;
+    }
+    .demo .demo-frame { max-width: none; margin: 0 auto !important; }
+    .antagonist-frame-wrap { max-width: 100%; }
+  }
+  @media (max-width: 760px) {
+    .about-grid { grid-template-columns: 1fr; gap: 3rem; }
+    .footer-grid { grid-template-columns: 1fr 1fr; gap: 2rem; }
+    .nav-actions { gap: 0.7rem; }
+    .nav-actions a:not(.gh) { display: none; }
+    .nav { padding: 0.9rem 1.2rem; }
+    .brand .sub, .brand .sep { display: none; }
+    section { padding: 4rem 0; }
+    .hero { padding-top: 4rem; }
+    .antagonist-header h2 { font-size: clamp(2rem, 7vw, 2.6rem); }
+  }
+
+  /* Subtle scroll-reveals for sections */
+  .reveal { opacity: 0; transform: translateY(20px); transition: opacity 1s cubic-bezier(.16,1,.3,1), transform 1s cubic-bezier(.16,1,.3,1); }
+  .reveal.in { opacity: 1; transform: none; }
+
+  /* Discreet side-entering blur-to-focus reveal for the demo text columns.
+     Direction depends on which side the text sits — same side it enters from.
+     CSS variable sets the X offset; data-layout attr drives the direction. */
+  .demo-text {
+    opacity: 0;
+    filter: blur(8px);
+    transform: translateX(var(--enter-x));
+    transition:
+      opacity 1.2s cubic-bezier(.16,1,.3,1),
+      filter  1.2s cubic-bezier(.16,1,.3,1),
+      transform 1.2s cubic-bezier(.16,1,.3,1);
+    will-change: opacity, filter, transform;
+  }
+  /* Text-left default → enter FROM the left (negative X) */
+  .demo .demo-text { --enter-x: -42px; }
+  /* Text-right (Hyperborea) → enter FROM the right (positive X) */
+  .demo[data-layout="text-right"] .demo-text { --enter-x: 42px; }
+  .demo-text.in { opacity: 1; filter: blur(0); transform: translateX(0); }
+
+  @media (prefers-reduced-motion: reduce) {
+    .reveal, .demo-text { opacity: 1; transform: none; transition: none; filter: none; }
+  }
+</style>
+</head>
+<body>
+
+<header class="site-nav">
+  <div class="nav">
+    <a class="brand" href="#top"><span class="anti-slop"><span class="up">A</span>nti-Slo<span class="up">p</span></span>&nbsp;<span class="design">Design</span></a>
+    <div class="nav-actions">
+      <a href="#antagonist">Antagonist</a>
+      <a href="#demos">Demos</a>
+      <a href="#about">Story</a>
+      <a class="gh" href="https://github.com/oloflun/anti-slop-design" target="_blank" rel="noopener">GitHub&nbsp;↗</a>
+    </div>
+  </div>
+</header>
+
+<section class="hero wrap" id="top">
+  <div class="kicker">Audit &middot; Router &middot; Proof</div>
+  <h1>Three sites,<br><span class="em-ochre">one&nbsp;router</span>.</h1>
+  <div class="lede">
+    <p>I have a hundred and thirty-seven skills installed in my Claude Code setup. Roughly thirty of them are design-related. Some are brilliant — <a href="https://github.com/pbakaus/impeccable" target="_blank" rel="noopener">Impeccable</a>, <a href="https://github.com/Leonxlnx/taste-skill" target="_blank" rel="noopener">taste-skill</a>, <a href="https://github.com/Owl-Listener/designpowers" target="_blank" rel="noopener">designpowers</a>. Others are compliance checklists. None of them, alone or composed, reliably stopped my model from shipping the same AI-generic landing page every time I asked for something premium.</p>
+
+    <p>The third time my model returned a centered hero stack with a chart card on the right, a four-column metric grid, three icon-title cards, and a "trusted by 10,000+ teams" line — all in Inter, all on egg-shell — I stopped fighting the model and started auditing the stack.</p>
+
+    <p>About twenty minutes later, in a single <em>Opus 4.7</em> session, I had: a five-axis ranking of <a href="https://github.com/oloflun/anti-slop-design/blob/main/AUDIT.md" target="_blank" rel="noopener">32 design skills</a>, one <a href="https://github.com/oloflun/anti-slop-design/blob/main/skills/design/SKILL.md" target="_blank" rel="noopener">master router skill</a> at <code class="k">~/.agents/skills/design/SKILL.md</code> that fires on the trigger word <code class="k">design</code>, and three landing pages built from single prompts each — every one in a different aesthetic lane, every one passing both <em>slop tests</em>. None of them look AI-generated.</p>
+  </div>
+  <div class="cta-row">
+    <a class="btn primary" href="#antagonist">↓ See the antagonist first</a>
+    <a class="btn ghost" href="https://github.com/oloflun/anti-slop-design" target="_blank" rel="noopener">Source on GitHub</a>
+  </div>
+</section>
+
+<section class="antagonist" id="antagonist">
+  <div class="wrap">
+    <header class="antagonist-header">
+      <h2>The <span class="em-lacquer">slop&nbsp;ceiling</span>.</h2>
+      <p>If you've used any AI coding tool in 2026, you've seen this exact page produced for AI search startups, fintech, observability dashboards, sleep-tech wearables, B2B SaaS, dev tools, project managers, productivity suites, and CRMs.</p>
+    </header>
+
+    <div class="antagonist-frame-wrap">
+      <div class="frame">
+        <div class="frame-bar">
+          <span class="dots"><span class="dot red"></span><span class="dot yel"></span><span class="dot grn"></span></span>
+          <span class="url">flowstack.app  /  the all-in-one platform for modern teams</span>
+          <a class="open-live" data-href="before-ai-slop" href="#" target="_blank" rel="noopener">OPEN&nbsp;↗</a>
+        </div>
+        <div class="frame-viewport">
+          <iframe data-src="before-ai-slop" loading="lazy" title="The AI-slop antagonist — what every AI coding tool ships by default"></iframe>
+        </div>
+        <button class="frame-toggle" data-toggle-frame>Click to scroll inside the preview</button>
+      </div>
+    </div>
+
+    <div class="antagonist-body">
+      <p><strong>Inter typeface.</strong> Sticky pill nav. Gradient hero text. Chart card on the right. Four-column metric grid with tiny captions. Three icon-title-body "feature" cards. Big-number row. Generic CTA. <em>"Trusted by 10,000+ teams."</em> <em>Made with ❤️ in San Francisco.</em></p>
+      <p><strong>Every pattern visible above is on the absolute-ban list of multiple premium design skills installed on my machine</strong> — and they didn't fire. The router this repo ships exists so this never gets shipped again. The three demos below are what fires <em>instead</em>, when the router is in place.</p>
+    </div>
+  </div>
+</section>
+
+<!-- Scroll-scrubbed chapter break between antagonist and demos.
+     Two separate paths flanking a central diamond; each path has curls that
+     LOOP INTO the line itself (the line wraps up and over, then back). Drawn
+     progressively via stroke-dashoffset as user enters; retracted as they exit. -->
+<div class="chapter-break" data-break-id="anta-demos" aria-hidden="true">
+  <svg class="cb-svg" viewBox="0 0 800 56" xmlns="http://www.w3.org/2000/svg" preserveAspectRatio="xMidYMid meet">
+    <!-- Central diamond -->
+    <path class="cb-diamond" d="M 400 22 L 408 30 L 400 38 L 392 30 Z"/>
+
+    <!-- Left line — starts adjacent to diamond, includes a curl near the
+         diamond, a long curved mid-section, and a second curl near the end. -->
+    <path class="cb-line cb-left"
+          d="M 384 30
+             C 360 30 342 30 332 30
+             C 318 30 308 22 310 17
+             S 320 14 322 19
+             S 318 28 332 30
+             C 290 30 252 30 214 30
+             C 188 30 168 28 152 22
+             S 130 14 144 18
+             S 168 27 192 30
+             C 150 30 112 30 86 30
+             C 76 30 68 28 64 25
+             S 60 22 66 24"/>
+
+    <!-- Right line — mirror image with the same smooth S-curve continuations -->
+    <path class="cb-line cb-right"
+          d="M 416 30
+             C 440 30 458 30 468 30
+             C 482 30 492 22 490 17
+             S 480 14 478 19
+             S 482 28 468 30
+             C 510 30 548 30 586 30
+             C 612 30 632 28 648 22
+             S 670 14 656 18
+             S 632 27 608 30
+             C 650 30 688 30 714 30
+             C 724 30 732 28 736 25
+             S 740 22 734 24"/>
+  </svg>
+</div>
+
+<section id="demos" class="wrap">
+  <div class="demos-intro">
+    <div class="kicker">What the router shipped instead</div>
+    <h2>Three single-prompt landing pages,<br>three aesthetic <span class="em-ochre">lanes</span>.</h2>
+  </div>
+
+  <!-- Demo 1 · Calyx — text LEFT, frame RIGHT -->
+  <article class="demo" data-layout="text-left">
+    <div class="demo-text">
+      <div class="demo-num">/01</div>
+      <span class="demo-lane">Editorial Luxury</span>
+      <h3>Calyx — Stockholm Atelier</h3>
+      <p class="story">A two-sister botanical commission studio in Vasastan, accepting eleven cuttings a week — the eleventh being a wedding. Cream + charcoal restraint, Cardo italic display, layered botanical photography. The reference target was the published <em>floria-landing-page</em>. Design IS the product; the page IS the brand. The router's job here was to keep it from collapsing into the warm-cream-with-italic-serif aesthetic <em>family</em> that's flooded boutique-brand sites for two years.</p>
+      <div class="stack">Stack: Impeccable&nbsp;+&nbsp;high-end-visual-design<br>Lane: Editorial Luxury archetype<br>Photography: 4 verified Unsplash photographs</div>
+      <a href="#" data-href="calyx" class="btn primary open-live-btn" target="_blank" rel="noopener">Open live →</a>
+    </div>
+    <div class="demo-frame">
+      <div class="frame">
+        <div class="frame-bar">
+          <span class="dots"><span class="dot red"></span><span class="dot yel"></span><span class="dot grn"></span></span>
+          <span class="url">calyx.se  /  botanical architecture, stockholm</span>
+          <a class="open-live" data-href="calyx" href="#" target="_blank" rel="noopener">OPEN&nbsp;↗</a>
+        </div>
+        <div class="frame-viewport">
+          <iframe data-src="calyx" loading="lazy" title="Calyx — Stockholm botanical atelier"></iframe>
+        </div>
+        <button class="frame-toggle" data-toggle-frame>Click to scroll inside the preview</button>
+      </div>
+    </div>
+  </article>
+
+  <!-- Demo 2 · Hyperborea — text RIGHT, frame LEFT -->
+  <article class="demo" data-layout="text-right">
+    <div class="demo-frame">
+      <div class="frame">
+        <div class="frame-bar">
+          <span class="dots"><span class="dot red"></span><span class="dot yel"></span><span class="dot grn"></span></span>
+          <span class="url">hyperborea.summit  /  systems with warmth · mmxxvi</span>
+          <a class="open-live" data-href="hyperborea" href="#" target="_blank" rel="noopener">OPEN&nbsp;↗</a>
+        </div>
+        <div class="frame-viewport">
+          <iframe data-src="hyperborea" loading="lazy" title="Hyperborea Summit MMXXVI"></iframe>
+        </div>
+        <button class="frame-toggle" data-toggle-frame>Click to scroll inside the preview</button>
+      </div>
+    </div>
+    <div class="demo-text">
+      <div class="demo-num">/02</div>
+      <span class="demo-lane">Speculative-Futurist</span>
+      <h3>Hyperborea Summit MMXXVI</h3>
+      <p class="story">A three-day speculative-futurist conference in Lund, twelve to fourteen September. Drenched dark navy with amber accents, bilingual EN/SV with Japanese kanji, illustrated SVG sun-disc speaker portraits. The reference target was <em>Impeccable.style/neo-mirai</em> — concept-art meets conference brand. The router fired gpt-taste for AIDA scrolltelling, design-taste-frontend for perpetual micro-motion (the rising sun, the marquee, the speaker-card hover lift), plus Impeccable's brand register to keep it out of the saturated dark-blue-observability lane.</p>
+      <div class="stack">Stack: Impeccable&nbsp;+&nbsp;gpt-taste&nbsp;+&nbsp;design-taste-frontend<br>Lane: drenched dark, illustrated SVG identity<br>Type: Italiana + Archivo + Noto Serif JP</div>
+      <a href="#" data-href="hyperborea" class="btn primary open-live-btn" target="_blank" rel="noopener">Open live →</a>
+    </div>
+  </article>
+
+  <!-- Demo 3 · Hōrai — text LEFT, frame RIGHT -->
+  <article class="demo" data-layout="text-left">
+    <div class="demo-text">
+      <div class="demo-num">/03</div>
+      <span class="demo-lane">Drenched Warm</span>
+      <h3>Hōrai — A Three-Sister Restaurant</h3>
+      <p class="story">High-end Asian-fusion restaurant on Hornsgatan, two seatings a night, twenty-six covers, one menu a night, no à la carte. Rice-paper cream + lacquer red, Cinzel monumental Roman caps over Vollkorn literary body, atmospheric food photography. The showpiece is the scroll-driven editorial chapter break over the dark noodles photograph — the quote bell-curves into focus as the section centers in your viewport. Scroll <em>through</em> the live preview to see it.</p>
+      <div class="stack">Stack: Impeccable&nbsp;+&nbsp;designpowers/design-taste<br>Lane: drenched warm, photo-led editorial<br>Notable: proximity-driven scroll-scrub animation</div>
+      <a href="#" data-href="horai" class="btn primary open-live-btn" target="_blank" rel="noopener">Open live →</a>
+    </div>
+    <div class="demo-frame">
+      <div class="frame">
+        <div class="frame-bar">
+          <span class="dots"><span class="dot red"></span><span class="dot yel"></span><span class="dot grn"></span></span>
+          <span class="url">horai.se  /  a three-sister restaurant, stockholm</span>
+          <a class="open-live" data-href="horai" href="#" target="_blank" rel="noopener">OPEN&nbsp;↗</a>
+        </div>
+        <div class="frame-viewport">
+          <iframe data-src="horai" loading="lazy" title="Hōrai — A Three-Sister Restaurant, Stockholm"></iframe>
+        </div>
+        <button class="frame-toggle" data-toggle-frame>Click to scroll inside the preview</button>
+      </div>
+    </div>
+  </article>
+</section>
+
+<!-- Second chapter break — between showcase demos and the documentation/about section -->
+<div class="chapter-break" data-break-id="demos-about" aria-hidden="true">
+  <svg class="cb-svg" viewBox="0 0 800 56" xmlns="http://www.w3.org/2000/svg" preserveAspectRatio="xMidYMid meet">
+    <path class="cb-diamond" d="M 400 22 L 408 30 L 400 38 L 392 30 Z"/>
+    <path class="cb-line cb-left"
+          d="M 384 30
+             L 340 30
+             C 328 30 322 22 320 18
+             C 318 14 314 16 314 22
+             C 314 28 322 30 332 30
+             L 196 30
+             C 174 30 158 30 142 24
+             C 132 20 122 18 116 22
+             C 110 26 116 30 130 30
+             L 62 30"/>
+    <path class="cb-line cb-right"
+          d="M 416 30
+             L 460 30
+             C 472 30 478 22 480 18
+             C 482 14 486 16 486 22
+             C 486 28 478 30 468 30
+             L 604 30
+             C 626 30 642 30 658 24
+             C 668 20 678 18 684 22
+             C 690 26 684 30 670 30
+             L 738 30"/>
+  </svg>
+</div>
+
+<section id="about">
+  <div class="wrap-wide">
+    <div class="about-grid">
+      <div>
+        <div class="kicker">The story</div>
+        <h2>How it was <span class="em-ochre">made</span>.</h2>
+        <div class="lede">
+          <p>One Claude Code session. Opus 4.7 high. Roughly twenty minutes of wall-clock. The session read every design SKILL.md in batched parallel reads, scored each on a five-axis rubric (<em>anti-slop teeth, aesthetic ceiling, execution fidelity, routing clarity, maintenance cost</em>), demoted the compliance-checklist ones — yes, <code class="k">ui-ux-pro-max</code> was one — and wrote a single master router.</p>
+
+          <p>The router does six things on every design task: <strong>detect</strong> task type → <strong>name</strong> an aesthetic lane → <strong>run</strong> both slop tests → <strong>layer</strong> the right specialist → <strong>enforce</strong> five hard bans as gates → <strong>end</strong> with <code class="k">impeccable polish</code>. It composes five upstream skills it didn't write. All credit for taste belongs to those repos.</p>
+
+          <p>Three demo sites validated the routing. Each in a different aesthetic lane. Each from a single prompt. No build pipeline — Tailwind via CDN, Google Fonts, Chrome headless for the validation screenshots. The whole public repo fits in fifteen files.</p>
+
+          <p>This is the broader bet I'm working on: the rest of my stack — orchestration, memory, session continuity, ingestion, evaluation — is starting to feel like an agentic OS. Design was the last subsystem that didn't have a router. Now it does.</p>
+        </div>
+
+        <div class="stack-stars">
+          <a href="https://github.com/pbakaus/impeccable" target="_blank" rel="noopener">Impeccable <span class="stars">29.2k★</span></a>
+          <a href="https://github.com/Leonxlnx/taste-skill" target="_blank" rel="noopener">taste-skill <span class="stars">18.4k★</span></a>
+          <a href="https://github.com/google-labs-code/stitch-skills" target="_blank" rel="noopener">stitch-skills <span class="stars">5.6k★</span></a>
+          <a href="https://github.com/Manavarya09/design-extract" target="_blank" rel="noopener">design-extract <span class="stars">2.8k★</span></a>
+          <a href="https://github.com/Owl-Listener/designpowers" target="_blank" rel="noopener">designpowers <span class="stars">175★</span></a>
+        </div>
+      </div>
+
+      <div>
+        <div class="kicker">Read more</div>
+        <h2>The <span class="em-ochre">long form</span>.</h2>
+        <ul class="reads">
+          <li><a href="https://github.com/oloflun/anti-slop-design#readme" target="_blank" rel="noopener">
+            <div class="read-tag">README · GitHub</div>
+            <div class="read-title">The canonical write-up</div>
+            <div class="read-desc">Hero strip, the audit table, embedded router source, install instructions, full credits.</div>
+          </a></li>
+          <li><a href="https://github.com/oloflun/anti-slop-design/blob/main/AUDIT.md" target="_blank" rel="noopener">
+            <div class="read-tag">AUDIT.md</div>
+            <div class="read-title">All 32 skills ranked</div>
+            <div class="read-desc">Five-axis rubric, top picks, demoted, why <code class="k">ui-ux-pro-max</code> lost to <code class="k">taste-skill</code> on aesthetic ceiling.</div>
+          </a></li>
+          <li><a href="https://github.com/oloflun/anti-slop-design/blob/main/skills/design/SKILL.md" target="_blank" rel="noopener">
+            <div class="read-tag">skills/design/SKILL.md</div>
+            <div class="read-title">The router itself</div>
+            <div class="read-desc">Drop into <code class="k">~/.agents/skills/design/</code> and type the trigger word. ~250 lines, all the iron rules and routing logic.</div>
+          </a></li>
+          <li><a href="https://github.com/oloflun/anti-slop-design/blob/main/attribution/UPSTREAMS.md" target="_blank" rel="noopener">
+            <div class="read-tag">attribution/UPSTREAMS.md</div>
+            <div class="read-title">The upstream stack &amp; credits</div>
+            <div class="read-desc">Every skill the router composes, with author, license, star count, and what part of the design vocabulary it provides.</div>
+          </a></li>
+        </ul>
+      </div>
+    </div>
+  </div>
+</section>
+
+<footer>
+  <div class="footer-grid">
+    <div>
+      <h4>The Anti-Slop Design Stack</h4>
+      <p class="colophon">Built in a single Claude Code session, Opus 4.7 high, ~20 minutes wall-clock. The taste belongs to the upstreams; this repo is the routing layer that makes them fire.</p>
+      <a class="btn primary" href="https://github.com/oloflun/anti-slop-design" target="_blank" rel="noopener" style="margin-top: 0.5rem;">GitHub repo ↗</a>
+    </div>
+    <div>
+      <h4>Source</h4>
+      <ul>
+        <li><a href="https://github.com/oloflun/anti-slop-design" target="_blank" rel="noopener">GitHub repo</a></li>
+        <li><a href="https://github.com/oloflun/anti-slop-design#readme" target="_blank" rel="noopener">README</a></li>
+        <li><a href="https://github.com/oloflun/anti-slop-design/blob/main/AUDIT.md" target="_blank" rel="noopener">Audit</a></li>
+        <li><a href="https://github.com/oloflun/anti-slop-design/blob/main/skills/design/SKILL.md" target="_blank" rel="noopener">Router source</a></li>
+        <li><a href="https://github.com/oloflun/anti-slop-design/blob/main/attribution/UPSTREAMS.md" target="_blank" rel="noopener">Upstreams &amp; credits</a></li>
+      </ul>
+    </div>
+    <div>
+      <h4>Demos</h4>
+      <ul>
+        <li><a data-href="calyx" href="#">/calyx</a></li>
+        <li><a data-href="hyperborea" href="#">/hyperborea</a></li>
+        <li><a data-href="horai" href="#">/horai</a></li>
+        <li><a data-href="before-ai-slop" href="#">/before-ai-slop</a></li>
+      </ul>
+    </div>
+    <div>
+      <h4>Upstreams</h4>
+      <ul>
+        <li><a href="https://github.com/pbakaus/impeccable" target="_blank" rel="noopener">Impeccable</a></li>
+        <li><a href="https://github.com/Leonxlnx/taste-skill" target="_blank" rel="noopener">taste-skill</a></li>
+        <li><a href="https://github.com/Owl-Listener/designpowers" target="_blank" rel="noopener">designpowers</a></li>
+        <li><a href="https://github.com/Manavarya09/design-extract" target="_blank" rel="noopener">design-extract</a></li>
+        <li><a href="https://github.com/google-labs-code/stitch-skills" target="_blank" rel="noopener">stitch-skills</a></li>
+      </ul>
+    </div>
+  </div>
+  <div class="credit">
+    <span>© oloflun</span>
+    <span>Set in Fraunces &amp; JetBrains Mono</span>
+    <span>MIT for the routing layer · upstreams under their own licenses</span>
+  </div>
+</footer>
+
+<script>
+  // Resolve all iframe + demo links based on environment.
+  // Vercel (production): rewrites map /calyx → /sites/calyx.html, so use /calyx.
+  // Local (file:// or python http.server on 127.0.0.1/localhost): no rewrites — use relative filename.
+  const isLocal =
+    location.protocol === 'file:' ||
+    /^(localhost|127\.0\.0\.1|\[::1\])$/.test(location.hostname);
+  const resolve = n => isLocal ? n + '.html' : '/' + n;
+
+  document.querySelectorAll('iframe[data-src]').forEach(f => { f.src = resolve(f.dataset.src); });
+  document.querySelectorAll('[data-href]').forEach(a => { a.href = resolve(a.dataset.href); });
+
+  // Click to enable interaction with the iframe (otherwise scroll is captured by the page).
+  document.querySelectorAll('[data-toggle-frame]').forEach(btn => {
+    btn.addEventListener('click', () => {
+      const frame = btn.closest('.frame');
+      const isLive = frame.classList.toggle('live');
+      btn.textContent = isLive
+        ? 'Click again to release · scroll outside the preview to continue'
+        : 'Click to scroll inside the preview';
+    });
+  });
+
+  // Compute iframe scale so the simulated 1440px viewport fills the actual container width.
+  function setFrameScales() {
+    document.querySelectorAll('.frame-viewport').forEach(v => {
+      const w = v.clientWidth;
+      v.style.setProperty('--scale', (w / 1440).toFixed(4));
+    });
+  }
+  window.addEventListener('resize', setFrameScales);
+  window.addEventListener('load', setFrameScales);
+  setFrameScales();
+  // Run again after fonts load (sometimes reflow changes container width)
+  if (document.fonts && document.fonts.ready) document.fonts.ready.then(setFrameScales);
+
+  // Chapter break — every .chapter-break runs the same scroll-scrubbed reveal.
+  //   Two separate path-lines, drawn progressively from the diamond outward
+  //   via stroke-dashoffset. The diamond fades + scales in on top.
+  //   Both retract symmetrically as user scrolls past (open ↔ close gesture).
+  function smoothstep(x) { x = Math.max(0, Math.min(1, x)); return x * x * (3 - 2 * x); }
+  // Quintic smootherstep — zero first and second derivatives at both ends,
+  // creates a noticeably softer easing curve than smoothstep.
+  function smootherstep(x) { x = Math.max(0, Math.min(1, x)); return x * x * x * (x * (x * 6 - 15) + 10); }
+
+  const breaks = Array.from(document.querySelectorAll('.chapter-break')).map(el => {
+    const svg = el.querySelector('.cb-svg');
+    const left = svg?.querySelector('.cb-left');
+    const right = svg?.querySelector('.cb-right');
+    const diamond = svg?.querySelector('.cb-diamond');
+    // Measure each path's length once, set up the dasharray
+    const leftLen  = left?.getTotalLength()  || 0;
+    const rightLen = right?.getTotalLength() || 0;
+    if (left)  { left.style.strokeDasharray  = leftLen;  left.style.strokeDashoffset  = leftLen;  }
+    if (right) { right.style.strokeDasharray = rightLen; right.style.strokeDashoffset = rightLen; }
+    return { el, svg, left, right, diamond, leftLen, rightLen };
+  });
+
+  function updateChapterBreaks() {
+    const vh = window.innerHeight;
+    for (const b of breaks) {
+      if (!b.svg) continue;
+      const rect = b.svg.getBoundingClientRect();
+      // Proximity: 1 when SVG center == viewport center; 0 when fully outside.
+      // Wider maxOffset (1.05vh) = longer scroll range = slower, smoother scrub.
+      const centerOffset = Math.abs((rect.top + rect.height / 2) - vh / 2);
+      const maxOffset = vh * 1.05;
+      const proximity = Math.max(0, 1 - centerOffset / maxOffset);
+
+      // Quintic smootherstep on both elements for a noticeably softer feel.
+      // Diamond arrives early in the curve; lines stage in slightly behind it.
+      const tDiamond = smootherstep(Math.max(0, Math.min(1, proximity / 0.55)));
+      const tLine    = smootherstep(Math.max(0, Math.min(1, (proximity - 0.08) / 0.90)));
+
+      if (b.diamond) {
+        b.diamond.style.opacity   = tDiamond.toFixed(3);
+        b.diamond.style.transform = `scale(${(0.4 + tDiamond * 0.6).toFixed(3)})`;
+      }
+      if (b.left  && b.leftLen)  b.left.style.strokeDashoffset  = (b.leftLen  * (1 - tLine)).toFixed(2);
+      if (b.right && b.rightLen) b.right.style.strokeDashoffset = (b.rightLen * (1 - tLine)).toFixed(2);
+    }
+  }
+  window.addEventListener('scroll', updateChapterBreaks, { passive: true });
+  window.addEventListener('resize', updateChapterBreaks);
+  updateChapterBreaks();
+
+  // General reveal — sections + frames fade up gently.
+  // Use multiple thresholds + low rootMargin so it fires reliably for items above the fold.
+  const io = new IntersectionObserver(es => {
+    es.forEach(e => { if (e.isIntersecting) { e.target.classList.add('in'); io.unobserve(e.target); } });
+  }, { threshold: [0, 0.04, 0.12], rootMargin: '0px 0px -40px 0px' });
+  document.querySelectorAll('section, .demo, .frame, h1, h2, .antagonist-header, .bridge-inner').forEach(el => {
+    el.classList.add('reveal'); io.observe(el);
+  });
+
+  // Discreet side-entering blur-to-focus reveal for the demo text columns.
+  // Triggers as soon as the demo card crosses the bottom edge of the viewport,
+  // so the user sees it interpolate from blurry-offset → sharp-in-place as they scroll.
+  const textIO = new IntersectionObserver(es => {
+    es.forEach(e => {
+      if (e.isIntersecting) { e.target.classList.add('in'); textIO.unobserve(e.target); }
+    });
+  }, { threshold: [0, 0.05, 0.15, 0.3], rootMargin: '0px 0px -60px 0px' });
+  document.querySelectorAll('.demo-text').forEach(el => textIO.observe(el));
+
+  // Safety net — if anything above the fold never got .in (e.g. instant-paint case),
+  // force it after a frame.
+  requestAnimationFrame(() => requestAnimationFrame(() => {
+    document.querySelectorAll('.reveal').forEach(el => {
+      const r = el.getBoundingClientRect();
+      if (r.top < window.innerHeight && r.bottom > 0) el.classList.add('in');
+    });
+  }));
+</script>
+</body>
+</html>

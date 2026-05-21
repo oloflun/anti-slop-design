@@ -1,0 +1,556 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width,initial-scale=1" />
+<title>Hyperborea Summit MMXXVI — Lund</title>
+<link rel="preconnect" href="https://fonts.googleapis.com" />
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+<link href="https://fonts.googleapis.com/css2?family=Italiana&family=Archivo:wght@400;500;600&family=Noto+Serif+JP:wght@400;700&display=swap" rel="stylesheet" />
+<script src="https://cdn.tailwindcss.com"></script>
+<script>
+tailwind.config = {
+  theme: {
+    extend: {
+      colors: {
+        ink:    'oklch(0.14 0.032 254)',
+        ink2:   'oklch(0.21 0.032 254)',
+        ink3:   'oklch(0.28 0.026 254)',
+        amber:  'oklch(0.79 0.158 64)',
+        amber2: 'oklch(0.62 0.142 50)',
+        bone:   'oklch(0.94 0.020 80)',
+        bone2:  'oklch(0.87 0.024 80)',
+        crimson:'oklch(0.50 0.180 25)',
+      },
+      fontFamily: {
+        display: ['Italiana','ui-serif','Georgia','serif'],
+        body: ['Archivo','ui-sans-serif','system-ui','sans-serif'],
+        jp: ['"Noto Serif JP"','serif'],
+      },
+    }
+  }
+}
+</script>
+<style>
+  html, body { background: oklch(0.14 0.032 254); color: oklch(0.94 0.020 80); font-family: 'Archivo', sans-serif; }
+  .display { font-family: 'Italiana', serif; letter-spacing: -0.005em; }
+  .jp { font-family: 'Noto Serif JP', serif; }
+  .kicker { font-size: 10.5px; letter-spacing: 0.22em; text-transform: uppercase; }
+  .num { font-feature-settings: "tnum"; }
+  .rule { background: currentColor; height: 1px; opacity: 0.25; }
+  .vrule { background: currentColor; width: 1px; opacity: 0.25; }
+  .grain::before {
+    content: ""; position: fixed; inset: 0; pointer-events: none; z-index: 100;
+    background-image: url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='240' height='240'><filter id='n'><feTurbulence type='fractalNoise' baseFrequency='0.85' numOctaves='2' stitchTiles='stitch'/><feColorMatrix type='matrix' values='0 0 0 0 0.96 0 0 0 0 0.74 0 0 0 0 0.36 0 0 0 0.10 0'/></filter><rect width='100%' height='100%' filter='url(%23n)'/></svg>");
+    mix-blend-mode: screen; opacity: 0.35;
+  }
+  .reveal { opacity: 0; transform: translateY(28px); transition: opacity 1.4s cubic-bezier(.16,1,.3,1), transform 1.4s cubic-bezier(.16,1,.3,1); }
+  .reveal.in { opacity: 1; transform: none; }
+  .marquee { display:flex; gap:5rem; animation: m 70s linear infinite; }
+  @keyframes m { from { transform: translateX(0); } to { transform: translateX(-50%); } }
+  .sun { animation: rise 18s ease-in-out infinite; transform-origin: center bottom; }
+  @keyframes rise { 0%,100% { transform: translateY(0); } 50% { transform: translateY(-12px); } }
+  .speaker-card:hover .sun-disc { transform: scale(1.04) translateY(-4px); }
+  .sun-disc { transition: transform 1.2s cubic-bezier(.16,1,.3,1); }
+  @media (prefers-reduced-motion: reduce) { .reveal { opacity:1; transform:none; transition:none; } .marquee { animation: none; } .sun { animation: none; } }
+</style>
+</head>
+<body class="grain antialiased">
+
+<!-- Top edition strip -->
+<div class="border-b border-bone/15">
+  <div class="max-w-[1480px] mx-auto px-8 py-3 grid grid-cols-12 items-center kicker text-bone/55">
+    <div class="col-span-4">Edition MMXXVI · Vol. 03</div>
+    <div class="col-span-4 text-center jp text-bone/80 text-[13px]" lang="ja">未来を描き、共に創る</div>
+    <div class="col-span-4 text-right">Lund · 12—14 september</div>
+  </div>
+</div>
+
+<header class="border-b border-bone/15 sticky top-0 z-40 bg-ink/85 backdrop-blur-md">
+  <div class="max-w-[1480px] mx-auto px-8 py-5 flex items-center justify-between">
+    <a href="#" class="flex items-baseline gap-4">
+      <!-- inline sun mark -->
+      <svg width="38" height="38" viewBox="0 0 38 38" aria-hidden>
+        <circle cx="19" cy="19" r="13" fill="none" stroke="oklch(0.79 0.158 64)" stroke-width="1"/>
+        <circle cx="19" cy="19" r="6.5" fill="oklch(0.79 0.158 64)"/>
+        <line x1="19" y1="0.5" x2="19" y2="3.5" stroke="oklch(0.79 0.158 64)" stroke-width="1"/>
+        <line x1="19" y1="34.5" x2="19" y2="37.5" stroke="oklch(0.79 0.158 64)" stroke-width="1"/>
+        <line x1="0.5" y1="19" x2="3.5" y2="19" stroke="oklch(0.79 0.158 64)" stroke-width="1"/>
+        <line x1="34.5" y1="19" x2="37.5" y2="19" stroke="oklch(0.79 0.158 64)" stroke-width="1"/>
+      </svg>
+      <span class="display text-2xl">Hyperborea</span>
+    </a>
+    <nav class="hidden md:flex items-center gap-9 kicker text-bone/75">
+      <a href="#programme" class="hover:text-amber transition">Programme</a>
+      <a href="#speakers" class="hover:text-amber transition">Speakers</a>
+      <a href="#tactility" class="hover:text-amber transition">Installation</a>
+      <a href="#tickets" class="hover:text-amber transition">Tickets</a>
+    </nav>
+    <a href="#tickets" class="inline-flex items-center gap-3 text-[12px] uppercase tracking-[0.22em] text-ink bg-amber px-5 py-3 hover:bg-bone transition-colors duration-500">
+      Secure a seat <span aria-hidden>↗</span>
+    </a>
+  </div>
+</header>
+
+<!-- HERO: drenched dark with a rising sun and an enormous bilingual headline -->
+<section class="relative overflow-hidden">
+  <svg class="absolute -top-10 right-[-200px] sun" width="780" height="780" viewBox="0 0 780 780" aria-hidden>
+    <defs>
+      <radialGradient id="g" cx="50%" cy="50%" r="50%">
+        <stop offset="0%" stop-color="oklch(0.84 0.158 64)" stop-opacity="0.95"/>
+        <stop offset="60%" stop-color="oklch(0.66 0.158 50)" stop-opacity="0.55"/>
+        <stop offset="100%" stop-color="oklch(0.14 0.032 254)" stop-opacity="0"/>
+      </radialGradient>
+    </defs>
+    <circle cx="390" cy="390" r="320" fill="url(#g)"/>
+    <circle cx="390" cy="390" r="140" fill="oklch(0.83 0.158 64)"/>
+  </svg>
+
+  <!-- abstract architectural silhouette -->
+  <svg class="absolute bottom-0 left-0 w-full pointer-events-none" viewBox="0 0 1480 320" preserveAspectRatio="none" aria-hidden>
+    <g fill="oklch(0.21 0.032 254)">
+      <rect x="0" y="170" width="1480" height="150"/>
+      <polygon points="120,170 200,90 280,170"/>
+      <rect x="320" y="120" width="60" height="50"/>
+      <polygon points="420,170 510,40 600,170"/>
+      <rect x="640" y="100" width="100" height="70"/>
+      <polygon points="780,170 860,60 940,170"/>
+      <rect x="980" y="140" width="40" height="30"/>
+      <polygon points="1060,170 1140,80 1220,170"/>
+      <rect x="1260" y="120" width="160" height="50"/>
+    </g>
+    <!-- tiny lone figure -->
+    <g fill="oklch(0.79 0.158 64)">
+      <circle cx="540" cy="160" r="3"/>
+      <rect x="538.5" y="163" width="3" height="8"/>
+    </g>
+  </svg>
+
+  <div class="max-w-[1480px] mx-auto px-8 pt-24 pb-44 grid grid-cols-12 gap-x-8 relative">
+    <div class="col-span-12 md:col-span-2">
+      <div class="kicker text-amber">Programme 003</div>
+      <div class="rule mt-3 text-bone"></div>
+      <p class="kicker text-bone/55 mt-3 leading-snug">
+        a three-day<br>
+        gathering of<br>
+        technologists<br>
+        and humanists.
+      </p>
+    </div>
+    <div class="col-span-12 md:col-span-10 mt-12 md:mt-0">
+      <h1 class="display text-[clamp(3.4rem,11vw,11.5rem)] leading-[0.92]">
+        <span class="block">Systems</span>
+        <span class="block">with <span class="text-amber">warmth</span>.</span>
+        <span class="block jp text-[clamp(2rem,5vw,4.5rem)] text-amber mt-2" lang="ja">温度のある機械</span>
+      </h1>
+      <div class="mt-12 grid grid-cols-12 gap-x-8">
+        <p class="col-span-12 md:col-span-6 text-[19px] leading-[1.55] text-bone/85 max-w-[44ch]">
+          For three days in mid-September we close the Studieshus in central Lund and gather forty
+          builders, researchers, designers and writers who all hold the same suspicion: that a machine
+          can be useful without being cold, and that scale does not have to mean indifference.
+        </p>
+        <div class="col-span-12 md:col-span-3 md:col-start-8 mt-6 md:mt-0">
+          <div class="kicker text-bone/55">Edition 03 dates</div>
+          <p class="display text-3xl mt-2 leading-tight">
+            12 — 14<br>
+            September<br>
+            <span class="text-amber">MMXXVI</span>
+          </p>
+        </div>
+        <div class="col-span-12 md:col-span-3 mt-6 md:mt-0">
+          <div class="kicker text-bone/55">Where</div>
+          <p class="display text-3xl mt-2 leading-tight">
+            Studieshuset<br>
+            Helgonavägen 3<br>
+            <span class="text-amber">Lund</span>
+          </p>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- MARQUEE: prior speakers, slow -->
+<section class="border-y border-bone/15 py-6 overflow-hidden">
+  <div class="marquee whitespace-nowrap display text-3xl text-bone/40">
+    <span class="px-6">Astrid Vinge</span><span class="px-6 text-amber">·</span>
+    <span class="px-6">Kenji Watanabe</span><span class="px-6 text-amber">·</span>
+    <span class="px-6">Margot Lindqvist</span><span class="px-6 text-amber">·</span>
+    <span class="px-6">Ravi Auböck</span><span class="px-6 text-amber">·</span>
+    <span class="px-6">Sofia Brännström</span><span class="px-6 text-amber">·</span>
+    <span class="px-6">Thomas Asker</span><span class="px-6 text-amber">·</span>
+    <span class="px-6">Yuki Kosugi</span><span class="px-6 text-amber">·</span>
+    <span class="px-6">Lukas Helle</span><span class="px-6 text-amber">·</span>
+    <span class="px-6">Astrid Vinge</span><span class="px-6 text-amber">·</span>
+    <span class="px-6">Kenji Watanabe</span><span class="px-6 text-amber">·</span>
+    <span class="px-6">Margot Lindqvist</span><span class="px-6 text-amber">·</span>
+    <span class="px-6">Ravi Auböck</span><span class="px-6 text-amber">·</span>
+    <span class="px-6">Sofia Brännström</span><span class="px-6 text-amber">·</span>
+    <span class="px-6">Thomas Asker</span><span class="px-6 text-amber">·</span>
+  </div>
+</section>
+
+<!-- PROGRAMME: three-day numbered list (not 4 icon cards) -->
+<section id="programme" class="max-w-[1480px] mx-auto px-8 pt-28 pb-20">
+  <div class="grid grid-cols-12 gap-x-8 mb-14">
+    <div class="col-span-12 md:col-span-3">
+      <div class="kicker text-amber">Programme</div>
+      <div class="rule mt-3 text-bone"></div>
+    </div>
+    <div class="col-span-12 md:col-span-9 mt-6 md:mt-0">
+      <h2 class="display text-[clamp(2.4rem,5vw,4.4rem)] leading-[1]">
+        Three days. One <span class="text-amber">question</span>.
+      </h2>
+    </div>
+  </div>
+
+  <div class="grid grid-cols-12 gap-x-8 gap-y-14">
+    <article class="col-span-12 md:col-span-4 border-t border-bone/25 pt-8">
+      <div class="flex items-baseline justify-between mb-6">
+        <div class="display text-6xl text-amber">Day 01</div>
+        <div class="kicker text-bone/55">12.ix · friday</div>
+      </div>
+      <h3 class="display text-3xl mb-4">Drawing the future</h3>
+      <p class="jp text-amber mt-1 text-lg mb-4" lang="ja">未来を描く</p>
+      <p class="text-bone/80 leading-[1.7] max-w-[40ch]">
+        Talks on what we are building toward, not just away from. Material talks from
+        Watanabe (Tokyo), Brännström (Stockholm) and Asker (Reykjavík). The afternoon is a single
+        long workshop on speculative scenario writing.
+      </p>
+      <ul class="mt-8 space-y-3 num text-sm">
+        <li class="flex justify-between border-b border-bone/15 pb-2"><span class="text-bone/55">09:00</span><span class="text-bone/90">Doors · Coffee &amp; cardamom rolls</span></li>
+        <li class="flex justify-between border-b border-bone/15 pb-2"><span class="text-bone/55">10:30</span><span class="text-amber">Watanabe — Soft Infrastructures</span></li>
+        <li class="flex justify-between border-b border-bone/15 pb-2"><span class="text-bone/55">13:00</span><span class="text-bone/90">Lunch · long-table</span></li>
+        <li class="flex justify-between border-b border-bone/15 pb-2"><span class="text-bone/55">14:30</span><span class="text-bone/90">Workshop · Brännström</span></li>
+        <li class="flex justify-between"><span class="text-bone/55">19:00</span><span class="text-bone/90">Dinner at Bantorget 9</span></li>
+      </ul>
+    </article>
+
+    <article class="col-span-12 md:col-span-4 border-t border-bone/25 pt-8 md:mt-12">
+      <div class="flex items-baseline justify-between mb-6">
+        <div class="display text-6xl">Day 02</div>
+        <div class="kicker text-bone/55">13.ix · saturday</div>
+      </div>
+      <h3 class="display text-3xl mb-4">Creating together</h3>
+      <p class="jp text-amber mt-1 text-lg mb-4" lang="ja">共に創る</p>
+      <p class="text-bone/80 leading-[1.7] max-w-[40ch]">
+        The whole day is collaborative — six teams of seven, each given the same brief at sunrise
+        and a working room until ten. By evening we present and argue. Auböck and Lindqvist sit on
+        the wall. No slides, only material.
+      </p>
+      <ul class="mt-8 space-y-3 num text-sm">
+        <li class="flex justify-between border-b border-bone/15 pb-2"><span class="text-bone/55">08:00</span><span class="text-amber">Brief at sunrise · Stadsparken</span></li>
+        <li class="flex justify-between border-b border-bone/15 pb-2"><span class="text-bone/55">09:30</span><span class="text-bone/90">Teams form · rooms assigned</span></li>
+        <li class="flex justify-between border-b border-bone/15 pb-2"><span class="text-bone/55">12:00</span><span class="text-bone/90">Working · lunch in studio</span></li>
+        <li class="flex justify-between border-b border-bone/15 pb-2"><span class="text-bone/55">19:00</span><span class="text-bone/90">Presentations · the wall</span></li>
+        <li class="flex justify-between"><span class="text-bone/55">22:00</span><span class="text-bone/90">Open evening · Akademiska Föreningen</span></li>
+      </ul>
+    </article>
+
+    <article class="col-span-12 md:col-span-4 border-t border-bone/25 pt-8 md:mt-24">
+      <div class="flex items-baseline justify-between mb-6">
+        <div class="display text-6xl text-crimson">Day 03</div>
+        <div class="kicker text-bone/55">14.ix · sunday</div>
+      </div>
+      <h3 class="display text-3xl mb-4">A long, slow walk back</h3>
+      <p class="jp text-amber mt-1 text-lg mb-4" lang="ja">ゆっくり歩いて帰る</p>
+      <p class="text-bone/80 leading-[1.7] max-w-[40ch]">
+        Sunday is unscheduled. We commission six writers to publish 800-word essays the same week.
+        Some attendees walk in pairs to Bjärred and back along the coast. The bus to Copenhagen
+        Kastrup leaves at half-past four; the conversations don’t.
+      </p>
+      <ul class="mt-8 space-y-3 num text-sm">
+        <li class="flex justify-between border-b border-bone/15 pb-2"><span class="text-bone/55">09:00</span><span class="text-bone/90">Brunch · open atrium</span></li>
+        <li class="flex justify-between border-b border-bone/15 pb-2"><span class="text-bone/55">11:00</span><span class="text-bone/90">Three closing readings</span></li>
+        <li class="flex justify-between border-b border-bone/15 pb-2"><span class="text-bone/55">13:00</span><span class="text-amber">Walks to Bjärred · sjöbod-coffee</span></li>
+        <li class="flex justify-between"><span class="text-bone/55">16:30</span><span class="text-bone/90">Bus departs · Kastrup</span></li>
+      </ul>
+    </article>
+  </div>
+</section>
+
+<!-- SPEAKERS: speaker portraits as illustrated sun-disc cards (the Neo-Mirai motif) -->
+<section id="speakers" class="max-w-[1480px] mx-auto px-8 py-24">
+  <div class="grid grid-cols-12 gap-x-8 mb-14">
+    <div class="col-span-12 md:col-span-3">
+      <div class="kicker text-amber">Speakers — Edition 03</div>
+      <div class="rule mt-3 text-bone"></div>
+    </div>
+    <div class="col-span-12 md:col-span-9 mt-6 md:mt-0">
+      <h2 class="display text-[clamp(2.2rem,4.6vw,3.8rem)] leading-[1]">
+        Eight of forty,<br><span class="italic">on the wall</span>.
+      </h2>
+    </div>
+  </div>
+
+  <div class="grid grid-cols-2 md:grid-cols-4 gap-x-6 gap-y-12">
+    <!-- speaker template -->
+    <article class="speaker-card border-t border-bone/25 pt-6">
+      <svg class="sun-disc block mb-5" width="100%" viewBox="0 0 200 200" aria-hidden>
+        <rect x="0" y="0" width="200" height="200" fill="oklch(0.21 0.032 254)"/>
+        <circle cx="100" cy="100" r="60" fill="oklch(0.79 0.158 64)"/>
+        <path d="M 30 200 L 70 100 L 120 200 Z" fill="oklch(0.14 0.032 254)"/>
+        <path d="M 110 200 L 160 60 L 210 200 Z" fill="oklch(0.14 0.032 254)" opacity="0.85"/>
+        <circle cx="105" cy="175" r="2" fill="oklch(0.94 0.020 80)"/>
+      </svg>
+      <h3 class="display text-2xl">Kenji Watanabe</h3>
+      <p class="kicker text-bone/55 mt-2">Machine-learning artist · Tokyo</p>
+      <p class="text-sm text-bone/75 leading-snug mt-3">Co-builder of <em>Soft Infrastructures</em> — generative city studies commissioned by Tokyo Metropolitan Government.</p>
+    </article>
+
+    <article class="speaker-card border-t border-bone/25 pt-6">
+      <svg class="sun-disc block mb-5" width="100%" viewBox="0 0 200 200" aria-hidden>
+        <rect x="0" y="0" width="200" height="200" fill="oklch(0.28 0.026 254)"/>
+        <circle cx="100" cy="120" r="48" fill="oklch(0.79 0.158 64)" opacity="0.94"/>
+        <circle cx="100" cy="120" r="22" fill="oklch(0.50 0.180 25)"/>
+        <rect x="0" y="160" width="200" height="40" fill="oklch(0.14 0.032 254)"/>
+        <rect x="60" y="130" width="14" height="30" fill="oklch(0.14 0.032 254)"/>
+        <rect x="130" y="115" width="20" height="45" fill="oklch(0.14 0.032 254)"/>
+      </svg>
+      <h3 class="display text-2xl">Astrid Vinge</h3>
+      <p class="kicker text-bone/55 mt-2">Neural-interface researcher · Lund</p>
+      <p class="text-sm text-bone/75 leading-snug mt-3">Author of <em>Hand-Held Cognition</em> (2024). Studies attention as a designable material.</p>
+    </article>
+
+    <article class="speaker-card border-t border-bone/25 pt-6">
+      <svg class="sun-disc block mb-5" width="100%" viewBox="0 0 200 200" aria-hidden>
+        <rect x="0" y="0" width="200" height="200" fill="oklch(0.21 0.032 254)"/>
+        <path d="M 0 130 L 60 80 L 100 110 L 150 60 L 200 95 L 200 200 L 0 200 Z" fill="oklch(0.14 0.032 254)"/>
+        <circle cx="158" cy="80" r="34" fill="oklch(0.79 0.158 64)"/>
+        <line x1="158" y1="40" x2="158" y2="46" stroke="oklch(0.94 0.020 80)" stroke-width="1"/>
+        <line x1="158" y1="114" x2="158" y2="120" stroke="oklch(0.94 0.020 80)" stroke-width="1"/>
+      </svg>
+      <h3 class="display text-2xl">Margot Lindqvist</h3>
+      <p class="kicker text-bone/55 mt-2">Architect · Stockholm</p>
+      <p class="text-sm text-bone/75 leading-snug mt-3">Designer of <em>Den Långa Korridoren</em>, a 1.2km library in Umeå. Writes about soft buildings.</p>
+    </article>
+
+    <article class="speaker-card border-t border-bone/25 pt-6">
+      <svg class="sun-disc block mb-5" width="100%" viewBox="0 0 200 200" aria-hidden>
+        <rect x="0" y="0" width="200" height="200" fill="oklch(0.28 0.026 254)"/>
+        <circle cx="60" cy="80" r="36" fill="oklch(0.79 0.158 64)" opacity="0.94"/>
+        <circle cx="140" cy="80" r="36" fill="oklch(0.50 0.180 25)" opacity="0.84"/>
+        <rect x="0" y="120" width="200" height="80" fill="oklch(0.14 0.032 254)"/>
+        <polygon points="100,120 130,80 160,120" fill="oklch(0.21 0.032 254)"/>
+      </svg>
+      <h3 class="display text-2xl">Ravi Auböck</h3>
+      <p class="kicker text-bone/55 mt-2">Industrial designer · Vienna</p>
+      <p class="text-sm text-bone/75 leading-snug mt-3">Co-founder of <em>Atelier Lichtspur</em>. Designs objects so they age, not break.</p>
+    </article>
+
+    <article class="speaker-card border-t border-bone/25 pt-6">
+      <svg class="sun-disc block mb-5" width="100%" viewBox="0 0 200 200" aria-hidden>
+        <rect x="0" y="0" width="200" height="200" fill="oklch(0.21 0.032 254)"/>
+        <circle cx="100" cy="100" r="74" fill="none" stroke="oklch(0.79 0.158 64)" stroke-width="1"/>
+        <circle cx="100" cy="100" r="40" fill="oklch(0.79 0.158 64)"/>
+        <line x1="40" y1="160" x2="160" y2="160" stroke="oklch(0.94 0.020 80)" stroke-width="0.5" opacity="0.7"/>
+        <circle cx="100" cy="160" r="2.5" fill="oklch(0.94 0.020 80)"/>
+      </svg>
+      <h3 class="display text-2xl">Sofia Brännström</h3>
+      <p class="kicker text-bone/55 mt-2">Computational poet · Göteborg</p>
+      <p class="text-sm text-bone/75 leading-snug mt-3">Workshops at Hyperborea since 2024. Authored <em>A Grammar for Machines That Apologise</em>.</p>
+    </article>
+
+    <article class="speaker-card border-t border-bone/25 pt-6">
+      <svg class="sun-disc block mb-5" width="100%" viewBox="0 0 200 200" aria-hidden>
+        <rect x="0" y="0" width="200" height="200" fill="oklch(0.28 0.026 254)"/>
+        <polygon points="0,160 80,40 130,160" fill="oklch(0.50 0.180 25)" opacity="0.92"/>
+        <polygon points="100,160 150,80 200,160" fill="oklch(0.79 0.158 64)" opacity="0.94"/>
+        <rect x="0" y="160" width="200" height="40" fill="oklch(0.14 0.032 254)"/>
+      </svg>
+      <h3 class="display text-2xl">Thomas Asker</h3>
+      <p class="kicker text-bone/55 mt-2">Geothermal engineer · Reykjavík</p>
+      <p class="text-sm text-bone/75 leading-snug mt-3">Leads the Hellisheiði heat-capture project. Talks about underground infrastructure as a polite material.</p>
+    </article>
+
+    <article class="speaker-card border-t border-bone/25 pt-6">
+      <svg class="sun-disc block mb-5" width="100%" viewBox="0 0 200 200" aria-hidden>
+        <rect x="0" y="0" width="200" height="200" fill="oklch(0.21 0.032 254)"/>
+        <circle cx="100" cy="120" r="48" fill="oklch(0.79 0.158 64)"/>
+        <path d="M 0 160 Q 100 130 200 160 L 200 200 L 0 200 Z" fill="oklch(0.14 0.032 254)"/>
+        <line x1="60" y1="120" x2="78" y2="120" stroke="oklch(0.14 0.032 254)" stroke-width="2"/>
+        <line x1="120" y1="120" x2="138" y2="120" stroke="oklch(0.14 0.032 254)" stroke-width="2"/>
+      </svg>
+      <h3 class="display text-2xl">Yuki Kosugi</h3>
+      <p class="kicker text-bone/55 mt-2">Ceramicist &amp; coder · Kyoto</p>
+      <p class="text-sm text-bone/75 leading-snug mt-3">Trains diffusion models on her own glaze tests. Spoke first at Edition 01.</p>
+    </article>
+
+    <article class="speaker-card border-t border-bone/25 pt-6">
+      <svg class="sun-disc block mb-5" width="100%" viewBox="0 0 200 200" aria-hidden>
+        <rect x="0" y="0" width="200" height="200" fill="oklch(0.28 0.026 254)"/>
+        <circle cx="100" cy="100" r="60" fill="none" stroke="oklch(0.79 0.158 64)" stroke-width="2"/>
+        <circle cx="100" cy="100" r="6" fill="oklch(0.79 0.158 64)"/>
+        <circle cx="40" cy="40" r="3" fill="oklch(0.94 0.020 80)"/>
+        <circle cx="170" cy="50" r="2.5" fill="oklch(0.94 0.020 80)"/>
+        <circle cx="50" cy="170" r="2" fill="oklch(0.94 0.020 80)"/>
+        <circle cx="150" cy="160" r="2" fill="oklch(0.94 0.020 80)"/>
+      </svg>
+      <h3 class="display text-2xl">Lukas Helle</h3>
+      <p class="kicker text-bone/55 mt-2">Astrophysicist · Aarhus</p>
+      <p class="text-sm text-bone/75 leading-snug mt-3">Spends six weeks a year at La Silla. Reads aloud at Hyperborea every year. Refuses slides.</p>
+    </article>
+  </div>
+</section>
+
+<!-- INSTALLATION: a wide editorial spread with two SVG architectural compositions -->
+<section id="tactility" class="border-y border-bone/15 bg-ink2 relative overflow-hidden">
+  <div class="max-w-[1480px] mx-auto px-8 py-28 grid grid-cols-12 gap-x-8">
+    <div class="col-span-12 md:col-span-5">
+      <div class="kicker text-amber">Installation 03</div>
+      <div class="rule mt-3 text-bone"></div>
+      <h2 class="display text-[clamp(2.6rem,5.4vw,5rem)] leading-[1] mt-8">
+        <span class="italic">Sundial,</span><br>
+        for forty<br>
+        <span class="text-amber">conversations.</span>
+      </h2>
+      <p class="mt-10 text-[17px] leading-[1.65] text-bone/85 max-w-[40ch]">
+        A site-specific installation by Margot Lindqvist and Yuki Kosugi: forty hand-thrown ceramic
+        bowls, arranged in a fourteen-meter sundial in the central atrium. Each attendee places a
+        single object in their bowl on Friday. We photograph the sundial at the same hour every day.
+        On Sunday morning the bowls are mailed home.
+      </p>
+      <div class="mt-10 flex flex-wrap items-center gap-5">
+        <a href="#tickets" class="inline-flex items-center gap-3 text-[12px] uppercase tracking-[0.22em] text-ink bg-amber px-5 py-3 hover:bg-bone transition-colors">
+          See installation pass <span aria-hidden>↗</span>
+        </a>
+        <span class="kicker text-bone/55">commissioned by Statens Konstråd</span>
+      </div>
+    </div>
+    <div class="col-span-12 md:col-span-7 mt-10 md:mt-0">
+      <svg viewBox="0 0 700 480" class="w-full" aria-hidden>
+        <rect x="0" y="0" width="700" height="480" fill="oklch(0.14 0.032 254)"/>
+        <!-- sundial circle -->
+        <circle cx="350" cy="290" r="220" fill="none" stroke="oklch(0.79 0.158 64)" stroke-width="0.6" opacity="0.7"/>
+        <circle cx="350" cy="290" r="160" fill="none" stroke="oklch(0.79 0.158 64)" stroke-width="0.4" opacity="0.5"/>
+        <!-- gnomon -->
+        <line x1="350" y1="80" x2="350" y2="290" stroke="oklch(0.79 0.158 64)" stroke-width="2"/>
+        <circle cx="350" cy="80" r="18" fill="oklch(0.79 0.158 64)"/>
+        <!-- bowls -->
+        <g fill="oklch(0.50 0.180 25)">
+          <ellipse cx="180" cy="290" rx="12" ry="5"/>
+          <ellipse cx="220" cy="200" rx="12" ry="5"/>
+          <ellipse cx="310" cy="130" rx="12" ry="5"/>
+          <ellipse cx="400" cy="120" rx="12" ry="5"/>
+          <ellipse cx="490" cy="190" rx="12" ry="5"/>
+          <ellipse cx="530" cy="290" rx="12" ry="5"/>
+          <ellipse cx="490" cy="390" rx="12" ry="5"/>
+          <ellipse cx="400" cy="450" rx="12" ry="5"/>
+          <ellipse cx="310" cy="450" rx="12" ry="5"/>
+          <ellipse cx="220" cy="380" rx="12" ry="5"/>
+        </g>
+        <g fill="oklch(0.79 0.158 64)" opacity="0.7">
+          <ellipse cx="250" cy="290" rx="8" ry="3"/>
+          <ellipse cx="290" cy="230" rx="8" ry="3"/>
+          <ellipse cx="350" cy="200" rx="8" ry="3"/>
+          <ellipse cx="410" cy="230" rx="8" ry="3"/>
+          <ellipse cx="450" cy="290" rx="8" ry="3"/>
+          <ellipse cx="410" cy="350" rx="8" ry="3"/>
+          <ellipse cx="350" cy="380" rx="8" ry="3"/>
+          <ellipse cx="290" cy="350" rx="8" ry="3"/>
+        </g>
+        <!-- lone figure -->
+        <g fill="oklch(0.94 0.020 80)">
+          <circle cx="350" cy="290" r="3"/>
+          <rect x="348.5" y="293" width="3" height="8"/>
+        </g>
+      </svg>
+    </div>
+  </div>
+</section>
+
+<!-- TICKETS -->
+<section id="tickets" class="max-w-[1480px] mx-auto px-8 py-28 grid grid-cols-12 gap-x-8">
+  <div class="col-span-12 md:col-span-3">
+    <div class="kicker text-amber">Tickets</div>
+    <div class="rule mt-3 text-bone"></div>
+    <p class="kicker text-bone/55 mt-3 leading-snug">
+      120 seats.<br>
+      Three tiers.<br>
+      No platinum.
+    </p>
+  </div>
+  <ul class="col-span-12 md:col-span-9 mt-6 md:mt-0 space-y-7 num">
+    <li class="grid grid-cols-12 gap-x-6 items-baseline pb-7 border-b border-bone/20">
+      <div class="col-span-12 md:col-span-5">
+        <h3 class="display text-3xl">Attend</h3>
+        <p class="text-bone/75 text-[15px] mt-2 max-w-[44ch] leading-relaxed">Three full days of programme. Two long-table dinners. The installation pass. The 800-word essay collection mailed in November on hand-set type.</p>
+      </div>
+      <div class="col-span-6 md:col-span-3 mt-3 md:mt-0 kicker text-bone/55 leading-snug">96 seats · single attendee</div>
+      <div class="col-span-6 md:col-span-4 text-right display text-5xl">
+        4 800 kr<span class="kicker text-bone/55 ml-3">SEK</span>
+      </div>
+    </li>
+    <li class="grid grid-cols-12 gap-x-6 items-baseline pb-7 border-b border-bone/20">
+      <div class="col-span-12 md:col-span-5">
+        <h3 class="display text-3xl text-amber">Contribute</h3>
+        <p class="text-bone/75 text-[15px] mt-2 max-w-[44ch] leading-relaxed">For practitioners who want a working room on Saturday. Includes a brief in front of a speaker and a chance to argue back. Decided by application, not by money.</p>
+      </div>
+      <div class="col-span-6 md:col-span-3 mt-3 md:mt-0 kicker text-bone/55 leading-snug">18 seats · application open</div>
+      <div class="col-span-6 md:col-span-4 text-right display text-5xl">
+        2 200 kr<span class="kicker text-bone/55 ml-3">SEK</span>
+      </div>
+    </li>
+    <li class="grid grid-cols-12 gap-x-6 items-baseline pb-1">
+      <div class="col-span-12 md:col-span-5">
+        <h3 class="display text-3xl">Student / Bursary</h3>
+        <p class="text-bone/75 text-[15px] mt-2 max-w-[44ch] leading-relaxed">For under-27s in design, the humanities or any field that meets ours. Six seats are fully funded by the Auböck family. Apply with a 200-word letter.</p>
+      </div>
+      <div class="col-span-6 md:col-span-3 mt-3 md:mt-0 kicker text-bone/55 leading-snug">6 seats · letter required</div>
+      <div class="col-span-6 md:col-span-4 text-right display text-5xl">
+        0 kr<span class="kicker text-bone/55 ml-3">SEK · funded</span>
+      </div>
+    </li>
+  </ul>
+</section>
+
+<!-- COLOPHON -->
+<section class="border-t border-bone/15 bg-ink relative overflow-hidden">
+  <svg class="absolute -bottom-40 -left-40 sun" width="600" height="600" viewBox="0 0 600 600" aria-hidden>
+    <defs>
+      <radialGradient id="g2" cx="50%" cy="50%" r="50%">
+        <stop offset="0%" stop-color="oklch(0.84 0.158 64)" stop-opacity="0.6"/>
+        <stop offset="100%" stop-color="oklch(0.14 0.032 254)" stop-opacity="0"/>
+      </radialGradient>
+    </defs>
+    <circle cx="300" cy="300" r="280" fill="url(#g2)"/>
+  </svg>
+  <div class="max-w-[1480px] mx-auto px-8 py-24 grid grid-cols-12 gap-x-8 relative">
+    <div class="col-span-12 md:col-span-7">
+      <h2 class="display text-[clamp(2.6rem,7vw,6.5rem)] leading-[0.95]">
+        Write us<br>
+        <span class="text-amber">a letter,</span><br>
+        not a form.
+      </h2>
+    </div>
+    <div class="col-span-12 md:col-span-5 mt-8 md:mt-0 md:pl-10 md:border-l border-bone/20 flex flex-col gap-8">
+      <p class="text-[17px] leading-[1.65] text-bone/85 max-w-[42ch]">
+        Applications, sponsorships, and press to
+        <a href="mailto:atelier@hyperborea.summit" class="text-amber underline decoration-amber/40 underline-offset-[6px] decoration-[1px] hover:decoration-amber transition">atelier@hyperborea.summit</a>.
+        We read them every Tuesday morning, and we write back. If you want to recommend a speaker
+        for Edition 04 (Bornholm, autumn 2027), there is a thread already open.
+      </p>
+      <div>
+        <div class="kicker text-bone/55">Press kit · brand guidelines · prior editions</div>
+        <a href="#" class="display text-3xl mt-2 inline-block hover:text-amber transition">↘ archive.hyperborea.summit</a>
+      </div>
+    </div>
+  </div>
+  <div class="border-t border-bone/15">
+    <div class="max-w-[1480px] mx-auto px-8 py-6 grid grid-cols-12 kicker text-bone/55">
+      <div class="col-span-12 md:col-span-3">© Hyperborea Föreningen MMXXVI</div>
+      <div class="col-span-12 md:col-span-3 mt-2 md:mt-0">Edition 03 of an indefinite series</div>
+      <div class="col-span-12 md:col-span-3 mt-2 md:mt-0">Identity by Atelier Lichtspur</div>
+      <div class="col-span-12 md:col-span-3 mt-2 md:mt-0 md:text-right">Set in Italiana, Archivo &amp; Noto Serif JP</div>
+    </div>
+  </div>
+</section>
+
+<script>
+  const io = new IntersectionObserver(es => {
+    es.forEach(e => { if (e.isIntersecting) { e.target.classList.add('in'); io.unobserve(e.target); } });
+  }, { threshold: 0.1 });
+  document.querySelectorAll('section, h1, h2, h3, article, li, blockquote, figure').forEach(el => { el.classList.add('reveal'); io.observe(el); });
+</script>
+</body>
+</html>
