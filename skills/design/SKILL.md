@@ -77,8 +77,9 @@ Sequence is strict. Do not collapse gates.
 ### Lane C — Polish
 
 1. **Invoke `impeccable polish`** (or the standalone `polish` skill — they're aliases). Mandatory design-system discovery first; aligning to the system is not optional.
-2. **If accessibility is in scope:** layer `ui-ux-pro-max` for the 99-rule checklist pass (it's strong here; just don't let it set visual direction).
-3. **If review against external guidelines is asked:** `web-design-guidelines` fetches Vercel's interface guidelines for a structured review.
+2. **If animation/interaction polish is in scope:** layer `emil-design-eng` — it outputs a Before/After/Why review table covering easing misuse, `scale(0)` entries, missing `:active` states, wrong `transform-origin` on popovers, keyframes where transitions belong, and durations > 300ms.
+3. **If accessibility is in scope:** layer `ui-ux-pro-max` for the 99-rule checklist pass (it's strong here; just don't let it set visual direction).
+4. **If review against external guidelines is asked:** `web-design-guidelines` fetches Vercel's interface guidelines for a structured review.
 
 ### Lane D — Reference-driven
 
@@ -90,7 +91,7 @@ Sequence is strict. Do not collapse gates.
 
 ### Lane E — Component / motif
 
-1. **Identify the motif.** Animated nav → `animated-navigation`. 3D carousel → `slideshow`. Page transition → `vercel-react-view-transitions`. shadcn component → `shadcn-ui`. Otherwise → `impeccable <verb>` (animate, colorize, typeset, layout, delight, distill, overdrive, etc.).
+1. **Identify the motif.** Animated nav → `animated-navigation`. 3D carousel → `slideshow`. Page transition → `vercel-react-view-transitions`. shadcn component → `shadcn-ui`. **Animation/interaction on any component** (button press feel, drawer, popover, tooltip, toast, drag gesture, easing choice, micro-interaction review) → `emil-design-eng`. Otherwise → `impeccable <verb>` (animate, colorize, typeset, layout, delight, distill, overdrive, etc.).
 2. **Apply the relevant Iron Rules.** A component that contains a banned pattern is still wrong, even if it's "just a piece."
 3. **Always end with `impeccable polish`** for the component.
 
@@ -117,7 +118,7 @@ Across every lane:
 - **Real imagery on image-led briefs.** Unsplash URL format `https://images.unsplash.com/photo-{id}?auto=format&fit=crop&w=1600&q=80` — verify resolves before referencing. Without verification, fewer photos you're confident exist beats more guessed IDs.
 - **OKLCH for all color tokens.** Never `#fff` / `#000`. Tint the neutral toward the brand hue (chroma 0.005–0.01).
 - **Modular scale with `clamp()` for fluid type.** ≥1.25 ratio between steps. Flat scales read as uncommitted.
-- **GPU-only animation.** Animate `transform` and `opacity` only. Layout-triggering animation is banned; grain/noise only on fixed `pointer-events-none` overlays.
+- **GPU-only animation.** Animate `transform` and `opacity` only. Layout-triggering animation is banned; grain/noise only on fixed `pointer-events-none` overlays. For easing curves, timing tables, spring config, and the full interaction review checklist → `emil-design-eng`.
 - **Mobile collapse for any asymmetric layout above `md:`.** Asymmetry on desktop, single-column on mobile, always.
 
 ## Step 4 — The exit bar
