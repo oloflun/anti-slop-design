@@ -53,16 +53,47 @@ Each was produced through the router in this repo, from a single prompt, in a di
 </tr>
 </table>
 
-## What the router does in six lines
+## v2 — the rebuild (2026-07-27)
 
-1. **Classifies the task** into one of seven lanes (ground-up build / redesign / polish / reference-driven / component / direction-only / audit).
-2. **Forces a named aesthetic lane** before any token is picked. Not *"modern and minimal"* — something like *"Klim orange drench"* or *"Bloomberg Terminal meets Swiss specimen"*.
-3. **Runs both slop tests.** Could someone guess the palette from the category alone? Could they guess the aesthetic family from category-plus-anti-references? If yes, rework.
-4. **Layers the right specialist** for the chosen lane (Impeccable spine + one of: gpt-taste, high-end-visual-design, design-taste-frontend, minimalist-ui, industrial-brutalist-ui; plus extract-design when a reference URL is supplied).
-5. **Enforces five hard bans.** No Inter. No centered hero stack. No 3-col icon cards. No hero-metric template. No `#fff`/`#000`.
-6. **Always ends with `impeccable polish`** — alignment to the design system, drift resolved by root cause.
+The version above shipped three good sites and then failed in real use. Three reasons, all root causes rather than tuning problems.
 
-Full plain-English explainer in [ROUTER.md](ROUTER.md). The actual skill is one file: [`skills/design/SKILL.md`](skills/design/SKILL.md).
+**It fired once per turn, not once per edit.** Guidance arrived at the top of a prompt; design decisions happen sixty tool calls later. It held at the start of a session and drifted after.
+
+**It was a table of contents, not a procedure** — six hops from brief to any actual taste content, and no method at the front door, so the model improvised one.
+
+**Its own specialists overwrote the brand.** `minimalist-ui` hardcodes Notion's palette; `industrial-brutalist-ui` declares `#E61919` "the ONLY accent color"; `high-end-visual-design` ships three fixed archetypes. Routing to those *as direction-setters* is how a client's identity became someone else's house style.
+
+### The rule now
+
+> **Brand derives direction. Skills supply craft. Themes are the last resort.**
+
+### The gate
+
+First tier with evidence wins; lower tiers never run.
+
+| Tier | Condition | Invention |
+|---|---|---|
+| **0 · Locked** | `DESIGN.md` exists → inherit, pages share the system | None |
+| **1 · Derive** | Logo, brand hex, deployed site, tailwind colours → derive from that evidence | Extension only |
+| **2 · Reference** | A URL or screenshot → study it, borrow principle not pixel | Recomposition |
+| **3 · Invent** | Genuinely nothing, or "wing it" → invent. Themes live here | Full |
+
+### The hooks
+
+```
+UserPromptSubmit    design-intent.py        gate order + this project's locked tokens
+PreToolUse  write   design-gate.py          DENY contract violations before they land
+PreToolUse  browser design-verify-gate.py   inspection discipline before the first look
+PostToolUse write   design-route.py         name the right skill for what was written
+PostToolUse Skill   design-telemetry.py     attribute every skill call to its component
+Stop                design-stop.py          deep detector pass + the session report
+```
+
+### The telemetry
+
+Every session writes a report. The number that matters is the **route-vs-invocation gap** — how often the router named a skill and nothing loaded it. That is the direct measurement of the original failure, and it has to be zero. A build that looks right but ships an empty ledger has not passed; it got lucky.
+
+Full explainer in [ROUTER.md](ROUTER.md). Verification: `python verify-design-system.py` (60 mechanical checks).
 
 ## The audit — what got picked, what got demoted
 
@@ -95,25 +126,20 @@ The five upstreams the router composes, with verified star counts at publish tim
 
 Detailed credits, per-skill descriptions, and install commands in [attribution/UPSTREAMS.md](attribution/UPSTREAMS.md).
 
-## Install — three steps
+## Install
 
 ```bash
-# 1. Install the upstreams (only the ones you'll actually use)
 git clone https://github.com/pbakaus/impeccable ~/.agents/skills/impeccable
+git clone https://github.com/blader/humanizer ~/.agents/skills/humanizer
 git clone https://github.com/Leonxlnx/taste-skill ~/.agents/skills/taste-skill
-# (and the others from attribution/UPSTREAMS.md as needed)
-npm install -g designlang   # for the extract-design skill
-
-# 2. Drop the router in place
-mkdir -p ~/.agents/skills/design
-curl -L https://raw.githubusercontent.com/oloflun/anti-slop-design/main/skills/design/SKILL.md \
-  -o ~/.agents/skills/design/SKILL.md
-
-# 3. In Claude Code, type the trigger word in front of any brief:
-#    > design a premium landing page for my fly-fishing rod brand
+cp -r skills/design skills/design-verify skills/brand-system ~/.agents/skills/
+cp .claude/hooks/design*.py ~/.claude/hooks/
+python verify-design-system.py
 ```
 
-That's it. The router fires, it picks the lane, runs the slop tests, layers the specialist, blocks the bans, builds the page, runs polish.
+Then wire the six hooks into `~/.claude/settings.json` (see [ROUTER.md](ROUTER.md)) and type a design brief — no trigger word needed, in any language.
+
+Kill switch: `DESIGN_HOOKS_DISABLED=1`. Gate blocking instead of advisory: `DESIGN_GATE_BLOCKING=1`.
 
 ## The honest footnote
 

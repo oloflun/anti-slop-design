@@ -80,3 +80,110 @@ That's it. The router is a routing layer. Every word of visual taste it relies o
 - **File issues with examples** when their rules misfire. The taste-skill anti-bias list and Impeccable's reflex-reject aesthetic-lane list both update over time; the authors take real-world failure screenshots seriously.
 - **Send PRs that add named aesthetic lanes** to Impeccable's brand register and reflex-reject list. The internet has more saturated aesthetic families than any one author can track.
 - **Sponsor the authors directly** if you find their skills load-bearing. They're tracked under their GitHub handles above.
+
+---
+
+# Addendum — 2026-07-27 rebuild
+
+The router was rebuilt around a brand-derivation gate and a hook chain. Three
+upstreams were added and one was upgraded. The routing layer is still this
+repo's only contribution; all visual rules come from the sources below.
+
+## 6. Hallmark — the front door's spine
+
+- **Repo:** [Nutlope/hallmark](https://github.com/Nutlope/hallmark)
+- **Author:** [@Nutlope](https://github.com/Nutlope) (Hassan El Mghari)
+- **License:** MIT
+- **What the router uses it for:** Hallmark's `SKILL.md` structure became the
+  front door — six cross-verb disciplines, scope check before anything else,
+  pre-flight scan of existing code before asking the user anything, component
+  branch, implementation safety rail, and the 57 numbered slop gates. All 105
+  of its reference files are ported **byte-identical** into
+  `skills/design/references/` and are the source of truth; nothing was
+  abridged. `structure.md`'s six-axis fingerprint is kept and repurposed as a
+  variety check *within* a locked brand.
+- **What we changed:** its 20-theme catalog, 21 macrostructures and 50
+  component archetypes are kept in full but **demoted to Tier 3**. Hallmark
+  defaults to the catalog silently; this router reaches it only when there is
+  no brand evidence at all, or when the user explicitly asks for a pick. Its
+  `references/X.md` loads became `Skill(X)` invocations against the installed
+  skill library.
+- **Verify:** `python verify-design-system.py` diffs every ported file against
+  upstream and fails the build on any content-bearing deletion.
+
+## 7. marketingskills — stage 1 of the copy gate
+
+- **Repo:** [coreyhaines31/marketingskills](https://github.com/coreyhaines31/marketingskills)
+- **Author:** [@coreyhaines31](https://github.com/coreyhaines31)
+- **What the router uses it for:** the `copywriting` skill runs on every
+  user-facing string — page purpose, audience, offer, traffic context; headline
+  formulas; `[Action Verb] + [What They Get] + [Qualifier]` CTAs; the five
+  style principles; the bans on exclamation points, weak CTAs and buried value
+  props.
+
+## 8. humanizer — stage 2 of the copy gate
+
+- **Repo:** [blader/humanizer](https://github.com/blader/humanizer)
+- **Author:** [@blader](https://github.com/blader) (Siqi Chen)
+- **What the router uses it for:** 33 AI-writing patterns removed after
+  `copywriting` has settled structure — em dashes, "delve"/"tapestry",
+  negative parallelism, forced rule-of-three, inflated significance,
+  promotional adjectives, sycophancy, manufactured drama. Runs in embedded
+  mode. Its core constraint is load-bearing: *"Preserve the information, not
+  the shape"*, and never invent facts.
+- **Applied in every language.** The tells are structural, not lexical, so
+  Swedish copy gets the same guides with the equivalent resolved rather than
+  skipped.
+
+## 9. Anthropic's Claude Design system prompt
+
+- **Source:** the system prompt of Anthropic's Claude Design product, supplied
+  by the user.
+- **What the router uses it for**, at full fidelity, each in its own reference:
+  - **"Create design system"** → `brand-derivation.md` and the `brand-system`
+    skill. This is the Tier 1 procedure — the VISUAL FOUNDATIONS and CONTENT
+    FUNDAMENTALS interrogations, the logo-safety rules, the inventory
+    discipline, the stop-on-inaccessible-resources rule, and the
+    exact-values rule: *"If the kit says 5px, write 5px, not 4px."*
+  - **"Frontend design"** → `invention.md`. Tier 3, ported verbatim.
+  - **"Hi-fi design"** + workflow + question guidance → `process.md`.
+  - **Output and content guidelines** → `scope-discipline.md`.
+  - **"Wireframe"** → `wireframe.md`. **"Options"** → `options.md`.
+    **"Handoff to Claude Code"** → `handoff.md`.
+  - The preview and inspection tool docs → the `design-verify` skill.
+- **The scoping line that validates the whole architecture:** its Frontend
+  design guidance applies *"when designing frontend/UI work that is NOT
+  governed by an existing brand or design system"*, and its Hi-fi design
+  guidance calls building from scratch *"a LAST RESORT"*. Aesthetic invention
+  is the fallback, not the default — Anthropic's own product agrees.
+- **Deliberately not ported:** the Design Component runtime (`.dc.html`,
+  `dc_write`, `<x-dc>`), the host-specific tools, and the **inline-styles-only**
+  rule — that last one exists because their preview streams, and it would
+  defeat the token system in a Next.js or Tailwind codebase. Full list with
+  reasons in `skills/design/references/scope-discipline.md`.
+
+## Upgrade: Impeccable v3 → v4.0.2
+
+Impeccable (upstream #1) was upgraded. v4 solves the forced-theme problem
+natively and states it directly:
+
+> *"The brief wins. Honor pinned aesthetics, eras, materials, fonts, and
+> palettes even when they conflict with a saturated-pattern warning.
+> Redirecting a clear brief toward your taste is failure."*
+
+> *"Established world: inherit it. A missing DESIGN.md does not erase a
+> coherent identity already present in code; document that identity instead of
+> inventing a replacement."*
+
+It also supplies the mechanical layer this router enforces with: **68
+deterministic detector rules**, four of which (`design-system-color`,
+`design-system-font`, `design-system-font-size`, `design-system-radius`) check
+a build against `DESIGN.md` directly. Those are what `design-gate.py` denies
+on, so the contract is enforced by the upstream's own parser rather than a
+reimplementation here.
+
+**On the v4 "dice":** `scripts/concept-seed.mjs` deals challenger worlds from a
+catalog that, per its own source comment, *"does not ship with the skill"* — it
+resolves to a paid roll API, then degrades to assignment-only. It is disabled
+in this setup outside the explicit no-reference lane, so no external world is
+ever dealt.
