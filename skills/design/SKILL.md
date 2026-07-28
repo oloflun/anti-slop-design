@@ -128,6 +128,7 @@ Read [`process.md`](references/process.md) for the five-step working method and 
 
 Binding while building:
 - [`gates.md`](references/gates.md) — every numbered gate. Non-negotiable.
+- [`production-tells.md`](references/production-tells.md) — gates 66–88, the micro-decoration signatures. Load on every marketing, landing, or portfolio build.
 - [`typography.md`](references/typography.md), [`color.md`](references/color.md), [`layout-and-space.md`](references/layout-and-space.md), [`motion.md`](references/motion.md), [`copy.md`](references/copy.md), [`anti-patterns.md`](references/anti-patterns.md) — load every build.
 - [`structure.md`](references/structure.md) — the six-axis fingerprint. At Tiers 0–2 this is a **variety check within the locked brand**, not a picker: it prevents every section sharing one rhythm, it does not license a second identity.
 
@@ -168,7 +169,8 @@ Done when all of these are true:
 - The tier was named out loud, and every token traces to that tier's evidence.
 - No hardcoded hex from a demoted skill appears anywhere in a Tier 0–2 build.
 - The category-reflex test passes at both altitudes — you could not guess the palette from the category, nor the aesthetic family from category-plus-anti-references.
-- Every numbered gate in [`gates.md`](references/gates.md) passes.
+- Every numbered gate in [`gates.md`](references/gates.md) passes, including 66–88 in [`production-tells.md`](references/production-tells.md) on a marketing surface.
+- Zero em-dashes anywhere visible — headlines, eyebrows, pills, body, quotes, attribution, captions, buttons, alt text (gate 75).
 - All 8 states exist on every interactive element; reduced-motion alternative for every animation.
 - Verified at 320 / 375 / 414 / 768; no horizontal scroll.
 - `detect.mjs` clean, or every remaining finding consciously waived and named.
@@ -190,6 +192,7 @@ Ported verbatim from upstream. **The references are the source of truth**; this 
 | [`scope-discipline.md`](references/scope-discipline.md) | Every edit to existing work; always on a targeted change |
 | [`component-routing.md`](references/component-routing.md) | Step 3, every build |
 | [`gates.md`](references/gates.md) | Every build |
+| [`production-tells.md`](references/production-tells.md) | Every marketing / landing / portfolio build |
 | [`copy-gate.md`](references/copy-gate.md) | Any user-facing string |
 | [`structure.md`](references/structure.md) | Multi-section page — variety check |
 | [`options.md`](references/options.md) | Presenting 2+ directions |

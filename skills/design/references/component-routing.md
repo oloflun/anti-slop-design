@@ -23,6 +23,7 @@ Skills are **tools invoked for craft**. They do not choose the direction — the
 | React component structure | `react-components` | Composition and props patterns |
 | Next.js app surface | `next-best-practices` · `vercel-react-best-practices` | Framework-correct data flow and rendering |
 | Any user-facing string | **copy gate** → [`copy-gate.md`](copy-gate.md) | `copywriting` then `humanizer`, every language |
+| Landing page, portfolio, or marketing surface (page-scope) | `design-taste-frontend` | v2 brief-inference, intensity dials, design-system map, redesign protocol, and the production-test tells. **Craft and structure only — never lets it pick the palette at Tiers 0–2** |
 | Section or layout, no other signal | `impeccable layout` | Spacing, rhythm, hierarchy |
 | Accessibility pass | `ui-ux-pro-max` | 99-rule checklist. Craft only — never lets it set visual direction |
 | Review against external guidelines | `web-design-guidelines` | Vercel interface guidelines |
@@ -82,6 +83,10 @@ Skills are **tools invoked for craft**. They do not choose the direction — the
       "path": [],
       "code": [">[A-ZÅÄÖ][a-zåäö]{3,}", "title=\"", "placeholder=\"", "aria-label=\"", "alt=\""],
       "regex": true },
+
+    { "id": "landing",    "skill": "design-taste-frontend",            "why": "landing/marketing/portfolio page",
+      "path": ["page.tsx", "page.jsx", "index.html", "landing", "marketing", "portfolio", "app/page"],
+      "code": ["<section", "<Hero", "hero", "<Footer", "<Pricing", "<Testimonial"] },
 
     { "id": "layout",     "skill": "impeccable layout",               "why": "layout, no other signal",
       "path": [],

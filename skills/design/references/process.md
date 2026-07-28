@@ -57,6 +57,54 @@ Asking well:
 
 ---
 
+## The design read, before anything else
+
+> Source: `design-taste-frontend` (Leonxlnx/taste-skill) v2, Section 0.
+
+Before any code, state one line: **"Reading this as: \<page kind> for \<audience>, with a \<vibe> language, leaning toward \<design system or aesthetic family>."**
+
+Read six signals to get there: page kind · vibe words the user actually used · reference signals (URLs, screenshots, named competitors) · **audience** (the audience picks the aesthetic, not your taste) · brand assets that already exist · quiet constraints (accessibility-first, public-sector, regulated, trust-first commerce, kids' products — these *override* aesthetic preference).
+
+If the brief is ambiguous, ask **exactly one** question, never a multi-question dump, and only when the read genuinely diverges: *"Should this feel closer to Linear-clean or Awwwards-experimental?"* If you can infer confidently, do not ask — declare the read and proceed.
+
+**[ours]** This sits alongside the tier declaration, not instead of it. The tier says *where direction comes from*; the design read says *what the surface is and who it is for*. Both go in the opening block: *"Tier 1, deriving from the Snajp wordmark. Reading this as: B2B SaaS landing for Swedish SMB buyers, Nordic-SaaS language, leaning Tailwind + a sans display."*
+
+## Intensity dials
+
+v2 sets three dials after the read, and gates layout, motion, and density decisions on them:
+
+- **`DESIGN_VARIANCE`** 1 = perfect symmetry → 10 = artsy chaos
+- **`MOTION_INTENSITY`** 1 = static → 10 = cinematic
+- **`VISUAL_DENSITY`** 1 = art gallery → 10 = packed cockpit
+
+Baseline `8 / 6 / 4`. Inference: minimalist/Linear-style → `5-6 / 3-4 / 2-3` · premium consumer → `7-8 / 5-7 / 3-4` · agency/Awwwards → `9-10 / 8-10 / 3-4` · trust-first/public-sector/regulated → `3-4 / 2-3 / 4-5` · redesign-preserve → match existing, motion +1 · redesign-overhaul → variance +2, motion +2.
+
+**[ours]** Orthogonal to the gate: the tier decides *where the palette and type come from*, the dials decide *how loud the execution is*. A Tier-0 locked brand can still be built at variance 9 or variance 4. Full table in `design-taste-frontend`'s Sections 1.A–1.B.
+
+## When an official design system is the authority
+
+> Source: v2 Section 2. **[ours]** A capability this system otherwise lacks — the gate assumes direction is derived or invented, but some domains have an official system that outranks both.
+
+| Brief reads as | Reach for |
+|---|---|
+| Microsoft / enterprise SaaS / dashboards | `@fluentui/react-components` |
+| Google-ish, Material-flavoured product | `@material/web` + Material 3 tokens |
+| IBM-style B2B / enterprise analytics | `@carbon/react` |
+| Shopify app surfaces | Polaris (required for admin UI) |
+| Atlassian / Jira-style product | `@atlaskit/*` |
+| GitHub-style devtool or community page | `@primer/css` / `@primer/react-brand` |
+| Public-sector UK service | `govuk-frontend` (regulatorily expected) |
+| US public-sector / trust-first | `uswds` |
+| Modern accessible React foundation | `@radix-ui/themes` |
+| Modern SaaS where you own the components | shadcn/ui — **never ship in default state** |
+| Tailwind-based SaaS / indie marketing | Tailwind v4 utilities |
+
+**Honesty rule:** if the brief reads as one of these, install and use the **official** package. Do not recreate its CSS by hand, and do not import its tokens then override 90% of them. **One system per project** — never Fluent mixed with Carbon, never shadcn inside Material.
+
+When the brief names an *aesthetic* rather than a system (glassmorphism, bento, brutalism, editorial, dark-tech, aurora, kinetic type), there is no official package — build with native CSS plus a maintained component library, and be honest in comments about what is borrowed inspiration. Specifically: **Apple Liquid Glass has no official web package**; any web version is a `backdrop-filter` approximation and must be labelled as one.
+
+**Out of scope for the marketing-page rules entirely:** dashboards and dense product UI (use the systems above), data tables (TanStack, AG Grid), multi-step forms, code editors (Monaco, CodeMirror), native mobile (Apple HIG, Material), realtime collaborative UIs. If the brief is one of those, say so, point at the right tool, and apply only the parts of this system that genuinely fit.
+
 ## Options and variations
 
 > *"Give options: try to give 3+ variations across several dimensions. Mix by-the-book designs that match existing patterns with new and novel interactions, including interesting layouts, metaphors, and visual styles. Have some options that use color or advanced CSS; some with iconography and some without. Start your variations basic and get more advanced and creative as you go! Try remixing the brand assets and visual DNA in interesting ways — play with scale, fills, texture, visual rhythm, layering, novel layouts, type treatments. The goal is not the perfect option; it's exploring atomic variations the user can mix and match."*

@@ -31,6 +31,18 @@ All five upstreams were verified live at the time of publishing (April 2026). St
   - **`industrial-brutalist-ui`** — Swiss + tactical-terminal lane (for declassified-engineering tones, tactical telemetry surfaces).
 - **Install:** clone the repo and either drop the individual skill folders into `~/.agents/skills/` or follow its README.
 
+**Upgraded to v2 on 2026-07-27.** Upstream restructured the repo: v1 is preserved as `taste-skill-v1` (install name `design-taste-frontend-v1`), and each skill now lives in its own renamed directory (`taste-skill`, `brutalist-skill`, `minimalist-skill`, `gpt-tasteskill`, `soft-skill`, `redesign-skill`, `output-skill`) while keeping the same `name:` in frontmatter. Verified: `gpt-taste`, `minimalist-ui`, `industrial-brutalist-ui`, `high-end-visual-design`, and `redesign-existing-projects` are **byte-identical** between v1 and v2 — only `design-taste-frontend` was rewritten (226 → 1206 lines).
+
+What v2 adds, and where this router uses it:
+
+- **Section 9.F production-test tells** → ported as gates 66–88 in [`production-tells.md`](../skills/design/references/production-tells.md). Roughly twenty empirically-derived micro-decoration signatures (hero version labels, numbered eyebrows, middle-dot chains, decorative status dots, `<br>`-broken italic headlines, rotated text, crosshair decoration, div-based fake product UI, fake version footers, performative-craftsman labels, locale/weather strips, pills on images, photo-credit captions, live-stock counters, hero decoration strips, floating corner sub-text, `border-t`+`border-b` rows, filled-track scoring bars, scroll cues) that Hallmark's gates 1–57 and impeccable's detector do **not** already catch.
+- **Section 9.G em-dash ban** → gate 75. The strictest of the three em-dash rules in this system, and the one that wins.
+- **Section 11 redesign protocol** → [`scope-discipline.md`](../skills/design/references/scope-discipline.md). Mode detection (greenfield / preserve / overhaul), audit-before-touching, preservation rules, modernisation levers in priority order, and the never-change-silently list.
+- **Section 4.2 premium-consumer palette ban** → [`invention.md`](../skills/design/references/invention.md). A fourth calibration cluster with concrete banned hex families, extending impeccable's `cream-palette` prose into something checkable. Serif discipline from 4.1 folded in alongside.
+- **Sections 0, 1, 2, 13** → [`process.md`](../skills/design/references/process.md). The one-line "design read", the three intensity dials, the brief→official-design-system map (Fluent / Material / Carbon / Polaris / Atlaskit / Primer / GOV.UK / USWDS / Radix / shadcn), and the out-of-scope boundary.
+
+`design-taste-frontend` is now routed for page-scope landing, marketing, and portfolio surfaces — see [`component-routing.md`](../skills/design/references/component-routing.md). As with every other specialist, it supplies craft and structure only; at Tiers 0–2 it may not pick the palette.
+
 ### 3. Designpowers — the design-process layer
 
 - **Repo:** [Owl-Listener/designpowers](https://github.com/Owl-Listener/designpowers)

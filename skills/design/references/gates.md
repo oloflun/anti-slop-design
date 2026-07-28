@@ -8,9 +8,12 @@ Three sources, one numbering space:
 |---|---|---|
 | **1–57** | Hallmark slop-test | [`slop-test.md`](slop-test.md) — ported verbatim, **source of truth** |
 | **58–65** | This repo — the gate order, scope, and derivation rules | Below |
+| **66–88** | `design-taste-frontend` v2 production-test tells | [`production-tells.md`](production-tells.md) — micro-decoration signatures |
 | **mechanical** | impeccable v4 detector, 68 deterministic rules | `detect.mjs`, mapped below |
 
-Do not restate 1–57 here. Read [`slop-test.md`](slop-test.md).
+Do not restate 1–57 here. Read [`slop-test.md`](slop-test.md). Do not restate 66–88 here. Read [`production-tells.md`](production-tells.md).
+
+**Why 66–88 exist separately.** Gates 1–57 catch structural and visual slop. Gates 66–88 catch *micro-decoration* — version labels, numbered eyebrows, middle-dot chains, status dots, photo-credit captions, scroll cues, locale strips. Each looks like a deliberate designer choice in isolation; together they are the most recognisable AI-page signature in production. Load them on every marketing, landing, or portfolio build.
 
 ---
 

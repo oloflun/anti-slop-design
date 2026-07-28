@@ -46,6 +46,23 @@ Invention is where the model's defaults have the most room to leak. impeccable v
 
 > *"All are legitimate when the brief calls for them; the brief always wins. Where the brief leaves the aesthetic free, landing in one of them means the self-check failed: if someone could guess your aesthetic from the category alone, or from category-plus-avoidance, rework until neither answer is obvious."*
 
+**A fourth cluster, with concrete values.** `design-taste-frontend` v2 names the premium-consumer default that impeccable's prose only gestures at — and names the actual hex families, which makes it checkable rather than a vibe:
+
+> For premium-consumer briefs (cookware, wellness, artisan, luxury, heritage craft, DTC home goods) the LLM default is **warm beige/cream + brass/clay/oxblood/ochre + espresso/ink text**. Banned as *default* reaches:
+> - Backgrounds: `#f5f1ea` `#f7f5f1` `#fbf8f1` `#efeae0` `#ece6db` `#faf7f1` `#e8dfcb`
+> - Accents: `#b08947` `#b6553a` `#9a2436` `#9c6e2a` `#bc7c3a` `#7d5621`
+> - Text: `#1a1714` `#1a1814` `#1b1814`
+>
+> *"Every premium-consumer site you have ever shipped uses this exact palette. The brand becomes invisible."*
+
+Rotate instead, and do not repeat the previous premium-consumer project's family: **Cold Luxury** (silver-grey + chrome + smoke) · **Forest** (deep green + bone + amber) · **Black and Tan** (true off-black + warm tan, no beige) · **Cobalt + Cream** · **Terracotta + Slate** (warm rust against cool grey, no brass) · **Olive + Brick + Paper** · **Pure monochrome + one saturated pop**.
+
+Override: legitimate when the brand brief names those colours, or the identity is genuinely vintage/artisan/warm-craft *and* you can say why this palette fits this brand. Reaching for it because "this is a cookware brief" is the failure.
+
+Mechanically, impeccable's `cream-palette` and `ai-color-palette` detector rules catch part of this. The hex list above is the specific form.
+
+**Serif discipline.** v2 is blunter than the front door's face list: serif is *very discouraged as a default*, and *"creative brief = serif"* is called the single most-tested AI tell in production rounds. Default to sans display (Geist Display, ABC Diatype, Söhne Breit, Cabinet Grotesk Display, PP Neue Montreal) unless the brief names a serif or the family is genuinely editorial/luxury/publication/heritage *and* you can articulate the fit. `Fraunces` and `Instrument Serif` are banned outright as the two LLM-favourite display serifs. When emphasising a word inside a headline, use italic or bold **of the same family** — injecting a serif word into a sans headline is amateur.
+
 Two altitudes, both must pass:
 
 - **First-order** — could someone guess the palette from the category alone? (observability → dark blue; healthcare → white + teal; fintech → navy + gold; crypto → neon on black.) If yes, rework.

@@ -101,6 +101,66 @@ This is the binding inheritance rule from the front door, stated concretely. A s
 
 ---
 
+## Redesign protocol
+
+> Source: `design-taste-frontend` (Leonxlnx/taste-skill) v2, Section 11. Ported at full fidelity.
+
+**[ours]** This section governs *existing-site* work, where the targeted-change rule above governs *small* work. Misclassifying the mode is the single biggest source of bad redesign output — and it is exactly the risk on a rename-plus-merge job like Snajp, where "keep the soul" and "change the name" are both true at once.
+
+### Detect the mode first
+
+- **Greenfield** — no existing site, or a full overhaul is approved.
+- **Redesign · preserve** — modernise without breaking the brand. Audit first, extract brand tokens, evolve gradually.
+- **Redesign · overhaul** — new visual language over existing content. Treat as greenfield for visuals; preserve content and information architecture.
+
+If ambiguous, ask **once**: *"Should this redesign preserve the existing brand, or are we starting visually from scratch?"*
+
+**[ours]** This maps onto the gate in the front door: *preserve* is Tier 1 (derive from existing evidence), *overhaul* is Tier 1 or 3 depending on whether brand evidence survives the overhaul, and *greenfield* is Tier 3. A partial rebrand — new name, kept traits — is **preserve**, not greenfield, and impeccable v4 calls the same branch *"Incomplete brand: preserve confirmed assets and recognizable traits, then help the user expand the system."*
+
+### Audit before touching
+
+Document the current state before proposing changes:
+
+- **Brand tokens** — primary and accent colours, type stack, logo treatment, radii.
+- **Information architecture** — page tree, primary nav, key conversion paths.
+- **Content blocks** — what exists, what is doing work, what is filler.
+- **Patterns to preserve** — signature interactions, recognisable hero, copy voice.
+- **Patterns to retire** — slop tells, broken layouts, dead links, generic stock imagery, performance traps.
+- **SEO baseline** — ranking pages, meta titles, structured data, OG cards. **SEO migration is the number-one redesign risk.**
+
+### Preservation rules
+
+- **Do not change information architecture** unless asked. Keep page slugs, anchor IDs, and primary nav labels stable for SEO and muscle memory.
+- **Extract brand colours before applying any palette calibration.** A brand that is already purple stays purple.
+- **Preserve copy voice** unless a rewrite was asked for. Visual modernisation is not a content rewrite.
+- **Honour existing accessibility wins.** Do not regress focus states, alt text, keyboard nav, or contrast.
+- **Respect existing analytics events.** Do not rename buttons, form fields, or section IDs that downstream tracking depends on.
+
+### Modernisation levers, in priority order
+
+Apply in order; stop when the brief is satisfied.
+
+1. **Typography refresh** — biggest visual lift per unit of risk.
+2. **Spacing and rhythm** — section padding, vertical rhythm.
+3. **Colour recalibration** — desaturate, unify neutrals, keep the brand accent.
+4. **Motion layer** — micro-interactions on existing components.
+5. **Hero and key-section recomposition** — restructure top-of-funnel.
+6. **Full block replacement** — only when a block is unsalvageable.
+
+Decision rule: if IA, content, and SEO are sound, take **targeted evolution** (levers 1–4) — roughly 70% of the value at 40% of the risk. Go to full redesign only when the visual debt is structural (broken IA, no design system, broken mobile). If the brand itself is changing, that is greenfield.
+
+### What never changes silently
+
+Never modify without explicit approval:
+
+- URL structure and route slugs
+- Primary nav labels
+- Form field names or order (breaks analytics and autofill)
+- Brand logo or wordmark
+- Existing legal, consent, or cookie copy
+
+---
+
 ## [ours] Motivated exclusion
 
 Claude Design's **inline-styles-only** rule is deliberately **not** ported. It exists because that product streams designs into a live preview, where *"class-based CSS delays everything the user sees until both rules and markup have streamed."* That constraint does not apply to a Next.js or Tailwind codebase, where inline styles would defeat the token system that discipline 3 in the front door requires. It is listed here because it reads like a design principle and is not one.
