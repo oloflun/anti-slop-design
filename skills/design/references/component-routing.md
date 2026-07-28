@@ -85,8 +85,8 @@ Skills are **tools invoked for craft**. They do not choose the direction — the
       "regex": true },
 
     { "id": "landing",    "skill": "design-taste-frontend",            "why": "landing/marketing/portfolio page",
-      "path": ["page.tsx", "page.jsx", "index.html", "landing", "marketing", "portfolio", "app/page"],
-      "code": ["<section", "<Hero", "hero", "<Footer", "<Pricing", "<Testimonial"] },
+      "path": ["landing", "marketing", "portfolio"],
+      "code": ["<Hero", "<Pricing", "<Testimonial", "<FAQ", "<CTA", "<LogoWall", "<FeatureGrid"] },
 
     { "id": "layout",     "skill": "impeccable layout",               "why": "layout, no other signal",
       "path": [],

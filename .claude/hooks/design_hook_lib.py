@@ -162,11 +162,29 @@ def design_md(root: Path) -> Path | None:
 def tier(root: Path) -> str:
     """Coarse tier signal for the ledger and the injected reminder.
 
-    Only tier 0 is decidable mechanically — DESIGN.md exists or it does not.
-    Distinguishing 1 from 2 from 3 is a judgment the model makes at the gate,
-    so anything without DESIGN.md reports as 'ungated' rather than guessing.
+    Three states, not two. The middle one exists because five different skills
+    write a file called DESIGN.md in three incompatible formats:
+
+      0-locked  DESIGN.md with parseable token frontmatter (impeccable/Stitch
+                schema). Full mechanical enforcement.
+      0-prose   DESIGN.md exists but carries no parseable tokens — what
+                `design-md`, gstack's `design-consultation`, and hand-written
+                files produce. Authority WITHOUT enforcement.
+      ungated   No DESIGN.md. The model runs the tier gate.
+
+    Collapsing 0-prose into 0-locked was a real bug: the system announced
+    "TIER 0 - LOCKED, inherit the system" while design-gate.py enforced
+    nothing, so an off-brand write passed silently. That is strictly worse
+    than 'ungated', where the model at least performs the derivation.
+
+    Distinguishing tiers 1/2/3 stays a model judgment; only tier 0 is
+    mechanically decidable.
     """
-    return "0-locked" if design_md(root) else "ungated"
+    if not design_md(root):
+        return "ungated"
+    t = design_tokens(root)
+    has_tokens = bool(t.get("colors") or t.get("fonts") or t.get("radii"))
+    return "0-locked" if has_tokens else "0-prose"
 
 
 def design_tokens(root: Path) -> dict:

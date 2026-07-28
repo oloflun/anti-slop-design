@@ -38,6 +38,27 @@ Not branch-specific. They apply to new work, audit, redesign, study, and compone
 
 ---
 
+## Step 0a · Which verb is this?
+
+Classify the job before scoping it. The system routes by **task type** as well as by component, and picking the wrong procedure is more expensive than picking the wrong component skill.
+
+| Verb | Owner |
+|---|---|
+| **build** | Full flow, Steps 0–6 below |
+| **redesign** | Three procedures in sequence — [`skill-orchestration.md`](references/skill-orchestration.md) §3 |
+| **audit** | [`verbs/audit.md`](references/verbs/audit.md) — **read-only, never edits** |
+| **polish** | `impeccable polish` + `emil-design-eng` for motion. Direction is already settled |
+| **study** | [`study.md`](references/study.md) + `extract-design` → Tier 2 |
+| **explore** | [`wireframe.md`](references/wireframe.md) → [`options.md`](references/options.md) |
+| **system** | `Skill(brand-system)` |
+| **verify** | `Skill(design-verify)` |
+
+If two verbs fire, take the one that changes more and say which you took.
+
+**Read [`skill-orchestration.md`](references/skill-orchestration.md) when the job is larger than one component.** It is the foundation: the seven phases, the full skill catalog with each skill's role and boundary, every known collision and its resolution, and the two parallel pipelines (gstack, Stitch) that must not be mixed into a job mid-flight.
+
+---
+
 ## Step 0 · Scope check
 
 Do this before anything else. Most day-to-day requests are component-shaped, and the page-level apparatus is wrong for them.
@@ -191,6 +212,7 @@ Ported verbatim from upstream. **The references are the source of truth**; this 
 | [`process.md`](references/process.md) | Any new surface: working method + when to ask questions |
 | [`scope-discipline.md`](references/scope-discipline.md) | Every edit to existing work; always on a targeted change |
 | [`component-routing.md`](references/component-routing.md) | Step 3, every build |
+| [`skill-orchestration.md`](references/skill-orchestration.md) | **Any job larger than one component** — phases, verb routing, skill catalog, collisions |
 | [`gates.md`](references/gates.md) | Every build |
 | [`production-tells.md`](references/production-tells.md) | Every marketing / landing / portfolio build |
 | [`copy-gate.md`](references/copy-gate.md) | Any user-facing string |

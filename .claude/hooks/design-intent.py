@@ -46,6 +46,79 @@ INTENT = re.compile(
 )
 
 
+# Verb detection. The pre-2026-07-28 system routed by component but never by
+# task type, so build / redesign / audit / polish / study all got identical
+# treatment. Order matters: the first match wins, so the more specific and
+# more destructive verbs are checked first.
+VERBS = [
+    ("redesign", re.compile(
+        r"\b(redesign|omdesign|rebuild|bygg om|g(ö|o)r om|modernise|modernize|"
+        r"overhaul|revamp|refresh the (design|look|site)|nytt utseende)\b", re.I)),
+    ("system", re.compile(
+        r"\b(design system|designsystem|brand kit|brandkit|design tokens|"
+        r"token(s)? for the whole|style guide|styleguide)\b", re.I)),
+    ("audit", re.compile(
+        r"\b(audit|granska|review the (design|ui|page)|design review|"
+        r"what('s| is) wrong with|check (this|the) (ui|design|page))\b", re.I)),
+    ("study", re.compile(
+        r"\b(study|extract the design|match this|like this site|"
+        r"same (style|look) as|h(ä|a)rma|kopiera stilen)\b", re.I)),
+    ("explore", re.compile(
+        r"\b(options|variants|varianter|explore|brainstorm|"
+        r"show me (some )?(directions|ideas|options)|wireframe|skiss)\b", re.I)),
+    ("polish", re.compile(
+        r"\b(polish|polera|finishing touches|tighten|finputsa|"
+        r"feels? (off|slow|wrong)|make it (feel|look) better)\b", re.I)),
+    ("verify", re.compile(
+        r"\b(verify|screenshot|does it look right|check it renders|"
+        r"responsive check|kolla att)\b", re.I)),
+]
+
+# One line per verb naming the procedure that owns it. Kept terse on purpose —
+# a paragraph here gets skipped by turn three of a long build.
+VERB_ROUTE = {
+    "redesign": ("REDESIGN — three procedures, run in this order (see "
+                 "references/skill-orchestration.md §3):\n"
+                 "  1. Mode detection: scope-discipline.md § Redesign protocol "
+                 "— greenfield / preserve / overhaul, audit before touching, "
+                 "SEO + IA + analytics preservation.\n"
+                 "  2. Tier gate: does brand evidence survive? A partial "
+                 "rebrand (new name, kept traits) is PRESERVE, not greenfield.\n"
+                 "  3. Page shape: verbs/redesign.md — single-page vs "
+                 "multi-page split, section rhythm, component voice.\n"
+                 "  Mode beats tier beats page shape. Do NOT also run "
+                 "redesign-existing-projects (redundant)."),
+    "system":   ("SYSTEM — invoke Skill(brand-system). It emits a "
+                 "{brand}-design skill plus DESIGN.md via `impeccable "
+                 "document`. Only write DESIGN.md through that path."),
+    "audit":    ("AUDIT — read-only. references/verbs/audit.md for severity "
+                 "grading, stamp-lies and design-system drift. Then "
+                 "`impeccable detect` for the mechanical pass. Do NOT edit "
+                 "while auditing; fixes are a separate pass."),
+    "study":    ("STUDY — Tier 2. references/study.md for the DNA, "
+                 "extract-design for hard tokens. Borrow principle, never "
+                 "pixel. Mix sources; never clone one."),
+    "explore":  ("EXPLORE — low fidelity first: references/wireframe.md "
+                 "(3-5 genuinely different approaches), presented via "
+                 "references/options.md. Do not write production code yet."),
+    "polish":   ("POLISH — direction is already settled; do not re-open it. "
+                 "`impeccable polish`, plus emil-design-eng for anything that "
+                 "moves. Note: the standalone `polish` skill has a stale "
+                 "/teach-impeccable dependency (v3 naming) — prefer "
+                 "`impeccable polish`."),
+    "verify":   ("VERIFY — invoke Skill(design-verify). Console + network "
+                 "before judging the render, all four breakpoints, batched "
+                 "probes, never clear storage."),
+}
+
+
+def detect_verb(prompt: str) -> str:
+    for name, rx in VERBS:
+        if rx.search(prompt):
+            return name
+    return "build"
+
+
 def main() -> None:
     if L.disabled():
         return
@@ -57,15 +130,37 @@ def main() -> None:
         return
 
     root = L.project_root(event)
-    if not L.once_per_session(root, "design-gate-order"):
-        return
+    verb = detect_verb(prompt)
 
-    lines = ["<design-gate>",
-             "Design intent detected. Load Skill(design) before any UI decision.",
-             ""]
+    # Re-fire when the task type changes, not merely once per session. A
+    # mid-session pivot from "build the hero" to "now audit the whole page"
+    # is exactly when the wrong procedure gets used.
+    state = L.state_dir(root) / ".design-verb"
+    try:
+        previous = state.read_text(encoding="utf-8").strip()
+    except Exception:
+        previous = ""
+    first_time = not previous
+    changed = previous != verb
+    if not (first_time or changed):
+        return
+    try:
+        state.write_text(verb, encoding="utf-8")
+    except Exception:
+        pass
+
+    lines = ["<design-gate>"]
+    if changed and not first_time:
+        lines.append(f"Task type changed: {previous} → {verb}.")
+    lines.append("Design intent detected. Load Skill(design) before any UI decision.")
+    lines.append("")
+    lines.append(VERB_ROUTE.get(verb,
+                 "BUILD — full flow, SKILL.md Steps 0-6."))
+    lines.append("")
 
     dm = L.design_md(root)
-    if dm:
+    tier_now = L.tier(root)
+    if dm and tier_now == "0-locked":
         tokens = L.design_tokens(root)
         lines.append(f"TIER 0 — LOCKED. {dm.name} exists at the project root.")
         lines.append("Inherit the system. Do not re-derive, do not invent, do not "
@@ -78,6 +173,16 @@ def main() -> None:
         if tokens.get("radii"):
             lines.append("  radii : " + ", ".join(tokens["radii"][:8]))
         lines.append("Every colour and face in your output references one of these.")
+    elif dm:
+        lines.append(f"TIER 0 — PROSE ONLY. {dm.name} exists but carries no "
+                     f"machine-readable token frontmatter.")
+        lines.append("Treat it as AUTHORITY, but know the contract gate is BLIND "
+                     "to it — design-gate.py cannot deny an off-brand write here.")
+        lines.append("Read the file in full and obey it yourself. To get "
+                     "mechanical enforcement, run `$impeccable document` to "
+                     "regenerate it with token frontmatter.")
+        lines.append("(This shape is what design-md, gstack's "
+                     "design-consultation, and hand-written files produce.)")
     else:
         lines.append("No DESIGN.md — run the gate before picking anything:")
         lines.append("  Tier 1 DERIVE   logo/wordmark, brand hex, deployed site, "
@@ -95,7 +200,8 @@ def main() -> None:
                  "palette. Gate 60 denies their hex values in a locked project.")
     lines.append("</design-gate>")
 
-    L.log(root, event="intent", tier=L.tier(root), detail="gate order injected")
+    L.log(root, event="intent", tier=tier_now, signal=verb,
+          detail=f"verb={verb}" + (f" (was {previous})" if changed and previous else ""))
     L.emit("UserPromptSubmit", "\n".join(lines))
 
 

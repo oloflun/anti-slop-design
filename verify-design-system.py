@@ -205,6 +205,48 @@ def main() -> int:
                         "Coverage", "Gate activity", "Trap firings", "Timeline"):
                 check(f"report section: {sec}", sec in body)
 
+    print("\n-- behaviour: verb routing --")
+    with tempfile.TemporaryDirectory() as td:
+        (Path(td) / "package.json").write_text("{}", encoding="utf-8")
+        cases = [
+            ("redesign", "redesign the pricing page", "REDESIGN"),
+            ("audit", "audit the design", "AUDIT"),
+            ("polish", "polish the nav", "POLISH"),
+            ("explore", "show me some design options", "EXPLORE"),
+            ("system", "create a design system", "SYSTEM"),
+            ("build", "build a landing page", "BUILD"),
+        ]
+        for verb, prompt, marker in cases:
+            hso, _ = run_hook("design-intent.py", {"cwd": td, "prompt": prompt})
+            ctx = (hso or {}).get("additionalContext", "")
+            check(f"verb '{verb}' routes correctly", marker in ctx)
+        # re-fire on change, silence on repeat
+        run_hook("design-intent.py", {"cwd": td, "prompt": "redesign it"})
+        hso, _ = run_hook("design-intent.py", {"cwd": td, "prompt": "redesign it again"})
+        check("same verb twice = silent", hso is None)
+        hso, _ = run_hook("design-intent.py", {"cwd": td, "prompt": "now audit the design"})
+        check("verb change re-fires", "Task type changed" in (hso or {}).get("additionalContext", ""))
+        hso, _ = run_hook("design-intent.py", {"cwd": td, "prompt": "gör om hela sidan"})
+        check("Swedish verb detected", "REDESIGN" in (hso or {}).get("additionalContext", ""))
+
+    print("\n-- behaviour: prose-only DESIGN.md must not false-lock --")
+    PROSE = "# Design System\n## Colors\n- Ink #0B0B0C primary\n"
+    with tempfile.TemporaryDirectory() as td:
+        (Path(td) / "package.json").write_text("{}", encoding="utf-8")
+        (Path(td) / "DESIGN.md").write_text(PROSE, encoding="utf-8")
+        (Path(td) / "components").mkdir()
+        check("tier() reports 0-prose, not 0-locked", L.tier(Path(td)) == "0-prose")
+        hso, _ = run_hook("design-intent.py", {"cwd": td, "prompt": "redesign the hero"})
+        ctx = (hso or {}).get("additionalContext", "")
+        check("injects PROSE ONLY warning", "PROSE ONLY" in ctx)
+        check("states the gate is blind", "BLIND" in ctx)
+        check("does NOT claim LOCKED", "TIER 0 — LOCKED" not in ctx)
+
+    with tempfile.TemporaryDirectory() as td:
+        (Path(td) / "package.json").write_text("{}", encoding="utf-8")
+        (Path(td) / "DESIGN.md").write_text(DESIGN_MD, encoding="utf-8")
+        check("tier() reports 0-locked with frontmatter", L.tier(Path(td)) == "0-locked")
+
     print("\n-- behaviour: false positives --")
     with tempfile.TemporaryDirectory() as td:
         (Path(td) / "package.json").write_text("{}", encoding="utf-8")
