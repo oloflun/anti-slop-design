@@ -112,6 +112,19 @@ The gate does **not** change (same brand tokens, gate 65 across the seam); the *
 
 `verify-design-system.py`: 60 → 74 → 79 checks, all passing.
 
+
+### Vault junction fix + search indexing
+
+`wiki/projects/anti-slop-design/` turned out **not** to be a junction at all — a real stale directory from ~May (101 files vs the repo's 238) serving the pre-rebuild **161-line router** while the repo had the 235-line one. qmd had indexed that stale content, so `/recall` was surfacing pre-rebuild architecture. `CLAUDE.md` listed the project under "Current linked projects", so it was *supposed* to be linked.
+
+Backed up to `Documents/vault-backup/stale-anti-slop-design-20260728` (outside OneDrive), verified via `diff -rq` that nothing was unique to it, got explicit approval, then replaced it with a real junction. Vault now serves current content including the hub doc.
+
+**Then found the consequence:** qmd does **not** walk outward through a junction, so the repo dropped out of the `wiki` collection entirely (8 stale docs removed, 0 new added). `super-intelligence` indexes fine because its arrangement is the reverse — real files in the vault, symlink in `~`. `haajp-next` indexes because its vault copy is a real directory.
+
+Fixed non-destructively with a dedicated collection: `qmd collection add` + `rename` → 134 files indexed, hub doc retrievable (`qmd://anti-slop-design/anti-slop-design.md`). Recorded the caveat in conclude Step 8b so the next junctioned project doesn't hit it silently.
+
+`qmd embed` failed on a llama.cpp buffer allocation (`failed to allocate buffer of size 538443808`) — an environment resource limit, not a content problem. **Lexical/BM25 search works and was verified; vector search for the newest content will be stale until `qmd embed` is re-run on a less loaded machine.** `gbrain sync` succeeded: 133 pages, 588 chunks, checkpoint `410b94c9`.
+
 <!-- session-state
 date: 2026-07-28
 type: infrastructure-followup
