@@ -79,6 +79,39 @@ Everything else holds: rename to Snajp, merge the two offerings, big wordmark wi
 
 The design system is complete, verified at 60/60 mechanical checks, and committed in both repos on `design-system-v2` — anti-slop-design at `3eb763f`, super-intelligence at `d59202e` (v0.4.1). Neither is pushed. Anton's live config now matches what ships. The upstream taste-skill drift is closed and documented, so a future audit can tell at a glance which of those seven skills are pinned and which move. What remains unproven is still everything that depends on model judgment rather than mechanism; the Snajp rebuild is the next session and the telemetry report is the evidence.
 
+
+---
+
+## Addendum — orchestration foundation, product surfaces, vault hub doc
+
+Continued after the initial conclude. Three further pieces of work.
+
+### Skill orchestration foundation (commit `5f8a465` / `79f7811`, v0.4.2)
+
+Anton asked which redesign procedure is prioritised — Hallmark's `verbs/redesign.md` or the taste-skill protocol. The answer was **neither, nothing prioritised them**, which opened a full audit of all ~40 design-capable skills.
+
+- **Root gap:** the system routed by *component* but never by *task type*. Build / redesign / audit / polish / study all got identical treatment.
+- **Resolved the redesign collision:** three procedures, complementary only when sequenced — mode detection (`scope-discipline.md`) → tier gate → page shape (`verbs/redesign.md`). Mode beats tier beats page shape. `redesign-existing-projects` drops out as redundant.
+- **Found a high-severity bug.** `tier()` reported `0-locked` on `DESIGN.md` *existence alone*, but five skills write that filename in three incompatible formats — `design-md` and gstack's `design-consultation` emit prose only. A prose file made the system announce *"TIER 0 — LOCKED, inherit the system"* while `design-gate.py` enforced nothing; verified empirically that `#FF00FF` + Comic Sans passed silently. Strictly worse than ungated, since the model skips derivation *and* gets no enforcement. Now `0-locked` / `0-prose` / `ungated`, with `0-prose` stating plainly that the gate is blind.
+- **Found two undocumented parallel pipelines** — gstack (`design-consultation` → `design-shotgun` → `design-html` → `design-review`) and Stitch. Both write their own `DESIGN.md`. Now documented with lane boundaries.
+- New `references/skill-orchestration.md`: 7 phases, verb routing, full skill catalog with role/boundary per skill, 9 collisions with resolutions.
+- `design-intent.py`: 8-verb detection (EN + SV), re-firing on verb *change* rather than once per session.
+
+### Product surfaces as Operate mode (commit `b7c4a02` / `4b84507`, v0.4.3)
+
+Dashboards, admin, settings, tables and editors were listed as out of scope. Wrong for real work — they sit inside corporate sites constantly. The boundary is a **mode**, not an exclusion.
+
+Audited the stack before proposing imports: **nothing new needed**. `impeccable` v4 already ships an Operate mode with `reference/operate.md`, never wired into the router. `shadcn-ui`, `dataviz`, `ui-ux-pro-max`, `web-design-guidelines`, `impeccable harden`/`onboard` covered the rest.
+
+The gate does **not** change (same brand tokens, gate 65 across the seam); the **register** does — one font family, fixed rem scale, Restrained colour floor, 150–250ms state-only motion, density over expression. Marketing references (hero-enrichment, macrostructures, six-axis fingerprint, gates 66–88) do not load there. Detection is automatic via a new `product` routing rule.
+
+### Vault hub doc + permanent /conclude rules
+
+- **Created `anti-slop-design.md`** at the repo root — the project hub doc, surfacing in the vault through the junction. Searched first and confirmed no existing one (only the junction dir, unrelated skill files, and git refs matched). Carries the four decision layers, the hook chain, invariants that bite, a full document map, verification, and status. `AUDIT.md` marked stale in the map rather than deleted.
+- **Three permanent `/conclude` rules added** to both the skill (Steps 3d, 8b, and a strengthened 3c) and the CARL `CONCLUDE` domain: the vault hub doc is mandatory for infra work and must be searched-for before writing; installer sync is **unconditional** for infra work rather than gated on `upstream.json`; and `qmd update` + `gbrain sync` must run before the session closes.
+
+`verify-design-system.py`: 60 → 74 → 79 checks, all passing.
+
 <!-- session-state
 date: 2026-07-28
 type: infrastructure-followup
@@ -103,8 +136,8 @@ files_modified:
   - ~/.carl/carl.json
   - ~/.agents/skills/design-taste-frontend/SKILL.md
   - ~/.agents/skills/design/
-decisions_made: 7
-open_threads: 7
+decisions_made: 13
+open_threads: 8
 handoffs_pending:
   - target: snipe-leads
     topic: "Snajp rebuild — READ THE PRODUCT DOCS FIRST (leads agent + new support agent), then Tier-1 redesign-preserve; first end-to-end telemetry test"
