@@ -24,6 +24,7 @@ Skills are **tools invoked for craft**. They do not choose the direction — the
 | Next.js app surface | `next-best-practices` · `vercel-react-best-practices` | Framework-correct data flow and rendering |
 | Any user-facing string | **copy gate** → [`copy-gate.md`](copy-gate.md) | `copywriting` then `humanizer`, every language |
 | Landing page, portfolio, or marketing surface (page-scope) | `design-taste-frontend` | v2 brief-inference, intensity dials, design-system map, redesign protocol, and the production-test tells. **Craft and structure only — never lets it pick the palette at Tiers 0–2** |
+| **Dashboard, admin, settings, table, editor, any authenticated in-app surface** | **`impeccable operate`** | **Operate mode. Load [`product-surfaces.md`](product-surfaces.md).** Same tokens, different register: density and familiarity over expression, 150–250ms state-only motion, one font family, Restrained colour floor. Marketing references (hero-enrichment, macrostructures, structure, production-tells) do **not** load here |
 | Section or layout, no other signal | `impeccable layout` | Spacing, rhythm, hierarchy |
 | Accessibility pass | `ui-ux-pro-max` | 99-rule checklist. Craft only — never lets it set visual direction |
 | Review against external guidelines | `web-design-guidelines` | Vercel interface guidelines |
@@ -87,6 +88,14 @@ Skills are **tools invoked for craft**. They do not choose the direction — the
     { "id": "landing",    "skill": "design-taste-frontend",            "why": "landing/marketing/portfolio page",
       "path": ["landing", "marketing", "portfolio"],
       "code": ["<Hero", "<Pricing", "<Testimonial", "<FAQ", "<CTA", "<LogoWall", "<FeatureGrid"] },
+
+    { "id": "product",    "skill": "impeccable operate",               "why": "product surface — Operate mode, not marketing taste",
+      "path": ["dashboard", "admin", "settings", "console", "portal", "workspace",
+               "(app)", "app/(", "account", "billing", "onboarding", "table", "datagrid",
+               "editor", "inbox", "analytics"],
+      "code": ["<Sidebar", "<DataTable", "<TableHead", "useReactTable", "AgGrid",
+               "<CommandDialog", "<Skeleton", "role=\"grid\"", "aria-sort",
+               "<Tabs", "<Breadcrumb", "getServerSession", "<Toolbar"] },
 
     { "id": "layout",     "skill": "impeccable layout",               "why": "layout, no other signal",
       "path": [],

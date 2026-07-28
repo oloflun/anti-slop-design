@@ -28,33 +28,52 @@ Routing to those *as direction-setters* is how a brand became beige, or hazard-r
 
 ## How it works now
 
-### The gate
+### The verb — what kind of job is this?
+
+Classified before anything else, because picking the wrong *procedure* costs more than picking the wrong component skill. `design-intent.py` detects eight verbs (English and Swedish) and routes each to its owning procedure: **build · redesign · audit · polish · study · explore · system · verify**.
+
+It re-fires when the verb **changes**, not once per session — a mid-session pivot from "build the hero" to "now audit the page" is exactly when the wrong procedure gets used.
+
+The redesign case is the one that needed resolving: three procedures claim it, and they are complementary only when sequenced — mode detection (`scope-discipline.md`) → tier gate → page shape (`verbs/redesign.md`). Mode beats tier beats page shape. Full precedence table in [`skill-orchestration.md`](skills/design/references/skill-orchestration.md).
+
+### The gate — where does direction come from?
 
 First tier with evidence wins. Lower tiers never run.
 
 | Tier | Condition | Action | Invention |
 |---|---|---|---|
-| **0 · Locked** | `DESIGN.md` exists | Inherit. Pages share the system. | None |
+| **0 · Locked** | `DESIGN.md` **with token frontmatter** | Inherit. Pages share the system. Gate enforces mechanically. | None |
+| **0 · Prose** | `DESIGN.md` exists, no parseable tokens | Authority **without** enforcement — read and obey it; the gate is blind. | None |
 | **1 · Derive** | Logo, brand hex, deployed site, tailwind colours, favicon | Derive the language from that evidence | Extension only |
 | **2 · Reference** | A URL or screenshot was given | Study it. Borrow principle, never pixel | Recomposition |
 | **3 · Invent** | Genuinely nothing, or "wing it" | Invent a named world. Themes live here | Full |
 
 Tier 1 is the piece no upstream has as a gate, and it is the whole point. HAAJP is the reference case: `#F27722` + Afacad uppercase + black surfaces + an asymmetric rhombus derives from the mark and the product. No catalogue produces that.
 
+**Tier 0-prose exists because of a real bug.** Five skills write a file called `DESIGN.md` in three incompatible formats — `design-md` and gstack's `design-consultation` emit prose only. The system used to report `0-locked` on file *existence*, so a prose file made it announce *"LOCKED, inherit the system"* while enforcing nothing; a write with `#FF00FF` and Comic Sans passed silently. That is worse than being ungated, because the model skips derivation *and* gets no enforcement. Only ever write `DESIGN.md` through `impeccable document` or `brand-system`.
+
 **Inheritance is binding.** A section, component, feature, or state inside an established surface inherits it. A local addition never re-runs the gate and never starts a second identity.
+
+### The mode — marketing or product?
+
+Detected automatically, no user input needed. A dashboard, admin panel, settings screen, data table, or editor routes to **Operate mode** ([`product-surfaces.md`](skills/design/references/product-surfaces.md)) instead of the marketing stack.
+
+Same tokens, different register: one font family, fixed rem scale, Restrained colour floor, accent for state only, 150–250ms motion that conveys state, density and familiarity over expression. The marketing references — hero enrichment, macrostructures, the six-axis fingerprint, production tells — do not load there. A corporate site with a portal is two modes on one token set.
 
 ### The hooks
 
 Enforcement moved from turn boundaries to edit boundaries.
 
 ```
-UserPromptSubmit    design-intent.py        gate order + this project's locked tokens
+UserPromptSubmit    design-intent.py        verb + tier + this project's locked tokens
 PreToolUse  write   design-gate.py          DENY contract violations before they land
 PreToolUse  browser design-verify-gate.py   inspection discipline before the first look
 PostToolUse write   design-route.py         name the right skill for what was just written
 PostToolUse Skill   design-telemetry.py     attribute every skill call to its component
 Stop                design-stop.py          deep detector pass + the session report
 ```
+
+**What hooks can and cannot do.** They inject text and they deny writes. They **cannot load a skill** — only the model can call `Skill()`. So every route is a suggestion, which is exactly why the route-vs-invocation gap is measured rather than assumed. `design-gate.py` is the one hard enforcement point in the chain.
 
 `design-route.py` fires after **every** UI file write and emits one line:
 

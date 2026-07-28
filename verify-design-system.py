@@ -247,6 +247,31 @@ def main() -> int:
         (Path(td) / "DESIGN.md").write_text(DESIGN_MD, encoding="utf-8")
         check("tier() reports 0-locked with frontmatter", L.tier(Path(td)) == "0-locked")
 
+    print("\n-- behaviour: product surface vs marketing --")
+    with tempfile.TemporaryDirectory() as td:
+        (Path(td) / "package.json").write_text("{}", encoding="utf-8")
+        for sub in ("app/dashboard", "app/settings", "app/marketing"):
+            (Path(td) / sub).mkdir(parents=True, exist_ok=True)
+
+        hso, _ = run_hook("design-route.py", write_ev(
+            td, "app/dashboard/Users.tsx",
+            'export function Users(){const t=useReactTable();return <table aria-sort="asc"/>}'))
+        ctx = (hso or {}).get("additionalContext", "")
+        check("data table routes to Operate mode", "impeccable operate" in ctx)
+        check("data table does NOT route to marketing", "design-taste-frontend" not in ctx)
+
+        hso, _ = run_hook("design-route.py", write_ev(
+            td, "app/settings/page.tsx", 'export default function S(){return <Sidebar/>}'))
+        check("settings routes to Operate mode",
+              "impeccable operate" in (hso or {}).get("additionalContext", ""))
+
+        hso, _ = run_hook("design-route.py", write_ev(
+            td, "app/marketing/Home.tsx",
+            'export function Home(){return <Hero><Pricing/></Hero>}'))
+        ctx = (hso or {}).get("additionalContext", "")
+        check("marketing routes to design-taste-frontend", "design-taste-frontend" in ctx)
+        check("marketing does NOT route to Operate", "impeccable operate" not in ctx)
+
     print("\n-- behaviour: false positives --")
     with tempfile.TemporaryDirectory() as td:
         (Path(td) / "package.json").write_text("{}", encoding="utf-8")

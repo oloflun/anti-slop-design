@@ -69,6 +69,7 @@ Do this before anything else. Most day-to-day requests are component-shaped, and
 | **Component** | Names one element (button, input, card, modal, dropdown, tooltip, select, checkbox, switch, tab strip, chip, badge, banner, popover, slider, date picker, avatar); brief ≤30 words; target is a single component file; "just the X" | Component branch — see below. |
 | **Page / surface** | Multi-section brief, "build me a landing page", a whole route | Full flow, Steps 1–6. |
 | **Whole system** | "design system", "brand kit", "tokens for the whole app" | Invoke `Skill(brand-system)`. |
+| **Product surface** | Dashboard, admin, settings, table, form flow, editor, anything behind a login | **Operate mode** — [`product-surfaces.md`](references/product-surfaces.md). Same tokens, different register. Marketing references do not load. |
 
 If ambiguous between component and page, ask one short question and default to **component** — a single artifact is cheaper to redirect than a multi-section page.
 
@@ -213,6 +214,7 @@ Ported verbatim from upstream. **The references are the source of truth**; this 
 | [`scope-discipline.md`](references/scope-discipline.md) | Every edit to existing work; always on a targeted change |
 | [`component-routing.md`](references/component-routing.md) | Step 3, every build |
 | [`skill-orchestration.md`](references/skill-orchestration.md) | **Any job larger than one component** — phases, verb routing, skill catalog, collisions |
+| [`product-surfaces.md`](references/product-surfaces.md) | Dashboard, admin, settings, table, form flow, editor, any authenticated surface — **Operate mode** |
 | [`gates.md`](references/gates.md) | Every build |
 | [`production-tells.md`](references/production-tells.md) | Every marketing / landing / portfolio build |
 | [`copy-gate.md`](references/copy-gate.md) | Any user-facing string |

@@ -67,16 +67,29 @@ The version above shipped three good sites and then failed in real use. Three re
 
 > **Brand derives direction. Skills supply craft. Themes are the last resort.**
 
+### The verb
+
+Classified first, because the wrong *procedure* costs more than the wrong component skill. Eight verbs (English + Swedish), each routed to its owner: **build · redesign · audit · polish · study · explore · system · verify**. Re-fires when the verb changes, not once per session.
+
+Redesign is the contested one — three procedures claim it, and they work only in sequence: mode detection → tier gate → page shape. Precedence in [`skill-orchestration.md`](skills/design/references/skill-orchestration.md).
+
 ### The gate
 
 First tier with evidence wins; lower tiers never run.
 
 | Tier | Condition | Invention |
 |---|---|---|
-| **0 · Locked** | `DESIGN.md` exists → inherit, pages share the system | None |
+| **0 · Locked** | `DESIGN.md` **with token frontmatter** → inherit; gate enforces mechanically | None |
+| **0 · Prose** | `DESIGN.md` without parseable tokens → authority, but the gate is **blind** | None |
 | **1 · Derive** | Logo, brand hex, deployed site, tailwind colours → derive from that evidence | Extension only |
 | **2 · Reference** | A URL or screenshot → study it, borrow principle not pixel | Recomposition |
 | **3 · Invent** | Genuinely nothing, or "wing it" → invent. Themes live here | Full |
+
+Tier 0-prose exists because five skills write `DESIGN.md` in three incompatible formats. Reporting `0-locked` on file existence alone made the system claim *"LOCKED, inherit"* while enforcing nothing — `#FF00FF` and Comic Sans passed silently. Write `DESIGN.md` only through `impeccable document` or `brand-system`.
+
+### The mode
+
+Marketing or product, detected automatically. Dashboards, admin, settings, tables and editors route to **Operate mode** — same tokens, different register (one font family, Restrained colour, 150–250ms state-only motion, density over expression). Marketing references don't load there. See [`product-surfaces.md`](skills/design/references/product-surfaces.md).
 
 ### The hooks
 

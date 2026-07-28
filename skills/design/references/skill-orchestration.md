@@ -189,8 +189,22 @@ Two complete alternative workflows exist. They are **not** wired into this route
 
 ---
 
-## 10. What is deliberately out of scope
+## 10. Product surfaces are a mode, not an exclusion
+
+Dashboards, admin panels, settings, data tables, forms, and editors appear inside corporate sites constantly. They are **in scope, in a different mode** — see [`product-surfaces.md`](product-surfaces.md).
+
+The distinction that matters:
+
+- **The gate does not change.** Product surfaces derive colour, type, and radius from the same brand. A locked project's dashboard shares its landing page's tokens. Gate 65 (second identity) applies across the seam.
+- **The register does change.** Marketing taste does not transfer. `impeccable`'s Operate mode and its `reference/operate.md` are the authority: one font family, fixed rem scale, Restrained colour floor, accent for state only, 150–250ms motion that conveys state, no page-load choreography, density and familiarity over expression.
+- **Different references load.** `hero-enrichment`, `macrostructures`, `structure`'s six-axis fingerprint and `production-tells` (gates 66–88) are marketing-composition references and are **not** loaded on a product surface. A version label in a product header is legitimate build metadata, not a tell.
+
+Detection is automatic — `component-routing.md`'s `product` rule fires on dashboard/admin/settings/table/editor paths and on signals like `<DataTable`, `useReactTable`, `<CommandDialog`, `aria-sort`, `<Sidebar`. No user input required.
+
+**Hand off the engine, keep the design.** For a serious data grid (TanStack, AG Grid), a code editor (Monaco, CodeMirror), an enterprise context with an official system (Fluent, Carbon, Atlaskit, Polaris), or native mobile (Apple HIG, Material) — use the right tool for the mechanism, themed to the locked tokens. The router still owns the tokens, the mode declaration, the eight-state discipline, and verification. Handing off the grid engine is correct; applying landing-page taste to a data grid is not.
+
+## 11. What is genuinely out of scope
 
 `ab-testing` · `seo-audit` · `programmatic-seo` · `site-architecture` · `competitors` · `popups` · `free-tools` · `directory-submissions` · `sales-enablement` · `churn-prevention` · `community-marketing` — marketing skills that may *inform* a page's content but never its visual direction.
 
-Per taste-skill v2 §13, this router's marketing-page rules do not apply to: dashboards and dense product UI (use Fluent / Carbon / Atlassian / Polaris), data tables (TanStack, AG Grid), multi-step forms, code editors (Monaco, CodeMirror), native mobile (Apple HIG, Material), realtime collaborative UIs. Say so explicitly and point at the right tool rather than applying landing-page taste to a dashboard.
+Realtime collaborative UI (presence, cursors, operational transforms) is a different problem class; say so rather than treating it as a styling job.
