@@ -4,7 +4,9 @@
 
 Rebuild the `snipe-leads` site under the new design system. This is simultaneously a real deliverable and **the first genuine end-to-end test** of the brand-derivation gate, the 6-hook enforcement chain, and the telemetry report. Both goals matter; if the site ships well but the telemetry is empty, the test failed.
 
-**Do not read `snipe-leads`' own documentation until that session actually starts.** Reading it now (or summarizing it into this plan) biases the router's design toward one project — the gate is supposed to derive from the repo's real evidence at build time.
+**First action of the build session: read `snipe-leads`' project documentation.** Understand the product properly — the existing leads agent *and* the newer dedicated support agent — before touching the site.
+
+*(Revised 2026-07-28. The original instruction here was to defer reading the docs, so that summarizing them would not water down the design-system plan's context while that system was being designed. The design system is now built and committed, so that reason no longer applies. The gate still derives visual direction from the repo's real evidence at build time; reading the product docs informs **what the site has to say**, which is a different question and one the build genuinely needs answered up front.)*
 
 ## The brief (from the user, verbatim intent)
 
@@ -39,9 +41,9 @@ Both must lose to tokens derived from Snajp's own evidence. `gates.md` gate 60 t
 ## Remaining
 
 - [ ] **Start a fresh session** (hook registrations load at session start; they were added mid-session and are not active in the session that wrote this)
+- [ ] **Read `snipe-leads`' project documentation first** — the leads agent, the new support agent, and how the two relate as one offering
 - [ ] Confirm hooks are live: make one trivial UI-file edit, verify `design-route.py` output appears
 - [ ] `$impeccable init` in `snipe-leads` → `PRODUCT.md`
-- [ ] Read the repo's docs **now** (not before) to understand the leads+support pivot scope
 - [ ] Run the Tier 1 gate against real brand evidence → `DESIGN.md` + `.impeccable/design.json` sidecar + emit `snajp-design` skill
 - [ ] Rebuild: hero wordmark + Leads/Support toggle, surface `/snajp-support`, unify both demos, simplify throughout
 - [ ] Copy gate over all user-facing strings, both languages

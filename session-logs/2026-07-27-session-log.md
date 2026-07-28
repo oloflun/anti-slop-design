@@ -85,7 +85,7 @@ Rebuilt the `design` skill from a 161-line pointer-router into a brand-derivatio
 ## Cross-Project Handoffs
 
 - **super-intelligence** — received the full propagation this session (installer v0.4.0). Done inline, no separate handoff doc needed.
-- **snipe-leads (Snajp)** — next session's target. Brief captured in `plans/2026-07-27-snajp-rebuild.md`. Deliberately did **not** read that repo's docs this session; reading them now would bias the router's design toward one project.
+- **snipe-leads (Snajp)** — next session's target. Brief captured in `plans/2026-07-27-snajp-rebuild.md`. That repo's docs were not read during this session, to keep the design-system plan's context clean while it was being built. **Superseded 2026-07-28 (Anton):** the next session should now **start by reading `snipe-leads`' project documentation** to understand the product properly — both the existing leads agent and the newer dedicated support agent — before touching the site.
 
 ## Current State After This Session
 
