@@ -193,6 +193,24 @@ def main() -> int:
         run_hook("design-telemetry.py",
                  {"cwd": td, "tool_name": "Skill",
                   "tool_input": {"skill": "animated-navigation"}})
+
+        # The exit bar: edits with no rendered image Read afterwards must
+        # BLOCK the stop. Raw parse — the block is top-level JSON, not
+        # hookSpecificOutput.
+        p = subprocess.run(
+            [sys.executable, str(HOOKS / "design-stop.py")],
+            input=json.dumps({"cwd": td}), capture_output=True, text=True,
+            encoding="utf-8", env=ENV)
+        try:
+            blocked = json.loads(p.stdout).get("decision") == "block"
+        except Exception:
+            blocked = False
+        check("stop BLOCKS an unseen build", blocked)
+
+        # Reading a render (any image) satisfies the bar and the stop passes.
+        run_hook("design-vision-track.py",
+                 {"cwd": td, "tool_name": "Read",
+                  "tool_input": {"file_path": str(Path(td) / "shot.png")}})
         hso, _ = run_hook("design-stop.py", {"cwd": td})
         summ = (hso or {}).get("additionalContext", "")
         check("stop renders the ledger report", "design session" in summ)

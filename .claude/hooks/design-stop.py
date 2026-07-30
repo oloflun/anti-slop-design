@@ -12,6 +12,8 @@ clean. A build that looks right but ships an empty or gap-heavy ledger has not
 passed — it got lucky, and there is no way to tell which.
 """
 
+import hashlib
+import json
 import sys
 from collections import OrderedDict, defaultdict
 from datetime import datetime, timezone
@@ -178,17 +180,83 @@ def build_report(rows: list[dict], findings: list[dict], root: Path) -> tuple[st
     return "\n".join(summary), "\n".join(md)
 
 
+def all_rows(root: Path) -> list[dict]:
+    """The cwd root's ledger plus every linked root's (cross-project builds)."""
+    rows = L.read_ledger(root)
+    try:
+        reg = L.state_dir(root) / ".linked-roots"
+        if reg.exists():
+            for line in reg.read_text(encoding="utf-8").splitlines():
+                line = line.strip()
+                if line:
+                    rows.extend(L.read_ledger(Path(line)))
+        rows.sort(key=lambda r: r.get("ts", ""))
+    except Exception:
+        pass
+    return rows
+
+
+def exit_bar_block(rows: list[dict], root: Path) -> str | None:
+    """The mechanical /goal. A design session may not end sight unseen.
+
+    Blocks the stop when UI edits happened and no rendered image was Read
+    after the last edit. This is the enforcement the Snajp session proved out:
+    six shipped-quality defects were found in rounds run AFTER the page
+    already looked done, and every one was found in a screenshot, not in code.
+
+    Capped at 2 blocks per session so a genuinely broken capture path degrades
+    to the old advisory behaviour instead of a livelock.
+    """
+    edits = [r.get("ts", "") for r in rows if r.get("event") == "edit"]
+    if not edits:
+        return None
+    visions = [r.get("ts", "") for r in rows if r.get("event") == "vision"]
+    if visions and max(visions) > max(edits):
+        return None
+    counter = L.state_dir(root) / ".stop-blocks"
+    try:
+        n = int(counter.read_text(encoding="utf-8").strip() or "0")
+    except Exception:
+        n = 0
+    if n >= 2:
+        return None
+    try:
+        counter.write_text(str(n + 1), encoding="utf-8")
+    except Exception:
+        pass
+    looked = "no rendered image was ever Read" if not visions else \
+        "the last rendered image you Read is older than your last edit"
+    return (
+        f"[design-stop] {len(edits)} UI edits this session and {looked}. "
+        "The exit bar (CARL DESIGN rules 5-7): render the page, capture PNGs "
+        "(shoot.py / shoot_slices.py or the browser pane), Read every PNG so "
+        "the pixels actually enter context, fix what you see, and repeat "
+        "until a full pass finds nothing. Then state plainly whether the "
+        "result honestly beats the references named before the build. "
+        "Judging from code does not count. If capture is genuinely "
+        "impossible, say so to the user explicitly instead of stopping "
+        "silently."
+    )
+
+
 def main() -> None:
     if L.disabled():
         return
     event = L.read_event()
     root = L.project_root(event)
 
-    rows = L.read_ledger(root)
+    rows = all_rows(root)
     # Stay silent unless real design work happened. Bookkeeping rows alone
     # (a verify-discipline injection, an intent detection) are not a session
     # worth reporting on, and a report for zero edits reads as noise.
     if not any(r.get("event") in ("edit", "gate-deny", "trap") for r in rows):
+        return
+
+    # The exit bar comes before the report: an unseen build is not reportable,
+    # it is unfinished.
+    reason = exit_bar_block(rows, root)
+    if reason:
+        print(json.dumps({"decision": "block", "reason": reason}))
         return
 
     touched = []
@@ -204,6 +272,22 @@ def main() -> None:
     findings = L.detect(touched[:40], root, timeout=90) if touched else []
 
     summary, md = build_report(rows, findings, root)
+
+    # Dedup. This fires on every turn end, so a conversational stretch after the
+    # design work is done re-emitted a byte-identical block once per turn and
+    # re-wrote the report under a fresh timestamp. Same signature means nothing
+    # changed: skip both. The title line carries a per-minute timestamp and must
+    # NOT enter the hash — hashing it made "identical" mean "same wall-clock
+    # minute" and produced 48 spam reports.
+    sig_src = md.split("\n", 1)[1] if "\n" in md else md
+    sig = hashlib.sha256(sig_src.encode("utf-8")).hexdigest()
+    try:
+        stamp = L.state_dir(root) / ".stop-signature"
+        if stamp.exists() and stamp.read_text(encoding="utf-8").strip() == sig:
+            return
+        stamp.write_text(sig, encoding="utf-8")
+    except Exception:
+        pass
 
     try:
         out = L.state_dir(root) / f"design-report-{datetime.now(timezone.utc):%Y%m%d-%H%M}.md"

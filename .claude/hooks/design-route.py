@@ -41,6 +41,20 @@ def main() -> None:
     component = L.component_of(path)
     tier = L.tier(root)
 
+    # Cross-project registry: a session whose cwd is one repo often builds in
+    # another (site scaffolds, worktrees). Edits land in the FILE's root ledger
+    # while design-stop.py reads the CWD root's — without this pointer the Stop
+    # report and the exit-bar check are blind to the whole build.
+    cwd_root = L.project_root({"cwd": event.get("cwd")})
+    if root != cwd_root:
+        try:
+            reg = L.state_dir(cwd_root) / ".linked-roots"
+            existing = reg.read_text(encoding="utf-8").splitlines() if reg.exists() else []
+            if str(root) not in existing:
+                reg.write_text("\n".join([*existing, str(root)]) + "\n", encoding="utf-8")
+        except Exception:
+            pass
+
     routes = L.match_routes(path, content)
     signals = ",".join(r.get("id", "") for r in routes)
     L.log(root, event="edit", file=path, component=component,
