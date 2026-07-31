@@ -65,7 +65,11 @@ values (full inventory: [`house-physics.md`](references/house-physics.md)):
 - **Display type:** clamp() up to 15rem, leading 0.9–0.95, tracking ~-0.02em.
   Two-tone mixing *inside* the headline: roman + italic in one serif line, or
   ink + accent on the load-bearing word. 2–3 families with hard roles; body
-  measure capped in ch (36–58ch).
+  measure capped in ch (36–58ch). The display face is itself a committed
+  choice — a characterful serif or display face the lane demands (Cardo,
+  Cinzel, Italiana). The safe grotesk is the default to beat, not the default
+  to pick; reach for it only when the lane genuinely calls for it, and then
+  give it a reason (weight extremes, tracking as a gesture).
 - **Label-rail anatomy:** 12-col grid; col-span-3 rail (kicker + 1px hairline at
   ~20% opacity + meta) beside col-span-9 content. Hairlines separate; planes do not.
 - **Ledgers, never card grids:** every list, pricing, or index surface is a
@@ -79,8 +83,10 @@ values (full inventory: [`house-physics.md`](references/house-physics.md)):
   cubic-bezier(.16,1,.3,1), failing toward visible per the reveal guards) plus
   **one signature scroll set-piece per page** — continuously scrubbed
   (lerp + smoothstep, both directions), animating unexpected properties (blur,
-  letter-spacing), with a `?preview=` hook so its formed state can be
-  screenshotted. Always a prefers-reduced-motion fallback.
+  letter-spacing), with **at least two coordinated layers** (Hōrai scrubs the
+  quote AND word-lights the lede; one lerped element alone is an effect, not a
+  set-piece), and a `?preview=` hook so its formed state can be screenshotted.
+  Always a prefers-reduced-motion fallback.
 
 **Composition contract** — the first draft must satisfy this, not iterate into
 it: never three flat text sections in a row; one tonal inversion per page; one
@@ -93,7 +99,10 @@ plate indices `02 / 14`, edition markers `Vol. IX · spring`, roman-numeral
 dates), specific proper nouns and real street addresses, cross-referenced
 entities, a colophon naming the typefaces. All within the honest-copy rule —
 apparatus and texture are invented, metrics and customers never are. Generic
-copy reads as template even under perfect typography.
+copy reads as template even under perfect typography. **Borrow the reference's
+move, never its sentence:** "Ingen platinanivå finns" is a clone of
+Hyperborea's "No platinum" — invent your own values-move instead of
+translating one that exists.
 
 **In-situ negation.** Every section's source comment names the slop default it
 replaces — `<!-- INDEX: typeset ledger, NOT a card row -->`. The decision is
