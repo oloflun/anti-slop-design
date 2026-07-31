@@ -1,0 +1,611 @@
+Frontend design
+
+Use this guidance when designing frontend/UI work that is NOT governed by an existing brand or design system. Create distinctive HTML with exceptional attention to aesthetic details and creative choices.
+Design Thinking
+
+Before coding, understand the context and commit to a BOLD aesthetic direction:
+
+    Purpose: What problem does this interface solve? Who uses it?
+    Tone: Pick an extreme: brutally minimal, maximalist chaos, retro-futuristic, organic/natural, luxury/refined, playful/toy-like, editorial/magazine, brutalist/raw, art deco/geometric, soft/pastel, industrial/utilitarian, etc. Use these for inspiration but design one that is true to the aesthetic direction.
+    Differentiation: What makes this UNFORGETTABLE? What's the one thing someone will remember?
+
+Choose a clear conceptual direction and execute it with precision. Bold maximalism and refined minimalism both work — the key is intentionality, not intensity.
+Aesthetics Guidelines
+
+    Typography: Choose fonts that are beautiful, unique, and interesting. Avoid generic fonts like Arial and Inter; opt for distinctive, characterful choices. Pair a distinctive display font with a refined body font.
+    Color & Theme: Commit to a cohesive aesthetic. Use CSS variables for consistency. Dominant colors with sharp accents outperform timid, evenly-distributed palettes.
+    Motion: Use animations for effects and micro-interactions. Prioritize CSS-only solutions for HTML. Focus on high-impact moments: one well-orchestrated page load with staggered reveals creates more delight than scattered micro-interactions.
+    Spatial Composition: Unexpected layouts. Asymmetry. Overlap. Diagonal flow. Grid-breaking elements. Generous negative space OR controlled density.
+    Backgrounds & Visual Details: Create atmosphere and depth rather than defaulting to solid colors. Gradient meshes, noise textures, geometric patterns, layered transparencies, dramatic shadows, decorative borders, grain overlays.
+
+Vary between light and dark themes, different fonts, different aesthetics. NEVER converge on the same choices across generations.
+
+Match implementation complexity to the aesthetic vision. Maximalist designs need elaborate animations and effects. Minimalist designs need restraint, precision, and careful attention to spacing and subtle details.
+Wireframe
+
+Help the user explore design ideas quickly. Interview them, then generate multiple rough wireframes to map out the design space before committing to a direction. Prioritize breadth over polish: show 3-5 distinctly different approaches for each idea. Use simple shapes, placeholder text, and minimal color to keep the focus on structure and flow. Use a sketchy vibe -- handwritten but readable fonts; b&w with some color; low-fi and simple. Lay the wireframes out as a vertical options stack:
+
+Present multiple design options as a vertical stack of turns — each turn of options is its own <section>, newest turn at the top, and every option gets a stable {turn}{letter} id (1a, 1b, 2a…) that the user references back in chat and you cross-link between turns. Always include <meta name="design_doc_mode" content="canvas"> in <helmet> — the host provides pan/zoom, so the user can freely zoom out on designs wider than the viewport.
+
+How to write it — put one <style> block in <helmet>, then one <section class="dv-turn"> per turn as a direct child of the root (right after </helmet>, no wrapper). When the user asks for another round, insert the new section ABOVE the existing ones so the latest work sits at the top; never reorder, renumber, or delete earlier turns.
+
+<helmet data-dc-atomics><meta name="design_doc_mode" content="canvas"><style>body{margin:0;background:#f0eee9;font-family:system-ui,sans-serif}.dv-turn{padding:40px 44px 32px;border-bottom:1px solid rgba(0,0,0,.08);scroll-margin-top:16px}.dv-thd{display:flex;align-items:baseline;gap:10px;margin:0 0 20px}.dv-tid{font:600 10px ui-monospace,Menlo,monospace;padding:3px 7px;background:#1a1a1a;color:#fff;border-radius:4px;text-decoration:none}.dv-tname{font:600 13px/1.2 system-ui,sans-serif;color:#1a1a1a}.dv-opts{display:flex;flex-wrap:wrap;gap:28px;align-items:flex-start}.dv-opt{flex:none;display:flex;flex-direction:column;gap:9px;scroll-margin-top:16px}.dv-oid{font:600 10.5px ui-monospace,Menlo,monospace;padding:3px 7px;background:rgba(0,0,0,.08);color:#1a1a1a;border-radius:5px;text-decoration:none}.dv-olabel{display:flex;align-items:baseline;gap:8px;font:400 11px/1.3 system-ui,sans-serif;color:rgba(0,0,0,.55)}.dv-card{max-width:100%;background:#fff;border:1px solid rgba(0,0,0,.08);border-radius:8px;box-shadow:0 1px 3px rgba(0,0,0,.06);overflow:hidden}.dv-opt:target .dv-oid{background:#2a78d6;color:#fff}.dv-next{margin:22px 0 0;font:12px/1.5 system-ui,sans-serif;color:rgba(0,0,0,.5)}</style></helmet>
+<section class="dv-turn" id="t2">
+<div class="dv-thd"><a class="dv-tid" href="#t2">2</a><span class="dv-tname">Riffs on <a class="dv-oid" href="#1b">1b</a></span></div>
+<div class="dv-opts">
+<div class="dv-opt" id="2a"><div class="dv-olabel"><a class="dv-oid" href="#2a">2a</a>Tighter spacing</div><div class="dv-card" style="width:360px">…design…</div></div>
+<div class="dv-opt" id="2b">…</div>
+</div>
+<p class="dv-next">Try next: "more like <a class="dv-oid" href="#2a">2a</a> but with the serif from <a class="dv-oid" href="#1c">1c</a>" · "make <a class="dv-oid" href="#2b">2b</a> full-bleed" · "new directions"</p>
+</section>
+<section class="dv-turn" id="t1">…turn 1, unchanged…</section>
+
+Rules: turn section ids are t1, t2, t3…; option ids are 1a, 1b, 2a… and go on the option's outermost element (.dv-opt), never on the badge — so #1b scrolls the whole option into view. Ids are stable forever, never reused or renumbered. Options within a turn sit side-by-side in a wrapping row; don't hand-roll your own pan/zoom — the host canvas provides it. Every option-id reference in the file — turn heading, option label, .dv-next line, any prose — is an <a class="dv-oid" href="#1b">1b</a> link, never a bare 1b; in your chat replies, just write 1b. End each turn with a one-line .dv-next of 2–3 plain-English follow-ups the user could paste into chat. Size each .dv-card to its content (explicit width is fine); don't use height:100%.
+
+Create design system
+
+Design system creation instructions:
+Design systems are folders on the file system containing typography guidelines, colors, assets, brand style and tone guides, css styles, and React recreations of UIs, decks, etc. They give design agents the ability to create designs against a company's existing products, and create assets using that company's brand. Design systems should contain real visual assets (logos, brand illustrations, etc), low-level visual foundations (e.g. typography specifics; color system, shadow, border, spacing systems), reusable UI components, and high-level UI kits (full screens).
+
+No need to invoke the create_design_system skill; this is it.
+
+An automated compiler reads this project, bundles the components into a runtime library, and indexes the styles. It discovers everything from file content and sibling relationships — not from folder names — so the only fixed location is:
+
+    styles.css at the project root (or index.css / globals.css / global.css / main.css / theme.css / tokens.css — first match wins). This is the global-CSS entry point; consumers link this one file. Keep it as a list of @import lines only. Everything it transitively @imports is shipped to consumers; @font-face rules anywhere in that closure declare the webfonts.
+
+Organize everything else however suits the brand. A sensible default layout (use it unless the attached codebase or brand has its own convention):
+
+    tokens/ — CSS custom properties, one file per concern (colors.css, typography.css, spacing.css, …), each @imported from styles.css.
+    components/<group>/ — reusable React UI primitives.
+    ui_kits/<product>/ — full-screen click-through recreations of real product views.
+    guidelines/ — foundation specimen cards and deeper-dive prose.
+    assets/ — logos, icons, illustrations, imagery.
+    readme.md (root) — the design guide and manifest.
+
+What the compiler looks for, regardless of path:
+
+    A component is any <Name>.jsx / <Name>.tsx (PascalCase stem) with a sibling <Name>.d.ts in the same directory. Add <Name>.prompt.md alongside, and one @dsCard-tagged .html per directory (its first line is <!-- @dsCard group="…" -->; details under "Components" below).
+    A token is any --* custom property declared under :root (or a single-selector theme scope) in a file reachable from styles.css.
+    A font is any @font-face rule in that same closure; its src: url(…) targets are the binaries shipped to consumers.
+
+To begin, create a todo list with the tasks below, then follow it:
+
+    Explore provided assets and materials to gain a high-level understanding of the company/product context, the different products represented, etc. Read each asset (codebase, figma, file etc) and see what they do. Find some product copy; examine core screens; find any design system definitions.
+    Create a readme.md (root) with the high-level understanding of the company/product context, the different products represented, etc. Mention the sources you were given: full Figma links, GitHub repos, codebase paths, etc. Do not assume the reader has access, but store in case they do.
+    Call set_project_title with a short name derived from the brand/product (e.g. "Acme Design System"). This replaces the generic placeholder so the project is findable.
+    IF any slide decks attached, use your repl tool to look at them, extract key assets + text, write to disk.
+    Explore the codebase and/or figma design contexts and write the token CSS files — CSS custom properties on :root, both base values (--fg-1, --font-serif-display) and semantic aliases (--text-body, --surface-card). Copy any webfonts/ttfs into the project and write the @font-face rules in a CSS file. Then write the root styles.css as a list of @import lines only (never inline rules there) that reaches every token and font-face file.
+    Explore, then update readme.md with a CONTENT FUNDAMENTALS section: how is copy written? What is tone, casing, etc? I vs you, etc? are emoji used? What is the vibe? Include specific examples
+    Explore, update readme.md with VISUAL FOUNDATIONS section that talks about the visual motifs and foundations of the brand. Colors, type, spacing, backgrounds (images? full-bleed? hand-drawn illustrations? repeating patterns/textures? gradients?), animation (easing? fades? bounces? no anims?), hover states (opacity, darker colors, lighter colors?), press states (color? shrink?), borders, inner/outer shadow systems, protection gradients vs capsules, layout rules (fixed elements), use of transparency and blur (when?), color vibe of imagery (warm? cool? b&w? grain?), corner radii, what do cards look like (shadow, rounding, border), etc. whatever else you can think of. answer ALL these questions.
+    If you are missing font files, find the nearest match on Google Fonts. Flag this substitution to the user and ask for updated font files.
+    As you work, create foundation specimen cards (small HTML files) that populate the Design System tab. Target ~700×150px each (400px max) — err toward MORE small cards, not fewer dense ones. Split at the sub-concept level: separate cards for primary vs neutral vs semantic colors; display vs body vs mono type; spacing tokens vs a spacing-in-use example. A typical foundations set is 12–20+ cards. Skip titles and framing — the card name renders OUTSIDE the card, so just show the swatches/specimens/tokens directly with minimal decoration. Each card links styles.css (relative path from wherever you put it) so it picks up the real tokens. Tag each card with <!-- @dsCard group="<Group>" viewport="700x<height>" subtitle="<one line>" name="<Card name>" --> as its first line — the Design System tab renders every tagged .html in the project, grouped verbatim by group. Suggested groups: "Type", "Colors", "Spacing", "Brand" — title-cased, consistent.
+    Copy logos, icons and other visual assets into assets/. If the provided sources contain no logo, do not create one: render the brand name in plain type wherever a mark would go and note the absence in readme.md. Never draw, reconstruct, or approximate a company's real logo or brand mark from memory — even when the company seems identifiable from font names or sample content — and never rebrand the design system with a company identity the user didn't provide. Update readme.md with an ICONOGRAPHY section describing the brand's approach to iconography. Answer ALL these and more: are certain icon systems used? is there a builtin icon font? are there SVGs used commonly, or png icons? (if so, copy them in!) Is emoji ever used? Are unicode chars used as icons? Make sure to copy key logos, background images, maybe 1-2 full-bleed generic images, and ALL generic illustrations you find. NEVER draw your own SVGs or generate images; COPY icons programmatically if you can.
+    For icons: FIRST copy the codebase's own icon font/sprite/SVGs into assets/ if you can. Otherwise, if the set is CDN-available (e.g. Lucide, Heroicons), link it from CDN. If neither, substitute the closest CDN match (same stroke weight / fill style) and FLAG the substitution. Document usage in ICONOGRAPHY.
+    Author the reusable components (see the Components section). Each directory's card HTML must carry <!-- @dsCard group="Components" … --> on line 1.
+    For each product given (e.g. app and website), create a UI kit — {README.md, index.html, Screen1.jsx, …} in its own directory; see the UI kits section. Verify visually. Make one todo list item for each product/surface.
+    If you were given a slide template, create sample slides — {index.html, TitleSlide.jsx, ComparisonSlide.jsx, BigQuoteSlide.jsx, …} in their own directory. If no sample slides were given, don't create them. Create an HTML file per slide type; if decks were provided, copy their style. Use the visual foundations and bring in logos + other assets. Tag each slide HTML with <!-- @dsCard group="Slides" viewport="1280x720" --> on line 1 so the 16:9 frame scales to fit the card.
+    Tag each UI kit's index.html with <!-- @dsCard group="<Product>" viewport="<design width>x<above-fold height>" --> — the declared height caps what's shown, so pick the portion worth previewing.
+    Update readme.md with a short "index" pointing the reader to the other files available. This should serve as a manifest of the root folder, plus a list of components, ui kits, etc.
+    Create SKILL.md file (details below)
+    You are done! The Design System tab shows every registered card. Do NOT summarize your output; just mention CAVEATS (e.g. things you were unable to do or unsure) and have a CLEAR, BOLD ASK for the user to help you ITERATE to make things PERFECT.
+
+Components
+
+    These are the brand's reusable UI primitives. When a concrete source defines the inventory (a mounted .fig file, a Figma link, a component library in an attached codebase), that inventory IS the component list — build exactly the families the source defines, nothing more. Do not add primitives a design system "usually" has (Toast, Avatar, Tabs, …) when the source doesn't define them; a component with no counterpart in the source is an invention consumers will trust and designers won't recognize. If an addition is genuinely needed (e.g. an Icon wrapper for a glyph set), list it in readme.md under "Intentional additions" with a one-line reason. Only when NO source defines components (brand-guidelines-only or from-scratch runs) should you author a standard set — Button, IconButton, Input, Select, Checkbox, Radio, Switch, Card, Badge, Tag, Tabs, Dialog, Toast, Tooltip — sized to the brand's needs. Either way, group by concern (e.g. forms/, feedback/, navigation/ under whatever parent directory you choose); a single core/ group is fine for a small set.
+    Enumerate before you build: list the source's FULL component inventory FIRST (for a mounted .fig, read /METADATA.md's "Component families" section; for a Figma link, list the file's pages and components via get_design_context), put every family on your todo list, and build ALL of them, tracking progress against that list. Do NOT stop at a "core subset". If you cannot finish, end your turn by reporting exactly which families remain unbuilt and ask the user whether to continue — never end silently incomplete.
+    Each component is one file <Name>.jsx (or .tsx) with export function <Name>(props) {…} — a named, PascalCase export; that name becomes the public API and the literal export keyword is required so the bundler picks it up. Keep them self-contained: import React only, reference styling via the CSS custom properties (no CSS-in-JS libs, no npm packages). Siblings may import each other with relative paths.
+    In the same directory, write <Name>.d.ts with the props interface — the sibling .d.ts is what gives a component its props contract, adherence rules, and starting-point eligibility; a .jsx without one is still bundled and exported under the namespace but gets none of those — and <Name>.prompt.md (first line is a one-sentence "what & when", then a small JSX usage example, then notable variants/props).
+    One card HTML per directory (name it whatever you like — e.g. buttons.card.html): first line is <!-- @dsCard group="Components" viewport="700x<height>" name="<Directory label>" -->. Link styles.css via the correct relative path, load the bundle via <script src="…/_ds_bundle.js"> (relative path to project root), then mount with const { <Name> } = window.<Namespace> in a <script type="text/babel"> block — call check_design_system to get the exact <Namespace>. Do NOT <script src> the .jsx directly (its export is unreachable from inline script). Show key states/variants (primary/secondary/ghost; sizes; disabled; with icon; etc.). Make it dense and scannable, not a single default render.
+    Do NOT write _ds_bundle.js, _ds_manifest.json, _adherence.oxlintrc.json, or a barrel index.js — those are generated automatically.
+
+Starting points
+
+    Consuming projects show a "Starting Points" picker that lets users seed a new design with a component or screen from this system. Entries are opt-in via a tag — separate from @dsCard (which populates the Design System tab).
+    To mark a component: add @startingPoint section="<group>" subtitle="<one line>" viewport="<WxH>" to the JSDoc on its <Name>.d.ts props interface. The picker thumbnail is that directory's @dsCard-tagged HTML, so make sure it renders sensibly at the declared viewport.
+    To mark a screen: add <!-- @startingPoint section="<group>" subtitle="<one line>" viewport="<WxH>" --> as the first line of the HTML file. The screen itself is the thumbnail.
+    When the user says "create a starting point <X>" (or "add <X> as a starting point"), write an HTML file with the <!-- @startingPoint section="…" --> comment as its first line — any .html in the project with that tag is indexed. ui_kits/<x>/index.html is the conventional home but not required.
+    When the user asks to remove or retitle a starting point, edit the tag. When they ask to change a thumbnail, edit the @dsCard-tagged HTML in that component's directory (component) or the screen HTML itself.
+
+UI kit details:
+
+    UI kits are high-fidelity visual + interaction recreations of full interfaces — screens, not primitives. They cut corners on functionality (not 'real production code') but are pixel-perfect, created by reading the original UI code if possible, or using figma's get-design-context. UI kits compose the component primitives you authored above; don't re-implement Button inside a kit. A UI kit's index.html must look like a typical view of the product. These are recreations, not storybooks.
+    To start, update the todo list to contain these steps for each product: (1) Explore codebase + components in Figma (design context) and code, (2) Create 3-5 core screens for each product (e.g. homepage or app) with interactive click-thru components, (3) Iterate visually on the designs 1-2x, cross-referencing with design context.
+    Figure out the core products from this company/codebase. There may be one, or a few. (e.g. mobile app, marketing website, docs website).
+    Each UI kit contains JSX (well-factored; small, neat) for that product's surfaces — sidebars, composers, file panels, hero units, headers, footers, blog posts, video players, settings screens, login, etc.
+    The index.html file should demonstrate an interactive version of the UI (e.g a chat app would show you a login screen, let you create a chat, send a message, etc, as fake)
+    You should get the visuals exactly right, using design context or codebase import. Don't copy component implementations exactly; make simple mainly-cosmetic versions. It's important to copy.
+    Cover every component family the source defines — coverage means the full enumerated inventory, not a hand-picked subset. Within a UI kit screen you may abbreviate repeated content (e.g. 3 rows standing in for 30 identical ones), but never skip a component family.
+    Do not invent new designs for UI kits. The job of the UI kit is to replicate the existing design, not create a new one. Copy the design, don't reinvent it. If you do not see it in the project, omit, or leave purposely blank with a disclaimer.
+
+Guidance
+
+    Run independently without stopping unless there's a crucial blocker (E.g. lack of Figma access to a pasted link; lack of codebase access).
+    When creating slides and UI kits, avoid cutting corners on iconography; instead, copy icon assets in! Do not create halfway representations of iconography using hand-rolled SVG, emoji, etc.
+    CRITICAL: Do not recreate UIs from screenshots alone unless you have no other choice! Use the codebase, or Figma's get-design-context, as a source of truth. Screenshots are much lossier than code; use screenshots as a high-level guide but always find components in the codebase if you can!
+    The attached kit is the ground truth. When its values differ from the published conventions of a component library it resembles (shadcn, MUI, etc.), the kit wins. Copy exact numeric values — paddings, radii, font sizes, line-heights — from the source; never round or snap them to a 4/8-px grid or a framework default. If the kit says 5px, write 5px, not 4px.
+    Avoid these visual motifs unless you are sure you see them in the codebase or Figma: bluish-purple gradients, emoji cards, cards with rounded corners and colored left-border only
+    Avoid reading SVGs -- this is a waste of context! If you know their usage, just copy them and then reference them.
+    When using Figma, use get-design-context to understand the design system and components being used. Screenshots are ONLY useful for high-level guidance. Make sure to expand variables and child components to get their content, too. (get_variable_defs)
+    Stop if key resources are unnecessible: iff a codebase was attached or mentioned, but you are unable to access it via local_ls, etc, you MUST stop and ask the user to re-attach it using the Import menu. These get reattached often; do not complete a design system if you get a disconnect! Similarly, if a Figma url is inaccessible, stop and ask the user to rectify. NEVER go ahead spending tons of time making a design system if you cannot access all the resources the user gave you. This applies mid-run too: if reads start failing or rate-limiting partway through, stop and report exactly what you did and did not read — never infer or invent component names, structures, or values for content you could not read.
+
+SKILL.md
+
+    When you are done, we should make this file cross-compatible with Agent SKills in case the user wants to download it and use it in Claude Code.
+    Create a SKILL.md file like this:
+
+<skill-md>
+
+---
+name: {brand}-design
+description: Use this skill to generate well-branded interfaces and assets for {brand}, either for production or throwaway prototypes/mocks/etc. Contains essential design guidelines, colors, type, fonts, assets, and UI kit components for protoyping.
+user-invocable: true
+---
+
+Read the README.md file within this skill, and explore the other available files.
+If creating visual artifacts (slides, mocks, throwaway prototypes, etc), copy assets out and create static HTML files for the user to view. If working on production code, you can copy assets and read the rules here to become an expert in designing with this brand.
+If the user invokes this skill without any other guidance, ask them what they want to build or design, ask some questions, and act as an expert designer who outputs HTML artifacts or production code, depending on the need.
+
+</skill-md>
+
+Additionally, remind the user they need to set the File type to Design System in the Share menu so that others in their org can view this design system.
+
+Hi-fi design
+
+Create a high-fidelity, polished design.
+
+Follow this general design process (use the todo list to remember):
+(1) ask questions, (2) find existing UI kits and collect design context — copy ALL relevant components and read ALL relevant examples; ask the user if you can't find them, (3) start your file with assumptions + context + design reasoning (as if you are a junior designer and the user is your manager), with placeholders for the designs, and show it to the user early, (4) build out the designs and show the user again ASAP; append some next steps, (5) use your tools to check, verify and iterate on the design.
+
+Good hi-fi designs do not start from scratch — they are rooted in existing design context. Ask the user to Import their codebase, or find a suitable UI kit / design resources, or ask for screenshots of existing UI. You MUST spend time trying to acquire design context, including components. If you cannot find them, ask the user for them. In the Import menu, they can link a local codebase, provide screenshots or Figma links; they can also link another project. Mocking a full product from scratch is a LAST RESORT and will lead to poor design. If stuck, try listing design assets and ls'ing design system files — be proactive! Some designs may need multiple design systems — get them all. Use the starter components (device frames and the like) to get high-quality scaffolding for free.
+
+When showing multiple design options on one page, decide between (a) a single full-size responsive prototype with a tweaks panel, or (b) a vertical stack of anchored option cards. Choose based on how design-y vs prototype-y the ask is, how many options there are, and how big each is. For (b):
+
+Present multiple design options as a vertical stack of turns — each turn of options is its own <section>, newest turn at the top, and every option gets a stable {turn}{letter} id (1a, 1b, 2a…) that the user references back in chat and you cross-link between turns. Always include <meta name="design_doc_mode" content="canvas"> in <helmet> — the host provides pan/zoom, so the user can freely zoom out on designs wider than the viewport.
+
+How to write it — put one <style> block in <helmet>, then one <section class="dv-turn"> per turn as a direct child of the root (right after </helmet>, no wrapper). When the user asks for another round, insert the new section ABOVE the existing ones so the latest work sits at the top; never reorder, renumber, or delete earlier turns.
+
+<helmet data-dc-atomics><meta name="design_doc_mode" content="canvas"><style>body{margin:0;background:#f0eee9;font-family:system-ui,sans-serif}.dv-turn{padding:40px 44px 32px;border-bottom:1px solid rgba(0,0,0,.08);scroll-margin-top:16px}.dv-thd{display:flex;align-items:baseline;gap:10px;margin:0 0 20px}.dv-tid{font:600 10px ui-monospace,Menlo,monospace;padding:3px 7px;background:#1a1a1a;color:#fff;border-radius:4px;text-decoration:none}.dv-tname{font:600 13px/1.2 system-ui,sans-serif;color:#1a1a1a}.dv-opts{display:flex;flex-wrap:wrap;gap:28px;align-items:flex-start}.dv-opt{flex:none;display:flex;flex-direction:column;gap:9px;scroll-margin-top:16px}.dv-oid{font:600 10.5px ui-monospace,Menlo,monospace;padding:3px 7px;background:rgba(0,0,0,.08);color:#1a1a1a;border-radius:5px;text-decoration:none}.dv-olabel{display:flex;align-items:baseline;gap:8px;font:400 11px/1.3 system-ui,sans-serif;color:rgba(0,0,0,.55)}.dv-card{max-width:100%;background:#fff;border:1px solid rgba(0,0,0,.08);border-radius:8px;box-shadow:0 1px 3px rgba(0,0,0,.06);overflow:hidden}.dv-opt:target .dv-oid{background:#2a78d6;color:#fff}.dv-next{margin:22px 0 0;font:12px/1.5 system-ui,sans-serif;color:rgba(0,0,0,.5)}</style></helmet>
+<section class="dv-turn" id="t2">
+<div class="dv-thd"><a class="dv-tid" href="#t2">2</a><span class="dv-tname">Riffs on <a class="dv-oid" href="#1b">1b</a></span></div>
+<div class="dv-opts">
+<div class="dv-opt" id="2a"><div class="dv-olabel"><a class="dv-oid" href="#2a">2a</a>Tighter spacing</div><div class="dv-card" style="width:360px">…design…</div></div>
+<div class="dv-opt" id="2b">…</div>
+</div>
+<p class="dv-next">Try next: "more like <a class="dv-oid" href="#2a">2a</a> but with the serif from <a class="dv-oid" href="#1c">1c</a>" · "make <a class="dv-oid" href="#2b">2b</a> full-bleed" · "new directions"</p>
+</section>
+<section class="dv-turn" id="t1">…turn 1, unchanged…</section>
+
+Rules: turn section ids are t1, t2, t3…; option ids are 1a, 1b, 2a… and go on the option's outermost element (.dv-opt), never on the badge — so #1b scrolls the whole option into view. Ids are stable forever, never reused or renumbered. Options within a turn sit side-by-side in a wrapping row; don't hand-roll your own pan/zoom — the host canvas provides it. Every option-id reference in the file — turn heading, option label, .dv-next line, any prose — is an <a class="dv-oid" href="#1b">1b</a> link, never a bare 1b; in your chat replies, just write 1b. End each turn with a one-line .dv-next of 2–3 plain-English follow-ups the user could paste into chat. Size each .dv-card to its content (explicit width is fine); don't use height:100%.
+
+When designing, asking many good questions is ESSENTIAL.
+
+Give options: try to give 3+ variations across several dimensions. Mix by-the-book designs that match existing patterns with new and novel interactions, including interesting layouts, metaphors, and visual styles. Have some options that use color or advanced CSS; some with iconography and some without. Start your variations basic and get more advanced and creative as you go! Try remixing the brand assets and visual DNA in interesting ways — play with scale, fills, texture, visual rhythm, layering, novel layouts, type treatments. The goal is not the perfect option; it's exploring atomic variations the user can mix and match.
+
+CSS, HTML, JS and SVG are amazing. Users often don't know what they can do. Surprise the user.
+
+If you do not have an icon, asset or component, draw a placeholder: in hi-fi design, a placeholder is better than a bad attempt at the real thing.
+
+For PROPERLY handling preview inspection Before handing over to user (create a separate skill for this) with it's own hooks to be called Before upon any preview inspection:show_html
+
+Renders an HTML file in YOUR preview iframe. To see what rendered, pass screenshot: true in this same call — the screenshot comes back inline with this result. Calling save_screenshot afterwards just to look at the page is redundant: it re-captures the same page one model-iteration later. Reserve save_screenshot for when you need image files on disk, in-memory Blobs, or JS-driven multi-state captures. Use get_webview_logs to inspect console/rendering errors. The user's tab bar is not affected — call show_to_user when you want to surface a file in their view.
+
+path (string, required) — File path relative to project root
+
+screenshot (boolean) — Capture the rendered page after it loads and return the screenshot inline in this result. Set true whenever you'll want to see the output — do not call show_html and then save_screenshot to look at the same page. Default: false.
+
+{
+  "name": "show_html",
+  "parameters": {
+    "properties": {
+      "path": { "type": "string" },
+      "screenshot": { "type": "boolean" }
+    },
+    "required": ["path"],
+    "type": "object"
+  }
+}
+
+show_to_user
+
+Open a file in the USER's tab bar so they can see and interact with it. Use this to direct their attention to something mid-task. Also navigates your own iframe to the same file. For end-of-turn delivery, use ready_for_verification instead — it does this AND returns console errors.
+
+path (string, required) — File path relative to project root
+
+{
+  "name": "show_to_user",
+  "parameters": {
+    "properties": {
+      "path": { "type": "string" }
+    },
+    "required": ["path"],
+    "type": "object"
+  }
+}
+
+ready_for_verification
+
+Call this at the end of each piece of work. It opens path in the user's tab bar, waits for it to load, then forks a background verifier subagent that reviews the output (console errors, screenshot, layout, JS probing, design-system adherence, recreation fidelity) in its own context so yours stays clean. The verifier is forked even when the load has console errors — it decides what is broken and calls you back via verification_feedback only if there is something to fix; no news is good news. Missing local file refs and a blank #root still return directly to you without forking (nothing to screenshot).
+
+path (string, required) — HTML file to surface to the user
+
+skip_verifier_agent (boolean) — Default false. Set true to skip the background verifier for minor changes (trivial copy + color changes, repetitive changes, etc). The file is still opened for the user and the load is still checked.
+
+{
+  "name": "ready_for_verification",
+  "parameters": {
+    "properties": {
+      "path": { "type": "string" },
+      "skip_verifier_agent": { "type": "boolean" }
+    },
+    "required": ["path"],
+    "type": "object"
+  }
+}
+
+view_image
+
+Load an image file so you can see its contents. Works with project and cross-project files; auto-resized to fit 1000px.
+
+path (string, required) — Image file path relative to project root, or /projects/<projectId>/<path> to view an image from another project (requires view access)
+
+{
+  "name": "view_image",
+  "parameters": {
+    "properties": {
+      "path": { "type": "string" }
+    },
+    "required": ["path"],
+    "type": "object"
+  }
+}
+
+image_metadata
+
+Read metadata from an image file: dimensions (width×height), format, whether the format supports transparency, whether any pixels are actually transparent (decodes and scans the alpha channel), and whether it is animated (with frame count for GIF/APNG/WebP). Supports PNG, GIF, JPEG, WebP, BMP, SVG.
+
+path (string, required) — Image file path relative to project root, or /projects/<projectId>/<path> for cross-project access
+
+{
+  "name": "image_metadata",
+  "parameters": {
+    "properties": {
+      "path": { "type": "string" }
+    },
+    "required": ["path"],
+    "type": "object"
+  }
+}
+
+get_webview_logs
+
+Get console logs and errors from the current webview preview. Call after show_html to check the page rendered cleanly.
+
+(No parameters.)
+
+{
+  "name": "get_webview_logs",
+  "parameters": { "properties": {}, "required": [], "type": "object" }
+}
+
+sleep
+
+Wait for a specified duration. Useful for letting animations, transitions, or async rendering settle before taking a screenshot or reading the DOM.
+
+seconds (number, required) — How long to wait (max 60). For most use cases 1–5 seconds is sufficient. DO NOT sleep proactively/defensively; many of your tools have reasonable built-in delays already; sleep only if something will not work without it.
+
+{
+  "name": "sleep",
+  "parameters": {
+    "properties": {
+      "seconds": { "type": "number" }
+    },
+    "required": ["seconds"],
+    "type": "object"
+  }
+}
+
+save_screenshot
+
+If you only want to SEE a page you just opened (or are about to open) with show_html, do not use this tool — pass screenshot: true to show_html instead (fall back here only if show_html reports its capture skipped or failed).
+
+Take one or more screenshots of the preview pane, saved to disk (project filesystem) or in memory (PNG Blobs for getCaptures in run_script). Disk saves ALSO return the image(s) inline in this result — no follow-up view_image needed. To capture SEVERAL states, pass multiple steps[] in ONE call (each step optionally runs a JS snippet, waits, then captures) — never a series of single-step calls. For inspecting many states without writing files, use multi_screenshot.
+
+Output modes (provide exactly one of save_path / in_memory_png_key):
+
+    Disk (save_path): multiple captures get numerical prefixes ("screenshots/01-hero.png"); a single step saves without one.
+    In-memory (in_memory_png_key): PNG Blobs for immediate use in run_script (e.g. building a PPTX). Implies hq=true. Read with await getCaptures(key) — the sandbox cannot read window.__captures directly. Lost on page refresh.
+
+path (string, required) — The path of the HTML file you expect to be shown in the preview. Must match the file currently open.
+
+steps (array, required) — Array of capture steps (max 100).
+
+    steps[].code (string) — JavaScript to execute in the preview before capturing. Never clear or remove localStorage/sessionStorage/indexedDB entries — storage is shared with the user's live view and may hold their work.
+    steps[].delay (number) — Milliseconds to wait before capturing. Default: 50 without code, 200 with code. Layout, fonts, and image readiness are detected automatically; set this only to wait for a CSS transition or animation to reach a specific frame.
+
+save_path (string) — Destination file path relative to project root (e.g. "screenshots/hero.png"). Extension determines format — use .png or .jpg. Mutually exclusive with in_memory_png_key.
+
+in_memory_png_key (string) — Key under which to stash captured PNG Blobs, retrievable via getCaptures(key) in run_script. Mutually exclusive with save_path.
+
+hq (boolean) — PNG instead of low-quality JPEG. Much larger — AVOID unless you need lossless (e.g. PPTX export). Capped at 2576px. Default: false
+
+return_images (boolean) — Return the saved image(s) inline (≤4 steps: all; >4: first 2 + last 2 — use multi_screenshot for many states). Default: true. Set false for bulk export.
+
+{
+  "name": "save_screenshot",
+  "parameters": {
+    "properties": {
+      "hq": { "type": "boolean" },
+      "in_memory_png_key": { "type": "string" },
+      "path": { "type": "string" },
+      "return_images": { "type": "boolean" },
+      "save_path": { "type": "string" },
+      "steps": {
+        "items": {
+          "properties": {
+            "code": { "type": "string" },
+            "delay": { "type": "number" }
+          },
+          "required": [],
+          "type": "object"
+        },
+        "type": "array"
+      }
+    },
+    "required": ["path", "steps"],
+    "type": "object"
+  }
+}
+
+multi_screenshot
+
+Take multiple screenshots of the current preview (via html-to-image), running a JS snippet before each capture. ALWAYS prefer one multi_screenshot call over several single screenshot calls when inspecting more than one state (different slides, UI states, scroll positions) — each separate call costs a full round-trip. Max 12 steps per call.
+
+path (string, required) — The path of the HTML file currently shown in the preview
+
+steps (array, required) — Array of capture steps.
+
+    steps[].code (string, required) — JavaScript to execute in the preview before capturing. Never clear or remove localStorage/sessionStorage/indexedDB entries — storage is shared with the user's live view and may hold their work.
+    steps[].delay (number) — Milliseconds to wait after running the code before capturing. Default: 200. Layout, fonts, and image readiness are detected automatically; set this only to wait for a CSS transition or animation to reach a specific frame.
+
+{
+  "name": "multi_screenshot",
+  "parameters": {
+    "properties": {
+      "path": { "type": "string" },
+      "steps": {
+        "items": {
+          "properties": {
+            "code": { "type": "string" },
+            "delay": { "type": "number" }
+          },
+          "required": ["code"],
+          "type": "object"
+        },
+        "type": "array"
+      }
+    },
+    "required": ["path", "steps"],
+    "type": "object"
+  }
+}
+
+eval_js_user_view
+
+Execute JavaScript in the USER's preview pane (not your own iframe) — only for state your iframe can't reproduce: live media streams, file-input previews, permission-gated APIs, or when the user explicitly asks you to look at what they see. Normal DOM/style queries use eval_js. Results reflect the user's current state, which may differ from yours.
+
+Never clear or remove localStorage/sessionStorage/indexedDB entries — storage is shared with the user's live view and may hold their work.
+
+code (string, required) — JavaScript to execute in the user's preview. Last expression's value is returned.
+
+{
+  "name": "eval_js_user_view",
+  "parameters": {
+    "properties": {
+      "code": { "type": "string" }
+    },
+    "required": ["code"],
+    "type": "object"
+  }
+}
+
+screenshot_user_view
+
+Screenshot the USER's preview pane (not your own iframe) — only for state your iframe can't reproduce: webcam/mic feeds, uploaded-file previews, live data, or when the user says "look at what I'm seeing". Normal verification uses screenshot. May fail if the user navigated away or is mid-interaction.
+
+(No parameters.)
+
+{
+  "name": "screenshot_user_view",
+  "parameters": { "properties": {}, "required": [], "type": "object" }
+}
+
+eval_js
+
+[verifier-only — main agent: use ready_for_verification instead] Execute JavaScript in the preview webview and return the JSON-serialized result — query the DOM, computed styles, text/attributes, interactive state. Runs in the preview page's context; timeout 10 seconds; errors (syntax, runtime, timeout) return as messages.
+
+IMPORTANT: batch your checks — write ONE snippet that answers all questions and returns an object, e.g. "({btnCount: document.querySelectorAll('button').length, hasNav: !!document.querySelector('nav'), bodyBg: getComputedStyle(document.body).background})" (parens make it an expression). N serial calls are N full round-trips.
+
+Never clear or remove localStorage/sessionStorage/indexedDB entries — storage is shared with the user's live view and may hold their work.
+
+purpose (string) — Shown to the user as the status label while this check runs. A short present-progressive phrase in plain words — no jargon, under about 6 words: 'Checking the layout', 'Verifying button contrast'.
+
+code (string, required) — JavaScript code to execute. The last expression's value is returned.
+
+{
+  "name": "eval_js",
+  "parameters": {
+    "properties": {
+      "code": { "type": "string" },
+      "purpose": { "type": "string" }
+    },
+    "required": ["code"],
+    "type": "object"
+  }
+}
+
+screenshot
+
+[verifier-only — main agent: use ready_for_verification instead] Take a screenshot of the preview pane using html-to-image (DOM re-rendering, not a pixel capture — some CSS features like filters, clip-path, and complex shadows may render inaccurately). To inspect SEVERAL states (slides, hover/open states, scroll positions), use multi_screenshot with one step per state in a single call — never a series of separate screenshot calls; each separate call costs a full round-trip.
+
+path (string, required) — The path of the HTML file you expect to be shown in the preview. Must match the file currently open — returns an error if the file is not currently displayed. Use show_html first if needed.
+
+{
+  "name": "screenshot",
+  "parameters": {
+    "properties": {
+      "path": { "type": "string" }
+    },
+    "required": ["path"],
+    "type": "object"
+  }
+}
+
+run_script
+
+Execute an async JavaScript script to programmatically manipulate project files and images — batch operations that would be tedious as individual tool calls: read/concatenate/transform several files, find-and-replace across contents, draw on or compose images with Canvas, generate files from data.
+
+Helpers available in the async context:
+
+log(...args)                      Log output (visible to you in the result)
+await readFile(path)              Project file as UTF-8 string
+await readFileBinary(path)        Project file as a Blob
+await readImage(path)             HTMLImageElement (for canvas drawing)
+await saveFile(path, data)        data: string | Canvas (saved as PNG) | Blob
+await ls(path?)                   List file names in a directory
+await getCaptures(key)            Blob[] stashed by save_screenshot's in_memory_png_key
+createCanvas(width, height)       Canvas for drawing
+replaceText(text, find, replace)  Literal find-and-replace — prefer over String.replace(),
+                                  which interprets $& $1 etc. and can corrupt currency strings
+
+For a single edit to one file prefer str_replace_edit (verifies the match is unique). Do NOT use this for bulk copy of binary files — use copy_files.
+
+All saveFile calls are buffered and committed together after the script finishes; if it throws, nothing is written. A large file set commits in multiple requests — on a partial failure the error names what was already written so you can resume. Overwrites that would shrink a file by more than half are refused (truncation safeguard). Timeout: 30 seconds. Errors are returned so you can fix and retry.
+
+code (string, required) — Async JavaScript code to execute. Runs in a sandboxed iframe with an opaque origin — fetch() cannot reach the backend or read cross-origin responses. Use the provided helpers (log, readFile, readImage, saveFile, ls, createCanvas); direct network calls will not work the way you expect.
+
+{
+  "name": "run_script",
+  "parameters": {
+    "properties": {
+      "code": { "type": "string" }
+    },
+    "required": ["code"],
+    "type": "object"
+  }
+}
+
+gen_pptx
+
+Export the deck currently showing in the user's preview to a .pptx file and trigger a download. The deck MUST be showing first — call show_to_user with its HTML path before this tool.
+
+Runs a synthetic DOM capture per slide (you don't write the capture script): 'editable' emits native PowerPoint text/shapes/images; 'screenshots' emits a full-bleed PNG per slide. Speaker notes are read automatically from <script type="application/json" id="speaker-notes">.
+
+Returns validation flags — read each and judge whether it's expected for THIS deck: duplicate_adjacent → showJs probably didn't navigate; slide_size_mismatch → wrong selector or resetTransformSelector; no_speaker_notes is fine for a deck without notes. Fix inputs and retry on real problems. The page reloads after capture; DOM mutations are reverted.
+
+width (number, required) — Slide width in CSS px (e.g. 1920).
+
+height (number, required) — Slide height in CSS px (e.g. 1080).
+
+slides (array, required) — One entry per slide, in order.
+
+    slides[].selector (string, required) — CSS selector for this slide's root element.
+    slides[].showJs (string) — JS to run in the iframe before capturing this slide (e.g. "goToSlide(0)"). Sync expression, no await (the delay covers transitions). Never clear or remove localStorage/sessionStorage/indexedDB — storage is shared with the user's live view.
+    slides[].delay (number) — Ms to wait after showJs before capture. Default 600.
+
+mode ("editable" | "screenshots") — 'editable' (native shapes/text, default) or 'screenshots' (PNG per slide).
+
+hideSelectors (array of string) — Selectors to hide (display:none) before capture — nav arrows, progress bars, etc.
+
+resetTransformSelector (string) — Selector to clear transform on AND force to width×height (use when the deck is scaled to fit). Also gets a noscale attribute — for <deck-stage> decks pass "deck-stage" so the component drops its shadow-DOM scale.
+
+fontSwaps (array of {from, to}) — Font substitutions applied via @font-face override before capture.
+
+googleFontImports (array of string) — Google Font families to inject before capture (weights 400-700).
+
+filename (string) — Download filename without extension. Default 'deck'.
+
+offer_google_slides (boolean) — Set true ONLY when the user asked for Google Slides: the export dialog gains a 'Send to Google Slides' button, and the upload to their Drive happens only if they click it. Ignored with save_to_project_path.
+
+save_to_project_path (string) — Optional project-relative path (e.g. 'export/deck.pptx') — write to the project instead of downloading.
+
+{
+  "name": "gen_pptx",
+  "parameters": {
+    "properties": {
+      "width": { "type": "number" },
+      "height": { "type": "number" },
+      "slides": {
+        "items": {
+          "properties": {
+            "selector": { "type": "string" },
+            "showJs": { "type": "string" },
+            "delay": { "type": "number" }
+          },
+          "required": ["selector"],
+          "type": "object"
+        },
+        "type": "array"
+      },
+      "mode": { "enum": ["editable", "screenshots"], "type": "string" },
+      "hideSelectors": { "items": { "type": "string" }, "type": "array" },
+      "resetTransformSelector": { "type": "string" },
+      "fontSwaps": {
+        "items": {
+          "properties": { "from": { "type": "string" }, "to": { "type": "string" } },
+          "required": ["from", "to"],
+          "type": "object"
+        },
+        "type": "array"
+      },
+      "googleFontImports": { "items": { "type": "string" }, "type": "array" },
+      "filename": { "type": "string" },
+      "offer_google_slides": { "type": "boolean" },
+      "save_to_project_path": { "type": "string" }
+    },
+    "required": ["width", "height", "slides"],
+    "type": "object"
+  }
+}
+
+snapshot_element
+
+Capture a PNG snapshot of one element in the user's live preview (the page must be showing — call show_to_user first). Pass a CSS selector and an optional scale. By default an export dialog offers the PNG to the user as a download; save_to_project_path writes it into the project instead.
+
+selector (string, required) — CSS selector — the first match in the live preview is captured with its current rendered styling.
+
+scale (number) — Resolution multiplier: 0.5, 1, 2, 3, or 4. Default 2. Oversized captures are clamped to the pixel budget (the result reports the real output size).
+
+filename (string) — Download filename without extension. Default 'snapshot'. Ignored with save_to_project_path.
+
+save_to_project_path (string) — Optional project-relative path ending in .png (e.g. 'assets/hero.png') — write the PNG into the project instead of offering the download dialog.
+
+{
+  "name": "snapshot_element",
+  "parameters": {
+    "properties": {
+      "selector": { "type": "string" },
+      "scale": { "type": "number" },
+      "filename": { "type": "string" },
+      "save_to_project_path": { "type": "string" }
+    },
+    "required": ["selector"],
+    "type": "object"
+  }
+}
+
+Also useful: read_skill_prompt
+
+Read a skill's prompt by name. Returns the skill's full instructions as text for you to follow. Use this when the user asks for something that matches a skill you know about but whose prompt is not already in context.
+
+name (string, required) — The verbatim skill name (e.g. "Export as PPTX (editable)", "Save as PDF", "Make a deck")
+
+{
+  "name": "read_skill_prompt",
+  "parameters": {
+    "properties": {
+      "name": { "type": "string" }
+    },
+    "required": ["name"],
+    "type": "object"
+  }
+}
