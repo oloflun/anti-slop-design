@@ -332,7 +332,14 @@ Run in this order, and **read the output of every step**:
    a hole; either weight it or close it.
 3. Overflow sweep across the breakpoints × 2 motion modes, by **element bounds**, not `scrollWidth`.
 4. Tab through: focus ring on every stop, no trap, nothing focused offscreen.
-5. Contrast **with the text hidden**, sampling pure background against the real text colours.
+5. Contrast **with the text hidden**, sampling pure background against the real
+   text colours. Two traps, both of which have silently passed a broken page:
+   a probe that only parses `rgb()` reads Tailwind 4's `oklch()` as nonsense —
+   normalise every colour by rasterising it to a canvas pixel first. And text
+   over a photo or video has no token background at all; measure those against
+   the *rendered plate* with the text hidden, taking the brightest 5% of the
+   ground under each string, not the mean. `scripts/contrast.py` and
+   `scripts/contrast_over_media.py` do both.
 6. Any JS-driven reveal system with JavaScript disabled.
 7. Production build, then LCP and CLS. Dev bundle size is meaningless.
 8. `detect.mjs` over changed files.
