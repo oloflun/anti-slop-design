@@ -50,35 +50,44 @@ Tier 0 project the locked tokens override any value here — the *moves* still a
 beige. Say the lane out loud; every token and section must serve it. Never
 converge on the same lane, palette, or font pairing across generations.
 
-**House physics** — the invariants all three reference sites share, with exact
-values (full inventory: [`house-physics.md`](references/house-physics.md)):
+**Pick the register from the business, not from this file.** The three original
+reference sites are all *editorial print*. That is one register, not the house
+style. Its apparatus on a harbour restaurant reads as pretension; a bare grotesk
+on a florist reads as flatness. Every register shares the structure below and
+presents it differently. Say which one you took and what in the business chose it.
 
-- **Kicker microformat:** 10.5px · letter-spacing 0.22em · uppercase · mono. The
-  structural voice of the page — section labels, captions, meta.
+| Register | Fits | Worked example |
+|---|---|---|
+| **Editorial print** | florist, atelier, bookbinder, archive, catalogue, wedding | `calyx.html` |
+| **Cinematic dark** | in-town restaurant with a tasting menu, bar, hotel | `horai.html` |
+| **Illustrated dark** | conference, theatre, festival, culture programme | `hyperborea.html` |
+| **Modern clean** | technical firm, instrument, studio, club — anything whose subject is precision | `tidvatten.html` |
+| **Warm photographic** | harbour restaurant, guesthouse, tourism, family business | `klova/` |
+| **Historical art** | opera, museum, classical institution — period artwork carries it, not typography alone | none yet; derive |
+
+**Structure — holds in every register** (exact values:
+[`house-physics.md`](references/house-physics.md)):
+
 - **Palette:** 8–10 named oklch tokens. Exactly ONE saturated accent, deployed at
   **display scale** — 88px drop caps, giant prices, glyphs, a drawn form — and
   never as fill on small controls.
-- **Buttons barely exist.** CTAs are typeset links or mailtos at text-3xl/4xl
-  display size. Where a button must exist it is a sharp rectangle in the accent,
-  not a rounded pill. A rounded blue button beside a sans headline is the single
-  fastest way to read as template.
 - **Display type:** clamp() up to 15rem, leading 0.9–0.95, tracking ~-0.02em.
   Two-tone mixing *inside* the headline: roman + italic in one serif line, or
   ink + accent on the load-bearing word. 2–3 families with hard roles; body
-  measure capped in ch (36–58ch). The display face is itself a committed
-  choice — a characterful serif or display face the lane demands (Cardo,
-  Cinzel, Italiana). The safe grotesk is the default to beat, not the default
-  to pick; reach for it only when the lane genuinely calls for it, and then
-  give it a reason (weight extremes, tracking as a gesture).
-- **Label-rail anatomy:** 12-col grid; col-span-3 rail (kicker + 1px hairline at
-  ~20% opacity + meta) beside col-span-9 content. Hairlines separate; planes do not.
-- **Ledgers, never card grids:** every list, pricing, or index surface is a
-  typeset hairline ledger — italic display numerals (`.01`, `I II III`), name at
-  display size, meta in kicker, price right-aligned in display serif with the
-  currency in tiny mono.
+  measure capped in ch (36–58ch). **The face is a decision the register must
+  justify, and you name the reason** — a characterful serif when the world is
+  print (Cardo, Cinzel, Cormorant); an editorial grotesk when the subject is
+  precision (Familjen Grotesk on Tidvatten was correct). What is forbidden is the
+  *unreasoned* default: Inter because it was there.
+- **Hairlines separate; planes do not.**
+- **Ledgers over card grids** wherever the content is genuinely a list — typeset
+  hairline rows, display numerals, price right-aligned in display size. A card
+  grid is the reflex; a ledger is the decision.
 - **Stagger:** paired columns never top-align — deliberate mt-12/24/44 offsets.
-- **Grain film:** full-page feTurbulence data-URI tinted to the palette;
-  mix-blend multiply on light ground, screen on dark; opacity 0.35–0.5.
+- **Weight every column you open.** A 3-col rail carrying two 10px lines beside a
+  9-col block is a hole, not a rail. If a column exists it holds something with
+  presence: a display-scale numeral, a stat, an image, or a rule running the full
+  section height. Otherwise close it and give the content the width.
 - **Motion:** one shared reveal (translateY 28px, 1.2–1.4s,
   cubic-bezier(.16,1,.3,1), failing toward visible per the reveal guards) plus
   **one signature scroll set-piece per page** — continuously scrubbed
@@ -88,30 +97,59 @@ values (full inventory: [`house-physics.md`](references/house-physics.md)):
   set-piece), and a `?preview=` hook so its formed state can be screenshotted.
   Always a prefers-reduced-motion fallback.
 
+**Register — what varies with it:**
+
+- **Kicker microformat** (10.5px · 0.22em · uppercase · mono) and all editorial
+  apparatus: print and cinematic registers. Budgeted elsewhere — see Copy.
+- **Grain film:** print and cinematic. A modern-clean or warm-photographic page
+  is cleaner without it.
+- **Buttons.** In print and cinematic registers CTAs are typeset links at display
+  size and buttons barely exist. In warm-photographic and modern-clean registers a
+  real button is correct and expected — a clean rectangle or a restrained outline,
+  sized to be pressed. Never a rounded gradient pill. The failure was never "a
+  button", it is an unconsidered one.
+- **Imagery treatment:** full-bleed with type over (print, cinematic), framed with
+  generous air (warm photographic), drawn identity system (illustrated), real
+  product surface (modern clean).
+
 **Composition contract** — the first draft must satisfy this, not iterate into
 it: never three flat text sections in a row; one tonal inversion per page; one
 grid-break where something meets the viewport edge; one moment that is not
 information; a quiet zone at the top. Alternate ground and register section by
 section — rhythm failures are visible only in the full-page read.
 
-**Copy is worldbuilding.** Invented editorial apparatus (commission numbers,
-plate indices `02 / 14`, edition markers `Vol. IX · spring`, roman-numeral
-dates), specific proper nouns and real street addresses, cross-referenced
-entities, a colophon naming the typefaces. All within the honest-copy rule —
-apparatus and texture are invented, metrics and customers never are. Generic
-copy reads as template even under perfect typography. **Borrow the reference's
-move, never its sentence:** "Ingen platinanivå finns" is a clone of
-Hyperborea's "No platinum" — invent your own values-move instead of
-translating one that exists.
+**At least three distinct section anatomies per page.** One anatomy repeated down
+the page is a template with different words in it, even when the anatomy is a good
+one. Vary among: label-rail beside content · full-bleed image with type over ·
+centred single column · ledger · split diptych · edge-to-edge tonal inversion.
+
+**Copy is worldbuilding.** Specific proper nouns, real street addresses,
+cross-referenced entities, values stated as facts rather than adjectives. All
+within the honest-copy rule — texture is invented, metrics and customers never
+are. Generic copy reads as template even under perfect typography. **Borrow the
+reference's move, never its sentence:** "Ingen platinanivå finns" is a clone of
+Hyperborea's "No platinum" — invent your own values-move instead of translating
+one that exists.
+
+**Apparatus is licensed by the business, and budgeted.** Edition markers, plate
+indices, roman-numeral dates, colophons and mono micro-labels belong to businesses
+that plausibly publish an edition, catalogue or archive. Everywhere else they are
+wallpaper: eight whispering 10px labels make the whole page whisper. Outside the
+print registers the budget is **at most four mono micro-labels on the page**, and
+each survivor passes a function test — does it identify, differentiate, locate, or
+enable an action? A label that only decorates is deleted, or promoted into fewer
+words at larger size with a real job on the page.
 
 **In-situ negation.** Every section's source comment names the slop default it
 replaces — `<!-- INDEX: typeset ledger, NOT a card row -->`. The decision is
 made at the moment of writing, not caught in a terminal audit.
 
-**Study the executed spec.** Before any marketing build, read ONE of the three
-site sources end-to-end — `~/anti-slop-design/sites/{calyx,horai,hyperborea}.html`
-(300–560 lines each). They are these rules executed, and the densest possible
-statement of the bar.
+**Study the executed spec — the one in YOUR register.** Before any marketing
+build, read that register's worked example end-to-end in `~/anti-slop-design/sites/`:
+`calyx.html` · `horai.html` · `hyperborea.html` · `tidvatten.html` · `klova/`.
+They are these rules executed, and the densest possible statement of the bar.
+Reading only the editorial ones is why builds converge on serif and cream —
+read the one your business actually landed in.
 
 ---
 
@@ -288,7 +326,10 @@ python "$HOME/.agents/skills/design/scripts/measure.py"      http://localhost:30
 Run in this order, and **read the output of every step**:
 
 1. Capture and read fold, full page, mobile.
-2. Squint test at 5px blur — hierarchy without content.
+2. Squint test at 5px blur — hierarchy without content. Two questions at this
+   blur: does the hierarchy still read, and **is any column carrying less visual
+   weight than its width claims?** An open column holding two whispered lines is
+   a hole; either weight it or close it.
 3. Overflow sweep across the breakpoints × 2 motion modes, by **element bounds**, not `scrollWidth`.
 4. Tab through: focus ring on every stop, no trap, nothing focused offscreen.
 5. Contrast **with the text hidden**, sampling pure background against the real text colours.

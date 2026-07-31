@@ -1,0 +1,547 @@
+<!doctype html>
+<html lang="sv">
+<head>
+<!-- design · pre-emit critique: P5 H4 E4 S5 R4 V4 -->
+<!-- Lane: Öresund i februari. Kallt slate-blått sjöpapper och djupt havsmörker,
+     typsatt som en badhusliggare, med glödrost som enda värmekälla.
+     Tier 3 (invention). Tokens låsta i konfigblocket nedan; inga lösa hex. -->
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width,initial-scale=1" />
+<title>Tidvatten, kallbadhus och vedeldad bastuklubb i Malmö</title>
+<meta name="description" content="Tidvatten är ett kallbadhus och en vedeldad bastuklubb längst ut på Pir 4 i Nyhamnen, Malmö. Öppet året runt." />
+<link rel="preconnect" href="https://fonts.googleapis.com" />
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+<link href="https://fonts.googleapis.com/css2?family=Familjen+Grotesk:ital,wght@0,400;0,500;0,600;0,700;1,400&family=Literata:ital,opsz,wght@0,7..72,400;0,7..72,500;1,7..72,400;1,7..72,500&family=Fragment+Mono:ital@0;1&display=swap" rel="stylesheet" />
+<script>document.documentElement.classList.add('js');</script>
+<script src="https://cdn.tailwindcss.com"></script>
+<script>
+tailwind.config = {
+  theme: {
+    extend: {
+      colors: {
+        is:      'oklch(0.94 0.008 240 / <alpha-value>)',
+        is2:     'oklch(0.905 0.011 235 / <alpha-value>)',
+        hav:     'oklch(0.20 0.022 245 / <alpha-value>)',
+        hav2:    'oklch(0.26 0.024 243 / <alpha-value>)',
+        djup:    'oklch(0.22 0.016 250 / <alpha-value>)',
+        dis:     'oklch(0.44 0.016 242 / <alpha-value>)',
+        disljus: 'oklch(0.78 0.014 232 / <alpha-value>)',
+        ben:     'oklch(0.955 0.006 230 / <alpha-value>)',
+        glod:    'oklch(0.51 0.155 42 / <alpha-value>)',
+        glod2:   'oklch(0.66 0.145 48 / <alpha-value>)',
+        tang:    'oklch(0.46 0.055 165 / <alpha-value>)',
+      },
+      fontFamily: {
+        display: ['"Familjen Grotesk"','ui-sans-serif','system-ui','sans-serif'],
+        body:    ['Literata','ui-serif','Georgia','serif'],
+        mono:    ['"Fragment Mono"','ui-monospace','monospace'],
+      },
+      maxWidth: { wide: '1680px' },
+    }
+  }
+}
+</script>
+<style>
+  :root {
+    --is: oklch(0.94 0.008 240);
+    --hav: oklch(0.20 0.022 245);
+    --djup: oklch(0.22 0.016 250);
+    --glod: oklch(0.51 0.155 42);
+    --skugga: oklch(0.10 0.02 250);
+  }
+  html, body {
+    background: var(--is);
+    color: var(--djup);
+    font-family: 'Literata', Georgia, serif;
+    font-size: 18px;
+    line-height: 1.6;
+    overflow-x: clip;
+  }
+  html { scroll-behavior: smooth; }
+  a { color: var(--djup); }
+  a:hover { color: var(--glod); }
+  a:focus-visible { outline: 2px solid var(--glod); outline-offset: 4px; }
+  a:active { opacity: 0.75; }
+  .display { font-family: 'Familjen Grotesk', sans-serif; letter-spacing: -0.02em; }
+  .kicker { font-family: 'Fragment Mono', monospace; font-size: 10.5px; letter-spacing: 0.22em; text-transform: uppercase; }
+  .rule { background: currentColor; height: 1px; opacity: 0.2; }
+  h1, h2, h3 { overflow-wrap: anywhere; min-width: 0; }
+
+  /* Verifierade Unsplash-foton, granskade som bilder under sina scrimmar före bygget */
+  .hero-img { background-image: url('https://images.unsplash.com/photo-1518837695005-2083093ee35b?auto=format&fit=crop&w=2400&q=85'); background-size: cover; background-position: center 60%; }
+  .eld-img  { background-image: url('https://images.unsplash.com/photo-1475738972911-5b44ce984c42?auto=format&fit=crop&w=2200&q=85'); background-size: cover; background-position: center 70%; }
+
+  .pl-bg { will-change: transform; }
+
+  /* REVEAL: döljs bara när html.js finns; felar mot synligt utan JavaScript */
+  html.js .reveal { opacity: 0; transform: translateY(28px); transition: opacity 1.25s cubic-bezier(.16,1,.3,1), transform 1.25s cubic-bezier(.16,1,.3,1); }
+  html.js .reveal.in { opacity: 1; transform: none; }
+
+  /* SET-PIECE: grundtillståndet i CSS är det FÄRDIGA tillståndet.
+     JavaScript animerar bort från det; dör skriptet står allt läsbart. */
+  .grad-el { will-change: transform, filter, opacity; }
+
+  .fig-frame:hover .fig-img, .fig-frame:focus-within .fig-img { transform: scale(1.02); }
+  .fig-img { transition: transform 1.4s cubic-bezier(.16,1,.3,1); }
+
+  .grain::before {
+    content: ""; position: fixed; inset: 0; pointer-events: none; z-index: 60;
+    background-image: url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='240' height='240'><filter id='n'><feTurbulence type='fractalNoise' baseFrequency='0.85' numOctaves='2' stitchTiles='stitch'/><feColorMatrix type='matrix' values='0 0 0 0 0.10 0 0 0 0 0.13 0 0 0 0 0.19 0 0 0 0.05 0'/></filter><rect width='100%' height='100%' filter='url(%23n)'/></svg>");
+    mix-blend-mode: multiply; opacity: 0.45;
+  }
+
+  @media (prefers-reduced-motion: reduce) {
+    html.js .reveal { opacity: 1; transform: none; transition: none; }
+    .pl-bg, .grad-el { transform: none !important; filter: none !important; opacity: 1 !important; }
+    .fig-img { transition: none; }
+    html { scroll-behavior: auto; }
+  }
+</style>
+<noscript><style>.reveal { opacity: 1 !important; transform: none !important; }</style></noscript>
+</head>
+<body class="grain antialiased bg-is text-djup" style="overflow-x: clip;">
+
+<!-- NAV: ordmärke plus en kantad länk, INTE en menyrad med fem punkter och logotypplatta -->
+<header class="fixed top-0 left-0 right-0 z-30">
+  <div id="nav" class="transition-all duration-500">
+    <div class="max-w-wide mx-auto px-6 md:px-10 lg:px-14 py-6 flex items-center justify-between text-ben">
+      <a href="#" class="display font-semibold text-xl tracking-[0.14em] py-2 hover:text-glod2 transition-colors">TIDVATTEN</a>
+      <a href="#medlemskap" class="kicker text-ben border border-ben/50 px-4 md:px-6 py-3 whitespace-nowrap hover:bg-ben hover:text-hav transition-colors duration-500">Bli medlem</a>
+    </div>
+  </div>
+</header>
+
+<!-- HERO: fotot är havet i ögonhöjd, INTE en centrerad rubrik över gradient med två knappar -->
+<section class="relative overflow-hidden h-screen min-h-[640px] max-h-[1020px] bg-hav">
+  <div id="hero-bg" class="hero-img pl-bg absolute -inset-y-16 inset-x-0"></div>
+  <div class="absolute inset-0 bg-gradient-to-b from-hav/70 via-hav/15 to-hav/85 pointer-events-none"></div>
+
+  <div class="relative max-w-wide mx-auto w-full h-full px-6 md:px-10 lg:px-14 pb-16 md:pb-24 grid grid-cols-12 md:gap-x-8 items-end">
+    <h1 id="hero-title" class="col-span-12 text-ben display font-semibold text-[clamp(2.7rem,11.5vw,11rem)] leading-[0.9] min-w-0">TIDVATTEN</h1>
+    <div class="col-span-12 md:col-span-8 text-ben min-w-0 mt-8">
+      <p class="display font-medium text-[clamp(1.05rem,2vw,1.7rem)] leading-snug text-ben/90 max-w-[38ch] tracking-[0.02em] uppercase">
+        Kallbadhus och vedeldad bastuklubb<br class="hidden md:block" />
+        längst ut på Pir 4 i Nyhamnen, Malmö
+      </p>
+    </div>
+    <div class="col-span-12 md:col-span-4 md:self-end mt-10 md:mt-0 md:text-right text-ben/85 min-w-0">
+      <p class="text-[clamp(1rem,1.15vw,1.15rem)] leading-relaxed max-w-[30ch] md:ml-auto">
+        Öppet året runt. Bastun tänds klockan sex, havet sköter sig självt.
+      </p>
+    </div>
+  </div>
+</section>
+
+<!-- FILOSOFI: etikettspalt med hårlinje bredvid stor serif-lede, INTE tre ikonkort om "våra värderingar" -->
+<section class="relative bg-is">
+  <div class="max-w-wide mx-auto px-6 md:px-10 lg:px-14 pt-28 md:pt-44 pb-24 md:pb-36 grid grid-cols-12 md:gap-x-10">
+    <div class="col-span-12 md:col-span-3 md:sticky md:top-32 md:self-start min-w-0">
+      <p class="kicker text-glod">Filosofi</p>
+      <h2 class="display font-semibold text-[clamp(2rem,3.4vw,3.2rem)] leading-[0.95] mt-5">Kallt vatten,<br />varmt trä</h2>
+      <div class="rule mt-7 w-20 text-djup"></div>
+      <p class="kicker text-dis mt-7">grundad mmxxiii</p>
+    </div>
+    <div class="col-span-12 md:col-span-9 mt-12 md:mt-1 min-w-0">
+      <p class="text-[clamp(1.35rem,2vw,1.9rem)] leading-[1.55] max-w-[58ch] reveal">
+        Tidvatten är en förening. Vi äger huset ihop, eldar med björk från Fulltofta och lagar det som går sönder. Klubben startades av tre vinterbadare från Möllevången som ville ha en bastu där tystnad var regel och inte undantag. Arton ryms på lavarna. Blir det trångt badar man först.
+      </p>
+      <p class="text-[clamp(1.15rem,1.5vw,1.4rem)] leading-[1.6] text-dis max-w-[52ch] mt-10 italic reveal">
+        Kylan är den snabbaste vägen vi vet till en tom skalle. Efteråt luktar kläderna rök och händerna är långsamma.
+      </p>
+
+      <!-- Ur stadgarna: typsatt apparat, INTE en badge-rad -->
+      <div class="mt-16 md:mt-20 max-w-[52ch] reveal">
+        <p class="kicker text-dis">Ur stadgarna</p>
+        <div class="mt-5 border-t border-djup/20">
+          <div class="py-4 border-b border-djup/20 flex gap-6 items-baseline">
+            <span class="font-body italic text-dis text-lg shrink-0 w-10">§4</span>
+            <span class="text-[1.05rem]">Tystnad på lavarna före klockan sju.</span>
+          </div>
+          <div class="py-4 border-b border-djup/20 flex gap-6 items-baseline">
+            <span class="font-body italic text-dis text-lg shrink-0 w-10">§9</span>
+            <span class="text-[1.05rem]">Sista badet för dagen skrivs in i liggaren.</span>
+          </div>
+          <div class="py-4 border-b border-djup/20 flex gap-6 items-baseline">
+            <span class="font-body italic text-dis text-lg shrink-0 w-10">§12</span>
+            <span class="text-[1.05rem]">Ved bärs ut på piren, aldrig hem igen.</span>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- SET-PIECE: två temperaturer som driver mot varandra ur oskärpa, skrubbad i båda riktningar.
+     Grundtillståndet i CSS är det färdiga; JS animerar bort från det. ?preview=grader tvingar fram det. -->
+<section id="grader" class="relative overflow-hidden h-[130vh] min-h-[960px] bg-hav">
+  <div class="eld-img absolute inset-0 opacity-40"></div>
+  <div class="absolute inset-0 bg-gradient-to-b from-hav via-hav/40 to-hav pointer-events-none"></div>
+  <div class="absolute inset-0 pointer-events-none" style="background: radial-gradient(ellipse at center, transparent 0%, oklch(0.10 0.02 250 / 0.5) 62%, oklch(0.10 0.02 250 / 0.85) 100%);"></div>
+
+  <div class="sticky top-0 h-screen flex items-center justify-center text-center text-ben px-6">
+    <div class="w-full max-w-[900px]">
+      <p id="grad-kicker" class="kicker text-disljus/80 grad-el">Ur badprotokollet, februari</p>
+
+      <div class="mt-14 flex items-baseline justify-center gap-8 md:gap-16">
+        <div class="min-w-0">
+          <p id="grad-kall" class="display font-semibold grad-el text-disljus text-[clamp(4.5rem,13vw,11rem)] leading-none">2°</p>
+          <p class="kicker text-disljus/70 mt-5">havet</p>
+        </div>
+        <div id="grad-linje" class="grad-el h-px w-16 md:w-24 bg-ben/40 self-center"></div>
+        <div class="min-w-0">
+          <p id="grad-varm" class="display font-semibold grad-el text-glod2 text-[clamp(4.5rem,13vw,11rem)] leading-none">85°</p>
+          <p class="kicker text-disljus/70 mt-5">bastun</p>
+        </div>
+      </div>
+
+      <p id="grad-rad" class="display grad-el text-ben/90 text-[clamp(1.1rem,2vw,1.6rem)] tracking-[0.04em] mt-16 uppercase">
+        Däremellan: fyrtio steg på blöt ek.
+      </p>
+    </div>
+  </div>
+</section>
+
+<!-- PROGRAM: typsatt liggare med kursiva numeraler, INTE fyra ikonkort i ett rutnät -->
+<section id="program" class="relative bg-is">
+  <div class="max-w-wide mx-auto px-6 md:px-10 lg:px-14 py-24 md:py-40">
+    <div class="grid grid-cols-12 md:gap-x-10 mb-16 md:mb-24">
+      <div class="col-span-12 md:col-span-3 min-w-0">
+        <p class="kicker text-glod">Program</p>
+        <h2 class="display font-semibold text-[clamp(2rem,3.4vw,3.2rem)] leading-[0.95] mt-5">Året<br />på piren</h2>
+        <div class="rule mt-7 w-20 text-djup"></div>
+      </div>
+      <div class="col-span-12 md:col-span-9 mt-10 md:mt-1 min-w-0">
+        <p class="text-[clamp(1.2rem,1.6vw,1.55rem)] leading-[1.55] max-w-[54ch]">
+          Fyra fasta punkter. Allt annat är öppen pir och egen nyckel, i den takt havet tillåter.
+        </p>
+      </div>
+    </div>
+
+    <div class="border-t border-djup/20">
+      <!-- .01 -->
+      <article class="grid grid-cols-12 md:gap-x-10 gap-y-6 py-12 md:py-16 border-b border-djup/20 items-start reveal">
+        <div class="col-span-12 md:col-span-1 font-body italic text-dis text-[clamp(1.6rem,2.4vw,2.2rem)] leading-none">.01</div>
+        <div class="col-span-12 md:col-span-7 min-w-0">
+          <h3 class="display font-semibold text-[clamp(1.9rem,3.6vw,3.4rem)] leading-[1]">Morgonbastu</h3>
+          <p class="kicker text-dis mt-4">vardagar 06.00 till 09.00</p>
+          <p class="text-[clamp(1.05rem,1.4vw,1.3rem)] leading-[1.6] mt-6 max-w-[54ch]">
+            Veckans eldare tänder i mörker. Före sju pratar ingen, och den som ändå gör det bjuder på ved.
+          </p>
+        </div>
+        <div class="col-span-12 md:col-span-4 md:text-right min-w-0">
+          <p class="kicker text-tang">ingår i medlemskapet</p>
+        </div>
+      </article>
+      <!-- .02 -->
+      <article class="grid grid-cols-12 md:gap-x-10 gap-y-6 py-12 md:py-16 border-b border-djup/20 items-start reveal">
+        <div class="col-span-12 md:col-span-1 font-body italic text-dis text-[clamp(1.6rem,2.4vw,2.2rem)] leading-none">.02</div>
+        <div class="col-span-12 md:col-span-7 min-w-0">
+          <h3 class="display font-semibold text-[clamp(1.9rem,3.6vw,3.4rem)] leading-[1]">Vinterdopp</h3>
+          <p class="kicker text-dis mt-4">lördagar 08.00, oktober till april</p>
+          <p class="text-[clamp(1.05rem,1.4vw,1.3rem)] leading-[1.6] mt-6 max-w-[54ch]">
+            Introduktionen för nya medlemmar. En timme, två erfarna i vattnet, varm dryck i stugan efteråt. Ta med badskor; trappan är hal långt in i maj.
+          </p>
+        </div>
+        <div class="col-span-12 md:col-span-4 md:text-right min-w-0">
+          <p class="kicker text-tang">första steget för nya</p>
+        </div>
+      </article>
+      <!-- .03 -->
+      <article class="grid grid-cols-12 md:gap-x-10 gap-y-6 py-12 md:py-16 border-b border-djup/20 items-start reveal">
+        <div class="col-span-12 md:col-span-1 font-body italic text-dis text-[clamp(1.6rem,2.4vw,2.2rem)] leading-none">.03</div>
+        <div class="col-span-12 md:col-span-7 min-w-0">
+          <h3 class="display font-semibold text-[clamp(1.9rem,3.6vw,3.4rem)] leading-[1]">Fullmånebad</h3>
+          <p class="kicker text-dis mt-4">vid fullmåne, en timme efter månuppgång</p>
+          <p class="text-[clamp(1.05rem,1.4vw,1.3rem)] leading-[1.6] mt-6 max-w-[54ch]">
+            Piren släcks och bastun eldas hårdare än vanligt. Badet sker i det ljus som råkar finnas. Ingen föranmälan; den som är där är där.
+          </p>
+        </div>
+        <div class="col-span-12 md:col-span-4 md:text-right min-w-0">
+          <p class="kicker text-tang">utan föranmälan</p>
+        </div>
+      </article>
+      <!-- .04 -->
+      <article class="grid grid-cols-12 md:gap-x-10 gap-y-6 py-12 md:py-16 border-b border-djup/20 items-start reveal">
+        <div class="col-span-12 md:col-span-1 font-body italic text-dis text-[clamp(1.6rem,2.4vw,2.2rem)] leading-none">.04</div>
+        <div class="col-span-12 md:col-span-7 min-w-0">
+          <h3 class="display font-semibold text-[clamp(1.9rem,3.6vw,3.4rem)] leading-[1]">Gästeldare</h3>
+          <p class="kicker text-dis mt-4">sista fredagen i månaden</p>
+          <p class="text-[clamp(1.05rem,1.4vw,1.3rem)] leading-[1.6] mt-6 max-w-[54ch]">
+            En kväll i månaden lämnar vi ugnen till någon annan. Hittills bland andra en rökbastumästare från Ruka och en keramiker som eldade med enris. Eldaren bestämmer värmen; ingen klagar.
+          </p>
+        </div>
+        <div class="col-span-12 md:col-span-4 md:text-right min-w-0">
+          <p class="kicker text-dis">öppet för gäster</p>
+          <p class="kicker text-tang mt-2">gäst 160 kr</p>
+        </div>
+      </article>
+    </div>
+  </div>
+</section>
+
+<!-- FOTOUPPSLAG: två figurer i otakt, den första bryter rutnätet mot viewportkanten, INTE ett symmetriskt galleri -->
+<section class="bg-is2 py-24 md:py-40 overflow-x-clip">
+  <div class="max-w-wide mx-auto px-6 md:px-10 lg:px-14">
+    <div class="grid grid-cols-12 md:gap-x-10 gap-y-16">
+      <figure class="col-span-12 md:col-span-7 fig-frame overflow-hidden -ml-6 md:-ml-10 lg:-ml-14 reveal">
+        <img class="fig-img w-full aspect-[5/4] object-cover" src="https://images.unsplash.com/photo-1583416750470-965b2707b355?auto=format&fit=crop&w=1800&q=85" alt="Bastuns inre i mörkt trä med lavar längs tre väggar" loading="lazy" />
+        <figcaption class="kicker text-dis mt-5 pl-6 md:pl-10 lg:pl-14">Stora lavarna, eldade sedan klockan sex</figcaption>
+      </figure>
+      <figure class="col-span-12 md:col-span-5 fig-frame overflow-hidden md:mt-44 reveal">
+        <img class="fig-img w-full aspect-[4/5] object-cover" src="https://images.unsplash.com/photo-1444210971048-6130cf0c46cf?auto=format&fit=crop&w=1600&q=85" alt="Badare samlade kring en eld på stranden i skymning" loading="lazy" />
+        <figcaption class="kicker text-dis mt-5">Eldkvällen i mars, sista badet före midnatt</figcaption>
+      </figure>
+    </div>
+  </div>
+</section>
+
+<!-- MEDLEMSKAP: en typsatt liggare med jättepriser i glöd, INTE tre priskort med bockar och en "populär"-flagga -->
+<section id="medlemskap" class="relative bg-is">
+  <div class="max-w-wide mx-auto px-6 md:px-10 lg:px-14 py-24 md:py-40">
+    <div class="grid grid-cols-12 md:gap-x-10 mb-16 md:mb-24">
+      <div class="col-span-12 md:col-span-3 min-w-0">
+        <p class="kicker text-glod">Medlemskap</p>
+        <h2 class="display font-semibold text-[clamp(2rem,3.4vw,3.2rem)] leading-[0.95] mt-5">Liggaren</h2>
+        <div class="rule mt-7 w-20 text-djup"></div>
+      </div>
+      <div class="col-span-12 md:col-span-9 mt-10 md:mt-1 min-w-0">
+        <p class="text-[clamp(1.2rem,1.6vw,1.55rem)] leading-[1.55] max-w-[54ch]">
+          Tre rader i boken. Alla börjar med ett handlett vinterdopp, i sällskap av två medlemmar som gjort det förr.
+        </p>
+      </div>
+    </div>
+
+    <div class="border-t border-djup/20">
+      <!-- I -->
+      <article class="grid grid-cols-12 md:gap-x-10 gap-y-6 py-12 md:py-16 border-b border-djup/20 items-start reveal">
+        <div class="col-span-12 md:col-span-1 font-body italic text-dis text-[clamp(1.8rem,2.8vw,2.6rem)] leading-none">I</div>
+        <div class="col-span-12 md:col-span-6 min-w-0">
+          <h3 class="display font-semibold text-[clamp(1.9rem,3.6vw,3.4rem)] leading-[1]">Tolvbadet</h3>
+          <p class="kicker text-dis mt-4">tolv bad, gäller ett år</p>
+          <p class="text-[clamp(1.05rem,1.4vw,1.3rem)] leading-[1.6] mt-6 max-w-[46ch]">
+            För dig som vill prova en vinter innan du lovar något. Baden stämplas i liggaren vid dörren.
+          </p>
+        </div>
+        <div class="col-span-12 md:col-span-5 md:text-right min-w-0">
+          <p class="display font-semibold text-glod text-[clamp(3.2rem,6vw,5.5rem)] leading-[0.9]">780</p>
+          <p class="kicker text-dis mt-4">kronor per år</p>
+        </div>
+      </article>
+      <!-- II -->
+      <article class="grid grid-cols-12 md:gap-x-10 gap-y-6 py-12 md:py-16 border-b border-djup/20 items-start reveal">
+        <div class="col-span-12 md:col-span-1 font-body italic text-dis text-[clamp(1.8rem,2.8vw,2.6rem)] leading-none">II</div>
+        <div class="col-span-12 md:col-span-6 min-w-0">
+          <h3 class="display font-semibold text-[clamp(1.9rem,3.6vw,3.4rem)] leading-[1]">Säsong</h3>
+          <p class="kicker text-dis mt-4">oktober till april</p>
+          <p class="text-[clamp(1.05rem,1.4vw,1.3rem)] leading-[1.6] mt-6 max-w-[46ch]">
+            Hela vintern, alla program, obegränsat antal bad. Det här är kortet de flesta stannar på.
+          </p>
+        </div>
+        <div class="col-span-12 md:col-span-5 md:text-right min-w-0">
+          <p class="display font-semibold text-glod text-[clamp(3.2rem,6vw,5.5rem)] leading-[0.9]">1&#8201;950</p>
+          <p class="kicker text-dis mt-4">kronor per säsong</p>
+        </div>
+      </article>
+      <!-- III -->
+      <article class="grid grid-cols-12 md:gap-x-10 gap-y-6 py-12 md:py-16 border-b border-djup/20 items-start reveal">
+        <div class="col-span-12 md:col-span-1 font-body italic text-dis text-[clamp(1.8rem,2.8vw,2.6rem)] leading-none">III</div>
+        <div class="col-span-12 md:col-span-6 min-w-0">
+          <h3 class="display font-semibold text-[clamp(1.9rem,3.6vw,3.4rem)] leading-[1]">Helår</h3>
+          <p class="kicker text-dis mt-4">egen nyckel, en gäst per bad</p>
+          <p class="text-[clamp(1.05rem,1.4vw,1.3rem)] leading-[1.6] mt-6 max-w-[46ch]">
+            Piren är din även klockan fem en söndagsmorgon. Nyckeln kvitteras ut hos kassören och följer med ett eldarpass per termin.
+          </p>
+        </div>
+        <div class="col-span-12 md:col-span-5 md:text-right min-w-0">
+          <p class="display font-semibold text-glod text-[clamp(3.2rem,6vw,5.5rem)] leading-[0.9]">3&#8201;200</p>
+          <p class="kicker text-dis mt-4">kronor per år</p>
+        </div>
+      </article>
+    </div>
+
+    <p class="text-[clamp(1.05rem,1.35vw,1.25rem)] leading-[1.6] text-dis italic mt-12 max-w-[54ch]">
+      Ingen platinanivå finns. Piren är lika kall för alla.
+    </p>
+  </div>
+</section>
+
+<!-- PLATS OCH KONTAKT: mörk invertering med typsatt mailto i displaystorlek, INTE ett kontaktformulär med kartwidget -->
+<section id="kontakt" class="bg-hav text-ben relative">
+  <div class="max-w-wide mx-auto px-6 md:px-10 lg:px-14 py-24 md:py-40 grid grid-cols-12 md:gap-x-10">
+    <div class="col-span-12 md:col-span-7 min-w-0">
+      <p class="kicker text-glod2">Plats</p>
+      <h2 class="display font-semibold text-[clamp(2.4rem,5vw,4.8rem)] leading-[0.95] mt-5">
+        Längst ut,<br />där kajen tar slut
+      </h2>
+      <p class="display font-medium text-[clamp(1.2rem,1.8vw,1.6rem)] tracking-[0.02em] mt-10 leading-[1.35] uppercase">
+        Pir 4, Nyhamnen<br />211&#8201;20 Malmö
+      </p>
+      <p class="text-[clamp(1.05rem,1.4vw,1.3rem)] leading-[1.65] text-disljus mt-8 max-w-[52ch]">
+        Följ Jörgen Kocksgatan till kajen och gå norrut längs vattnet, förbi magasinen. Piren utan grind är vår. Huset känns igen på den svarta plåtskorstenen, och på röken när morgonbastun är igång.
+      </p>
+
+      <div class="mt-14 max-w-[46ch]">
+        <p class="kicker text-disljus/70">Öppettider</p>
+        <div class="mt-5 border-t border-ben/20">
+          <div class="py-4 border-b border-ben/20 flex justify-between gap-6 items-baseline">
+            <span class="text-[1.05rem]">Vardagar</span>
+            <span class="kicker text-disljus">06.00 till 21.00</span>
+          </div>
+          <div class="py-4 border-b border-ben/20 flex justify-between gap-6 items-baseline">
+            <span class="text-[1.05rem]">Helger</span>
+            <span class="kicker text-disljus">07.00 till 22.00</span>
+          </div>
+          <div class="py-4 border-b border-ben/20 flex justify-between gap-6 items-baseline">
+            <span class="text-[1.05rem]">Fullmåne</span>
+            <span class="kicker text-disljus">till midnatt</span>
+          </div>
+          <div class="py-4 border-b border-ben/20 flex justify-between gap-6 items-baseline">
+            <span class="text-[1.05rem]">Midsommarveckan</span>
+            <span class="kicker text-disljus">ugnen vilar</span>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="col-span-12 md:col-span-5 mt-16 md:mt-0 md:pl-12 md:border-l border-ben/20 flex flex-col gap-16 md:pt-1 min-w-0">
+      <div class="min-w-0">
+        <p class="kicker text-disljus/70">Skriv till oss</p>
+        <a href="mailto:bad@tidvatten.se" class="display font-semibold text-[clamp(1.4rem,2.7vw,2.7rem)] tracking-[-0.01em] text-glod2 mt-2 py-2 block hover:text-ben transition-colors" style="overflow-wrap: anywhere;">bad@tidvatten.se</a>
+        <p class="text-[clamp(1.05rem,1.35vw,1.25rem)] leading-[1.6] text-disljus mt-7 max-w-[38ch]">
+          Skriv om medlemskap eller gästeldning. Vi svarar inom en vecka, och introduktioner går varje månad utom juli.
+        </p>
+      </div>
+      <div class="min-w-0">
+        <p class="kicker text-disljus/70">För föreningar och skolor</p>
+        <p class="text-[clamp(1.05rem,1.35vw,1.25rem)] leading-[1.6] text-disljus mt-4 max-w-[38ch]">
+          Vi tar emot grupper på förmiddagar utanför programtid. Berätta vilka ni är och hur många som badat i öppet hav förut.
+        </p>
+      </div>
+    </div>
+  </div>
+
+  <div class="border-t border-ben/15">
+    <div class="max-w-wide mx-auto px-6 md:px-10 lg:px-14 py-8 flex flex-wrap items-baseline justify-between gap-y-3 gap-x-10 text-disljus/70">
+      <p class="kicker">&copy; Tidvatten mmxxvi</p>
+      <p class="kicker">Pir 4 &middot; Nyhamnen</p>
+      <p class="kicker">Satt i Familjen Grotesk, Literata &amp; Fragment Mono</p>
+      <p class="kicker">Fotografi via Unsplash</p>
+    </div>
+  </div>
+</section>
+
+<script>
+(function () {
+  var reduced = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+
+  /* Nav: mörkna efter heron */
+  var navWrap = document.getElementById('nav');
+  var heroBg = document.getElementById('hero-bg');
+  var heroTitle = document.getElementById('hero-title');
+  var ticking = false;
+  function onScroll() {
+    if (ticking) return;
+    ticking = true;
+    window.requestAnimationFrame(function () {
+      var y = window.scrollY;
+      if (!reduced && heroBg) heroBg.style.transform = 'translate3d(0,' + (y * 0.3).toFixed(1) + 'px,0)';
+      if (!reduced && heroTitle) heroTitle.style.transform = 'translate3d(0,' + (y * 0.1).toFixed(1) + 'px,0)';
+      if (navWrap) {
+        if (y > window.innerHeight * 0.8) navWrap.classList.add('bg-hav/90','backdrop-blur-md');
+        else navWrap.classList.remove('bg-hav/90','backdrop-blur-md');
+      }
+      updateGrader();
+      ticking = false;
+    });
+  }
+  window.addEventListener('scroll', onScroll, { passive: true });
+  window.addEventListener('resize', onScroll);
+
+  /* SET-PIECE: bell-kurva av sektionens närhet till viewportens mitt, smoothstep,
+     kontinuerligt skrubbad åt båda håll. CSS-grundtillståndet är det färdiga. */
+  function clamp01(x) { return Math.max(0, Math.min(1, x)); }
+  function smoothstep(x) { x = clamp01(x); return x * x * (3 - 2 * x); }
+  function lerp(a, b, t) { return a + (b - a) * t; }
+
+  var gSec = document.getElementById('grader');
+  var gKall = document.getElementById('grad-kall');
+  var gVarm = document.getElementById('grad-varm');
+  var gLinje = document.getElementById('grad-linje');
+  var gRad = document.getElementById('grad-rad');
+  var gKicker = document.getElementById('grad-kicker');
+  var preview = location.search.indexOf('preview=grader') !== -1;
+
+  function setGrader(t) {
+    var tEarly = smoothstep(clamp01((t - 0.05) / 0.85));
+    var tLate = smoothstep(clamp01((t - 0.18) / 0.78));
+    if (gKicker) gKicker.style.opacity = lerp(0, 1, tEarly).toFixed(3);
+    if (gKall) {
+      gKall.style.transform = 'translateX(' + lerp(-22, 0, tEarly).toFixed(2) + 'vw)';
+      gKall.style.filter = 'blur(' + lerp(14, 0, tEarly).toFixed(2) + 'px)';
+      gKall.style.opacity = lerp(0.15, 1, tEarly).toFixed(3);
+    }
+    if (gVarm) {
+      gVarm.style.transform = 'translateX(' + lerp(22, 0, tEarly).toFixed(2) + 'vw)';
+      gVarm.style.filter = 'blur(' + lerp(14, 0, tEarly).toFixed(2) + 'px)';
+      gVarm.style.opacity = lerp(0.15, 1, tEarly).toFixed(3);
+    }
+    if (gLinje) { gLinje.style.transform = 'scaleX(' + lerp(0, 1, tLate).toFixed(3) + ')'; gLinje.style.opacity = lerp(0, 1, tLate).toFixed(3); }
+    if (gRad) {
+      gRad.style.opacity = lerp(0, 1, tLate).toFixed(3);
+      gRad.style.transform = 'translateY(' + lerp(26, 0, tLate).toFixed(2) + 'px)';
+      gRad.style.letterSpacing = lerp(0.3, 0.04, tLate).toFixed(3) + 'em';
+    }
+  }
+  function updateGrader() {
+    if (!gSec || reduced || preview) return;
+    var rect = gSec.getBoundingClientRect();
+    var vh = window.innerHeight;
+    var center = rect.top + rect.height / 2;
+    var offset = Math.abs(center - vh / 2);
+    var half = (rect.height + vh) / 2;
+    setGrader(smoothstep(clamp01(1 - offset / half)));
+  }
+  if (!reduced && !preview) updateGrader();
+  if (preview && gSec) {
+    setTimeout(function () {
+      window.scrollTo(0, gSec.offsetTop + (gSec.offsetHeight - window.innerHeight) / 2);
+    }, 150);
+  }
+
+  /* REVEAL med fyra spärrar:
+     1. tröskel 0 så höga element aldrig fastnar
+     2. allt som redan är på eller ovanför skärmen visas vid mount
+     3. tidsspärr: efter 3 s visas allt som ännu inte visats
+     4. dolt läge gäller bara under html.js plus noscript-fallback,
+        och en räknare tvingar fram och rapporterar det som blivit kvar */
+  var reveals = Array.prototype.slice.call(document.querySelectorAll('.reveal'));
+  reveals.forEach(function (el) {
+    if (el.getBoundingClientRect().top < window.innerHeight) el.classList.add('in');
+  });
+  if ('IntersectionObserver' in window) {
+    var io = new IntersectionObserver(function (entries) {
+      entries.forEach(function (e) {
+        if (e.isIntersecting) { e.target.classList.add('in'); io.unobserve(e.target); }
+      });
+    }, { threshold: 0, rootMargin: '0px 0px -5% 0px' });
+    reveals.forEach(function (el) { io.observe(el); });
+  } else {
+    reveals.forEach(function (el) { el.classList.add('in'); });
+  }
+  setTimeout(function () {
+    var kvar = reveals.filter(function (el) { return !el.classList.contains('in'); });
+    kvar.forEach(function (el) { el.classList.add('in'); });
+  }, 3000);
+  setTimeout(function () {
+    var kvar = document.querySelectorAll('.reveal:not(.in)');
+    if (kvar.length > 0) {
+      kvar.forEach(function (el) { el.classList.add('in'); });
+      console.warn('Reveal-spärr: ' + kvar.length + ' element tvingades synliga.');
+    }
+  }, 3600);
+
+  onScroll();
+})();
+</script>
+</body>
+</html>

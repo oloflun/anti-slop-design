@@ -1,12 +1,36 @@
 # House physics — the executed quality bar, with exact values
 
-Extracted 2026-07-31 from the full source of the three reference-grade sites
-(`~/anti-slop-design/sites/calyx.html`, `horai.html`, `hyperborea.html`) — the
-pages every build is measured against. The compressed version lives in
-SKILL.md § The craft floor; this file carries the per-site inventory. When in
-doubt, read the site source itself: it is the spec, executed.
+Extracted 2026-07-31 from the full source of the worked examples in
+`~/anti-slop-design/sites/`. The compressed version lives in SKILL.md § The craft
+floor; this file carries the per-example inventory. When in doubt, read the source
+itself: it is the spec, executed.
 
-## Cross-site invariants
+**Read the structural section, then only your register's inventory.** The first
+three examples (Calyx, Hōrai, Hyperborea) are all *editorial print* in different
+grounds. Treating their shared traits as universal is what made every build come
+back serif, cream and numbered, including for businesses where that is actively
+wrong. Tidvatten and Klova are here as the counterweight.
+
+## Structural — true in every register
+
+- **Palette:** 8–10 named tokens, oklch where the stack allows. Exactly ONE
+  saturated accent, deployed at display scale (drop caps, giant prices, glyphs, a
+  drawn form) and never as fill on a small control.
+- **Hierarchy through scale, not decoration.** Display clamp() with leading
+  0.9–0.95; body measure capped in ch. No shadow stacks, no gradient borders.
+- **Hairlines separate; planes do not.**
+- **Stagger:** paired columns never top-align.
+- **Every open column carries weight** — a display numeral, a stat, an image, or a
+  full-height rule. Otherwise close it.
+- **At least three distinct section anatomies** per page.
+- **One tonal inversion** somewhere on the page.
+- **Motion:** one shared reveal (translateY 28px, 1.2–1.4s,
+  cubic-bezier(.16,1,.3,1)), failing toward visible; plus one signature set-piece
+  with at least two coordinated layers and a `?preview=` hook; reduced-motion
+  fallback throughout.
+- **Copy in a specific voice about a specific place**, with honest numbers.
+
+## Editorial-print invariants — Calyx · Hōrai · Hyperborea only
 
 - **Kicker microformat** (identical across all three):
   `font-size: 10.5px; letter-spacing: 0.22em; text-transform: uppercase;`
@@ -106,11 +130,51 @@ doubt, read the site source itself: it is the spec, executed.
 - Tickets are a Calyx-style ledger (display 5xl `4 800 kr`, `0 kr · funded`).
 - Grain tinted amber (feColorMatrix 0.96/0.74/0.36), mix-blend screen, .35.
 
+## Tidvatten — modern clean (cold-bath club, Malmö)
+
+Built blind by a subagent as a system test; the owner's read was that it felt the
+least AI-generated of the set. Its lesson is that a grotesk can be a *decision*.
+
+- **Fonts:** Familjen Grotesk (display, uppercase, tight), Literata (body serif),
+  Fragment Mono (kicker). The grotesk is right because the subject is temperature,
+  timetable and protocol — precision, not connoisseurship.
+- **Palette:** slate blue-greys and deep sea dark, terracotta as the only warmth,
+  used exclusively at display scale.
+- **Set-piece:** the two temperatures (`2°` / `85°`) driving together out of blur
+  as the section centres — scrubbed both directions, with the mono line beneath
+  resolving on a staged offset.
+- **Anatomy:** full-bleed sea photograph with the wordmark set into it; a
+  statutes ledger (`§4 · Tystnad på lavarna före klockan sju`); a numbered season
+  programme; a staggered photo duo; a membership ledger.
+- **Where it still slipped:** its values line was a translated clone of
+  Hyperborea's. Hence the "borrow the move, never the sentence" rule.
+
+## Klova — warm photographic (harbour restaurant, Bohuslän)
+
+The counter-example that proves the register split. It breaks nearly every
+editorial invariant and is correct. Full notes in `sites/klova/README.md`.
+
+- **Centred logo lockup over a full-bleed photograph.** No rail, no kicker, no
+  edition marker.
+- **A real outlined button** (`SE VÅR MENY`), sized to be pressed. A typeset
+  mailto at text-4xl would be affectation here.
+- **Rounded corners, generous air** around images; a dotted carousel for the food
+  gallery. Both patterns the editorial registers reject, both right here.
+- **No grain, no apparatus, no colophon, no ledger.** The menu is a menu.
+- **Warm serif display at conversational size** over a plain sans body. The
+  headline welcomes rather than announces.
+- **Dark navy footer** as the tonal inversion — the one structural invariant it
+  keeps unchanged.
+
 ## How to use this file
 
-Pick the register the lane calls for, then **match the invariants, not the
-pixels** — a new build shares the physics (kicker, one display-scale accent,
-ledgers, rails, stagger, grain, one set-piece) while its palette, faces, and
-world are its own. If a section is about to become a card grid, a rounded
-button row, or three same-rhythm text blocks, this file is the list of what to
-do instead.
+**Pick the register from the business first**, then match that register's
+inventory plus the structural section — never the pixels, and never another
+register's apparatus. A new build shares the structure (one display-scale accent,
+hierarchy through scale, hairlines, stagger, weighted columns, one set-piece)
+while its palette, faces, apparatus policy and world are its own.
+
+If a section is about to become a card grid, a rounded gradient pill, or three
+same-rhythm text blocks, this file is the list of what to do instead. If a page is
+about to receive its eighth 10px mono caption, the answer is in the apparatus
+budget in SKILL.md, not here.
