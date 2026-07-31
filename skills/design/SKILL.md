@@ -80,6 +80,12 @@ presents it differently. Say which one you took and what in the business chose i
   precision (Familjen Grotesk on Tidvatten was correct). What is forbidden is the
   *unreasoned* default: Inter because it was there.
 - **Hairlines separate; planes do not.**
+- **Every muted tone needs a value per ground.** A page with a tonal inversion
+  has two grounds, and a secondary or caption tone that reads correctly on one
+  will fail on the other. Measured twice: `slate-400` is 2.63:1 on white and
+  6.78:1 on near-black, so the ladder has to invert with the ground; a caption
+  grey that sat at 16.4:1 on a dark section carried into a cream one at 1.83:1
+  and became invisible. Pick the tone per ground, and measure both.
 - **Ledgers over card grids** wherever the content is genuinely a list — typeset
   hairline rows, display numerals, price right-aligned in display size. A card
   grid is the reflex; a ledger is the decision.
