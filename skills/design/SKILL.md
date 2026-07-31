@@ -102,6 +102,14 @@ presents it differently. Say which one you took and what in the business chose i
   quote AND word-lights the lede; one lerped element alone is an effect, not a
   set-piece), and a `?preview=` hook so its formed state can be screenshotted.
   Always a prefers-reduced-motion fallback.
+- **Reduced motion removes motion, not content.** When a scroll-driven piece
+  carries information — stages, counts, a sequence the section exists to show —
+  that progression still has to follow the scroll under
+  `prefers-reduced-motion: reduce`. Switch off the travel: scale, translate,
+  parallax, and any easing that keeps drifting after the scroll stops. Cutting
+  the whole scrub instead pins the piece on its last frame at every position,
+  which reads as broken rather than as calm, and it is invisible in testing
+  unless the reduced-motion pass is run separately. Verify both modes.
 
 **Register — what varies with it:**
 
