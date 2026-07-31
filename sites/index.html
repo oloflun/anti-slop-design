@@ -3,7 +3,7 @@
 <head>
 <meta charset="UTF-8" />
 <meta name="viewport" content="width=device-width,initial-scale=1" />
-<title>The Anti-Slop Design Stack — Three sites, one router</title>
+<title>The Anti-Slop Design Stack: six registers, one system</title>
 <link rel="preconnect" href="https://fonts.googleapis.com" />
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
 <link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,400..700;1,9..144,400..600&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet" />
@@ -14,13 +14,24 @@
     --paper3:  oklch(0.89 0.018 84);
     --ink:     oklch(0.20 0.018 252);
     --ink2:    oklch(0.28 0.018 252);
-    --mineral: oklch(0.55 0.015 252);
+    --mineral: oklch(0.50 0.015 252);
+    /* Three ochres, because one cannot do three jobs. The bright one measures
+       2.17:1 against this paper, which fails as text at every size, so it is a
+       FILL only: it goes behind ink, never in front of paper. Display text
+       takes 0.64 (3.17:1, clears the large-text floor and keeps the glow),
+       everything smaller takes 0.54 (4.72:1). Measured, not estimated. */
     --ochre:   oklch(0.74 0.16 64);
+    --ochre-display: oklch(0.64 0.15 64);
+    --ochre-ink:     oklch(0.54 0.12 64);
     --lacquer: oklch(0.45 0.20 25);
     --rule:    oklch(0.20 0.018 252 / .18);
   }
   *, *::before, *::after { box-sizing: border-box; }
-  html, body { margin: 0; background: var(--paper); color: var(--ink); font-family: Fraunces, ui-serif, Georgia, serif; font-size: 18px; line-height: 1.6; -webkit-font-smoothing: antialiased; }
+  /* clip, not hidden. Gate 34: `hidden` on the root silently kills
+     position: sticky for the whole document, and this page has a sticky nav.
+     Needed because the scaled preview iframes bleed a few subpixels past the
+     viewport at every width below 1440. */
+  html, body { margin: 0; background: var(--paper); color: var(--ink); font-family: Fraunces, ui-serif, Georgia, serif; font-size: 18px; line-height: 1.6; -webkit-font-smoothing: antialiased; overflow-x: clip; }
   html { scroll-behavior: smooth; }
   a { color: inherit; }
 
@@ -68,13 +79,13 @@
     /* One step bigger than the base — still smaller than "Anti-Slop" (1.35em) */
     font-size: 1.18em;
     font-weight: 600;
-    color: var(--ochre);
+    color: var(--ochre-display);
     font-variation-settings: "opsz" 144, "SOFT" 80, "wght" 600;
     line-height: 0.95;
   }
   .nav-actions { display: flex; gap: 1.3rem; align-items: center; font-family: 'JetBrains Mono', monospace; font-size: 10.5px; letter-spacing: 0.22em; text-transform: uppercase; }
   .nav-actions a { color: var(--ink); text-decoration: none; transition: color .3s; }
-  .nav-actions a:hover { color: var(--ochre); }
+  .nav-actions a:hover { color: var(--ochre-ink); }
   .nav-actions a.gh {
     border: 1px solid oklch(0.20 0.018 252 / .35); padding: 0.55rem 0.95rem;
     transition: all .4s cubic-bezier(.16,1,.3,1);
@@ -94,7 +105,7 @@
   h2 { font-family: Fraunces, serif; font-weight: 400; font-size: clamp(2.2rem, 4.4vw, 3.6rem); line-height: 1; letter-spacing: -0.02em; margin: 1rem 0 1.5rem; }
   h3 { font-family: Fraunces, serif; font-weight: 500; font-size: clamp(1.5rem, 2vw, 2rem); margin: 0; font-style: italic; }
 
-  .em-ochre { font-style: italic; color: var(--ochre); }
+  .em-ochre { font-style: italic; color: var(--ochre-display); }
   .em-lacquer { font-style: italic; color: var(--lacquer); }
 
   code.k {
@@ -107,7 +118,7 @@
   .hero { padding-top: 6rem; padding-bottom: 4rem; }
   .lede p { font-size: 1.18rem; line-height: 1.7; color: var(--ink2); margin: 0 0 1.3rem; max-width: 65ch; }
   .lede p:last-child { margin-bottom: 0; }
-  .lede a { color: var(--ochre); text-decoration: underline; text-decoration-color: oklch(0.74 0.16 64 / .4); text-decoration-thickness: 1px; text-underline-offset: 4px; transition: color .3s; }
+  .lede a { color: var(--ochre-ink); text-decoration: underline; text-decoration-color: oklch(0.74 0.16 64 / .4); text-decoration-thickness: 1px; text-underline-offset: 4px; transition: color .3s; }
   .lede a:hover { color: var(--lacquer); }
   .hero .cta-row { margin-top: 2.6rem; display: flex; gap: 1rem; flex-wrap: wrap; }
   .btn {
@@ -179,32 +190,29 @@
     display: flex; flex-direction: column;
     border-radius: 6px; overflow: hidden;
   }
-  .frame-bar {
-    display: flex; align-items: center; gap: 0.8rem;
-    padding: 0.55rem 0.9rem;
+  /* Caption, not chrome. This used to be a hand-drawn browser bar with
+     traffic-light dots and a padlocked URL pill — the exact thing gate 47
+     forbids, on the page that publishes gate 47. The preview underneath is a
+     live iframe, so it never needed a costume: a hairline figure and an honest
+     caption say more and lie less. */
+  .frame-cap {
+    display: flex; align-items: center; gap: 0.9rem;
+    padding: 0.7rem 0.9rem;
     background: var(--ink);
-    border-bottom: 1px solid oklch(0.92 0.008 88 / .12);
+    border-top: 1px solid oklch(0.92 0.008 88 / .15);
     font-family: 'JetBrains Mono', monospace; font-size: 10px;
     letter-spacing: 0.16em; text-transform: uppercase;
   }
-  .frame-bar .dots { display: inline-flex; gap: 6px; }
-  .frame-bar .dot { width: 10px; height: 10px; border-radius: 50%; background: oklch(0.55 0.015 252); }
-  .frame-bar .dot.red { background: oklch(0.62 0.20 22); }
-  .frame-bar .dot.yel { background: oklch(0.82 0.16 88); }
-  .frame-bar .dot.grn { background: oklch(0.72 0.13 145); }
-  .frame-bar .url {
-    flex: 1; color: oklch(0.92 0.008 88 / .8); text-transform: none;
-    letter-spacing: 0.06em; font-family: 'JetBrains Mono', monospace;
-    background: oklch(0.92 0.008 88 / .06); padding: 0.3rem 0.7rem; border-radius: 4px;
-    text-align: center;
+  .frame-cap .cap-lane {
+    flex: 1; color: oklch(0.92 0.008 88 / .72);
+    letter-spacing: 0.2em;
   }
-  .frame-bar .url::before { content: "🔒  "; opacity: 0.7; font-size: 8px; letter-spacing: 0; }
-  .frame-bar .open-live {
+  .frame-cap .open-live {
     color: var(--ink); background: var(--ochre);
-    padding: 0.3rem 0.65rem; text-decoration: none;
-    transition: all .3s; border-radius: 3px;
+    padding: 0.35rem 0.7rem; text-decoration: none;
+    transition: all .3s; border-radius: 2px;
   }
-  .frame-bar .open-live:hover { background: var(--paper); }
+  .frame-cap .open-live:hover { background: var(--paper); }
 
   .frame-viewport {
     position: relative;
@@ -224,17 +232,17 @@
   .frame.live .frame-viewport iframe { pointer-events: auto; }
 
   .frame-toggle {
-    width: 100%; cursor: pointer; border: 0;
-    border-top: 1px solid oklch(0.92 0.008 88 / .15);
-    background: oklch(0.20 0.018 252);
+    cursor: pointer;
+    border: 1px solid oklch(0.92 0.008 88 / .25);
+    background: transparent;
     color: oklch(0.92 0.008 88 / .8);
     font-family: 'JetBrains Mono', monospace; font-size: 10px;
-    letter-spacing: 0.22em; text-transform: uppercase;
-    padding: 0.8rem 0.9rem;
-    transition: background .3s, color .3s;
+    letter-spacing: 0.2em; text-transform: uppercase;
+    padding: 0.35rem 0.7rem; border-radius: 2px;
+    transition: background .3s, color .3s, border-color .3s;
   }
-  .frame-toggle:hover { background: oklch(0.28 0.018 252); color: var(--paper); }
-  .frame.live .frame-toggle { background: var(--ochre); color: var(--ink); }
+  .frame-toggle:hover { background: oklch(0.92 0.008 88 / .12); color: var(--paper); }
+  .frame.live .frame-toggle { background: var(--ochre); color: var(--ink); border-color: var(--ochre); }
   .frame.live .frame-toggle::before { content: "● LIVE  ·  "; color: var(--lacquer); }
 
   /* Chapter break — two separate hairlines (left & right of central diamond),
@@ -253,6 +261,9 @@
     max-width: 1100px;
     height: 56px;
     margin: 0 auto;
+    /* Bright ochre stays here on purpose: currentColor feeds the strokes of a
+       decorative graphic, not text, so the text-contrast floor does not apply
+       and the set piece keeps its glow. */
     color: var(--ochre);
     overflow: visible;
   }
@@ -280,25 +291,34 @@
 
   /* Demos use grid-template-areas + data-layout so alternation is explicit.
      Iframes capped at max-width so text gets room to breathe on wide viewports. */
+  /* minmax(0, 1fr), never a bare 1fr. A bare 1fr carries an implicit auto
+     minimum, so the track cannot shrink below its content's min-content width.
+     The stack lines here are held together with non-breaking spaces
+     ("Impeccable&nbsp;+&nbsp;high-end-visual-design") and the prose carries long
+     code paths, so on a 320px viewport this single column computed to 1522px
+     and dragged 1200px of horizontal scroll onto the page. Gates 50 and 51,
+     violated by the page that publishes them. */
   .demo {
     display: grid;
     grid-template-areas: "text frame";
-    grid-template-columns: 1fr 1.1fr;
+    grid-template-columns: minmax(0, 1fr) minmax(0, 1.1fr);
     gap: 3.5rem;
     align-items: center;
     margin-bottom: 6rem;
   }
   .demo[data-layout="text-right"] {
     grid-template-areas: "frame text";
-    grid-template-columns: 1.1fr 1fr;
+    grid-template-columns: minmax(0, 1.1fr) minmax(0, 1fr);
   }
-  .demo .demo-text  { grid-area: text; }
-  .demo .demo-frame { grid-area: frame; max-width: 680px; width: 100%; }
+  .demo .demo-text  { grid-area: text; min-width: 0; }
+  .demo .demo-frame { grid-area: frame; max-width: 680px; width: 100%; min-width: 0; }
+  .demo .stack, .demo .story { overflow-wrap: anywhere; }
+  code.k { overflow-wrap: anywhere; }
   .demo[data-layout="text-left"]  .demo-frame { margin-left: auto; }
   .demo[data-layout="text-right"] .demo-frame { margin-right: auto; }
   .demo-num { font-family: 'JetBrains Mono', monospace; color: var(--mineral); font-size: 11px; letter-spacing: 0.22em; }
   .demo-lane {
-    font-family: 'JetBrains Mono', monospace; color: var(--ochre);
+    font-family: 'JetBrains Mono', monospace; color: var(--ochre-ink);
     font-size: 11px; letter-spacing: 0.22em; text-transform: uppercase;
     margin-top: 0.4rem; display: block;
   }
@@ -319,12 +339,16 @@
   .reads { list-style: none; padding: 0; margin: 2rem 0 0; }
   .reads li { border-top: 1px solid var(--rule); }
   .reads li:last-child { border-bottom: 1px solid var(--rule); }
+  /* Indent on hover via transform, not padding. Animating padding relayouts the
+     whole list on every frame; a translate stays on the compositor. */
   .reads a {
-    display: block; padding: 1.4rem 0; text-decoration: none; color: var(--ink);
-    transition: background .3s, padding .3s;
+    display: block; padding: 1.4rem 1rem; margin: 0 -1rem;
+    text-decoration: none; color: var(--ink);
+    transition: background .3s, transform .3s;
   }
-  .reads a:hover { background: oklch(0.74 0.16 64 / .08); padding-left: 1rem; padding-right: 1rem; }
-  .reads .read-tag { font-family: 'JetBrains Mono', monospace; font-size: 10px; letter-spacing: 0.24em; text-transform: uppercase; color: var(--ochre); }
+  .reads a:hover { background: oklch(0.74 0.16 64 / .08); transform: translateX(0.6rem); }
+  @media (prefers-reduced-motion: reduce) { .reads a:hover { transform: none; } }
+  .reads .read-tag { font-family: 'JetBrains Mono', monospace; font-size: 10px; letter-spacing: 0.24em; text-transform: uppercase; color: var(--ochre-ink); }
   .reads .read-title { font-family: Fraunces, serif; font-style: italic; font-size: 1.45rem; margin-top: 0.3rem; line-height: 1.2; }
   .reads .read-desc { color: var(--mineral); font-size: 0.95rem; margin-top: 0.4rem; line-height: 1.5; }
 
@@ -338,8 +362,8 @@
     font-family: 'JetBrains Mono', monospace; font-size: 11px; letter-spacing: 0.16em;
     text-transform: uppercase; transition: color .3s;
   }
-  .stack-stars a:hover { color: var(--ochre); }
-  .stack-stars .stars { color: var(--ochre); font-weight: 500; }
+  .stack-stars a:hover { color: var(--ochre-ink); }
+  .stack-stars .stars { color: var(--ochre-ink); font-weight: 500; }
 
   /* Footer */
   footer {
@@ -362,7 +386,7 @@
     letter-spacing: 0.15em; text-transform: uppercase; line-height: 2.4;
     transition: color .3s;
   }
-  footer ul a:hover { color: var(--ochre); }
+  footer ul a:hover { color: var(--ochre-ink); }
   footer .colophon {
     font-family: Fraunces, serif; font-style: italic; font-size: 1rem;
     line-height: 1.65; color: oklch(0.92 0.008 88 / .8); margin: 0 0 1.5rem;
@@ -381,7 +405,7 @@
   @media (max-width: 1100px) {
     .demo, .demo[data-layout="text-right"] {
       grid-template-areas: "frame" "text";
-      grid-template-columns: 1fr;
+      grid-template-columns: minmax(0, 1fr);
       gap: 2.5rem;
     }
     .demo .demo-frame { max-width: none; margin: 0 auto !important; }
@@ -397,6 +421,12 @@
     section { padding: 4rem 0; }
     .hero { padding-top: 4rem; }
     .antagonist-header h2 { font-size: clamp(2rem, 7vw, 2.6rem); }
+  }
+  @media (max-width: 480px) {
+    /* The wordmark plus the GitHub button ran 9px past a 320px viewport. */
+    .brand { font-size: 1.3rem; }
+    .nav-actions a.gh { padding: 0.45rem 0.7rem; letter-spacing: 0.14em; }
+    .nav { padding: 0.8rem 1rem; }
   }
 
   /* Subtle scroll-reveals for sections */
@@ -422,6 +452,17 @@
   .demo[data-layout="text-right"] .demo-text { --enter-x: 42px; }
   .demo-text.in { opacity: 1; filter: blur(0); transform: translateX(0); }
 
+  /* Below 1100 the columns are stacked, so a side entrance has nothing left to
+     say, and its 42px offset is real horizontal scroll for as long as the
+     element sits un-revealed. This block has to come after the two rules above:
+     equal specificity, so source order decides. Enter upward instead. */
+  @media (max-width: 1100px) {
+    .demo .demo-text,
+    .demo[data-layout="text-right"] .demo-text { --enter-x: 0px; }
+    .demo-text { transform: translateY(24px); }
+    .demo-text.in { transform: none; }
+  }
+
   @media (prefers-reduced-motion: reduce) {
     .reveal, .demo-text { opacity: 1; transform: none; transition: none; filter: none; }
   }
@@ -442,14 +483,18 @@
 </header>
 
 <section class="hero wrap" id="top">
-  <div class="kicker">Audit &middot; Router &middot; Proof</div>
-  <h1>Three sites,<br><span class="em-ochre">one&nbsp;router</span>.</h1>
+  <div class="kicker">Audit &middot; Registers &middot; Proof</div>
+  <h1>Six registers,<br><span class="em-ochre">one&nbsp;system</span>.</h1>
   <div class="lede">
-    <p>I have a hundred and thirty-seven skills installed in my Claude Code setup. Roughly thirty of them are design-related. Some are brilliant — <a href="https://github.com/pbakaus/impeccable" target="_blank" rel="noopener">Impeccable</a>, <a href="https://github.com/Leonxlnx/taste-skill" target="_blank" rel="noopener">taste-skill</a>, <a href="https://github.com/Owl-Listener/designpowers" target="_blank" rel="noopener">designpowers</a>. Others are compliance checklists. None of them, alone or composed, reliably stopped my model from shipping the same AI-generic landing page every time I asked for something premium.</p>
+    <p>I have a hundred and thirty-seven skills installed in my Claude Code setup. Roughly thirty of them are design-related. Some are brilliant: <a href="https://github.com/pbakaus/impeccable" target="_blank" rel="noopener">Impeccable</a>, <a href="https://github.com/Leonxlnx/taste-skill" target="_blank" rel="noopener">taste-skill</a>, <a href="https://github.com/Owl-Listener/designpowers" target="_blank" rel="noopener">designpowers</a>. Others are compliance checklists. None of them, alone or composed, reliably stopped my model from shipping the same AI-generic landing page every time I asked for something premium.</p>
 
-    <p>The third time my model returned a centered hero stack with a chart card on the right, a four-column metric grid, three icon-title cards, and a "trusted by 10,000+ teams" line — all in Inter, all on egg-shell — I stopped fighting the model and started auditing the stack.</p>
+    <p>The third time my model returned a centered hero stack with a chart card on the right, a four-column metric grid, three icon-title cards, and a "trusted by 10,000+ teams" line, all in Inter and all on egg-shell, I stopped fighting the model and started auditing the stack.</p>
 
-    <p>About twenty minutes later, in a single <em>Opus 4.7</em> session, I had: a five-axis ranking of <a href="https://github.com/oloflun/anti-slop-design/blob/main/AUDIT.md" target="_blank" rel="noopener">32 design skills</a>, one <a href="https://github.com/oloflun/anti-slop-design/blob/main/skills/design/SKILL.md" target="_blank" rel="noopener">master router skill</a> at <code class="k">~/.agents/skills/design/SKILL.md</code> that fires on the trigger word <code class="k">design</code>, and three landing pages built from single prompts each — every one in a different aesthetic lane, every one passing both <em>slop tests</em>. None of them look AI-generated.</p>
+    <p>About twenty minutes later, in a single <em>Opus 4.7</em> session, I had: a five-axis ranking of <a href="https://github.com/oloflun/anti-slop-design/blob/main/AUDIT.md" target="_blank" rel="noopener">32 design skills</a>, one <a href="https://github.com/oloflun/anti-slop-design/blob/main/skills/design/SKILL.md" target="_blank" rel="noopener">router skill</a> at <code class="k">~/.agents/skills/design/SKILL.md</code> that fires on the trigger word <code class="k">design</code>, and three landing pages built from single prompts each. None of them looked AI-generated.</p>
+
+    <p>Then a rebuild made the output worse, and finding out why took longer than building the thing. The second version fixed everything mechanical about the first: hooks that fired at edit boundaries instead of turn boundaries, a gate that could deny an off-brand write, telemetry that measured whether the right skill actually loaded. It never asked why the first version's <em>output</em> had been good. Craft that had been resident in context became a hundred and twenty files loaded on demand, the step that made you name an aesthetic before writing code disappeared, and every remaining quality gate was a prohibition. A flat, on-palette, thoroughly generic page passes all eighty-eight of those untouched.</p>
+
+    <p>What fixed it was separating <strong>structure</strong> from <strong>register</strong>. The three original demos are all editorial print, and treating their shared habits as universal law meant a harbour restaurant got roman numerals and a one-person software firm got a colophon. Both were worse for it. There are six registers below, one of which had no worked example to copy when it was built.</p>
   </div>
   <div class="cta-row">
     <a class="btn primary" href="#antagonist">↓ See the antagonist first</a>
@@ -465,22 +510,21 @@
     </header>
 
     <div class="antagonist-frame-wrap">
-      <div class="frame">
-        <div class="frame-bar">
-          <span class="dots"><span class="dot red"></span><span class="dot yel"></span><span class="dot grn"></span></span>
-          <span class="url">flowstack.app  /  the all-in-one platform for modern teams</span>
-          <a class="open-live" data-href="before-ai-slop" href="#" target="_blank" rel="noopener">OPEN&nbsp;↗</a>
-        </div>
+      <figure class="frame">
         <div class="frame-viewport">
-          <iframe data-src="before-ai-slop" loading="lazy" title="The AI-slop antagonist — what every AI coding tool ships by default"></iframe>
+          <iframe data-src="before-ai-slop" loading="lazy" title="The AI-slop antagonist, what every AI coding tool ships by default"></iframe>
         </div>
-        <button class="frame-toggle" data-toggle-frame>Click to scroll inside the preview</button>
-      </div>
+        <figcaption class="frame-cap">
+          <span class="cap-lane">Built on purpose, as the thing to beat</span>
+          <button class="frame-toggle" data-toggle-frame>Scroll inside</button>
+          <a class="open-live" data-href="before-ai-slop" href="#" target="_blank" rel="noopener">Open&nbsp;↗</a>
+        </figcaption>
+      </figure>
     </div>
 
     <div class="antagonist-body">
       <p><strong>Inter typeface.</strong> Sticky pill nav. Gradient hero text. Chart card on the right. Four-column metric grid with tiny captions. Three icon-title-body "feature" cards. Big-number row. Generic CTA. <em>"Trusted by 10,000+ teams."</em> <em>Made with ❤️ in San Francisco.</em></p>
-      <p><strong>Every pattern visible above is on the absolute-ban list of multiple premium design skills installed on my machine</strong> — and they didn't fire. The router this repo ships exists so this never gets shipped again. The three demos below are what fires <em>instead</em>, when the router is in place.</p>
+      <p><strong>Every pattern visible above is on the absolute-ban list of multiple premium design skills installed on my machine</strong>, and they didn't fire. The router this repo ships exists so this never gets shipped again. The three demos below are what fires <em>instead</em>, when the router is in place.</p>
     </div>
   </div>
 </section>
@@ -529,56 +573,55 @@
 
 <section id="demos" class="wrap">
   <div class="demos-intro">
-    <div class="kicker">What the router shipped instead</div>
-    <h2>Three single-prompt landing pages,<br>three aesthetic <span class="em-ochre">lanes</span>.</h2>
+    <div class="kicker">What the system shipped instead</div>
+    <h2>Six single-prompt landing pages,<br>six <span class="em-ochre">registers</span>.</h2>
+    <p>Same structure underneath every one: hierarchy through scale rather than decoration, hairlines that separate where planes would not, one accent at display scale, one signature scroll piece, columns that carry their width. Everything else moves with the business. The last three were built blind by subagents in a single attempt each, with no chance to iterate.</p>
   </div>
 
   <!-- Demo 1 · Calyx — text LEFT, frame RIGHT -->
   <article class="demo" data-layout="text-left">
     <div class="demo-text">
       <div class="demo-num">/01</div>
-      <span class="demo-lane">Editorial Luxury</span>
-      <h3>Calyx — Stockholm Atelier</h3>
-      <p class="story">A two-sister botanical commission studio in Vasastan, accepting eleven cuttings a week — the eleventh being a wedding. Cream + charcoal restraint, Cardo italic display, layered botanical photography. The reference target was the published <em>floria-landing-page</em>. Design IS the product; the page IS the brand. The router's job here was to keep it from collapsing into the warm-cream-with-italic-serif aesthetic <em>family</em> that's flooded boutique-brand sites for two years.</p>
-      <div class="stack">Stack: Impeccable&nbsp;+&nbsp;high-end-visual-design<br>Lane: Editorial Luxury archetype<br>Photography: 4 verified Unsplash photographs</div>
+      <span class="demo-lane">Editorial print</span>
+      <h3>Calyx, Stockholm Atelier</h3>
+      <p class="story">A two-sister botanical commission studio in Vasastan, accepting eleven cuttings a week, the eleventh being a wedding. Cream + charcoal restraint, Cardo italic display, layered botanical photography. The reference target was the published <em>floria-landing-page</em>. Design IS the product; the page IS the brand. The job here was to keep it out of the warm-cream-with-italic-serif family that has flooded boutique-brand sites for two years. This is the register the others get wrongly pulled towards, which is why the table now names it as one option rather than the default.</p>
+      <div class="stack">Register: editorial print<br>Built with Impeccable and high-end-visual-design<br>Photography: 4 verified Unsplash photographs</div>
       <a href="#" data-href="calyx" class="btn primary open-live-btn" target="_blank" rel="noopener">Open live →</a>
     </div>
     <div class="demo-frame">
-      <div class="frame">
-        <div class="frame-bar">
-          <span class="dots"><span class="dot red"></span><span class="dot yel"></span><span class="dot grn"></span></span>
-          <span class="url">calyx.se  /  botanical architecture, stockholm</span>
-          <a class="open-live" data-href="calyx" href="#" target="_blank" rel="noopener">OPEN&nbsp;↗</a>
-        </div>
+      <figure class="frame">
         <div class="frame-viewport">
-          <iframe data-src="calyx" loading="lazy" title="Calyx — Stockholm botanical atelier"></iframe>
+          <iframe data-src="calyx" loading="lazy" title="Calyx, Stockholm botanical atelier"></iframe>
         </div>
-        <button class="frame-toggle" data-toggle-frame>Click to scroll inside the preview</button>
-      </div>
+        <figcaption class="frame-cap">
+          <span class="cap-lane">Editorial print</span>
+          <button class="frame-toggle" data-toggle-frame>Scroll inside</button>
+          <a class="open-live" data-href="calyx" href="#" target="_blank" rel="noopener">Open&nbsp;↗</a>
+        </figcaption>
+      </figure>
     </div>
   </article>
 
   <!-- Demo 2 · Hyperborea — text RIGHT, frame LEFT -->
   <article class="demo" data-layout="text-right">
     <div class="demo-frame">
-      <div class="frame">
-        <div class="frame-bar">
-          <span class="dots"><span class="dot red"></span><span class="dot yel"></span><span class="dot grn"></span></span>
-          <span class="url">hyperborea.summit  /  systems with warmth · mmxxvi</span>
-          <a class="open-live" data-href="hyperborea" href="#" target="_blank" rel="noopener">OPEN&nbsp;↗</a>
-        </div>
+      <figure class="frame">
         <div class="frame-viewport">
           <iframe data-src="hyperborea" loading="lazy" title="Hyperborea Summit MMXXVI"></iframe>
         </div>
-        <button class="frame-toggle" data-toggle-frame>Click to scroll inside the preview</button>
-      </div>
+        <figcaption class="frame-cap">
+          <span class="cap-lane">Illustrated dark</span>
+          <button class="frame-toggle" data-toggle-frame>Scroll inside</button>
+          <a class="open-live" data-href="hyperborea" href="#" target="_blank" rel="noopener">Open&nbsp;↗</a>
+        </figcaption>
+      </figure>
     </div>
     <div class="demo-text">
       <div class="demo-num">/02</div>
-      <span class="demo-lane">Speculative-Futurist</span>
+      <span class="demo-lane">Illustrated dark</span>
       <h3>Hyperborea Summit MMXXVI</h3>
-      <p class="story">A three-day speculative-futurist conference in Lund, twelve to fourteen September. Drenched dark navy with amber accents, bilingual EN/SV with Japanese kanji, illustrated SVG sun-disc speaker portraits. The reference target was <em>Impeccable.style/neo-mirai</em> — concept-art meets conference brand. The router fired gpt-taste for AIDA scrolltelling, design-taste-frontend for perpetual micro-motion (the rising sun, the marquee, the speaker-card hover lift), plus Impeccable's brand register to keep it out of the saturated dark-blue-observability lane.</p>
-      <div class="stack">Stack: Impeccable&nbsp;+&nbsp;gpt-taste&nbsp;+&nbsp;design-taste-frontend<br>Lane: drenched dark, illustrated SVG identity<br>Type: Italiana + Archivo + Noto Serif JP</div>
+      <p class="story">A three-day speculative-futurist conference in Lund, twelve to fourteen September. Drenched dark navy with amber accents, bilingual EN/SV with Japanese kanji, illustrated SVG sun-disc speaker portraits. The reference target was <em>Impeccable.style/neo-mirai</em>, concept-art meets conference brand. The router fired gpt-taste for AIDA scrolltelling, design-taste-frontend for perpetual micro-motion (the rising sun, the marquee, the speaker-card hover lift), plus Impeccable's brand register to keep it out of the saturated dark-blue-observability lane.</p>
+      <div class="stack">Register: illustrated dark<br>Fourteen inline SVGs, no photography at all<br>Type: Italiana, Archivo, Noto Serif JP</div>
       <a href="#" data-href="hyperborea" class="btn primary open-live-btn" target="_blank" rel="noopener">Open live →</a>
     </div>
   </article>
@@ -587,24 +630,97 @@
   <article class="demo" data-layout="text-left">
     <div class="demo-text">
       <div class="demo-num">/03</div>
-      <span class="demo-lane">Drenched Warm</span>
-      <h3>Hōrai — A Three-Sister Restaurant</h3>
-      <p class="story">High-end Asian-fusion restaurant on Hornsgatan, two seatings a night, twenty-six covers, one menu a night, no à la carte. Rice-paper cream + lacquer red, Cinzel monumental Roman caps over Vollkorn literary body, atmospheric food photography. The showpiece is the scroll-driven editorial chapter break over the dark noodles photograph — the quote bell-curves into focus as the section centers in your viewport. Scroll <em>through</em> the live preview to see it.</p>
-      <div class="stack">Stack: Impeccable&nbsp;+&nbsp;designpowers/design-taste<br>Lane: drenched warm, photo-led editorial<br>Notable: proximity-driven scroll-scrub animation</div>
+      <span class="demo-lane">Cinematic dark</span>
+      <h3>Hōrai, a Three-Sister Restaurant</h3>
+      <p class="story">High-end Asian-fusion restaurant on Hornsgatan, two seatings a night, twenty-six covers, one menu a night, no à la carte. Rice-paper cream + lacquer red, Cinzel monumental Roman caps over Vollkorn literary body, atmospheric food photography. The showpiece is the scroll-driven editorial chapter break over the dark noodles photograph, where the quote bell-curves into focus as the section centers in your viewport. Scroll <em>through</em> the live preview to see it.</p>
+      <div class="stack">Register: cinematic dark<br>Photo-led, with a 130vh chapter break<br>Notable: proximity-driven scroll-scrub animation</div>
       <a href="#" data-href="horai" class="btn primary open-live-btn" target="_blank" rel="noopener">Open live →</a>
     </div>
     <div class="demo-frame">
-      <div class="frame">
-        <div class="frame-bar">
-          <span class="dots"><span class="dot red"></span><span class="dot yel"></span><span class="dot grn"></span></span>
-          <span class="url">horai.se  /  a three-sister restaurant, stockholm</span>
-          <a class="open-live" data-href="horai" href="#" target="_blank" rel="noopener">OPEN&nbsp;↗</a>
-        </div>
+      <figure class="frame">
         <div class="frame-viewport">
-          <iframe data-src="horai" loading="lazy" title="Hōrai — A Three-Sister Restaurant, Stockholm"></iframe>
+          <iframe data-src="horai" loading="lazy" title="Hōrai, a three-sister restaurant in Stockholm"></iframe>
         </div>
-        <button class="frame-toggle" data-toggle-frame>Click to scroll inside the preview</button>
-      </div>
+        <figcaption class="frame-cap">
+          <span class="cap-lane">Cinematic dark</span>
+          <button class="frame-toggle" data-toggle-frame>Scroll inside</button>
+          <a class="open-live" data-href="horai" href="#" target="_blank" rel="noopener">Open&nbsp;↗</a>
+        </figcaption>
+      </figure>
+    </div>
+  </article>
+
+  <!-- Demo 4 · Tidvatten — text RIGHT, frame LEFT. First page built after the
+       register split; the one that proved a grotesk can be a decision. -->
+  <article class="demo" data-layout="text-right">
+    <div class="demo-text">
+      <div class="demo-num">/04</div>
+      <span class="demo-lane">Modern clean</span>
+      <h3>Tidvatten, a Cold-Bath Club</h3>
+      <p class="story">A wood-fired sauna club at the end of Pier 4 in Malmö. Slate blue-grey and deep sea dark, terracotta as the only warmth, Familjen Grotesk set tight in caps. The grotesk is the point: the subject here is temperature, timetable and protocol, so precision reads truer than connoisseurship. Its set piece is the two temperatures, 2&deg; and 85&deg;, driving together out of blur as the section centres. The statutes are a ledger: <em>&sect;4, silence on the benches before seven.</em></p>
+      <div class="stack">Register: modern clean<br>Built blind by a subagent, single attempt<br>Verification: seven rounds, last one clean</div>
+      <a href="#" data-href="tidvatten" class="btn primary open-live-btn" target="_blank" rel="noopener">Open live →</a>
+    </div>
+    <div class="demo-frame">
+      <figure class="frame">
+        <div class="frame-viewport">
+          <iframe data-src="tidvatten" loading="lazy" title="Tidvatten, a cold-bath and sauna club in Malmö"></iframe>
+        </div>
+        <figcaption class="frame-cap">
+          <span class="cap-lane">Modern clean</span>
+          <button class="frame-toggle" data-toggle-frame>Scroll inside</button>
+          <a class="open-live" data-href="tidvatten" href="#" target="_blank" rel="noopener">Open&nbsp;↗</a>
+        </figcaption>
+      </figure>
+    </div>
+  </article>
+
+  <!-- Demo 5 · Vintergatan — text LEFT, frame RIGHT -->
+  <article class="demo" data-layout="text-left">
+    <div class="demo-text">
+      <div class="demo-num">/05</div>
+      <span class="demo-lane">Editorial print</span>
+      <h3>Vintergatan, Antiquarian and Bindery</h3>
+      <p class="story">Rare books at the counter on Svartbäcksgatan in Uppsala, and behind the curtain a workshop that sews, repairs and gilds to order. Yellowed press paper and iron-gall ink, oxblood morocco and leaf gold at display scale, Cormorant Garamond mixing roman and italic inside one line. Its set piece runs three coordinated layers: the thread draws itself, the words unblur in staggered order, and a mono line inks in word by word. Accession numbers recur across captions and the ledger, so the world cross-references itself.</p>
+      <div class="stack">Register: editorial print<br>Built blind by a subagent, single attempt<br>Six photographs, twenty-nine candidates reviewed</div>
+      <a href="#" data-href="vintergatan" class="btn primary open-live-btn" target="_blank" rel="noopener">Open live →</a>
+    </div>
+    <div class="demo-frame">
+      <figure class="frame">
+        <div class="frame-viewport">
+          <iframe data-src="vintergatan" loading="lazy" title="Vintergatan, an antiquarian bookshop and bindery in Uppsala"></iframe>
+        </div>
+        <figcaption class="frame-cap">
+          <span class="cap-lane">Editorial print</span>
+          <button class="frame-toggle" data-toggle-frame>Scroll inside</button>
+          <a class="open-live" data-href="vintergatan" href="#" target="_blank" rel="noopener">Open&nbsp;↗</a>
+        </figcaption>
+      </figure>
+    </div>
+  </article>
+
+  <!-- Demo 6 · Vinterspelen — text RIGHT, frame LEFT. The register with no
+       worked example on disk, derived rather than copied. -->
+  <article class="demo" data-layout="text-right">
+    <div class="demo-text">
+      <div class="demo-num">/06</div>
+      <span class="demo-lane">Historical art</span>
+      <h3>Vinterspelen, Opera by Candlelight</h3>
+      <p class="story">Seventeen evenings each January in a manor theatre that closed in 1814 and then stood untouched for a hundred and thirty-four years. This was the hard test: <em>historical art</em> was a row in the register table with no worked example beside it, so the page had to derive the register instead of copying the nearest one on disk. It came back with period paintings in double gilt frames, gold on near-black, and captions that name inventory numbers. Every work is public domain, credited under its own frame.</p>
+      <div class="stack">Register: historical art, derived with no exemplar<br>Sources: Nationalmuseum, The Met, Wikimedia Commons<br>Ten works, two harvests, contact sheets reviewed by eye</div>
+      <a href="#" data-href="vinterspelen" class="btn primary open-live-btn" target="_blank" rel="noopener">Open live →</a>
+    </div>
+    <div class="demo-frame">
+      <figure class="frame">
+        <div class="frame-viewport">
+          <iframe data-src="vinterspelen" loading="lazy" title="Vinterspelen, an opera festival in an 18th-century manor theatre"></iframe>
+        </div>
+        <figcaption class="frame-cap">
+          <span class="cap-lane">Historical art</span>
+          <button class="frame-toggle" data-toggle-frame>Scroll inside</button>
+          <a class="open-live" data-href="vinterspelen" href="#" target="_blank" rel="noopener">Open&nbsp;↗</a>
+        </figcaption>
+      </figure>
     </div>
   </article>
 </section>
@@ -645,13 +761,15 @@
         <div class="kicker">The story</div>
         <h2>How it was <span class="em-ochre">made</span>.</h2>
         <div class="lede">
-          <p>One Claude Code session. Opus 4.7 high. Roughly twenty minutes of wall-clock. The session read every design SKILL.md in batched parallel reads, scored each on a five-axis rubric (<em>anti-slop teeth, aesthetic ceiling, execution fidelity, routing clarity, maintenance cost</em>), demoted the compliance-checklist ones — yes, <code class="k">ui-ux-pro-max</code> was one — and wrote a single master router.</p>
+          <p>One Claude Code session. Opus 4.7 high. Roughly twenty minutes of wall-clock. The session read every design SKILL.md in batched parallel reads, scored each on a five-axis rubric (<em>anti-slop teeth, aesthetic ceiling, execution fidelity, routing clarity, maintenance cost</em>), demoted the compliance-checklist ones (yes, <code class="k">ui-ux-pro-max</code> was one) and wrote a single master router.</p>
 
-          <p>The router does six things on every design task: <strong>detect</strong> task type → <strong>name</strong> an aesthetic lane → <strong>run</strong> both slop tests → <strong>layer</strong> the right specialist → <strong>enforce</strong> five hard bans as gates → <strong>end</strong> with <code class="k">impeccable polish</code>. It composes five upstream skills it didn't write. All credit for taste belongs to those repos.</p>
+          <p>The system does six things on every design task: <strong>classify</strong> the verb → <strong>pick</strong> the register from the business → <strong>name</strong> the aesthetic in one concrete phrase → <strong>source</strong> imagery before the first review → <strong>build</strong> against a craft floor that is resident, not routed → <strong>verify</strong> on pixels until a full pass finds nothing. It composes five upstream skills it did not write. All credit for taste belongs to those repos.</p>
 
-          <p>Three demo sites validated the routing. Each in a different aesthetic lane. Each from a single prompt. No build pipeline — Tailwind via CDN, Google Fonts, Chrome headless for the validation screenshots. The whole public repo fits in fifteen files.</p>
+          <p>Two things carry the most weight, and neither is a rule about how a page should look. The first is that the exit bar is mechanical: a Stop hook blocks the session from ending while UI edits exist that nobody has looked at, so the instruction to keep going until the result beats its references does not depend on a human remembering to type it. The second is that judgement rests on pixels. Screenshots get captured and read back into context; a screenshot nobody opened does not count, and computed style is not a substitute. Both came out of a session where every check passed on a page that turned out to be visually empty.</p>
 
-          <p>This is the broader bet I'm working on: the rest of my stack — orchestration, memory, session continuity, ingestion, evaluation — is starting to feel like an agentic OS. Design was the last subsystem that didn't have a router. Now it does.</p>
+          <p>Six demo sites validate the registers. Each from a single prompt, no build pipeline: Tailwind via CDN, Google Fonts, Chrome headless for the verification screenshots. The measuring instruments are in the repo too, and both of them were wrong on their first run in ways that would have passed a broken page. One parsed only <code class="k">rgb()</code> while Tailwind 4 emits <code class="k">oklch()</code>, so every colour silently became nonsense. The other measured text sitting over a photograph against the page background, which answers nothing. Suspect the measurement before you suspect your eyes.</p>
+
+          <p>This is the broader bet I'm working on: the rest of my stack (orchestration, memory, session continuity, ingestion, evaluation) is starting to feel like an agentic OS. Design was the last subsystem that didn't have a router. Now it does.</p>
         </div>
 
         <div class="stack-stars">
@@ -679,8 +797,18 @@
           </a></li>
           <li><a href="https://github.com/oloflun/anti-slop-design/blob/main/skills/design/SKILL.md" target="_blank" rel="noopener">
             <div class="read-tag">skills/design/SKILL.md</div>
-            <div class="read-title">The router itself</div>
-            <div class="read-desc">Drop into <code class="k">~/.agents/skills/design/</code> and type the trigger word. ~250 lines, all the iron rules and routing logic.</div>
+            <div class="read-title">The system itself</div>
+            <div class="read-desc">Drop into <code class="k">~/.agents/skills/design/</code> and type the trigger word. The register table, the craft floor that loads with the file rather than on demand, and the exit bar.</div>
+          </a></li>
+          <li><a href="https://github.com/oloflun/anti-slop-design/blob/main/skills/design/references/house-physics.md" target="_blank" rel="noopener">
+            <div class="read-tag">references/house-physics.md</div>
+            <div class="read-title">What holds, and what varies</div>
+            <div class="read-desc">The structural rules that survive every register, then a per-register inventory with exact values, extracted from the source of the demos rather than described from memory.</div>
+          </a></li>
+          <li><a href="https://github.com/oloflun/anti-slop-design/blob/main/plans/2026-07-31-what-actually-made-the-difference.md" target="_blank" rel="noopener">
+            <div class="read-tag">The post-mortem</div>
+            <div class="read-title">Why the rebuild made it worse</div>
+            <div class="read-desc">Six parallel readers over three prior sessions, the original system, the demo source and the hook chain, answering one question: what actually separated good output from flat output.</div>
           </a></li>
           <li><a href="https://github.com/oloflun/anti-slop-design/blob/main/attribution/UPSTREAMS.md" target="_blank" rel="noopener">
             <div class="read-tag">attribution/UPSTREAMS.md</div>
@@ -697,7 +825,7 @@
   <div class="footer-grid">
     <div>
       <h4>The Anti-Slop Design Stack</h4>
-      <p class="colophon">Built in a single Claude Code session, Opus 4.7 high, ~20 minutes wall-clock. The taste belongs to the upstreams; this repo is the routing layer that makes them fire.</p>
+      <p class="colophon">Started in a single Claude Code session, Opus 4.7 high, about twenty minutes wall-clock. Rebuilt twice since, the second time to undo what the first rebuild cost. The taste belongs to the upstreams; this repo is the layer that decides which one applies, and refuses to let a session end on work nobody looked at.</p>
       <a class="btn primary" href="https://github.com/oloflun/anti-slop-design" target="_blank" rel="noopener" style="margin-top: 0.5rem;">GitHub repo ↗</a>
     </div>
     <div>
@@ -716,6 +844,9 @@
         <li><a data-href="calyx" href="#">/calyx</a></li>
         <li><a data-href="hyperborea" href="#">/hyperborea</a></li>
         <li><a data-href="horai" href="#">/horai</a></li>
+        <li><a data-href="tidvatten" href="#">/tidvatten</a></li>
+        <li><a data-href="vintergatan" href="#">/vintergatan</a></li>
+        <li><a data-href="vinterspelen" href="#">/vinterspelen</a></li>
         <li><a data-href="before-ai-slop" href="#">/before-ai-slop</a></li>
       </ul>
     </div>

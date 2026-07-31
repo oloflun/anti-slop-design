@@ -1,0 +1,600 @@
+<!doctype html>
+<html lang="sv">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width,initial-scale=1" />
+<title>Vintergatan · Antikvariat och bokbinderi i Uppsala</title>
+<meta name="description" content="Antikvariat med eget bokbinderi på Svartbäcksgatan i Uppsala. Äldre tryck framme i butiken, handbundna och lagade band i verkstaden bakom." />
+<!--
+  design · pre-emit critique: P5 H4 E4 S5 R4 V4
+  Lane: antikvarisk liggare. Gulnat boktryckspapper och järngallusbläck,
+  oxblodsmarokäng som enda accent i displayskala, guld endast i binderiets
+  mörka kapitel. Cormorant Garamond display, EB Garamond brödtext,
+  IBM Plex Mono kicker. Tier 3, uppfinning, uttalad före första token.
+-->
+<link rel="preconnect" href="https://fonts.googleapis.com" />
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,500;0,600;1,400;1,500&family=EB+Garamond:ital,wght@0,400;0,500;1,400&family=IBM+Plex+Mono:wght@400;500&display=swap" rel="stylesheet" />
+<script src="https://cdn.tailwindcss.com"></script>
+<script>
+tailwind.config = {
+  theme: {
+    extend: {
+      colors: {
+        papper:   'oklch(0.955 0.018 92)',
+        pergament:'oklch(0.915 0.024 90)',
+        black:    'oklch(0.21 0.02 55)',
+        black2:   'oklch(0.30 0.02 55)',
+        sot:      'oklch(0.45 0.022 70)',
+        oxblod:   'oklch(0.42 0.125 28)',
+        trad:     'oklch(0.56 0.13 28)',
+        guld:     'oklch(0.74 0.10 85)',
+        benvit:   'oklch(0.94 0.02 90)',
+        mork:     'oklch(0.215 0.02 45)',
+      },
+      fontFamily: {
+        display: ['"Cormorant Garamond"','ui-serif','Georgia','serif'],
+        body: ['"EB Garamond"','ui-serif','Georgia','serif'],
+        mono: ['"IBM Plex Mono"','ui-monospace','monospace'],
+      },
+    }
+  }
+}
+</script>
+<style>
+  :root {
+    --c-papper: oklch(0.955 0.018 92);
+    --c-black: oklch(0.21 0.02 55);
+    --c-oxblod: oklch(0.42 0.125 28);
+    --c-guld: oklch(0.74 0.10 85);
+    --c-benvit: oklch(0.94 0.02 90);
+    --c-mork: oklch(0.215 0.02 45);
+    --f-display: "Cormorant Garamond", ui-serif, Georgia, serif;
+    --f-body: "EB Garamond", ui-serif, Georgia, serif;
+    --f-mono: "IBM Plex Mono", ui-monospace, monospace;
+  }
+  html, body { background: var(--c-papper); color: var(--c-black); font-family: var(--f-body); overflow-x: clip; }
+  body { font-size: 17.5px; line-height: 1.6; }
+  a { color: var(--c-black); }
+  a:hover { color: var(--c-oxblod); }
+  a:active { color: var(--c-oxblod); opacity: .8; }
+  a:focus-visible { outline: 2px solid var(--c-oxblod); outline-offset: 3px; }
+  .on-dark a { color: var(--c-benvit); }
+  .on-dark a:hover { color: var(--c-guld); }
+  .on-dark a:focus-visible { outline-color: var(--c-guld); }
+  .kicker { font-family: var(--f-mono); font-size: 10.5px; letter-spacing: 0.22em; text-transform: uppercase; }
+  .display { font-family: var(--f-display); letter-spacing: -0.015em; }
+  .disp-num { font-family: var(--f-display); font-style: italic; }
+  .rule { background: currentColor; height: 1px; opacity: 0.2; }
+  h1, h2 { overflow-wrap: anywhere; min-width: 0; }
+  .grain::before {
+    content: ""; position: fixed; inset: 0; pointer-events: none; z-index: 60;
+    background-image: url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='240' height='240'><filter id='n'><feTurbulence type='fractalNoise' baseFrequency='0.85' numOctaves='2' stitchTiles='stitch'/><feColorMatrix type='matrix' values='0 0 0 0 0.15 0 0 0 0 0.12 0 0 0 0 0.07 0 0 0 0.09 0'/></filter><rect width='100%' height='100%' filter='url(%23n)'/></svg>");
+    mix-blend-mode: multiply; opacity: 0.45;
+  }
+  /* Alla foto-id:n nedan är verifierade: nedladdade och granskade som bilder före bygget. */
+  .ph { background-size: cover; background-position: center; }
+  .ph-hero { background-image:
+      linear-gradient(to bottom, oklch(0.21 0.02 55 / .38), oklch(0.21 0.02 55 / .32) 38%, oklch(0.21 0.02 55 / .70) 72%, oklch(0.21 0.02 55 / .88)),
+      url('https://images.unsplash.com/photo-1481627834876-b7833e8f5570?auto=format&fit=crop&w=2400&q=80');
+    background-position: center 60%; }
+  .ph-hyllor { background-image: url('https://images.unsplash.com/photo-1507842217343-583bb7270b66?auto=format&fit=crop&w=1600&q=80'); }
+  .ph-trave { background-image: url('https://images.unsplash.com/photo-1550399105-c4db5fb85c18?auto=format&fit=crop&w=1600&q=80'); }
+  .ph-kort  { background-image: url('https://images.unsplash.com/photo-1461360370896-922624d12aa1?auto=format&fit=crop&w=2000&q=80'); }
+  .ph-solfjader { background-image:
+      linear-gradient(to right, oklch(0.215 0.02 45 / .55), oklch(0.215 0.02 45 / 0) 45%),
+      url('https://images.unsplash.com/photo-1589998059171-988d887df646?auto=format&fit=crop&w=1600&q=80'); }
+  .ph-penna { background-image: url('https://images.unsplash.com/photo-1455390582262-044cdead277a?auto=format&fit=crop&w=1600&q=80'); }
+  .duo-img { transition: transform 1.4s cubic-bezier(.16,1,.3,1); }
+  .duo:hover .duo-img { transform: scale(1.02); }
+  @media (prefers-reduced-motion: reduce) { .duo-img { transition: none; } .duo:hover .duo-img { transform: none; } }
+
+  /* Avslöjande vid scroll. Grundtillståndet är synligt; klassen .reveal sätts
+     enbart av javascript, så utan skript står allt framme. Fyra spärrar:
+     tröskel 0, monteringssvep, tidsspärr, synlig grund utan js. */
+  .reveal { opacity: 0; transform: translateY(28px); transition: opacity 1.25s cubic-bezier(.16,1,.3,1), transform 1.25s cubic-bezier(.16,1,.3,1); }
+  .reveal.in { opacity: 1; transform: none; }
+  @media (prefers-reduced-motion: reduce) { .reveal { opacity: 1; transform: none; transition: none; } }
+
+  /* Setpiecen: tre ord sätts som vid förgyllning, en tråd dras genom uppslaget.
+     Grundtillståndet i css är det färdiga; javascript animerar bara ovanpå. */
+  .sp-word { display: block; opacity: 1; filter: blur(0); transform: none; letter-spacing: -0.015em; will-change: opacity, filter, transform, letter-spacing; }
+  .sp-thread { transform-origin: left center; transform: scaleX(1); will-change: transform; }
+  .sp-mono-w { opacity: 1; will-change: opacity; }
+</style>
+</head>
+<body class="grain antialiased">
+
+<!-- Utgåvoremsa ovanför navet, som ett titelblad -->
+<div class="border-b border-black/15">
+  <div class="max-w-[1480px] mx-auto px-5 md:px-8 py-2.5 flex justify-between kicker text-sot">
+    <span>Antikvariat och bokbinderi</span>
+    <span class="hidden sm:inline">Liggaren förd sedan 1989</span>
+  </div>
+</div>
+
+<header class="border-b border-black/15">
+  <div class="max-w-[1480px] mx-auto px-5 md:px-8 py-5 flex items-baseline justify-between gap-4 md:grid md:grid-cols-12 md:gap-x-8">
+    <div class="hidden md:block md:col-span-3 kicker text-sot">Uppsala</div>
+    <a href="#" class="md:col-span-6 md:text-center display text-2xl sm:text-3xl md:text-4xl font-medium tracking-tight whitespace-nowrap">Vintergatan</a>
+    <nav class="md:col-span-3 kicker text-sot flex justify-end items-baseline gap-3 sm:gap-4 md:gap-6">
+      <a href="#liggaren" class="py-2 whitespace-nowrap hidden sm:inline-block">Liggaren</a>
+      <a href="#binderiet" class="py-2 whitespace-nowrap hidden sm:inline-block">Binderiet</a>
+      <a href="#kontakt" class="py-2 whitespace-nowrap">Hitta hit</a>
+    </nav>
+  </div>
+</header>
+
+<!-- HERO: typen sätts direkt i fotografiet, inte i en ruta ovanpå -->
+<section class="relative">
+  <div class="ph ph-hero h-[90vh] min-h-[620px] relative" role="img" aria-label="Butiksgången i antikvariatet, hyllor i varmt glödlampsljus">
+    <div class="absolute inset-x-0 bottom-0 pb-12 md:pb-16">
+      <div class="max-w-[1480px] mx-auto px-5 md:px-8 grid grid-cols-12 items-end gap-x-4 md:gap-x-8">
+        <div class="col-span-12 md:col-span-8">
+          <h1 class="display text-benvit text-[clamp(3.1rem,9.5vw,9.8rem)] leading-[0.94] drop-shadow-[0_2px_28px_rgba(0,0,0,0.55)]">
+            Ett antikvariat<br>
+            med verkstaden <span class="italic text-guld">kvar</span>.
+          </h1>
+        </div>
+        <div class="hidden md:block col-span-12 md:col-span-3 md:col-start-9 mt-8 md:mt-0 md:pl-6 md:border-l border-benvit/40 text-benvit" style="text-shadow: 0 1px 3px rgba(0,0,0,.85), 0 0 22px rgba(0,0,0,.75)">
+          <p class="kicker text-benvit/85 mb-4">Svartbäcksgatan 22 · Uppsala</p>
+          <p class="text-[17px] leading-[1.55] max-w-[34ch]">
+            Vid disken köper och säljer vi äldre tryck. Bakom draperiet syr,
+            lagar och förgyller vi band på beställning. Samma hus, samma händer.
+          </p>
+        </div>
+      </div>
+    </div>
+  </div>
+  <!-- På mobil fortsätter fotots mörka botten i en remsa, så ingressen slipper slåss med hyllorna -->
+  <div class="md:hidden bg-black text-benvit on-dark px-5 pt-8 pb-10">
+    <p class="kicker text-benvit/70 mb-4">Svartbäcksgatan 22 · Uppsala</p>
+    <p class="text-[17px] leading-[1.55] max-w-[38ch] text-benvit/90">
+      Vid disken köper och säljer vi äldre tryck. Bakom draperiet syr,
+      lagar och förgyller vi band på beställning. Samma hus, samma händer.
+    </p>
+  </div>
+</section>
+
+<!-- HÅLLNINGEN: stort stilla citat med etikettspalt, inte tre kolumner ikoner -->
+<section id="antikvariatet" class="max-w-[1480px] mx-auto px-5 md:px-8 pt-24 md:pt-32 pb-20">
+  <div class="grid grid-cols-12 gap-x-4 md:gap-x-8">
+    <div class="col-span-12 md:col-span-3 md:pt-2">
+      <div class="kicker text-sot">Hållningen</div>
+      <div class="rule mt-3"></div>
+      <p class="kicker text-sot mt-3 leading-snug">Ester och Jan Malmberg<br>antikvarie och bokbindare</p>
+    </div>
+    <div class="col-span-12 md:col-span-9 mt-10 md:mt-0">
+      <p class="display italic text-[clamp(2.1rem,4.2vw,3.4rem)] leading-[1.08] text-black/90 max-w-[28ch]">
+        Det mesta här inne har överlevt minst en ägare.
+        Vår uppgift är att ordna nästa.
+      </p>
+      <p class="mt-10 text-[17.5px] leading-[1.7] max-w-[58ch] text-black/80">
+        Vintergatan köper enskilda band och hela bibliotek, helst inom svensk
+        topografi, naturalhistoria, resor och Uppsaliana. Inom Uppland hämtar
+        vi själva. Hyllorna står ordnade efter ämne, aldrig efter värde:
+        Linné delar hylla med fickfloror för femtio kronor, och det är meningen.
+        Allt som kommer in kollationeras och förs in i liggaren innan det
+        får en plats.
+      </p>
+    </div>
+  </div>
+</section>
+
+<!-- DUOBILDER: förskjutna spalter, bildtexterna bär förvärven -->
+<section class="max-w-[1480px] mx-auto px-5 md:px-8 py-10">
+  <div class="grid grid-cols-12 gap-x-4 md:gap-x-8 gap-y-12">
+    <figure class="col-span-12 md:col-span-7 duo overflow-hidden">
+      <div class="ph ph-hyllor duo-img aspect-[4/5] md:aspect-[4/3.1]" role="img" aria-label="Hyllvägg med äldre böcker i varmt ljus"></div>
+      <figcaption class="mt-3 flex items-baseline justify-between kicker text-sot">
+        <span>Hylla xiv, topografi och resor</span>
+        <span>norra rummet</span>
+      </figcaption>
+    </figure>
+    <figure class="col-span-12 md:col-span-5 duo overflow-hidden md:mt-24">
+      <div class="ph ph-trave duo-img aspect-[4/5]" role="img" aria-label="Trave slitna klotband i rött och blått"></div>
+      <figcaption class="mt-3 flex items-baseline justify-between kicker text-sot">
+        <span>Förv. 2 311, ett prästbibliotek från Alunda</span>
+        <span>under beskrivning</span>
+      </figcaption>
+    </figure>
+  </div>
+</section>
+
+<!-- LIGGAREN: typsatt prislista, inte en kortrad -->
+<section id="liggaren" class="max-w-[1480px] mx-auto px-5 md:px-8 pt-24 md:pt-32 pb-10">
+  <div class="grid grid-cols-12 gap-x-4 md:gap-x-8 mb-12">
+    <div class="col-span-12 md:col-span-3">
+      <div class="kicker text-sot">Ur liggaren</div>
+      <div class="rule mt-3"></div>
+      <p class="kicker text-sot mt-3 leading-snug">Nya förvärv beskrivs<br>löpande vid disken</p>
+    </div>
+    <div class="col-span-12 md:col-span-9 mt-6 md:mt-0">
+      <h2 class="display text-[clamp(2rem,4vw,3.2rem)] leading-[1.05]">
+        Fem band ur veckans <span class="italic">förvärv</span>.
+      </h2>
+    </div>
+  </div>
+
+  <div class="rule"></div>
+  <ul style="font-feature-settings:'tnum'">
+    <li class="grid grid-cols-12 gap-x-3 md:gap-x-6 py-7 items-baseline border-b border-black/15">
+      <div class="col-span-2 md:col-span-1 disp-num text-2xl text-sot">.01</div>
+      <div class="col-span-10 md:col-span-5">
+        <h3 class="display text-2xl md:text-3xl">Linné, Flora Svecica</h3>
+        <p class="text-sot text-[15px] mt-1 max-w-[50ch] leading-snug">Stockholm 1755. Samtida skinnband med upphöjda bind, ryggen lagad i vår egen verkstad i våras.</p>
+      </div>
+      <div class="col-span-6 md:col-span-3 kicker text-sot mt-3 md:mt-0">förv. 2 289 · kollationerad komplett</div>
+      <div class="col-span-6 md:col-span-3 text-right display text-2xl md:text-3xl">24 000 kr<span class="kicker text-sot ml-3">sek</span></div>
+    </li>
+    <li class="grid grid-cols-12 gap-x-3 md:gap-x-6 py-7 items-baseline border-b border-black/15">
+      <div class="col-span-2 md:col-span-1 disp-num text-2xl text-sot">.02</div>
+      <div class="col-span-10 md:col-span-5">
+        <h3 class="display text-2xl md:text-3xl text-oxblod">Bellman, Fredmans epistlar</h3>
+        <p class="text-sot text-[15px] mt-1 max-w-[50ch] leading-snug">Stockholm 1790. Första upplagan i senare halvfranskt band, nött men komplett med musikbilagan.</p>
+      </div>
+      <div class="col-span-6 md:col-span-3 kicker text-sot mt-3 md:mt-0">förv. 2 301 · visas mot förfrågan</div>
+      <div class="col-span-6 md:col-span-3 text-right display text-2xl md:text-3xl">48 000 kr<span class="kicker text-sot ml-3">sek</span></div>
+    </li>
+    <li class="grid grid-cols-12 gap-x-3 md:gap-x-6 py-7 items-baseline border-b border-black/15">
+      <div class="col-span-2 md:col-span-1 disp-num text-2xl text-sot">.03</div>
+      <div class="col-span-10 md:col-span-5">
+        <h3 class="display text-2xl md:text-3xl">Busser, Utkast till beskrifning om Upsala</h3>
+        <p class="text-sot text-[15px] mt-1 max-w-[50ch] leading-snug">Uppsala 1769. Två delar i en volym, häftad som den utkom, med den stora utvikbara stadsplanen.</p>
+      </div>
+      <div class="col-span-6 md:col-span-3 kicker text-sot mt-3 md:mt-0">förv. 2 296 · uppsaliana</div>
+      <div class="col-span-6 md:col-span-3 text-right display text-2xl md:text-3xl">12 400 kr<span class="kicker text-sot ml-3">sek</span></div>
+    </li>
+    <li class="grid grid-cols-12 gap-x-3 md:gap-x-6 py-7 items-baseline border-b border-black/15">
+      <div class="col-span-2 md:col-span-1 disp-num text-2xl text-sot">.04</div>
+      <div class="col-span-10 md:col-span-5">
+        <h3 class="display text-2xl md:text-3xl">Boye, Kallocain</h3>
+        <p class="text-sot text-[15px] mt-1 max-w-[50ch] leading-snug">Stockholm 1940. Förlagsband i första upplaga, skyddsomslaget med små diskreta lagningar.</p>
+      </div>
+      <div class="col-span-6 md:col-span-3 kicker text-sot mt-3 md:mt-0">förv. 2 305 · svensk skönlitteratur</div>
+      <div class="col-span-6 md:col-span-3 text-right display text-2xl md:text-3xl">7 200 kr<span class="kicker text-sot ml-3">sek</span></div>
+    </li>
+    <li class="grid grid-cols-12 gap-x-3 md:gap-x-6 py-7 items-baseline border-b border-black/15">
+      <div class="col-span-2 md:col-span-1 disp-num text-2xl text-sot">.05</div>
+      <div class="col-span-10 md:col-span-5">
+        <h3 class="display text-2xl md:text-3xl">Marmorerat försättspapper i ark</h3>
+        <p class="text-sot text-[15px] mt-1 max-w-[50ch] leading-snug">Handdraget i verkstaden på Lessebopapper. Husets eget mönster, kallat Fyrisvirveln.</p>
+      </div>
+      <div class="col-span-6 md:col-span-3 kicker text-sot mt-3 md:mt-0">ur binderiet · säljs per ark</div>
+      <div class="col-span-6 md:col-span-3 text-right display text-2xl md:text-3xl">340 kr<span class="kicker text-sot ml-3">sek</span></div>
+    </li>
+  </ul>
+  <p class="mt-8 text-[16px] text-sot max-w-[52ch] leading-[1.6]">
+    Liggaren i sin helhet finns bara i butiken, en pärm vid disken.
+    Ring <a href="tel:+4618134022" class="underline underline-offset-4 decoration-black/30">018 13 40 22</a> så lägger vi undan.
+  </p>
+</section>
+
+<!-- IMMERSION: efemeralådorna som brett andrum -->
+<section class="max-w-[1480px] mx-auto px-5 md:px-8 py-14">
+  <figure>
+    <div class="ph ph-kort aspect-[16/9] md:aspect-[16/7] w-full" role="img" aria-label="Trälådor fyllda med kabinettkort och äldre fotografier"></div>
+    <figcaption class="mt-3 flex items-baseline justify-between kicker text-sot">
+      <span>Efemeralådorna: kabinettkort, brev och räkningar från 1800-talets Uppsala</span>
+      <span class="hidden sm:inline">osorterat, med flit</span>
+    </figcaption>
+  </figure>
+</section>
+
+<!-- SETPIECE: tre ord sätts som vid förgyllning medan tråden dras genom uppslaget.
+     Skrubbas matematiskt i båda riktningar, vilar i färdigt läge utan skript. -->
+<section id="setpiece" class="relative bg-mork text-benvit on-dark" style="height:230vh">
+  <div class="sticky top-0 h-screen flex items-center overflow-hidden">
+    <div class="max-w-[1480px] mx-auto px-5 md:px-8 w-full">
+      <p class="kicker text-benvit/50 mb-8">I rummet bakom draperiet</p>
+      <h2 class="display leading-[0.96] text-[clamp(3.2rem,12vw,11.5rem)]">
+        <span class="sp-word" data-w="0">Sytt.</span>
+        <span class="sp-word" data-w="1">Lagat.</span>
+        <span class="sp-word italic text-guld" data-w="2">Förgyllt.</span>
+      </h2>
+      <div class="sp-thread mt-10 h-[2px] w-full max-w-[720px] bg-trad"></div>
+      <p class="kicker text-benvit/60 mt-8 max-w-[52ch] leading-[2]" id="sp-mono">
+        Lintråd, falsben, klister kokt på vetestärkelse. Ingen maskin i rummet.
+      </p>
+    </div>
+  </div>
+</section>
+
+<!-- BINDERIET: mörkt kapitel, processen som typsatt lista, inte fyra ikonkort -->
+<section id="binderiet" class="bg-mork text-benvit on-dark">
+  <div class="max-w-[1480px] mx-auto px-5 md:px-8 pt-24 md:pt-32 pb-24">
+    <div class="grid grid-cols-12 gap-x-4 md:gap-x-8">
+      <div class="col-span-12 md:col-span-3 md:sticky md:top-24 self-start">
+        <div class="kicker text-guld">Binderiet</div>
+        <div class="rule mt-3"></div>
+        <p class="kicker text-benvit/55 mt-3 leading-snug">Skinn från Tärnsjö garveri<br>papper från Lessebo<br>bladguld om 23 karat</p>
+      </div>
+      <div class="col-span-12 md:col-span-9 mt-10 md:mt-0">
+        <h2 class="display text-[clamp(2.4rem,5.5vw,5.2rem)] leading-[0.98] max-w-[16ch]">
+          Ett band ska tåla hundra år <span class="italic text-guld">till</span>.
+        </h2>
+        <p class="mt-8 text-[17.5px] leading-[1.7] max-w-[56ch] text-benvit/85">
+          Vi binder nytt i helskinn och halvfranskt, lagar ryggar, falsar och
+          kapitäl, och förgyller titlar för hand. Familjebiblar, avhandlingar,
+          kokböcker som klarat tre generationer degar. Så här går det till.
+        </p>
+
+        <ul class="mt-14" style="font-feature-settings:'tnum'">
+          <li class="grid grid-cols-12 gap-x-3 md:gap-x-6 py-8 items-baseline border-b border-benvit/15">
+            <div class="col-span-2 md:col-span-1 disp-num text-2xl text-benvit/50">i</div>
+            <div class="col-span-10 md:col-span-4"><h3 class="display text-2xl md:text-3xl">Brevet</h3></div>
+            <div class="col-span-12 md:col-span-7 mt-3 md:mt-0 text-[16.5px] leading-[1.65] text-benvit/80 max-w-[52ch]">
+              Du skriver, ringer eller kommer in med boken. Vi vill veta hur den
+              ska användas: läsas i soffan, stå i en monter eller ärvas vidare.
+              Svaret avgör allt från tråd till skinn.
+            </div>
+          </li>
+          <li class="grid grid-cols-12 gap-x-3 md:gap-x-6 py-8 items-baseline border-b border-benvit/15">
+            <div class="col-span-2 md:col-span-1 disp-num text-2xl text-benvit/50">ii</div>
+            <div class="col-span-10 md:col-span-4"><h3 class="display text-2xl md:text-3xl">Genomgången</h3></div>
+            <div class="col-span-12 md:col-span-7 mt-3 md:mt-0 text-[16.5px] leading-[1.65] text-benvit/80 max-w-[52ch]">
+              Vi går igenom boken tillsammans vid disken: häftning, falsar,
+              kapitäl, vad som sparas och vad som ersätts. Du får ett fast pris
+              på papper innan något öppnas.
+            </div>
+          </li>
+          <li class="grid grid-cols-12 gap-x-3 md:gap-x-6 py-8 items-baseline border-b border-benvit/15">
+            <div class="col-span-2 md:col-span-1 disp-num text-2xl text-benvit/50">iii</div>
+            <div class="col-span-10 md:col-span-4"><h3 class="display text-2xl md:text-3xl">Arbetet</h3></div>
+            <div class="col-span-12 md:col-span-7 mt-3 md:mt-0 text-[16.5px] leading-[1.65] text-benvit/80 max-w-[52ch]">
+              Gamla trådar sparas där de håller. Det som sys, sys på bind.
+              Titeln sätts med handstämplar i bladguld, bokstav för bokstav.
+              Räkna med fyra till åtta veckor beroende på kö.
+            </div>
+          </li>
+          <li class="grid grid-cols-12 gap-x-3 md:gap-x-6 py-8 items-baseline border-b border-benvit/15">
+            <div class="col-span-2 md:col-span-1 disp-num text-2xl text-benvit/50">iv</div>
+            <div class="col-span-10 md:col-span-4"><h3 class="display text-2xl md:text-3xl">Hämtningen</h3></div>
+            <div class="col-span-12 md:col-span-7 mt-3 md:mt-0 text-[16.5px] leading-[1.65] text-benvit/80 max-w-[52ch]">
+              Du hämtar i butiken och vi visar vad som gjorts, blad för blad.
+              De delar vi bytt ut följer med hem i ett kuvert. Det är din bok,
+              även bitarna.
+            </div>
+          </li>
+        </ul>
+      </div>
+    </div>
+
+    <!-- Mörk duo: bild och prisliggare i förskjutna spalter -->
+    <div class="grid grid-cols-12 gap-x-4 md:gap-x-8 gap-y-12 mt-20">
+      <figure class="col-span-12 md:col-span-6 duo overflow-hidden">
+        <div class="ph ph-solfjader duo-img aspect-[4/3]" role="img" aria-label="Bok med solfjäderöppnade blad mot mörk botten"></div>
+        <figcaption class="mt-3 kicker text-benvit/50">På bänken: omhäftning av en avhandling från 1904</figcaption>
+      </figure>
+      <div class="col-span-12 md:col-span-6 md:mt-16">
+        <div class="kicker text-guld mb-4">Vanliga arbeten</div>
+        <ul style="font-feature-settings:'tnum'">
+          <li class="flex items-baseline justify-between gap-6 py-4 border-b border-benvit/15">
+            <span class="display text-xl md:text-2xl">Ny rygg, lagade falsar</span>
+            <span class="display text-xl md:text-2xl whitespace-nowrap">från 2 400 kr</span>
+          </li>
+          <li class="flex items-baseline justify-between gap-6 py-4 border-b border-benvit/15">
+            <span class="display text-xl md:text-2xl">Halvfranskt band</span>
+            <span class="display text-xl md:text-2xl whitespace-nowrap">från 4 800 kr</span>
+          </li>
+          <li class="flex items-baseline justify-between gap-6 py-4 border-b border-benvit/15">
+            <span class="display text-xl md:text-2xl">Helband i skinn</span>
+            <span class="display text-xl md:text-2xl whitespace-nowrap">från 7 600 kr</span>
+          </li>
+          <li class="flex items-baseline justify-between gap-6 py-4 border-b border-benvit/15">
+            <span class="display text-xl md:text-2xl">Ryggtitel i guld</span>
+            <span class="display text-xl md:text-2xl whitespace-nowrap">från 900 kr</span>
+          </li>
+        </ul>
+        <p class="kicker text-benvit/50 mt-6 leading-[2]">Du får alltid ett fast pris efter genomgången.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- PROGRAM: kurserna som liggare, inte tre kort med ikoner -->
+<section id="kurser" class="max-w-[1480px] mx-auto px-5 md:px-8 pt-24 md:pt-32 pb-16">
+  <div class="grid grid-cols-12 gap-x-4 md:gap-x-8 mb-12">
+    <div class="col-span-12 md:col-span-3">
+      <div class="kicker text-sot">Programmet</div>
+      <div class="rule mt-3"></div>
+      <p class="kicker text-sot mt-3 leading-snug">Alla kurser hålls<br>i verkstaden, max sex platser</p>
+    </div>
+    <div class="col-span-12 md:col-span-9 mt-6 md:mt-0">
+      <h2 class="display text-[clamp(2rem,4vw,3.2rem)] leading-[1.05]">
+        Lär dig binda <span class="italic">själv</span>.
+      </h2>
+    </div>
+  </div>
+
+  <div class="rule"></div>
+  <ul style="font-feature-settings:'tnum'">
+    <li class="grid grid-cols-12 gap-x-3 md:gap-x-6 py-7 items-baseline border-b border-black/15">
+      <div class="col-span-2 md:col-span-1 disp-num text-2xl text-sot">i</div>
+      <div class="col-span-10 md:col-span-5">
+        <h3 class="display text-2xl md:text-3xl">Grundkurs i bokbinderi</h3>
+        <p class="text-sot text-[15px] mt-1 max-w-[50ch] leading-snug">Två helger. Du syr, binder och går hem med ett eget klotband, sytt på bind.</p>
+      </div>
+      <div class="col-span-6 md:col-span-3 kicker text-sot mt-3 md:mt-0">nästa start i mars · sex platser</div>
+      <div class="col-span-6 md:col-span-3 text-right display text-2xl md:text-3xl">3 900 kr<span class="kicker text-sot ml-3">sek</span></div>
+    </li>
+    <li class="grid grid-cols-12 gap-x-3 md:gap-x-6 py-7 items-baseline border-b border-black/15">
+      <div class="col-span-2 md:col-span-1 disp-num text-2xl text-sot">ii</div>
+      <div class="col-span-10 md:col-span-5">
+        <h3 class="display text-2xl md:text-3xl text-oxblod">Öppen verkstad</h3>
+        <p class="text-sot text-[15px] mt-1 max-w-[50ch] leading-snug">Torsdagskvällar. Ta med en egen bok som behöver ses om, vi handleder vid bänken.</p>
+      </div>
+      <div class="col-span-6 md:col-span-3 kicker text-sot mt-3 md:mt-0">torsdagar 17 till 20 · ingen anmälan</div>
+      <div class="col-span-6 md:col-span-3 text-right display text-2xl md:text-3xl">180 kr<span class="kicker text-sot ml-3">kväll</span></div>
+    </li>
+    <li class="grid grid-cols-12 gap-x-3 md:gap-x-6 py-7 items-baseline border-b border-black/15">
+      <div class="col-span-2 md:col-span-1 disp-num text-2xl text-sot">iii</div>
+      <div class="col-span-10 md:col-span-5">
+        <h3 class="display text-2xl md:text-3xl">Marmorering</h3>
+        <p class="text-sot text-[15px] mt-1 max-w-[50ch] leading-snug">En dag vid karet. Kammar, oxgalla och färg som flyter. Du går hem med tjugo egna ark.</p>
+      </div>
+      <div class="col-span-6 md:col-span-3 kicker text-sot mt-3 md:mt-0">en lördag i månaden · sex platser</div>
+      <div class="col-span-6 md:col-span-3 text-right display text-2xl md:text-3xl">1 400 kr<span class="kicker text-sot ml-3">sek</span></div>
+    </li>
+  </ul>
+</section>
+
+<!-- UPPDRAGET: pennan och brevet, förskjuten duo på ljus botten -->
+<section class="max-w-[1480px] mx-auto px-5 md:px-8 py-10">
+  <div class="grid grid-cols-12 gap-x-4 md:gap-x-8 gap-y-10 items-start">
+    <figure class="col-span-12 md:col-span-5 duo overflow-hidden md:mt-20">
+      <div class="ph ph-penna duo-img aspect-[4/3]" role="img" aria-label="Reservoarpenna som skriver på linjerat papper"></div>
+      <figcaption class="mt-3 kicker text-sot">Beställningar tas emot per brev, telefon och disk</figcaption>
+    </figure>
+    <div class="col-span-12 md:col-span-6 md:col-start-7">
+      <p class="display italic text-[clamp(1.9rem,3.4vw,2.8rem)] leading-[1.12] text-black/90 max-w-[30ch]">
+        Skriv några rader om boken, hur den ser ut och vad den betyder.
+        Vi svarar med vad som går att göra, och vad det kostar.
+      </p>
+      <p class="mt-8 text-[17px] leading-[1.7] max-w-[52ch] text-black/80">
+        Fotografera gärna ryggen, ett uppslag och skadan. Inget ärende är för
+        litet: en lös karta limmar vi medan du väntar, och det kostar ungefär
+        som en kopp kaffe.
+      </p>
+    </div>
+  </div>
+</section>
+
+<!-- KONTAKT: mörkt slutkapitel, typsatt mailto i displayskala i stället för knapp -->
+<section id="kontakt" class="bg-black text-benvit on-dark relative">
+  <div class="max-w-[1480px] mx-auto px-5 md:px-8 pt-24 md:pt-32 pb-24 grid grid-cols-12 gap-x-4 md:gap-x-8">
+    <div class="col-span-12 md:col-span-7">
+      <h2 class="display text-[clamp(2.8rem,7vw,7rem)] leading-[0.95]">
+        Kom in,<br>
+        eller <span class="italic text-guld">skriv</span>.
+      </h2>
+      <div class="mt-12">
+        <a href="mailto:post@vintergatan.se" class="inline-flex items-baseline gap-3 display italic text-3xl md:text-4xl break-all">
+          post@vintergatan.se
+          <span class="kicker text-benvit/50">svar inom tre dagar</span>
+        </a>
+        <p class="kicker text-benvit/55 mt-5">Telefon 018 13 40 22, vardagar från elva</p>
+      </div>
+    </div>
+    <div class="col-span-12 md:col-span-4 md:col-start-9 mt-14 md:mt-2 md:pl-8 md:border-l border-benvit/20">
+      <div class="kicker text-benvit/55 mb-5">Butiken</div>
+      <p class="text-[17px] leading-[1.65] text-benvit/85 max-w-[38ch]">
+        Svartbäcksgatan 22, Uppsala. Två kvarter norr om Stora torget,
+        snett emot Linnéträdgården. Cykelstället delar vi med blomsterhandeln.
+      </p>
+      <div class="mt-8" style="font-feature-settings:'tnum'">
+        <div class="flex justify-between gap-6 py-3 border-b border-benvit/15">
+          <span class="kicker text-benvit/55 py-1">Tisdag till fredag</span>
+          <span class="display text-xl">11 till 18</span>
+        </div>
+        <div class="flex justify-between gap-6 py-3 border-b border-benvit/15">
+          <span class="kicker text-benvit/55 py-1">Lördag</span>
+          <span class="display text-xl">11 till 15</span>
+        </div>
+        <div class="flex justify-between gap-6 py-3 border-b border-benvit/15">
+          <span class="kicker text-benvit/55 py-1">Måndag</span>
+          <span class="display text-xl italic">verkstadsdag</span>
+        </div>
+      </div>
+      <p class="kicker text-benvit/45 mt-5 leading-[2]">På verkstadsdagar är butiken stängd men binderiet svarar i telefon.</p>
+    </div>
+  </div>
+  <div class="border-t border-benvit/15">
+    <div class="max-w-[1480px] mx-auto px-5 md:px-8 py-6 grid grid-cols-12 gap-y-2 kicker text-benvit/45">
+      <div class="col-span-12 sm:col-span-6 md:col-span-3">© Vintergatan mmxxvi</div>
+      <div class="col-span-12 sm:col-span-6 md:col-span-3 md:text-center">Antikvariat och bokbinderi</div>
+      <div class="col-span-12 sm:col-span-6 md:col-span-3 md:text-center">Fotografi via Unsplash</div>
+      <div class="col-span-12 sm:col-span-6 md:col-span-3 md:text-right">Satt i Cormorant och Plex Mono</div>
+    </div>
+  </div>
+</section>
+
+<script>
+(function(){
+  var reduced = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+
+  /* Avslöjande vid scroll: klassen sätts först här, så utan js är allt synligt. */
+  if (!reduced && 'IntersectionObserver' in window) {
+    var els = document.querySelectorAll('section:not(#setpiece) h1, section:not(#setpiece) h2, section:not(#setpiece) h3, section:not(#setpiece) figure, section:not(#setpiece) li, #antikvariatet p, #kontakt a');
+    els.forEach(function(el){ el.classList.add('reveal'); });
+    /* Spärr 2: allt som redan är på eller ovanför skärmen visas vid montering. */
+    els.forEach(function(el){
+      if (el.getBoundingClientRect().top < window.innerHeight) el.classList.add('in');
+    });
+    /* Spärr 1: tröskel 0. */
+    var io = new IntersectionObserver(function(entries){
+      entries.forEach(function(e){ if (e.isIntersecting) { e.target.classList.add('in'); io.unobserve(e.target); } });
+    }, { threshold: 0, rootMargin: '0px 0px -5% 0px' });
+    els.forEach(function(el){ if (!el.classList.contains('in')) io.observe(el); });
+    /* Spärr 3: tidsspärr. Räkna det som inte visats och visa det. */
+    setTimeout(function(){
+      var kvar = document.querySelectorAll('.reveal:not(.in)');
+      kvar.forEach(function(el){
+        if (el.getBoundingClientRect().top < window.innerHeight * 1.1) el.classList.add('in');
+      });
+    }, 1800);
+    setTimeout(function(){
+      document.querySelectorAll('.reveal:not(.in)').forEach(function(el){ el.classList.add('in'); });
+    }, 6000);
+  }
+
+  /* Setpiecen: skrubbas med lerp och smoothstep, båda riktningar.
+     Grundtillståndet i css är färdigt, så utan js eller med reducerad rörelse
+     står orden redan framme. ?preview=setpiece låser färdigt läge. */
+  var sec = document.getElementById('setpiece');
+  var words = sec ? sec.querySelectorAll('.sp-word') : [];
+  var thread = sec ? sec.querySelector('.sp-thread') : null;
+  var mono = document.getElementById('sp-mono');
+  var monoWords = [];
+  if (mono && !reduced) {
+    var txt = mono.textContent.trim().split(/\s+/);
+    mono.textContent = '';
+    txt.forEach(function(w, i){
+      var s = document.createElement('span');
+      s.className = 'sp-mono-w';
+      s.textContent = w + (i < txt.length - 1 ? ' ' : '');
+      mono.appendChild(s);
+      monoWords.push(s);
+    });
+  }
+  var preview = /[?&]preview=setpiece/.test(location.search);
+  function clamp01(x){ return Math.max(0, Math.min(1, x)); }
+  function smooth(a, b, x){ var t = clamp01((x - a) / (b - a)); return t * t * (3 - 2 * t); }
+  function lerp(a, b, t){ return a + (b - a) * t; }
+
+  if (sec && !reduced && !preview) {
+    var tt = 0, target = 0, running = false;
+    var stages = [[0.04, 0.34], [0.28, 0.58], [0.52, 0.82]];
+    function apply(t){
+      words.forEach(function(w, i){
+        var s = smooth(stages[i][0], stages[i][1], t);
+        w.style.opacity = lerp(0.06, 1, s).toFixed(3);
+        w.style.filter = 'blur(' + lerp(9, 0, s).toFixed(2) + 'px)';
+        w.style.transform = 'translateY(' + lerp(34, 0, s).toFixed(1) + 'px)';
+        w.style.letterSpacing = lerp(0.22, -0.015, s).toFixed(4) + 'em';
+      });
+      if (thread) thread.style.transform = 'scaleX(' + smooth(0.08, 0.9, t).toFixed(3) + ')';
+      monoWords.forEach(function(s, i){
+        var start = 0.6 + (i / Math.max(1, monoWords.length)) * 0.34;
+        s.style.opacity = lerp(0.16, 1, smooth(start, start + 0.07, t)).toFixed(3);
+      });
+    }
+    function frame(){
+      var r = sec.getBoundingClientRect();
+      var span = r.height - window.innerHeight;
+      target = span > 0 ? clamp01(-r.top / span) : 1;
+      tt = lerp(tt, target, 0.14);
+      if (Math.abs(tt - target) < 0.0005) tt = target;
+      apply(tt);
+      running = Math.abs(tt - target) > 0.0005;
+      if (running) requestAnimationFrame(frame); else running = false;
+    }
+    function kick(){ if (!running) { running = true; requestAnimationFrame(frame); } }
+    window.addEventListener('scroll', kick, { passive: true });
+    window.addEventListener('resize', kick, { passive: true });
+    apply(0); kick();
+  }
+})();
+</script>
+</body>
+</html>

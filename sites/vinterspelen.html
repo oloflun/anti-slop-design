@@ -1,0 +1,1060 @@
+<!doctype html>
+<html lang="sv">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Vinterspelen på Vretaholm — operafestival i 1700-talsteatern</title>
+<meta name="description" content="Vinterspelen spelar sjutton kvällar i januari i Vretaholms slottsteater från 1777. Originalmaskineri, salong lyst med vaxljus, orkester på tidstrogna instrument.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Bodoni+Moda:ital,opsz,wght@0,6..96,400..800;1,6..96,400..700&family=Newsreader:ital,opsz,wght@0,6..72,300..700;1,6..72,300..600&display=swap" rel="stylesheet">
+<script src="https://cdn.tailwindcss.com"></script>
+<script>
+/* design · pre-emit critique: P5 H5 E5 S5 R4 V5 */
+tailwind.config = {
+  theme: {
+    extend: {
+      colors: {
+        sal:    'oklch(0.213 0.026 208)',
+        sal2:   'oklch(0.262 0.028 205)',
+        sal3:   'oklch(0.312 0.026 203)',
+        natt:   'oklch(0.128 0.016 60)',
+        papper: 'oklch(0.918 0.021 86)',
+        papper2:'oklch(0.862 0.026 84)',
+        tryck:  'oklch(0.245 0.021 58)',
+        kalk:   'oklch(0.928 0.014 84)',
+        kalk2:  'oklch(0.735 0.016 84)',
+        ockra:  'oklch(0.772 0.124 84)',
+        ockradjup:'oklch(0.420 0.106 72)',
+        karmin: 'oklch(0.487 0.146 26)',
+      },
+      fontFamily: {
+        titel: ['"Bodoni Moda"','ui-serif','Georgia','serif'],
+        brod:  ['Newsreader','ui-serif','Georgia','serif'],
+      },
+    }
+  }
+}
+</script>
+<style>
+  :root{
+    --sal:oklch(0.213 0.026 208);
+    --sal2:oklch(0.262 0.028 205);
+    --sal3:oklch(0.312 0.026 203);
+    --natt:oklch(0.128 0.016 60);
+    --papper:oklch(0.918 0.021 86);
+    --papper2:oklch(0.862 0.026 84);
+    --tryck:oklch(0.245 0.021 58);
+    --tryck2:oklch(0.392 0.019 56);
+    --kalk:oklch(0.928 0.014 84);
+    --kalk2:oklch(0.735 0.016 84);
+    --ockra:oklch(0.772 0.124 84);
+    --ockra-djup:oklch(0.420 0.106 72);
+    --karmin:oklch(0.487 0.146 26);
+    --font-titel:"Bodoni Moda",ui-serif,Georgia,serif;
+    --font-brod:Newsreader,ui-serif,Georgia,serif;
+    --ut:cubic-bezier(.16,1,.3,1);
+    --in:cubic-bezier(.7,0,.84,0);
+    --matt:1480px;
+  }
+  *,*::before,*::after{box-sizing:border-box}
+  html,body{overflow-x:clip;max-width:100%}
+  html{background:var(--sal);-webkit-text-size-adjust:100%}
+  body{
+    margin:0;background:var(--sal);color:var(--kalk);
+    font-family:var(--font-brod);font-size:18px;line-height:1.68;font-weight:400;
+    -webkit-font-smoothing:antialiased;text-rendering:optimizeLegibility;
+  }
+  main{display:block}
+  img{max-width:100%;height:auto;display:block}
+
+  /* TYPOGRAFI: en didone satt som ett librettotryck 1790, inte en systemgrotesk */
+  .titel{font-family:var(--font-titel);font-weight:500;letter-spacing:-0.014em;
+         overflow-wrap:anywhere;min-width:0;font-synthesis:none}
+  .titel em,.kursiv{font-style:italic;font-weight:400}
+  .d-xl{font-size:clamp(2.85rem,7.9vw,8.1rem);line-height:0.94}
+  .d-l {font-size:clamp(2.25rem,5.0vw,4.5rem);line-height:0.99}
+  .d-m {font-size:clamp(1.72rem,3.05vw,2.95rem);line-height:1.06}
+  .d-s {font-size:clamp(1.32rem,1.9vw,1.72rem);line-height:1.16}
+  .siffra{font-family:var(--font-titel);font-weight:400;font-variant-numeric:lining-nums tabular-nums;
+          letter-spacing:-0.02em;line-height:0.86}
+  .s-jatte{font-size:clamp(3.1rem,6.4vw,5.9rem)}
+  .s-stor{font-size:clamp(2.1rem,3.5vw,3.25rem)}
+
+  /* ETIKETT: satt som affischens versalrad, INTE ett monokickerbrus */
+  .etikett{font-family:var(--font-brod);font-size:11.5px;font-weight:600;
+           letter-spacing:0.235em;text-transform:uppercase;line-height:1.5}
+  .etikett-s{font-family:var(--font-brod);font-size:10.5px;font-weight:600;
+             letter-spacing:0.2em;text-transform:uppercase;line-height:1.5}
+  .bildtext{font-size:12.5px;line-height:1.55;color:var(--kalk2);font-style:italic}
+  .brodtext{font-size:18px;line-height:1.72}
+  .brodtext-s{font-size:15.5px;line-height:1.66}
+
+  .linje{height:1px;background:currentColor;opacity:0.28;border:0}
+  .linje-v{width:1px;background:currentColor;opacity:0.22}
+
+  a{color:inherit;text-decoration:none}
+  a:hover{color:var(--ockra)}
+  a:focus-visible,button:focus-visible{outline:2px solid var(--ockra);outline-offset:3px;border-radius:1px}
+  .pa-papper a:hover{color:var(--ockra-djup)}
+  .pa-papper a:focus-visible{outline-color:var(--ockra-djup)}
+
+  /* RAM: verken hängs, de beskärs inte till tapet */
+  .ram{position:relative;background:oklch(0.168 0.020 206);padding:clamp(9px,1.1vw,15px);
+       box-shadow:0 0 0 1px color-mix(in oklab,var(--ockra) 42%,transparent);}
+  .ram::after{content:"";position:absolute;inset:clamp(4px,.5vw,7px);pointer-events:none;
+       box-shadow:0 0 0 1px color-mix(in oklab,var(--ockra) 24%,transparent)}
+  .ram img{width:100%;display:block}
+  .pa-papper .ram{background:var(--papper2);box-shadow:0 0 0 1px color-mix(in oklab,var(--ockra-djup) 45%,transparent)}
+  .pa-papper .ram::after{box-shadow:0 0 0 1px color-mix(in oklab,var(--ockra-djup) 26%,transparent)}
+
+  /* KNAPP: en skarp rektangel man trycker pa, INTE en rundad gradientpiller */
+  .knapp{display:inline-flex;align-items:center;justify-content:center;
+    min-height:48px;padding:13px 26px;border:1px solid var(--ockra);color:var(--ockra);
+    background:transparent;font-family:var(--font-brod);font-size:11.5px;font-weight:600;
+    letter-spacing:0.235em;text-transform:uppercase;cursor:pointer;
+    transition:background-color .32s var(--ut),color .32s var(--ut),transform .12s var(--ut);}
+  .knapp:hover{background:var(--ockra);color:var(--sal)}
+  .knapp:active{transform:translateY(1px)}
+  .knapp[disabled],.knapp[aria-disabled=true]{opacity:.45;cursor:not-allowed;pointer-events:none}
+  .knapp-papper{border-color:var(--ockra-djup);color:var(--ockra-djup)}
+  .knapp-papper:hover{background:var(--ockra-djup);color:var(--papper)}
+
+  .lank-under{text-decoration:underline;text-decoration-thickness:1px;text-underline-offset:7px;
+    text-decoration-color:color-mix(in oklab,currentColor 38%,transparent);
+    transition:text-decoration-color .35s var(--ut)}
+  .lank-under:hover{text-decoration-color:currentColor}
+  .navlank{display:inline-flex;align-items:center;min-height:44px;padding:0 2px;white-space:nowrap}
+
+  /* AFFISCHENS PUNKTLINJE: rollistans hangande register */
+  .roll{display:flex;align-items:baseline;gap:.6rem}
+  .roll-ledare{flex:1 1 auto;min-width:1.2rem;border-bottom:1px dotted currentColor;
+               opacity:.42;transform:translateY(-.3em)}
+
+  /* LAGGPAPPER: tryckarkets kedjelinjer, inte en generell brusfilm */
+  .pa-papper{background:var(--papper);color:var(--tryck);position:relative}
+  .pa-papper::before{content:"";position:absolute;inset:0;pointer-events:none;opacity:.5;
+    background:repeating-linear-gradient(to bottom,
+      color-mix(in oklab,var(--tryck) 5%,transparent) 0 1px,transparent 1px 4px)}
+  .pa-papper > *{position:relative}
+
+  /* AVSLOJANDE: felar mot synligt. Ingen JS = allt synligt. */
+  .avsloja{opacity:0;transform:translateY(28px);
+    transition:opacity 1.3s var(--ut),transform 1.3s var(--ut)}
+  .avsloja.inne{opacity:1;transform:none}
+  html.ingen-js .avsloja,html.avsloja-av .avsloja{opacity:1!important;transform:none!important}
+
+  /* SCENBYTET */
+  .scen-rulle{position:relative;height:250vh}
+  .scen-klibb{position:sticky;top:0;height:100vh;overflow:hidden}
+  .scen-platta{position:absolute;inset:0;background:var(--natt)}
+  .scen-b{position:absolute;inset:0;background-size:cover;background-position:center;
+    transform:scale(1.09);filter:blur(17px);opacity:.34;will-change:transform,filter,opacity}
+  .scen-a{position:absolute;inset:0}
+  .kuliss{position:absolute;top:0;bottom:0;width:16.6667%;background-size:600% 100%;
+    background-repeat:no-repeat;will-change:transform}
+  .kuliss::after{content:"";position:absolute;top:0;bottom:0;width:1px;right:0;
+    background:color-mix(in oklab,var(--ockra) 30%,transparent)}
+  .scen-flor{position:absolute;inset:0;pointer-events:none;
+    background:
+      radial-gradient(120% 78% at 50% 62%,transparent 8%,rgba(9,14,16,.44) 52%,rgba(6,10,12,.9) 100%),
+      linear-gradient(to bottom,rgba(6,10,12,.86) 0%,rgba(6,10,12,.28) 24%,rgba(6,10,12,.3) 58%,rgba(6,10,12,.93) 100%)}
+  .scen-text{position:absolute;left:0;right:0;bottom:0;z-index:3}
+  .scen-rad{font-family:var(--font-titel);letter-spacing:.42em;opacity:.16;
+    text-transform:uppercase;will-change:letter-spacing,opacity}
+
+  @media (prefers-reduced-motion: reduce){
+    .avsloja{opacity:1!important;transform:none!important;transition:none!important}
+    *,*::before,*::after{animation-duration:1ms!important;animation-iteration-count:1!important;
+      transition-duration:120ms!important;scroll-behavior:auto!important}
+    .scen-rulle{height:auto}
+    .scen-klibb{position:static;height:auto;min-height:78vh}
+  }
+
+  @media (max-width:767px){
+    body{font-size:17px}
+    .brodtext{font-size:17px}
+    .scen-rulle{height:200vh}
+    .navstrimma{overflow-x:auto;scrollbar-width:none;-ms-overflow-style:none}
+    .navstrimma::-webkit-scrollbar{display:none}
+  }
+</style>
+</head>
+<body class="bg-sal text-kalk">
+<script>document.documentElement.classList.add('js-pa');</script>
+<noscript><style>.avsloja{opacity:1!important;transform:none!important}
+  .scen-rulle{height:auto}.scen-klibb{position:static;height:78vh}
+  .scen-b{filter:none;opacity:1;transform:none}.kuliss{display:none}
+  .scen-rad{letter-spacing:.06em;opacity:1}</style></noscript>
+
+<a href="#innehall" class="sr-only focus:not-sr-only focus:absolute focus:z-50 focus:top-3 focus:left-3 focus:bg-ockra focus:text-sal focus:px-4 focus:py-3 etikett">Till innehållet</a>
+
+<!-- HUVUD: teaterns namnrad satt i titelsnittet, INTE en logotyp i en rundad kapsel -->
+<header class="sticky top-0 z-40 bg-sal/92 backdrop-blur-md border-b border-kalk/15">
+  <div class="mx-auto max-w-[1480px] px-5 md:px-8 py-4 md:py-5 flex items-center justify-between gap-4">
+    <a href="#" class="flex items-center gap-3 md:gap-4 shrink-0" aria-label="Vinterspelen, till toppen">
+      <svg width="30" height="34" viewBox="0 0 30 34" aria-hidden="true" class="shrink-0">
+        <path d="M15 33.2c-3.1 0-5-1.5-5-3.6 0-1.5 1-2.9 2.1-4.2V24h5.8v1.4c1.1 1.3 2.1 2.7 2.1 4.2 0 2.1-1.9 3.6-5 3.6Z" fill="oklch(0.772 0.124 84)" opacity="0.34"/>
+        <rect x="12.1" y="12" width="5.8" height="12.4" fill="oklch(0.928 0.014 84)" opacity="0.82"/>
+        <path d="M15 1.2c1.9 3 3.2 5 3.2 7.1 0 2-1.4 3.4-3.2 3.4s-3.2-1.4-3.2-3.4c0-2.1 1.3-4.1 3.2-7.1Z" fill="oklch(0.772 0.124 84)"/>
+        <path d="M9.6 30.6h10.8" stroke="oklch(0.772 0.124 84)" stroke-width="1.1" opacity="0.75"/>
+      </svg>
+      <span class="titel text-[19px] md:text-[23px] leading-none tracking-normal">Vinterspelen</span>
+    </a>
+    <nav aria-label="Sidans avsnitt" class="hidden md:flex items-center gap-8 etikett text-kalk2">
+      <a href="#hallningen" class="navlank hover:text-ockra transition-colors">Hållningen</a>
+      <a href="#programmet" class="navlank hover:text-ockra transition-colors">Programmet</a>
+      <a href="#teatern" class="navlank hover:text-ockra transition-colors">Teatern</a>
+      <a href="#biljetter" class="navlank hover:text-ockra transition-colors">Biljetter</a>
+      <a href="#resan" class="navlank hover:text-ockra transition-colors">Resan</a>
+    </nav>
+    <a href="#biljetter" class="knapp shrink-0">Biljetter</a>
+  </div>
+  <div class="md:hidden border-t border-kalk/12">
+    <nav aria-label="Sidans avsnitt, kompakt" class="navstrimma">
+      <div class="flex items-center gap-6 px-5 py-1 etikett-s text-kalk2 w-max">
+        <a href="#hallningen" class="navlank">Hållningen</a>
+        <a href="#programmet" class="navlank">Programmet</a>
+        <a href="#teatern" class="navlank">Teatern</a>
+        <a href="#biljetter" class="navlank">Biljetter</a>
+        <a href="#resan" class="navlank">Resan</a>
+      </div>
+    </nav>
+  </div>
+</header>
+
+<main id="innehall">
+
+<!-- ANSLAGET: typen till vanster, verket hangt och avskuret av sidkanten.
+     INTE en centrerad rubrik pa ett beskuret foto med tva knappar under. -->
+<section class="relative border-b border-kalk/15">
+  <div class="mx-auto max-w-[1480px] px-5 md:px-8 grid grid-cols-12 gap-x-6 md:gap-x-8">
+
+    <div class="col-span-12 lg:col-span-7 pt-16 md:pt-24 lg:pt-32 pb-10 lg:pb-24">
+      <p class="etikett text-ockra avsloja">Vretaholms slottsteater, Östergötland</p>
+      <div class="linje text-kalk mt-4 mb-9 max-w-[8rem]"></div>
+
+      <h1 class="titel d-xl avsloja">Opera i en sal som aldrig fick <em class="text-ockra">elektriskt ljus</em>.</h1>
+
+      <p class="brodtext text-kalk/88 max-w-[52ch] mt-9 md:mt-11 avsloja">
+        Vinterspelen spelar sjutton kvällar i januari i en teater som stängdes 1814
+        och sedan stod orörd i hundratrettiofyra år. Maskineriet under scengolvet är
+        det som byggdes 1777. Salongen lyses av tvåhundrafjorton vaxljus. Orkestern
+        stämmer i 415 hertz och spelar på tarmsträngar.
+      </p>
+
+      <div class="mt-11 md:mt-14 flex flex-wrap items-center gap-x-8 gap-y-4 avsloja">
+        <a href="#biljetter" class="knapp">Biljetter från 340 kr</a>
+        <a href="#programmet" class="titel d-s lank-under">Se årets program</a>
+      </div>
+
+      <div class="mt-12 md:mt-16 pt-8 border-t border-kalk/22 grid grid-cols-2 sm:grid-cols-3 gap-x-6 gap-y-8 avsloja">
+        <div>
+          <p class="etikett-s text-kalk2">Speltid</p>
+          <p class="titel d-s mt-2 text-ockra">9 till 24<br>januari 2027</p>
+        </div>
+        <div>
+          <p class="etikett-s text-kalk2">Salongen rymmer</p>
+          <p class="siffra s-stor mt-2">142</p>
+          <p class="etikett-s text-kalk2 mt-2">platser, alla numrerade</p>
+        </div>
+        <div class="col-span-2 sm:col-span-1">
+          <p class="etikett-s text-kalk2">Ur repertoaren</p>
+          <p class="titel d-s mt-2 leading-tight">Gluck<br>Kraus<br>Pergolesi</p>
+        </div>
+      </div>
+    </div>
+
+    <figure class="col-span-12 lg:col-span-5 lg:col-start-8 mb-14 lg:mb-0 lg:mt-20 lg:-mr-8 xl:-mr-16 avsloja">
+      <div class="ram">
+        <img
+          src="https://upload.wikimedia.org/wikipedia/commons/thumb/4/46/The_Coronation_of_King_Gustav_III_of_Sweden._Uncompleted_%28Carl_Gustav_Pilo%29_-_Nationalmuseum_-_18007.tif/lossy-page1-1280px-The_Coronation_of_King_Gustav_III_of_Sweden._Uncompleted_%28Carl_Gustav_Pilo%29_-_Nationalmuseum_-_18007.tif.jpg"
+          alt="Oavslutad oljemålning av en kröningsceremoni i gyllene ljus, med en tät hovkrets kring den knäböjande kungen."
+          width="1280" height="960" fetchpriority="high" decoding="async">
+      </div>
+      <figcaption class="bildtext mt-4 max-w-[46ch]">
+        Carl Gustaf Pilo, Gustav III:s kröning, oavslutad. Nationalmuseum, NM 18007.
+        Duken lämnades outförd vid Pilos död 1793 och visar hovet som ljus och dis.
+      </figcaption>
+    </figure>
+  </div>
+</section>
+
+<!-- HALLNINGEN: etikettskena med bararande vikt + hangda verk i stegring.
+     INTE tre ikonkort med rubrik och tva rader losprat. -->
+<section id="hallningen" class="mx-auto max-w-[1480px] px-5 md:px-8 pt-20 md:pt-28 pb-16 md:pb-24 scroll-mt-24">
+  <div class="grid grid-cols-12 gap-x-6 md:gap-x-8 gap-y-10">
+
+    <div class="col-span-12 md:col-span-3">
+      <p class="etikett text-ockra avsloja">Hållningen</p>
+      <div class="linje text-kalk mt-4 avsloja"></div>
+      <p class="siffra s-jatte text-ockra mt-8 avsloja">1777</p>
+      <p class="etikett-s text-kalk2 mt-4 max-w-[22ch] avsloja">
+        Året teatern stod färdig. Byggmästare Anders Cederlöf, Norrköping,
+        för friherre Carl Otto Gyllenram.
+      </p>
+      <div class="hidden md:block linje-v text-kalk mt-10 h-40 avsloja"></div>
+    </div>
+
+    <div class="col-span-12 md:col-span-9">
+      <h2 class="titel d-l max-w-[19ch] avsloja">Vi restaurerar ingenting som fortfarande fungerar.</h2>
+
+      <div class="mt-10 grid grid-cols-12 gap-x-6 md:gap-x-8 gap-y-8">
+        <div class="col-span-12 lg:col-span-6">
+          <p class="brodtext text-kalk/88 max-w-[48ch] avsloja">
+            Teatern i Vretaholms södra flygel användes i trettiosju år och stängdes
+            när gården gick i arv 1814. Ingen rev den. Man ställde in säd i parterren,
+            spikade för fönstren och lät kulisserna stå kvar i sina spår. Det är därför
+            de finns. En teater som hade fortsatt spela hade byggts om fyra gånger.
+          </p>
+          <p class="brodtext text-kalk/88 max-w-[48ch] mt-6 avsloja">
+            Rummet öppnades igen i februari 1948 av lantmätaren Gunnar Ahlsell, som
+            hade fått i uppdrag att mäta upp flygeln inför en rivning. Rivningen blev
+            aldrig av. Vinterspelen har spelat här varje januari sedan 1999.
+          </p>
+        </div>
+        <div class="col-span-12 lg:col-span-6 lg:pl-8 lg:border-l lg:border-kalk/20">
+          <p class="brodtext text-kalk/88 max-w-[46ch] avsloja">
+            Vi lagar det som gått sönder med samma material som gick sönder. Ek mot ek,
+            hampa mot hampa, blyvikt mot blyvikt. Där ett stycke saknas helt lämnar vi
+            luckan öppen och skriver ut den i programmet i stället för att gissa.
+          </p>
+          <ul class="mt-8 space-y-0 avsloja">
+            <li class="py-4 border-b border-kalk/20">
+              <p class="titel d-s">Det finns ingen strömbrytare i salongen.</p>
+              <p class="brodtext-s text-kalk2 mt-2 max-w-[42ch]">Ljuset tänds klockan sex av två personer och släcks för hand när ni har gått. Det tar tjugo minuter.</p>
+            </li>
+            <li class="py-4 border-b border-kalk/20">
+              <p class="titel d-s">Dörrarna stängs när ljusen är tända.</p>
+              <p class="brodtext-s text-kalk2 mt-2 max-w-[42ch]">Vi släpper inte in under akt ett. Salongsdörren sitter två meter från scenkanten och hörs ända fram.</p>
+            </li>
+            <li class="py-4">
+              <p class="titel d-s">Ingen förstärkning, ingen inspelning.</p>
+              <p class="brodtext-s text-kalk2 mt-2 max-w-[42ch]">Rummet är fjorton meter djupt. Det behöver inga högtalare och tål inga mikrofonstativ.</p>
+            </li>
+          </ul>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- HANGNINGEN: tva verk i ram med proveniens, forskjutna. INTE ett bildgalleri i lika rutor. -->
+  <div class="mt-16 md:mt-24 grid grid-cols-12 gap-x-6 md:gap-x-8 gap-y-12">
+    <figure class="col-span-12 md:col-span-7 avsloja">
+      <div class="ram">
+        <img
+          src="https://upload.wikimedia.org/wikipedia/commons/thumb/1/19/Card-Party_in_the_Home_of_Elis_Schr%C3%B6derheim_%28Pehr_Hillestr%C3%B6m_d.%C3%A4.%29_-_Nationalmuseum_-_22346.tif/lossy-page1-1280px-Card-Party_in_the_Home_of_Elis_Schr%C3%B6derheim_%28Pehr_Hillestr%C3%B6m_d.%C3%A4.%29_-_Nationalmuseum_-_22346.tif.jpg"
+          alt="Gustaviansk salong där ett sällskap sitter kring ett kortbord, väggen tätt behängd med inramade tavlor."
+          width="1280" height="1000" loading="lazy" decoding="async">
+      </div>
+      <figcaption class="bildtext mt-4 max-w-[54ch]">
+        Pehr Hilleström d.ä., Kortparti hos Elis Schröderheim. Nationalmuseum, NM 22346.
+        Så tätt hängde man ett rum på 1780-talet, och så mycket ljus krävdes för att se det.
+      </figcaption>
+    </figure>
+
+    <figure class="col-span-12 md:col-span-5 md:mt-24 avsloja">
+      <div class="ram">
+        <img
+          src="https://upload.wikimedia.org/wikipedia/commons/thumb/7/70/Alexander_Roslin_-_The_Lady_with_the_Veil_%28the_Artist%27s_Wife%29_-_Google_Art_Project.jpg/1280px-Alexander_Roslin_-_The_Lady_with_the_Veil_%28the_Artist%27s_Wife%29_-_Google_Art_Project.jpg"
+          alt="Porträtt av en kvinna i svart spetsslöja med en solfjäder, vänd mot betraktaren."
+          width="1280" height="1560" loading="lazy" decoding="async">
+      </div>
+      <figcaption class="bildtext mt-4 max-w-[40ch]">
+        Alexander Roslin, Damen med slöjan, 1768. Nationalmuseum, NM 1114.
+        Modellen är Marie Suzanne Giroust, Roslins hustru och själv pastellmålare.
+      </figcaption>
+    </figure>
+  </div>
+</section>
+
+<!-- LIGGAREN: arets affisch, satt pa papper med hangande rollregister och punktlinjer.
+     INTE tre uppsattningskort med bild, brodtext och en knapp som star "Las mer". -->
+<section id="programmet" class="pa-papper border-y border-tryck/25 scroll-mt-24">
+  <div class="mx-auto max-w-[1480px] px-5 md:px-8 py-20 md:py-28">
+
+    <div class="grid grid-cols-12 gap-x-6 md:gap-x-8 items-end">
+      <div class="col-span-12 md:col-span-8">
+        <p class="etikett text-ockradjup avsloja">Tjugonionde vinterspelen</p>
+        <h2 class="titel d-l mt-5 max-w-[15ch] avsloja">Årets program, i den ordning de gavs.</h2>
+      </div>
+      <div class="col-span-12 md:col-span-4 mt-8 md:mt-0 md:text-right avsloja">
+        <p class="etikett-s text-tryck/70">Sjutton kvällar</p>
+        <p class="titel d-m mt-2">9 till 24 januari</p>
+      </div>
+    </div>
+    <div class="linje text-tryck mt-10 md:mt-12"></div>
+
+    <ol class="mt-2">
+      <li class="grid grid-cols-12 gap-x-6 md:gap-x-8 gap-y-6 py-10 md:py-14 border-b border-tryck/28 avsloja">
+        <div class="col-span-12 md:col-span-1">
+          <p class="siffra s-stor text-ockradjup">I</p>
+        </div>
+        <div class="col-span-12 md:col-span-6">
+          <h3 class="titel d-m"><em>Orfeo ed Euridice</em></h3>
+          <p class="etikett-s text-tryck/70 mt-3">Christoph Willibald Gluck. Wien 1762, Calzabigis version</p>
+          <p class="brodtext-s mt-5 max-w-[50ch] text-tryck/85">
+            Den korta italienska originalversionen, tre akter, utan Parisbalettens
+            tillägg. Vi ger den för att den är skriven för exakt det maskineri vi har:
+            underjorden byter till Elysium i ett enda drag, medan kören sjunger.
+          </p>
+          <ul class="mt-6 space-y-2 brodtext-s max-w-[40ch]">
+            <li class="roll"><span>Orfeo</span><i class="roll-ledare"></i><span class="text-tryck">Elin Norlander</span></li>
+            <li class="roll"><span>Euridice</span><i class="roll-ledare"></i><span class="text-tryck">Sara Wikman</span></li>
+            <li class="roll"><span>Amore</span><i class="roll-ledare"></i><span class="text-tryck">Johanna Bring</span></li>
+            <li class="roll"><span>Musikalisk ledning</span><i class="roll-ledare"></i><span class="text-tryck">Hedvig Almlöf</span></li>
+          </ul>
+        </div>
+        <div class="col-span-6 md:col-span-2">
+          <p class="etikett-s text-tryck/70">Speldagar</p>
+          <p class="titel text-[19px] leading-relaxed mt-2">9 jan<br>12 jan<br>15 jan<br>17 jan</p>
+        </div>
+        <div class="col-span-6 md:col-span-3 md:text-right">
+          <p class="etikett-s text-tryck/70">Speltid</p>
+          <p class="siffra s-stor mt-1">1.55</p>
+          <p class="etikett-s text-tryck/70 mt-3">med en paus på 25 minuter</p>
+          <p class="etikett-s text-tryck/70 mt-4">Sjunges på italienska, textmaskin i loger</p>
+        </div>
+      </li>
+
+      <li class="grid grid-cols-12 gap-x-6 md:gap-x-8 gap-y-6 py-10 md:py-14 border-b border-tryck/28 avsloja">
+        <div class="col-span-12 md:col-span-1">
+          <p class="siffra s-stor text-ockradjup">II</p>
+        </div>
+        <div class="col-span-12 md:col-span-6">
+          <h3 class="titel d-m"><em>Aeneas i Carthago</em></h3>
+          <p class="etikett-s text-tryck/70 mt-3">Joseph Martin Kraus. Text av Johan Henric Kellgren efter Gustav III</p>
+          <p class="brodtext-s mt-5 max-w-[50ch] text-tryck/85">
+            Kraus skrev den för invigningen av Gustav III:s nya operahus och fick
+            aldrig höra den. Vi spelar akt II i Louis Jean Desprez egna dekorationer,
+            ommålade efter hans blad i Nationalmuseum, och byter mellan Dianas lund
+            och den ensliga grottan på teaterns eget maskineri.
+          </p>
+          <ul class="mt-6 space-y-2 brodtext-s max-w-[40ch]">
+            <li class="roll"><span>Dido</span><i class="roll-ledare"></i><span class="text-tryck">Kajsa Tunberg</span></li>
+            <li class="roll"><span>Aeneas</span><i class="roll-ledare"></i><span class="text-tryck">Rasmus Ekelund</span></li>
+            <li class="roll"><span>Iarbas</span><i class="roll-ledare"></i><span class="text-tryck">Petter Lindfors</span></li>
+            <li class="roll"><span>Musikalisk ledning</span><i class="roll-ledare"></i><span class="text-tryck">Hedvig Almlöf</span></li>
+          </ul>
+        </div>
+        <div class="col-span-6 md:col-span-2">
+          <p class="etikett-s text-tryck/70">Speldagar</p>
+          <p class="titel text-[19px] leading-relaxed mt-2">16 jan<br>19 jan<br>22 jan<br>24 jan</p>
+        </div>
+        <div class="col-span-6 md:col-span-3 md:text-right">
+          <p class="etikett-s text-tryck/70">Speltid</p>
+          <p class="siffra s-stor mt-1">2.20</p>
+          <p class="etikett-s text-tryck/70 mt-3">med en paus på 25 minuter</p>
+          <p class="etikett-s text-tryck/70 mt-4">Sjunges på svenska, 1799 års partitur</p>
+        </div>
+      </li>
+
+      <li class="grid grid-cols-12 gap-x-6 md:gap-x-8 gap-y-6 py-10 md:py-14 avsloja">
+        <div class="col-span-12 md:col-span-1">
+          <p class="siffra s-stor text-ockradjup">III</p>
+        </div>
+        <div class="col-span-12 md:col-span-6">
+          <h3 class="titel d-m"><em>La serva padrona</em></h3>
+          <p class="etikett-s text-tryck/70 mt-3">Giovanni Battista Pergolesi. Neapel 1733, intermezzo i två delar</p>
+          <p class="brodtext-s mt-5 max-w-[50ch] text-tryck/85">
+            Efterspelet. Två sångare, en stum roll och nio musiker på förscenen sedan
+            ridån gått ned för kvällen. Publiken sitter kvar med ytterkläderna på och
+            får varm vin i foajén efteråt. Ingen dekoration, bara ramprampens ljus.
+          </p>
+          <ul class="mt-6 space-y-2 brodtext-s max-w-[40ch]">
+            <li class="roll"><span>Serpina</span><i class="roll-ledare"></i><span class="text-tryck">Johanna Bring</span></li>
+            <li class="roll"><span>Uberto</span><i class="roll-ledare"></i><span class="text-tryck">Petter Lindfors</span></li>
+            <li class="roll"><span>Vespone, stum</span><i class="roll-ledare"></i><span class="text-tryck">Nils Agrell</span></li>
+            <li class="roll"><span>Cembalo och ledning</span><i class="roll-ledare"></i><span class="text-tryck">Ana Belić</span></li>
+          </ul>
+        </div>
+        <div class="col-span-6 md:col-span-2">
+          <p class="etikett-s text-tryck/70">Speldagar</p>
+          <p class="titel text-[19px] leading-relaxed mt-2">10 jan<br>14 jan<br>18 jan<br>23 jan</p>
+        </div>
+        <div class="col-span-6 md:col-span-3 md:text-right">
+          <p class="etikett-s text-tryck/70">Speltid</p>
+          <p class="siffra s-stor mt-1">0.50</p>
+          <p class="etikett-s text-tryck/70 mt-3">utan paus, börjar 22.00</p>
+          <p class="etikett-s text-tryck/70 mt-4">Sjunges på italienska</p>
+        </div>
+      </li>
+    </ol>
+
+    <div class="mt-12 grid grid-cols-12 gap-x-6 md:gap-x-8 gap-y-8">
+      <div class="col-span-12 md:col-span-7">
+        <p class="brodtext-s text-tryck/85 max-w-[58ch] avsloja">
+          Orkestern är Vretaholms hovkapell, tjugofyra musiker på tidstrogna
+          instrument. Kören Sankt Sigfrid från Linköping sjunger i Gluck och Kraus.
+          Generalrepetitionerna den 8 och den 15 januari är öppna för fyrtio åhörare.
+        </p>
+      </div>
+      <div class="col-span-12 md:col-span-5 md:text-right avsloja">
+        <a href="#biljetter" class="knapp knapp-papper">Till biljetterna</a>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- SCENBYTET: skrubbad kulissvaxling mellan tva verkliga Desprez-blad for samma opera.
+     INTE en autoplayande bakgrundsvideo och INTE ett bildspel med prickar. -->
+<section id="scenbytet" class="relative border-b border-kalk/15">
+  <div class="scen-rulle" id="scenrulle">
+    <div class="scen-klibb">
+      <div class="scen-platta">
+        <div class="scen-b" id="scenb"></div>
+        <div class="scen-a" id="scena" aria-hidden="true">
+          <span class="kuliss" style="left:0%"></span>
+          <span class="kuliss" style="left:16.6667%"></span>
+          <span class="kuliss" style="left:33.3334%"></span>
+          <span class="kuliss" style="left:50.0001%"></span>
+          <span class="kuliss" style="left:66.6668%"></span>
+          <span class="kuliss" style="left:83.3335%"></span>
+        </div>
+        <div class="scen-flor"></div>
+        <div class="scen-text">
+          <div class="mx-auto max-w-[1480px] px-5 md:px-8 pb-10 md:pb-14">
+            <p class="scen-rad text-ockra text-[11px] md:text-[13px]" id="scenrad">Akt II, scen 1 till scen 3</p>
+            <h2 class="titel d-l mt-5 max-w-[17ch] text-kalk">Fyra par kulisser, en vev, sju sekunder.</h2>
+            <p class="brodtext text-kalk max-w-[50ch] mt-5">
+              Vagnarna under scengolvet är hopkopplade på en enda axel. Dras den ronsar
+              hela bilden ut i sidorna på en gång, och nästa står färdig bakom. Publiken
+              ser bytet ske. Det är meningen att den ska göra det.
+            </p>
+            <p class="bildtext mt-6 max-w-[62ch] text-kalk">
+              Louis Jean Desprez, scenbilder till Aeneas i Carthago, akt II.
+              Nationalmuseum, NM 47972 och NM 47969.
+            </p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- MASKINERIET: sifferskenor i tre kolumner med stegring, hårfin overlinje.
+     INTE en specifikationstabell med ram runt varje cell. -->
+<section id="teatern" class="mx-auto max-w-[1480px] px-5 md:px-8 pt-20 md:pt-28 pb-16 md:pb-24 scroll-mt-24">
+  <div class="grid grid-cols-12 gap-x-6 md:gap-x-8 gap-y-8 mb-14 md:mb-20">
+    <div class="col-span-12 md:col-span-4">
+      <p class="etikett text-ockra avsloja">Teatern</p>
+      <div class="linje text-kalk mt-4 avsloja"></div>
+      <p class="brodtext-s text-kalk2 mt-6 max-w-[30ch] avsloja">
+        Södra flygeln, Vretaholms gård. Fjorton meter djup, nio bred,
+        sex och en halv till takstolen.
+      </p>
+    </div>
+    <div class="col-span-12 md:col-span-8">
+      <h2 class="titel d-l max-w-[17ch] avsloja">Ett rum byggt kring det som står under golvet.</h2>
+    </div>
+  </div>
+
+  <div class="grid grid-cols-12 gap-x-6 md:gap-x-8 gap-y-12">
+    <article class="col-span-12 sm:col-span-6 lg:col-span-4 border-t border-kalk/28 pt-7 avsloja">
+      <p class="siffra s-jatte text-ockra">4</p>
+      <h3 class="titel d-s mt-4">par kulissvagnar</h3>
+      <p class="brodtext-s text-kalk2 mt-3 max-w-[36ch]">
+        Ek på järnhjul, i spår som är sågade i det ursprungliga scengolvet.
+        Två av vagnarna bär sina målningar från 1779.
+      </p>
+    </article>
+    <article class="col-span-12 sm:col-span-6 lg:col-span-4 border-t border-kalk/28 pt-7 lg:mt-12 avsloja">
+      <p class="siffra s-jatte text-ockra">7</p>
+      <h3 class="titel d-s mt-4">sekunder per byte</h3>
+      <p class="brodtext-s text-kalk2 mt-3 max-w-[36ch]">
+        Uppmätt vid genomgången i oktober 2026, med två man på veven.
+        Det är långsammare än 1780, då de var fyra.
+      </p>
+    </article>
+    <article class="col-span-12 sm:col-span-6 lg:col-span-4 border-t border-kalk/28 pt-7 lg:mt-24 avsloja">
+      <p class="siffra s-jatte text-ockra">2</p>
+      <h3 class="titel d-s mt-4">försänkningar</h3>
+      <p class="brodtext-s text-kalk2 mt-3 max-w-[36ch]">
+        Med motvikter av bly, den ena under förscenen och den andra rakt
+        under bakdukens mitt. Båda i bruk i Orfeo.
+      </p>
+    </article>
+    <article class="col-span-12 sm:col-span-6 lg:col-span-4 border-t border-kalk/28 pt-7 avsloja">
+      <p class="siffra s-jatte text-ockra">62</p>
+      <h3 class="titel d-s mt-4">kilo i flygverket</h3>
+      <p class="brodtext-s text-kalk2 mt-3 max-w-[36ch]">
+        Så mycket får den väga som far upp. Repet är hampa, slaget om
+        2019 efter det ursprungliga provet, och byts vart sjunde år.
+      </p>
+    </article>
+    <article class="col-span-12 sm:col-span-6 lg:col-span-4 border-t border-kalk/28 pt-7 lg:mt-12 avsloja">
+      <p class="siffra s-jatte text-ockra">5</p>
+      <h3 class="titel d-s mt-4">valsar i vågmaskinen</h3>
+      <p class="brodtext-s text-kalk2 mt-3 max-w-[36ch]">
+        Spiralskurna i furu och klädda med blå linnedukar. Vevas av två
+        personer och låter som ett hav om man blundar.
+      </p>
+    </article>
+    <article class="col-span-12 sm:col-span-6 lg:col-span-4 border-t border-kalk/28 pt-7 lg:mt-24 avsloja">
+      <p class="siffra s-jatte text-ockra">9</p>
+      <h3 class="titel d-s mt-4">bevarade bakdukar</h3>
+      <p class="brodtext-s text-kalk2 mt-3 max-w-[36ch]">
+        Fyra tål att hängas och används. Fem ligger plant i magasinet
+        och visas på visningarna i mars, aldrig i spel.
+      </p>
+    </article>
+  </div>
+
+  <!-- HANGNINGEN, ANDRA VAGGEN: bladen som forklarar rummet, med proveniens under ramen. -->
+  <div class="mt-20 md:mt-28 grid grid-cols-12 gap-x-6 md:gap-x-8 gap-y-12">
+    <figure class="col-span-12 lg:col-span-7 avsloja">
+      <div class="ram">
+        <img
+          src="https://upload.wikimedia.org/wikipedia/commons/thumb/3/38/Francesco_Bibiena_and_Giuseppe_Chamant%2C_drawing_of_the_auditorium_and_stage_of_the_Teatro_Filarmonico%2C_Verona%2C_c._1729.jpg/1280px-Francesco_Bibiena_and_Giuseppe_Chamant%2C_drawing_of_the_auditorium_and_stage_of_the_Teatro_Filarmonico%2C_Verona%2C_c._1729.jpg"
+          alt="Graverad interiör av en barockteater med fyra rader logeplatser och en upplyst scen."
+          width="1280" height="960" loading="lazy" decoding="async">
+      </div>
+      <figcaption class="bildtext mt-4 max-w-[58ch]">
+        Francesco Galli Bibiena och Giuseppe Chamant, salongen och scenen i Teatro
+        Filarmonico i Verona, omkring 1729. Vretaholm har en enda rad loger, inte fyra,
+        men samma hästskoplan och samma avstånd mellan ramp och första bänk.
+      </figcaption>
+    </figure>
+
+    <div class="col-span-12 lg:col-span-5 lg:mt-16 grid grid-cols-2 lg:grid-cols-1 gap-6 lg:gap-10">
+      <figure class="avsloja">
+        <div class="ram">
+          <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/a/a7/Encyclopedie_volume_9-053_%28adjusted%29.jpg/1280px-Encyclopedie_volume_9-053_%28adjusted%29.jpg"
+            alt="Kopparstick med planritning över en teaterbyggnad, salongen och maskinrummen utsatta."
+            width="1000" height="1400" loading="lazy" decoding="async">
+        </div>
+        <figcaption class="bildtext mt-3 max-w-[36ch]">
+          Salles de Spectacles, plan au rez de chaussée. Diderots Encyclopédie,
+          planschband IX, 1772. Salle des Machines är rummet under parterren.
+        </figcaption>
+      </figure>
+      <figure class="avsloja">
+        <div class="ram">
+          <img src="https://images.metmuseum.org/CRDImages/dp/web-large/DP828191.jpg"
+            alt="Etsning av ett väldigt valv fyllt av trappor, block, rep och vindspel."
+            width="1000" height="1350" loading="lazy" decoding="async">
+        </div>
+        <figcaption class="bildtext mt-3 max-w-[36ch]">
+          Giovanni Battista Piranesi, Det runda tornet ur Carceri d'invenzione,
+          omkring 1749. The Met, 37.45.3(27). Ritad som fantasi, byggd som verkstad.
+        </figcaption>
+      </figure>
+    </div>
+  </div>
+</section>
+
+<!-- LJUSET: mörk inversion, ett verk stort i mitten och tva foremal i luft.
+     INTE en statistikrad med tre stora tal och grabeige undertexter. -->
+<section id="ljuset" class="bg-natt border-y border-kalk/12">
+  <div class="mx-auto max-w-[1480px] px-5 md:px-8 py-20 md:py-32">
+
+    <div class="max-w-[46rem] mx-auto text-center">
+      <p class="etikett text-ockra avsloja">Ljuset</p>
+      <h2 class="titel d-l mt-6 avsloja">Tvåhundrafjorton lågor, och ingenting bakom dem.</h2>
+      <p class="brodtext text-kalk/85 mt-8 mx-auto max-w-[50ch] avsloja">
+        Nittiosex ljus i de två kronorna, fyrtioåtta i rampen bakom sina
+        tennreflektorer, sjuttio på kulissernas lampetter. De tänds nedifrån och upp
+        och tar en dryg halvtimme. Ljusmästaren putsar vekarna i pausen, vilket är
+        varför pausen är tjugofem minuter och inte femton.
+      </p>
+    </div>
+
+    <figure class="mt-16 md:mt-20 max-w-[62rem] mx-auto avsloja">
+      <div class="ram">
+        <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/8/84/Three_men_viewing_the_Gladiator_by_Candlelight_1765_Joseph_Wright_of_Derby_-_54978600128.jpg/1280px-Three_men_viewing_the_Gladiator_by_Candlelight_1765_Joseph_Wright_of_Derby_-_54978600128.jpg"
+          alt="Tre män lutade över en liten skulptur, allt upplyst av en enda ljuslåga utanför bilden."
+          width="1280" height="1000" loading="lazy" decoding="async">
+      </div>
+      <figcaption class="bildtext mt-4 max-w-[64ch] mx-auto text-center">
+        Joseph Wright of Derby, Tre män betraktar Gladiatorn vid ljus, 1765.
+        Så här mycket ser man vid ett ljus, och så här ser ansikten ut i en salong
+        där ljuset kommer nedifrån.
+      </figcaption>
+    </figure>
+
+    <div class="mt-16 md:mt-24 grid grid-cols-12 gap-x-6 md:gap-x-8 gap-y-12 items-start">
+      <figure class="col-span-6 lg:col-span-3 avsloja">
+        <div class="ram">
+          <img src="https://images.metmuseum.org/CRDImages/es/web-large/DP-44924-001.jpg"
+            alt="Ljusstake i förgyllt silver med räfflad skaft och graverad fot."
+            width="800" height="1000" loading="lazy" decoding="async">
+        </div>
+        <figcaption class="bildtext mt-3">
+          Ljusstake, mästaren RW, omkring 1710. The Met, 2003.47.2.
+        </figcaption>
+      </figure>
+
+      <div class="col-span-12 lg:col-span-6 lg:mt-12 lg:px-6">
+        <p class="etikett text-ockra avsloja">Orkestern</p>
+        <div class="linje text-kalk mt-4 mb-7 avsloja"></div>
+        <p class="brodtext text-kalk/85 max-w-[46ch] avsloja">
+          Vretaholms hovkapell stämmer i 415 hertz. Strängarna är tarm, hornen
+          ventillösa, flöjterna av trä. Cembalon stäms om i pausen därför att salen
+          är kall när dörrarna öppnas och varm när de stängs, och instrumentet vet
+          skillnaden bättre än publiken gör.
+        </p>
+        <p class="brodtext text-kalk/85 max-w-[46ch] mt-6 avsloja">
+          Musikerna sitter i parterrens främre del, på golvnivå, utan grop. Det finns
+          ingen grop att gräva utan att röra grunden, och grunden är från 1777.
+        </p>
+        <ul class="mt-9 avsloja">
+          <li class="flex items-baseline justify-between gap-4 py-3 border-b border-kalk/18">
+            <span class="brodtext-s text-kalk2">Stämton</span><span class="titel text-[21px]">415 Hz</span>
+          </li>
+          <li class="flex items-baseline justify-between gap-4 py-3 border-b border-kalk/18">
+            <span class="brodtext-s text-kalk2">Musiker</span><span class="titel text-[21px]">24</span>
+          </li>
+          <li class="flex items-baseline justify-between gap-4 py-3">
+            <span class="brodtext-s text-kalk2">Avstånd ramp till första bänk</span><span class="titel text-[21px]">2,4 m</span>
+          </li>
+        </ul>
+      </div>
+
+      <figure class="col-span-6 lg:col-span-3 lg:mt-28 avsloja">
+        <div class="ram">
+          <img src="https://images.metmuseum.org/CRDImages/mi/web-large/DP164634.jpg"
+            alt="Basviola da gamba med sex strängar, honungsfärgad lackering, mot ljus botten."
+            width="800" height="1400" loading="lazy" decoding="async">
+        </div>
+        <figcaption class="bildtext mt-3">
+          Basviola da gamba, John Rose, omkring 1600. The Met, 1989.44.
+        </figcaption>
+      </figure>
+    </div>
+  </div>
+</section>
+
+<!-- BILJETTER: en liggare med priset satt i display till hoger.
+     INTE tre prisplaner i kort med bockade listor och en markerad mittkolumn. -->
+<section id="biljetter" class="mx-auto max-w-[1480px] px-5 md:px-8 py-20 md:py-28 scroll-mt-24">
+  <div class="grid grid-cols-12 gap-x-6 md:gap-x-8 gap-y-10">
+    <div class="col-span-12 md:col-span-3">
+      <p class="etikett text-ockra avsloja">Biljetter</p>
+      <div class="linje text-kalk mt-4 avsloja"></div>
+      <p class="siffra s-jatte mt-8 avsloja">142</p>
+      <p class="brodtext-s text-kalk2 mt-4 max-w-[24ch] avsloja">
+        platser i salongen. Fler ryms inte, och fler har aldrig rymts.
+        Alla är numrerade och alla ser scenen.
+      </p>
+    </div>
+
+    <ul class="col-span-12 md:col-span-9">
+      <li class="grid grid-cols-12 gap-x-5 md:gap-x-6 gap-y-3 items-baseline py-8 border-b border-kalk/22 avsloja">
+        <div class="col-span-12 md:col-span-5">
+          <h3 class="titel d-s">Parterren</h3>
+          <p class="brodtext-s text-kalk2 mt-2 max-w-[42ch]">
+            Bänk med fäll, som 1777. Närmast musikerna och närmast golvluckorna,
+            så man hör maskineriet arbeta under sig.
+          </p>
+        </div>
+        <div class="col-span-7 md:col-span-3 etikett-s text-kalk2 leading-relaxed">96 platser<br>rad 1 till 8</div>
+        <div class="col-span-5 md:col-span-4 text-right">
+          <span class="siffra s-stor">780</span>
+          <span class="etikett-s text-kalk2 ml-2">kr</span>
+        </div>
+      </li>
+      <li class="grid grid-cols-12 gap-x-5 md:gap-x-6 gap-y-3 items-baseline py-8 border-b border-kalk/22 avsloja">
+        <div class="col-span-12 md:col-span-5">
+          <h3 class="titel d-s">Första raden</h3>
+          <p class="brodtext-s text-kalk2 mt-2 max-w-[42ch]">
+            Stolar med rygg, en trappa upp, i höjd med kronornas underkant.
+            Härifrån ser man perspektivet i dekorationen som det var räknat.
+          </p>
+        </div>
+        <div class="col-span-7 md:col-span-3 etikett-s text-kalk2 leading-relaxed">34 platser<br>egen garderob</div>
+        <div class="col-span-5 md:col-span-4 text-right">
+          <span class="siffra s-stor">1&#8239;240</span>
+          <span class="etikett-s text-kalk2 ml-2">kr</span>
+        </div>
+      </li>
+      <li class="grid grid-cols-12 gap-x-5 md:gap-x-6 gap-y-3 items-baseline py-8 border-b border-kalk/22 avsloja">
+        <div class="col-span-12 md:col-span-5">
+          <h3 class="titel d-s text-ockra">Hertigelogen</h3>
+          <p class="brodtext-s text-kalk2 mt-2 max-w-[42ch]">
+            Sex platser i vardera logen, egen ingång från trapphuset och egna ljus
+            som ni själva får blåsa ut. Bokas som hel loge, inte per stol.
+          </p>
+        </div>
+        <div class="col-span-7 md:col-span-3 etikett-s text-kalk2 leading-relaxed">12 platser<br>2 loger om 6</div>
+        <div class="col-span-5 md:col-span-4 text-right">
+          <span class="siffra s-stor">1&#8239;950</span>
+          <span class="etikett-s text-kalk2 ml-2">kr</span>
+        </div>
+      </li>
+      <li class="grid grid-cols-12 gap-x-5 md:gap-x-6 gap-y-3 items-baseline py-8 border-b border-kalk/22 avsloja">
+        <div class="col-span-12 md:col-span-5">
+          <h3 class="titel d-s">Efterspelet</h3>
+          <p class="brodtext-s text-kalk2 mt-2 max-w-[42ch]">
+            Pergolesi klockan tio, på förscenen. Bänk utan fäll, ytterkläderna på,
+            varmt vin i foajén efteråt. Säljs även till den som sett kvällens opera.
+          </p>
+        </div>
+        <div class="col-span-7 md:col-span-3 etikett-s text-kalk2 leading-relaxed">60 platser<br>4 kvällar</div>
+        <div class="col-span-5 md:col-span-4 text-right">
+          <span class="siffra s-stor">340</span>
+          <span class="etikett-s text-kalk2 ml-2">kr</span>
+        </div>
+      </li>
+      <li class="grid grid-cols-12 gap-x-5 md:gap-x-6 gap-y-3 items-baseline py-8 avsloja">
+        <div class="col-span-12 md:col-span-5">
+          <h3 class="titel d-s">Generalrepetitionen</h3>
+          <p class="brodtext-s text-kalk2 mt-2 max-w-[42ch]">
+            Den 8 och den 15 januari, klockan fjorton. Man får resa sig, gå ut och
+            komma in, och maskineriet stannar när något behöver göras om.
+          </p>
+        </div>
+        <div class="col-span-7 md:col-span-3 etikett-s text-kalk2 leading-relaxed">40 platser<br>under 26 år går fritt</div>
+        <div class="col-span-5 md:col-span-4 text-right">
+          <span class="siffra s-stor">260</span>
+          <span class="etikett-s text-kalk2 ml-2">kr</span>
+        </div>
+      </li>
+    </ul>
+  </div>
+
+  <div class="mt-12 grid grid-cols-12 gap-x-6 md:gap-x-8 gap-y-8 items-center">
+    <p class="col-span-12 md:col-span-7 brodtext-s text-kalk2 max-w-[58ch] avsloja">
+      Biljettkassan är ett rum i norra flygeln och en telefon som Margit Öberg
+      svarar i på vardagar mellan nio och fyra. Vill ni hellre skriva går det bra,
+      och vi svarar på papper om ni skickat papper.
+    </p>
+    <div class="col-span-12 md:col-span-5 md:text-right avsloja">
+      <a href="tel:+4613990100" class="knapp">013 99 01 00</a>
+    </div>
+  </div>
+</section>
+
+<!-- RESAN: adressen, dagarna och vagen dit i satta kolumner intill ett scenblad.
+     INTE en inbaddad karta i en rundad ruta med en nal i markesfarg. -->
+<section id="resan" class="pa-papper border-t border-tryck/25 scroll-mt-24">
+  <div class="mx-auto max-w-[1480px] px-5 md:px-8 py-20 md:py-28">
+    <div class="grid grid-cols-12 gap-x-6 md:gap-x-8 gap-y-12">
+
+      <div class="col-span-12 lg:col-span-5">
+        <p class="etikett text-ockradjup avsloja">Resan</p>
+        <div class="linje text-tryck mt-4 avsloja"></div>
+        <h2 class="titel d-l mt-8 max-w-[13ch] avsloja">Fjorton kilometer norr om Linköping.</h2>
+        <p class="brodtext text-tryck/85 mt-8 max-w-[44ch] avsloja">
+          Vretaholms gård ligger i Vreta klosters socken, mellan Roxen och
+          Göta kanals slussar vid Berg. I januari är kanalen is och vägen ned mot
+          gården plogad men smal. Kom i tid, och kom i skor som tål grus.
+        </p>
+        <div class="mt-10 grid grid-cols-2 gap-x-6 gap-y-8 avsloja">
+          <div>
+            <p class="etikett-s text-tryck/70">Adress</p>
+            <p class="brodtext-s mt-2">Vretaholms gård<br>Södra flygeln<br>590 76 Ljungsbro</p>
+          </div>
+          <div>
+            <p class="etikett-s text-tryck/70">Med buss</p>
+            <p class="brodtext-s mt-2">Linje 522 från Linköpings resecentrum till Kungsbro, sedan 900 meter till fots.</p>
+          </div>
+          <div>
+            <p class="etikett-s text-tryck/70">Med bil</p>
+            <p class="brodtext-s mt-2">Riksväg 34 mot Motala, av vid Ljungsbro. Fyrtio platser på ängen, grusad och belyst.</p>
+          </div>
+          <div>
+            <p class="etikett-s text-tryck/70">Dörrarna</p>
+            <p class="brodtext-s mt-2">Öppnas 17.15. Ljusen tänds 17.30. Spelet börjar 18.00 och dörren stängs då.</p>
+          </div>
+        </div>
+
+        <div class="mt-12 pt-8 border-t border-tryck/28 avsloja">
+          <p class="etikett-s text-tryck/70">Kontakt</p>
+          <p class="titel d-m mt-3">
+            <a href="mailto:kassan@vinterspelen.se" class="lank-under">kassan@vinterspelen.se</a>
+          </p>
+          <p class="brodtext-s text-tryck/85 mt-4 max-w-[44ch]">
+            Margit Öberg svarar på 013 99 01 00, vardagar nio till fyra.
+            Frågor om tillgänglighet går till samma nummer och besvaras av
+            någon som varit i trapphuset.
+          </p>
+        </div>
+      </div>
+
+      <figure class="col-span-12 lg:col-span-6 lg:col-start-7 lg:mt-20 avsloja">
+        <div class="ram">
+          <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/2/24/Drottningen_ger_De_la_Gardie_order_att_b%C3%B6rja_festen._Scenbild_till_%22Drottning_Christina%22%2C_akt_I%2C_scen_2_%28Louis_Jean_Desprez%29_-_Nationalmuseum_-_36149.tif/lossy-page1-1280px-Drottningen_ger_De_la_Gardie_order_att_b%C3%B6rja_festen._Scenbild_till_%22Drottning_Christina%22%2C_akt_I%2C_scen_2_%28Louis_Jean_Desprez%29_-_Nationalmuseum_-_36149.tif.jpg"
+            alt="Lavering av en festscen under natthimmel, med upplyst kolonnadarkitektur och folk på en trappa."
+            width="1280" height="880" loading="lazy" decoding="async">
+        </div>
+        <figcaption class="bildtext mt-4 max-w-[56ch]">
+          Louis Jean Desprez, scenbild till Drottning Christina, akt I scen 2.
+          Nationalmuseum, NM 36149. Desprez ritade för ljus som fladdrar, och därför
+          fungerar hans arkitektur bara i ett rum som vårt.
+        </figcaption>
+      </figure>
+    </div>
+  </div>
+</section>
+
+</main>
+
+<!-- KOLOFON -->
+<footer class="bg-sal border-t border-kalk/18">
+  <div class="mx-auto max-w-[1480px] px-5 md:px-8 py-16 md:py-20 grid grid-cols-12 gap-x-6 md:gap-x-8 gap-y-10">
+    <div class="col-span-12 md:col-span-5">
+      <p class="titel d-m">Vinterspelen<br>på Vretaholm</p>
+      <p class="brodtext-s text-kalk2 mt-5 max-w-[36ch]">
+        Vretaholms teaterförening, bildad 1998. Teatern ägs av Vretaholms gård
+        och drivs som byggnadsminne sedan 1971.
+      </p>
+    </div>
+    <nav aria-label="Sidfotens avsnitt" class="col-span-6 md:col-span-2">
+      <p class="etikett-s text-kalk2">Sidan</p>
+      <ul class="mt-4 space-y-1 brodtext-s">
+        <li><a href="#hallningen" class="navlank">Hållningen</a></li>
+        <li><a href="#programmet" class="navlank">Programmet</a></li>
+        <li><a href="#teatern" class="navlank">Teatern</a></li>
+        <li><a href="#biljetter" class="navlank">Biljetter</a></li>
+        <li><a href="#resan" class="navlank">Resan</a></li>
+      </ul>
+    </nav>
+    <div class="col-span-6 md:col-span-2">
+      <p class="etikett-s text-kalk2">Kassan</p>
+      <ul class="mt-4 space-y-1 brodtext-s">
+        <li><a href="tel:+4613990100" class="navlank">013 99 01 00</a></li>
+        <li><a href="mailto:kassan@vinterspelen.se" class="navlank">kassan@</a></li>
+        <li class="text-kalk2 leading-snug pt-2">Vardagar 9 till 16</li>
+      </ul>
+    </div>
+    <div class="col-span-12 md:col-span-3">
+      <p class="etikett-s text-kalk2">Bilderna</p>
+      <p class="brodtext-s text-kalk2 mt-4 max-w-[34ch]">
+        Samtliga verk är fri egendom och återges efter Nationalmuseum,
+        The Metropolitan Museum of Art och Wikimedia Commons. Konstnär,
+        titel och inventarienummer står under varje ram.
+      </p>
+    </div>
+  </div>
+  <div class="border-t border-kalk/15">
+    <div class="mx-auto max-w-[1480px] px-5 md:px-8 py-6 grid grid-cols-12 gap-y-2 etikett-s text-kalk2">
+      <p class="col-span-12 md:col-span-4">Vretaholms teaterförening 2027</p>
+      <p class="col-span-12 md:col-span-4">Byggnadsminne sedan 1971</p>
+      <p class="col-span-12 md:col-span-4 md:text-right">Satt i Bodoni Moda och Newsreader</p>
+    </div>
+  </div>
+</footer>
+
+<script>
+(function () {
+  "use strict";
+  var d = document, de = d.documentElement;
+  var params = new URLSearchParams(location.search);
+  var preview = params.get("preview");
+  var reduce = matchMedia("(prefers-reduced-motion: reduce)").matches;
+
+  /* ---- AVSLOJANDE: felar mot synligt ---------------------------------- */
+  var doldaElement = [].slice.call(d.querySelectorAll(".avsloja"));
+
+  function visaAlla() {
+    doldaElement.forEach(function (el) { el.classList.add("inne"); });
+  }
+
+  if (preview === "all" || reduce) {
+    de.classList.add("avsloja-av");
+    visaAlla();
+  } else if (!("IntersectionObserver" in window)) {
+    visaAlla();
+  } else {
+    var io = new IntersectionObserver(function (poster) {
+      poster.forEach(function (p) {
+        if (p.isIntersecting || p.boundingClientRect.top < 0) {
+          p.target.classList.add("inne");
+          io.unobserve(p.target);
+        }
+      });
+    }, { threshold: 0, rootMargin: "0px 0px -4% 0px" });
+
+    doldaElement.forEach(function (el) {
+      /* allt som redan ar pa eller ovanfor skarmen visas direkt vid start */
+      var r = el.getBoundingClientRect();
+      if (r.top < innerHeight * 1.05) { el.classList.add("inne"); return; }
+      io.observe(el);
+    });
+
+    /* tidsutlost skyddsnat: ingenting far bli kvar osynligt */
+    setTimeout(function () {
+      var kvar = doldaElement.filter(function (el) { return !el.classList.contains("inne"); });
+      var oppna = kvar.filter(function (el) {
+        return el.getBoundingClientRect().top < innerHeight * 1.6;
+      });
+      oppna.forEach(function (el) { el.classList.add("inne"); });
+    }, 2600);
+
+    /* raknare: sista utvagen om observatoren aldrig loper */
+    setTimeout(function () {
+      var kvar = doldaElement.filter(function (el) { return !el.classList.contains("inne"); });
+      var synligaKvar = kvar.filter(function (el) {
+        var r = el.getBoundingClientRect();
+        return r.bottom > 0 && r.top < innerHeight;
+      });
+      if (synligaKvar.length) { synligaKvar.forEach(function (el) { el.classList.add("inne"); }); }
+      window.__avslojaKvar = kvar.length;
+      window.__avslojaSynligaKvar = synligaKvar.length;
+    }, 6000);
+  }
+
+  /* ---- SCENBYTET: skrubbad kulissvaxling ------------------------------ */
+  var BLAD_A = "https://upload.wikimedia.org/wikipedia/commons/thumb/e/e0/Dianas_lund%2C_scenbild_till_%22Aeneas_i_Carthago%22%2C_akt_II_scen_1_%28Louis_Jean_Desprez%29_-_Nationalmuseum_-_47972.tif/lossy-page1-1280px-Dianas_lund%2C_scenbild_till_%22Aeneas_i_Carthago%22%2C_akt_II_scen_1_%28Louis_Jean_Desprez%29_-_Nationalmuseum_-_47972.tif.jpg";
+  var BLAD_B = "https://upload.wikimedia.org/wikipedia/commons/thumb/1/18/Enslig_grotta%2C_scenbild_till_%22Aeneas_i_Carthago%22%2C_akt_II%2C_scen_3_%28Louis_Jean_Desprez%29_-_Nationalmuseum_-_47969.tif/lossy-page1-1280px-Enslig_grotta%2C_scenbild_till_%22Aeneas_i_Carthago%22%2C_akt_II%2C_scen_3_%28Louis_Jean_Desprez%29_-_Nationalmuseum_-_47969.tif.jpg";
+
+  var rulle = d.getElementById("scenrulle");
+  var lagerB = d.getElementById("scenb");
+  var kulisser = [].slice.call(d.querySelectorAll(".kuliss"));
+  var raden = d.getElementById("scenrad");
+
+  lagerB.style.backgroundImage = 'url("' + BLAD_B + '")';
+  kulisser.forEach(function (k, i) {
+    k.style.backgroundImage = 'url("' + BLAD_A + '")';
+    k.style.backgroundPosition = (i * 20) + "% center";
+  });
+
+  function smoothstep(t) { return t * t * (3 - 2 * t); }
+  function klam(v) { return v < 0 ? 0 : v > 1 ? 1 : v; }
+
+  function mala(p) {
+    var e = smoothstep(klam(p));
+    kulisser.forEach(function (k, i) {
+      var mitt = i < 3 ? (2 - i) : (i - 3);      /* 0 ytterst, 2 innerst */
+      var drojsmal = mitt * 0.11;
+      var pi = smoothstep(klam((e - drojsmal) / (1 - drojsmal || 1)));
+      var vag = 108 + mitt * 46;                  /* innerkulissen gar langre */
+      var riktning = i < 3 ? -1 : 1;
+      k.style.transform = "translate3d(" + (riktning * vag * pi) + "%,0,0)";
+      k.style.opacity = String(1 - 0.12 * pi);
+    });
+    lagerB.style.filter = "blur(" + (17 * (1 - e)).toFixed(2) + "px)";
+    lagerB.style.transform = "scale(" + (1.09 - 0.09 * e).toFixed(4) + ")";
+    lagerB.style.opacity = (0.34 + 0.66 * e).toFixed(3);
+    if (raden) {
+      raden.style.letterSpacing = (0.42 - 0.36 * e).toFixed(3) + "em";
+      raden.style.opacity = (0.16 + 0.84 * e).toFixed(3);
+    }
+  }
+
+  if (reduce || preview === "scen" || preview === "all") {
+    mala(1);
+  } else {
+    var mal = 0, nu = 0, kor = false;
+
+    function las() {
+      var r = rulle.getBoundingClientRect();
+      var strackan = r.height - innerHeight;
+      mal = strackan > 0 ? klam((-r.top) / strackan) : (r.top < 0 ? 1 : 0);
+      if (!kor) { kor = true; requestAnimationFrame(steg); }
+    }
+    function steg() {
+      nu += (mal - nu) * 0.11;
+      if (Math.abs(mal - nu) < 0.0004) { nu = mal; kor = false; }
+      mala(nu);
+      if (kor) { requestAnimationFrame(steg); }
+    }
+    addEventListener("scroll", las, { passive: true });
+    addEventListener("resize", las);
+    las();
+    mala(0);
+  }
+})();
+</script>
+</body>
+</html>
