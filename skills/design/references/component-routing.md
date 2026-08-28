@@ -14,7 +14,7 @@ Skills are **tools invoked for craft**. They do not choose the direction — the
 |---|---|---|
 | Nav, header, menu, animated dropdown | `animated-navigation` | Rollout tabs, flying-arrow motion, expanding underline, glass dropdown reveal, mobile menu — the full interaction model with real timings |
 | Button, modal, drawer, popover, tooltip, toast, sheet, accordion; anything with drag, swipe, gesture, or a press feel | `emil-design-eng` | Easing curves, spring config, `transform-origin` correctness, `:active` states, reduced-motion, GPU vs JS. Outputs a Before/After/Why table |
-| Carousel, slider, gallery | `slideshow` | 3D carousel mechanics. In HAAJP, the project's carousel rules bind on top |
+| Carousel, slider, gallery | `slideshow` | 3D carousel mechanics. In project-a, the project's carousel rules bind on top |
 | Route or state transition | `vercel-react-view-transitions` | `<ViewTransition>`, `addTransitionType`, directional navigation, list reorder |
 | shadcn primitive | `shadcn-ui` | Correct primitive usage and theming against the locked tokens |
 | Chart, graph, KPI tile, dashboard panel | `dataviz` | Form heuristic, colour formula with a validator, mark specs, legend and axis rules |

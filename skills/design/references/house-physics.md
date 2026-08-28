@@ -1,7 +1,7 @@
 # House physics — the executed quality bar, with exact values
 
 Extracted 2026-07-31 from the full source of the worked examples in
-`~/anti-slop-design/sites/`. The compressed version lives in SKILL.md § The craft
+`~/example-design-system/sites/`. The compressed version lives in SKILL.md § The craft
 floor; this file carries the per-example inventory. When in doubt, read the source
 itself: it is the spec, executed.
 

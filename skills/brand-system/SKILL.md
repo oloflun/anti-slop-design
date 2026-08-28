@@ -1,7 +1,6 @@
 ---
 name: brand-system
 description: "Build a complete design system folder from a brand's own materials — tokens, assets, components, UI kits, and a written guide — then emit it as a reusable {brand}-design skill. Use when the user asks to create a design system, brand kit, UI kit, or design tokens for a company; when they attach a codebase, Figma link, brand PDF, or deck and want the system extracted; or when a project needs a portable identity that survives across sessions. Fires on 'create a design system', 'build a brand kit', 'extract the design system', 'make our tokens', 'gör ett designsystem'."
-user-invocable: true
 ---
 
 # brand-system

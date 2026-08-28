@@ -6,7 +6,7 @@ This is where the design language comes from when the subject already has an ide
 
 > Source: Anthropic's Claude Design "Create design system" procedure, ported at full fidelity. Blocks marked **[ours]** are this repo's framing. Everything else is the upstream procedure and is the source of truth.
 
-**[ours] Why this tier exists.** Three installed specialist skills hardcode complete palettes, and the model's own defaults cluster hard (cream + high-contrast serif + terracotta; near-black + one neon accent; broadsheet hairlines + italic serif + tracked mono labels). Any of those can be *correct* — but only when the brief calls for them. When brand evidence exists and the output lands on a training-data cluster anyway, the derivation didn't happen. HAAJP is the reference case: `#F27722` + Afacad uppercase + black surfaces + an asymmetric rhombus is derivable from the mark and the product, and no catalogue produces it.
+**[ours] Why this tier exists.** Three installed specialist skills hardcode complete palettes, and the model's own defaults cluster hard (cream + high-contrast serif + terracotta; near-black + one neon accent; broadsheet hairlines + italic serif + tracked mono labels). Any of those can be *correct* — but only when the brief calls for them. When brand evidence exists and the output lands on a training-data cluster anyway, the derivation didn't happen. project-a is the reference case: `#F27722` + Afacad uppercase + black surfaces + an asymmetric rhombus is derivable from the mark and the product, and no catalogue produces it.
 
 ---
 

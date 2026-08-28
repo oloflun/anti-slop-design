@@ -1,7 +1,6 @@
 ---
 name: design
 description: "Fires on ANY design or frontend UI work — websites, landing pages, dashboards, app UI, components, redesigns, polish, animation, color, typography, layout, motion, copy on a page. Use whenever the user says 'design', 'redesign', 'build a page/site/landing page', 'make it premium', 'make it look better', 'polish this', 'add animation', 'extract the design from', 'visual direction', 'mockup', 'hero', 'CTA', 'bento', 'pricing page', 'audit this UI', or any synonym for visual design execution, in any language including Swedish ('design', 'designa', 'bygg en sida', 'gör om', 'polera', 'premiumkänsla'). Derives the design language from the brand's own evidence instead of applying a house style or a prebuilt theme."
-user-invocable: true
 ---
 
 # Design
@@ -159,7 +158,7 @@ replaces — `<!-- INDEX: typeset ledger, NOT a card row -->`. The decision is
 made at the moment of writing, not caught in a terminal audit.
 
 **Study the executed spec — the one in YOUR register.** Before any marketing
-build, read that register's worked example end-to-end in `~/anti-slop-design/sites/`:
+build, read that register's worked example end-to-end in `~/example-design-system/sites/`:
 `calyx.html` · `horai.html` · `hyperborea.html` · `tidvatten.html` · `klova/`.
 They are these rules executed, and the densest possible statement of the bar.
 Reading only the editorial ones is why builds converge on serif and cream —
@@ -290,6 +289,8 @@ Trigger summary — the full table with detection patterns is in the reference:
 | Form, input, validation | `impeccable harden` + 8 states |
 | Any user-facing string | **copy gate** → [`copy-gate.md`](references/copy-gate.md) |
 | Layout with no other signal | `impeccable layout` |
+
+Om en specialistskill saknas i denna miljö: fortsätt med instruktionerna i denna skill och notera vilken specialist som hade fördjupat.
 
 `impeccable` is the engine throughout: `$impeccable init` for PRODUCT.md, `new-work` for a new surface, `document` to record the built system, `polish` / `critique` / `audit` to refine. Its rule holds over everything here — **the brief wins; redirecting a clear brief toward your taste is failure.**
 

@@ -184,7 +184,7 @@ Two complete alternative workflows exist. They are **not** wired into this route
 | `design-review` (gstack) vs `verbs/audit.md` | audit is read-only judgment; design-review is fix-and-commit. Audit first |
 | `polish` vs `impeccable polish` | Prefer `impeccable polish` — `polish` has the stale `/teach-impeccable` dependency |
 | `ui-ux-pro-max` palettes vs the tier gate | Its 161 palettes are a **Tier-3 menu only** |
-| `webpage-builder` | **Project-locked** to the haajp-next Swedish B2B design system. Never fire outside that project |
+| `webpage-builder` | **Project-locked** to the project-a-next Swedish B2B design system. Never fire outside that project |
 | `design-md` vs `brand-system` | Both emit DESIGN.md; `design-md` is Stitch-only and prose-only |
 
 ---

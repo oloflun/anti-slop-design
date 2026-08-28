@@ -1,7 +1,6 @@
 ---
 name: design-verify
 description: "Inspect and verify a rendered UI before handing it back. Use whenever design or frontend work needs checking in a real browser — screenshots, console errors, responsive breakpoints, layout verification, design-system adherence, recreation fidelity. Fires on 'check the page', 'does it look right', 'verify this', 'screenshot it', 'test the responsive', 'is anything broken', or as Step 5 of the design skill. Enforces batched inspection instead of one-round-trip-per-question."
-user-invocable: true
 ---
 
 # design-verify
