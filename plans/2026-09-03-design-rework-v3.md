@@ -20,12 +20,14 @@ Fullständig plan: `~/.claude/plans/uppgift-design-rework-v3-validated-hammock.m
 - [x] 11 SlopMonster (hybrid)
 - [x] 12 runda 2: sju spakar testade (fem ute, worlds in, loop nödvändig men inte svaret)
 - [x] 13 breddkontrakt (fyra byggen, in som default i Step 2b)
+- [x] 14–15 två fristående copy-exempel, gamla kedjan vs. hybridkedjan (Kajplats + Reglabok) — blandat resultat, se nedan
 
 ## In Progress
 - [ ] Inget.
 
 ## Remaining
 - [ ] Unsplash API-nyckel (Antons handpåläggning) → photo-sources.md får riktig sökning; fotopoolen är 19 bilder i dag.
+- [ ] Överväg att mjuka upp Pass 1b i copy-gate.md så källa 4 ("en rad som redan var bra") uttryckligen väger tyngre än källa 1 när Stage 1-utkastet redan har en stark, konkret hero — Reglabok-testet visade att disciplinen kan skriva över en bra rad med en funktionslista.
 - [ ] Pusha `super-intelligence` (gren design-system-v2) och uppdatera plugin-cachen — Antons go-ahead.
 - [ ] Merge/push `anti-slop-design` gren `design-rework-v3` — Antons beslut.
 - [ ] Logga v3-besluten i CARL DESIGN-domänen.

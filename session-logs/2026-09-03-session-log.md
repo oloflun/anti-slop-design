@@ -86,3 +86,37 @@ session-state -->
 - **Kedjan ändrad:** kategoridefault sist på Tier 3; bake-off tilldelar tre register × tre grammatiker × tre världar med förbjudna syskondrag; fingerprint mot sessionens syskon; plansch/scrim-krav för typ över foto; `blankBands` i scroll_verify.py; shotgun.md fick "Diversity contract". Bevis: `tests/ab/compare-round2/`, `tests/ab/19-breadth/verdict.md`, `tests/ab/17-loop/verdict.md`.
 - **Handpåläggning:** Unsplash API-nyckel (gratis) för riktig fotosökning; utan den konvergerar fotobyggen.
 - **Avbrott:** sessionskvoten slog i mitt i runda 2 (nio agenter dog på 429); alla återupptogs efter reset utan förlorat arbete.
+
+## Runda 3 (samma dag, copy-hybriden isolerad i två nya exempel)
+
+Anton väntar fortfarande på Unsplash-nyckeln (ansökt). Han bekräftade att bredden är mycket
+bättre, men höll fast vid att den gamla kedjans copy genomgående var bättre än SlopMonster rakt
+av — problemet var att AB11 (kvist/florhuset) var det enda copy-exemplet, och det hade inte
+körts mot de andra briefarna. Beställning: två helt nya, fristående exempel (inte en delad
+jämförelse) som ställer den gamla kedjan mot den nya hybridkedjan (copy-gate.md:s Pass 1b +
+svensk tell-lista, inte SlopMonster som fullständig ersättare — det beslutet stod redan fast
+från AB11).
+
+- **Två nya briefar**, medvetet olika register från allt tidigare (inget florist-, kvist- eller
+  hantverksbrief återanvänt): `20-copy-hybrid-kajplats` (litet båtvarv, Fjällbacka, lokal
+  tjänst) och `21-copy-hybrid-reglabok` (fakturerings-app för hantverkare, B2B-mjukvara).
+- Fyra blinda Sonnet-agenter (en per brief x kedja), samma metod som alla tidigare A/B-test:
+  ingen dialog, ingen research utanför briefen, bara Stage 1 (copywriting) + Stage 2
+  (humanizer) för A, plus Pass 1b (radkälla) + svensk tell-lista för hand för B.
+  Renderat till samma sidmall som AB11, skärmbildat, sida vid sida i
+  `tests/ab/{20,21}-copy-hybrid-*/compare.png`.
+- **Kajplats:** B vinner tydligt på heron — radkälla-disciplinen bytte ett generiskt löfte
+  ("utan överraskningar") mot en fakta+rädsla-rad direkt ur briefen (14 platser, tak mot regn).
+  Resten av sidan oavgjord.
+- **Reglabok:** tvärtom. A:s hero ("inte vid köksbordet klockan tio") är den vassaste raden i
+  hela testet; B ersatte den med en funktionslista plus en siffra, närmre SaaS-konventionen —
+  precis den risk Anton varnade för. B:s äkta tillskott var en egen ärlighetsrubrik ("Vad
+  Reglabok inte gör än") i stället för att gömma begränsningarna i ett stycke.
+- **Slutsats:** hybriden är inte ett generellt lyft, den är två separata verktyg med olika
+  träffsäkerhet. Radkälla-disciplinen (källa 1+2, fakta och rädsla) och
+  ärlighets-tillägget (källa 3) håller streck. Källa 4 ("en rad som redan var bra") behöver
+  väga tyngre i copy-gate.md så metoden inte skriver över ett redan starkt Stage 1-utkast —
+  öppen post, se plans/2026-09-03-design-rework-v3.md.
+- Full text (brief + A + B) och skärmbilder för båda i loggboken "Design Rework v3"
+  (artifact), steg 14–15; verdict-filer: `tests/ab/20-copy-hybrid-kajplats/verdict.md`,
+  `tests/ab/21-copy-hybrid-reglabok/verdict.md`.
