@@ -1,0 +1,80 @@
+# Session Log — 2026-09-03
+
+## Session Summary
+Design rework v3 planerades (icm-architect, egen läsning av alla externa repon) och genomfördes i sin helhet: hookarna fyrar bara i armade designsessioner, en tillgänglighetsskill med tre granskaragenter, reference lock + designkatalog (localhost, GitHub-repo som databas), Step 2b med scroll-grammatik och bake-off-board, visuell kritik som positiv port, nio uppdaterade emil-skills, och SlopMonster som hybrid i copy-kedjan. Varje tillägg A/B-testades blint mot baslinjen och bedömdes på pixlar; resultatet ligger i `tests/ab/*/verdict.md` och i loggboken "Design Rework v3" (artifact). Anton beslutade 1A (katalogen i GitHub-repo) och 2A (det som körs är kanoniskt, repot är spegel).
+
+## What Changed
+
+### Files Created
+- `scripts/sync-from-live.py` — speglar vault-skills + super-intelligence-hookar in i repot; `--check` är verify-kontrollen "repo == live".
+- `tests/intent_corpus.jsonl` (40 prompter), `tests/a11y/broken.html`, `tests/scroll/broken.html`, `tests/shotgun-smoke/`, `tests/ab/README.md` och `tests/ab/{02,03,05,06,07,08,09,10,11,K}*/` (byggen, skärmbilder, verdict.md).
+- Vault-skills: `a11y-audit/` (SKILL, principles, report-template, tre skript), `design-catalog/`, `slopmonster/` (vendorad), åtta emil-skills (animate, review-animations, improve-animations, find-animation-opportunities, prototype, apple-design, animation-vocabulary, pick-ui-library).
+- `design/references/`: `reference-lock.md`, `photo-sources.md`, `shotgun.md`, `scroll/{README,grammars,devices,feel-and-fingerprint}.md`, `verbs/critique.md`, `verbs/review.md`, `upstream/` (sju vendorer + MANIFEST + INDEX + slopmonster).
+- `design/scripts/`: `board.py`, `scroll_verify.py`, `scroll/` (motorn byte-identisk).
+- `~/.claude/agents/design-a11y-reviewer.md`, `design-critic.md`, `design-heuristics.md` (Sonnet, läs-bara).
+- Vault: `wiki/projects/_index/design-fingerprints.md` (registret, seedat med sju sajter).
+- Nytt repo `oloflun/design-catalog` (privat): Next.js på 127.0.0.1:4610, `catalog/<slug>/entry.md` + bilder, `scripts/{capture,describe,index,query,seed,from_image}.py`, `sync.sh`, `dev.cmd`.
+- `~/.claude/plans/uppgift-design-rework-v3-validated-hammock.md` (planen) och `plans/2026-09-03-design-rework-v3.md` (projektkopia med status).
+
+### Files Modified
+- `super-intelligence/hooks/design-*.py` och `design_hook_lib.py` — classify()/arm()/armed(), villkorad route/verify/stop, gap = kod-starka craft-routes som varken laddats eller lästs, avsnitt 6 alltid, sessionsscope; `scripts/export-agents.mjs` läser vaultkopian; `skills/design` synkad.
+- `verify-design-system.py` — 139 kontroller mot `super-intelligence/hooks` + `hooks.json`, corpus, arm/disarm, spegelkontroll, UTF-8.
+- Vault `design/SKILL.md` (471 → 562 rader): AI-default-regel + generic-default-test, briefsäkring, läsbudget, Step 1b lock + katalog, Step 2b, Step 3 animate/pick-ui-library/a11y, Step 4 gates 1–91 + reveal-guard, Step 5 pass 9–12, verbtabell, exit bar, referensindex. Även `skill-orchestration.md` (v3-avsnitt), `gates.md` (89–91), `copy-gate.md` (SlopMonster-hybrid), `hallmark/SKILL.md` (disable-model-invocation), `polish/SKILL.md` (teach → init), `emil-design-eng` (uppströms body).
+- `~/.carl/carl.json` DESIGN: recall 52 fraser + exclude 18. `~/.claude/settings.json`: frontend-design-pluginet av, `skillOverrides` super-intelligence:design = user-invocable-only. `.claude/launch.json`: design-catalog, shotgun-board.
+- `anti-slop-design.md` (hubben, v3-avsnitt), `GOALS.md` (delmål 5–7 klara, positiva porten införd), `attribution/UPSTREAMS.md` (§6 emil, §7 SlopMonster), `.gitignore` (sync-skriptet spårat).
+
+### Files Moved/Deleted
+- Inget raderat. Backup före allt: `~/.agents/_backups/design-rework-v3-20260903-023344/`.
+
+## Decisions Made
+- **Live är kanoniskt, repot spegel (2A):** vault `.agents/skills` + `super-intelligence/hooks` är källan; `sync-from-live.py` + verify-check. Skäl: det är de kopiorna som faktiskt körs (plugin-cache + junction); repot hade drivit tusen rader.
+- **Katalogen i ett GitHub-repo, localhost först (1A):** innehåll bor i repon och läses live (chatt via GitHub-connector, Claude Code via git); Vercel + OAuth blir ett senare steg; `claude -p` ersätter API-nyckel.
+- **Arm/disarm i hookarna:** en high-prompt eller Skill(design…) armar sessionen; allt nedströms är villkorat utom kontraktsgaten på låst DESIGN.md. Skäl: fem dokumenterade falska positiva på nakna nyckelord.
+- **frontend-design inte som skill, två regler portade:** AB09 visade att paletten lämnade AI-defaulten men bygget tappade reveal-guarden; som skill blev den ett tredje direction-huvud.
+- **designpowers: bara granskarna:** byggagenterna sätter direction (taste-profil, egen DESIGN.md-form); de tre granskarna som Sonnet-subagenter hittade 7/7 planterade + 9 verkliga fynd (AB04).
+- **scroll-craft-motorn opt-in per grammatik, aldrig blint:** AB06 visade tre pinnade akter som scrollade bort när byggarens CSS skrev över `.sc-stage`; grammatik, känslokurva, fingerprint och scroll_verify tas in.
+- **SlopMonster som hybrid:** kedjan skriver (svenska + gate 75), deslop.py grindar engelska strängar, fyra radkällor + never-invent-proof in i copy-gate; rival-cleanse valfri.
+- **hallmark tystas (disable-model-invocation), inte avinstalleras;** super-intelligence:design blir user-invocable-only.
+
+## Context & Discussion
+- Antons skärmbilder (bake-off med stiltabbar och två motorer; katalogkort med DNA-rad, chips, image recipe, COPY BRIEF/COPY IMAGE PROMPT) blev förlagan för boarden och katalogen.
+- Anton bad om frågor i klartext i chatten (AskUserQuestion föll), och att SlopMonster testas efter allt annat.
+- Det inbyggda `/design` (Claude Design-canvas, Claude Code 2.1.234+) skuggas av den personliga `design`-skillen enligt dokumenterad namnregel; ingen konflikt.
+- Två Hallmark-referensfiler (`custom-theme.md`, `macrostructures.md`) skiljer sig från uppströms HEAD för att uppströms ändrats; verify rapporterar 137/139 ärligt.
+- Blinda one-shots ur samma v3-kedja gav två olika bra sidor (K1 med fotoupptakt, K2 typografisk med en trasig bild); en mellanversion tappade en briefsektion under referenslasten, vilket gav briefsäkring + läsbudget i SKILL.md.
+
+## Open Threads
+- Den nya hookkoden kör inte i sessioner förrän `super-intelligence` pushas (kräver Antons go-ahead) och plugin-cachen uppdateras med `claude plugin marketplace update` och `claude plugin update`. Tills dess fyrar den gamla Stop-rapporten (ROUTE GAP-larm) i varje session.
+- `anti-slop-design` ligger committat på grenen `design-rework-v3` (inte main), opushat; merge till main är Antons beslut.
+- Katalogens Vercel-steg (OAuth-app, tre env-värden, Actions-nyckel) enligt planens avsnitt 8b.
+- CARL DESIGN-besluten för v3 är inte loggade i carl.json än; görs när hookarna är i drift.
+- `BLOCKS.md` är på 22 000 tecken mot ett tak på 3 000; en separat städning (flytta lösta block äldre än tre månader till BLOCKS-RESOLVED.md) behövs, inte gjord här.
+- `tests/ab/08-emil/runab/` och `tests/ab/smoke/` innehåller halvfärdiga run_ab-körningar (harmlösa); `run_ab.py` faller på helsides-screenshot i vissa fall.
+
+## Cross-Project Handoffs
+- super-intelligence: hookar + export-agents committade på `design-system-v2` (f6e8838); VERSION/CHANGELOG-bump och export-to-public görs i conclude-steget. Ingen separat handoff-fil.
+
+## Current State After This Session
+Designsystemet är i v3: tyst utanför designjobb, bevisat bättre än baslinjen på pixlar i tio A/B-tester, och dokumenterat i hubben, GOALS, loggboken och verdict-filerna. Nästa session bör börja med push av super-intelligence och cache-uppdatering så den nya kedjan faktiskt körs, sedan en riktig (icke-blind) designsession som kör Step 2b-bake-offen och Step 5-looparna skarpt.
+
+<!-- session-state
+date: 2026-09-03
+type: infrastructure
+files_created:
+  - scripts/sync-from-live.py
+  - tests/ab/README.md
+  - plans/2026-09-03-design-rework-v3.md
+files_modified:
+  - verify-design-system.py
+  - anti-slop-design.md
+  - GOALS.md
+decisions_made: 8
+open_threads: 6
+handoffs_pending:
+  - target: super-intelligence
+    topic: push hooks v3 + plugin cache update
+priority_changes: true
+status_updated: true
+goals_updated: yes
+next_session_focus: "Pusha super-intelligence och uppdatera plugin-cachen så hook v3 kör; kör en skarp designsession med bake-off och Step 5-looparna"
+session-state -->
