@@ -172,6 +172,33 @@ def main():
             report["contactSheet"] = str(out / "sheet.png")
         elif not HAVE_PIL:
             report["notes"].append("Pillow not installed: sheet.png skipped.")
+        # blankBands: a full-page capture (no scroll) with a near-uniform vertical band taller
+        # than 60% of a viewport is a pinned act with sparse content, or a reveal that never
+        # fired. Reads as a broken page in every static view (AB06, T17 on 2026-09-03).
+        report["blankBands"] = []
+        if HAVE_PIL:
+            try:
+                page.evaluate("window.scrollTo(0,0)"); page.wait_for_timeout(300)
+                page.screenshot(path=str(out / "full.png"), full_page=True)
+                im = Image.open(out / "full.png").convert("L")
+                w, h = im.size
+                small = im.resize((max(1, w // 8), h))
+                px = small.load(); sw = small.size[0]
+                flat = []
+                for y in range(h):
+                    row = [px[x, y] for x in range(sw)]
+                    m = sum(row) / sw
+                    var = sum((v - m) ** 2 for v in row) / sw
+                    flat.append(var < 16)
+                start = None
+                for y, f in enumerate(flat + [False]):
+                    if f and start is None: start = y
+                    if not f and start is not None:
+                        if y - start >= 0.6 * args.height:
+                            report["blankBands"].append({"from": start, "to": y, "px": y - start})
+                        start = None
+            except Exception as e:
+                report["notes"].append(f"blankBands skipped: {e}")
         browser.close()
     print(json.dumps(report, indent=2))
     return 0

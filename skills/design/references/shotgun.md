@@ -157,3 +157,13 @@ variants *within* the same identity, a button weight, a card density, a hero cro
 Shotgun picks the identity; `live` tunes the knobs inside it. The whole procedure exists
 to make the Step 4 anti-convergence swap noticeable every time — passing it with
 headlines swapped freely means the budget bought nothing.
+
+## Diversity contract (added 2026-09-03 after round 2)
+
+Directions are assigned, not chosen freely: one row per direction with **register ·
+grammar · world · forbidden traits**, where the forbidden traits are the fingerprint
+dimensions of every sibling already built for this brief (and of the vault registry rows in
+the same register). A cell that shares more than 2 of 6 fingerprint dimensions with any
+sibling is rebuilt, not rated. The template is `tests/ab/19-breadth/contract.md` in
+`anti-slop-design`: four assignments across four registers, four grammars and four worlds
+produced four pages a viewer would not guess came from one brief.

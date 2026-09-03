@@ -1,0 +1,798 @@
+<!--
+  FLORHUSET MAJORNA — blind one-shot build, taste-profile-first (test 15).
+  No screenshots taken. No iteration. Built once from taste-profile.md (next to this
+  file), which was itself built in words only from two catalog references (Calyx,
+  Tidvatten — klova/entry.md does not exist on disk, so the brief's fallback rule
+  "if present, else any two" applied) plus the brief's own world.
+
+  TASTE PROFILE SUMMARY
+  Emotional target: the unshowy competence of someone who has bound bouquets on the
+  same Majorna corner for years and isn't trying to impress anyone — warm, salt-worn,
+  priced honestly. Not hushed-gallery precious (Calyx's register), not spa-calm
+  (Tidvatten's register). Sells through operating detail (a price, a day, an address),
+  never through adjectives — "no invented benefit language" is the profile's own test.
+  Craft standards: no shadows; 1px hairlines at ~15-20% opacity; sharp corners except
+  a 2px focus/hover hit-area; 9 tokens, one saturated accent at display scale only;
+  Fraunces + IBM Plex Mono, two families with sealed roles; calm shared reveal plus one
+  two-layer scroll scrub on the hero, nothing springy.
+
+  LANE (one phrase): Cold granite paper and one poppy-red bloom, catalogued like a
+  harbour chandlery's stock list rather than a boutique's brochure.
+
+  REGISTER: Editorial print (florist/atelier is licensed for this register). Two
+  deliberate departures from the print-register AI-default (warm cream + serif display
+  + terracotta accent), so this does not repeat Calyx's own palette or faces:
+    1. Palette temperature — cool granite-moss ground, not warm cream.
+    2. Type pairing — Fraunces + IBM Plex Mono, not Cardo + PT Mono.
+
+  GRAMMAR: gallery/catalog — full-bleed photographic hero, a ledger-centred scrolling
+  column (priced seasonal index, subscription tiers), closing on one dark
+  address-and-hours panel. Chosen because the brief's own content (a priced index, a
+  subscription, a recurring workshop night) is catalogue content, not chaptered prose.
+
+  TIER: 3 — invented world, no prior brand evidence for Florhuset Majorna existed.
+
+  COVERAGE LIST (every section the brief names, ticked against the build below):
+    [x] hero
+    [x] säsongens buketter (4 named, priced — brief asked for 3-5)
+    [x] bröllop
+    [x] prenumeration (veckans blomma)
+    [x] ateljékvällar (binderi)
+    [x] om ateljén — address (Mariaplan 4, 414 70 Göteborg) + öppettider
+    [x] footer
+    [x] svenska, riktigt innehåll, inga lorem, inga påhittade siffror/kunder
+    [x] mobil 390 utan horisontell scroll
+    [x] prefers-reduced-motion
+    [x] synlig fokusring
+    [x] alt-texter
+    [x] en h1
+    [x] lane + register överst som HTML-kommentar (denna kommentar)
+    [x] en kommentar per sektion som namnger vilken slop-default den ersätter
+    [x] foton: fyra verifierade Unsplash-ID från sites/calyx.html (samma florist-
+        register, kontrollerade mot en levande fil på disk, ej hotlinkade blint) +
+        en ärlig, tydligt märkt platshållare för ateljékvällar
+-->
+<!DOCTYPE html>
+<html lang="sv">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Florhuset Majorna, florist och ateljé på Mariaplan</title>
+<meta name="description" content="Florhuset Majorna binder säsongens buketter, blommor till bröllop och en veckoprenumeration, från ateljén på Mariaplan 4 i Göteborg.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,340..380;0,9..144,460..500;1,9..144,340..500&family=IBM+Plex+Mono:wght@400;500&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --paper: oklch(0.956 0.012 152);
+    --paper-tint: oklch(0.918 0.016 148);
+    --ink: oklch(0.175 0.021 152);
+    --ink-soft: oklch(0.30 0.024 148);
+    --stone: oklch(0.455 0.02 145);
+    --moss-mid: oklch(0.40 0.058 148);
+    --moss-deep: oklch(0.195 0.032 155);
+    --moss-panel: oklch(0.235 0.03 152);
+    --moss-mid-ondark: oklch(0.735 0.05 142);
+    --stone-ondark: oklch(0.66 0.025 145);
+    --accent: oklch(0.535 0.19 29);
+    --hairline-light: oklch(0.175 0.021 152 / 0.16);
+    --hairline-dark: oklch(0.956 0.012 152 / 0.20);
+    --focus-ring: var(--accent);
+    --font-display: 'Fraunces', Georgia, 'Times New Roman', serif;
+    --font-mono: 'IBM Plex Mono', 'Courier New', monospace;
+    --max-w: 1480px;
+    --gutter: clamp(16px, 3vw, 32px);
+    --edge: clamp(20px, 5vw, 64px);
+  }
+
+  *, *::before, *::after { box-sizing: border-box; }
+  html, body { overflow-x: clip; }
+  html { scroll-behavior: smooth; }
+  @media (prefers-reduced-motion: reduce) { html { scroll-behavior: auto; } }
+
+  body {
+    margin: 0;
+    background: var(--paper);
+    color: var(--ink);
+    font-family: var(--font-display);
+    font-size: 17px;
+    line-height: 1.5;
+    -webkit-font-smoothing: antialiased;
+    min-width: 0;
+  }
+
+  img { max-width: 100%; display: block; }
+
+  a { color: inherit; }
+
+  .skip-link {
+    position: absolute;
+    left: 12px;
+    top: -60px;
+    background: var(--ink);
+    color: var(--paper);
+    padding: 12px 18px;
+    font-family: var(--font-mono);
+    font-size: 13px;
+    letter-spacing: 0.04em;
+    z-index: 100;
+    transition: top .2s ease;
+  }
+  .skip-link:focus { top: 12px; }
+
+  :focus-visible { outline: 3px solid var(--focus-ring); outline-offset: 3px; }
+
+  .wrap {
+    max-width: var(--max-w);
+    margin-inline: auto;
+    padding-inline: var(--edge);
+  }
+
+  .grid12 {
+    display: grid;
+    grid-template-columns: repeat(12, minmax(0, 1fr));
+    gap: var(--gutter);
+  }
+  @media (max-width: 767px) {
+    .grid12 { grid-template-columns: minmax(0,1fr); }
+  }
+
+  .kicker {
+    font-family: var(--font-mono);
+    font-size: 10.5px;
+    letter-spacing: 0.22em;
+    text-transform: uppercase;
+    color: var(--moss-mid);
+    font-weight: 500;
+  }
+  .inverted .kicker { color: var(--moss-mid-ondark); }
+
+  h1, h2, h3 {
+    font-family: var(--font-display);
+    font-weight: 460;
+    margin: 0;
+    overflow-wrap: anywhere;
+    min-width: 0;
+  }
+  h1 em, h2 em, h3 em { font-style: italic; font-weight: 400; }
+
+  p { margin: 0; }
+  .measure { max-width: 46ch; }
+  .lede { max-width: 54ch; }
+
+  .stone-text { color: var(--stone); }
+  .inverted .stone-text { color: var(--stone-ondark); }
+
+  .hairline { border-top: 1px solid var(--hairline-light); }
+  .inverted .hairline { border-top-color: var(--hairline-dark); }
+
+  /* ---------- reveal system: fails toward visible without JS ---------- */
+  html:not(.js) .reveal { opacity: 1; transform: none; }
+  .reveal {
+    opacity: 0;
+    transform: translateY(28px);
+    transition: opacity 1.2s cubic-bezier(.16,1,.3,1), transform 1.2s cubic-bezier(.16,1,.3,1);
+  }
+  .reveal.in { opacity: 1; transform: none; }
+  @media (prefers-reduced-motion: reduce) {
+    .reveal { opacity: 1 !important; transform: none !important; transition: none !important; }
+  }
+
+  /* ---------- typeset link CTA ---------- */
+  .tlink {
+    font-family: var(--font-display);
+    font-style: italic;
+    font-size: 1.05rem;
+    text-decoration: none;
+    border-bottom: 1px solid currentColor;
+    padding: 10px 2px;
+    display: inline-block;
+    min-height: 44px;
+    line-height: 1.2;
+    white-space: nowrap;
+  }
+  .tlink:hover { color: var(--accent); border-color: var(--accent); }
+  .tlink.primary { color: var(--accent); border-color: var(--accent); font-size: 1.2rem; }
+
+  /* ---------- top bar ---------- */
+  .topbar {
+    position: relative;
+    z-index: 10;
+    padding-block: 20px;
+  }
+  .topbar .grid12 { align-items: center; }
+  .wordmark {
+    grid-column: span 7;
+    font-family: var(--font-display);
+    font-size: 1.15rem;
+    letter-spacing: -0.01em;
+    text-decoration: none;
+  }
+  .wordmark strong { font-weight: 500; }
+  .topbar .tlink { grid-column: span 5; justify-self: end; }
+  @media (max-width: 767px) {
+    .wordmark { grid-column: 1; font-size: 1rem; }
+    .topbar .tlink { grid-column: 1; justify-self: start; }
+  }
+
+  /* ---------- hero ---------- */
+  .hero {
+    position: relative;
+    min-height: min(88vh, 820px);
+    display: flex;
+    align-items: flex-end;
+    overflow: clip;
+  }
+  .hero-media {
+    position: absolute;
+    inset: 0;
+    z-index: 0;
+  }
+  .hero-media img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    object-position: center 42%;
+  }
+  .hero-scrim {
+    position: absolute;
+    inset: 0;
+    background: linear-gradient(to top,
+      oklch(0.175 0.021 152 / .82) 0%,
+      oklch(0.175 0.021 152 / .38) 42%,
+      oklch(0.175 0.021 152 / .08) 68%,
+      transparent 85%);
+  }
+  .hero-body {
+    position: relative;
+    z-index: 1;
+    color: var(--paper);
+    width: 100%;
+    padding-block: clamp(40px, 9vw, 96px);
+  }
+  .hero-body .kicker { color: var(--moss-mid-ondark); margin-bottom: 18px; }
+  .hero h1 {
+    grid-column: 1 / span 10;
+    font-size: clamp(2.5rem, 5.6vw + 1rem, 6.2rem);
+    line-height: 0.94;
+    letter-spacing: -0.02em;
+  }
+  @media (max-width: 767px) { .hero h1 { grid-column: 1; } }
+  .hero-sub {
+    grid-column: 1 / span 6;
+    margin-top: 26px;
+    font-size: 1.08rem;
+    line-height: 1.55;
+    color: oklch(0.956 0.012 152 / .92);
+  }
+  @media (max-width: 767px) { .hero-sub { grid-column: 1; } }
+  .hero-ctas {
+    grid-column: 1 / span 8;
+    margin-top: 34px;
+    display: flex;
+    gap: clamp(20px, 3vw, 36px);
+    flex-wrap: wrap;
+  }
+  @media (max-width: 767px) { .hero-ctas { grid-column: 1; } }
+  .hero .tlink { color: var(--paper); }
+  .hero .tlink.primary { color: var(--accent); border-color: var(--accent); }
+
+  /* ---------- section rhythm ---------- */
+  section { padding-block: clamp(64px, 9vw, 128px); }
+  .section-head { grid-column: 1 / span 4; }
+  .section-body { grid-column: 5 / span 8; }
+  @media (max-width: 767px) {
+    .section-head, .section-body { grid-column: 1; }
+    .section-head { margin-bottom: 24px; }
+  }
+  .section-head h2 {
+    margin-top: 12px;
+    font-size: clamp(1.9rem, 2.6vw + 1rem, 3.1rem);
+    line-height: 1.02;
+  }
+  .section-intro {
+    margin-top: 18px;
+    font-size: 1.02rem;
+    color: var(--ink-soft);
+  }
+
+  /* ---------- ledger (bouquets, subscription) ---------- */
+  .ledger { margin-top: 8px; }
+  .ledger-row {
+    padding-block: 28px;
+    border-top: 1px solid var(--hairline-light);
+    align-items: baseline;
+  }
+  .ledger-row:last-child { border-bottom: 1px solid var(--hairline-light); }
+  .lr-num {
+    grid-column: span 1;
+    font-family: var(--font-mono);
+    font-size: 13px;
+    color: var(--stone);
+    padding-top: 6px;
+  }
+  .lr-name { grid-column: span 6; }
+  .lr-name h3 { font-size: clamp(1.3rem, 1.4vw + 1rem, 1.7rem); font-weight: 460; }
+  .lr-desc { margin-top: 8px; color: var(--ink-soft); max-width: 44ch; }
+  .lr-spec { margin-top: 10px; }
+  .lr-price {
+    grid-column: span 5;
+    display: flex;
+    flex-direction: column;
+    align-items: flex-end;
+    gap: 10px;
+    text-align: right;
+  }
+  .lr-price .amount {
+    font-family: var(--font-display);
+    font-size: clamp(1.5rem, 1.8vw + 1rem, 2.2rem);
+    font-weight: 460;
+  }
+  @media (max-width: 767px) {
+    .lr-num { grid-column: 1; padding-top: 0; }
+    .lr-name { grid-column: 1; margin-top: 6px; }
+    .lr-price { grid-column: 1; align-items: flex-start; text-align: left; margin-top: 14px; }
+  }
+
+  /* ---------- photo plates ---------- */
+  .plate { position: relative; overflow: clip; background: var(--paper-tint); }
+  .plate img { width: 100%; height: 100%; object-fit: cover; }
+  .plate figcaption {
+    margin-top: 12px;
+    font-family: var(--font-mono);
+    font-size: 11px;
+    letter-spacing: 0.06em;
+    color: var(--stone);
+  }
+  .plate-duo {
+    margin-top: 56px;
+    display: grid;
+    grid-template-columns: repeat(12, minmax(0,1fr));
+    gap: var(--gutter);
+  }
+  .plate-duo figure:nth-child(1) { grid-column: 1 / span 7; }
+  .plate-duo figure:nth-child(1) .plate { aspect-ratio: 4 / 5; }
+  .plate-duo figure:nth-child(2) { grid-column: 8 / span 5; margin-top: 64px; }
+  .plate-duo figure:nth-child(2) .plate { aspect-ratio: 3 / 4; }
+  @media (max-width: 767px) {
+    .plate-duo { grid-template-columns: minmax(0,1fr); }
+    .plate-duo figure:nth-child(1), .plate-duo figure:nth-child(2) { grid-column: 1; margin-top: 0; }
+    .plate-duo figure:nth-child(2) { margin-top: 28px; }
+  }
+
+  /* ---------- wedding split ---------- */
+  .brollop .grid12 { align-items: start; }
+  .brollop-photo { grid-column: 1 / span 5; }
+  .brollop-photo .plate { aspect-ratio: 4 / 5; }
+  .brollop-text { grid-column: 7 / span 6; margin-top: 48px; }
+  @media (max-width: 767px) {
+    .brollop-photo, .brollop-text { grid-column: 1; margin-top: 0; }
+    .brollop-text { margin-top: 28px; }
+  }
+  .brollop-terms {
+    margin-top: 28px;
+    padding-top: 20px;
+    border-top: 1px solid var(--hairline-light);
+    font-family: var(--font-mono);
+    font-size: 12.5px;
+    letter-spacing: 0.02em;
+    color: var(--stone);
+    line-height: 1.7;
+  }
+
+  /* ---------- placeholder (ateljekvällar) ---------- */
+  .placeholder {
+    aspect-ratio: 4 / 5;
+    background:
+      repeating-linear-gradient(135deg, var(--paper-tint) 0px, var(--paper-tint) 2px, transparent 2px, transparent 14px),
+      var(--paper);
+    border: 1px solid var(--hairline-light);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 24px;
+    text-align: center;
+  }
+  .placeholder svg { width: 46%; height: auto; opacity: 0.55; }
+  .placeholder-label {
+    position: absolute;
+    left: 16px;
+    bottom: 16px;
+    font-family: var(--font-mono);
+    font-size: 10px;
+    letter-spacing: 0.12em;
+    color: var(--stone);
+    text-transform: uppercase;
+  }
+  .placeholder-wrap { position: relative; }
+
+  /* ---------- inverted panel (om ateljén) ---------- */
+  .inverted {
+    background: var(--moss-deep);
+    color: var(--paper);
+  }
+  .inverted h2, .inverted h3 { color: var(--paper); }
+  .inverted .section-intro { color: oklch(0.956 0.012 152 / .82); }
+  .inverted .lr-desc { color: oklch(0.956 0.012 152 / .78); }
+  .inverted { --focus-ring: var(--moss-mid-ondark); }
+
+  .hours-row {
+    padding-block: 16px;
+    border-top: 1px solid var(--hairline-dark);
+    display: flex;
+    justify-content: space-between;
+    gap: 24px;
+    font-family: var(--font-mono);
+    font-size: 13px;
+    letter-spacing: 0.02em;
+  }
+  .hours-row:last-child { border-bottom: 1px solid var(--hairline-dark); }
+  .addr-block { margin-top: 28px; }
+  .addr-block p { margin-top: 6px; }
+
+  /* ---------- footer ---------- */
+  footer.site-footer {
+    background: var(--moss-panel);
+    color: var(--stone-ondark);
+    padding-block: 40px;
+  }
+  footer.site-footer .grid12 { align-items: center; }
+  footer.site-footer .foot-word {
+    grid-column: span 6;
+    font-family: var(--font-display);
+    color: var(--paper);
+    font-size: 1.05rem;
+  }
+  footer.site-footer .foot-meta {
+    grid-column: span 6;
+    justify-self: end;
+    font-family: var(--font-mono);
+    font-size: 11px;
+    letter-spacing: 0.06em;
+    text-align: right;
+  }
+  @media (max-width: 767px) {
+    footer.site-footer .foot-word, footer.site-footer .foot-meta { grid-column: 1; justify-self: start; text-align: left; }
+    footer.site-footer .foot-meta { margin-top: 14px; }
+  }
+
+  /* ---------- misc ---------- */
+  .tonal-rule { height: 1px; background: var(--hairline-light); border: 0; margin: 0; }
+</style>
+</head>
+<body>
+<script>document.documentElement.classList.add('js');</script>
+
+<a class="skip-link" href="#main">Hoppa till innehåll</a>
+
+<header class="topbar wrap">
+  <div class="grid12">
+    <a class="wordmark" href="#main"><strong>Florhuset</strong> Majorna</a>
+    <a class="tlink" href="#buketter">Beställ bukett →</a>
+  </div>
+</header>
+
+<main id="main">
+
+<!-- HERO: fullbredds dokumentärfoto med typografi över och en kicker som lokaliserar
+     verksamheten, INTE en centrerad logotyp-hero med två knappar på vit botten -->
+<section class="hero" id="hero">
+  <div class="hero-media" id="heroMedia">
+    <img src="https://images.unsplash.com/photo-1487530811176-3780de880c2d?auto=format&fit=crop&w=2400&q=80"
+         alt="Höstbukett med mörkröda dahlior, silverdistel och rönnbär, fotograferad i naturligt ljus."
+         loading="eager" fetchpriority="high" decoding="async">
+  </div>
+  <div class="hero-scrim" aria-hidden="true"></div>
+  <div class="hero-body wrap">
+    <div class="grid12">
+      <p class="kicker" style="grid-column:1/span 12">FLORHUSET MAJORNA · MARIAPLAN, GÖTEBORG</p>
+      <h1 id="heroHead">Blomsterbud för <em>Majorna</em>.</h1>
+      <p class="hero-sub">Vi binder buketter för den som bor här, gifter sig här, eller bara vill ha något levande på köksbordet till fredag. Beställ inför helgen eller boka ett möte inför bröllopet.</p>
+      <div class="hero-ctas">
+        <a class="tlink primary" href="#buketter">Beställ bukett →</a>
+        <a class="tlink" href="#brollop">Boka bröllopsmöte</a>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- BUKETTER: prissatt ledger med fyra namngivna, säsongsbundna produkter och
+     spec-rader, INTE ett ikon-kortgalleri med "Bukett 1 / Bukett 2 / Bukett 3" -->
+<section id="buketter">
+  <div class="wrap grid12">
+    <div class="section-head reveal">
+      <p class="kicker">SÄSONGENS BUKETTER · TIDIG HÖST</p>
+      <h2>Fyra buketter just&nbsp;nu.</h2>
+    </div>
+    <div class="section-body">
+      <p class="section-intro lede">Det som blommar i september, bundet samma dag det säljs. Listan byts när säsongen byts, inte när kalendern säger det.</p>
+
+      <div class="ledger">
+        <div class="ledger-row grid12 reveal">
+          <div class="lr-num">01</div>
+          <div class="lr-name">
+            <h3><em>Tidvattnet</em></h3>
+            <p class="lr-desc">Mörkröd och salt, som havet utanför Långedrag i september.</p>
+            <p class="lr-spec kicker">DAHLIA · SILVERDISTEL · RÖNNBÄR</p>
+          </div>
+          <div class="lr-price">
+            <span class="amount">425 kr</span>
+            <a class="tlink" href="#kontakt">Beställ →</a>
+          </div>
+        </div>
+
+        <div class="ledger-row grid12 reveal">
+          <div class="lr-num">02</div>
+          <div class="lr-name">
+            <h3><em>Sensommarnatt</em></h3>
+            <p class="lr-desc">Varm i mitten, mörk i kanten. Håller cirka en vecka i sval vas.</p>
+            <p class="lr-spec kicker">RUDBECKIA · SALVIA · DAHLIA</p>
+          </div>
+          <div class="lr-price">
+            <span class="amount">395 kr</span>
+            <a class="tlink" href="#kontakt">Beställ →</a>
+          </div>
+        </div>
+
+        <div class="ledger-row grid12 reveal">
+          <div class="lr-num">03</div>
+          <div class="lr-name">
+            <h3><em>Havsdimma</em></h3>
+            <p class="lr-desc">Vitt och blågrått, för den som vill ha något lugnare i hallen.</p>
+            <p class="lr-spec kicker">HORTENSIA · NEJLIKROT · SILVEREK</p>
+          </div>
+          <div class="lr-price">
+            <span class="amount">450 kr</span>
+            <a class="tlink" href="#kontakt">Beställ →</a>
+          </div>
+        </div>
+
+        <div class="ledger-row grid12 reveal">
+          <div class="lr-num">04</div>
+          <div class="lr-name">
+            <h3><em>Fredagsbudet</em></h3>
+            <p class="lr-desc">Det enklaste vi gör. Vad som är kvar på bordet fredag eftermiddag.</p>
+            <p class="lr-spec kicker">SÄSONGENS ÄNG</p>
+          </div>
+          <div class="lr-price">
+            <span class="amount">275 kr</span>
+            <a class="tlink" href="#kontakt">Beställ →</a>
+          </div>
+        </div>
+      </div>
+
+      <div class="plate-duo">
+        <figure class="reveal">
+          <div class="plate">
+            <img src="https://images.unsplash.com/photo-1561181286-d3fee7d55364?auto=format&fit=crop&w=1600&q=80"
+                 alt="Bunt med blandade höstblommor, uppradade på arbetsbänk inför bindning."
+                 loading="lazy" decoding="async">
+          </div>
+          <figcaption>BUNDET PÅ MARIAPLAN · VECKA 36</figcaption>
+        </figure>
+        <figure class="reveal">
+          <div class="plate">
+            <img src="https://images.unsplash.com/photo-1574684891174-df6b02ab38d7?auto=format&fit=crop&w=1600&q=80"
+                 alt="Närbild på en enskild dahlia i mörkröd nyans."
+                 loading="lazy" decoding="async">
+          </div>
+          <figcaption>DAHLIA, FRÅN GROSSISTEN PÅ TISDAG</figcaption>
+        </figure>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- BRÖLLOP: split diptyk med foto och administrativa villkor (möte, framförhållning,
+     prisintervall), INTE en "vår bröllopstjänst" med tre bock-listade fördelar -->
+<section id="brollop" class="brollop" style="background:var(--paper-tint)">
+  <div class="wrap grid12">
+    <div class="brollop-photo reveal">
+      <div class="plate">
+        <img src="https://images.unsplash.com/photo-1469371670807-013ccf25f16a?auto=format&fit=crop&w=2000&q=80"
+             alt="Bordsdekoration med blandade sommarblommor inför en bröllopsmiddag."
+             loading="lazy" decoding="async">
+      </div>
+    </div>
+    <div class="brollop-text reveal">
+      <p class="kicker">BRÖLLOP</p>
+      <h2 style="margin-top:12px;font-size:clamp(1.9rem,2.6vw + 1rem,3.1rem);line-height:1.05">Blommor till <em>bröllopet</em>.</h2>
+      <p class="section-intro lede" style="margin-top:20px">Boka ett första möte i ateljén på Mariaplan, eller digitalt. Vi går igenom säsong, färg och budget innan något beställs. Bordsdekorationer, brudbukett och en eventuell krans till kyrkan planeras samma möte.</p>
+      <div class="brollop-terms">
+        <p>Bordsdekorationer från 3500 kr. Offert efter mötet, alltid skriftlig.</p>
+        <p style="margin-top:8px">Bokas helst 3-6 månader i förväg, tidigare för juni till augusti.</p>
+        <p style="margin-top:8px">Leverans till lokal inom Göteborg ingår upp till 15 km från Mariaplan.</p>
+      </div>
+      <a class="tlink primary" href="#kontakt" style="margin-top:28px">Boka bröllopsmöte →</a>
+    </div>
+  </div>
+</section>
+
+<!-- PRENUMERATION: ledger med två rader, verklig uppsägningsregel och leveransdag,
+     INTE tre "pricing cards" med checkmark-listor och ett rekommenderat mittkort -->
+<section id="prenumeration">
+  <div class="wrap grid12">
+    <div class="section-head reveal">
+      <p class="kicker">VECKANS BLOMMA</p>
+      <h2>En bukett, varje <em>vecka</em>.</h2>
+    </div>
+    <div class="section-body">
+      <p class="section-intro lede">Två sätt att prenumerera. Ingen bindningstid, ingen kampanjperiod som tar slut av sig själv.</p>
+
+      <div class="ledger">
+        <div class="ledger-row grid12 reveal">
+          <div class="lr-num">I</div>
+          <div class="lr-name">
+            <h3>Hämta i ateljén</h3>
+            <p class="lr-desc">En bukett i veckan, hämtas på Mariaplan fredagar 10-18.</p>
+          </div>
+          <div class="lr-price">
+            <span class="amount">225 kr/v</span>
+            <a class="tlink" href="#kontakt">Bli prenumerant →</a>
+          </div>
+        </div>
+
+        <div class="ledger-row grid12 reveal">
+          <div class="lr-num">II</div>
+          <div class="lr-name">
+            <h3>Hemkört, Majorna och Linné</h3>
+            <p class="lr-desc">En större bukett, levereras till dörren fredag förmiddag.</p>
+          </div>
+          <div class="lr-price">
+            <span class="amount">375 kr/v</span>
+            <a class="tlink" href="#kontakt">Bli prenumerant →</a>
+          </div>
+        </div>
+      </div>
+
+      <p class="brollop-terms" style="border-top:1px solid var(--hairline-light);padding-top:18px;margin-top:8px">
+        Säg upp löpande vecka, senast onsdag för att stoppa fredagens leverans.
+      </p>
+    </div>
+  </div>
+</section>
+
+<!-- ATELJÉKVÄLLAR: centrerad enkel kolumn med en ärligt märkt platshållarbild (inget
+     stockfoto av "workshop-koncept" hotlinkas för att fylla ytan), INTE ett generiskt
+     "boka en upplevelse"-kort -->
+<section id="ateljekvallar" style="background:var(--paper-tint)">
+  <div class="wrap grid12">
+    <div class="section-head reveal">
+      <p class="kicker">ATELJÉKVÄLLAR</p>
+      <h2>Lär dig <em>binda</em> själv.</h2>
+    </div>
+    <div class="section-body grid12" style="grid-template-columns:repeat(12,minmax(0,1fr))">
+      <div style="grid-column:1/span 7" class="reveal">
+        <p class="section-intro lede">Andra torsdagen varje månad öppnar vi ateljén på kvällen. Vi går igenom ett tema, du binder din egen bukett eller krans och tar med den hem. Runt bordet får tio personer plats.</p>
+        <div class="brollop-terms" style="margin-top:24px">
+          <p>18.00-20.30, Mariaplan 4. Material och ett glas ingår.</p>
+          <p style="margin-top:8px">495 kr per plats. Nästa kväll: 10 september.</p>
+        </div>
+        <a class="tlink primary" href="#kontakt" style="margin-top:26px">Boka plats →</a>
+      </div>
+      <div style="grid-column:9/span 4" class="reveal placeholder-wrap">
+        <div class="placeholder" role="img" aria-label="Platshållare: foto från en binderikväll runt arbetsbordet på Mariaplan, kommer ersättas med ett verifierat fotografi.">
+          <svg viewBox="0 0 100 100" aria-hidden="true">
+            <circle cx="50" cy="38" r="16" fill="none" stroke="currentColor" stroke-width="1.2" style="color:var(--moss-mid)"/>
+            <path d="M50 54 L50 86 M38 66 L50 74 L62 66 M34 78 L50 84 L66 78" fill="none" stroke="currentColor" stroke-width="1.2" style="color:var(--moss-mid)"/>
+          </svg>
+          <span class="placeholder-label">FOTO BEKRÄFTAS · 4:5</span>
+        </div>
+      </div>
+      <div style="grid-column:1/span 12" class="hairline" aria-hidden="true"></div>
+    </div>
+  </div>
+</section>
+
+<!-- OM ATELJÉN: mörk vändpanel som avslutar sidan med adress och öppettider som en
+     ledger, INTE en ljus kontaktformulär-sektion med namn/e-post/meddelande-fält -->
+<section id="om-ateljen" class="inverted">
+  <div class="wrap grid12">
+    <div class="section-head reveal">
+      <p class="kicker">OM ATELJÉN</p>
+      <h2>Vi håller till på <em>Mariaplan</em>.</h2>
+    </div>
+    <div class="section-body">
+      <p class="section-intro lede">Florhuset Majorna har bundit buketter på Mariaplan sedan lokalen var en cykelverkstad. Gröna blad hämtas från odlare utanför stan, resten väljs på grossisten varje tisdag och torsdag morgon.</p>
+
+      <div class="addr-block" id="kontakt">
+        <div class="hours-row reveal">
+          <span>Besöksadress</span>
+          <span>Mariaplan 4, 414 70 Göteborg</span>
+        </div>
+        <div class="hours-row reveal">
+          <span>Tisdag-fredag</span>
+          <span>10.00-18.00</span>
+        </div>
+        <div class="hours-row reveal">
+          <span>Lördag</span>
+          <span>10.00-15.00</span>
+        </div>
+        <div class="hours-row reveal">
+          <span>Söndag-måndag</span>
+          <span>Stängt</span>
+        </div>
+        <div class="hours-row reveal">
+          <span>Kontakt</span>
+          <span><a class="tlink" style="color:inherit" href="mailto:hej@florhusetmajorna.se">hej@florhusetmajorna.se</a></span>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+</main>
+
+<!-- FOOTER: minimal mörk avslutning med en lätt kolofon, INTE en fyrkolumns-footer
+     fylld med sociala ikoner och en nyhetsbrevsruta -->
+<footer class="site-footer">
+  <div class="wrap grid12">
+    <p class="foot-word">Florhuset Majorna</p>
+    <p class="foot-meta">MARIAPLAN 4 · 414 70 GÖTEBORG<br>SATT I FRAUNCES OCH IBM PLEX MONO</p>
+  </div>
+</footer>
+
+<script>
+(function () {
+  "use strict";
+
+  // ---------- shared reveal: IntersectionObserver + failsafe, fails toward visible ----------
+  var items = Array.prototype.slice.call(document.querySelectorAll('.reveal'));
+  var revealed = 0;
+
+  function markIn(el) {
+    if (!el.classList.contains('in')) { el.classList.add('in'); revealed++; }
+  }
+
+  if ('IntersectionObserver' in window) {
+    var io = new IntersectionObserver(function (entries) {
+      entries.forEach(function (entry) {
+        if (entry.isIntersecting) { markIn(entry.target); io.unobserve(entry.target); }
+      });
+    }, { threshold: 0, rootMargin: '0px 0px -8% 0px' });
+    items.forEach(function (el) { io.observe(el); });
+  } else {
+    items.forEach(markIn);
+  }
+
+  // failsafe: guarantee every .reveal is visible within 2.5s regardless of IO state
+  setTimeout(function () { items.forEach(markIn); }, 2500);
+
+  // ---------- signature move: two-layer scroll scrub on the hero ----------
+  var heroMedia = document.getElementById('heroMedia');
+  var heroHead = document.getElementById('heroHead');
+  var hero = document.getElementById('hero');
+  var reduceMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+  var forcePreview = /(?:^|[?&])preview=hero(?:&|$)/.test(window.location.search);
+
+  function setHeroFrame(p) {
+    // p: 0 at top of hero, 1 once hero has fully scrolled past
+    var photoY = p * 46; // px drift, layer 1
+    var photoScale = 1 + p * 0.06;
+    heroMedia.style.transform = 'translateY(' + photoY + 'px) scale(' + photoScale + ')';
+    var headOpacity = 1 - Math.min(p * 1.5, 1); // layer 2
+    var headTrack = (p * 0.05).toFixed(3) + 'em';
+    heroHead.style.opacity = headOpacity;
+    heroHead.style.letterSpacing = 'calc(-0.02em + ' + headTrack + ')';
+  }
+
+  if (forcePreview) {
+    setHeroFrame(0);
+  } else if (!reduceMotion && hero) {
+    var ticking = false;
+    function update() {
+      var rect = hero.getBoundingClientRect();
+      var h = rect.height || 1;
+      var p = Math.min(Math.max(-rect.top / h, 0), 1);
+      setHeroFrame(p);
+      ticking = false;
+    }
+    window.addEventListener('scroll', function () {
+      if (!ticking) { window.requestAnimationFrame(update); ticking = true; }
+    }, { passive: true });
+    update();
+  }
+})();
+</script>
+</body>
+</html>

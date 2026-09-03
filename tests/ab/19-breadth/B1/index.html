@@ -1,0 +1,821 @@
+<!doctype html>
+<html lang="sv">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width,initial-scale=1" />
+<title>Florhuset Majorna &middot; florist &amp; binderiateljé, Majorna, Göteborg</title>
+
+<!--
+  ══════════════════════════════════════════════════════════════════════════
+  B1 · FLORHUSET MAJORNA — blind one-shot, diversity contract (19-breadth)
+  ══════════════════════════════════════════════════════════════════════════
+
+  REGISTER: cinematic dark
+
+  GRAMMAR (scroll/grammars.md): filmic one-shot — en enda linjär känslomässig
+  kurva, en film som trycker igenom utan sömmar. Nav: fast minimal bar. Hero:
+  full-bleed scrub, hörnrubrik (inte centrerad). Avslut: pinnad spotlight,
+  magnetisk CTA. Lutar sig mot scrub / pin / drift / kinetic. Förbjuder synlig
+  sekvens, hårda klipp, mer än en ingångspunkt — därför en enda nav-länk, ingen
+  hopp-till-sektion-meny, och alla sektionsövergångar delar samma reveal.
+
+  VÄRLD (worlds.md, "The eight" — kontraktet tilldelar B1 "den första
+  icke-fotografiska världen som passar en florist": av de åtta är #8 Technical
+  drawing den enda som inte är fotografisk, så den är också den enda kandidaten).
+  Style preamble, ordagrant:
+
+    "Precise technical illustration in the style of a patent drawing or
+    exploded assembly diagram. Fine consistent line weight, no fills,
+    monochrome ink on warm paper ground, dimension lines and leader callouts.
+    Orthographic projection. Restrained, engineered, no shading, no gradients,
+    no 3D render."
+
+  Registerbrygga: cinematic dark kräver en nästan svart botten; preambelns
+  "warm paper ground" håller inte den bottnen. Lösningen lånas inte, den finns
+  redan i mediets egen historia — cyanotypen (det ursprungliga "blueprint")
+  ÄR precis detta ordförråd omvänt: blek tuschlinje på djup blåsvart botten,
+  inte mörk tusch på varmt papper. Medium (teknisk linje, sprängskiss/
+  ortografisk projektion), textur (jämn linjevikt, inga gradienter) och
+  negativlistan (no shading, no 3D render, no gradients) följer med oförändrade
+  — bara bottnens polaritet vänds, precis som en blueprint bokstavligen är
+  negativet av en ritbordsteckning. Den enda inversionen på sidan (Om ateljén)
+  vänder tillbaka mot den ljusa polen: diazotypen, cyanotypens efterföljare,
+  som trycker mörk tusch på ljust papper — samma teknikhistoria, andra hälften.
+
+  LANE: "cyanotyp botanisk blueprint — mässingstusch på indigosvart botten,
+  en enda kameravagn genom fem sprängskisser"
+
+  FÖRBJUDNA DRAG (kontraktets B1-rad) — vad som ersätter dem:
+  - serif-tvåton → NOLL serif någonstans på sidan. Rubrik sätts i Space
+    Grotesk (geometrisk grotesk, ingen kursiv röst), etiketter/mått i
+    JetBrains Mono — ett ritbords-typsystem istället för en roman+kursiv
+    serifpar.
+  - cream → botten är indigosvart tusch (oklch 0.150/0.028/255), inte
+    cream/dis. Hela paletten går kallare och mörkare än varje syskonbygge;
+    den enda ljusa ytan är diazopapperets kalla blågrå (oklch 0.955/0.008/235,
+    INTE varm cream).
+  - ledger → ingen hairline-radlista med högerställda displaysiffror
+    någonstans. Pris, art och mått sitter som "leader"-hänvisningar (bokstav
+    i ring → förklaring i en kort lista) på sprängskisser av buketterna,
+    på samma sätt som en patentritning märker ut en detalj — inte som en
+    prislista.
+
+  FINGERPRINT (grammatik · nav · hero-device · aktform · avslut · signature
+  move):
+  filmic one-shot · fixed minimal bar · sprängskiss-hero · provplan-dolly ·
+  spotlight-magnet · linjevikt-scrub
+  — delar 0/6 med AB09-A, 0/6 med K1, 0/6 med K2, 0/6 med AB09-B
+    (kontraktets budget: högst 2 med var och en)
+
+  Foton: inga. Världen är kontraktuellt icke-fotografisk — alla bilder på
+  sidan är inline SVG-linjeteckningar i låst palett, inga hotlinkade foton
+  någonstans (varken från sites/*.html eller Unsplash).
+  ══════════════════════════════════════════════════════════════════════════
+-->
+
+<link rel="preconnect" href="https://fonts.googleapis.com" />
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+<link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@300;400;500;600;700&family=Public+Sans:ital,wght@0,400;0,500;0,600;1,400&family=JetBrains+Mono:wght@400;500;700&display=swap" rel="stylesheet" />
+<script src="https://cdn.tailwindcss.com"></script>
+<script>
+tailwind.config = {
+  theme: {
+    extend: {
+      colors: {
+        ink:       'oklch(0.150 0.028 255)',
+        ink2:      'oklch(0.205 0.032 255)',
+        line:      'oklch(0.930 0.014 235)',
+        linedim:   'oklch(0.660 0.025 240)',
+        paper:     'oklch(0.955 0.008 235)',
+        paperdim:  'oklch(0.440 0.030 250)',
+        brass:     'oklch(0.720 0.130 75)',
+        brassdeep: 'oklch(0.580 0.130 72)',
+        moss:      'oklch(0.560 0.070 152)',
+      },
+      fontFamily: {
+        display: ['"Space Grotesk"','ui-sans-serif','system-ui','sans-serif'],
+        body:    ['"Public Sans"','ui-sans-serif','system-ui','sans-serif'],
+        mono:    ['"JetBrains Mono"','ui-monospace','SFMono-Regular','monospace'],
+      },
+      maxWidth: { wide: '1440px' },
+    }
+  }
+}
+</script>
+
+<style>
+  :root{
+    --ink:oklch(0.150 0.028 255);
+    --ink2:oklch(0.205 0.032 255);
+    --line:oklch(0.930 0.014 235);
+    --linedim:oklch(0.660 0.025 240);
+    --paper:oklch(0.955 0.008 235);
+    --paperdim:oklch(0.440 0.030 250);
+    --brass:oklch(0.720 0.130 75);
+    --brassdeep:oklch(0.580 0.130 72);
+    --moss:oklch(0.560 0.070 152);
+  }
+  html{ scroll-behavior:smooth; }
+  html,body{ background:var(--ink); color:var(--line); font-family:'Public Sans',ui-sans-serif,sans-serif; font-size:17.5px; line-height:1.65; }
+  html,body{ overflow-x:clip; }
+  .display{ font-family:'Space Grotesk',sans-serif; letter-spacing:-0.02em; }
+  .mono{ font-family:'JetBrains Mono',monospace; }
+  .kicker{ font-family:'JetBrains Mono',monospace; font-size:10.5px; letter-spacing:0.22em; text-transform:uppercase; }
+
+  .hairline{ background:currentColor; height:1px; opacity:.16; }
+  .hairline2{ background:currentColor; height:1.5px; opacity:.4; }
+
+  :focus-visible{ outline:2px solid var(--brass); outline-offset:3px; border-radius:1px; }
+  a{ text-decoration:none; }
+
+  /* ---- reveal system: fails toward visible, see script for mount-check + failsafe ---- */
+  .reveal{ opacity:0; transform:translateY(28px); transition:opacity 1.25s cubic-bezier(.16,1,.3,1), transform 1.25s cubic-bezier(.16,1,.3,1); }
+  .reveal.in{ opacity:1; transform:none; }
+
+  /* ---- grain: fixed, tinted to the indigo/brass token pair, screen on dark ---- */
+  .grain::before{
+    content:""; position:fixed; inset:0; pointer-events:none; z-index:60;
+    background-image:url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='240' height='240'><filter id='n'><feTurbulence type='fractalNoise' baseFrequency='0.85' numOctaves='2' stitchTiles='stitch'/><feColorMatrix type='matrix' values='0 0 0 0 0.62 0 0 0 0 0.52 0 0 0 0 0.30 0 0 0 0.05 0'/></filter><rect width='100%25' height='100%25' filter='url(%23n)'/></svg>");
+    mix-blend-mode:screen; opacity:0.22;
+  }
+
+  /* ---- diagram ink: fill:none everywhere, per the world's own "no fills" clause ---- */
+  .ln{ stroke:var(--line); stroke-width:1.1; fill:none; }
+  .ln-soft{ stroke:var(--linedim); stroke-width:1; fill:none; opacity:.8; }
+  .ln-brass{ stroke:var(--brass); stroke-width:1.6; fill:none; }
+  .dot{ stroke:var(--line); stroke-width:1; fill:none; }
+  .marker-ring{ stroke:var(--linedim); stroke-width:1; fill:none; }
+  .marker-label{ font-family:'JetBrains Mono',monospace; font-size:7px; fill:var(--linedim); }
+  .dim-label{ font-family:'JetBrains Mono',monospace; font-size:6.5px; fill:var(--linedim); letter-spacing:.05em; }
+
+  /* ================= HERO ================= */
+  .hero-art-wrap{ will-change:transform; }
+  @keyframes dimpulse{ 0%,100%{opacity:.25} 50%{opacity:.75} }
+  .dim-pulse{ animation:dimpulse 2.6s ease-in-out infinite; }
+
+  /* ================= NAV magnetic CTA ================= */
+  .magnet{ display:inline-block; transition:transform .18s cubic-bezier(.16,1,.3,1); }
+
+  /* ================= DOLLY (signature set-piece: provplan-dolly + linjevikt-scrub) ================= */
+  #dolly-wrap{ position:relative; height:480vh; }
+  #dolly-track{ position:sticky; top:0; height:100vh; overflow:hidden; display:flex; align-items:center; }
+  #dolly-reel{ display:flex; gap:clamp(2rem,5vw,5.5rem); padding:0 8vw; will-change:transform; }
+  .plate{ flex:0 0 auto; width:min(78vw,320px); }
+  .plate-card{ border:1px solid color-mix(in oklab, var(--line) 20%, transparent); padding:1.75rem 1.5rem 1.5rem; background:color-mix(in oklab, var(--ink2) 55%, transparent); }
+  .plate-svg{ width:100%; height:auto; display:block; }
+  .plate-legend{ margin-top:1.1rem; display:grid; gap:.55rem; }
+  .plate-legend li{ display:flex; gap:.65rem; align-items:baseline; }
+  .marker-key{ font-family:'JetBrains Mono',monospace; font-size:11px; color:var(--linedim); border:1px solid color-mix(in oklab, var(--linedim) 55%, transparent); border-radius:999px; width:1.35rem; height:1.35rem; flex:none; display:inline-flex; align-items:center; justify-content:center; }
+
+  /* static / no-scrub fallback: mobile AND prefers-reduced-motion — same code path */
+  @media (max-width:900px){
+    #dolly-wrap{ height:auto; }
+    #dolly-track{ position:static; height:auto; overflow:visible; display:block; }
+    #dolly-reel{ flex-wrap:wrap; transform:none !important; padding:0; justify-content:center; }
+    .plate{ width:min(100%,360px); }
+  }
+  @media (prefers-reduced-motion: reduce){
+    #dolly-wrap{ height:auto; }
+    #dolly-track{ position:static; height:auto; overflow:visible; display:block; }
+    #dolly-reel{ flex-wrap:wrap; transform:none !important; padding:0; justify-content:center; }
+    .reveal{ opacity:1; transform:none; transition:none; }
+    .hero-art-wrap{ transform:none !important; }
+    .magnet{ transition:none; }
+    .dim-pulse{ animation:none; opacity:.4; }
+  }
+
+  /* ================= subscription: corner-bracket spec plates (NOT a ledger) ================= */
+  .bracket{ position:relative; border:none; padding:1.9rem 1.5rem; }
+  .bracket::before,.bracket::after{ content:""; position:absolute; width:14px; height:14px; border-color:var(--linedim); opacity:.55; }
+  .bracket::before{ top:0; left:0; border-top:1px solid; border-left:1px solid; }
+  .bracket::after{ bottom:0; right:0; border-bottom:1px solid; border-right:1px solid; }
+
+  /* ================= paper inversion (Om ateljén) ================= */
+  .diazo{ background:var(--paper); color:var(--ink); }
+  .diazo .kicker,.diazo .mono{ color:var(--paperdim); }
+
+  noscript{ display:block; }
+</style>
+</head>
+<body class="grain antialiased">
+
+<noscript>
+  <style>
+    .reveal{ opacity:1 !important; transform:none !important; }
+    #dolly-wrap{ height:auto !important; }
+    #dolly-track{ position:static !important; height:auto !important; overflow:visible !important; display:block !important; }
+    #dolly-reel{ flex-wrap:wrap !important; transform:none !important; padding:0 !important; justify-content:center !important; }
+  </style>
+</noscript>
+
+<!-- NAV: fast minimal bar — filmic one-shot tillåter en enda ingångspunkt, inte en hopp-meny -->
+<header class="fixed top-0 left-0 right-0 z-30">
+  <div id="nav-bg" class="transition-colors duration-500">
+    <div class="max-w-wide mx-auto px-6 md:px-10 py-5 md:py-6 flex items-center justify-between">
+      <a href="#hero" class="display text-lg md:text-xl tracking-[0.1em]">FLORHUSET <span class="text-linedim font-normal">MAJORNA</span></a>
+      <a href="#bestall" class="magnet mono text-[11px] tracking-[0.18em] uppercase border border-line/35 px-4 py-2.5 hover:border-brass hover:text-brass transition-colors duration-300">Beställ</a>
+    </div>
+  </div>
+</header>
+
+<main>
+
+<!-- HERO — sprängskiss-hero: full-bleed teknisk sprängskiss, hörnrubrik (inte centrerad, ej fotografi) -->
+<section id="hero" class="relative min-h-[100svh] overflow-hidden flex items-end">
+  <div class="hero-art-wrap absolute inset-0 flex items-center justify-center md:justify-end pointer-events-none" id="hero-art">
+    <svg viewBox="0 0 500 560" class="w-[150%] max-w-none md:w-[62%] md:max-w-[720px] opacity-90" aria-hidden="true" focusable="false">
+      <g id="hero-outer">
+        <line x1="298" y1="220" x2="402" y2="220" class="ln-brass"/>
+        <line x1="296.4" y1="232.4" x2="396.8" y2="259.3" class="ln-brass"/>
+        <line x1="291.6" y1="244" x2="381.6" y2="296" class="ln-brass"/>
+        <line x1="283.9" y1="253.9" x2="357.5" y2="327.5" class="ln-brass"/>
+        <line x1="274" y1="261.6" x2="326" y2="351.6" class="ln-brass"/>
+        <line x1="262.4" y1="266.4" x2="289.3" y2="366.8" class="ln-brass"/>
+        <line x1="250" y1="268" x2="250" y2="372" class="ln-brass"/>
+        <line x1="237.6" y1="266.4" x2="210.7" y2="366.8" class="ln-brass"/>
+        <line x1="226" y1="261.6" x2="174" y2="351.6" class="ln-brass"/>
+        <line x1="216.1" y1="253.9" x2="142.5" y2="327.5" class="ln-brass"/>
+        <line x1="208.4" y1="244" x2="118.4" y2="296" class="ln-brass"/>
+        <line x1="203.6" y1="232.4" x2="103.2" y2="259.3" class="ln-brass"/>
+        <line x1="202" y1="220" x2="98" y2="220" class="ln-brass"/>
+        <line x1="203.6" y1="207.6" x2="103.2" y2="180.7" class="ln-brass"/>
+        <line x1="208.4" y1="196" x2="118.4" y2="144" class="ln-brass"/>
+        <line x1="216.1" y1="186.1" x2="142.5" y2="112.5" class="ln-brass"/>
+        <line x1="226" y1="178.4" x2="174" y2="88.4" class="ln-brass"/>
+        <line x1="237.6" y1="173.6" x2="210.7" y2="73.2" class="ln-brass"/>
+        <line x1="250" y1="172" x2="250" y2="68" class="ln-brass"/>
+        <line x1="262.4" y1="173.6" x2="289.3" y2="73.2" class="ln-brass"/>
+        <line x1="274" y1="178.4" x2="326" y2="88.4" class="ln-brass"/>
+        <line x1="283.9" y1="186.1" x2="357.5" y2="112.5" class="ln-brass"/>
+        <line x1="291.6" y1="196" x2="381.6" y2="144" class="ln-brass"/>
+        <line x1="296.4" y1="207.6" x2="396.8" y2="180.7" class="ln-brass"/>
+      </g>
+      <g id="hero-exploded">
+        <line x1="279.7" y1="223.9" x2="349.1" y2="233.1" class="ln"/>
+        <line x1="277.7" y1="231.5" x2="342.4" y2="258.3" class="ln"/>
+        <line x1="273.8" y1="238.3" x2="329.3" y2="280.9" class="ln"/>
+        <line x1="268.3" y1="243.8" x2="310.9" y2="299.3" class="ln"/>
+        <line x1="261.5" y1="247.7" x2="288.3" y2="312.4" class="ln"/>
+        <line x1="253.9" y1="249.7" x2="263.1" y2="319.1" class="ln"/>
+        <line x1="246.1" y1="249.7" x2="236.9" y2="319.1" class="ln"/>
+        <line x1="238.5" y1="247.7" x2="211.7" y2="312.4" class="ln"/>
+        <line x1="231.7" y1="243.8" x2="189.1" y2="299.3" class="ln"/>
+        <line x1="226.2" y1="238.3" x2="170.7" y2="280.9" class="ln"/>
+        <line x1="222.3" y1="231.5" x2="157.6" y2="258.3" class="ln"/>
+        <line x1="220.3" y1="223.9" x2="150.9" y2="233.1" class="ln"/>
+        <line x1="220.3" y1="216.1" x2="150.9" y2="206.9" class="ln"/>
+        <line x1="222.3" y1="208.5" x2="157.6" y2="181.7" class="ln"/>
+        <line x1="226.2" y1="201.7" x2="170.7" y2="159.1" class="ln"/>
+        <line x1="231.7" y1="196.2" x2="189.1" y2="140.7" class="ln"/>
+        <line x1="238.5" y1="192.3" x2="211.7" y2="127.6" class="ln"/>
+        <line x1="246.1" y1="190.3" x2="236.9" y2="120.9" class="ln"/>
+        <line x1="253.9" y1="190.3" x2="263.1" y2="120.9" class="ln"/>
+        <line x1="261.5" y1="192.3" x2="288.3" y2="127.6" class="ln"/>
+        <line x1="268.3" y1="196.2" x2="310.9" y2="140.7" class="ln"/>
+        <line x1="273.8" y1="201.7" x2="329.3" y2="159.1" class="ln"/>
+        <line x1="277.7" y1="208.5" x2="342.4" y2="181.7" class="ln"/>
+        <line x1="279.7" y1="216.1" x2="349.1" y2="206.9" class="ln"/>
+      </g>
+      <g id="hero-disc" class="ln-soft">
+        <line x1="258" y1="220" x2="274" y2="220"/><line x1="257.2" y1="223.5" x2="271.6" y2="230.4"/>
+        <line x1="255" y1="226.3" x2="265" y2="238.8"/><line x1="251.8" y1="227.8" x2="255.3" y2="243.4"/>
+        <line x1="248.2" y1="227.8" x2="244.7" y2="243.4"/><line x1="245" y1="226.3" x2="235" y2="238.8"/>
+        <line x1="242.8" y1="223.5" x2="228.4" y2="230.4"/><line x1="242" y1="220" x2="226" y2="220"/>
+        <line x1="242.8" y1="216.5" x2="228.4" y2="209.6"/><line x1="245" y1="213.7" x2="235" y2="201.2"/>
+        <line x1="248.2" y1="212.2" x2="244.7" y2="196.6"/><line x1="251.8" y1="212.2" x2="255.3" y2="196.6"/>
+        <line x1="255" y1="213.7" x2="265" y2="201.2"/><line x1="257.2" y1="216.5" x2="271.6" y2="209.6"/>
+      </g>
+      <line x1="250" y1="372" x2="250" y2="500" class="ln"/>
+      <line x1="250" y1="410" x2="222" y2="428" class="ln-soft"/>
+      <line x1="250" y1="450" x2="278" y2="466" class="ln-soft"/>
+      <line x1="180" y1="518" x2="320" y2="518" class="ln-soft"/>
+      <line x1="180" y1="512" x2="180" y2="524" class="ln-soft"/>
+      <line x1="320" y1="512" x2="320" y2="524" class="ln-soft"/>
+      <text x="250" y="536" text-anchor="middle" class="dim-label">HELA VÄXTEN · CA 128 CM</text>
+    </svg>
+  </div>
+
+  <div class="relative max-w-wide mx-auto w-full px-6 md:px-10 pb-16 md:pb-24 pt-32">
+    <p class="kicker text-linedim mb-6">Florist &amp; binderiateljé · Mariaplan, Majorna</p>
+    <h1 class="display text-[clamp(3.1rem,12vw,8.5rem)] leading-[0.94] max-w-[14ch]">
+      FLORHUSET<br /><span class="text-brass">MAJORNA</span>
+    </h1>
+    <p class="mt-8 text-[clamp(1.05rem,1.9vw,1.35rem)] leading-[1.55] max-w-[36ch] text-line/90">
+      Snittblommor efter säsong, bundna på Mariaplan. Vi snittar samma morgon vi säljer. Det är hela metoden.
+    </p>
+    <div class="mt-10 flex items-center gap-3 text-linedim" aria-hidden="true">
+      <span class="w-px h-10 bg-current opacity-40 dim-pulse"></span>
+      <span class="kicker">Bläddra</span>
+    </div>
+  </div>
+</section>
+
+<!-- INTRO — enkel spalt, ren text: INTE ett tre-kolumners "trust bar", en enda konkret grundberättelse -->
+<section class="relative border-t border-line/10">
+  <div class="max-w-wide mx-auto px-6 md:px-10 py-24 md:py-32">
+    <p class="reveal text-[clamp(1.3rem,2.4vw,1.85rem)] leading-[1.6] max-w-[46ch] text-line/95">
+      Florhuset Majorna öppnade på Mariaplan 4 hösten 2019. Vi köper tre gånger i veckan från odlare i Kungälv och Herrljunga, snittar på plats och binder samma dag.
+    </p>
+    <p class="reveal mt-6 mono text-sm text-linedim max-w-[50ch] leading-[1.7]">
+      Ingen kylrumslagring över helgen. Det som inte säljs på lördag komposteras. Det säljs inte vidare till halva priset på måndag.
+    </p>
+  </div>
+</section>
+
+<!-- SÄSONGENS BUKETTER — provplan-dolly + linjevikt-scrub: EN pinnad kameravagn genom fem sprängskisser, INTE en ledger, INTE ett kortgrid -->
+<section aria-labelledby="buketter-h" class="relative border-t border-line/10">
+  <div class="max-w-wide mx-auto px-6 md:px-10 pt-24 md:pt-28 pb-10 md:pb-14">
+    <p class="reveal kicker text-brassdeep md:text-brass mb-5">Fem provplan · byts när säsongen byts</p>
+    <h2 id="buketter-h" class="reveal display text-[clamp(2.1rem,5vw,3.6rem)] leading-[1] max-w-[16ch]">SÄSONGENS<br/>BUKETTER</h2>
+    <p class="reveal mt-6 max-w-[50ch] text-line/85">Tidig höst 2026: dahlior som fortfarande går starkt, de sista martorn-stjälkarna från kusten, och de första rönnbären.</p>
+  </div>
+
+  <div id="dolly-wrap">
+    <div id="dolly-track">
+      <div id="dolly-reel">
+
+        <!-- FIG. 01 · MAJORNA -->
+        <article class="plate">
+          <div class="plate-card">
+            <p class="mono text-[11px] tracking-[0.2em] text-linedim">FIG. 01 · MAJORNA</p>
+            <svg viewBox="0 0 200 260" class="plate-svg plate-art mt-3" aria-hidden="true" focusable="false">
+              <line x1="100" y1="60" x2="100" y2="215" class="ln"/>
+              <line x1="100" y1="130" x2="78" y2="145" class="ln"/>
+              <line x1="100" y1="165" x2="124" y2="180" class="ln"/>
+              <g transform="translate(40,-5)">
+                <line x1="68" y1="60" x2="90" y2="60" class="ln"/><line x1="67.4" y1="63.1" x2="87.7" y2="71.5" class="ln"/>
+                <line x1="65.7" y1="65.7" x2="81.2" y2="81.2" class="ln"/><line x1="63.1" y1="67.4" x2="71.5" y2="87.7" class="ln"/>
+                <line x1="60" y1="68" x2="60" y2="90" class="ln"/><line x1="56.9" y1="67.4" x2="48.5" y2="87.7" class="ln"/>
+                <line x1="54.3" y1="65.7" x2="38.8" y2="81.2" class="ln"/><line x1="52.6" y1="63.1" x2="32.3" y2="71.5" class="ln"/>
+                <line x1="52" y1="60" x2="30" y2="60" class="ln"/><line x1="52.6" y1="56.9" x2="32.3" y2="48.5" class="ln"/>
+                <line x1="54.3" y1="54.3" x2="38.8" y2="38.8" class="ln"/><line x1="56.9" y1="52.6" x2="48.5" y2="32.3" class="ln"/>
+                <line x1="60" y1="52" x2="60" y2="30" class="ln"/><line x1="63.1" y1="52.6" x2="71.5" y2="32.3" class="ln"/>
+                <line x1="65.7" y1="54.3" x2="81.2" y2="38.8" class="ln"/><line x1="67.4" y1="56.9" x2="87.7" y2="48.5" class="ln"/>
+                <g class="ln-soft">
+                  <line x1="62" y1="60" x2="67" y2="60"/><line x1="61.4" y1="61.4" x2="64.9" y2="64.9"/>
+                  <line x1="60" y1="62" x2="60" y2="67"/><line x1="58.6" y1="61.4" x2="55.1" y2="64.9"/>
+                  <line x1="58" y1="60" x2="53" y2="60"/><line x1="58.6" y1="58.6" x2="55.1" y2="55.1"/>
+                  <line x1="60" y1="58" x2="60" y2="53"/><line x1="61.4" y1="58.6" x2="64.9" y2="55.1"/>
+                </g>
+              </g>
+              <line x1="55" y1="232" x2="145" y2="232" class="ln-soft"/>
+              <line x1="55" y1="227" x2="55" y2="237" class="ln-soft"/>
+              <line x1="145" y1="227" x2="145" y2="237" class="ln-soft"/>
+              <text x="100" y="248" text-anchor="middle" class="dim-label">L 45 CM</text>
+              <circle cx="114" cy="66" r="5" class="marker-ring"/><text x="114" y="68.5" text-anchor="middle" class="marker-label">A</text>
+              <circle cx="124" cy="180" r="5" class="marker-ring"/><text x="124" y="182.5" text-anchor="middle" class="marker-label">B</text>
+              <circle cx="150" cy="222" r="5" class="marker-ring"/><text x="150" y="224.5" text-anchor="middle" class="marker-label">C</text>
+            </svg>
+            <p class="display text-brass text-3xl mt-4">375 kr</p>
+            <ul class="plate-legend text-sm text-line/85">
+              <li><span class="marker-key">A</span> Dahlia &apos;Karma Choc&apos;</li>
+              <li><span class="marker-key">B</span> Rudbeckia, brynegräs</li>
+              <li><span class="marker-key">C</span> 12 stjälkar, vardagsbukett</li>
+            </ul>
+          </div>
+        </article>
+
+        <!-- FIG. 02 · ÄNGGATAN -->
+        <article class="plate">
+          <div class="plate-card">
+            <p class="mono text-[11px] tracking-[0.2em] text-linedim">FIG. 02 · ÄNGGATAN</p>
+            <svg viewBox="0 0 200 260" class="plate-svg plate-art mt-3" aria-hidden="true" focusable="false">
+              <line x1="100" y1="60" x2="100" y2="215" class="ln"/>
+              <line x1="100" y1="128" x2="122" y2="140" class="ln"/>
+              <line x1="100" y1="160" x2="80" y2="174" class="ln"/>
+              <g transform="translate(40,-5)">
+                <line x1="69.9" y1="61.6" x2="93.6" y2="65.3" class="ln"/><line x1="67.1" y1="67.1" x2="84" y2="84" class="ln"/>
+                <line x1="61.6" y1="69.9" x2="65.3" y2="93.6" class="ln"/><line x1="55.5" y1="68.9" x2="44.6" y2="90.3" class="ln"/>
+                <line x1="51.1" y1="64.5" x2="29.7" y2="75.4" class="ln"/><line x1="50.1" y1="58.4" x2="26.4" y2="54.7" class="ln"/>
+                <line x1="52.9" y1="52.9" x2="36" y2="36" class="ln"/><line x1="58.4" y1="50.1" x2="54.7" y2="26.4" class="ln"/>
+                <line x1="64.5" y1="51.1" x2="75.4" y2="29.7" class="ln"/><line x1="68.9" y1="55.5" x2="90.3" y2="44.6" class="ln"/>
+              </g>
+              <g transform="translate(10,58)">
+                <circle cx="69.7" cy="62.6" r="2.4" class="dot"/><circle cx="62.6" cy="69.7" r="2.4" class="dot"/>
+                <circle cx="52.9" cy="67.1" r="2.4" class="dot"/><circle cx="50.3" cy="57.4" r="2.4" class="dot"/>
+                <circle cx="57.4" cy="50.3" r="2.4" class="dot"/><circle cx="67.1" cy="52.9" r="2.4" class="dot"/>
+                <circle cx="60" cy="60" r="2.4" class="dot"/>
+              </g>
+              <line x1="55" y1="232" x2="145" y2="232" class="ln-soft"/>
+              <line x1="55" y1="227" x2="55" y2="237" class="ln-soft"/>
+              <line x1="145" y1="227" x2="145" y2="237" class="ln-soft"/>
+              <text x="100" y="248" text-anchor="middle" class="dim-label">L 52 CM</text>
+              <circle cx="113" cy="66" r="5" class="marker-ring"/><text x="113" y="68.5" text-anchor="middle" class="marker-label">A</text>
+              <circle cx="70" cy="115" r="5" class="marker-ring"/><text x="70" y="117.5" text-anchor="middle" class="marker-label">B</text>
+              <circle cx="150" cy="222" r="5" class="marker-ring"/><text x="150" y="224.5" text-anchor="middle" class="marker-label">C</text>
+            </svg>
+            <p class="display text-brass text-3xl mt-4">425 kr</p>
+            <ul class="plate-legend text-sm text-line/85">
+              <li><span class="marker-key">A</span> Höstaster, blandad äng</li>
+              <li><span class="marker-key">B</span> Dill i frö, plockad löst</li>
+              <li><span class="marker-key">C</span> 14 stjälkar, bunden som den växer</li>
+            </ul>
+          </div>
+        </article>
+
+        <!-- FIG. 03 · STUDIO -->
+        <article class="plate">
+          <div class="plate-card">
+            <p class="mono text-[11px] tracking-[0.2em] text-linedim">FIG. 03 · STUDIO</p>
+            <svg viewBox="0 0 200 260" class="plate-svg plate-art mt-3" aria-hidden="true" focusable="false">
+              <line x1="100" y1="60" x2="100" y2="215" class="ln"/>
+              <g transform="translate(40,-5)">
+                <line x1="68" y1="60" x2="90" y2="60" class="ln"/><line x1="67.4" y1="63.1" x2="87.7" y2="71.5" class="ln"/>
+                <line x1="65.7" y1="65.7" x2="81.2" y2="81.2" class="ln"/><line x1="63.1" y1="67.4" x2="71.5" y2="87.7" class="ln"/>
+                <line x1="60" y1="68" x2="60" y2="90" class="ln"/><line x1="56.9" y1="67.4" x2="48.5" y2="87.7" class="ln"/>
+                <line x1="54.3" y1="65.7" x2="38.8" y2="81.2" class="ln"/><line x1="52.6" y1="63.1" x2="32.3" y2="71.5" class="ln"/>
+                <line x1="52" y1="60" x2="30" y2="60" class="ln"/><line x1="52.6" y1="56.9" x2="32.3" y2="48.5" class="ln"/>
+                <line x1="54.3" y1="54.3" x2="38.8" y2="38.8" class="ln"/><line x1="56.9" y1="52.6" x2="48.5" y2="32.3" class="ln"/>
+                <line x1="60" y1="52" x2="60" y2="30" class="ln"/><line x1="63.1" y1="52.6" x2="71.5" y2="32.3" class="ln"/>
+                <line x1="65.7" y1="54.3" x2="81.2" y2="38.8" class="ln"/><line x1="67.4" y1="56.9" x2="87.7" y2="48.5" class="ln"/>
+              </g>
+              <line x1="55" y1="232" x2="145" y2="232" class="ln-soft"/>
+              <line x1="55" y1="227" x2="55" y2="237" class="ln-soft"/>
+              <line x1="145" y1="227" x2="145" y2="237" class="ln-soft"/>
+              <text x="100" y="248" text-anchor="middle" class="dim-label">9 STJÄLKAR · SAMMA HÖJD</text>
+              <circle cx="114" cy="66" r="5" class="marker-ring"/><text x="114" y="68.5" text-anchor="middle" class="marker-label">A</text>
+              <circle cx="150" cy="222" r="5" class="marker-ring"/><text x="150" y="224.5" text-anchor="middle" class="marker-label">B</text>
+            </svg>
+            <p class="display text-brass text-3xl mt-4">450 kr</p>
+            <ul class="plate-legend text-sm text-line/85">
+              <li><span class="marker-key">A</span> Dahlia &apos;Café au Lait&apos;, en sort</li>
+              <li><span class="marker-key">B</span> Ingen fyllnad, ingen grönska</li>
+            </ul>
+          </div>
+        </article>
+
+        <!-- FIG. 04 · VÄSTANVIND -->
+        <article class="plate">
+          <div class="plate-card">
+            <p class="mono text-[11px] tracking-[0.2em] text-linedim">FIG. 04 · VÄSTANVIND</p>
+            <svg viewBox="0 0 200 260" class="plate-svg plate-art mt-3" aria-hidden="true" focusable="false">
+              <line x1="100" y1="60" x2="100" y2="215" class="ln"/>
+              <ellipse cx="82" cy="132" rx="10" ry="4" transform="rotate(-30 82 132)" class="ln-soft"/>
+              <ellipse cx="118" cy="168" rx="10" ry="4" transform="rotate(28 118 168)" class="ln-soft"/>
+              <g transform="translate(40,-5)">
+                <line x1="66" y1="60" x2="86" y2="60" class="ln"/><line x1="65.4" y1="62.6" x2="74.4" y2="66.9" class="ln"/>
+                <line x1="63.7" y1="64.7" x2="76.2" y2="80.3" class="ln"/><line x1="61.3" y1="65.8" x2="63.6" y2="75.6" class="ln"/>
+                <line x1="58.7" y1="65.8" x2="54.2" y2="85.3" class="ln"/><line x1="56.3" y1="64.7" x2="50" y2="72.5" class="ln"/>
+                <line x1="54.6" y1="62.6" x2="36.6" y2="71.3" class="ln"/><line x1="54" y1="60" x2="44" y2="60" class="ln"/>
+                <line x1="54.6" y1="57.4" x2="36.6" y2="48.7" class="ln"/><line x1="56.3" y1="55.3" x2="50" y2="47.5" class="ln"/>
+                <line x1="58.7" y1="54.2" x2="54.2" y2="34.7" class="ln"/><line x1="61.3" y1="54.2" x2="63.6" y2="44.4" class="ln"/>
+                <line x1="63.7" y1="55.3" x2="76.2" y2="39.7" class="ln"/><line x1="65.4" y1="57.4" x2="74.4" y2="53.1" class="ln"/>
+              </g>
+              <line x1="55" y1="232" x2="145" y2="232" class="ln-soft"/>
+              <line x1="55" y1="227" x2="55" y2="237" class="ln-soft"/>
+              <line x1="145" y1="227" x2="145" y2="237" class="ln-soft"/>
+              <text x="100" y="248" text-anchor="middle" class="dim-label">HÅLLER 10 DYGN</text>
+              <circle cx="112" cy="66" r="5" class="marker-ring"/><text x="112" y="68.5" text-anchor="middle" class="marker-label">A</text>
+              <circle cx="82" cy="132" r="5" class="marker-ring"/><text x="82" y="134.5" text-anchor="middle" class="marker-label">B</text>
+              <circle cx="150" cy="222" r="5" class="marker-ring"/><text x="150" y="224.5" text-anchor="middle" class="marker-label">C</text>
+            </svg>
+            <p class="display text-brass text-3xl mt-4">465 kr</p>
+            <ul class="plate-legend text-sm text-line/85">
+              <li><span class="marker-key">A</span> Martorn <span class="text-linedim">(Eryngium maritimum)</span></li>
+              <li><span class="marker-key">B</span> Vit cosmos, silverek</li>
+              <li><span class="marker-key">C</span> Saltbeständig kustpalett</li>
+            </ul>
+          </div>
+        </article>
+
+        <!-- FIG. 05 · EFTERGLÖD -->
+        <article class="plate">
+          <div class="plate-card">
+            <p class="mono text-[11px] tracking-[0.2em] text-linedim">FIG. 05 · EFTERGLÖD</p>
+            <svg viewBox="0 0 200 260" class="plate-svg plate-art mt-3" aria-hidden="true" focusable="false">
+              <line x1="100" y1="60" x2="100" y2="215" class="ln"/>
+              <line x1="100" y1="150" x2="76" y2="162" class="ln"/>
+              <g transform="translate(40,-5)">
+                <line x1="68" y1="60" x2="90" y2="60" class="ln"/><line x1="67.4" y1="63.1" x2="87.7" y2="71.5" class="ln"/>
+                <line x1="65.7" y1="65.7" x2="81.2" y2="81.2" class="ln"/><line x1="63.1" y1="67.4" x2="71.5" y2="87.7" class="ln"/>
+                <line x1="60" y1="68" x2="60" y2="90" class="ln"/><line x1="56.9" y1="67.4" x2="48.5" y2="87.7" class="ln"/>
+                <line x1="54.3" y1="65.7" x2="38.8" y2="81.2" class="ln"/><line x1="52.6" y1="63.1" x2="32.3" y2="71.5" class="ln"/>
+                <line x1="52" y1="60" x2="30" y2="60" class="ln"/><line x1="52.6" y1="56.9" x2="32.3" y2="48.5" class="ln"/>
+                <line x1="54.3" y1="54.3" x2="38.8" y2="38.8" class="ln"/><line x1="56.9" y1="52.6" x2="48.5" y2="32.3" class="ln"/>
+                <line x1="60" y1="52" x2="60" y2="30" class="ln"/><line x1="63.1" y1="52.6" x2="71.5" y2="32.3" class="ln"/>
+                <line x1="65.7" y1="54.3" x2="81.2" y2="38.8" class="ln"/><line x1="67.4" y1="56.9" x2="87.7" y2="48.5" class="ln"/>
+              </g>
+              <g transform="translate(4,110)">
+                <circle cx="69.7" cy="62.6" r="2.4" class="dot"/><circle cx="62.6" cy="69.7" r="2.4" class="dot"/>
+                <circle cx="52.9" cy="67.1" r="2.4" class="dot"/><circle cx="50.3" cy="57.4" r="2.4" class="dot"/>
+                <circle cx="57.4" cy="50.3" r="2.4" class="dot"/><circle cx="67.1" cy="52.9" r="2.4" class="dot"/>
+                <circle cx="60" cy="60" r="2.4" class="dot"/>
+              </g>
+              <line x1="55" y1="232" x2="145" y2="232" class="ln-soft"/>
+              <line x1="55" y1="227" x2="55" y2="237" class="ln-soft"/>
+              <line x1="145" y1="227" x2="145" y2="237" class="ln-soft"/>
+              <text x="100" y="248" text-anchor="middle" class="dim-label">L 40 CM</text>
+              <circle cx="114" cy="66" r="5" class="marker-ring"/><text x="114" y="68.5" text-anchor="middle" class="marker-label">A</text>
+              <circle cx="63" cy="167" r="5" class="marker-ring"/><text x="63" y="169.5" text-anchor="middle" class="marker-label">B</text>
+              <circle cx="150" cy="222" r="5" class="marker-ring"/><text x="150" y="224.5" text-anchor="middle" class="marker-label">C</text>
+            </svg>
+            <p class="display text-brass text-3xl mt-4">465 kr</p>
+            <ul class="plate-legend text-sm text-line/85">
+              <li><span class="marker-key">A</span> Dahlia i kopparton</li>
+              <li><span class="marker-key">B</span> Rönnbär, Änggårdsbergen</li>
+              <li><span class="marker-key">C</span> Bokblad, sista i säsong <span class="text-moss">· SÄSONG</span></li>
+            </ul>
+          </div>
+        </article>
+
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- BRÖLLOP — sprängskiss + textrail, INTE ett foto-diptyk, INTE ett "romantiskt" kortgrid -->
+<section id="brollop" aria-labelledby="brollop-h" class="relative border-t border-line/10">
+  <div class="max-w-wide mx-auto px-6 md:px-10 py-24 md:py-32 grid grid-cols-12 gap-x-10 gap-y-14">
+    <div class="col-span-12 md:col-span-4">
+      <p class="reveal kicker text-linedim mb-5">Bröllop</p>
+      <h2 id="brollop-h" class="reveal display text-[clamp(2rem,4.4vw,3.2rem)] leading-[1]">EN BUKETT,<br/>EN DAG</h2>
+      <p class="reveal mt-7 text-line/85 max-w-[36ch]">
+        Kostnadsfritt möte på ateljén, förslag inom en vecka, provbindning möjlig innan datumet. Vi bokar max två bröllop per helg, allt bundet av samma händer.
+      </p>
+      <p class="reveal mt-5 mono text-sm text-linedim max-w-[40ch]">Boka minst sex veckor innan. Juni–augusti bokas ofta ett år i förväg.</p>
+    </div>
+    <div class="col-span-12 md:col-span-8 md:mt-16">
+      <svg viewBox="0 0 400 220" class="plate-svg reveal" aria-hidden="true" focusable="false">
+        <line x1="200" y1="30" x2="200" y2="150" class="ln"/>
+        <g>
+          <line x1="235.9" y1="123.2" x2="287.2" y2="130.6" class="ln"/><line x1="228.2" y1="134.2" x2="264" y2="168" class="ln"/>
+          <line x1="215.6" y1="139.8" x2="230.6" y2="187.2" class="ln"/><line x1="200.9" y1="140.9" x2="192.9" y2="189.1" class="ln"/>
+          <line x1="186.9" y1="137.6" x2="157.5" y2="177.5" class="ln"/><line x1="175.5" y1="130.4" x2="127.9" y2="150.9" class="ln"/>
+          <line x1="168.2" y1="120.1" x2="106.3" y2="114.8" class="ln"/><line x1="166.1" y1="108.1" x2="115.4" y2="79.8" class="ln"/>
+          <line x1="169.4" y1="97.1" x2="141.5" y2="53.5" class="ln"/><line x1="178.2" y1="88.8" x2="168.5" y2="41.3" class="ln"/>
+          <line x1="190.9" y1="84.6" x2="199.5" y2="36.9" class="ln"/><line x1="204.9" y1="84.6" x2="211.8" y2="36.5" class="ln"/>
+          <line x1="217.6" y1="88.8" x2="238.8" y2="45.5" class="ln"/><line x1="228.3" y1="97.1" x2="264.1" y2="59.6" class="ln"/>
+          <line x1="235.7" y1="108.1" x2="282.7" y2="87.3" class="ln"/><line x1="238.9" y1="120.1" x2="293.5" y2="112.4" class="ln"/>
+        </g>
+        <circle cx="200" cy="90" r="12" class="ln-soft"/>
+        <line x1="120" y1="195" x2="280" y2="195" class="ln-soft"/>
+        <line x1="120" y1="190" x2="120" y2="200" class="ln-soft"/><line x1="280" y1="190" x2="280" y2="200" class="ln-soft"/>
+        <text x="200" y="212" text-anchor="middle" class="dim-label">DIAMETER CA 22 CM</text>
+        <circle cx="216" cy="42" r="6" class="marker-ring"/><text x="216" y="45" text-anchor="middle" class="marker-label">A</text>
+      </svg>
+      <p class="reveal mt-5 mono text-xs text-linedim">A · Brudbukett, formsnitt runt: samma metod som en säsongsbukett, bara stramare bunden.</p>
+    </div>
+  </div>
+</section>
+
+<!-- VECKANS BLOMMA — spec-brackets (viewfinder-hörn), INTE en prenumerations-ledger med hairline-rader -->
+<section aria-labelledby="prenum-h" class="relative border-t border-line/10">
+  <div class="max-w-wide mx-auto px-6 md:px-10 py-24 md:py-32">
+    <p class="reveal kicker text-linedim mb-5">Prenumeration</p>
+    <h2 id="prenum-h" class="reveal display text-[clamp(2rem,4.4vw,3.2rem)] leading-[1] max-w-[14ch]">VECKANS BLOMMA</h2>
+    <p class="reveal mt-6 max-w-[48ch] text-line/85">Hämtas på Mariaplan varje torsdag. Ingen bindningstid: säg upp med ett sms, gäller från nästa hämtning.</p>
+
+    <div class="mt-14 grid grid-cols-1 md:grid-cols-3 gap-px bg-line/10">
+      <div class="reveal bracket bg-ink">
+        <p class="mono text-xs text-linedim">LITEN</p>
+        <p class="display text-3xl text-brass mt-3">349 kr<span class="text-sm text-linedim mono">/mån</span></p>
+        <p class="mt-4 text-sm text-line/80">En bukett i veckan, snittblommor, ingen fyllnadsgrönska.</p>
+      </div>
+      <div class="reveal bracket bg-ink">
+        <p class="mono text-xs text-linedim">MELLAN</p>
+        <p class="display text-3xl text-brass mt-3">449 kr<span class="text-sm text-linedim mono">/mån</span></p>
+        <p class="mt-4 text-sm text-line/80">Större bukett, plus en gren säsongsgrönt.</p>
+      </div>
+      <div class="reveal bracket bg-ink">
+        <p class="mono text-xs text-linedim">STOR</p>
+        <p class="display text-3xl text-brass mt-3">595 kr<span class="text-sm text-linedim mono">/mån</span></p>
+        <p class="mt-4 text-sm text-line/80">Blommor och grönt för hela veckan, två vaser.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ATELJÉKVÄLLAR — verktygsdiagram, INTE ett workshop-ikongrid -->
+<section aria-labelledby="ateljekvallar-h" class="relative border-t border-line/10">
+  <div class="max-w-wide mx-auto px-6 md:px-10 py-24 md:py-32 grid grid-cols-12 gap-x-10 gap-y-14">
+    <div class="col-span-12 md:col-span-7 order-2 md:order-1">
+      <svg viewBox="0 0 380 180" class="plate-svg reveal" aria-hidden="true" focusable="false">
+        <line x1="40" y1="60" x2="150" y2="130" class="ln"/>
+        <line x1="40" y1="130" x2="150" y2="60" class="ln"/>
+        <circle cx="95" cy="95" r="6" class="ln-soft"/>
+        <line x1="150" y1="60" x2="185" y2="45" class="ln"/><line x1="150" y1="130" x2="185" y2="145" class="ln"/>
+        <path d="M220 40 C 250 55, 250 85, 220 100 C 250 100, 270 120, 260 150" class="ln-soft"/>
+        <line x1="300" y1="30" x2="300" y2="150" class="ln-soft"/>
+        <line x1="290" y1="30" x2="310" y2="30" class="ln-soft"/><line x1="290" y1="150" x2="310" y2="150" class="ln-soft"/>
+        <text x="300" y="168" text-anchor="middle" class="dim-label">18 CM</text>
+        <circle cx="95" cy="95" r="6" class="marker-ring"/><text x="95" y="98" text-anchor="middle" class="marker-label">A</text>
+        <circle cx="240" cy="70" r="6" class="marker-ring"/><text x="240" y="73" text-anchor="middle" class="marker-label">B</text>
+      </svg>
+      <p class="reveal mt-5 mono text-xs text-linedim">A · Sekatör, standardgrepp &middot; B · Bindtråd, förformad</p>
+    </div>
+    <div class="col-span-12 md:col-span-5 order-1 md:order-2">
+      <p class="reveal kicker text-linedim mb-5">Ateljékvällar</p>
+      <h2 id="ateljekvallar-h" class="reveal display text-[clamp(2rem,4.4vw,3rem)] leading-[1]">BINDERI,<br/>VARANNAN ONSDAG</h2>
+      <p class="reveal mt-7 text-line/85 max-w-[38ch]">
+        Åtta platser, 18–20 på ateljén. Material ingår, du tar hem det du binder. Vi visar ett grepp i taget, ingen förkunskap krävs.
+      </p>
+      <p class="reveal mt-5 display text-2xl text-brass">495 kr</p>
+      <p class="reveal mt-1 mono text-xs text-linedim">Anmälan senast 48 timmar innan, via mejl.</p>
+    </div>
+  </div>
+</section>
+
+<!-- OM ATELJÉN — den enda tonala inversionen: diazotypen, cyanotypens efterföljare, mörk tusch på ljust papper -->
+<section id="om-ateljen" class="diazo relative border-t border-line/10">
+  <div class="max-w-wide mx-auto px-6 md:px-10 py-24 md:py-32 grid grid-cols-12 gap-x-10 gap-y-14">
+    <div class="col-span-12 md:col-span-6">
+      <p class="reveal kicker mb-5">Om ateljén</p>
+      <h2 class="reveal display text-[clamp(2rem,4.4vw,3.2rem)] leading-[1]">MARIAPLAN 4</h2>
+      <p class="reveal mt-7 max-w-[42ch] leading-[1.65]">
+        Grundad av Elin Torstensson 2019, i en gammal skomakarlokal vid Mariaplans spårvagnshållplats. Svenskodlat när säsongen tillåter det, holländskt i andra hand. Vi säger vilket är vilket när du frågar.
+      </p>
+    </div>
+    <div class="col-span-12 md:col-span-6 md:mt-10">
+      <div class="reveal grid grid-cols-2 gap-x-8 gap-y-8 max-w-[34ch]">
+        <div>
+          <p class="mono text-xs">ADRESS</p>
+          <p class="mt-2 text-[1.05rem] leading-[1.5]">Mariaplan 4<br/>414 70 Göteborg</p>
+        </div>
+        <div>
+          <p class="mono text-xs">ÖPPETTIDER</p>
+          <p class="mt-2 text-[1.05rem] leading-[1.5]">Tis–fre 10–18<br/>Lör 10–15<br/>Sön–mån stängt</p>
+        </div>
+        <div class="col-span-2">
+          <p class="mono text-xs">KONTAKT</p>
+          <p class="mt-2 text-[1.05rem]"><a href="mailto:hej@florhusetmajorna.se" class="underline decoration-1 underline-offset-4 hover:no-underline">hej@florhusetmajorna.se</a> &middot; 031&#8209;13&nbsp;45&nbsp;20</p>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- BESTÄLL — spotlight-magnet: pinnad spotlight-typografi, magnetisk CTA, tillbaka till indigosvart -->
+<section id="bestall" class="relative border-t border-line/10 min-h-[85svh] flex items-center">
+  <div class="max-w-wide mx-auto px-6 md:px-10 py-24 md:py-32 w-full">
+    <p class="reveal kicker text-linedim mb-8">Beställ</p>
+    <a href="mailto:hej@florhusetmajorna.se?subject=Bukett" class="magnet reveal block display text-[clamp(2.6rem,9vw,7rem)] leading-[0.98] text-brass hover:text-line transition-colors duration-300" id="magnet-cta">
+      BESTÄLL EN<br/>BUKETT
+    </a>
+    <p class="reveal mt-10 max-w-[46ch] text-line/80">
+      Skriv vad tillfället är och när du vill hämta, så återkommer vi samma dag. Bröllop? Skriv senast sex veckor innan datumet.
+    </p>
+    <p class="reveal mt-6 mono text-sm text-linedim">hej@florhusetmajorna.se &middot; 031&#8209;13&nbsp;45&nbsp;20 &middot; Mariaplan 4</p>
+  </div>
+</section>
+
+</main>
+
+<footer class="border-t border-line/15">
+  <div class="max-w-wide mx-auto px-6 md:px-10 py-8 flex flex-wrap items-baseline justify-between gap-y-3 text-linedim">
+    <p class="mono text-[11px] tracking-[0.16em]">&copy; FLORHUSET MAJORNA &middot; MMXXVI</p>
+    <p class="mono text-[11px] tracking-[0.16em]">MARIAPLAN 4, MAJORNA</p>
+    <p class="mono text-[11px] tracking-[0.16em]">SPACE GROTESK / PUBLIC SANS / JETBRAINS MONO</p>
+  </div>
+</footer>
+
+<script>
+  // ---- nav: solidify once past hero ----
+  const navBg = document.getElementById('nav-bg');
+  function onNavScroll(){
+    if (!navBg) return;
+    if (window.scrollY > window.innerHeight * 0.8) navBg.classList.add('bg-ink/92','backdrop-blur-sm');
+    else navBg.classList.remove('bg-ink/92','backdrop-blur-sm');
+  }
+  window.addEventListener('scroll', onNavScroll, { passive:true });
+  onNavScroll();
+
+  const reducedMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+
+  // ---- hero: gentle drift on the sprängskiss (device: drift) ----
+  const heroArt = document.getElementById('hero-art');
+  if (heroArt && !reducedMotion) {
+    let ticking = false;
+    window.addEventListener('scroll', () => {
+      if (ticking) return;
+      ticking = true;
+      requestAnimationFrame(() => {
+        const y = Math.min(window.scrollY, window.innerHeight);
+        heroArt.style.transform = `translate3d(0, ${y * 0.12}px, 0) scale(${1 + y * 0.00012})`;
+        ticking = false;
+      });
+    }, { passive:true });
+  }
+
+  // ---- magnetic CTA: nav link + close-section link ----
+  document.querySelectorAll('.magnet').forEach((el) => {
+    if (reducedMotion || matchMedia('(pointer: coarse)').matches) return;
+    el.addEventListener('mousemove', (e) => {
+      const r = el.getBoundingClientRect();
+      const dx = (e.clientX - (r.left + r.width/2)) * 0.14;
+      const dy = (e.clientY - (r.top + r.height/2)) * 0.14;
+      el.style.transform = `translate(${dx.toFixed(1)}px, ${dy.toFixed(1)}px)`;
+    });
+    el.addEventListener('mouseleave', () => { el.style.transform = 'translate(0,0)'; });
+  });
+
+  // ---- reveal system: fails toward visible ----
+  const revealEls = Array.from(document.querySelectorAll('.reveal'));
+  const io = new IntersectionObserver((entries) => {
+    entries.forEach((entry) => {
+      if (entry.isIntersecting) { entry.target.classList.add('in'); io.unobserve(entry.target); }
+    });
+  }, { threshold: 0.08 });
+  revealEls.forEach((el) => {
+    const r = el.getBoundingClientRect();
+    if (r.top < window.innerHeight && r.bottom > 0) el.classList.add('in');
+    else io.observe(el);
+  });
+  setTimeout(() => { revealEls.forEach((el) => el.classList.add('in')); }, 2500);
+
+  // ---- DOLLY: the signature set-piece — provplan-dolly (horizontal camera move) +
+  //      linjevikt-scrub (per-plate ink resolve: draw-on stroke, blur, opacity,
+  //      letter-spacing). Two coordinated layers driven by one scroll progress. ----
+  (function initDolly() {
+    const wrap = document.getElementById('dolly-wrap');
+    const track = document.getElementById('dolly-track');
+    const reel = document.getElementById('dolly-reel');
+    if (!wrap || !track || !reel) return;
+    const plates = Array.from(reel.querySelectorAll('.plate'));
+    const narrow = window.matchMedia('(max-width: 900px)').matches;
+
+    function prepArt(plate) {
+      const art = plate.querySelector('.plate-art');
+      if (!art) return;
+      art.querySelectorAll('line').forEach((el) => {
+        const x1 = +el.getAttribute('x1'), y1 = +el.getAttribute('y1');
+        const x2 = +el.getAttribute('x2'), y2 = +el.getAttribute('y2');
+        const len = Math.hypot(x2 - x1, y2 - y1) || 0.001;
+        el.style.strokeDasharray = String(len);
+        el.style.strokeDashoffset = String(len);
+      });
+      art.querySelectorAll('circle,ellipse,path').forEach((el) => {
+        el.style.opacity = '0';
+      });
+      const label = plate.querySelector('.mono');
+      if (label) label.style.transition = 'letter-spacing .3s linear, opacity .3s linear';
+    }
+
+    function resolvePlate(plate, t) {
+      const art = plate.querySelector('.plate-art');
+      if (art) {
+        art.style.filter = `blur(${(4.5 * (1 - t)).toFixed(2)}px)`;
+        art.querySelectorAll('line').forEach((el) => {
+          const len = parseFloat(el.style.strokeDasharray || '0');
+          el.style.strokeDashoffset = String(len * (1 - t));
+        });
+        art.querySelectorAll('circle,ellipse,path').forEach((el) => {
+          el.style.opacity = t.toFixed(3);
+        });
+      }
+      const label = plate.querySelector('.mono');
+      if (label) {
+        label.style.letterSpacing = (0.02 + 0.26 * (1 - t)).toFixed(3) + 'em';
+        label.style.opacity = (0.4 + 0.6 * t).toFixed(3);
+      }
+    }
+
+    if (reducedMotion || narrow) {
+      plates.forEach((p) => resolvePlate(p, 1));
+      return; // CSS media queries handle the static layout
+    }
+
+    plates.forEach(prepArt);
+
+    function clamp01(x) { return Math.max(0, Math.min(1, x)); }
+    function smoothstep(x) { x = clamp01(x); return x * x * (3 - 2 * x); }
+
+    let raf = null;
+    function update() {
+      raf = null;
+      const rect = wrap.getBoundingClientRect();
+      const vh = window.innerHeight;
+      const total = Math.max(1, rect.height - vh);
+      const progress = clamp01(-rect.top / total);
+
+      const reelWidth = reel.scrollWidth;
+      const trackWidth = track.clientWidth;
+      const maxTranslate = Math.max(0, reelWidth - trackWidth);
+      reel.style.transform = `translate3d(${(-progress * maxTranslate).toFixed(1)}px,0,0)`;
+
+      const trackRect = track.getBoundingClientRect();
+      const centerX = trackRect.left + trackRect.width / 2;
+      plates.forEach((plate) => {
+        const r = plate.getBoundingClientRect();
+        const plateCenter = r.left + r.width / 2;
+        const dist = Math.abs(plateCenter - centerX);
+        const half = trackRect.width / 2 + r.width / 2;
+        const proximity = clamp01(1 - dist / half);
+        resolvePlate(plate, smoothstep(proximity));
+      });
+    }
+    function onScroll() { if (!raf) raf = requestAnimationFrame(update); }
+    window.addEventListener('scroll', onScroll, { passive:true });
+    window.addEventListener('resize', onScroll);
+    update();
+
+    if (location.search.includes('preview=dolly')) {
+      setTimeout(() => {
+        const rect = wrap.getBoundingClientRect();
+        window.scrollTo(0, window.scrollY + rect.top + (rect.height - window.innerHeight) * 0.5);
+        setTimeout(update, 60);
+      }, 150);
+    }
+  })();
+</script>
+</body>
+</html>

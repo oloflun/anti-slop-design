@@ -1,0 +1,633 @@
+<!DOCTYPE html>
+<html lang="sv">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Florhuset Majorna: buketter, bröllop och veckans blomma i Majorna</title>
+<meta name="description" content="Florist och ateljé på Mariaplan i Majorna. Buketter på beställning, bröllop vid havet, veckans blomma-prenumeration och ateljékvällar.">
+
+<!--
+  ═══════════════════════════════════════════════════════════════════════
+  FLORHUSET MAJORNA — bygge B3 (diversity contract, 19-breadth)
+
+  REGISTER: warm photographic
+    Motiverat av verksamheten: hantverksflorist i en stadsdel, ingen
+    "premium"-jargong, foto bär sidan snarare än typografisk apparat.
+    Se house-physics.md § Klova för registrets bar.
+
+  GRAMMATIK: split stage (scroll/grammars.md)
+    "Any two-sided argument, watching a balance tip toward a resolve."
+    Tvåsidigheten här är verksamhetens egen: engångsbuketten mot
+    veckans-blomma-prenumerationen — två sätt att köpa samma hantverk.
+    Ingen fast navbalk (grammatiken förbjuder bar). Delaren ÄR navet.
+    Hero visar 50/50-delningen. Avslutet viker in till en kolumn i
+    sektionen "Två vägar, samma dörr", där de två trådarna (varm/kall
+    papper) smälter samman inför Ateljékvällar / Om ateljén / Footer.
+
+  VÄRLD (worlds.md-metoden, egen namngiven ljussättning — inte en av de
+  åtta standardvärldarna ordagrant, skriven enligt "Writing your own"
+  eftersom ingen av de åtta träffar en västsvensk hantverksflorist):
+
+    VÄSTLJUS — style preamble, klistrad ordagrant över varje bildval:
+    "Natural window-light photography, shot on a 50mm normal lens at
+    working height. Single low source: late-afternoon west sun off the
+    water, straight through a shopfront window, warm key raking sideways
+    across the petals; soft grey sea-light as the cool ambient fill.
+    Warm oat and rose-madder colour grade, honest warm skin and true
+    stem-green, no orange cast. Visible film grain, water-beaded stems,
+    a few honestly bruised outer petals left in frame. Photographic
+    realism. NOT 3D render, NOT clay, NOT studio strobe, no digital
+    glow, no plastic sheen."
+
+  LANE (namngiven innan kod): "West-lit harbour florist: oat linen mot
+  sjö-kallt papper, en enda vallmo-accent, en delare som tippar och
+  viker sig in till ett rum."
+
+  FÖRBJUDNA DRAG (B3-raden i contract.md) — vad som ersätter dem:
+    · kicker-mikroformat (10.5px/0.22em/uppercase/mono) FÖRBJUDET
+      → ersatt av rakt insatta H2:or utan eyebrow-etikett; där en liten
+        etikett ändå behövs (bildtexter, öppettider) sätts den i vanlig
+        sans, sentence case, ingen spärrning, ingen mono — se .caption.
+    · cream FÖRBJUDET
+      → ersatt av två pappersvarianter som BÄR splitten strukturellt:
+        --paper (varmt linne, oklch 0.94/0.018/75 — inte Calyx cream
+        0.965/0.012/88) för engångs-tråden, --paper-cool (sjö-kallt
+        papper, oklch 0.93/0.014/210) för prenumerations-tråden.
+    · ledger FÖRBJUDET
+      → priser står i bukettkort med bildram och luft (Klovas rörelse:
+        rundade hörn, generös luft) och i löptext med reellt pris, ALDRIG
+        i hairline-radslistor med kursiv liggarsiffra.
+
+  FINGERPRINT-RAD (grammatik · nav · hero-device · aktform · avslut ·
+  signature move) — delar 0 av 6 med var och en av registret:
+    split stage · delarnav · vågskål-split · trådbyte/tippning/samling
+    · envikning · vågskålstippning
+
+    AB09-A: chaptered · masthead · kopparlinje-rail · rail/ledger/diptyk
+            · kolofon · kopparlinje-scrub               → 0/6 delade
+    K1:     gallery · masthead · fotoplansch · ledger/fullbleed/split
+            · mörk kolofon · vow-knot                   → 0/6 delade
+    K2:     gallery · nav-strip · anfang · numrerad .00–.09 · mörk
+            ledger · tråd                                → 0/6 delade
+    AB09-B: typographic poster · masthead · petrol-serif · rail/fasad/
+            inversion · footer · fasad-tusch             → 0/6 delade
+
+  FOTON (endast verifierade Unsplash-ID:n återfunna i sites/*.html,
+  vart och ett bedömt under sin faktiska scrim nedan i platsen där det
+  används — se kommentaren vid varje <img>):
+    · calyx.html  photo-1574684891174-df6b02ab38d7  (blommor, hero vänster)
+    · calyx.html  photo-1487530811176-3780de880c2d  (blommor, hero höger)
+    · calyx.html  photo-1561181286-d3fee7d55364     (ateljé/hantverk, bukettkort)
+    · calyx.html  photo-1469371670807-013ccf25f16a  (odlarfält, bukettkort)
+    · tidvatten.html photo-1518837695005-2083093ee35b (hamn/hav, bröllop)
+    · horai.html  photo-1517248135467-4c7edcad34c4   (interiör, ateljékvällar)
+  ═══════════════════════════════════════════════════════════════════════
+-->
+
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,400;0,9..144,500;0,9..144,600;1,9..144,500&family=Karla:wght@400;500;600;700&display=swap" rel="stylesheet">
+
+<style>
+  /* ── Tokens ─────────────────────────────────────────────────────── */
+  :root{
+    --paper:      oklch(0.94 0.018 75);    /* linne — engångs-tråden. NOT cream. */
+    --paper-cool: oklch(0.93 0.014 210);   /* sjö-kallt papper — prenumerations-tråden */
+    --ink:        oklch(0.23 0.020 50);
+    --stone:      oklch(0.47 0.020 55);    /* dämpad ton, varmt papper */
+    --stone-cool: oklch(0.45 0.020 215);   /* dämpad ton, kallt papper — mätt separat */
+    --accent:     oklch(0.57 0.175 27);    /* vallmo — enda mättade accenten */
+    --dusk:       oklch(0.23 0.035 235);   /* skymning — footerns tonala inversion */
+    --dusk-ink:   oklch(0.93 0.020 70);
+    --dusk-stone: oklch(0.74 0.020 235);   /* mätt separat mot --dusk, inte återanvänd från ljust läge */
+    --hairline:   oklch(0.23 0.020 50 / 0.14);
+    --font-display: 'Fraunces', ui-serif, Georgia, serif;
+    --font-body:    'Karla', ui-sans-serif, system-ui, sans-serif;
+  }
+
+  *,*::before,*::after{ box-sizing:border-box; }
+  html{ scroll-behavior:smooth; overflow-x:clip; }
+  body{ overflow-x:clip; }
+  @media (prefers-reduced-motion:reduce){ html{ scroll-behavior:auto; } }
+
+  html,body{ margin:0; padding:0; background:var(--paper); color:var(--ink); }
+  body{
+    font-family:var(--font-body);
+    font-size:16px; line-height:1.55;
+    -webkit-font-smoothing:antialiased;
+  }
+  img{ max-width:100%; display:block; }
+  h1,h2,h3{ font-family:var(--font-display); font-weight:500; line-height:0.98; letter-spacing:-0.01em;
+            overflow-wrap:anywhere; min-width:0; margin:0; }
+  p{ margin:0; }
+  a{ color:inherit; }
+  ul{ margin:0; padding:0; list-style:none; }
+
+  a:focus-visible, button:focus-visible, [tabindex]:focus-visible{
+    outline:2px solid var(--accent); outline-offset:3px; border-radius:2px;
+  }
+
+  .skip-link{
+    position:absolute; left:1rem; top:-4rem; background:var(--ink); color:var(--paper);
+    padding:.75rem 1.25rem; z-index:200; transition:top .2s ease; text-decoration:none;
+    font-family:var(--font-body); font-weight:600;
+  }
+  .skip-link:focus{ top:1rem; }
+
+  .measure{ max-width:52ch; }
+  .measure-wide{ max-width:58ch; }
+
+  .caption{
+    font-family:var(--font-body); font-size:13px; font-weight:500;
+    color:var(--stone); letter-spacing:0.01em;
+  }
+  .on-cool .caption{ color:var(--stone-cool); }
+
+  .rule{ height:1px; background:var(--hairline); border:0; }
+
+  /* ── Buttons: real, outlined, sized to be pressed — warm-photographic norm ── */
+  .btn{
+    display:inline-flex; align-items:center; justify-content:center; gap:.6rem;
+    padding:.95rem 1.6rem; border:2px solid var(--ink); border-radius:3px;
+    font-family:var(--font-body); font-weight:600; font-size:15px;
+    background:transparent; color:var(--ink); text-decoration:none; cursor:pointer;
+    min-height:48px; white-space:nowrap; transition:background .25s ease, color .25s ease, transform .2s ease;
+  }
+  .btn:hover{ background:var(--ink); color:var(--paper); }
+  .btn:active{ transform:translateY(1px); }
+  .btn-ghost{ border-color:var(--dusk-ink); color:var(--dusk-ink); }
+  .btn-ghost:hover{ background:var(--dusk-ink); color:var(--dusk); }
+
+  /* ── Reveal: fails toward visible. Only html.js hides, so no-JS = fully shown. ── */
+  html.js .reveal{ opacity:0; transform:translateY(28px); transition:opacity 1.25s cubic-bezier(.16,1,.3,1), transform 1.25s cubic-bezier(.16,1,.3,1); }
+  html.js .reveal.in{ opacity:1; transform:none; }
+  @media (prefers-reduced-motion:reduce){
+    html.js .reveal{ opacity:1; transform:none; transition:none; }
+  }
+
+  /* ══ HERO — split stage, 50/50, divider is the chrome (no bar) ══ */
+  .hero{
+    position:relative; display:grid; grid-template-columns:1fr 1fr; min-height:100svh;
+  }
+  .hero-half{ position:relative; overflow:hidden; min-height:52svh; }
+  .hero-half img{ position:absolute; inset:0; width:100%; height:100%; object-fit:cover; }
+  .hero-half::after{ content:""; position:absolute; inset:0; background:linear-gradient(to top, oklch(0.15 0.02 50 / .55), oklch(0.15 0.02 50 / 0) 42%); }
+  .hero-label{
+    position:absolute; left:1.25rem; bottom:1.25rem; z-index:2; color:var(--dusk-ink);
+    font-family:var(--font-body); font-weight:600; font-size:14px; letter-spacing:.01em;
+  }
+
+  /* Divider — the chrome. Accent spine at the seam, holding the wordmark + jump-nav. */
+  .split-spine{
+    position:absolute; left:50%; top:0; bottom:0; width:3px; transform:translateX(-50%);
+    background:var(--accent); z-index:5; opacity:var(--spine-o, 1);
+  }
+  .split-nav{
+    position:absolute; left:50%; top:1.5rem; transform:translateX(-50%); z-index:6;
+    display:flex; flex-direction:column; align-items:center; gap:.85rem;
+  }
+  .split-nav a{
+    width:9px; height:9px; border-radius:50%; background:var(--dusk-ink); opacity:.55;
+    display:block; text-decoration:none; transition:opacity .2s ease, background .2s ease;
+  }
+  .split-nav a:hover, .split-nav a:focus-visible{ opacity:1; background:var(--accent); }
+  .split-nav a > span{
+    position:absolute; width:1px; height:1px; overflow:hidden; clip:rect(0 0 0 0); white-space:nowrap;
+  }
+
+  .hero-plate{
+    position:absolute; left:50%; top:50%; transform:translate(-50%,-50%); z-index:10;
+    width:min(88vw, 640px); background:var(--paper); border:1px solid var(--hairline);
+    padding:2.25rem 2rem; text-align:center; box-shadow:0 24px 60px oklch(0.15 0.02 50 / .28);
+  }
+  .hero-plate h1{
+    font-size:clamp(2rem, 5.6vw, 3.05rem); margin-bottom:1rem;
+  }
+  .hero-plate p{ color:var(--stone); font-size:16px; margin:0 auto 1.6rem; }
+  .hero-cta-row{ display:flex; gap:.85rem; flex-wrap:wrap; justify-content:center; }
+
+  @media (max-width:760px){
+    .hero{ grid-template-columns:1fr; }
+    .hero-half{ min-height:44svh; }
+    .split-spine{ left:0; right:0; top:50%; bottom:auto; width:auto; height:3px; transform:translateY(-50%); }
+    .split-nav{ left:auto; right:1rem; top:50%; transform:translateY(-50%); flex-direction:row; }
+    .hero-plate{ width:min(92vw, 640px); padding:1.75rem 1.35rem; }
+  }
+
+  /* ══ Thread sections: alternate paper grounds echo the hero split ══ */
+  .thread{ padding:5.5rem 0 5.5rem; position:relative; }
+  .thread.on-warm{ background:var(--paper); }
+  .thread.on-cool{ background:var(--paper-cool); color:var(--ink); }
+  .thread-inner{ max-width:1240px; margin:0 auto; padding:0 1.5rem; }
+
+  .thread-head{ display:grid; grid-template-columns:1fr; gap:1rem; margin-bottom:2.75rem; max-width:62ch; }
+  .thread-head h2{ font-size:clamp(1.9rem, 4.4vw, 2.9rem); }
+  .thread-head p{ color:var(--stone); font-size:16.5px; }
+  .on-cool .thread-head p{ color:var(--stone-cool); }
+
+  /* ── Buketter: framed image row with air, NOT a hairline ledger ── */
+  .bukett-index{
+    font-family:var(--font-display); font-variant-numeric:tabular-nums;
+    font-size:14px; color:var(--accent); font-weight:600; margin-bottom:1.5rem;
+  }
+  .bukett-grid{
+    display:grid; grid-template-columns:repeat(auto-fit, minmax(min(100%,240px), 1fr));
+    gap:1.75rem;
+  }
+  .bukett-kort{ display:flex; flex-direction:column; }
+  .bukett-frame{
+    position:relative; aspect-ratio:4/5; border-radius:14px; overflow:hidden;
+    background:var(--stone); margin-bottom:1rem;
+  }
+  .bukett-frame img{ width:100%; height:100%; object-fit:cover; }
+  .bukett-frame.placeholder{
+    display:flex; align-items:center; justify-content:center;
+    background:linear-gradient(155deg, var(--paper) 0%, oklch(0.88 0.03 60) 100%);
+    border:1px dashed var(--hairline);
+  }
+  .bukett-frame.placeholder svg{ width:34%; height:34%; opacity:.55; }
+  .bukett-name{ font-family:var(--font-display); font-size:1.28rem; margin-bottom:.35rem; }
+  .bukett-desc{ color:var(--stone); font-size:14.5px; line-height:1.5; margin-bottom:.7rem; }
+  .bukett-price{ font-family:var(--font-display); font-size:1.15rem; color:var(--ink); font-weight:500; }
+
+  /* ── Bröllop: full-bleed image with type over ── */
+  .brollop{ position:relative; min-height:88svh; display:flex; align-items:flex-end; overflow:hidden; }
+  .brollop img{ position:absolute; inset:0; width:100%; height:100%; object-fit:cover; object-position:center 55%; }
+  .brollop::before{
+    content:""; position:absolute; inset:0;
+    background:linear-gradient(to top, oklch(0.15 0.03 235 / .82), oklch(0.15 0.03 235 / .18) 55%, oklch(0.15 0.03 235 / 0) 78%);
+  }
+  .brollop-inner{ position:relative; z-index:2; max-width:1240px; margin:0 auto; padding:0 1.5rem 4.5rem; width:100%; color:var(--dusk-ink); }
+  .brollop-inner h2{ font-size:clamp(2.1rem, 5.4vw, 3.6rem); color:var(--dusk-ink); margin-bottom:1rem; max-width:16ch; }
+  .brollop-inner p{ max-width:48ch; color:var(--dusk-stone); font-size:16.5px; margin-bottom:1.6rem; }
+  .brollop-price{ font-family:var(--font-display); font-size:1.2rem; color:var(--dusk-ink); margin-bottom:1.6rem; }
+
+  /* ── Veckans Blomma: centred single column ── */
+  .prenumeration{ text-align:center; }
+  .prenumeration .thread-head{ margin-left:auto; margin-right:auto; text-align:center; }
+  .pren-terms{
+    display:grid; grid-template-columns:repeat(auto-fit, minmax(min(100%,220px),1fr));
+    gap:1.5rem; max-width:760px; margin:0 auto 2.5rem;
+  }
+  .pren-term{ border:1px solid var(--hairline); border-radius:10px; padding:1.5rem 1.25rem; }
+  .pren-term .amt{ font-family:var(--font-display); font-size:2.1rem; display:block; margin-bottom:.35rem; }
+  .pren-term .cadence{ color:var(--stone-cool); font-size:14px; }
+
+  /* ── Ateljékvällar: framed image + text, split diptych anatomy ── */
+  .ateljekvall-grid{
+    display:grid; grid-template-columns:1fr 1fr; gap:2.5rem; align-items:center;
+  }
+  .ateljekvall-frame{
+    border-radius:14px; overflow:hidden; aspect-ratio:4/3; margin-top:2.5rem;
+  }
+  .ateljekvall-frame img{ width:100%; height:100%; object-fit:cover; }
+  @media (max-width:760px){
+    .ateljekvall-grid{ grid-template-columns:1fr; }
+    .ateljekvall-frame{ margin-top:0; order:-1; }
+  }
+
+  /* ── Resolve: "Två vägar, samma dörr" — the collapse to one column ── */
+  .resolve{
+    background:var(--ink); color:var(--paper); text-align:center; padding:6.5rem 0;
+    position:relative;
+  }
+  .resolve-inner{ max-width:640px; margin:0 auto; padding:0 1.5rem; }
+  .resolve h2{
+    color:var(--paper); font-size:clamp(2rem, 5.6vw, 3.1rem); margin-bottom:1.25rem;
+    filter:blur(var(--resolve-blur, 0px)); letter-spacing:var(--resolve-ls, 0em);
+    transition:filter 1s cubic-bezier(.16,1,.3,1), letter-spacing 1s cubic-bezier(.16,1,.3,1);
+  }
+  .resolve p{ color:oklch(0.85 0.02 75); font-size:16.5px; }
+  .collapse-bar{
+    width:var(--collapse-w, 0%); max-width:220px; height:2px; background:var(--accent);
+    margin:2rem auto 0; transition:width 1.1s cubic-bezier(.16,1,.3,1);
+  }
+  html.js .resolve.armed{ --resolve-blur:10px; --resolve-ls:.15em; }
+  html.js .resolve.armed.in{ --resolve-blur:0px; --resolve-ls:0em; --collapse-w:100%; }
+  @media (prefers-reduced-motion:reduce){
+    .resolve h2{ filter:none !important; letter-spacing:normal !important; transition:none; }
+    .collapse-bar{ width:100% !important; transition:none; }
+  }
+
+  /* ── Om ateljén: single column info, no ledger rows ── */
+  .om{ background:var(--paper); padding:6rem 0; }
+  .om-inner{ max-width:640px; margin:0 auto; padding:0 1.5rem; text-align:center; }
+  .om-inner h2{ font-size:clamp(2rem,5vw,2.8rem); margin-bottom:1.5rem; }
+  .om-inner p{ color:var(--stone); font-size:16.5px; margin-bottom:2rem; }
+  .om-facts{ display:grid; grid-template-columns:1fr 1fr; gap:1.75rem; text-align:left; max-width:480px; margin:0 auto; }
+  @media (max-width:480px){ .om-facts{ grid-template-columns:1fr; } }
+  .om-facts dt{ font-weight:600; font-size:13px; color:var(--stone); margin-bottom:.4rem; }
+  .om-facts dd{ margin:0; font-size:15.5px; line-height:1.5; }
+
+  /* ── Footer: dusk tonal inversion — the structural invariant every register keeps ── */
+  footer{ background:var(--dusk); color:var(--dusk-ink); padding:4rem 0 2.5rem; }
+  .footer-inner{ max-width:1240px; margin:0 auto; padding:0 1.5rem; }
+  .footer-top{
+    display:flex; flex-wrap:wrap; gap:2.5rem; justify-content:space-between;
+    padding-bottom:2.5rem; border-bottom:1px solid oklch(0.93 0.02 70 / .18); margin-bottom:1.75rem;
+  }
+  footer h3{ font-size:1.7rem; color:var(--dusk-ink); margin-bottom:.6rem; }
+  footer .tag{ color:var(--dusk-stone); font-size:14.5px; max-width:32ch; }
+  .footer-links{ display:flex; flex-wrap:wrap; gap:1.25rem 1.75rem; }
+  .footer-links a{ text-decoration:none; color:var(--dusk-ink); font-size:15px; font-weight:600; white-space:nowrap; }
+  .footer-links a:hover{ color:var(--accent); }
+  .footer-bottom{ display:flex; flex-wrap:wrap; justify-content:space-between; gap:.75rem; color:var(--dusk-stone); font-size:13px; }
+
+  section{ scroll-margin-top:1rem; }
+</style>
+</head>
+<body>
+<a class="skip-link" href="#main">Hoppa till innehållet</a>
+
+<!-- HERO: 50/50 split fönsterbild, delaren är navet, ingen fast navbalk — grammatikens "no bar" -->
+<header class="hero" id="top">
+  <div class="hero-half" id="hero-left">
+    <!-- Foto bedömt under sin scrim: calyx.html photo-1574684891174 (varmt fönsterljus över en
+         nybunden bukett). Under den mörka botten-gradienten här håller ljusa dusk-ink-etiketter
+         fullt kontrastvärde — bilden är redan mörkast i nederkanten där texten sitter. -->
+    <img src="https://images.unsplash.com/photo-1574684891174-df6b02ab38d7?auto=format&fit=crop&w=1600&q=80" alt="Nybunden bukett i varmt eftermiddagsljus, på ett arbetsbord i ateljén">
+    <span class="hero-label">Engångsbuketten</span>
+  </div>
+  <div class="hero-half" id="hero-right">
+    <!-- Foto bedömt under sin scrim: calyx.html photo-1487530811176 (bredare botanisk bild,
+         ljusare mittparti). Samma botten-gradient som vänster halva håller etiketten läsbar. -->
+    <img src="https://images.unsplash.com/photo-1487530811176-3780de880c2d?auto=format&fit=crop&w=1600&q=80" alt="Blomsterbord fullt av säsongens snitt i naturligt ljus">
+    <span class="hero-label">Veckans Blomma</span>
+  </div>
+
+  <div class="split-spine" aria-hidden="true"></div>
+  <nav class="split-nav" aria-label="Hoppa till sektion">
+    <a href="#buketter"><span>Säsongens buketter</span></a>
+    <a href="#brollop"><span>Bröllop</span></a>
+    <a href="#prenumeration"><span>Veckans Blomma</span></a>
+    <a href="#ateljekvallar"><span>Ateljékvällar</span></a>
+    <a href="#om"><span>Om ateljén</span></a>
+  </nav>
+
+  <div class="hero-plate">
+    <h1>Skuret i morse, vid vattnet i Majorna</h1>
+    <p class="measure" style="margin-left:auto;margin-right:auto;">Välj en engångsbukett för ett särskilt tillfälle, eller följ säsongen varje vecka. Båda börjar vid samma bänk på Mariaplan.</p>
+    <div class="hero-cta-row">
+      <a class="btn" href="#buketter">Beställ en bukett</a>
+      <a class="btn" href="#prenumeration">Bli prenumerant</a>
+    </div>
+  </div>
+</header>
+
+<main id="main">
+
+<!-- BUKETTER: bildramar med luft och en reell räknare (01/04), INTE en hairline-liggare med kursiv prissiffra -->
+<section class="thread on-warm" id="buketter">
+  <div class="thread-inner">
+    <div class="thread-head">
+      <h2>Säsongens buketter</h2>
+      <p class="measure">Fyra snitt från den här veckans leverans. Vad som är kvar när blombilen kommer beror på vädret i Bohuslän, inte på oss.</p>
+    </div>
+    <p class="bukett-index reveal" data-bukett-index aria-live="polite">01 / 04</p>
+    <div class="bukett-grid">
+
+      <article class="bukett-kort reveal" data-bukett>
+        <div class="bukett-frame">
+          <!-- Foto bedömt under sin scrim: calyx.html photo-1561181286 (nära hantverksbild av
+               en arrangering, varm ton). Ingen text ligger direkt över bilden här — den bär
+               kortet ensam, ramad med luft, så ingen kontrastfråga uppstår. -->
+          <img src="https://images.unsplash.com/photo-1561181286-d3fee7d55364?auto=format&fit=crop&w=900&q=80" alt="Dahlior och rönnbär bundna i handen, nära på arbetsbänken">
+        </div>
+        <h3 class="bukett-name">Rostbrun dahlia</h3>
+        <p class="bukett-desc">Dahlior, rönnbär och sengröna blad. Håller sig som bäst inomhus, borta från direkt sol.</p>
+        <p class="bukett-price">425 kr</p>
+      </article>
+
+      <article class="bukett-kort reveal" data-bukett>
+        <div class="bukett-frame">
+          <!-- Foto bedömt under sin scrim: calyx.html photo-1469371670807 (odlarfält, ljust
+               och luftigt). Fungerar utan text över, samma resonemang som ovan. -->
+          <img src="https://images.unsplash.com/photo-1469371670807-013ccf25f16a?auto=format&fit=crop&w=900&q=80" alt="Öppet blomsterfält hos en av våra odlarpartners utanför Göteborg">
+        </div>
+        <h3 class="bukett-name">Sen sommaräng</h3>
+        <p class="bukett-desc">Aster, praktspirea och vildhavre, klippt löst som om ängen fick bestämma.</p>
+        <p class="bukett-price">375 kr</p>
+      </article>
+
+      <article class="bukett-kort reveal" data-bukett>
+        <div class="bukett-frame placeholder" role="img" aria-label="Ärlig platshållare: kommande bukett med rosor, malört och salvia. Foto tas när säsongen är här">
+          <svg viewBox="0 0 64 64" fill="none" stroke="var(--stone)" stroke-width="1.4" aria-hidden="true">
+            <circle cx="32" cy="24" r="9"/><path d="M32 33v22M22 44l10-6 10 6"/>
+          </svg>
+        </div>
+        <h3 class="bukett-name">Salta rosor</h3>
+        <p class="bukett-desc">Rosor, malört och salvia från ateljéns egen fönsterlåda. Bild tas när knopparna slår ut.</p>
+        <p class="bukett-price">460 kr</p>
+      </article>
+
+      <article class="bukett-kort reveal" data-bukett>
+        <div class="bukett-frame placeholder" role="img" aria-label="Ärlig platshållare: enkel gren, körsbärsblom eller häggmispel beroende på säsong. Foto tas när grenen finns">
+          <svg viewBox="0 0 64 64" fill="none" stroke="var(--stone)" stroke-width="1.4" aria-hidden="true">
+            <path d="M32 8v40M32 20l-10 8M32 28l10 6M32 38l-8 6"/>
+          </svg>
+        </div>
+        <h3 class="bukett-name">Enkel gren</h3>
+        <p class="bukett-desc">En enda gren, körsbärsblom eller häggmispel beroende på vad som blommar just nu.</p>
+        <p class="bukett-price">195 kr</p>
+      </article>
+
+    </div>
+  </div>
+</section>
+
+<!-- BRÖLLOP: fullbleed-foto med typ över, engångs-trådens tyngsta stopp -->
+<section class="brollop" id="brollop">
+  <!-- Foto bedömt under sin scrim: tidvatten.html photo-1518837695005 (hav och klippa,
+       västkustljus). Mörk skymningsgradient läggs undertill från ~55% ner — provat mot
+       ljus dusk-ink-text som redan används i footern, håller gott kontrastvärde där
+       rubrik och pris faktiskt sitter. -->
+  <img src="https://images.unsplash.com/photo-1518837695005-2083093ee35b?auto=format&fit=crop&w=2200&q=82" alt="Klippor och hav i kvällsljus på västkusten, plats för en utomhusvigsel">
+  <div class="brollop-inner">
+    <h2>Bröllop vid havet</h2>
+    <p>Vi binder till borden, kransarna och bruden, och kommer ut till Fiskebäck, Långedrag eller var på västkusten ni gifter er. Boka minst åtta veckor innan, tidigare om det blir i juni.</p>
+    <p class="brollop-price">Från 3 800 kr, beroende på gästantal och plats.</p>
+    <a class="btn btn-ghost" href="mailto:hej@florhusetmajorna.se?subject=Brollop">Fråga om ert datum</a>
+  </div>
+</section>
+
+<!-- VECKANS BLOMMA: centrerad enkolumn, prenumerations-tråden på kallt papper — INTE en ledger av villkor -->
+<section class="thread on-cool prenumeration" id="prenumeration">
+  <div class="thread-inner">
+    <div class="thread-head">
+      <h2>Veckans Blomma</h2>
+      <p class="measure">En bukett varje vecka eller varannan, hämtas i ateljén på Mariaplan varje fredag mellan tio och två. Ingen bindningstid, säg upp med ett sms.</p>
+    </div>
+    <div class="pren-terms">
+      <div class="pren-term reveal">
+        <span class="amt">245 kr</span>
+        <span class="cadence">varje vecka</span>
+      </div>
+      <div class="pren-term reveal">
+        <span class="amt">195 kr</span>
+        <span class="cadence">varannan vecka</span>
+      </div>
+    </div>
+    <a class="btn" href="mailto:hej@florhusetmajorna.se?subject=Veckans%20Blomma">Bli prenumerant</a>
+  </div>
+</section>
+
+<!-- ATELJÉKVÄLLAR: bildram + text i diptyk, INTE en tredje upprepning av bukett-rutnätet -->
+<section class="thread on-cool" id="ateljekvallar">
+  <div class="thread-inner">
+    <div class="ateljekvall-grid">
+      <div>
+        <h2 class="reveal" style="font-size:clamp(1.9rem,4.4vw,2.9rem); margin-bottom:1.25rem;">Ateljékvällar</h2>
+        <p class="measure reveal" style="color:var(--stone-cool); margin-bottom:1.1rem;">Sista onsdagen i månaden öppnar vi bänken för binderi. Vi visar knutar och proportioner, ni binder er egen bukett och tar den med hem.</p>
+        <p class="measure reveal" style="color:var(--stone-cool); margin-bottom:1.75rem;">Åtta platser, eget material ingår. 395 kr per kväll.</p>
+        <a class="btn reveal" href="mailto:hej@florhusetmajorna.se?subject=Ateljekvall">Se nästa datum</a>
+      </div>
+      <div class="ateljekvall-frame reveal">
+        <!-- Foto bedömt under sin scrim: horai.html photo-1517248135467 (varmt, mörkt möblerat
+             rum). Här ligger ingen text över bilden — den ramas in separat i diptyken, så
+             rummets naturliga skugga stör inte något ovanpåliggande. -->
+        <img src="https://images.unsplash.com/photo-1517248135467-4c7edcad34c4?auto=format&fit=crop&w=1200&q=80" alt="Varmt upplyst rum med långbord, platsen för ateljéns binderikvällar">
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- RESOLVE: "Två vägar, samma dörr" — grammatikens envikning, delarens spinne tonar bort här -->
+<section class="resolve reveal" id="resolve" data-resolve>
+  <div class="resolve-inner">
+    <h2>Två vägar, samma dörr</h2>
+    <p>Beställer du en gång eller varje vecka, snittet är detsamma: plockat samma morgon, bundet för hand på Mariaplan.</p>
+    <div class="collapse-bar" aria-hidden="true"></div>
+  </div>
+</section>
+
+<!-- OM ATELJÉN: enkolumn med adress och öppettider, INTE en tvåkolumns kontaktkarta -->
+<section class="om" id="om">
+  <div class="om-inner">
+    <h2>Om ateljén</h2>
+    <p class="measure-wide" style="margin-left:auto;margin-right:auto;">Florhuset Majorna ligger en kvart från Änggårdsbergen och fem minuter från Klippans brygga, i en lokal som en gång var ett garveri. Blommorna kommer från odlare i Bohuslän när säsongen tillåter, annars från Blomsterlandets grossist i Gårda.</p>
+    <dl class="om-facts">
+      <div>
+        <dt>Adress</dt>
+        <dd>Mariaplan 4<br>414 70 Göteborg</dd>
+      </div>
+      <div>
+        <dt>Öppettider</dt>
+        <dd>Tis–fre 10–18<br>Lör 10–15<br>Sön–mån stängt</dd>
+      </div>
+    </dl>
+  </div>
+</section>
+
+</main>
+
+<!-- FOOTER: skymning som tonal inversion, den strukturella invarianten varje register behåller -->
+<footer>
+  <div class="footer-inner">
+    <div class="footer-top">
+      <div>
+        <h3>Florhuset Majorna</h3>
+        <p class="tag">Handbundet på Mariaplan. Engångsbuketten eller veckans, samma bänk.</p>
+      </div>
+      <nav class="footer-links" aria-label="Sidlänkar">
+        <a href="#buketter">Buketter</a>
+        <a href="#brollop">Bröllop</a>
+        <a href="#prenumeration">Veckans Blomma</a>
+        <a href="#ateljekvallar">Ateljékvällar</a>
+        <a href="#om">Om ateljén</a>
+      </nav>
+    </div>
+    <div class="footer-bottom">
+      <span>Mariaplan 4, 414 70 Göteborg</span>
+      <span>hej@florhusetmajorna.se</span>
+    </div>
+  </div>
+</footer>
+
+<script>
+(function(){
+  "use strict";
+  document.documentElement.classList.add('js');
+
+  var reduced = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+
+  /* ── Reveal system: fails toward visible ──
+     threshold 0, mount-time check for already-visible elements, timed
+     failsafe, and everything is visible by default without this script. */
+  var revealEls = Array.prototype.slice.call(document.querySelectorAll('.reveal'));
+  if ('IntersectionObserver' in window && !reduced){
+    var io = new IntersectionObserver(function(entries){
+      entries.forEach(function(e){ if (e.isIntersecting) e.target.classList.add('in'); });
+    }, { threshold: 0, rootMargin: '0px 0px -6% 0px' });
+    revealEls.forEach(function(el){
+      var r = el.getBoundingClientRect();
+      if (r.top < window.innerHeight && r.bottom > 0) { el.classList.add('in'); }
+      else { io.observe(el); }
+    });
+    setTimeout(function(){ revealEls.forEach(function(el){ el.classList.add('in'); }); }, 2600);
+  } else {
+    revealEls.forEach(function(el){ el.classList.add('in'); });
+  }
+
+  /* ── Real count: bouquet index counts the actual cards on screen, 01 / 04 ── */
+  var bukettEls = Array.prototype.slice.call(document.querySelectorAll('[data-bukett]'));
+  var indexEl = document.querySelector('[data-bukett-index]');
+  if (indexEl && bukettEls.length){
+    var total = bukettEls.length;
+    var pad = function(n){ return n < 10 ? '0' + n : '' + n; };
+    indexEl.textContent = pad(1) + ' / ' + pad(total);
+    if ('IntersectionObserver' in window){
+      var seen = new Set();
+      var bio = new IntersectionObserver(function(entries){
+        entries.forEach(function(e){ if (e.isIntersecting) seen.add(e.target); });
+        var count = Math.max(1, seen.size);
+        indexEl.textContent = pad(count) + ' / ' + pad(total);
+      }, { threshold: 0.4 });
+      bukettEls.forEach(function(el){ bio.observe(el); });
+    }
+  }
+
+  /* ── Signature move: "vågskålstippning" ──
+     A scroll-scrubbed spine (the divider) tracked from hero through the
+     resolve section, plus a coordinated second layer — the resolve
+     heading's blur + letter-spacing — both eased with lerp/smoothstep,
+     both directions, and a ?preview=resolve hook to force the formed
+     state for screenshot verification. */
+  var resolveSection = document.querySelector('[data-resolve]');
+  if (resolveSection) resolveSection.classList.add('armed');
+
+  if (!reduced && resolveSection){
+    var spine = document.querySelector('.split-spine');
+    var current = 1, target = 1;
+    function smoothstep(t){ t = Math.max(0, Math.min(1, t)); return t * t * (3 - 2 * t); }
+    function frame(){
+      var heroBottom = document.getElementById('top').getBoundingClientRect().bottom + window.scrollY;
+      var resolveTop = resolveSection.getBoundingClientRect().top + window.scrollY;
+      var span = Math.max(1, resolveTop - heroBottom);
+      var p = (window.scrollY + window.innerHeight * 0.5 - heroBottom) / span;
+      target = 1 - smoothstep(p); /* 1 at hero, 0 approaching resolve, both directions */
+      current += (target - current) * 0.12;
+      if (spine) spine.style.setProperty('--spine-o', Math.max(0.08, current));
+      var rr = resolveSection.getBoundingClientRect();
+      if (rr.top < window.innerHeight * 0.7 && rr.bottom > 0){
+        resolveSection.classList.add('in');
+      }
+      requestAnimationFrame(frame);
+    }
+    requestAnimationFrame(frame);
+  } else if (resolveSection){
+    resolveSection.classList.add('in');
+  }
+
+  /* ?preview=resolve forces the formed end-state for screenshot verification */
+  try {
+    var params = new URLSearchParams(window.location.search);
+    if (params.get('preview') === 'resolve' && resolveSection){
+      resolveSection.classList.add('in');
+      var sp = document.querySelector('.split-spine');
+      if (sp) sp.style.setProperty('--spine-o', 0.08);
+    }
+  } catch(e) {}
+})();
+</script>
+</body>
+</html>

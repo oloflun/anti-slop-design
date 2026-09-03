@@ -78,3 +78,11 @@ status_updated: true
 goals_updated: yes
 next_session_focus: "Pusha super-intelligence och uppdatera plugin-cachen så hook v3 kör; kör en skarp designsession med bake-off och Step 5-looparna"
 session-state -->
+
+## Runda 2 (samma dag, efter "underwhelming" och "för snarlika")
+
+- **Inventering:** oanvända uppströms: impeccables dialar (bolder/delight/overdrive/typeset/colorize), scroll-crafts worlds.md, designpowers design-taste/inspiration-scouting/ui-composition/motion-choreography (+11 skills vendorade), designer-skills kompositionslagar (+26 vendorade), gpt-taste, imagegen. Sju spakar A/B-testade mot K1 + ett breddtest med fyra byggen under diversity contract; copy-jämförelsen renderad som sidor och fulltexter i loggboken.
+- **Resultat:** fem av sju spakar (amplify, imagery pipeline, taste, gpt-taste, laws) ändrade inte banan: samma Unsplash-bukett, samma serif-över-foto. Rotorsak: fotopool på 19 bilder, registerdefault, house-physics-belöning för foto med typ över. Worlds-förordet in (med scrim-regel). Loopen (T17) rättar fel men lyfter inte intrycket. **Breddkontraktet gav fyra olika studior ur samma brief** (B2 och B4 rena; B1 ambitiös med tom remsa; B3 defaultnära) — in som default i Step 2b.
+- **Kedjan ändrad:** kategoridefault sist på Tier 3; bake-off tilldelar tre register × tre grammatiker × tre världar med förbjudna syskondrag; fingerprint mot sessionens syskon; plansch/scrim-krav för typ över foto; `blankBands` i scroll_verify.py; shotgun.md fick "Diversity contract". Bevis: `tests/ab/compare-round2/`, `tests/ab/19-breadth/verdict.md`, `tests/ab/17-loop/verdict.md`.
+- **Handpåläggning:** Unsplash API-nyckel (gratis) för riktig fotosökning; utan den konvergerar fotobyggen.
+- **Avbrott:** sessionskvoten slog i mitt i runda 2 (nio agenter dog på 429); alla återupptogs efter reset utan förlorat arbete.

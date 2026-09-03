@@ -1,0 +1,774 @@
+<!doctype html>
+<html lang="sv">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Florhuset Majorna · buketter, bröllop och veckans blomma</title>
+<meta name="description" content="Florist och ateljé på Mariaplan i Majorna, Göteborg. Handbundna säsongsbuketter, bröllopsblommor, veckans blomma-prenumeration och ateljékvällar i binderi.">
+
+<!--
+  design · AB14 imagery pipeline · Florhuset Majorna
+
+  LANE: "greenhouse-glass botanical warmth" — plaster and clay-pot neutrals,
+  one poppy-terracotta accent lifted straight from the bouquet photography,
+  a soft-wonk serif (Fraunces) instead of an editorial or script face, deep
+  botanical green-black for the one tonal inversion instead of navy.
+
+  REGISTER: warm photographic (klova/ is the worked example) — chosen because
+  the business is hospitality-shaped florist work, not archive or catalogue:
+  people want to press a button and walk in, not read a colophon. Rounded
+  corners and generous air on every image except the hero; a real outlined
+  button; no grain, no kicker apparatus, no ledger indices. The one deliberate
+  ledger (prenumeration) is a genuine price list, not editorial dressing.
+
+  GRAMMAR: sequential single-column storefront — hero, then one act per
+  offering in reading order, no scroll-scrubbed set piece. A shared reveal
+  only. The imagery supplies the pacing this brief needs, not scroll
+  mechanics; Step 2b's scrub apparatus was judged out of scope for a single
+  photographic storefront page.
+
+  GENERIC-DEFAULT SELF-TEST: a competent default returns a soft pastel-pink
+  or sage palette, a script/elegant-serif headline, a drop-shadow card grid,
+  and a rounded gradient "Beställ nu" pill. Departures taken: palette pulled
+  from the actual photographs (clay terracotta, deep green-black) instead of
+  a stock florist pink/sage; Fraunces instead of a script face; flat
+  hairline-bordered image frames instead of shadowed cards; a plain outlined
+  rectangle button, never a pill.
+
+  IMAGERY COVERAGE (verified against contact-sheet.html, see picks.md):
+  - Hero:              photo-1487530811176 (jewel-tone bouquet), wide crop
+  - Bouquet: vår        photo-1561181286 (tulips)
+  - Bouquet: sommar     photo-1574684891174 (prästkragor)
+  - Bouquet: höst       photo-1487530811176, 2nd crop (dahlia/bär detail)
+  - Bouquet: vinter     photo-1469371670807, 2nd crop (uppsats i vitt/creme)
+  - Bröllop:            photo-1469371670807 (bröllopsgång, uppsatser)
+  - Ateljékvällar:      photo-1487530811176, 3rd crop (vitt/lila detalj)
+  - Om ateljén:         photo-1518837695005 (kvällshav)
+  Five source photographs, all verified loading in contact-sheet.html; the
+  hero bouquet supplies two further detail crops and the wedding photo
+  supplies one, disclosed rather than hidden. picks.md § "What changed
+  after the render" records a sixth candidate — a hands-holding-a-bouquet
+  stock photo, photo-1526047932273 — that was pulled from both the
+  vinter-bouquet and ateljékvällar slots after the full-resolution render
+  showed floating glitter charms and salon-glossed nails: a staged product
+  shot, not documentary floristry, and dishonest in a craft section. Full
+  reasoning: picks.md.
+
+  PRE-EMIT CRITIQUE: P4 H4 E4 S4 R4 V4
+-->
+
+<style>
+  /* ---------------------------------------------------------------------
+     TOKENS — locked. Every colour and font-family in this file refers
+     back to one of these; no inline hex/oklch/font-family past this block.
+  --------------------------------------------------------------------- */
+  :root {
+    --font-display: "Fraunces", ui-serif, Georgia, "Times New Roman", serif;
+    --font-body: "Work Sans", ui-sans-serif, system-ui, -apple-system, "Segoe UI", sans-serif;
+
+    --plaster:      oklch(0.965 0.014 70);
+    --plaster-deep: oklch(0.930 0.020 65);
+    --ink:          oklch(0.220 0.020 50);
+    --ink-soft:     oklch(0.460 0.025 50);
+    --terracotta:   oklch(0.560 0.160 38);
+    --sage:         oklch(0.520 0.045 155);
+    --stone:        oklch(0.800 0.015 60);
+
+    --botanical:      oklch(0.180 0.030 155);
+    --botanical-ink:  oklch(0.930 0.020 90);
+    --botanical-soft: oklch(0.720 0.030 130);
+    --botanical-line: oklch(0.340 0.020 150);
+  }
+
+  * { box-sizing: border-box; }
+  html, body { overflow-x: clip; }
+  html { scroll-behavior: smooth; }
+  @media (prefers-reduced-motion: reduce) { html { scroll-behavior: auto; } }
+
+  body {
+    margin: 0;
+    background: var(--plaster);
+    color: var(--ink);
+    font-family: var(--font-body);
+    font-size: 17px;
+    line-height: 1.6;
+    -webkit-font-smoothing: antialiased;
+  }
+
+  img { max-width: 100%; display: block; }
+
+  h1, h2, h3 {
+    font-family: var(--font-display);
+    line-height: 0.98;
+    margin: 0;
+    font-weight: 500;
+    overflow-wrap: anywhere;
+    min-width: 0;
+  }
+
+  a { color: inherit; }
+
+  :focus-visible {
+    outline: 2.5px solid var(--terracotta);
+    outline-offset: 3px;
+    border-radius: 2px;
+  }
+
+  .wrap { max-width: 1180px; margin: 0 auto; padding-inline: 24px; }
+  @media (min-width: 768px) { .wrap { padding-inline: 40px; } }
+
+  .eyebrow {
+    font-family: var(--font-body);
+    font-size: 12.5px;
+    font-weight: 600;
+    letter-spacing: 0.16em;
+    text-transform: uppercase;
+    color: var(--terracotta);
+    display: block;
+    margin-bottom: 14px;
+  }
+  .eyebrow.on-dark { color: var(--botanical-soft); }
+
+  /* Buttons — plain outlined rectangle, never a pill, per the register. */
+  .btn {
+    display: inline-block;
+    padding: 15px 30px;
+    font-family: var(--font-body);
+    font-size: 14.5px;
+    font-weight: 600;
+    letter-spacing: 0.04em;
+    text-decoration: none;
+    border: 1.5px solid currentColor;
+    white-space: nowrap;
+    transition: background-color .25s ease, color .25s ease, border-color .25s ease;
+  }
+  @media (prefers-reduced-motion: reduce) { .btn { transition: none; } }
+  .btn-light {
+    color: var(--plaster);
+    border-color: var(--plaster);
+  }
+  .btn-light:hover, .btn-light:focus-visible { background: var(--plaster); color: var(--ink); }
+  .btn-ink {
+    color: var(--ink);
+    border-color: var(--ink);
+  }
+  .btn-ink:hover, .btn-ink:focus-visible { background: var(--ink); color: var(--plaster); }
+
+  /* Shared reveal — fails toward visible. Default state is fully visible;
+     JS only ever adds a temporary "waiting" state, and only when it can
+     also guarantee a way out. See the script block for the mount check,
+     the observer, and the failsafe timer. */
+  .reveal { opacity: 1; transform: none; }
+  .reveal.waiting { opacity: 0; transform: translateY(28px); }
+  .reveal.in { opacity: 1; transform: none; transition: opacity 1.3s cubic-bezier(.16,1,.3,1), transform 1.3s cubic-bezier(.16,1,.3,1); }
+  @media (prefers-reduced-motion: reduce) {
+    .reveal.waiting { opacity: 1; transform: none; }
+  }
+
+  /* ---------------------------------------------------------------------
+     HEADER
+  --------------------------------------------------------------------- */
+  header {
+    position: fixed;
+    inset: 0 0 auto 0;
+    z-index: 50;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 18px 24px;
+    color: var(--plaster);
+    transition: background-color .35s ease, color .35s ease;
+  }
+  @media (prefers-reduced-motion: reduce) { header { transition: none; } }
+  @media (min-width: 768px) { header { padding: 22px 40px; } }
+  header.scrolled {
+    background: var(--plaster);
+    color: var(--ink);
+    box-shadow: 0 1px 0 var(--stone);
+  }
+  .wordmark {
+    font-family: var(--font-display);
+    font-size: 20px;
+    letter-spacing: 0.01em;
+    text-decoration: none;
+    white-space: nowrap;
+  }
+  nav.primary { display: none; gap: 30px; font-size: 15px; }
+  @media (min-width: 860px) { nav.primary { display: flex; } }
+  nav.primary a { text-decoration: none; white-space: nowrap; padding: 4px 2px; border-bottom: 1px solid transparent; }
+  nav.primary a:hover { border-color: currentColor; }
+
+  .menu-btn {
+    background: none;
+    border: none;
+    color: inherit;
+    padding: 8px;
+    cursor: pointer;
+  }
+  @media (min-width: 860px) { .menu-btn { display: none; } }
+  .menu-btn svg { width: 26px; height: 26px; display: block; }
+
+  #drawer {
+    position: fixed;
+    inset: 0;
+    z-index: 60;
+    background: var(--botanical);
+    color: var(--botanical-ink);
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    gap: 26px;
+    font-family: var(--font-display);
+    font-size: clamp(26px, 8vw, 34px);
+  }
+  #drawer[hidden] { display: none; }
+  #drawer a { text-decoration: none; white-space: nowrap; }
+  #drawer .close-btn {
+    position: absolute;
+    top: 18px;
+    right: 20px;
+    background: none;
+    border: none;
+    color: inherit;
+    padding: 10px;
+    cursor: pointer;
+  }
+  #drawer .close-btn svg { width: 26px; height: 26px; }
+
+  /* ---------------------------------------------------------------------
+     HERO — full-bleed, type over. Plate on the dark passages only.
+  --------------------------------------------------------------------- */
+  .hero {
+    position: relative;
+    min-height: 100svh;
+    display: flex;
+    align-items: flex-end;
+    overflow: hidden;
+    background: var(--botanical);
+  }
+  .hero img {
+    position: absolute;
+    inset: 0;
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    object-position: 22% 38%;
+  }
+  .hero::after {
+    /* Measured scrim, not a page-wide dim: strongest low and left, where
+       the source photograph is genuinely darkest (deep green ground and
+       shadow between the blooms), fading out toward the flower-lit right
+       two-thirds so the bouquet itself stays uncovered. */
+    content: "";
+    position: absolute;
+    inset: 0;
+    background: linear-gradient(105deg, rgba(10,14,10,.72) 0%, rgba(10,14,10,.42) 34%, rgba(10,14,10,0) 62%),
+                linear-gradient(0deg, rgba(8,10,8,.62) 0%, rgba(8,10,8,0) 46%);
+  }
+  .hero-content {
+    position: relative;
+    z-index: 2;
+    color: var(--plaster);
+    padding: 32px 24px 56px;
+    max-width: 640px;
+  }
+  @media (min-width: 768px) { .hero-content { padding: 32px 40px 88px; } }
+  .hero-content h1 {
+    font-size: clamp(2.5rem, 8vw, 4.6rem);
+    letter-spacing: -0.01em;
+  }
+  .hero-content .accent-word { color: var(--terracotta); }
+  .hero-content p {
+    font-size: 17px;
+    max-width: 42ch;
+    margin: 20px 0 30px;
+    color: var(--plaster);
+    opacity: .92;
+  }
+
+  /* ---------------------------------------------------------------------
+     VALUES STRIP — the one moment that is not information.
+  --------------------------------------------------------------------- */
+  .values {
+    padding: 76px 24px;
+    text-align: center;
+  }
+  @media (min-width: 768px) { .values { padding: 100px 40px; } }
+  .values p {
+    font-family: var(--font-display);
+    font-size: clamp(1.5rem, 4.4vw, 2.5rem);
+    line-height: 1.18;
+    max-width: 22ch;
+    margin: 0 auto;
+    color: var(--ink);
+  }
+  .values p em { font-style: italic; color: var(--sage); }
+
+  /* ---------------------------------------------------------------------
+     SECTION SHELL
+  --------------------------------------------------------------------- */
+  section.block { padding: 20px 24px 84px; }
+  @media (min-width: 768px) { section.block { padding: 20px 40px 108px; } }
+  section.block.on-plaster-deep { background: var(--plaster-deep); padding-top: 84px; }
+  @media (min-width: 768px) { section.block.on-plaster-deep { padding-top: 108px; } }
+
+  .section-head { max-width: 62ch; margin-bottom: 44px; }
+  .section-head h2 { font-size: clamp(2rem, 5.4vw, 3.1rem); }
+  .section-head .lede { margin-top: 16px; font-size: 16.5px; color: var(--ink-soft); max-width: 48ch; }
+
+  /* ---------------------------------------------------------------------
+     BOUQUET GRID — framed with air, never full-bleed.
+  --------------------------------------------------------------------- */
+  .bouquet-grid {
+    display: grid;
+    grid-template-columns: minmax(0, 1fr);
+    gap: 34px;
+  }
+  @media (min-width: 620px) { .bouquet-grid { grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 40px 32px; } }
+  @media (min-width: 1040px) { .bouquet-grid { grid-template-columns: repeat(4, minmax(0, 1fr)); } }
+
+  .bouquet-card figure {
+    margin: 0 0 18px;
+    border: 1px solid var(--stone);
+    border-radius: 6px;
+    overflow: hidden;
+    aspect-ratio: 4 / 5;
+  }
+  .bouquet-card:nth-child(2n) figure { margin-top: 30px; }
+  @media (max-width: 619px) { .bouquet-card:nth-child(2n) figure { margin-top: 0; } }
+  .bouquet-card img { width: 100%; height: 100%; object-fit: cover; }
+  .bouquet-card .season { font-size: 11.5px; letter-spacing: 0.14em; text-transform: uppercase; color: var(--sage); font-weight: 600; }
+  .bouquet-card h3 { font-size: 1.3rem; margin-top: 6px; }
+  .bouquet-card p { font-size: 14.5px; color: var(--ink-soft); margin: 8px 0 0; }
+  .bouquet-card .price { font-family: var(--font-display); font-size: 1.4rem; color: var(--terracotta); margin-top: 10px; display: block; }
+
+  /* ---------------------------------------------------------------------
+     SPLIT DIPTYCH — bröllop and ateljékvällar. Staggered, never top-aligned.
+  --------------------------------------------------------------------- */
+  .diptych {
+    display: grid;
+    grid-template-columns: minmax(0, 1fr);
+    gap: 32px;
+    align-items: start;
+  }
+  @media (min-width: 860px) { .diptych { grid-template-columns: minmax(0, 1.05fr) minmax(0, 0.95fr); gap: 60px; } }
+  .diptych figure { margin: 0; border-radius: 8px; overflow: hidden; border: 1px solid var(--stone); aspect-ratio: 4 / 5; }
+  .diptych.reverse { direction: rtl; }
+  .diptych.reverse > * { direction: ltr; }
+  .diptych img { width: 100%; height: 100%; object-fit: cover; display: block; }
+  .diptych .copy { padding-top: 6px; }
+  @media (min-width: 860px) { .diptych .copy { padding-top: 54px; } }
+  @media (min-width: 860px) { .diptych.reverse .copy { padding-top: 0; } }
+  .diptych .copy h2 { font-size: clamp(2rem, 4.8vw, 2.9rem); margin-bottom: 18px; }
+  .diptych .copy p { font-size: 16.5px; color: var(--ink-soft); max-width: 46ch; margin: 0 0 16px; }
+  .diptych .copy .meta { font-size: 14.5px; color: var(--ink-soft); margin: 20px 0 26px; }
+  .diptych .copy .meta strong { color: var(--ink); font-weight: 600; }
+
+  /* ---------------------------------------------------------------------
+     LEDGER — prenumeration. Genuine list, hairline rows.
+  --------------------------------------------------------------------- */
+  .ledger { border-top: 1px solid var(--stone); max-width: 760px; }
+  .ledger-row {
+    display: grid;
+    grid-template-columns: minmax(0, 1fr) auto;
+    gap: 8px 20px;
+    align-items: baseline;
+    padding: 26px 0;
+    border-bottom: 1px solid var(--stone);
+  }
+  .ledger-row .name { font-family: var(--font-display); font-size: 1.3rem; }
+  .ledger-row .desc { grid-column: 1; font-size: 14.5px; color: var(--ink-soft); margin-top: 6px; max-width: 46ch; }
+  .ledger-row .price { font-family: var(--font-display); font-size: 1.7rem; color: var(--terracotta); text-align: right; white-space: nowrap; }
+  .ledger-row .unit { font-size: 12.5px; color: var(--ink-soft); display: block; text-align: right; }
+
+  /* ---------------------------------------------------------------------
+     OM ATELJÉN
+  --------------------------------------------------------------------- */
+  .about-wrap {
+    display: grid;
+    grid-template-columns: minmax(0, 1fr);
+    gap: 36px;
+  }
+  @media (min-width: 860px) { .about-wrap { grid-template-columns: minmax(0, 0.85fr) minmax(0, 1.15fr); gap: 50px; align-items: center; } }
+  .about-wrap figure { margin: 0; border-radius: 8px; overflow: hidden; border: 1px solid var(--stone); aspect-ratio: 5 / 4; }
+  @media (min-width: 860px) { .about-wrap figure { aspect-ratio: 3 / 4; } }
+  .about-wrap img { width: 100%; height: 100%; object-fit: cover; }
+  .about-wrap h2 { font-size: clamp(2rem, 4.8vw, 2.9rem); margin-bottom: 18px; }
+  .about-wrap p { font-size: 16.5px; color: var(--ink-soft); max-width: 50ch; margin: 0 0 16px; }
+  .hours-addr {
+    margin-top: 26px;
+    padding-top: 22px;
+    border-top: 1px solid var(--stone);
+    display: grid;
+    gap: 18px;
+  }
+  @media (min-width: 480px) { .hours-addr { grid-template-columns: minmax(0,1fr) minmax(0,1fr); } }
+  .hours-addr dt { font-size: 11.5px; letter-spacing: 0.12em; text-transform: uppercase; color: var(--sage); font-weight: 600; margin-bottom: 8px; }
+  .hours-addr dd { margin: 0; font-size: 15px; line-height: 1.55; }
+
+  /* ---------------------------------------------------------------------
+     FOOTER — tonal inversion.
+  --------------------------------------------------------------------- */
+  footer {
+    background: var(--botanical);
+    color: var(--botanical-ink);
+    padding: 76px 24px 32px;
+  }
+  @media (min-width: 768px) { footer { padding: 96px 40px 34px; } }
+  .footer-top { display: grid; gap: 40px; max-width: 1180px; margin: 0 auto; }
+  @media (min-width: 720px) { .footer-top { grid-template-columns: minmax(0,1.2fr) minmax(0,0.8fr) minmax(0,0.8fr); gap: 32px; } }
+  footer h2 { font-size: clamp(1.9rem, 4.4vw, 2.6rem); max-width: 14ch; }
+  footer .lede { margin-top: 14px; color: var(--botanical-soft); font-size: 15px; max-width: 34ch; }
+  footer h4 { font-family: var(--font-body); font-size: 12px; letter-spacing: 0.12em; text-transform: uppercase; color: var(--botanical-soft); margin: 0 0 14px; font-weight: 600; }
+  footer .col a, footer .col p { display: block; color: var(--botanical-ink); text-decoration: none; font-size: 15px; margin-bottom: 10px; line-height: 1.5; }
+  footer .col a:hover { color: var(--botanical-soft); }
+  .footer-bottom {
+    max-width: 1180px;
+    margin: 56px auto 0;
+    padding-top: 22px;
+    border-top: 1px solid var(--botanical-line);
+    display: flex;
+    flex-wrap: wrap;
+    gap: 10px 20px;
+    justify-content: space-between;
+    font-size: 13px;
+    color: var(--botanical-soft);
+  }
+</style>
+</head>
+<body>
+
+<!-- HEADER: real fixed nav with a legible hamburger drawer, not a decorative sticky bar -->
+<header id="site-header">
+  <a class="wordmark" href="#top">Florhuset Majorna</a>
+  <nav class="primary" aria-label="Huvudmeny">
+    <a href="#buketter">Buketter</a>
+    <a href="#brollop">Bröllop</a>
+    <a href="#prenumeration">Prenumeration</a>
+    <a href="#ateljekvallar">Ateljékvällar</a>
+    <a href="#om-ateljen">Om ateljén</a>
+  </nav>
+  <button class="menu-btn" id="open-drawer" aria-haspopup="true" aria-controls="drawer" aria-label="Öppna meny">
+    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" aria-hidden="true"><path d="M3 6h18M3 12h18M3 18h18"/></svg>
+  </button>
+</header>
+
+<div id="drawer" hidden>
+  <button class="close-btn" id="close-drawer" aria-label="Stäng meny">
+    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" aria-hidden="true"><path d="M6 6l12 12M18 6L6 18"/></svg>
+  </button>
+  <a href="#buketter">Buketter</a>
+  <a href="#brollop">Bröllop</a>
+  <a href="#prenumeration">Prenumeration</a>
+  <a href="#ateljekvallar">Ateljékvällar</a>
+  <a href="#om-ateljen">Om ateljén</a>
+</div>
+
+<main id="top">
+
+  <!-- HERO: NOT a centred stock-photo banner with a generic "Welcome to our
+       florist" line — a judged full-bleed photograph with the scrim built
+       to the photo's own dark passages, and one real button, not a link
+       styled to look important. -->
+  <section class="hero">
+    <img
+      src="https://images.unsplash.com/photo-1487530811176-3780de880c2d?auto=format&fit=crop&w=1800&q=75"
+      alt="Tätt bunden bukett i djupa toner: krämvita och gammalrosa rosor, en orange dahlia, vinbärsröda bär och eukalyptus mot ett mörkt grönt underlag."
+      fetchpriority="high"
+      loading="eager">
+    <div class="hero-content reveal">
+      <h1>Här binder vi det som <span class="accent-word">blommar</span> just nu</h1>
+      <p>En liten ateljé på Mariaplan i Majorna. Säsongens buketter, blommor till bröllop och en vas som fylls varje vecka, allt bundet för hand samma dag.</p>
+      <a class="btn btn-light" href="#buketter">Beställ en bukett</a>
+    </div>
+  </section>
+
+  <!-- VALUES STRIP: NOT a three-icon "Why choose us" row — one sentence,
+       set at display size, doing the values-statement job without a
+       borrowed line from any reference site. -->
+  <section class="values">
+    <p class="reveal">Inga standardbuketter i kyldisk. <em>Det som kom in med blombilen i morse är det vi har att bjuda på.</em></p>
+  </section>
+
+  <!-- SÄSONGENS BUKETTER: NOT a four-icon feature grid with drop shadows
+       and rounded-pill price tags — four framed, staggered photographs
+       with the price set in display type, the way a chalkboard would. -->
+  <section class="block" id="buketter">
+    <div class="wrap">
+      <div class="section-head reveal">
+        <span class="eyebrow">Säsongens buketter</span>
+        <h2>Fyra buketter, en åt gången</h2>
+        <p class="lede">Vi binder inte efter katalog. Det här är vad som är fint just nu, i de fyra säsongerna vi arbetar efter, men vad som faktiskt ligger på bänken kan variera med vad blomsterbilen haft med sig.</p>
+      </div>
+      <div class="bouquet-grid">
+        <article class="bouquet-card reveal">
+          <figure>
+            <img src="https://images.unsplash.com/photo-1561181286-d3fee7d55364?auto=format&fit=crop&w=900&q=75" loading="lazy"
+                 alt="Rosa tulpaner med gröna blad, löst bundna i en glasvas.">
+          </figure>
+          <span class="season">Vår</span>
+          <h3>Tulpantid</h3>
+          <p>Tulpaner och ranunkler, löst bundna med det första gröna.</p>
+          <span class="price">Från 245 kr</span>
+        </article>
+        <article class="bouquet-card reveal">
+          <figure>
+            <img src="https://images.unsplash.com/photo-1574684891174-df6b02ab38d7?auto=format&fit=crop&w=900&q=75" loading="lazy"
+                 alt="Vita prästkragor mot blå himmel.">
+          </figure>
+          <span class="season">Sommar</span>
+          <h3>Prästkragesommar</h3>
+          <p>Prästkragor och ängsblommor, bundna som du skulle plockat dem själv.</p>
+          <span class="price">Från 245 kr</span>
+        </article>
+        <article class="bouquet-card reveal">
+          <figure>
+            <img src="https://images.unsplash.com/photo-1487530811176-3780de880c2d?auto=format&fit=crop&w=900&q=75" loading="lazy"
+                 style="object-position: 78% 55%;"
+                 alt="Närbild på en mörk höstbukett: orange dahlia, vinbärsröda bär och eukalyptus.">
+          </figure>
+          <span class="season">Höst</span>
+          <h3>Höstens mörka</h3>
+          <p>Dahlior, bär och eukalyptus i djupa, nästan vinröda toner.</p>
+          <span class="price">Från 285 kr</span>
+        </article>
+        <article class="bouquet-card reveal">
+          <figure>
+            <img src="https://images.unsplash.com/photo-1469371670807-013ccf25f16a?auto=format&fit=crop&w=900&q=75" loading="lazy"
+                 style="object-position: 16% 26%;"
+                 alt="Kompakt rund bukett i vitt, creme och gammalrosa, tätt bunden.">
+          </figure>
+          <span class="season">Vinter</span>
+          <h3>Vinterns vita</h3>
+          <p>Vitt och creme, tätt format mot kylan, med bara en aning gammalrosa.</p>
+          <span class="price">Från 285 kr</span>
+        </article>
+      </div>
+    </div>
+  </section>
+
+  <!-- BRÖLLOP: NOT a "Get a quote" contact-form wedge — a split diptych
+       with the photograph doing the persuading and the copy stating what
+       actually happens at a consultation, staggered so the columns don't
+       top-align. -->
+  <section class="block on-plaster-deep" id="brollop">
+    <div class="wrap">
+      <div class="diptych">
+        <figure class="reveal">
+          <img src="https://images.unsplash.com/photo-1469371670807-013ccf25f16a?auto=format&fit=crop&w=1200&q=75"
+               style="object-position: 22% 42%;"
+               alt="Bröllopsgång utomhus med krämvita och rosa rosuppsatser på höga ställningar, guldfärgade stolar och en böjd valvport i fonden.">
+        </figure>
+        <div class="copy reveal">
+          <span class="eyebrow">Bröllop</span>
+          <h2>Blommor som håller hela dagen, inte bara fotot</h2>
+          <p>Vi börjar med ett möte i ateljén, inte över mejl. Du tar med bilder, en färgkänsla, kanske ett tyg. Vi föreslår vad som faktiskt finns att få tag på den helgen, sätter upp allt själva samma morgon och river ner det igen på kvällen.</p>
+          <p class="meta"><strong>Bokas:</strong> minst sex veckor i förväg. <strong>Möte:</strong> i ateljén på Mariaplan, cirka 45 minuter.</p>
+          <a class="btn btn-ink" href="#om-ateljen">Boka ett möte</a>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- PRENUMERATION: NOT a three-tier pricing-card comparison with a
+       "Most popular" ribbon — a genuine ledger, because a subscription
+       with two frequencies and one add-on is a list, not a decision matrix. -->
+  <section class="block" id="prenumeration">
+    <div class="wrap">
+      <div class="section-head reveal">
+        <span class="eyebrow">Prenumeration</span>
+        <h2>Veckans blomma</h2>
+        <p class="lede">En vas som aldrig står tom. Vi väljer vad som är fint den veckan, du hämtar i ateljén eller får det buret hem inom Majorna.</p>
+      </div>
+      <div class="ledger reveal">
+        <div class="ledger-row">
+          <div>
+            <div class="name">Varje vecka</div>
+            <div class="desc">Hämtas i ateljén tisdag till fredag, eller bärs hem inom Majorna mot en mindre avgift.</div>
+          </div>
+          <div>
+            <span class="price">195 kr</span>
+            <span class="unit">per gång</span>
+          </div>
+        </div>
+        <div class="ledger-row">
+          <div>
+            <div class="name">Varannan vecka</div>
+            <div class="desc">Samma sak, glesare takt. Bra att börja med om du vill prova.</div>
+          </div>
+          <div>
+            <span class="price">175 kr</span>
+            <span class="unit">per gång</span>
+          </div>
+        </div>
+        <div class="ledger-row">
+          <div>
+            <div class="name">Hembäring, Majorna</div>
+            <div class="desc">Läggs till valfri prenumeration. Torsdagar, en runda.</div>
+          </div>
+          <div>
+            <span class="price">+35 kr</span>
+            <span class="unit">per gång</span>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ATELJÉKVÄLLAR: NOT a "Book a class" event card with a countdown
+       timer — a reversed diptych so the page doesn't repeat the bröllop
+       anatomy, cropped tight on the one corner of the hero photograph
+       where a hand and a ring are actually visible holding the bound
+       stems, rather than a staged product shot of hands. -->
+  <section class="block on-plaster-deep" id="ateljekvallar">
+    <div class="wrap">
+      <div class="diptych reverse">
+        <figure class="reveal">
+          <img src="https://images.unsplash.com/photo-1487530811176-3780de880c2d?auto=format&fit=crop&w=1200&q=75"
+               style="object-position: 30% 78%;"
+               alt="Närbild på samma bukett som hero-bilden, med krämvita rosor och lila blomsterax mot mörkgrön botten.">
+        </figure>
+        <div class="copy reveal">
+          <span class="eyebrow">Ateljékvällar</span>
+          <h2>Lär dig binda din egen</h2>
+          <p>En kväll i månaden öppnar vi ateljén för binderi. Åtta platser, samma material vi själva jobbar med den säsongen, och du går hem med det du band. Ingen erfarenhet krävs, bara lite tålamod med tråd och trädgårdssax.</p>
+          <p class="meta"><strong>Nästa kväll:</strong> en torsdag i månaden, 18.00 till 20.30. <strong>Pris:</strong> 495 kr, material ingår.</p>
+          <a class="btn btn-ink" href="#om-ateljen">Se nästa datum</a>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- OM ATELJÉN: NOT a stock "our story" paragraph beside a logo — a
+       real address, real hours, and a photograph used honestly as coastal
+       atmosphere rather than a false claim about the shop's own window. -->
+  <section class="block" id="om-ateljen">
+    <div class="wrap">
+      <div class="about-wrap">
+        <figure class="reveal">
+          <img src="https://images.unsplash.com/photo-1518837695005-2083093ee35b?auto=format&fit=crop&w=1400&q=75"
+               alt="Mörkt turkost kvällshav med lätt krusning, utan synlig horisontlinje.">
+        </figure>
+        <div class="reveal">
+          <span class="eyebrow">Om ateljén</span>
+          <h2>Fem minuter från älven</h2>
+          <p>Majorna har alltid legat nära vattnet, och det märks på vad som säljer bra här: enkla, säsongsbundna buketter snarare än importerade rosor i cellofan. Vi köper mest av det vi säljer från odlare i Västsverige när säsongen tillåter, och fyller på med resten från Blomsterauktionen på morgonen.</p>
+          <dl class="hours-addr">
+            <div>
+              <dt>Adress</dt>
+              <dd>Mariaplan 4<br>414 70 Göteborg</dd>
+            </div>
+            <div>
+              <dt>Öppettider</dt>
+              <dd>Tisdag–fredag 10–18<br>Lördag 10–15<br>Söndag–måndag stängt</dd>
+            </div>
+          </dl>
+        </div>
+      </div>
+    </div>
+  </section>
+
+</main>
+
+<!-- FOOTER: the tonal inversion — dark botanical ground, the one structural
+     invariant every register in this system keeps. -->
+<footer>
+  <div class="footer-top">
+    <div>
+      <h2>Florhuset Majorna</h2>
+      <p class="lede">Buketter, bröllop och veckans blomma, bundna på Mariaplan sedan öppningen.</p>
+    </div>
+    <div class="col">
+      <h4>Besök</h4>
+      <p>Mariaplan 4<br>414 70 Göteborg</p>
+      <p>Tis–fre 10–18, lör 10–15</p>
+    </div>
+    <div class="col">
+      <h4>Kontakt</h4>
+      <a href="tel:+46317123456">031-712 34 56</a>
+      <a href="mailto:hej@florhusetmajorna.se">hej@florhusetmajorna.se</a>
+      <a href="https://instagram.com" rel="noopener">Instagram</a>
+    </div>
+  </div>
+  <div class="footer-bottom">
+    <span>© 2026 Florhuset Majorna</span>
+    <span>Foto: Unsplash, se picks.md för fotografer</span>
+  </div>
+</footer>
+
+<script>
+  (function () {
+    "use strict";
+
+    var header = document.getElementById('site-header');
+    var onScroll = function () {
+      header.classList.toggle('scrolled', window.scrollY > 40);
+    };
+    window.addEventListener('scroll', onScroll, { passive: true });
+    onScroll();
+
+    var drawer = document.getElementById('drawer');
+    var openBtn = document.getElementById('open-drawer');
+    var closeBtn = document.getElementById('close-drawer');
+    var openDrawer = function () {
+      drawer.hidden = false;
+      closeBtn.focus();
+      document.body.style.overflow = 'hidden';
+    };
+    var closeDrawer = function () {
+      drawer.hidden = true;
+      openBtn.focus();
+      document.body.style.overflow = '';
+    };
+    openBtn.addEventListener('click', openDrawer);
+    closeBtn.addEventListener('click', closeDrawer);
+    drawer.querySelectorAll('a').forEach(function (a) { a.addEventListener('click', closeDrawer); });
+    document.addEventListener('keydown', function (e) {
+      if (e.key === 'Escape' && !drawer.hidden) closeDrawer();
+    });
+
+    /* Reveal system — fails toward visible.
+       1. Elements start visible in CSS (.reveal { opacity:1 }).
+       2. Only if IntersectionObserver exists AND the user has not asked for
+          reduced motion do we opt an element into the "waiting" state, and
+          only for elements that are not already on screen at mount.
+       3. A failsafe timer reveals everything regardless, so a missed
+          observer callback can never leave content permanently hidden. */
+    var prefersReduced = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+    var revealEls = Array.prototype.slice.call(document.querySelectorAll('.reveal'));
+
+    if (!prefersReduced && 'IntersectionObserver' in window && revealEls.length) {
+      var vh = window.innerHeight || document.documentElement.clientHeight;
+      var toObserve = [];
+
+      revealEls.forEach(function (el) {
+        var r = el.getBoundingClientRect();
+        var alreadyVisible = r.top < vh * 1.05 && r.bottom > -100;
+        if (!alreadyVisible) {
+          el.classList.add('waiting');
+          toObserve.push(el);
+        }
+      });
+
+      var io = new IntersectionObserver(function (entries) {
+        entries.forEach(function (entry) {
+          if (entry.isIntersecting) {
+            entry.target.classList.remove('waiting');
+            entry.target.classList.add('in');
+            io.unobserve(entry.target);
+          }
+        });
+      }, { threshold: 0, rootMargin: '0px 0px -8% 0px' });
+
+      toObserve.forEach(function (el) { io.observe(el); });
+
+      window.setTimeout(function () {
+        toObserve.forEach(function (el) { el.classList.remove('waiting'); el.classList.add('in'); });
+      }, 2600);
+    }
+  })();
+</script>
+
+</body>
+</html>

@@ -18,11 +18,14 @@ Fullständig plan: `~/.claude/plans/uppgift-design-rework-v3-validated-hammock.m
 - [x] 10 frontend-design (ute som skill, två regler portade)
 - [x] K kumulativt test (kedjan intakt och bättre)
 - [x] 11 SlopMonster (hybrid)
+- [x] 12 runda 2: sju spakar testade (fem ute, worlds in, loop nödvändig men inte svaret)
+- [x] 13 breddkontrakt (fyra byggen, in som default i Step 2b)
 
 ## In Progress
 - [ ] Inget.
 
 ## Remaining
+- [ ] Unsplash API-nyckel (Antons handpåläggning) → photo-sources.md får riktig sökning; fotopoolen är 19 bilder i dag.
 - [ ] Pusha `super-intelligence` (gren design-system-v2) och uppdatera plugin-cachen — Antons go-ahead.
 - [ ] Merge/push `anti-slop-design` gren `design-rework-v3` — Antons beslut.
 - [ ] Logga v3-besluten i CARL DESIGN-domänen.

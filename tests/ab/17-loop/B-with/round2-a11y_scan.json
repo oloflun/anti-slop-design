@@ -1,0 +1,33 @@
+{
+  "url": "file:///C:/Users/Anton L/anti-slop-design/tests/ab/17-loop/B-with/index.html",
+  "violations": [
+    {
+      "id": "color-contrast",
+      "impact": "serious",
+      "wcag": [
+        "cat.color",
+        "wcag2aa",
+        "wcag143",
+        "TTv5",
+        "TT13.c",
+        "EN-301-549",
+        "EN-9.1.4.3",
+        "ACT",
+        "RGAAv4",
+        "RGAA-3.2.1"
+      ],
+      "help": "Elements must meet minimum color contrast ratio thresholds",
+      "nodes": [
+        {
+          "target": ".ledger__row:nth-child(5) > .ledger__body > .ledger__meta",
+          "html": "<p class=\"ledger__meta\">Tidig vår</p>"
+        }
+      ],
+      "viewports": [
+        "390x844"
+      ]
+    }
+  ],
+  "passes": 41,
+  "incomplete": 1
+}

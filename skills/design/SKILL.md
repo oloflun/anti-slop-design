@@ -78,6 +78,19 @@ not loaded, see `references/upstream/anthropic/`.)
 | **Warm photographic** | harbour restaurant, guesthouse, tourism, family business | `klova/` |
 | **Historical art** | opera, museum, classical institution — period artwork carries it, not typography alone | none yet; derive |
 
+**The category default is the last choice at Tier 3.** The "Fits" column is where a
+business *can* land, not where it must. Round 2 of the 2026-09-03 tests put eleven blind
+builds on one florist brief: seven of them chose editorial print or warm photographic, the
+same Unsplash bouquet and a serif over it, because the table pointed there and the photo
+pool was small. Four builds under a diversity contract (assigned register × page grammar ×
+world, forbidden to share more than two fingerprint dimensions with their siblings) came
+out as a typographic poster with a dimensioned line-drawing, a cyanotype blueprint, a
+split-stage photographic diptych and a twelve-cut illustrated cutlist. So: at Tier 3 pick
+from the register × grammar × world matrix ([`scroll/grammars.md`](references/scroll/grammars.md),
+[`upstream/scroll-craft/.../worlds.md`](references/upstream/scroll-craft/plugins/nateherk-design/skills/scroll-craft/references/worlds.md)),
+state which cell and why the category default lost, and write the world's **style preamble**
+(material, light, era, camera, what is banned) before the first token.
+
 **Structure — holds in every register** (exact values:
 [`house-physics.md`](references/house-physics.md)):
 
@@ -135,7 +148,7 @@ not loaded, see `references/upstream/anthropic/`.)
   real button is correct and expected — a clean rectangle or a restrained outline,
   sized to be pressed. Never a rounded gradient pill. The failure was never "a
   button", it is an unconsidered one.
-- **Imagery treatment:** full-bleed with type over (print, cinematic), framed with
+- **Imagery treatment:** full-bleed with type over (print, cinematic) — only on a plate or a scrim measured with `contrast_over_media.py`; white serif straight on a busy photograph failed in five of seven round-2 builds — framed with
   generous air (warm photographic), drawn identity system (illustrated), real
   product surface (modern clean).
 
@@ -336,8 +349,11 @@ and skip straight to Step 3. Contract and scope rule: [`scroll/README.md`](refer
    warnings and run `scroll_verify.py` before judging anything. A page that keeps the
    chain's own signature set-piece + shared reveal needs no engine (AB06).
 5. **Bake-off (page scope in build/redesign — mandatory unless the user says "skip
-   variants").** [`shotgun.md`](references/shotgun.md): three directions that differ on
-   one primary axis (register · grammar · colour world), each a fold build by a fresh
+   variants").** [`shotgun.md`](references/shotgun.md): three directions that **span three
+   registers, three grammars and three worlds** (never three shades of one register), each
+   with its own style preamble, checked against each other with the fingerprint gate (≤2/6
+   shared) before any cell is built — the session's own siblings count, not just the vault
+   registry; each a fold build by a fresh
    Sonnet subagent that reads only its engine's files, default engines {this chain,
    impeccable only}; `python scripts/board.py <session>` serves the board; you read every
    cell as pixels and write the tradeoff table without a favourite; the user picks;
@@ -437,7 +453,7 @@ Run in this order, and **read the output of every step**:
 8. `detect.mjs` over changed files.
 9. **Accessibility:** `Skill(a11y-audit)` — the three scripts (`a11y_scan.py`, `tab_walk.py`, `reflow.py`), then the eight passes; verdict Block/Approve; every HIGH fixed or waived by name. Once per project, prove the scripts on `~/anti-slop-design/tests/a11y/broken.html` first.
 10. **Visual critique on the pixels you read:** [`verbs/critique.md`](references/verbs/critique.md) — seven dimensions rated pass/minor/major, every P1 with a measured value, and the honest sentence about the references.
-11. **Motion:** `Skill(review-animations)` on anything that moves; on Persuade pages `python scripts/scroll_verify.py <url>` (dead scroll, cues that never reach full opacity, un-revealed elements, contrast under media at the brightest frame) in both motion modes.
+11. **Motion:** `Skill(review-animations)` on anything that moves; on Persuade pages `python scripts/scroll_verify.py <url>` (dead scroll, cues that never reach full opacity, un-revealed elements, contrast under media at the brightest frame, and `blankBands`: a near-uniform band taller than 60 % of a viewport in the full-page capture, which is a pinned act with sparse content and reads as broken in every static view) in both motion modes.
 12. **Three reviewers in parallel, then reconcile:** dispatch `design-critic`, `design-a11y-reviewer` and `design-heuristics` (Sonnet subagents in `~/.claude/agents/`) with the screenshots, the lane sentence and the reference lock; verify every finding against the pixels yourself; merge by accessibility > usability > brief > personas > escalate. AB04 (2026-09-03): the trio found the seven planted defects plus nine real ones a single reviewer missed.
 
 ### When to stop
