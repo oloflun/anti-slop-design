@@ -27,6 +27,19 @@ except Exception:
     sys.exit(0)
 
 
+# Loading one of these is the strongest signal available that a real design
+# session is under way — stronger than the prompt-level intent guess. Arms
+# the project so the per-edit hooks (route/verify-gate) and the Stop report
+# start acting instead of staying quiet. Matched against the bare skill name
+# with any "<marketplace>:" prefix stripped, so "super-intelligence:design"
+# arms the same as "design".
+ARM_ON_SKILLS = {
+    "design", "impeccable", "brand-system", "design-verify", "a11y-audit",
+    "design-shotgun", "design-catalog", "hallmark", "emil-design-eng",
+    "animate", "scroll-craft",
+}
+
+
 def main() -> None:
     if L.disabled():
         return
@@ -51,6 +64,10 @@ def main() -> None:
 
     L.log(root, event="skill", skill=skill, component=component,
           file=file_path, tier=L.tier(root), detail=ti.get("args", "") or "")
+
+    bare = skill.split(":")[-1].strip() if skill else ""
+    if bare in ARM_ON_SKILLS:
+        L.arm(root, "skill", skill)
 
 
 if __name__ == "__main__":

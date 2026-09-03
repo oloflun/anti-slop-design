@@ -1,0 +1,138 @@
+{
+  "stops": [
+    {
+      "walkId": "1",
+      "tag": "button",
+      "name": "Profil",
+      "hasFocusIndicator": true,
+      "rect": {
+        "top": 181,
+        "left": 364,
+        "width": 40,
+        "height": 37
+      },
+      "inViewport": true,
+      "tabIndex": 0
+    },
+    {
+      "walkId": "2",
+      "tag": "section",
+      "name": "Kontoinformation\n\nDessa uppgifter används på fakturor och fö",
+      "hasFocusIndicator": true,
+      "rect": {
+        "top": 247,
+        "left": 364,
+        "width": 712,
+        "height": 497
+      },
+      "inViewport": true,
+      "tabIndex": 0
+    },
+    {
+      "walkId": "3",
+      "tag": "input",
+      "name": "",
+      "hasFocusIndicator": true,
+      "rect": {
+        "top": 337,
+        "left": 364,
+        "width": 348,
+        "height": 40
+      },
+      "inViewport": true,
+      "tabIndex": 0
+    },
+    {
+      "walkId": "4",
+      "tag": "input",
+      "name": "",
+      "hasFocusIndicator": true,
+      "rect": {
+        "top": 337,
+        "left": 728,
+        "width": 348,
+        "height": 40
+      },
+      "inViewport": true,
+      "tabIndex": 0
+    },
+    {
+      "walkId": "5",
+      "tag": "input",
+      "name": "",
+      "hasFocusIndicator": true,
+      "rect": {
+        "top": 474,
+        "left": 364,
+        "width": 348,
+        "height": 40
+      },
+      "inViewport": true,
+      "tabIndex": 0
+    },
+    {
+      "walkId": "6",
+      "tag": "input",
+      "name": "",
+      "hasFocusIndicator": true,
+      "rect": {
+        "top": 474,
+        "left": 728,
+        "width": 348,
+        "height": 40
+      },
+      "inViewport": true,
+      "tabIndex": 0
+    },
+    {
+      "walkId": "7",
+      "tag": "button",
+      "name": "Spara ändringar",
+      "hasFocusIndicator": true,
+      "rect": {
+        "top": 597,
+        "left": 364,
+        "width": 134,
+        "height": 40
+      },
+      "inViewport": true,
+      "tabIndex": 0
+    },
+    {
+      "walkId": "8",
+      "tag": "button",
+      "name": "Hantera API-nycklar",
+      "hasFocusIndicator": true,
+      "rect": {
+        "top": 701,
+        "left": 920,
+        "width": 156,
+        "height": 40
+      },
+      "inViewport": true,
+      "tabIndex": 0
+    }
+  ],
+  "issues": [
+    {
+      "kind": "empty_name",
+      "index": 2,
+      "detail": "<input> has no accessible name"
+    },
+    {
+      "kind": "empty_name",
+      "index": 3,
+      "detail": "<input> has no accessible name"
+    },
+    {
+      "kind": "empty_name",
+      "index": 4,
+      "detail": "<input> has no accessible name"
+    },
+    {
+      "kind": "empty_name",
+      "index": 5,
+      "detail": "<input> has no accessible name"
+    }
+  ]
+}

@@ -1,0 +1,1014 @@
+<!DOCTYPE html>
+<html lang="sv">
+<head>
+<!--
+  ROSENGRENS BOKBINDERI — blind one-shot, Tier 2 (catalog reference)
+
+  Tier: 2 — Reference (two design-catalog entries supplied as explicit references)
+  Lane: Warm paper-and-thread atelier — cream vellum ground, bottle-green tooling
+        accent, stitched-thread motif as the signature move
+  Register: Editorial print (SKILL.md register table: "florist, atelier,
+        bookbinder, archive, catalogue, wedding" — a handbokbinderi is the
+        table's own named example)
+
+  REFERENCE LOCK
+  --------------
+  Primary reference/direction: Vintergatan (design-catalog) — warm-paper Swedish
+    antiquarian-and-bindery page. Chosen over Calyx as primary because it is the
+    closer functional twin: its own copy already covers sewing, repairing and
+    gilding bindings on the premises, not just selling a different craft's goods.
+  Preserve: warm paper ground with near-black ink, with a muted caption tone
+    measured separately per ground; trade vocabulary rendered as UI (real
+    bindery terms, one weekday in the hours table replaced by a word rather
+    than a time); exactly one full-width dark workshop chapter as the page's
+    single tonal inversion; a stitched-thread motif as the signature scroll
+    set-piece; label-rail sections built on an empty rail column.
+  Borrow only: Calyx's captioned image-plate convention with an NN/total
+    counter, applied to the "urval arbeten" gallery (Vintergatan carries no
+    portfolio section, so this is a genuine new need, not a style import);
+    Calyx's two-family hard-role discipline (one serif carries all voice, one
+    mono carries all labels) in place of Vintergatan's three-family split.
+  Role rules: mono never sets a sentence, capped at 11px / 0.22em tracking,
+    labels-captions-hours only; the display/body serif never sets a label;
+    bottle-green is display-scale / tooling-detail only, never a fill; brass is
+    a sparse second accent — one closing word or one rule per section, never a
+    background; the dark ground is inversion-only, never reused as a section
+    background elsewhere on the page.
+  Media strategy: photo:unsplash for the hero and the verkstaden ambience shot
+    (documentary shelving / workbench mood — honest because the caption never
+    claims these are a specific named object); placeholder for the four
+    "urval arbeten" plates, because each names a specific restoration or
+    commission that no stock photograph can honestly stand in for. Every img
+    carries an onerror fallback to a labelled placeholder plate so a bad photo
+    ID degrades honestly instead of breaking.
+  Reject: Vintergatan's own oxblood + gold palette (reusing it would reskin the
+    primary instead of extending it); a third accent colour; fabricated
+    prices, lead times or customer counts (the brief's explicit "inga
+    påhittade siffror" overrides the catalog's own priced-ledger convention);
+    fixed grain overlay (both catalog entries flag it as a cost that dulls
+    photography without paying for itself); blanket per-list-item reveals;
+    a centred hero logo lockup (that is Klova's warm-photographic move, a
+    different register than this brief's).
+  Token commitments: paper #F2ECE0 (canvas), paper-deep #E8DFCC (section
+    tint), ink #211A14 (body ink / light-ground caption base), ink-soft
+    #382D22 (secondary ink), stone #6B5F4E (muted caption, light ground),
+    stone-pale #C9BEA8 (muted caption, dark ground — measured separately per
+    house-physics), green #2F4A3B (accent, display-scale / tooling-detail
+    only), brass #B9944F (second accent, sparse), dark #17130F (inversion
+    ground). Display + body: Fraunces (one italic word per headline is the
+    house-licensed two-tone move); labels/kickers/hours: JetBrains Mono.
+    Display leading 0.92-1.0, tracking -0.015em; kicker 10.5px / 0.22em
+    uppercase; grid 12-col, max-width 1400px, gutter 28px, rail = columns
+    1-3 (kicker + rule, left empty), content = columns 4-12.
+
+  DECISION LEDGER
+  ----------------
+  | Decision | Source | Source rule/role | Why |
+  |---|---|---|---|
+  | Editorial print register | SKILL.md register table | register selects apparatus | "bookbinder" is the table's own named fit |
+  | Vintergatan as primary, not Calyx | Vintergatan entry.md | primary = dominant voice | Its copy already covers sewing/repairing/gilding bindings on-site; closer functional twin than a florist |
+  | Paper ground + near-black ink kept, third serif dropped | Vintergatan (ground) + Calyx (2-family discipline) | token / type role | Keeps the register's ground physics without a straight three-family reskin of Vintergatan |
+  | Bottle-green + brass accent (not oxblood + gold) | New token, anti-averaging identity test | accent role, display-scale only | Rosengrens must not read as a recoloured Vintergatan; green + brass reads as bookcloth and leaf tooling, its own material logic |
+  | Fraunces + JetBrains Mono | New token choice | 2-family hard-role discipline | Distinct from both catalog font pairs; still a characterful serif for a print-register world |
+  | Captioned plates with NN/total counter | Calyx (borrowed) | gallery-caption-only | Vintergatan has no gallery; licensed as one named borrowed detail |
+  | 12-col label-rail grid, empty rail column | Calyx / house-physics structural | layout role: editorial-print grid | Shared invariant across both references' register |
+  | Stitched-thread scroll set-piece in verkstaden | Vintergatan (preserved, re-themed) | signature move, workshop-chapter-only | Thread is the bookbinder's own material — more apt here than in an antiquarian bookshop |
+  | One weekday rendered as "endast verkstad" not a time | Vintergatan's structural move, own wording | hours-table role | Rosengrens has no retail counter, so the device needed its own logic, not Vintergatan's sentence |
+  | No invented prices, lead times or counts | Brief: "riktigt innehåll, inga påhittade siffror" | copy honesty | Brief is explicit and stricter than the catalog's own priced-ledger convention |
+-->
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Rosengrens Bokbinderi — Handbokbinderi i Haga, Göteborg</title>
+<meta name="description" content="Handbokbinderi i Haga, Göteborg. Vi lagar gamla böcker, binder bröllopsalbum, gästböcker och avhandlingar efter mått, och håller kurser i bokbindning.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,300;0,9..144,400;0,9..144,500;0,9..144,600;1,9..144,400;1,9..144,500&family=JetBrains+Mono:wght@400;500;600&display=swap" rel="stylesheet">
+<style>
+  /* ======================= TOKENS ======================= */
+  :root{
+    --paper:      #F2ECE0;
+    --paper-deep: #E8DFCC;
+    --ink:        #211A14;
+    --ink-soft:   #382D22;
+    --stone:      #6B5F4E;
+    --stone-pale: #C9BEA8;
+    --green:      #2F4A3B;
+    --green-soft: #3E5F4C;
+    --brass:      #B9944F;
+    --dark:       #17130F;
+    --dark-line:  rgba(185,148,79,0.32);
+    --line:       rgba(33,26,20,0.16);
+    --line-soft:  rgba(33,26,20,0.10);
+
+    --font-display: 'Fraunces', Georgia, 'Times New Roman', serif;
+    --font-mono: 'JetBrains Mono', 'SFMono-Regular', Consolas, 'Liberation Mono', monospace;
+
+    --rail: minmax(0,3fr);
+    --content: minmax(0,9fr);
+    --gutter: 28px;
+    --maxw: 1400px;
+
+    --ease: cubic-bezier(.16,1,.3,1);
+  }
+
+  /* ======================= RESET ======================= */
+  *,*::before,*::after{ box-sizing:border-box; }
+  html,body{ overflow-x:clip; }
+  html{ scroll-behavior:smooth; }
+  @media (prefers-reduced-motion: reduce){ html{ scroll-behavior:auto; } }
+  body{
+    margin:0;
+    background:var(--paper);
+    color:var(--ink);
+    font-family:var(--font-display);
+    font-size:16px;
+    line-height:1.6;
+    -webkit-font-smoothing:antialiased;
+  }
+  img{ max-width:100%; display:block; }
+  a{ color:inherit; }
+  h1,h2,h3,p,ul,figure{ margin:0; }
+  ul{ padding:0; list-style:none; }
+  button{ font:inherit; color:inherit; background:none; border:0; cursor:pointer; }
+
+  .skip-link{
+    position:absolute; left:-9999px; top:0;
+    background:var(--dark); color:var(--paper);
+    padding:12px 20px; z-index:200; font-family:var(--font-mono); font-size:13px;
+  }
+  .skip-link:focus{ left:12px; top:12px; }
+
+  :focus{ outline:none; }
+  :focus-visible{
+    outline:3px solid var(--green);
+    outline-offset:3px;
+    border-radius:2px;
+  }
+
+  .u-wrap{ max-width:var(--maxw); margin-inline:auto; padding-inline:24px; }
+  @media (min-width:900px){ .u-wrap{ padding-inline:48px; } }
+
+  .kicker{
+    font-family:var(--font-mono);
+    font-size:10.5px;
+    letter-spacing:0.22em;
+    text-transform:uppercase;
+    color:var(--stone);
+  }
+  .on-dark .kicker{ color:var(--stone-pale); }
+
+  .display-accent{ color:var(--green); font-style:italic; font-weight:400; }
+  .on-dark .display-accent{ color:var(--brass); }
+
+  h2.section-title{
+    font-family:var(--font-display);
+    font-weight:500;
+    font-size:clamp(2rem, 4.2vw, 3.1rem);
+    line-height:0.98;
+    letter-spacing:-0.015em;
+    overflow-wrap:anywhere;
+    min-width:0;
+  }
+
+  /* ======================= REVEAL ======================= */
+  .reveal{
+    opacity:0;
+    transform:translateY(28px);
+    transition:opacity 1.3s var(--ease), transform 1.3s var(--ease);
+  }
+  .reveal.is-visible{ opacity:1; transform:none; }
+  @media (prefers-reduced-motion: reduce){
+    .reveal{ opacity:1 !important; transform:none !important; transition:none !important; }
+  }
+  noscript .reveal{ opacity:1; transform:none; }
+
+  /* ======================= HEADER ======================= */
+  .topbar{
+    background:var(--paper);
+    border-bottom:1px solid var(--line);
+  }
+  .topbar-inner{
+    display:flex; justify-content:space-between; align-items:center;
+    padding-block:9px;
+    font-family:var(--font-mono); font-size:10.5px; letter-spacing:0.18em; text-transform:uppercase;
+    color:var(--stone);
+  }
+  .topbar-inner span:last-child{ text-align:right; }
+
+  header.site-head{
+    position:relative;
+    background:var(--paper);
+    border-bottom:1px solid var(--line);
+  }
+  .head-row{
+    display:flex; align-items:center; justify-content:space-between;
+    padding-block:18px;
+    gap:16px;
+  }
+  .head-loc{
+    font-family:var(--font-mono); font-size:11px; letter-spacing:0.16em; text-transform:uppercase;
+    color:var(--stone);
+    white-space:nowrap;
+  }
+  .wordmark{
+    font-family:var(--font-display);
+    font-weight:500;
+    font-size:clamp(1.3rem,2.4vw,1.7rem);
+    letter-spacing:-0.01em;
+    white-space:nowrap;
+  }
+  .wordmark a{ text-decoration:none; }
+
+  nav.primary-nav ul{
+    display:flex; gap:28px;
+  }
+  nav.primary-nav a{
+    font-family:var(--font-mono); font-size:11px; letter-spacing:0.16em; text-transform:uppercase;
+    text-decoration:none;
+    white-space:nowrap;
+    border-bottom:1px solid transparent;
+    padding-bottom:3px;
+    transition:border-color .2s ease, color .2s ease;
+  }
+  nav.primary-nav a:hover{ border-color:var(--green); color:var(--green); }
+
+  .nav-toggle{
+    display:none;
+    width:40px; height:40px;
+    align-items:center; justify-content:center;
+    border:1px solid var(--line);
+  }
+  .nav-toggle span{
+    display:block; width:18px; height:1px; background:var(--ink); position:relative;
+  }
+  .nav-toggle span::before, .nav-toggle span::after{
+    content:''; position:absolute; left:0; width:18px; height:1px; background:var(--ink);
+  }
+  .nav-toggle span::before{ top:-6px; }
+  .nav-toggle span::after{ top:6px; }
+
+  @media (max-width:760px){
+    nav.primary-nav{
+      position:absolute; left:0; right:0; top:100%;
+      background:var(--paper);
+      border-bottom:1px solid var(--line);
+      max-height:0; overflow:hidden;
+      transition:max-height .3s var(--ease);
+    }
+    nav.primary-nav.is-open{ max-height:260px; }
+    nav.primary-nav ul{
+      flex-direction:column; gap:0; padding:8px 24px 20px;
+    }
+    nav.primary-nav li{ border-top:1px solid var(--line-soft); }
+    nav.primary-nav a{ display:block; padding:14px 0; }
+    .nav-toggle{ display:inline-flex; }
+  }
+
+  /* ======================= HERO ======================= */
+  .hero{
+    position:relative;
+    min-height:min(92vh, 780px);
+    display:flex; align-items:flex-end;
+    background:var(--dark);
+    isolation:isolate;
+  }
+  .hero-media{
+    position:absolute; inset:0; z-index:0;
+  }
+  .hero-media img{
+    width:100%; height:100%; object-fit:cover;
+    filter:saturate(0.92) brightness(0.62);
+  }
+  .hero-media::after{
+    content:'';
+    position:absolute; inset:0;
+    background:linear-gradient(180deg, rgba(23,19,15,0.15) 0%, rgba(23,19,15,0.25) 40%, rgba(23,19,15,0.72) 100%);
+  }
+  .hero-fallback{
+    position:absolute; inset:0;
+    background:
+      repeating-linear-gradient(135deg, rgba(185,148,79,0.06) 0 2px, transparent 2px 26px),
+      linear-gradient(160deg, #1c1712, #100d0a);
+    display:none;
+  }
+  .hero-media.img-error .hero-fallback{ display:block; }
+  .hero-media.img-error img{ display:none; }
+
+  .hero-inner{
+    position:relative; z-index:1;
+    width:100%;
+    padding-block:64px 56px;
+    color:var(--paper);
+  }
+  .hero-grid{
+    display:grid;
+    grid-template-columns:1fr;
+    gap:32px;
+  }
+  @media (min-width:860px){
+    .hero-grid{ grid-template-columns: 7fr 5fr; align-items:end; }
+  }
+  .hero-kicker{ color:var(--stone-pale); margin-bottom:18px; }
+  .hero h1{
+    font-family:var(--font-display);
+    font-weight:500;
+    font-size:clamp(2.6rem, 7vw, 5.4rem);
+    line-height:0.94;
+    letter-spacing:-0.02em;
+    overflow-wrap:anywhere;
+    min-width:0;
+  }
+  .hero-side{
+    font-size:1.02rem;
+    line-height:1.7;
+    color:rgba(242,236,224,0.86);
+    max-width:42ch;
+  }
+  .hero-side p + p{ margin-top:14px; }
+  .hero-cta{
+    display:inline-block;
+    margin-top:22px;
+    font-family:var(--font-display);
+    font-style:italic;
+    font-size:1.35rem;
+    color:var(--paper);
+    text-decoration:none;
+    border-bottom:1px solid var(--brass);
+    padding-bottom:2px;
+  }
+  .hero-cta:hover{ color:var(--brass); }
+  .hero-cta::after{ content:' →'; font-style:normal; }
+
+  /* ======================= LABEL-RAIL SECTIONS ======================= */
+  section{ position:relative; }
+  .section-pad{ padding-block:76px; }
+  @media (min-width:860px){ .section-pad{ padding-block:104px; } }
+
+  .rail-grid{
+    display:grid;
+    grid-template-columns:1fr;
+    gap:20px;
+  }
+  @media (min-width:860px){
+    .rail-grid{ grid-template-columns: var(--rail) var(--content); gap:var(--gutter); }
+  }
+  .rail{
+    display:flex; flex-direction:column; gap:14px;
+  }
+  .rail .rule{
+    height:1px; background:var(--line); width:100%;
+  }
+  .on-dark .rail .rule{ background:var(--dark-line); }
+  .rail-meta{
+    font-family:var(--font-mono); font-size:11px; color:var(--stone); line-height:1.7; max-width:26ch;
+  }
+  .on-dark .rail-meta{ color:var(--stone-pale); }
+
+  /* ======================= TJÄNSTER (services ledger) ======================= */
+  .services{ background:var(--paper); border-top:1px solid var(--line); border-bottom:1px solid var(--line); }
+
+  .ledger{ display:flex; flex-direction:column; }
+  .ledger-row{
+    display:grid;
+    grid-template-columns:1fr;
+    gap:10px;
+    padding-block:28px;
+    border-bottom:1px solid var(--line);
+  }
+  .ledger-row:first-child{ padding-top:0; }
+  @media (min-width:700px){
+    .ledger-row{
+      grid-template-columns: 64px minmax(0,1fr) minmax(0,220px);
+      column-gap:24px;
+      align-items:start;
+    }
+  }
+  .ledger-index{
+    font-family:var(--font-display);
+    font-style:italic;
+    font-size:1.6rem;
+    color:var(--stone);
+  }
+  .ledger-body h3{
+    font-family:var(--font-display);
+    font-weight:500;
+    font-size:1.3rem;
+    letter-spacing:-0.01em;
+    margin-bottom:8px;
+  }
+  .ledger-body p{
+    color:var(--ink-soft);
+    max-width:56ch;
+    line-height:1.7;
+  }
+  .ledger-note{
+    font-family:var(--font-mono);
+    font-size:11px;
+    letter-spacing:0.06em;
+    color:var(--stone);
+    text-align:left;
+    padding-top:4px;
+  }
+  @media (min-width:700px){ .ledger-note{ text-align:right; padding-top:10px; } }
+
+  /* ======================= GALLERY (urval arbeten) ======================= */
+  .gallery{ background:var(--paper-deep); }
+  .plate-grid{
+    display:grid;
+    grid-template-columns: minmax(0,1fr);
+    gap:36px 24px;
+    margin-top:44px;
+  }
+  @media (min-width:640px){ .plate-grid{ grid-template-columns: repeat(2, minmax(0,1fr)); } }
+
+  .plate{ display:flex; flex-direction:column; gap:12px; }
+  .plate:nth-child(2){ margin-top:0; }
+  @media (min-width:640px){
+    .plate:nth-child(2n){ margin-top:56px; }
+  }
+
+  .plate-frame{
+    aspect-ratio:4/5;
+    background:
+      repeating-linear-gradient(45deg, rgba(47,74,59,0.05) 0 2px, transparent 2px 22px),
+      var(--paper);
+    border:1px solid var(--line);
+    display:flex; align-items:center; justify-content:center;
+    padding:18px;
+    position:relative;
+  }
+  .plate-frame::before{
+    content:'';
+    position:absolute; inset:14px;
+    border:1px solid var(--line-soft);
+  }
+  .plate-label{
+    font-family:var(--font-mono);
+    font-size:10.5px;
+    letter-spacing:0.14em;
+    color:var(--stone);
+    text-align:center;
+    line-height:1.7;
+    max-width:26ch;
+    text-transform:uppercase;
+  }
+  .plate-cap{
+    display:flex; justify-content:space-between; align-items:baseline;
+    gap:12px;
+    border-top:1px solid var(--line);
+    padding-top:10px;
+  }
+  .plate-cap-title{
+    font-family:var(--font-mono);
+    font-size:11px;
+    letter-spacing:0.06em;
+    color:var(--ink-soft);
+  }
+  .plate-cap-count{
+    font-family:var(--font-mono);
+    font-size:11px;
+    color:var(--stone);
+    white-space:nowrap;
+  }
+
+  /* ======================= QUOTE INTERLUDE ======================= */
+  .interlude{
+    background:var(--paper);
+    padding-block:72px;
+    text-align:center;
+  }
+  .interlude p{
+    font-family:var(--font-display);
+    font-style:italic;
+    font-weight:400;
+    font-size:clamp(1.3rem, 2.6vw, 1.9rem);
+    line-height:1.5;
+    color:var(--ink-soft);
+    max-width:38ch;
+    margin-inline:auto;
+  }
+
+  /* ======================= KURSER (roman numeral rows) ======================= */
+  .courses{ background:var(--paper); border-top:1px solid var(--line); border-bottom:1px solid var(--line); }
+  .course-list{
+    display:flex; flex-direction:column;
+    margin-top:44px;
+  }
+  .course-row{
+    display:grid;
+    grid-template-columns:1fr;
+    gap:14px;
+    padding-block:32px;
+    border-top:1px solid var(--line);
+  }
+  .course-row:last-child{ border-bottom:1px solid var(--line); }
+  @media (min-width:760px){
+    .course-row{ grid-template-columns: 100px minmax(0,1fr); column-gap:32px; }
+  }
+  .course-num{
+    font-family:var(--font-display);
+    font-style:italic;
+    font-size:1.4rem;
+    color:var(--green);
+  }
+  .course-body h3{
+    font-family:var(--font-display);
+    font-weight:500;
+    font-size:1.35rem;
+    margin-bottom:8px;
+  }
+  .course-body p{ color:var(--ink-soft); max-width:60ch; line-height:1.7; }
+  .course-meta{
+    display:block;
+    margin-top:10px;
+    font-family:var(--font-mono);
+    font-size:11px;
+    letter-spacing:0.06em;
+    color:var(--stone);
+  }
+  .course-foot{
+    margin-top:32px;
+    font-size:0.98rem;
+    color:var(--ink-soft);
+    max-width:60ch;
+  }
+
+  /* ======================= VERKSTADEN (dark inversion) ======================= */
+  .workshop{
+    background:var(--dark);
+    color:var(--paper);
+  }
+  .workshop-grid{
+    display:grid;
+    grid-template-columns:1fr;
+    gap:48px;
+  }
+  @media (min-width:860px){
+    .workshop-grid{ grid-template-columns: 1.1fr 0.9fr; }
+  }
+  .workshop h2{ color:var(--paper); }
+  .workshop-copy p{
+    color:rgba(242,236,224,0.82);
+    max-width:52ch;
+    line-height:1.75;
+    margin-top:18px;
+  }
+  .workshop-addr{
+    margin-top:28px;
+    font-family:var(--font-mono);
+    font-size:12px;
+    letter-spacing:0.06em;
+    color:var(--paper);
+    line-height:1.9;
+  }
+  .workshop-media{
+    aspect-ratio:4/3;
+    position:relative;
+    overflow:hidden;
+    border:1px solid var(--dark-line);
+  }
+  .workshop-media img{
+    width:100%; height:100%; object-fit:cover;
+    filter:saturate(0.85) brightness(0.72) sepia(0.06);
+  }
+  .workshop-media .hero-fallback{ background:linear-gradient(160deg,#241d16,#0f0c09); }
+  .workshop-media.img-error .hero-fallback{ display:block; }
+  .workshop-media.img-error img{ display:none; }
+
+  .thread-wrap{
+    position:absolute; left:0; top:0; bottom:0; width:34px;
+    display:none;
+  }
+  @media (min-width:860px){ .thread-wrap{ display:block; } }
+  .thread-wrap svg{ width:100%; height:100%; }
+  .thread-path{
+    fill:none; stroke:var(--brass); stroke-width:1.4; stroke-linecap:round;
+  }
+
+  .hours{
+    margin-top:44px;
+    border-top:1px solid var(--dark-line);
+  }
+  .hours-row{
+    display:flex; justify-content:space-between; gap:16px;
+    padding-block:12px;
+    border-bottom:1px solid var(--dark-line);
+    font-family:var(--font-mono);
+    font-size:12px;
+    letter-spacing:0.04em;
+  }
+  .hours-row span:first-child{ color:var(--stone-pale); text-transform:uppercase; letter-spacing:0.1em; }
+  .hours-row span:last-child{ color:var(--paper); text-align:right; }
+  .hours-row.status span:last-child{ color:var(--brass); font-style:italic; font-family:var(--font-display); font-size:13px; }
+
+  /* ======================= FOOTER ======================= */
+  footer.site-foot{
+    background:var(--paper);
+    border-top:1px solid var(--line);
+    padding-block:44px;
+  }
+  .foot-grid{
+    display:flex; flex-wrap:wrap;
+    justify-content:space-between;
+    gap:28px;
+  }
+  .foot-word{
+    font-family:var(--font-display);
+    font-size:1.2rem;
+    font-weight:500;
+  }
+  .foot-links{
+    display:flex; flex-direction:column; gap:8px;
+    font-family:var(--font-mono); font-size:11.5px; letter-spacing:0.05em;
+    color:var(--stone);
+  }
+  .foot-links a{ text-decoration:none; }
+  .foot-links a:hover{ color:var(--green); }
+  .foot-colophon{
+    width:100%;
+    margin-top:32px;
+    padding-top:20px;
+    border-top:1px solid var(--line-soft);
+    font-family:var(--font-mono);
+    font-size:10.5px;
+    letter-spacing:0.1em;
+    text-transform:uppercase;
+    color:var(--stone);
+  }
+</style>
+</head>
+<body>
+
+<a class="skip-link" href="#main">Hoppa till innehåll</a>
+
+<div class="topbar">
+  <div class="u-wrap topbar-inner">
+    <span>Handbokbinderi · Göteborg</span>
+    <span>Bundet för hand i Haga</span>
+  </div>
+</div>
+
+<header class="site-head">
+  <div class="u-wrap head-row">
+    <span class="head-loc">Haga · Göteborg</span>
+    <div class="wordmark"><a href="#main">Rosengrens Bokbinderi</a></div>
+    <button class="nav-toggle" id="navToggle" aria-expanded="false" aria-controls="primaryNav" aria-label="Öppna meny">
+      <span></span>
+    </button>
+  </div>
+  <nav class="primary-nav" id="primaryNav" aria-label="Huvudmeny">
+    <ul class="u-wrap">
+      <li><a href="#tjanster">Tjänster</a></li>
+      <li><a href="#arbeten">Arbeten</a></li>
+      <li><a href="#kurser">Kurser</a></li>
+      <li><a href="#verkstaden">Verkstaden</a></li>
+    </ul>
+  </nav>
+</header>
+
+<main id="main">
+
+  <!-- HERO: full-bleed photograph with type over, one h1, editorial-print anatomy -->
+  <section class="hero" id="hero">
+    <div class="hero-media" id="heroMedia">
+      <img src="https://images.unsplash.com/photo-1481627834876-b7833e8f5570?auto=format&fit=crop&w=1800&q=80"
+           alt="Böcker i en varmt upplyst hylla, dokumentärt foto"
+           onerror="handleImgError(this)">
+      <div class="hero-fallback" aria-hidden="true"></div>
+    </div>
+    <div class="hero-inner u-wrap">
+      <div class="hero-grid">
+        <div>
+          <p class="kicker hero-kicker on-dark">Handbokbinderi · Haga Nygata 12</p>
+          <h1>Bundet för hand, menat att <span class="display-accent">hålla</span>.</h1>
+        </div>
+        <div class="hero-side">
+          <p>Vi lagar gamla böcker som andra skulle kasta, sätter tillbaka lösa blad och syr om ryggar som gett vika. Nya band binder vi efter mått: i skinn, klot eller marmorerat papper, för bröllop, examen och de böcker som ska räcka längre än en generation.</p>
+          <a class="hero-cta" href="#tjanster">Se våra tjänster</a>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- TJÄNSTER: label-rail + ledger anatomy -->
+  <section class="services section-pad" id="tjanster">
+    <div class="u-wrap rail-grid">
+      <div class="rail reveal">
+        <p class="kicker">Tjänster</p>
+        <div class="rule"></div>
+        <p class="rail-meta">Varje uppdrag bedöms i verkstaden innan vi lämnar ett förslag. Ingen bok är den andra lik.</p>
+      </div>
+      <div>
+        <h2 class="section-title reveal">Reparation, beställning och dekor.</h2>
+        <div class="ledger" style="margin-top:36px;">
+          <div class="ledger-row reveal">
+            <span class="ledger-index">.01</span>
+            <div class="ledger-body">
+              <h3>Bokrestaurering</h3>
+              <p>Vi sätter tillbaka lösa blad, syr om ryggar som gett vika och byter skinn där det är slitet igenom. Pärmar och originaltitel bevaras så långt de går att rädda.</p>
+            </div>
+            <span class="ledger-note">Offert efter bedömning</span>
+          </div>
+          <div class="ledger-row reveal">
+            <span class="ledger-index">.02</span>
+            <div class="ledger-body">
+              <h3>Beställningsband</h3>
+              <p>Bröllopsalbum, gästböcker, avhandlingar och egna anteckningsböcker, handbundna i skinn, klot eller linne efter dina mått och ditt val av täckpapper.</p>
+            </div>
+            <span class="ledger-note">Offert vid beställning</span>
+          </div>
+          <div class="ledger-row reveal">
+            <span class="ledger-index">.03</span>
+            <div class="ledger-body">
+              <h3>Marmorering och guldsnitt</h3>
+              <p>Handmarmorerat täckpapper och förgyllda titlar, antingen som fristående tillval till ett beställningsband eller som del av en restaurering.</p>
+            </div>
+            <span class="ledger-note">Fristående tillval</span>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- URVAL ARBETEN: captioned plates, borrowed from Calyx, honest placeholders -->
+  <section class="gallery section-pad" id="arbeten">
+    <div class="u-wrap rail-grid">
+      <div class="rail reveal">
+        <p class="kicker">Ett urval arbeten</p>
+        <div class="rule"></div>
+        <p class="rail-meta">Bildunderlag väntar på fotografering i verkstaden. Ramarna nedan visar var varje objekt hör hemma, med riktiga bildtexter.</p>
+      </div>
+      <div>
+        <h2 class="section-title reveal">Fyra jobb ur verkstaden.</h2>
+        <div class="plate-grid">
+
+          <figure class="plate reveal">
+            <div class="plate-frame">
+              <p class="plate-label">Placeholder — fältbibel, tidigt 1900-tal<br>Bildförhållande 4:5, dokumentärt närbild­foto på ny rygg i getskinn mot bevarade originalpärmar, dagsljus från verkstadsfönstret</p>
+            </div>
+            <figcaption class="plate-cap">
+              <span class="plate-cap-title">Fältbibel, ny rygg i getskinn</span>
+              <span class="plate-cap-count">01 / 04</span>
+            </figcaption>
+          </figure>
+
+          <figure class="plate reveal">
+            <div class="plate-frame">
+              <p class="plate-label">Placeholder — bröllopsalbum<br>Bildförhållande 4:5, band i naturfärgat linne med guldsnitt, fotograferat öppet på arbetsbänken</p>
+            </div>
+            <figcaption class="plate-cap">
+              <span class="plate-cap-title">Bröllopsalbum, linne och guldsnitt</span>
+              <span class="plate-cap-count">02 / 04</span>
+            </figcaption>
+          </figure>
+
+          <figure class="plate reveal">
+            <div class="plate-frame">
+              <p class="plate-label">Placeholder — avhandling, Chalmers<br>Bildförhållande 4:5, klotband i mörkgrönt med präglad rygg, stående mot neutral bakgrund</p>
+            </div>
+            <figcaption class="plate-cap">
+              <span class="plate-cap-title">Avhandling, klotband i mörkgrönt</span>
+              <span class="plate-cap-count">03 / 04</span>
+            </figcaption>
+          </figure>
+
+          <figure class="plate reveal">
+            <div class="plate-frame">
+              <p class="plate-label">Placeholder — gästbok<br>Bildförhållande 4:5, uppslag som visar handmarmorerat täckpapper i grönt och brunt</p>
+            </div>
+            <figcaption class="plate-cap">
+              <span class="plate-cap-title">Gästbok, marmorerat täckpapper</span>
+              <span class="plate-cap-count">04 / 04</span>
+            </figcaption>
+          </figure>
+
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- QUOTE INTERLUDE: one moment that is not information -->
+  <section class="interlude">
+    <p class="reveal">Ett bokband är läsarens första möte med boken, långt innan första sidan vänds.</p>
+  </section>
+
+  <!-- KURSER: roman-numeral step anatomy, distinct rhythm from the ledger above -->
+  <section class="courses section-pad" id="kurser">
+    <div class="u-wrap rail-grid">
+      <div class="rail reveal">
+        <p class="kicker">Kurser</p>
+        <div class="rule"></div>
+        <p class="rail-meta">Undervisning sker i den egna verkstaden, i mindre grupper vid samma bänkar där vi binder till kund.</p>
+      </div>
+      <div>
+        <h2 class="section-title reveal">Från första häftet till hårt band.</h2>
+        <div class="course-list">
+          <div class="course-row reveal">
+            <span class="course-num">i</span>
+            <div class="course-body">
+              <h3>Grundkurs i bokbindning</h3>
+              <p>Du syr och binder ett eget häfte i mjukt band och lär dig grunderna i falsning, häftning och limning. Ingen tidigare erfarenhet krävs.</p>
+              <span class="course-meta">Kvällskurs, fyra tillfällen</span>
+            </div>
+          </div>
+          <div class="course-row reveal">
+            <span class="course-num">ii</span>
+            <div class="course-body">
+              <h3>Fortsättning: hårt band</h3>
+              <p>För dig som gått grundkursen. Vi binder ett bokblock i hårda pärmar med klotöverdrag, från kollationering till färdig rygg.</p>
+              <span class="course-meta">Helgkurs</span>
+            </div>
+          </div>
+          <div class="course-row reveal">
+            <span class="course-num">iii</span>
+            <div class="course-body">
+              <h3>Fördjupning: marmorering och guldsnitt</h3>
+              <p>En dag i verkstaden med färg på vatten och bladguld på snitten. Ta med en bok du vill dekorera, eller binder en ny under kursen.</p>
+              <span class="course-meta">Heldagskurs, få platser</span>
+            </div>
+          </div>
+        </div>
+        <p class="course-foot reveal">Kommande kurstillfällen annonseras terminsvis. Hör av dig för att stå på väntelistan, eller fråga i verkstaden när du ändå är här.</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- VERKSTADEN: dark tonal inversion, two-column contact panel, signature thread set-piece -->
+  <section class="workshop section-pad on-dark" id="verkstaden">
+    <div class="u-wrap">
+      <p class="kicker reveal">Verkstaden</p>
+      <div class="workshop-grid" style="margin-top:20px;">
+        <div class="workshop-copy">
+          <h2 class="section-title reveal">Haga Nygata 12.</h2>
+          <p class="reveal">Verkstaden ligger en trappa upp vid Haga Nygata, mitt i kvarteren där hantverket fortfarande syns genom skyltfönstren. Kliv in med en bok som behöver mer tid, eller för att se en beställning ta form på bänken.</p>
+          <div class="workshop-addr reveal">
+            ROSENGRENS BOKBINDERI<br>
+            HAGA NYGATA 12<br>
+            GÖTEBORG
+          </div>
+
+          <div class="hours reveal">
+            <div class="hours-row"><span>Tisdag</span><span>10–18</span></div>
+            <div class="hours-row"><span>Onsdag</span><span>10–18</span></div>
+            <div class="hours-row"><span>Torsdag</span><span>10–18</span></div>
+            <div class="hours-row"><span>Fredag</span><span>10–16</span></div>
+            <div class="hours-row"><span>Lördag</span><span>10–14</span></div>
+            <div class="hours-row status"><span>Måndag</span><span>Endast verkstad</span></div>
+          </div>
+        </div>
+
+        <div style="position:relative;">
+          <div class="thread-wrap" aria-hidden="true">
+            <svg viewBox="0 0 34 400" preserveAspectRatio="none">
+              <path class="thread-path" id="threadPath" d="M17,4 L17,396" stroke-dasharray="392" stroke-dashoffset="392"></path>
+            </svg>
+          </div>
+          <div class="workshop-media reveal" id="workshopMedia">
+            <img src="https://images.unsplash.com/photo-1524995997946-a1c2e315a42f?auto=format&fit=crop&w=1200&q=80"
+                 alt="Stapel inbundna böcker, dokumentärt foto med varmt ljus"
+                 onerror="handleImgError(this)">
+            <div class="hero-fallback" aria-hidden="true"></div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+</main>
+
+<footer class="site-foot">
+  <div class="u-wrap foot-grid">
+    <div class="foot-word">Rosengrens Bokbinderi</div>
+    <div class="foot-links">
+      <span>Haga Nygata 12, Göteborg</span>
+      <a href="mailto:hej@rosengrensbokbinderi.se">hej@rosengrensbokbinderi.se</a>
+      <a href="#tjanster">Tjänster</a>
+      <a href="#arbeten">Arbeten</a>
+      <a href="#kurser">Kurser</a>
+    </div>
+    <div class="foot-colophon">Satt i Fraunces och JetBrains Mono. Handbundet i Haga.</div>
+  </div>
+</footer>
+
+<noscript>
+  <style>.reveal{ opacity:1 !important; transform:none !important; }</style>
+</noscript>
+
+<script>
+(function(){
+  "use strict";
+
+  // ---- image fallback: honest degrade, never a broken-icon ----
+  window.handleImgError = function(img){
+    var wrap = img.closest('.hero-media, .workshop-media');
+    if(wrap){ wrap.classList.add('img-error'); }
+  };
+
+  // ---- mobile nav toggle ----
+  var toggle = document.getElementById('navToggle');
+  var nav = document.getElementById('primaryNav');
+  if(toggle && nav){
+    toggle.addEventListener('click', function(){
+      var open = nav.classList.toggle('is-open');
+      toggle.setAttribute('aria-expanded', open ? 'true' : 'false');
+    });
+    nav.addEventListener('click', function(e){
+      if(e.target.tagName === 'A'){
+        nav.classList.remove('is-open');
+        toggle.setAttribute('aria-expanded', 'false');
+      }
+    });
+    document.addEventListener('keydown', function(e){
+      if(e.key === 'Escape' && nav.classList.contains('is-open')){
+        nav.classList.remove('is-open');
+        toggle.setAttribute('aria-expanded', 'false');
+        toggle.focus();
+      }
+    });
+  }
+
+  // ---- reveal system: fails toward visible ----
+  var reveals = Array.prototype.slice.call(document.querySelectorAll('.reveal'));
+  var prefersReduced = window.matchMedia && window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+
+  function markVisible(el){ el.classList.add('is-visible'); }
+
+  if(prefersReduced || !('IntersectionObserver' in window)){
+    reveals.forEach(markVisible);
+  } else {
+    // reveal anything already on/above the fold at mount
+    reveals.forEach(function(el){
+      var r = el.getBoundingClientRect();
+      if(r.top < window.innerHeight){ markVisible(el); }
+    });
+
+    var io = new IntersectionObserver(function(entries){
+      entries.forEach(function(entry){
+        if(entry.isIntersecting){
+          markVisible(entry.target);
+          io.unobserve(entry.target);
+        }
+      });
+    }, { threshold: 0.12 });
+
+    reveals.forEach(function(el){
+      if(!el.classList.contains('is-visible')){ io.observe(el); }
+    });
+
+    // failsafes: nothing stays invisible forever
+    setTimeout(function(){
+      reveals.forEach(function(el){
+        var r = el.getBoundingClientRect();
+        if(r.top < window.innerHeight * 1.4){ markVisible(el); }
+      });
+    }, 1800);
+    setTimeout(function(){ reveals.forEach(markVisible); }, 6000);
+  }
+
+  // ---- signature set-piece: stitched thread drawn by scroll position ----
+  var threadPath = document.getElementById('threadPath');
+  var workshopSection = document.getElementById('verkstaden');
+  var forcePreview = /[?&]preview=thread/.test(window.location.search);
+
+  if(threadPath && workshopSection){
+    var LEN = 392;
+
+    if(prefersReduced || forcePreview){
+      threadPath.style.strokeDashoffset = '0';
+    } else {
+      var target = LEN, current = LEN, raf = null;
+
+      function computeTarget(){
+        var r = workshopSection.getBoundingClientRect();
+        var vh = window.innerHeight;
+        var progress = (vh - r.top) / (r.height + vh);
+        progress = Math.max(0, Math.min(1, progress));
+        target = LEN - (LEN * progress);
+      }
+
+      function tick(){
+        current += (target - current) * 0.12;
+        threadPath.style.strokeDashoffset = String(current);
+        if(Math.abs(target - current) > 0.4){
+          raf = requestAnimationFrame(tick);
+        } else {
+          raf = null;
+        }
+      }
+
+      function onScroll(){
+        computeTarget();
+        if(!raf){ raf = requestAnimationFrame(tick); }
+      }
+
+      computeTarget();
+      threadPath.style.strokeDashoffset = String(target);
+      window.addEventListener('scroll', onScroll, { passive: true });
+      window.addEventListener('resize', onScroll);
+    }
+  }
+})();
+</script>
+
+</body>
+</html>

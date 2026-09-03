@@ -20,6 +20,7 @@ import json
 import os
 import re
 import sys
+import time
 from datetime import datetime, timezone
 from pathlib import Path
 
@@ -28,6 +29,7 @@ ROUTING_DOC = HOME / ".agents" / "skills" / "design" / "references" / "component
 IMPECCABLE = HOME / ".agents" / "skills" / "impeccable"
 
 KILL_SWITCH = "DESIGN_HOOKS_DISABLED"
+UNIVERSAL_KILL_SWITCH = "CLAUDE_HOOKS_DISABLED"  # Fas 6 assistant-bench arm B: all hooks off
 STATE_DIR_NAME = ".impeccable"
 LEDGER_NAME = "design-session.jsonl"
 
@@ -39,6 +41,8 @@ ROOT_MARKERS = ("DESIGN.md", "design.md", ".impeccable", ".git",
 
 
 def disabled() -> bool:
+    if os.environ.get(UNIVERSAL_KILL_SWITCH, "").strip() not in ("", "0", "false"):
+        return True
     return os.environ.get(KILL_SWITCH, "").strip() not in ("", "0", "false")
 
 
@@ -228,6 +232,225 @@ def design_tokens(root: Path) -> dict:
 
 
 # --------------------------------------------------------------------------
+# Arm / disarm — a design session must be armed before per-edit hooks act
+#
+# The chain used to treat every prompt that brushed a design keyword as a
+# live design session. "investigate the design hooks" is not a design task;
+# neither is a stray ".ts" edit in a repo that happens to have a DESIGN.md.
+# classify() below decides how strong the signal is; arm()/armed() decide
+# whether the per-edit hooks (route/verify-gate) and the Stop report treat
+# the session as one actually doing UI work. design-gate.py is exempt: it is
+# the one hard contract enforcement and stays unconditional.
+# --------------------------------------------------------------------------
+
+ARMED_NAME = ".armed"
+FORCE_ARM_ENV = "DESIGN_HOOKS_FORCE_ARM"
+
+
+def arm(root: Path, source: str, detail: str = "") -> None:
+    """Mark this project root as a live design session.
+
+    Cleared by design-session-start.py on source=startup/clear, so it is
+    scoped to one Claude Code session the same way the ledger is.
+    """
+    try:
+        rec = {
+            "ts": datetime.now(timezone.utc).isoformat(timespec="seconds"),
+            "source": source,
+            "detail": detail,
+            "session": current_session_id(),
+        }
+        (state_dir(root) / ARMED_NAME).write_text(
+            json.dumps(rec, ensure_ascii=False), encoding="utf-8")
+    except Exception:
+        pass
+
+
+def armed(root: Path) -> bool:
+    if os.environ.get(FORCE_ARM_ENV, "").strip() not in ("", "0", "false"):
+        return True
+    try:
+        return (root / STATE_DIR_NAME / ARMED_NAME).exists()
+    except Exception:
+        return False
+
+
+def disarm(root: Path) -> None:
+    try:
+        p = root / STATE_DIR_NAME / ARMED_NAME
+        if p.exists():
+            p.unlink()
+    except Exception:
+        pass
+
+
+# --------------------------------------------------------------------------
+# Intent classification — how strong is the signal that this prompt is a
+# UI task, as opposed to prose that merely mentions a design word?
+#
+# Three tiers:
+#   high    verb + object, unambiguous UI task. Arms the session.
+#   medium  a UI object (or the bare word design/ui) with no verb, or a
+#           question about the design. One-line nudge, does not arm.
+#   none    no design signal at all, or the prompt is ABOUT the hook chain,
+#           the repo's tooling, or unrelated engineering work — the negative
+#           guard below wins over any keyword coincidence.
+#
+# The corpus this was tuned against lives at
+# anti-slop-design/tests/intent_corpus.jsonl and is run by
+# verify-design-system.py. Tuning notes, not spec drift:
+#   * "diagnose" was DROPPED from the negative guard. It is a legitimate
+#     bare-bug-report verb ("diagnose why the modal state is undefined") and
+#     the corpus has a medium-tier row that proves it must not force "none".
+#     "investigate"/"undersök"/"felsök" stayed — nothing in the corpus needs
+#     them to fire on non-tooling prose.
+#   * The guard drops the trailing \b so Swedish suffixed forms still hit —
+#     "design-hookarna" (hooks + -arna), "design-skillen" (skill + -en).
+#     Checked against every high/medium row for accidental prefix collisions
+#     (carl/regex/skill/commit/... do not appear as prefixes there).
+#   * OBJECTS keeps its trailing \b (unlike the guard) specifically so a
+#     file path like "components/settings/actions.ts" does NOT read as the
+#     word "component" — dropping it there let path fragments leak into
+#     object detection. Two Swedish suffixes needed explicit extra literals
+#     instead: "landningssida(n)?" and "scroll ?animation(er)?".
+#   * One narrow verb phrase, "update the color tokens", was added for the
+#     "update the color tokens in tailwind.config" row. A bare "update" verb
+#     was tried first and rejected: it also lit up "update the README layout
+#     section..." (expected medium — a docs edit, not UI) once paired with
+#     "layout"/"section" as objects. The narrow phrase avoids that collision.
+#   * "color" (bare) was added to OBJECTS for "the color of the log output
+#     is wrong in the CLI" (expected medium) — only "color tokens" existed
+#     before and nothing else in that prompt is UI-object shaped.
+# --------------------------------------------------------------------------
+
+_SLASH_DESIGN_RE = re.compile(r"^/design\b", re.I)
+
+# Leading \b only — see the Swedish-suffix note above.
+NEGATIVE_GUARD = re.compile(
+    r"\b(?:hook|hooks|hookkedjan|design-gate|design-intent|design-stop|design-route|"
+    r"carl|regex|skill|skills|skill-routing|routing|plugin|anti-slop-design|"
+    r"verify-design-system|route gap|detect\.mjs|impeccable live|design-shotgun|"
+    r"conclude|session log|sessionslogg|migration|supabase|database|databas|"
+    r"git push|commit|pull request|test(?:s|er)?\b.*?\bfail|analysera repot|"
+    r"sammanfatta|explain how|förklara hur|varför fyrar|why does .* fire|"
+    r"investigate|undersök|felsök|write a plan|skriv en plan)",
+    re.I,
+)
+
+VERBS_RE = re.compile(
+    r"\b(?:build|bygg|create|skapa|make|g(?:ö|o)r|design|designa|redesign|"
+    r"g(?:ö|o)r om|omdesign|rebuild|bygg om|polish|polera|finputsa|style|styla|"
+    r"restyle|improve the look|make it (?:look|feel)|premium|"
+    r"audit the (?:ui|design|page|flow)|granska (?:ui|design|sidan)|"
+    r"implement|implementera|add|l(?:ä|a)gg till|animate|animera|refresh|"
+    r"modernise|modernize|overhaul|tighten|"
+    r"fix the (?:spacing|alignment|typography|contrast)|"
+    r"update the color tokens)\b",
+    re.I,
+)
+
+OBJECTS_RE = re.compile(
+    r"\b(?:landing ?page|landningssida(?:n)?|start ?sida|startsidan|page|sida|sidan|"
+    r"site|sajt|sajten|webbplats|hero|heron|nav|navigation|navigationen|"
+    r"header|footer|sidebar|dashboard|admin|settings page|checkout|pricing|"
+    r"prislista|form|formul(?:ä|a)r|modal|drawer|toast|tooltip|carousel|karusell|"
+    r"button|knapp|cta|card|kort|component|komponent|layout|typography|"
+    r"typografi|font|typsnitt|palette|palett|color tokens|color|f(?:ä|a)rg|"
+    r"dark mode|theme|tema|ui|frontend|hero section|"
+    r"scroll ?animation(?:er)?|scrollanimation(?:er)?|"
+    r"imagery|bilder|section|sektion|grid|banner|tokens|tailwind\.config)\b",
+    re.I,
+)
+
+_DESIGN_WORD_RE = re.compile(r"\bdesign\b", re.I)
+_QUESTION_RE = re.compile(r"\b(?:vad tycker du om|what do you think of)\b", re.I)
+
+_UI_EVIDENCE_EXTS = (".html", ".css", ".tsx", ".jsx", ".vue", ".svelte", ".astro")
+_UI_EVIDENCE_SKIP_DIRS = {"node_modules", ".git"}
+_UI_EVIDENCE_PKG_RE = re.compile(r"\b(?:react|next|vue|svelte|astro|tailwind)\b", re.I)
+
+
+def _scan_ui_evidence(root: Path) -> bool:
+    try:
+        pkg = root / "package.json"
+        if pkg.exists():
+            txt = pkg.read_text(encoding="utf-8", errors="replace")
+            if _UI_EVIDENCE_PKG_RE.search(txt):
+                return True
+    except Exception:
+        pass
+
+    def walk(d: Path, depth: int) -> bool:
+        try:
+            entries = list(d.iterdir())
+        except Exception:
+            return False
+        for entry in entries:
+            try:
+                if entry.is_dir():
+                    if entry.name in _UI_EVIDENCE_SKIP_DIRS:
+                        continue
+                    if depth < 2 and walk(entry, depth + 1):
+                        return True
+                elif entry.is_file():
+                    if entry.suffix.lower() in _UI_EVIDENCE_EXTS:
+                        return True
+            except Exception:
+                continue
+        return False
+
+    try:
+        return walk(root, 0)
+    except Exception:
+        return False
+
+
+def _has_ui_evidence(root: Path) -> bool:
+    """Cached (10 min) scan for UI evidence in the project root.
+
+    Keeps classify()'s hot path fast: most turns hit the cache, not the
+    filesystem walk.
+    """
+    cache_file = state_dir(root) / ".ui-evidence"
+    now = time.time()
+    try:
+        if cache_file.exists():
+            data = json.loads(cache_file.read_text(encoding="utf-8"))
+            if now - float(data.get("ts", 0)) < 600:
+                return bool(data.get("value"))
+    except Exception:
+        pass
+    value = _scan_ui_evidence(root)
+    try:
+        cache_file.write_text(json.dumps({"ts": now, "value": value}), encoding="utf-8")
+    except Exception:
+        pass
+    return value
+
+
+def classify(prompt: str, root: Path) -> str:
+    """"high" | "medium" | "none" — how strong is this prompt's UI signal?"""
+    if not prompt:
+        return "none"
+    p = prompt.strip()
+    if _SLASH_DESIGN_RE.match(p):
+        return "high"
+    if NEGATIVE_GUARD.search(p):
+        return "none"
+
+    has_verb = bool(VERBS_RE.search(p))
+    has_object = bool(OBJECTS_RE.search(p))
+    has_design_word = bool(_DESIGN_WORD_RE.search(p))
+    is_question = bool(_QUESTION_RE.search(p))
+
+    if has_verb and has_object:
+        return "high" if _has_ui_evidence(root) else "medium"
+    if has_object or has_design_word or is_question:
+        return "medium"
+    return "none"
+
+
+# --------------------------------------------------------------------------
 # Routing table — parsed from the reference, never duplicated
 # --------------------------------------------------------------------------
 
@@ -255,16 +478,106 @@ def routing_table() -> dict:
     return table
 
 
-def is_ui_file(path: str) -> bool:
+# Extensions that are UI by definition — markup, styles, or a component format
+# where the file cannot be anything else.
+_UNAMBIGUOUS_UI_EXTS = (
+    ".tsx", ".jsx", ".vue", ".svelte", ".astro",
+    ".html", ".htm", ".css", ".scss", ".sass", ".less",
+)
+
+# Extensions that are usually NOT UI. A .ts file is as likely to be a schema, a
+# parser, or a migration script as a component, so routing on extension alone
+# produced a permanent route-gap on backend-only work — which then masks a
+# genuine miss on a real component. These require a content signal.
+_AMBIGUOUS_UI_EXTS = (".ts", ".js", ".mjs", ".cjs")
+
+_UI_CONTENT_SIGNALS = (
+    # JSX, detected by a CLOSING tag only. An opening tag is unusable here:
+    # `NodeTree<BaseNode>` is a TypeScript generic, not markup, and the two are
+    # not reliably distinguishable. Generics never produce `</Foo>`.
+    re.compile(r"</[A-Za-z][\w.]*\s*>|<\s*/\s*>"),
+    re.compile(r"\bclassName\s*=|\bstyle\s*=\s*\{\{"),           # React styling
+    re.compile(r"""from\s+['"](react|react-dom|preact|solid-js|vue|svelte)"""),
+    re.compile(r"\bdocument\.(getElement|querySelector|createElement)|\bwindow\."),
+    # `(?<![\w.])` so prose like "the published `framework.css`" does not read
+    # as a css`` tagged template — the backtick there belongs to the next token.
+    re.compile(r"styled\.[a-z]|(?<![\w.])css`|createGlobalStyle|@emotion"),
+    re.compile(r"^\s*[.#][\w-]+\s*\{", re.MULTILINE),            # raw CSS rules
+)
+
+_OPEN_TAG_LETTER_RE = re.compile(r"<[A-Za-z]")
+
+
+def is_substantive_ui_write(content: str) -> bool:
+    """A real markup/style write, not a stray angle bracket or a generic.
+
+    Reuses the same signals as `_UI_CONTENT_SIGNALS` (closing tag, className/
+    style, raw CSS rule) and adds one more: an opening tag followed by a
+    letter, which those three intentionally skip (see the comment above them
+    on why an opening tag alone is unreliable for a `.ts` generics false
+    positive). Used to decide whether an edit is "substantive" enough to
+    auto-arm a locked project on a strong code-route — a stray `<div` in a
+    comment should not.
+    """
+    if not content:
+        return False
+    if _UI_CONTENT_SIGNALS[0].search(content):   # closing tag
+        return True
+    if _UI_CONTENT_SIGNALS[1].search(content):   # className= / style=
+        return True
+    if _UI_CONTENT_SIGNALS[5].search(content):   # raw CSS rule
+        return True
+    return bool(_OPEN_TAG_LETTER_RE.search(content))
+
+
+def is_ui_file(path: str, content: str | None = None) -> bool:
+    """Whether this write is a design decision.
+
+    Extension alone is not enough: `.ts`/`.js` cover schemas, parsers and build
+    scripts as often as components. When content is available those are checked
+    for a real UI signal. Without content the previous extension-only behaviour
+    is kept, so any caller that cannot supply it is unaffected.
+    """
     if not path:
         return False
     exts = routing_table().get("ui_extensions") or []
     low = path.lower()
-    return any(low.endswith(e) for e in exts)
+    if not any(low.endswith(e) for e in exts):
+        return False
+    if low.endswith(_UNAMBIGUOUS_UI_EXTS):
+        return True
+    if low.endswith(_AMBIGUOUS_UI_EXTS):
+        if content is None:
+            return True  # unchanged behaviour when the caller has no content
+        return any(rx.search(content) for rx in _UI_CONTENT_SIGNALS)
+    return True
+
+
+# Skills whose route is about the surrounding framework, not the component
+# being crafted — react-components and next-best-practices route on generic
+# structural signals ("export function", "app/") that fire on almost every
+# file in a React/Next project. Counting them in the Stop report's gap is
+# what produced a "must be zero" alarm on every session: the router named
+# them constantly and nothing ever "invokes" a framework-conventions skill
+# the way it invokes emil-design-eng for a drawer. Hardcoded rather than
+# read from component-routing.md so the reference stays free of a concept
+# (framework vs craft) that only the Stop report needs.
+FRAMEWORK_SKILLS = {"react-components", "next-best-practices", "vercel-react-best-practices"}
+
+
+def skill_class(skill_name: str) -> str:
+    """"framework" | "craft" — see FRAMEWORK_SKILLS above."""
+    name = (skill_name or "").split(":")[-1].strip()
+    return "framework" if name in FRAMEWORK_SKILLS else "craft"
 
 
 def match_routes(path: str, content: str) -> list[dict]:
-    """Which routing rules fire for this write. Most specific first."""
+    """Which routing rules fire for this write. Most specific first.
+
+    Each returned dict is a COPY of the cached rule with one extra key,
+    `_matched_on`: "path" | "code" | "fallback" — which fragment kind fired.
+    Copies so the cached table (shared across every call) is never mutated.
+    """
     table = routing_table()
     low_path = (path or "").replace("\\", "/").lower()
     hits, fallback = [], None
@@ -273,30 +586,47 @@ def match_routes(path: str, content: str) -> list[dict]:
         if rule.get("fallback"):
             fallback = rule
             continue
-        matched = False
+        matched_on = None
         for frag in rule.get("path", []):
             if frag.lower() in low_path:
-                matched = True
+                matched_on = "path"
                 break
-        if not matched:
+        if not matched_on:
             use_regex = bool(rule.get("regex"))
             for frag in rule.get("code", []):
                 try:
                     if use_regex:
                         if re.search(frag, content):
-                            matched = True
+                            matched_on = "code"
                             break
                     elif frag in content:
-                        matched = True
+                        matched_on = "code"
                         break
                 except re.error:
                     continue
-        if matched:
-            hits.append(rule)
+        if matched_on:
+            hit = dict(rule)
+            hit["_matched_on"] = matched_on
+            hits.append(hit)
 
     if not [h for h in hits if h.get("id") != "copy"] and fallback:
-        hits.append(fallback)
+        fb = dict(fallback)
+        fb["_matched_on"] = "fallback"
+        hits.append(fb)
     return hits
+
+
+def strong_route(rule: dict, path: str, content: str) -> bool:
+    """True only when `rule` (from match_routes) matched on CODE, not path.
+
+    A path-only match ("components/" in the file path) is weak — it fires on
+    every file in a folder regardless of what is actually written. A code
+    match means the written bytes themselves carried the signal (an actual
+    `<nav`, a real `useGesture()` call). Only strong, code-matched routes to
+    a craft skill auto-arm an otherwise-unarmed 0-locked session, and only
+    strong routes count against the route gap in the Stop report.
+    """
+    return bool(rule) and rule.get("_matched_on") == "code"
 
 
 def trap_hits(content: str) -> list[tuple[str, str]]:
@@ -319,10 +649,24 @@ def trap_hits(content: str) -> list[tuple[str, str]]:
 # Ledger
 # --------------------------------------------------------------------------
 
+def current_session_id() -> str:
+    """The running Claude Code session's id. Hooks inherit it via env."""
+    return os.environ.get("CLAUDE_CODE_SESSION_ID", "")
+
+
 def log(root: Path, **fields) -> None:
-    """Append one event to the session ledger. Silent on failure."""
+    """Append one event to the session ledger. Silent on failure.
+
+    Every row is stamped with the session id so consumers can scope to the
+    CURRENT session. Before this stamp, design-stop.py counted every row ever
+    written in the root — "31 UI edits this session" in a session with zero
+    edits (idea-2ao, verified 2026-08-25).
+    """
     try:
         rec = {"ts": datetime.now(timezone.utc).isoformat(timespec="seconds")}
+        sid = current_session_id()
+        if sid:
+            rec["session"] = sid
         rec.update({k: v for k, v in fields.items() if v not in (None, "")})
         path = state_dir(root) / LEDGER_NAME
         with path.open("a", encoding="utf-8") as fh:

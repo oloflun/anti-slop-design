@@ -1,0 +1,491 @@
+<!doctype html>
+<html lang="sv">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width,initial-scale=1" />
+<title>Florhuset Majorna, buketter, bröllop och binderi vid Mariaplan</title>
+<meta name="description" content="Florhuset Majorna är en florist och ateljé vid Mariaplan i Majorna, Göteborg. Säsongens buketter, bröllop, veckans blomma-prenumeration och ateljékvällar i binderi." />
+
+<!--
+  TIER 3 — invent. Brevet namnger bara verksamhet, ort och adress; ingen logotyp,
+  ingen befintlig palett, ingen deployad sajt att härleda ur. Palett, typsnitt och
+  värld är uppfunna för det här varumärket, inte hämtade från något existerande.
+
+  LANE: "Saltblekt verkstadsflorist — en Majorna-hamnledger i kall dimma och
+  petroleumblått, med tegelrött som enda display-accent och handritad linjekonst
+  i stället för lagerfoto."
+
+  REGISTER: Editorial print (tabellen i gates.md/house-physics.md: florist,
+  ateljé, bröllop hör hemma här). Läste calyx.html som facit för strukturen —
+  kicker-rail, ledger i stället för kortgrid, en romersk+kursiv rubrikröst,
+  ett tonalt inversion-avsnitt. Men Calyx är ett varmt Stockholms-ateljé-register
+  (kräm, sten, rost, Cardo+PT Mono); den här sidan går kallt och maritimt
+  (dimma, petroleumblått, tegel) för att inte bli samma sajt med andra ord —
+  se avsnittet "vad som ändrades efter slop-granskningen" i svaret.
+
+  Foto: brevet tillåter verifierade Unsplash-ID:n eller en ärlig platshållare.
+  Utan webbläsare eller möjlighet att kontrollera länkar live i den här blinda
+  omgången väljer jag den ärliga vägen: handritad linjekonst i låst palett
+  (facader, tidvatten, blomhuvuden) i stället för hotlinkat foto som kan visa
+  sig trasigt. Det är också en hantverksmässig lösning som passar "binderi"
+  bättre än stockfoto hade gjort.
+-->
+
+<link rel="preconnect" href="https://fonts.googleapis.com" />
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+<link href="https://fonts.googleapis.com/css2?family=Piazzolla:ital,wght@0,300;0,400;0,500;0,600;1,400;1,500&family=Fragment+Mono:ital@0;1&display=swap" rel="stylesheet" />
+<script src="https://cdn.tailwindcss.com"></script>
+<script>
+tailwind.config = {
+  theme: {
+    extend: {
+      colors: {
+        fog:    'oklch(0.95 0.010 230)',
+        paper:  'oklch(0.90 0.014 80)',
+        ink:    'oklch(0.19 0.020 250)',
+        ink2:   'oklch(0.30 0.020 250)',
+        slate:  'oklch(0.50 0.025 235)',
+        mist:   'oklch(0.75 0.020 235)',
+        petrol: 'oklch(0.28 0.045 230)',
+        moss:   'oklch(0.40 0.060 150)',
+        brick:  'oklch(0.53 0.145 40)',
+      },
+      fontFamily: {
+        display: ['Piazzolla','ui-serif','Georgia','serif'],
+        mono: ['"Fragment Mono"','ui-monospace','monospace'],
+      },
+    }
+  }
+}
+</script>
+<style>
+  html, body { background: oklch(0.95 0.010 230); color: oklch(0.19 0.020 250); font-family: 'Piazzolla', serif; overflow-x: clip; }
+  * { min-width: 0; }
+  .kicker { font-family: 'Fragment Mono', monospace; font-size: 10.5px; letter-spacing: 0.22em; text-transform: uppercase; }
+  .disp { letter-spacing: -0.02em; overflow-wrap: anywhere; }
+  .disp-italic { font-style: italic; }
+  .rule { background: currentColor; height: 1px; opacity: 0.2; }
+  .num { font-feature-settings: "tnum"; }
+
+  .full-bleed { position: relative; left: 50%; right: 50%; margin-left: -50vw; margin-right: -50vw; width: 100vw; }
+
+  a { color: inherit; }
+  a.tap { display: inline-flex; align-items: center; min-height: 44px; padding: 4px 0; }
+  :focus-visible { outline: 2px solid oklch(0.53 0.145 40); outline-offset: 3px; }
+
+  .skip-link { position: absolute; left: -9999px; top: 0; z-index: 100; background: oklch(0.19 0.020 250); color: oklch(0.95 0.010 230); padding: 12px 18px; }
+  .skip-link:focus { left: 8px; top: 8px; }
+
+  .grain::before {
+    content: ""; position: fixed; inset: 0; pointer-events: none; z-index: 50;
+    background-image: url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='260' height='260'><filter id='n'><feTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='3' stitchTiles='stitch'/><feColorMatrix type='matrix' values='0 0 0 0 0.12 0 0 0 0 0.15 0 0 0 0 0.18 0 0 0 0.06 0'/></filter><rect width='100%' height='100%' filter='url(%23n)'/></svg>");
+    mix-blend-mode: multiply; opacity: 0.4;
+  }
+
+  .reveal { opacity: 0; transform: translateY(28px); transition: opacity 1.2s cubic-bezier(.16,1,.3,1), transform 1.2s cubic-bezier(.16,1,.3,1); }
+  .reveal.in { opacity: 1; transform: none; }
+
+  /* signature set-piece: the season-turn scrub — line drawing draws in, heading resolves from blur */
+  .turn-path { stroke-dashoffset: 640; transition: stroke-dashoffset 0.05s linear; }
+  .turn-head { filter: blur(10px); letter-spacing: 0.30em; opacity: 0.35; transition: filter 0.05s linear, letter-spacing 0.05s linear, opacity 0.05s linear; }
+  .turn-formed .turn-path { stroke-dashoffset: 0; }
+  .turn-formed .turn-head { filter: blur(0); letter-spacing: 0.02em; opacity: 1; }
+
+  @media (prefers-reduced-motion: reduce) {
+    .reveal { opacity: 1; transform: none; transition: none; }
+    .turn-path { stroke-dashoffset: 0 !important; transition: none !important; }
+    .turn-head { filter: blur(0) !important; letter-spacing: 0.02em !important; opacity: 1 !important; transition: none !important; }
+  }
+</style>
+</head>
+<body class="grain antialiased">
+
+<a href="#innehall" class="skip-link kicker">Hoppa till innehåll</a>
+
+<!-- NAV: kicker + wordmark + editorial anchor list, not a hamburger-first app shell -->
+<header class="border-b border-ink/20 relative z-10 bg-fog/95">
+  <div class="max-w-[1440px] mx-auto px-6 md:px-8 py-5 grid grid-cols-12 items-baseline gap-y-3">
+    <div class="col-span-6 md:col-span-3 kicker text-slate">Höst i Majorna</div>
+    <a href="#hero" class="col-span-12 md:col-span-6 order-last md:order-none text-center font-display disp-italic text-2xl disp">Florhuset</a>
+    <nav class="col-span-6 md:col-span-3 text-right kicker text-slate flex flex-wrap justify-end gap-x-5 gap-y-1">
+      <a href="#buketter" class="hover:text-ink tap">Buketter</a>
+      <a href="#brollop" class="hover:text-ink tap">Bröllop</a>
+      <a href="#hitta-hit" class="hover:text-ink tap">Hitta hit</a>
+    </nav>
+  </div>
+</header>
+
+<main id="innehall">
+
+<!-- HERO: NOT a centered stat-hero with gradient accent — a full-bleed drawn coastline under a label-rail headline, quiet zone above the type -->
+<section id="hero" class="relative full-bleed overflow-hidden">
+  <svg viewBox="0 0 1600 900" preserveAspectRatio="xMidYMid slice" class="absolute inset-0 w-full h-full" aria-hidden="true">
+    <rect width="1600" height="900" fill="oklch(0.28 0.045 230)" />
+    <path d="M0 620 Q 220 560 440 610 T 900 600 T 1600 640 V900 H0 Z" fill="oklch(0.24 0.040 232)" />
+    <path d="M0 700 Q 260 660 520 700 T 1050 690 T 1600 720 V900 H0 Z" fill="oklch(0.21 0.035 234)" />
+    <g stroke="oklch(0.75 0.020 235)" stroke-width="2" fill="none" opacity="0.55">
+      <path d="M120 560 L120 460 L200 460 L200 400 L280 400 L280 560" />
+      <rect x="140" y="480" width="24" height="34" />
+      <rect x="180" y="480" width="24" height="34" />
+      <rect x="220" y="420" width="24" height="34" />
+      <path d="M360 560 L360 430 L470 430 L470 560" />
+      <rect x="380" y="450" width="24" height="34" />
+      <rect x="420" y="450" width="24" height="34" />
+    </g>
+    <g stroke="oklch(0.53 0.145 40)" stroke-width="3" fill="none" opacity="0.9">
+      <path d="M1180 640 C1220 560 1260 560 1270 470" />
+      <circle cx="1272" cy="452" r="16" />
+      <path d="M1272 452 C1250 440 1250 420 1272 412 C1294 420 1294 440 1272 452 Z" />
+      <path d="M1272 452 C1300 448 1310 430 1300 410" />
+    </g>
+    <g stroke="oklch(0.75 0.020 235)" stroke-width="2" fill="none" opacity="0.4">
+      <path d="M1330 620 C1360 540 1400 540 1410 460" />
+      <circle cx="1412" cy="444" r="12" />
+    </g>
+  </svg>
+  <div class="absolute inset-0 bg-gradient-to-t from-petrol/95 via-petrol/35 to-transparent"></div>
+  <div class="relative max-w-[1440px] mx-auto px-6 md:px-8 pt-24 pb-16 md:pt-36 md:pb-24">
+    <div class="grid grid-cols-12 gap-x-8 items-end">
+      <div class="col-span-12 md:col-span-8">
+        <p class="kicker text-mist mb-5">Snitt varje torsdag, Mariaplan</p>
+        <h1 class="font-display text-fog disp text-[clamp(2.6rem,8vw,7rem)] leading-[0.94]">
+          Blommor som fortfarande<br>
+          <span class="disp-italic">doftar hav och mylla.</span>
+        </h1>
+      </div>
+      <div class="col-span-12 md:col-span-4 mt-10 md:mt-0 md:pl-6 md:border-l border-fog/30 text-fog/90">
+        <p class="kicker text-mist mb-3">Florhuset Majorna</p>
+        <p class="text-[16.5px] leading-[1.6] max-w-[36ch]">
+          En liten ateljé vid Mariaplan. Vi binder det som finns att få tag i just
+          den här veckan, från odlare på Västkusten och några krukor på egen
+          bakgård.
+        </p>
+        <div class="mt-6 flex flex-wrap gap-x-8 gap-y-2 kicker">
+          <a href="tel:+46311325400" class="tap border-b border-fog/50 hover:border-fog">Ring 031-13 25 40</a>
+          <a href="mailto:info@florhusetmajorna.se" class="tap border-b border-fog/50 hover:border-fog">Skriv till oss</a>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- OM VERKSTADEN: label-rail, quiet single-column text — NOT a three-icon feature row -->
+<section class="max-w-[1440px] mx-auto px-6 md:px-8 pt-24 pb-16">
+  <div class="grid grid-cols-12 gap-x-8">
+    <div class="col-span-12 md:col-span-3 md:pt-2">
+      <div class="kicker text-slate">Om verkstaden</div>
+      <div class="rule mt-3 text-ink"></div>
+      <p class="kicker text-slate mt-3 leading-snug">Elin Torstensson<br>florist och ägare</p>
+    </div>
+    <div class="col-span-12 md:col-span-9 mt-8 md:mt-0">
+      <p class="text-[17px] leading-[1.7] max-w-[58ch] text-ink2">
+        Florhuset ligger i gatuplan i ett landshövdingehus på hörnet av Karl
+        Johansgatan, ett stenkast från spårvagnshållplatsen vid Mariaplan. Genom
+        glasdörren syns arbetsbordet, buntbandet och hinkarna med det som just
+        kommit in.
+      </p>
+      <p class="mt-6 text-[17px] leading-[1.7] max-w-[58ch] text-ink2">
+        Vi binder inget som beställs en vecka i förväg och sen ligger och väntar.
+        Buketterna sätts ihop samma dag de hämtas eller körs ut, med det som är i
+        säsong längs kusten: dahlior, salvia och det som är kvar av sommarens
+        rosor innan frosten tar dem.
+      </p>
+    </div>
+  </div>
+</section>
+
+<!-- SIGNATURE SET-PIECE: scroll-scrubbed season-turn — line draws in + heading resolves from blur, two coordinated layers, ?preview=turn hook -->
+<section id="turn" class="max-w-[1440px] mx-auto px-6 md:px-8 py-10">
+  <div class="grid grid-cols-12 gap-x-8 items-center">
+    <div class="col-span-12 md:col-span-7">
+      <p id="turn-head" class="turn-head kicker text-slate">Nu vänder säsongen</p>
+      <p class="mt-2 text-[15px] text-slate max-w-[42ch]">September binder om det sommaren lämnade.</p>
+    </div>
+    <div class="col-span-12 md:col-span-5 mt-6 md:mt-0">
+      <svg viewBox="0 0 400 80" class="w-full h-auto" aria-hidden="true">
+        <path id="turn-path" class="turn-path" d="M4 60 C 60 20, 120 100, 180 40 S 300 -10, 396 50" fill="none" stroke="oklch(0.53 0.145 40)" stroke-width="2.5" stroke-linecap="round" pathLength="640" />
+      </svg>
+    </div>
+  </div>
+</section>
+
+<!-- LEDGER: typeset price list for the week's cuts — NOT a card grid -->
+<section id="buketter" class="max-w-[1440px] mx-auto px-6 md:px-8 pt-16 pb-16">
+  <div class="grid grid-cols-12 gap-x-8 mb-12">
+    <div class="col-span-12 md:col-span-3">
+      <div class="kicker text-slate">Säsongens buketter</div>
+      <div class="rule mt-3 text-ink"></div>
+    </div>
+    <div class="col-span-12 md:col-span-9 mt-6 md:mt-0">
+      <h2 class="font-display text-[clamp(1.9rem,4vw,3rem)] leading-[1.05] disp-italic disp">
+        Fyra snitt för september.
+      </h2>
+    </div>
+  </div>
+
+  <div class="rule text-ink"></div>
+  <ul class="num">
+    <li class="grid grid-cols-12 gap-x-6 py-7 items-baseline border-b border-ink/20">
+      <div class="col-span-2 md:col-span-1 font-display text-xl disp-italic text-slate">.01</div>
+      <div class="col-span-10 md:col-span-5">
+        <h3 class="font-display text-2xl md:text-3xl disp-italic disp">Sen sommar</h3>
+        <p class="text-slate text-[15px] mt-1 max-w-[46ch] leading-snug">Dahlia, salvia och sensommarens rudbeckia, bundna löst i en klase. För köksbordet eller till någon som fyller år i september.</p>
+      </div>
+      <div class="col-span-6 md:col-span-3 kicker text-slate mt-2 md:mt-0">snitt på torsdagen, håller cirka en vecka</div>
+      <div class="col-span-6 md:col-span-3 text-right font-display text-2xl md:text-3xl disp">385 kr</div>
+    </li>
+    <li class="grid grid-cols-12 gap-x-6 py-7 items-baseline border-b border-ink/20">
+      <div class="col-span-2 md:col-span-1 font-display text-xl disp-italic text-slate">.02</div>
+      <div class="col-span-10 md:col-span-5">
+        <h3 class="font-display text-2xl md:text-3xl disp-italic disp text-brick">Havtorn och rönnbär</h3>
+        <p class="text-slate text-[15px] mt-1 max-w-[46ch] leading-snug">Havtorn, rönnbär och torkat gräs, plockat längs kusten och i Änggårdsbergen. Doftar mer av salt än av blommor.</p>
+      </div>
+      <div class="col-span-6 md:col-span-3 kicker text-slate mt-2 md:mt-0">finns bara i september och oktober</div>
+      <div class="col-span-6 md:col-span-3 text-right font-display text-2xl md:text-3xl disp">425 kr</div>
+    </li>
+    <li class="grid grid-cols-12 gap-x-6 py-7 items-baseline border-b border-ink/20">
+      <div class="col-span-2 md:col-span-1 font-display text-xl disp-italic text-slate">.03</div>
+      <div class="col-span-10 md:col-span-5">
+        <h3 class="font-display text-2xl md:text-3xl disp-italic disp">Astrar i Majornablått</h3>
+        <p class="text-slate text-[15px] mt-1 max-w-[46ch] leading-snug">Blåvioletta astrar med eukalyptus, för en fönsterbräda som ska hålla en bra stund.</p>
+      </div>
+      <div class="col-span-6 md:col-span-3 kicker text-slate mt-2 md:mt-0">snitt på torsdagen, håller knappt två veckor</div>
+      <div class="col-span-6 md:col-span-3 text-right font-display text-2xl md:text-3xl disp">325 kr</div>
+    </li>
+    <li class="grid grid-cols-12 gap-x-6 py-7 items-baseline border-b border-ink/20">
+      <div class="col-span-2 md:col-span-1 font-display text-xl disp-italic text-slate">.04</div>
+      <div class="col-span-10 md:col-span-5">
+        <h3 class="font-display text-2xl md:text-3xl disp-italic disp">De sista rosorna</h3>
+        <p class="text-slate text-[15px] mt-1 max-w-[46ch] leading-snug">Det som är kvar av sommarens trädgårdsrosor, med hortensia som gått i rost och torkad månviol. För hallbordet, innan de tar slut för säsongen.</p>
+      </div>
+      <div class="col-span-6 md:col-span-3 kicker text-slate mt-2 md:mt-0">finns så länge lagret räcker</div>
+      <div class="col-span-6 md:col-span-3 text-right font-display text-2xl md:text-3xl disp">465 kr</div>
+    </li>
+  </ul>
+</section>
+
+<!-- IMMERSION: quiet full-bleed illustration break, not information — the grid-break moment -->
+<figure class="full-bleed">
+  <svg viewBox="0 0 1600 340" preserveAspectRatio="xMidYMid slice" class="w-full h-[26vh] min-h-[180px] block" role="img" aria-label="Teckning av husfasaderna vid Mariaplan, med spårvagnsledning över gatan.">
+    <rect width="1600" height="340" fill="oklch(0.90 0.014 80)" />
+    <g stroke="oklch(0.19 0.020 250)" stroke-width="1.6" fill="none" opacity="0.55">
+      <path d="M0 260 H1600" />
+      <path d="M60 260 V150 H260 V90 H460 V150 H620 V260" />
+      <path d="M700 260 V120 H960 V70 H1180 V120 H1360 V260" />
+      <path d="M1420 260 V160 H1600" />
+      <path d="M0 40 L1600 60" opacity="0.35" />
+    </g>
+  </svg>
+  <figcaption class="max-w-[1440px] mx-auto px-6 md:px-8 py-3 kicker text-slate">Fasaderna vid Mariaplan, i tuschlinje.</figcaption>
+</figure>
+
+<!-- BRÖLLOP: tonal inversion + split diptych, genuine three-step sequence so roman numerals are earned -->
+<section id="brollop" class="bg-petrol text-fog relative">
+  <div class="max-w-[1440px] mx-auto px-6 md:px-8 py-20 md:py-28 grid grid-cols-12 gap-x-8">
+    <div class="col-span-12 md:col-span-7">
+      <p class="kicker text-mist mb-5">Bröllop</p>
+      <h2 class="font-display disp text-[clamp(2.4rem,6vw,5.5rem)] leading-[0.96]">
+        Blommor som håller<br>
+        <span class="disp-italic">hela dagen.</span>
+      </h2>
+      <p class="mt-8 text-[17px] leading-[1.7] text-fog/85 max-w-[52ch]">
+        Vi träffas hemma hos er eller på ateljén och pratar om bordet, dukningen
+        och vad som faktiskt går att få tag i just den helgen. Vi tar emot ett
+        fåtal bröllop varje säsong, för att hinna göra det ordentligt.
+      </p>
+      <div class="mt-8">
+        <a href="mailto:brollop@florhusetmajorna.se" class="tap disp-italic font-display text-2xl md:text-3xl border-b border-fog/40 hover:border-fog">Boka ett bröllopsmöte</a>
+      </div>
+    </div>
+    <div class="col-span-12 md:col-span-5 mt-12 md:mt-6 md:pl-8 md:border-l border-fog/25">
+      <ol class="space-y-6 kicker text-mist">
+        <li><span class="text-fog">I. Möte</span><br><span class="normal-case tracking-normal font-display text-[15px] text-fog/75">om bordet, färgerna och budgeten</span></li>
+        <li><span class="text-fog">II. Snitt</span><br><span class="normal-case tracking-normal font-display text-[15px] text-fog/75">samma morgon som bröllopet</span></li>
+        <li><span class="text-fog">III. Leverans</span><br><span class="normal-case tracking-normal font-display text-[15px] text-fog/75">vi kör ut och dukar på plats</span></li>
+      </ol>
+    </div>
+  </div>
+</section>
+
+<!-- PRENUMERATION: compact ledger panel, single weighted price column — NOT a pricing-card trio -->
+<section id="prenumeration" class="max-w-[1440px] mx-auto px-6 md:px-8 py-20">
+  <div class="grid grid-cols-12 gap-x-8 items-start">
+    <div class="col-span-12 md:col-span-7">
+      <p class="kicker text-slate mb-4">Veckans blomma</p>
+      <h2 class="font-display disp text-[clamp(1.9rem,4vw,3rem)] leading-[1.05]">En bukett, varje torsdag.</h2>
+      <p class="mt-6 text-[17px] leading-[1.7] max-w-[52ch] text-ink2">
+        En prenumeration för den som vill ha friska blommor i huset utan att
+        behöva tänka på det. Vi binder efter vad som är i säsong. Hämtas i
+        ateljén på torsdagar mellan tio och sex, eller läggs i din port om du bor
+        inom gångavstånd från Mariaplan. Pausa eller säg upp när du vill, det är
+        bara att höra av sig.
+      </p>
+      <div class="mt-8">
+        <a href="mailto:info@florhusetmajorna.se?subject=Prenumeration" class="tap kicker border-b border-ink/40 hover:border-ink">Bli prenumerant</a>
+      </div>
+    </div>
+    <div class="col-span-12 md:col-span-5 mt-12 md:mt-0 md:pl-8 md:border-l border-ink/15">
+      <div class="kicker text-slate">Pris</div>
+      <div class="font-display text-brick disp text-[clamp(3.2rem,7vw,5rem)] leading-none mt-3">265 kr</div>
+      <div class="kicker text-slate mt-2">per vecka, hämtas i ateljén</div>
+    </div>
+  </div>
+</section>
+
+<!-- ATELJÉKVÄLLAR: full-bleed illustration with type over — third distinct anatomy -->
+<section class="full-bleed relative overflow-hidden">
+  <svg viewBox="0 0 1600 640" preserveAspectRatio="xMidYMid slice" class="absolute inset-0 w-full h-full" aria-hidden="true">
+    <rect width="1600" height="640" fill="oklch(0.28 0.045 230)" />
+    <g stroke="oklch(0.75 0.020 235)" stroke-width="1.6" fill="none" opacity="0.5">
+      <ellipse cx="360" cy="330" rx="230" ry="70" />
+      <ellipse cx="1260" cy="300" rx="230" ry="70" />
+      <path d="M120 330 Q 360 220 600 330" />
+      <path d="M1020 300 Q 1260 190 1500 300" />
+    </g>
+    <g stroke="oklch(0.53 0.145 40)" stroke-width="2.5" fill="none" opacity="0.85">
+      <circle cx="800" cy="260" r="26" />
+      <path d="M800 286 C 780 320 780 360 800 400" />
+      <path d="M800 340 C 830 330 850 340 860 360" />
+      <path d="M800 300 C 770 300 750 320 745 345" />
+    </g>
+  </svg>
+  <div class="absolute inset-0 bg-gradient-to-t from-petrol/90 via-petrol/50 to-petrol/20"></div>
+  <div class="relative max-w-[1440px] mx-auto px-6 md:px-8 py-24 md:py-32">
+    <div class="max-w-[46ch]">
+      <p class="kicker text-mist mb-5">Ateljékvällar</p>
+      <h2 class="font-display text-fog disp text-[clamp(2.2rem,5vw,4rem)] leading-[0.98]">
+        Binderi, <span class="disp-italic">varannan onsdag.</span>
+      </h2>
+      <p class="mt-6 text-[17px] leading-[1.65] text-fog/85">
+        Vi går igenom ett moment i taget: kransbindning på hösten, buketter till
+        våren, alltid med det som är i säsong. Material ingår, och du tar med dig
+        det du binder. Vi är en handfull runt bordet, så det finns tid att fråga.
+      </p>
+      <p class="kicker text-mist mt-8">Onsdagar, jämna veckor, 18–20 · Ateljén, Mariaplan 4</p>
+      <div class="mt-6 flex flex-wrap items-baseline gap-x-8 gap-y-3">
+        <span class="font-display text-fog disp-italic text-2xl">450 kr / kväll</span>
+        <a href="mailto:info@florhusetmajorna.se?subject=Ateljekvall" class="tap kicker text-mist border-b border-fog/40 hover:border-fog hover:text-fog">Boka en kväll</a>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- OM ATELJÉN: label-rail, address + öppettider as typeset facts, not a map embed -->
+<section id="hitta-hit" class="max-w-[1440px] mx-auto px-6 md:px-8 py-20">
+  <div class="grid grid-cols-12 gap-x-8">
+    <div class="col-span-12 md:col-span-3">
+      <div class="kicker text-slate">Hitta hit</div>
+      <div class="rule mt-3 text-ink"></div>
+    </div>
+    <div class="col-span-12 md:col-span-9 mt-8 md:mt-0 grid grid-cols-1 md:grid-cols-2 gap-10">
+      <div>
+        <h2 class="font-display disp text-[clamp(1.9rem,4vw,3rem)] leading-[1.05] mb-6">Mariaplan 4.</h2>
+        <p class="text-[17px] leading-[1.7] max-w-[44ch] text-ink2">
+          Ateljén ligger i bottenvåningen mot Mariaplan, med spårvagnshållplatsen
+          och tidningskiosken utanför dörren. Ingen bokning krävs för att titta
+          in, bara för möten och ateljékvällar.
+        </p>
+      </div>
+      <div class="grid grid-cols-2 gap-8">
+        <div>
+          <div class="kicker text-slate mb-2">Adress</div>
+          <address class="not-italic text-[16px] leading-[1.6] text-ink2">
+            Florhuset Majorna<br>
+            Mariaplan 4<br>
+            414 70 Göteborg
+          </address>
+        </div>
+        <div>
+          <div class="kicker text-slate mb-2">Öppettider</div>
+          <table class="text-[15px] leading-[1.8] text-ink2 num">
+            <tr><td class="pr-4">Tis–fre</td><td>10–18</td></tr>
+            <tr><td class="pr-4">Lördag</td><td>10–15</td></tr>
+            <tr><td class="pr-4">Sön–mån</td><td>Stängt</td></tr>
+          </table>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+</main>
+
+<!-- FOOTER: colophon ledger, echoes the fact-columns of the ledger anatomy rather than a link-farm -->
+<footer class="border-t border-ink/20 bg-paper">
+  <div class="max-w-[1440px] mx-auto px-6 md:px-8 py-10 grid grid-cols-2 md:grid-cols-4 gap-y-6 gap-x-6 kicker text-slate">
+    <div>© Florhuset Majorna 2026</div>
+    <div>Mariaplan 4, 414 70 Göteborg</div>
+    <div>031-13 25 40<br>info@florhusetmajorna.se</div>
+    <div>Satt i Piazzolla &amp; Fragment Mono. Illustrationer handritade i ateljén.</div>
+  </div>
+</footer>
+
+<script>
+  // shared reveal, fails toward visible
+  (function () {
+    var reduced = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+    var els = document.querySelectorAll('section, h1, h2, h3, li, figure');
+    if (reduced || !('IntersectionObserver' in window)) {
+      els.forEach(function (el) { el.classList.add('reveal', 'in'); });
+      return;
+    }
+    els.forEach(function (el) { el.classList.add('reveal'); });
+    var io = new IntersectionObserver(function (entries) {
+      entries.forEach(function (e) {
+        if (e.isIntersecting) { e.target.classList.add('in'); io.unobserve(e.target); }
+      });
+    }, { threshold: 0.1 });
+    els.forEach(function (el) { io.observe(el); });
+    // failsafe: reveal anything still hidden after load, and anything already on screen at mount
+    window.addEventListener('load', function () {
+      els.forEach(function (el) {
+        var r = el.getBoundingClientRect();
+        if (r.top < window.innerHeight && r.bottom > 0) el.classList.add('in');
+      });
+      setTimeout(function () { els.forEach(function (el) { el.classList.add('in'); }); }, 2500);
+    });
+  })();
+
+  // signature set-piece: season-turn scrub, driven by scroll progress through #turn, two coordinated layers
+  (function () {
+    var section = document.getElementById('turn');
+    var head = document.getElementById('turn-head');
+    var path = document.getElementById('turn-path');
+    if (!section || !head || !path) return;
+    var reduced = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+    var forcePreview = new URLSearchParams(window.location.search).get('preview') === 'turn';
+
+    function setProgress(p) {
+      var eased = p * p * (3 - 2 * p); // smoothstep
+      head.style.filter = 'blur(' + (10 - 10 * eased) + 'px)';
+      head.style.letterSpacing = (0.30 - 0.28 * eased) + 'em';
+      head.style.opacity = String(0.35 + 0.65 * eased);
+      path.style.strokeDashoffset = String(640 - 640 * eased);
+    }
+
+    if (reduced || forcePreview) {
+      section.classList.add('turn-formed');
+      setProgress(1);
+      return;
+    }
+
+    var ticking = false;
+    function update() {
+      ticking = false;
+      var r = section.getBoundingClientRect();
+      var vh = window.innerHeight || 1;
+      var raw = (vh - r.top) / (vh + r.height);
+      var p = Math.max(0, Math.min(1, raw));
+      setProgress(p);
+    }
+    window.addEventListener('scroll', function () {
+      if (!ticking) { ticking = true; requestAnimationFrame(update); }
+    }, { passive: true });
+    window.addEventListener('resize', function () {
+      if (!ticking) { ticking = true; requestAnimationFrame(update); }
+    });
+    update();
+  })();
+</script>
+</body>
+</html>

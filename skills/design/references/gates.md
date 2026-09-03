@@ -9,6 +9,7 @@ Three sources, one numbering space:
 | **1–57** | Hallmark slop-test | [`slop-test.md`](slop-test.md) — ported verbatim, **source of truth** |
 | **58–65** | This repo — the gate order, scope, and derivation rules | Below |
 | **66–88** | `design-taste-frontend` v2 production-test tells | [`production-tells.md`](production-tells.md) — micro-decoration signatures |
+| **89–91** | This repo — reference-lock discipline (Refero-derived) | Below |
 | **mechanical** | impeccable v4 detector, 68 deterministic rules | `detect.mjs`, mapped below |
 
 Do not restate 1–57 here. Read [`slop-test.md`](slop-test.md). Do not restate 66–88 here. Read [`production-tells.md`](production-tells.md).
@@ -66,6 +67,52 @@ Does not apply to redesign, new direction, or from-scratch requests — those ar
 ### 65 · Second identity inside an established surface
 
 Does a new section, component, feature, or state introduce type, colour, motion, or component language that does not exist elsewhere on the surface? A local addition inherits; it does not start a second identity. Check the eight axes in [`scope-discipline.md`](scope-discipline.md) § inheritance checklist. Fail on any axis that diverges without the user asking for it.
+
+---
+
+## Gates 89–91 · reference-lock and averaging
+
+These exist because [`reference-lock.md`](reference-lock.md) is this repo's
+contribution and nothing upstream enforces it. Each fires whether the build
+skipped the lock entirely or filled it out and drifted from it anyway.
+
+### 89 · Calm-editorial autopilot
+
+**Rule.** Warm ivory + oversized serif + one italic/serif word swap +
+olive/clay/terracotta, applied without a register that earns it, fails. Licensed
+only in the **editorial-print register** when the business plausibly publishes an
+edition, catalogue, or archive — and even there, never the same word-swap two
+generations running.
+**Detection.** Palette traces {olive, clay, terracotta} + serif display + one
+word carrying italic/serif/colour contrast, on a business with no editorial-print
+justification, or the identical word-swap recurring from the prior generation.
+**Fix.** Re-run Step 2 honestly — derive the register from the business, not from
+taste. See [`reference-lock.md`](reference-lock.md) § Anti-averaging and the
+identity / editorial litmus tests.
+
+### 90 · Reference averaging
+
+**Rule.** A build whose palette, type, or structure sits at the safe
+intersection of conflicting references — instead of committing to one dominant
+direction — fails, per **dark + acid + serif ≠ cream + orange + polite serif**.
+**Detection.** Compare the built tokens against each captured reference in the
+decision ledger; if no single reference dominates and the result reads as a
+softened middle of all of them, it's averaged.
+**Fix.** Name one primary reference and rebuild the lock's "Preserve" and
+"Borrow only" fields around it. See [`reference-lock.md`](reference-lock.md) §
+Anti-averaging.
+
+### 91 · Token-role drift
+
+**Rule.** A token or component pulled from a source reference keeps the role
+that source gave it — a CTA-only accent used as a background, a code-only colour
+used as UI chrome, or a decorative gradient promoted to a core surface all fail.
+**Detection.** Walk the reference-lock's "Role rules" field against the built
+page; flag every token or component whose deployed role doesn't match its
+declared one.
+**Fix.** Restore the token to its licensed role or drop it — never repurpose it
+to make a layout "work." See [`reference-lock.md`](reference-lock.md) §
+Token-role and media-role preservation.
 
 ---
 

@@ -1,0 +1,1469 @@
+<!doctype html>
+<html lang="sv">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Inställningar — Tidvatten Konto</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Familjen+Grotesk:wght@400;500;600;700&display=swap" rel="stylesheet">
+<style>
+
+/* ============================= TOKENS ============================= */
+:root{
+  --paper:#F4F6F5;
+  --ink:#101614;
+  --ink-2:#5A6662;
+  --line:#D6DDDA;
+  --accent:#0E6F5C;
+  --accent-ink:#FFFFFF;
+  --danger:#9C2F2F;
+
+  /* derived shades — computed from the locked tokens above, no new hues */
+  --paper-2: color-mix(in srgb, var(--ink) 4%, var(--paper));
+  --paper-3: color-mix(in srgb, var(--ink) 9%, var(--paper));
+  --accent-hover: color-mix(in srgb, var(--ink) 14%, var(--accent));
+  --accent-press: color-mix(in srgb, var(--ink) 24%, var(--accent));
+  --accent-wash: color-mix(in srgb, var(--accent) 10%, var(--paper));
+  --danger-hover: color-mix(in srgb, var(--ink) 14%, var(--danger));
+  --danger-wash: color-mix(in srgb, var(--danger) 8%, var(--paper));
+  --focus: var(--ink);
+  --shadow-1: 0 1px 2px rgba(16,22,20,.06);
+  --shadow-drawer: -8px 0 32px rgba(16,22,20,.14);
+  --shadow-toast: 0 6px 20px rgba(16,22,20,.16), 0 1px 3px rgba(16,22,20,.10);
+
+  --radius-control: 6px;
+  --radius-drawer: 10px;
+
+  --font: "Familjen Grotesk", system-ui, sans-serif;
+
+  /* motion tokens — emil-design-eng curves */
+  --ease-out: cubic-bezier(0.23, 1, 0.32, 1);
+  --ease-in-out: cubic-bezier(0.77, 0, 0.175, 1);
+  --ease-drawer: cubic-bezier(0.32, 0.72, 0, 1);
+}
+
+*{ box-sizing: border-box; }
+
+html,body{
+  margin:0;
+  padding:0;
+  background: var(--paper);
+  color: var(--ink);
+  font-family: var(--font);
+  font-size: 15px;
+  line-height: 1.5;
+  -webkit-font-smoothing: antialiased;
+}
+
+::selection{ background: var(--accent-wash); color: var(--ink); }
+
+/* ============================= LAYOUT ============================= */
+
+.topbar{
+  display:flex;
+  align-items:center;
+  justify-content:space-between;
+  gap: 16px;
+  padding: 14px 24px;
+  border-bottom: 1px solid var(--line);
+  background: var(--paper);
+  position: sticky;
+  top:0;
+  z-index: 20;
+}
+.brand{
+  display:flex;
+  align-items:center;
+  gap:10px;
+  font-weight:600;
+  font-size: 15px;
+  letter-spacing: -0.01em;
+}
+.brand-mark{
+  display:inline-flex;
+  align-items:center;
+  justify-content:center;
+  width: 26px;
+  height: 26px;
+  border-radius: var(--radius-control);
+  background: var(--ink);
+  color: var(--paper);
+  font-size: 11px;
+  font-weight: 700;
+  letter-spacing: 0.02em;
+}
+.topbar-meta{
+  font-size: 13px;
+  color: var(--ink-2);
+}
+.topbar-meta strong{ color: var(--ink); font-weight: 500; }
+
+.main{
+  max-width: 760px;
+  margin: 0 auto;
+  padding: 40px 24px 96px;
+}
+
+h1{
+  font-size: 22px;
+  font-weight: 600;
+  letter-spacing: -0.01em;
+  margin: 0 0 4px;
+}
+.subtitle{
+  margin: 0 0 28px;
+  color: var(--ink-2);
+  font-size: 14px;
+}
+
+/* ============================= TABS ============================= */
+
+.tabs{
+  position: relative;
+  display: flex;
+  gap: 4px;
+  border-bottom: 1px solid var(--line);
+  margin-bottom: 28px;
+}
+.tab{
+  appearance: none;
+  border: none;
+  background: transparent;
+  font-family: inherit;
+  font-size: 14px;
+  font-weight: 500;
+  color: var(--ink-2);
+  padding: 10px 4px;
+  margin: 0 10px;
+  cursor: pointer;
+  position: relative;
+  border-radius: var(--radius-control) var(--radius-control) 0 0;
+}
+.tab:first-child{ margin-left: 0; }
+@media (hover: hover) and (pointer: fine){
+  .tab:hover{ color: var(--ink); }
+}
+.tab:focus-visible{
+  outline: 2px solid var(--focus);
+  outline-offset: 2px;
+}
+.tab[aria-selected="true"]{
+  color: var(--ink);
+}
+.tab-indicator{
+  position: absolute;
+  left: 0;
+  bottom: -1px;
+  height: 2px;
+  width: 100px; /* reference unit; scaled per-tab */
+  background: var(--accent);
+  transform-origin: 0 0;
+  transform: translateX(0) scaleX(0);
+  transition: transform 220ms var(--ease-in-out);
+}
+.tab-indicator.ready{ transition: transform 220ms var(--ease-in-out); }
+
+.panel{
+  opacity: 1;
+  transition: opacity 140ms var(--ease-out);
+}
+.panel[data-entering]{
+  opacity: 0;
+}
+.panel[hidden]{ display: none; }
+
+/* ============================= SECTIONS / FORMS ============================= */
+
+.card{
+  background: var(--paper);
+}
+.section-title{
+  font-size: 15px;
+  font-weight: 600;
+  margin: 0 0 2px;
+}
+.section-desc{
+  font-size: 13px;
+  color: var(--ink-2);
+  margin: 0 0 20px;
+}
+
+.field-grid{
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 18px 16px;
+  margin-bottom: 4px;
+}
+.field-grid .field--full{ grid-column: 1 / -1; }
+
+.field{
+  display: flex;
+  flex-direction: column;
+  margin-bottom: 18px;
+}
+.field label{
+  font-size: 13px;
+  font-weight: 500;
+  color: var(--ink);
+  margin-bottom: 6px;
+}
+.field .req{ color: var(--danger); margin-left: 2px; }
+
+.field input,
+.field select{
+  height: 40px;
+  padding: 0 12px;
+  padding-right: 30px;
+  font-family: inherit;
+  font-size: 14px;
+  color: var(--ink);
+  background: var(--paper);
+  border: 1px solid var(--line);
+  outline: 2px solid transparent;
+  outline-offset: 1px;
+  border-radius: var(--radius-control);
+  transition: background-color 140ms ease, outline-color 140ms ease, border-color 140ms ease;
+  width: 100%;
+}
+.field input::placeholder{ color: var(--ink-2); opacity: .8; }
+
+@media (hover: hover) and (pointer: fine){
+  .field input:hover:not(:disabled):not(:focus),
+  .field select:hover:not(:disabled):not(:focus){
+    background: var(--paper-2);
+  }
+}
+.field input:focus-visible,
+.field select:focus-visible{
+  outline-color: var(--focus);
+  border-color: var(--ink-2);
+}
+.field input:disabled{
+  opacity: .55;
+  cursor: not-allowed;
+  background: var(--paper-2);
+}
+.field input[aria-invalid="true"]{
+  border-color: var(--danger);
+}
+.field input[data-valid="true"]{
+  border-color: var(--accent);
+}
+
+.field-wrap{ position: relative; }
+.field-glyph{
+  position: absolute;
+  right: 10px;
+  top: 50%;
+  transform: translateY(-50%);
+  width: 16px;
+  height: 16px;
+  display: none;
+  align-items: center;
+  justify-content: center;
+}
+.field-glyph svg{ width: 100%; height: 100%; }
+.field[data-state="error"] .field-glyph--error{ display: flex; }
+.field[data-state="success"] .field-glyph--success{ display: flex; }
+
+.field .help{
+  min-height: 1lh;
+  margin-top: 6px;
+  font-size: 12px;
+  color: var(--ink-2);
+}
+.field .help[data-error="true"]{
+  color: var(--danger);
+}
+
+/* ============================= BUTTONS ============================= */
+
+.btn{
+  appearance: none;
+  border: 1px solid transparent;
+  font-family: inherit;
+  font-size: 14px;
+  font-weight: 500;
+  height: 40px;
+  padding: 0 16px;
+  border-radius: var(--radius-control);
+  cursor: pointer;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+  white-space: nowrap;
+  transition: transform 160ms var(--ease-out), background-color 140ms ease, border-color 140ms ease, opacity 140ms ease;
+}
+.btn:focus-visible{
+  outline: 2px solid var(--focus);
+  outline-offset: 2px;
+}
+.btn:active:not(:disabled){ transform: scale(0.97); }
+.btn:disabled,
+.btn[aria-disabled="true"]{
+  opacity: .55;
+  cursor: not-allowed;
+  transform: none !important;
+}
+
+.btn--primary{
+  background: var(--accent);
+  color: var(--accent-ink);
+  border-color: var(--accent);
+}
+@media (hover: hover) and (pointer: fine){
+  .btn--primary:hover:not(:disabled){ background: var(--accent-hover); border-color: var(--accent-hover); }
+}
+.btn--primary:active:not(:disabled){ background: var(--accent-press); border-color: var(--accent-press); }
+
+.btn--secondary{
+  background: var(--paper);
+  color: var(--ink);
+  border-color: var(--line);
+}
+@media (hover: hover) and (pointer: fine){
+  .btn--secondary:hover:not(:disabled){ background: var(--paper-2); }
+}
+.btn--secondary:active:not(:disabled){ background: var(--paper-3); }
+
+.btn--ghost{
+  background: transparent;
+  color: var(--ink-2);
+  border-color: transparent;
+  height: 36px;
+  padding: 0 10px;
+}
+@media (hover: hover) and (pointer: fine){
+  .btn--ghost:hover:not(:disabled){ background: var(--paper-2); color: var(--ink); }
+}
+
+.btn__spinner{
+  width: 14px;
+  height: 14px;
+  border-radius: 50%;
+  border: 2px solid color-mix(in srgb, var(--accent-ink) 35%, transparent);
+  border-top-color: var(--accent-ink);
+  animation: spin 700ms linear infinite;
+  flex: none;
+}
+.btn--secondary .btn__spinner{
+  border-color: color-mix(in srgb, var(--ink) 25%, transparent);
+  border-top-color: var(--ink);
+}
+@keyframes spin{ to{ transform: rotate(360deg); } }
+
+.save-row{
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  margin-top: 8px;
+  padding-top: 20px;
+  border-top: 1px solid var(--line);
+}
+.save-row .save-note{
+  font-size: 12px;
+  color: var(--ink-2);
+}
+
+/* ============================= TOGGLE SWITCH ============================= */
+
+.toggle-list{
+  display: flex;
+  flex-direction: column;
+}
+.toggle-row{
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 16px;
+  padding: 16px 0;
+  border-bottom: 1px solid var(--line);
+}
+.toggle-row:first-child{ padding-top: 0; }
+.toggle-row:last-of-type{ border-bottom: none; }
+.toggle-copy{ max-width: 480px; }
+.toggle-title{ font-size: 14px; font-weight: 500; margin: 0 0 2px; }
+.toggle-desc{ font-size: 13px; color: var(--ink-2); margin: 0; }
+
+.toggle{
+  display: inline-flex;
+  align-items: center;
+  gap: 10px;
+  flex: none;
+}
+.toggle-state{
+  font-size: 12px;
+  font-weight: 500;
+  color: var(--ink-2);
+  min-width: 58px;
+  text-align: right;
+}
+.switch{
+  position: relative;
+  width: 40px;
+  height: 24px;
+  flex: none;
+}
+.switch input{
+  position: absolute;
+  inset: 0;
+  opacity: 0;
+  margin: 0;
+  cursor: pointer;
+}
+.switch .track{
+  position: absolute;
+  inset: 0;
+  background: var(--line);
+  border-radius: 999px;
+  transition: background-color 150ms ease;
+}
+.switch .thumb{
+  position: absolute;
+  top: 3px;
+  left: 3px;
+  width: 18px;
+  height: 18px;
+  border-radius: 50%;
+  background: var(--paper);
+  box-shadow: var(--shadow-1);
+  transform: translateX(0);
+  transition: transform 150ms var(--ease-out);
+}
+.switch input:checked ~ .track{ background: var(--accent); }
+.switch input:checked ~ .thumb{ transform: translateX(16px); }
+.switch input:focus-visible ~ .track{
+  outline: 2px solid var(--focus);
+  outline-offset: 2px;
+}
+.switch input:disabled ~ .track{ opacity: .5; cursor: not-allowed; }
+
+/* ============================= BILLING BLOCKS ============================= */
+
+.billing-block{
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 16px;
+  padding: 16px;
+  border: 1px solid var(--line);
+  border-radius: var(--radius-control);
+  margin-bottom: 16px;
+  background: var(--paper);
+}
+.billing-block__label{ font-size: 12px; color: var(--ink-2); margin: 0 0 4px; }
+.billing-block__value{ font-size: 15px; font-weight: 500; margin: 0; }
+.billing-block__sub{ font-size: 13px; color: var(--ink-2); margin: 2px 0 0; }
+
+.divider-label{
+  font-size: 12px;
+  font-weight: 600;
+  letter-spacing: 0.04em;
+  text-transform: uppercase;
+  color: var(--ink-2);
+  margin: 28px 0 14px;
+}
+
+/* ============================= API KEYS SECTION (in Profil) ============================= */
+
+.api-section{
+  margin-top: 32px;
+  padding-top: 28px;
+  border-top: 1px solid var(--line);
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 16px;
+}
+.api-section__copy .section-title{ margin-bottom: 4px; }
+.api-section__copy .section-desc{ margin-bottom: 0; max-width: 440px; }
+
+/* ============================= TOAST ============================= */
+
+.toast-region{
+  position: fixed;
+  right: 20px;
+  bottom: 20px;
+  z-index: 80;
+  display: flex;
+  flex-direction: column-reverse;
+  gap: 10px;
+  align-items: flex-end;
+  pointer-events: none;
+}
+.toast{
+  pointer-events: auto;
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  background: var(--ink);
+  color: var(--paper);
+  font-size: 13px;
+  font-weight: 500;
+  padding: 12px 14px;
+  border-radius: var(--radius-control);
+  box-shadow: var(--shadow-toast);
+  min-width: 180px;
+  max-width: 320px;
+  transform: translateY(0) translateX(0);
+  opacity: 1;
+  transition: transform 400ms ease, opacity 400ms ease;
+  touch-action: pan-y;
+  cursor: grab;
+}
+.toast[data-dragging="true"]{ transition: none; cursor: grabbing; }
+.toast[data-entering="true"]{
+  transform: translateY(12px);
+  opacity: 0;
+}
+.toast[data-leaving="true"]{
+  opacity: 0;
+}
+.toast__icon{
+  width: 16px;
+  height: 16px;
+  flex: none;
+  color: var(--accent);
+}
+.toast--danger .toast__icon{ color: color-mix(in srgb, var(--paper) 40%, var(--danger)); }
+.toast__icon svg{ width: 100%; height: 100%; display: block; }
+
+/* ============================= DRAWER ============================= */
+
+.drawer-backdrop{
+  position: fixed;
+  inset: 0;
+  background: color-mix(in srgb, var(--ink) 40%, transparent);
+  opacity: 0;
+  pointer-events: none;
+  transition: opacity 300ms var(--ease-out);
+  z-index: 60;
+}
+.drawer-backdrop[data-open="true"]{
+  opacity: 1;
+  pointer-events: auto;
+}
+
+.drawer{
+  position: fixed;
+  top: 0;
+  right: 0;
+  bottom: 0;
+  width: min(420px, 100vw);
+  background: var(--paper);
+  border-left: 1px solid var(--line);
+  border-top-left-radius: var(--radius-drawer);
+  border-bottom-left-radius: var(--radius-drawer);
+  box-shadow: var(--shadow-drawer);
+  z-index: 70;
+  display: flex;
+  flex-direction: column;
+  transform: translateX(100%);
+  transition: transform 400ms var(--ease-drawer);
+  visibility: hidden;
+}
+.drawer[data-open="true"]{
+  transform: translateX(0);
+  visibility: visible;
+}
+.drawer[data-dragging="true"]{ transition: none; }
+
+.drawer__header{
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 12px;
+  padding: 18px 20px;
+  border-bottom: 1px solid var(--line);
+  flex: none;
+}
+.drawer__title{ font-size: 16px; font-weight: 600; margin: 0; }
+.drawer__desc{ font-size: 12px; color: var(--ink-2); margin: 2px 0 0; }
+
+.drawer__close{
+  width: 32px;
+  height: 32px;
+  border-radius: var(--radius-control);
+  border: none;
+  background: transparent;
+  color: var(--ink-2);
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  flex: none;
+  transition: background-color 140ms ease, transform 160ms var(--ease-out);
+}
+.drawer__close::before{
+  content: "";
+  position: absolute;
+  inset: -6px;
+}
+.drawer__close{ position: relative; }
+@media (hover: hover) and (pointer: fine){
+  .drawer__close:hover{ background: var(--paper-2); color: var(--ink); }
+}
+.drawer__close:focus-visible{ outline: 2px solid var(--focus); outline-offset: 2px; }
+.drawer__close:active{ transform: scale(0.94); }
+.drawer__close svg{ width: 16px; height: 16px; }
+
+.drawer__body{
+  padding: 8px 20px 20px;
+  overflow-y: auto;
+  flex: 1;
+}
+
+.key-row{
+  display: flex;
+  align-items: flex-start;
+  justify-content: space-between;
+  gap: 12px;
+  padding: 16px 0;
+  border-bottom: 1px solid var(--line);
+  transition: opacity 220ms var(--ease-out), transform 220ms var(--ease-out);
+}
+.key-row:last-of-type{ border-bottom: none; }
+.key-row[data-removing="true"]{
+  opacity: 0;
+  transform: translateX(12px);
+}
+.key-row__main{ min-width: 0; }
+.key-row__name{ font-size: 14px; font-weight: 600; margin: 0 0 3px; }
+.key-row__value{
+  font-size: 12px;
+  color: var(--ink-2);
+  font-family: ui-monospace, "SFMono-Regular", Consolas, monospace;
+  margin: 0 0 6px;
+}
+.key-row__meta{ font-size: 12px; color: var(--ink-2); margin: 0; }
+.key-row__meta + .key-row__meta{ margin-top: 2px; }
+
+.hold-delete{
+  position: relative;
+  flex: none;
+  overflow: hidden;
+  height: 32px;
+  padding: 0 12px;
+  border-radius: var(--radius-control);
+  border: 1px solid var(--line);
+  background: var(--paper);
+  color: var(--danger);
+  font-family: inherit;
+  font-size: 12px;
+  font-weight: 500;
+  cursor: pointer;
+  transition: transform 160ms var(--ease-out), border-color 140ms ease;
+  -webkit-user-select: none;
+  user-select: none;
+  touch-action: none;
+}
+@media (hover: hover) and (pointer: fine){
+  .hold-delete:hover:not(:disabled){ border-color: var(--danger); background: var(--danger-wash); }
+}
+.hold-delete:focus-visible{ outline: 2px solid var(--focus); outline-offset: 2px; }
+.hold-delete:disabled{ opacity: .5; cursor: not-allowed; }
+.hold-delete__fill{
+  position: absolute;
+  inset: 0;
+  background: var(--danger);
+  clip-path: inset(0 100% 0 0);
+  transition: clip-path 200ms var(--ease-out);
+  z-index: 0;
+}
+.hold-delete[data-holding="true"]{ transform: scale(0.97); }
+.hold-delete[data-holding="true"] .hold-delete__fill{
+  clip-path: inset(0 0 0 0);
+  transition: clip-path 2000ms linear;
+}
+.hold-delete__label{ position: relative; z-index: 1; }
+.hold-delete[data-holding="true"] .hold-delete__label,
+.hold-delete[data-complete="true"] .hold-delete__label{ color: var(--accent-ink); }
+
+.drawer__footer{
+  padding: 14px 20px 20px;
+  border-top: 1px solid var(--line);
+  flex: none;
+}
+
+.empty-keys{
+  display: none;
+  flex-direction: column;
+  align-items: flex-start;
+  gap: 10px;
+  padding: 24px 0;
+  color: var(--ink-2);
+  font-size: 13px;
+}
+.empty-keys[data-visible="true"]{ display: flex; }
+
+/* ============================= REDUCED MOTION ============================= */
+
+@media (prefers-reduced-motion: reduce){
+  .tab-indicator{ transition: opacity 160ms ease; }
+  .panel{ transition: opacity 120ms ease; }
+  .btn{ transition: background-color 120ms ease, border-color 120ms ease, opacity 120ms ease; }
+  .btn:active:not(:disabled){ transform: none; }
+  .switch .thumb{ transition: opacity 120ms ease; }
+  .drawer{ transition: opacity 220ms ease; transform: none !important; }
+  .drawer[data-open="false"]{ opacity: 0; pointer-events: none; }
+  .drawer[data-open="true"]{ opacity: 1; }
+  .drawer-backdrop{ transition: opacity 220ms ease; }
+  .toast{ transition: opacity 220ms ease; transform: none !important; }
+  .toast[data-entering="true"]{ transform: none; }
+  .hold-delete[data-holding="true"] .hold-delete__fill{ transition: clip-path 2000ms linear; }
+  .hold-delete__fill{ transition: opacity 160ms ease; }
+  .key-row{ transition: opacity 160ms ease; }
+  .key-row[data-removing="true"]{ transform: none; }
+  .drawer__close:active{ transform: none; }
+}
+
+/* ============================= RESPONSIVE ============================= */
+
+@media (max-width: 640px){
+  .field-grid{ grid-template-columns: 1fr; }
+  .drawer{ width: 100vw; border-radius: 0; }
+  .api-section{ flex-direction: column; align-items: flex-start; }
+  .billing-block{ flex-direction: column; align-items: flex-start; }
+}
+
+</style>
+</head>
+<body>
+
+<header class="topbar">
+  <div class="brand"><span class="brand-mark">TV</span>Tidvatten Konto</div>
+  <div class="topbar-meta">Inloggad som <strong>elin.bjork@tidvatten.se</strong></div>
+</header>
+
+<main class="main">
+  <h1>Inställningar</h1>
+  <p class="subtitle">Hantera profil, aviseringar och fakturering för ditt konto.</p>
+
+  <div class="tabs" role="tablist" aria-label="Inställningskategorier">
+    <button class="tab" role="tab" id="tab-profil" aria-controls="panel-profil" aria-selected="true" type="button">Profil</button>
+    <button class="tab" role="tab" id="tab-aviseringar" aria-controls="panel-aviseringar" aria-selected="false" tabindex="-1" type="button">Aviseringar</button>
+    <button class="tab" role="tab" id="tab-fakturering" aria-controls="panel-fakturering" aria-selected="false" tabindex="-1" type="button">Fakturering</button>
+    <span class="tab-indicator" id="tabIndicator" aria-hidden="true"></span>
+  </div>
+
+  <!-- ============ PROFIL ============ -->
+  <section class="panel" role="tabpanel" id="panel-profil" aria-labelledby="tab-profil" tabindex="0">
+    <form class="card" data-panel-form="profil" novalidate>
+      <p class="section-title">Kontoinformation</p>
+      <p class="section-desc">Dessa uppgifter används på fakturor och för kontoåterställning.</p>
+
+      <div class="field-grid">
+        <div class="field">
+          <label for="f-name">Fullständigt namn</label>
+          <div class="field-wrap">
+            <input id="f-name" name="name" type="text" value="Elin Björk" autocomplete="name">
+          </div>
+          <p class="help">Visas för andra medlemmar i teamet.</p>
+        </div>
+
+        <div class="field" id="field-email" data-state="default">
+          <label for="f-email">E-postadress<span class="req">*</span></label>
+          <div class="field-wrap">
+            <input id="f-email" name="email" type="email" value="elin.bjork@tidvatten.se" required aria-required="true" autocomplete="email" aria-describedby="help-email">
+            <span class="field-glyph field-glyph--error" aria-hidden="true">
+              <svg viewBox="0 0 16 16" fill="none"><circle cx="8" cy="8" r="7" stroke="currentColor" stroke-width="1.4"/><path d="M8 4.5v4.2M8 11v.01" stroke="currentColor" stroke-width="1.4" stroke-linecap="round"/></svg>
+            </span>
+            <span class="field-glyph field-glyph--success" aria-hidden="true">
+              <svg viewBox="0 0 16 16" fill="none"><path d="M3.5 8.3l2.8 2.8L12.5 5" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/></svg>
+            </span>
+          </div>
+          <p class="help" id="help-email" data-error="false">Används för inloggning och kvitton.</p>
+        </div>
+
+        <div class="field">
+          <label for="f-phone">Telefonnummer</label>
+          <div class="field-wrap">
+            <input id="f-phone" name="phone" type="tel" value="070-123 45 67" autocomplete="tel">
+          </div>
+          <p class="help">Endast för säkerhetsverifiering.</p>
+        </div>
+
+        <div class="field">
+          <label for="f-company">Företag (valfritt)</label>
+          <div class="field-wrap">
+            <input id="f-company" name="company" type="text" value="Nordisk Handel AB">
+          </div>
+          <p class="help">&nbsp;</p>
+        </div>
+      </div>
+
+      <div class="save-row">
+        <button class="btn btn--primary" type="submit" data-save-btn>
+          <span class="btn__spinner" hidden aria-hidden="true"></span>
+          <span class="btn__label">Spara ändringar</span>
+        </button>
+        <span class="save-note">Ändringar sparas direkt till ditt konto.</span>
+      </div>
+
+      <div class="api-section">
+        <div class="api-section__copy">
+          <p class="section-title">API-nycklar</p>
+          <p class="section-desc">Skapa och hantera nycklar för åtkomst till Tidvattens API.</p>
+        </div>
+        <button class="btn btn--secondary" type="button" id="openDrawerBtn" aria-haspopup="dialog" aria-controls="apiDrawer">Hantera API-nycklar</button>
+      </div>
+    </form>
+  </section>
+
+  <!-- ============ AVISERINGAR ============ -->
+  <section class="panel" role="tabpanel" id="panel-aviseringar" aria-labelledby="tab-aviseringar" tabindex="0" hidden>
+    <form class="card" data-panel-form="aviseringar">
+      <p class="section-title">Aviseringsinställningar</p>
+      <p class="section-desc">Välj vad Tidvatten Konto ska meddela dig om, och hur.</p>
+
+      <div class="toggle-list">
+        <div class="toggle-row">
+          <div class="toggle-copy">
+            <p class="toggle-title">Faktureringsaviseringar via e-post</p>
+            <p class="toggle-desc">Kvitton, betalningspåminnelser och kvartalsrapporter.</p>
+          </div>
+          <div class="toggle">
+            <span class="toggle-state" data-state-label>Aktiverad</span>
+            <span class="switch">
+              <input type="checkbox" id="tg-billing" checked data-toggle data-on-label="Aktiverad" data-off-label="Av">
+              <span class="track" aria-hidden="true"></span>
+              <span class="thumb" aria-hidden="true"></span>
+            </span>
+          </div>
+        </div>
+
+        <div class="toggle-row">
+          <div class="toggle-copy">
+            <p class="toggle-title">Push vid inloggning från ny enhet</p>
+            <p class="toggle-desc">Vi varnar dig direkt om ditt konto används från en okänd enhet.</p>
+          </div>
+          <div class="toggle">
+            <span class="toggle-state" data-state-label>Aktiverad</span>
+            <span class="switch">
+              <input type="checkbox" id="tg-login" checked data-toggle data-on-label="Aktiverad" data-off-label="Av">
+              <span class="track" aria-hidden="true"></span>
+              <span class="thumb" aria-hidden="true"></span>
+            </span>
+          </div>
+        </div>
+
+        <div class="toggle-row">
+          <div class="toggle-copy">
+            <p class="toggle-title">Veckosammanfattning</p>
+            <p class="toggle-desc">En sammanfattning av aktivitet, skickas varje måndag kl. 08:00.</p>
+          </div>
+          <div class="toggle">
+            <span class="toggle-state" data-state-label>Av</span>
+            <span class="switch">
+              <input type="checkbox" id="tg-weekly" data-toggle data-on-label="Aktiverad" data-off-label="Av">
+              <span class="track" aria-hidden="true"></span>
+              <span class="thumb" aria-hidden="true"></span>
+            </span>
+          </div>
+        </div>
+
+        <div class="toggle-row">
+          <div class="toggle-copy">
+            <p class="toggle-title">Produktnyheter och tips</p>
+            <p class="toggle-desc">Enstaka e-post om nya funktioner. Max en gång i månaden.</p>
+          </div>
+          <div class="toggle">
+            <span class="toggle-state" data-state-label>Av</span>
+            <span class="switch">
+              <input type="checkbox" id="tg-news" data-toggle data-on-label="Aktiverad" data-off-label="Av">
+              <span class="track" aria-hidden="true"></span>
+              <span class="thumb" aria-hidden="true"></span>
+            </span>
+          </div>
+        </div>
+      </div>
+
+      <div class="save-row">
+        <button class="btn btn--primary" type="submit" data-save-btn>
+          <span class="btn__spinner" hidden aria-hidden="true"></span>
+          <span class="btn__label">Spara ändringar</span>
+        </button>
+        <span class="save-note">Gäller för hela kontot.</span>
+      </div>
+    </form>
+  </section>
+
+  <!-- ============ FAKTURERING ============ -->
+  <section class="panel" role="tabpanel" id="panel-fakturering" aria-labelledby="tab-fakturering" tabindex="0" hidden>
+    <form class="card" data-panel-form="fakturering">
+      <p class="section-title">Plan och betalning</p>
+      <p class="section-desc">Din nuvarande plan och registrerade betalmetod.</p>
+
+      <div class="billing-block">
+        <div>
+          <p class="billing-block__label">Nuvarande plan</p>
+          <p class="billing-block__value">Team — 1 490 kr/mån</p>
+          <p class="billing-block__sub">Faktureras månadsvis · 8 av 10 platser använda</p>
+        </div>
+        <button class="btn btn--secondary" type="button">Byt plan</button>
+      </div>
+
+      <div class="billing-block">
+        <div>
+          <p class="billing-block__label">Betalkort</p>
+          <p class="billing-block__value">Visa •••• 4242</p>
+          <p class="billing-block__sub">Utgår 08/28</p>
+        </div>
+        <button class="btn btn--secondary" type="button">Uppdatera kort</button>
+      </div>
+
+      <p class="divider-label">Faktureringsadress</p>
+
+      <div class="field-grid">
+        <div class="field field--full">
+          <label for="f-orgname">Företagsnamn</label>
+          <div class="field-wrap">
+            <input id="f-orgname" name="orgname" type="text" value="Nordisk Handel AB">
+          </div>
+          <p class="help">&nbsp;</p>
+        </div>
+
+        <div class="field">
+          <label for="f-orgnr">Org.nummer</label>
+          <div class="field-wrap">
+            <input id="f-orgnr" name="orgnr" type="text" value="556677-8899">
+          </div>
+          <p class="help">&nbsp;</p>
+        </div>
+
+        <div class="field">
+          <label for="f-vat">Momsregistreringsnummer</label>
+          <div class="field-wrap">
+            <input id="f-vat" name="vat" type="text" value="SE556677889901">
+          </div>
+          <p class="help">&nbsp;</p>
+        </div>
+
+        <div class="field field--full">
+          <label for="f-address">Adress</label>
+          <div class="field-wrap">
+            <input id="f-address" name="address" type="text" value="Skeppsbron 12">
+          </div>
+          <p class="help">&nbsp;</p>
+        </div>
+
+        <div class="field">
+          <label for="f-zip">Postnummer</label>
+          <div class="field-wrap">
+            <input id="f-zip" name="zip" type="text" value="111 30" placeholder="000 00">
+          </div>
+          <p class="help">&nbsp;</p>
+        </div>
+
+        <div class="field">
+          <label for="f-city">Ort</label>
+          <div class="field-wrap">
+            <input id="f-city" name="city" type="text" value="Stockholm">
+          </div>
+          <p class="help">&nbsp;</p>
+        </div>
+      </div>
+
+      <div class="save-row">
+        <button class="btn btn--primary" type="submit" data-save-btn>
+          <span class="btn__spinner" hidden aria-hidden="true"></span>
+          <span class="btn__label">Spara ändringar</span>
+        </button>
+        <span class="save-note">Uppdaterade uppgifter används från nästa faktura.</span>
+      </div>
+    </form>
+  </section>
+</main>
+
+<!-- ============ DRAWER: API KEYS ============ -->
+<div class="drawer-backdrop" id="drawerBackdrop" data-open="false"></div>
+<aside class="drawer" id="apiDrawer" data-open="false" role="dialog" aria-modal="true" aria-labelledby="drawerTitle" aria-hidden="true">
+  <div class="drawer__header">
+    <div>
+      <p class="drawer__title" id="drawerTitle">API-nycklar</p>
+      <p class="drawer__desc">3 aktiva nycklar</p>
+    </div>
+    <button class="drawer__close" type="button" id="closeDrawerBtn" aria-label="Stäng">
+      <svg viewBox="0 0 16 16" fill="none"><path d="M3.5 3.5l9 9M12.5 3.5l-9 9" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/></svg>
+    </button>
+  </div>
+
+  <div class="drawer__body" id="drawerBody">
+    <div class="key-row" data-key-row data-key-id="prod">
+      <div class="key-row__main">
+        <p class="key-row__name">Produktion</p>
+        <p class="key-row__value">tv_live_••••••••3f2a</p>
+        <p class="key-row__meta">Skapad 12 jan 2026</p>
+        <p class="key-row__meta">Senast använd för 2 timmar sedan</p>
+      </div>
+      <button class="hold-delete" type="button" data-hold-delete aria-label="Håll intryckt för att radera nyckeln Produktion">
+        <span class="hold-delete__fill" aria-hidden="true"></span>
+        <span class="hold-delete__label">Radera</span>
+      </button>
+    </div>
+
+    <div class="key-row" data-key-row data-key-id="staging">
+      <div class="key-row__main">
+        <p class="key-row__name">Staging</p>
+        <p class="key-row__value">tv_test_••••••••91cd</p>
+        <p class="key-row__meta">Skapad 3 nov 2025</p>
+        <p class="key-row__meta">Senast använd igår</p>
+      </div>
+      <button class="hold-delete" type="button" data-hold-delete aria-label="Håll intryckt för att radera nyckeln Staging">
+        <span class="hold-delete__fill" aria-hidden="true"></span>
+        <span class="hold-delete__label">Radera</span>
+      </button>
+    </div>
+
+    <div class="key-row" data-key-row data-key-id="cicd">
+      <div class="key-row__main">
+        <p class="key-row__name">CI/CD-pipeline</p>
+        <p class="key-row__value">tv_live_••••••••7b60</p>
+        <p class="key-row__meta">Skapad 28 aug 2025</p>
+        <p class="key-row__meta">Senast använd för 5 dagar sedan</p>
+      </div>
+      <button class="hold-delete" type="button" data-hold-delete aria-label="Håll intryckt för att radera nyckeln CI/CD-pipeline">
+        <span class="hold-delete__fill" aria-hidden="true"></span>
+        <span class="hold-delete__label">Radera</span>
+      </button>
+    </div>
+
+    <div class="empty-keys" id="emptyKeys">
+      <p>Inga API-nycklar kvar. Skapa en ny för att ge en integration åtkomst.</p>
+    </div>
+  </div>
+
+  <div class="drawer__footer">
+    <button class="btn btn--secondary" type="button" style="width:100%">+ Skapa ny nyckel</button>
+  </div>
+</aside>
+
+<div class="toast-region" id="toastRegion" aria-live="polite" aria-atomic="false"></div>
+
+<script>
+(function(){
+  "use strict";
+
+  var reduceMotion = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
+
+  /* ---------------------------------------------------------------- */
+  /* Tabs                                                              */
+  /* ---------------------------------------------------------------- */
+  var tabs = Array.prototype.slice.call(document.querySelectorAll(".tab"));
+  var panels = {
+    "tab-profil": document.getElementById("panel-profil"),
+    "tab-aviseringar": document.getElementById("panel-aviseringar"),
+    "tab-fakturering": document.getElementById("panel-fakturering")
+  };
+  var indicator = document.getElementById("tabIndicator");
+
+  function positionIndicator(tab, animate){
+    var scaleX = tab.offsetWidth / 100;
+    var translateX = tab.offsetLeft;
+    if (!animate) indicator.style.transition = "none";
+    indicator.style.transform = "translateX(" + translateX + "px) scaleX(" + scaleX + ")";
+    if (!animate){
+      // force reflow then restore transition
+      void indicator.offsetWidth;
+      indicator.style.transition = "";
+    }
+  }
+
+  function selectTab(tab, opts){
+    opts = opts || {};
+    tabs.forEach(function(t){
+      var selected = t === tab;
+      t.setAttribute("aria-selected", selected ? "true" : "false");
+      t.tabIndex = selected ? 0 : -1;
+    });
+    Object.keys(panels).forEach(function(id){
+      var panel = panels[id];
+      if (id === tab.id){
+        panel.hidden = false;
+        panel.setAttribute("data-entering", "");
+        // next frame: fade in
+        requestAnimationFrame(function(){
+          requestAnimationFrame(function(){
+            panel.removeAttribute("data-entering");
+          });
+        });
+      } else {
+        panel.hidden = true;
+      }
+    });
+    positionIndicator(tab, !opts.initial);
+    if (opts.focus) tab.focus();
+  }
+
+  tabs.forEach(function(tab, i){
+    tab.addEventListener("click", function(){ selectTab(tab); });
+    tab.addEventListener("keydown", function(e){
+      var idx = tabs.indexOf(tab);
+      var next = null;
+      if (e.key === "ArrowRight") next = tabs[(idx + 1) % tabs.length];
+      if (e.key === "ArrowLeft") next = tabs[(idx - 1 + tabs.length) % tabs.length];
+      if (e.key === "Home") next = tabs[0];
+      if (e.key === "End") next = tabs[tabs.length - 1];
+      if (next){
+        e.preventDefault();
+        selectTab(next, { focus: true });
+      }
+    });
+  });
+
+  // initial indicator position (no transition on load — not a page-load sequence)
+  window.addEventListener("load", function(){
+    positionIndicator(tabs[0], false);
+  });
+  // also set immediately in case fonts delay layout
+  positionIndicator(tabs[0], false);
+  document.fonts && document.fonts.ready && document.fonts.ready.then(function(){
+    positionIndicator(document.querySelector('.tab[aria-selected="true"]'), false);
+  });
+
+  /* ---------------------------------------------------------------- */
+  /* Toggle state labels                                               */
+  /* ---------------------------------------------------------------- */
+  document.querySelectorAll("[data-toggle]").forEach(function(input){
+    var label = input.closest(".toggle").querySelector("[data-state-label]");
+    function sync(){
+      label.textContent = input.checked ? input.dataset.onLabel : input.dataset.offLabel;
+    }
+    input.addEventListener("change", sync);
+    sync();
+  });
+
+  /* ---------------------------------------------------------------- */
+  /* Email inline validation (blur, then live once touched)            */
+  /* ---------------------------------------------------------------- */
+  var emailField = document.getElementById("field-email");
+  var emailInput = document.getElementById("f-email");
+  var emailHelp = document.getElementById("help-email");
+  var emailTouched = false;
+
+  function validateEmail(){
+    var valid = emailInput.validity.valid && emailInput.value.trim() !== "";
+    if (valid){
+      emailField.dataset.state = "success";
+      emailInput.setAttribute("aria-invalid", "false");
+      emailInput.dataset.valid = "true";
+      emailHelp.textContent = "Används för inloggning och kvitton.";
+      emailHelp.dataset.error = "false";
+    } else {
+      emailField.dataset.state = "error";
+      emailInput.setAttribute("aria-invalid", "true");
+      emailInput.dataset.valid = "false";
+      emailHelp.textContent = "Ogiltig e-postadress — kontrollera formatet, t.ex. namn@företag.se.";
+      emailHelp.dataset.error = "true";
+    }
+  }
+  emailInput.addEventListener("blur", function(){
+    emailTouched = true;
+    validateEmail();
+  });
+  emailInput.addEventListener("input", function(){
+    if (emailTouched) validateEmail();
+  });
+
+  /* ---------------------------------------------------------------- */
+  /* Save flow: loading -> success -> toast                            */
+  /* ---------------------------------------------------------------- */
+  document.querySelectorAll("form[data-panel-form]").forEach(function(form){
+    form.addEventListener("submit", function(e){
+      e.preventDefault();
+
+      if (form.dataset.panel === "profil-invalid") return;
+      if (form.contains(emailInput)){
+        emailTouched = true;
+        validateEmail();
+        if (emailField.dataset.state === "error"){
+          emailInput.focus();
+          return;
+        }
+      }
+
+      var btn = form.querySelector("[data-save-btn]");
+      if (btn.disabled) return;
+      var spinner = btn.querySelector(".btn__spinner");
+      var label = btn.querySelector(".btn__label");
+      var originalText = label.textContent;
+
+      btn.disabled = true;
+      btn.setAttribute("aria-busy", "true");
+      spinner.hidden = false;
+      label.textContent = "Sparar…";
+
+      window.setTimeout(function(){
+        btn.disabled = false;
+        btn.removeAttribute("aria-busy");
+        spinner.hidden = true;
+        label.textContent = originalText;
+        showToast("Sparat", "success");
+      }, 620);
+    });
+  });
+
+  /* ---------------------------------------------------------------- */
+  /* Toasts: stacking + swipe-to-dismiss                               */
+  /* ---------------------------------------------------------------- */
+  var toastRegion = document.getElementById("toastRegion");
+  var toastAutoDismissMs = 4200;
+
+  function checkIcon(kind){
+    if (kind === "danger"){
+      return '<svg viewBox="0 0 16 16" fill="none"><circle cx="8" cy="8" r="7" stroke="currentColor" stroke-width="1.4"/><path d="M8 4.5v4.2M8 11v.01" stroke="currentColor" stroke-width="1.4" stroke-linecap="round"/></svg>';
+    }
+    return '<svg viewBox="0 0 16 16" fill="none"><path d="M3.5 8.3l2.8 2.8L12.5 5" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/></svg>';
+  }
+
+  function showToast(message, kind){
+    var toast = document.createElement("div");
+    toast.className = "toast" + (kind === "danger" ? " toast--danger" : "");
+    toast.setAttribute("role", "status");
+    toast.dataset.entering = "true";
+    toast.innerHTML =
+      '<span class="toast__icon" aria-hidden="true">' + checkIcon(kind) + '</span>' +
+      '<span class="toast__msg">' + message + '</span>';
+
+    toastRegion.appendChild(toast);
+
+    // enter
+    requestAnimationFrame(function(){
+      requestAnimationFrame(function(){
+        toast.removeAttribute("data-entering");
+      });
+    });
+
+    var dismissTimer = window.setTimeout(function(){ dismiss(); }, toastAutoDismissMs);
+
+    function dismiss(){
+      window.clearTimeout(dismissTimer);
+      if (toast.dataset.leaving) return;
+      toast.dataset.leaving = "true";
+      toast.style.transform = "translateY(0) translateX(0)";
+      toast.addEventListener("transitionend", function handler(ev){
+        if (ev.propertyName !== "opacity") return;
+        toast.removeEventListener("transitionend", handler);
+        toast.remove();
+      });
+      // reduced-motion: still remove after the (shorter) transition via the same event
+    }
+
+    // ---- swipe-to-dismiss (horizontal drag with velocity) ----
+    var dragging = false;
+    var startX = 0;
+    var currentX = 0;
+    var startTime = 0;
+    var pointerId = null;
+    var SWIPE_THRESHOLD = 80;
+    var VELOCITY_THRESHOLD = 0.5;
+
+    toast.addEventListener("pointerdown", function(e){
+      if (toast.dataset.leaving) return;
+      dragging = true;
+      pointerId = e.pointerId;
+      toast.setPointerCapture(pointerId);
+      startX = e.clientX;
+      currentX = 0;
+      startTime = Date.now();
+      toast.dataset.dragging = "true";
+      window.clearTimeout(dismissTimer);
+    });
+    toast.addEventListener("pointermove", function(e){
+      if (!dragging || e.pointerId !== pointerId) return;
+      currentX = e.clientX - startX;
+      var clamped = currentX < 0 ? currentX * 0.35 : currentX; // resist leftward drag
+      toast.style.transform = "translateX(" + clamped + "px)";
+      toast.style.opacity = String(Math.max(0.15, 1 - Math.abs(clamped) / 220));
+    });
+    function endDrag(e){
+      if (!dragging || (e && e.pointerId !== pointerId)) return;
+      dragging = false;
+      toast.dataset.dragging = "false";
+      var elapsed = Math.max(1, Date.now() - startTime);
+      var velocity = Math.abs(currentX) / elapsed;
+      if (currentX > SWIPE_THRESHOLD || velocity > VELOCITY_THRESHOLD){
+        toast.style.transform = "translateX(140%)";
+        toast.style.opacity = "0";
+        toast.dataset.leaving = "true";
+        toast.addEventListener("transitionend", function handler(ev){
+          if (ev.propertyName !== "opacity") return;
+          toast.removeEventListener("transitionend", handler);
+          toast.remove();
+        });
+      } else {
+        toast.style.transform = "translateX(0)";
+        toast.style.opacity = "1";
+        dismissTimer = window.setTimeout(function(){ dismiss(); }, toastAutoDismissMs);
+      }
+    }
+    toast.addEventListener("pointerup", endDrag);
+    toast.addEventListener("pointercancel", endDrag);
+
+    return toast;
+  }
+
+  /* ---------------------------------------------------------------- */
+  /* Drawer: open/close, Escape, drag-to-dismiss                       */
+  /* ---------------------------------------------------------------- */
+  var drawer = document.getElementById("apiDrawer");
+  var backdrop = document.getElementById("drawerBackdrop");
+  var openBtn = document.getElementById("openDrawerBtn");
+  var closeBtn = document.getElementById("closeDrawerBtn");
+  var lastFocused = null;
+
+  function openDrawer(){
+    lastFocused = document.activeElement;
+    drawer.dataset.open = "true";
+    drawer.setAttribute("aria-hidden", "false");
+    backdrop.dataset.open = "true";
+    document.body.style.overflow = "hidden";
+    window.setTimeout(function(){ closeBtn.focus(); }, reduceMotion ? 0 : 60);
+    document.addEventListener("keydown", onKeydown);
+  }
+
+  function closeDrawer(){
+    drawer.dataset.open = "false";
+    drawer.setAttribute("aria-hidden", "true");
+    backdrop.dataset.open = "false";
+    document.body.style.overflow = "";
+    document.removeEventListener("keydown", onKeydown);
+    if (lastFocused && lastFocused.focus) lastFocused.focus();
+  }
+
+  function onKeydown(e){
+    if (e.key === "Escape"){
+      e.preventDefault();
+      closeDrawer();
+    }
+  }
+
+  openBtn.addEventListener("click", openDrawer);
+  closeBtn.addEventListener("click", closeDrawer);
+  backdrop.addEventListener("click", closeDrawer);
+
+  // ---- drag-to-dismiss: pointer drag to the right, velocity-based release ----
+  (function(){
+    var dragging = false;
+    var startX = 0;
+    var currentX = 0;
+    var startTime = 0;
+    var pointerId = null;
+    var drawerWidth = 420;
+    var VELOCITY_THRESHOLD = 0.35;
+    var DISTANCE_RATIO_THRESHOLD = 0.4; // 40% of drawer width
+
+    var header = drawer.querySelector(".drawer__header");
+
+    function onPointerDown(e){
+      // ignore drags starting on interactive controls inside the header (close button)
+      if (e.target.closest("button")) return;
+      dragging = true;
+      pointerId = e.pointerId;
+      drawer.setPointerCapture(pointerId);
+      startX = e.clientX;
+      currentX = 0;
+      startTime = Date.now();
+      drawerWidth = drawer.offsetWidth;
+      drawer.dataset.dragging = "true";
+    }
+
+    function onPointerMove(e){
+      if (!dragging || e.pointerId !== pointerId) return;
+      var dx = e.clientX - startX;
+      // damping: resistance when dragging left (wrong direction / past closed)
+      currentX = dx < 0 ? dx * 0.25 : dx;
+      drawer.style.transform = "translateX(" + currentX + "px)";
+      var progress = Math.min(1, Math.max(0, currentX / drawerWidth));
+      backdrop.style.opacity = String(1 - progress);
+    }
+
+    function onPointerUp(e){
+      if (!dragging || (e && e.pointerId !== pointerId)) return;
+      dragging = false;
+      drawer.dataset.dragging = "false";
+      backdrop.style.opacity = "";
+      var elapsed = Math.max(1, Date.now() - startTime);
+      var velocity = Math.abs(currentX) / elapsed;
+      var shouldDismiss = currentX > 0 && (currentX / drawerWidth > DISTANCE_RATIO_THRESHOLD || velocity > VELOCITY_THRESHOLD);
+
+      if (shouldDismiss){
+        drawer.style.transform = "";
+        closeDrawer();
+      } else {
+        drawer.style.transform = "";
+      }
+    }
+
+    // The whole drawer can be grabbed by its header (a natural, discoverable
+    // drag handle) and dragged right to dismiss it.
+    header.style.touchAction = "none";
+    header.addEventListener("pointerdown", onPointerDown);
+    drawer.addEventListener("pointermove", onPointerMove);
+    drawer.addEventListener("pointerup", onPointerUp);
+    drawer.addEventListener("pointercancel", onPointerUp);
+  })();
+
+  /* ---------------------------------------------------------------- */
+  /* Hold-to-delete API keys                                           */
+  /* ---------------------------------------------------------------- */
+  var HOLD_DURATION = 2000;
+
+  document.querySelectorAll("[data-hold-delete]").forEach(function(btn){
+    var timer = null;
+    var startedAt = 0;
+    var pointerId = null;
+
+    function start(e){
+      if (btn.disabled) return;
+      if (pointerId !== null) return; // multi-touch protection
+      pointerId = e.pointerId;
+      btn.setPointerCapture(pointerId);
+      startedAt = Date.now();
+      btn.dataset.holding = "true";
+      timer = window.setTimeout(complete, HOLD_DURATION);
+    }
+
+    function cancel(e){
+      if (e && e.pointerId !== pointerId) return;
+      pointerId = null;
+      if (btn.dataset.complete === "true") return;
+      window.clearTimeout(timer);
+      delete btn.dataset.holding;
+    }
+
+    function complete(){
+      btn.dataset.complete = "true";
+      delete btn.dataset.holding;
+      btn.disabled = true;
+
+      var row = btn.closest("[data-key-row]");
+      var keyName = row.querySelector(".key-row__name").textContent;
+      row.dataset.removing = "true";
+
+      var removeAfter = reduceMotion ? 180 : 220;
+      window.setTimeout(function(){
+        row.remove();
+        var remaining = document.querySelectorAll("[data-key-row]").length;
+        document.getElementById("emptyKeys").dataset.visible = remaining === 0 ? "true" : "false";
+        var countLabel = document.querySelector(".drawer__desc");
+        countLabel.textContent = remaining + (remaining === 1 ? " aktiv nyckel" : " aktiva nycklar");
+        showToast("Nyckeln “" + keyName + "” raderades", "danger");
+      }, removeAfter);
+    }
+
+    btn.addEventListener("pointerdown", start);
+    btn.addEventListener("pointerup", cancel);
+    btn.addEventListener("pointercancel", cancel);
+    btn.addEventListener("pointerleave", function(e){
+      // only cancel on leave for mouse; touch keeps holding via pointer capture
+      if (e.pointerType === "mouse") cancel(e);
+    });
+  });
+
+})();
+</script>
+</body>
+</html>

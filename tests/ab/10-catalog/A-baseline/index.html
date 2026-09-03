@@ -1,0 +1,789 @@
+<!doctype html>
+<html lang="sv">
+<head>
+<meta charset="UTF-8">
+<title>Rosengrens Bokbinderi · Handbundet i Haga, Göteborg</title>
+<meta name="description" content="Handbokbinderi i Haga, Göteborg. Reparation av gamla böcker, beställningsband och kurser i bokbindning på Haga Nygata 12.">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Cormorant:ital,wght@0,400;0,500;0,600;1,400;1,500&family=Spectral:wght@400;500;600&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+<style>
+/* design · pre-emit critique: P5 H4 E4 S4 R5 V4 */
+
+/* ============ TOKENS ============ */
+:root{
+  --paper: oklch(0.965 0.014 85);
+  --paper-2: oklch(0.925 0.017 82);
+  --ink: oklch(0.20 0.017 50);
+  --ink-soft: oklch(0.32 0.018 50);
+  --stone: oklch(0.47 0.020 55);
+  --hairline: oklch(0.20 0.017 50 / 0.16);
+  --leather: oklch(0.24 0.046 40);
+  --leather-2: oklch(0.195 0.040 40);
+  --leather-fg: oklch(0.93 0.018 80);
+  --leather-muted: oklch(0.73 0.032 62);
+  --leather-hair: oklch(0.93 0.018 80 / 0.18);
+  --accent: oklch(0.44 0.165 27);
+  --accent-soft: oklch(0.44 0.165 27 / 0.4);
+  --focus: oklch(0.44 0.165 27);
+
+  --font-display: "Cormorant", Georgia, serif;
+  --font-body: "Spectral", Georgia, serif;
+  --font-mono: "JetBrains Mono", ui-monospace, monospace;
+
+  --gutter: clamp(1.25rem, 5vw, 3.5rem);
+  --measure: 58ch;
+}
+
+/* ============ RESET ============ */
+*,*::before,*::after{ box-sizing:border-box; }
+html,body{ overflow-x: clip; }
+html{ scroll-behavior:smooth; }
+@media (prefers-reduced-motion: reduce){ html{ scroll-behavior:auto; } }
+body{
+  margin:0;
+  background:var(--paper);
+  color:var(--ink);
+  font-family:var(--font-body);
+  font-size:17px;
+  line-height:1.6;
+  -webkit-font-smoothing:antialiased;
+  position:relative;
+}
+img,svg{ max-width:100%; display:block; }
+a{ color:inherit; }
+h1,h2,h3,p,dl,dd,figure{ margin:0; }
+ul{ margin:0; padding:0; list-style:none; }
+
+*:focus-visible{
+  outline: 2px solid var(--focus);
+  outline-offset: 3px;
+  border-radius: 2px;
+}
+
+.skip-link{
+  position:absolute;
+  left:1rem; top:-3rem;
+  background:var(--ink);
+  color:var(--paper);
+  padding:.7rem 1.1rem;
+  font-family:var(--font-mono);
+  font-size:.8rem;
+  z-index:100;
+  transition: top .2s ease;
+}
+.skip-link:focus{ top:1rem; }
+
+.wrap{
+  max-width:1480px;
+  margin-inline:auto;
+  padding-inline: var(--gutter);
+}
+
+.kicker{
+  font-family:var(--font-mono);
+  font-size:10.5px;
+  letter-spacing:0.22em;
+  text-transform:uppercase;
+  color:var(--stone);
+  margin:0 0 .9rem;
+}
+.leather .kicker, .verkstaden-section .kicker{ color:var(--leather-muted); }
+
+h1, h2, h3{
+  font-family:var(--font-display);
+  font-weight:500;
+  color:inherit;
+  overflow-wrap:anywhere;
+  min-width:0;
+}
+h1 em, h2 em{ font-style:italic; font-weight:400; color:var(--accent); }
+.verkstaden-section h1 em, .verkstaden-section h2 em{ color:var(--accent); }
+
+.typeset-link{
+  font-family:var(--font-display);
+  font-style:italic;
+  font-size:clamp(1.25rem, 2.4vw, 1.7rem);
+  color:var(--accent);
+  text-decoration:none;
+  border-bottom:1px solid var(--accent-soft);
+  padding-bottom:.15em;
+  display:inline-block;
+}
+.typeset-link:hover{ border-bottom-color:var(--accent); }
+
+/* ============ REVEAL ============ */
+.reveal{
+  opacity:0;
+  transform:translateY(28px);
+  transition:opacity 1.3s cubic-bezier(.16,1,.3,1), transform 1.3s cubic-bezier(.16,1,.3,1);
+}
+.reveal.is-visible{ opacity:1; transform:translateY(0); }
+@media (prefers-reduced-motion: reduce){
+  .reveal{ transition:none; opacity:1; transform:none; }
+}
+noscript .reveal{ opacity:1; }
+
+/* ============ GRAIN (unified ink-tinted, multiply — see Calyx precedent) ============ */
+body::after{
+  content:"";
+  position:fixed;
+  inset:0;
+  pointer-events:none;
+  z-index:60;
+  background: var(--ink);
+  filter:url(#grainFilter);
+  opacity:.35;
+  mix-blend-mode:multiply;
+}
+
+/* ============ HEADER ============ */
+.site-header{
+  position:sticky;
+  top:0;
+  z-index:40;
+  background:oklch(0.965 0.014 85 / 0.88);
+  backdrop-filter:blur(6px);
+  border-bottom:1px solid var(--hairline);
+}
+.header-inner{
+  display:flex;
+  align-items:center;
+  justify-content:space-between;
+  gap:1rem;
+  padding-block:1.1rem;
+}
+.wordmark{
+  font-family:var(--font-display);
+  font-size:1.15rem;
+  letter-spacing:.01em;
+  text-decoration:none;
+  color:var(--ink);
+  white-space:nowrap;
+}
+.wordmark span{
+  display:block;
+  font-family:var(--font-mono);
+  font-size:9px;
+  letter-spacing:.24em;
+  text-transform:uppercase;
+  color:var(--stone);
+  margin-top:.15rem;
+}
+.site-header nav{
+  display:flex;
+  gap:clamp(1rem, 3vw, 2.2rem);
+  flex-wrap:wrap;
+}
+.site-header nav a{
+  font-family:var(--font-mono);
+  font-size:11px;
+  letter-spacing:.14em;
+  text-transform:uppercase;
+  text-decoration:none;
+  color:var(--ink-soft);
+  white-space:nowrap;
+}
+.site-header nav a:hover{ color:var(--accent); }
+
+/* ============ HERO ============ */
+.hero{
+  position:relative;
+  padding-block: clamp(4.5rem, 14vh, 8.5rem) clamp(3.5rem, 10vh, 6rem);
+  overflow:clip;
+}
+.hero-inner{
+  max-width:920px;
+  margin-inline:auto;
+  text-align:center;
+  padding-inline:var(--gutter);
+  position:relative;
+  z-index:2;
+}
+.hero h1{
+  font-size:clamp(2.7rem, 8vw, 6.4rem);
+  line-height:0.95;
+  letter-spacing:-0.02em;
+  margin-bottom:1.4rem;
+}
+.hero-lede{
+  font-size:clamp(1.05rem, 1.6vw, 1.25rem);
+  color:var(--ink-soft);
+  max-width:52ch;
+  margin-inline:auto;
+  margin-bottom:2.1rem;
+}
+.hero-motif{
+  position:absolute;
+  right:-6%;
+  top:8%;
+  width:min(46vw, 520px);
+  opacity:.5;
+  z-index:1;
+  pointer-events:none;
+}
+@media (max-width:768px){
+  .hero-motif{ display:none; }
+}
+
+/* ============ SECTION SHELL ============ */
+.section{ padding-block:clamp(3.5rem, 9vh, 6.5rem); }
+.section-grid{
+  display:grid;
+  grid-template-columns: minmax(0,3fr) minmax(0,9fr);
+  gap:clamp(1.5rem, 4vw, 3.5rem);
+}
+@media (max-width:768px){
+  .section-grid{ grid-template-columns:minmax(0,1fr); }
+}
+.rail{ position:relative; }
+.rail-rule{
+  width:100%;
+  height:1px;
+  background:var(--hairline);
+  margin:.9rem 0 1.1rem;
+}
+.rail-note{
+  font-size:.9rem;
+  color:var(--stone);
+  max-width:26ch;
+}
+
+/* ============ TJÄNSTER — ledger ============ */
+.ledger-section{ border-top:1px solid var(--hairline); }
+.ledger-row{
+  display:grid;
+  grid-template-columns: minmax(0,2.4rem) minmax(0,1fr);
+  gap:1.2rem;
+  padding-block:1.6rem;
+  border-bottom:1px solid var(--hairline);
+}
+.ledger-row:first-child{ padding-top:0; }
+.ledger-num{
+  font-family:var(--font-display);
+  font-style:italic;
+  font-size:clamp(1.6rem,3vw,2.2rem);
+  color:var(--accent);
+  line-height:1;
+}
+.ledger-body h3{
+  font-size:clamp(1.3rem,2.4vw,1.7rem);
+  margin-bottom:.4rem;
+}
+.ledger-body p{
+  color:var(--ink-soft);
+  max-width:var(--measure);
+}
+
+/* ============ ARBETEN — staggered diptych + grid-break ============ */
+.works-section{ position:relative; border-top:1px solid var(--hairline); }
+.works-section > .wrap{ margin-bottom:2.2rem; }
+.works-grid{
+  display:grid;
+  grid-template-columns: repeat(2, minmax(0,1fr));
+  gap: clamp(1.5rem, 4vw, 3rem);
+  padding-inline: var(--gutter);
+  max-width:1480px;
+  margin-inline:auto;
+}
+@media (max-width:768px){
+  .works-grid{ grid-template-columns:minmax(0,1fr); }
+}
+.work{ min-width:0; }
+.work--b, .work--d{ margin-top:clamp(0px, 6vw, 3rem); }
+@media (max-width:768px){
+  .work--b, .work--d{ margin-top:0; }
+}
+.work-art{
+  aspect-ratio:4/3;
+  background:var(--paper-2);
+  border:1px solid var(--hairline);
+  border-radius:2px;
+  overflow:hidden;
+}
+.work-art svg{ width:100%; height:100%; }
+.work figcaption{
+  margin-top:.9rem;
+  display:flex;
+  flex-direction:column;
+  gap:.2rem;
+}
+.work-title{
+  font-family:var(--font-display);
+  font-size:1.15rem;
+  font-style:italic;
+}
+.work-meta{
+  font-size:.88rem;
+  color:var(--stone);
+  max-width:40ch;
+}
+
+.stitch-wrap{
+  position:relative;
+  margin-top:clamp(2.5rem, 6vw, 4rem);
+  padding-inline:var(--gutter);
+  max-width:1480px;
+  margin-inline:auto;
+}
+.stitch-line{ width:100%; height:60px; display:block; }
+.stitch-path{
+  fill:none;
+  stroke:var(--accent);
+  stroke-width:2;
+  stroke-linecap:round;
+}
+.stitch-caption{
+  font-family:var(--font-mono);
+  font-size:11px;
+  letter-spacing:.18em;
+  text-transform:uppercase;
+  color:var(--stone);
+  text-align:center;
+  margin-top:.6rem;
+  opacity:0;
+  transform:translateY(10px);
+}
+@media (prefers-reduced-motion: reduce){
+  .stitch-caption{ opacity:1; transform:none; }
+}
+noscript .stitch-caption{ opacity:1; }
+
+/* ============ VERKSTADEN — tonal inversion, split diptych ============ */
+.verkstaden-section{
+  background:var(--leather);
+  color:var(--leather-fg);
+  border-top:1px solid var(--leather-hair);
+}
+.verkstaden-section .section-grid{
+  grid-template-columns:minmax(0,5fr) minmax(0,7fr);
+  align-items:start;
+}
+.verkstaden-info h2{
+  font-size:clamp(2rem,4.5vw,3.2rem);
+  line-height:0.98;
+  margin-bottom:1.3rem;
+}
+.hours{ margin-bottom:1.4rem; }
+.hours div{
+  display:flex;
+  justify-content:space-between;
+  gap:1rem;
+  padding-block:.55rem;
+  border-bottom:1px solid var(--leather-hair);
+  font-family:var(--font-mono);
+  font-size:.85rem;
+  letter-spacing:.04em;
+}
+.hours div:first-child{ padding-top:0; }
+.hours dt{ color:var(--leather-muted); }
+.verkstaden-note{
+  color:var(--leather-muted);
+  max-width:38ch;
+  font-size:.95rem;
+}
+.verkstaden-quote{
+  margin-top:clamp(1.5rem, 6vw, 3rem);
+  position:relative;
+}
+.drop-cap{
+  font-family:var(--font-display);
+  font-style:italic;
+  font-size:clamp(4.5rem, 9vw, 7rem);
+  line-height:.8;
+  color:var(--accent);
+  float:left;
+  margin-right:.15em;
+  margin-top:-.05em;
+}
+.verkstaden-quote p{
+  font-family:var(--font-display);
+  font-size:clamp(1.3rem, 2.6vw, 1.9rem);
+  font-style:italic;
+  line-height:1.35;
+  color:var(--leather-fg);
+  max-width:44ch;
+}
+
+/* ============ KURSER — centred column ============ */
+.kurser-section{ border-top:1px solid var(--hairline); }
+.kurser-inner{ max-width:760px; margin-inline:auto; text-align:center; }
+.kurser-inner h2{
+  font-size:clamp(2rem, 5vw, 3.2rem);
+  margin-bottom:2.6rem;
+}
+.kurser-list{ display:flex; flex-direction:column; gap:0; text-align:left; }
+.kurs{
+  padding-block:1.7rem;
+  border-bottom:1px solid var(--hairline);
+}
+.kurser-list .kurs:first-child{ border-top:1px solid var(--hairline); }
+.kurs h3{
+  font-size:clamp(1.2rem,2.3vw,1.5rem);
+  margin-bottom:.5rem;
+}
+.kurs p{ color:var(--ink-soft); max-width:var(--measure); }
+.kurs-meta{
+  font-family:var(--font-mono);
+  font-size:.78rem;
+  letter-spacing:.05em;
+  color:var(--stone);
+  margin-top:.5rem;
+}
+
+/* ============ FOOTER ============ */
+.site-footer{
+  background:var(--paper-2);
+  border-top:1px solid var(--hairline);
+  padding-block:clamp(2.5rem,6vh,4rem);
+}
+.footer-inner{
+  display:flex;
+  flex-wrap:wrap;
+  justify-content:space-between;
+  gap:2rem;
+}
+.wordmark-footer{
+  font-family:var(--font-display);
+  font-size:1.1rem;
+  margin-bottom:.5rem;
+}
+.footer-inner p{ margin-bottom:.3rem; color:var(--ink-soft); font-size:.92rem; }
+.footer-inner a{ text-decoration:underline; text-decoration-color:var(--hairline); }
+.colophon{
+  font-family:var(--font-mono);
+  font-size:.75rem;
+  letter-spacing:.04em;
+  color:var(--stone);
+  align-self:flex-end;
+}
+</style>
+</head>
+<body>
+
+<svg width="0" height="0" style="position:absolute" aria-hidden="true">
+  <filter id="grainFilter" x="-20%" y="-20%" width="140%" height="140%">
+    <feTurbulence type="fractalNoise" baseFrequency="0.85" numOctaves="2" seed="7" stitchTiles="stitch" result="noise"/>
+    <feColorMatrix in="noise" type="matrix" values="0 0 0 0 0.20  0 0 0 0 0.13  0 0 0 0 0.07  0 0 0 0.5 0"/>
+  </filter>
+</svg>
+
+<a class="skip-link" href="#main">Hoppa till innehåll</a>
+
+<header class="site-header">
+  <div class="wrap header-inner">
+    <a class="wordmark" href="#top">Rosengrens<span>Bokbinderi · Haga, Göteborg</span></a>
+    <nav aria-label="Huvudmeny">
+      <a href="#tjanster">Tjänster</a>
+      <a href="#arbeten">Arbeten</a>
+      <a href="#kurser">Kurser</a>
+      <a href="#verkstaden">Verkstaden</a>
+    </nav>
+  </div>
+</header>
+
+<main id="main">
+
+  <!-- HERO: quiet centred zone with a drawn spine motif, NOT a full-bleed stock hero -->
+  <section id="top" class="hero">
+    <div class="hero-inner reveal">
+      <p class="kicker">HAGA · GÖTEBORG</p>
+      <h1>Bokens andra <em>liv</em></h1>
+      <p class="hero-lede">Vi reparerar gamla böcker, binder nya för hand och lär ut hantverket i vår verkstad på Haga Nygata. Trådstygn, skinn och guldsnitt: allt sker på plats, bord för bord.</p>
+      <a class="typeset-link" href="#tjanster">Se våra tjänster →</a>
+    </div>
+    <svg class="hero-motif" viewBox="0 0 300 400" aria-hidden="true">
+      <g fill="none" stroke="var(--ink)" stroke-width="1" opacity="0.5">
+        <path d="M40 30 L40 370" />
+        <path d="M60 30 Q30 200 60 370" />
+        <path d="M260 30 L260 370" />
+        <path d="M40 30 L260 30" />
+        <path d="M40 370 L260 370" />
+      </g>
+      <g stroke="var(--accent)" stroke-width="2" opacity="0.6">
+        <path d="M60 60 Q45 200 60 340" />
+        <path d="M60 100 Q45 200 60 300" stroke-dasharray="2 6"/>
+      </g>
+    </svg>
+  </section>
+
+  <!-- TJÄNSTER: typeset ledger, NOT a card grid -->
+  <section id="tjanster" class="section ledger-section">
+    <div class="wrap section-grid">
+      <div class="rail reveal">
+        <p class="kicker">I – IV</p>
+        <div class="rail-rule"></div>
+        <p class="rail-note">Allt hantverk görs för hand, i verkstaden på Haga Nygata 12.</p>
+      </div>
+      <div class="ledger">
+        <div class="ledger-row reveal">
+          <span class="ledger-num">I</span>
+          <div class="ledger-body">
+            <h3>Reparation</h3>
+            <p>Lösa pärmar, brustna ryggar, fläckade eller lösa blad. Vi lagar gamla böcker så att de går att läsa och bläddra i igen, utan att gömma att de har ett liv bakom sig.</p>
+          </div>
+        </div>
+        <div class="ledger-row reveal">
+          <span class="ledger-num">II</span>
+          <div class="ledger-body">
+            <h3>Beställningsband</h3>
+            <p>Bröllopsalbum, gästböcker och avhandlingar bundna från grunden efter dina mått, ditt papper och ditt omslag.</p>
+          </div>
+        </div>
+        <div class="ledger-row reveal">
+          <span class="ledger-num">III</span>
+          <div class="ledger-body">
+            <h3>Restaurering</h3>
+            <p>Äldre volymer i behov av mer omfattande konservering: omklädning i helskinn, ny rygg med upphöjda bind, guldsnitt.</p>
+          </div>
+        </div>
+        <div class="ledger-row reveal">
+          <span class="ledger-num">IV</span>
+          <div class="ledger-body">
+            <h3>Specialprojekt</h3>
+            <p>Konstnärsböcker, portföljer och udda format. Kom förbi verkstaden med idén, så tittar vi på det tillsammans.</p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ARBETEN: staggered diptych, bespoke drawn identity system (no stock photography), grid-break to viewport edge -->
+  <section id="arbeten" class="section works-section" data-stitch-section>
+    <div class="wrap">
+      <p class="kicker reveal">ETT URVAL ARBETEN</p>
+    </div>
+    <div class="works-grid">
+      <figure class="work work--a reveal">
+        <div class="work-art">
+          <svg viewBox="0 0 400 300" aria-hidden="true">
+            <rect width="400" height="300" fill="var(--paper-2)"/>
+            <g fill="none" stroke="var(--ink-soft)" stroke-width="1.4">
+              <rect x="60" y="40" width="200" height="220" rx="2"/>
+              <path d="M60 60 L260 60 M60 90 L260 90 M60 120 L260 120"/>
+            </g>
+            <g stroke="var(--accent)" stroke-width="2">
+              <path d="M60 40 L60 260" />
+              <path d="M50 60 Q60 65 70 60" fill="none"/>
+              <path d="M50 100 Q60 105 70 100" fill="none"/>
+              <path d="M50 140 Q60 145 70 140" fill="none"/>
+              <path d="M50 180 Q60 185 70 180" fill="none"/>
+              <path d="M50 220 Q60 225 70 220" fill="none"/>
+            </g>
+          </svg>
+        </div>
+        <figcaption>
+          <span class="work-title">Släktbibel</span>
+          <span class="work-meta">Ombunden i helskinn, ny rygg med upphöjda bind.</span>
+        </figcaption>
+      </figure>
+
+      <figure class="work work--b reveal">
+        <div class="work-art">
+          <svg viewBox="0 0 400 300" aria-hidden="true">
+            <rect width="400" height="300" fill="var(--paper-2)"/>
+            <g fill="none" stroke="var(--ink-soft)" stroke-width="1.4">
+              <rect x="90" y="50" width="220" height="200" rx="2"/>
+            </g>
+            <path d="M90 50 Q200 40 310 50 Q200 150 90 250 Q200 260 310 250" fill="none" stroke="var(--accent)" stroke-width="1.2" opacity="0.7"/>
+          </svg>
+        </div>
+        <figcaption>
+          <span class="work-title">Bröllopsalbum</span>
+          <span class="work-meta">Handgjort marmorerat försättspapper, präglad titel på framsidan.</span>
+        </figcaption>
+      </figure>
+
+      <figure class="work work--c reveal">
+        <div class="work-art">
+          <svg viewBox="0 0 400 300" aria-hidden="true">
+            <rect width="400" height="300" fill="var(--paper-2)"/>
+            <g fill="none" stroke="var(--ink-soft)" stroke-width="1.4">
+              <rect x="70" y="45" width="260" height="210" rx="2"/>
+              <path d="M70 45 L70 255" stroke-width="3"/>
+            </g>
+            <text x="200" y="160" font-family="serif" font-size="46" fill="var(--accent)" text-anchor="middle" opacity="0.55">Aa</text>
+          </svg>
+        </div>
+        <figcaption>
+          <span class="work-title">Avhandling</span>
+          <span class="work-meta">Klotband med guldtryck på ryggen, enligt bibliotekets krav.</span>
+        </figcaption>
+      </figure>
+
+      <figure class="work work--d reveal">
+        <div class="work-art">
+          <svg viewBox="0 0 400 300" aria-hidden="true">
+            <rect width="400" height="300" fill="var(--paper-2)"/>
+            <g fill="none" stroke="var(--ink-soft)" stroke-width="1.4">
+              <path d="M60 200 L100 90 L140 200 M120 150 L80 150" />
+              <path d="M180 90 L180 200 M180 90 L220 90 Q235 90 235 115 Q235 140 180 140" />
+              <path d="M260 90 L260 200 M260 90 L300 90 Q315 90 315 115 Q315 140 260 140 M260 140 L300 200" />
+            </g>
+          </svg>
+        </div>
+        <figcaption>
+          <span class="work-title">Skissbok</span>
+          <span class="work-meta">Concertina-vikning i seghett akvarellpapper, läderomslag.</span>
+        </figcaption>
+      </figure>
+    </div>
+
+    <div class="stitch-wrap">
+      <svg class="stitch-line" viewBox="0 0 1000 60" preserveAspectRatio="none" aria-hidden="true">
+        <path class="stitch-path" data-stitch-path d="M0 30 Q40 5 80 30 Q120 55 160 30 Q200 5 240 30 Q280 55 320 30 Q360 5 400 30 Q440 55 480 30 Q520 5 560 30 Q600 55 640 30 Q680 5 720 30 Q760 55 800 30 Q840 5 880 30 Q920 55 960 30 L1000 30"/>
+      </svg>
+      <p class="stitch-caption" data-stitch-caption>Trådstygn för trådstygn</p>
+    </div>
+  </section>
+
+  <!-- VERKSTADEN: tonal inversion, split diptych, NOT a plain text contact block -->
+  <section id="verkstaden" class="section verkstaden-section">
+    <div class="wrap section-grid">
+      <div class="verkstaden-info reveal">
+        <p class="kicker">VERKSTADEN</p>
+        <h2>Haga Nygata 12</h2>
+        <dl class="hours">
+          <div><dt>Tis–fre</dt><dd>11–18</dd></div>
+          <div><dt>Lör</dt><dd>11–15</dd></div>
+          <div><dt>Sön–mån</dt><dd>Stängt</dd></div>
+        </dl>
+        <p class="verkstaden-note">Gå in från gatan. Verkstaden ligger i bottenvåningen, och dörren står öppen under öppettider.</p>
+      </div>
+      <div class="verkstaden-quote reveal">
+        <span class="drop-cap" aria-hidden="true">H</span>
+        <p>aga har bundit böcker längre än de flesta minns. Vi håller stygnet levande: en bok i taget, på samma bord, med samma verktyg som togs i bruk för länge sedan.</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- KURSER: centred single column, NOT a pricing card grid -->
+  <section id="kurser" class="section kurser-section">
+    <div class="wrap kurser-inner">
+      <p class="kicker reveal">KURSER</p>
+      <h2 class="reveal">Lär dig binda</h2>
+      <div class="kurser-list">
+        <div class="kurs reveal">
+          <h3>Grundkurs i bokbindning</h3>
+          <p>Helgkurs. Du syr och binder din första bok från grunden, block, pärm och rygg, och tar med dig resultatet hem.</p>
+          <p class="kurs-meta">Datum och pris: fråga i verkstaden eller mejla oss.</p>
+        </div>
+        <div class="kurs reveal">
+          <h3>Gör din egen anteckningsbok</h3>
+          <p>En kväll i verkstaden. Enkel japansk bindning, valfritt omslagspapper. Inga förkunskaper krävs.</p>
+          <p class="kurs-meta">Datum och pris: fråga i verkstaden eller mejla oss.</p>
+        </div>
+        <div class="kurs reveal">
+          <h3>Fördjupning: läderband och guldsnitt</h3>
+          <p>För dig som redan bundit en bok. Vi går igenom helskinn, upphöjda bind och guldsnitt i ditt eget tempo.</p>
+          <p class="kurs-meta">Datum och pris: fråga i verkstaden eller mejla oss.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+</main>
+
+<footer class="site-footer">
+  <div class="wrap footer-inner">
+    <div>
+      <p class="wordmark-footer">Rosengrens Bokbinderi</p>
+      <p>Haga Nygata 12, Göteborg</p>
+      <p><a href="mailto:hej@rosengrensbokbinderi.se">hej@rosengrensbokbinderi.se</a></p>
+      <p><a href="https://instagram.com/rosengrensbokbinderi">@rosengrensbokbinderi</a></p>
+    </div>
+    <div class="colophon">
+      <p>Satt i Cormorant &amp; Spectral, siffror i JetBrains Mono.</p>
+    </div>
+  </div>
+</footer>
+
+<noscript>
+<style>
+.reveal{ opacity:1 !important; transform:none !important; }
+.stitch-caption{ opacity:1 !important; transform:none !important; }
+.stitch-path{ stroke-dashoffset:0 !important; }
+</style>
+</noscript>
+
+<script>
+(function(){
+  var reduced = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+  var params = new URLSearchParams(location.search);
+  var previewStitch = params.get('preview') === 'stitch';
+
+  /* Reveal system — fails toward visible */
+  var revealEls = Array.prototype.slice.call(document.querySelectorAll('.reveal'));
+  function showAll(){ revealEls.forEach(function(el){ el.classList.add('is-visible'); }); }
+
+  if (reduced || !('IntersectionObserver' in window)) {
+    showAll();
+  } else {
+    var io = new IntersectionObserver(function(entries){
+      entries.forEach(function(entry){
+        if (entry.isIntersecting) {
+          entry.target.classList.add('is-visible');
+          io.unobserve(entry.target);
+        }
+      });
+    }, { threshold: 0.1, rootMargin: '0px 0px -8% 0px' });
+
+    revealEls.forEach(function(el){
+      var rect = el.getBoundingClientRect();
+      if (rect.top < window.innerHeight * 0.95) {
+        el.classList.add('is-visible');
+      } else {
+        io.observe(el);
+      }
+    });
+    /* failsafe: never leave content permanently hidden */
+    setTimeout(showAll, 3000);
+  }
+
+  /* Signature set-piece: scroll-scrubbed stitch line + coordinated caption, across the ARBETEN section */
+  var stitchSection = document.querySelector('[data-stitch-section]');
+  var stitchPath = document.querySelector('[data-stitch-path]');
+  var stitchCaption = document.querySelector('[data-stitch-caption]');
+
+  if (stitchSection && stitchPath && stitchPath.getTotalLength) {
+    var len = stitchPath.getTotalLength();
+    stitchPath.style.strokeDasharray = len;
+    stitchPath.style.strokeDashoffset = len;
+
+    function setStitch(progress){
+      var p = Math.max(0, Math.min(1, progress));
+      stitchPath.style.strokeDashoffset = String(len * (1 - p));
+      if (stitchCaption) {
+        stitchCaption.style.opacity = String(p);
+        stitchCaption.style.transform = 'translateY(' + (10 * (1 - p)) + 'px)';
+      }
+    }
+
+    if (reduced || previewStitch) {
+      setStitch(1);
+    } else {
+      var ticking = false;
+      function update(){
+        var rect = stitchSection.getBoundingClientRect();
+        var vh = window.innerHeight;
+        var total = rect.height + vh;
+        var traveled = vh - rect.top;
+        setStitch(total > 0 ? traveled / total : 0);
+        ticking = false;
+      }
+      window.addEventListener('scroll', function(){
+        if (!ticking) { window.requestAnimationFrame(update); ticking = true; }
+      }, { passive: true });
+      window.addEventListener('resize', function(){
+        len = stitchPath.getTotalLength();
+        update();
+      });
+      update();
+    }
+  }
+})();
+</script>
+
+</body>
+</html>

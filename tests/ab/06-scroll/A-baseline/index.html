@@ -1,0 +1,871 @@
+<!--
+  NORRSKEN KAFFE — blind one-shot, register: warm photographic (Klova lane)
+  ============================================================================
+  LANE: arktisk glöd — kall gryningsljus över Bottenviken möter en varmt
+  rostad koppardroppe. Ett litet Luleå-rosteri som pratar lugnt, inte i
+  utropstecken: samma stillsamma värme som Klova, men bönor istället för fisk.
+
+  REGISTER: warm photographic (klova.html-linjen). Vald för att Norrsken
+  Kaffe är ett litet familjeliknande hantverksrosteri, inte en tidskrift —
+  en centrerad logotyp över ett fullbleed-foto, en riktig knapp att trycka
+  på, rundade hörn med luft runt bilderna, ingen kicker-apparat, inget grain,
+  ingen ledger-typsnittslek. Enda undantaget till "fullbleed" är hero, precis
+  som i Klova — övriga bildsektioner är inramade med luft.
+
+  KÄNSLOKURVA PER AKT:
+    1. Hero            — stillhet, en tyst öppning, ett välkomnande andetag
+    2. Varför burk      — omtänksam nyfikenhet, nästan ömsint allvar
+    3. Tre rostningar   — lekfull förväntan, sinnlig valfrihet
+    4. Andrum (elden)   — paus, ingen information, bara värme
+    5. Så brygger du    — hjälpsam trygghet, ett ritual-grepp om handen
+    6. Rosteriet        — stolthet, rotfasthet, en verklig adress
+    7. Prenumeration    — lättnad, inget tvång, en enkel inbjudan
+    8. Footer           — lugn avslutning, tonalt inverterad till mörk natt
+
+  SIGNATURE MOVE: scroll-scrubbat "försegling" i Varför burk-sektionen —
+  se full lista över scroll-drivna grepp nedan.
+
+  SCROLL-DRIVNA GREPP (device · vad scroll ändrar):
+  1. .setpiece (signature set-piece, "Förseglingen")
+     · Lager 1 — .setpiece-label ("SYRE · LJUS · TID"): letter-spacing
+       0.4em → 0.08em, blur 4px → 0, opacity 0.3 → 1, allt lerpat mot
+       scrollprogress (--seal), scrubbat i båda riktningarna.
+     · Lager 2 — .jar-lid-open/.jar-lid-closed: opacity-korsning driven av
+       --seal (fungerar identiskt utan JS-travel); .jar-lid-closed får
+       dessutom en förstärkande translateY/rotate när motion är tillåten.
+     · Lager 3 — .setpiece-photo (kaffebönor): grayscale 65%→0 och blur
+       2px→0 i takt med samma --seal, så fotot "vaknar" när locket sluter.
+     · Lager 4 (mikro) — tre syre-prickar (.o2-dot) tonar bort med (1-seal).
+     · ?preview=jar tvingar --seal till 1 direkt (ingen scroll krävs) för
+       skärmdumpsverifiering av det formade läget.
+     · Under prefers-reduced-motion: samma --seal beräknas direkt av
+       scrollposition utan rAF-lerp (inget glidande efter att scrollen
+       stannat); transform/translate/rotate stängs av helt, opacity/
+       letter-spacing/blur/grayscale fortsätter följa scroll rakt av.
+  2. .reveal (delad reveal, alla sektioner)
+     · translateY 28px→0 + opacity 0→1, 1.25s cubic-bezier(.16,1,.3,1),
+       IntersectionObserver threshold 0. Mount-reveal (element redan i
+       vy vid inladdning visas direkt utan observer-fördröjning), failsafe
+       (1.8s timeout visar allt som missats), noscript-fallback (CSS-
+       default är synlig, JS lägger bara till den dolda startpositionen).
+     · Under reduced-motion: samma slutläge men bara en kort opacity-fade,
+       ingen translateY-resa.
+  3. .roast-card stagger (statisk, ej scroll-scrubbat) — mittkortet i
+     tre-rostningar-raden ligger md:mt-10 lägre än sina grannar; nämns här
+     för att skiljas från de tre punkterna ovan som faktiskt är scroll-
+     drivna.
+
+  Grammatik-begreppet nämns inte i de inlästa referensfilerna (endast
+  "sex-axel-fingerprint" i structure.md, som inte lästes enligt uppdraget) —
+  utelämnas därför enligt instruktionen "om din instruktion har begreppet".
+
+  design · pre-emit critique: P4 H4 E4 S4 R4 V4
+-->
+<!DOCTYPE html>
+<html lang="sv">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Norrsken Kaffe — mikrorosteri i Luleå</title>
+<meta name="description" content="Norrsken Kaffe rostar ljusrostat filterkaffe för hand i Luleå och säljer det på 250 g burk med skruvlock, för att syre, ljus och tid ska få mindre att säga till om.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,380;0,9..144,500;0,9..144,600;1,9..144,440;1,9..144,500&family=Public+Sans:wght@400;500;600;700&display=swap" rel="stylesheet">
+<style>
+
+  /* ============================= TOKENS ============================= */
+  :root{
+    /* warm ground */
+    --paper:        oklch(0.970 0.014 75);
+    --paper-panel:  oklch(0.930 0.020 70);
+    --ink:          oklch(0.220 0.022 50);
+    --coffee:       oklch(0.340 0.048 45);
+    --stone:        oklch(0.520 0.020 58);
+    /* the one saturated accent — display scale only, never a control fill */
+    --accent:       oklch(0.620 0.165 42);
+    --accent-soft:  oklch(0.620 0.165 42 / 0.14);
+    /* hairline per ground */
+    --line-on-paper: oklch(0.220 0.022 50 / 0.14);
+    --line-on-navy:  oklch(0.940 0.018 80 / 0.16);
+    /* the one tonal inversion — footer only */
+    --navy:         oklch(0.190 0.030 250);
+    --navy-panel:   oklch(0.240 0.032 250);
+    --navy-ink:     oklch(0.930 0.018 80);
+    --navy-stone:   oklch(0.700 0.024 90);
+
+    --font-display: 'Fraunces', 'Iowan Old Style', ui-serif, Georgia, serif;
+    --font-body:    'Public Sans', -apple-system, 'Segoe UI', sans-serif;
+
+    --measure: 58ch;
+    --edge: clamp(1.25rem, 5vw, 3.5rem);
+    --radius: 6px;
+  }
+
+  /* ============================= RESET =============================== */
+  *,*::before,*::after{ box-sizing:border-box; }
+  html,body{ margin:0; padding:0; overflow-x:clip; }
+  html{ scroll-behavior:smooth; -webkit-text-size-adjust:100%; }
+  body{
+    background:var(--paper);
+    color:var(--ink);
+    font-family:var(--font-body);
+    font-size:16.5px;
+    line-height:1.6;
+    -webkit-font-smoothing:antialiased;
+  }
+  img{ max-width:100%; display:block; }
+  h1,h2,h3,p,figure{ margin:0; }
+  ul{ margin:0; padding:0; list-style:none; }
+  a{ color:inherit; }
+  button{ font:inherit; color:inherit; background:none; border:0; }
+
+  :focus-visible{
+    outline:2px solid var(--coffee);
+    outline-offset:3px;
+    border-radius:2px;
+  }
+  .site-footer :focus-visible{ outline-color:var(--navy-ink); }
+
+  .wrap{ max-width:1240px; margin-inline:auto; padding-inline:var(--edge); }
+
+  .eyebrow{
+    display:inline-block;
+    font-family:var(--font-body);
+    font-weight:600;
+    font-size:11px;
+    letter-spacing:0.2em;
+    text-transform:uppercase;
+    color:var(--coffee);
+  }
+
+  h2.section-title{
+    font-family:var(--font-display);
+    font-weight:500;
+    font-size:clamp(2rem, 4.4vw, 3.2rem);
+    line-height:0.98;
+    letter-spacing:-0.01em;
+    overflow-wrap:anywhere;
+    min-width:0;
+    color:var(--ink);
+  }
+
+  .lede{
+    max-width:var(--measure);
+    color:var(--coffee);
+    font-size:1.05rem;
+  }
+
+  /* buttons — real, rectangular, sized to press. never a gradient pill. */
+  .btn{
+    display:inline-flex;
+    align-items:center;
+    justify-content:center;
+    gap:.6em;
+    min-height:48px;
+    padding:0 1.6rem;
+    border:1.5px solid var(--ink);
+    border-radius:3px;
+    font-family:var(--font-body);
+    font-weight:600;
+    font-size:0.92rem;
+    letter-spacing:0.02em;
+    color:var(--ink);
+    white-space:nowrap;
+    cursor:pointer;
+    transition:background-color .18s ease, color .18s ease, transform .12s ease;
+  }
+  .btn:hover{ background:var(--ink); color:var(--paper); }
+  .btn:active{ transform:scale(0.97); }
+  .btn[disabled]{ opacity:.45; cursor:not-allowed; }
+  .btn-on-dark{ border-color:var(--navy-ink); color:var(--navy-ink); }
+  .btn-on-dark:hover{ background:var(--navy-ink); color:var(--navy); }
+
+  /* ============================== NAV ================================= */
+  .site-nav{
+    position:sticky; top:0; z-index:40;
+    display:flex; align-items:center; justify-content:space-between;
+    gap:1rem;
+    padding:0.9rem var(--edge);
+    background:oklch(0.970 0.014 75 / 0.92);
+    -webkit-backdrop-filter:blur(6px);
+    backdrop-filter:blur(6px);
+    border-bottom:1px solid var(--line-on-paper);
+  }
+  .nav-mark{
+    font-family:var(--font-display);
+    font-style:italic;
+    font-weight:500;
+    font-size:1.15rem;
+    letter-spacing:-0.01em;
+    text-decoration:none;
+  }
+  .nav-links{ display:none; gap:1.6rem; }
+  .nav-links a{ font-size:0.92rem; font-weight:500; text-decoration:none; color:var(--coffee); }
+  .nav-links a:hover{ color:var(--ink); }
+  .nav-cta-full{ display:none; }
+  .nav-cta-short{ display:inline-flex; }
+  @media (min-width:780px){
+    .nav-links{ display:flex; }
+    .nav-cta-full{ display:inline-flex; }
+    .nav-cta-short{ display:none; }
+  }
+
+  /* ============================= HERO ================================= */
+  .hero{
+    position:relative;
+    min-height:92vh;
+    display:flex;
+    align-items:center;
+    justify-content:center;
+    overflow:hidden;
+  }
+  .hero-img{
+    position:absolute; inset:0;
+    width:100%; height:100%;
+    object-fit:cover;
+    filter:brightness(0.86);
+  }
+  .hero-scrim{
+    position:absolute; inset:0;
+    background:
+      linear-gradient(180deg, oklch(0.14 0.03 40 / 0.32) 0%, oklch(0.14 0.03 40 / 0.10) 34%, oklch(0.14 0.03 40 / 0.20) 68%, oklch(0.14 0.03 40 / 0.55) 100%),
+      radial-gradient(60% 50% at 50% 42%, oklch(0.14 0.03 40 / 0.30), transparent 72%);
+  }
+  .hero-content{
+    position:relative;
+    z-index:2;
+    text-align:center;
+    padding:2.5rem var(--edge) 3.5rem;
+    display:flex; flex-direction:column; align-items:center; gap:1.4rem;
+    max-width:52rem;
+  }
+  .hero-eyebrow{
+    color:oklch(0.96 0.02 80);
+    letter-spacing:0.24em;
+  }
+  .hero-mark{
+    font-family:var(--font-display);
+    font-weight:500;
+    font-size:clamp(3rem, 11vw, 7.6rem);
+    line-height:0.92;
+    letter-spacing:-0.02em;
+    color:oklch(0.98 0.012 80);
+    overflow-wrap:anywhere;
+    min-width:0;
+  }
+  .hero-mark .mark-italic{
+    font-style:italic;
+    font-weight:460;
+    color:var(--accent);
+  }
+  .hero-sub{
+    max-width:38ch;
+    color:oklch(0.95 0.02 80);
+    font-size:1.08rem;
+    line-height:1.55;
+  }
+  .hero-actions{ display:flex; gap:1rem; flex-wrap:wrap; justify-content:center; margin-top:0.6rem; }
+  .hero .btn{ border-color:oklch(0.98 0.012 80); color:oklch(0.98 0.012 80); }
+  .hero .btn:hover{ background:oklch(0.98 0.012 80); color:var(--ink); }
+
+  /* ============================ SECTIONS =============================== */
+  section{ padding:clamp(3.5rem, 8vw, 7rem) 0; }
+  .section-head{ max-width:44rem; margin-bottom:clamp(2rem, 5vw, 3.2rem); display:flex; flex-direction:column; gap:0.9rem; }
+
+  .framed-img{
+    border-radius:var(--radius);
+    overflow:hidden;
+    background:var(--paper-panel);
+  }
+  .framed-img img{ width:100%; height:100%; object-fit:cover; display:block; }
+
+  /* ---- why-the-jar: diptych + signature set-piece ---- */
+  .why-grid{
+    display:grid;
+    grid-template-columns:minmax(0,1fr);
+    gap:2.6rem;
+    align-items:start;
+  }
+  @media (min-width:840px){
+    .why-grid{ grid-template-columns:minmax(0,1fr) minmax(0,1fr); gap:4rem; align-items:center; }
+  }
+  .why-points{ display:flex; flex-direction:column; gap:1.6rem; margin-top:1.6rem; }
+  .why-point{ display:grid; grid-template-columns:auto minmax(0,1fr); gap:1rem; }
+  .why-point-tag{
+    font-family:var(--font-display);
+    font-style:italic;
+    font-size:1.6rem;
+    color:var(--accent);
+    line-height:1;
+    padding-top:.1em;
+  }
+  .why-point p{ color:var(--coffee); max-width:42ch; }
+  .why-point h3{ font-family:var(--font-body); font-weight:700; font-size:1rem; color:var(--ink); margin-bottom:.3rem; }
+
+  .setpiece{
+    position:relative;
+    border-radius:var(--radius);
+    overflow:hidden;
+    background:var(--paper-panel);
+    aspect-ratio:4/5;
+    --seal:0;
+  }
+  .setpiece-photo{
+    position:absolute; inset:0; width:100%; height:100%; object-fit:cover;
+    filter:grayscale(calc((1 - var(--seal)) * 62%)) blur(calc((1 - var(--seal)) * 2px)) brightness(0.94);
+    transition:filter .12s linear;
+  }
+  .setpiece-scrim{
+    position:absolute; inset:0;
+    background:linear-gradient(180deg, oklch(0.14 0.03 40 / 0.10), oklch(0.14 0.03 40 / 0.62) 92%);
+  }
+  .setpiece-inner{
+    position:absolute; inset:0;
+    display:flex; flex-direction:column; align-items:center; justify-content:flex-end;
+    gap:1rem;
+    padding:2rem 1.4rem 2rem;
+    text-align:center;
+  }
+  .jar-svg{ width:clamp(70px,16vw,110px); height:auto; overflow:visible; }
+  .jar-body{ fill:none; stroke:oklch(0.96 0.015 78); stroke-width:3; }
+  .jar-lid rect{ fill:var(--accent); }
+  .jar-lid-open{ opacity:calc(1 - var(--seal)); }
+  .jar-lid-closed{ opacity:var(--seal); }
+  .o2-dot{ opacity:calc(1 - var(--seal)); fill:oklch(0.96 0.015 78 / 0.7); }
+  .setpiece-label{
+    font-family:var(--font-body);
+    font-weight:700;
+    font-size:clamp(0.82rem, 1.6vw, 1.05rem);
+    text-transform:uppercase;
+    color:oklch(0.98 0.01 80);
+    letter-spacing:calc(0.42em - var(--seal) * 0.34em);
+    filter:blur(calc((1 - var(--seal)) * 3.5px));
+    opacity:calc(0.3 + var(--seal) * 0.7);
+  }
+  html.js .jar-lid-closed{ transition:opacity .1s linear; }
+  html.js:not(.reduced-motion) .jar-lid-closed{
+    transform:translateY(calc((1 - var(--seal)) * -14px)) rotate(calc((1 - var(--seal)) * -5deg));
+    transform-origin:50% 100%;
+  }
+  html.reduced-motion .jar-lid-closed{ transform:none; }
+
+  /* ---- roasts: triptych, staggered ---- */
+  .roasts-grid{
+    display:grid; grid-template-columns:minmax(0,1fr); gap:2.6rem;
+  }
+  @media (min-width:900px){
+    .roasts-grid{ grid-template-columns:repeat(3, minmax(0,1fr)); gap:2rem; }
+    .roast-card:nth-child(2){ margin-top:2.6rem; }
+  }
+  .roast-card{ display:flex; flex-direction:column; gap:1rem; }
+  .roast-photo{ aspect-ratio:4/5; }
+  .roast-num{
+    font-family:var(--font-display);
+    font-style:italic;
+    font-size:2.6rem;
+    color:var(--accent);
+    line-height:1;
+  }
+  .roast-card h3{ font-family:var(--font-display); font-weight:500; font-size:1.5rem; color:var(--ink); }
+  .roast-origin{ font-size:0.85rem; color:var(--stone); font-weight:600; letter-spacing:0.03em; }
+  .roast-card p{ color:var(--coffee); max-width:36ch; }
+
+  /* ---- breather: one quiet moment, no information ---- */
+  .breather{ padding-block:clamp(2rem,6vw,4.5rem); }
+  .breather-frame{
+    max-width:920px; margin-inline:auto;
+    display:flex; flex-direction:column; gap:1.2rem; align-items:center;
+    text-align:center;
+  }
+  .breather-frame .framed-img{ width:100%; aspect-ratio:16/9; }
+  .breather-cap{
+    font-family:var(--font-display);
+    font-style:italic;
+    font-weight:440;
+    font-size:clamp(1.15rem, 2.6vw, 1.6rem);
+    color:var(--coffee);
+    max-width:34ch;
+  }
+
+  /* ---- brewing: clean numbered list ---- */
+  .brew-list{ display:flex; flex-direction:column; }
+  .brew-row{
+    display:grid; grid-template-columns:auto minmax(0,1fr); gap:1.4rem;
+    padding-block:1.6rem;
+    border-bottom:1px solid var(--line-on-paper);
+    align-items:baseline;
+  }
+  .brew-row:first-child{ border-top:1px solid var(--line-on-paper); }
+  .brew-num{
+    font-family:var(--font-display);
+    font-style:italic;
+    font-size:clamp(1.8rem,4vw,2.6rem);
+    color:var(--accent);
+    line-height:1;
+  }
+  .brew-row h3{ font-weight:700; font-size:1.02rem; margin-bottom:.3rem; }
+  .brew-row p{ color:var(--coffee); max-width:52ch; }
+
+  /* ---- roasteriet: framed image + overlapping note card ---- */
+  .place-grid{
+    display:grid; grid-template-columns:minmax(0,1fr); gap:0;
+  }
+  @media (min-width:840px){
+    .place-grid{ grid-template-columns:minmax(0,7fr) minmax(0,5fr); align-items:end; }
+  }
+  .place-photo{ aspect-ratio:5/4; }
+  .place-card{
+    background:var(--paper);
+    border:1px solid var(--line-on-paper);
+    border-radius:var(--radius);
+    padding:clamp(1.6rem,4vw,2.4rem);
+    display:flex; flex-direction:column; gap:1rem;
+    position:relative;
+    margin-top:-1.4rem;
+    margin-inline:1.2rem;
+  }
+  @media (min-width:840px){
+    .place-card{ margin-top:0; margin-left:-2.6rem; margin-right:0; box-shadow:0 1px 0 var(--line-on-paper); }
+  }
+  .place-card address{ font-style:normal; color:var(--ink); font-weight:600; }
+  .place-card p{ color:var(--coffee); max-width:40ch; }
+
+  /* ---- subscription: two-row comparison ---- */
+  .sub-wrap{ display:grid; grid-template-columns:minmax(0,1fr); gap:2.4rem; }
+  @media (min-width:900px){ .sub-wrap{ grid-template-columns:minmax(0,1fr) minmax(0,22rem); gap:3.5rem; } }
+  .sub-rows{ display:flex; flex-direction:column; }
+  .sub-row{
+    display:grid; grid-template-columns:minmax(0,1fr) auto; gap:1rem;
+    align-items:center;
+    padding-block:1.5rem;
+    border-bottom:1px solid var(--line-on-paper);
+  }
+  .sub-row:first-child{ border-top:1px solid var(--line-on-paper); }
+  .sub-row h3{ font-weight:700; font-size:1.02rem; }
+  .sub-row p{ color:var(--coffee); font-size:0.92rem; max-width:36ch; margin-top:.25rem; }
+  .sub-tag{
+    font-family:var(--font-body); font-weight:700; font-size:0.78rem;
+    letter-spacing:0.06em; text-transform:uppercase;
+    color:var(--accent); white-space:nowrap;
+  }
+  .sub-panel{
+    background:var(--paper-panel);
+    border-radius:var(--radius);
+    padding:clamp(1.6rem,4vw,2.2rem);
+    display:flex; flex-direction:column; gap:1.1rem;
+    align-self:start;
+  }
+  .sub-panel h3{ font-family:var(--font-display); font-weight:500; font-size:1.4rem; }
+  .sub-panel ul{ display:flex; flex-direction:column; gap:.6rem; }
+  .sub-panel li{ display:flex; gap:.6rem; color:var(--coffee); font-size:0.94rem; }
+  .sub-panel li::before{ content:"·"; color:var(--accent); font-weight:700; }
+
+  /* ============================ FOOTER (tonal inversion) ================ */
+  .site-footer{
+    background:var(--navy);
+    color:var(--navy-stone);
+    padding:clamp(3rem,7vw,5rem) 0 2rem;
+  }
+  .footer-grid{
+    display:grid; grid-template-columns:minmax(0,1fr); gap:2.4rem;
+  }
+  @media (min-width:760px){
+    .footer-grid{ grid-template-columns:minmax(0,1.3fr) minmax(0,1fr) minmax(0,1fr); gap:2.5rem; }
+  }
+  .footer-mark{
+    font-family:var(--font-display); font-style:italic; font-weight:500;
+    font-size:1.7rem; color:var(--navy-ink);
+  }
+  .footer-tagline{ margin-top:.9rem; max-width:32ch; color:var(--navy-stone); font-size:0.95rem; }
+  .footer-col h4{ font-size:0.78rem; letter-spacing:0.1em; text-transform:uppercase; color:var(--navy-ink); margin-bottom:.9rem; font-weight:700; }
+  .footer-col ul{ display:flex; flex-direction:column; gap:.55rem; }
+  .footer-col a{ text-decoration:none; color:var(--navy-stone); font-size:0.94rem; }
+  .footer-col a:hover{ color:var(--navy-ink); }
+  .footer-bottom{
+    margin-top:clamp(2.2rem,5vw,3.4rem);
+    padding-top:1.4rem;
+    border-top:1px solid var(--line-on-navy);
+    display:flex; flex-wrap:wrap; gap:1rem; justify-content:space-between;
+    font-size:0.82rem; color:var(--navy-stone);
+  }
+
+  /* ============================= REVEAL ================================ */
+  .reveal{ opacity:1; transform:none; }
+  html.js .reveal{
+    opacity:0; transform:translateY(28px);
+    transition:opacity 1.25s cubic-bezier(.16,1,.3,1), transform 1.25s cubic-bezier(.16,1,.3,1);
+  }
+  html.js .reveal.is-visible{ opacity:1; transform:translateY(0); }
+  html.js.reduced-motion .reveal{ transform:none; transition:opacity .4s linear; }
+
+  @media (prefers-reduced-motion: reduce){
+    html{ scroll-behavior:auto; }
+  }
+</style>
+</head>
+<body>
+
+<noscript>
+  <style>.reveal{ opacity:1 !important; transform:none !important; }</style>
+</noscript>
+
+<nav class="site-nav" aria-label="Huvudmeny">
+  <a class="nav-mark" href="#top">Norrsken</a>
+  <ul class="nav-links">
+    <li><a href="#varfor-burk">Burken</a></li>
+    <li><a href="#rostningar">Rostningar</a></li>
+    <li><a href="#brygga">Brygga</a></li>
+    <li><a href="#rosteriet">Rosteriet</a></li>
+  </ul>
+  <a class="btn nav-cta-full" href="#prenumeration">Prenumeration</a>
+  <a class="btn nav-cta-short" href="#prenumeration">Prenum.</a>
+</nav>
+
+<!-- HERO: fullbleed foto + centrerad logotyp-lockup — NOT a card-strip carousel opener -->
+<header class="hero" id="top">
+  <img class="hero-img" src="https://images.unsplash.com/photo-1447933601403-0c6688de566e?auto=format&fit=crop&w=2200&q=80" alt="Kaffe hälls sakta i en kopp, ånga stiger i morgonljus" loading="eager" fetchpriority="high">
+  <div class="hero-scrim" aria-hidden="true"></div>
+  <div class="hero-content">
+    <span class="eyebrow hero-eyebrow">Mikrorosteri · Luleå</span>
+    <h1 class="hero-mark"><span class="mark-roman">Norrsken</span> <span class="mark-italic">Kaffe</span></h1>
+    <p class="hero-sub">Ljusrostat filterkaffe, rostat i små omgångar och sålt på burk med skruvlock, för att det du känner i koppen ska vara samma sak vi kände i provrosten.</p>
+    <div class="hero-actions">
+      <a class="btn" href="#rostningar">Se rostningarna</a>
+      <a class="btn" href="#varfor-burk" style="border-color:transparent; text-decoration:underline; text-underline-offset:4px;">Varför burk?</a>
+    </div>
+  </div>
+</header>
+
+<main>
+
+  <!-- VARFÖR BURK: split diptych + signature scroll set-piece — NOT a three-icon feature row -->
+  <section id="varfor-burk">
+    <div class="wrap why-grid">
+      <div class="reveal">
+        <div class="section-head" style="margin-bottom:0;">
+          <span class="eyebrow">Varför en burk</span>
+          <h2 class="section-title">Tre saker <em style="font-style:italic; color:var(--accent);">försöker</em> ta smaken ifrån dig</h2>
+        </div>
+        <div class="why-points">
+          <div class="why-point">
+            <span class="why-point-tag" aria-hidden="true">01</span>
+            <div>
+              <h3>Syre</h3>
+              <p>Rostat kaffe oxiderar från stunden det lämnar rosten. En ventilpåse släpper ut koldioxid, men ventilen andas åt båda hållen, in likaväl som ut, varje gång trycket jämnar ut sig.</p>
+            </div>
+          </div>
+          <div class="why-point">
+            <span class="why-point-tag" aria-hidden="true">02</span>
+            <div>
+              <h3>Ljus</h3>
+              <p>De flyktiga oljorna som bär doften bryts ner av UV-ljus. Ett skruvlock i tjock plåt släpper igenom mindre ljus än en tunn foliepåse med tryckt logotyp på framsidan.</p>
+            </div>
+          </div>
+          <div class="why-point">
+            <span class="why-point-tag" aria-hidden="true">03</span>
+            <div>
+              <h3>Tid</h3>
+              <p>Den enda variabeln du själv styr. Ju tätare locket sluter mellan varje gång du öppnar det, desto längre håller sig bönan där den var dagen vi rostade den.</p>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="setpiece reveal" data-setpiece aria-hidden="false">
+        <img class="setpiece-photo" src="https://images.unsplash.com/photo-1498804103079-a6351b050096?auto=format&fit=crop&w=1400&q=80" alt="Nyrostade kaffebönor i en öppen behållare" loading="lazy">
+        <div class="setpiece-scrim" aria-hidden="true"></div>
+        <div class="setpiece-inner">
+          <svg class="jar-svg" viewBox="0 0 160 140" aria-hidden="true">
+            <circle class="o2-dot" cx="30" cy="30" r="3"></circle>
+            <circle class="o2-dot" cx="128" cy="20" r="2.4"></circle>
+            <circle class="o2-dot" cx="118" cy="42" r="2"></circle>
+            <path class="jar-body" d="M50 62 h60 v58 a12 12 0 0 1 -12 12 h-36 a12 12 0 0 1 -12 -12 z"></path>
+            <g class="jar-lid jar-lid-open">
+              <rect x="44" y="40" width="72" height="14" rx="3"></rect>
+              <rect x="56" y="28" width="48" height="13" rx="3"></rect>
+            </g>
+            <g class="jar-lid jar-lid-closed">
+              <rect x="44" y="50" width="72" height="14" rx="3"></rect>
+              <rect x="56" y="38" width="48" height="13" rx="3"></rect>
+            </g>
+          </svg>
+          <p class="setpiece-label">Syre · Ljus · Tid</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- TRE ROSTNINGAR: fotoburen triptyk med förskjutning — NOT four flat feature cards -->
+  <section id="rostningar" style="background:var(--paper-panel);">
+    <div class="wrap">
+      <div class="section-head reveal">
+        <span class="eyebrow">Just nu i rosten</span>
+        <h2 class="section-title">Tre rostningar, alla ljusa</h2>
+        <p class="lede">Vi håller oss till ljusrostat eftersom det är där ursprunget hörs tydligast. Ingen av de tre är mörkare än den andra, de smakar bara olika håll.</p>
+      </div>
+      <div class="roasts-grid">
+        <article class="roast-card reveal">
+          <div class="framed-img roast-photo">
+            <img src="https://images.unsplash.com/photo-1521302080334-4bebac2763a6?auto=format&fit=crop&w=1000&q=80" alt="Ljusrostat kaffe i porslinskopp på ett kafébord" loading="lazy">
+          </div>
+          <span class="roast-num" aria-hidden="true">01</span>
+          <h3>Gryning</h3>
+          <span class="roast-origin">Etiopien · tvättad process</span>
+          <p>Citrus och en aning svart te. Den vi rekommenderar till dig som vanligtvis dricker ljust rostat och redan vet vad du gillar.</p>
+        </article>
+        <article class="roast-card reveal">
+          <div class="framed-img roast-photo">
+            <img src="https://images.unsplash.com/photo-1511920170033-f8396924c348?auto=format&fit=crop&w=1000&q=80" alt="Nybryggd espresso i en liten kopp" loading="lazy">
+          </div>
+          <span class="roast-num" aria-hidden="true">02</span>
+          <h3>Midnattssol</h3>
+          <span class="roast-origin">Kenya · tvättad process</span>
+          <p>Mer kropp, mer syra, en ton av vinbär. Den som delar sig mest mellan de som älskar den och de som tycker den är för mycket.</p>
+        </article>
+        <article class="roast-card reveal">
+          <div class="framed-img roast-photo">
+            <img src="https://images.unsplash.com/photo-1495474472287-4d71bcdd2085?auto=format&fit=crop&w=1000&q=80" alt="Latte art i en kopp på ett träbord" loading="lazy">
+          </div>
+          <span class="roast-num" aria-hidden="true">03</span>
+          <h3>Vinterljus</h3>
+          <span class="roast-origin">Guatemala · honung-process</span>
+          <p>Rund och sötare, karamell och en mjuk nöttighet. Vanligast valet för den som brygger till andra och vill undvika överraskningar.</p>
+        </article>
+      </div>
+    </div>
+  </section>
+
+  <!-- ANDRUM: ett moment som inte är information — NOT another CTA banner -->
+  <section class="breather">
+    <div class="wrap">
+      <div class="breather-frame reveal">
+        <div class="framed-img">
+          <img src="https://images.unsplash.com/photo-1475738972911-5b44ce984c42?auto=format&fit=crop&w=1600&q=80" alt="Glöd och eld, nära, ur fokus" loading="lazy">
+        </div>
+        <p class="breather-cap">Rosten är levande hela tiden den pågår. Vi lämnar den aldrig.</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- SÅ BRYGGER DU: ren numrerad lista — NOT an editorial print-ledger with currency formatting -->
+  <section id="brygga">
+    <div class="wrap">
+      <div class="section-head reveal">
+        <span class="eyebrow">Ett sätt som funkar</span>
+        <h2 class="section-title">Så brygger du en kopp</h2>
+        <p class="lede">Det finns många rätta sätt. Det här är vårt, med en vanlig konisk bryggare och ett pappersfilter, till förhållandet 1 del kaffe på 16 delar vatten.</p>
+      </div>
+      <div class="brew-list reveal">
+        <div class="brew-row">
+          <span class="brew-num" aria-hidden="true">01</span>
+          <div><h3>Mal precis före</h3><p>Medelgrovt, ungefär som havssalt. Kaffe som stått malet tappar doft redan efter en kvart.</p></div>
+        </div>
+        <div class="brew-row">
+          <span class="brew-num" aria-hidden="true">02</span>
+          <div><h3>Skölj filtret</h3><p>Häll varmt vatten genom filtret innan kaffet läggs i, det tar bort papperssmaken och värmer bryggaren.</p></div>
+        </div>
+        <div class="brew-row">
+          <span class="brew-num" aria-hidden="true">03</span>
+          <div><h3>Häll i cirklar</h3><p>Börja i mitten, jobba dig utåt i lugna cirklar. Låt bädden svälla trettio sekunder innan du fortsätter.</p></div>
+        </div>
+        <div class="brew-row">
+          <span class="brew-num" aria-hidden="true">04</span>
+          <div><h3>Vänta ut den</h3><p>En kopp bör ta mellan tre och fyra minuter totalt. Går det fortare, mal finare nästa gång.</p></div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ROSTERIET: inramat foto + överlappande adresskort — NOT a full-bleed map embed -->
+  <section id="rosteriet" style="background:var(--paper-panel);">
+    <div class="wrap">
+      <div class="section-head reveal">
+        <span class="eyebrow">Besök oss</span>
+        <h2 class="section-title">Rosteriet på Storgatan</h2>
+      </div>
+      <div class="place-grid reveal">
+        <div class="framed-img place-photo">
+          <img src="https://images.unsplash.com/photo-1518837695005-2083093ee35b?auto=format&fit=crop&w=1400&q=80" alt="Havet vid Luleå skärgård i kvällsljus" loading="lazy">
+        </div>
+        <div class="place-card">
+          <span class="eyebrow" style="color:var(--accent);">Adress</span>
+          <address>Storgatan 33<br>972 32 Luleå</address>
+          <p>Rostmaskinen står i lokalen, så det luktar rostat kaffe innan du hunnit öppna dörren. Hör av dig i förväg om du vill se en rostning på nära håll.</p>
+          <a class="btn" href="mailto:hej@norrskenkaffe.se" style="width:fit-content;">Boka en visning</a>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- PRENUMERATION: jämförelselista, inga påhittade priser — NOT a three-tier pricing grid -->
+  <section id="prenumeration">
+    <div class="wrap">
+      <div class="section-head reveal">
+        <span class="eyebrow">Kaffe hem till dig</span>
+        <h2 class="section-title">Prenumerera på burken</h2>
+        <p class="lede">Samma 250 g-burk, samma skruvlock, levererad utan att du behöver tänka på det. Byt rostning, pausa eller säg upp när du vill, direkt i din inloggning.</p>
+      </div>
+      <div class="sub-wrap">
+        <div class="sub-rows reveal">
+          <div class="sub-row">
+            <div><h3>Varannan vecka</h3><p>En burk, till dig som dricker en kopp om dagen och gärna oftare.</p></div>
+            <span class="sub-tag">Populärast</span>
+          </div>
+          <div class="sub-row">
+            <div><h3>Var fjärde vecka</h3><p>En burk, till hushåll som dricker mer sällan eller delar på en påse.</p></div>
+            <span class="sub-tag">Lugnare takt</span>
+          </div>
+          <div class="sub-row" style="border-bottom:none;">
+            <div><h3>Egen takt</h3><p>Välj ett eget intervall vid kassan, ändra det när som helst efteråt.</p></div>
+            <span class="sub-tag">Flexibel</span>
+          </div>
+        </div>
+        <div class="sub-panel reveal">
+          <h3>Ingår alltid</h3>
+          <ul>
+            <li>Rostdatum tryckt på varje burk</li>
+            <li>Fri rostning att välja mellan, du bestämmer</li>
+            <li>Paus eller uppsägning utan att ringa någon</li>
+            <li>Samma burk, redo att fyllas på nytt</li>
+          </ul>
+          <a class="btn" href="#top">Starta prenumeration</a>
+        </div>
+      </div>
+    </div>
+  </section>
+
+</main>
+
+<!-- FOOTER: den enda tonala inversionen på sidan -->
+<footer class="site-footer">
+  <div class="wrap">
+    <div class="footer-grid">
+      <div class="reveal">
+        <span class="footer-mark">Norrsken Kaffe</span>
+        <p class="footer-tagline">Mikrorosteri i Luleå. Ljusrostat filterkaffe, rostat för hand och sålt på burk, inte i påse.</p>
+      </div>
+      <div class="footer-col reveal">
+        <h4>Sidan</h4>
+        <ul>
+          <li><a href="#varfor-burk">Varför burk</a></li>
+          <li><a href="#rostningar">Tre rostningar</a></li>
+          <li><a href="#brygga">Så brygger du</a></li>
+          <li><a href="#prenumeration">Prenumeration</a></li>
+        </ul>
+      </div>
+      <div class="footer-col reveal">
+        <h4>Kontakt</h4>
+        <ul>
+          <li><a href="mailto:hej@norrskenkaffe.se">hej@norrskenkaffe.se</a></li>
+          <li>Storgatan 33, Luleå</li>
+        </ul>
+      </div>
+    </div>
+    <div class="footer-bottom">
+      <span>© Norrsken Kaffe</span>
+      <span>Rostat och packat i Luleå</span>
+    </div>
+  </div>
+</footer>
+
+<script>
+(function(){
+  "use strict";
+  var root = document.documentElement;
+  root.classList.add('js');
+
+  var reduceQuery = window.matchMedia ? window.matchMedia('(prefers-reduced-motion: reduce)') : null;
+  var reducedMotion = !!(reduceQuery && reduceQuery.matches);
+  if(reducedMotion){ root.classList.add('reduced-motion'); }
+  if(reduceQuery && reduceQuery.addEventListener){
+    reduceQuery.addEventListener('change', function(e){
+      reducedMotion = e.matches;
+      root.classList.toggle('reduced-motion', reducedMotion);
+    });
+  }
+
+  /* ---------- shared reveal: fails toward visible ---------- */
+  (function reveal(){
+    var els = Array.prototype.slice.call(document.querySelectorAll('.reveal'));
+    var seen = new Set();
+    function show(el){ if(!seen.has(el)){ seen.add(el); el.classList.add('is-visible'); } }
+
+    if('IntersectionObserver' in window){
+      var io = new IntersectionObserver(function(entries){
+        entries.forEach(function(entry){ if(entry.isIntersecting) show(entry.target); });
+      }, { threshold: 0, rootMargin: '0px 0px -2% 0px' });
+
+      els.forEach(function(el){
+        var r = el.getBoundingClientRect();
+        var vh = window.innerHeight || document.documentElement.clientHeight;
+        if(r.top < vh && r.bottom > 0){
+          show(el); /* mount-reveal: already on/above screen at load */
+        } else {
+          io.observe(el);
+        }
+      });
+    } else {
+      els.forEach(show);
+    }
+
+    /* failsafe: nothing stays invisible forever */
+    window.setTimeout(function(){
+      var missed = els.filter(function(el){ return !seen.has(el); });
+      missed.forEach(show);
+      if(window.console && console.debug){
+        console.debug('[reveal] failsafe fired, un-revealed elements caught:', missed.length);
+      }
+    }, 1800);
+  })();
+
+  /* ---------- signature set-piece: the sealing jar ---------- */
+  (function setpiece(){
+    var el = document.querySelector('[data-setpiece]');
+    if(!el) return;
+
+    var params = new URLSearchParams(window.location.search);
+    var forcedPreview = params.get('preview') === 'jar';
+
+    if(forcedPreview){
+      el.style.setProperty('--seal', '1');
+      return; /* formed state, no scroll math needed for the screenshot hook */
+    }
+
+    function targetSeal(){
+      var r = el.getBoundingClientRect();
+      var vh = window.innerHeight || document.documentElement.clientHeight;
+      /* 0 as the piece enters from the bottom, 1 once it has fully passed the top */
+      var raw = (vh - r.top) / (vh + r.height);
+      return Math.max(0, Math.min(1, raw));
+    }
+
+    if(reducedMotion){
+      /* no rAF, no lerp: snap straight to scroll position, no travel that drifts */
+      var applyDirect = function(){ el.style.setProperty('--seal', String(targetSeal())); };
+      applyDirect();
+      window.addEventListener('scroll', applyDirect, { passive:true });
+      window.addEventListener('resize', applyDirect);
+      return;
+    }
+
+    var current = 0;
+    var running = false;
+    function tick(){
+      var target = targetSeal();
+      current += (target - current) * 0.09;
+      if(Math.abs(target - current) < 0.001){ current = target; running = false; }
+      el.style.setProperty('--seal', String(current));
+      if(running){ window.requestAnimationFrame(tick); }
+    }
+    function kick(){
+      if(!running){ running = true; window.requestAnimationFrame(tick); }
+    }
+    kick();
+    window.addEventListener('scroll', kick, { passive:true });
+    window.addEventListener('resize', kick);
+  })();
+})();
+</script>
+
+</body>
+</html>

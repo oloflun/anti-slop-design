@@ -1,0 +1,138 @@
+{
+  "stops": [
+    {
+      "walkId": "1",
+      "tag": "button",
+      "name": "Profil",
+      "hasFocusIndicator": true,
+      "rect": {
+        "top": 166,
+        "left": 360,
+        "width": 40,
+        "height": 37
+      },
+      "inViewport": true,
+      "tabIndex": 0
+    },
+    {
+      "walkId": "2",
+      "tag": "input",
+      "name": "",
+      "hasFocusIndicator": true,
+      "rect": {
+        "top": 257,
+        "left": 360,
+        "width": 352,
+        "height": 44
+      },
+      "inViewport": true,
+      "tabIndex": 0
+    },
+    {
+      "walkId": "3",
+      "tag": "input",
+      "name": "",
+      "hasFocusIndicator": true,
+      "rect": {
+        "top": 257,
+        "left": 728,
+        "width": 352,
+        "height": 44
+      },
+      "inViewport": true,
+      "tabIndex": 0
+    },
+    {
+      "walkId": "4",
+      "tag": "input",
+      "name": "",
+      "hasFocusIndicator": true,
+      "rect": {
+        "top": 379,
+        "left": 360,
+        "width": 352,
+        "height": 44
+      },
+      "inViewport": true,
+      "tabIndex": 0
+    },
+    {
+      "walkId": "5",
+      "tag": "select",
+      "name": "Kontoägare\nAdministratör\nEkonomi",
+      "hasFocusIndicator": true,
+      "rect": {
+        "top": 379,
+        "left": 728,
+        "width": 352,
+        "height": 44
+      },
+      "inViewport": true,
+      "tabIndex": 0
+    },
+    {
+      "walkId": "6",
+      "tag": "textarea",
+      "name": "",
+      "hasFocusIndicator": true,
+      "rect": {
+        "top": 502,
+        "left": 360,
+        "width": 720,
+        "height": 96
+      },
+      "inViewport": true,
+      "tabIndex": 0
+    },
+    {
+      "walkId": "7",
+      "tag": "button",
+      "name": "Hantera API-nycklar",
+      "hasFocusIndicator": true,
+      "rect": {
+        "top": 728,
+        "left": 381,
+        "width": 162,
+        "height": 44
+      },
+      "inViewport": true,
+      "tabIndex": 0
+    },
+    {
+      "walkId": "8",
+      "tag": "button",
+      "name": "Spara ändringar",
+      "hasFocusIndicator": true,
+      "rect": {
+        "top": 846,
+        "left": 941,
+        "width": 139,
+        "height": 44
+      },
+      "inViewport": true,
+      "tabIndex": 0
+    }
+  ],
+  "issues": [
+    {
+      "kind": "empty_name",
+      "index": 1,
+      "detail": "<input> has no accessible name"
+    },
+    {
+      "kind": "empty_name",
+      "index": 2,
+      "detail": "<input> has no accessible name"
+    },
+    {
+      "kind": "empty_name",
+      "index": 3,
+      "detail": "<input> has no accessible name"
+    },
+    {
+      "kind": "empty_name",
+      "index": 5,
+      "detail": "<textarea> has no accessible name"
+    }
+  ]
+}

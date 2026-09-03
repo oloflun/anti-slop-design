@@ -1,0 +1,207 @@
+<!DOCTYPE html>
+<html lang="sv">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Florhuset Majorna — Buketter &amp; bröllop i Majorna, Göteborg</title>
+<!--
+  LANE: salt-bleached harbour atelier — kalkstensbleknad ateljé vid älvmynningen:
+  krita och gammal koppar, en tvåtonad snitt-serif (rak för läsning, kursiv för
+  röst), sidor som bläddras som ett tryckt kapitel snarare än scrollas som ett kort.
+  REGISTER: editorial print, grammatik: chaptered editorial (katalogblad, ingen
+  ikon-kort-grid).
+-->
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,440;0,9..144,600;1,9..144,500;1,9..144,600&family=Source+Serif+4:ital,opsz,wght@0,8..60,400;0,8..60,500;1,8..60,400&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --cream:#f4ede0; --cream-deep:#e9dfc9; --ink:#271f16; --ink-soft:#4a4032;
+    --copper:#a85f2c; --copper-deep:#733917; --line:rgba(39,31,22,.18);
+  }
+  *{box-sizing:border-box}
+  html{-webkit-text-size-adjust:100%}
+  body{
+    margin:0; background:var(--cream); color:var(--ink);
+    font-family:"Source Serif 4",Georgia,serif; font-size:1.05rem; line-height:1.6;
+    overflow-x:hidden;
+  }
+  a{color:var(--copper-deep)}
+  img,svg{max-width:100%; display:block}
+  .wrap{max-width:64rem; margin:0 auto; padding-inline:clamp(1.1rem,4vw,2.5rem)}
+  :focus-visible{outline:3px solid var(--copper-deep); outline-offset:3px; border-radius:2px}
+
+  /* ---- Nav — ersätter: den platta sticky-menyn (logo vänster / länkar höger / knapp), en generisk app-header utan tidningsröst ---- */
+  header.masthead{border-bottom:1px solid var(--line); background:var(--cream)}
+  .masthead-row{
+    display:flex; align-items:center; justify-content:space-between; gap:1rem;
+    padding-block:1.1rem; flex-wrap:wrap;
+  }
+  .wordmark{font-family:"Fraunces",serif; font-size:1.35rem; letter-spacing:-.01em}
+  .wordmark em{font-style:italic; color:var(--copper-deep); font-weight:500}
+  nav.primary{display:flex; gap:clamp(.9rem,2vw,1.6rem); flex-wrap:wrap; font-size:.95rem}
+  nav.primary a{text-decoration:none; color:var(--ink-soft); border-bottom:1px solid transparent; padding-bottom:2px}
+  nav.primary a:hover{border-color:var(--copper)}
+  .btn{
+    display:inline-block; font-family:"Source Serif 4",serif; font-size:.95rem;
+    padding:.62rem 1.2rem; border-radius:3px; text-decoration:none; border:1px solid var(--copper-deep);
+  }
+  .btn-primary{background:var(--copper-deep); color:var(--cream)}
+  .btn-primary:hover{background:#5c2c10}
+  .btn-ghost{color:var(--copper-deep)}
+  .btn-ghost:hover{background:var(--cream-deep)}
+
+  /* ---- Hero — ersätter: fullbredds-stockfoto med centrerad rubrik och en enda generisk CTA-knapp ---- */
+  .hero{padding-block:clamp(2.6rem,7vw,5rem); border-bottom:1px solid var(--line)}
+  .hero-grid{display:grid; grid-template-columns:1.15fr .85fr; gap:clamp(1.6rem,4vw,3rem); align-items:center}
+  .kicker{
+    font-size:.82rem; letter-spacing:.06em; color:var(--copper-deep);
+    font-style:italic; font-family:"Fraunces",serif; margin:0 0 .8rem;
+  }
+  h1{
+    font-family:"Fraunces",serif; font-weight:600; font-size:clamp(2.1rem,5.2vw,3.4rem);
+    line-height:1.06; letter-spacing:-.02em; margin:0 0 1.1rem; max-width:16ch;
+  }
+  h1 em{font-style:italic; font-weight:500; color:var(--copper-deep)}
+  .lede{max-width:52ch; color:var(--ink-soft); font-size:1.08rem; margin:0 0 1.6rem}
+  .cta-row{display:flex; gap:.9rem; flex-wrap:wrap}
+  .hero-plate{aspect-ratio:4/5; border:1px solid var(--line); border-radius:4px; overflow:hidden; background:linear-gradient(160deg,var(--cream-deep),var(--cream))}
+  .hero-plate figcaption{font-size:.78rem; color:var(--ink-soft); font-style:italic; margin-top:.5rem; text-align:center}
+
+  /* ---- Kapitel I: Säsongens buketter — ersätter: rutnät av likstora kort med ikon + rubrik + text (kort är den lata behållaren) ---- */
+  .plates{padding-block:clamp(2.4rem,6vw,4.2rem)}
+  .plates-head{display:flex; align-items:baseline; justify-content:space-between; gap:1rem; flex-wrap:wrap; margin-bottom:1.6rem; border-bottom:1px solid var(--line); padding-bottom:1rem}
+  .plates-head h2{font-family:"Fraunces",serif; font-weight:600; font-size:clamp(1.6rem,3.4vw,2.3rem); margin:0; letter-spacing:-.01em}
+  .plates-head p{margin:0; color:var(--ink-soft); font-size:.95rem; max-width:30ch}
+  .plate-row{
+    display:grid; grid-template-columns:9rem 1fr; gap:1.4rem;
+    padding-block:1.6rem; border-bottom:1px solid var(--line);
+    opacity:1; transform:none;
+  }
+  .plate-row.will-reveal{opacity:0; transform:translateY(14px); transition:opacity .6s cubic-bezier(.16,1,.3,1), transform .6s cubic-bezier(.16,1,.3,1)}
+  .plate-row.will-reveal.is-visible{opacity:1; transform:none}
+  .plate-art{aspect-ratio:1/1; border-radius:3px; border:1px solid var(--line); background:var(--cream-deep); display:flex; align-items:center; justify-content:center}
+  .plate-body h3{font-family:"Fraunces",serif; font-style:italic; font-weight:500; font-size:1.35rem; margin:0 0 .35rem; color:var(--copper-deep)}
+  .plate-fig{font-size:.78rem; color:var(--ink-soft); font-style:italic; display:block; margin-bottom:.15rem}
+  .plate-body p{margin:0; color:var(--ink-soft); font-size:.97rem; max-width:56ch}
+
+  @media (max-width:760px){
+    .hero-grid{grid-template-columns:1fr}
+    .hero-plate{order:-1; max-width:20rem; margin-inline:auto}
+    .plate-row{grid-template-columns:5.5rem 1fr}
+  }
+  @media (prefers-reduced-motion:reduce){
+    .plate-row.will-reveal{opacity:1; transform:none; transition:none}
+  }
+</style>
+</head>
+<body>
+
+<header class="masthead">
+  <div class="wrap masthead-row">
+    <span class="wordmark">Florhuset <em>Majorna</em></span>
+    <nav class="primary" aria-label="Huvudmeny">
+      <a href="#buketter">Buketter</a>
+      <a href="#brollop">Bröllop</a>
+      <a href="#prenumeration">Prenumeration</a>
+      <a href="#ateljen">Ateljén</a>
+    </nav>
+    <a class="btn btn-primary" href="#buketter">Beställ bukett</a>
+  </div>
+</header>
+
+<main>
+  <section class="hero">
+    <div class="wrap hero-grid">
+      <div>
+        <p class="kicker">Kapitel I — Ett hus vid älvmynningen</p>
+        <h1>Bundet efter <em>väder</em>, inte efter kalender</h1>
+        <p class="lede">Florhuset Majorna binder buketter från det som faktiskt blommar denna vecka längs västerhavet — inte från ett fast sortiment. Vi håller till på Mariaplan och tar emot beställningar, bröllopssamtal och ateljékvällar i binderi.</p>
+        <div class="cta-row">
+          <a class="btn btn-primary" href="#buketter">Beställ en bukett</a>
+          <a class="btn btn-ghost" href="#brollop">Boka bröllopsmöte</a>
+        </div>
+      </div>
+      <figure class="hero-plate">
+        <svg viewBox="0 0 200 220" role="img" aria-label="Illustrerad platshållare: en bunt sensommarblommor i profil, streckteckning i koppar mot krita — ersätter ännu inte inhämtat fotografi från ateljén." xmlns="http://www.w3.org/2000/svg">
+          <rect width="200" height="220" fill="none"/>
+          <g fill="none" stroke="#a85f2c" stroke-width="1.4">
+            <path d="M100 210 L100 120"/>
+            <path d="M100 150 L70 130 M100 165 L132 148 M100 180 L74 168"/>
+            <circle cx="100" cy="95" r="20"/>
+            <circle cx="70" cy="105" r="14"/>
+            <circle cx="132" cy="100" r="15"/>
+            <circle cx="86" cy="60" r="16"/>
+            <circle cx="122" cy="65" r="13"/>
+          </g>
+        </svg>
+        <figcaption>Platshållare — ateljéns eget foto sätts in innan lansering</figcaption>
+      </figure>
+    </div>
+  </section>
+
+  <section class="plates" id="buketter">
+    <div class="wrap">
+      <div class="plates-head">
+        <h2>Säsongens buketter</h2>
+        <p>Plockade efter vad som står i blom just nu i Majorna och på Väster­havets odlingar.</p>
+      </div>
+
+      <article class="plate-row">
+        <div class="plate-art"><svg width="60" height="60" viewBox="0 0 60 60" role="img" aria-label="Platshållare: dahlior och rudbeckia i kopparlinje"><g fill="none" stroke="#a85f2c" stroke-width="1.3"><circle cx="30" cy="26" r="12"/><circle cx="16" cy="38" r="8"/><circle cx="44" cy="38" r="8"/></g></svg></div>
+        <div class="plate-body">
+          <span class="plate-fig">Fig. I</span>
+          <h3>Sensommarens sista</h3>
+          <p>Dahlior, rudbeckia och blodnäva från odlarna på Hisingen, bundna lösa så att de andas i vasen ett par veckor till.</p>
+        </div>
+      </article>
+
+      <article class="plate-row">
+        <div class="plate-art"><svg width="60" height="60" viewBox="0 0 60 60" role="img" aria-label="Platshållare: astrar och salvia i kopparlinje"><g fill="none" stroke="#a85f2c" stroke-width="1.3"><circle cx="22" cy="30" r="10"/><circle cx="38" cy="22" r="9"/><path d="M45 40 L50 20"/></g></svg></div>
+        <div class="plate-body">
+          <span class="plate-fig">Fig. II</span>
+          <h3>Hamnkvarten</h3>
+          <p>Astrar och salvia med grässkärmar från älvstranden — en bukett med samma råa ljus som kvällen vid Klippans varv.</p>
+        </div>
+      </article>
+
+      <article class="plate-row">
+        <div class="plate-art"><svg width="60" height="60" viewBox="0 0 60 60" role="img" aria-label="Platshållare: zinnior och ammi i kopparlinje"><g fill="none" stroke="#a85f2c" stroke-width="1.3"><circle cx="30" cy="24" r="11"/><circle cx="18" cy="40" r="7"/><circle cx="42" cy="40" r="7"/></g></svg></div>
+        <div class="plate-body">
+          <span class="plate-fig">Fig. III</span>
+          <h3>Söndagsvit</h3>
+          <p>Zinnior i vitt och benvitt, ammi och silverek — den bukett vi själva köper när det är någon i huset som fyller år.</p>
+        </div>
+      </article>
+
+      <article class="plate-row">
+        <div class="plate-art"><svg width="60" height="60" viewBox="0 0 60 60" role="img" aria-label="Platshållare: kosmos och höstgrönt i kopparlinje"><g fill="none" stroke="#a85f2c" stroke-width="1.3"><circle cx="24" cy="22" r="10"/><circle cx="40" cy="34" r="9"/><path d="M14 42 L46 42"/></g></svg></div>
+        <div class="plate-body">
+          <span class="plate-fig">Fig. IV</span>
+          <h3>Ateljéns favorit</h3>
+          <p>Kosmos, dahlior och det gröna vi klipper samma morgon — binds bara torsdag till lördag, så länge det räcker.</p>
+        </div>
+      </article>
+    </div>
+  </section>
+</main>
+
+<script>
+  // Reveal fails toward visible: default CSS state (above) is fully opaque.
+  // Only when JS runs AND the browser supports IntersectionObserver AND the
+  // visitor has not asked for reduced motion do we opt elements into the
+  // hidden-then-fade class before observing them.
+  (function(){
+    if (window.matchMedia('(prefers-reduced-motion: reduce)').matches) return;
+    if (!('IntersectionObserver' in window)) return;
+    var rows = document.querySelectorAll('.plate-row');
+    var io = new IntersectionObserver(function(entries){
+      entries.forEach(function(e){
+        if (e.isIntersecting){ e.target.classList.add('is-visible'); io.unobserve(e.target); }
+      });
+    }, { threshold: .2 });
+    rows.forEach(function(r){ r.classList.add('will-reveal'); io.observe(r); });
+  })();
+</script>
+</body>
+</html>

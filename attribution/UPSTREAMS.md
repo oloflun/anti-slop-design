@@ -199,3 +199,57 @@ catalog that, per its own source comment, *"does not ship with the skill"* — i
 resolves to a paid roll API, then degrades to assignment-only. It is disabled
 in this setup outside the explicit no-reference lane, so no external world is
 ever dealt.
+
+### 6. emilkowalski/skills — motion craft (refreshed 2026-09-03)
+
+- **Repo:** [emilkowalski/skills](https://github.com/emilkowalski/skills)
+- **Author:** [Emil Kowalski](https://github.com/emilkowalski)
+- **License:** MIT
+- **Commit vendored:** `d23d7f88a2e21c9e4b1418c7abe420f5c1052ba7`
+- **Skills vendored (9):** `emil-design-eng`, `animate`, `review-animations`,
+  `improve-animations`, `find-animation-opportunities`, `prototype`,
+  `apple-design`, `animation-vocabulary`, `pick-ui-library`. All nine were
+  refreshed to this commit; the eight other than `emil-design-eng` are
+  byte-identical copies of upstream, including their frontmatter (three of
+  them — `review-animations`, `prototype`, `pick-ui-library` — keep upstream's
+  `disable-model-invocation: true`, so they only run when explicitly invoked).
+- **Local modification:** `emil-design-eng/SKILL.md`'s `description:`
+  frontmatter value was **not** taken from upstream. It was kept as the long,
+  trigger-rich description written locally for this repo (motion-specific
+  fire conditions, trigger phrases, and an explicit skip list), because this
+  repo's skill router depends on that density of trigger phrasing for
+  auto-invocation and upstream's one-line description is too generic to route
+  on reliably. Everything else in the file — body, `name:`, and the added
+  `user-invocable: true` field carried over from the previous local copy — is
+  byte-identical to upstream.
+- **Skipped (3):** `animate-expo` (React Native/Expo + Reanimated/Gesture
+  Handler animation — this design system targets the web only),
+  `write-swift` (Swift language/concurrency craft — no Swift code in this
+  repo), `ask-sonner` (a narrow how-to for the Sonner React toast library —
+  out of scope for a general motion-craft vendor drop; can be pulled in later
+  if a project actually adopts Sonner).
+
+### 7. ItsssssJack/SlopMonster — copy scorer + rival-model cleanse (2026-09-03)
+
+- **Repo:** [ItsssssJack/SlopMonster](https://github.com/ItsssssJack/SlopMonster)
+- **Author:** Jack Roberts
+- **License:** MIT
+- **Commit vendored:** `153fab34071d78227b2bd3ec0f26d268c8513ad5`
+- **Vendored whole (minus `.git`)** to
+  `skills/design/references/upstream/slopmonster/` (`SKILL.md`, `README.md`,
+  `LICENSE`, `.gitignore`, `.github/`, `docs/`, `examples/`, `prompts/`,
+  `references/`, `tools/`), byte-identical, with a MANIFEST.md row appended.
+- **Installed as a skill** at `skills/slopmonster/`
+  (`SKILL.md` + `tools/`, `prompts/`, `references/`, `examples/`), also
+  byte-identical — upstream's frontmatter already carried `name: slopmonster`,
+  so no edit was needed.
+- **Verified locally:** `tools/test_deslop.py` passes; `tools/deslop.py --text`
+  scores a stock "not just a tool, it's a game-changing journey" line 3/5 and
+  flags the construction plus two vocabulary hits; `tools/deslop.py README.md`
+  scores the vendored README 5/5 CLEAN. `tools/cleanse.sh` shells out to a
+  rival-model CLI (`codex` for a Claude-authored draft, `claude` for a
+  GPT-authored one via `DESLOP_WRITER=gpt`); both `codex` and `claude` are on
+  `PATH` here, so the script is runnable, but it was not invoked against any
+  content as part of this install.
+- **Under A/B evaluation** against copywriting → copy-editing → humanizer; see
+  `tests/ab/11-slopmonster/`.

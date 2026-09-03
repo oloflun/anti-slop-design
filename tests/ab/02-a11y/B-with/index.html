@@ -1,0 +1,1209 @@
+<!DOCTYPE html>
+<html lang="sv">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>Klova Bokning – Skapa konto</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,500;0,9..144,600;0,9..144,700&family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --color-ground: #F5F0E8;
+    --color-paper: #FFFFFF;
+    --color-paper-2: #EFE8DB;
+    --color-ink: #1E1A16;
+    --color-ink-2: #3A322A;
+    --color-muted: #6E655A;
+    --color-accent: #B6432B;
+    --color-accent-ink: #FFFFFF;
+    --color-accent-2: #9C3823;
+    --color-hairline: #D9D0C3;
+    --color-focus: #1E1A16;
+    --color-error: #A3242B;
+    --color-error-bg: #FBEAE8;
+    --color-success: #2F5D3A;
+    --color-success-bg: #E9F1EA;
+    --color-warning: #8A5A12;
+    --color-warning-bg: #FBF1E1;
+
+    --font-display: "Fraunces", "Iowan Old Style", ui-serif, Georgia, serif;
+    --font-ui: "Inter", ui-sans-serif, system-ui, -apple-system, "Segoe UI", sans-serif;
+
+    --text-xs: 0.75rem;
+    --text-sm: 0.875rem;
+    --text-base: 1rem;
+    --text-md: 1.125rem;
+    --text-lg: 1.375rem;
+    --text-xl: 1.75rem;
+    --text-2xl: 2.25rem;
+
+    --space-1: 0.25rem;
+    --space-2: 0.5rem;
+    --space-3: 0.75rem;
+    --space-4: 1rem;
+    --space-5: 1.5rem;
+    --space-6: 2rem;
+    --space-7: 2.5rem;
+    --space-8: 3rem;
+
+    --radius: 0.5rem;
+    --radius-sm: 0.375rem;
+    --control-height: 2.75rem;
+    --motion-fast: 150ms;
+    --motion-base: 200ms;
+    --ease: cubic-bezier(0.2, 0, 0, 1);
+  }
+
+  *, *::before, *::after { box-sizing: border-box; }
+  html { -webkit-text-size-adjust: 100%; }
+  body {
+    margin: 0;
+    background: var(--color-ground);
+    color: var(--color-ink);
+    font-family: var(--font-ui);
+    font-size: var(--text-base);
+    line-height: 1.5;
+    padding-inline: max(0px, env(safe-area-inset-left)) max(0px, env(safe-area-inset-right));
+    padding-bottom: max(0px, env(safe-area-inset-bottom));
+  }
+  html, body { overflow-x: clip; }
+  img { max-width: 100%; }
+
+  h1, h2, h3 { font-family: var(--font-display); font-weight: 600; line-height: 1.15; margin: 0; color: var(--color-ink); overflow-wrap: anywhere; }
+  h1 { font-size: var(--text-2xl); }
+  h2 { font-size: var(--text-lg); }
+  h3 { font-size: var(--text-md); }
+  p { margin: 0; }
+
+  a { color: var(--color-accent-2); }
+  a:not(.btn) { text-underline-offset: 0.15em; }
+
+  :focus { outline: none; }
+  :focus-visible {
+    outline: 2px solid var(--color-focus);
+    outline-offset: 2px;
+    border-radius: var(--radius-sm);
+  }
+
+  .skip-link {
+    position: absolute;
+    left: var(--space-3);
+    top: -3rem;
+    background: var(--color-ink);
+    color: var(--color-ground);
+    padding: var(--space-3) var(--space-4);
+    border-radius: var(--radius-sm);
+    font-weight: 600;
+    z-index: 100;
+    text-decoration: none;
+  }
+  .skip-link:focus-visible {
+    top: var(--space-3);
+    outline-offset: 3px;
+  }
+
+  /* Header */
+  .topbar {
+    border-bottom: 1px solid var(--color-hairline);
+    background: var(--color-ground);
+  }
+  .topbar__inner {
+    max-width: 75rem;
+    margin-inline: auto;
+    padding: var(--space-4) var(--space-4);
+    display: flex;
+    align-items: center;
+    gap: var(--space-3);
+  }
+  .brand {
+    display: inline-flex;
+    align-items: center;
+    gap: var(--space-2);
+    font-family: var(--font-display);
+    font-weight: 600;
+    font-size: var(--text-md);
+    color: var(--color-ink);
+    text-decoration: none;
+    border-radius: var(--radius-sm);
+  }
+  .brand:hover { color: var(--color-accent-2); }
+  .brand__mark {
+    display: inline-grid;
+    place-items: center;
+    width: 2rem;
+    height: 2rem;
+    border-radius: var(--radius-sm);
+    background: var(--color-accent);
+    color: var(--color-accent-ink);
+    font-size: var(--text-base);
+  }
+
+  /* Layout containers */
+  main { display: block; }
+  .container { max-width: 40rem; margin-inline: auto; padding: var(--space-6) var(--space-4) var(--space-8); }
+  .container--wide { max-width: 75rem; }
+
+  /* Buttons */
+  .btn {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    gap: var(--space-2);
+    min-height: var(--control-height);
+    padding-inline: var(--space-5);
+    border-radius: var(--radius);
+    border: 1px solid transparent;
+    font-family: var(--font-ui);
+    font-size: var(--text-base);
+    font-weight: 600;
+    line-height: 1.2;
+    cursor: pointer;
+    white-space: nowrap;
+    transition: background-color var(--motion-fast) var(--ease), border-color var(--motion-fast) var(--ease), color var(--motion-fast) var(--ease);
+  }
+  .btn-primary { background: var(--color-accent); color: var(--color-accent-ink); }
+  .btn-primary:hover { background: var(--color-accent-2); }
+  .btn-primary:active { background: var(--color-accent-2); }
+  .btn-primary[disabled], .btn-primary[aria-disabled="true"] { opacity: 0.55; cursor: not-allowed; }
+
+  .btn-secondary { background: transparent; color: var(--color-ink); border-color: var(--color-hairline); }
+  .btn-secondary:hover { background: var(--color-paper-2); }
+
+  .btn-ghost {
+    background: transparent;
+    color: var(--color-ink-2);
+    border-color: transparent;
+    min-height: auto;
+    padding: var(--space-1) var(--space-2);
+    font-size: var(--text-sm);
+    font-weight: 600;
+    text-decoration: underline;
+    text-underline-offset: 0.15em;
+  }
+  .btn-ghost:hover { color: var(--color-accent-2); }
+
+  .btn-icon {
+    min-height: 2.5rem;
+    min-width: 2.5rem;
+    padding: 0;
+    background: transparent;
+    color: var(--color-ink-2);
+    border-color: transparent;
+    position: relative;
+  }
+  /* Expand the hit target to the 44px floor without growing the visible chip. */
+  .btn-icon::before {
+    content: "";
+    position: absolute;
+    inset: -2px;
+  }
+  .btn-icon:hover { background: var(--color-paper-2); }
+
+  @media (hover: hover) and (pointer: fine) {
+    .card:hover { border-color: var(--color-ink-2); }
+  }
+
+  /* Stepper */
+  .stepper {
+    display: flex;
+    list-style: none;
+    margin: 0 0 var(--space-6);
+    padding: 0;
+    gap: var(--space-2);
+  }
+  .stepper li {
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+    gap: var(--space-2);
+  }
+  .stepper .stepper__bar {
+    height: 0.25rem;
+    border-radius: 999px;
+    background: var(--color-hairline);
+  }
+  .stepper li[aria-current="step"] .stepper__bar,
+  .stepper li.is-done .stepper__bar {
+    background: var(--color-accent);
+  }
+  .stepper__label {
+    font-size: var(--text-xs);
+    color: var(--color-muted);
+    font-weight: 600;
+  }
+  .stepper li[aria-current="step"] .stepper__label { color: var(--color-ink); }
+
+  .required-note { font-size: var(--text-sm); color: var(--color-muted); margin-bottom: var(--space-5); }
+
+  /* Form */
+  fieldset { border: 0; margin: 0; padding: 0; }
+  legend { padding: 0; }
+  .field { margin-bottom: var(--space-5); }
+  .field label {
+    display: inline-flex;
+    gap: var(--space-1);
+    font-size: var(--text-sm);
+    font-weight: 600;
+    margin-bottom: var(--space-2);
+  }
+  .field__req { color: var(--color-accent-2); }
+  .field-control-wrap { position: relative; }
+  .input, .textarea, select.input {
+    width: 100%;
+    min-height: var(--control-height);
+    padding: 0 var(--space-4);
+    padding-right: 2.75rem;
+    font-family: var(--font-ui);
+    font-size: var(--text-base);
+    color: var(--color-ink);
+    background: var(--color-paper);
+    border: 1px solid var(--color-hairline);
+    outline: 2px solid transparent;
+    outline-offset: 1px;
+    border-radius: var(--radius);
+    transition: background-color var(--motion-fast) var(--ease), border-color var(--motion-fast) var(--ease);
+  }
+  .textarea { min-height: 6rem; padding-block: var(--space-3); resize: vertical; padding-right: var(--space-4); }
+  .input::placeholder, .textarea::placeholder { color: var(--color-muted); opacity: 1; }
+  .input:hover, .textarea:hover { background: var(--color-paper-2); }
+  .input:focus-visible, .textarea:focus-visible {
+    outline: 2px solid var(--color-focus);
+    outline-offset: 1px;
+    border-color: var(--color-ink-2);
+  }
+  .input[aria-invalid="true"], .textarea[aria-invalid="true"] { border-color: var(--color-error); }
+  .input:disabled, .textarea:disabled {
+    opacity: 0.55;
+    cursor: not-allowed;
+    background: var(--color-paper-2);
+    color: var(--color-muted);
+  }
+  .field-help {
+    margin-top: var(--space-2);
+    min-height: 1lh;
+    font-size: var(--text-sm);
+    color: var(--color-muted);
+  }
+  .field-help.is-error { color: var(--color-error); font-weight: 600; }
+  .field--no-right-pad .input { padding-right: var(--space-4); }
+
+  .field-toggle {
+    position: absolute;
+    right: 0.25rem;
+    top: 50%;
+    transform: translateY(-50%);
+    min-height: 2.25rem;
+    min-width: 2.25rem;
+    padding: 0 var(--space-2);
+    background: transparent;
+    border: 1px solid transparent;
+    border-radius: var(--radius-sm);
+    color: var(--color-muted);
+    font-size: var(--text-sm);
+    font-weight: 600;
+    cursor: pointer;
+  }
+  /* Visual chip stays small; the hit target still meets the 44px floor. */
+  .field-toggle::before {
+    content: "";
+    position: absolute;
+    inset: -5px;
+  }
+  .field-toggle:hover { color: var(--color-ink); background: var(--color-paper-2); }
+
+  .checkbox-field {
+    display: flex;
+    align-items: flex-start;
+    gap: var(--space-3);
+    padding: var(--space-4);
+    border: 1px solid var(--color-hairline);
+    border-radius: var(--radius);
+    background: var(--color-paper);
+    cursor: pointer;
+  }
+  .checkbox-field input[type="checkbox"] {
+    width: 1.25rem;
+    height: 1.25rem;
+    margin: 0.125rem 0 0;
+    accent-color: var(--color-accent);
+    flex-shrink: 0;
+  }
+  .checkbox-field[data-invalid="true"] { border-color: var(--color-error); background: var(--color-error-bg); }
+  .checkbox-field span { font-size: var(--text-sm); line-height: 1.5; }
+
+  .step-actions {
+    display: flex;
+    justify-content: flex-end;
+    gap: var(--space-3);
+    margin-top: var(--space-6);
+  }
+  .step-actions .btn { flex: 0 0 auto; }
+  .step-actions--split { justify-content: space-between; }
+
+  /* Summary (step 3) */
+  .summary-group {
+    border: 1px solid var(--color-hairline);
+    border-radius: var(--radius);
+    background: var(--color-paper);
+    padding: var(--space-4) var(--space-5);
+    margin-bottom: var(--space-4);
+  }
+  .summary-group__head {
+    display: flex;
+    align-items: baseline;
+    justify-content: space-between;
+    gap: var(--space-3);
+    margin-bottom: var(--space-3);
+  }
+  .summary-group dl { margin: 0; display: grid; grid-template-columns: auto 1fr; gap: var(--space-2) var(--space-4); }
+  .summary-group dt { font-size: var(--text-sm); color: var(--color-muted); font-weight: 600; }
+  .summary-group dd { margin: 0; font-size: var(--text-sm); color: var(--color-ink); }
+
+  /* Toast */
+  .toast {
+    position: fixed;
+    top: var(--space-4);
+    left: 50%;
+    transform: translateX(-50%);
+    max-width: min(28rem, calc(100vw - 2rem));
+    background: var(--color-ink);
+    color: var(--color-ground);
+    padding: var(--space-3) var(--space-5);
+    border-radius: var(--radius);
+    font-size: var(--text-sm);
+    font-weight: 600;
+    box-shadow: 0 0.5rem 1.5rem rgba(30, 26, 22, 0.25);
+    opacity: 0;
+    visibility: hidden;
+    z-index: 90;
+    transition: opacity var(--motion-base) var(--ease);
+  }
+  .toast.is-visible { opacity: 1; visibility: visible; }
+
+  /* Dashboard */
+  .dash-head {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: baseline;
+    justify-content: space-between;
+    gap: var(--space-3);
+    margin-bottom: var(--space-6);
+  }
+  .dash-head p { color: var(--color-muted); font-size: var(--text-sm); margin-top: var(--space-2); }
+
+  .kpi-row {
+    list-style: none;
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(min(100%, 12rem), 1fr));
+    gap: var(--space-4);
+    margin: 0 0 var(--space-8);
+    padding: 0;
+  }
+  .kpi-card {
+    background: var(--color-paper);
+    border: 1px solid var(--color-hairline);
+    border-radius: var(--radius);
+    padding: var(--space-4) var(--space-5);
+  }
+  .kpi-card__label { display: block; font-size: var(--text-sm); color: var(--color-muted); font-weight: 600; margin-bottom: var(--space-2); }
+  .kpi-card__value { display: block; font-family: var(--font-display); font-size: var(--text-xl); font-weight: 600; color: var(--color-ink); }
+
+  .section-head {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    justify-content: space-between;
+    gap: var(--space-3);
+    margin-bottom: var(--space-4);
+  }
+
+  .table-card {
+    background: var(--color-paper);
+    border: 1px solid var(--color-hairline);
+    border-radius: var(--radius);
+    overflow: hidden;
+  }
+  table.bookings { width: 100%; border-collapse: collapse; }
+  table.bookings caption { text-align: left; padding: var(--space-4) var(--space-5) 0; font-size: var(--text-sm); color: var(--color-muted); }
+  table.bookings th, table.bookings td {
+    text-align: left;
+    padding: var(--space-3) var(--space-5);
+    font-size: var(--text-sm);
+    border-bottom: 1px solid var(--color-hairline);
+  }
+  table.bookings thead th {
+    font-size: var(--text-xs);
+    text-transform: uppercase;
+    letter-spacing: 0.04em;
+    color: var(--color-muted);
+    background: var(--color-paper-2);
+  }
+  table.bookings tbody tr:last-child td { border-bottom: 0; }
+  table.bookings td[data-col="antal"] { font-variant-numeric: tabular-nums; }
+
+  .status {
+    display: inline-flex;
+    align-items: center;
+    gap: var(--space-2);
+    padding: 0.2rem var(--space-3);
+    border-radius: 999px;
+    font-size: var(--text-xs);
+    font-weight: 700;
+  }
+  .status__dot { width: 0.5rem; height: 0.5rem; border-radius: 50%; flex-shrink: 0; }
+  .status--confirmed { background: var(--color-success-bg); color: var(--color-success); }
+  .status--confirmed .status__dot { background: var(--color-success); }
+  .status--pending { background: var(--color-warning-bg); color: var(--color-warning); }
+  .status--pending .status__dot { background: var(--color-warning); }
+  .status--cancelled { background: var(--color-error-bg); color: var(--color-error); }
+  .status--cancelled .status__dot { background: var(--color-error); }
+
+  /* Modal */
+  dialog.modal {
+    position: fixed;
+    inset: 0;
+    margin: auto;
+    width: min(30rem, calc(100vw - 2rem));
+    max-height: min(85dvh, 40rem);
+    height: fit-content;
+    border: 1px solid var(--color-hairline);
+    border-radius: var(--radius);
+    padding: 0;
+    background: var(--color-paper);
+    color: var(--color-ink);
+  }
+  dialog.modal::backdrop { background: rgba(30, 26, 22, 0.45); }
+  .modal__head {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: var(--space-3);
+    padding: var(--space-5);
+    border-bottom: 1px solid var(--color-hairline);
+  }
+  .modal__body { padding: var(--space-5); max-height: 60dvh; overflow-y: auto; }
+  .modal__actions {
+    display: flex;
+    justify-content: flex-end;
+    gap: var(--space-3);
+    padding: var(--space-5);
+    border-top: 1px solid var(--color-hairline);
+  }
+
+  @media (prefers-reduced-motion: no-preference) {
+    dialog.modal {
+      animation: modal-in var(--motion-base) var(--ease);
+    }
+    dialog.modal::backdrop { animation: backdrop-in var(--motion-base) var(--ease); }
+    @keyframes modal-in {
+      from { opacity: 0; transform: translateY(0.5rem) scale(0.98); }
+      to { opacity: 1; transform: translateY(0) scale(1); }
+    }
+    @keyframes backdrop-in {
+      from { opacity: 0; }
+      to { opacity: 1; }
+    }
+  }
+
+  @media (prefers-reduced-motion: reduce) {
+    * { animation-duration: 0.001ms !important; animation-iteration-count: 1 !important; }
+  }
+
+  @media (prefers-reduced-transparency: reduce) {
+    dialog.modal::backdrop { background: var(--color-ink); }
+  }
+
+  /* Responsive: table -> cards */
+  @media (max-width: 40rem) {
+    table.bookings thead { position: absolute; width: 1px; height: 1px; overflow: hidden; clip: rect(0 0 0 0); white-space: nowrap; }
+    table.bookings, table.bookings tbody, table.bookings tr, table.bookings td { display: block; width: 100%; }
+    table.bookings tr {
+      padding: var(--space-3) var(--space-5);
+      border-bottom: 1px solid var(--color-hairline);
+      display: grid;
+      grid-template-columns: 1fr auto;
+      gap: var(--space-1) var(--space-3);
+    }
+    table.bookings td { border-bottom: 0; padding: var(--space-1) 0; display: flex; justify-content: space-between; gap: var(--space-3); }
+    table.bookings td::before { content: attr(data-label); font-size: var(--text-xs); font-weight: 700; color: var(--color-muted); text-transform: uppercase; letter-spacing: 0.03em; }
+    table.bookings td[data-col="guest"] { grid-column: 1 / -1; order: -1; }
+    table.bookings td[data-col="guest"]::before { display: none; }
+    table.bookings td[data-col="guest"] span.guest-name { font-weight: 600; font-size: var(--text-base); }
+  }
+
+  @media (min-width: 60rem) {
+    .container { padding-top: var(--space-8); }
+  }
+
+  @media (forced-colors: active) {
+    .btn, .input, .textarea, .checkbox-field, .kpi-card, .table-card, dialog.modal, .stepper__bar {
+      border: 1px solid CanvasText;
+    }
+    .status__dot { forced-color-adjust: none; }
+  }
+
+  [hidden] { display: none !important; }
+</style>
+</head>
+<body>
+<a class="skip-link" href="#main">Hoppa till huvudinnehåll</a>
+
+<header class="topbar">
+  <div class="topbar__inner">
+    <a class="brand" href="#signup">
+      <span class="brand__mark" aria-hidden="true">K</span>
+      Klova Bokning
+    </a>
+  </div>
+</header>
+
+<div id="toast" class="toast" role="status" aria-live="polite"></div>
+
+<main id="main">
+
+  <!-- ===================== SIGNUP VIEW ===================== -->
+  <section id="view-signup" aria-labelledby="signup-h1">
+    <div class="container">
+      <h1 id="signup-h1">Skapa konto</h1>
+      <p class="required-note" style="margin-top: var(--space-2);">Skapa ett konto för din verksamhet på Klova Bokning. Fält märkta med <span aria-hidden="true">*</span><span class="visually-hidden"> (obligatoriskt)</span> måste fyllas i.</p>
+
+      <ol class="stepper" aria-label="Registreringssteg" role="list">
+        <li id="stepper-1" aria-current="step">
+          <span class="stepper__bar" aria-hidden="true"></span>
+          <span class="stepper__label">Steg 1: Konto</span>
+        </li>
+        <li id="stepper-2">
+          <span class="stepper__bar" aria-hidden="true"></span>
+          <span class="stepper__label">Steg 2: Verksamhet</span>
+        </li>
+        <li id="stepper-3">
+          <span class="stepper__bar" aria-hidden="true"></span>
+          <span class="stepper__label">Steg 3: Bekräfta</span>
+        </li>
+      </ol>
+
+      <form id="signup-form" novalidate>
+
+        <!-- Step 1: Konto -->
+        <fieldset id="step-1">
+          <legend>
+            <h2 id="step-1-heading" tabindex="-1">Steg 1 av 3: Konto</h2>
+          </legend>
+          <p class="required-note">Ange e-post och lösenord för att logga in.</p>
+
+          <div class="field">
+            <label for="signup-email">E-postadress <span class="field__req" aria-hidden="true">*</span></label>
+            <div class="field-control-wrap field--no-right-pad">
+              <input class="input" type="email" id="signup-email" name="email" autocomplete="email" required aria-required="true" aria-describedby="signup-email-help" placeholder="namn@verksamhet.se">
+            </div>
+            <p class="field-help" id="signup-email-help">Vi skickar bokningsbekräftelser och kvitton hit.</p>
+          </div>
+
+          <div class="field">
+            <label for="signup-password">Lösenord <span class="field__req" aria-hidden="true">*</span></label>
+            <div class="field-control-wrap">
+              <input class="input" type="password" id="signup-password" name="password" autocomplete="new-password" required aria-required="true" aria-describedby="signup-password-help">
+              <button type="button" class="field-toggle" id="password-toggle" aria-pressed="false">
+                <span id="password-toggle-label">Visa</span>
+                <span class="visually-hidden"> lösenord</span>
+              </button>
+            </div>
+            <p class="field-help" id="signup-password-help">Minst 8 tecken, med minst en bokstav och en siffra.</p>
+          </div>
+
+          <div class="step-actions">
+            <button type="submit" class="btn btn-primary">Fortsätt</button>
+          </div>
+        </fieldset>
+
+        <!-- Step 2: Verksamhet -->
+        <fieldset id="step-2" hidden>
+          <legend>
+            <h2 id="step-2-heading" tabindex="-1">Steg 2 av 3: Verksamhet</h2>
+          </legend>
+          <p class="required-note">Berätta om verksamheten som ska ta emot bokningar.</p>
+
+          <div class="field">
+            <label for="biz-name">Verksamhetens namn <span class="field__req" aria-hidden="true">*</span></label>
+            <div class="field-control-wrap field--no-right-pad">
+              <input class="input" type="text" id="biz-name" name="biz-name" autocomplete="organization" required aria-required="true" aria-describedby="biz-name-help" placeholder="T.ex. Solgläntans Frisersalong">
+            </div>
+            <p class="field-help" id="biz-name-help">Namnet visas för dina gäster i bokningsbekräftelser.</p>
+          </div>
+
+          <div class="field">
+            <label for="biz-orgnr">Organisationsnummer <span class="field__req" aria-hidden="true">*</span></label>
+            <div class="field-control-wrap field--no-right-pad">
+              <input class="input" type="text" id="biz-orgnr" name="biz-orgnr" inputmode="numeric" autocomplete="off" required aria-required="true" aria-describedby="biz-orgnr-help" placeholder="556677-8899">
+            </div>
+            <p class="field-help" id="biz-orgnr-help">Format: 556677-8899.</p>
+          </div>
+
+          <div class="field">
+            <label for="biz-phone">Telefonnummer <span class="field__req" aria-hidden="true">*</span></label>
+            <div class="field-control-wrap field--no-right-pad">
+              <input class="input" type="tel" id="biz-phone" name="biz-phone" autocomplete="tel" required aria-required="true" aria-describedby="biz-phone-help" placeholder="070-123 45 67">
+            </div>
+            <p class="field-help" id="biz-phone-help">Vi kontaktar dig bara om det behövs.</p>
+          </div>
+
+          <div class="step-actions step-actions--split">
+            <button type="button" class="btn btn-secondary" id="back-to-1">Tillbaka</button>
+            <button type="submit" class="btn btn-primary">Fortsätt</button>
+          </div>
+        </fieldset>
+
+        <!-- Step 3: Bekräfta -->
+        <fieldset id="step-3" hidden>
+          <legend>
+            <h2 id="step-3-heading" tabindex="-1">Steg 3 av 3: Bekräfta</h2>
+          </legend>
+          <p class="required-note">Kontrollera uppgifterna innan du skapar kontot.</p>
+
+          <div class="summary-group">
+            <div class="summary-group__head">
+              <h3>Konto</h3>
+              <button type="button" class="btn-ghost" data-edit-step="0">Ändra e-post och lösenord</button>
+            </div>
+            <dl>
+              <dt>E-post</dt>
+              <dd id="summary-email">–</dd>
+              <dt>Lösenord</dt>
+              <dd id="summary-password">–</dd>
+            </dl>
+          </div>
+
+          <div class="summary-group">
+            <div class="summary-group__head">
+              <h3>Verksamhet</h3>
+              <button type="button" class="btn-ghost" data-edit-step="1">Ändra verksamhetsuppgifter</button>
+            </div>
+            <dl>
+              <dt>Namn</dt>
+              <dd id="summary-bizname">–</dd>
+              <dt>Org.nr</dt>
+              <dd id="summary-orgnr">–</dd>
+              <dt>Telefon</dt>
+              <dd id="summary-phone">–</dd>
+            </dl>
+          </div>
+
+          <div class="field">
+            <label class="checkbox-field" id="consent-label">
+              <input type="checkbox" id="consent" name="consent" required aria-required="true" aria-describedby="consent-help">
+              <span>Jag godkänner Klovas användarvillkor och behandling av personuppgifter för verksamhetskonton.</span>
+            </label>
+            <p class="field-help" id="consent-help">Krävs för att skapa ett konto.</p>
+          </div>
+
+          <div class="step-actions step-actions--split">
+            <button type="button" class="btn btn-secondary" id="back-to-2">Tillbaka</button>
+            <button type="submit" class="btn btn-primary">Skapa konto</button>
+          </div>
+        </fieldset>
+
+      </form>
+    </div>
+  </section>
+
+  <!-- ===================== DASHBOARD VIEW ===================== -->
+  <section id="view-dashboard" aria-labelledby="dashboard-h1" hidden>
+    <div class="container container--wide">
+
+      <div class="dash-head">
+        <div>
+          <h1 id="dashboard-h1" tabindex="-1">Dashboard</h1>
+          <p>Onsdag 3 september 2026 · Klova Bokning</p>
+        </div>
+        <button type="button" class="btn btn-primary" id="open-new-booking">Ny bokning</button>
+      </div>
+
+      <h2 class="visually-hidden">Läget just nu</h2>
+      <ul class="kpi-row">
+        <li class="kpi-card">
+          <span class="kpi-card__label">Bokningar idag</span>
+          <span class="kpi-card__value" id="kpi-bookings">12</span>
+        </li>
+        <li class="kpi-card">
+          <span class="kpi-card__label">Gäster totalt</span>
+          <span class="kpi-card__value" id="kpi-guests">34</span>
+        </li>
+        <li class="kpi-card">
+          <span class="kpi-card__label">Beläggning</span>
+          <span class="kpi-card__value">78%</span>
+        </li>
+      </ul>
+
+      <div class="section-head">
+        <h2>Dagens bokningar</h2>
+      </div>
+
+      <div class="table-card">
+        <table class="bookings" role="table">
+          <caption>Bokningar för onsdag 3 september 2026, sorterade efter tid.</caption>
+          <thead role="rowgroup">
+            <tr role="row">
+              <th scope="col" role="columnheader">Tid</th>
+              <th scope="col" role="columnheader">Gäst</th>
+              <th scope="col" role="columnheader">Antal</th>
+              <th scope="col" role="columnheader">Status</th>
+            </tr>
+          </thead>
+          <tbody id="bookings-body" role="rowgroup">
+            <tr>
+              <td data-label="Tid" data-col="time">09:00</td>
+              <td data-label="Gäst" data-col="guest"><span class="guest-name">Elin Bergström</span></td>
+              <td data-label="Antal" data-col="antal">2</td>
+              <td data-label="Status" data-col="status"><span class="status status--confirmed"><span class="status__dot" aria-hidden="true"></span>Bekräftad</span></td>
+            </tr>
+            <tr>
+              <td data-label="Tid" data-col="time">09:30</td>
+              <td data-label="Gäst" data-col="guest"><span class="guest-name">Noah Andersson</span></td>
+              <td data-label="Antal" data-col="antal">4</td>
+              <td data-label="Status" data-col="status"><span class="status status--confirmed"><span class="status__dot" aria-hidden="true"></span>Bekräftad</span></td>
+            </tr>
+            <tr>
+              <td data-label="Tid" data-col="time">10:15</td>
+              <td data-label="Gäst" data-col="guest"><span class="guest-name">Freja Lindqvist</span></td>
+              <td data-label="Antal" data-col="antal">2</td>
+              <td data-label="Status" data-col="status"><span class="status status--pending"><span class="status__dot" aria-hidden="true"></span>Väntar</span></td>
+            </tr>
+            <tr>
+              <td data-label="Tid" data-col="time">11:00</td>
+              <td data-label="Gäst" data-col="guest"><span class="guest-name">Karl Ekström</span></td>
+              <td data-label="Antal" data-col="antal">6</td>
+              <td data-label="Status" data-col="status"><span class="status status--confirmed"><span class="status__dot" aria-hidden="true"></span>Bekräftad</span></td>
+            </tr>
+            <tr>
+              <td data-label="Tid" data-col="time">12:30</td>
+              <td data-label="Gäst" data-col="guest"><span class="guest-name">Wilma Söderberg</span></td>
+              <td data-label="Antal" data-col="antal">3</td>
+              <td data-label="Status" data-col="status"><span class="status status--cancelled"><span class="status__dot" aria-hidden="true"></span>Avbokad</span></td>
+            </tr>
+            <tr>
+              <td data-label="Tid" data-col="time">13:00</td>
+              <td data-label="Gäst" data-col="guest"><span class="guest-name">Oscar Nyström</span></td>
+              <td data-label="Antal" data-col="antal">2</td>
+              <td data-label="Status" data-col="status"><span class="status status--confirmed"><span class="status__dot" aria-hidden="true"></span>Bekräftad</span></td>
+            </tr>
+            <tr>
+              <td data-label="Tid" data-col="time">14:45</td>
+              <td data-label="Gäst" data-col="guest"><span class="guest-name">Alice Holmberg</span></td>
+              <td data-label="Antal" data-col="antal">5</td>
+              <td data-label="Status" data-col="status"><span class="status status--pending"><span class="status__dot" aria-hidden="true"></span>Väntar</span></td>
+            </tr>
+            <tr>
+              <td data-label="Tid" data-col="time">16:00</td>
+              <td data-label="Gäst" data-col="guest"><span class="guest-name">Leo Fransson</span></td>
+              <td data-label="Antal" data-col="antal">2</td>
+              <td data-label="Status" data-col="status"><span class="status status--confirmed"><span class="status__dot" aria-hidden="true"></span>Bekräftad</span></td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+
+    </div>
+  </section>
+
+</main>
+
+<dialog class="modal" id="new-booking-modal" aria-labelledby="new-booking-title">
+  <form method="dialog" id="new-booking-form" novalidate>
+    <div class="modal__head">
+      <h2 id="new-booking-title">Ny bokning</h2>
+      <button type="button" class="btn-icon" id="close-new-booking" aria-label="Stäng">
+        <svg width="18" height="18" viewBox="0 0 18 18" aria-hidden="true" focusable="false">
+          <path d="M2 2 L16 16 M16 2 L2 16" stroke="currentColor" stroke-width="2" stroke-linecap="round"/>
+        </svg>
+      </button>
+    </div>
+    <div class="modal__body">
+      <div class="field">
+        <label for="nb-time">Tid <span class="field__req" aria-hidden="true">*</span></label>
+        <div class="field-control-wrap field--no-right-pad">
+          <input class="input" type="time" id="nb-time" name="nb-time" required aria-required="true" aria-describedby="nb-time-help">
+        </div>
+        <p class="field-help" id="nb-time-help">Ankomsttid för gästen.</p>
+      </div>
+      <div class="field">
+        <label for="nb-guest">Gäst <span class="field__req" aria-hidden="true">*</span></label>
+        <div class="field-control-wrap field--no-right-pad">
+          <input class="input" type="text" id="nb-guest" name="nb-guest" autocomplete="name" required aria-required="true" aria-describedby="nb-guest-help" placeholder="För- och efternamn">
+        </div>
+        <p class="field-help" id="nb-guest-help">Namnet som visas i bokningslistan.</p>
+      </div>
+      <div class="field">
+        <label for="nb-guests">Antal gäster <span class="field__req" aria-hidden="true">*</span></label>
+        <div class="field-control-wrap field--no-right-pad">
+          <input class="input" type="number" id="nb-guests" name="nb-guests" min="1" max="20" value="2" inputmode="numeric" required aria-required="true" aria-describedby="nb-guests-help">
+        </div>
+        <p class="field-help" id="nb-guests-help">Mellan 1 och 20 gäster.</p>
+      </div>
+      <div class="field">
+        <label for="nb-note">Anteckning</label>
+        <textarea class="textarea" id="nb-note" name="nb-note" aria-describedby="nb-note-help" placeholder="T.ex. allergier eller särskilda önskemål"></textarea>
+        <p class="field-help" id="nb-note-help">Valfritt, synligt bara för personalen.</p>
+      </div>
+    </div>
+    <div class="modal__actions">
+      <button type="button" class="btn btn-secondary" id="cancel-new-booking">Avbryt</button>
+      <button type="submit" class="btn btn-primary">Skapa bokning</button>
+    </div>
+  </form>
+</dialog>
+
+<style>
+  .visually-hidden {
+    position: absolute;
+    width: 1px;
+    height: 1px;
+    padding: 0;
+    margin: -1px;
+    overflow: hidden;
+    clip: rect(0, 0, 0, 0);
+    white-space: nowrap;
+    border: 0;
+  }
+</style>
+
+<script>
+(function () {
+  "use strict";
+
+  /* ---------- Table semantics under the mobile card-collapse ---------- */
+  /* display:block on table/tr/td (see the max-width: 40rem block above) strips
+     the implicit table/row/cell roles in most browsers. Restore them explicitly
+     so screen-reader table navigation still works at narrow widths. Re-run this
+     whenever a row is added (see the new-booking submit handler below). */
+  function ensureTableRoles() {
+    var table = document.querySelector("table.bookings");
+    if (!table) return;
+    table.querySelectorAll("tbody tr").forEach(function (tr) {
+      tr.setAttribute("role", "row");
+      tr.querySelectorAll("td").forEach(function (td) { td.setAttribute("role", "cell"); });
+    });
+  }
+  ensureTableRoles();
+
+  /* ---------- Hash router ---------- */
+  var views = {
+    signup: document.getElementById("view-signup"),
+    dashboard: document.getElementById("view-dashboard")
+  };
+  var titles = {
+    signup: "Klova Bokning – Skapa konto",
+    dashboard: "Klova Bokning – Dashboard"
+  };
+
+  function currentViewName() {
+    var h = (location.hash || "#signup").replace("#", "");
+    return views[h] ? h : "signup";
+  }
+
+  function showView(name, opts) {
+    opts = opts || {};
+    Object.keys(views).forEach(function (key) {
+      views[key].hidden = key !== name;
+    });
+    document.title = titles[name];
+    if (!opts.skipFocus) {
+      var heading = views[name].querySelector("h1");
+      if (heading) heading.focus();
+    }
+  }
+
+  window.addEventListener("hashchange", function () {
+    showView(currentViewName());
+  });
+
+  /* ---------- Toast (stable live region) ---------- */
+  var toastEl = document.getElementById("toast");
+  var toastTimer = null;
+  function announce(message) {
+    clearTimeout(toastTimer);
+    toastEl.textContent = message;
+    toastEl.classList.add("is-visible");
+    toastTimer = setTimeout(function () {
+      toastEl.classList.remove("is-visible");
+      setTimeout(function () { toastEl.textContent = ""; }, 250);
+    }, 6000);
+  }
+
+  /* ---------- Password visibility toggle ---------- */
+  var pwInput = document.getElementById("signup-password");
+  var pwToggle = document.getElementById("password-toggle");
+  var pwToggleLabel = document.getElementById("password-toggle-label");
+  pwToggle.addEventListener("click", function () {
+    var isHidden = pwInput.type === "password";
+    pwInput.type = isHidden ? "text" : "password";
+    pwToggle.setAttribute("aria-pressed", String(isHidden));
+    pwToggleLabel.textContent = isHidden ? "Dölj" : "Visa";
+  });
+
+  /* ---------- Signup wizard ---------- */
+  var form = document.getElementById("signup-form");
+  var steps = [document.getElementById("step-1"), document.getElementById("step-2"), document.getElementById("step-3")];
+  var stepperItems = [document.getElementById("stepper-1"), document.getElementById("stepper-2"), document.getElementById("stepper-3")];
+  var stepHeadings = [document.getElementById("step-1-heading"), document.getElementById("step-2-heading"), document.getElementById("step-3-heading")];
+  var currentStep = 0;
+
+  function setFieldError(inputEl, helpEl, message) {
+    if (message) {
+      helpEl.textContent = message;
+      helpEl.classList.add("is-error");
+      inputEl.setAttribute("aria-invalid", "true");
+    } else {
+      helpEl.textContent = helpEl.dataset.defaultHelp || "";
+      helpEl.classList.remove("is-error");
+      inputEl.removeAttribute("aria-invalid");
+    }
+  }
+
+  // Cache default help text so it can be restored after an error clears.
+  document.querySelectorAll(".field-help").forEach(function (el) {
+    el.dataset.defaultHelp = el.textContent;
+  });
+
+  function goToStep(index) {
+    currentStep = index;
+    steps.forEach(function (el, i) { el.hidden = i !== index; });
+    stepperItems.forEach(function (li, i) {
+      if (i === index) {
+        li.setAttribute("aria-current", "step");
+        li.classList.remove("is-done");
+      } else {
+        li.removeAttribute("aria-current");
+        if (i < index) li.classList.add("is-done");
+        else li.classList.remove("is-done");
+      }
+    });
+    stepHeadings[index].focus();
+  }
+
+  function validateStep1() {
+    var email = document.getElementById("signup-email");
+    var emailHelp = document.getElementById("signup-email-help");
+    var password = document.getElementById("signup-password");
+    var passwordHelp = document.getElementById("signup-password-help");
+    var firstInvalid = null;
+
+    var emailPattern = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+    if (!email.value.trim()) {
+      setFieldError(email, emailHelp, "Ange en e-postadress. Vi behöver den för att bekräfta ditt konto.");
+      firstInvalid = firstInvalid || email;
+    } else if (!emailPattern.test(email.value.trim())) {
+      setFieldError(email, emailHelp, "Den här e-postadressen ser inte korrekt ut. Kontrollera formatet, t.ex. namn@verksamhet.se.");
+      firstInvalid = firstInvalid || email;
+    } else {
+      setFieldError(email, emailHelp, "");
+    }
+
+    var passwordPattern = /^(?=.*[A-Za-zÅÄÖåäö])(?=.*\d).{8,}$/;
+    if (!password.value) {
+      setFieldError(password, passwordHelp, "Ange ett lösenord. Det behövs för att logga in nästa gång.");
+      firstInvalid = firstInvalid || password;
+    } else if (!passwordPattern.test(password.value)) {
+      setFieldError(password, passwordHelp, "Lösenordet är för svagt. Använd minst 8 tecken med både en bokstav och en siffra.");
+      firstInvalid = firstInvalid || password;
+    } else {
+      setFieldError(password, passwordHelp, "");
+    }
+
+    if (firstInvalid) { firstInvalid.focus(); return false; }
+    return true;
+  }
+
+  function validateStep2() {
+    var name = document.getElementById("biz-name");
+    var nameHelp = document.getElementById("biz-name-help");
+    var orgnr = document.getElementById("biz-orgnr");
+    var orgnrHelp = document.getElementById("biz-orgnr-help");
+    var phone = document.getElementById("biz-phone");
+    var phoneHelp = document.getElementById("biz-phone-help");
+    var firstInvalid = null;
+
+    if (!name.value.trim()) {
+      setFieldError(name, nameHelp, "Ange verksamhetens namn. Det visas för dina gäster.");
+      firstInvalid = firstInvalid || name;
+    } else {
+      setFieldError(name, nameHelp, "");
+    }
+
+    var orgnrPattern = /^\d{6}-\d{4}$/;
+    if (!orgnr.value.trim()) {
+      setFieldError(orgnr, orgnrHelp, "Ange organisationsnummer i formatet 556677-8899.");
+      firstInvalid = firstInvalid || orgnr;
+    } else if (!orgnrPattern.test(orgnr.value.trim())) {
+      setFieldError(orgnr, orgnrHelp, "Formatet stämmer inte. Skriv organisationsnumret som 556677-8899.");
+      firstInvalid = firstInvalid || orgnr;
+    } else {
+      setFieldError(orgnr, orgnrHelp, "");
+    }
+
+    var phonePattern = /^[0-9+()\s-]{7,}$/;
+    if (!phone.value.trim()) {
+      setFieldError(phone, phoneHelp, "Ange ett telefonnummer så vi kan nå dig vid behov.");
+      firstInvalid = firstInvalid || phone;
+    } else if (!phonePattern.test(phone.value.trim())) {
+      setFieldError(phone, phoneHelp, "Det här telefonnumret ser inte korrekt ut. Använd bara siffror, mellanslag och bindestreck.");
+      firstInvalid = firstInvalid || phone;
+    } else {
+      setFieldError(phone, phoneHelp, "");
+    }
+
+    if (firstInvalid) { firstInvalid.focus(); return false; }
+    return true;
+  }
+
+  function fillSummary() {
+    document.getElementById("summary-email").textContent = document.getElementById("signup-email").value.trim();
+    document.getElementById("summary-password").textContent = "Angivet";
+    document.getElementById("summary-bizname").textContent = document.getElementById("biz-name").value.trim();
+    document.getElementById("summary-orgnr").textContent = document.getElementById("biz-orgnr").value.trim();
+    document.getElementById("summary-phone").textContent = document.getElementById("biz-phone").value.trim();
+  }
+
+  function validateStep3() {
+    var consent = document.getElementById("consent");
+    var consentHelp = document.getElementById("consent-help");
+    var consentLabel = document.getElementById("consent-label");
+    if (!consent.checked) {
+      consentHelp.textContent = "Du måste godkänna villkoren för att skapa ett konto.";
+      consentHelp.classList.add("is-error");
+      consentLabel.setAttribute("data-invalid", "true");
+      consent.setAttribute("aria-invalid", "true");
+      consent.focus();
+      return false;
+    }
+    consentHelp.textContent = consentHelp.dataset.defaultHelp || "";
+    consentHelp.classList.remove("is-error");
+    consentLabel.removeAttribute("data-invalid");
+    consent.removeAttribute("aria-invalid");
+    return true;
+  }
+
+  form.addEventListener("submit", function (e) {
+    e.preventDefault();
+    if (currentStep === 0) {
+      if (validateStep1()) goToStep(1);
+    } else if (currentStep === 1) {
+      if (validateStep2()) { fillSummary(); goToStep(2); }
+    } else if (currentStep === 2) {
+      if (validateStep3()) {
+        var bizName = document.getElementById("biz-name").value.trim();
+        location.hash = "#dashboard";
+        announce("Konto skapat! Välkommen, " + bizName + ".");
+      }
+    }
+  });
+
+  document.getElementById("back-to-1").addEventListener("click", function () { goToStep(0); });
+  document.getElementById("back-to-2").addEventListener("click", function () { goToStep(1); });
+  document.querySelectorAll("[data-edit-step]").forEach(function (btn) {
+    btn.addEventListener("click", function () {
+      goToStep(parseInt(btn.getAttribute("data-edit-step"), 10));
+    });
+  });
+
+  /* ---------- New booking modal ---------- */
+  var modal = document.getElementById("new-booking-modal");
+  var openBtn = document.getElementById("open-new-booking");
+  var closeBtn = document.getElementById("close-new-booking");
+  var cancelBtn = document.getElementById("cancel-new-booking");
+  var nbForm = document.getElementById("new-booking-form");
+  var bookingsBody = document.getElementById("bookings-body");
+  var kpiBookings = document.getElementById("kpi-bookings");
+  var kpiGuests = document.getElementById("kpi-guests");
+  var nbTime = document.getElementById("nb-time");
+  var nbTimeHelp = document.getElementById("nb-time-help");
+  var nbGuest = document.getElementById("nb-guest");
+  var nbGuestHelp = document.getElementById("nb-guest-help");
+  var nbGuests = document.getElementById("nb-guests");
+  var nbGuestsHelp = document.getElementById("nb-guests-help");
+
+  function openModal() {
+    modal.showModal();
+    nbTime.focus();
+  }
+  function clearModalErrors() {
+    setFieldError(nbTime, nbTimeHelp, "");
+    setFieldError(nbGuest, nbGuestHelp, "");
+    setFieldError(nbGuests, nbGuestsHelp, "");
+  }
+  function closeModal() {
+    modal.close();
+    nbForm.reset();
+    clearModalErrors();
+    openBtn.focus();
+  }
+
+  openBtn.addEventListener("click", openModal);
+  closeBtn.addEventListener("click", closeModal);
+  cancelBtn.addEventListener("click", closeModal);
+  modal.addEventListener("cancel", function (e) {
+    // Native Escape handling: let it close, then restore focus and reset.
+    e.preventDefault();
+    closeModal();
+  });
+
+  function formatTime(value) {
+    return value || "–";
+  }
+
+  nbForm.addEventListener("submit", function (e) {
+    e.preventDefault();
+    var firstInvalid = null;
+
+    if (!nbTime.value) {
+      setFieldError(nbTime, nbTimeHelp, "Ange en tid. Bokningen behöver en ankomsttid.");
+      firstInvalid = firstInvalid || nbTime;
+    } else {
+      setFieldError(nbTime, nbTimeHelp, "");
+    }
+
+    if (!nbGuest.value.trim()) {
+      setFieldError(nbGuest, nbGuestHelp, "Ange gästens namn så bokningen går att hitta i listan.");
+      firstInvalid = firstInvalid || nbGuest;
+    } else {
+      setFieldError(nbGuest, nbGuestHelp, "");
+    }
+
+    var guestsCount = parseInt(nbGuests.value, 10);
+    if (!nbGuests.value || isNaN(guestsCount) || guestsCount < 1) {
+      setFieldError(nbGuests, nbGuestsHelp, "Ange minst 1 gäst.");
+      firstInvalid = firstInvalid || nbGuests;
+    } else {
+      setFieldError(nbGuests, nbGuestsHelp, "");
+    }
+
+    if (firstInvalid) { firstInvalid.focus(); return; }
+
+    var timeVal = nbTime.value;
+    var guestVal = nbGuest.value.trim();
+    var guestsVal = nbGuests.value;
+
+    var tr = document.createElement("tr");
+    tr.setAttribute("role", "row");
+    tr.innerHTML =
+      '<td role="cell" data-label="Tid" data-col="time">' + formatTime(timeVal) + "</td>" +
+      '<td role="cell" data-label="Gäst" data-col="guest"><span class="guest-name"></span></td>' +
+      '<td role="cell" data-label="Antal" data-col="antal">' + guestsVal + "</td>" +
+      '<td role="cell" data-label="Status" data-col="status"><span class="status status--confirmed"><span class="status__dot" aria-hidden="true"></span>Bekräftad</span></td>';
+    tr.querySelector(".guest-name").textContent = guestVal;
+    bookingsBody.appendChild(tr);
+
+    kpiBookings.textContent = String(parseInt(kpiBookings.textContent, 10) + 1);
+    kpiGuests.textContent = String(parseInt(kpiGuests.textContent, 10) + parseInt(guestsVal, 10));
+
+    closeModal();
+    announce("Bokning tillagd: " + formatTime(timeVal) + " – " + guestVal + ", " + guestsVal + " gäster.");
+  });
+
+  /* ---------- Init ---------- */
+  if (!location.hash) location.hash = "#signup";
+  showView(currentViewName(), { skipFocus: true });
+})();
+</script>
+</body>
+</html>

@@ -24,6 +24,31 @@ except Exception:
 
 IMAGE_EXTS = (".png", ".jpg", ".jpeg", ".webp", ".gif", ".bmp")
 
+# A Read of a skill's own reference material closes the Stop report's route
+# gap the same way invoking the Skill tool does (design-telemetry.py's
+# "skill" event) — an agent that opened emil-design-eng/SKILL.md and applied
+# its guidance inline, without a formal Skill() call, still did the work the
+# router asked for.
+_SKILLS_ROOTS = (L.HOME / ".agents" / "skills", L.HOME / ".claude" / "skills")
+
+
+def _skill_read(path: str) -> str:
+    """Skill dir name if `path` is a .md file under a skills root, else ""."""
+    try:
+        p = Path(path).resolve()
+    except Exception:
+        return ""
+    if p.suffix.lower() != ".md":
+        return ""
+    for base in _SKILLS_ROOTS:
+        try:
+            rel = p.relative_to(base.resolve())
+        except Exception:
+            continue
+        if rel.parts:
+            return rel.parts[0]
+    return ""
+
 
 def main() -> None:
     if L.disabled():
@@ -32,7 +57,22 @@ def main() -> None:
     if L.tool_name(event) != "Read":
         return
     path = L.target_file(event)
-    if not path or not path.lower().endswith(IMAGE_EXTS):
+    if not path:
+        return
+
+    skill = _skill_read(path)
+    if skill:
+        # cwd-based root, NOT project_root(event) — a SKILL.md always lives
+        # in the shared skills directory (often under an OneDrive/vault
+        # tree with its own .git), never inside the project being built.
+        # Resolving root from the file path here would file the skill-read
+        # into that vault's ledger instead of the session's actual project,
+        # so design-stop.py would never see it and the gap would never close.
+        root = L.project_root({"cwd": event.get("cwd")})
+        L.log(root, event="skill-read", skill=skill, file=path)
+        return
+
+    if not path.lower().endswith(IMAGE_EXTS):
         return
 
     cwd_root = L.project_root({"cwd": event.get("cwd")})

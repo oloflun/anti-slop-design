@@ -1,0 +1,75 @@
+{
+  "url": "http://127.0.0.1:3055/",
+  "violations": [
+    {
+      "id": "region",
+      "impact": "moderate",
+      "wcag": [
+        "cat.keyboard",
+        "best-practice",
+        "RGAAv4",
+        "RGAA-9.2.1"
+      ],
+      "help": "All page content should be contained by landmarks",
+      "nodes": [
+        {
+          "target": ".in.relative",
+          "html": "<section class=\"relative reveal in\">"
+        },
+        {
+          "target": "#studio",
+          "html": "<section id=\"studio\" class=\"max-w-[1480px] mx-auto px-8 pt-28 pb-24 reveal\">"
+        },
+        {
+          "target": ".py-12",
+          "html": "<section class=\"max-w-[1480px] mx-auto px-8 py-12 reveal\">"
+        },
+        {
+          "target": "#index",
+          "html": "<section id=\"index\" class=\"max-w-[1480px] mx-auto px-8 pt-28 pb-12 reveal\">"
+        },
+        {
+          "target": ".py-16",
+          "html": "<section class=\"max-w-[1480px] mx-auto px-8 py-16 reveal\">\n  <div class=\"photo-3 aspect-[16/7] w-full\"></div>\n  <div class=\"flex items-baseline justify-between "
+        },
+        {
+          "target": ".py-24",
+          "html": "<section class=\"max-w-[1480px] mx-auto px-8 py-24 grid grid-cols-12 gap-x-8 reveal\">"
+        },
+        {
+          "target": "#commission",
+          "html": "<section id=\"commission\" class=\"bg-ink text-cream relative reveal\">"
+        }
+      ],
+      "viewports": [
+        "1440x900",
+        "390x844"
+      ]
+    },
+    {
+      "id": "target-size",
+      "impact": "serious",
+      "wcag": [
+        "cat.sensory-and-visual-cues",
+        "wcag22aa",
+        "wcag258"
+      ],
+      "help": "All touch targets must be 24px large, or leave sufficient space",
+      "nodes": [
+        {
+          "target": "a[href$=\"#index\"]",
+          "html": "<a href=\"#index\" class=\"hover:text-ink\">Index</a>"
+        },
+        {
+          "target": "a[href$=\"#studio\"]",
+          "html": "<a href=\"#studio\" class=\"hover:text-ink\">Studio</a>"
+        }
+      ],
+      "viewports": [
+        "390x844"
+      ]
+    }
+  ],
+  "passes": 20,
+  "incomplete": 1
+}

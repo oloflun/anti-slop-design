@@ -1,0 +1,165 @@
+<!DOCTYPE html>
+<!--
+  LANE: varmt hamnljus — fullbleed foto med typ över, generös luft, riktig knapp.
+  REGISTER: warm photographic.  GRAMMAR: filmic one-shot.
+  Scope: fold + första innehållssektion (blind one-shot, riktning C).
+-->
+<html lang="sv">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Florhuset Majorna — florist &amp; ateljé, Majorna</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,400;0,9..144,600;1,9..144,500&family=Work+Sans:wght@400;500;600&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --cream:#f7f1e8; --ink:#241d16; --rust:#a8542f; --harbour:#1c2b30;
+    --line:rgba(36,29,22,.14);
+  }
+  *{box-sizing:border-box}
+  html{-webkit-text-size-adjust:100%}
+  body{margin:0;background:var(--cream);color:var(--ink);font:400 1.05rem/1.6 "Work Sans",system-ui,sans-serif;overflow-x:hidden}
+  h1,h2{font-family:"Fraunces",Georgia,serif;font-weight:600;margin:0;letter-spacing:-.01em}
+  img{max-width:100%;display:block}
+  a{color:inherit}
+  :focus-visible{outline:3px solid var(--rust);outline-offset:3px}
+
+  /* ---- NAV : replaces the generic centered-logo + link-row hamburger bar ---- */
+  .site-nav{display:flex;align-items:center;justify-content:space-between;gap:1rem;
+    padding:1.1rem clamp(1rem,4vw,3rem);position:absolute;inset:0 0 auto 0;z-index:5;color:#fff}
+  .site-nav .mark{font-family:"Fraunces",serif;font-style:italic;font-weight:500;font-size:1.3rem}
+  .site-nav ul{list-style:none;display:flex;gap:clamp(1rem,3vw,2rem);margin:0;padding:0;font-size:.95rem}
+  .site-nav a{text-decoration:none;border-bottom:1px solid transparent;padding-bottom:2px;transition:border-color .2s}
+  .site-nav a:hover{border-color:currentColor}
+  .site-nav .cta-small{border:1px solid rgba(255,255,255,.75);border-radius:999px;padding:.5rem 1.1rem}
+  @media (max-width:640px){ .site-nav ul li:not(:last-child){display:none} }
+
+  /* ---- HERO : replaces the hero-metric template (big number / stat row) ---- */
+  .hero{position:relative;min-height:min(92vh,880px);display:flex;align-items:flex-end}
+  .hero picture,.hero img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover}
+  .hero::after{content:"";position:absolute;inset:0;
+    background:linear-gradient(0deg,rgba(18,14,9,.82) 0%,rgba(18,14,9,.42) 42%,rgba(30,22,14,.12) 68%,rgba(30,22,14,.28) 100%);}
+  .hero-content{position:relative;z-index:2;color:#fdf8ef;padding:clamp(2rem,6vw,5rem) clamp(1rem,4vw,3rem) clamp(3rem,7vw,5.5rem);max-width:46rem}
+  .hero-content p.kicker{font-style:italic;font-family:"Fraunces",serif;color:#e7c9a8;margin:0 0 .6rem;font-size:1.05rem}
+  .hero-content h1{font-size:clamp(2.4rem,6vw,4.4rem);line-height:1.04}
+  .hero-content .lede{margin:1.1rem 0 0;max-width:38ch;font-size:1.1rem;color:#f0e6d6}
+  .hero-actions{display:flex;flex-wrap:wrap;gap:.9rem;margin-top:2rem}
+  .btn{display:inline-flex;align-items:center;gap:.5rem;border-radius:999px;padding:.9rem 1.7rem;
+    font:500 1rem/1 "Work Sans",sans-serif;text-decoration:none;transition:transform .2s ease,background .2s ease}
+  .btn-primary{background:var(--rust);color:#fff}
+  .btn-primary:hover{background:#8f4526;transform:translateY(-2px)}
+  .btn-ghost{border:1px solid rgba(253,248,239,.7);color:#fdf8ef}
+  .btn-ghost:hover{background:rgba(253,248,239,.12)}
+
+  /* ---- SÄSONGENS BUKETTER : replaces same-size icon+heading+text card grid ---- */
+  .bouquets{padding:clamp(3.5rem,8vw,6rem) clamp(1rem,4vw,3rem) clamp(4rem,8vw,6.5rem);max-width:74rem;margin:0 auto}
+  .bouquets > p.kicker{font-style:italic;font-family:"Fraunces",serif;color:var(--rust);margin:0 0 .4rem}
+  .bouquets h2{font-size:clamp(1.9rem,3.4vw,2.6rem);max-width:22ch}
+  .bouquets .intro{max-width:62ch;margin:1rem 0 0;color:#4b4235}
+  .bouquet-row{display:grid;grid-template-columns:repeat(3,1fr);gap:clamp(1.2rem,3vw,2rem);margin-top:2.8rem}
+  .bouquet-row article{position:relative}
+  .bouquet-row article:nth-child(2){margin-top:2.4rem}
+  .bouquet-row .frame{aspect-ratio:4/5;overflow:hidden;border-radius:4px;background:#ded2bd}
+  .bouquet-row img{width:100%;height:100%;object-fit:cover;opacity:0;transition:opacity .35s ease}
+  .bouquet-row img.loaded{opacity:1}
+  .bouquet-row h3{font-family:"Fraunces",serif;font-weight:600;font-size:1.3rem;margin:1rem 0 .3rem}
+  .bouquet-row p{margin:0 0 .5rem;color:#4b4235;font-size:.98rem}
+  .bouquet-row .price-note{font-size:.88rem;color:var(--rust);font-style:italic;font-family:"Fraunces",serif}
+  @media (max-width:820px){ .bouquet-row{grid-template-columns:1fr}; .bouquet-row article:nth-child(2){margin-top:0} }
+
+  /* reveal — visible by default; JS only adds motion when it runs */
+  .reveal-ready .to-reveal{opacity:0;transform:translateY(14px)}
+  .to-reveal.is-visible{opacity:1;transform:none;transition:opacity .6s cubic-bezier(.16,1,.3,1),transform .6s cubic-bezier(.16,1,.3,1)}
+  @media (prefers-reduced-motion:reduce){
+    .reveal-ready .to-reveal{opacity:1!important;transform:none!important;transition:none!important}
+  }
+</style>
+</head>
+<body>
+
+<header class="hero">
+  <nav class="site-nav" aria-label="Huvudmeny">
+    <span class="mark">Florhuset Majorna</span>
+    <ul>
+      <li><a href="#buketter">Buketter</a></li>
+      <li><a href="#brollop">Bröllop</a></li>
+      <li><a href="#ateljekvallar">Ateljékvällar</a></li>
+      <li><a href="#om">Om ateljén</a></li>
+    </ul>
+    <a class="cta-small" href="#buketter">Beställ bukett</a>
+  </nav>
+  <img
+    src="https://images.unsplash.com/photo-1544551763-46a013bb70d5?w=1800&h=1400&fit=crop&q=80"
+    alt="Segelbåtar i varmt kvällsljus vid en västkusthamn"
+    fetchpriority="high">
+  <div class="hero-content">
+    <p class="kicker">Majorna, Göteborg</p>
+    <h1>Blommor bundna med havet som granne</h1>
+    <p class="lede">Vi binder buketter, planerar bröllop och håller ateljén öppen för den som vill lära sig binderi — mitt i Majorna, en kort promenad från älven.</p>
+    <div class="hero-actions">
+      <a class="btn btn-primary" href="#buketter">Beställ en bukett</a>
+      <a class="btn btn-ghost" href="#brollop">Boka bröllopsmöte</a>
+    </div>
+  </div>
+</header>
+
+<main>
+  <section class="bouquets" id="buketter">
+    <p class="kicker">Just nu i ateljén</p>
+    <h2>Säsongens buketter</h2>
+    <p class="intro">Vi binder efter vad som faktiskt blommar just den här veckan — inte efter en fast lista. Hör av dig om du vill ha något specifikt till ett tillfälle, så pratar vi ihop oss innan vi klipper.</p>
+
+    <div class="bouquet-row">
+      <article class="to-reveal">
+        <div class="frame">
+          <img data-src="https://images.unsplash.com/photo-1465146344425-f00d5f5c8f07?w=900&h=1125&fit=crop&q=80" alt="Bukett med dahlior och flox i varma rosa och rostorange toner">
+        </div>
+        <h3>Sensommarnäve</h3>
+        <p>Dahlior, flox och gräs från odlare i Västra Götaland — full och lite ostyrig, som ett sensommarland.</p>
+        <p class="price-note">Pris efter tillgång — fråga i ateljén</p>
+      </article>
+      <article class="to-reveal">
+        <div class="frame">
+          <img data-src="https://images.unsplash.com/photo-1487530811176-3780de880c2d?w=900&h=1125&fit=crop&q=80" alt="Ljus bukett med vita och krämfärgade blommor bunden löst">
+        </div>
+        <h3>Västanvind</h3>
+        <p>Ljus, luftig bindning för den som vill ge något stillsamt — vit dahlia, salvia och havre.</p>
+        <p class="price-note">Pris efter tillgång — fråga i ateljén</p>
+      </article>
+      <article class="to-reveal">
+        <div class="frame">
+          <img data-src="https://images.unsplash.com/photo-1526047932273-341f2a7631f9?w=900&h=1125&fit=crop&q=80" alt="Tät rund bukett med rosa och vinröda blommor och mörka blad">
+        </div>
+        <h3>Mariaplans favorit</h3>
+        <p>Den vi säljer mest av över disk — tät, rund, håller sig fint på köksbordet en dryg vecka.</p>
+        <p class="price-note">Pris efter tillgång — fråga i ateljén</p>
+      </article>
+    </div>
+  </section>
+</main>
+
+<script>
+(function(){
+  var items = document.querySelectorAll('.to-reveal');
+  var imgs = document.querySelectorAll('.bouquet-row img[data-src]');
+
+  // images: load now, fade in on load — never blocked on JS success beyond this
+  imgs.forEach(function(img){
+    img.src = img.getAttribute('data-src');
+    img.addEventListener('load', function(){ img.classList.add('loaded'); });
+    if (img.complete) img.classList.add('loaded');
+  });
+
+  if (!('IntersectionObserver' in window) || items.length === 0) return;
+  document.documentElement.classList.add('reveal-ready');
+  var io = new IntersectionObserver(function(entries){
+    entries.forEach(function(e){
+      if (e.isIntersecting){ e.target.classList.add('is-visible'); io.unobserve(e.target); }
+    });
+  }, {threshold:.15});
+  items.forEach(function(el){ io.observe(el); });
+})();
+</script>
+</body>
+</html>

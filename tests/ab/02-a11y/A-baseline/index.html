@@ -1,0 +1,1197 @@
+<!DOCTYPE html>
+<html lang="sv">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<meta name="color-scheme" content="light">
+<meta name="theme-color" content="#F5F0E8">
+<title>Klova Bokning</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,500;9..144,600&family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+<style>
+  /* ---------- Reset ---------- */
+  *, *::before, *::after { box-sizing: border-box; }
+  html, body { margin: 0; padding: 0; overflow-x: clip; }
+  html { -webkit-text-size-adjust: 100%; }
+  img, svg { max-width: 100%; display: block; }
+  button, input, select, textarea { font: inherit; color: inherit; }
+  ol, ul { list-style: none; margin: 0; padding: 0; }
+  h1, h2, h3, p, dl, dd { margin: 0; }
+
+  /* ---------- Tokens ---------- */
+  :root {
+    --color-ground: #F5F0E8;
+    --color-paper: #FFFFFF;
+    --color-paper-2: #EFE8DB;
+    --color-ink: #1E1A16;
+    --color-ink-2: #3B342C;
+    --color-accent: #B6432B;
+    --color-accent-hover: #9A3822;
+    --color-accent-ink: #FFFFFF;
+    --color-secondary: #6E655A;
+    --color-hairline: #D9D0C3;
+    --color-focus: #1E1A16;
+    --color-error: #A82323;
+    --color-error-bg: #FBEAE6;
+    --color-success: #3F7A4E;
+    --color-success-bg: #E9F2EA;
+
+    --font-display: "Fraunces", ui-serif, Georgia, serif;
+    --font-ui: "Inter", system-ui, -apple-system, "Segoe UI", sans-serif;
+
+    --radius: 10px;
+    --radius-lg: 16px;
+    --control-h: 44px;
+    --content-max: 40rem;
+    --shell-max: 64rem;
+  }
+
+  body {
+    background: var(--color-ground);
+    color: var(--color-ink);
+    font-family: var(--font-ui);
+    font-size: 1rem;
+    line-height: 1.5;
+    min-height: 100dvh;
+  }
+
+  /* ---------- Focus ---------- */
+  :focus { outline: none; }
+  :focus-visible {
+    outline: 2px solid var(--color-focus);
+    outline-offset: 2px;
+    border-radius: inherit;
+  }
+
+  /* ---------- Utility ---------- */
+  .sr-only {
+    position: absolute;
+    width: 1px; height: 1px;
+    padding: 0; margin: -1px;
+    overflow: hidden;
+    clip: rect(0,0,0,0);
+    white-space: nowrap;
+    border: 0;
+  }
+  .skip-link {
+    position: absolute;
+    left: 1rem; top: -3rem;
+    background: var(--color-ink);
+    color: var(--color-ground);
+    padding: 0.75rem 1.25rem;
+    border-radius: var(--radius);
+    font-weight: 600;
+    text-decoration: none;
+    z-index: 100;
+    transition: top .01s;
+  }
+  .skip-link:focus { top: 1rem; }
+
+  [hidden] { display: none !important; }
+
+  /* ---------- Header ---------- */
+  .topbar {
+    border-bottom: 1px solid var(--color-hairline);
+    padding: 1rem clamp(1rem, 4vw, 2.5rem);
+  }
+  .topbar__brand {
+    font-family: var(--font-display);
+    font-weight: 600;
+    font-size: 1.25rem;
+    letter-spacing: -0.01em;
+    color: var(--color-ink);
+  }
+
+  main { padding-bottom: 4rem; }
+
+  .shell {
+    max-width: var(--shell-max);
+    margin-inline: auto;
+    padding-inline: clamp(1rem, 4vw, 2.5rem);
+  }
+
+  /* ---------- Signup view ---------- */
+  .signup-shell {
+    max-width: var(--content-max);
+    margin-inline: auto;
+    padding: clamp(1.5rem, 5vw, 3rem) clamp(1rem, 4vw, 1.5rem);
+  }
+
+  .view__eyebrow {
+    color: var(--color-secondary);
+    font-size: 0.875rem;
+    font-weight: 500;
+    margin-bottom: 0.5rem;
+  }
+
+  .view__h1 {
+    font-family: var(--font-display);
+    font-weight: 600;
+    font-size: clamp(1.75rem, 4vw + 0.5rem, 2.5rem);
+    line-height: 1.15;
+    overflow-wrap: anywhere;
+    min-width: 0;
+    margin-bottom: 0.5rem;
+  }
+  .view__h1:focus-visible { outline-offset: 4px; }
+
+  .view__lede {
+    color: var(--color-secondary);
+    max-width: 42ch;
+    margin-bottom: 2rem;
+  }
+
+  /* Stepper */
+  .stepper {
+    display: flex;
+    gap: 0.5rem;
+    margin-bottom: 2rem;
+  }
+  .stepper__item {
+    flex: 1 1 0;
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+    padding-bottom: 0.75rem;
+    border-bottom: 3px solid var(--color-hairline);
+    min-width: 0;
+  }
+  .stepper__item[aria-current="step"] { border-bottom-color: var(--color-accent); }
+  .stepper__item.is-done { border-bottom-color: var(--color-ink); }
+  .stepper__num {
+    flex: none;
+    width: 1.5rem; height: 1.5rem;
+    border-radius: 50%;
+    border: 1px solid var(--color-hairline);
+    display: grid; place-items: center;
+    font-size: 0.75rem;
+    font-weight: 600;
+    color: var(--color-secondary);
+  }
+  .stepper__item[aria-current="step"] .stepper__num {
+    background: var(--color-accent);
+    border-color: var(--color-accent);
+    color: var(--color-accent-ink);
+  }
+  .stepper__item.is-done .stepper__num {
+    background: var(--color-ink);
+    border-color: var(--color-ink);
+    color: var(--color-ground);
+  }
+  .stepper__label {
+    font-size: 0.8125rem;
+    font-weight: 500;
+    color: var(--color-secondary);
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+  }
+  .stepper__item[aria-current="step"] .stepper__label { color: var(--color-ink); }
+
+  /* Form */
+  .step__title {
+    font-size: 1.125rem;
+    font-weight: 600;
+    margin-bottom: 1.25rem;
+  }
+  .step__title:focus-visible { outline-offset: 4px; }
+
+  .field { margin-bottom: 1.25rem; }
+  .field__label {
+    display: block;
+    font-size: 0.875rem;
+    font-weight: 600;
+    margin-bottom: 0.375rem;
+  }
+  .field__required-mark { color: var(--color-accent); }
+  .field__control-row { position: relative; }
+
+  .field__control {
+    width: 100%;
+    height: var(--control-h);
+    padding-inline: 0.875rem;
+    padding-inline-end: 2.5rem;
+    border: 1px solid var(--color-hairline);
+    background: var(--color-paper);
+    border-radius: var(--radius);
+    outline: 2px solid transparent;
+    outline-offset: 1px;
+    font-family: var(--font-ui);
+    font-size: 1rem;
+  }
+  .field__control::placeholder { color: var(--color-secondary); opacity: 0.8; }
+  @media (hover: hover) and (pointer: fine) {
+    .field__control:hover { background: var(--color-paper-2); }
+  }
+  .field__control:focus-visible {
+    outline-color: var(--color-focus);
+    border-color: var(--color-ink-2);
+  }
+  .field__control[aria-invalid="true"] {
+    border-color: var(--color-error);
+  }
+  .field__control.is-success { border-color: var(--color-success); }
+
+  .field__icon-slot {
+    position: absolute;
+    right: 0.75rem;
+    top: 50%;
+    transform: translateY(-50%);
+    font-size: 0.9rem;
+    pointer-events: none;
+  }
+  .field__icon-slot--error { color: var(--color-error); }
+  .field__icon-slot--success { color: var(--color-success); }
+
+  .field__toggle {
+    position: absolute;
+    right: 0.25rem;
+    top: 50%;
+    transform: translateY(-50%);
+    height: 36px;
+    padding-inline: 0.6rem;
+    border: 0;
+    background: transparent;
+    color: var(--color-secondary);
+    font-size: 0.8125rem;
+    font-weight: 600;
+    border-radius: calc(var(--radius) - 4px);
+    cursor: pointer;
+  }
+  @media (hover: hover) and (pointer: fine) {
+    .field__toggle:hover { background: var(--color-paper-2); color: var(--color-ink); }
+  }
+  .field__toggle:focus-visible { outline: 2px solid var(--color-focus); outline-offset: 1px; }
+
+  .field__helper {
+    min-height: 1lh;
+    margin-top: 0.375rem;
+    font-size: 0.8125rem;
+    color: var(--color-secondary);
+  }
+  .field__helper.is-error {
+    color: var(--color-error);
+    font-weight: 500;
+  }
+
+  /* Consent row */
+  .consent-row {
+    display: flex;
+    align-items: flex-start;
+    gap: 0.75rem;
+    padding: 0.75rem 0;
+    min-height: 44px;
+  }
+  .consent-row input[type="checkbox"] {
+    width: 20px; height: 20px;
+    flex: none;
+    margin-top: 2px;
+    accent-color: var(--color-accent);
+  }
+  .consent-row input[type="checkbox"]:focus-visible {
+    outline: 2px solid var(--color-focus);
+    outline-offset: 2px;
+  }
+  .consent-row label { font-size: 0.9375rem; }
+
+  /* Summary */
+  .summary {
+    background: var(--color-paper);
+    border: 1px solid var(--color-hairline);
+    border-radius: var(--radius-lg);
+    padding: 1.25rem;
+    margin-bottom: 1.5rem;
+  }
+  .summary__row {
+    display: flex;
+    justify-content: space-between;
+    gap: 1rem;
+    padding: 0.5rem 0;
+    border-bottom: 1px solid var(--color-hairline);
+    font-size: 0.9375rem;
+  }
+  .summary__row:last-child { border-bottom: 0; }
+  .summary__row dt { color: var(--color-secondary); }
+  .summary__row dd { font-weight: 600; text-align: right; overflow-wrap: anywhere; min-width: 0; }
+
+  /* Buttons */
+  .btn {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    gap: 0.5rem;
+    height: var(--control-h);
+    padding-inline: 1.5rem;
+    border-radius: var(--radius);
+    border: 1px solid transparent;
+    font-family: var(--font-ui);
+    font-size: 0.9375rem;
+    font-weight: 600;
+    white-space: nowrap;
+    cursor: pointer;
+  }
+  .btn:disabled { opacity: 0.5; cursor: not-allowed; }
+  @media (prefers-reduced-motion: no-preference) {
+    .btn { transition: background-color .15s ease, transform .1s ease, border-color .15s ease; }
+    .field__control { transition: background-color .15s ease, border-color .15s ease, outline-color .1s ease; }
+  }
+
+  .btn--primary {
+    background: var(--color-accent);
+    border-color: var(--color-accent);
+    color: var(--color-accent-ink);
+  }
+  @media (hover: hover) and (pointer: fine) {
+    .btn--primary:hover:not(:disabled) { background: var(--color-accent-hover); border-color: var(--color-accent-hover); }
+  }
+  .btn--primary:active:not(:disabled) { transform: translateY(1px); }
+
+  .btn--ghost {
+    background: transparent;
+    border-color: var(--color-hairline);
+    color: var(--color-ink);
+  }
+  @media (hover: hover) and (pointer: fine) {
+    .btn--ghost:hover:not(:disabled) { background: var(--color-paper-2); }
+  }
+  .btn--ghost:active:not(:disabled) { transform: translateY(1px); }
+
+  .btn--block { width: 100%; }
+
+  .step__actions {
+    display: flex;
+    gap: 0.75rem;
+    margin-top: 1.75rem;
+  }
+  .step__actions .btn--primary { flex: 1 1 auto; }
+
+  .spinner {
+    width: 16px; height: 16px;
+    border-radius: 50%;
+    border: 2px solid currentColor;
+    border-top-color: transparent;
+    flex: none;
+  }
+  @media (prefers-reduced-motion: no-preference) {
+    .spinner { animation: spin .7s linear infinite; }
+  }
+  @keyframes spin { to { transform: rotate(360deg); } }
+
+  /* ---------- Dashboard view ---------- */
+  .dash-shell { padding-block: clamp(1.5rem, 5vw, 2.5rem); }
+  .dash-head {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    justify-content: space-between;
+    gap: 1rem;
+    margin-bottom: 1.75rem;
+  }
+  .dash-head__text .view__h1 { margin-bottom: 0.25rem; }
+  .dash-head__date { color: var(--color-secondary); font-size: 0.9375rem; }
+
+  .kpi-row {
+    display: grid;
+    grid-template-columns: 1fr;
+    gap: 0.875rem;
+    margin-bottom: 2rem;
+  }
+  @media (min-width: 40rem) {
+    .kpi-row { grid-template-columns: repeat(3, minmax(0, 1fr)); }
+  }
+  .kpi-card {
+    background: var(--color-paper);
+    border: 1px solid var(--color-hairline);
+    border-radius: var(--radius-lg);
+    padding: 1.125rem 1.25rem;
+  }
+  .kpi-card__label {
+    font-size: 0.8125rem;
+    color: var(--color-secondary);
+    font-weight: 500;
+    margin-bottom: 0.375rem;
+  }
+  .kpi-card__value {
+    font-family: var(--font-display);
+    font-size: 2rem;
+    font-weight: 600;
+    line-height: 1;
+  }
+  .kpi-card__value small { font-family: var(--font-ui); font-size: 1rem; font-weight: 600; color: var(--color-secondary); }
+
+  .section-head {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    justify-content: space-between;
+    gap: 0.75rem;
+    margin-bottom: 1rem;
+  }
+  .section-head__h2 {
+    font-size: 1.125rem;
+    font-weight: 600;
+  }
+
+  .table-wrap {
+    background: var(--color-paper);
+    border: 1px solid var(--color-hairline);
+    border-radius: var(--radius-lg);
+    overflow: hidden;
+  }
+  table.bookings { width: 100%; border-collapse: collapse; }
+  .bookings caption { text-align: left; }
+  .bookings th, .bookings td {
+    text-align: left;
+    padding: 0.875rem 1.125rem;
+    font-size: 0.9375rem;
+    border-bottom: 1px solid var(--color-hairline);
+  }
+  .bookings thead th {
+    font-size: 0.8125rem;
+    font-weight: 600;
+    color: var(--color-secondary);
+    text-transform: uppercase;
+    letter-spacing: 0.03em;
+  }
+  .bookings tbody tr:last-child td { border-bottom: 0; }
+  .bookings td[data-label="Antal gäster"] { font-variant-numeric: tabular-nums; }
+
+  .badge {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.4rem;
+    padding: 0.25rem 0.625rem;
+    border-radius: 999px;
+    font-size: 0.8125rem;
+    font-weight: 600;
+    border: 1px solid var(--color-hairline);
+  }
+  .badge__dot { width: 7px; height: 7px; border-radius: 50%; flex: none; }
+  .badge--confirmed { color: var(--color-success); border-color: var(--color-success-bg); background: var(--color-success-bg); }
+  .badge--confirmed .badge__dot { background: var(--color-success); }
+  .badge--pending { color: var(--color-ink-2); border-color: var(--color-hairline); background: var(--color-paper-2); }
+  .badge--pending .badge__dot { background: var(--color-secondary); }
+  .badge--cancelled { color: var(--color-error); border-color: var(--color-error-bg); background: var(--color-error-bg); }
+  .badge--cancelled .badge__dot { background: var(--color-error); }
+
+  @media (max-width: 40rem) {
+    .bookings thead { position: absolute; width: 1px; height: 1px; overflow: hidden; clip: rect(0,0,0,0); }
+    .bookings, .bookings tbody, .bookings tr, .bookings td { display: block; width: 100%; }
+    .bookings tr { border-bottom: 1px solid var(--color-hairline); padding: 0.75rem 1.125rem; }
+    .bookings tbody tr:last-child { border-bottom: 0; }
+    .bookings td {
+      display: flex;
+      justify-content: space-between;
+      gap: 1rem;
+      border-bottom: 0;
+      padding: 0.3rem 0;
+    }
+    .bookings td::before {
+      content: attr(data-label);
+      font-weight: 600;
+      color: var(--color-secondary);
+      font-size: 0.8125rem;
+    }
+  }
+
+  /* ---------- Dialog / modal ---------- */
+  dialog#booking-dialog {
+    border: 1px solid var(--color-hairline);
+    border-radius: var(--radius-lg);
+    padding: 0;
+    width: min(90vw, 28rem);
+    background: var(--color-ground);
+    color: var(--color-ink);
+  }
+  dialog#booking-dialog[open] {
+    position: fixed;
+    inset: 0;
+    margin: auto;
+    height: fit-content;
+    max-height: min(80vh, 40rem);
+  }
+  dialog#booking-dialog::backdrop {
+    background: rgba(30, 26, 22, 0.5);
+  }
+  .dialog__inner { padding: 1.5rem; overflow-y: auto; max-height: min(80vh, 40rem); }
+  .dialog__head {
+    display: flex;
+    align-items: flex-start;
+    justify-content: space-between;
+    gap: 1rem;
+    margin-bottom: 1.25rem;
+  }
+  .dialog__title {
+    font-family: var(--font-display);
+    font-size: 1.375rem;
+    font-weight: 600;
+  }
+  .dialog__close {
+    flex: none;
+    width: 36px; height: 36px;
+    border-radius: 50%;
+    border: 1px solid var(--color-hairline);
+    background: var(--color-paper);
+    font-size: 1rem;
+    line-height: 1;
+    cursor: pointer;
+    position: relative;
+  }
+  .dialog__close::before { content: ""; position: absolute; inset: -8px; }
+  @media (hover: hover) and (pointer: fine) {
+    .dialog__close:hover { background: var(--color-paper-2); }
+  }
+  .dialog__actions {
+    display: flex;
+    gap: 0.75rem;
+    margin-top: 1.5rem;
+  }
+  .dialog__actions .btn { flex: 1 1 0; }
+
+  /* ---------- Toast / live status ---------- */
+  .toast {
+    position: fixed;
+    left: 50%;
+    bottom: 1.5rem;
+    transform: translateX(-50%);
+    background: var(--color-ink);
+    color: var(--color-ground);
+    padding: 0.75rem 1.25rem;
+    border-radius: var(--radius);
+    font-size: 0.9375rem;
+    font-weight: 500;
+    z-index: 200;
+    max-width: min(90vw, 24rem);
+    text-align: center;
+  }
+
+  /* ---------- Reduced motion: no orchestrated entrances anywhere ---------- */
+  @media (prefers-reduced-motion: reduce) {
+    * { scroll-behavior: auto !important; }
+  }
+</style>
+</head>
+<body>
+<a class="skip-link" href="#main">Hoppa till innehåll</a>
+
+<header class="topbar">
+  <p class="topbar__brand">Klova Bokning</p>
+</header>
+
+<main id="main">
+
+  <!-- ================= SIGNUP VIEW ================= -->
+  <section id="view-signup" class="view">
+    <div class="signup-shell">
+      <p class="view__eyebrow">Kom igång</p>
+      <h1 class="view__h1" id="signup-h1" tabindex="-1">Skapa konto</h1>
+      <p class="view__lede">Registrera din verksamhet hos Klova Bokning på tre korta steg.</p>
+
+      <ol class="stepper" aria-label="Registreringssteg, 3 steg">
+        <li class="stepper__item" data-step="1" aria-current="step">
+          <span class="stepper__num" aria-hidden="true">1</span>
+          <span class="stepper__label">Konto</span>
+        </li>
+        <li class="stepper__item" data-step="2">
+          <span class="stepper__num" aria-hidden="true">2</span>
+          <span class="stepper__label">Verksamhet</span>
+        </li>
+        <li class="stepper__item" data-step="3">
+          <span class="stepper__num" aria-hidden="true">3</span>
+          <span class="stepper__label">Bekräfta</span>
+        </li>
+      </ol>
+      <p id="step-announcer" class="sr-only" role="status" aria-live="polite"></p>
+
+      <form id="signup-form" novalidate>
+
+        <!-- Step 1 -->
+        <div class="step" data-step="1">
+          <h2 class="step__title" id="step1-title" tabindex="-1">Konto</h2>
+
+          <div class="field">
+            <label class="field__label" for="f-email">E-postadress <span class="field__required-mark" aria-hidden="true">*</span></label>
+            <div class="field__control-row">
+              <input class="field__control" type="email" id="f-email" name="email" placeholder="namn@foretag.se"
+                     autocomplete="email" required aria-required="true" aria-describedby="f-email-helper">
+            </div>
+            <p class="field__helper" id="f-email-helper"></p>
+          </div>
+
+          <div class="field">
+            <label class="field__label" for="f-password">Lösenord <span class="field__required-mark" aria-hidden="true">*</span></label>
+            <div class="field__control-row">
+              <input class="field__control" type="password" id="f-password" name="password"
+                     autocomplete="new-password" required aria-required="true" aria-describedby="f-password-helper">
+              <button type="button" class="field__toggle" id="password-toggle" aria-pressed="false">
+                <span id="password-toggle-label">Visa</span>
+                <span class="sr-only" id="password-toggle-target">lösenord</span>
+              </button>
+            </div>
+            <p class="field__helper" id="f-password-helper">Minst 8 tecken.</p>
+          </div>
+
+          <div class="step__actions">
+            <button type="button" class="btn btn--primary btn--block" data-action="next" data-from="1">Fortsätt</button>
+          </div>
+        </div>
+
+        <!-- Step 2 -->
+        <div class="step" data-step="2" hidden>
+          <h2 class="step__title" id="step2-title" tabindex="-1">Verksamhet</h2>
+
+          <div class="field">
+            <label class="field__label" for="f-bizname">Verksamhetens namn <span class="field__required-mark" aria-hidden="true">*</span></label>
+            <div class="field__control-row">
+              <input class="field__control" type="text" id="f-bizname" name="bizname" placeholder="T.ex. Solkatten Hårstudio"
+                     autocomplete="organization" required aria-required="true" aria-describedby="f-bizname-helper">
+            </div>
+            <p class="field__helper" id="f-bizname-helper"></p>
+          </div>
+
+          <div class="field">
+            <label class="field__label" for="f-orgnr">Organisationsnummer <span class="field__required-mark" aria-hidden="true">*</span></label>
+            <div class="field__control-row">
+              <input class="field__control" type="text" id="f-orgnr" name="orgnr" placeholder="556677-8899"
+                     inputmode="numeric" required aria-required="true" aria-describedby="f-orgnr-helper">
+            </div>
+            <p class="field__helper" id="f-orgnr-helper">Format: XXXXXX-XXXX.</p>
+          </div>
+
+          <div class="field">
+            <label class="field__label" for="f-phone">Telefonnummer <span class="field__required-mark" aria-hidden="true">*</span></label>
+            <div class="field__control-row">
+              <input class="field__control" type="tel" id="f-phone" name="phone" placeholder="070-123 45 67"
+                     autocomplete="tel" required aria-required="true" aria-describedby="f-phone-helper">
+            </div>
+            <p class="field__helper" id="f-phone-helper"></p>
+          </div>
+
+          <div class="step__actions">
+            <button type="button" class="btn btn--ghost" data-action="back" data-from="2">Tillbaka</button>
+            <button type="button" class="btn btn--primary" data-action="next" data-from="2">Fortsätt</button>
+          </div>
+        </div>
+
+        <!-- Step 3 -->
+        <div class="step" data-step="3" hidden>
+          <h2 class="step__title" id="step3-title" tabindex="-1">Bekräfta</h2>
+
+          <dl class="summary" id="summary-list" aria-label="Sammanfattning av dina uppgifter">
+            <div class="summary__row">
+              <dt>E-post</dt><dd id="sum-email">—</dd>
+            </div>
+            <div class="summary__row">
+              <dt>Lösenord</dt><dd>••••••••</dd>
+            </div>
+            <div class="summary__row">
+              <dt>Verksamhet</dt><dd id="sum-bizname">—</dd>
+            </div>
+            <div class="summary__row">
+              <dt>Org.nr</dt><dd id="sum-orgnr">—</dd>
+            </div>
+            <div class="summary__row">
+              <dt>Telefon</dt><dd id="sum-phone">—</dd>
+            </div>
+          </dl>
+
+          <div class="consent-row">
+            <input type="checkbox" id="f-consent" name="consent" required aria-required="true" aria-describedby="f-consent-helper">
+            <label for="f-consent">Jag godkänner användarvillkoren och integritetspolicyn för Klova Bokning.</label>
+          </div>
+          <p class="field__helper" id="f-consent-helper"></p>
+
+          <div class="step__actions">
+            <button type="button" class="btn btn--ghost" data-action="back" data-from="3">Tillbaka</button>
+            <button type="submit" class="btn btn--primary" id="submit-signup">
+              <span id="submit-signup-label">Skapa konto</span>
+            </button>
+          </div>
+        </div>
+
+      </form>
+    </div>
+  </section>
+
+  <!-- ================= DASHBOARD VIEW ================= -->
+  <section id="view-dashboard" class="view" hidden>
+    <div class="shell dash-shell">
+
+      <div class="dash-head">
+        <div class="dash-head__text">
+          <h1 class="view__h1" id="dashboard-h1" tabindex="-1">Idag</h1>
+          <p class="dash-head__date">Tisdag 3 september · Solkatten Hårstudio</p>
+        </div>
+        <button type="button" class="btn btn--primary" id="open-booking-dialog">Ny bokning</button>
+      </div>
+
+      <ul class="kpi-row" aria-label="Statusöversikt för idag">
+        <li class="kpi-card">
+          <p class="kpi-card__label">Bokningar idag</p>
+          <p class="kpi-card__value" id="kpi-bookings">14</p>
+        </li>
+        <li class="kpi-card">
+          <p class="kpi-card__label">Beläggning</p>
+          <p class="kpi-card__value">82<small>%</small></p>
+        </li>
+        <li class="kpi-card">
+          <p class="kpi-card__label">Väntar bekräftelse</p>
+          <p class="kpi-card__value">3</p>
+        </li>
+      </ul>
+
+      <div class="section-head">
+        <h2 class="section-head__h2" id="bookings-heading">Dagens bokningar</h2>
+      </div>
+
+      <div class="table-wrap">
+        <table class="bookings" aria-labelledby="bookings-heading" id="bookings-table">
+          <caption class="sr-only">Dagens bokningar med tid, gäst, antal gäster och status</caption>
+          <thead>
+            <tr>
+              <th scope="col">Tid</th>
+              <th scope="col">Gäst</th>
+              <th scope="col">Antal gäster</th>
+              <th scope="col">Status</th>
+            </tr>
+          </thead>
+          <tbody id="bookings-body">
+            <tr>
+              <td data-label="Tid">09:00</td>
+              <td data-label="Gäst">Elin Björk</td>
+              <td data-label="Antal gäster">2</td>
+              <td data-label="Status"><span class="badge badge--confirmed"><span class="badge__dot" aria-hidden="true"></span>Bekräftad</span></td>
+            </tr>
+            <tr>
+              <td data-label="Tid">09:30</td>
+              <td data-label="Gäst">Mattias Holm</td>
+              <td data-label="Antal gäster">4</td>
+              <td data-label="Status"><span class="badge badge--confirmed"><span class="badge__dot" aria-hidden="true"></span>Bekräftad</span></td>
+            </tr>
+            <tr>
+              <td data-label="Tid">10:15</td>
+              <td data-label="Gäst">Familjen Nyström</td>
+              <td data-label="Antal gäster">6</td>
+              <td data-label="Status"><span class="badge badge--pending"><span class="badge__dot" aria-hidden="true"></span>Väntar</span></td>
+            </tr>
+            <tr>
+              <td data-label="Tid">11:00</td>
+              <td data-label="Gäst">Sara Lindqvist</td>
+              <td data-label="Antal gäster">2</td>
+              <td data-label="Status"><span class="badge badge--confirmed"><span class="badge__dot" aria-hidden="true"></span>Bekräftad</span></td>
+            </tr>
+            <tr>
+              <td data-label="Tid">12:30</td>
+              <td data-label="Gäst">Oskar Dahl</td>
+              <td data-label="Antal gäster">3</td>
+              <td data-label="Status"><span class="badge badge--cancelled"><span class="badge__dot" aria-hidden="true"></span>Avbokad</span></td>
+            </tr>
+            <tr>
+              <td data-label="Tid">13:00</td>
+              <td data-label="Gäst">Amina Said</td>
+              <td data-label="Antal gäster">2</td>
+              <td data-label="Status"><span class="badge badge--confirmed"><span class="badge__dot" aria-hidden="true"></span>Bekräftad</span></td>
+            </tr>
+            <tr>
+              <td data-label="Tid">14:15</td>
+              <td data-label="Gäst">Johan &amp; Petra Ek</td>
+              <td data-label="Antal gäster">4</td>
+              <td data-label="Status"><span class="badge badge--pending"><span class="badge__dot" aria-hidden="true"></span>Väntar</span></td>
+            </tr>
+            <tr>
+              <td data-label="Tid">15:30</td>
+              <td data-label="Gäst">Klara Sundin</td>
+              <td data-label="Antal gäster">1</td>
+              <td data-label="Status"><span class="badge badge--confirmed"><span class="badge__dot" aria-hidden="true"></span>Bekräftad</span></td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+    </div>
+  </section>
+
+</main>
+
+<!-- Booking dialog -->
+<dialog id="booking-dialog" aria-labelledby="booking-dialog-title">
+  <div class="dialog__inner">
+    <div class="dialog__head">
+      <h2 class="dialog__title" id="booking-dialog-title">Ny bokning</h2>
+      <button type="button" class="dialog__close" id="close-booking-dialog" aria-label="Stäng dialogen">✕</button>
+    </div>
+
+    <form id="booking-form" novalidate>
+      <div class="field">
+        <label class="field__label" for="b-time">Tid <span class="field__required-mark" aria-hidden="true">*</span></label>
+        <div class="field__control-row">
+          <input class="field__control" type="time" id="b-time" name="time" required aria-required="true"
+                 aria-describedby="b-time-helper" autofocus>
+        </div>
+        <p class="field__helper" id="b-time-helper"></p>
+      </div>
+
+      <div class="field">
+        <label class="field__label" for="b-guest">Gäst <span class="field__required-mark" aria-hidden="true">*</span></label>
+        <div class="field__control-row">
+          <input class="field__control" type="text" id="b-guest" name="guest" placeholder="För- och efternamn"
+                 required aria-required="true" aria-describedby="b-guest-helper">
+        </div>
+        <p class="field__helper" id="b-guest-helper"></p>
+      </div>
+
+      <div class="field">
+        <label class="field__label" for="b-count">Antal gäster <span class="field__required-mark" aria-hidden="true">*</span></label>
+        <div class="field__control-row">
+          <input class="field__control" type="number" id="b-count" name="count" min="1" max="20" value="2"
+                 required aria-required="true" aria-describedby="b-count-helper">
+        </div>
+        <p class="field__helper" id="b-count-helper"></p>
+      </div>
+
+      <div class="field">
+        <label class="field__label" for="b-phone">Telefonnummer</label>
+        <div class="field__control-row">
+          <input class="field__control" type="tel" id="b-phone" name="phone" placeholder="070-123 45 67"
+                 aria-describedby="b-phone-helper">
+        </div>
+        <p class="field__helper" id="b-phone-helper">Valfritt.</p>
+      </div>
+
+      <div class="dialog__actions">
+        <button type="button" class="btn btn--ghost" id="cancel-booking">Avbryt</button>
+        <button type="submit" class="btn btn--primary" id="submit-booking">
+          <span id="submit-booking-label">Boka</span>
+        </button>
+      </div>
+    </form>
+  </div>
+</dialog>
+
+<div id="toast-root" aria-live="polite" role="status"></div>
+
+<script>
+(function () {
+  "use strict";
+
+  /* ---------------- Router ---------------- */
+  var viewSignup = document.getElementById("view-signup");
+  var viewDashboard = document.getElementById("view-dashboard");
+  var signupH1 = document.getElementById("signup-h1");
+  var dashboardH1 = document.getElementById("dashboard-h1");
+
+  function route(isInitial) {
+    var hash = window.location.hash || "#signup";
+    var isDash = hash === "#dashboard";
+    viewSignup.hidden = isDash;
+    viewDashboard.hidden = !isDash;
+    document.title = isDash ? "Idag – Klova Bokning" : "Skapa konto – Klova Bokning";
+    if (!isInitial) {
+      var heading = isDash ? dashboardH1 : signupH1;
+      heading.focus();
+    }
+  }
+  window.addEventListener("hashchange", function () { route(false); });
+  route(true);
+
+  /* ---------------- Toast ---------------- */
+  var toastRoot = document.getElementById("toast-root");
+  var toastTimer = null;
+  function showToast(message) {
+    toastRoot.innerHTML = "";
+    var el = document.createElement("div");
+    el.className = "toast";
+    el.textContent = message;
+    toastRoot.appendChild(el);
+    if (toastTimer) clearTimeout(toastTimer);
+    toastTimer = setTimeout(function () {
+      if (el.parentNode) el.parentNode.removeChild(el);
+    }, 4000);
+  }
+
+  /* ---------------- Signup: password visibility ---------------- */
+  var pwInput = document.getElementById("f-password");
+  var pwToggle = document.getElementById("password-toggle");
+  var pwToggleLabel = document.getElementById("password-toggle-label");
+  pwToggle.addEventListener("click", function () {
+    var showing = pwInput.type === "text";
+    pwInput.type = showing ? "password" : "text";
+    pwToggle.setAttribute("aria-pressed", String(!showing));
+    pwToggleLabel.textContent = showing ? "Visa" : "Dölj";
+    pwToggle.setAttribute("aria-label", (showing ? "Visa" : "Dölj") + " lösenord");
+  });
+
+  /* ---------------- Signup: stepper + validation ---------------- */
+  var steps = Array.prototype.slice.call(document.querySelectorAll(".step"));
+  var stepperItems = Array.prototype.slice.call(document.querySelectorAll(".stepper__item"));
+  var announcer = document.getElementById("step-announcer");
+  var stepNames = { 1: "Konto", 2: "Verksamhet", 3: "Bekräfta" };
+  var currentStep = 1;
+
+  function setStep(n, focusHeading) {
+    currentStep = n;
+    steps.forEach(function (panel) {
+      panel.hidden = Number(panel.getAttribute("data-step")) !== n;
+    });
+    stepperItems.forEach(function (item) {
+      var s = Number(item.getAttribute("data-step"));
+      item.classList.toggle("is-done", s < n);
+      if (s === n) {
+        item.setAttribute("aria-current", "step");
+      } else {
+        item.removeAttribute("aria-current");
+      }
+    });
+    announcer.textContent = "Steg " + n + " av 3: " + stepNames[n];
+    if (focusHeading) {
+      var heading = document.getElementById("step" + n + "-title");
+      if (heading) heading.focus();
+    }
+    if (n === 3) fillSummary();
+  }
+
+  function setFieldError(input, helperId, message) {
+    var helper = document.getElementById(helperId);
+    if (message) {
+      input.setAttribute("aria-invalid", "true");
+      input.classList.remove("is-success");
+      helper.textContent = message;
+      helper.classList.add("is-error");
+    } else {
+      input.removeAttribute("aria-invalid");
+      helper.classList.remove("is-error");
+      helper.textContent = helper.dataset.defaultText || "";
+    }
+  }
+
+  // Preserve default helper text so clearing an error restores it.
+  ["f-password-helper", "f-orgnr-helper", "b-phone-helper", "f-consent-helper"].forEach(function (id) {
+    var el = document.getElementById(id);
+    if (el) el.dataset.defaultText = el.textContent;
+  });
+
+  var validators = {
+    "f-email": function (v) {
+      if (!v.trim()) return "Ange din e-postadress för att fortsätta.";
+      if (!/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(v.trim())) return "Ange en giltig e-postadress, t.ex. namn@foretag.se.";
+      return "";
+    },
+    "f-password": function (v) {
+      if (!v) return "Ange ett lösenord för att fortsätta.";
+      if (v.length < 8) return "Lösenordet måste vara minst 8 tecken.";
+      return "";
+    },
+    "f-bizname": function (v) {
+      if (!v.trim()) return "Ange verksamhetens namn för att fortsätta.";
+      return "";
+    },
+    "f-orgnr": function (v) {
+      if (!v.trim()) return "Ange organisationsnumret för att fortsätta.";
+      if (!/^\d{6}-\d{4}$/.test(v.trim())) return "Ange organisationsnumret i formatet XXXXXX-XXXX.";
+      return "";
+    },
+    "f-phone": function (v) {
+      if (!v.trim()) return "Ange ett telefonnummer för att fortsätta.";
+      if (!/^(\+46|0)[\d\s-]{7,}$/.test(v.trim())) return "Ange ett giltigt telefonnummer, t.ex. 070-123 45 67.";
+      return "";
+    }
+  };
+
+  function validateInput(input) {
+    var fn = validators[input.id];
+    if (!fn) return true;
+    var helperId = input.getAttribute("aria-describedby");
+    var msg = fn(input.value);
+    setFieldError(input, helperId, msg);
+    if (!msg && input.value.trim()) input.classList.add("is-success");
+    return !msg;
+  }
+
+  // Validate on blur, then re-validate on input once touched.
+  Object.keys(validators).forEach(function (id) {
+    var input = document.getElementById(id);
+    var touched = false;
+    input.addEventListener("blur", function () { touched = true; validateInput(input); });
+    input.addEventListener("input", function () { if (touched) validateInput(input); });
+  });
+
+  function validateStep(n) {
+    var ids = { 1: ["f-email", "f-password"], 2: ["f-bizname", "f-orgnr", "f-phone"] }[n];
+    if (!ids) return true;
+    var allValid = true;
+    ids.forEach(function (id) {
+      var input = document.getElementById(id);
+      var ok = validateInput(input);
+      if (!ok) allValid = false;
+    });
+    if (!allValid) {
+      var firstInvalid = document.querySelector('.step[data-step="' + n + '"] [aria-invalid="true"]');
+      if (firstInvalid) firstInvalid.focus();
+    }
+    return allValid;
+  }
+
+  document.querySelectorAll('[data-action="next"]').forEach(function (btn) {
+    btn.addEventListener("click", function () {
+      var from = Number(btn.getAttribute("data-from"));
+      if (validateStep(from)) setStep(from + 1, true);
+    });
+  });
+  document.querySelectorAll('[data-action="back"]').forEach(function (btn) {
+    btn.addEventListener("click", function () {
+      var from = Number(btn.getAttribute("data-from"));
+      setStep(from - 1, true);
+    });
+  });
+
+  function fillSummary() {
+    document.getElementById("sum-email").textContent = document.getElementById("f-email").value || "—";
+    document.getElementById("sum-bizname").textContent = document.getElementById("f-bizname").value || "—";
+    document.getElementById("sum-orgnr").textContent = document.getElementById("f-orgnr").value || "—";
+    document.getElementById("sum-phone").textContent = document.getElementById("f-phone").value || "—";
+  }
+
+  var signupForm = document.getElementById("signup-form");
+  var submitBtn = document.getElementById("submit-signup");
+  var submitLabel = document.getElementById("submit-signup-label");
+  signupForm.addEventListener("submit", function (e) {
+    e.preventDefault();
+    var consent = document.getElementById("f-consent");
+    var consentHelper = document.getElementById("f-consent-helper");
+    if (!consent.checked) {
+      consent.setAttribute("aria-invalid", "true");
+      consentHelper.textContent = "Godkänn villkoren för att skapa kontot.";
+      consentHelper.classList.add("is-error");
+      consent.focus();
+      return;
+    }
+    consent.removeAttribute("aria-invalid");
+    consentHelper.classList.remove("is-error");
+    consentHelper.textContent = "";
+
+    submitBtn.disabled = true;
+    submitBtn.setAttribute("aria-busy", "true");
+    submitLabel.innerHTML = "";
+    var spinner = document.createElement("span");
+    spinner.className = "spinner";
+    spinner.setAttribute("aria-hidden", "true");
+    submitLabel.appendChild(spinner);
+    submitLabel.appendChild(document.createTextNode(" Skapar konto…"));
+
+    setTimeout(function () {
+      window.location.hash = "#dashboard";
+      showToast("Kontot är skapat. Välkommen till Klova Bokning!");
+      submitBtn.disabled = false;
+      submitBtn.removeAttribute("aria-busy");
+      submitLabel.textContent = "Skapa konto";
+    }, 650);
+  });
+
+  /* ---------------- Dashboard: booking dialog ---------------- */
+  var dialog = document.getElementById("booking-dialog");
+  var openBtn = document.getElementById("open-booking-dialog");
+  var closeBtn = document.getElementById("close-booking-dialog");
+  var cancelBtn = document.getElementById("cancel-booking");
+  var bookingForm = document.getElementById("booking-form");
+  var submitBookingBtn = document.getElementById("submit-booking");
+  var submitBookingLabel = document.getElementById("submit-booking-label");
+  var kpiBookings = document.getElementById("kpi-bookings");
+  var bookingsBody = document.getElementById("bookings-body");
+
+  function openDialog() {
+    dialog.showModal();
+  }
+  function closeDialog() {
+    dialog.close();
+    openBtn.focus();
+  }
+  openBtn.addEventListener("click", openDialog);
+  closeBtn.addEventListener("click", closeDialog);
+  cancelBtn.addEventListener("click", closeDialog);
+  dialog.addEventListener("cancel", function () {
+    // native Escape handling; return focus after close completes
+    setTimeout(function () { openBtn.focus(); }, 0);
+  });
+  dialog.addEventListener("click", function (e) {
+    if (e.target === dialog) closeDialog();
+  });
+
+  function validateBookingField(input, required, helperId, formatMsg, formatTest) {
+    var helper = document.getElementById(helperId);
+    var v = input.value.trim();
+    var msg = "";
+    if (required && !v) {
+      msg = "Det här fältet måste fyllas i.";
+    } else if (v && formatTest && !formatTest(v)) {
+      msg = formatMsg;
+    }
+    if (msg) {
+      input.setAttribute("aria-invalid", "true");
+      helper.textContent = msg;
+      helper.classList.add("is-error");
+    } else {
+      input.removeAttribute("aria-invalid");
+      helper.classList.remove("is-error");
+      helper.textContent = helper.dataset.defaultText || "";
+    }
+    return !msg;
+  }
+
+  bookingForm.addEventListener("submit", function (e) {
+    e.preventDefault();
+    var time = document.getElementById("b-time");
+    var guest = document.getElementById("b-guest");
+    var count = document.getElementById("b-count");
+    var phone = document.getElementById("b-phone");
+
+    var ok1 = validateBookingField(time, true, "b-time-helper");
+    var ok2 = validateBookingField(guest, true, "b-guest-helper");
+    var ok3 = validateBookingField(count, true, "b-count-helper");
+    var ok4 = validateBookingField(phone, false, "b-phone-helper", "Ange ett giltigt telefonnummer, t.ex. 070-123 45 67.", function (v) {
+      return /^(\+46|0)[\d\s-]{7,}$/.test(v);
+    });
+
+    if (!(ok1 && ok2 && ok3 && ok4)) {
+      var firstInvalid = bookingForm.querySelector('[aria-invalid="true"]');
+      if (firstInvalid) firstInvalid.focus();
+      return;
+    }
+
+    submitBookingBtn.disabled = true;
+    submitBookingBtn.setAttribute("aria-busy", "true");
+    submitBookingLabel.innerHTML = "";
+    var spinner = document.createElement("span");
+    spinner.className = "spinner";
+    spinner.setAttribute("aria-hidden", "true");
+    submitBookingLabel.appendChild(spinner);
+    submitBookingLabel.appendChild(document.createTextNode(" Bokar…"));
+
+    setTimeout(function () {
+      var row = document.createElement("tr");
+      row.innerHTML =
+        '<td data-label="Tid">' + escapeHtml(time.value) + '</td>' +
+        '<td data-label="Gäst">' + escapeHtml(guest.value) + '</td>' +
+        '<td data-label="Antal gäster">' + escapeHtml(count.value) + '</td>' +
+        '<td data-label="Status"><span class="badge badge--confirmed"><span class="badge__dot" aria-hidden="true"></span>Bekräftad</span></td>';
+      bookingsBody.appendChild(row);
+      kpiBookings.textContent = String(Number(kpiBookings.textContent) + 1);
+
+      submitBookingBtn.disabled = false;
+      submitBookingBtn.removeAttribute("aria-busy");
+      submitBookingLabel.textContent = "Boka";
+      bookingForm.reset();
+      document.getElementById("b-count").value = "2";
+      closeDialog();
+      showToast("Bokningen för " + guest.value + " är tillagd.");
+    }, 500);
+  });
+
+  function escapeHtml(str) {
+    var div = document.createElement("div");
+    div.textContent = str;
+    return div.innerHTML;
+  }
+})();
+</script>
+</body>
+</html>

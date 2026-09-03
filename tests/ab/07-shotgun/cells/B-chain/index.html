@@ -1,0 +1,164 @@
+<!-- LANE: saltblekt verkstadsflorist — fog, petrol, tegel bara i display, grotesk. REGISTER: modern clean (subject = precision: snitt, bindning, leveransfönster, inte connoisseurship). GRAMMAR: typographic poster — typen bär bilden, inga foton i detta utdrag. Faces: Space Grotesk (display, verkstadens instrumentröst) + Work Sans (kropp, tyst arbetshäst) + IBM Plex Mono (två mikroetiketter, budget 4, används för adress/timmar och sektionsrubrik — inga andra). -->
+<!doctype html>
+<html lang="sv">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Florhuset Majorna — florist &amp; ateljé, Majorna</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@500;600;700&family=Work+Sans:wght@400;500&family=IBM+Plex+Mono:wght@500&display=swap" rel="stylesheet">
+<style>
+:root{
+  --fog:oklch(0.95 0.006 230);
+  --paper:oklch(0.98 0.004 230);
+  --ink:oklch(0.19 0.012 240);
+  --steel:oklch(0.48 0.016 235);
+  --mist:oklch(0.64 0.014 235);
+  --line:oklch(0.84 0.01 235);
+  --petrol:oklch(0.27 0.045 225);
+  --petrol-mist:oklch(0.74 0.02 225);
+  --petrol-line:oklch(0.42 0.035 225 / .55);
+  --tegel:oklch(0.53 0.15 35);
+}
+*{box-sizing:border-box}
+html{overflow-x:hidden}
+body{margin:0;background:var(--fog);color:var(--ink);font-family:'Work Sans',sans-serif;font-size:16px;line-height:1.5}
+h1,h2{font-family:'Space Grotesk',sans-serif;margin:0;letter-spacing:-0.01em}
+.mono{font-family:'IBM Plex Mono',monospace;font-size:10.5px;letter-spacing:.22em;text-transform:uppercase}
+a{color:inherit}
+.skip-link{position:absolute;left:-999px;top:0;background:var(--ink);color:var(--paper);padding:.6em 1em;z-index:10}
+.skip-link:focus{left:1rem;top:1rem}
+:focus-visible{outline:2px solid var(--tegel);outline-offset:3px}
+.wrap{max-width:1320px;margin-inline:auto;padding-inline:clamp(1.25rem,4vw,3rem)}
+.btn{display:inline-block;padding:.85em 1.6em;font-family:'Space Grotesk',sans-serif;font-weight:600;font-size:.95rem;text-decoration:none;border-radius:0;border:1px solid currentColor;transition:background .2s,color .2s}
+.btn-fill{background:var(--ink);color:var(--paper);border-color:var(--ink)}
+.btn-fill:hover{background:transparent;color:var(--ink)}
+.btn-outline-paper{color:var(--paper);border-color:var(--petrol-line)}
+.btn-outline-paper:hover{background:var(--paper);color:var(--petrol)}
+
+/* NAV: instrument rail — wordmark + flat link row + one real button, not a hamburger stack on desktop, not a logo-soup center lockup */
+.nav{display:flex;align-items:center;justify-content:space-between;gap:1rem;padding-block:1.1rem;border-bottom:1px solid var(--line)}
+.nav .wordmark{font-weight:700;font-size:1.05rem;text-transform:uppercase;letter-spacing:-0.01em;text-decoration:none}
+.nav ul{list-style:none;display:flex;gap:1.8rem;margin:0;padding:0}
+.nav ul a{text-decoration:none;font-size:.92rem;color:var(--steel)}
+.nav ul a:hover{color:var(--ink)}
+.nav-links{display:none}
+@media(min-width:820px){.nav-links{display:flex}}
+
+/* HERO: dark-ground typographic poster with an edge-to-edge rule and a drawn line-mark bleeding off the viewport — not a fullbleed stock photo with centered headline+button */
+.hero{background:var(--petrol);color:var(--paper);position:relative;overflow:hidden}
+.hero-inner{padding-block:clamp(3rem,9vw,6.5rem) clamp(3.5rem,10vw,7rem);display:grid;gap:2.5rem;grid-template-columns:1fr;position:relative}
+@media(min-width:900px){.hero-inner{grid-template-columns:7fr 5fr;align-items:end}}
+.hero .mono{color:var(--petrol-mist);display:block;margin-bottom:1.4rem}
+.hero-rule{border:0;border-top:1px solid var(--petrol-line);margin:0 calc(-1 * clamp(1.25rem,4vw,3rem)) 1.4rem}
+.hero h1{font-size:clamp(2.6rem,7.4vw,5.6rem);line-height:.94;font-weight:700}
+.hero h1 em{font-style:normal;color:var(--tegel)}
+.hero p{max-width:42ch;color:var(--petrol-mist);font-size:1.05rem;margin:1.3rem 0 2rem}
+.hero-cta{display:flex;flex-wrap:wrap;gap:.9rem}
+.mark{aria-hidden:true;position:relative;height:100%;min-height:220px}
+.mark svg{position:absolute;right:clamp(-3rem,-6vw,-1rem);top:0;width:min(70vw,420px);height:auto}
+
+/* BUKETTER: label-rail + typeset ledger of the week's bouquets, price right-aligned at display size — not a three-icon card grid */
+.ledger-section{padding-block:clamp(3.5rem,9vw,6rem)}
+.led-grid{display:grid;gap:2.2rem;grid-template-columns:1fr}
+@media(min-width:900px){.led-grid{grid-template-columns:3fr 9fr;gap:3rem}}
+.rail .mono{color:var(--steel)}
+.rail hr{border:0;border-top:1px solid var(--line);width:2.4rem;margin:.9rem 0 1.1rem;opacity:.7}
+.rail p{color:var(--steel);font-size:.95rem;max-width:26ch;margin:0}
+.row{display:grid;grid-template-columns:1fr auto;gap:1rem 1.5rem;align-items:baseline;padding-block:1.4rem;border-bottom:1px solid var(--line)}
+.row:first-child{padding-top:0}
+.row h2{font-size:1.15rem;font-weight:600}
+.row .desc{color:var(--steel);font-size:.94rem;max-width:48ch;margin:.35rem 0 0}
+.price{font-family:'Space Grotesk',sans-serif;font-weight:700;font-size:clamp(1.5rem,3.4vw,2.1rem);color:var(--tegel);white-space:nowrap}
+
+.reveal{opacity:0;transform:translateY(28px);transition:opacity 1.3s cubic-bezier(.16,1,.3,1),transform 1.3s cubic-bezier(.16,1,.3,1)}
+.reveal.is-visible,.reveal.no-js{opacity:1;transform:none}
+@media(prefers-reduced-motion:reduce){.reveal{transition:none;opacity:1;transform:none}}
+</style>
+</head>
+<body>
+<a class="skip-link" href="#buketter">Hoppa till säsongens buketter</a>
+
+<header class="nav">
+  <div class="wrap" style="display:flex;align-items:center;justify-content:space-between;width:100%">
+    <a class="wordmark" href="#">Florhuset Majorna</a>
+    <nav class="nav-links">
+      <ul>
+        <li><a href="#buketter">Buketter</a></li>
+        <li><a href="#brollop">Bröllop</a></li>
+        <li><a href="#prenumeration">Prenumeration</a></li>
+        <li><a href="#ateljekvallar">Ateljékvällar</a></li>
+      </ul>
+    </nav>
+    <a class="btn btn-fill" href="#buketter">Beställ bukett</a>
+  </div>
+</header>
+
+<main>
+  <section class="hero">
+    <hr class="hero-rule">
+    <div class="wrap hero-inner">
+      <div>
+        <span class="mono">Mariaplan 4, Majorna · tis–fre 10–18, lör 10–15</span>
+        <h1>Skuret i morse.<br>Bundet för <em>hand.</em></h1>
+        <p>Florhuset Majorna är verkstad och ateljé i en och samma lokal — vi snittar det som står i säsong utmed Västkusten och binder det samma dag du hämtar det.</p>
+        <div class="hero-cta">
+          <a class="btn btn-fill" style="background:var(--paper);color:var(--petrol);border-color:var(--paper)" href="#buketter">Beställ bukett</a>
+          <a class="btn btn-outline-paper" href="#brollop">Boka bröllopsmöte</a>
+        </div>
+      </div>
+      <div class="mark" aria-hidden="true">
+        <svg viewBox="0 0 200 260" fill="none" xmlns="http://www.w3.org/2000/svg">
+          <path d="M100 250 C100 170 70 150 70 90" stroke="var(--tegel)" stroke-width="2"/>
+          <path d="M70 90 C70 60 90 40 100 10" stroke="var(--tegel)" stroke-width="2"/>
+          <path d="M70 90 C70 60 50 40 40 10" stroke="var(--petrol-line)" stroke-width="2"/>
+          <circle cx="100" cy="10" r="9" stroke="var(--tegel)" stroke-width="2"/>
+          <circle cx="40" cy="10" r="6" stroke="var(--petrol-line)" stroke-width="2"/>
+        </svg>
+      </div>
+    </div>
+  </section>
+
+  <section id="buketter" class="ledger-section reveal">
+    <div class="wrap led-grid">
+      <div class="rail">
+        <span class="mono">Säsongens buketter</span>
+        <hr>
+        <p>Snittat inom en mils radie, inte flugna. Byts när blomningen byts, inte varje vecka på klockslag.</p>
+      </div>
+      <div>
+        <div class="row">
+          <div><h2>Septemberdahlia</h2><p class="desc">Dahlia i rost och vinrött, sensommarblad, björkkvist. Från odlingen på Änggårdsbergen.</p></div>
+          <div class="price">425 kr</div>
+        </div>
+        <div class="row">
+          <div><h2>Sista rosorna</h2><p class="desc">Trädgårdsrosor på väg ur säsong, hortensia, salvia. Håller kortare än vårens — vi säger det rakt ut.</p></div>
+          <div class="price">495 kr</div>
+        </div>
+        <div class="row">
+          <div><h2>Havssalt</h2><p class="desc">Silverax, astrantia, vitt sensommarblad. Den kalla, blekta bukett vi binder mest av just nu.</p></div>
+          <div class="price">375 kr</div>
+        </div>
+        <div class="row">
+          <div><h2>Verkstadens val</h2><p class="desc">Det vi har mest av i kylen idag, binderskans bedömning. Ring ateljén om du vill styra färgen.</p></div>
+          <div class="price">345 kr</div>
+        </div>
+      </div>
+    </div>
+  </section>
+</main>
+
+<script>
+(function(){
+  var els = document.querySelectorAll('.reveal');
+  if(!('IntersectionObserver' in window)){ els.forEach(function(e){e.classList.add('no-js')}); return; }
+  var io = new IntersectionObserver(function(entries){
+    entries.forEach(function(en){ if(en.isIntersecting){ en.target.classList.add('is-visible'); io.unobserve(en.target); } });
+  }, {threshold:0.1});
+  els.forEach(function(e){ io.observe(e); });
+  setTimeout(function(){ els.forEach(function(e){ e.classList.add('is-visible'); }); }, 2500);
+})();
+</script>
+</body>
+</html>

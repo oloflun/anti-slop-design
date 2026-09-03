@@ -1,0 +1,1327 @@
+<!doctype html>
+<html lang="sv">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Inställningar — Tidvatten Konto</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Familjen+Grotesk:wght@400;500;600;700&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --paper:#F4F6F5;
+    --ink:#101614;
+    --ink-2:#5A6662;
+    --line:#D6DDDA;
+    --accent:#0E6F5C;
+    --accent-ink:#FFFFFF;
+    --danger:#9C2F2F;
+
+    --paper-2:color-mix(in srgb, var(--paper) 92%, var(--ink) 8%);
+    --paper-3:color-mix(in srgb, var(--paper) 96%, var(--ink) 4%);
+    --accent-2:color-mix(in srgb, var(--accent) 88%, black 12%);
+    --accent-tint:color-mix(in srgb, var(--accent) 10%, var(--paper) 90%);
+    --danger-tint:color-mix(in srgb, var(--danger) 10%, var(--paper) 90%);
+
+    --font: "Familjen Grotesk", system-ui, -apple-system, "Segoe UI", sans-serif;
+    --radius-control: 6px;
+    --radius-drawer: 10px;
+
+    --ease-out: cubic-bezier(0.23, 1, 0.32, 1);
+    --ease-in-out: cubic-bezier(0.77, 0, 0.175, 1);
+    --ease-drawer: cubic-bezier(0.32, 0.72, 0, 1);
+
+    --control-h: 44px;
+  }
+
+  *{ box-sizing:border-box; }
+  html,body{ height:100%; }
+  body{
+    margin:0;
+    background:var(--paper);
+    color:var(--ink);
+    font-family:var(--font);
+    font-size:15px;
+    line-height:1.5;
+    -webkit-font-smoothing:antialiased;
+  }
+  h1,h2,h3{ font-family:var(--font); font-weight:600; margin:0; }
+  p{ margin:0; }
+  button, input, textarea, select{ font-family:inherit; font-size:inherit; color:inherit; }
+
+  :focus{ outline:none; }
+  :focus-visible{
+    outline:2px solid var(--ink);
+    outline-offset:2px;
+    border-radius:inherit;
+  }
+
+  /* ---------- layout shell ---------- */
+  .topbar{
+    display:flex;
+    align-items:center;
+    justify-content:space-between;
+    height:56px;
+    padding:0 20px;
+    border-bottom:1px solid var(--line);
+    background:var(--paper);
+    position:sticky;
+    top:0;
+    z-index:20;
+  }
+  .brand{
+    display:flex;
+    align-items:center;
+    gap:8px;
+    font-weight:600;
+    font-size:15px;
+    letter-spacing:-0.01em;
+  }
+  .brand-mark{
+    width:22px;height:22px;border-radius:6px;
+    background:var(--accent);
+    display:grid;place-items:center;
+    color:var(--accent-ink);
+    font-size:12px; font-weight:700;
+  }
+  .user-chip{
+    display:flex; align-items:center; gap:8px;
+    color:var(--ink-2); font-size:13px;
+  }
+  .avatar{
+    width:28px;height:28px;border-radius:999px;
+    background:var(--accent-tint);
+    color:var(--accent);
+    display:grid;place-items:center;
+    font-size:12px; font-weight:700;
+    border:1px solid color-mix(in srgb, var(--accent) 25%, var(--paper) 75%);
+  }
+
+  .content{
+    max-width:760px;
+    margin:0 auto;
+    padding:32px 20px 96px;
+  }
+  .page-title{
+    font-size:20px;
+    margin-bottom:4px;
+  }
+  .page-sub{
+    color:var(--ink-2);
+    font-size:13px;
+    margin-bottom:24px;
+  }
+
+  /* ---------- tabs ---------- */
+  .tablist{
+    position:relative;
+    display:flex;
+    gap:4px;
+    border-bottom:1px solid var(--line);
+    margin-bottom:28px;
+  }
+  .tab{
+    position:relative;
+    appearance:none;
+    background:transparent;
+    border:none;
+    padding:10px 4px;
+    margin:0 12px 0 0;
+    font-size:14px;
+    font-weight:500;
+    color:var(--ink-2);
+    cursor:pointer;
+    transition: color 150ms var(--ease-out);
+  }
+  .tab:first-child{ margin-left:0; }
+  @media (hover:hover){
+    .tab:hover{ color:var(--ink); }
+  }
+  .tab[aria-selected="true"]{ color:var(--ink); }
+  .tab-indicator{
+    position:absolute;
+    bottom:-1px;
+    left:0;
+    height:2px;
+    background:var(--accent);
+    border-radius:2px 2px 0 0;
+    width:0;
+    transform:translateX(0);
+    transition: transform 200ms var(--ease-out), width 200ms var(--ease-out);
+  }
+
+  .panel{ display:flex; flex-direction:column; gap:28px; }
+  .panel[hidden]{ display:none; }
+
+  /* ---------- form primitives ---------- */
+  .field-group{ display:flex; flex-direction:column; gap:6px; }
+  .field-row{ display:grid; grid-template-columns:1fr 1fr; gap:16px; }
+  @media (max-width:560px){ .field-row{ grid-template-columns:1fr; } }
+
+  .field-label{
+    font-size:13px;
+    font-weight:500;
+    color:var(--ink);
+  }
+  .field-label .req{ color:var(--danger); margin-left:2px; }
+
+  .field-input, .field-select, .field-textarea{
+    height:var(--control-h);
+    width:100%;
+    padding:0 12px;
+    padding-right:34px;
+    border:1px solid var(--line);
+    border-radius:var(--radius-control);
+    background:var(--paper);
+    outline:2px solid transparent;
+    outline-offset:1px;
+    transition: background-color 150ms var(--ease-out), border-color 150ms var(--ease-out), outline-color 150ms var(--ease-out);
+  }
+  .field-textarea{
+    height:auto;
+    min-height:6rem;
+    padding:10px 12px;
+    resize:vertical;
+    line-height:1.5;
+  }
+  @media (hover:hover){
+    .field-input:hover:not(:disabled):not(:focus-visible),
+    .field-textarea:hover:not(:disabled):not(:focus-visible){
+      background:var(--paper-2);
+    }
+  }
+  .field-input:focus-visible, .field-textarea:focus-visible{
+    outline-color:var(--accent);
+    border-color:var(--ink-2);
+  }
+  .field-input:disabled, .field-textarea:disabled{
+    opacity:.55;
+    cursor:not-allowed;
+    background:var(--paper-3);
+  }
+  .field-input[aria-invalid="true"]{ border-color:var(--danger); }
+  .field-input.is-valid{ border-color:color-mix(in srgb, var(--accent) 45%, var(--line) 55%); }
+
+  .field-wrap{ position:relative; }
+  .field-slot{
+    position:absolute;
+    right:10px; top:50%;
+    transform:translateY(-50%);
+    width:16px;height:16px;
+    display:none;
+    pointer-events:none;
+  }
+  .field-wrap.has-error .field-slot.slot-error{ display:block; color:var(--danger); }
+  .field-wrap.has-success .field-slot.slot-success{ display:block; color:var(--accent); }
+
+  .field-help{
+    min-height:1lh;
+    font-size:12.5px;
+    color:var(--ink-2);
+  }
+  .field-help.is-error{ color:var(--danger); }
+
+  /* ---------- buttons ---------- */
+  .btn{
+    appearance:none;
+    display:inline-flex;
+    align-items:center;
+    justify-content:center;
+    gap:8px;
+    height:var(--control-h);
+    padding:0 18px;
+    border-radius:var(--radius-control);
+    border:1px solid transparent;
+    font-size:14px;
+    font-weight:600;
+    cursor:pointer;
+    transition: transform 160ms var(--ease-out), background-color 150ms var(--ease-out), border-color 150ms var(--ease-out), color 150ms var(--ease-out);
+  }
+  .btn:active:not(:disabled){ transform:scale(0.97); }
+  .btn:disabled{ opacity:.5; cursor:not-allowed; }
+
+  .btn-primary{
+    background:var(--accent);
+    color:var(--accent-ink);
+  }
+  @media (hover:hover){
+    .btn-primary:hover:not(:disabled){ background:var(--accent-2); }
+  }
+  .btn-secondary{
+    background:var(--paper);
+    color:var(--ink);
+    border-color:var(--line);
+  }
+  @media (hover:hover){
+    .btn-secondary:hover:not(:disabled){ background:var(--paper-2); }
+  }
+  .btn-ghost{
+    background:transparent;
+    color:var(--ink-2);
+    height:36px;
+    padding:0 12px;
+  }
+  @media (hover:hover){
+    .btn-ghost:hover:not(:disabled){ background:var(--paper-2); color:var(--ink); }
+  }
+
+  .btn-spinner{
+    display:none;
+    width:15px;height:15px;
+    border-radius:999px;
+    border:2px solid color-mix(in srgb, var(--accent-ink) 35%, transparent);
+    border-top-color:var(--accent-ink);
+    position:absolute;
+    animation:spin .8s linear infinite;
+  }
+  .btn.loading{ position:relative; cursor:progress; }
+  .btn.loading .btn-spinner{ display:block; }
+  .btn.loading .btn-label{ visibility:hidden; }
+  .btn.success{ background:var(--accent-2); }
+  @keyframes spin{ to{ transform:rotate(360deg); } }
+
+  .icon-btn{
+    position:relative;
+    width:32px;height:32px;
+    display:grid; place-items:center;
+    border-radius:var(--radius-control);
+    border:1px solid transparent;
+    background:transparent;
+    color:var(--ink-2);
+    cursor:pointer;
+    transition: background-color 150ms var(--ease-out), color 150ms var(--ease-out), transform 160ms var(--ease-out);
+  }
+  .icon-btn::before{ content:""; position:absolute; inset:-6px; }
+  @media (hover:hover){
+    .icon-btn:hover{ background:var(--paper-2); color:var(--ink); }
+  }
+  .icon-btn:active{ transform:scale(0.94); }
+
+  .actions-row{
+    display:flex;
+    justify-content:flex-end;
+    padding-top:4px;
+    border-top:1px solid var(--line);
+    margin-top:4px;
+    padding-top:20px;
+  }
+
+  /* ---------- section chrome ---------- */
+  .section-card{
+    border:1px solid var(--line);
+    border-radius:10px;
+    padding:20px;
+    background:var(--paper);
+    display:flex;
+    flex-direction:column;
+    gap:16px;
+  }
+  .section-title{ font-size:14px; font-weight:600; }
+  .section-desc{ font-size:13px; color:var(--ink-2); }
+
+  /* ---------- notification toggles ---------- */
+  .toggle-list{ display:flex; flex-direction:column; }
+  .toggle-row{
+    display:flex;
+    align-items:flex-start;
+    justify-content:space-between;
+    gap:16px;
+    padding:16px 0;
+    border-top:1px solid var(--line);
+  }
+  .toggle-row:first-child{ border-top:none; padding-top:2px; }
+  .toggle-copy{ display:flex; flex-direction:column; gap:2px; max-width:440px; }
+  .toggle-title{ font-size:14px; font-weight:500; }
+  .toggle-desc{ font-size:13px; color:var(--ink-2); }
+
+  .toggle-control{ display:flex; align-items:center; gap:10px; flex-shrink:0; }
+  .toggle-state{ font-size:12.5px; color:var(--ink-2); min-width:28px; text-align:right; }
+  .toggle-state[data-on="true"]{ color:var(--accent); font-weight:600; }
+
+  .switch{ position:relative; width:40px; height:23px; flex-shrink:0; }
+  .switch input{
+    position:absolute; inset:0;
+    width:100%; height:100%;
+    margin:0; opacity:0; cursor:pointer;
+  }
+  .switch-track{
+    position:absolute; inset:0;
+    border-radius:999px;
+    background:var(--line);
+    transition: background-color 180ms var(--ease-out);
+  }
+  .switch-thumb{
+    position:absolute; top:2px; left:2px;
+    width:19px; height:19px;
+    border-radius:999px;
+    background:var(--paper);
+    box-shadow:0 1px 2px rgba(16,22,20,.25);
+    transition: transform 180ms var(--ease-out);
+  }
+  .switch input:checked ~ .switch-track{ background:var(--accent); }
+  .switch input:checked ~ .switch-thumb{ transform:translateX(17px); }
+  .switch input:disabled ~ .switch-track{ opacity:.5; cursor:not-allowed; }
+  .switch input:focus-visible ~ .switch-track{
+    outline:2px solid var(--ink); outline-offset:2px;
+  }
+
+  /* ---------- billing ---------- */
+  .plan-card{
+    display:flex;
+    align-items:center;
+    justify-content:space-between;
+    gap:16px;
+    flex-wrap:wrap;
+  }
+  .plan-name{ font-size:16px; font-weight:600; }
+  .plan-price{ color:var(--ink-2); font-size:13px; }
+  .badge{
+    display:inline-flex; align-items:center;
+    font-size:11.5px; font-weight:600;
+    padding:3px 8px;
+    border-radius:999px;
+    background:var(--accent-tint);
+    color:var(--accent);
+    width:fit-content;
+  }
+  .card-tile{
+    display:flex; align-items:center; gap:12px;
+    padding:12px 14px;
+    border:1px solid var(--line);
+    border-radius:var(--radius-control);
+  }
+  .card-brand{
+    width:34px; height:22px;
+    border-radius:4px;
+    background:var(--ink);
+    color:var(--paper);
+    display:grid; place-items:center;
+    font-size:9px; font-weight:700; letter-spacing:.02em;
+  }
+  .card-meta{ font-size:13.5px; }
+  .card-meta .muted{ color:var(--ink-2); }
+
+  table.invoice-table{ width:100%; border-collapse:collapse; font-size:13.5px; }
+  table.invoice-table th{
+    text-align:left; font-weight:500; color:var(--ink-2);
+    font-size:12px; text-transform:uppercase; letter-spacing:.03em;
+    padding:0 10px 8px;
+    border-bottom:1px solid var(--line);
+  }
+  table.invoice-table td{
+    padding:12px 10px;
+    border-bottom:1px solid var(--line);
+    vertical-align:middle;
+  }
+  table.invoice-table tr:last-child td{ border-bottom:none; }
+  .status-pill{
+    display:inline-flex; align-items:center; gap:5px;
+    font-size:12px; font-weight:600;
+    color:var(--accent);
+  }
+  .status-pill::before{
+    content:""; width:6px; height:6px; border-radius:999px;
+    background:var(--accent);
+  }
+  .link-btn{
+    background:none; border:none; padding:0;
+    color:var(--ink-2); font-size:13px; font-weight:500;
+    cursor:pointer; text-decoration:underline;
+    text-underline-offset:2px;
+    transition:color 150ms var(--ease-out);
+  }
+  @media (hover:hover){ .link-btn:hover{ color:var(--ink); } }
+
+  /* ---------- API keys drawer ---------- */
+  dialog.drawer{
+    position:fixed;
+    inset:0 0 0 auto;
+    margin:0;
+    width:min(440px, 92vw);
+    height:100vh;
+    max-height:100vh;
+    max-width:none;
+    border:none;
+    padding:0;
+    border-top-left-radius:var(--radius-drawer);
+    border-bottom-left-radius:var(--radius-drawer);
+    background:var(--paper);
+    color:var(--ink);
+    box-shadow:-16px 0 40px rgba(16,22,20,.16);
+    display:none;
+    flex-direction:column;
+    transform:translateX(100%);
+    transition: transform 260ms var(--ease-drawer), overlay 260ms allow-discrete, display 260ms allow-discrete;
+  }
+  dialog.drawer[open]{
+    display:flex;
+    transform:translateX(0);
+  }
+  @starting-style{
+    dialog.drawer[open]{ transform:translateX(100%); }
+  }
+  dialog.drawer::backdrop{
+    background:rgba(16,22,20,0);
+    transition: background-color 260ms var(--ease-out), overlay 260ms allow-discrete, display 260ms allow-discrete;
+  }
+  dialog.drawer[open]::backdrop{ background:rgba(16,22,20,.32); }
+  @starting-style{
+    dialog.drawer[open]::backdrop{ background:rgba(16,22,20,0); }
+  }
+
+  .drawer-grip{
+    width:100%;
+    height:22px;
+    display:flex; align-items:center; justify-content:center;
+    cursor:grab;
+    touch-action:none;
+    flex-shrink:0;
+  }
+  .drawer-grip::before{
+    content:"";
+    width:36px; height:4px;
+    border-radius:999px;
+    background:var(--line);
+  }
+  .drawer-grip:active{ cursor:grabbing; }
+
+  .drawer-header{
+    display:flex; align-items:center; justify-content:space-between;
+    padding:0 20px 16px;
+    border-bottom:1px solid var(--line);
+    flex-shrink:0;
+    touch-action:none;
+    cursor:grab;
+  }
+  .drawer-header:active{ cursor:grabbing; }
+  .drawer-header h2{ font-size:16px; }
+
+  .drawer-body{
+    padding:16px 20px 24px;
+    overflow-y:auto;
+    display:flex;
+    flex-direction:column;
+    gap:16px;
+    flex:1;
+  }
+  .drawer-hint{ font-size:12.5px; color:var(--ink-2); }
+
+  .key-list{ list-style:none; margin:0; padding:0; display:flex; flex-direction:column; gap:10px; }
+  .key-row{
+    border:1px solid var(--line);
+    border-radius:var(--radius-control);
+    padding:14px;
+    display:flex; flex-direction:column; gap:10px;
+    transition: opacity 200ms var(--ease-out), transform 200ms var(--ease-out);
+  }
+  .key-row.removing{ opacity:0; transform:translateX(14px); pointer-events:none; }
+  .key-top{ display:flex; align-items:flex-start; justify-content:space-between; gap:10px; }
+  .key-name{ font-size:14px; font-weight:600; }
+  .key-meta{ font-size:12px; color:var(--ink-2); display:flex; flex-direction:column; gap:2px; margin-top:2px; }
+  .key-value{
+    display:flex; align-items:center; gap:8px;
+    font-size:12.5px;
+    font-family: ui-monospace, "SFMono-Regular", Menlo, Consolas, monospace;
+    background:var(--paper-3);
+    border:1px solid var(--line);
+    border-radius:var(--radius-control);
+    padding:8px 10px;
+    color:var(--ink-2);
+  }
+  .key-value span{ flex:1; overflow:hidden; text-overflow:ellipsis; white-space:nowrap; }
+  .key-row-actions{ display:flex; justify-content:flex-end; }
+
+  .btn-radera{
+    position:relative;
+    overflow:hidden;
+    height:34px;
+    padding:0 14px;
+    border:1px solid color-mix(in srgb, var(--danger) 35%, var(--line) 65%);
+    border-radius:var(--radius-control);
+    background:var(--paper);
+    color:var(--danger);
+    font-size:13px; font-weight:600;
+    cursor:pointer;
+    -webkit-user-select:none; user-select:none;
+    touch-action:none;
+    transition: transform 160ms var(--ease-out), border-color 150ms var(--ease-out);
+  }
+  .btn-radera:active{ transform:scale(0.97); }
+  .btn-radera:disabled{ opacity:.5; cursor:not-allowed; }
+  .radera-fill{
+    position:absolute; inset:0;
+    background:var(--danger);
+    clip-path:inset(0 100% 0 0);
+    transition:clip-path 200ms var(--ease-out);
+    pointer-events:none;
+  }
+  .btn-radera.holding .radera-fill{
+    transition:clip-path 2000ms linear;
+    clip-path:inset(0 0 0 0);
+  }
+  .radera-label{ position:relative; z-index:1; transition:color 120ms linear; }
+  .btn-radera.holding .radera-label{ color:var(--accent-ink); }
+
+  /* ---------- toasts ---------- */
+  .toast-region{
+    position:fixed;
+    bottom:20px;
+    right:20px;
+    z-index:80;
+    display:flex;
+    flex-direction:column;
+    gap:8px;
+    max-width:min(340px, 92vw);
+  }
+  .toast{
+    display:flex;
+    align-items:center;
+    gap:10px;
+    padding:12px 14px;
+    background:var(--ink);
+    color:var(--paper);
+    border-radius:var(--radius-control);
+    box-shadow:0 8px 20px rgba(16,22,20,.22);
+    font-size:13.5px;
+    touch-action:none;
+    opacity:1;
+    transform:translate(0,0);
+    transition:transform 220ms var(--ease-out), opacity 220ms var(--ease-out);
+  }
+  .toast[data-dragging="true"]{ transition:none; }
+  .toast.leaving{ opacity:0; transform:translate(24px,0); }
+  @starting-style{
+    .toast{ opacity:0; transform:translate(0,10px); }
+  }
+  .toast-icon{
+    width:16px; height:16px; flex-shrink:0;
+    border-radius:999px;
+    background:var(--accent);
+    color:var(--accent-ink);
+    display:grid; place-items:center;
+  }
+  .toast-icon svg{ width:10px; height:10px; }
+
+  .sr-only{
+    position:absolute; width:1px; height:1px;
+    padding:0; margin:-1px; overflow:hidden;
+    clip:rect(0,0,0,0); white-space:nowrap; border:0;
+  }
+
+  /* ---------- reduced motion: gentler, not zero ---------- */
+  @media (prefers-reduced-motion: reduce){
+    .tab-indicator{ transition-duration:120ms; }
+    .btn{ transition-duration:120ms; }
+    .btn:active:not(:disabled){ transform:scale(0.99); }
+    .icon-btn:active{ transform:scale(0.98); }
+    .btn-spinner{ animation-duration:1.6s; }
+    .switch-track, .switch-thumb{ transition-duration:100ms; }
+    .key-row{ transition-duration:120ms; }
+    .key-row.removing{ transform:none; }
+    dialog.drawer{ transition-duration:140ms; transition-timing-function:ease; }
+    dialog.drawer::backdrop{ transition-duration:140ms; }
+    @starting-style{ dialog.drawer[open]{ transform:translateX(100%); } }
+    .toast{ transition-duration:140ms; }
+    .toast.leaving{ transform:translate(0,0); }
+    @starting-style{ .toast{ transform:translate(0,0); } }
+    .btn-radera.holding .radera-fill{ transition-duration:2000ms; }
+    .field-input, .field-textarea{ transition-duration:100ms; }
+  }
+</style>
+</head>
+<body>
+
+  <header class="topbar">
+    <div class="brand">
+      <span class="brand-mark">TV</span>
+      Tidvatten Konto
+    </div>
+    <div class="user-chip">
+      <span>Anna Björk</span>
+      <span class="avatar">AB</span>
+    </div>
+  </header>
+
+  <main class="content">
+    <h1 class="page-title">Inställningar</h1>
+    <p class="page-sub">Hantera profil, aviseringar och fakturering för ditt konto.</p>
+
+    <div class="tablist" role="tablist" aria-label="Inställningsflikar">
+      <button class="tab" id="tab-profil" role="tab" aria-selected="true" aria-controls="panel-profil" data-tab="profil">Profil</button>
+      <button class="tab" id="tab-aviseringar" role="tab" aria-selected="false" aria-controls="panel-aviseringar" data-tab="aviseringar" tabindex="-1">Aviseringar</button>
+      <button class="tab" id="tab-fakturering" role="tab" aria-selected="false" aria-controls="panel-fakturering" data-tab="fakturering" tabindex="-1">Fakturering</button>
+      <span class="tab-indicator" id="tabIndicator" aria-hidden="true"></span>
+    </div>
+
+    <!-- ================= PROFIL ================= -->
+    <form class="panel" id="panel-profil" role="tabpanel" aria-labelledby="tab-profil" data-save-form novalidate>
+      <div class="field-row">
+        <div class="field-group">
+          <label class="field-label" for="f-namn">Namn</label>
+          <input class="field-input" type="text" id="f-namn" name="namn" value="Anna Björk" autocomplete="name">
+        </div>
+        <div class="field-group">
+          <label class="field-label" for="f-epost">E-postadress<span class="req">*</span></label>
+          <div class="field-wrap" id="epostWrap">
+            <input class="field-input" type="email" id="f-epost" name="epost" value="anna.bjork@nordkajen.se" autocomplete="email" aria-describedby="epostHelp" required>
+            <span class="field-slot slot-error" aria-hidden="true">
+              <svg viewBox="0 0 16 16" fill="none"><circle cx="8" cy="8" r="7" stroke="currentColor" stroke-width="1.4"/><path d="M8 4.5v4" stroke="currentColor" stroke-width="1.4" stroke-linecap="round"/><circle cx="8" cy="11" r=".8" fill="currentColor"/></svg>
+            </span>
+            <span class="field-slot slot-success" aria-hidden="true">
+              <svg viewBox="0 0 16 16" fill="none"><path d="M3.5 8.5l3 3 6-6.5" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/></svg>
+            </span>
+          </div>
+          <p class="field-help" id="epostHelp">Används för kvitton och säkerhetsaviseringar.</p>
+        </div>
+      </div>
+
+      <div class="field-row">
+        <div class="field-group">
+          <label class="field-label" for="f-telefon">Telefonnummer</label>
+          <div class="field-wrap" id="telefonWrap">
+            <input class="field-input" type="tel" id="f-telefon" name="telefon" value="070-123 45 67" autocomplete="tel" aria-describedby="telefonHelp" placeholder="070-123 45 67">
+            <span class="field-slot slot-error" aria-hidden="true">
+              <svg viewBox="0 0 16 16" fill="none"><circle cx="8" cy="8" r="7" stroke="currentColor" stroke-width="1.4"/><path d="M8 4.5v4" stroke="currentColor" stroke-width="1.4" stroke-linecap="round"/><circle cx="8" cy="11" r=".8" fill="currentColor"/></svg>
+            </span>
+          </div>
+          <p class="field-help" id="telefonHelp">Format: 07X-XXX XX XX.</p>
+        </div>
+        <div class="field-group">
+          <label class="field-label" for="f-roll">Roll</label>
+          <select class="field-select" id="f-roll" name="roll" style="padding-right:12px;">
+            <option>Kontoägare</option>
+            <option>Administratör</option>
+            <option>Ekonomi</option>
+          </select>
+        </div>
+      </div>
+
+      <div class="field-group">
+        <label class="field-label" for="f-ombig">Om mig</label>
+        <textarea class="field-textarea" id="f-ombig" name="ombig" aria-describedby="ombigHelp">Ansvarar för ekonomi och kontoadministration på Nordkajen AB.</textarea>
+        <p class="field-help" id="ombigHelp">Syns för andra medlemmar i teamet.</p>
+      </div>
+
+      <div class="section-card">
+        <div>
+          <div class="section-title">API-nycklar</div>
+          <p class="section-desc">Nycklar för att koppla Tidvatten Konto till egna integrationer.</p>
+        </div>
+        <div>
+          <button type="button" class="btn btn-secondary" id="openDrawerBtn">Hantera API-nycklar</button>
+        </div>
+      </div>
+
+      <div class="actions-row">
+        <button type="submit" class="btn btn-primary" data-save>
+          <span class="btn-spinner" aria-hidden="true"></span>
+          <span class="btn-label">Spara ändringar</span>
+        </button>
+      </div>
+    </form>
+
+    <!-- ================= AVISERINGAR ================= -->
+    <form class="panel" id="panel-aviseringar" role="tabpanel" aria-labelledby="tab-aviseringar" data-save-form hidden novalidate>
+      <div class="toggle-list">
+        <div class="toggle-row">
+          <div class="toggle-copy">
+            <span class="toggle-title">E-postsammanfattning</span>
+            <span class="toggle-desc">En veckovis sammanfattning av kontoaktivitet, skickas måndagar.</span>
+          </div>
+          <div class="toggle-control">
+            <span class="toggle-state" data-state-for="t1" data-on="true">På</span>
+            <label class="switch">
+              <input type="checkbox" id="t1" checked>
+              <span class="switch-track"></span>
+              <span class="switch-thumb"></span>
+            </label>
+          </div>
+        </div>
+        <div class="toggle-row">
+          <div class="toggle-copy">
+            <span class="toggle-title">Faktureringspåminnelser</span>
+            <span class="toggle-desc">Avisering tre dagar innan kortet debiteras.</span>
+          </div>
+          <div class="toggle-control">
+            <span class="toggle-state" data-state-for="t2" data-on="true">På</span>
+            <label class="switch">
+              <input type="checkbox" id="t2" checked>
+              <span class="switch-track"></span>
+              <span class="switch-thumb"></span>
+            </label>
+          </div>
+        </div>
+        <div class="toggle-row">
+          <div class="toggle-copy">
+            <span class="toggle-title">Produktnyheter</span>
+            <span class="toggle-desc">Uppdateringar om nya funktioner och förbättringar.</span>
+          </div>
+          <div class="toggle-control">
+            <span class="toggle-state" data-state-for="t3" data-on="false">Av</span>
+            <label class="switch">
+              <input type="checkbox" id="t3">
+              <span class="switch-track"></span>
+              <span class="switch-thumb"></span>
+            </label>
+          </div>
+        </div>
+        <div class="toggle-row">
+          <div class="toggle-copy">
+            <span class="toggle-title">Säkerhetsvarningar</span>
+            <span class="toggle-desc">Avisering vid inloggning från en ny enhet eller plats.</span>
+          </div>
+          <div class="toggle-control">
+            <span class="toggle-state" data-state-for="t4" data-on="true">På</span>
+            <label class="switch">
+              <input type="checkbox" id="t4" checked>
+              <span class="switch-track"></span>
+              <span class="switch-thumb"></span>
+            </label>
+          </div>
+        </div>
+      </div>
+
+      <div class="actions-row">
+        <button type="submit" class="btn btn-primary" data-save>
+          <span class="btn-spinner" aria-hidden="true"></span>
+          <span class="btn-label">Spara ändringar</span>
+        </button>
+      </div>
+    </form>
+
+    <!-- ================= FAKTURERING ================= -->
+    <form class="panel" id="panel-fakturering" role="tabpanel" aria-labelledby="tab-fakturering" data-save-form hidden novalidate>
+      <div class="section-card">
+        <div class="plan-card">
+          <div>
+            <span class="badge">Aktiv plan</span>
+            <div class="plan-name" style="margin-top:6px;">Team</div>
+            <div class="plan-price">349 kr / användare / månad · nästa betalning 1 oktober 2026</div>
+          </div>
+          <button type="button" class="btn btn-secondary">Byt plan</button>
+        </div>
+      </div>
+
+      <div class="section-card">
+        <div class="section-title">Betalkort</div>
+        <div class="card-tile">
+          <span class="card-brand">VISA</span>
+          <div class="card-meta">
+            •••• •••• •••• 4242 &nbsp;·&nbsp; <span class="muted">utgår 08/29</span>
+          </div>
+          <div style="margin-left:auto;">
+            <button type="button" class="btn-ghost btn">Byt kort</button>
+          </div>
+        </div>
+      </div>
+
+      <div class="field-row">
+        <div class="field-group">
+          <label class="field-label" for="f-foretag">Företagsnamn</label>
+          <input class="field-input" type="text" id="f-foretag" name="foretag" value="Nordkajen AB" autocomplete="organization">
+        </div>
+        <div class="field-group">
+          <label class="field-label" for="f-orgnr">Org.nummer</label>
+          <input class="field-input" type="text" id="f-orgnr" name="orgnr" value="556677-8899">
+        </div>
+      </div>
+
+      <div class="field-row">
+        <div class="field-group">
+          <label class="field-label" for="f-adress">Faktureringsadress</label>
+          <input class="field-input" type="text" id="f-adress" name="adress" value="Skeppsbron 12" autocomplete="street-address">
+        </div>
+        <div class="field-group">
+          <label class="field-label" for="f-postort">Postnummer, ort</label>
+          <input class="field-input" type="text" id="f-postort" name="postort" value="111 30 Stockholm" autocomplete="postal-code">
+        </div>
+      </div>
+
+      <div class="field-group">
+        <label class="field-label" for="f-kontoid">Konto-ID</label>
+        <input class="field-input" type="text" id="f-kontoid" name="kontoid" value="TVK-88213" disabled aria-disabled="true" tabindex="-1">
+        <p class="field-help">Systemgenererat, kan inte ändras.</p>
+      </div>
+
+      <div class="section-card">
+        <div class="section-title">Fakturor</div>
+        <div style="overflow-x:auto;">
+          <table class="invoice-table">
+            <thead>
+              <tr><th>Datum</th><th>Belopp</th><th>Status</th><th></th></tr>
+            </thead>
+            <tbody>
+              <tr>
+                <td>1 september 2026</td>
+                <td>3 490 kr</td>
+                <td><span class="status-pill">Betald</span></td>
+                <td><button type="button" class="link-btn">Ladda ner</button></td>
+              </tr>
+              <tr>
+                <td>1 augusti 2026</td>
+                <td>3 490 kr</td>
+                <td><span class="status-pill">Betald</span></td>
+                <td><button type="button" class="link-btn">Ladda ner</button></td>
+              </tr>
+              <tr>
+                <td>1 juli 2026</td>
+                <td>3 141 kr</td>
+                <td><span class="status-pill">Betald</span></td>
+                <td><button type="button" class="link-btn">Ladda ner</button></td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+      </div>
+
+      <div class="actions-row">
+        <button type="submit" class="btn btn-primary" data-save>
+          <span class="btn-spinner" aria-hidden="true"></span>
+          <span class="btn-label">Spara ändringar</span>
+        </button>
+      </div>
+    </form>
+  </main>
+
+  <!-- ================= API KEYS DRAWER ================= -->
+  <dialog class="drawer" id="apiDrawer" aria-labelledby="drawerTitle">
+    <div class="drawer-grip" id="drawerGrip" aria-hidden="true"></div>
+    <div class="drawer-header" id="drawerHeader">
+      <h2 id="drawerTitle">API-nycklar</h2>
+      <button type="button" class="icon-btn" id="drawerCloseBtn" aria-label="Stäng">
+        <svg width="16" height="16" viewBox="0 0 16 16" fill="none"><path d="M4 4l8 8M12 4l-8 8" stroke="currentColor" stroke-width="1.6" stroke-linecap="round"/></svg>
+      </button>
+    </div>
+    <div class="drawer-body">
+      <p class="drawer-hint">Dra i handtaget eller svep åt höger för att stänga. Håll in Radera för att ta bort en nyckel permanent.</p>
+      <ul class="key-list" id="keyList">
+        <li class="key-row" data-key-id="prod" data-key-name="Produktion">
+          <div class="key-top">
+            <div>
+              <div class="key-name">Produktion</div>
+              <div class="key-meta">
+                <span>Skapad 12 januari 2026</span>
+                <span>Senast använd för 2 timmar sedan</span>
+              </div>
+            </div>
+          </div>
+          <div class="key-value">
+            <span>tvk_live_4f9a…8c2e</span>
+            <button type="button" class="icon-btn" data-copy="tvk_live_4f9a8c2e91a2" aria-label="Kopiera nyckel">
+              <svg width="14" height="14" viewBox="0 0 16 16" fill="none"><rect x="5.5" y="5.5" width="8" height="8" rx="1.5" stroke="currentColor" stroke-width="1.3"/><path d="M2.5 10.5v-7A1 1 0 0 1 3.5 2.5h7" stroke="currentColor" stroke-width="1.3"/></svg>
+            </button>
+          </div>
+          <div class="key-row-actions">
+            <button type="button" class="btn-radera" data-hold-delete>
+              <span class="radera-fill" aria-hidden="true"></span>
+              <span class="radera-label">Radera</span>
+            </button>
+          </div>
+        </li>
+        <li class="key-row" data-key-id="staging" data-key-name="Staging">
+          <div class="key-top">
+            <div>
+              <div class="key-name">Staging</div>
+              <div class="key-meta">
+                <span>Skapad 3 mars 2026</span>
+                <span>Senast använd igår</span>
+              </div>
+            </div>
+          </div>
+          <div class="key-value">
+            <span>tvk_test_9b21…f00d</span>
+            <button type="button" class="icon-btn" data-copy="tvk_test_9b21f00d3e77" aria-label="Kopiera nyckel">
+              <svg width="14" height="14" viewBox="0 0 16 16" fill="none"><rect x="5.5" y="5.5" width="8" height="8" rx="1.5" stroke="currentColor" stroke-width="1.3"/><path d="M2.5 10.5v-7A1 1 0 0 1 3.5 2.5h7" stroke="currentColor" stroke-width="1.3"/></svg>
+            </button>
+          </div>
+          <div class="key-row-actions">
+            <button type="button" class="btn-radera" data-hold-delete>
+              <span class="radera-fill" aria-hidden="true"></span>
+              <span class="radera-label">Radera</span>
+            </button>
+          </div>
+        </li>
+        <li class="key-row" data-key-id="cicd" data-key-name="CI/CD-pipeline">
+          <div class="key-top">
+            <div>
+              <div class="key-name">CI/CD-pipeline</div>
+              <div class="key-meta">
+                <span>Skapad 28 november 2025</span>
+                <span>Senast använd för 5 dagar sedan</span>
+              </div>
+            </div>
+          </div>
+          <div class="key-value">
+            <span>tvk_live_c73d…11ab</span>
+            <button type="button" class="icon-btn" data-copy="tvk_live_c73d11ab55f0" aria-label="Kopiera nyckel">
+              <svg width="14" height="14" viewBox="0 0 16 16" fill="none"><rect x="5.5" y="5.5" width="8" height="8" rx="1.5" stroke="currentColor" stroke-width="1.3"/><path d="M2.5 10.5v-7A1 1 0 0 1 3.5 2.5h7" stroke="currentColor" stroke-width="1.3"/></svg>
+            </button>
+          </div>
+          <div class="key-row-actions">
+            <button type="button" class="btn-radera" data-hold-delete>
+              <span class="radera-fill" aria-hidden="true"></span>
+              <span class="radera-label">Radera</span>
+            </button>
+          </div>
+        </li>
+      </ul>
+      <button type="button" class="btn btn-secondary" id="createKeyBtn">Skapa ny nyckel</button>
+    </div>
+  </dialog>
+
+  <div class="toast-region" id="toastRegion" aria-live="polite" aria-atomic="false"></div>
+
+<script>
+(function(){
+  "use strict";
+
+  /* ---------------- Tabs ---------------- */
+  var tabs = Array.prototype.slice.call(document.querySelectorAll(".tab"));
+  var panels = {
+    profil: document.getElementById("panel-profil"),
+    aviseringar: document.getElementById("panel-aviseringar"),
+    fakturering: document.getElementById("panel-fakturering")
+  };
+  var indicator = document.getElementById("tabIndicator");
+  var tablist = document.querySelector(".tablist");
+
+  function moveIndicator(tab){
+    var tr = tablist.getBoundingClientRect();
+    var r = tab.getBoundingClientRect();
+    indicator.style.width = r.width + "px";
+    indicator.style.transform = "translateX(" + (r.left - tr.left) + "px)";
+  }
+
+  function activateTab(name, opts){
+    opts = opts || {};
+    tabs.forEach(function(t){
+      var selected = t.dataset.tab === name;
+      t.setAttribute("aria-selected", selected ? "true" : "false");
+      t.tabIndex = selected ? 0 : -1;
+      if(selected && opts.focus) t.focus();
+    });
+    Object.keys(panels).forEach(function(key){
+      panels[key].hidden = key !== name;
+    });
+    var activeTab = tabs.filter(function(t){ return t.dataset.tab === name; })[0];
+    if(activeTab) moveIndicator(activeTab);
+  }
+
+  tabs.forEach(function(tab){
+    tab.addEventListener("click", function(){ activateTab(tab.dataset.tab); });
+    tab.addEventListener("keydown", function(e){
+      var idx = tabs.indexOf(tab);
+      if(e.key === "ArrowRight" || e.key === "ArrowLeft"){
+        e.preventDefault();
+        var next = e.key === "ArrowRight" ? (idx + 1) % tabs.length : (idx - 1 + tabs.length) % tabs.length;
+        activateTab(tabs[next].dataset.tab, { focus:true });
+      }
+    });
+  });
+
+  window.addEventListener("resize", function(){
+    var current = tabs.filter(function(t){ return t.getAttribute("aria-selected") === "true"; })[0];
+    if(current) moveIndicator(current);
+  });
+
+  // init indicator after fonts/layout settle
+  requestAnimationFrame(function(){ moveIndicator(tabs[0]); });
+
+  /* ---------------- Toasts ---------------- */
+  var toastRegion = document.getElementById("toastRegion");
+
+  function showToast(message){
+    var toast = document.createElement("div");
+    toast.className = "toast";
+    toast.setAttribute("role", "status");
+    toast.innerHTML =
+      '<span class="toast-icon" aria-hidden="true"><svg viewBox="0 0 16 16" fill="none"><path d="M3.5 8.5l3 3 6-6.5" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/></svg></span>' +
+      '<span class="toast-message"></span>';
+    toast.querySelector(".toast-message").textContent = message;
+    toastRegion.appendChild(toast);
+
+    var dismissTimer = null;
+    function scheduleDismiss(){
+      dismissTimer = setTimeout(function(){ dismiss(); }, 4000);
+    }
+    function clearDismiss(){
+      clearTimeout(dismissTimer);
+    }
+    function dismiss(){
+      clearDismiss();
+      toast.classList.add("leaving");
+      toast.addEventListener("transitionend", function handler(ev){
+        if(ev.propertyName === "opacity"){
+          toast.removeEventListener("transitionend", handler);
+          toast.remove();
+        }
+      });
+      // fallback if transitionend never fires (e.g. removed mid-drag)
+      setTimeout(function(){ if(toast.parentNode) toast.remove(); }, 400);
+    }
+
+    toast.addEventListener("mouseenter", clearDismiss);
+    toast.addEventListener("mouseleave", scheduleDismiss);
+    toast.addEventListener("focusin", clearDismiss);
+    toast.addEventListener("focusout", scheduleDismiss);
+    document.addEventListener("visibilitychange", function(){
+      if(document.hidden) clearDismiss(); else scheduleDismiss();
+    });
+
+    // swipe-to-dismiss (pointer drag, velocity based, same rightward direction as the drawer)
+    var dragging = false, startX = 0, startTime = 0, dx = 0;
+    toast.addEventListener("pointerdown", function(e){
+      dragging = true;
+      startX = e.clientX;
+      startTime = Date.now();
+      dx = 0;
+      toast.setPointerCapture(e.pointerId);
+      toast.dataset.dragging = "true";
+      clearDismiss();
+    });
+    toast.addEventListener("pointermove", function(e){
+      if(!dragging) return;
+      dx = e.clientX - startX;
+      if(dx < 0) dx = dx / 4; // light damping for the "wrong" direction
+      toast.style.transform = "translate(" + dx + "px,0)";
+      toast.style.opacity = String(Math.max(1 - Math.abs(dx) / 220, 0.2));
+    });
+    function endDrag(e){
+      if(!dragging) return;
+      dragging = false;
+      delete toast.dataset.dragging;
+      var elapsed = Math.max(Date.now() - startTime, 1);
+      var velocity = Math.abs(dx) / elapsed;
+      toast.style.transform = "";
+      toast.style.opacity = "";
+      if(dx > 80 || (dx > 0 && velocity > 0.5)){
+        dismiss();
+      } else {
+        scheduleDismiss();
+      }
+    }
+    toast.addEventListener("pointerup", endDrag);
+    toast.addEventListener("pointercancel", endDrag);
+
+    scheduleDismiss();
+    return toast;
+  }
+
+  /* ---------------- Save forms (loading -> success -> toast) ---------------- */
+  Array.prototype.slice.call(document.querySelectorAll("[data-save-form]")).forEach(function(form){
+    form.addEventListener("submit", function(e){
+      e.preventDefault();
+      var btn = form.querySelector("[data-save]");
+      if(btn.classList.contains("loading") || btn.classList.contains("success")) return;
+      var label = btn.querySelector(".btn-label");
+      var original = label.textContent;
+      btn.classList.add("loading");
+      btn.disabled = true;
+      btn.setAttribute("aria-busy", "true");
+      setTimeout(function(){
+        btn.classList.remove("loading");
+        btn.classList.add("success");
+        label.textContent = "Sparat";
+        showToast("Sparat");
+        setTimeout(function(){
+          btn.classList.remove("success");
+          label.textContent = original;
+          btn.disabled = false;
+          btn.removeAttribute("aria-busy");
+        }, 1100);
+      }, 650);
+    });
+  });
+
+  /* ---------------- Field validation (blur) ---------------- */
+  function setupValidatedField(inputId, wrapId, helpId, validator, errorMessage, helpMessage){
+    var input = document.getElementById(inputId);
+    var wrap = document.getElementById(wrapId);
+    var help = helpId ? document.getElementById(helpId) : null;
+    if(!input || !wrap) return;
+    var touched = false;
+    function evaluate(){
+      var value = input.value.trim();
+      var valid = value === "" ? true : validator(value);
+      wrap.classList.remove("has-error", "has-success");
+      input.removeAttribute("aria-invalid");
+      input.classList.remove("is-valid");
+      if(help) help.classList.remove("is-error");
+      if(!touched) return;
+      if(value !== "" && !valid){
+        wrap.classList.add("has-error");
+        input.setAttribute("aria-invalid", "true");
+        if(help){ help.textContent = errorMessage; help.classList.add("is-error"); }
+      } else if(value !== "" && valid){
+        wrap.classList.add("has-success");
+        input.classList.add("is-valid");
+        if(help) help.textContent = helpMessage;
+      } else if(help){
+        help.textContent = helpMessage;
+      }
+    }
+    input.addEventListener("blur", function(){ touched = true; evaluate(); });
+    input.addEventListener("input", function(){ if(touched) evaluate(); });
+  }
+
+  setupValidatedField(
+    "f-epost", "epostWrap", "epostHelp",
+    function(v){ return /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(v); },
+    "Ange en giltig e-postadress, t.ex. namn@företag.se.",
+    "Används för kvitton och säkerhetsaviseringar."
+  );
+  setupValidatedField(
+    "f-telefon", "telefonWrap", "telefonHelp",
+    function(v){ return /^0\d{1,3}[- ]?\d{2,3}[- ]?\d{2}[- ]?\d{2}$/.test(v); },
+    "Ange numret i formatet 07X-XXX XX XX.",
+    "Format: 07X-XXX XX XX."
+  );
+
+  /* ---------------- Notification toggles ---------------- */
+  Array.prototype.slice.call(document.querySelectorAll(".toggle-row input[type=checkbox]")).forEach(function(input){
+    var stateEl = document.querySelector('[data-state-for="' + input.id + '"]');
+    input.addEventListener("change", function(){
+      if(stateEl){
+        stateEl.textContent = input.checked ? "På" : "Av";
+        stateEl.setAttribute("data-on", input.checked ? "true" : "false");
+      }
+    });
+  });
+
+  /* ---------------- Copy key ---------------- */
+  Array.prototype.slice.call(document.querySelectorAll("[data-copy]")).forEach(function(btn){
+    btn.addEventListener("click", function(){
+      var value = btn.getAttribute("data-copy");
+      if(navigator.clipboard && navigator.clipboard.writeText){
+        navigator.clipboard.writeText(value).catch(function(){});
+      }
+      showToast("Nyckel kopierad");
+    });
+  });
+
+  /* ---------------- Hold-to-delete ---------------- */
+  function setupHoldDelete(btn){
+    var timer = null;
+    var held = false;
+    var row = btn.closest(".key-row");
+
+    function begin(pointerId){
+      if(btn.disabled || held) return;
+      held = true;
+      btn.classList.add("holding");
+      timer = setTimeout(complete, 2000);
+      if(pointerId !== null && btn.setPointerCapture){
+        try{ btn.setPointerCapture(pointerId); } catch(e){}
+      }
+    }
+    function cancel(){
+      if(!held) return;
+      held = false;
+      clearTimeout(timer);
+      btn.classList.remove("holding");
+    }
+    function complete(){
+      held = false;
+      btn.disabled = true;
+      row.classList.add("removing");
+      var keyName = row.dataset.keyName;
+      row.addEventListener("transitionend", function handler(ev){
+        if(ev.propertyName === "opacity"){
+          row.removeEventListener("transitionend", handler);
+          row.remove();
+        }
+      });
+      setTimeout(function(){ if(row.parentNode) row.remove(); }, 350);
+      showToast('API-nyckeln "' + keyName + '" har raderats');
+    }
+
+    btn.addEventListener("pointerdown", function(e){ begin(e.pointerId); });
+    btn.addEventListener("pointerup", cancel);
+    btn.addEventListener("pointercancel", cancel);
+    btn.addEventListener("pointerleave", function(e){ if(e.pointerType === "mouse") cancel(); });
+    btn.addEventListener("keydown", function(e){
+      if((e.key === " " || e.key === "Enter") && !e.repeat){ e.preventDefault(); begin(null); }
+    });
+    btn.addEventListener("keyup", function(e){
+      if(e.key === " " || e.key === "Enter") cancel();
+    });
+    btn.addEventListener("blur", cancel);
+  }
+  Array.prototype.slice.call(document.querySelectorAll("[data-hold-delete]")).forEach(setupHoldDelete);
+
+  /* ---------------- Drawer: open / close / drag-to-dismiss ---------------- */
+  var drawer = document.getElementById("apiDrawer");
+  var openBtn = document.getElementById("openDrawerBtn");
+  var closeBtn = document.getElementById("drawerCloseBtn");
+
+  openBtn.addEventListener("click", function(){
+    drawer.showModal();
+  });
+  closeBtn.addEventListener("click", function(){
+    drawer.close();
+  });
+  drawer.addEventListener("click", function(e){
+    if(e.target === drawer) drawer.close();
+  });
+
+  function setupDrawerDrag(handle){
+    var dragging = false, startX = 0, startTime = 0, dx = 0;
+    var width = 0;
+
+    handle.addEventListener("pointerdown", function(e){
+      dragging = true;
+      startX = e.clientX;
+      startTime = Date.now();
+      dx = 0;
+      width = drawer.getBoundingClientRect().width;
+      drawer.style.transition = "none";
+      handle.setPointerCapture(e.pointerId);
+    });
+    handle.addEventListener("pointermove", function(e){
+      if(!dragging) return;
+      dx = e.clientX - startX;
+      if(dx < 0) dx = dx / 5; // damping when dragging the "wrong" way
+      drawer.style.transform = "translateX(" + dx + "px)";
+    });
+    function endDrag(){
+      if(!dragging) return;
+      dragging = false;
+      var elapsed = Math.max(Date.now() - startTime, 1);
+      var velocity = Math.abs(dx) / elapsed;
+      var shouldDismiss = dx > width * 0.35 || (dx > 0 && velocity > 0.45);
+
+      drawer.style.transition = "transform 220ms " + getComputedStyle(document.documentElement).getPropertyValue("--ease-out").trim();
+
+      if(shouldDismiss){
+        drawer.style.transform = "translateX(100%)";
+        drawer.addEventListener("transitionend", function handler(ev){
+          if(ev.propertyName === "transform"){
+            drawer.removeEventListener("transitionend", handler);
+            drawer.style.transition = "";
+            drawer.style.transform = "";
+            drawer.close();
+          }
+        });
+      } else {
+        drawer.style.transform = "";
+        drawer.addEventListener("transitionend", function handler(ev){
+          if(ev.propertyName === "transform"){
+            drawer.removeEventListener("transitionend", handler);
+            drawer.style.transition = "";
+          }
+        });
+      }
+    }
+    handle.addEventListener("pointerup", endDrag);
+    handle.addEventListener("pointercancel", endDrag);
+  }
+  setupDrawerDrag(document.getElementById("drawerGrip"));
+  setupDrawerDrag(document.getElementById("drawerHeader"));
+
+  document.getElementById("createKeyBtn").addEventListener("click", function(){
+    showToast("Ny nyckel skapad");
+  });
+})();
+</script>
+</body>
+</html>

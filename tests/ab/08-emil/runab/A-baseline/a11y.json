@@ -1,0 +1,26 @@
+{
+  "url": "http://127.0.0.1:3055/",
+  "violations": [
+    {
+      "id": "aria-allowed-role",
+      "impact": "minor",
+      "wcag": [
+        "cat.aria",
+        "best-practice"
+      ],
+      "help": "ARIA role should be appropriate for the element",
+      "nodes": [
+        {
+          "target": "#panel-profil",
+          "html": "<form class=\"panel\" id=\"panel-profil\" role=\"tabpanel\" aria-labelledby=\"tab-profil\" data-save-form=\"\" novalidate=\"\">"
+        }
+      ],
+      "viewports": [
+        "1440x900",
+        "390x844"
+      ]
+    }
+  ],
+  "passes": 40,
+  "incomplete": 1
+}

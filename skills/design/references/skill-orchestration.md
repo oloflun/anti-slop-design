@@ -208,3 +208,15 @@ Detection is automatic — `component-routing.md`'s `product` rule fires on dash
 `ab-testing` · `seo-audit` · `programmatic-seo` · `site-architecture` · `competitors` · `popups` · `free-tools` · `directory-submissions` · `sales-enablement` · `churn-prevention` · `community-marketing` — marketing skills that may *inform* a page's content but never its visual direction.
 
 Realtime collaborative UI (presence, cursors, operational transforms) is a different problem class; say so rather than treating it as a styling job.
+
+## 2026-09-03 rework (v3) — what changed in the orchestration
+
+**New phases.** Step 1b now ends with a reference lock and a decision ledger (`reference-lock.md`), sourced first from the design catalog (`~/design-catalog`, `Skill(design-catalog)`). Step 2b (Persuade/Experience only) picks a page grammar, writes the feeling curve, runs the fingerprint gate against the vault registry, chooses scroll devices from the vendored scroll-craft engine, and runs the bake-off board (`shotgun.md`, `scripts/board.py`) before Step 4. Step 5 gained four passes: `a11y-audit`, `verbs/critique.md`, `review-animations` + `scroll_verify.py`, and the three reviewer subagents (`design-critic`, `design-a11y-reviewer`, `design-heuristics`) reconciled by accessibility > usability > brief > personas.
+
+**New skills in the catalog.** `a11y-audit` (eight passes, three scripts, principle catalog from Interfaces, designpowers, inclusive-design-skills, designer-skills), `design-catalog` (add/query references), `animate` / `review-animations` / `improve-animations` / `find-animation-opportunities` / `prototype` / `apple-design` / `animation-vocabulary` / `pick-ui-library` (Emil Kowalski, refreshed 2026-09-03; `emil-design-eng` keeps the local trigger description).
+
+**Boundaries that changed.** `hallmark` no longer auto-invokes (`disable-model-invocation`); `frontend-design` is not loaded (two of its rules live in the craft floor); `super-intelligence:design` is user-invocable-only so only the vault `design` competes for auto-invocation. The `audit` verb is now `verbs/review.md` (one ranked table, cap 15, escalation triggers always HIGH, Block/Approve); `verbs/audit.md` stays the slop audit inside it.
+
+**Collisions resolved.** Refero's anti-slop tells 4/7/8 became gates 89–91; its "calm editorial serif" tell is our editorial-print register, so that register now needs two departures from the default look. designpowers' build agents are not adopted (they set direction); its reviewers are, as read-only Sonnet subagents. scroll-craft's engine is never edited per project; its `count` device is only for real numbers; video scrub is opt-in (ffmpeg).
+
+**Hooks.** Arm/disarm: `design-intent.py` classifies prompts high/medium/none; per-edit and Stop hooks act only in an armed session (or on a 0-locked contract); the Stop report's gap counts only code-strong craft routes that were neither loaded nor read. Evidence: `tests/ab/*/verdict.md` and `tests/intent_corpus.jsonl` in `anti-slop-design`.

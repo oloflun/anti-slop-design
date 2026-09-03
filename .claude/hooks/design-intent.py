@@ -28,21 +28,21 @@ except Exception:
     sys.exit(0)
 
 
-# Multilingual. Swedish included because the user works in it.
-INTENT = re.compile(
-    r"\b("
-    r"design|designa|redesign|omdesign|g(ö|o)r om|"
-    r"ui|ux|frontend|front-end|"
-    r"landing\s*page|landningssida|hero|cta|bento|pricing\s*page|"
-    r"styl|style|styling|css|tailwind|"
-    r"layout|typograf|typograph|font|palette|palett|f(ä|a)rg|colou?r|"
-    r"animation|animera|animate|motion|transition|"
-    r"polish|polera|premium|premiumk(ä|a)nsla|"
-    r"komponent|component|nav|header|footer|modal|drawer|carousel|karusell|"
-    r"mockup|wireframe|skiss|"
-    r"bygg en sida|build a (page|site|landing)|make it look"
-    r")\b",
-    re.I,
+# Signal classification (arm/disarm, idea-2ao follow-up) lives in
+# design_hook_lib.classify() — a bare keyword match used to fire on any
+# prompt containing "font", "nav" or "komponent" in any context
+# (architecture plans, orchestration reports, backend work), and even after
+# the two-tier STRONG/WEAK split that replaced it, "investigate the design
+# hooks" still read as design intent. classify() adds a negative guard for
+# prompts ABOUT the tooling, and a genuine medium tier for prompts that
+# mention a UI object without a verb. See design_hook_lib.py's "Intent
+# classification" section for the full reasoning and the corpus it is tuned
+# against (anti-slop-design/tests/intent_corpus.jsonl).
+
+MEDIUM_NUDGE = (
+    "[design] Om detta är UI-arbete: ladda Skill(design) före första "
+    "UI-ändringen. / If this is UI work, load Skill(design) before the "
+    "first UI edit."
 )
 
 
@@ -126,10 +126,21 @@ def main() -> None:
 
     prompt = (event.get("prompt") or event.get("userInput")
               or event.get("message") or event.get("input") or "")
-    if not prompt or not INTENT.search(prompt):
+    if not prompt:
+        return
+    if prompt.startswith("[SYSTEM NOTIFICATION") or "<task-notification>" in prompt:
         return
 
     root = L.project_root(event)
+    level = L.classify(prompt, root)
+    if level == "none":
+        return
+    if level == "medium":
+        L.log(root, event="intent", detail="medium")
+        L.emit("UserPromptSubmit", MEDIUM_NUDGE)
+        return
+
+    # level == "high"
     verb = detect_verb(prompt)
 
     # Re-fire when the task type changes, not merely once per session. A
@@ -200,6 +211,7 @@ def main() -> None:
                  "palette. Gate 60 denies their hex values in a locked project.")
     lines.append("</design-gate>")
 
+    L.arm(root, "intent", verb)
     L.log(root, event="intent", tier=tier_now, signal=verb,
           detail=f"verb={verb}" + (f" (was {previous})" if changed and previous else ""))
     L.emit("UserPromptSubmit", "\n".join(lines))

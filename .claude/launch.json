@@ -4,8 +4,29 @@
     {
       "name": "anti-slop-design",
       "runtimeExecutable": "python",
-      "runtimeArgs": ["-m", "http.server", "3090"],
+      "runtimeArgs": [
+        "-m",
+        "http.server",
+        "3090"
+      ],
       "port": 3090
+    },
+    {
+      "name": "design-catalog",
+      "runtimeExecutable": "C:/Users/Anton L/design-catalog/dev.cmd",
+      "runtimeArgs": [],
+      "port": 4610
+    },
+    {
+      "name": "shotgun-board",
+      "runtimeExecutable": "python",
+      "runtimeArgs": [
+        "C:/Users/Anton L/.agents/skills/design/scripts/board.py",
+        "tests/ab/07-shotgun",
+        "--port",
+        "4620"
+      ],
+      "port": 4620
     }
   ]
 }

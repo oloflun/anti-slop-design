@@ -55,6 +55,11 @@ def main() -> None:
         return
 
     root = L.project_root(event)
+    if not L.armed(root):
+        return
+    # Checked AFTER armed(), not before: consuming the once-per-session flag
+    # while unarmed would permanently suppress the reminder even if the
+    # session gets armed later (a Skill() load after the first browser call).
     if not L.once_per_session(root, "verify-discipline"):
         return
 

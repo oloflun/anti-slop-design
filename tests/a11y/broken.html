@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<title>Broken page (a11y test fixture)</title>
+<style>
+  body { font-family: sans-serif; margin: 0; padding: 24px; background: #fff; }
+  .low-contrast { color: #999; background: #fff; }
+  .no-outline:focus { outline: none; }
+  table.fixed-width { width: 400px; table-layout: fixed; border-collapse: collapse; }
+  table.fixed-width td, table.fixed-width th { border: 1px solid #ccc; padding: 4px; }
+  .reveal { opacity: 0; }
+  .spacer { height: 1400px; }
+</style>
+</head>
+<body>
+
+  <h1>Broken page</h1>
+
+  <!-- img without alt -->
+  <img src="data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBTAA7" width="40" height="40">
+
+  <!-- div onclick with no role, keyboard-inaccessible fake button -->
+  <div onclick="alert('clicked')" style="display:inline-block;padding:8px 16px;background:#eee;cursor:pointer;">
+    Fake button (div onclick, no role)
+  </div>
+
+  <!-- low contrast text -->
+  <p class="low-contrast">This text is #999 on #fff and fails contrast.</p>
+
+  <!-- focusable element with outline:none and no replacement focus style -->
+  <p><a href="#nowhere" class="no-outline">Link with no focus indicator</a></p>
+
+  <!-- positive tabindex -->
+  <p><button tabindex="3">Out-of-order tab stop (tabindex=3)</button></p>
+
+  <!-- 400px fixed-width table -->
+  <table class="fixed-width">
+    <thead><tr><th>Col A</th><th>Col B</th><th>Col C</th></tr></thead>
+    <tbody>
+      <tr><td>1</td><td>2</td><td>3</td></tr>
+      <tr><td>4</td><td>5</td><td>6</td></tr>
+    </tbody>
+  </table>
+
+  <div class="spacer"></div>
+
+  <!-- section revealed only by IntersectionObserver threshold 0.5; never
+       fires because the test never scrolls (and reduced-motion runs jump
+       via scrollTo, not a gradual scroll that crosses the threshold slowly
+       enough for the default rootMargin -- kept literally IO-gated) -->
+  <section id="reveal-section" class="reveal">
+    <h2>This section never reveals</h2>
+    <p>Gated behind an IntersectionObserver with threshold 0.5 that this test never satisfies.</p>
+  </section>
+
+  <script>
+    // Bug: this reveal system skips setting up the IntersectionObserver
+    // entirely under prefers-reduced-motion, instead of just skipping the
+    // *animation* and jumping straight to the revealed state. Content stays
+    // opacity:0 forever for reduced-motion users, no matter how they scroll.
+    var target = document.getElementById('reveal-section');
+    var prefersReducedMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+    if (!prefersReducedMotion) {
+      var io = new IntersectionObserver(function (entries) {
+        entries.forEach(function (entry) {
+          if (entry.isIntersecting) {
+            target.style.opacity = '1';
+          }
+        });
+      }, { threshold: 0.5 });
+      io.observe(target);
+    }
+  </script>
+
+</body>
+</html>

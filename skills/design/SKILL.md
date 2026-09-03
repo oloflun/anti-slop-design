@@ -1,6 +1,7 @@
 ---
 name: design
 description: "Fires on ANY design or frontend UI work — websites, landing pages, dashboards, app UI, components, redesigns, polish, animation, color, typography, layout, motion, copy on a page. Use whenever the user says 'design', 'redesign', 'build a page/site/landing page', 'make it premium', 'make it look better', 'polish this', 'add animation', 'extract the design from', 'visual direction', 'mockup', 'hero', 'CTA', 'bento', 'pricing page', 'audit this UI', or any synonym for visual design execution, in any language including Swedish ('design', 'designa', 'bygg en sida', 'gör om', 'polera', 'premiumkänsla'). Derives the design language from the brand's own evidence instead of applying a house style or a prebuilt theme."
+user-invocable: true
 ---
 
 # Design
@@ -54,6 +55,19 @@ reference sites are all *editorial print*. That is one register, not the house
 style. Its apparatus on a harbour restaurant reads as pretension; a bare grotesk
 on a florist reads as flatness. Every register shares the structure below and
 presents it differently. Say which one you took and what in the business chose it.
+
+**Registers that coincide with an AI-default look need two deliberate departures.**
+Three looks are now recognisable as generated on sight: warm cream + serif display +
+terracotta accent (our *editorial print*), near-black + one acid/vermilion pop (our
+*cinematic dark*), broadsheet hairlines with dense columns. When the business genuinely
+lands in one of those registers, the build must differ from the default on **at least two
+of** {palette temperature, type pairing, page grammar}, and say which. AB09 (2026-09-03)
+showed a florist in editorial print escaping look #1 through a cold fog/petrol palette and
+a different serif, at no cost to the register. Before writing code, run the
+**generic-default self-test**: imagine the same brief given to a competent default and
+sketch what it returns; every point where your plan matches it is a default, not a
+decision, and gets revised. (Ported from Anthropic's frontend-design; the skill itself is
+not loaded, see `references/upstream/anthropic/`.)
 
 | Register | Fits | Worked example |
 |---|---|---|
@@ -178,10 +192,11 @@ Classify the job before scoping it. The system routes by **task type** as well a
 |---|---|
 | **build** | Full flow, Steps 0–6 below |
 | **redesign** | Three procedures in sequence — [`skill-orchestration.md`](references/skill-orchestration.md) §3 |
-| **audit** | [`verbs/audit.md`](references/verbs/audit.md) — **read-only, never edits** |
+| **audit** | [`verbs/review.md`](references/verbs/review.md) orchestrates slop audit ([`verbs/audit.md`](references/verbs/audit.md)) + `a11y-audit` + [`verbs/critique.md`](references/verbs/critique.md) + `review-animations` into one ranked table — **read-only, never edits** |
+| **critique** | [`verbs/critique.md`](references/verbs/critique.md) — the positive gate, on pixels only |
 | **polish** | `impeccable polish` + `emil-design-eng` for motion. Direction is already settled |
 | **study** | [`study.md`](references/study.md) + `extract-design` → Tier 2 |
-| **explore** | [`wireframe.md`](references/wireframe.md) → [`options.md`](references/options.md) |
+| **explore** | Step 2b bake-off ([`shotgun.md`](references/shotgun.md)); direction-only → [`wireframe.md`](references/wireframe.md) → [`options.md`](references/options.md) |
 | **system** | `Skill(brand-system)` |
 | **verify** | `Skill(design-verify)` |
 
@@ -205,8 +220,20 @@ Do this before anything else. Most day-to-day requests are component-shaped, and
 
 If ambiguous between component and page, ask one short question and default to **component** — a single artifact is cheaper to redirect than a multi-section page.
 
+**Brief coverage is a gate, not a hope.** Before Step 1, list every section, surface and
+conversion the brief names, in the brief's own words, and carry that list into Step 4 as
+the first thing the build satisfies; before Step 5, tick each item against the rendered
+page. A page that reads beautifully and lacks a section the brief asked for has failed
+(the cumulative test K on 2026-09-03 lost the wedding section under the weight of the new
+references — this list is the fix).
+
+**Reading budget.** Load the references a step names, not the neighbourhood: in Step 2b
+read `scroll/README.md` and the grammar row you chose, then only the device entries you
+will use; in Step 1b two catalog entries, not the index; the `upstream/` tree is cited,
+never read whole. Over-loading is what turns a careful build into a shallow one.
+
 **Component branch keeps:** pre-flight scan, the gate order (it inherits, it does not re-derive), the 2+1 font discipline, and a **stricter** state rule — every interactive component ships all 8 states (default · hover · `:focus-visible` · `:active` · disabled · loading · error · success) per [`interaction-and-states.md`](references/interaction-and-states.md), plus a throwaway `<Name>.preview.html` rendering all 8 stacked and labelled.
-**Component branch skips:** macrostructure, nav/footer archetypes, hero patterns, enrichment, multi-section preview. State this explicitly: *"Component scope: skipping macrostructure."*
+**Component branch skips:** macrostructure, nav/footer archetypes, hero patterns, enrichment, multi-section preview, the bake-off (use `Skill(prototype)` or the Interfaces `variant` method for alternatives, and the `break` harness — `references/upstream/interfaces/skills/break/` — to render every state and worst-case content on one page). State this explicitly: *"Component scope: skipping macrostructure."*
 
 ---
 
@@ -248,6 +275,19 @@ This feeds Step 2: at Tier 2 the references *are* the direction; at Tiers 0–1 
 python "$HOME/.agents/skills/design/scripts/shoot_slices.py" .shots/ref https://example.com ref 8
 ```
 
+4. **Lock the references.** Read [`reference-lock.md`](references/reference-lock.md) and
+   write the reference-lock block and the decision ledger *before* code, at every tier
+   (Tier 2: the lock is the direction; Tiers 0–1: the lock is the bar the locked system
+   must clear; Tier 3: the lock names what the invented world rejects). One dominant
+   reference; secondary ones contribute one or two details; never the safe intersection
+   (gate 90). Token and media roles travel with the tokens (gate 91).
+5. **Start in the catalog.** `~/design-catalog` is the first source of references
+   (`Skill(design-catalog)`; `python scripts/query.py --family … --register … --grammar …`).
+   Read 2–4 entries in the register you are heading for — their `shot.png` and slices as
+   images, their reference-lock section as text — before opening anything else. Then the
+   user's URL or screenshot, then 21st.dev for product shots, then Refero MCP if configured.
+   Photography sources and licences: [`photo-sources.md`](references/photo-sources.md).
+
 ---
 
 ## Step 2 · The gate — where direction comes from
@@ -271,6 +311,43 @@ State the tier out loud before proceeding: *"Tier 1 — deriving from the Snajp 
 
 ---
 
+## Step 2b · Grammar, feeling curve, signature move — then the bake-off
+
+**Persuade and Experience surfaces only** (landing, marketing, portfolio, campaign).
+Operate and Read surfaces get no scroll choreography (100+ uses a day means no animation)
+and skip straight to Step 3. Contract and scope rule: [`scroll/README.md`](references/scroll/README.md).
+
+1. **Pick the page grammar** from the eight in [`scroll/grammars.md`](references/scroll/grammars.md)
+   — the register decides how the page looks, the grammar decides what the page *is*.
+   The register × grammar matrix names the fits and the one mismatch per register.
+2. **Write the feeling curve** — one line per act: the emotion, then what on screen causes
+   it; one engineered peak with the largest span; one bespoke signature move
+   ([`scroll/feel-and-fingerprint.md`](references/scroll/feel-and-fingerprint.md)).
+3. **Run the fingerprint gate** against every row of the vault registry
+   `wiki/projects/_index/design-fingerprints.md`: a new page differs on ≥4 of 6
+   dimensions (grammar · nav · hero device · act shape · close · signature move) or the
+   plan changes, not the record.
+4. **Choose devices per act** from [`scroll/devices.md`](references/scroll/devices.md):
+   ≥4 families, never the same one twice in a row, ≤2 scrub acts, the cue contract
+   (greet · hold only on the last act · ground-or-greet). The engine is vendored at
+   `scripts/scroll/`, **opt-in per grammar** (scrub, pin, pan) and never used blind:
+   never edit it or restyle its `.sc-*` classes, theme it with six tokens and two fonts,
+   drive bespoke behaviour from `--sc-p`, then read the console for `[scrollcraft]`
+   warnings and run `scroll_verify.py` before judging anything. A page that keeps the
+   chain's own signature set-piece + shared reveal needs no engine (AB06).
+5. **Bake-off (page scope in build/redesign — mandatory unless the user says "skip
+   variants").** [`shotgun.md`](references/shotgun.md): three directions that differ on
+   one primary axis (register · grammar · colour world), each a fold build by a fresh
+   Sonnet subagent that reads only its engine's files, default engines {this chain,
+   impeccable only}; `python scripts/board.py <session>` serves the board; you read every
+   cell as pixels and write the tradeoff table without a favourite; the user picks;
+   `approved.json` seeds Step 4. AB07 (2026-09-03): the chain won 3–0 against impeccable
+   alone on a florist brief, once because impeccable hotlinked a scuba diver — cell
+   prompts therefore only allow photo IDs from the catalog or the example sites.
+   After the full build, `impeccable live` is the element-level variant loop.
+
+---
+
 ## Step 3 · Route to skills
 
 Load [`component-routing.md`](references/component-routing.md) and route by what you are actually building. Skills are tools invoked for craft; they do not choose the direction.
@@ -280,17 +357,16 @@ Trigger summary — the full table with detection patterns is in the reference:
 | Building | Invoke |
 |---|---|
 | Nav, header, menu, animated dropdown | `animated-navigation` |
-| Button, modal, drawer, popover, tooltip, toast, sheet, accordion, any gesture/drag/`:active` feel | `emil-design-eng` |
+| Button, modal, drawer, popover, tooltip, toast, sheet, accordion, any gesture/drag/`:active` feel | `animate` for new motion (gate → purpose → tool → properties → curve), `emil-design-eng` for the review bar; `apple-design` for springs, sheets, momentum |
+| A component a library already does better (toast, cmdk, OTP, drawer, virtual list) | `pick-ui-library` — never hand-roll a toast |
 | Carousel, slider, gallery | `slideshow` |
 | Route or state transition | `vercel-react-view-transitions` |
 | shadcn primitive | `shadcn-ui` |
 | Chart, graph, KPI tile | `dataviz` |
 | Imagery-led section | `imagegen-frontend-web` |
-| Form, input, validation | `impeccable harden` + 8 states |
+| Form, input, validation | `impeccable harden` + 8 states + `a11y-audit` pass 6 (labels, errors that announce, paste never blocked) |
 | Any user-facing string | **copy gate** → [`copy-gate.md`](references/copy-gate.md) |
 | Layout with no other signal | `impeccable layout` |
-
-Om en specialistskill saknas i denna miljö: fortsätt med instruktionerna i denna skill och notera vilken specialist som hade fördjupat.
 
 `impeccable` is the engine throughout: `$impeccable init` for PRODUCT.md, `new-work` for a new surface, `document` to record the built system, `polish` / `critique` / `audit` to refine. Its rule holds over everything here — **the brief wins; redirecting a clear brief toward your taste is failure.**
 
@@ -301,7 +377,8 @@ Om en specialistskill saknas i denna miljö: fortsätt med instruktionerna i den
 Read [`process.md`](references/process.md) for the five-step working method and the question-calibration table, and [`scope-discipline.md`](references/scope-discipline.md) for what you may and may not touch.
 
 Binding while building:
-- [`gates.md`](references/gates.md) — every numbered gate. Non-negotiable.
+- [`gates.md`](references/gates.md) — every numbered gate, now 1–91 (89 calm-editorial autopilot · 90 reference averaging · 91 token-role drift). Non-negotiable.
+- **Reveal systems fail toward visible — while building, not at the exit.** Content that starts at `opacity: 0` has an observer threshold of 0, reveals everything on or above the fold at mount, a timed failsafe, a `noscript` fallback, and a count of un-revealed elements. AB09 shipped a page that was empty below the fold in every capture because this sat only in the exit bar.
 - [`production-tells.md`](references/production-tells.md) — gates 66–88, the micro-decoration signatures. Load on every marketing, landing, or portfolio build.
 - [`typography.md`](references/typography.md), [`color.md`](references/color.md), [`layout-and-space.md`](references/layout-and-space.md), [`motion.md`](references/motion.md), [`copy.md`](references/copy.md), [`anti-patterns.md`](references/anti-patterns.md) — load every build.
 - [`structure.md`](references/structure.md) — the six-axis fingerprint. At Tiers 0–2 this is a **variety check within the locked brand**, not a picker: it prevents every section sharing one rhythm, it does not license a second identity.
@@ -358,6 +435,10 @@ Run in this order, and **read the output of every step**:
 6. Any JS-driven reveal system with JavaScript disabled.
 7. Production build, then LCP and CLS. Dev bundle size is meaningless.
 8. `detect.mjs` over changed files.
+9. **Accessibility:** `Skill(a11y-audit)` — the three scripts (`a11y_scan.py`, `tab_walk.py`, `reflow.py`), then the eight passes; verdict Block/Approve; every HIGH fixed or waived by name. Once per project, prove the scripts on `~/anti-slop-design/tests/a11y/broken.html` first.
+10. **Visual critique on the pixels you read:** [`verbs/critique.md`](references/verbs/critique.md) — seven dimensions rated pass/minor/major, every P1 with a measured value, and the honest sentence about the references.
+11. **Motion:** `Skill(review-animations)` on anything that moves; on Persuade pages `python scripts/scroll_verify.py <url>` (dead scroll, cues that never reach full opacity, un-revealed elements, contrast under media at the brightest frame) in both motion modes.
+12. **Three reviewers in parallel, then reconcile:** dispatch `design-critic`, `design-a11y-reviewer` and `design-heuristics` (Sonnet subagents in `~/.claude/agents/`) with the screenshots, the lane sentence and the reference lock; verify every finding against the pixels yourself; merge by accessibility > usability > brief > personas > escalate. AB04 (2026-09-03): the trio found the seven planted defects plus nine real ones a single reviewer missed.
 
 ### When to stop
 
@@ -424,7 +505,10 @@ Done when all of these are true:
 - Every render judgement rests on an image that entered context. No computed-style substitution anywhere in the chain.
 - If a `DESIGN.md` was written or amended, it carries a **"what creates the design"** section. A system of only prohibitions produces subtraction: every rule that removes something names what takes its place.
 - Any reveal-on-scroll system fails toward *visible*. Content that starts at `opacity: 0` and depends on JavaScript has a threshold of 0, reveals what is already on or above the screen at mount, has a timed failsafe, has a `noscript` fallback, and has a check that counts un-revealed elements.
-- The tier was named out loud, and every token traces to that tier's evidence.
+- The tier was named out loud, and every token traces to that tier's evidence — and the reference lock plus decision ledger exist in the build's header.
+- On a Persuade page: grammar, feeling curve, peak and signature move were named before code; ≥4 device families; the fingerprint row was appended to the vault registry; `scroll_verify.py` reports no dead scroll and no cue that never reaches full opacity.
+- `a11y-audit` returned Approve, or every HIGH is waived by name in `.impeccable/a11y-debt.md`.
+- The bake-off ran (or the user said to skip it) and `approved.json` names the chosen direction.
 - No hardcoded hex from a demoted skill appears anywhere in a Tier 0–2 build.
 - The category-reflex test passes at both altitudes — you could not guess the palette from the category, nor the aesthetic family from category-plus-anti-references.
 - Every numbered gate in [`gates.md`](references/gates.md) passes, including 66–88 in [`production-tells.md`](references/production-tells.md) on a marketing surface.
@@ -443,6 +527,12 @@ Ported verbatim from upstream. **The references are the source of truth**; this 
 
 | Reference | Load when |
 |---|---|
+| [`reference-lock.md`](references/reference-lock.md) | Step 1b, every tier — lock block + decision ledger before code |
+| [`photo-sources.md`](references/photo-sources.md) | Step 5b — sources, licences, the photo-search field |
+| [`scroll/`](references/scroll/) | Step 2b on Persuade pages — grammars, devices, feel, fingerprint |
+| [`shotgun.md`](references/shotgun.md) | Step 2b — the bake-off board |
+| [`verbs/critique.md`](references/verbs/critique.md) · [`verbs/review.md`](references/verbs/review.md) | Step 5 pass 10 · the `audit` verb |
+| [`upstream/`](references/upstream/) | Vendored sources (Interfaces, designpowers, inclusive, designer-skills, Refero, scroll-craft, Anthropic) — read the INDEX, cite, never paraphrase into a new rule without a test |
 | [`brand-derivation.md`](references/brand-derivation.md) | Tier 1 — brand evidence exists |
 | [`invention.md`](references/invention.md) | Tier 3 — nothing to derive from |
 | [`study.md`](references/study.md) | Tier 2 — a URL or screenshot was given |

@@ -42,10 +42,13 @@ def build_report(rows: list[dict], findings: list[dict], root: Path) -> tuple[st
     edits = [r for r in rows if r.get("event") == "edit"]
     routes = [r for r in rows if r.get("event") == "route"]
     skills = [r for r in rows if r.get("event") == "skill"]
+    skill_reads = [r for r in rows if r.get("event") == "skill-read"]
     denies = [r for r in rows if r.get("event") == "gate-deny"]
     traps = [r for r in rows if r.get("event") == "trap"]
 
     invoked = {r.get("skill", "") for r in skills}
+    read = {r.get("skill", "") for r in skill_reads}
+    loaded = invoked | read
 
     # 1. component -> skills, in order
     per_component: "OrderedDict[str, list[str]]" = OrderedDict()
@@ -59,13 +62,28 @@ def build_report(rows: list[dict], findings: list[dict], root: Path) -> tuple[st
             if s and s not in per_component[comp]:
                 per_component[comp].append(s)
 
-    # 2. route-vs-invocation gap — the number that must be zero
+    # 2. unloaded strong routes — the number that must be zero.
+    #
+    # Redefined (idea-2ao follow-up) from "any route the router named" to
+    # "a route that matched on real CODE, to a CRAFT skill, that nothing
+    # ever invoked or read". The old, broader definition counted
+    # react-components / next-best-practices constantly — they route on
+    # generic framework structure ("export function", "app/") that fires on
+    # almost every file in a React/Next project, and nothing "invokes" a
+    # framework-conventions skill the way it invokes emil-design-eng for a
+    # drawer. That produced a permanent false "must be zero" alarm. A
+    # path-only match (skill named because the FOLDER was "components/",
+    # not because of anything written) is weak for the same reason a
+    # path-only is_ui_file() extension check is weak — see match_routes().
+    strong_craft = [r for r in routes
+                    if r.get("strength") == "code"
+                    and r.get("cls", "craft") == "craft"]
     wanted = defaultdict(set)
-    for r in routes:
+    for r in strong_craft:
         skill = r.get("skill", "")
         if skill and skill != "copy-gate":
             wanted[skill].add(r.get("component", "?"))
-    gaps = {s: c for s, c in wanted.items() if s.split()[0] not in invoked and s not in invoked}
+    gaps = {s: c for s, c in wanted.items() if s.split()[0] not in loaded and s not in loaded}
 
     # 3. coverage
     routed_files = {r.get("file", "") for r in routes}
@@ -87,9 +105,11 @@ def build_report(rows: list[dict], findings: list[dict], root: Path) -> tuple[st
         md.append("_No components touched._")
     md.append("")
 
-    md.append("## 2. Route-vs-invocation gap")
+    md.append("## 2. Unloaded strong routes")
     md.append("")
-    md.append("_The router named a skill and nothing loaded it. This must be zero._")
+    md.append("_A route that matched real CODE (not just a path fragment) to a craft "
+              "skill (not a framework-conventions one), that nothing ever invoked or "
+              "read. This must be zero._")
     md.append("")
     if gaps:
         md.append("| Skill named | For | Loaded |")
@@ -97,9 +117,11 @@ def build_report(rows: list[dict], findings: list[dict], root: Path) -> tuple[st
         for s, comps in sorted(gaps.items()):
             md.append(f"| `{s}` | {', '.join(sorted(comps))} | **NO** |")
         md.append("")
-        md.append(f"**GAP = {len(gaps)}.** The routing fired but the skill never loaded.")
+        md.append(f"**UNLOADED STRONG ROUTES = {len(gaps)}.** The routing fired on real "
+                  f"code but the skill never loaded or was read.")
     else:
-        md.append("**GAP = 0.** Every named skill was invoked.")
+        md.append("**UNLOADED STRONG ROUTES = 0.** Every strong craft route was "
+                  "invoked or read.")
     md.append("")
 
     md.append("## 3. Coverage")
@@ -136,9 +158,17 @@ def build_report(rows: list[dict], findings: list[dict], root: Path) -> tuple[st
         md.append("None. No demoted-skill palette values appeared.")
     md.append("")
 
-    if findings:
-        md.append("## 6. Deep detector pass")
-        md.append("")
+    # 6. Deep detector pass — ALWAYS present, even empty. A section that only
+    # appears when it has findings is indistinguishable from a section that
+    # never ran; the report must say which happened.
+    edit_files = sorted({r.get("file", "") for r in edits if r.get("file")})
+    md.append("## 6. Deep detector pass")
+    md.append("")
+    if not edit_files:
+        md.append("Not run (no touched UI files).")
+    elif not findings:
+        md.append(f"0 findings across {len(edit_files)} files.")
+    else:
         by_rule = defaultdict(list)
         for f in findings:
             by_rule[f.get("antipattern") or "?"].append(f)
@@ -164,11 +194,11 @@ def build_report(rows: list[dict], findings: list[dict], root: Path) -> tuple[st
     ]
     if gaps:
         summary.append(
-            f"ROUTE GAP = {len(gaps)}: " + ", ".join(sorted(gaps)) +
-            " were named by the router but never loaded."
+            f"UNLOADED STRONG ROUTES = {len(gaps)} — route gap (strong, craft only): " +
+            ", ".join(sorted(gaps)) + " matched real code but never loaded."
         )
     else:
-        summary.append("Route gap = 0.")
+        summary.append("Route gap (strong, craft only) = 0.")
     if traps:
         summary.append(f"GATE 60 fired {len(traps)}x — demoted-skill palette reached the build.")
     if findings:
@@ -194,6 +224,15 @@ def all_rows(root: Path) -> list[dict]:
     except Exception:
         pass
     return rows
+
+
+def scope_to_session(rows: list[dict]) -> list[dict]:
+    """Keep only this session's rows (plus any row too old to carry a `session`
+    field — backward compatible with a ledger written before that stamp)."""
+    sid = L.current_session_id()
+    if not sid:
+        return rows
+    return [r for r in rows if "session" not in r or r.get("session") == sid]
 
 
 def exit_bar_block(rows: list[dict], root: Path) -> str | None:
@@ -245,7 +284,22 @@ def main() -> None:
     event = L.read_event()
     root = L.project_root(event)
 
-    rows = all_rows(root)
+    rows = scope_to_session(all_rows(root))
+
+    # Arm/disarm (idea-2ao follow-up): an unarmed session gets a one-line
+    # advisory, never the full report and never the exit-bar block. Blocking
+    # the Stop hook on a session that never showed real design intent — a
+    # stray .ts edit in a repo that happens to have a DESIGN.md — was exactly
+    # the kind of over-trigger this whole chain was rebuilt to stop doing.
+    if not L.armed(root):
+        edits = [r for r in rows if r.get("event") == "edit"]
+        if not edits:
+            return
+        L.emit("Stop", f"[design] {len(edits)} UI-filer ändrade utan armad "
+               "designsession (ingen rapport). Var det designarbete: ladda "
+               "Skill(design) nästa gång.")
+        return
+
     # Stay silent unless real design work happened. Bookkeeping rows alone
     # (a verify-discipline injection, an intent detection) are not a session
     # worth reporting on, and a report for zero edits reads as noise.

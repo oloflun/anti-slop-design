@@ -1,0 +1,997 @@
+<!DOCTYPE html>
+<html lang="sv">
+<head>
+<!--
+  KVIST — landningssida. Blind one-shot, Tier 2 (referens), lane: "nästan svart
+  precisionsverktyg, Linear-registret" (modern-clean / dev-tool register,
+  SKILL.md registertabell — "teknisk firma, instrument, studio" — närmast
+  klassad efter tidvatten.html-exemplet, men med egen primärreferens nedan
+  eftersom användaren gav tre namngivna referenser för just denna sida).
+
+  ─────────────────────────────────────────────────────────────────────────
+  REFERENCE LOCK
+  ─────────────────────────────────────────────────────────────────────────
+  Primary reference/direction: Linear (linear.app) — nästan svart canvas
+    (~#08090A), Inter-lik grotesk, produktskärmdumpar i tunna ramar med svag
+    glow, en enda kall lila-blå accent bara på CTA/länkar, extremt tät
+    vertikal rytm.
+
+  Preserve: nästan svart, kallt tonad canvas som identitetsgrund genom hela
+    sidan; tät vertikal rytm och små, kontrollerade UI-typstorlekar; tunn
+    ram + mjuk glow som produktytans inramning; EN mättad lila-blå accent
+    reserverad för CTA/länk/glyf; återhållsam ~10px rundning som
+    standardradie på paneler och knappar.
+
+  Borrow only: (1) monospace-only innehåll + (2) hård 2px-ram och radie 0
+    — bägge skopade till EN komponent (kodexempel-panelen), lånat från
+    CLI-dokumentationssajten. Ingenting annat av ref 2 följer med.
+
+  Role rules: accent = CTA/länk/glyf/diff-badge — aldrig stor fyllnadsyta,
+    med EN uttrycklig licensierad undantagszon (se nedan); monospace = kod,
+    diff och funktionella mikro-etiketter — aldrig brödtext eller rubrik;
+    hård kant + radie 0 = kodpanelen enbart, aldrig globalt; diff-add /
+    diff-remove = diffradens bakgrund inne i kodpanelen enbart, aldrig
+    UI-krom någon annanstans.
+
+  Media strategy: product surface (kodad UI-representation — ingen körande
+    produkt att skärmdumpa i ett blint one-shot; byggd som en ärlig,
+    abstraherad "inspelade anrop"-ledger med diff-badge, ingen fejkad
+    webbläsare/OS-krom).
+
+  Reject: syra-gul canvas, monospace på rubriker och den brutalistiska
+    fullbredds-sidfoten (ref 2, utöver de två licensierade lånen i sin
+    helhet); varm-vit editorial-värld, italic-ordbyte i rubriken, muted
+    olivgrön accent, luftig lång-form-rytm (ref 3, i sin helhet).
+
+  Token commitments:
+    --color-canvas       #08090C  identitetsgrund, inverteras aldrig utom
+                                   i den ena licensierade accent-dim-bandet
+    --color-surface      #101218  panelfyllnad
+    --color-ink          #F3F4F7  primär text
+    --color-ink-muted    #9A9FAE  sekundär text på canvas/surface
+    --color-ink-muted-inverse #E4E1FF  sekundär text, ENBART på
+                                   accent-dim-inversionsbandet
+    --color-border       #22242E  hårfin ram, 1px default / 2px på
+                                   kodpanelen enbart
+    --color-accent       #6C6BF5  CTA / länk / glyf-roll enbart
+    --color-accent-dim   #2C2A6B  fokus-glow + inversionsband-bakgrund
+                                   enbart
+    --color-diff-add     #4E9F7A  diffradsbakgrund, kodpanelen enbart
+    --color-diff-remove  #B85C52  diffradsbakgrund, kodpanelen enbart
+
+  ─────────────────────────────────────────────────────────────────────────
+  DECISION LEDGER
+  ─────────────────────────────────────────────────────────────────────────
+  | Decision | Source | Source rule/role | Why |
+  |---|---|---|---|
+  | Modern-clean/precisionsregister, primär = Linear | SKILL.md
+    registertabell + house-physics Tidvatten-noten ("en grotesk kan vara
+    ett beslut … ämnet är precision") | register väljer apparat | Kvist är
+    ett utvecklarverktyg för HTTP-diffing; ett precisions-/verktygsregister
+    passar en ingenjörsmålgrupp, inte editorial- eller brutalist-dokument |
+  | Nästan svart, kallt tonad canvas + tät vertikal rytm | Linear (primär)
+    | canvas + densitet-roll: identitetsgrund | Behåller den dominanta
+    referensen; ett dev-verktyg vinner på samma lågbländ, informationstäta
+    verkstadskänsla |
+  | En lila-blå accent, enbart CTA/länk/glyf | Linear (primär) |
+    accent-roll: enbart CTA | Matchar Linears återhållsamhet; håller fokus
+    på produktinnehållet, inte kromet |
+  | Tunn ramad panel + mjuk glow för produktytan | Linear (primär) |
+    medieram-roll: product surface | Referensens signaturinramning för
+    produktbilder, återbyggd som kodat UI-innehåll eftersom ingen riktig
+    skärmdump finns i ett blint one-shot |
+  | Monospace + hård 2px-ram + radie 0, enbart kodpanelen | CLI-doku-
+    mentationssajten (lånad) | komponentskopad roll: enbart kodpanel | En
+    riktig HTTP-diff behöver läsas som ett terminal-/kodartefakt; att låna
+    referensens textur för exakt denna panel signalerar "det här är riktig
+    output" utan att ärva dess syra-canvas |
+  | Dämpad diff-add/diff-remove, kodskopad | Funktionell nödvändighet hos
+    en HTTP-diff-produkt | roll: enbart diffradens bakgrund, aldrig
+    UI-krom | Produktens kärnvärde är diffing; att visa en ärlig, avmättad
+    add/remove-konvention inne i kodpanelen är kärninnehåll, inte
+    dekorativ apparat, och hålls underordnad den enda låsta accenten |
+  | Ledger-anatomi för de tre kärnfunktionerna | house-physics
+    strukturregel ("ledgers över kortgrid") | layout-roll:
+    funktionslista-som-ledger | Undviker ett generiskt 3-ikonkortsrad;
+    hårfina rader läses som precision, matchar Linears egna listlika
+    UI-densitet |
+  | Accent-dim-flod som sidans enda tonala inversion (CTA-bandet före
+    sidfoten) | house-physics strukturregel ("en tonal inversion per
+    sida") | roll: enbart inversionsband, licensierat undantag från
+    accentens CTA-only-regel | Håller den nästan svarta identiteten
+    dominant (avvisar ref 3:s ljusa canvas) samtidigt som den strukturella
+    inversionskravet uppfylls genom ett nyans-/valörskifte inom samma
+    mörka familj |
+  | Familjen Grotesk (display) + Inter (UI/kropp) + JetBrains Mono
+    (kod/etiketter) | Linears egen uttalade grotesk (ref 1) för UI/kropp;
+    house-physics Tidvatten-precedens för en motiverad display-grotesk;
+    CLI-referensen (lånad) för monospace-enbart-kodroll | 2–3 familjer,
+    hårda roller | Varje typsnitt har ett uttalat skäl, inte ett
+    oresonerat default; Inter licensieras specifikt för att Linear
+    (primärreferensen) använder en Inter-lik grotesk, inte för att det
+    "fanns där" |
+  | Italic-ordbyte i rubriken uttryckligen avvisat | Editorial-referensen
+    (ref 3) avvisad + gate 38a | typografi-renhets-grind | En
+    grotesk-rubrik i ett mörkt tekniskt register har ingen legitim
+    serif-tvåton-gest att hänga italic på; att lägga till en ändå vore den
+    "instänkta em"-AI-signaturen |
+
+  Tier: 2 — referens (tre namngivna, textbeskrivna referenser; behandlade
+  som lästa per uppgiftens instruktion). Lane: "nästan svart
+  precisionsverktyg" (dark-canvas developer-tool register, Linear-primär).
+
+  design · pre-emit critique: P5 H4 E4 S5 R4 V4
+-->
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Kvist — spela in, spela upp och diffa HTTP-trafik</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Familjen+Grotesk:wght@500;600;700&family=Inter:wght@400;500;600&family=JetBrains+Mono:wght@400;500;600&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --color-canvas: #08090C;
+    --color-surface: #101218;
+    --color-ink: #F3F4F7;
+    --color-ink-muted: #9A9FAE;
+    --color-ink-muted-inverse: #E4E1FF;
+    --color-border: #22242E;
+    --color-accent: #6C6BF5;
+    --color-accent-dim: #2C2A6B;
+    --color-diff-add: #4E9F7A;
+    --color-diff-remove: #B85C52;
+
+    --font-display: 'Familjen Grotesk', ui-sans-serif, system-ui, sans-serif;
+    --font-body: 'Inter', ui-sans-serif, system-ui, sans-serif;
+    --font-mono: 'JetBrains Mono', ui-monospace, SFMono-Regular, Menlo, monospace;
+
+    --radius: 10px;
+    --measure: 58ch;
+  }
+
+  *,*::before,*::after{ box-sizing:border-box; }
+  html,body{
+    overflow-x: clip;
+    max-width: 100%;
+  }
+  html{ scroll-behavior:smooth; }
+  @media (prefers-reduced-motion: reduce){ html{ scroll-behavior:auto; } }
+
+  body{
+    margin:0;
+    background: var(--color-canvas);
+    color: var(--color-ink);
+    font-family: var(--font-body);
+    font-size: 16px;
+    line-height: 1.6;
+    -webkit-font-smoothing: antialiased;
+  }
+
+  img{ max-width:100%; display:block; }
+
+  a{ color: inherit; text-decoration:none; }
+
+  h1,h2,h3{
+    font-family: var(--font-display);
+    margin: 0;
+    line-height: 0.98;
+    letter-spacing: -0.02em;
+    overflow-wrap: anywhere;
+    min-width: 0;
+  }
+
+  p{ margin:0; }
+
+  :focus-visible{
+    outline: 2px solid var(--color-accent);
+    outline-offset: 3px;
+    border-radius: 4px;
+  }
+
+  .skip-link{
+    position:absolute;
+    left: 1rem; top: -3rem;
+    background: var(--color-accent);
+    color: var(--color-canvas);
+    padding: .6rem 1rem;
+    border-radius: var(--radius);
+    font-size: .85rem;
+    font-weight: 600;
+    transition: top .2s ease;
+    z-index: 100;
+  }
+  .skip-link:focus{ top: 1rem; }
+
+  .wrap{
+    max-width: 1180px;
+    margin-inline: auto;
+    padding-inline: clamp(1.25rem, 4vw, 2.5rem);
+  }
+
+  .mono-label{
+    font-family: var(--font-mono);
+    font-size: 11px;
+    letter-spacing: 0.16em;
+    text-transform: uppercase;
+    color: var(--color-ink-muted);
+  }
+
+  /* ---------- header ---------- */
+  header.site{
+    position: sticky;
+    top: 0;
+    z-index: 50;
+    background: color-mix(in srgb, var(--color-canvas) 88%, transparent);
+    backdrop-filter: blur(10px);
+    border-bottom: 1px solid var(--color-border);
+  }
+  .nav-row{
+    display:flex;
+    align-items:center;
+    justify-content:space-between;
+    padding-block: .85rem;
+    gap: 1rem;
+  }
+  .brand{
+    display:flex;
+    align-items:center;
+    gap: .55rem;
+    font-family: var(--font-display);
+    font-weight: 700;
+    font-size: 1.02rem;
+    letter-spacing: -0.01em;
+    white-space: nowrap;
+  }
+  .brand svg{ width:20px; height:20px; flex-shrink:0; }
+
+  .nav-links{
+    display:flex;
+    gap: 1.75rem;
+    font-size: .875rem;
+    color: var(--color-ink-muted);
+  }
+  .nav-links a{ white-space:nowrap; transition: color .15s ease; }
+  .nav-links a:hover{ color: var(--color-ink); }
+
+  @media (max-width: 700px){
+    .nav-links{ display:none; }
+  }
+
+  .btn{
+    display:inline-flex;
+    align-items:center;
+    justify-content:center;
+    padding: .68rem 1.15rem;
+    border-radius: var(--radius);
+    font-size: .875rem;
+    font-weight: 600;
+    white-space: nowrap;
+    border: 1px solid transparent;
+    cursor: pointer;
+    transition: background .15s ease, border-color .15s ease, transform .15s ease;
+  }
+  .btn-primary{
+    background: var(--color-accent);
+    color: var(--color-ink);
+  }
+  .btn-primary:hover{ transform: translateY(-1px); }
+  .btn-ghost{
+    background: transparent;
+    border-color: var(--color-border);
+    color: var(--color-ink);
+  }
+  .btn-ghost:hover{ border-color: var(--color-accent); }
+
+  /* ---------- hero ---------- */
+  .hero{
+    position: relative;
+    padding-block: clamp(4.5rem, 12vw, 8rem) clamp(3.5rem, 8vw, 6rem);
+    overflow: clip;
+  }
+  .hero-glow{
+    position:absolute;
+    top: -220px;
+    left: 50%;
+    width: 900px;
+    height: 620px;
+    transform: translateX(-50%);
+    background: radial-gradient(closest-side, color-mix(in srgb, var(--color-accent) 32%, transparent), transparent 72%);
+    filter: blur(10px);
+    pointer-events:none;
+    z-index: 0;
+  }
+  .hero-inner{
+    position: relative;
+    z-index: 1;
+    max-width: 46rem;
+  }
+  .hero h1{
+    font-size: clamp(2.5rem, 6vw, 4.4rem);
+    font-weight: 700;
+  }
+  .hero h1 .accent{ color: var(--color-accent); }
+  .hero p.lede{
+    margin-top: 1.35rem;
+    max-width: var(--measure);
+    color: var(--color-ink-muted);
+    font-size: clamp(1rem, 1.6vw, 1.15rem);
+    line-height: 1.65;
+  }
+  .hero-ctas{
+    margin-top: 2.1rem;
+    display:flex;
+    flex-wrap:wrap;
+    gap: .85rem;
+  }
+  .hero-meta{
+    margin-top: 2.75rem;
+    display:flex;
+    flex-wrap:wrap;
+    gap: 1.75rem;
+    font-family: var(--font-mono);
+    font-size: 12px;
+    color: var(--color-ink-muted);
+  }
+  .hero-meta span{ display:flex; align-items:center; gap:.4rem; }
+  .hero-meta i{
+    width:6px; height:6px; border-radius:50%;
+    background: var(--color-accent);
+    display:inline-block;
+  }
+
+  /* ---------- section shell ---------- */
+  section{ padding-block: clamp(3.5rem, 8vw, 6rem); }
+  .section-head{
+    display:flex;
+    align-items:flex-end;
+    justify-content:space-between;
+    gap: 1.5rem;
+    margin-bottom: 2.25rem;
+    flex-wrap: wrap;
+  }
+  .section-head h2{
+    font-size: clamp(1.6rem, 3.2vw, 2.35rem);
+    font-weight: 600;
+  }
+  .section-num{
+    font-family: var(--font-mono);
+    font-size: 11px;
+    letter-spacing: .16em;
+    color: var(--color-ink-muted);
+    text-transform: uppercase;
+  }
+
+  /* ---------- produktyta (recorded requests panel) ---------- */
+  .panel-frame{
+    position: relative;
+    border: 1px solid var(--color-border);
+    border-radius: calc(var(--radius) + 4px);
+    background: var(--color-surface);
+    box-shadow: 0 0 0 1px transparent, 0 30px 70px -30px color-mix(in srgb, var(--color-accent) 24%, transparent);
+    overflow: hidden;
+  }
+  .panel-glow{
+    position:absolute;
+    inset: -30% -10% auto -10%;
+    height: 60%;
+    background: radial-gradient(50% 50% at 30% 0%, color-mix(in srgb, var(--color-accent) 26%, transparent), transparent 70%);
+    pointer-events:none;
+    will-change: transform, opacity;
+  }
+  .panel-toolbar{
+    display:flex;
+    align-items:center;
+    justify-content:space-between;
+    padding: .9rem 1.25rem;
+    border-bottom: 1px solid var(--color-border);
+    font-family: var(--font-mono);
+    font-size: 12px;
+    color: var(--color-ink-muted);
+  }
+  .req-list{ position:relative; }
+  .req-row{
+    display:flex;
+    flex-wrap: wrap;
+    align-items:center;
+    gap: .5rem 1rem;
+    padding: .9rem 1.25rem;
+    border-bottom: 1px solid var(--color-border);
+    font-family: var(--font-mono);
+    font-size: 13px;
+  }
+  .req-row:last-child{ border-bottom:none; }
+  .req-method{
+    display:inline-block;
+    min-width: 3.4rem;
+    color: var(--color-ink-muted);
+  }
+  .req-method[data-m="GET"]{ color: #7FB4E0; }
+  .req-method[data-m="POST"]{ color: var(--color-diff-add); }
+  .req-method[data-m="PATCH"]{ color: #D6B25E; }
+  .req-method[data-m="DELETE"]{ color: var(--color-diff-remove); }
+  .req-path{
+    color: var(--color-ink);
+    flex: 1 1 220px;
+    min-width: 0;
+    overflow-wrap: anywhere;
+  }
+  .req-meta{
+    display:flex;
+    align-items:center;
+    gap: .9rem;
+    color: var(--color-ink-muted);
+    font-size: 12px;
+  }
+  .diff-badge{
+    display:inline-flex;
+    align-items:center;
+    gap:.35rem;
+    padding: .2rem .55rem;
+    border-radius: 999px;
+    background: color-mix(in srgb, var(--color-accent) 16%, transparent);
+    border: 1px solid color-mix(in srgb, var(--color-accent) 40%, transparent);
+    color: var(--color-accent);
+    font-size: 11px;
+    opacity: 0;
+    filter: blur(6px);
+    transform: translateY(10px);
+    transition: opacity .5s ease, transform .5s ease, filter .5s ease;
+  }
+  .diff-badge.is-in{
+    opacity: 1;
+    filter: blur(0);
+    transform: translateY(0);
+  }
+
+  /* ---------- kärnfunktioner (ledger) ---------- */
+  .feature-ledger{ border-top: 1px solid var(--color-border); }
+  .feature-row{
+    display:grid;
+    grid-template-columns: 3.25rem minmax(0,1fr);
+    gap: 1.25rem 1.5rem;
+    padding-block: 1.9rem;
+    border-bottom: 1px solid var(--color-border);
+    align-items: start;
+  }
+  .feature-row .idx{
+    font-family: var(--font-mono);
+    font-size: 13px;
+    color: var(--color-accent);
+    padding-top: .2rem;
+  }
+  .feature-row h3{
+    font-size: 1.15rem;
+    font-weight: 600;
+    margin-bottom: .5rem;
+  }
+  .feature-row p{
+    color: var(--color-ink-muted);
+    max-width: 56ch;
+    font-size: .95rem;
+  }
+  .feature-row:nth-child(2){ margin-top: 1.1rem; }
+  .feature-row:nth-child(3){ margin-top: 2.1rem; }
+
+  /* ---------- kodexempel ---------- */
+  .code-shell{
+    max-width: 44rem;
+    margin-inline: auto;
+  }
+  .code-panel{
+    background: #0A0B0F;
+    border: 2px solid var(--color-border);
+    border-radius: 0;
+    overflow: hidden;
+  }
+  .code-panel + .code-panel{ margin-top: 1rem; }
+  .code-panel-label{
+    font-family: var(--font-mono);
+    font-size: 11px;
+    letter-spacing: .1em;
+    text-transform: uppercase;
+    color: var(--color-ink-muted);
+    padding: .7rem 1.1rem;
+    border-bottom: 2px solid var(--color-border);
+  }
+  pre{
+    margin:0;
+    padding: 1.1rem 1.25rem 1.35rem;
+    overflow-x: auto;
+    font-family: var(--font-mono);
+    font-size: 13px;
+    line-height: 1.75;
+    color: var(--color-ink-muted);
+  }
+  pre .cmd{ color: var(--color-ink); }
+  pre .cmd::before{ content: "$ "; color: var(--color-accent); }
+  .diff-line{ display:block; padding: 0 .35rem; margin: 0 -0.35rem; }
+  .diff-line.add{ background: color-mix(in srgb, var(--color-diff-add) 16%, transparent); color: var(--color-diff-add); }
+  .diff-line.rm{ background: color-mix(in srgb, var(--color-diff-remove) 16%, transparent); color: var(--color-diff-remove); }
+  .diff-line.add::before{ content:"+ "; }
+  .diff-line.rm::before{ content:"- "; }
+  .diff-line.ctx{ color: var(--color-ink-muted); }
+  .diff-line.ctx::before{ content:"  "; }
+  .diff-line.hdr{ color: var(--color-ink); }
+  .diff-line.hdr::before{ content:"  "; }
+
+  /* ---------- priser ---------- */
+  .pricing-grid{
+    display:grid;
+    grid-template-columns: repeat(2, minmax(0,1fr));
+    gap: 1.25rem;
+  }
+  @media (max-width: 760px){
+    .pricing-grid{ grid-template-columns: 1fr; }
+  }
+  .price-card{
+    border: 1px solid var(--color-border);
+    border-radius: calc(var(--radius) + 4px);
+    background: var(--color-surface);
+    padding: clamp(1.5rem, 3vw, 2.25rem);
+    display:flex;
+    flex-direction:column;
+  }
+  .price-card.featured{
+    border-color: color-mix(in srgb, var(--color-accent) 55%, var(--color-border));
+    box-shadow: 0 0 0 1px color-mix(in srgb, var(--color-accent) 30%, transparent);
+    margin-top: -0.5rem;
+  }
+  @media (max-width: 760px){ .price-card.featured{ margin-top:0; } }
+  .price-card .tier-label{
+    font-family: var(--font-mono);
+    font-size: 11px;
+    letter-spacing: .14em;
+    text-transform: uppercase;
+    color: var(--color-ink-muted);
+  }
+  .price-card.featured .tier-label{ color: var(--color-accent); }
+  .price-amount{
+    margin-top: .9rem;
+    font-family: var(--font-display);
+    font-size: clamp(2rem, 4.4vw, 2.7rem);
+    font-weight: 700;
+    letter-spacing: -0.02em;
+  }
+  .price-amount small{
+    font-family: var(--font-body);
+    font-size: .95rem;
+    font-weight: 500;
+    color: var(--color-ink-muted);
+  }
+  .price-desc{
+    margin-top: .6rem;
+    color: var(--color-ink-muted);
+    font-size: .9rem;
+  }
+  .price-features{
+    list-style:none;
+    margin: 1.6rem 0 0;
+    padding: 0;
+    border-top: 1px solid var(--color-border);
+  }
+  .price-features li{
+    padding: .8rem 0;
+    border-bottom: 1px solid var(--color-border);
+    font-size: .9rem;
+    color: var(--color-ink);
+    display:flex;
+    gap: .6rem;
+  }
+  .price-features li::before{
+    content:"";
+    width: 6px; height: 1px;
+    background: var(--color-accent);
+    margin-top: .65rem;
+    flex-shrink: 0;
+  }
+  .price-card .btn{ margin-top: 1.75rem; align-self:flex-start; }
+
+  /* ---------- CTA-band: enda tonala inversionen ---------- */
+  .cta-band{
+    background: var(--color-accent-dim);
+    border-radius: calc(var(--radius) + 6px);
+    padding: clamp(2.5rem, 6vw, 4rem);
+    text-align:center;
+  }
+  .cta-band h2{
+    font-size: clamp(1.7rem, 3.6vw, 2.5rem);
+    font-weight: 600;
+    color: var(--color-ink);
+  }
+  .cta-band p{
+    margin-top: .9rem;
+    color: var(--color-ink-muted-inverse);
+    max-width: 42ch;
+    margin-inline:auto;
+  }
+  .cta-band .btn-primary{
+    background: var(--color-ink);
+    color: var(--color-canvas);
+  }
+  .cta-band .hero-ctas{ justify-content:center; margin-top: 1.9rem; }
+
+  /* ---------- footer ---------- */
+  footer.site{
+    border-top: 1px solid var(--color-border);
+    padding-block: clamp(2.5rem, 6vw, 3.5rem) 2rem;
+  }
+  .footer-grid{
+    display:grid;
+    grid-template-columns: 1.4fr repeat(3, minmax(0,1fr));
+    gap: 2rem;
+  }
+  @media (max-width: 700px){
+    .footer-grid{ grid-template-columns: repeat(2, minmax(0,1fr)); }
+  }
+  .footer-col h4{
+    margin:0 0 .9rem;
+    font-size: .8rem;
+    color: var(--color-ink-muted);
+    font-weight: 500;
+  }
+  .footer-col ul{ list-style:none; margin:0; padding:0; display:flex; flex-direction:column; gap:.6rem; }
+  .footer-col a{ font-size: .875rem; color: var(--color-ink); }
+  .footer-col a:hover{ color: var(--color-accent); }
+  .footer-bottom{
+    margin-top: 3rem;
+    padding-top: 1.5rem;
+    border-top: 1px solid var(--color-border);
+    display:flex;
+    justify-content:space-between;
+    flex-wrap:wrap;
+    gap: .75rem;
+    font-family: var(--font-mono);
+    font-size: 11.5px;
+    color: var(--color-ink-muted);
+  }
+
+  /* ---------- reveal system ---------- */
+  .reveal{
+    opacity: 0;
+    transform: translateY(28px);
+    transition: opacity 1.2s cubic-bezier(.16,1,.3,1), transform 1.2s cubic-bezier(.16,1,.3,1);
+  }
+  .reveal.is-visible{ opacity:1; transform:none; }
+
+  @media (prefers-reduced-motion: reduce){
+    .reveal{ opacity:1 !important; transform:none !important; transition:none !important; }
+    .diff-badge{ opacity:1 !important; filter:none !important; transform:none !important; transition:none !important; }
+    .panel-glow{ transform:none !important; }
+    .btn-primary:hover{ transform:none; }
+  }
+</style>
+</head>
+<body>
+<a class="skip-link" href="#main">Hoppa till innehåll</a>
+
+<header class="site">
+  <div class="wrap nav-row">
+    <a class="brand" href="#top" aria-label="Kvist, startsida">
+      <svg viewBox="0 0 24 24" fill="none" stroke="var(--color-accent)" stroke-width="1.6" stroke-linecap="round" aria-hidden="true">
+        <path d="M5 21c0-7 4-13 10-16"/>
+        <path d="M9.5 8.5c1.5 0 3 .5 4 1.5"/>
+        <path d="M7.5 13c1.4-.2 3 .1 4 1"/>
+      </svg>
+      Kvist
+    </a>
+    <nav class="nav-links" aria-label="Huvudnavigation">
+      <a href="#produkt">Produkt</a>
+      <a href="#funktioner">Funktioner</a>
+      <a href="#priser">Priser</a>
+      <a href="#kod">Dokumentation</a>
+    </nav>
+    <a class="btn btn-ghost" href="#priser">Kom igång</a>
+  </div>
+</header>
+
+<main id="main">
+
+  <!-- HERO: kort headline + löpande subtext, INTE ett stort marknadsförings-collage -->
+  <section class="hero" id="top">
+    <div class="hero-glow" aria-hidden="true"></div>
+    <div class="wrap hero-inner">
+      <h1>Fånga varje HTTP-anrop. Se <span class="accent">exakt</span> vad som ändrades.</h1>
+      <p class="lede">Kvist spelar in trafiken din tjänst redan skickar, spelar upp den mot valfri miljö och lägger svaren sida vid sida tills skillnaden är omöjlig att missa.</p>
+      <div class="hero-ctas">
+        <a class="btn btn-primary" href="#priser">Installera CLI:t</a>
+        <a class="btn btn-ghost" href="#kod">Läs dokumentationen</a>
+      </div>
+      <div class="hero-meta">
+        <span><i></i>Körs lokalt, inget måste lämna din maskin</span>
+        <span><i></i>Fungerar med valfritt HTTP-bibliotek</span>
+      </div>
+    </div>
+  </section>
+
+  <!-- PRODUKTYTA: kodad anropslogg i tunn ram + glow, INTE en fejkad webbläsare/OS-chrome eller ett riktigt skärmdumpsfoto -->
+  <section id="produkt">
+    <div class="wrap">
+      <div class="section-head">
+        <h2 class="reveal">Se varje anrop, i klartext.</h2>
+        <span class="section-num">Produktyta</span>
+      </div>
+      <div class="panel-frame reveal" id="produktpanel">
+        <div class="panel-glow" id="panelGlow" aria-hidden="true"></div>
+        <div class="panel-toolbar">
+          <span>kvist watch · lokal session</span>
+          <span>5 anrop senaste minuten</span>
+        </div>
+        <div class="req-list">
+          <div class="req-row">
+            <span class="req-method" data-m="GET">GET</span>
+            <span class="req-path">/api/v2/kunder/482</span>
+            <span class="req-meta"><span>200</span><span>84 ms</span></span>
+          </div>
+          <div class="req-row">
+            <span class="req-method" data-m="POST">POST</span>
+            <span class="req-path">/api/v2/order</span>
+            <span class="req-meta"><span>201</span><span>212 ms</span></span>
+          </div>
+          <div class="req-row" id="diffRow">
+            <span class="req-method" data-m="PATCH">PATCH</span>
+            <span class="req-path">/api/v2/kunder/482/adress</span>
+            <span class="req-meta"><span>200</span><span>97 ms</span></span>
+            <span class="diff-badge" id="diffBadge">3 fält ändrade sedan senaste inspelning</span>
+          </div>
+          <div class="req-row">
+            <span class="req-method" data-m="GET">GET</span>
+            <span class="req-path">/api/v2/lager/9021</span>
+            <span class="req-meta"><span>304</span><span>41 ms</span></span>
+          </div>
+          <div class="req-row">
+            <span class="req-method" data-m="DELETE">DELETE</span>
+            <span class="req-path">/api/v2/sessioner/act_88f2</span>
+            <span class="req-meta"><span>204</span><span>58 ms</span></span>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- FUNKTIONER: hårfin ledger med tre rader, INTE ett 3-ikoners kortgrid -->
+  <section id="funktioner">
+    <div class="wrap">
+      <div class="section-head">
+        <h2 class="reveal">Tre saker Kvist gör bra.</h2>
+        <span class="section-num">Kärnfunktioner</span>
+      </div>
+      <div class="feature-ledger reveal">
+        <div class="feature-row">
+          <span class="idx">01</span>
+          <div>
+            <h3>Spela in</h3>
+            <p>Kvist lyssnar transparent i din lokala stack och sparar varje anrop som en fixture — request, headers, svar och exakt timing, utan att röra din egen kod.</p>
+          </div>
+        </div>
+        <div class="feature-row">
+          <span class="idx">02</span>
+          <div>
+            <h3>Spela upp</h3>
+            <p>Kör om exakt samma sekvens mot en ny commit, en annan miljö eller ett annat tredjepartskonto, utan att röra din testdata eller vänta på riktiga uppströmssvar.</p>
+          </div>
+        </div>
+        <div class="feature-row">
+          <span class="idx">03</span>
+          <div>
+            <h3>Diffa</h3>
+            <p>Två inspelningar läggs rad för rad bredvid varandra. Ändrade fält, nya headers och trasiga statuskoder syns direkt, inte begravda längst ner i en logg.</p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- KODEXEMPEL: riktiga <pre><code>-block, INTE ett fejkat IDE-fönster med titelrad och trafikljusprickar -->
+  <section id="kod">
+    <div class="wrap">
+      <div class="section-head">
+        <h2 class="reveal">Från terminal till diff.</h2>
+        <span class="section-num">Kodexempel</span>
+      </div>
+      <div class="code-shell reveal">
+        <div class="code-panel">
+          <div class="code-panel-label">Terminal</div>
+          <pre><span class="cmd">kvist record --tag innan-migrering</span>
+<span class="cmd">kvist replay --against staging --tag efter-migrering</span>
+<span class="cmd">kvist diff innan-migrering efter-migrering</span></pre>
+        </div>
+        <div class="code-panel">
+          <div class="code-panel-label">kvist diff · PATCH /api/v2/kunder/482/adress</div>
+          <pre><span class="diff-line rm">"postnummer": "114 35",</span><span class="diff-line add">"postnummer": "11435",</span><span class="diff-line rm">"land": "Sverige",</span><span class="diff-line add">"land": "SE",</span><span class="diff-line ctx">"uppdaterad": "2026-09-03T08:14:02Z"</span></pre>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- PRISER: split-diptyk ledger, INTE ett vanligt 2-kolumners prisgrid med rundade pillar-knappar -->
+  <section id="priser">
+    <div class="wrap">
+      <div class="section-head">
+        <h2 class="reveal">Två nivåer, inga överraskningar.</h2>
+        <span class="section-num">Priser</span>
+      </div>
+      <div class="pricing-grid reveal">
+        <div class="price-card">
+          <span class="tier-label">Solo</span>
+          <div class="price-amount">0 kr<small> / månad</small></div>
+          <p class="price-desc">För en enskild utvecklare som kör Kvist lokalt.</p>
+          <ul class="price-features">
+            <li>Obegränsade lokala inspelningar</li>
+            <li>7 dagars historik</li>
+            <li>Diff i terminalen</li>
+            <li>Community-support</li>
+          </ul>
+          <a class="btn btn-ghost" href="#top">Installera gratis</a>
+        </div>
+        <div class="price-card featured">
+          <span class="tier-label">Team</span>
+          <div class="price-amount">189 kr<small> / användare / månad</small></div>
+          <p class="price-desc">För team som delar inspelningar mellan miljöer.</p>
+          <ul class="price-features">
+            <li>Allt i Solo</li>
+            <li>Delade miljöer och inspelningar</li>
+            <li>Obegränsad historik</li>
+            <li>CI-integrering</li>
+            <li>Rollbaserad åtkomst</li>
+          </ul>
+          <a class="btn btn-primary" href="#top">Kom igång med Team</a>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- CTA-BAND: sidans enda tonala inversion (accent-dim som grund), INTE ännu en mörk sektion -->
+  <section>
+    <div class="wrap">
+      <div class="cta-band reveal">
+        <h2>Sluta gissa vad som ändrades.</h2>
+        <p>Installera Kvist, spela in en session, och låt diffen göra resten av jobbet.</p>
+        <div class="hero-ctas">
+          <a class="btn btn-primary" href="#priser">Kom igång gratis</a>
+        </div>
+      </div>
+    </div>
+  </section>
+
+</main>
+
+<!-- FOOTER: tät indexkolumn-sidfot i Linear-registret, INTE en brutalistisk fullbredds-sidfot (avvisad från ref 2) -->
+<footer class="site">
+  <div class="wrap">
+    <div class="footer-grid">
+      <div class="footer-col">
+        <a class="brand" href="#top" aria-label="Kvist, startsida">
+          <svg viewBox="0 0 24 24" fill="none" stroke="var(--color-accent)" stroke-width="1.6" stroke-linecap="round" aria-hidden="true" style="width:18px;height:18px;">
+            <path d="M5 21c0-7 4-13 10-16"/>
+            <path d="M9.5 8.5c1.5 0 3 .5 4 1.5"/>
+            <path d="M7.5 13c1.4-.2 3 .1 4 1"/>
+          </svg>
+          Kvist
+        </a>
+        <p style="margin-top:1rem; color:var(--color-ink-muted); font-size:.85rem; max-width:32ch;">Ett verktyg för utvecklare som spelar in, spelar upp och diffar HTTP-trafik i utveckling.</p>
+      </div>
+      <div class="footer-col">
+        <h4>Produkt</h4>
+        <ul>
+          <li><a href="#funktioner">Funktioner</a></li>
+          <li><a href="#priser">Priser</a></li>
+          <li><a href="#top">Ändringslogg</a></li>
+          <li><a href="#top">Statussida</a></li>
+        </ul>
+      </div>
+      <div class="footer-col">
+        <h4>Utvecklare</h4>
+        <ul>
+          <li><a href="#kod">Dokumentation</a></li>
+          <li><a href="#kod">CLI-referens</a></li>
+          <li><a href="#kod">API</a></li>
+        </ul>
+      </div>
+      <div class="footer-col">
+        <h4>Företag</h4>
+        <ul>
+          <li><a href="#top">Om oss</a></li>
+          <li><a href="#top">Kontakt</a></li>
+        </ul>
+      </div>
+    </div>
+    <div class="footer-bottom">
+      <span>© 2026 Kvist</span>
+      <span>Byggd för utvecklare, inte för demos</span>
+    </div>
+  </div>
+</footer>
+
+<script>
+(function(){
+  "use strict";
+
+  var reduceMotion = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
+  var params = new URLSearchParams(window.location.search);
+  var forcePreview = params.get("preview") === "diff";
+
+  /* ---- shared reveal ---- */
+  var revealEls = Array.prototype.slice.call(document.querySelectorAll(".reveal"));
+
+  function showAllReveals(){
+    revealEls.forEach(function(el){ el.classList.add("is-visible"); });
+  }
+
+  if (reduceMotion || forcePreview) {
+    showAllReveals();
+  } else if ("IntersectionObserver" in window) {
+    var io = new IntersectionObserver(function(entries){
+      entries.forEach(function(entry){
+        if (entry.isIntersecting) {
+          entry.target.classList.add("is-visible");
+          io.unobserve(entry.target);
+        }
+      });
+    }, { threshold: 0.1, rootMargin: "0px 0px -8% 0px" });
+    revealEls.forEach(function(el){ io.observe(el); });
+
+    /* fail toward visible: anything already on/above the fold at mount,
+       or never intersecting within 1.6s, is shown anyway */
+    revealEls.forEach(function(el){
+      var r = el.getBoundingClientRect();
+      if (r.top < window.innerHeight) el.classList.add("is-visible");
+    });
+    window.setTimeout(showAllReveals, 1600);
+  } else {
+    showAllReveals();
+  }
+
+  /* ---- signature set-piece: produktyta glow-drift + diff-badge reveal,
+     scroll-scrubbed both directions, two coordinated layers ---- */
+  var panel = document.getElementById("produktpanel");
+  var glow = document.getElementById("panelGlow");
+  var badge = document.getElementById("diffBadge");
+
+  if (panel && glow && badge) {
+    if (reduceMotion) {
+      badge.classList.add("is-in");
+      glow.style.transform = "translate(0px, 0px)";
+      glow.style.opacity = "1";
+    } else if (forcePreview) {
+      badge.classList.add("is-in");
+      glow.style.transform = "translate(24px, 10px)";
+      glow.style.opacity = "1";
+    } else {
+      var current = 0;
+      var target = 0;
+
+      function computeProgress(){
+        var r = panel.getBoundingClientRect();
+        var vh = window.innerHeight;
+        var start = vh * 0.85;
+        var end = vh * 0.35;
+        var p = (start - r.top) / (start - end);
+        return Math.min(1, Math.max(0, p));
+      }
+
+      function onScroll(){
+        target = computeProgress();
+      }
+      window.addEventListener("scroll", onScroll, { passive: true });
+      window.addEventListener("resize", onScroll);
+      onScroll();
+
+      function tick(){
+        current += (target - current) * 0.12;
+        var p = current;
+        glow.style.opacity = String(0.4 + 0.6 * p);
+        glow.style.transform = "translate(" + (24 * p) + "px, " + (10 * p) + "px)";
+        if (p > 0.55) {
+          badge.classList.add("is-in");
+        } else if (p < 0.35) {
+          badge.classList.remove("is-in");
+        }
+        requestAnimationFrame(tick);
+      }
+      requestAnimationFrame(tick);
+    }
+  }
+})();
+</script>
+</body>
+</html>

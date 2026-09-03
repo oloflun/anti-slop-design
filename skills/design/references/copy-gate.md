@@ -81,3 +81,28 @@ Runs both stages over existing copy **without editing**.
 5. Apply only on confirmation. On a live page this is a content change, and it is the user's call.
 
 Scope note: run per surface, not per repo. A whole-codebase sweep produces a table nobody reads.
+
+## 2026-09-03 — SlopMonster folded in (AB11)
+
+**Pass 1b · Where does the line come from?** Before copy-editing, every headline and
+lead names its source or is cut: (1) what the trade actually does (a specification beats
+three adjectives), (2) what the customer already fears, (3) what the competition will not
+say (a refusal positions), (4) a line that arrived already good. A line with no source is
+a slogan. Never invent proof: no counts, testimonials or ratings the business has not
+earned; write `[needs number]` and move on. (SlopMonster, `references/upstream/slopmonster/references/principles.md`.)
+
+**Mechanical gate for English strings.** After the three passes run
+`python ~/.agents/skills/slopmonster/tools/deslop.py <file|--text>` and read the hits.
+Vocabulary, constructions, dash cadence and invented proof are fixes; a rule-of-three hit
+on a list that is genuinely three things (record · replay · diff) is a judged pass, say so.
+The scorer is English-only: it returns a false 5/5 on Swedish copy.
+
+**Swedish twins the scorer cannot see** (humanizer-svenska checks these by hand):
+`inte bara X — det är Y` · tricolons joined by `och` (`passion, precision och kärlek`) ·
+`i hjärtat av` · `kurerar` · `älskad mötesplats` · `sömlöst` · `unik upplevelse` · a lede
+that restates the headline.
+
+**Gate 75 still wins.** SlopMonster tolerates single em-dashes; this system does not.
+Zero visible em-dashes, en-dash only in ranges. The optional rival-model cleanse
+(`tools/cleanse.sh`, codex) is allowed on English marketing pages only, and its output is
+re-read: in AB11 it changed little and appended a summary it was told not to write.

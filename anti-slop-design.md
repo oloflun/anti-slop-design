@@ -4,7 +4,7 @@ type: project
 status: active
 project_slug: anti-slop-design
 repo: C:\\Users\\Anton L\\anti-slop-design
-updated: 2026-08-01
+updated: 2026-09-03
 ---
 
 # Anti-Slop Design
@@ -20,6 +20,44 @@ A Claude Code **design system**. It writes no visual rules of its own beyond one
 > **Brand derives direction. Skills supply craft. Themes are the last resort.**
 
 Every failure this system was built to fix came from inverting that — a specialist skill set the visual direction and the brand got repainted in the skill author's palette.
+
+## 2026-09-03 rework (v3): quiet hooks, an accessibility skill, a bake-off, a catalog
+
+Plan: `~/.claude/plans/uppgift-design-rework-v3-validated-hammock.md`. Run log with every
+A/B, screenshot and verdict: the "Design Rework v3" artifact (claude.ai/code/artifacts) and
+[`tests/ab/`](tests/ab/) (one `verdict.md` per addition). Decisions by Anton: the catalog's
+database is a GitHub repo (1A); **the live copies are canonical and this repo is a mirror**
+(2A, [`scripts/sync-from-live.py`](scripts/sync-from-live.py), verify check "repo == live").
+
+- **Hooks stop over-triggering.** `design-intent.py` classifies prompts high/medium/none
+  (verb + UI object, negative guards for hook/skill/CARL/investigate talk, project signal);
+  a `high` prompt or a `Skill(design…)` call **arms** the session (`.impeccable/.armed`), and
+  route/verify/stop act only when armed (contract gate on a locked DESIGN.md always). The
+  Stop gap now counts only code-strong craft routes that were neither loaded nor read
+  (`skill-read` event); framework skills never count; section 6 always prints. 40-prompt
+  corpus in `tests/intent_corpus.jsonl`; `verify-design-system.py` is 139 checks against
+  `super-intelligence/hooks` + `hooks.json`. CARL DESIGN recall narrowed to phrases + exclude.
+- **`a11y-audit`** (new skill, eight passes, three Playwright scripts proven on
+  `tests/a11y/broken.html`, principle catalog from Interfaces, designpowers,
+  inclusive-design-skills, designer-skills) and three read-only Sonnet reviewer agents
+  (`design-critic`, `design-a11y-reviewer`, `design-heuristics`) reconciled by
+  accessibility > usability > brief > personas.
+- **Reference lock + decision ledger** (Refero's method) in Step 1b at every tier;
+  gates 89–91; `photo-sources.md` corrects the Unsplash licence note.
+- **Step 2b:** page grammar, feeling curve, fingerprint gate (vault registry
+  `wiki/projects/_index/design-fingerprints.md`), scroll devices on the vendored
+  scroll-craft engine, `scroll_verify.py`; then the **bake-off board** (`scripts/board.py`,
+  `references/shotgun.md`): directions × engines, the user picks, `approved.json`.
+- **Visual critique** (`verbs/critique.md`, seven dimensions on pixels) and the review
+  orchestrator (`verbs/review.md`) behind the `audit` verb.
+- **Design catalog** `oloflun/design-catalog` (localhost-first, repo as database,
+  `Skill(design-catalog)`) seeded with the seven example sites; Step 1b starts there.
+- **Emil Kowalski skills refreshed** (nine), `hallmark` no longer auto-invokes,
+  `frontend-design` plugin off (two rules ported into the craft floor),
+  `super-intelligence:design` user-invocable-only, `polish` dependency fixed.
+- **Not adopted, with evidence:** frontend-design as a skill (AB09: escaped the cream
+  default but lost the reveal guard and three anatomies); designpowers' build agents
+  (set direction); Refero MCP (optional, unconfigured); kie.ai video generation.
 
 ## 2026-08-01 rework: registers replace the house style, exit bar goes mechanical
 
@@ -166,10 +204,10 @@ Not covered — model behaviour, provable only by a real build's telemetry repor
 Design system rebuilt 2026-08-01 (registers + mechanical exit bar), verified with three
 blind one-shot builds, shipped to `super-intelligence` 0.4.5 (local commit, not yet pushed).
 
-**Open:** `install.mjs`/`upgrade.mjs` need an additive merge for the two new hooks to
-reach existing installs. The `hallmark` skill still competes with `design` for
-auto-invocation while its 105 references are already ported here; `polish` carries a
-stale `/teach-impeccable` dependency (v3 naming).
+**Open (2026-09-03):** push `super-intelligence` and update the plugin cache so the new
+hooks run in sessions (Anton's go-ahead); the design catalog's Vercel + GitHub OAuth step;
+two Hallmark reference files (`custom-theme.md`, `macrostructures.md`) now differ from
+upstream HEAD because upstream moved, which the fidelity check reports honestly.
 
 ## Related
 

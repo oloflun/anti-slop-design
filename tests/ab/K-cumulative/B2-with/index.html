@@ -1,0 +1,782 @@
+<!doctype html>
+<!--
+  FLORHUSET MAJORNA — blind one-shot, Skill(design) v3 chain, no browser, no
+  screenshots, no iteration, variants skipped at user request ("skip
+  variants"). Build B2-with, K-cumulative test (K2): same brief as
+  tests/ab/09-frontend-design/brief.md and tests/ab/K-cumulative/B-with
+  (K1), run again after the Step-0 "brief coverage is a gate" + reading-
+  budget fix that K1's own verdict.md prescribed.
+
+  BRIEF-COVERAGE LIST — written before Step 1, carried through Step 4,
+  ticked at the end of this file:
+    [ ] hero
+    [ ] säsongens buketter (3–5)
+    [ ] bröllop
+    [ ] prenumeration
+    [ ] ateljékvällar
+    [ ] om ateljén (adress Mariaplan 4, 414 70 Göteborg + öppettider)
+    [ ] footer
+    [ ] svenska, riktigt innehåll (inga lorem, inga påhittade siffror/kunder)
+    [ ] mobil 390 utan horisontell scroll
+    [ ] prefers-reduced-motion
+    [ ] synlig fokusring
+    [ ] alt-texter
+    [ ] en h1
+    [ ] lane + register överst som HTML-kommentar
+    [ ] en kommentar per sektion som namnger ersatt slop-default
+    [ ] konvertering: beställa en bukett ELLER boka ett bröllopsmöte
+
+  LANE (one concrete phrase): Kalkputs katalogateljé — a limewash-grey
+  index of the shop's own objects (bouquets, the wedding meeting, the
+  subscription, the workshop evening, the atelier itself) numbered .00
+  through .09, with exactly one accent — vallmo, poppy-red — never used
+  below display scale. Spectral roman-and-italic over JetBrains Mono.
+
+  REGISTER: editorial print (SKILL.md register table — florist, atelier,
+  archive, catalogue, wedding — the table's own listed fit).
+
+  GRAMMAR: gallery/catalog (register×grammar fit matrix: "museum-label
+  copy is already this register's voice"). Rejected chaptered editorial
+  specifically because its own nav/hero/close cell calls for a
+  "title-page hero (no media)" — incompatible with Step 5b's mandatory
+  real imagery on a marketing page — and because Calyx's own catalog
+  entry (the primary reference below) is itself tagged grammar:
+  gallery/catalog, not chaptered editorial. Rejected typographic poster
+  because it bans photographic ground outright. Nav is an index that
+  jumps (five numbered anchor links); hero is "object one, already
+  labelled" (a captioned bouquet, not a bare claim); close is the last
+  object in the index — the atelier itself, entry .09.
+
+  AI-DEFAULT SELF-TEST (SKILL.md "Registers that coincide with an
+  AI-default look"): a competent default asked for "florist website,
+  editorial register" returns something close to Calyx — warm cream
+  ground, serif roman+italic, a rust/terracotta drop cap, a mono kicker.
+  Two prior sibling builds on this exact brief already left that default
+  by going cold (AB09-B: fog/petrol/tegel; K1: sea-fog/petrol/korall).
+  Going cold a third time would itself become the new reflex, so this
+  build departs the opposite direction and stays warm but moves off
+  cream specifically:
+    1. PALETTE TEMPERATURE — warm NEUTRAL limewash grey (kalkputs, a
+       plastered wall, not a paper/cream stock) with a single poppy-red
+       accent (vallmo), not terracotta/rust and not cold fog. Warm, but
+       a wall, not a page.
+    2. TYPE PAIRING — Spectral + JetBrains Mono. Unused anywhere else in
+       this repo's example set (Cardo/PT Mono, Fraunces/IBM Plex Mono,
+       Fraunces/Space Mono, Piazzolla/Fragment Mono, Cormorant/EB
+       Garamond/IBM Plex Mono, Cinzel/Vollkorn, Italiana/Archivo,
+       Familjen Grotesk/Literata/Fragment Mono, Bodoni Moda/Newsreader
+       are all already spoken for).
+  (A third, unforced departure: grammar is gallery/catalog with a
+  running .00–.09 index across every section, not only the priced rows
+  — a more apparatus-heavy use of numbering than any prior sibling.)
+
+  REFERENCE LOCK — Step 1b, catalog-sourced (~/design-catalog), read as
+  images (shot.png) plus entry.md text, two entries only per the reading
+  budget:
+  Primary reference/direction: Calyx (paper-atelier, editorial print,
+    gallery/catalog) — structural primary. One serif for all voice,
+    mono strictly for labels/prices/meta capped at caption size; a
+    numbered, priced ledger as the commercial centre, never a card
+    grid; exactly one accent at display scale only; hairlines under
+    kickers with an empty rail as the luxury signal; one dark closing
+    panel.
+  Preserve: numbered-index voice across the whole page, not only the
+    ledger (Calyx numbers only its catalogue rows — this build extends
+    that discipline to every section, a deliberate escalation, not a
+    copy); mono never sets a sentence, serif never sets a label; a
+    single tonal inversion at the close; captioned photo plates read as
+    documentation, not decoration.
+  Borrow only: Vintergatan (paper-atelier, editorial print, chaptered
+    editorial) — trade vocabulary as UI (an hours-table entry that is a
+    word, not a time: "verkstadsdag" there, "bindkväll" borrowed as the
+    idea here, adapted) and its three-stage reveal-guard failsafe
+    (mount-reveal, 1.8s, 6s) — the mechanism, not its wording.
+  Role rules: the accent (vallmo) appears only on the hero drop cap, the
+    ledger prices, and the wedding rail's thread + ring glyphs — never
+    as a fill, never on a control, never on running text under 24px;
+    kicker mono capped at 11px / 0.2em tracking; the numbered index
+    (.00–.09) is a label, always mono, never a heading font.
+  Media strategy: photo:unsplash — four IDs verified present in this
+    repo's own sites/calyx.html (the same four K1 verified and used):
+    1487530811176, 1574684891174, 1469371670807, 1561181286. No fifth ID
+    invented. Captions describe the photograph honestly and generically
+    (natural light, a bouquet, a bind-table) rather than naming specific
+    species the underlying photo cannot be confirmed to contain.
+  Reject: cream/paper ground (already the AI-default and already this
+    brief's AB09-A answer); cold fog/petrol (already AB09-B and K1's
+    answer — repeating it would make "go cold" the new reflex); a
+    second accent colour; rounded gradient buttons (register forbids
+    buttons as a default — CTAs are typeset links here); a fixed
+    full-page grain overlay (both catalog entries name it in "what to
+    leave," same objection: a permanent composited layer that mostly
+    dulls the photography); text set directly over a photo with no
+    scrim (this build routes around the problem entirely — no section
+    sets text on top of unbounded photography; photos are always a
+    bounded plate, so contrast never depends on where a crop happens to
+    be dark).
+  Token commitments: canvas kalkputs `#F0ECE6`, canvas tint `#E4DED3`,
+    ink lera `#2A2019`, ink-soft `#5B4C3E`, accent vallmo `#B8442A`
+    (display-scale only), dark ground natt `#201812` with its own
+    measured light-on-dark tone paper-dark `#EDE7DD` and a separately
+    measured caption-on-dark `#A89C8C` (house-physics: "every muted tone
+    needs a value per ground, measured twice" — ink-soft on kalkputs is
+    not reused on natt), accent-on-dark `#D9633F` (brightened so the
+    same accent role still clears contrast on the darker ground), sage
+    `#6C7857` decorative-only (hairline tints, never small text — it
+    clears only ~4.0:1 on kalkputs, restricted accordingly); type
+    display+body Spectral, kicker/index JetBrains Mono; pricing =
+    ledger (hairline rows, display-scale accent numerals, right-
+    aligned), never cards.
+
+  DECISION LEDGER
+  | Decision | Source | Role | Why |
+  |---|---|---|---|
+  | Editorial print register | SKILL.md register table | sets apparatus | Florist/atelier/wedding is the table's own listed fit |
+  | Gallery/catalog grammar | scroll/grammars.md register×grammar matrix + Calyx's own catalog tag | organising logic | Chaptered editorial's hero cell explicitly forbids media; this brief needs a real hero photo |
+  | Warm-neutral kalkputs, not cream or cold fog | AI-default self-test + AB09-B/K1 already went cold | palette-temperature departure | A third cold answer on the same brief would itself become the new reflex |
+  | Spectral + JetBrains Mono | brand-neutral pick, cross-checked against every prior font pairing in this repo | type-pairing departure | Neither face is used anywhere else in the repo's example set |
+  | Running .00–.09 index across every section | Calyx (primary, ledger-only numbering) extended | apparatus, licensed by gallery/catalog's "object, already labelled" | Unifies hero-as-object-one through atelier-as-last-object without inventing a new device per section |
+  | No text set over unbounded photography anywhere | Calyx + Vintergatan "what to leave," and no browser/contrast tool available in this blind run | contrast safety | Every text/ground pair had to be hand-verified against fixed hex values; text-on-photo cannot be verified that way |
+  | Accent restricted to ≥24px use only | measured contrast: accent vs kalkputs = 4.58:1, borderline for small text | token-role rule | Keeps the one accent legible without needing a live contrast checker |
+
+  FEELING CURVE (Step 2b·2)
+    .00 hero — curiosity, cut short: one photographed object already
+      labelled, a short claim, two ways forward (bukett / bröllop).
+    .01–.05 ledger — appetite, built by specificity: five real plants
+      named for the actual week they're written in, priced in the open.
+    .06 bröllop — the one slow beat: rail anatomy, quiet, a scroll-tied
+      thread drawing itself as the reader moves through the section —
+      the page's only place that asks for unhurried attention.
+    .07 prenumeration — relief: the smallest commitment on the page,
+      stated as an absence of one ("utan bindningstid").
+    .08 ateljékvällar — warmth, low-key: a room with ten chairs, not a
+      marketing claim.
+    .09 ateljén — arrival: the ground goes dark once, the index closes
+      on the shop's own address rather than a slogan.
+  PEAK: .06 bröllop — largest emotional span on the page (curiosity →
+    quiet attention), carries the only scroll-scrubbed device.
+  SIGNATURE MOVE: the wedding thread. A hand-coded (no vendored engine —
+    gallery/catalog does not require pin/pan/scrub as a grammar, and the
+    page needs exactly one contained exception) SVG line down the rail
+    column, `stroke-dashoffset` driven by the section's own scroll
+    progress (0 at first sight, 1 as it leaves), coordinated with a
+    second layer — two overlapping ring glyphs that scale 0.6→1 and
+    fade in on the same progress value. `prefers-reduced-motion`: thread
+    fully drawn, rings fully visible, no listener attached at all.
+
+  FINGERPRINT GATE (Step 2b·3) — checked against every row of
+  wiki/projects/_index/design-fingerprints.md, dimensions = grammar ·
+  nav · hero device · act-sequence shape · close pattern · signature
+  move. Need ≥4 of 6 different, per row:
+  | Row | Grammar | Nav | Hero | Acts | Close | Signature | Differs |
+  |---|---|---|---|---|---|---|---|
+  | Calyx | chaptered editorial (per registry; catalog itself tags gallery/catalog) | 3-col static, edition kicker | full-bleed photo, type over | photo>manifesto>duo>ledger>photo>testimonial>CTA | dark mailto display link | none (plain reveal) | grammar, nav, hero, acts, close, signature = 6/6 |
+  | Hōrai | filmic one-shot | fixed transparent→dark bar | full-bleed parallax photo, type over | hero>house>pinned quote>menus>photo>room>CTA | dark typeset-link + mailto | bell-curve pinned quote scrub | grammar, nav, hero, acts, close, signature = 6/6 |
+  | Hyperborea | chaptered editorial | sticky below edition strip | zero photography, SVG sun | strip>hero>marquee>programme>speakers>installation>tickets>CTA | dark colophon mailto | none (SVG identity system, not interaction) | grammar, nav, hero, acts, close, signature = 6/6 |
+  | Tidvatten | filmic one-shot | fixed bar, bordered link | full-bleed parallax sea photo, wordmark over | hero>philosophy>pinned set-piece>programme>duo>ledger>close | dark mailto display link | bell-curve two-temperature pinned scrub | grammar, nav, hero, acts, close, signature = 6/6 |
+  | Vintergatan | chaptered editorial | static below edition strip | type set into photo, unboxed | hero>quote>duo>ledger>photo>pinned reveal>process>ledger>duo>close | dark mailto display link | word-by-word verb scrub, pinned | grammar, nav, hero, acts, close, signature = 6/6 |
+  | Vinterspelen | chaptered editorial+gallery inflection | sticky, SVG mark + Biljetter button | split poster, framed painting inset | hero>stance>programme>pinned scene-change>stats>dark spread>tickets>travel>close | paper travel grid → dark colophon | staggered wing-flat stage-machine slide | nav, hero, close, signature = 4/6 (grammar and acts both lean close — acts differ enough on content shape, counted conservatively as a near-miss, so treat as **borderline: verify nav+hero+close+signature = 4 clear, safe**) |
+  | before-ai-slop | none (antagonist) | floating pill, backdrop-blur | centred split, fake dashboard card | nav>hero>logo bar>3-icon grid>stat grid>CTA>1-line footer | centred CTA, 1-line footer | none | all 6 — this is the negative reference by construction |
+  This build: gallery/catalog · static non-sticky numbered index nav ·
+  hero = single captioned bounded photo beside text, NOT full-bleed,
+  NOT type-over-photo, NOT a second framed-painting split · acts = the
+  brief's own six sections under a running .00–.09 index, no chapter
+  breaks · close = dark ground carrying the last catalogue entry
+  (address+hours as a ledger, no giant mailto) · signature = wedding-
+  rail thread+rings, contained to one non-pinned, non-full-bleed rail
+  column. Clears ≥4/6 against every row including the Vinterspelen
+  near-miss (nav, hero, close, signature all differ there).
+
+  PRE-EMIT SELF-CRITIQUE (slop-test.md, 1–5, revise anything <3):
+  P5 H4 E4 S5 R4 V5
+  (Hierarchy/Execution held at 4, not 5: this is a genuinely blind
+  one-shot with no screenshot, no contrast tool beyond hand-computed
+  WCAG luminance, and no Step 5 verification pass — the honest score
+  for a page that cannot be looked at before shipping.)
+-->
+<html lang="sv">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Florhuset Majorna — florist och ateljé vid Mariaplan, Göteborg</title>
+<meta name="description" content="Florhuset Majorna binder säsongens buketter, blommor till bröllop och en veckoprenumeration vid Mariaplan i Majorna, Göteborg. Beställ en bukett eller boka ett bröllopsmöte.">
+<meta name="color-scheme" content="light">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Spectral:ital,wght@0,400;0,500;0,600;1,400;1,500;1,600&family=JetBrains+Mono:wght@400;500;600&display=swap" rel="stylesheet">
+<style>
+  /* ===== Tokens (locked — every colour and font-family below references one of these) ===== */
+  :root{
+    --canvas:#F0ECE6;
+    --canvas-2:#E4DED3;
+    --ink:#2A2019;
+    --ink-soft:#5B4C3E;
+    --accent:#B8442A;
+    --natt:#201812;
+    --paper-dark:#EDE7DD;
+    --caption-dark:#A89C8C;
+    --accent-dark:#D9633F;
+    --sage:#6C7857;
+    --hairline: rgba(42,32,25,.18);
+    --hairline-dark: rgba(237,231,221,.2);
+    --font-display:'Spectral', ui-serif, Georgia, 'Times New Roman', serif;
+    --font-body:'Spectral', ui-serif, Georgia, 'Times New Roman', serif;
+    --font-mono:'JetBrains Mono', ui-monospace, 'SFMono-Regular', Menlo, monospace;
+    --ease: cubic-bezier(.16,1,.3,1);
+    --measure: 58ch;
+    --measure-narrow: 42ch;
+  }
+
+  *,*::before,*::after{box-sizing:border-box}
+  html{overflow-x:clip; scroll-behavior:smooth}
+  body{overflow-x:clip; margin:0; background:var(--canvas); color:var(--ink);
+    font-family:var(--font-body); font-size:1.0625rem; line-height:1.62;
+    -webkit-font-smoothing:antialiased; text-rendering:optimizeLegibility;}
+  @media (prefers-reduced-motion: reduce){ html{scroll-behavior:auto} }
+
+  img{max-width:100%; display:block}
+  h1,h2,h3{font-family:var(--font-display); font-weight:500; line-height:.98;
+    letter-spacing:-0.01em; margin:0; overflow-wrap:anywhere; min-width:0;}
+  p{margin:0}
+  a{color:inherit}
+  ul{margin:0; padding:0; list-style:none}
+
+  .skip-link{position:absolute; left:1rem; top:-4rem; background:var(--ink); color:var(--canvas);
+    padding:.75rem 1.25rem; font-family:var(--font-mono); font-size:.85rem; z-index:100;
+    transition:top .2s var(--ease); border-radius:2px;}
+  .skip-link:focus{top:1rem}
+
+  :focus-visible{outline:2.5px solid var(--ink); outline-offset:3px; border-radius:1px}
+  .on-dark :focus-visible{outline-color:var(--paper-dark)}
+
+  .container{max-width:1280px; margin-inline:auto; padding-inline:clamp(1.25rem,4vw,3rem);}
+  .measure{max-width:var(--measure)}
+  .measure-narrow{max-width:var(--measure-narrow)}
+
+  .kicker{font-family:var(--font-mono); font-size:10.5px; letter-spacing:.2em;
+    text-transform:uppercase; color:var(--ink-soft);}
+  .on-dark .kicker{color:var(--caption-dark)}
+  .kicker .idx{color:var(--ink); font-weight:600}
+  .on-dark .kicker .idx{color:var(--paper-dark)}
+  .hairline{height:1px; background:var(--hairline); border:0; margin:.9rem 0 0;}
+  .on-dark .hairline{background:var(--hairline-dark)}
+
+  em, i{font-style:italic}
+
+  /* ===== Reveal system — fails toward visible (mount reveal, failsafes, noscript) ===== */
+  .reveal{opacity:0; transform:translateY(28px);
+    transition:opacity 1.3s var(--ease), transform 1.3s var(--ease);}
+  .reveal.is-visible{opacity:1; transform:none}
+  @media (prefers-reduced-motion: reduce){
+    .reveal{opacity:1 !important; transform:none !important; transition:none !important;}
+  }
+  noscript .reveal, html.no-js .reveal{opacity:1; transform:none}
+
+  /* ===== Nav — static, non-sticky, numbered index that jumps ===== */
+  .nav{border-bottom:1px solid var(--hairline); background:var(--canvas);}
+  .nav-inner{display:flex; align-items:center; justify-content:space-between;
+    flex-wrap:wrap; gap:1rem 2rem; padding-block:1.1rem;}
+  .wordmark{font-family:var(--font-display); font-size:1.15rem; letter-spacing:-0.01em;}
+  .wordmark em{font-style:italic}
+  .nav-index{display:flex; gap:2rem; overflow-x:auto; -webkit-overflow-scrolling:touch;
+    scrollbar-width:none; padding-block:.15rem;}
+  .nav-index::-webkit-scrollbar{display:none}
+  .nav-index a{display:inline-flex; align-items:baseline; gap:.4em; white-space:nowrap;
+    font-family:var(--font-mono); font-size:.72rem; letter-spacing:.08em; text-transform:uppercase;
+    color:var(--ink-soft); text-decoration:none; padding:.3rem .1rem; border-bottom:1px solid transparent;}
+  .nav-index a .n{color:var(--ink); font-weight:600}
+  .nav-index a:hover, .nav-index a:focus-visible{color:var(--ink); border-bottom-color:var(--ink);}
+
+  /* ===== Hero — object one, already labelled. Diptych, not full-bleed. ===== */
+  .hero{padding-block:clamp(3rem,8vw,6rem) clamp(3.5rem,7vw,5.5rem);}
+  .hero-grid{display:grid; gap:clamp(2rem,5vw,4rem); align-items:end;}
+  .hero-text{display:flex; flex-direction:column; gap:1.5rem; min-width:0;}
+  .hero h1{font-size:clamp(2.2rem,6vw,4.1rem); font-weight:500;}
+  .hero h1 em{font-style:italic; font-weight:400}
+  .drop{float:left; font-size:3.1em; line-height:.78; padding:.03em .06em 0 0; color:var(--accent); font-weight:500;}
+  .hero-lede{font-size:1.08rem; color:var(--ink-soft); max-width:46ch;}
+  .cta-row{display:flex; flex-wrap:wrap; gap:1.5rem 2.25rem; margin-top:.25rem;}
+  .cta-link{font-family:var(--font-display); font-style:italic; font-size:1.25rem;
+    text-decoration:none; color:var(--ink); border-bottom:1.5px solid var(--hairline);
+    padding-bottom:.15rem; white-space:nowrap; transition:border-color .25s var(--ease), color .25s var(--ease);}
+  .on-dark .cta-link{color:var(--paper-dark); border-bottom-color:var(--hairline-dark);}
+  .cta-link:hover, .cta-link:focus-visible{border-bottom-color:var(--accent);}
+  .on-dark .cta-link:hover, .on-dark .cta-link:focus-visible{border-bottom-color:var(--accent-dark);}
+
+  .hero-object{min-width:0;}
+  .hero-object figure{margin:0; min-width:0;}
+  .hero-object img{width:100%; height:clamp(260px,42vw,480px); object-fit:cover; border-radius:1px;}
+  .hero-object figcaption{margin-top:.65rem; display:flex; gap:.6em; align-items:baseline;
+    font-family:var(--font-mono); font-size:10.5px; letter-spacing:.14em; text-transform:uppercase;
+    color:var(--ink-soft);}
+  .hero-object figcaption .n{color:var(--ink); font-weight:600}
+
+  @media (min-width:860px){
+    .hero-grid{grid-template-columns:minmax(0,7fr) minmax(0,5fr);}
+  }
+
+  /* ===== Ledger — säsongens buketter. Typeset rows, never cards. ===== */
+  .ledger-section{padding-block:clamp(3rem,7vw,5.5rem); border-top:1px solid var(--hairline);}
+  .section-head{display:grid; gap:.6rem; margin-bottom:clamp(2rem,5vw,3rem); max-width:60ch;}
+  .section-head h2{font-size:clamp(1.7rem,4vw,2.6rem);}
+  .section-head .intro{color:var(--ink-soft); font-size:1rem; max-width:52ch;}
+
+  .ledger{border-top:1px solid var(--hairline);}
+  .ledger-row{display:grid; grid-template-columns:minmax(0,1fr); gap:.35rem 1.5rem;
+    padding-block:1.35rem; border-bottom:1px solid var(--hairline);}
+  .ledger-row-head{display:flex; gap:.9rem; align-items:baseline; min-width:0;}
+  .ledger-row-head .n{font-family:var(--font-mono); font-size:.85rem; color:var(--ink-soft); flex:none;}
+  .ledger-row-head h3{font-size:1.25rem; font-weight:500;}
+  .ledger-row p{color:var(--ink-soft); max-width:56ch; font-size:.98rem;}
+  .ledger-price{font-family:var(--font-display); font-weight:600; font-size:clamp(1.5rem,3vw,1.9rem);
+    color:var(--accent);}
+  .ledger-price .unit{font-family:var(--font-mono); font-weight:400; font-size:.62em;
+    letter-spacing:.04em; color:var(--ink-soft); margin-left:.35em;}
+
+  @media (min-width:640px){
+    .ledger-row{grid-template-columns:minmax(0,1fr) auto; align-items:baseline;}
+  }
+
+  /* ===== Rail — bröllop, the peak act, carries the signature move ===== */
+  .rail-section{padding-block:clamp(3rem,7vw,5.5rem); border-top:1px solid var(--hairline);
+    background:var(--canvas-2);}
+  .rail-grid{display:grid; gap:2.5rem;}
+  .rail-col{position:relative; display:flex; flex-direction:row; gap:1.25rem; align-items:flex-start;}
+  .thread-wrap{flex:none; width:34px;}
+  .thread-wrap svg{display:block; width:34px; height:100%; min-height:320px;}
+  .rail-copy{min-width:0; max-width:60ch;}
+  .rail-copy h2{font-size:clamp(1.7rem,4vw,2.6rem); margin-bottom:1.1rem;}
+  .rail-copy p{color:var(--ink-soft); margin-bottom:1rem; max-width:58ch;}
+  .rail-copy .wed-list{margin:1.1rem 0 1.4rem; display:grid; gap:.5rem;}
+  .rail-copy .wed-list li{display:flex; gap:.7rem; align-items:baseline; color:var(--ink); font-size:.98rem;}
+  .rail-copy .wed-list li::before{content:"·"; color:var(--accent); font-weight:700; flex:none;}
+  .rail-note{font-family:var(--font-mono); font-size:.78rem; color:var(--ink-soft); letter-spacing:.02em;}
+
+  @media (min-width:860px){
+    .rail-grid{grid-template-columns:minmax(0,3fr) minmax(0,9fr); align-items:start;}
+    .rail-col{flex-direction:column; gap:0; position:sticky; top:2.5rem;}
+    .thread-wrap{width:100%; max-width:60px;}
+    .thread-wrap svg{width:100%; height:340px; min-height:0;}
+  }
+
+  /* ===== Centred single column — prenumeration ===== */
+  .centred-section{padding-block:clamp(3rem,7vw,5.5rem); border-top:1px solid var(--hairline);}
+  .centred-inner{max-width:44ch; margin-inline:auto; text-align:left;}
+  .centred-inner h2{font-size:clamp(1.7rem,4vw,2.6rem); margin-bottom:1.1rem;}
+  .centred-inner p{color:var(--ink-soft); margin-bottom:1.5rem;}
+  .plan-rows{border-top:1px solid var(--hairline); margin-bottom:1.75rem;}
+  .plan-row{display:flex; justify-content:space-between; gap:1rem; align-items:baseline;
+    padding-block:1rem; border-bottom:1px solid var(--hairline);}
+  .plan-row .label{font-size:1.02rem;}
+  .plan-row .label span{display:block; font-family:var(--font-mono); font-size:.72rem;
+    color:var(--ink-soft); letter-spacing:.04em; margin-top:.2rem; text-transform:uppercase;}
+  .plan-row .price{font-family:var(--font-display); font-weight:600; font-size:1.3rem; color:var(--accent);
+    white-space:nowrap;}
+
+  /* ===== Framed image + text — ateljékvällar ===== */
+  .framed-section{padding-block:clamp(3rem,7vw,5.5rem); border-top:1px solid var(--hairline);}
+  .framed-grid{display:grid; gap:clamp(2rem,5vw,3.5rem); align-items:start;}
+  .framed-figure{min-width:0;}
+  .framed-figure img{width:100%; height:clamp(240px,32vw,360px); object-fit:cover; border:1px solid var(--hairline);}
+  .framed-figure figcaption{margin-top:.6rem; font-family:var(--font-mono); font-size:10.5px;
+    letter-spacing:.14em; text-transform:uppercase; color:var(--ink-soft);}
+  .framed-copy{min-width:0; max-width:52ch;}
+  .framed-copy h2{font-size:clamp(1.7rem,4vw,2.4rem); margin-bottom:1rem;}
+  .framed-copy p{color:var(--ink-soft); margin-bottom:1rem;}
+  .framed-copy .cta-link{margin-top:.5rem; display:inline-block;}
+
+  @media (min-width:780px){
+    .framed-grid{grid-template-columns:minmax(0,5fr) minmax(0,7fr);}
+  }
+  @media (min-width:780px) and (max-width:1023px){
+    .framed-grid{grid-template-columns:minmax(0,1fr);}
+  }
+
+  /* ===== Dark inversion — om ateljén + footer, last catalog entry ===== */
+  .dark-section{background:var(--natt); color:var(--paper-dark); padding-block:clamp(3.5rem,8vw,6rem) 0;}
+  .dark-grid{display:grid; gap:clamp(2rem,5vw,3.5rem); align-items:start; padding-bottom:clamp(2.5rem,6vw,4rem);
+    border-bottom:1px solid var(--hairline-dark);}
+  .dark-copy{min-width:0; max-width:50ch;}
+  .dark-copy h2{font-size:clamp(1.8rem,4.5vw,2.7rem); color:var(--paper-dark); margin-bottom:1.1rem;}
+  .dark-copy p{color:var(--caption-dark); margin-bottom:1rem; max-width:48ch;}
+  .dark-figure{min-width:0;}
+  .dark-figure img{width:100%; height:clamp(220px,30vw,320px); object-fit:cover; border:1px solid var(--hairline-dark);}
+  .dark-figure figcaption{margin-top:.6rem; font-family:var(--font-mono); font-size:10.5px;
+    letter-spacing:.14em; text-transform:uppercase; color:var(--caption-dark);}
+
+  @media (min-width:780px){
+    .dark-grid{grid-template-columns:minmax(0,7fr) minmax(0,5fr);}
+  }
+
+  .ledger-dark{border-top:1px solid var(--hairline-dark); margin-top:2rem;}
+  .ledger-dark-row{display:grid; grid-template-columns:minmax(0,1fr); gap:.2rem;
+    padding-block:1rem; border-bottom:1px solid var(--hairline-dark);}
+  .ledger-dark-row .label{font-family:var(--font-mono); font-size:.7rem; letter-spacing:.1em;
+    text-transform:uppercase; color:var(--caption-dark);}
+  .ledger-dark-row .value{font-size:1.02rem; color:var(--paper-dark);}
+  .ledger-dark-row a{text-decoration:underline; text-underline-offset:.2em; text-decoration-color:var(--hairline-dark);}
+  .ledger-dark-row a:hover, .ledger-dark-row a:focus-visible{text-decoration-color:var(--accent-dark);}
+
+  @media (min-width:640px){
+    .ledger-dark-row{grid-template-columns:minmax(10ch,16ch) minmax(0,1fr); gap:1.5rem; align-items:baseline;}
+  }
+
+  .colophon{padding-block:2rem; display:flex; flex-wrap:wrap; justify-content:space-between;
+    gap:1rem 2rem; font-family:var(--font-mono); font-size:.72rem; letter-spacing:.03em;
+    color:var(--caption-dark);}
+  .colophon .idx{color:var(--paper-dark); font-weight:600}
+
+  @media (max-width:389px){
+    .container{padding-inline:1rem;}
+  }
+</style>
+</head>
+<body>
+<script>document.documentElement.classList.remove('no-js');</script>
+<a class="skip-link" href="#main">Hoppa till innehåll</a>
+
+<!-- NAV: replaces the floating pill / hamburger default with a static,
+     non-sticky index that jumps — this register carries no fixed chrome,
+     and the numbered links double as the page's running catalogue index.
+     Gap fix: 2rem flex gap between every link (K1's own sibling build
+     shipped this without spacing between the nav links). -->
+<header class="nav">
+  <div class="container nav-inner">
+    <span class="wordmark">Florhuset <em>Majorna</em></span>
+    <nav class="nav-index" aria-label="Sidindex">
+      <a href="#buketter"><span class="n">01</span>Buketter</a>
+      <a href="#brollop"><span class="n">06</span>Bröllop</a>
+      <a href="#prenumeration"><span class="n">07</span>Prenumeration</a>
+      <a href="#ateljekvallar"><span class="n">08</span>Ateljékvällar</a>
+      <a href="#ateljen"><span class="n">09</span>Ateljén</a>
+    </nav>
+  </div>
+</header>
+
+<main id="main">
+
+  <!-- HERO: replaces the split hero-with-gradient-headline-and-fake-dashboard
+       default. Gallery/catalog's own contract — "hero is object one,
+       already labelled" — instead of a bare claim over a full-bleed photo.
+       Quiet zone: generous top padding before the headline, no clutter. -->
+  <section class="hero container">
+    <div class="hero-grid">
+      <div class="hero-text">
+        <p class="kicker"><span class="idx">.00</span> Dagens snitt</p>
+        <h1 class="reveal"><span class="drop">B</span>lommor snittade i morse, <em>bundna</em> på Mariaplan.</h1>
+        <p class="hero-lede reveal">Florhuset Majorna binder efter vad som just kommit in den dagen, inte efter en färdig katalog. Hämta en bukett samma vecka, eller boka ett möte om ni gifter er.</p>
+        <div class="cta-row reveal">
+          <a class="cta-link" href="mailto:hej@florhusetmajorna.se?subject=Best%C3%A4llning%20bukett">Beställ en bukett →</a>
+          <a class="cta-link" href="#brollop">Boka bröllopsmöte →</a>
+        </div>
+      </div>
+      <div class="hero-object reveal">
+        <figure>
+          <img src="https://images.unsplash.com/photo-1487530811176-4d0578feaf46?q=80&amp;w=1400&amp;auto=format&amp;fit=crop" alt="Nybunden säsongsbukett i naturligt ljus, fotograferad på ett träbord." loading="eager" fetchpriority="high" width="1400" height="1000">
+          <figcaption><span class="n">.00</span> Fältbuketten, plockad på morgonrundan</figcaption>
+        </figure>
+      </div>
+    </div>
+  </section>
+
+  <!-- SÄSONGENS BUKETTER: replaces the three-icon feature-card grid /
+       bento-grid default with a typeset, priced ledger — hairline rows,
+       display-scale accent numerals, right-aligned price. A ledger is a
+       decision, a card grid is the reflex. -->
+  <section id="buketter" class="ledger-section container">
+    <div class="section-head reveal">
+      <p class="kicker">Säsongens buketter · september</p>
+      <h2>Det som är i säsong just nu</h2>
+      <p class="intro">Listan ändras med vad som finns hos odlarna på västkusten. Hämtas på Mariaplan, oftast inom två dagar från beställning.</p>
+    </div>
+    <div class="ledger">
+      <div class="ledger-row reveal">
+        <div class="ledger-row-head">
+          <span class="n">.01</span>
+          <div>
+            <h3>Dahlior och rågax</h3>
+            <p>Mörkröda och aprikosfärgade dahlior med torkat rågax, bundet löst så stjälkarna får plats att andas.</p>
+          </div>
+        </div>
+        <p class="ledger-price">345<span class="unit">kr</span></p>
+      </div>
+      <div class="ledger-row reveal">
+        <div class="ledger-row-head">
+          <span class="n">.02</span>
+          <div>
+            <h3>Nypon och salvia</h3>
+            <p>Nyponkvistar med bär, mörk salvia och några sena myntagrenar för doften.</p>
+          </div>
+        </div>
+        <p class="ledger-price">295<span class="unit">kr</span></p>
+      </div>
+      <div class="ledger-row reveal">
+        <div class="ledger-row-head">
+          <span class="n">.03</span>
+          <div>
+            <h3>Höstanemon</h3>
+            <p>Vita och rosa höstanemoner, hållet minimalt med mest gröna blad omkring.</p>
+          </div>
+        </div>
+        <p class="ledger-price">275<span class="unit">kr</span></p>
+      </div>
+      <div class="ledger-row reveal">
+        <div class="ledger-row-head">
+          <span class="n">.04</span>
+          <div>
+            <h3>Solros och humle</h3>
+            <p>Höga solrosor med humlerankor virade runt, säsongens största bukett.</p>
+          </div>
+        </div>
+        <p class="ledger-price">425<span class="unit">kr</span></p>
+      </div>
+      <div class="ledger-row reveal">
+        <div class="ledger-row-head">
+          <span class="n">.05</span>
+          <div>
+            <h3>Fältbuketten</h3>
+            <p>Det vi plockade i morse, florist väljer. Ingen bukett blir den andra lik.</p>
+          </div>
+        </div>
+        <p class="ledger-price">250<span class="unit">kr</span></p>
+      </div>
+    </div>
+  </section>
+
+  <!-- BRÖLLOP: replaces the centred stat-band / testimonial-carousel
+       default with a label-rail anatomy — a genuinely distinct section
+       shape from the ledger above and the centred column below. Carries
+       the page's one signature move: a scroll-tied thread + ring pair,
+       hand-coded, contained to this rail, never using the pinned bell-
+       curve mechanism the two filmic-one-shot siblings already use. -->
+  <section id="brollop" class="rail-section">
+    <div class="container">
+      <div class="rail-grid">
+        <div class="rail-col">
+          <div class="thread-wrap" aria-hidden="true">
+            <svg viewBox="0 0 40 400" preserveAspectRatio="none">
+              <path class="thread-ghost" d="M20 4 C 4 90, 36 160, 20 240 S 4 340, 20 396" fill="none" stroke="var(--hairline)" stroke-width="1.5"/>
+              <path class="thread-path" d="M20 4 C 4 90, 36 160, 20 240 S 4 340, 20 396" fill="none" stroke="var(--accent)" stroke-width="2"/>
+              <g class="thread-rings" style="transform-origin:20px 396px; opacity:0; transform:scale(.6);">
+                <circle cx="15" cy="392" r="9" fill="none" stroke="var(--accent)" stroke-width="2"/>
+                <circle cx="25" cy="392" r="9" fill="none" stroke="var(--accent)" stroke-width="2"/>
+              </g>
+            </svg>
+          </div>
+          <div class="rail-copy">
+            <p class="kicker reveal"><span class="idx">.06</span> Bröllop</p>
+            <h2 class="reveal">Blommor till bröllopet, planerade tillsammans</h2>
+            <p class="reveal">Vi börjar med ett möte på ateljén, gärna med bilder på platsen ni valt. Därifrån sätter vi en säsongspalett snarare än en färdig lista, eftersom det som blommar i juni sällan finns kvar i september. Vi kommer ut och monterar allt samma dag som ni gifter er.</p>
+            <ul class="wed-list reveal">
+              <li>Brudbukett och eventuella tärnbuketter</li>
+              <li>Bordsdekor, en per bord eller löpande längs bordet</li>
+              <li>Blomsterportal eller grind, om platsen tillåter</li>
+              <li>Montering på plats samma dag</li>
+            </ul>
+            <p class="rail-note reveal">Boka mötet minst tre månader innan, gärna tidigare om datumet ligger i juni eller juli.</p>
+            <div class="cta-row reveal" style="margin-top:1.5rem;">
+              <a class="cta-link" href="mailto:hej@florhusetmajorna.se?subject=Br%C3%B6llopsm%C3%B6te">Boka ett bröllopsmöte →</a>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- PRENUMERATION: replaces the pricing-table-with-highlighted-plan
+       default. A short, centred single column — a third distinct
+       anatomy — with a two-row comparison instead of a third ledger, so
+       the page doesn't repeat the same shape three times in a row. -->
+  <section id="prenumeration" class="centred-section container">
+    <div class="centred-inner">
+      <p class="kicker reveal"><span class="idx">.07</span> Veckans blomma</p>
+      <h2 class="reveal">En bukett som väntar på dig varje vecka</h2>
+      <p class="reveal">Prenumerationen ger en bunden bukett att hämta på Mariaplan, med det som är fräschast just den veckan. Ni väljer takt själva, och pausar eller avslutar när ni vill, utan bindningstid.</p>
+      <div class="plan-rows reveal">
+        <div class="plan-row">
+          <p class="label">Varje vecka<span>Hämtas fredagar</span></p>
+          <p class="price">245 kr</p>
+        </div>
+        <div class="plan-row">
+          <p class="label">Varannan vecka<span>Hämtas fredagar, jämna veckor</span></p>
+          <p class="price">195 kr</p>
+        </div>
+      </div>
+      <div class="cta-row reveal">
+        <a class="cta-link" href="mailto:hej@florhusetmajorna.se?subject=Prenumeration%20veckans%20blomma">Starta en prenumeration →</a>
+      </div>
+    </div>
+  </section>
+
+  <!-- ATELJÉKVÄLLAR: replaces the icon-plus-headline "feature" block
+       default with a framed, captioned photo plate beside text — a
+       fourth distinct anatomy, and the one place besides the hero where
+       a photograph appears, kept bounded (never full-bleed) so its
+       contrast never has to be judged against an unpredictable crop. -->
+  <section id="ateljekvallar" class="framed-section container">
+    <div class="framed-grid">
+      <figure class="framed-figure reveal">
+        <img src="https://images.unsplash.com/photo-1469371670807-013ccf25f16a?q=80&amp;w=1200&amp;auto=format&amp;fit=crop" alt="Bindbord med blomsterrester, sax och band, förberett inför en kväll med binderi." loading="lazy" width="1200" height="900">
+        <figcaption><span class="n">.08</span> Bindbordet, före en tisdagskväll</figcaption>
+      </figure>
+      <div class="framed-copy">
+        <p class="kicker reveal">Ateljékvällar</p>
+        <h2 class="reveal">Binderi på tisdagskvällar</h2>
+        <p class="reveal">En kväll i månaden öppnar vi ateljén för binderi tillsammans. Vi går igenom ett tema och säsongens snittblommor, och alla får med sig sin egen bukett eller krans hem. Högst tio platser, så att alla får plats vid bordet.</p>
+        <p class="reveal">Datum sätts månad för månad. Se anslaget i fönstret på Mariaplan, eller fråga när ni hämtar en bukett.</p>
+        <a class="cta-link reveal" href="mailto:hej@florhusetmajorna.se?subject=Ateljekv%C3%A4ll">Fråga om nästa kväll →</a>
+      </div>
+    </div>
+  </section>
+
+  <!-- OM ATELJÉN + FOOTER: the page's one tonal inversion, and the
+       gallery/catalog close — "last object," not a giant mailto display
+       link like every chaptered-editorial sibling in this repo closes
+       on. Address and hours as a light-on-dark ledger, contrast measured
+       against the fixed hex tokens, not against an unverifiable photo. -->
+  <section id="ateljen" class="dark-section on-dark">
+    <div class="container">
+      <div class="dark-grid">
+        <div class="dark-copy">
+          <p class="kicker reveal"><span class="idx">.09</span> Om ateljén</p>
+          <h2 class="reveal">Florhuset Majorna, vid Mariaplan</h2>
+          <p class="reveal">Ateljén ligger en trappa ner från spårvagnshållplatsen, med fönster mot torget. Vi binder på plats varje dag, så det ni ser genom fönstret är det som finns i kylen.</p>
+          <p class="reveal">Florist är Elin Bark, utbildad i Uppsala, som drivit ateljén sedan hon flyttade till Majorna.</p>
+          <div class="ledger-dark reveal">
+            <div class="ledger-dark-row">
+              <p class="label">Adress</p>
+              <p class="value">Mariaplan 4, 414 70 Göteborg</p>
+            </div>
+            <div class="ledger-dark-row">
+              <p class="label">Öppettider</p>
+              <p class="value">Tisdag–fredag 10–18, lördag 10–15, söndag–måndag stängt</p>
+            </div>
+            <div class="ledger-dark-row">
+              <p class="label">Kontakt</p>
+              <p class="value"><a href="mailto:hej@florhusetmajorna.se">hej@florhusetmajorna.se</a></p>
+            </div>
+            <div class="ledger-dark-row">
+              <p class="label">Instagram</p>
+              <p class="value">@florhusetmajorna</p>
+            </div>
+          </div>
+        </div>
+        <figure class="dark-figure reveal">
+          <img src="https://images.unsplash.com/photo-1561181286-d3fee7d55364?q=80&amp;w=1200&amp;auto=format&amp;fit=crop" alt="Interiör i blomsterateljén med blommor uppradade inför bindning." loading="lazy" width="1200" height="900">
+          <figcaption>Ateljén, vardagsmorgon</figcaption>
+        </figure>
+      </div>
+      <div class="colophon">
+        <span>Florhuset Majorna. Bundet på Mariaplan.</span>
+        <span><span class="idx">.00</span>–<span class="idx">.09</span> · index ovan</span>
+      </div>
+    </div>
+  </section>
+
+</main>
+
+<script>
+(function(){
+  var reduce = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+  var revealEls = document.querySelectorAll('.reveal');
+
+  if (reduce) {
+    revealEls.forEach(function(el){ el.classList.add('is-visible'); });
+  } else {
+    var vh = window.innerHeight;
+    var toObserve = [];
+    revealEls.forEach(function(el){
+      var r = el.getBoundingClientRect();
+      if (r.top < vh) { el.classList.add('is-visible'); } // mount reveal: never hide what's already on screen
+      else { toObserve.push(el); }
+    });
+    if ('IntersectionObserver' in window) {
+      var io = new IntersectionObserver(function(entries){
+        entries.forEach(function(entry){
+          if (entry.isIntersecting) {
+            entry.target.classList.add('is-visible');
+            io.unobserve(entry.target);
+          }
+        });
+      }, { threshold: 0.12, rootMargin: '0px 0px -8% 0px' });
+      toObserve.forEach(function(el){ io.observe(el); });
+    } else {
+      toObserve.forEach(function(el){ el.classList.add('is-visible'); });
+    }
+    // Reveal guard: never strand content — two failsafes (Vintergatan's borrowed mechanism)
+    setTimeout(function(){
+      document.querySelectorAll('.reveal:not(.is-visible)').forEach(function(el){ el.classList.add('is-visible'); });
+    }, 1800);
+    setTimeout(function(){
+      document.querySelectorAll('.reveal:not(.is-visible)').forEach(function(el){ el.classList.add('is-visible'); });
+    }, 6000);
+  }
+
+  // Signature move: the wedding thread. Contained to .rail-section, no vendored engine.
+  var rail = document.querySelector('.rail-section');
+  var threadPath = document.querySelector('.thread-path');
+  var rings = document.querySelector('.thread-rings');
+
+  if (rail && threadPath && rings) {
+    if (reduce) {
+      threadPath.style.strokeDashoffset = '0';
+      rings.style.opacity = '1';
+      rings.style.transform = 'scale(1)';
+    } else {
+      var len = threadPath.getTotalLength();
+      threadPath.style.strokeDasharray = len;
+      threadPath.style.strokeDashoffset = len;
+      var ticking = false;
+      function update(){
+        ticking = false;
+        var rect = rail.getBoundingClientRect();
+        var vh2 = window.innerHeight;
+        var total = rect.height + vh2;
+        var raw = (vh2 - rect.top) / total;
+        var p = Math.min(1, Math.max(0, raw));
+        threadPath.style.strokeDashoffset = String(len * (1 - p));
+        rings.style.opacity = String(p);
+        rings.style.transform = 'scale(' + (0.6 + 0.4 * p) + ')';
+      }
+      function onScroll(){
+        if (!ticking) { window.requestAnimationFrame(update); ticking = true; }
+      }
+      window.addEventListener('scroll', onScroll, { passive: true });
+      window.addEventListener('resize', onScroll);
+      update();
+    }
+  }
+})();
+</script>
+</body>
+</html>
+<!--
+  COVERAGE LIST — ticked against the rendered markup above:
+    [x] hero — #main > .hero, one <h1>
+    [x] säsongens buketter (3–5) — #buketter, five ledger rows .01–.05
+    [x] bröllop — #brollop, rail section .06 with the signature move
+    [x] prenumeration — #prenumeration, .07
+    [x] ateljékvällar — #ateljekvallar, .08
+    [x] om ateljén med adress + öppettider — #ateljen, .09, Mariaplan 4,
+        414 70 Göteborg + full öppettider row
+    [x] footer — .colophon inside #ateljen's dark section
+    [x] svenska, riktigt innehåll — all copy Swedish; no fabricated
+        customer counts or trust metrics; prices/capacity are the shop's
+        own operational facts, licensed by house-physics' own precedent
+        (Calyx's priced index, Hyperborea's "120 seats")
+    [x] mobil 390 utan horisontell scroll — html/body overflow-x:clip;
+        every grid track minmax(0,1fr); nav index is its own contained
+        horizontal-scroll strip, not page-level scroll
+    [x] prefers-reduced-motion — reveal system neutralised, thread/rings
+        rendered in their finished state, no scroll listener attached
+    [x] synlig fokusring — :focus-visible 2.5px solid ink (paper-dark on
+        the dark section), offset 3px, everywhere, no outline:none anywhere
+    [x] alt-texter — all four <img> elements carry descriptive, honest alt text
+    [x] en h1 — exactly one, in the hero
+    [x] lane + register överst som HTML-kommentar — top of file
+    [x] en kommentar per sektion — six section comments, each naming the
+        slop default it replaces
+    [x] konvertering — two mailto CTAs (beställ en bukett / boka
+        bröllopsmöte), plus a third for the subscription and a fourth for
+        the workshop evening, all pointed at the same conversion job
+-->

@@ -57,8 +57,29 @@ def main() -> None:
 
     routes = L.match_routes(path, content)
     signals = ",".join(r.get("id", "") for r in routes)
+    # Always logged — cheap, and it is the record design-stop.py's unarmed
+    # advisory line counts ("N UI files changed without an armed session").
     L.log(root, event="edit", file=path, component=component,
           signal=signals, tier=tier)
+
+    # Arm/disarm (idea-2ao follow-up): everything below this point used to
+    # fire on any UI-shaped write, regardless of whether the session ever
+    # showed real design intent. Now it only EMITS into context when the
+    # session is armed — by design-intent.py on a high-confidence prompt, or
+    # by design-telemetry.py when a design skill actually loads. The one
+    # exception is a 0-locked project: a genuinely strong (code-matched)
+    # route there auto-arms, because a locked contract plus real component
+    # code is itself strong enough evidence that this is a design session,
+    # and gate 60 / the contract detector below need somewhere to land.
+    # Route/trap rows are still LOGGED either way (cheap; keeps the ledger
+    # complete for a session that arms partway through).
+    was_armed = L.armed(root)
+    strong_routes = [r for r in routes if L.strong_route(r, path, content)]
+    auto_arm = (not was_armed and tier == "0-locked" and strong_routes
+                and L.is_substantive_ui_write(content))
+    if auto_arm:
+        L.arm(root, "route", strong_routes[0].get("id", ""))
+    do_emit = was_armed or bool(auto_arm)
 
     lines = []
 
@@ -69,50 +90,59 @@ def main() -> None:
         for skill, hx in traps[:4]:
             L.log(root, event="trap", file=path, component=component,
                   skill=skill, detail=hx, tier=tier)
-        listed = ", ".join(f"{hx} ({skill})" for skill, hx in traps[:4])
-        lines.append(
-            f"GATE 60 — demoted-skill palette in a locked project: {listed}. "
-            f"Replace with the DESIGN.md token."
-        )
+        if do_emit:
+            listed = ", ".join(f"{hx} ({skill})" for skill, hx in traps[:4])
+            lines.append(
+                f"GATE 60 — demoted-skill palette in a locked project: {listed}. "
+                f"Replace with the DESIGN.md token."
+            )
 
     for rule in routes:
         skill = rule.get("skill", "")
         why = rule.get("why", "")
         if not skill:
             continue
-        if skill == "copy-gate":
-            lines.append("→ copy gate (user-facing strings) — copywriting, then humanizer")
-        else:
-            lines.append(f"→ {skill} ({why})")
+        strength = rule.get("_matched_on", "path")
+        cls = L.skill_class(skill)
         L.log(root, event="route", file=path, component=component,
-              skill=skill, signal=rule.get("id", ""), tier=tier)
+              skill=skill, signal=rule.get("id", ""), tier=tier,
+              strength=strength, cls=cls)
+        if do_emit:
+            if skill == "copy-gate":
+                lines.append("→ copy gate (user-facing strings) — copywriting, "
+                              f"then humanizer [{strength}]")
+            else:
+                lines.append(f"→ {skill} ({why}) [{strength}]")
 
     # Deterministic rules. Reuse design-gate.py's verdict on these exact bytes
     # when it already ran this write; only pay for the detector when it didn't
     # (unlocked projects, where the gate is a no-op). The full sweep is Stop.
-    findings = L.cached_detect(root, content)
-    if findings is None:
-        findings = L.detect([path], root)
-    if findings:
-        seen, shown = set(), []
-        for f in findings:
-            rid = f.get("antipattern") or f.get("id") or "?"
-            if rid in seen:
-                continue
-            seen.add(rid)
-            shown.append(f"{rid}: {f.get('snippet') or f.get('name') or ''}".strip())
-            if len(shown) >= 5:
-                break
-        lines.append("detector: " + " · ".join(shown))
-        contract = [f for f in findings
-                    if str(f.get("antipattern", "")).startswith("design-system-")]
-        if contract:
-            lines.append(
-                f"{len(contract)} of these are DESIGN.md contract violations — "
-                f"fix against the locked token, do not add a new one."
-            )
+    # Skipped entirely when nothing will be emitted — no point spawning the
+    # detector subprocess for an unarmed edit no one will see context for.
+    if do_emit:
+        findings = L.cached_detect(root, content)
+        if findings is None:
+            findings = L.detect([path], root)
+        if findings:
+            seen, shown = set(), []
+            for f in findings:
+                rid = f.get("antipattern") or f.get("id") or "?"
+                if rid in seen:
+                    continue
+                seen.add(rid)
+                shown.append(f"{rid}: {f.get('snippet') or f.get('name') or ''}".strip())
+                if len(shown) >= 5:
+                    break
+            lines.append("detector: " + " · ".join(shown))
+            contract = [f for f in findings
+                        if str(f.get("antipattern", "")).startswith("design-system-")]
+            if contract:
+                lines.append(
+                    f"{len(contract)} of these are DESIGN.md contract violations — "
+                    f"fix against the locked token, do not add a new one."
+                )
 
-    if not lines:
+    if not do_emit or not lines:
         return
 
     header = f"[design · {component}]"

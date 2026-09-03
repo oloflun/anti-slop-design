@@ -1,0 +1,497 @@
+<!doctype html>
+<!--
+  LANE: salt-bleached harbour atelier — kalksten-grå, oxiderad koppar och ett
+  tidvattenbundet säsongsindex. Inte "clean and modern": en västkustateljé som
+  för bok över vad som går att snitta, vecka för vecka.
+  REGISTER: editorial print — florist/ateljé/bröllop/katalog är precis den
+  affär registret är byggt för. Arbetsprov läst: calyx.html (ljus, kräm,
+  Cardo + PT Mono). Den här bygger sitt eget: kalksten + koppar, Fraunces +
+  IBM Plex Mono, Majorna i stället för Vasastan.
+  TIER: 3 — invent. Ingen logotyp, ingen befintlig kodbas, ingen deployad
+  sajt att derivera från; ingen referens-URL gavs. Alla tokens är därför
+  uppfunna för det här varumärket, inte spårade till bevis (gate 58/59
+  passerar trivialt på Tier 3).
+-->
+<html lang="sv">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width,initial-scale=1" />
+<title>Florhuset Majorna — florist &amp; ateljé, Mariaplan</title>
+<meta name="description" content="Florhuset Majorna: säsongens buketter, bröllopsflor och veckans blomma-prenumeration från en ateljé på Mariaplan i Majorna, Göteborg." />
+<link rel="preconnect" href="https://fonts.googleapis.com" />
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,400;0,9..144,500;0,9..144,600;0,9..144,700;1,9..144,400;1,9..144,500&family=IBM+Plex+Mono:wght@400;500&display=swap" rel="stylesheet" />
+<style>
+/* design · pre-emit critique: P5 H4 E4 S5 R4 V5 */
+
+:root{
+  --kalk:      oklch(0.960 0.010 92);   /* limestone ground, light sections */
+  --kalk-2:    oklch(0.928 0.013 90);   /* secondary panel on light ground */
+  --jarn:      oklch(0.190 0.012 95);   /* iron ink, primary text on light */
+  --jarn-2:    oklch(0.300 0.012 95);   /* softened ink */
+  --sten:      oklch(0.470 0.010 95);   /* muted grey — light ground ONLY */
+  --koppar:    oklch(0.550 0.135 48);   /* the one accent — light ground */
+  --koppar-d:  oklch(0.740 0.135 55);   /* same accent, re-valued for dark ground */
+  --salvia:    oklch(0.440 0.050 152);  /* structural sage — never the accent */
+  --hav:       oklch(0.170 0.025 238);  /* deep sea ground — the inversion */
+  --hav-sten:  oklch(0.740 0.020 230);  /* muted grey — dark ground ONLY */
+  --font-disp: 'Fraunces', ui-serif, Georgia, serif;
+  --font-mono: 'IBM Plex Mono', ui-monospace, monospace;
+}
+
+*{ box-sizing:border-box; }
+html,body{
+  overflow-x: clip;
+  background: var(--kalk);
+  color: var(--jarn);
+  font-family: var(--font-disp);
+  font-size: 17px;
+  line-height: 1.6;
+}
+body{ margin:0; }
+img,svg{ max-width:100%; display:block; }
+a{ color: var(--koppar); text-decoration: none; }
+a:hover{ color: var(--jarn); }
+:where(section) a:not(.cta):hover{ text-decoration: underline; text-underline-offset: 3px; }
+
+:focus-visible{
+  outline: 3px solid var(--koppar);
+  outline-offset: 3px;
+  border-radius: 2px;
+}
+
+h1,h2,h3{ margin:0; font-weight:600; overflow-wrap:anywhere; min-width:0; }
+
+.kicker{
+  font-family: var(--font-mono);
+  font-size: 10.5px;
+  letter-spacing: 0.22em;
+  text-transform: uppercase;
+  color: var(--sten);
+}
+.on-dark .kicker{ color: var(--hav-sten); }
+
+.italic-disp{ font-style: italic; }
+
+.rule{ height:1px; background: currentColor; opacity:.22; }
+
+.wrap{ max-width:1400px; margin-inline:auto; padding-inline: clamp(1.25rem,5vw,3rem); }
+
+.grid{
+  display:grid;
+  grid-template-columns: repeat(12, minmax(0,1fr));
+  column-gap: clamp(1.25rem,3vw,2rem);
+  row-gap: 2rem;
+}
+[class*="c-"]{ grid-column: span 12; min-width:0; }
+@media (min-width:900px){
+  .c-1{grid-column:span 1;} .c-2{grid-column:span 2;} .c-3{grid-column:span 3;}
+  .c-4{grid-column:span 4;} .c-5{grid-column:span 5;} .c-6{grid-column:span 6;}
+  .c-7{grid-column:span 7;} .c-8{grid-column:span 8;} .c-9{grid-column:span 9;}
+  .stagger-a{ margin-top:0; } .stagger-b{ margin-top:4.5rem; }
+}
+
+section{ padding-block: clamp(3rem,7vw,6.5rem); }
+.on-dark{ background: var(--hav); color: var(--kalk); }
+.on-dark h1,.on-dark h2,.on-dark h3{ color:var(--kalk); }
+
+/* botanical line-identity — one drawn motif, palette-locked, varied by section */
+.motif{ color: var(--salvia); }
+.motif .accent-stroke{ stroke: var(--koppar); }
+.on-dark .motif{ color: var(--hav-sten); }
+.on-dark .motif .accent-stroke{ stroke: var(--koppar-d); }
+
+/* CTA — typeset display link, not a button (print register) */
+.cta{
+  display:inline-flex; align-items:baseline; gap:.6em;
+  font-family: var(--font-disp); font-style: italic;
+  font-size: clamp(1.375rem, 3.6vw, 2rem);
+  color: var(--jarn); border-bottom: 1px solid currentColor;
+  padding-block:.5em; line-height:1.2;
+}
+.on-dark .cta{ color: var(--kalk); }
+.cta:hover{ color: var(--koppar); }
+.cta .arrow{ font-family: var(--font-mono); font-style:normal; font-size:.55em; color:var(--koppar); }
+
+/* real button — used ONLY where the register licenses one: booking actions */
+.btn{
+  display:inline-block; min-height:44px; padding: .8rem 1.5rem;
+  font-family: var(--font-mono); font-size:13px; letter-spacing:.06em;
+  text-transform:uppercase; color: var(--kalk); background: var(--koppar);
+  border: 1px solid var(--koppar);
+}
+.btn:hover{ background: var(--jarn); border-color: var(--jarn); color: var(--kalk); }
+
+/* ledger row */
+.ledger-row{
+  display:grid; grid-template-columns: 2.2rem 1fr; column-gap:1.25rem;
+  align-items:baseline; padding-block:1.6rem; border-bottom:1px solid color-mix(in oklch, var(--jarn) 22%, transparent);
+}
+.ledger-row:first-of-type{ border-top:1px solid color-mix(in oklch, var(--jarn) 22%, transparent); }
+.ledger-num{ font-family:var(--font-disp); font-style:italic; font-size:1.4rem; color:var(--sten); }
+.ledger-body{ display:grid; gap:.4rem; }
+.ledger-meta{ display:flex; flex-wrap:wrap; justify-content:space-between; align-items:baseline; gap:.75rem .5rem; }
+.ledger-price{ font-family:var(--font-disp); font-size:clamp(1.5rem,3.4vw,2.1rem); white-space:nowrap; }
+
+/* reveal system — fails toward visible */
+.reveal{ opacity:0; transform:translateY(28px); transition: opacity 1.25s cubic-bezier(.16,1,.3,1), transform 1.25s cubic-bezier(.16,1,.3,1); }
+.reveal.in{ opacity:1; transform:none; }
+@media (prefers-reduced-motion: reduce){ .reveal{ opacity:1 !important; transform:none !important; transition:none !important; } }
+noscript .reveal, .no-js .reveal{ opacity:1; transform:none; }
+
+/* signature scroll set-piece: the thread grows, the kicker resolves */
+.thread-kicker{ filter: blur(var(--thread-blur,0px)); letter-spacing: var(--thread-ls,0.4em); transition:none; }
+.thread-stem{ stroke-dasharray: 420; stroke-dashoffset: var(--thread-dash,420); opacity: var(--thread-op,.35); }
+@media (prefers-reduced-motion: reduce){
+  .thread-kicker{ filter:none; letter-spacing:.22em; }
+  .thread-stem{ stroke-dashoffset:0; opacity:1; }
+}
+
+footer{ background: var(--hav); color: var(--hav-sten); }
+footer a{ color: var(--kalk); }
+footer a:hover{ color: var(--koppar-d); }
+
+@media (max-width:600px){
+  .nav-links{ justify-content:center; }
+}
+</style>
+</head>
+<body>
+
+<!-- NAV: hairline editorial masthead — NOT a sticky app-bar with a hamburger icon -->
+<header>
+  <div class="wrap grid" style="padding-block:1.25rem; align-items:baseline; border-bottom:1px solid color-mix(in oklch, var(--jarn) 20%, transparent);">
+    <div class="c-3 kicker">Säsong · höst</div>
+    <a href="#top" class="c-6" style="text-align:center; font-style:italic; font-size:1.5rem; letter-spacing:-0.01em;">Florhuset <span style="font-style:normal; font-weight:400;">Majorna</span></a>
+    <nav class="c-3 kicker nav-links" style="display:flex; gap:1.4rem; flex-wrap:wrap; justify-content:flex-end;">
+      <a href="#buketter">Buketter</a>
+      <a href="#brollop">Bröllop</a>
+      <a href="#hitta-hit">Hitta hit</a>
+    </nav>
+  </div>
+</header>
+
+<!-- HERO: full-bleed drawn identity with editorial overlay — NOT a stock photo behind a headline+chip+two buttons -->
+<section id="top" style="padding-block:0; position:relative; overflow:clip;">
+  <div style="background: linear-gradient(175deg, var(--kalk-2), var(--kalk) 60%); position:relative;">
+    <svg class="motif" viewBox="0 0 1400 620" width="100%" height="auto" style="display:block; max-height:78vh;" role="img" aria-label="Illustration: en enkel kvist med höstblad och ett bär, ritad som en tunn linje mot ateljéns kalkstensgrund.">
+      <path class="accent-stroke" d="M -40 560 C 260 480, 520 520, 760 380 S 1180 220, 1460 260" fill="none" stroke-width="2" opacity=".85"/>
+      <g stroke="currentColor" stroke-width="1.4" fill="none" opacity=".6">
+        <path d="M 300 470 q 40 -70 90 -30 q -10 60 -90 30 Z"/>
+        <path d="M 640 400 q 45 -65 95 -22 q -12 58 -95 22 Z"/>
+        <path d="M 980 300 q 42 -66 92 -26 q -10 58 -92 26 Z"/>
+      </g>
+      <circle class="accent-stroke" cx="1120" cy="255" r="7" fill="var(--koppar)" opacity=".9"/>
+    </svg>
+    <div class="wrap grid" style="position:relative; padding-block: clamp(2rem,5vw,3.5rem) clamp(3rem,7vw,5rem); align-items:end;">
+      <div class="c-8">
+        <h1 style="font-size:clamp(2.6rem,7.2vw,6.4rem); line-height:.94; letter-spacing:-0.02em; font-weight:500;">
+          Snittat i gryningen,<br><span class="italic-disp">bundet vid Mariaplan.</span>
+        </h1>
+      </div>
+      <div class="c-4" style="border-left:1px solid color-mix(in oklch, var(--jarn) 30%, transparent); padding-left:1.5rem;">
+        <p class="kicker" style="margin:0 0 .8rem;">Florist &amp; ateljé · Majorna, Göteborg</p>
+        <p style="font-size:16px; line-height:1.6; max-width:34ch; color:var(--jarn-2); margin:0 0 1.4rem;">
+          Vi binder det som gick att skära den dagen på Mariaplan: dahlior från
+          Hisingen, rönnbär från Änggårdsbergen, det som havsluften har bestämt
+          att säsongen bär just nu.
+        </p>
+        <a class="cta" href="#buketter">Beställ en bukett <span class="arrow">↗</span></a>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- BUKETTER: typeset ledger med snittdatum och pris — NOT four icon-cards in a row -->
+<section id="buketter">
+  <div class="wrap">
+    <div class="grid" style="margin-bottom:2.5rem;">
+      <div class="c-3">
+        <p class="kicker" style="margin:0 0 .6rem;">Index · säsongens buketter</p>
+        <div class="rule"></div>
+      </div>
+      <div class="c-9">
+        <h2 style="font-size:clamp(1.9rem,4vw,3rem); line-height:1.05;" class="italic-disp">Fyra sätt att bära hem hösten.</h2>
+      </div>
+    </div>
+
+    <ul style="list-style:none; margin:0; padding:0;">
+      <li class="ledger-row">
+        <div class="ledger-num">.01</div>
+        <div class="ledger-body">
+          <h3 style="font-size:1.5rem;">Höstdahlior från Hisingen</h3>
+          <p style="margin:0; max-width:48ch; color:var(--jarn-2); font-size:15px;">Dahlia, cosmos och björkris, löst buntat så att blomman får plats att andas.</p>
+          <div class="ledger-meta">
+            <span class="kicker">Snittat torsdagar · räcker cirka en vecka</span>
+            <span class="ledger-price">495 kr</span>
+          </div>
+        </div>
+      </li>
+      <li class="ledger-row">
+        <div class="ledger-num">.02</div>
+        <div class="ledger-body">
+          <h3 style="font-size:1.5rem; color:var(--koppar);" class="italic-disp">Rönnbär &amp; sen aster</h3>
+          <p style="margin:0; max-width:48ch; color:var(--jarn-2); font-size:15px;">Rönnbär från Änggårdsbergen, aster, salvia och eucalyptus. Höstens mest efterfrågade i september.</p>
+          <div class="ledger-meta">
+            <span class="kicker">Snittat i Änggården · till hallbordet</span>
+            <span class="ledger-price">425 kr</span>
+          </div>
+        </div>
+      </li>
+      <li class="ledger-row">
+        <div class="ledger-num">.03</div>
+        <div class="ledger-body">
+          <h3 style="font-size:1.5rem;">Salvia, silverax &amp; krokusgren</h3>
+          <p style="margin:0; max-width:48ch; color:var(--jarn-2); font-size:15px;">Torkat och färskt blandat. Håller sig veckor efter att resten av buketten är klar.</p>
+          <div class="ledger-meta">
+            <span class="kicker">Torkbart · håller flera veckor</span>
+            <span class="ledger-price">345 kr</span>
+          </div>
+        </div>
+      </li>
+      <li class="ledger-row">
+        <div class="ledger-num">.04</div>
+        <div class="ledger-body">
+          <h3 style="font-size:1.5rem;">Söndagsbuketten</h3>
+          <p style="margin:0; max-width:48ch; color:var(--jarn-2); font-size:15px;">Husets standard: veckans blommor, vårt val. För dig som bara vill att det ska vara vackert.</p>
+          <div class="ledger-meta">
+            <span class="kicker">Alltid i kylen · hämtas samma dag</span>
+            <span class="ledger-price">295 kr</span>
+          </div>
+        </div>
+      </li>
+    </ul>
+  </div>
+</section>
+
+<!-- TRÅDEN: signature scroll set-piece, decorative divider — NOT an icon-strip of "our values" -->
+<section aria-hidden="true" style="padding-block:4rem;">
+  <div class="wrap" style="text-align:center;">
+    <p class="kicker thread-kicker" id="thread-kicker" style="margin:0 0 1.5rem;">Från Mariaplan till bordet</p>
+    <svg class="motif" viewBox="0 0 1000 60" width="100%" height="60" style="max-width:640px; margin-inline:auto;">
+      <path id="thread-path" class="accent-stroke thread-stem" d="M 10 40 C 200 10, 400 55, 500 30 S 800 5, 990 30" fill="none" stroke-width="2"/>
+    </svg>
+  </div>
+</section>
+
+<!-- BRÖLLOP: split diptych, text mot ritad panel — NOT a hero banner with a "Book now" pill -->
+<section id="brollop" class="on-dark">
+  <div class="wrap grid">
+    <div class="c-7 stagger-a">
+      <p class="kicker" style="margin:0 0 1rem;">Bröllop · bokade helger 2027</p>
+      <h2 style="font-size:clamp(2rem,4.4vw,3.4rem); line-height:1.05; margin-bottom:1.5rem;">
+        Ett bröllop per helg, <span class="italic-disp">aldrig fler.</span>
+      </h2>
+      <p style="max-width:52ch; color:var(--hav-sten); font-size:16px; line-height:1.7; margin-bottom:1.5rem;">
+        Vi tar in bröllop varannan helg, april till oktober, så att vi hinner
+        vara på plats själva: brudbukett, bordsdekor, en enkel bågeport av
+        det som går att skära den veckan. Första mötet sker i ateljén på
+        Mariaplan, med kaffe och det som blommar just då på bordet.
+      </p>
+      <a class="cta" href="mailto:brollop@florhusetmajorna.se">Boka ett bröllopsmöte <span class="arrow">↗</span></a>
+    </div>
+    <div class="c-5 stagger-b">
+      <svg class="motif" viewBox="0 0 400 460" width="100%" height="auto" role="img" aria-label="Illustration: en ritad bågeport av grenar och blad i tunn linje, ateljéns motiv för bröllop.">
+        <path class="accent-stroke" d="M 40 440 C 20 220, 120 40, 200 40 S 380 220, 360 440" fill="none" stroke-width="2"/>
+        <g stroke="currentColor" stroke-width="1.3" fill="none" opacity=".65">
+          <path d="M 70 360 q 30 -40 60 -10 q -8 40 -60 10 Z"/>
+          <path d="M 320 320 q -30 -40 -60 -10 q 8 40 60 10 Z"/>
+          <path d="M 120 160 q 26 -34 52 -8 q -6 34 -52 8 Z"/>
+          <path d="M 260 130 q -26 -34 -52 -8 q 6 34 52 8 Z"/>
+        </g>
+      </svg>
+    </div>
+  </div>
+</section>
+
+<!-- PRENUMERATION: centrerad enkel kolumn med ledger-priser — NOT three pricing cards with checkmarks -->
+<section id="prenumeration">
+  <div class="wrap" style="max-width:760px; text-align:center;">
+    <p class="kicker" style="margin:0 0 1rem;">Prenumeration · veckans blomma</p>
+    <h2 style="font-size:clamp(1.9rem,4vw,2.8rem); line-height:1.1; margin-bottom:1.25rem;" class="italic-disp">
+      En bukett som väntar på dig, i sin egen takt.
+    </h2>
+    <p style="color:var(--jarn-2); max-width:48ch; margin-inline:auto 1.5rem; font-size:16px; line-height:1.7;">
+      Hämtas på Mariaplan eller lämnas i entrén om du bor i Majorna eller
+      Linné. Pausa eller säg upp när du vill, det räcker med ett mejl.
+    </p>
+  </div>
+  <div class="wrap" style="max-width:760px; margin-top:2rem;">
+    <ul style="list-style:none; margin:0; padding:0;">
+      <li class="ledger-row" style="grid-template-columns:1fr;">
+        <div class="ledger-meta">
+          <span>Varje vecka, fredagar</span>
+          <span class="ledger-price">275 kr<span class="kicker" style="margin-left:.6em;">/ vecka</span></span>
+        </div>
+      </li>
+      <li class="ledger-row" style="grid-template-columns:1fr;">
+        <div class="ledger-meta">
+          <span>Varannan vecka</span>
+          <span class="ledger-price">295 kr<span class="kicker" style="margin-left:.6em;">/ gång</span></span>
+        </div>
+      </li>
+      <li class="ledger-row" style="grid-template-columns:1fr;">
+        <div class="ledger-meta">
+          <span>En gång i månaden</span>
+          <span class="ledger-price">325 kr<span class="kicker" style="margin-left:.6em;">/ gång</span></span>
+        </div>
+      </li>
+    </ul>
+    <div style="text-align:center; margin-top:2rem;">
+      <a class="cta" href="mailto:hej@florhusetmajorna.se">Starta din prenumeration <span class="arrow">↗</span></a>
+    </div>
+  </div>
+</section>
+
+<!-- ATELJÉKVÄLLAR: label-rail bredvid schema — NOT a numbered "how it works" 1-2-3 row -->
+<section style="background:var(--kalk-2);">
+  <div class="wrap grid">
+    <div class="c-3">
+      <p class="kicker" style="margin:0 0 .6rem;">Ateljé · binderikvällar</p>
+      <div class="rule"></div>
+      <p class="kicker" style="margin-top:.75rem; line-height:1.6;">Max åtta platser<br>per kväll</p>
+    </div>
+    <div class="c-9">
+      <h2 style="font-size:clamp(1.9rem,3.6vw,2.6rem); line-height:1.1; margin-bottom:1.25rem;">
+        Lär dig binda det du <span class="italic-disp">just har skurit.</span>
+      </h2>
+      <p style="max-width:56ch; color:var(--jarn-2); font-size:16px; line-height:1.7; margin-bottom:2rem;">
+        Första onsdagen varje månad öppnar vi ateljén på kvällen: grundläggande
+        spiralbindning, ett säsongstema, ditt eget material att ta hem. Vi
+        håller gruppen liten så att alla får bordsplats vid fönstret mot
+        Mariaplan.
+      </p>
+      <div class="grid">
+        <div class="c-6">
+          <p class="kicker" style="margin:0 0 .4rem;">När</p>
+          <p style="margin:0; font-size:17px;">Onsdagar 18:00–20:30, en gång i månaden</p>
+        </div>
+        <div class="c-3">
+          <p class="kicker" style="margin:0 0 .4rem;">Pris</p>
+          <p style="margin:0; font-size:17px;">495 kr, material och fika ingår</p>
+        </div>
+        <div class="c-3">
+          <p class="kicker" style="margin:0 0 .4rem;">Bokning</p>
+          <a href="mailto:ateljekvall@florhusetmajorna.se" style="font-size:17px; text-decoration:underline; text-underline-offset:3px;">Mejla ateljén ↗</a>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- OM ATELJÉN: edge-to-edge tonal inversion — NOT a text-on-white "about us" paragraph -->
+<section id="hitta-hit" class="on-dark">
+  <div class="wrap grid">
+    <div class="c-6">
+      <p class="kicker" style="margin:0 0 1rem;">Om ateljén</p>
+      <h2 style="font-size:clamp(1.9rem,3.8vw,2.8rem); line-height:1.1; margin-bottom:1.25rem;">
+        Grundad av <span class="italic-disp">Elin Torstensson</span> och Sara Öhman.
+      </h2>
+      <p style="max-width:50ch; color:var(--hav-sten); font-size:16px; line-height:1.75;">
+        Florhuset Majorna öppnade på Mariaplan 2016, två våningar upp från
+        spårvagnshållplatsen. Vi köper det mesta genom grossister i
+        Frihamnen och det som går, direkt från odlare på Hisingen och i
+        Bohuslän. Ingen leverans utan att vi själv sett blomman samma
+        morgon.
+      </p>
+    </div>
+    <div class="c-5" style="grid-column-start:8;">
+      <div style="border-top:1px solid color-mix(in oklch, var(--kalk) 25%, transparent); padding-top:1.5rem; display:grid; gap:1.5rem;">
+        <div>
+          <p class="kicker" style="margin:0 0 .4rem;">Adress</p>
+          <p style="margin:0; font-size:18px;">Mariaplan 4<br>414 70 Göteborg</p>
+        </div>
+        <div>
+          <p class="kicker" style="margin:0 0 .4rem;">Öppettider</p>
+          <p style="margin:0; font-size:18px; line-height:1.6;">
+            Tisdag–fredag 10–18<br>
+            Lördag 10–14<br>
+            Söndag–måndag stängt
+          </p>
+        </div>
+        <div>
+          <p class="kicker" style="margin:0 0 .4rem;">Kontakt</p>
+          <a href="mailto:hej@florhusetmajorna.se" style="font-size:18px;">hej@florhusetmajorna.se</a>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- FOOTER: hairline colophon — NOT a four-column mega-footer with a newsletter box -->
+<footer>
+  <div class="wrap grid" style="padding-block:2.5rem; align-items:baseline;">
+    <div class="c-4 kicker">© Florhuset Majorna, Mariaplan 4</div>
+    <div class="c-4 kicker" style="text-align:center;">Instagram <a href="https://instagram.com/florhusetmajorna">@florhusetmajorna</a></div>
+    <div class="c-4 kicker" style="text-align:right;">Satt i Fraunces &amp; IBM Plex Mono</div>
+  </div>
+</footer>
+
+<noscript><style>.reveal{opacity:1!important;transform:none!important;}</style></noscript>
+
+<script>
+(function(){
+  // Reveal system — fails toward visible: mount check, IO for the rest, timed failsafe.
+  var els = Array.prototype.slice.call(document.querySelectorAll('section, h1, h2, h3, .ledger-row, figure'));
+  els.forEach(function(el){ el.classList.add('reveal'); });
+
+  function inViewport(el){
+    var r = el.getBoundingClientRect();
+    return r.top < window.innerHeight * 0.92 && r.bottom > 0;
+  }
+  els.forEach(function(el){ if (inViewport(el)) el.classList.add('in'); });
+
+  if ('IntersectionObserver' in window) {
+    var io = new IntersectionObserver(function(entries){
+      entries.forEach(function(e){
+        if (e.isIntersecting) { e.target.classList.add('in'); io.unobserve(e.target); }
+      });
+    }, { threshold: 0.1, rootMargin: '0px 0px -5% 0px' });
+    els.forEach(function(el){ if (!el.classList.contains('in')) io.observe(el); });
+  } else {
+    els.forEach(function(el){ el.classList.add('in'); });
+  }
+
+  setTimeout(function(){
+    els.forEach(function(el){ el.classList.add('in'); });
+  }, 2200);
+
+  // Signature set-piece: the thread (kicker + stem) scrubs continuously, both
+  // directions, driven by proximity of its section to the viewport centre.
+  var section = document.getElementById('thread-path') ? document.getElementById('thread-path').closest('section') : null;
+  var kicker = document.getElementById('thread-kicker');
+  var stem = document.getElementById('thread-path');
+  var reduce = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+  var forcePreview = /[?&]preview=thread/.test(location.search);
+
+  if (section && kicker && stem) {
+    var current = 0;
+    function smoothstep(t){ t = Math.max(0, Math.min(1, t)); return t*t*(3-2*t); }
+    function targetProgress(){
+      var r = section.getBoundingClientRect();
+      var centerDist = Math.abs((r.top + r.height/2) - window.innerHeight/2);
+      var norm = 1 - Math.min(1, centerDist / (window.innerHeight * 0.7));
+      return smoothstep(norm);
+    }
+    function apply(p){
+      kicker.style.setProperty('--thread-blur', (6 - p*6).toFixed(2) + 'px');
+      kicker.style.setProperty('--thread-ls', (0.42 - p*0.20).toFixed(3) + 'em');
+      stem.style.setProperty('--thread-dash', Math.round(420 - p*420));
+      stem.style.setProperty('--thread-op', (0.3 + p*0.7).toFixed(2));
+    }
+    if (reduce || forcePreview) {
+      apply(1);
+    } else {
+      apply(0);
+      function tick(){
+        current += (targetProgress() - current) * 0.09;
+        apply(current);
+        requestAnimationFrame(tick);
+      }
+      requestAnimationFrame(tick);
+    }
+  }
+})();
+</script>
+</body>
+</html>

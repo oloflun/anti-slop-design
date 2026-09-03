@@ -32,7 +32,8 @@ def clear_root(root: Path) -> None:
             flag.unlink()
         except Exception:
             pass
-    for name in (".design-verb", ".stop-signature", ".stop-blocks", ".linked-roots"):
+    for name in (".design-verb", ".stop-signature", ".stop-blocks", ".linked-roots",
+                 ".armed"):
         try:
             (d / name).unlink()
         except Exception:

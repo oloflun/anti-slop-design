@@ -1,0 +1,186 @@
+<!doctype html>
+<html lang="sv">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Florhuset Majorna — buketter, bröllop, ateljé</title>
+<!--
+LANE: salt-bleached harbour atelier — cream ground, one copper accent at display
+scale, serif roman+italic two-tone headline, editorial-print register, chaptered-
+catalog grammar (direction A, "Tryckt katalog").
+REGISTER: editorial print. Chosen because Florhuset Majorna is a florist/atelier —
+the register table lists florist/atelier/catalogue as its home ground, and the
+direction itself is named "printed catalog": a weekly-updated ledger of stock is
+the truest thing this business can say about itself.
+SCOPE: blind one-shot, fold only — nav + hero + first content section
+(säsongens buketter). No screenshots, no iteration.
+-->
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,500;0,600;1,500;1,600&family=Newsreader:ital,wght@0,400;0,500;1,400&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --cream: oklch(0.96 0.014 85);
+    --cream-deep: oklch(0.915 0.02 78);
+    --ink: oklch(0.20 0.02 95);
+    --ink-soft: oklch(0.40 0.02 90);
+    --stone: oklch(0.52 0.016 90);
+    --copper: oklch(0.56 0.15 42);
+    --copper-deep: oklch(0.40 0.12 40);
+    --line: oklch(0.20 0.02 95 / 0.20);
+  }
+  *{box-sizing:border-box}
+  html{background:var(--cream)}
+  body{
+    margin:0; background:var(--cream); color:var(--ink);
+    font-family:"Newsreader", Georgia, serif; font-size:17px; line-height:1.55;
+    overflow-x:hidden;
+  }
+  a{color:inherit}
+  em{font-style:italic; color:var(--copper-deep)}
+  .kicker{
+    font-family:"JetBrains Mono", monospace; font-size:10.5px; letter-spacing:.22em;
+    text-transform:uppercase; color:var(--copper-deep);
+  }
+  .rule{display:block; width:100%; height:1px; background:var(--line); margin:14px 0}
+  a:focus-visible, button:focus-visible{outline:2px solid var(--copper); outline-offset:3px}
+
+  /* ---------- NAV: chaptered masthead, NOT a sticky icon-logo bar ---------- */
+  .site-nav{max-width:1480px; margin:0 auto; padding:32px clamp(20px,4vw,56px) 20px}
+  .nav-inner{display:flex; justify-content:space-between; align-items:flex-end; gap:24px; flex-wrap:wrap; border-bottom:1px solid var(--line); padding-bottom:18px}
+  .nav-mark .wordmark{display:block; font-family:"Cormorant Garamond", serif; font-weight:600; font-size:clamp(20px,2.4vw,26px); letter-spacing:.01em; margin-top:4px}
+  .site-nav nav{display:flex; gap:clamp(14px,3vw,28px); font-family:"JetBrains Mono", monospace; font-size:11.5px; letter-spacing:.06em; text-transform:uppercase}
+  .site-nav nav a{text-decoration:none; border-bottom:1px solid transparent}
+  .site-nav nav a:hover{border-color:var(--copper)}
+
+  /* ---------- HERO: label-rail anatomy, NOT a centered hero-with-CTA-button block ---------- */
+  .hero{max-width:1480px; margin:0 auto; padding:clamp(48px,8vw,110px) clamp(20px,4vw,56px) clamp(56px,7vw,96px)}
+  .hero-grid{display:grid; grid-template-columns:1fr; gap:28px}
+  @media(min-width:860px){ .hero-grid{grid-template-columns:3fr 9fr; gap:48px} }
+  .hero-rail .rail-note{font-family:"Newsreader", serif; font-style:italic; color:var(--stone); font-size:15px; max-width:26ch; margin-top:2px}
+  .hero-content h1{
+    font-family:"Cormorant Garamond", serif; font-weight:600;
+    font-size:clamp(2.6rem,7vw,5.4rem); line-height:0.94; letter-spacing:-.01em;
+    margin:0 0 26px;
+  }
+  .hero-content h1 em{font-style:italic; font-weight:500}
+  .lede{max-width:52ch; color:var(--ink-soft); font-size:18px; margin:0 0 28px}
+  .cta{
+    font-family:"Cormorant Garamond", serif; font-style:italic; font-weight:600;
+    font-size:clamp(1.3rem,2.4vw,1.6rem); text-decoration:none; color:var(--copper-deep);
+    border-bottom:1px solid var(--copper-deep); padding-bottom:2px;
+  }
+  .cta:hover{color:var(--copper)}
+
+  /* ---------- SÄSONGENS BUKETTER: typeset ledger, NOT a 3-up card grid ---------- */
+  .ledger-section{background:var(--cream-deep); border-top:1px solid var(--line); border-bottom:1px solid var(--line)}
+  .ledger-inner{max-width:1480px; margin:0 auto; padding:clamp(48px,7vw,90px) clamp(20px,4vw,56px); display:grid; grid-template-columns:1fr; gap:32px}
+  @media(min-width:860px){ .ledger-inner{grid-template-columns:3fr 9fr; gap:48px} }
+  .section-rail{position:relative}
+  @media(min-width:860px){ .section-rail{position:sticky; top:32px; align-self:start} }
+  .rail-note{font-size:14.5px; color:var(--stone); max-width:28ch; margin-top:2px}
+  .ledger-list{list-style:none; margin:0; padding:0}
+  .ledger-row{
+    display:grid; grid-template-columns:2.4rem 1fr auto; align-items:baseline; gap:18px;
+    border-bottom:1px solid var(--line); padding:22px 0;
+  }
+  .ledger-row:first-child{padding-top:0}
+  .num{font-family:"Cormorant Garamond", serif; font-style:italic; font-weight:500; font-size:2.1rem; color:var(--stone)}
+  .name{font-family:"Cormorant Garamond", serif; font-weight:600; font-size:clamp(1.15rem,2vw,1.4rem)}
+  .desc{display:block; font-family:"Newsreader", serif; font-weight:400; font-size:15px; color:var(--ink-soft); max-width:46ch; margin-top:5px}
+  .price{font-family:"Cormorant Garamond", serif; font-weight:600; font-size:clamp(1.3rem,2.6vw,1.9rem); white-space:nowrap}
+  .ledger-cta{margin-top:30px; font-family:"JetBrains Mono", monospace; font-size:12px; letter-spacing:.05em; text-transform:uppercase}
+  .ledger-cta a{color:var(--copper-deep); text-decoration:none; border-bottom:1px solid var(--copper-deep)}
+
+  /* Shared reveal — fails toward visible: only applies once .js class is set */
+  .js .reveal{opacity:0; transform:translateY(28px); transition:opacity 1.3s cubic-bezier(.16,1,.3,1), transform 1.3s cubic-bezier(.16,1,.3,1)}
+  .js .reveal.is-visible{opacity:1; transform:none}
+  @media(prefers-reduced-motion: reduce){
+    .js .reveal{opacity:1; transform:none; transition:none}
+  }
+</style>
+</head>
+<body>
+
+<header class="site-nav reveal">
+  <div class="nav-inner">
+    <div class="nav-mark">
+      <span class="kicker">Katalog · Vol. VII, hösten</span>
+      <span class="wordmark">Florhuset <em>Majorna</em></span>
+    </div>
+    <nav aria-label="Huvudmeny">
+      <a href="#buketter">Buketter</a>
+      <a href="#brollop">Bröllop</a>
+      <a href="#prenumeration">Prenumeration</a>
+      <a href="#ateljekvallar">Ateljékvällar</a>
+    </nav>
+  </div>
+</header>
+
+<section class="hero">
+  <div class="hero-grid">
+    <div class="hero-rail reveal">
+      <span class="kicker">Majorna, Göteborg</span>
+      <span class="rule"></span>
+      <p class="rail-note">Bundet för hand, samma dag som det klipps.</p>
+    </div>
+    <div class="hero-content reveal">
+      <h1>Blommor <em>bundna</em><br>efter det som<br>växer, inte <em>katalogen</em>.</h1>
+      <p class="lede">Florhuset Majorna binder buketter från det som just nu går att få tag på längs Västerhavet. Beställ hem en bukett, boka ett bröllopsmöte, eller kom förbi ateljén på Mariaplan en binderikväll.</p>
+      <a class="cta" href="#buketter">Se veckans buketter →</a>
+    </div>
+  </div>
+</section>
+
+<section id="buketter" class="ledger-section">
+  <div class="ledger-inner">
+    <div class="section-rail reveal">
+      <span class="kicker">Katalog · Buketter</span>
+      <span class="rule"></span>
+      <p class="rail-note">Listan byts varje måndag efter vad som snittas i ateljén. Slut på en sort betyder att den var bra den veckan.</p>
+    </div>
+    <div class="reveal">
+      <ol class="ledger-list">
+        <li class="ledger-row">
+          <span class="num">I</span>
+          <span class="name">Höstlöv<span class="desc">Dahlior, aster och kopparfärgat prydnadsgräs. Den som säljer slut först, nästan varje vecka.</span></span>
+          <span class="price">450 kr</span>
+        </li>
+        <li class="ledger-row">
+          <span class="num">II</span>
+          <span class="name">Sen skörd<span class="desc">Krysantemum, rönnbärsris och sista salvian från ateljéns egen rabatt.</span></span>
+          <span class="price">650 kr</span>
+        </li>
+        <li class="ledger-row">
+          <span class="num">III</span>
+          <span class="name">Väster om älven<span class="desc">Vinranka, hortensia i rostton och ekollon — tung, lite risig, menad att stå några veckor.</span></span>
+          <span class="price">850 kr</span>
+        </li>
+        <li class="ledger-row">
+          <span class="num">IV</span>
+          <span class="name">Ateljébuketten<span class="desc">Allt som blivit över på bänken vid stängning. Bindarens val — ingen bukett den andra lik.</span></span>
+          <span class="price">1 200 kr</span>
+        </li>
+      </ol>
+      <p class="ledger-cta"><a href="#bestall">Beställ till dörren i Majorna →</a></p>
+    </div>
+  </div>
+</section>
+
+<script>
+  document.documentElement.classList.add('js');
+  var els = document.querySelectorAll('.reveal');
+  if(!('IntersectionObserver' in window) || matchMedia('(prefers-reduced-motion: reduce)').matches){
+    els.forEach(function(el){ el.classList.add('is-visible'); });
+  } else {
+    var io = new IntersectionObserver(function(entries){
+      entries.forEach(function(entry){
+        if(entry.isIntersecting){ entry.target.classList.add('is-visible'); io.unobserve(entry.target); }
+      });
+    }, { threshold: 0.1 });
+    els.forEach(function(el){ io.observe(el); });
+    setTimeout(function(){ els.forEach(function(el){ el.classList.add('is-visible'); }); }, 2500);
+  }
+</script>
+</body>
+</html>
