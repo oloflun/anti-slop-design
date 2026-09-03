@@ -18,6 +18,8 @@ Invoke `Skill(copywriting)`.
 
 **Structure.** Above the fold: headline, subheadline, CTA. Then social proof, problem, solution, how it works, objections, final CTA — as the page actually needs, not as a checklist to fill.
 
+**Discrete facts get their own line; a process gets a sentence.** A price, a spec, a date — each is its own bold lead line, not folded into a paragraph with two other facts ("Bottentvätt 450 kr, propelleravdrag 350 kr. Större jobb går till vår partnerverkstad" reads as a wall of facts). What the business *does* for the customer stays a sentence in flowing prose, in its own section, described the way a person would say it out loud ("vi tvättar botten om du bett om det") — not re-listed as another line item once it already has a price above. Splitting a dense multi-fact paragraph into short bold-led micro-paragraphs (one claim, one clarifying sentence, repeat) reads as more scannable and more inviting without losing information; a single paragraph carrying four unrelated facts reads as cold regardless of how correct each fact is. (AB20/AB21, 2026-09-03: two independent briefs, same finding both times — see `tests/ab/{20-copy-hybrid-kajplats,21-copy-hybrid-reglabok}/verdict.md`.)
+
 **Headline formulas** as starting points, not templates to ship: `{Achieve outcome} without {pain point}` · `The {category} for {audience}` · `Never {unpleasant event} again`.
 
 **CTA formula:** `[Action Verb] + [What They Get] + [Qualifier if needed]`. "Start Free Trial" over "Sign Up".

@@ -3,29 +3,30 @@
 Brief: fakturerings-app för hantverkare. Samma upplägg som Kajplats-testet: A = kedjan innan
 SlopMonster-tillägget, B = samma plus radkälle-disciplinen och den svenska tell-listan.
 
-**Här vinner A på hero, B vinner på en sektion A saknar helt.**
+**Reviderad efter Antons läsning (2026-09-03): B vinner tydligt, inte "blandat".**
 
-A:s hero är den starkaste raden i hela testet: "Fakturera på plats, inte vid köksbordet klockan
-tio." Konkret bild, en tidpunkt, ingen abstraktion — precis den känsla radkälla 2 (kundens rädsla:
-sena kvällar med Excel) ska ge, och A hittade den utan att behöva metoden uttalad. B:s hero
-("Offert till faktura på mobilen, innan du lämnat arbetsplatsen" + moms/ROT/RUT/offline/340
-kunder i samma stycke) är korrekt och ärlig men läser som en funktionslista med en siffra i, närmre
-den konventionella SaaS-defaulten än A:s bild. B sparar sin bästa rad ("Sluta fakturera i Excel
-klockan elva på kvällen") till avslutningen i stället för heron — samma idé som A, fast fel
-placerad.
+Min första läsning stannade vid heron och gav A poängen där ("inte vid köksbordet klockan tio"
+är en vassare enskild rad än B:s stat-tunga öppning). Det håller fortfarande som en liten
+nyans — B:s hero klämmer in "340 hantverkare fakturerar redan" i samma mening som mekaniken,
+lite närmre en funktionslista än A:s enda bild.
 
-**B:s tillägg som faktiskt är nytt och bra:** en egen rubrik "Vad Reglabok inte gör än" som
-samlar de två ärliga begränsningarna (ingen inbyggd momsinlämning än, ingen 24/7-support) på ett
-ställe i stället för att gömma dem i ett stycke om hur appen fungerar, vilket A gör. Det är
-radkälla 3 (vad konkurrenten — här: den egna produkten i sin nuvarande form — inte kan lova)
-applicerad på rätt sätt: en synlig ärlighet stärker trovärdigheten mer än om den begravs.
+Men resten av sidan avgör, och där vinner B tydligt. A:s "Hur det funkar" är ett enda tätt
+stycke som kör momssats, ROT/RUT och revisorexport i följd utan andrum. B bryter samma
+information i fem korta stycken, vart och ett med en fet ledrad och en förklarande mening:
+"Reglabok räknar ut momsen åt dig." i stället för att begrava det i en uppräkning. Plus
+personliga bilder spridda genom hela sidan i stället för koncentrerade bara i heron: "de vet
+skillnaden mellan en app som ser bra ut i en demo och en som funkar i bilen mellan två jobb",
+och avslutningen "Sluta fakturera i Excel klockan elva på kvällen" — samma sorts bild som A:s
+hero, fast som en betald-av rad i stället för bortkastad.
+
+B:s "Vad Reglabok inte gör än" är fortfarande ett äkta tillskott: en egen rubrik för de ärliga
+begränsningarna i stället för att gömma dem i ett stycke, vilket A gör.
 
 **Ingen av dem uppfinner siffror eller citat.** 340 kunder, 249 kr/månad och SKV-export stämmer
 med briefen i båda.
 
-**Utslag:** blandat, inte ett generellt lyft. B:s metod (radkälla + ärlighetssektion) gav ett
-konkret craft-tillskott (den separata "inte än"-rubriken) men körde samtidigt över A:s bästa
-instinkt genom att flytta bort den vassaste raden från heron. Slutsats: radkälla-disciplinen är
-värd att behålla för ärlighetsmönstret den framtvingar, men den ska inte automatiskt skriva om en
-redan stark hero — källa 4 ("en rad som redan var bra") finns i metoden av precis det skälet, och
-här borde den ha vunnit över källa 1.
+**Utslag:** B vinner. Den strukturella vanan — korta fetstilsledda styckén i stället för ett
+långt tätt stycke, personliga bilder spridda genom sidan i stället för bara i heron — läser
+mer inbjudande utan att tappa information, precis som på Kajplats. Enda kvarstående
+förbättringen: B:s hero bör leda med en bild eller ett konkret faktum innan statistiken, inte
+klämma in kundsiffran i samma mening som mekaniken.
