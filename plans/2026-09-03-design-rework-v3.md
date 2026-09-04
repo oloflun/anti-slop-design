@@ -28,8 +28,10 @@ Fullständig plan: `~/.claude/plans/uppgift-design-rework-v3-validated-hammock.m
 - [x] 19 sex byråkoncept (runda 2, board 127.0.0.1:4621) — väntar på Antons val
 - [x] 20 plugin-avknoppning (anti-slop-design eget plugin, super-intelligence 0.10.0) — opushat
 
+- [x] 21 r3: Antons val, R5 + R6 kombinerade till en sida (`tests/alunix-concepts-r3/`), sex agentrundor efter pixelläsning, kedjan bevisad via ledger-räknare — 2026-09-04
+
 ## In Progress
-- [ ] Antons utvärdering av R1–R6; småfixar R5/R6 projektminiatyrer.
+- [ ] Antons omdöme på r3-sidan i webbläsaren (`/tests/alunix-concepts-r3/build/index.html` från repo-roten, port 3090).
 
 ## Remaining
 - [ ] Unsplash API-nyckel (Antons handpåläggning) → photo-sources.md får riktig sökning; fotopoolen är 19 bilder i dag.
