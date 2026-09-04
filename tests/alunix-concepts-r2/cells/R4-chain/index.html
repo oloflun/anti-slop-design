@@ -1,0 +1,312 @@
+<!doctype html>
+<html lang="sv">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Alunix · digital byrå</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Archivo:wght@400;500;700;800&family=IBM+Plex+Mono:wght@400;500&display=swap" rel="stylesheet">
+<!--
+  design · pre-emit critique: P5 H4 E4 S5 R4 V4
+
+  R4 — Sanity · numrerat
+  Reference lock
+  Primary reference/direction: Sanity.io (design-catalogue/entries/sanity) — full-bleed
+    dark hero with compressed tightly-tracked display, one pill CTA, dropping to a
+    white canvas of Swiss-editorial numbered sections (01-05) with a sticky mono
+    number rail beside real product screenshots.
+  Preserve: onyx (not pure black) dark surfaces; huge compressed left-aligned
+    headline with tight negative tracking; exactly one accent confined to the CTA
+    pill, never decorative; sticky 01-05 mono number rail beside scrolling content;
+    real unstyled screenshots standing in for illustration; dark closing band with
+    one pill CTA as the page's second and last use of the accent.
+  Borrow only: pill radius on every interactive control; low (4px) radius on
+    images, never card-shadowed.
+  Role rules: accent (#1E5E9C, Alunix blue, never orange) appears on exactly two
+    pills total (hero CTA, closing CTA) and nowhere else — no accent text, no
+    accent section backgrounds, no accent numerals; mono is register only (nav,
+    numbers, captions), never body voice; body and display both set in Archivo so
+    the type system stays to two families total.
+  Media strategy: photo:vendored (k1-stage-beams.webp, dark stage-light texture,
+    treated as atmosphere not a literal claim) for the hero; three genuine product
+    screenshots (Calyx, Hōrai, Hyperborea, vendored from ~/alunix/public/demos) as
+    the numbered-section imagery, standing in for illustration per the source's
+    signature move.
+  Reject: orange or any second saturated accent; drop shadows; centred display
+    headlines; card grids; invented stats, customer counts or logos; a scrim
+    covering the whole hero photo as a contrast shortcut.
+  Token commitments: bg #ffffff; dark #0c0c0e (onyx, not pure black); ink #0c0c0e;
+    muted-on-white #6a6a6d; muted-on-dark #a6a6aa; accent #1E5E9C (CTA pill only,
+    ~6.7:1 white-on-blue, AA); display/body Archivo 700/400 at
+    clamp(2.6rem,7vw,6.4rem)/leading .96/tracking -0.04em for display, 17-19px/1.6
+    for body; register IBM Plex Mono 400/500 for nav, kickers, numbers, captions;
+    radius 999px interactive, 4px images; page max-width 1240px; section gap
+    ~120px white / ~64px dark.
+
+  Decision ledger
+  | Decision | Source | Role | Why |
+  | Full-bleed dark hero + compressed left headline | Sanity fold.webp + slices/00-02 | hero-device | R4's row: "fullbleed texturfoto + komprimerad rubrik" |
+  | Mono nav on dark topband | Sanity fold.webp nav row | register | contract.md R4 fingerprint: "mörk topprad, mono-nav" |
+  | Sticky 01-05 rail + content column | Sanity slices/06-09 (CONTENT-AS-DATA … POWER ANY APPLICATION list) | signature move | contract.md: "numren 01-05 i mono som spår" |
+  | Real screenshots replace illustration | Sanity entry.md "show actual product UI" + brief.md bevis rule | media role | Only allowed proof is the three demos; matches source's own move |
+  | One accent confined to two CTA pills | sanity entry.md Do's ("never two orange CTAs") + TASTE.md §4.4 | accent role | Alunix blue replaces ember orange, same ration-to-one-job rule |
+  | Dark closing band + one pill | Sanity has no dark close, but R4 fingerprint row specifies it; Hōrai/Hyperborea-style tonal inversion (house-physics.md) | close | contract.md: "mörkt band + pill"; satisfies "one tonal inversion" structural rule |
+  | Process framing (01-05 = project steps, not features) | contract.md: "R4 löftet"→ actually "R4 processen" row + brief.md struktur | emphasis | Told explicitly: R4 emphasises HOW a project runs |
+  | Radius 4px images / 999px controls | sanity-io-design-language.md Border Radii table (sm 3px, full 99999px) | craft | Direct Waldenburg-system value, rounded to a clean token |
+-->
+<style>
+:root{
+  --bg:#ffffff; --dark:#0c0c0e; --dark-2:#18181b;
+  --ink:#0c0c0e; --muted:#6a6a6d; --muted-dark:#a6a6aa;
+  --accent:#1E5E9C; --hair:#e2e2e4; --hair-dark:#2c2c30;
+  --f-display:'Archivo',sans-serif; --f-mono:'IBM Plex Mono',monospace;
+  --r-pill:999px; --r-img:4px;
+  --gap-white:clamp(4rem,9vw,7.5rem); --gap-dark:clamp(2.5rem,5vw,4rem);
+}
+*{box-sizing:border-box}
+html{overflow-x:clip}
+body{overflow-x:clip;margin:0;background:var(--bg);color:var(--ink);font-family:var(--f-display);font-size:17px;line-height:1.6;-webkit-font-smoothing:antialiased}
+img{display:block;max-width:100%;border-radius:var(--r-img)}
+a{color:inherit}
+.wrap{max-width:1240px;margin:0 auto;padding:0 clamp(20px,4vw,48px)}
+.mono{font-family:var(--f-mono)}
+.kicker{font-family:var(--f-mono);font-size:11px;letter-spacing:.2em;text-transform:uppercase;color:var(--muted)}
+.kicker.on-dark{color:var(--muted-dark)}
+
+/* ---- header ---- */
+header{position:sticky;top:0;z-index:20;background:var(--dark);color:#fff;border-bottom:1px solid var(--hair-dark)}
+.nav{display:flex;align-items:center;justify-content:space-between;gap:24px;height:72px}
+.wordmark{font-family:var(--f-display);font-weight:800;font-size:20px;letter-spacing:-.02em;text-decoration:none;color:#fff}
+.nav-links{display:none;gap:28px;list-style:none;margin:0;padding:0;font-family:var(--f-mono);font-size:12px;letter-spacing:.1em;text-transform:uppercase}
+@media(min-width:640px){.nav-links{display:flex}}
+.nav-links a{text-decoration:none;color:var(--muted-dark);transition:color .2s}
+.nav-links a:hover,.nav-links a:focus-visible{color:#fff}
+.pill{display:inline-flex;align-items:center;gap:8px;padding:.85em 1.6em;border-radius:var(--r-pill);font-family:var(--f-mono);font-size:12px;letter-spacing:.08em;text-transform:uppercase;text-decoration:none;border:1px solid transparent;transition:transform .2s ease,background .2s ease}
+.pill--accent{background:var(--accent);color:#fff}
+.pill--accent:hover{transform:translateY(-1px)}
+.pill--ghost{border-color:rgba(255,255,255,.35);color:#fff}
+.pill--ghost:hover{border-color:#fff}
+.pill:focus-visible{outline:2px solid var(--accent);outline-offset:3px}
+.nav-cta{display:inline-flex;padding:.7em 1.3em;font-size:11px}
+@media(min-width:640px){.nav-cta{padding:.85em 1.6em;font-size:12px}}
+
+/* ---- hero ---- */
+.hero{position:relative;min-height:min(92vh,880px);display:flex;align-items:flex-end;background:var(--dark);color:#fff;overflow:hidden}
+.hero__media{position:absolute;inset:0}
+.hero__media img{width:100%;height:100%;object-fit:cover;border-radius:0}
+.hero__media::after{content:"";position:absolute;inset:0;background:linear-gradient(180deg,rgba(12,12,14,.55) 0%,rgba(12,12,14,.15) 32%,rgba(12,12,14,.35) 68%,rgba(12,12,14,.9) 100%),linear-gradient(90deg,rgba(12,12,14,.72) 0%,rgba(12,12,14,.15) 55%)}
+.hero__content{position:relative;z-index:2;padding:120px 0 clamp(48px,7vw,88px)}
+.hero .kicker{margin-bottom:22px}
+.hero h1{margin:0 0 28px;font-family:var(--f-display);font-weight:700;font-size:clamp(2.6rem,7.4vw,6.4rem);line-height:.96;letter-spacing:-0.04em;max-width:14ch}
+.hero p{margin:0 0 40px;max-width:46ch;font-size:clamp(17px,1.6vw,20px);color:#d8d8da;line-height:1.55}
+.hero__actions{display:flex;flex-wrap:wrap;gap:16px;align-items:center}
+.hero__actions .pill--accent{padding:1em 2em;font-size:13px}
+.hero__meta{margin-top:56px;display:flex;gap:32px;flex-wrap:wrap;font-family:var(--f-mono);font-size:11px;letter-spacing:.14em;text-transform:uppercase;color:#98989c}
+
+/* ---- process intro ---- */
+.intro{padding:var(--gap-white) 0 clamp(3rem,6vw,4.5rem)}
+.intro h2{margin:18px 0 20px;font-family:var(--f-display);font-weight:700;font-size:clamp(1.9rem,4vw,3.1rem);letter-spacing:-.02em;line-height:1.05;max-width:16ch}
+.intro p{margin:0;max-width:56ch;color:var(--muted);font-size:18px}
+
+/* ---- process rail + steps ---- */
+.process{padding-bottom:var(--gap-white)}
+.process-grid{display:grid;grid-template-columns:220px 1fr;gap:clamp(2rem,4vw,4rem)}
+.rail{display:none}
+@media(min-width:900px){
+  .rail{display:block;position:sticky;top:96px;align-self:start;list-style:none;margin:0;padding:0;border-top:1px solid var(--hair)}
+  .rail li{display:flex;gap:14px;align-items:baseline;padding:16px 0;border-bottom:1px solid var(--hair);font-family:var(--f-mono);font-size:12px;letter-spacing:.08em;text-transform:uppercase;color:var(--muted)}
+  .rail li span:first-child{color:var(--ink);font-weight:500}
+}
+.steps{grid-column:2/-1;display:flex;flex-direction:column;gap:clamp(3.5rem,7vw,6.5rem)}
+@media(max-width:899px){.steps{grid-column:1/-1}}
+.step{display:grid;grid-template-columns:minmax(0,132px) 1fr;gap:20px}
+.step__num{font-family:var(--f-mono);font-size:13px;color:var(--muted);min-width:0}
+.step__num b{display:block;color:var(--ink);font-size:12.5px;font-weight:500;letter-spacing:.02em;text-transform:uppercase;overflow-wrap:break-word;margin-top:4px}
+.step__body h3{margin:0 0 14px;font-family:var(--f-display);font-weight:700;font-size:clamp(1.5rem,2.6vw,2.1rem);letter-spacing:-.015em;line-height:1.1}
+.step__body p{margin:0;max-width:58ch;color:var(--muted);font-size:16.5px}
+.step__figure{margin:28px 0 0;grid-column:1/-1}
+.step__figure figcaption{margin-top:10px;font-family:var(--f-mono);font-size:11px;letter-spacing:.06em;color:var(--muted)}
+.step__figure figcaption a{color:var(--accent);text-decoration:underline;text-underline-offset:3px}
+.step__figure img{border:1px solid var(--hair);width:100%}
+@media(min-width:640px){
+  .step__figure{max-width:640px}
+}
+@media(max-width:639px){
+  .step{grid-template-columns:1fr;gap:10px}
+  .step__num{display:flex;gap:8px;align-items:baseline}
+  .step__num b{margin-top:0}
+}
+
+/* ---- closing band ---- */
+.close{background:var(--dark);color:#fff;padding:var(--gap-dark) 0}
+.close-inner{display:flex;flex-direction:column;gap:28px;align-items:flex-start}
+.close h2{margin:16px 0 0;font-family:var(--f-display);font-weight:700;font-size:clamp(2rem,5vw,3.6rem);letter-spacing:-.03em;line-height:1.02;max-width:16ch}
+.close p{margin:0;color:var(--muted-dark);font-size:18px}
+.close .pill--accent{margin-top:8px;padding:1em 2em;font-size:13px}
+footer{border-top:1px solid var(--hair-dark);padding:28px 0;background:var(--dark)}
+.footer-row{display:flex;flex-wrap:wrap;gap:14px 28px;align-items:center;justify-content:space-between;font-family:var(--f-mono);font-size:11px;letter-spacing:.1em;text-transform:uppercase;color:var(--muted-dark)}
+.footer-row a{color:var(--muted-dark);text-decoration:none}
+.footer-row a:hover,.footer-row a:focus-visible{color:#fff}
+
+/* ---- reveal: fails toward visible ---- */
+.reveal{opacity:1;transform:none}
+html.has-js .reveal{opacity:0;transform:translateY(28px);transition:opacity 1.1s cubic-bezier(.16,1,.3,1),transform 1.1s cubic-bezier(.16,1,.3,1)}
+html.has-js .reveal.in-view{opacity:1;transform:none}
+@media(prefers-reduced-motion:reduce){
+  html.has-js .reveal{opacity:1;transform:none;transition:none}
+}
+</style>
+</head>
+<body>
+
+<!-- HEADER: mörk topprad, mono-nav — NOT a white/transparent nav -->
+<header>
+  <div class="wrap nav">
+    <a class="wordmark" href="#top">Alunix</a>
+    <ul class="nav-links">
+      <li><a href="#process">Process</a></li>
+      <li><a href="#projekt">Projekt</a></li>
+      <li><a href="#kontakt">Kontakt</a></li>
+    </ul>
+    <a class="pill pill--accent nav-cta" href="mailto:hej@alunix.se">Boka möte</a>
+  </div>
+</header>
+
+<main>
+<!-- HERO: fullbleed mörk texturbild, komprimerad vänsterställd rubrik, EN pill — NOT a card, NOT centred -->
+<section class="hero" id="top">
+  <div class="hero__media"><img src="hero.webp" alt="" role="presentation"></div>
+  <div class="wrap hero__content reveal">
+    <p class="kicker on-dark">Digital byrå</p>
+    <h1>Er digitala byrå.<br>Allt på ett ställe.</h1>
+    <p>Vi skapar skräddarsydda digitala lösningar som exponerar ert företag: webbdesign, grafisk form och egna system, samlat hos en partner.</p>
+    <div class="hero__actions">
+      <a class="pill pill--accent" href="mailto:hej@alunix.se">Boka ett möte</a>
+      <a class="pill pill--ghost" href="#process">Se processen</a>
+    </div>
+    <div class="hero__meta">
+      <span>Webbdesign</span><span>Design</span><span>System</span>
+    </div>
+  </div>
+</section>
+
+<!-- PROCESS INTRO -->
+<section class="intro wrap">
+  <p class="kicker reveal">Processen</p>
+  <h2 class="reveal">Fem steg till en sajt som gör jobbet</h2>
+  <p class="reveal">Vi håller ordning på arbetet så att ni slipper göra det. Från första samtalet till lanserad sajt vet ni alltid var vi är i processen.</p>
+</section>
+
+<!-- PROCESS: sticky mono-rail 01-05 + skärmdumpar i stället för illustration — NOT a feature grid -->
+<section class="process wrap" id="process">
+  <div class="process-grid">
+    <ol class="rail" aria-hidden="true">
+      <li><span>01</span><span>Behovsanalys</span></li>
+      <li><span>02</span><span>Design</span></li>
+      <li><span>03</span><span>Utveckling</span></li>
+      <li><span>04</span><span>Lansering</span></li>
+      <li><span>05</span><span>Förvaltning</span></li>
+    </ol>
+
+    <div class="steps" id="projekt">
+      <article class="step reveal">
+        <div class="step__num mono">01<b>Behovsanalys</b></div>
+        <div class="step__body">
+          <h3>Vi lär känna företaget</h3>
+          <p>Vi går igenom vad företaget gör och vad sajten faktiskt ska lösa. Ingen färdig mall. Resultatet är en tydlig plan för resten av arbetet.</p>
+        </div>
+      </article>
+
+      <article class="step reveal">
+        <div class="step__num mono">02<b>Design</b></div>
+        <div class="step__body">
+          <h3>Design som ser ut som er</h3>
+          <p>Grafisk form och varumärke sätts innan en enda rad kod skrivs. Färg, typografi och ton väljs utifrån företaget som ska bära dem.</p>
+          <figure class="step__figure">
+            <img src="calyx.webp" alt="Skärmbild av Calyx, en florist i Stockholm, byggd av Alunix" loading="lazy" width="1200" height="734">
+            <figcaption>Calyx, florist · <a href="https://anti-slop-design.vercel.app/calyx" target="_blank" rel="noopener">anti-slop-design.vercel.app/calyx</a></figcaption>
+          </figure>
+        </div>
+      </article>
+
+      <article class="step reveal">
+        <div class="step__num mono">03<b>Utveckling</b></div>
+        <div class="step__body">
+          <h3>Byggt för att hålla</h3>
+          <p>Sajten byggs skräddarsydd för verksamheten, inte hoprafsad i ett färdigt tema. Vi bygger även egna system, bland annat Alunix OS och ett lagersystem, så vi vet hur teknik ska hålla över tid.</p>
+          <figure class="step__figure">
+            <img src="horai.webp" alt="Skärmbild av Hōrai, en restaurang i Stockholm, byggd av Alunix" loading="lazy" width="1200" height="734">
+            <figcaption>Hōrai, restaurang · <a href="https://anti-slop-design.vercel.app/horai" target="_blank" rel="noopener">anti-slop-design.vercel.app/horai</a></figcaption>
+          </figure>
+        </div>
+      </article>
+
+      <article class="step reveal">
+        <div class="step__num mono">04<b>Lansering</b></div>
+        <div class="step__body">
+          <h3>Vårt enda mått: perfektion</h3>
+          <p>Innan lansering går vi igenom varje sida, länk och bild. Så här ser resultatet ut när det är klart.</p>
+          <figure class="step__figure">
+            <img src="hyperborea.webp" alt="Skärmbild av Hyperborea, en konferens i Lund, byggd av Alunix" loading="lazy" width="1200" height="734">
+            <figcaption>Hyperborea, konferens · <a href="https://anti-slop-design.vercel.app/hyperborea" target="_blank" rel="noopener">anti-slop-design.vercel.app/hyperborea</a></figcaption>
+          </figure>
+        </div>
+      </article>
+
+      <article class="step reveal">
+        <div class="step__num mono">05<b>Förvaltning</b></div>
+        <div class="step__body">
+          <h3>Alla har rätt till bra design</h3>
+          <p>Vår filosofi är att alla har rätt till bra design. Därför lägger vi oss på en nivå som gör våra tjänster tillgängliga för fler, utan att kompromissa med resultatet. Det gäller efter lansering också.</p>
+        </div>
+      </article>
+    </div>
+  </div>
+</section>
+
+<!-- CLOSE: mörkt band, en pill — den enda andra platsen accenten får användas -->
+<section class="close" id="kontakt">
+  <div class="wrap close-inner reveal">
+    <p class="kicker on-dark">Kontakt</p>
+    <h2>Nutidens visitkort är er sajt.</h2>
+    <p>Hör av er så pratar vi om hur den ska se ut.</p>
+    <a class="pill pill--accent" href="mailto:hej@alunix.se">hej@alunix.se</a>
+  </div>
+</section>
+</main>
+
+<footer>
+  <div class="wrap footer-row">
+    <span>Alunix · digital byrå</span>
+    <span><a href="mailto:hej@alunix.se">hej@alunix.se</a></span>
+  </div>
+</footer>
+
+<noscript><style>.reveal{opacity:1!important;transform:none!important}</style></noscript>
+<script>
+(function(){
+  document.documentElement.classList.add('has-js');
+  var els = Array.prototype.slice.call(document.querySelectorAll('.reveal'));
+  var reduced = window.matchMedia && window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+  if(reduced || !('IntersectionObserver' in window)){
+    els.forEach(function(el){ el.classList.add('in-view'); });
+    return;
+  }
+  els.forEach(function(el){
+    var r = el.getBoundingClientRect();
+    if(r.top < window.innerHeight){ el.classList.add('in-view'); }
+  });
+  var io = new IntersectionObserver(function(entries){
+    entries.forEach(function(entry){
+      if(entry.isIntersecting){ entry.target.classList.add('in-view'); io.unobserve(entry.target); }
+    });
+  }, { threshold: 0, rootMargin: '0px 0px 400px 0px' });
+  els.forEach(function(el){ if(!el.classList.contains('in-view')) io.observe(el); });
+  /* Failsafe: a full-page capture tool (or a visitor who never scrolls) must
+     still see every section, not a page that is blank below the fold. */
+  setTimeout(function(){ els.forEach(function(el){ el.classList.add('in-view'); }); }, 700);
+})();
+</script>
+</body>
+</html>

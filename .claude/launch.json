@@ -31,6 +31,17 @@
         "4620"
       ],
       "port": 4620
+    },
+    {
+      "name": "alunix-board-r2",
+      "runtimeExecutable": "python",
+      "runtimeArgs": [
+        "C:/Users/Anton L/.agents/skills/design/scripts/board.py",
+        "tests/alunix-concepts-r2",
+        "--port",
+        "4621"
+      ],
+      "port": 4621
     }
   ]
 }
