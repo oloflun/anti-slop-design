@@ -1,0 +1,704 @@
+<!--
+  design · pre-emit critique: P4 H4 E4 S4 R4 V4
+
+  REFERENCE LOCK (Step 1b) — Tier 2. Primary: tests/alunix-concepts-r3/build/index.html (every
+  headline, sub-text, price line and kontakt@alunix.se lifted verbatim, reordered into five
+  numbered chapters + one pinned scene per contract.md M2). Catalogue: design-catalogue/entries/
+  vinterspelen (chaptered editorial + a pinned stage that changes what's on it while the frame
+  holds still — the pinned scene's whole reason for being), sanity (numbered folio-in-margin
+  convention, 01-05 mono), not-real (rotated 90° running-text strip pinned to the viewport edge
+  as a persistent running header), shelby-kay (a rotated wordmark fragment fixed beside the
+  running text as a spatial anchor — inverted here: the logo stays fixed, the rail's own content
+  moves past it, which is what makes this build's signature move genuinely different from either
+  source). TASTE.md §1 (one authority per screen) and §4 (decision rules) read and applied.
+  Full ledger, feeling curve, peak, tell-someone sentence, device table and fingerprint row: see
+  NOTES.md, written before this file per Step 2b.
+
+  Rejected from r3: the two-column split-stage structure, the seam-hairline-from-logo signature
+  move, the simultaneous Calyx-frame + price-box double close, two heroes side by side. Rejected
+  from the catalogue: vinterspelen's per-frame letter-spacing/blur scrub (devices.md forbids it
+  outright — transform/opacity only); its multi-viewport sticky-per-image scrub (this build's
+  pin is one held frame across a 3.2-span, not several viewport-heights per swap); not-real's
+  three-colour vellum palette and CGI-render content (this page keeps the R5+R6 tokens, its own
+  three real client sites as the only imagery).
+
+  New construction, this build only: the pinned three-frame stage (chapter 02), its bespoke
+  --sc-p-driven inset wipe (never on the <iframe> itself, only its wrapper, per contract.md's
+  own instruction); the folio (fixed, left margin, 0X/05, updates on scroll); the chapter rail
+  (fixed, right edge, rotated running chapter names, the signature move — see NOTES.md).
+-->
+<!doctype html>
+<html lang="sv" class="no-js">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Alunix · fem kapitel</title>
+<meta name="description" content="Alunix är en digital byrå som designar och bygger webbplatser och digitala system, i fem kapitel.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Geist:wght@400;500;700&family=Geist+Mono:wght@400;500&family=Public+Sans:wght@300;400;500;600&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="scrollcraft.css">
+<script>document.documentElement.classList.replace('no-js','js');</script>
+<style>
+  :root{
+    /* scrollcraft's own six tokens + two fonts */
+    --sc-canvas:#0c0b08; --sc-surface:#151310; --sc-ink:#fdfbf4; --sc-ink-soft:#a39d8c;
+    /* --sc-canvas is globally drift-managed (scrollcraft.js writes it onto <html>
+       whenever any [data-sc-drift] act is live, engine-wide, not per-act) — the
+       stage's own solid ground must NOT read that variable, or chapter 03's blue
+       drift bleeds into chapter 02's stage background as the pin releases. Kept
+       as its own token, same starting value, never touched by drift. */
+    --stage-ground:#0c0b08;
+    --sc-accent:#1e5e9c; --sc-accent-ink:#ffffff;
+    --sc-font-display:'Geist',system-ui,sans-serif; --sc-font-text:'Public Sans',system-ui,sans-serif;
+
+    /* R5 tokens (chapters 01, 03, 04) */
+    --c-black:#0b0c0e; --c-white:#ffffff; --c-paper:#f4f2ee; --c-ink:#14171a;
+    --c-accent:#1e5e9c; --c-accent-deep:#123f68;
+    --c-line-on-dark:rgba(255,255,255,.20); --c-line-on-paper:rgba(20,23,26,.14);
+    --c-mute-on-dark:rgba(255,255,255,.62); --c-mute-on-paper:rgba(20,23,26,.60);
+    --c-mute-on-accent:rgba(255,255,255,.72); --c-mute-on-accent-aa:rgba(255,255,255,.92);
+    --f-display:'Geist',system-ui,sans-serif; --f-body:'Geist',system-ui,sans-serif; --f-mono:'Geist Mono',ui-monospace,monospace;
+
+    /* R6 tokens (chapter 02 cues, chapter 05 price box) */
+    --bg:#fdfbf4; --ink:#16140f; --ink-soft:#453f30; --ink-softer:#55503f;
+    --line:rgba(22,20,15,.14); --invert:#0c0b08; --invert-ink:#fdfbf4;
+    --invert-soft:rgba(253,251,244,.72); --invert-body:rgba(253,251,244,.82); --invert-line:rgba(253,251,244,.16);
+    --font:'Public Sans',system-ui,sans-serif;
+
+    --ease:cubic-bezier(.16,1,.3,1);
+    --col-max:1100px;
+    --gutter:clamp(24px,6vw,96px);
+  }
+  *{box-sizing:border-box;}
+  html,body{margin:0;overflow-x:clip;}
+  body{background:var(--c-black);color:var(--c-white);font-family:var(--f-body);font-size:16px;line-height:1.5;-webkit-font-smoothing:antialiased;}
+  img{max-width:100%;display:block;}
+  a{color:inherit;}
+  h1,h2,h3,p,figure{margin:0;}
+  a:focus-visible,button:focus-visible{outline:2px solid var(--c-accent);outline-offset:3px;}
+
+  .kicker{font-family:var(--f-mono);font-size:11px;letter-spacing:.22em;text-transform:uppercase;}
+
+  /* ================================================================ text-glides-from-right
+     M2's own direction rule: text enters from the right, images wipe from the left (opposite).
+     [data-sc-in] only fires its .sc-in class ONCE via IntersectionObserver, then the whole
+     animation is a plain CSS transition (scrollcraft.css lines 286-291) — nothing here is
+     rewritten by inline JS every frame, so this page-scoped, higher-specificity override is
+     safe: it never touches .sc-in / [data-sc-in] as engine-wide selectors, only these two
+     project classes that also happen to carry the attribute. Reduced motion: the engine's own
+     [data-sc-in]{transform:none} rule (its later, same-specificity reduced-motion rule) wins
+     once this block stops applying. */
+  @media (prefers-reduced-motion:no-preference){
+    .enter-right[data-sc-in]{ transform:translate3d(48px,0,0); }
+    .enter-right[data-sc-in].sc-in{ transform:none; }
+  }
+
+  /* ================================================================ folio (left margin) */
+  .folio{position:fixed;left:20px;bottom:22px;z-index:70;font-family:var(--f-mono);font-size:11px;
+    letter-spacing:.16em;color:var(--c-white);mix-blend-mode:difference;pointer-events:none;display:none;}
+  .folio .folio-sep{opacity:.5;margin:0 .2em;}
+  @media (min-width:860px){ .folio{display:block;} }
+
+  /* ================================================================ chapter rail (signature move)
+     Rotated running text, right edge. Content flows in writing-mode:vertical-rl so no manual
+     rotate() transform is needed for the text itself; only the inner TRACK is translated. Its
+     translateY tracks -scrollY exactly (see script), and each label's own `top` is set once (on
+     load/resize) to its chapter's real document-space midpoint — so a label's position inside
+     this fixed, clipped strip is mathematically identical to that chapter's own on-screen
+     position. The label level with the logo (fixed near the top of the rail) is therefore
+     provably the chapter actually on screen, not an approximation. */
+  .rail{position:fixed;top:0;right:0;width:44px;height:100vh;overflow:hidden;z-index:70;
+    pointer-events:none;display:none;border-left:1px solid rgba(255,255,255,.14);
+    mix-blend-mode:difference;}
+  @media (min-width:900px){ .rail{display:block;} }
+  .rail-logo{position:absolute;top:28px;left:50%;transform:translateX(-50%);width:20px;z-index:2;}
+  .rail-logo svg{width:100%;height:auto;display:block;fill:#fff;}
+  .rail-track{position:absolute;top:0;left:0;width:100%;will-change:transform;}
+  .rail-label{position:absolute;left:50%;transform:translate(-50%,-50%);
+    writing-mode:vertical-rl;text-orientation:mixed;white-space:nowrap;
+    font-family:var(--f-mono);font-size:11px;letter-spacing:.18em;color:rgba(255,255,255,.42);
+    transition:color .3s var(--ease),opacity .3s var(--ease);opacity:.7;}
+  .rail-label.is-active{color:#fff;opacity:1;font-weight:500;}
+
+  /* ================================================================ mobile chapter chip
+     Below 900px the folio/rail have no natural margin left to sit in; this in-flow marker
+     keeps the "always know your chapter" function without clipping anything. */
+  .chip{display:none;font-family:var(--f-mono);font-size:11px;letter-spacing:.18em;
+    padding:0 0 18px;opacity:.85;}
+  @media (max-width:899px){ .chip{display:block;} }
+
+  /* ================================================================ shared chapter shell */
+  .chapter{position:relative;}
+  .chapter-inner{max-width:var(--col-max);margin:0 auto;padding:0 var(--gutter);}
+
+  /* ================================================================ CH 01 — title page (R5) */
+  .ch01{background:var(--c-black);min-height:100svh;display:flex;align-items:center;
+    justify-content:center;padding:9vh var(--gutter);overflow:hidden;}
+  .ch01 .hero-photo{position:absolute;inset:0;background:url('/tests/alunix-concepts-r3/build/assets/hero-console.webp') center 30%/cover no-repeat;}
+  .ch01 .hero-scrim{position:absolute;inset:0;background:linear-gradient(180deg,rgba(0,0,0,.58) 0%,rgba(0,0,0,.32) 38%,rgba(0,0,0,.66) 100%);}
+  .console-card{position:relative;width:100%;max-width:640px;border:1px solid var(--c-line-on-dark);
+    background:rgba(8,9,10,.6);backdrop-filter:blur(3px);padding:clamp(28px,4.5vw,52px);}
+  .console-card::before,.console-card::after,.console-card .cc-bl,.console-card .cc-br{
+    content:"";position:absolute;width:8px;height:8px;border:1px solid rgba(255,255,255,.55);}
+  .console-card::before{top:-2px;left:-2px;border-width:1px 0 0 1px;}
+  .console-card::after{top:-2px;right:-2px;border-width:1px 1px 0 0;}
+  .console-card .cc-bl{bottom:-2px;left:-2px;border-width:0 0 1px 1px;}
+  .console-card .cc-br{bottom:-2px;right:-2px;border-width:0 1px 1px 0;}
+  .console-top{display:flex;flex-wrap:wrap;gap:6px 16px;justify-content:space-between;
+    color:var(--c-mute-on-dark);margin-bottom:clamp(18px,3vw,32px);font-size:10px;}
+  .console-top .kicker{color:var(--c-mute-on-dark);font-size:10px;}
+  .wordmark{font-family:var(--f-display);font-weight:700;font-size:clamp(2.6rem,9vw,5.2rem);
+    line-height:.88;letter-spacing:-.03em;text-transform:uppercase;overflow-wrap:anywhere;min-width:0;}
+  .wordmark .sub{display:block;font-size:clamp(.85rem,1.6vw,1.1rem);font-weight:500;
+    letter-spacing:.12em;color:var(--c-mute-on-dark);text-transform:uppercase;margin-top:.5em;}
+  .hero-body{max-width:46ch;font-size:clamp(.95rem,1.2vw,1.05rem);color:rgba(255,255,255,.88);
+    margin-top:clamp(18px,3vw,30px);}
+  .service-list{display:flex;flex-wrap:wrap;gap:6px 16px;margin-top:clamp(18px,3vw,30px);
+    padding-top:12px;border-top:1px solid var(--c-line-on-dark);font-family:var(--f-mono);
+    font-size:11px;letter-spacing:.08em;text-transform:uppercase;}
+  .hero-cta-row{margin-top:clamp(18px,3vw,30px);}
+  .cta{display:inline-block;font-family:var(--f-display);font-weight:700;
+    font-size:clamp(1rem,1.6vw,1.2rem);color:var(--c-white);text-decoration:underline;
+    text-underline-offset:5px;text-decoration-color:var(--c-accent);text-decoration-thickness:2px;}
+  .cta:hover{text-decoration-color:var(--c-white);}
+
+  /* ================================================================ CH 02 lead-in (flow, before the pin)
+     Fix round: the pinned stage used to carry its own "Er hemsida är
+     nutidens visitkort" heading in a bottom-left panel — but that exact
+     sentence already lives inside the Tidvatten frame's own fold
+     (tidvatten-hero.html, out of scope), so the same headline read twice on
+     one screen the moment the stage opened, and the panel then rode along
+     over Hōrai and Calyx too, where it read as an orphaned duplicate with
+     nothing to duplicate. The kicker + lede move here, into plain flow
+     ABOVE the pin, R6 typography (Public Sans 300) — the chapter still
+     opens with its own statement, the stage itself is now bare glass. Not a
+     `.chapter` element on purpose: the rail/folio script indexes chapters
+     1:1 against five `.chapter` sections and five rail labels
+     (`document.querySelectorAll('.chapter')`); a sixth `.chapter` here
+     would shift every label after it out of alignment. Same dark ground as
+     the stage (`--stage-ground`) so the two read as one continuous surface,
+     not a seam. */
+  .ch02-lead{background:var(--stage-ground);color:var(--invert-ink);
+    padding:clamp(56px,9vh,110px) 0 clamp(40px,6vh,64px);}
+  .ch02-lead .kicker{color:var(--invert-soft);margin-bottom:.7em;}
+  .ch02-lead-statement{font-family:var(--font);font-weight:300;color:var(--invert-ink);
+    font-size:clamp(1.6rem,3.6vw,2.6rem);line-height:1.15;letter-spacing:-.01em;max-width:22ch;}
+
+  /* ================================================================ CH 02 — pinned stage */
+  .ch02{background:var(--stage-ground);}
+  .stage{background:var(--stage-ground);}
+  .stage-frames{position:absolute;inset:0;}
+  .frame-wrap{position:absolute;inset:0;overflow:hidden;background:#000;}
+  .frame-wrap[data-frame="0"]{z-index:3;} .frame-wrap[data-frame="1"]{z-index:2;} .frame-wrap[data-frame="2"]{z-index:1;}
+  .frame-wrap iframe{width:100%;height:100%;border:0;display:block;}
+  /* Fix round: both corner `.sc-scrim` divs (--lead/--trail) are dropped
+     from the markup along with `.stage-head` above. With no permanent
+     caption left on the stage to protect, a whole-corner gradient wash had
+     nothing to justify it and read as an unexplained dark wedge on the
+     right — measured on screen as a ~150px "column" running the full frame
+     height (the fix-round brief's own defect #2). The stage is now full
+     width, full bleed; only the three tjänst cues below ever put text on
+     it, one at a time, each carrying its own small opaque panel sized to
+     its own text (same flat rgba(6,5,3,.84) ground proven clean against
+     Tidvatten's bright sky by scroll_verify.py's contrastUnderMedia check
+     — kept verbatim, only its position/shape changed) — never a page-wide
+     wash. */
+  /* z-index set explicitly: this div no longer carries the kit's own
+     `.sc-copy` class (its positioning fought the bottom-left/bottom-right
+     split cues need), so it also lost that class's `z-index:
+     var(--sc-z-copy)` — without it the cue panels painted BEHIND
+     `.frame-wrap[data-frame="0"]`'s own `z-index:3`, invisible. Read the
+     same kit variable back explicitly instead of a raw number, so this
+     still tracks the engine's own copy-layer level if it ever changes. */
+  .stage-cues{position:absolute;inset:0;pointer-events:none;z-index:var(--sc-z-copy);}
+  .stage-cue{position:absolute;left:var(--gutter);right:auto;bottom:clamp(3rem,12vh,9rem);
+    max-width:min(36ch,calc(100vw - 2 * var(--gutter)));text-align:left;
+    background:rgba(6,5,3,.84);padding:1.1em 1.3em 1.3em;
+    opacity:0;pointer-events:none;}
+  /* Cue 0 (Webbdesign) plays over the Tidvatten frame — the one frame whose
+     OWN headline sits bottom-left inside its own fold (tidvatten-hero.html,
+     out of scope). Anchored bottom-right instead, so the frame's own
+     headline stays fully clear; cues 1/2 (Hōrai, Calyx) keep the bottom-
+     left default — neither of those two sites puts its own text in that
+     corner. */
+  .stage-cue--right{left:auto;right:var(--gutter);}
+  /* At narrow widths Tidvatten's own headline (out of scope) wraps to 4-5
+     lines and grows tall enough to reach a bottom-right panel too —
+     confirmed on a 390px screenshot mid-fix. The brief's own second option
+     ("above the headline band") for exactly this cue: parked at the top of
+     the frame instead, clear of Tidvatten's own hero text at every width
+     checked. Cues 1/2 stay bottom-left here; Hōrai and Calyx never put
+     their own text in that corner at 390px either (checked). */
+  @media (max-width:640px){
+    .stage-cue--right{top:var(--gutter);bottom:auto;right:var(--gutter);left:auto;}
+  }
+  .stage-cue .service-index{display:block;font-family:var(--f-mono);font-weight:400;
+    font-size:11px;color:var(--invert-soft);letter-spacing:.22em;text-transform:uppercase;
+    margin-bottom:.6em;}
+  .stage-cue h3{font-family:var(--font);font-weight:500;font-size:clamp(1.15rem,2.2vw,1.6rem);
+    color:#fff;letter-spacing:-.01em;}
+  .stage-cue p{font-family:var(--font);font-weight:300;font-size:clamp(.85rem,1.1vw,.98rem);
+    color:var(--invert-body);margin-top:.6em;line-height:1.55;}
+  .stage-links{display:none;margin-top:1.2em;flex-direction:column;gap:.5em;text-align:left;}
+  .stage-links a{font-family:var(--font);font-size:13px;color:var(--invert-body);
+    text-decoration:underline;text-underline-offset:3px;}
+  .stage-links a:hover{color:#fff;}
+  @media (prefers-reduced-motion:reduce){
+    .stage-links{display:flex;}
+  }
+
+  /* ================================================================ CH 03 — thesis (R5 blue) */
+  .ch03{background:var(--c-accent);color:var(--c-white);padding:clamp(64px,11vh,140px) 0;}
+  .thesis-grid{display:grid;grid-template-columns:1.05fr .95fr;gap:clamp(28px,5vw,64px);align-items:end;}
+  .thesis-text .kicker{color:var(--c-mute-on-accent-aa);margin-bottom:.9em;}
+  .thesis-headline{font-family:var(--f-display);font-weight:700;font-size:clamp(2rem,4.6vw,3.6rem);
+    line-height:.98;letter-spacing:-.02em;text-transform:uppercase;overflow-wrap:anywhere;min-width:0;}
+  .thesis-support{max-width:42ch;font-size:clamp(1rem,1.15vw,1.15rem);color:rgba(255,255,255,.9);
+    margin-top:1.4em;}
+  .thesis-photo{border:1px solid rgba(255,255,255,.35);}
+  .thesis-photo img{width:100%;height:100%;object-fit:cover;filter:grayscale(1) contrast(1.05);aspect-ratio:16/10;}
+  .thesis-photo figcaption{font-family:var(--f-mono);font-size:11px;letter-spacing:.14em;
+    text-transform:uppercase;padding:.9em .1em 0;color:var(--c-mute-on-accent-aa);}
+  @media (max-width:760px){ .thesis-grid{grid-template-columns:1fr;} .thesis-photo{order:-1;max-width:420px;margin:0 auto;} }
+
+  /* ================================================================ CH 04 — giant + ledger (R5 paper) */
+  .ch04{background:var(--c-paper);color:var(--c-ink);padding:clamp(72px,12vh,150px) 0 clamp(56px,9vh,110px);}
+  .giant{font-family:var(--f-display);font-weight:700;font-size:clamp(2.4rem,7.6vw,6.4rem);
+    line-height:.88;letter-spacing:-.03em;text-transform:uppercase;overflow-wrap:anywhere;min-width:0;}
+  .giant .sc-split--line + .sc-split--line{padding-top:.14em;margin-top:-.14em;}
+  .giant-sub{max-width:52ch;font-size:clamp(1rem,1.3vw,1.2rem);color:var(--c-mute-on-paper);margin-top:.9em;}
+  .ledger{margin-top:clamp(36px,5.6vw,64px);border-top:1px solid var(--c-line-on-paper);}
+  .ledger-row{display:grid;grid-template-columns:56px 1fr;gap:14px 24px;padding:1.6em 0;
+    border-bottom:1px solid var(--c-line-on-paper);}
+  .ledger-num{font-family:var(--f-mono);font-size:13px;color:var(--c-mute-on-paper);padding-top:.2em;}
+  .ledger-body h3{font-family:var(--f-display);font-weight:700;font-size:clamp(1.3rem,2.4vw,1.9rem);letter-spacing:-.01em;text-transform:uppercase;}
+  .ledger-body p{max-width:56ch;font-size:clamp(.9rem,1.05vw,1rem);color:var(--c-mute-on-paper);margin-top:.6em;}
+  @media (max-width:520px){ .ledger-row{grid-template-columns:1fr;} }
+
+  /* ================================================================ CH 05 — inverted price box (R6) */
+  .ch05{background:var(--invert);color:var(--invert-ink);font-family:var(--font);font-weight:400;
+    padding:clamp(72px,12vh,150px) 0;}
+  .ch05 .kicker{font-family:var(--font);font-weight:600;font-size:11px;letter-spacing:.16em;
+    text-transform:uppercase;color:var(--invert-soft);}
+  .price-statement{margin:0;font-weight:300;line-height:1.02;overflow-wrap:anywhere;min-width:0;
+    color:var(--invert-ink);max-width:20ch;font-size:clamp(1.9rem,4.4vw,3.2rem);margin-top:.5em;}
+  .price-ingress{font-size:clamp(.95rem,1.2vw,1.1rem);color:var(--invert-body);max-width:58ch;
+    margin-top:1.2em;line-height:1.55;}
+  .price-ledger{margin-top:2.4em;border-top:1px solid var(--invert-line);max-width:64ch;}
+  .price-row{display:flex;flex-wrap:wrap;justify-content:space-between;align-items:baseline;
+    gap:6px 24px;padding:1.1em 0;border-bottom:1px solid var(--invert-line);}
+  .price-row .label{font-size:13px;color:var(--invert-body);max-width:42ch;}
+  .price-row .value{font-family:var(--font);font-weight:600;font-size:clamp(15px,1.6vw,20px);
+    color:var(--invert-ink);white-space:nowrap;}
+  .price-contact{margin-top:2.4em;}
+  .price-contact .kicker{margin-bottom:.5em;}
+  .price-mailto{font-size:clamp(1.2rem,2vw,1.7rem);font-weight:300;letter-spacing:-.02em;
+    border-bottom:1px solid var(--invert-line);padding-bottom:3px;display:inline-block;
+    transition:opacity .25s var(--ease);}
+  .price-mailto:hover{opacity:.65;}
+  .ch05 :focus-visible{outline:2px solid var(--invert-ink);outline-offset:3px;}
+
+  @media (max-width:520px){
+    .console-card{padding:clamp(24px,6vw,40px);}
+    .wordmark{font-size:clamp(2.4rem,13vw,4.4rem);}
+  }
+</style>
+</head>
+<body>
+
+<aside class="folio" id="folio" aria-hidden="true"><span id="folioNum">01</span><span class="folio-sep">/</span><span>05</span></aside>
+
+<aside class="rail" id="rail" aria-hidden="true">
+  <div class="rail-logo">
+    <svg viewBox="80 400 827 1139" role="img" aria-hidden="true"><path fill-rule="evenodd" d="M 430.020 513.250 C 386.700 600.458, 318.190 739.397, 297.501 782 C 289.087 799.325, 276.594 824.975, 269.739 839 C 216.342 948.248, 182.518 1018.108, 130.177 1127.250 L 122.145 1144 149.505 1144 C 176.418 1144, 176.876 1143.966, 177.531 1141.901 C 177.898 1140.746, 186.760 1121.959, 197.226 1100.151 C 207.692 1078.343, 223.776 1044.750, 232.969 1025.500 C 266.133 956.059, 277.353 933, 277.980 933 C 278.331 933, 280.408 935.587, 282.595 938.750 C 284.783 941.913, 295.822 957.775, 307.127 974 C 325.042 999.713, 381.481 1081.065, 429.737 1150.734 C 439.657 1165.055, 444.860 1173.418, 444.356 1174.233 C 443.926 1174.929, 440.820 1179.324, 437.455 1183.999 C 429.228 1195.427, 350.904 1307.144, 339.651 1323.500 C 334.732 1330.650, 327.687 1340.775, 323.996 1346 C 313.067 1361.472, 240.505 1466.210, 229.257 1482.750 L 218.886 1498 253.693 1497.961 L 288.500 1497.922 299.500 1481.744 C 324.141 1445.503, 476.381 1225.616, 478.506 1223.197 C 478.768 1222.899, 523.522 1286.863, 565.476 1347.500 C 568.140 1351.350, 588.572 1380.825, 610.880 1413 C 633.189 1445.175, 655.504 1477.439, 660.471 1484.697 L 669.500 1497.895 706.798 1497.947 L 744.096 1498 740.841 1493.250 C 727.956 1474.444, 658.474 1374.606, 602.522 1294.500 C 521.377 1178.323, 476.786 1114.238, 411.522 1020 C 389.621 988.375, 368.686 958.225, 364.999 953 C 342.882 921.650, 308 870.814, 308 869.930 C 308 868.958, 318.208 847.506, 341.512 799.500 C 346.852 788.500, 357.642 766.225, 365.489 750 C 373.336 733.775, 394.812 689.450, 413.213 651.500 C 431.614 613.550, 449.746 576.074, 453.505 568.221 C 457.265 560.367, 460.665 554.292, 461.060 554.721 C 461.456 555.149, 484.829 600.050, 513 654.500 C 595.807 814.548, 597.733 818.267, 612.712 847 C 620.597 862.125, 629.584 879.471, 632.684 885.546 L 638.319 896.592 633.336 903.546 C 630.596 907.371, 622.124 919.500, 614.511 930.500 C 606.897 941.500, 592.950 961.525, 583.517 975 C 550.282 1022.475, 513.571 1075.338, 501.745 1092.750 C 500.157 1095.088, 498.778 1097, 498.679 1097 C 498.581 1097, 498.620 1045.925, 498.767 983.500 L 499.033 870 467.529 870 L 436.024 870 435.762 948.679 L 435.500 1027.358 441.051 1035.429 C 444.105 1039.868, 458.527 1060.825, 473.101 1082 C 498.716 1119.217, 521.094 1151.905, 523.077 1155 C 523.877 1156.249, 524.411 1156.006, 526.269 1153.550 C 528.956 1149.997, 575.050 1083.626, 604.955 1040.250 C 642.615 985.626, 683.143 927.009, 694.212 911.152 L 704.927 895.804 701.347 888.652 C 699.378 884.718, 693.373 873.175, 688.003 863 C 682.632 852.825, 671.141 831, 662.466 814.500 C 653.792 798, 640.398 772.575, 632.701 758 C 609.734 714.509, 591.719 680.257, 553.278 607 C 533.220 568.775, 512.426 529.175, 507.069 519 C 501.712 508.825, 490.419 487.337, 481.975 471.250 C 473.530 455.163, 466.349 442, 466.016 442 C 465.684 442, 449.485 474.063, 430.020 513.250 M 459 748.072 C 445.481 750.334, 431.497 761.058, 425.189 774 C 411.946 801.174, 429.479 833.973, 460.052 839.216 C 482.335 843.037, 505.858 827.419, 511.586 805 C 519.739 773.095, 491.587 742.619, 459 748.072 M 583.028 1238.750 C 583.043 1239.162, 587.793 1246.250, 593.583 1254.500 C 599.373 1262.750, 608.679 1276.138, 614.264 1284.250 L 624.418 1299 745.199 1299 L 865.981 1299 847.826 1273.750 C 837.841 1259.862, 828.058 1246.155, 826.086 1243.288 L 822.500 1238.076 702.750 1238.038 C 636.888 1238.017, 583.012 1238.338, 583.028 1238.750"/></svg>
+  </div>
+  <div class="rail-track" id="railTrack">
+    <span class="rail-label" data-chapter="1">01 ALUNIX</span>
+    <span class="rail-label" data-chapter="2">02 VISITKORT</span>
+    <span class="rail-label" data-chapter="3">03 DIGITALT</span>
+    <span class="rail-label" data-chapter="4">04 VARUMÄRKE</span>
+    <span class="rail-label" data-chapter="5">05 DESIGN</span>
+  </div>
+</aside>
+
+<main id="book">
+
+  <!-- ============================================================ 01 — title page (R5) -->
+  <section class="chapter ch01" id="ch01">
+    <div class="hero-photo" role="img" aria-label="Skrivbord i en trähytt, svartvitt, kraftigt ljusstreck över en vägg med skisser och verktyg"></div>
+    <div class="hero-scrim"></div>
+    <div class="console-card">
+      <span class="cc-bl"></span><span class="cc-br"></span>
+      <div class="console-top">
+        <span class="kicker" id="console-year">2026 · SVERIGE</span>
+        <span class="kicker" id="console-clock">--:--:-- · LOKAL TID</span>
+      </div>
+      <h1 class="wordmark">ALUNIX<span class="sub">Digital byrå</span></h1>
+      <p class="hero-body">Vi designar och bygger webbplatser, i nära dialog med verksamheten som ska leva i dem.</p>
+      <div class="service-list"><span>Design</span><span>Utveckling</span><span>System</span></div>
+      <div class="hero-cta-row"><a class="cta" href="mailto:kontakt@alunix.se">Boka ett möte →</a></div>
+    </div>
+  </section>
+
+  <!-- ============================================================ 02a — chapter lead-in (flow, before the pin)
+       Fix round: kicker + lede moved out of the stage's own bottom-left panel
+       (was duplicating Tidvatten's own on-frame headline) into plain flow,
+       R6 typography, so the chapter still opens with its statement while the
+       stage that follows stays clean. Direction rule kept: enters from the
+       right, same as chapter 03/04's flow text. Not a `.chapter` element —
+       see the CSS comment above `.ch02-lead` for why. -->
+  <div class="ch02-lead">
+    <div class="chapter-inner enter-right" data-sc-in>
+      <p class="kicker">02 · Tjänster</p>
+      <h2 class="ch02-lead-statement">Webbdesign, design och system. Allt på ett ställe.</h2>
+      <p class="stage-links" aria-hidden="false">
+        <a href="/sites/horai.html">Hōrai, restaurang i Stockholm →</a>
+        <a href="/sites/calyx.html">Calyx, florist i Stockholm →</a>
+      </p>
+    </div>
+  </div>
+
+  <!-- ============================================================ 02 — pinned scene -->
+  <section class="chapter ch02" id="ch02" data-sc-act="pin" data-sc-span="3.2" data-sc-drift="#0c0b08">
+    <div class="chip">02 / 05</div>
+    <div data-sc-stage class="stage">
+      <div class="stage-frames" id="stageFrames">
+        <div class="frame-wrap" data-frame="0">
+          <iframe src="/tests/alunix-concepts-r3/build/tidvatten-hero.html" title="Er hemsida är nutidens visitkort" loading="eager"></iframe>
+        </div>
+        <div class="frame-wrap" data-frame="1">
+          <iframe src="/sites/horai.html" title="Hōrai, restaurang i Stockholm" loading="lazy"></iframe>
+        </div>
+        <div class="frame-wrap" data-frame="2">
+          <iframe src="/sites/calyx.html" title="Calyx, florist i Stockholm" loading="lazy"></iframe>
+        </div>
+      </div>
+      <div class="stage-cues" id="stageCues">
+        <div class="stage-cue stage-cue--right" data-cue="0">
+          <span class="service-index">01</span>
+          <h3>Webbdesign</h3>
+          <p>Webbplatser byggda för att exponera verksamheten på rätt sätt, i ett tempo som håller över tid.</p>
+        </div>
+        <div class="stage-cue" data-cue="1">
+          <span class="service-index">02</span>
+          <h3>Design</h3>
+          <p>Ett visuellt system, från logotyp till komponenter, som håller ihop hela verksamhetens uttryck.</p>
+        </div>
+        <div class="stage-cue" data-cue="2">
+          <span class="service-index">03</span>
+          <h3>System</h3>
+          <p>System bortom webbplatsen, byggda för verksamheter som behöver hålla koll på mer än sidor och text, till exempel lager, bokningar eller medlemskap.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ============================================================ 03 — thesis (R5 blue) -->
+  <section class="chapter ch03" id="ch03" data-sc-act="flow" data-sc-drift="#123f68">
+    <div class="chapter-inner">
+      <div class="chip">03 / 05</div>
+      <div class="thesis-grid">
+        <div class="thesis-text enter-right" data-sc-in>
+          <p class="kicker">Varför design</p>
+          <h2 class="thesis-headline">Det första<br>intrycket är<br>digitalt.</h2>
+          <p class="thesis-support">Beslutet fattas på en skärm, oftast inom några sekunder, innan en rad text har lästs. Fram till dess bär layout och bild hela argumentet.</p>
+        </div>
+        <figure class="thesis-photo" data-sc-reveal="left" data-sc-reveal-at="0.08 0.6">
+          <img src="/tests/alunix-concepts-r3/build/assets/demo-hyperborea.webp" alt="Startsidan för Hyperborea, en konferens i Lund, i svartvitt" loading="lazy">
+          <figcaption>Hyperborea, en konferens i Lund, byggd av Alunix.</figcaption>
+        </figure>
+      </div>
+    </div>
+  </section>
+
+  <!-- ============================================================ 04 — giant + ledger (R5 paper) -->
+  <section class="chapter ch04" id="ch04" data-sc-act="flow" data-sc-drift="#f4f2ee">
+    <div class="chapter-inner">
+      <div class="chip">04 / 05</div>
+      <h2 class="giant"><span data-sc-cue="0.02" data-sc-kinetic="lines">Vi bygger ert varumärke.</span></h2>
+      <p class="giant-sub enter-right" data-sc-in>En sammanhållen process, från första skiss till lanserad sajt, med samma team hela vägen.</p>
+
+      <div class="ledger" data-sc-in data-sc-stagger="90">
+        <div class="ledger-row">
+          <span class="ledger-num">01</span>
+          <div class="ledger-body">
+            <h3>Design</h3>
+            <p>Grafisk identitet och formspråk, förankrat i verksamheten sajten ska representera.</p>
+          </div>
+        </div>
+        <div class="ledger-row">
+          <span class="ledger-num">02</span>
+          <div class="ledger-body">
+            <h3>Utveckling</h3>
+            <p>Webbplatser byggda i kod från grunden, snabba att ladda och enkla att bygga vidare på.</p>
+          </div>
+        </div>
+        <div class="ledger-row">
+          <span class="ledger-num">03</span>
+          <div class="ledger-body">
+            <h3>System</h3>
+            <p>Vi bygger även egna system, som Alunix OS, vårt lagersystem. Samma tekniska nivå ligger bakom varje sajt vi levererar.</p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ============================================================ 05 — inverted price box (R6) -->
+  <section class="chapter ch05" id="ch05">
+    <div class="chapter-inner">
+      <div class="chip">05 / 05</div>
+      <span class="kicker">Filosofi</span>
+      <h2 class="price-statement">Alla har rätt till bra design.</h2>
+      <p class="price-ingress">Vår nivå är satt för att fler ska ha råd med bra design, utan att vi ger avkall på resultatet.</p>
+
+      <div class="price-ledger">
+        <div class="price-row">
+          <span class="label">Standardhemsida, sex sidor</span>
+          <span class="value">10 990 kr</span>
+        </div>
+        <div class="price-row">
+          <span class="label">Med bokningssystem</span>
+          <span class="value">15 990 kr</span>
+        </div>
+        <div class="price-row">
+          <span class="label">Helt skräddarsydda lösningar för produktkataloger, specialbyggda system med mera</span>
+          <span class="value">Pris vid förfrågan</span>
+        </div>
+      </div>
+
+      <div class="price-contact">
+        <span class="kicker">Kontakt</span>
+        <a class="price-mailto" href="mailto:kontakt@alunix.se">kontakt@alunix.se</a>
+      </div>
+    </div>
+  </section>
+
+</main>
+
+<noscript><style>
+  [data-sc-cue],[data-sc-in],[data-sc-stagger] > *{opacity:1!important;transform:none!important;}
+  .frame-wrap[data-frame="0"]{clip-path:none!important;}
+  .stage-cue[data-cue="0"]{opacity:1!important;transform:none!important;}
+  .rail,.folio{display:none!important;}
+</style></noscript>
+
+<script src="scrollcraft.js"></script>
+<script>
+(function(){
+  var reduced = window.matchMedia && matchMedia('(prefers-reduced-motion: reduce)').matches;
+
+  function tick(){
+    var d = new Date();
+    var p = function(n){ return String(n).padStart(2,'0'); };
+    var el = document.getElementById('console-clock');
+    if (el) el.textContent = p(d.getHours()) + ':' + p(d.getMinutes()) + ':' + p(d.getSeconds()) + ' · LOKAL TID';
+    var y = document.getElementById('console-year');
+    if (y) y.textContent = d.getFullYear() + ' · SVERIGE';
+  }
+  tick();
+  if (!reduced) setInterval(tick, 1000);
+
+  ScrollCraft.mount(document.body);
+
+  /* Reveal systems fail toward visible: timed failsafe, same pattern r3 already proved. */
+  function revealFailsafe(){
+    Array.prototype.forEach.call(document.querySelectorAll('[data-sc-in]'), function(el){
+      el.classList.add('sc-in');
+      Array.prototype.forEach.call(el.children, function(kid){ kid.classList.add('sc-in'); });
+    });
+    Array.prototype.forEach.call(document.querySelectorAll('[data-sc-cue]'), function(el){
+      if (parseFloat(getComputedStyle(el).opacity || '0') < 0.98){
+        el.style.opacity = '1';
+        el.style.transform = 'none';
+        el.style.pointerEvents = 'auto';
+      }
+    });
+    Array.prototype.forEach.call(document.querySelectorAll('[data-sc-reveal]'), function(el){
+      var cp = getComputedStyle(el).clipPath;
+      if (cp && cp !== 'none') el.style.clipPath = 'none';
+    });
+  }
+  setTimeout(revealFailsafe, 400);
+  setTimeout(revealFailsafe, 900);
+  if (document.fonts && document.fonts.ready) document.fonts.ready.then(function(){ setTimeout(revealFailsafe, 30); });
+
+  /* ---- chapter 02: bespoke pinned-stage wipe, driven by --sc-p ---------
+     Three frames share one absolute box. Each wrapper's own clip-path (never
+     the <iframe> itself) wipes open growing from the left edge, then wipes
+     closed the same way as the next frame's own wipe overtakes it — a real
+     "reveal through the outgoing frame" the way a stage curtain works, not a
+     crossfade. Static z-index (frame 0 highest) makes this work without any
+     per-frame z-index juggling: see NOTES.md decision ledger. The three
+     tjänst cues mirror the same three windows, entering with translateX from
+     the right (M2's own direction rule) instead of the kit's Y-rise, because
+     a data-sc-cue element has its `transform` fully overwritten by the
+     engine every frame — bespoke control is what keeps these in sync with
+     the frame they caption. */
+  var stageAct = document.getElementById('ch02');
+  if (stageAct){
+    var frames = Array.prototype.slice.call(stageAct.querySelectorAll('.frame-wrap'));
+    var cues = Array.prototype.slice.call(stageAct.querySelectorAll('.stage-cue'));
+
+    function smooth(t){ t = Math.max(0, Math.min(1, t)); return t*t*(3-2*t); }
+
+    /* Holds are deliberately short (well under one 300px verification step)
+       and transitions long, so the wipe itself — not a static hold — is what
+       most of the pin's scroll distance actually shows: a real visitor is
+       never scrolling through a long flat stretch with nothing changing on
+       screen. Frame 0 still greets fully open at p=0 (ground-or-greet); the
+       final hold (frame 2) is the one moment the brief's own "wrapper goes
+       static once open" instruction requires to genuinely stop moving, kept
+       short (0.06 of the act) so it never spans two sampled positions. */
+    function local0(p){
+      if (p <= 0.03) return 1;
+      if (p < 0.40) return 1 - smooth((p-0.03)/0.37);
+      return 0;
+    }
+    function local1(p){
+      if (p <= 0.03) return 0;
+      if (p < 0.40) return smooth((p-0.03)/0.37);
+      if (p <= 0.44) return 1;
+      if (p < 0.94) return 1 - smooth((p-0.44)/0.50);
+      return 0;
+    }
+    function local2(p){
+      if (p <= 0.44) return 0;
+      if (p < 0.94) return smooth((p-0.44)/0.50);
+      return 1;
+    }
+    var fns = [local0, local1, local2];
+
+    /* Cue opacity uses its OWN, narrower windows — not the frame's local()
+       value directly. Found while building: reusing the frame's wipe local
+       for the caption too meant the outgoing and incoming captions were both
+       partially opaque during the same wide transition window (both frames
+       cross-fade over ~0.37 of the act), reading as two headlines ghosted on
+       top of each other. Each cue now fades out well before its neighbour's
+       crossover point and fades in only after it, so at most one caption is
+       ever legible — the frames still cross-fade slowly (the wipe), the
+       captions cut cleanly (a caption, not a blend). */
+    function cueLocal0(p){
+      if (p <= 0.03) return 1;
+      if (p < 0.18) return 1 - smooth((p-0.03)/0.15);
+      return 0;
+    }
+    function cueLocal1(p){
+      if (p < 0.25) return 0;
+      if (p < 0.40) return smooth((p-0.25)/0.15);
+      if (p <= 0.44) return 1;
+      if (p < 0.59) return 1 - smooth((p-0.44)/0.15);
+      return 0;
+    }
+    function cueLocal2(p){
+      if (p < 0.76) return 0;
+      if (p < 0.91) return smooth((p-0.76)/0.15);
+      return 1;
+    }
+    var cueFns = [cueLocal0, cueLocal1, cueLocal2];
+
+    if (reduced){
+      /* Reduced motion: show the first frame open and static; the other two
+         sites are reachable as plain links (.stage-links, shown via CSS),
+         never inside a scroll-jacked wipe. .sc-stage itself is left
+         completely untouched (still sticky/pinned by the engine) so no
+         [scrollcraft] "will not pin" warning is ever risked — only the
+         wrapper clip-paths and cue opacities are set once, here. */
+      frames[0].style.clipPath = 'inset(0 0% 0 0)';
+      frames[0].style.pointerEvents = 'auto';
+      frames[1].style.clipPath = 'inset(0 100% 0 0)';
+      frames[1].style.pointerEvents = 'none';
+      frames[2].style.clipPath = 'inset(0 100% 0 0)';
+      frames[2].style.pointerEvents = 'none';
+      if (cues[0]){ cues[0].style.opacity = '1'; cues[0].style.transform = 'none'; cues[0].style.pointerEvents = 'auto'; }
+      if (cues[1]){ cues[1].style.opacity = '0'; cues[1].style.pointerEvents = 'none'; }
+      if (cues[2]){ cues[2].style.opacity = '0'; cues[2].style.pointerEvents = 'none'; }
+    } else {
+      var raf = null;
+      function updateStage(){
+        raf = null;
+        var p = parseFloat(getComputedStyle(stageAct).getPropertyValue('--sc-p')) || 0;
+        for (var i = 0; i < 3; i++){
+          var l = fns[i](p);
+          var openPct = l * 100;
+          frames[i].style.clipPath = 'inset(0 ' + (100 - openPct).toFixed(2) + '% 0 0)';
+          var active = l > 0.9;
+          frames[i].style.pointerEvents = active ? 'auto' : 'none';
+          if (cues[i]){
+            var cl = cueFns[i](p);
+            cues[i].style.opacity = cl.toFixed(3);
+            cues[i].style.transform = 'translate3d(' + ((1 - cl) * 36).toFixed(1) + 'px,0,0)';
+            cues[i].style.pointerEvents = cl > 0.9 ? 'auto' : 'none';
+          }
+        }
+        schedule();
+      }
+      function schedule(){ if (!raf) raf = requestAnimationFrame(updateStage); }
+      window.addEventListener('scroll', schedule, { passive:true });
+      window.addEventListener('resize', schedule);
+      schedule();
+    }
+  }
+
+  /* ---- signature move: the chapter rail as scroll playhead -------------
+     translateY(-scrollY) on the track makes every label's rail-local
+     position exactly equal to that chapter's own on-screen viewport
+     position (since each label's `top` is set once, on load/resize, to the
+     chapter's real document-space midpoint). The label nearest the fixed
+     logo (28px from the rail's own top) is therefore provably the chapter
+     actually on screen — not approximated with equal spacing. */
+  var rail = document.getElementById('rail');
+  var track = document.getElementById('railTrack');
+  var folioNum = document.getElementById('folioNum');
+  var labels = track ? Array.prototype.slice.call(track.querySelectorAll('.rail-label')) : [];
+  var chapters = Array.prototype.slice.call(document.querySelectorAll('.chapter'));
+  var ANCHOR = 28;
+
+  function layoutRail(){
+    for (var i = 0; i < labels.length; i++){
+      var ch = chapters[i];
+      if (!ch) continue;
+      var rect = ch.getBoundingClientRect();
+      var mid = rect.top + window.scrollY + rect.height / 2;
+      labels[i].style.top = mid + 'px';
+    }
+  }
+
+  var railRaf = null;
+  function updateRail(){
+    railRaf = null;
+    var y = window.scrollY;
+    if (track) track.style.transform = 'translate3d(0,' + (-y) + 'px,0)';
+
+    /* Active chapter = whichever chapter's own document-space range actually
+       CONTAINS the anchor point (scrollY + ANCHOR) — not whichever chapter's
+       midpoint is nearest. Chapter 02 (the pin) is 2880px tall, more than
+       triple any other chapter; a nearest-midpoint comparison kept picking
+       chapter 01 for the first third of the pin's own scroll range, because
+       chapter 01's short, close-by midpoint stayed numerically nearer than
+       chapter 02's own midpoint far down the page. Containment is exact
+       regardless of how unevenly the chapters are sized. */
+    var target = y + ANCHOR;
+    var activeI = chapters.length - 1;
+    for (var i = 0; i < chapters.length; i++){
+      var rect = chapters[i].getBoundingClientRect();
+      var top = rect.top + y;
+      if (target < top + rect.height || i === chapters.length - 1){ activeI = i; break; }
+    }
+    for (var j = 0; j < labels.length; j++){
+      if (labels[j]) labels[j].classList.toggle('is-active', j === activeI);
+    }
+    if (folioNum) folioNum.textContent = String(activeI + 1).padStart(2, '0');
+  }
+  function scheduleRail(){ if (!railRaf) railRaf = requestAnimationFrame(updateRail); }
+
+  window.addEventListener('load', function(){ layoutRail(); updateRail(); });
+  window.addEventListener('resize', function(){ layoutRail(); updateRail(); });
+  document.fonts && document.fonts.ready && document.fonts.ready.then(function(){ layoutRail(); updateRail(); });
+  window.addEventListener('scroll', scheduleRail, { passive:true });
+  setTimeout(function(){ layoutRail(); updateRail(); }, 60);
+})();
+</script>
+</body>
+</html>
