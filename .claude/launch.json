@@ -50,9 +50,24 @@
         "C:/Users/Anton L/.agents/skills/design/scripts/board.py",
         "tests/alunix-concepts-r4",
         "--port",
-        "4622"
+        "4622",
+        "--fallback-root",
+        "."
       ],
       "port": 4622
+    },
+    {
+      "name": "alunix-board-r5",
+      "runtimeExecutable": "python",
+      "runtimeArgs": [
+        "C:/Users/Anton L/.agents/skills/design/scripts/board.py",
+        "tests/alunix-concepts-r5",
+        "--port",
+        "4623",
+        "--fallback-root",
+        "."
+      ],
+      "port": 4623
     }
   ]
 }
