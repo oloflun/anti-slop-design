@@ -22,8 +22,14 @@ Fullständig plan: `~/.claude/plans/uppgift-design-rework-v3-validated-hammock.m
 - [x] 13 breddkontrakt (fyra byggen, in som default i Step 2b)
 - [x] 14–15 två fristående copy-exempel, gamla kedjan vs. hybridkedjan (Kajplats + Reglabok) — B vinner tydligt på båda (reviderat efter Antons läsning); ny strukturregel i copy-gate.md (diskreta fakta som egna fetstilsrader, en process återberättad som en mening)
 
+- [x] 16 katalogen in i repot (95 poster, extract, /catalogue på Vercel) — 2026-09-04
+- [x] 17 TASTE.md ur 89 källor — 2026-09-04
+- [x] 18 sex Alunix-koncept (runda 1, underkänd: enmansröst, svag balans)
+- [x] 19 sex byråkoncept (runda 2, board 127.0.0.1:4621) — väntar på Antons val
+- [x] 20 plugin-avknoppning (anti-slop-design eget plugin, super-intelligence 0.10.0) — opushat
+
 ## In Progress
-- [ ] Inget.
+- [ ] Antons utvärdering av R1–R6; småfixar R5/R6 projektminiatyrer.
 
 ## Remaining
 - [ ] Unsplash API-nyckel (Antons handpåläggning) → photo-sources.md får riktig sökning; fotopoolen är 19 bilder i dag.
