@@ -1,0 +1,592 @@
+<!--
+  design · pre-emit critique: P4 H4 E4 S4 R4 V4
+
+  REFERENCE LOCK (Step 1b) — Tier 2, condensed. Full block + decision ledger: NOTES.md.
+  Primary structural reference: design-catalogue/entries/rre-ventures/entry.md — one
+    continuous, non-literal photograph as the page's ground, alternately exposed and
+    covered by opaque content panels. Secondary: veloura/entry.md (the ground never resets
+    hue mid-journey — persistence principle only, not Veloura's own palette). Copy,
+    typefaces and the three demo sites are r3's own build (tests/alunix-concepts-r3/build/
+    index.html), reused verbatim per brief.md's binding rule; nothing on this page is new
+    copy. creative-giants/entry.md confirms the thin top wordmark stays weight 300.
+  Grammar: contract.md's "continuous world" read in the loose sense brief.md itself uses
+    (one ground that never cuts) — not the strict upstream grammar (which bans flow/reveal/
+    parallax outright). See NOTES.md's reference-lock note for why contract.md's explicit
+    instructions win here.
+  Structure differs from r3 on every fingerprint dimension bar one (see NOTES.md's
+    fingerprint row): Tidvatten as one full-width first act (not two heroes side by side);
+    an offset two-column stagger, right column starting 50vh lower, instead of an aligned
+    50/50 split; independent, unsynchronized closes instead of a forced shared y; the
+    offset stagger itself plus the ground drifting through the engine's three colour stops
+    as the signature move, instead of r3's seam hairline.
+  New construction this build: the fixed grayscale ground (k4-cabin-desk.webp), tinted by
+    the engine's own --sc-canvas drift across three stops; the 50vh column offset, whose
+    gaps and gutters are where the continuous ground actually shows through — the page's
+    one visible-ground device, not a separate widget. FINAL ROUND (2026-09-04): a reserved-
+    gutter "window" device (a second crisp copy of the ground photo, faded in per panel)
+    was built, fixed once post-Anton's-review, then removed outright on a second pixel
+    read — the crisp rectangles read as broken image placeholders, not openings onto the
+    ground, however cleanly they were positioned. See NOTES.md's "Final round" section for
+    the removal reasoning; the offset + drift alone now carry the signature-move weight.
+  Reject: a second background photograph; a page-wide pin; invented copy or numbers;
+    transform/opacity applied to an <iframe> tag directly or to any of its ancestors while
+    it is on screen (the thesis photo is the one thing on this page allowed to sink, inside
+    its own overflow-hidden box, ≤120px — the three iframes are static, full box, no bleed).
+
+  DECISION LEDGER — full table in NOTES.md. Summary: ground = k4-cabin-desk.webp fixed +
+  grayscale + --sc-canvas tint; drift in 3 stops (#0b0c0e → #123f68 → #f4f2ee); text
+  parallax scoped to kicker+headline wrappers only (never body copy, per devices.md); the
+  three iframes (Tidvatten, Calyx, Hōrai) are static, full-box, no bleed, no transform ever
+  applied to them or an ancestor — only the Hyperborea photo sinks, capped ≤120px, inside
+  its own overflow-hidden box; the reserved-gutter window device was removed in the final
+  round (see below) rather than iterated on again; price box carries no device (r3's own
+  "close should rest" lesson, general not r3-specific); logo placed with plain CSS, no JS
+  measurement, to keep this build's JS budget minimal.
+
+  Feeling curve, peak, tell-someone sentence, device list, fingerprint row: NOTES.md,
+  written before this file per Step 2b.
+-->
+<!doctype html>
+<html lang="sv" class="no-js">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Alunix · digital byrå</title>
+<meta name="description" content="Alunix är en digital byrå som designar och bygger webbplatser och digitala system.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Geist:wght@400;500;700&family=Geist+Mono:wght@400;500&family=Public+Sans:wght@300;400;500;600&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="scrollcraft.css">
+<script>document.documentElement.classList.replace('no-js','js');</script>
+<style>
+  :root{
+    /* R5 tokens (dark/blue/paper world) */
+    --c-black:#0b0c0e; --c-white:#ffffff; --c-paper:#f4f2ee; --c-ink:#14171a;
+    --c-accent:#1e5e9c; --c-accent-deep:#123f68;
+    --c-line-on-dark:rgba(255,255,255,.20); --c-line-on-paper:rgba(20,23,26,.14);
+    --c-mute-on-dark:rgba(255,255,255,.62); --c-mute-on-paper:rgba(20,23,26,.60);
+    --c-mute-on-accent-aa:rgba(255,255,255,.92);
+    --f-display:'Geist',system-ui,sans-serif; --f-body:'Geist',system-ui,sans-serif; --f-mono:'Geist Mono',ui-monospace,monospace;
+
+    /* R6 tokens (off-white/invert world) */
+    --bg:#fdfbf4; --ink:#16140f; --ink-soft:#453f30; --ink-softer:#55503f;
+    --line:rgba(22,20,15,.14); --invert:#0c0b08; --invert-ink:#fdfbf4;
+    --invert-soft:rgba(253,251,244,.72); --invert-body:rgba(253,251,244,.82); --invert-line:rgba(253,251,244,.16);
+    --font:'Public Sans',system-ui,sans-serif;
+
+    --ease:cubic-bezier(.16,1,.3,1);
+    --ground-img:url('/tests/alunix-concepts-r3/build/assets/k4-cabin-desk.webp');
+
+    /* engine tokens — six colours + two fonts, per scroll/NOTE.md. This page never uses
+       the engine's own .sc-display/.sc-body classes (all typography is page-authored),
+       so these only matter for body{background:var(--sc-canvas)} (the drift ground tint)
+       and the focus-ring / selection colours scrollcraft.css derives from them. */
+    --sc-canvas:#0b0c0e; --sc-surface:#101217; --sc-ink:#f4f2ef; --sc-ink-soft:#9a9ba1;
+    --sc-accent:#1e5e9c; --sc-accent-ink:#ffffff;
+    --sc-font-display:'Geist',system-ui,sans-serif; --sc-font-text:'Geist',system-ui,sans-serif;
+  }
+  *{box-sizing:border-box;}
+  html,body{margin:0;overflow-x:clip;}
+  body{font-size:16px;line-height:1.5;-webkit-font-smoothing:antialiased;}
+  img{max-width:100%;display:block;}
+  a{color:inherit;}
+  h1,h2,h3,p,blockquote,figure{margin:0;}
+  a:focus-visible,button:focus-visible{outline:2px solid var(--c-accent);outline-offset:3px;}
+
+  /* ============================================================ signature ground */
+  .ground{position:fixed;inset:0;z-index:0;background:var(--ground-img) center 40%/cover no-repeat fixed;
+    filter:grayscale(1) contrast(1.08) brightness(.5);pointer-events:none;}
+  .ground::after{content:"";position:fixed;inset:0;background:var(--sc-canvas);mix-blend-mode:color;opacity:.62;
+    transition:background 1.1s var(--ease);}
+
+  /* ============================================================ chrome */
+  /* The topline sits directly on the fixed ground (no opaque background of
+     its own, per contract.md's "scrolls away over the ground" chrome), but
+     the ground under it is sometimes the Tidvatten photo's bright sky, not
+     the dark desk photo — measured worst-case contrast against that bright
+     patch was 2.5-3.5:1, under the 4.5:1 floor. A soft dark scrim confined
+     to the topline's own strip (not the whole ground) fixes this without
+     giving the row an opaque panel, which would read as a nav bar the brief
+     explicitly rejects ("ingen fast bar"). */
+  .topline{position:relative;z-index:2;display:flex;align-items:center;justify-content:space-between;
+    padding:20px clamp(16px,3vw,40px);font-family:var(--font);}
+  .topline::before{content:"";position:absolute;inset:0;z-index:-1;
+    background:linear-gradient(180deg,rgba(6,7,9,.62) 0%,rgba(6,7,9,.34) 78%,rgba(6,7,9,0) 100%);}
+  .topline-mark{font-weight:300;font-size:clamp(13px,1.6vw,17px);letter-spacing:.02em;color:#f4f2ef;}
+  .topline-contact{font-weight:400;font-size:12px;letter-spacing:.04em;color:rgba(244,242,239,.82);
+    text-decoration:none;border-bottom:1px solid transparent;transition:border-color .25s var(--ease),color .25s var(--ease);}
+  .topline-contact:hover{color:#f4f2ef;border-color:currentColor;}
+
+  main{position:relative;z-index:1;}
+
+  /* ============================================================ act 1: Tidvatten, full width */
+  .act-tidvatten{position:relative;height:70vh;min-height:460px;overflow:hidden;}
+  .act-tidvatten iframe{position:absolute;inset:0;width:100%;height:100%;border:0;display:block;}
+  .logo-dock{position:absolute;left:24px;top:0;transform:translateY(-50%);z-index:5;
+    height:clamp(46px,5.4vw,88px);width:auto;pointer-events:none;filter:drop-shadow(0 2px 14px rgba(0,0,0,.4));}
+  .logo-dock svg{height:100%;width:auto;display:block;}
+  @media (max-width:900px){ .act-tidvatten{height:60vh;min-height:70vh;} .logo-dock{left:16px;height:44px;} }
+
+  /* ============================================================ stagger shell */
+  .stagger{position:relative;display:flex;align-items:flex-start;gap:clamp(20px,3.2vw,56px);
+    padding:0 clamp(16px,3vw,40px) 0;}
+  .col{min-width:0;flex:1 1 50%;position:relative;}
+  .col-right{margin-top:50vh;}
+  @media (max-width:900px){
+    .stagger{flex-direction:column;gap:0;padding:0;}
+    .col{flex:1 1 auto;}
+    .col-right{margin-top:0;}
+  }
+
+  /* ================================================================ LEFT / R5 world */
+  .col-left .panel{position:relative;overflow:hidden;}
+  .col-left .kicker{font-family:var(--f-mono);font-size:11px;letter-spacing:.22em;text-transform:uppercase;}
+
+  .panel-open{background:var(--c-black);color:var(--c-white);padding:clamp(28px,4.4vw,56px);}
+  .panel-open .console-top{position:relative;z-index:2;display:flex;flex-wrap:wrap;gap:6px 16px;justify-content:space-between;
+    color:var(--c-mute-on-dark);margin-bottom:clamp(16px,2.6vw,32px);font-size:10px;}
+  .panel-open .parallax-text{position:relative;z-index:2;}
+  .panel-open .wordmark{font-family:var(--f-display);font-weight:700;font-size:clamp(2rem,4.6vw,3.4rem);line-height:.9;
+    letter-spacing:-.02em;text-transform:uppercase;overflow-wrap:anywhere;min-width:0;}
+  .panel-open .wordmark .sub{display:block;font-size:clamp(.62rem,1vw,.85rem);font-weight:500;letter-spacing:.14em;
+    color:var(--c-mute-on-dark);text-transform:uppercase;margin-top:.5em;}
+  .panel-open .hero-body{position:relative;z-index:2;max-width:44ch;font-size:clamp(.92rem,1.2vw,1.05rem);
+    color:rgba(255,255,255,.88);margin-top:clamp(16px,2.4vw,28px);}
+  .panel-open .service-list{position:relative;z-index:2;display:flex;flex-wrap:wrap;gap:6px 16px;
+    margin-top:clamp(16px,2.4vw,28px);padding-top:12px;border-top:1px solid var(--c-line-on-dark);
+    font-family:var(--f-mono);font-size:10.5px;letter-spacing:.08em;text-transform:uppercase;}
+  .panel-open .hero-cta-row{position:relative;z-index:2;margin-top:clamp(16px,2.4vw,28px);}
+  .panel-open .cta{display:inline-block;font-family:var(--f-display);font-weight:700;font-size:clamp(1rem,1.4vw,1.2rem);
+    color:var(--c-white);text-decoration:underline;text-underline-offset:5px;text-decoration-color:var(--c-accent);
+    text-decoration-thickness:2px;}
+  .panel-open .cta:hover{text-decoration-color:var(--c-white);}
+
+  .panel-thesis{background:var(--c-accent);color:var(--c-white);padding:clamp(32px,5.4vw,64px) clamp(24px,4vw,48px);}
+  .panel-thesis .thesis-grid{position:relative;z-index:2;display:grid;grid-template-columns:1.25fr 1fr;
+    gap:clamp(24px,3.4vw,44px);align-items:end;}
+  .panel-thesis .parallax-text{min-width:0;}
+  .panel-thesis .kicker{color:var(--c-mute-on-accent-aa);margin-bottom:.9rem;font-size:.8rem;}
+  .panel-thesis .thesis-headline{font-family:var(--f-display);font-weight:700;font-size:clamp(1.5rem,3vw,2.6rem);
+    line-height:1;letter-spacing:-.02em;text-transform:uppercase;overflow-wrap:anywhere;min-width:0;}
+  .panel-thesis .thesis-support{max-width:40ch;font-size:.95rem;color:rgba(255,255,255,.9);margin-top:1.2rem;}
+  .panel-thesis .thesis-photo{border:1px solid rgba(255,255,255,.35);min-width:0;}
+  /* figcaption sits in normal flow directly below thesis-photo-box (a fixed-aspect-ratio,
+     overflow:hidden clip box); the sink motion only ever moves content WITHIN that box
+     (see thesis-photo-inner's bleed rule below), so the caption can never be overlapped by
+     the moving image, whatever the scroll position. */
+  .panel-thesis .thesis-photo-box{position:relative;aspect-ratio:16/10;overflow:hidden;}
+  /* bleed = travel: inner is exactly data-motion-px taller than its box and starts offset
+     up by that same amount, so translateY(0..px) always keeps the box fully covered by the
+     image (sliding between its bottom crop and its top crop) — never a void. */
+  .panel-thesis .thesis-photo-inner{position:absolute;left:0;right:0;top:-90px;height:calc(100% + 90px);}
+  .panel-thesis .thesis-photo-inner img{width:100%;height:100%;object-fit:cover;filter:grayscale(1) contrast(1.05);}
+  .panel-thesis .thesis-photo figcaption{font-family:var(--f-mono);font-size:.72rem;letter-spacing:.14em;
+    text-transform:uppercase;padding:.7rem .1rem 0;color:var(--c-mute-on-accent-aa);overflow-wrap:anywhere;white-space:normal;}
+
+  /* bottom padding capped at 40px (not the 48-72px the other edges use): the left column's
+     last visible thing before the Calyx frame is this panel's own close, and the Calyx
+     frame must follow directly (<=40px), not open a gap of its own on top of the panel's
+     normal rhythm. */
+  .panel-giant{background:var(--c-paper);color:var(--c-ink);padding:clamp(40px,6.4vw,80px) clamp(24px,4vw,48px) clamp(24px,3vw,40px);}
+  .panel-giant .parallax-text{position:relative;z-index:2;}
+  .panel-giant .giant{font-family:var(--f-display);font-weight:700;font-size:clamp(2.4rem,6.6vw,5.4rem);line-height:.88;
+    letter-spacing:-.03em;text-transform:uppercase;overflow-wrap:anywhere;min-width:0;}
+  .panel-giant .giant .sc-split--line + .sc-split--line{padding-top:.14em;margin-top:-.14em;}
+  .panel-giant .giant-sub{max-width:48ch;font-size:1.05rem;color:var(--c-mute-on-paper);margin-top:1.1rem;}
+  .panel-giant .ledger{position:relative;z-index:2;margin-top:clamp(32px,4.4vw,52px);border-top:1px solid var(--c-line-on-paper);}
+  .panel-giant .ledger-row{display:grid;grid-template-columns:36px 1fr;gap:12px 22px;padding:1rem 0;
+    border-bottom:1px solid var(--c-line-on-paper);}
+  .panel-giant .ledger-num{font-family:var(--f-mono);font-size:12px;color:var(--c-mute-on-paper);padding-top:.2em;}
+  .panel-giant .ledger-body h3{font-family:var(--f-display);font-weight:700;font-size:1.15rem;letter-spacing:-.01em;text-transform:uppercase;}
+  .panel-giant .ledger-body p{max-width:56ch;font-size:.88rem;color:var(--c-mute-on-paper);margin-top:.4rem;}
+  .panel-giant .projects{position:relative;z-index:2;margin-top:clamp(28px,3.6vw,40px);}
+  .panel-giant .projects .kicker{color:var(--c-mute-on-paper);line-height:1.1;font-size:.78rem;}
+  .panel-giant .projects-lede{max-width:60ch;font-size:.92rem;color:var(--c-mute-on-paper);margin-top:.4rem;}
+  @container (max-width:360px){ .panel-giant .ledger-row{grid-template-columns:1fr;} }
+  @media (max-width:900px){ .panel-giant .ledger-row{grid-template-columns:1fr;} }
+
+  .calyx-wrap{position:relative;min-height:70vh;line-height:0;background:#e9e5da;overflow:hidden;}
+  /* static, full box, no bleed, no sink: a sinking bleed wrapper here was hiding the top
+     ~100px of Calyx's own nav (Anton's second pixel read, final round). The iframe fills
+     the box directly and is never transformed, nor is any ancestor of it while on screen. */
+  .calyx-wrap iframe{position:absolute;inset:0;width:100%;height:100%;border:0;display:block;}
+  @media (max-width:900px){ .calyx-wrap{min-height:70vh;} }
+
+  /* ================================================================ RIGHT / R6 world */
+  .col-right .panel{position:relative;overflow:hidden;}
+  .col-right{font-family:var(--font);font-weight:400;}
+  .col-right .kicker{font-family:var(--font);font-weight:600;font-size:11px;letter-spacing:.16em;text-transform:uppercase;color:var(--ink-soft);}
+  .col-right .invert .kicker{color:var(--invert-soft);}
+  .col-right h1,.col-right h2,.col-right h3{margin:0;font-weight:300;line-height:.98;overflow-wrap:anywhere;min-width:0;}
+  .col-right p{margin:0;max-width:56ch;}
+
+  .panel-services{background:var(--bg);color:var(--ink);padding:clamp(40px,6vw,72px) clamp(20px,4vw,44px);}
+  .panel-services .section-head{position:relative;z-index:2;display:grid;grid-template-columns:minmax(0,1fr) minmax(0,1.6fr);
+    gap:20px;margin-bottom:clamp(28px,4.4vw,52px);align-items:end;}
+  .panel-services .section-head .kicker{padding-top:4px;}
+  .panel-services .statement{font-size:clamp(1.5rem,3.4vw,2.5rem);letter-spacing:-.02em;line-height:1.05;}
+  .panel-services .services{position:relative;z-index:2;display:grid;grid-template-columns:repeat(3,minmax(0,1fr));border-top:1px solid var(--line);}
+  .panel-services .service{padding:18px 16px 18px 0;border-bottom:1px solid var(--line);border-right:1px solid var(--line);}
+  .panel-services .service:last-child{border-right:none;}
+  .panel-services .service-index{font-size:12px;font-weight:600;color:var(--ink-softer);letter-spacing:.06em;display:block;margin-bottom:10px;}
+  .panel-services .service h3{font-size:16px;font-weight:500;letter-spacing:-.01em;margin-bottom:6px;}
+  .panel-services .service p{font-size:13px;color:var(--ink-soft);line-height:1.55;}
+  @container (max-width:420px){ .panel-services .section-head{grid-template-columns:1fr;} }
+  @media (max-width:768px){
+    .panel-services .section-head{grid-template-columns:1fr;}
+    .panel-services .services{grid-template-columns:1fr;}
+    .panel-services .service{border-right:none;padding-right:0;}
+  }
+
+  .horai-wrap{position:relative;background:var(--invert);min-height:70vh;line-height:0;overflow:hidden;}
+  /* same fix as .calyx-wrap above: static, full box, no bleed, no sink. */
+  .horai-wrap iframe{position:absolute;inset:0;width:100%;height:100%;border:0;display:block;}
+
+  .price{background:var(--invert);color:var(--invert-ink);padding:clamp(40px,6vw,72px) clamp(20px,4vw,44px);}
+  .price .kicker{color:var(--invert-soft);}
+  .price .statement{color:var(--invert-ink);max-width:16ch;margin-top:1.3rem;font-size:clamp(20px,2.4vw,30px);}
+  /* .col-right p{margin:0} (0,1,1) otherwise beats a bare .price-ingress (0,1,0) and zeroes
+     this back out — this is why "design." and "Vår nivå..." had no gap at all. Qualify with
+     .col-right to win on specificity, not source order. */
+  .col-right .price-ingress{font-size:clamp(13px,1.3vw,16px);color:var(--invert-body);max-width:56ch;margin-top:1.5rem;line-height:1.5;}
+  .price-ledger{margin-top:2rem;border-top:1px solid var(--invert-line);max-width:64ch;}
+  .price-row{display:flex;flex-wrap:wrap;justify-content:space-between;align-items:baseline;gap:6px 24px;
+    padding:.9rem 0;border-bottom:1px solid var(--invert-line);}
+  .price-row .label{font-size:12px;color:var(--invert-body);max-width:42ch;}
+  .price-row .value{font-family:var(--font);font-weight:600;font-size:clamp(14px,1.6vw,19px);color:var(--invert-ink);white-space:nowrap;}
+  .price-contact{margin-top:2rem;}
+  .price-contact .kicker{margin-bottom:8px;}
+  .price-mailto{font-size:clamp(1.15rem,2vw,1.7rem);font-weight:300;letter-spacing:-.02em;
+    border-bottom:1px solid var(--invert-line);padding-bottom:3px;display:inline-block;transition:opacity .25s var(--ease);}
+  .price-mailto:hover{opacity:.65;}
+
+  .col-right :focus-visible{outline:2px solid var(--ink);outline-offset:3px;}
+  .col-right .invert :focus-visible{outline-color:var(--invert-ink);}
+
+  /* reveal defaults live entirely in scrollcraft.css — no page-level override here on
+     purpose: an equal-specificity rule this late in the cascade would beat the engine's
+     own .sc-in reveal rule and lock every cue/reveal at opacity 0 forever. */
+</style>
+</head>
+<body>
+
+<div class="ground" aria-hidden="true"></div>
+
+<header class="topline">
+  <span class="topline-mark">ALUNIX</span>
+  <a class="topline-contact" href="mailto:kontakt@alunix.se">kontakt@alunix.se</a>
+</header>
+
+<main id="page">
+
+  <!-- act 1 · Tidvatten, full width, the page's one shared opening -->
+  <section class="act-tidvatten" data-sc-act="flow" data-sc-drift="#0b0c0e">
+    <div class="logo-dock" id="logoDock" data-sc-cue="0 0.85 0" aria-hidden="true">
+      <svg viewBox="80 400 827 1139" role="img" aria-label="Alunix"><path fill="#ffffff" fill-rule="evenodd" d="M 430.020 513.250 C 386.700 600.458, 318.190 739.397, 297.501 782 C 289.087 799.325, 276.594 824.975, 269.739 839 C 216.342 948.248, 182.518 1018.108, 130.177 1127.250 L 122.145 1144 149.505 1144 C 176.418 1144, 176.876 1143.966, 177.531 1141.901 C 177.898 1140.746, 186.760 1121.959, 197.226 1100.151 C 207.692 1078.343, 223.776 1044.750, 232.969 1025.500 C 266.133 956.059, 277.353 933, 277.980 933 C 278.331 933, 280.408 935.587, 282.595 938.750 C 284.783 941.913, 295.822 957.775, 307.127 974 C 325.042 999.713, 381.481 1081.065, 429.737 1150.734 C 439.657 1165.055, 444.860 1173.418, 444.356 1174.233 C 443.926 1174.929, 440.820 1179.324, 437.455 1183.999 C 429.228 1195.427, 350.904 1307.144, 339.651 1323.500 C 334.732 1330.650, 327.687 1340.775, 323.996 1346 C 313.067 1361.472, 240.505 1466.210, 229.257 1482.750 L 218.886 1498 253.693 1497.961 L 288.500 1497.922 299.500 1481.744 C 324.141 1445.503, 476.381 1225.616, 478.506 1223.197 C 478.768 1222.899, 523.522 1286.863, 565.476 1347.500 C 568.140 1351.350, 588.572 1380.825, 610.880 1413 C 633.189 1445.175, 655.504 1477.439, 660.471 1484.697 L 669.500 1497.895 706.798 1497.947 L 744.096 1498 740.841 1493.250 C 727.956 1474.444, 658.474 1374.606, 602.522 1294.500 C 521.377 1178.323, 476.786 1114.238, 411.522 1020 C 389.621 988.375, 368.686 958.225, 364.999 953 C 342.882 921.650, 308 870.814, 308 869.930 C 308 868.958, 318.208 847.506, 341.512 799.500 C 346.852 788.500, 357.642 766.225, 365.489 750 C 373.336 733.775, 394.812 689.450, 413.213 651.500 C 431.614 613.550, 449.746 576.074, 453.505 568.221 C 457.265 560.367, 460.665 554.292, 461.060 554.721 C 461.456 555.149, 484.829 600.050, 513 654.500 C 595.807 814.548, 597.733 818.267, 612.712 847 C 620.597 862.125, 629.584 879.471, 632.684 885.546 L 638.319 896.592 633.336 903.546 C 630.596 907.371, 622.124 919.500, 614.511 930.500 C 606.897 941.500, 592.950 961.525, 583.517 975 C 550.282 1022.475, 513.571 1075.338, 501.745 1092.750 C 500.157 1095.088, 498.778 1097, 498.679 1097 C 498.581 1097, 498.620 1045.925, 498.767 983.500 L 499.033 870 467.529 870 L 436.024 870 435.762 948.679 L 435.500 1027.358 441.051 1035.429 C 444.105 1039.868, 458.527 1060.825, 473.101 1082 C 498.716 1119.217, 521.094 1151.905, 523.077 1155 C 523.877 1156.249, 524.411 1156.006, 526.269 1153.550 C 528.956 1149.997, 575.050 1083.626, 604.955 1040.250 C 642.615 985.626, 683.143 927.009, 694.212 911.152 L 704.927 895.804 701.347 888.652 C 699.378 884.718, 693.373 873.175, 688.003 863 C 682.632 852.825, 671.141 831, 662.466 814.500 C 653.792 798, 640.398 772.575, 632.701 758 C 609.734 714.509, 591.719 680.257, 553.278 607 C 533.220 568.775, 512.426 529.175, 507.069 519 C 501.712 508.825, 490.419 487.337, 481.975 471.250 C 473.530 455.163, 466.349 442, 466.016 442 C 465.684 442, 449.485 474.063, 430.020 513.250 M 459 748.072 C 445.481 750.334, 431.497 761.058, 425.189 774 C 411.946 801.174, 429.479 833.973, 460.052 839.216 C 482.335 843.037, 505.858 827.419, 511.586 805 C 519.739 773.095, 491.587 742.619, 459 748.072 M 583.028 1238.750 C 583.043 1239.162, 587.793 1246.250, 593.583 1254.500 C 599.373 1262.750, 608.679 1276.138, 614.264 1284.250 L 624.418 1299 745.199 1299 L 865.981 1299 847.826 1273.750 C 837.841 1259.862, 828.058 1246.155, 826.086 1243.288 L 822.500 1238.076 702.750 1238.038 C 636.888 1238.017, 583.012 1238.338, 583.028 1238.750"/></svg>
+    </div>
+    <iframe src="/tests/alunix-concepts-r3/build/tidvatten-hero.html" title="Er hemsida är nutidens visitkort" loading="eager"></iframe>
+  </section>
+
+  <div class="stagger">
+    <!-- ============================================================ LEFT: R5 world -->
+    <div class="col col-left" id="colLeft">
+
+      <section class="panel panel-open" data-sc-act="flow">
+        <!-- one wrapper for the whole console card (kicker row + wordmark + body + list +
+             cta) so it rises as a single unit and never tears apart from itself. -->
+        <div class="parallax-text" data-motion="rise" data-motion-px="48">
+          <div class="console-top">
+            <span class="kicker" id="console-year">2026 · SVERIGE</span>
+            <span class="kicker" id="console-clock">--:--:-- · LOKAL TID</span>
+          </div>
+          <h1 class="wordmark">ALUNIX<span class="sub">Digital byrå</span></h1>
+          <p class="hero-body">Vi designar och bygger webbplatser, i nära dialog med verksamheten som ska leva i dem.</p>
+          <div class="service-list"><span>Design</span><span>Utveckling</span><span>System</span></div>
+          <div class="hero-cta-row"><a class="cta" href="mailto:kontakt@alunix.se">Boka ett möte →</a></div>
+        </div>
+      </section>
+
+      <section class="panel panel-thesis" data-sc-act="flow" data-sc-drift="#123f68">
+        <div class="thesis-grid">
+          <div class="parallax-text" data-sc-in>
+            <!-- headline+sub travel capped at 80px (well under the 90px ceiling), local mode
+                 (own ~550px scroll span, not the act's) so it visibly leads the scroll while
+                 the Hyperborea photo below sinks — the page's opposite-direction proof pair,
+                 shots/motion-0..4.png. -->
+            <div data-motion="rise" data-motion-mode="local" data-motion-span="550" data-motion-px="80">
+              <p class="kicker">Varför design</p>
+              <h2 class="thesis-headline">Det första<br>intrycket är<br>digitalt.</h2>
+              <p class="thesis-support">Beslutet fattas på en skärm, oftast inom några sekunder, innan en rad text har lästs. Fram till dess bär layout och bild hela argumentet.</p>
+            </div>
+          </div>
+          <figure class="thesis-photo" data-sc-reveal="left" data-sc-reveal-at="0.08 0.55">
+            <div class="thesis-photo-box">
+              <div class="thesis-photo-inner" data-motion="sink" data-motion-px="90">
+                <img src="/tests/alunix-concepts-r3/build/assets/demo-hyperborea.webp" alt="Startsidan för Hyperborea, en konferens i Lund, i svartvitt" loading="lazy">
+              </div>
+            </div>
+            <figcaption>Hyperborea, en konferens i Lund, byggd av Alunix.</figcaption>
+          </figure>
+        </div>
+      </section>
+
+      <section class="panel panel-giant" data-sc-act="flow">
+        <!-- headline + sub as ONE wrapper (was two: the sub used to sit outside the rising
+             wrapper and open a gap under the headline) and travel capped at 64px, down from
+             420px, which is what tore "VI BYGGER" away from "ERT VARUMÄRKE." between screen-
+             shots taken at different scroll depths. -->
+        <div class="parallax-text" data-motion="rise" data-motion-px="64">
+          <h2 class="giant" data-sc-cue="0.02" data-sc-kinetic="lines">Vi bygger ert varumärke.</h2>
+          <p class="giant-sub">En sammanhållen process, från första skiss till lanserad sajt, med samma team hela vägen.</p>
+        </div>
+
+        <div class="ledger" data-sc-in data-sc-stagger="90">
+          <div class="ledger-row">
+            <span class="ledger-num">01</span>
+            <div class="ledger-body">
+              <h3>Design</h3>
+              <p>Grafisk identitet och formspråk, förankrat i verksamheten sajten ska representera.</p>
+            </div>
+          </div>
+          <div class="ledger-row">
+            <span class="ledger-num">02</span>
+            <div class="ledger-body">
+              <h3>Utveckling</h3>
+              <p>Webbplatser byggda i kod från grunden, snabba att ladda och enkla att bygga vidare på.</p>
+            </div>
+          </div>
+          <div class="ledger-row">
+            <span class="ledger-num">03</span>
+            <div class="ledger-body">
+              <h3>System</h3>
+              <p>Vi bygger även egna system, som Alunix OS, vårt lagersystem. Samma tekniska nivå ligger bakom varje sajt vi levererar.</p>
+            </div>
+          </div>
+        </div>
+
+        <div class="projects" data-sc-in>
+          <div data-motion="rise" data-motion-px="40">
+            <p class="kicker">Utvalda projekt</p>
+            <p class="projects-lede">Calyx, florist i Stockholm. En sajt vi byggt, öppen att utforska här.</p>
+          </div>
+        </div>
+      </section>
+
+      <!-- static, full box, no bleed, no sink — see .calyx-wrap iframe rule above. The
+           opposite-direction motion proof lives on the thesis act now (headline rises,
+           Hyperborea photo sinks, both inside their own boxes): see shots/motion-0..4.png. -->
+      <div class="calyx-wrap" data-sc-act="flow" data-sc-reveal="up" data-sc-reveal-at="0.02 0.3">
+        <iframe src="/sites/calyx.html" title="Calyx, florist i Stockholm" loading="lazy"></iframe>
+      </div>
+    </div>
+
+    <!-- ============================================================ RIGHT: R6 world, offset 50vh -->
+    <div class="col col-right" id="colRight">
+
+      <section class="panel panel-services" data-sc-act="flow" data-sc-drift="#f4f2ee">
+        <div class="section-head" data-sc-in>
+          <span class="kicker">TJÄNSTER</span>
+          <h2 class="statement" data-motion="rise" data-motion-px="70">Webbdesign, design och system. Allt på ett ställe.</h2>
+        </div>
+        <div class="services" data-sc-in data-sc-stagger="80">
+          <div class="service">
+            <span class="service-index">01</span>
+            <h3>Webbdesign</h3>
+            <p>Webbplatser byggda för att visa upp verksamheten på rätt sätt, i ett tempo som håller över tid.</p>
+          </div>
+          <div class="service">
+            <span class="service-index">02</span>
+            <h3>Design</h3>
+            <p>Ett visuellt system, från logotyp till komponenter, som håller ihop hela verksamhetens uttryck.</p>
+          </div>
+          <div class="service">
+            <span class="service-index">03</span>
+            <h3>System</h3>
+            <p>System bortom webbplatsen, byggda för verksamheter som behöver hålla koll på mer än sidor och text, till exempel lager, bokningar eller medlemskap.</p>
+          </div>
+        </div>
+      </section>
+
+      <div class="horai-wrap invert" id="projekt" data-sc-act="flow" data-sc-reveal="iris" data-sc-reveal-at="0.1 0.55">
+        <iframe src="/sites/horai.html" title="Hōrai, restaurang i Stockholm" loading="lazy"></iframe>
+      </div>
+
+      <section class="price" id="pris" data-sc-act="flow">
+        <span class="kicker">FILOSOFI</span>
+        <h2 class="statement">Alla har rätt till bra design.</h2>
+        <p class="price-ingress">Vår nivå är satt för att fler ska ha råd med bra design, utan att vi ger avkall på resultatet.</p>
+
+        <div class="price-ledger">
+          <div class="price-row">
+            <span class="label">Standardhemsida, sex sidor</span>
+            <span class="value">10 990 kr</span>
+          </div>
+          <div class="price-row">
+            <span class="label">Med bokningssystem</span>
+            <span class="value">15 990 kr</span>
+          </div>
+          <div class="price-row">
+            <span class="label">Helt skräddarsydda lösningar för produktkataloger, specialbyggda system med mera</span>
+            <span class="value">Pris vid förfrågan</span>
+          </div>
+        </div>
+
+        <div class="price-contact">
+          <span class="kicker">Kontakt</span>
+          <a class="price-mailto" href="mailto:kontakt@alunix.se">kontakt@alunix.se</a>
+        </div>
+      </section>
+    </div>
+  </div>
+
+</main>
+
+<noscript><style>[data-sc-cue],[data-sc-in],[data-sc-stagger] > *{opacity:1!important;transform:none!important;}</style></noscript>
+
+<script src="scrollcraft.js"></script>
+<script>
+(function(){
+  var reduced = window.matchMedia && matchMedia('(prefers-reduced-motion: reduce)').matches;
+
+  function tick(){
+    var d = new Date();
+    var p = function(n){ return String(n).padStart(2,'0'); };
+    var el = document.getElementById('console-clock');
+    if (el) el.textContent = p(d.getHours()) + ':' + p(d.getMinutes()) + ':' + p(d.getSeconds()) + ' · LOKAL TID';
+    var y = document.getElementById('console-year');
+    if (y) y.textContent = d.getFullYear() + ' · SVERIGE';
+  }
+  tick();
+  if (!reduced) setInterval(tick, 1000);
+
+  ScrollCraft.mount(document.body);
+
+  /* Reveal systems fail toward visible: a timed failsafe, matching the pattern r3 shipped
+     (1.5-1.8s). Belt-and-braces for content a screenshot tool's own internal scroll never
+     reaches. Runs again after fonts.ready, which re-splits kinetic text and can re-clip a
+     still-at-progress-0 reveal back to hidden. */
+  function revealFailsafe(){
+    Array.prototype.forEach.call(document.querySelectorAll('[data-sc-in]'), function(el){
+      el.classList.add('sc-in');
+      Array.prototype.forEach.call(el.children, function(kid){ kid.classList.add('sc-in'); });
+    });
+    Array.prototype.forEach.call(document.querySelectorAll('[data-sc-cue]'), function(el){
+      if (parseFloat(getComputedStyle(el).opacity || '0') < 0.98){
+        el.style.opacity = '1';
+        el.style.transform = 'none';
+        el.style.pointerEvents = 'auto';
+      }
+    });
+    Array.prototype.forEach.call(document.querySelectorAll('[data-sc-reveal]'), function(el){
+      var cp = getComputedStyle(el).clipPath;
+      if (cp && cp !== 'none') el.style.clipPath = 'none';
+    });
+  }
+  setTimeout(revealFailsafe, 400);
+  setTimeout(revealFailsafe, 900);
+  if (document.fonts && document.fonts.ready) document.fonts.ready.then(function(){ setTimeout(revealFailsafe, 30); });
+
+  /* ---- signature move: the offset itself -------------------------------
+     No bespoke device left to run here: the reserved-gutter "window" that
+     used to live in this spot (a second crisp copy of the ground photo,
+     faded in per panel) was removed in the final round — it read as a
+     broken image placeholder, not an opening onto the ground, however
+     cleanly it was positioned after the earlier fix round. The signature
+     move is now carried entirely by CSS/layout: the .col-right{margin-top:
+     50vh} offset and the .ground::after drift (three --sc-canvas stops,
+     scrollcraft.js's own per-frame property) — no page-authored JS device
+     needed to sell it. See NOTES.md's "Final round" section. */
+
+  /* ---- text rises / the Hyperborea photo sinks --------------------------
+     Bespoke, page-authored, reads the same per-frame --sc-p the engine
+     already publishes on each [data-sc-act] panel. Deliberately NOT the
+     kit's own data-sc-parallax device: that device centres its formula on
+     act-progress 0.5 and caps out well under one scroll-pixel of travel per
+     scrolled pixel (by design, see devices.md's own "capped at 4vh" note on
+     the copy-window mode), so it can only ever make an element lag or lead
+     the scroll, never cross into moving the opposite direction on screen.
+     Final round (2026-09-04): the three iframes lost their sink entirely —
+     Anton's pixel read found the bleed wrapper hiding the top ~100px of
+     Calyx's and Hōrai's own nav/masthead. Frames are now static, full box,
+     no bleed, no transform on them or any ancestor. The Hyperborea photo is
+     the one photo left that sinks (inside its own overflow-hidden box,
+     capped 90px, well under the 120px ceiling); the thesis headline rises
+     (80px, local mode) alongside it — opposite directions, both fully
+     inside their own boxes, the pair shots/motion-0..4.png now proves. */
+  /* Two motion modes. 'act' (default) reads the ancestor panel's own --sc-p —
+     fine for texture-only rise/sink (wordmark, giant headline, services
+     statement), where the effect only needs to lag or lead the scroll, not
+     reverse it. 'local' (the thesis headline only) measures its OWN natural
+     document position once at mount and ramps over a short, element-scoped
+     scroll span instead of the whole act's (height+viewport) span — the
+     span an `[data-sc-act]` publishes is dominated by the added viewport
+     height (roughly 1400-1700px on this page), so a "hundreds of px" offset
+     spread across it can only ever lag the scroll; spread across a ~550px
+     local span instead, the same offset stays visible as a real lead over
+     the scroll while the element is still in its natural, caption-adjacent
+     viewing window. */
+  var vh0 = window.innerHeight;
+  var motionEls = Array.prototype.map.call(document.querySelectorAll('[data-motion]'), function(el){
+    var rect0 = el.getBoundingClientRect();
+    return {
+      el: el,
+      panel: el.closest('[data-sc-act]'),
+      dir: el.getAttribute('data-motion'),
+      px: parseFloat(el.getAttribute('data-motion-px')) || 300,
+      mode: el.getAttribute('data-motion-mode') || 'act',
+      shape: el.getAttribute('data-motion-shape') || 'linear',
+      span: parseFloat(el.getAttribute('data-motion-span')) || 600,
+      delay: parseFloat(el.getAttribute('data-motion-delay')) || 0,
+      refTop: rect0.top + window.scrollY
+    };
+  });
+
+  function paintMotion(){
+    var vh = window.innerHeight;
+    for (var i = 0; i < motionEls.length; i++){
+      var m = motionEls[i];
+      var p;
+      if (m.mode === 'local'){
+        var start = m.refTop - vh + m.delay;
+        p = (window.scrollY - start) / m.span;
+      } else {
+        if (!m.panel) continue;
+        p = parseFloat(getComputedStyle(m.panel).getPropertyValue('--sc-p')) || 0;
+      }
+      p = Math.max(0, Math.min(1, p));
+      /* shape='bump' (sine, peak at p=0.5, zero net displacement by p=1) is
+         supported but unused on this page since the final round dropped the
+         Calyx sink proof — every remaining [data-motion] element uses the
+         default linear ramp. Left in as the general-purpose primitive it is,
+         not dead-code cruft: removing it would make 'shape' a lie. */
+      var mag = (m.shape === 'bump') ? m.px * Math.sin(Math.PI * p) : p * m.px;
+      var amt = (m.dir === 'sink') ? mag : -mag;
+      m.el.style.transform = 'translate3d(0,' + amt.toFixed(1) + 'px,0)';
+    }
+  }
+
+  if (reduced){
+    /* Reduced motion: everything visible, no travel. Motion elements sit at
+       their natural (untransformed) position. */
+  } else {
+    var raf = null, frozen = false;
+    /* Verification-only escape hatch: a full_page=True capture (Playwright)
+       dispatches its own internal resize while stitching the document, which
+       would otherwise re-run paintMotion() against whatever scrollY exists
+       mid-stitch and silently undo a screenshot script's own reset-to-rest
+       call — the exact class of bug r3's own NOTES.md logged for the
+       engine's resize handling. Never called during normal browsing. */
+    window.__scFreezeMotion = function(){ frozen = true; };
+    window.__scUnfreezeMotion = function(){ frozen = false; paintMotion(); };
+    function schedule(){
+      if (raf || frozen) return;
+      raf = requestAnimationFrame(function(){ raf = null; if (!frozen){ paintMotion(); } });
+    }
+    window.addEventListener('scroll', schedule, { passive:true });
+    window.addEventListener('resize', schedule);
+    paintMotion();
+  }
+})();
+</script>
+</body>
+</html>

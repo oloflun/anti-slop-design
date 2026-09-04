@@ -31,7 +31,11 @@ bara Hyperborea-bilden irisar in. Railen mäter 1775 px resa. Stark öppning (or
 **M1.** Första bygget: fönstren renderades som suddiga grå cirklar över innehåll, rubriken "VI BYGGER /
 ERT VARUMÄRKE." revs isär av per-rad-rörelse, tomband ovanför Hōrai och Calyx, hål i konsolkortet.
 Fixrunda med hårda gränser (en wrapper per block, ≤ 90 px text, ≤ 120 px bild inuti overflow-hidden,
-fönster = skarpa rektanglar i innehållsfria band). Resultat: [fylls i efter fixen]
+fönster = skarpa rektanglar i innehållsfria band). Efter den: rörelsen håller ihop, men fönstren
+lästes som trasiga bildplatser och ramarnas nedsjunkning dolde Calyx och Hōrais egna topprader. Tredje
+rundan: fönstren borttagna (grunden syns ändå i förskjutningen och luckorna), ramarna statiska, bara
+foton sjunker. Slutläge: rent; signature move är nu förskjutningen själv plus grundens tre färgstopp,
+vilket är ärligt men svagare än M2:s och M3:s. Rangordning på pixlar: M2, M3, M1.
 
 ## Kedjan
 

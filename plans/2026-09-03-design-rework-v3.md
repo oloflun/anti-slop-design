@@ -30,8 +30,10 @@ Fullständig plan: `~/.claude/plans/uppgift-design-rework-v3-validated-hammock.m
 
 - [x] 21 r3: Antons val, R5 + R6 kombinerade till en sida (`tests/alunix-concepts-r3/`), sex agentrundor efter pixelläsning, kedjan bevisad via ledger-räknare — 2026-09-04
 
+- [x] 22 r4: tre remixer av r3 (M1 kontinuerlig grund, M2 kapitel med pinnad scen, M3 galleri med rail), board 127.0.0.1:4622 — 2026-09-04
+
 ## In Progress
-- [ ] Antons omdöme på r3-sidan i webbläsaren (`/tests/alunix-concepts-r3/build/index.html` från repo-roten, port 3090).
+- [ ] Antons val bland M1–M3 (board port 4622) eller ny riktning; r3-sidan kvar på port 3090.
 
 ## Remaining
 - [ ] Unsplash API-nyckel (Antons handpåläggning) → photo-sources.md får riktig sökning; fotopoolen är 19 bilder i dag.
