@@ -31,19 +31,45 @@ SUBMIT_EVENT = threading.Event()
 TEMPLATE = """<!doctype html>
 <html lang="en"><head><meta charset="utf-8"><title>Bake-off board</title>
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<style>[hidden]{display:none!important}body{margin:0;background:#e9e9e9;color:#1a1a1a;font:14px/1.4 system-ui,-apple-system,"Segoe UI",sans-serif}#topbar{display:flex;align-items:center;gap:16px;padding:10px 16px;background:#1a1a1a;color:#eee;font:12px/1.3 ui-monospace,Menlo,Consolas,monospace}#topbar .brief{flex:1;overflow:hidden;text-overflow:ellipsis;white-space:nowrap;opacity:.85}#hint{opacity:.6;flex:none}#tabs{display:flex;gap:4px;padding:8px 16px;background:#d8d8d8;border-bottom:1px solid #bbb;flex-wrap:wrap}#tabs button{font:12px ui-monospace,Menlo,Consolas,monospace;padding:6px 10px;border:1px solid #999;background:#fff;color:#333;cursor:pointer;border-radius:3px}#tabs button[aria-selected="true"]{background:#1a1a1a;color:#fff;border-color:#1a1a1a}button:focus-visible,select:focus-visible,textarea:focus-visible,input:focus-visible{outline:3px solid #2a78d6;outline-offset:1px}#stage{display:flex;gap:1px;background:#bbb}.pane{flex:1;min-width:0;display:flex;flex-direction:column;background:#f4f4f2}.pane-head{padding:6px 10px;background:#ccc;font:11px ui-monospace,Menlo,Consolas,monospace;color:#333}.pane-frame-wrap{position:relative;height:58vh;border-bottom:1px solid #bbb;background:#fff}.pane-frame-wrap iframe{width:100%;height:100%;border:0;display:block}.notbuilt{position:absolute;inset:0;display:flex;align-items:center;justify-content:center;font:12px ui-monospace,Menlo,Consolas,monospace;color:#888;background:#f4f4f2}.pane-controls{padding:10px;display:flex;flex-direction:column;gap:8px;font:12px system-ui,sans-serif}fieldset{border:1px solid #ccc;padding:6px 8px;display:flex;gap:8px;align-items:center;margin:0}legend{font:11px ui-monospace,Menlo,Consolas,monospace;padding:0 4px}textarea{width:100%;min-height:46px;font:12px system-ui,sans-serif;box-sizing:border-box}.row{display:flex;gap:10px;flex-wrap:wrap;align-items:center}button.action{font:12px ui-monospace,Menlo,Consolas,monospace;padding:5px 9px;border:1px solid #888;background:#fff;cursor:pointer;border-radius:3px}#submitbar{display:flex;gap:12px;align-items:flex-start;padding:14px 16px;background:#1a1a1a;color:#eee}#submitbar label{flex:1;font:12px ui-monospace,Menlo,Consolas,monospace}#submitbar textarea{flex:1}#submitbtn{font:13px ui-monospace,Menlo,Consolas,monospace;padding:8px 16px;background:#2a78d6;color:#fff;border:0;border-radius:3px;cursor:pointer}#status{font:11px ui-monospace,Menlo,Consolas,monospace;color:#9c9;align-self:center}@media (prefers-reduced-motion:no-preference){#tabs button{transition:background .1s}}</style>
+<style>[hidden]{display:none!important}html,body{height:100%}body{margin:0;background:#111;color:#eee;font:13px/1.4 system-ui,-apple-system,"Segoe UI",sans-serif;display:flex;flex-direction:column;overflow:hidden}
+#topbar{flex:none;height:32px;display:flex;align-items:center;gap:6px;padding:0 8px;background:#1a1a1a;color:#ddd;font:12px ui-monospace,Menlo,Consolas,monospace}
+#tabs{display:flex;gap:4px;flex:1;min-width:0;overflow:hidden}
+#tabs button{font:12px ui-monospace,Menlo,Consolas,monospace;padding:3px 9px;border:1px solid #444;background:#222;color:#ccc;cursor:pointer;border-radius:3px;white-space:nowrap}
+#tabs button[aria-selected="true"]{background:#eee;color:#111;border-color:#eee}
+#topbar .tool{font:12px ui-monospace,Menlo,Consolas,monospace;padding:3px 9px;border:1px solid #444;background:#222;color:#ccc;cursor:pointer;border-radius:3px}
+#topbar .tool[aria-pressed="true"]{background:#2a78d6;color:#fff;border-color:#2a78d6}
+#hint{opacity:.5;white-space:nowrap}
+button:focus-visible,select:focus-visible,textarea:focus-visible,input:focus-visible{outline:3px solid #2a78d6;outline-offset:1px}
+#stage{flex:1;min-height:0;display:flex;gap:1px;background:#333}
+.pane{flex:1;min-width:0;display:flex;flex-direction:column;background:#fff;position:relative}
+.pane-head{position:absolute;left:8px;top:6px;z-index:2;padding:2px 6px;background:rgba(0,0,0,.55);color:#eee;font:10px ui-monospace,Menlo,Consolas,monospace;border-radius:2px;pointer-events:none}
+.pane-frame-wrap{flex:1;min-height:0;position:relative;background:#fff}
+.pane-frame-wrap iframe{width:100%;height:100%;border:0;display:block}
+.notbuilt{position:absolute;inset:0;display:flex;align-items:center;justify-content:center;font:12px ui-monospace,Menlo,Consolas,monospace;color:#888;background:#f4f4f2}
+#drawer{position:fixed;top:32px;right:0;bottom:0;width:min(380px,100vw);background:#1a1a1a;color:#eee;border-left:1px solid #333;padding:14px;overflow:auto;display:flex;flex-direction:column;gap:14px;z-index:10;box-shadow:-8px 0 24px rgba(0,0,0,.4)}
+#drawer h2{margin:0;font:12px ui-monospace,Menlo,Consolas,monospace;color:#9c9}
+.pane-controls{display:flex;flex-direction:column;gap:8px;font:12px system-ui,sans-serif;padding-bottom:12px;border-bottom:1px solid #333}
+fieldset{border:1px solid #444;padding:6px 8px;display:flex;gap:8px;align-items:center;margin:0}legend{font:11px ui-monospace,Menlo,Consolas,monospace;padding:0 4px;color:#aaa}
+textarea{width:100%;min-height:46px;font:12px system-ui,sans-serif;box-sizing:border-box;background:#111;color:#eee;border:1px solid #444}
+select{background:#111;color:#eee;border:1px solid #444}
+.row{display:flex;gap:10px;flex-wrap:wrap;align-items:center}
+button.action{font:12px ui-monospace,Menlo,Consolas,monospace;padding:5px 9px;border:1px solid #666;background:#222;color:#eee;cursor:pointer;border-radius:3px}
+#submitbar{display:flex;flex-direction:column;gap:8px}#submitbar label{font:12px ui-monospace,Menlo,Consolas,monospace;color:#aaa}
+#submitbtn{font:13px ui-monospace,Menlo,Consolas,monospace;padding:8px 16px;background:#2a78d6;color:#fff;border:0;border-radius:3px;cursor:pointer;align-self:flex-start}
+#status{font:11px ui-monospace,Menlo,Consolas,monospace;color:#9c9}
+@media (prefers-reduced-motion:no-preference){#tabs button{transition:background .1s}}</style>
 </head><body>
-<div id="topbar"><span class="brief" id="brief"></span><span id="hint">keys: 1-5 direction &middot; &larr;/&rarr; engine pair</span></div>
-<div id="tabs" role="tablist" aria-label="Directions"></div>
+<div id="topbar"><div id="tabs" role="tablist" aria-label="Directions"></div><button type="button" class="tool" id="pairbtn" aria-pressed="false" title="visa två motorer sida vid sida (tangent p)">par</button><button type="button" class="tool" id="drawerbtn" aria-pressed="false" title="betyg och kommentar (tangent f)">betyg</button><span id="hint">1-9 riktning &middot; f betyg &middot; p par</span></div>
 <div id="stage">
-<div class="pane" id="pane-0"><div class="pane-head"><span class="engname" id="engname-0"></span></div><div class="pane-frame-wrap"><iframe id="frame-0" title="left engine"></iframe><div class="notbuilt" id="notbuilt-0" hidden>not built</div></div><div class="pane-controls" id="controls-0"></div></div>
-<div class="pane" id="pane-1"><div class="pane-head"><span class="engname" id="engname-1"></span></div><div class="pane-frame-wrap"><iframe id="frame-1" title="right engine"></iframe><div class="notbuilt" id="notbuilt-1" hidden>not built</div></div><div class="pane-controls" id="controls-1"></div></div>
+<div class="pane" id="pane-0"><div class="pane-head"><span class="engname" id="engname-0"></span></div><div class="pane-frame-wrap"><iframe id="frame-0" title="engine A"></iframe><div class="notbuilt" id="notbuilt-0" hidden>not built</div></div></div>
+<div class="pane" id="pane-1" hidden><div class="pane-head"><span class="engname" id="engname-1"></span></div><div class="pane-frame-wrap"><iframe id="frame-1" title="engine B"></iframe><div class="notbuilt" id="notbuilt-1" hidden>not built</div></div></div>
 </div>
-<div id="submitbar"><label>overall notes<br><textarea id="overall" rows="2"></textarea></label><button type="button" id="submitbtn">submit</button><span id="status"></span></div>
+<div id="drawer" hidden><h2 id="drawer-title"></h2><div class="pane-controls" id="controls-0"></div><div class="pane-controls" id="controls-1" hidden></div>
+<div id="submitbar"><label>overall notes<br><textarea id="overall" rows="3"></textarea></label><button type="button" id="submitbtn">submit</button><span id="status"></span></div></div>
 <script>
 (function(){
 'use strict';
-var STATE={board:null,cellsExist:{},active:null,winStart:0,ratings:{},comments:{},remix:{},preferred:null};
+var STATE={board:null,cellsExist:{},active:null,winStart:0,ratings:{},comments:{},remix:{},preferred:null,pair:false,drawer:false};
 function $(s){return document.querySelector(s)}
 function ck(d,e){return d+'-'+e}
 function esc(s){return (s||'').replace(/[&<>"]/g,function(c){return {'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;'}[c]})}
@@ -51,15 +77,20 @@ function post(payload){return fetch('/api/feedback',{method:'POST',headers:{'Con
 fetch('/api/state').then(function(r){return r.json()}).then(init);
 function init(data){
   STATE.board=data.board; STATE.cellsExist=data.cellsExist; STATE.active=data.board.directions[0].id;
-  $('#brief').textContent=(data.board.brief||'').slice(0,140); render();
+  STATE.pair=data.board.engines.length>1; document.title=(data.board.brief||'Bake-off board').slice(0,80);
+  $('#pairbtn').hidden=data.board.engines.length<2;
+  render();
   document.addEventListener('keydown', onKey); $('#submitbtn').addEventListener('click', submitFeedback);
+  $('#drawerbtn').addEventListener('click', function(){toggleDrawer()});
+  $('#pairbtn').addEventListener('click', function(){STATE.pair=!STATE.pair; render()});
 }
+function toggleDrawer(){STATE.drawer=!STATE.drawer; $('#drawer').hidden=!STATE.drawer; $('#drawerbtn').setAttribute('aria-pressed',String(STATE.drawer))}
 function renderTabs(){
   var tabs=$('#tabs'); tabs.innerHTML='';
-  STATE.board.directions.slice(0,5).forEach(function(d,i){
+  STATE.board.directions.slice(0,9).forEach(function(d,i){
     var b=document.createElement('button');
     b.type='button'; b.setAttribute('role','tab'); b.setAttribute('aria-selected', String(d.id===STATE.active));
-    b.textContent=(i+1)+' '+d.name+(d.lane?' — '+d.lane:'');
+    b.textContent=(i+1)+' '+d.name; b.title=d.lane||'';
     b.addEventListener('click', function(){STATE.active=d.id; render()});
     tabs.appendChild(b);
   });
@@ -69,10 +100,17 @@ function engPair(){
   if(n<2) b=a;
   return [eng[a], eng[b]];
 }
-function render(){ renderTabs(); var pair=engPair(); renderPane(0, pair[0]); renderPane(1, pair[1]); }
+function render(){
+  renderTabs(); var pair=engPair(); var two=STATE.pair && STATE.board.engines.length>1;
+  $('#pairbtn').setAttribute('aria-pressed',String(two));
+  $('#pane-1').hidden=!two; $('#controls-1').hidden=!two; document.querySelectorAll('.pane-head').forEach(function(h){h.hidden=!two});
+  renderPane(0, pair[0]); if(two) renderPane(1, pair[1]);
+  var d=STATE.board.directions.filter(function(x){return x.id===STATE.active})[0];
+  $('#drawer-title').textContent=STATE.active+' \u00b7 '+(d?d.name:'');
+}
 function renderPane(idx, eng){
   var key=ck(STATE.active, eng.id);
-  $('#engname-'+idx).textContent=eng.name+' · '+STATE.active;
+  $('#engname-'+idx).textContent=eng.name+' \u00b7 '+STATE.active;
   var frame=$('#frame-'+idx), nb=$('#notbuilt-'+idx);
   if(STATE.cellsExist[key]){
     if(frame.dataset.key!==key){frame.src='cells/'+key+'/index.html'; frame.dataset.key=key; frame.onload=function(){wireScrollSync(frame)}}
@@ -87,14 +125,14 @@ function controlsHTML(key){
   var r=STATE.ratings[key]||0, c=STATE.comments[key]||'';
   var stars=[1,2,3,4,5].map(function(n){return '<label><input type="radio" name="r-'+key+'" value="'+n+'" '+(r===n?'checked':'')+'> '+n+'</label>'}).join('');
   var opts=STATE.board.directions.map(function(d){return '<option value="'+d.id+'">'+esc(d.name)+'</option>'}).join('');
-  return '<fieldset><legend>rating</legend>'+stars+'</fieldset>'+
+  return '<div class="row" style="font:11px ui-monospace,Menlo,Consolas,monospace;color:#aaa">'+esc(key)+'</div><fieldset><legend>rating</legend>'+stars+'</fieldset>'+
     '<label>comment<br><textarea class="cmt" rows="2">'+esc(c)+'</textarea></label>'+
     '<div class="row"><label><input type="radio" name="preferred" value="'+key+'" '+(STATE.preferred===key?'checked':'')+'> prefer this</label>'+
     '<button type="button" class="action morelike">more like this</button></div>'+
     '<div class="row">remix &mdash; layout <select class="rmx-l">'+opts+'</select> colour <select class="rmx-c">'+opts+'</select> <button type="button" class="action remix">remix</button></div>';
 }
 function wireControls(idx, key){
-  var pane=$('#pane-'+idx);
+  var pane=$('#controls-'+idx);
   pane.querySelectorAll('input[name="r-'+key+'"]').forEach(function(el){ el.addEventListener('change', function(){STATE.ratings[key]=+el.value; post({type:'rating',cell:key,value:+el.value,submit:false})}); });
   pane.querySelector('.cmt').addEventListener('change', function(e){STATE.comments[key]=e.target.value});
   pane.querySelectorAll('input[name="preferred"]').forEach(function(el){ el.addEventListener('change', function(){if(el.checked) STATE.preferred=key}); });
@@ -118,8 +156,10 @@ function wireScrollSync(frame){
 function onKey(e){
   var t=e.target; if(/^(INPUT|TEXTAREA|SELECT)$/.test(t.tagName)) return;
   if(e.metaKey||e.ctrlKey||e.altKey) return;
-  var n=parseInt(e.key,10), maxN=Math.min(5,STATE.board.directions.length);
+  var n=parseInt(e.key,10), maxN=Math.min(9,STATE.board.directions.length);
   if(n>=1 && n<=maxN){STATE.active=STATE.board.directions[n-1].id; render(); return}
+  if(e.key==='f'||e.key==='F'){toggleDrawer(); return}
+  if(e.key==='p'||e.key==='P'){if(STATE.board.engines.length>1){STATE.pair=!STATE.pair; render()} return}
   if(e.key==='ArrowRight'){STATE.winStart=(STATE.winStart+1)%STATE.board.engines.length; render()}
   else if(e.key==='ArrowLeft'){STATE.winStart=(STATE.winStart-1+STATE.board.engines.length)%STATE.board.engines.length; render()}
 }
@@ -148,8 +188,18 @@ def cells_exist(session_dir: Path, board: dict) -> dict:
             out[key] = (session_dir / "cells" / key / "index.html").is_file()
     return out
 
-def make_handler(session_dir: Path):
+def make_handler(session_dir: Path, fallback_root: Path | None = None):
     class Handler(http.server.SimpleHTTPRequestHandler):
+        def translate_path(self, path):
+            # cells may reference repo-absolute assets (/sites/..., /tests/...): fall back to the repo root
+            local = super().translate_path(path)
+            if fallback_root and not os.path.exists(local):
+                rel = path.split("?", 1)[0].split("#", 1)[0].lstrip("/")
+                cand = fallback_root / rel
+                if cand.exists():
+                    return str(cand)
+            return local
+
         def _json(self, code, obj):
             data = json.dumps(obj).encode("utf-8")
             self.send_response(code)
@@ -191,11 +241,13 @@ def main():
     ap.add_argument("--port", type=int, default=4620)
     ap.add_argument("--open", action="store_true")
     ap.add_argument("--until-submit", action="store_true")
+    ap.add_argument("--fallback-root", default=None, help="serve /paths missing in session_dir from this root (repo root)")
     args = ap.parse_args()
+    fallback_root = Path(args.fallback_root).resolve() if args.fallback_root else None
     session_dir = Path(args.session_dir).resolve()
     load_board(session_dir)  # fail fast if board.json is missing/invalid
     (session_dir / "board.html").write_text(TEMPLATE, encoding="utf-8")
-    handler = functools.partial(make_handler(session_dir), directory=str(session_dir))
+    handler = functools.partial(make_handler(session_dir, fallback_root), directory=str(session_dir))
     httpd = http.server.ThreadingHTTPServer(("127.0.0.1", args.port), handler)
     url = f"http://127.0.0.1:{args.port}/board.html"
     print(f"BOARD_URL: {url}")
