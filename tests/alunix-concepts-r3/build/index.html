@@ -1,0 +1,586 @@
+<!--
+  design · pre-emit critique: P4 H4 E4 S4 R4 V4
+
+  REFERENCE LOCK (Step 1b) — Tier 2, two dominant references + one compositional lock
+  Primary references: R5-chain/index.html (Mattis Studio lane, Geist, console hero →
+    Alunix-blue thesis block → white giant close) as the LEFT column, and R6-chain/index.html
+    (Creative Giants lane, Public Sans, poster wordmark → full-bleed photo → editorial
+    sections → inverted band) as the RIGHT column, both from ../../alunix-concepts-r2/cells/.
+    Compositional reference: reference-mosaic.png (this build's own brief folder) — binding
+    for proportions, the height differences between the two columns' sections, and the fold
+    order; measured against at 1440px.
+  Grammar: split stage (two sides of one argument; the seam between the columns is the
+    chrome). scroll/grammars.md row "split stage": "no bar; divider IS the chrome; hero
+    shows the split 50/50; close is the collapse to one column" — realized here as the
+    seam hairline + logo dock (signature move) and the two independent closes (Calyx frame,
+    price box) that both terminate at the same y (brief point 6).
+  Preserve from each source verbatim per brief point 1: R5's wordmark/kicker microformat,
+    console card, corner-mark page signature, Alunix-blue thesis block, giant close type;
+    R6's poster wordmark, full-bleed photo + statement convention, hairline services ledger,
+    inverted "Tre sajter" band. One headline changed (VI BYGGER ERT VARUMÄRKE., brief's own
+    correction). Every other headline verbatim, same typefaces (Geist 700 left, Public Sans
+    300 right).
+  Removed from the sources (brief points 3-5, 8): R5's three-card Utvalda projekt grid → one
+    borderless Calyx iframe; R5's philosophy + contact blocks → merged into the right
+    column's price box; R6's fixed nav bar → dropped entirely (R5's fixed corner marks stay
+    as the page's one persistent signature, brief point 8); R6's three-row Tre sajter list →
+    one borderless Hōrai iframe; R6's standalone Filosofi section → folded into the price box
+    as its ingress line; R6's kolofon (hej@alunix.se) → replaced by the price box's own
+    kontakt line, kontakt@alunix.se, the single address for the whole page.
+  New construction, this round only: the logo (inline SVG, white fill, Anton's vectorised
+    mark) sits on the seam, positioned by measuring the left hero's bottom edge and the
+    right poster's bottom edge in JS and taking the midpoint (brief point 7); the seam
+    hairline draws itself downward from that point in step with scroll, using
+    mix-blend-mode:difference (borrowed from R5's own corner-mark trick, so one line reads
+    against the dark hero, the blue block, the black band and the cream ground without a
+    second colour rule) — this is the signature move, see NOTES.md; the price box (brief
+    point 5), dark ground #0c0b08, R6 typography, Anton's two real prices plus "pris vid
+    förfrågan", each fact its own bold line per copy-gate.
+  Token bridge: R5's tokens (--c-black, --c-white, --c-paper, --c-ink, --c-accent,
+    --c-accent-deep, --c-line-on-dark, --c-line-on-paper, --c-mute-on-*) and R6's tokens
+    (--bg, --bg-deep, --ink, --ink-soft, --ink-softer, --line, --invert, --invert-*, three
+    accent hues, --poster-grad-top, --scrim-*, --thumb-bg) both keep their original names
+    and values; the two systems never collided (the one shared name, --ease, already shared
+    the same value in both sources). Every selector that DID collide between the two source
+    files (.kicker, .projects, .project, .philosophy, .reveal/.is-in) is scoped under
+    .col-left / .col-right ancestors, or in .reveal's case dropped entirely: this build
+    drives reveals through the scrollcraft engine's own data-sc-in/data-sc-cue mechanism
+    instead of either source's homemade IntersectionObserver, so there is one reveal system
+    on the page, not three.
+  Scale rule (brief, binding): every `vw` inside a source's own clamp() becomes `cqw`
+    against that column's own container-type:inline-size box; a column is 50% of the
+    viewport, so at 1440px this alone reproduces each source's 1440px layout at half scale
+    without a second halving pass. Genuinely fixed pixel values that do NOT participate in a
+    clamp (the console card's corner ticks, the ledger's number column) are halved by hand;
+    R5's page-wide corner marks are NOT halved, per brief point 8, because they are kept as
+    full-scale page chrome, not part of either column's scaled system.
+  Reject: any new saturated colour (Alunix blue and R6's three project hues are the only
+    accents on the page, unchanged from their sources); a page-wide pin (brief forbids it
+    explicitly: "Anton vill se layouten som den är"); any counter/marquee/invented number;
+    transform or pointer-events changes on the two iframes once opened.
+
+  DECISION LEDGER
+  | Decision | Source | Role | Why |
+  |---|---|---|---|
+  | Two columns, flex row, container-type:inline-size each | brief.md "Varje spalt är sin källsidas 1440-px-layout i halv skala" | layout | Literal instruction; container queries are the only way to scale a whole nested layout by container width, not viewport width |
+  | vw→cqw swap only, no separate halving of clamp() endpoints | brief.md point 3 header instruction | scale mechanism | A clamp's vw term already halves correctly against a 50%-width container; halving the rem floor/ceiling too would break the floor's OWN job (holding the mobile-stacked column, which is full width, at full scale) |
+  | Calyx iframe replaces R5's project grid; Hōrai iframe replaces R6's project rows | brief.md points 3-4 | proof | Anton's explicit correction: interactive real sites beat static screenshots as proof |
+  | Philosophy + contact merged into one dark price box, right column's last section | brief.md point 5 | close | Binding instruction; also solves brief point 6 (both columns need a flex:1 closing element to land on the same y) |
+  | Seam hairline + logo dock, driven by one shared scroll listener, mix-blend-mode:difference | brief.md's own suggested signature move + R5's existing corner-mark trick | signature move | Brief names this literally and permits improving it, not replacing it; reusing difference-blend (already proven on this page for the corner marks) solves "visible against four different grounds" without new tokens |
+  | scrollcraft flow acts only, no pin/scrub/pan | brief.md "Förbjudet: pin på hela sidan" + devices.md | scroll engine usage | No scrub media on the page, no lateral rail content; every required device (reveal, kinetic, parallax, flow+in) runs inside a flow act, which is the engine's own default and the one act type the brief does not forbid |
+  | Price box carries no reveal/cue at all | brief.md "prisrutan landar stilla (avslutet ska vila, inte tona ut)" | motion | Explicit instruction; the one deliberately still element on an otherwise choreographed page |
+
+  Feeling curve, peak, tell-someone sentence, device list per act: NOTES.md (written before
+  this file, per Step 2b).
+-->
+<!doctype html>
+<html lang="sv" class="no-js">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Alunix · digital byrå</title>
+<meta name="description" content="Alunix är en digital byrå som designar och bygger webbplatser och digitala system.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Geist:wght@400;500;700&family=Geist+Mono:wght@400;500&family=Public+Sans:wght@300;400;500;600&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="scrollcraft.css">
+<script>document.documentElement.classList.replace('no-js','js');</script>
+<style>
+  :root{
+    /* R5 tokens (left column) */
+    --c-black:#0b0c0e; --c-white:#ffffff; --c-paper:#f4f2ee; --c-ink:#14171a;
+    --c-accent:#1e5e9c; --c-accent-deep:#123f68;
+    --c-line-on-dark:rgba(255,255,255,.20); --c-line-on-paper:rgba(20,23,26,.14);
+    --c-mute-on-dark:rgba(255,255,255,.62); --c-mute-on-paper:rgba(20,23,26,.60);
+    --c-mute-on-accent:rgba(255,255,255,.72); --c-mute-on-accent-aa:rgba(255,255,255,.92);
+    --f-display:'Geist',system-ui,sans-serif; --f-body:'Geist',system-ui,sans-serif; --f-mono:'Geist Mono',ui-monospace,monospace;
+
+    /* R6 tokens (right column) */
+    --bg:#fdfbf4; --bg-deep:#f2eee1; --ink:#16140f; --ink-soft:#453f30; --ink-softer:#55503f;
+    --line:rgba(22,20,15,.14); --invert:#0c0b08; --invert-ink:#fdfbf4;
+    --invert-soft:rgba(253,251,244,.72); --invert-body:rgba(253,251,244,.82); --invert-line:rgba(253,251,244,.16);
+    --accent-calyx:#3c6b4a; --accent-horai:#7a2540; --accent-hyperborea:#2c5c86;
+    --poster-grad-top:#56534a; --scrim-a:rgba(6,5,3,.72); --scrim-b:rgba(6,5,3,.42); --scrim-c:rgba(6,5,3,0);
+    --thumb-bg:#151310; --font:'Public Sans',system-ui,sans-serif; --r-pill:999px;
+    --gap:clamp(48px,7cqw,96px); --pad:clamp(16px,4cqw,48px);
+
+    --ease:cubic-bezier(.16,1,.3,1);
+    --logo-h:clamp(114px,11.7vw,195px);
+  }
+  *{box-sizing:border-box;}
+  html,body{margin:0;overflow-x:clip;}
+  body{background:var(--c-black);color:var(--c-white);font-family:var(--f-body);font-size:16px;line-height:1.5;-webkit-font-smoothing:antialiased;}
+  img{max-width:100%;display:block;}
+  a{color:inherit;}
+  h1,h2,h3,p,blockquote,figure{margin:0;}
+  a:focus-visible,button:focus-visible{outline:2px solid var(--c-accent);outline-offset:3px;}
+
+  /* R5 page signature: corner marks fixed to the viewport, unscaled */
+  .corner-marks span{position:fixed;width:16px;height:16px;z-index:100;pointer-events:none;mix-blend-mode:difference;}
+  .corner-marks span::before,.corner-marks span::after{content:"";position:absolute;background:#fff;}
+  .corner-marks span::before{width:100%;height:1px;top:50%;left:0;}
+  .corner-marks span::after{width:1px;height:100%;left:50%;top:0;}
+  .cm-tl{top:18px;left:18px;} .cm-tr{top:18px;right:18px;} .cm-bl{bottom:18px;left:18px;} .cm-br{bottom:18px;right:18px;}
+  @media (max-width:600px){ .corner-marks span{width:11px;height:11px;} .cm-tl,.cm-tr{top:12px;} .cm-bl,.cm-br{bottom:12px;} .cm-tl,.cm-bl{left:12px;} .cm-tr,.cm-br{right:12px;} }
+
+  /* ============================================================ page shell */
+  .page{position:relative;display:flex;align-items:stretch;min-height:100vh;}
+  .col{container-type:inline-size;display:flex;flex-direction:column;flex:1 1 50%;min-width:0;}
+  @media (max-width:900px){ .page{flex-direction:column;} }
+
+  /* ============================================================ signature move: seam + logo */
+  .seam{position:absolute;left:50%;top:0;width:2px;background:#fff;mix-blend-mode:difference;
+    transform-origin:top center;transform:scaleY(var(--seam-p,0));pointer-events:none;z-index:40;}
+  @media (max-width:900px){ .seam{display:none;} }
+  .logo-mark{position:absolute;left:50%;top:0;height:var(--logo-h);width:auto;transform:translate(-50%,-50%);
+    z-index:50;pointer-events:none;filter:drop-shadow(0 0 22px rgba(0,0,0,.28));}
+  .logo-mark svg{height:100%;width:auto;display:block;}
+  .js .logo-mark{opacity:1;}
+  @media (max-width:900px){ .logo-mark{display:none;} }
+
+  /* ================================================================ LEFT / R5 */
+  .col-left{background:var(--c-black);}
+  .col-left .kicker{font-family:var(--f-mono);font-size:11px;letter-spacing:.22em;text-transform:uppercase;}
+
+  .col-left .hero{position:relative;height:52cqw;display:flex;align-items:center;justify-content:center;padding:clamp(20px,5cqw,64px);overflow:hidden;}
+  .col-left .hero-photo{position:absolute;inset:0;background:url('assets/hero-console.webp') center 30%/cover no-repeat;}
+  .col-left .hero-scrim{position:absolute;inset:0;background:linear-gradient(180deg,rgba(0,0,0,.55) 0%,rgba(0,0,0,.30) 35%,rgba(0,0,0,.62) 100%);}
+  .col-left .console-card{position:relative;width:100%;max-width:62.5cqw;border:1px solid var(--c-line-on-dark);background:rgba(8,9,10,.58);backdrop-filter:blur(3px);padding:clamp(12px,3.5cqw,40px);}
+  .col-left .console-card::before,.col-left .console-card::after,.col-left .console-card .cc-bl,.col-left .console-card .cc-br{content:"";position:absolute;width:4px;height:4px;border:1px solid rgba(255,255,255,.55);}
+  .col-left .console-card::before{top:-2px;left:-2px;border-width:1px 0 0 1px;}
+  .col-left .console-card::after{top:-2px;right:-2px;border-width:1px 1px 0 0;}
+  .col-left .console-card .cc-bl{bottom:-2px;left:-2px;border-width:0 0 1px 1px;}
+  .col-left .console-card .cc-br{bottom:-2px;right:-2px;border-width:0 1px 1px 0;}
+  .col-left .console-top{display:flex;flex-wrap:wrap;gap:6px 16px;justify-content:space-between;color:var(--c-mute-on-dark);margin-bottom:clamp(10px,2.4cqw,28px);font-size:9px;}
+  .col-left .console-top .kicker{color:var(--c-mute-on-dark);font-size:9px;}
+  .col-left .wordmark{font-family:var(--f-display);font-weight:700;font-size:clamp(1.8rem,10cqw,6.5rem);line-height:.88;letter-spacing:-.03em;text-transform:uppercase;overflow-wrap:anywhere;min-width:0;}
+  .col-left .wordmark .sub{display:block;font-size:clamp(.68rem,1.9cqw,1.05rem);font-weight:500;letter-spacing:.12em;color:var(--c-mute-on-dark);text-transform:uppercase;margin-top:.5em;}
+  .col-left .hero-body{max-width:46ch;font-size:clamp(.72rem,1.35cqw,1rem);color:rgba(255,255,255,.88);margin-top:clamp(10px,2.4cqw,26px);}
+  .col-left .service-list{display:flex;flex-wrap:wrap;gap:6px 16px;margin-top:clamp(10px,2.4cqw,26px);padding-top:10px;border-top:1px solid var(--c-line-on-dark);font-family:var(--f-mono);font-size:9.5px;letter-spacing:.08em;text-transform:uppercase;}
+  .col-left .hero-cta-row{margin-top:clamp(10px,2.4cqw,26px);}
+  .col-left .cta{display:inline-block;font-family:var(--f-display);font-weight:700;font-size:clamp(.78rem,1.8cqw,1.15rem);color:var(--c-white);text-decoration:underline;text-underline-offset:5px;text-decoration-color:var(--c-accent);text-decoration-thickness:2px;}
+  .col-left .cta:hover{text-decoration-color:var(--c-white);}
+
+  .col-left .thesis{position:relative;background:var(--c-accent);color:var(--c-white);padding:7.7cqw 6cqw;}
+  .col-left .thesis-grid{display:grid;grid-template-columns:1fr 1fr;gap:5cqw;align-items:end;}
+  .col-left .thesis-text .kicker{color:var(--c-mute-on-accent-aa);margin-bottom:2cqw;font-size:1.53cqw;}
+  .col-left .thesis-headline{font-family:var(--f-display);font-weight:700;font-size:5.2cqw;line-height:.94;letter-spacing:-.02em;text-transform:uppercase;overflow-wrap:anywhere;min-width:0;}
+  .col-left .thesis-support{max-width:42ch;font-size:1.6cqw;color:rgba(255,255,255,.9);margin-top:2.5cqw;}
+  .col-left .thesis-photo{border:1px solid rgba(255,255,255,.35);}
+  .col-left .thesis-photo img{width:100%;height:100%;object-fit:cover;filter:grayscale(1) contrast(1.05);aspect-ratio:16/10;}
+  .col-left .thesis-photo figcaption{font-family:var(--f-mono);font-size:1.46cqw;letter-spacing:.14em;text-transform:uppercase;padding:1.1cqw .28cqw 0;color:var(--c-mute-on-accent-aa);}
+  @media (max-width:900px){ .col-left .thesis-photo figcaption{font-size:.68rem;padding:8px 2px 0;} }
+  @container (max-width:520px){ .col-left .thesis-grid{grid-template-columns:minmax(0,1fr);} .col-left .thesis-photo{order:-1;max-width:340px;} }
+
+  .col-left .close{background:var(--c-paper);color:var(--c-ink);padding:10cqw 6cqw 0;display:flex;flex-direction:column;flex:1;}
+  .col-left .close-inner{width:100%;}
+  .col-left .giant{font-family:var(--f-display);font-weight:700;font-size:10cqw;line-height:.86;letter-spacing:-.03em;text-transform:uppercase;overflow-wrap:anywhere;min-width:0;}
+  /* the diaeresis on "varumärke" sits above cap height; the kinetic-split engine's
+     own .sc-split--line only pads the bottom (its clip guard for descenders), so the
+     top of each split line still clips the Ä's dots. Page-only override, scoped to this
+     one kinetic headline, adds matching breathing room on top without touching
+     scrollcraft.css's own rule (its padding-bottom/margin-bottom stay exactly as shipped). */
+  /* the diaeresis on "varumärke" (line 2) sits above cap height; the kinetic-
+     split engine's own .sc-split--line only pads the bottom (its clip guard
+     for descenders on the LAST line), so the top of line 2 still clips the
+     Ä's dots. Scoped to non-first split lines only, so this never touches
+     line 1's own top edge (giant_top must hold at 1.09w): the added
+     padding-top/negative margin-top pair collapses against the previous
+     line's own already-reserved (invisible) padding-bottom, so line 2's
+     glyphs gain clearance with zero net height added to .giant. Page-only
+     override — scrollcraft.css's own rule is untouched. */
+  .col-left .giant .sc-split--line + .sc-split--line{padding-top:.14em;margin-top:-.14em;}
+  .col-left .giant-sub{max-width:52ch;font-size:1.8cqw;color:var(--c-mute-on-paper);margin-top:2cqw;}
+
+  .col-left .ledger{margin-top:5.6cqw;border-top:1px solid var(--c-line-on-paper);} /* was 7cqw;
+    reduced by 1.4cqw to offset the giant headline's own +1.4cqw growth from the
+    diaeresis-clearance padding above (line 2's .sc-split--line), so ledger1_top
+    and everything below it holds its original position (brief's 0.01w tolerance) */
+  .col-left .ledger-row{display:grid;grid-template-columns:40px 1fr;gap:14px 24px;padding:1.7cqw 0;border-bottom:1px solid var(--c-line-on-paper);}
+  .col-left .ledger-num{font-family:var(--f-mono);font-size:13px;color:var(--c-mute-on-paper);padding-top:.2em;}
+  .col-left .ledger-body h3{font-family:var(--f-display);font-weight:700;font-size:3.2cqw;letter-spacing:-.01em;text-transform:uppercase;}
+  .col-left .ledger-body p{max-width:56ch;font-size:1.5cqw;color:var(--c-mute-on-paper);margin-top:1cqw;}
+  @container (max-width:360px){ .col-left .ledger-row{grid-template-columns:1fr;} }
+
+  .col-left .projects{margin-top:5cqw;}
+  .col-left .projects .kicker{color:var(--c-mute-on-paper);line-height:1.1;font-size:1.53cqw;}
+  .col-left .projects-lede{max-width:72ch;font-size:1.5cqw;color:var(--c-mute-on-paper);margin-top:.6cqw;}
+  .col-left .calyx-frame{margin-top:.4cqw;flex:1;min-height:60cqw;display:block;line-height:0;background:#e9e5da;}
+  @media (max-width:900px){
+    .col-left .thesis-headline{font-size:clamp(1.9rem,7.4cqw,3.4rem);}
+    .col-left .thesis-support,.col-left .thesis-text .kicker{font-size:.95rem;}
+    .col-left .giant{font-size:clamp(2.3rem,12cqw,4.6rem);}
+    .col-left .giant-sub{font-size:1rem;}
+    .col-left .ledger-body h3{font-size:1.4rem;}
+    .col-left .ledger-body p,.col-left .projects-lede{font-size:.95rem;}
+  }
+  .col-left .calyx-frame iframe{width:100%;height:100%;border:0;display:block;}
+  @media (max-width:900px){ .col-left .calyx-frame,.col-left .calyx-frame iframe{min-height:70vh;} }
+
+  /* ================================================================ RIGHT / R6 */
+  .col-right{background:var(--bg);color:var(--ink);font-family:var(--font);font-weight:400;}
+  .col-right .kicker{font-family:var(--font);font-weight:600;font-size:11px;letter-spacing:.16em;text-transform:uppercase;color:var(--ink-soft);}
+  .col-right .invert .kicker{color:var(--invert-soft);}
+  .col-right h1,.col-right h2,.col-right h3{margin:0;font-weight:300;line-height:.98;overflow-wrap:anywhere;min-width:0;}
+  .col-right p{margin:0;max-width:56ch;}
+  .col-right .wrap{max-width:none;margin:0 auto;padding-left:var(--pad);padding-right:var(--pad);}
+
+  /* Round 5: the ALUNIX poster fold (0-0.24w) is gone — the Tidvatten iframe now
+     fills the whole former fold+photo box, 0-0.83w (targets.md's own 0.24w and
+     0.83w boundaries collapse into one). .fold/.poster and the photo-text
+     overlay + its scrim are removed with it: the headline now lives inside the
+     frame itself (tidvatten-hero.html), not as a page-level overlay on top of it. */
+  .col-right .photo-section{position:relative;height:83cqw;overflow:hidden;}
+  .col-right .photo-section iframe{position:absolute;inset:0;width:100%;height:100%;border:0;display:block;}
+
+  .col-right .section{height:45cqw;display:flex;flex-direction:column;justify-content:center;}
+  .col-right .section-head{display:grid;grid-template-columns:minmax(0,1fr) minmax(0,1.6fr);gap:24px;margin-bottom:clamp(28px,6cqw,72px);align-items:end;}
+  .col-right .section-head .kicker{padding-top:4px;}
+  .col-right .statement{font-size:clamp(1.4rem,4.4cqw,3.4rem);letter-spacing:-.02em;line-height:1.05;}
+  @container (max-width:420px){ .col-right .section-head{grid-template-columns:1fr;} }
+
+  .col-right .services{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));border-top:1px solid var(--line);}
+  .col-right .service{padding:20px 18px 20px 0;border-bottom:1px solid var(--line);border-right:1px solid var(--line);}
+  .col-right .service:last-child{border-right:none;}
+  .col-right .service-index{font-size:12px;font-weight:600;color:var(--ink-softer);letter-spacing:.06em;display:block;margin-bottom:12px;}
+  .col-right .service h3{font-size:17px;font-weight:500;letter-spacing:-.01em;margin-bottom:8px;}
+  .col-right .service p{font-size:13.5px;color:var(--ink-soft);line-height:1.55;}
+  @container (max-width:420px){ .col-right .services{grid-template-columns:1fr;} .col-right .service{border-right:none;padding-right:0;} }
+
+  .col-right .invert{background:var(--invert);color:var(--invert-ink);}
+  .col-right .horai-frame{height:82cqw;display:block;line-height:0;background:#151310;}
+  .col-right .horai-frame iframe{width:100%;height:100%;border:0;display:block;}
+  @media (max-width:900px){ .col-right .horai-frame,.col-right .horai-frame iframe{height:70vh;} }
+
+  .col-right .price{background:var(--invert);color:var(--invert-ink);height:59cqw;display:flex;flex-direction:column;justify-content:center;padding:5cqw 0;box-sizing:border-box;overflow:hidden;}
+  .col-right .price .wrap{width:100%;}
+  .col-right .price .kicker{color:var(--invert-soft);}
+  .col-right .price .statement{color:var(--invert-ink);max-width:16ch;margin-top:1.4cqw;font-size:clamp(16px,2.6cqw,30px);}
+  .col-right .price-ingress{font-size:clamp(11px,1.7cqw,19px);color:var(--invert-body);max-width:58ch;margin-top:1.7cqw;line-height:1.5;}
+  .col-right .price-ledger{margin-top:3cqw;border-top:1px solid var(--invert-line);max-width:64ch;}
+  .col-right .price-row{display:flex;flex-wrap:wrap;justify-content:space-between;align-items:baseline;gap:6px 24px;padding:1.4cqw 0;border-bottom:1px solid var(--invert-line);}
+  .col-right .price-row .label{font-size:11px;color:var(--invert-body);max-width:42ch;}
+  .col-right .price-row .value{font-family:var(--font);font-weight:600;font-size:clamp(13px,2cqw,20px);color:var(--invert-ink);white-space:nowrap;}
+  .col-right .price-contact{margin-top:3cqw;}
+  .col-right .price-contact .kicker{margin-bottom:8px;}
+  .col-right .price-mailto{font-size:clamp(1.1rem,2.6cqw,1.8rem);font-weight:300;letter-spacing:-.02em;border-bottom:1px solid var(--invert-line);padding-bottom:3px;display:inline-block;transition:opacity .25s var(--ease);}
+  .col-right .price-mailto:hover{opacity:.65;}
+
+  .col-right :focus-visible{outline:2px solid var(--ink);outline-offset:3px;}
+  .col-right .invert :focus-visible{outline-color:var(--invert-ink);}
+
+  /* Mobile stack (<900px): the column is full viewport width, not 50%, so the
+     desktop cqw section heights (calibrated for a half-width column) are far
+     too small here and would clip content under overflow:hidden. Sections
+     that hold flowing text go back to natural/auto height; the two iframe
+     boxes (Tidvatten, Hōrai/Calyx above) keep the brief's own 70vh floor.
+     Placed last on purpose: an equal-specificity base rule declared later in
+     the cascade (like .col-right .price above) would otherwise win over an
+     earlier media-query block regardless of which one actually matches. */
+  @media (max-width:900px){
+    .col-left .hero{height:auto;min-height:70vh;overflow:visible;}
+    .col-right .photo-section{height:70vh;}
+    .col-right .section{height:auto;padding:12vw 0;}
+    .col-right .price{height:auto;overflow:visible;padding:12vw 0;}
+
+    /* Hero card: the desktop 62.5cqw cap (added to fit the card inside the
+       52cqw-tall hero at column-half-width) collapses to ~244px on the
+       full-width mobile stack — far narrower than the card ever was on
+       either source. Below 900px the column is a plain viewport-width
+       block again, so restore R5's own uncapped card and its original
+       vw-floored type scale verbatim (R5-chain/index.html lines 97-110). */
+    .col-left .console-card{max-width:900px;padding:clamp(28px,5vw,56px);}
+    .col-left .console-top{margin-bottom:clamp(20px,4vw,40px);}
+    .col-left .wordmark{font-size:clamp(3.4rem,13vw,8.5rem);}
+    .col-left .wordmark .sub{font-size:clamp(.95rem,2.4vw,1.3rem);}
+    .col-left .hero-body{font-size:clamp(1rem,1.6vw,1.15rem);margin-top:clamp(20px,4vw,36px);}
+    .col-left .service-list{margin-top:clamp(24px,4vw,40px);font-size:13px;}
+    .col-left .hero-cta-row{margin-top:clamp(22px,4vw,36px);}
+    .col-left .cta{font-size:clamp(1.1rem,2.2vw,1.4rem);}
+
+    /* Ledger: R5's own rule stacks the number/body grid at <=560px viewport
+       (R5-chain/index.html line 135); the container-query equivalent on this
+       page (@container max-width:360px, above) never fires once the column
+       is a full 390-900px-wide mobile stack, so restore it directly here. */
+    .col-left .ledger-row{grid-template-columns:1fr;}
+  }
+
+  /* Tjänster / section-head: R6's own breakpoint is a plain 768px viewport
+     rule (R6-chain/index.html lines 131, 140), not this page's 420px
+     container query (tuned for genuinely narrow desktop columns) — restore
+     the source's own threshold so both stack at the width R6 intended. */
+  @media (max-width:768px){
+    .col-right .section-head{grid-template-columns:1fr;}
+    .col-right .services{grid-template-columns:1fr;}
+    .col-right .service{border-right:none;padding-right:0;}
+  }
+
+  /* reveal defaults (opacity:0 pre-reveal, .sc-in{opacity:1}) live entirely in
+     scrollcraft.css — no page-level override here, on purpose: an equal-
+     specificity rule this late in the cascade would win over the engine's
+     own .sc-in reveal and lock every cue/reveal at opacity 0 forever. */
+</style>
+</head>
+<body>
+<div class="corner-marks" aria-hidden="true"><span class="cm-tl"></span><span class="cm-tr"></span><span class="cm-bl"></span><span class="cm-br"></span></div>
+
+<main class="page" id="page">
+
+  <div class="seam" id="seam" aria-hidden="true"></div>
+  <div class="logo-mark" id="logoMark" aria-hidden="true">
+    <svg viewBox="80 400 827 1139" role="img" aria-label="Alunix"><path fill="#ffffff" fill-rule="evenodd" d="M 430.020 513.250 C 386.700 600.458, 318.190 739.397, 297.501 782 C 289.087 799.325, 276.594 824.975, 269.739 839 C 216.342 948.248, 182.518 1018.108, 130.177 1127.250 L 122.145 1144 149.505 1144 C 176.418 1144, 176.876 1143.966, 177.531 1141.901 C 177.898 1140.746, 186.760 1121.959, 197.226 1100.151 C 207.692 1078.343, 223.776 1044.750, 232.969 1025.500 C 266.133 956.059, 277.353 933, 277.980 933 C 278.331 933, 280.408 935.587, 282.595 938.750 C 284.783 941.913, 295.822 957.775, 307.127 974 C 325.042 999.713, 381.481 1081.065, 429.737 1150.734 C 439.657 1165.055, 444.860 1173.418, 444.356 1174.233 C 443.926 1174.929, 440.820 1179.324, 437.455 1183.999 C 429.228 1195.427, 350.904 1307.144, 339.651 1323.500 C 334.732 1330.650, 327.687 1340.775, 323.996 1346 C 313.067 1361.472, 240.505 1466.210, 229.257 1482.750 L 218.886 1498 253.693 1497.961 L 288.500 1497.922 299.500 1481.744 C 324.141 1445.503, 476.381 1225.616, 478.506 1223.197 C 478.768 1222.899, 523.522 1286.863, 565.476 1347.500 C 568.140 1351.350, 588.572 1380.825, 610.880 1413 C 633.189 1445.175, 655.504 1477.439, 660.471 1484.697 L 669.500 1497.895 706.798 1497.947 L 744.096 1498 740.841 1493.250 C 727.956 1474.444, 658.474 1374.606, 602.522 1294.500 C 521.377 1178.323, 476.786 1114.238, 411.522 1020 C 389.621 988.375, 368.686 958.225, 364.999 953 C 342.882 921.650, 308 870.814, 308 869.930 C 308 868.958, 318.208 847.506, 341.512 799.500 C 346.852 788.500, 357.642 766.225, 365.489 750 C 373.336 733.775, 394.812 689.450, 413.213 651.500 C 431.614 613.550, 449.746 576.074, 453.505 568.221 C 457.265 560.367, 460.665 554.292, 461.060 554.721 C 461.456 555.149, 484.829 600.050, 513 654.500 C 595.807 814.548, 597.733 818.267, 612.712 847 C 620.597 862.125, 629.584 879.471, 632.684 885.546 L 638.319 896.592 633.336 903.546 C 630.596 907.371, 622.124 919.500, 614.511 930.500 C 606.897 941.500, 592.950 961.525, 583.517 975 C 550.282 1022.475, 513.571 1075.338, 501.745 1092.750 C 500.157 1095.088, 498.778 1097, 498.679 1097 C 498.581 1097, 498.620 1045.925, 498.767 983.500 L 499.033 870 467.529 870 L 436.024 870 435.762 948.679 L 435.500 1027.358 441.051 1035.429 C 444.105 1039.868, 458.527 1060.825, 473.101 1082 C 498.716 1119.217, 521.094 1151.905, 523.077 1155 C 523.877 1156.249, 524.411 1156.006, 526.269 1153.550 C 528.956 1149.997, 575.050 1083.626, 604.955 1040.250 C 642.615 985.626, 683.143 927.009, 694.212 911.152 L 704.927 895.804 701.347 888.652 C 699.378 884.718, 693.373 873.175, 688.003 863 C 682.632 852.825, 671.141 831, 662.466 814.500 C 653.792 798, 640.398 772.575, 632.701 758 C 609.734 714.509, 591.719 680.257, 553.278 607 C 533.220 568.775, 512.426 529.175, 507.069 519 C 501.712 508.825, 490.419 487.337, 481.975 471.250 C 473.530 455.163, 466.349 442, 466.016 442 C 465.684 442, 449.485 474.063, 430.020 513.250 M 459 748.072 C 445.481 750.334, 431.497 761.058, 425.189 774 C 411.946 801.174, 429.479 833.973, 460.052 839.216 C 482.335 843.037, 505.858 827.419, 511.586 805 C 519.739 773.095, 491.587 742.619, 459 748.072 M 583.028 1238.750 C 583.043 1239.162, 587.793 1246.250, 593.583 1254.500 C 599.373 1262.750, 608.679 1276.138, 614.264 1284.250 L 624.418 1299 745.199 1299 L 865.981 1299 847.826 1273.750 C 837.841 1259.862, 828.058 1246.155, 826.086 1243.288 L 822.500 1238.076 702.750 1238.038 C 636.888 1238.017, 583.012 1238.338, 583.028 1238.750"/></svg>
+  </div>
+
+  <!-- ============================================================ LEFT: R5, Geist -->
+  <div class="col col-left" id="colLeft">
+    <section class="hero" aria-label="Alunix, digital byrå" id="heroLeft">
+      <div class="hero-photo" role="img" aria-label="Skrivbord i en trähytt, svartvitt, kraftigt ljusstreck över en vägg med skisser och verktyg"></div>
+      <div class="hero-scrim"></div>
+      <div class="console-card">
+        <span class="cc-bl"></span><span class="cc-br"></span>
+        <div class="console-top">
+          <span class="kicker" id="console-year">2026 · SVERIGE</span>
+          <span class="kicker" id="console-clock">--:--:-- · LOKAL TID</span>
+        </div>
+        <h1 class="wordmark">ALUNIX<span class="sub">Digital byrå</span></h1>
+        <p class="hero-body">Vi designar och bygger webbplatser, i nära dialog med verksamheten som ska leva i dem.</p>
+        <div class="service-list"><span>Design</span><span>Utveckling</span><span>System</span></div>
+        <div class="hero-cta-row"><a class="cta" href="mailto:kontakt@alunix.se">Boka ett möte →</a></div>
+      </div>
+    </section>
+
+    <section class="thesis" data-sc-act="flow">
+      <div class="thesis-grid">
+        <div class="thesis-text" data-sc-in>
+          <p class="kicker">Varför design</p>
+          <h2 class="thesis-headline">Det första<br>intrycket är<br>digitalt.</h2>
+          <p class="thesis-support">Beslutet fattas på en skärm, oftast inom några sekunder, innan en rad text har lästs. Fram till dess bär layout och bild hela argumentet.</p>
+        </div>
+        <figure class="thesis-photo" data-sc-reveal="left" data-sc-reveal-at="0.08 0.55">
+          <img src="assets/demo-hyperborea.webp" alt="Startsidan för Hyperborea, en konferens i Lund, i svartvitt" loading="lazy">
+          <figcaption>Hyperborea, en konferens i Lund, byggd av Alunix.</figcaption>
+        </figure>
+      </div>
+    </section>
+
+    <section class="close">
+      <div class="close-inner">
+        <h2 class="giant" data-sc-act="flow"><span data-sc-cue="0.02" data-sc-kinetic="lines">Vi bygger ert varumärke.</span></h2>
+        <p class="giant-sub">En sammanhållen process, från första skiss till lanserad sajt, med samma team hela vägen.</p>
+
+        <div class="ledger" data-sc-act="flow" data-sc-in data-sc-stagger="90">
+          <div class="ledger-row">
+            <span class="ledger-num">01</span>
+            <div class="ledger-body">
+              <h3>Design</h3>
+              <p>Grafisk identitet och formspråk, förankrat i verksamheten sajten ska representera.</p>
+            </div>
+          </div>
+          <div class="ledger-row">
+            <span class="ledger-num">02</span>
+            <div class="ledger-body">
+              <h3>Utveckling</h3>
+              <p>Webbplatser byggda i kod från grunden, snabba att ladda och enkla att bygga vidare på.</p>
+            </div>
+          </div>
+          <div class="ledger-row">
+            <span class="ledger-num">03</span>
+            <div class="ledger-body">
+              <h3>System</h3>
+              <p>Vi bygger även egna system, som Alunix OS, vårt lagersystem. Samma tekniska nivå ligger bakom varje sajt vi levererar.</p>
+            </div>
+          </div>
+        </div>
+
+        <div class="projects" data-sc-act="flow" data-sc-in>
+          <p class="kicker">Utvalda projekt</p>
+          <p class="projects-lede">Calyx, florist i Stockholm. En sajt vi byggt, öppen att utforska här.</p>
+        </div>
+      </div>
+      <div class="calyx-frame" data-sc-act="flow" data-sc-reveal="up" data-sc-reveal-at="0.02 0.3">
+        <iframe src="/sites/calyx.html" title="Calyx, florist i Stockholm" loading="lazy"></iframe>
+      </div>
+    </section>
+  </div>
+
+  <!-- ============================================================ RIGHT: R6, Public Sans -->
+  <div class="col col-right" id="colRight">
+    <section class="photo-section" data-sc-act="flow">
+      <iframe src="/tests/alunix-concepts-r3/build/tidvatten-hero.html" title="Er hemsida är nutidens visitkort" loading="eager"></iframe>
+    </section>
+
+    <section class="section" id="tjanster">
+      <div class="wrap">
+        <div class="section-head" data-sc-act="flow" data-sc-in>
+          <span class="kicker">TJÄNSTER</span>
+          <h2 class="statement">Webbdesign, design och system. Allt på ett ställe.</h2>
+        </div>
+        <div class="services" data-sc-act="flow" data-sc-in data-sc-stagger="80">
+          <div class="service">
+            <span class="service-index">01</span>
+            <h3>Webbdesign</h3>
+            <p>Webbplatser byggda för att visa upp verksamheten på rätt sätt, i ett tempo som håller över tid.</p>
+          </div>
+          <div class="service">
+            <span class="service-index">02</span>
+            <h3>Design</h3>
+            <p>Ett visuellt system, från logotyp till komponenter, som håller ihop hela verksamhetens uttryck.</p>
+          </div>
+          <div class="service">
+            <span class="service-index">03</span>
+            <h3>System</h3>
+            <p>System bortom webbplatsen, byggda för verksamheter som behöver hålla koll på mer än sidor och text, till exempel lager, bokningar eller medlemskap.</p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section class="horai-frame invert" id="projekt" data-sc-act="flow" data-sc-reveal="iris" data-sc-reveal-at="0.1 0.55">
+      <iframe src="/sites/horai.html" title="Hōrai, restaurang i Stockholm" loading="lazy"></iframe>
+    </section>
+
+    <section class="price" id="pris">
+      <div class="wrap">
+        <span class="kicker">FILOSOFI</span>
+        <h2 class="statement">Alla har rätt till bra design.</h2>
+        <p class="price-ingress">Vår nivå är satt för att fler ska ha råd med bra design, utan att vi ger avkall på resultatet.</p>
+
+        <div class="price-ledger">
+          <div class="price-row">
+            <span class="label">Standardhemsida, sex sidor</span>
+            <span class="value">10 990 kr</span>
+          </div>
+          <div class="price-row">
+            <span class="label">Med bokningssystem</span>
+            <span class="value">15 990 kr</span>
+          </div>
+          <div class="price-row">
+            <span class="label">Helt skräddarsydda lösningar för produktkataloger, specialbyggda system med mera</span>
+            <span class="value">Pris vid förfrågan</span>
+          </div>
+        </div>
+
+        <div class="price-contact">
+          <span class="kicker">Kontakt</span>
+          <a class="price-mailto" href="mailto:kontakt@alunix.se">kontakt@alunix.se</a>
+        </div>
+      </div>
+    </section>
+  </div>
+
+</main>
+
+<noscript><style>[data-sc-cue],[data-sc-in],[data-sc-stagger] > *{opacity:1!important;transform:none!important;} .seam{transform:scaleY(1)!important;} .logo-mark{position:absolute!important;top:20vh!important;}</style></noscript>
+
+<script src="scrollcraft.js"></script>
+<script>
+(function(){
+  var reduced = window.matchMedia && matchMedia('(prefers-reduced-motion: reduce)').matches;
+
+  function tick(){
+    var d = new Date();
+    var p = function(n){ return String(n).padStart(2,'0'); };
+    var el = document.getElementById('console-clock');
+    if (el) el.textContent = p(d.getHours()) + ':' + p(d.getMinutes()) + ':' + p(d.getSeconds()) + ' · LOKAL TID';
+    var y = document.getElementById('console-year');
+    if (y) y.textContent = d.getFullYear() + ' · SVERIGE';
+  }
+  tick();
+  if (!reduced) setInterval(tick, 1000);
+
+  ScrollCraft.mount(document.body);
+
+  /* Reveal systems fail toward visible: a timed failsafe, matching the
+     pattern both source pages already shipped (1.5-1.8s). Belt-and-braces
+     for any content the IntersectionObserver / act-live scroll math never
+     reaches (a broken observer, a screenshot tool that never scrolls). Run
+     more than once: document.fonts.ready triggers the engine's own
+     layout()->read() (it re-splits kinetic text once the real face is in),
+     and that read() re-clips any [data-sc-reveal] still sitting at act
+     progress 0 back to fully hidden. A single early timeout can lose that
+     race if the fonts arrive late, so this runs again after fonts.ready too. */
+  function revealFailsafe(){
+    Array.prototype.forEach.call(document.querySelectorAll('[data-sc-in]'), function(el){
+      el.classList.add('sc-in');
+      Array.prototype.forEach.call(el.children, function(kid){ kid.classList.add('sc-in'); });
+    });
+    Array.prototype.forEach.call(document.querySelectorAll('[data-sc-cue]'), function(el){
+      if (parseFloat(getComputedStyle(el).opacity || '0') < 0.98){
+        el.style.opacity = '1';
+        el.style.transform = 'none';
+        el.style.pointerEvents = 'auto';
+      }
+    });
+    /* A reveal inside an act that IS live at mount (near the top of the
+       page) but has not advanced (scrollY still 0) gets actively clipped to
+       fully-hidden by the engine's own read(), not left at a neutral
+       default — unlike a reveal whose act never went live, which simply
+       keeps CSS's unclipped default. Force those stuck ones open too. */
+    Array.prototype.forEach.call(document.querySelectorAll('[data-sc-reveal]'), function(el){
+      var cp = getComputedStyle(el).clipPath;
+      if (cp && cp !== 'none') el.style.clipPath = 'none';
+    });
+  }
+  setTimeout(revealFailsafe, 400);
+  setTimeout(revealFailsafe, 900);
+  if (document.fonts && document.fonts.ready) document.fonts.ready.then(function(){ setTimeout(revealFailsafe, 30); });
+
+  /* ---- signature move: seam hairline, drawn from the logo -------------
+     Bespoke, reads scroll position directly (not a kit device). The logo
+     sits, always, at 0.38 of the column's own width down from the page top.
+     Round 5: this used to be measured live as the midpoint of the left
+     hero's bottom edge (0.52w) and the right poster's bottom edge (0.24w) —
+     (0.52+0.24)/2 = 0.38w — but the poster fold is gone (the Tidvatten frame
+     now fills 0-0.83w), so that second measurement point no longer exists.
+     Anton's instruction: keep the logo at the same absolute position, so the
+     0.38w result is now a flat constant against the column's live width
+     instead of an average of two elements — same number, same formula's
+     output, one fewer moving part. No docking, no position switch, never
+     clipped. The seam hairline draws itself downward from that point in
+     step with scroll, to the shared bottom edge of the two columns (brief
+     point 6). */
+  var page = document.getElementById('page');
+  var seam = document.getElementById('seam');
+  var logo = document.getElementById('logoMark');
+  var colLeft = document.getElementById('colLeft');
+  var midY = 0, seamBottom = 0;
+
+  function measure(){
+    var pageTop = page.getBoundingClientRect().top + window.scrollY;
+    var colWidth = colLeft.getBoundingClientRect().width;
+    midY = colWidth * 0.38;
+    var pageBottom = pageTop + page.offsetHeight;
+    seamBottom = pageBottom - pageTop;
+    seam.style.top = midY + 'px';
+    seam.style.height = Math.max(seamBottom - midY, 0) + 'px';
+    logo.style.top = midY + 'px';
+    if (reduced) seam.style.setProperty('--seam-p', '1');
+  }
+
+  function onScroll(){
+    if (reduced) return;
+    var y = window.scrollY;
+    var span = Math.max(seamBottom - midY, 1);
+    var raw = (y + window.innerHeight * 0.5 - midY) / span;
+    var p = Math.max(0, Math.min(1, raw));
+    seam.style.setProperty('--seam-p', p.toFixed(4));
+  }
+
+  var raf = null;
+  function schedule(){
+    if (raf) return;
+    raf = requestAnimationFrame(function(){ raf = null; onScroll(); });
+  }
+
+  if (window.innerWidth > 900){
+    window.addEventListener('load', measure);
+    window.addEventListener('resize', measure);
+    document.fonts && document.fonts.ready && document.fonts.ready.then(measure);
+    setTimeout(measure, 50);
+    window.addEventListener('scroll', schedule, { passive:true });
+    onScroll();
+  }
+})();
+</script>
+</body>
+</html>
