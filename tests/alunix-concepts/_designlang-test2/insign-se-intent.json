@@ -1,0 +1,214 @@
+{
+  "pageIntent": {
+    "type": "landing",
+    "confidence": 0.29,
+    "path": "/",
+    "title": "Insign Fullservicebyrå - Sveriges högst rankade webbyrå",
+    "description": "Som Sveriges högst rankade webbyrå står vi redo att stötta din verksamhet, vare sig du är i startgroparna eller leder ett etablerat företag",
+    "signals": [
+      {
+        "kind": "dom",
+        "type": "legal",
+        "weight": 0.4
+      },
+      {
+        "kind": "url",
+        "type": "landing",
+        "weight": 0.45,
+        "detail": "root-path"
+      }
+    ],
+    "alternates": [
+      {
+        "type": "legal",
+        "score": 0.4
+      }
+    ],
+    "needsSmart": true
+  },
+  "sectionRoles": {
+    "sections": [
+      {
+        "index": 0,
+        "tag": "header",
+        "role": "faq",
+        "subrole": null,
+        "confidence": 0.85,
+        "heading": null,
+        "bounds": {
+          "x": 0,
+          "y": 0,
+          "w": 1280,
+          "h": 78.90625
+        },
+        "buttonCount": 0,
+        "cardCount": 18,
+        "slots": {
+          "lede": "Våra tjänster\n \nProjekt\n \nOmdömen\n \nNyheter\n \nFAQ\n \nKontakt"
+        },
+        "needsSmart": false
+      },
+      {
+        "index": 1,
+        "tag": "nav",
+        "role": "nav",
+        "subrole": null,
+        "confidence": 0.9,
+        "heading": null,
+        "bounds": {
+          "x": 741.796875,
+          "y": 20,
+          "w": 506.203125,
+          "h": 58.90625
+        },
+        "buttonCount": 0,
+        "cardCount": 9,
+        "slots": {
+          "lede": "Våra tjänster\n \nProjekt\n \nOmdömen\n \nNyheter\n \nFAQ\n \nKontakt"
+        },
+        "needsSmart": false
+      },
+      {
+        "index": 2,
+        "tag": "footer",
+        "role": "footer",
+        "subrole": null,
+        "confidence": 0.95,
+        "heading": "Har du en fråga, en idé eller ett projekt du vill ha hjälp med?",
+        "bounds": {
+          "x": 0,
+          "y": 6093.015625,
+          "w": 1280,
+          "h": 495.171875
+        },
+        "buttonCount": 22,
+        "cardCount": 0,
+        "slots": {
+          "heading": "Har du en fråga, en idé eller ett projekt du vill ha hjälp med?",
+          "ctaCount": 22,
+          "lede": "Kontakt\nHar du en fråga, en idé eller ett projekt du vill ha hjälp med?\nRing Mig!\nBoka Kostnadsfritt Möte\nKontakta oss\nFAQ\nInstagram\nLinkedIn\nFacebook\nYouTube\nPinterest"
+        },
+        "needsSmart": false
+      },
+      {
+        "index": 3,
+        "tag": "section",
+        "role": "content",
+        "subrole": null,
+        "confidence": 0.3,
+        "heading": null,
+        "bounds": {
+          "x": 0,
+          "y": 6588.1875,
+          "w": 1280,
+          "h": 0
+        },
+        "buttonCount": 1,
+        "cardCount": 0,
+        "slots": {
+          "ctaCount": 1
+        },
+        "needsSmart": true
+      },
+      {
+        "index": 4,
+        "tag": "nav",
+        "role": "nav",
+        "subrole": null,
+        "confidence": 0.9,
+        "heading": null,
+        "bounds": {
+          "x": -580,
+          "y": 0,
+          "w": 580,
+          "h": 800
+        },
+        "buttonCount": 74,
+        "cardCount": 43,
+        "slots": {
+          "ctaCount": 74,
+          "lede": "Svenska"
+        },
+        "needsSmart": false
+      },
+      {
+        "index": 5,
+        "tag": "section",
+        "role": "content",
+        "subrole": null,
+        "confidence": 0.3,
+        "heading": null,
+        "bounds": {
+          "x": -580,
+          "y": 0,
+          "w": 580,
+          "h": 2106
+        },
+        "buttonCount": 74,
+        "cardCount": 43,
+        "slots": {
+          "ctaCount": 74,
+          "lede": "Svenska"
+        },
+        "needsSmart": true
+      },
+      {
+        "index": 6,
+        "tag": "header",
+        "role": "nav",
+        "subrole": null,
+        "confidence": 0.4,
+        "heading": null,
+        "bounds": {
+          "x": -580,
+          "y": 0,
+          "w": 580,
+          "h": 351
+        },
+        "buttonCount": 44,
+        "cardCount": 41,
+        "slots": {
+          "ctaCount": 44,
+          "lede": "Svenska"
+        },
+        "needsSmart": true
+      },
+      {
+        "index": 7,
+        "tag": "footer",
+        "role": "footer",
+        "subrole": null,
+        "confidence": 0.95,
+        "heading": null,
+        "bounds": {
+          "x": 0,
+          "y": 0,
+          "w": 0,
+          "h": 0
+        },
+        "buttonCount": 0,
+        "cardCount": 2,
+        "slots": {
+          "lede": ""
+        },
+        "needsSmart": false
+      }
+    ],
+    "counts": {
+      "faq": 1,
+      "nav": 3,
+      "footer": 2,
+      "content": 2
+    },
+    "readingOrder": [
+      "faq",
+      "nav",
+      "content",
+      "nav",
+      "footer",
+      "nav",
+      "footer",
+      "content"
+    ]
+  }
+}

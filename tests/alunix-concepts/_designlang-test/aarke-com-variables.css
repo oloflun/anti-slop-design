@@ -1,0 +1,217 @@
+:root {
+  /* Colors — Primary */
+
+  /* Colors — Neutrals */
+  --color-neutral-50: #000000;
+  --color-neutral-100: #ffffff;
+  --color-neutral-200: #3c3c3c;
+  --color-neutral-300: #efefef;
+  --color-neutral-400: #101010;
+  --color-neutral-500: #adadad;
+
+  /* Colors — Backgrounds */
+  --color-bg: #ffffff;
+  --color-bg-1: #000000;
+
+  /* Colors — Text */
+  --color-text: #000000;
+  --color-text-1: #ffffff;
+  --color-text-2: #adadad;
+  --color-text-3: #3c3c3c;
+  --color-text-4: #101010;
+
+  /* Typography — Families */
+  --font-sans: 'Body Font', sans-serif;
+  --font-body: 'Button Font', sans-serif;
+  --font-heading: 'Heading Font', sans-serif;
+
+  /* Typography — Scale */
+  --font-size-22: 22px;
+  --font-size-20: 20px;
+  --font-size-16: 16px;
+  --font-size-14: 14px;
+  --font-size-12: 12px;
+  --font-size-10.0002: 10.0002px;
+  --font-size-10: 10px;
+  --font-size-9: 9px;
+
+  /* Spacing */
+  --spacing-1: 1px;
+  --spacing-14: 14px;
+  --spacing-16: 16px;
+  --spacing-20: 20px;
+  --spacing-24: 24px;
+  --spacing-28: 28px;
+  --spacing-32: 32px;
+  --spacing-36: 36px;
+  --spacing-40: 40px;
+  --spacing-57: 57px;
+  --spacing-64: 64px;
+  --spacing-128: 128px;
+  --spacing-290: 290px;
+  --spacing-330: 330px;
+
+  /* Border Radius */
+  --radius-lg: 12px;
+  --radius-full: 40px;
+  --radius-full: 50px;
+
+  /* Box Shadows */
+  --shadow-md: rgba(0, 0, 0, 0.1) 0px 4px 10px 0px;
+  --shadow-xl: rgba(0, 0, 0, 0.2) 0px 26px 80px 0px;
+
+  /* Original Site Variables */
+  /* — colors — */
+  --body_color: #FFFFFF;
+  --primary_grey: #ADADAD;
+  --secondary_grey: #3C3C3C;
+  --loader_color: #000000;
+  --btn_primary_on_light_bg: rgb(0, 0, 0);
+  --btn_primary_on_light_txt: rgb(255, 255, 255);
+  --btn_primary_on_light_border: rgb(0, 0, 0);
+  --btn_primary_on_light_hoveredBg: rgb(60, 60, 60);
+  --btn_primary_on_light_hoveredTxt: rgb(255, 255, 255);
+  --btn_primary_on_light_hoveredBorder: rgb(60, 60, 60);
+  --btn_primary_on_light_pressedBg: rgb(60, 60, 60);
+  --btn_primary_on_light_pressedTxt: rgb(255, 255, 255);
+  --btn_primary_on_light_pressedBorder: rgb(60, 60, 60);
+  --btn_primary_on_dark_bg: rgb(255, 255, 255);
+  --btn_primary_on_dark_txt: rgb(0, 0, 0);
+  --btn_primary_on_dark_border: rgb(255, 255, 255);
+  --btn_primary_on_dark_hoveredBg: rgb(239, 239, 239);
+  --btn_primary_on_dark_hoveredTxt: rgb(0, 0, 0);
+  --btn_primary_on_dark_hoveredBorder: rgb(239, 239, 239);
+  --btn_primary_on_dark_pressedBg: rgb(239, 239, 239);
+  --btn_primary_on_dark_pressedTxt: rgb(0, 0, 0);
+  --btn_primary_on_dark_pressedBorder: rgb(239, 239, 239);
+  --btn_primary_misc_bg: rgb(255, 100, 0);
+  --btn_primary_misc_txt: rgb(255, 255, 255);
+  --btn_primary_misc_border: rgb(255, 100, 0);
+  --btn_primary_misc_hoveredBg: rgb(255, 100, 0);
+  --btn_primary_misc_hoveredTxt: rgb(255, 255, 255);
+  --btn_primary_misc_hoveredBorder: rgb(255, 100, 0);
+  --btn_primary_misc_pressedBg: rgb(239, 239, 239);
+  --btn_primary_misc_pressedTxt: rgb(255, 255, 255);
+  --btn_primary_misc_pressedBorder: rgb(60, 60, 60);
+  --btn_secondary_bg: rgba(0, 0, 0, 0.0);
+  --btn_secondary_txt: ;
+  --btn_secondary_border: rgb(0, 0, 0);
+  --btn_secondary_hoveredBg: rgba(0, 0, 0, 0.0);
+  --btn_secondary_hoveredTxt: rgb(0, 0, 0);
+  --btn_secondary_hoveredBorder: rgb(60, 60, 60);
+  --btn_secondary_pressedBg: rgba(0, 0, 0, 0.0);
+  --btn_secondary_pressedTxt: rgb(0, 0, 0);
+  --btn_secondary_pressedBorder: rgb(0, 0, 0);
+  --label_onSale_Bg: #000000;
+  --label_custom_Bg: #ebebeb;
+  --label_soldOut_Bg: #000000;
+  --secondary_font: "Secondary Heading Font";
+  --primary_font: "Body Font";
+  --pageTransitionColor: #FFFFFF;
+  --product-card-color-dropdown-index: 20;
+  --recharge-color-brand-120: var(--btn_primary_on_light_bg);
+  --recharge-button-secondary: var(--p_text_1);
+  --recharge-color-brand: var(--p_text_1);
+  --jdgm-primary-color: #000;
+  --jdgm-secondary-color: rgba(0,0,0,0.1);
+  --jdgm-star-color: #000;
+  --jdgm-write-review-text-color: white;
+  --jdgm-write-review-bg-color: #000000;
+  --jdgm-paginate-color: #000;
+  --jdgm-border-radius: 0;
+  --jdgm-reviewer-name-color: #000000;
+  --ann-transparentTextColor: #000000;
+  --header-tx-color: transparent;
+  --header-bg-color: #ffffff;
+  --header-text-color: #000000;
+  --header-trtxt-color: #ffffff;
+  --swiper-theme-color: #007aff;
+  --secondary_accent: #e8e8e8;
+  --background_color: #ffffff;
+  --primary_accent: #efefef;
+  --button-bg: #efefef;
+  --primary_text: #000000;
+  --secondary_text: #f8f8f8;
+  --button-border: #efefef;
+  /* — spacing — */
+  --swiper-navigation-size: 44px;
+  /* — typography — */
+  --p_text_1: #000000;
+  --p_text_2: #3C3C3C;
+  --p_text_3: ;
+  --s_text_1: #000000;
+  --s_text_2: #3C3C3C;
+  --s_text_3: ;
+  --t_text_1: #FFFFFF;
+  --t_text_2: #EFEFEF;
+  --t_text_3: ;
+  --label_onSale_text: #ffffff;
+  --label_custom_text: #3C3C3C;
+  --label_soldOut_text: #ffffff;
+  --header_font: "Heading Font";
+  --rich_text_font: "Rich Text Font";
+  --button_font: "Button Font";
+  --button-text-index: 10;
+  --text_1: #000000;
+  --text_2: #3C3C3C;
+  --text_3: ;
+  /* — other — */
+  --p_background_1: #FFFFFF;
+  --p_details_1: #EFEFEF;
+  --p_details_2: #E8E8E8;
+  --s_background_1: #EFEFEF;
+  --s_details_1: #FFFFFF;
+  --s_details_2: #E8E8E8;
+  --t_background_1: #000000;
+  --t_details_1: #FFFFFF;
+  --t_details_2: #EFEFEF;
+  --product_price_when_compare: #000000;
+  --submenu-position: 54px;
+  --header-height: 54px;
+  --btn_tertiary: rgb(0, 0, 0);
+  --alert_success: #000000;
+  --alert_error: #000000;
+  --background_mob_image: ;
+  --background_desk_image: ;
+  --ann-is-transparent: 0;
+  --section_max_width: 1440px;
+  --swiper-notification-index: 999;
+  --page-transition-index: 999;
+  --product-zoom-index: 100;
+  --skip-to-content-index: 99;
+  --popup-index: 99;
+  --selectbox-index: 23;
+  --drawer-index: 22;
+  --search-wrapper-index: 22;
+  --overlay-index: 21;
+  --header-index: 20;
+  --page-loader-index: 10;
+  --header-sticky-index: 20;
+  --swiper-component-index: 10;
+  --announcement-bar-index: 8;
+  --ann-is-transparent-control: 1;
+  --ann-transparent: #ebebeb;
+  --header-sticky: 1;
+  --header-is-transparent: 1;
+  --header-is-transparent-control: 0;
+  --logo-invert: invert(1);
+  --details_2: #E8E8E8;
+  --announcement-height: 30px;
+  --button-content: #ffffff;
+  --window-height: 800px;
+  --background_1: #FFFFFF;
+  --details_1: #EFEFEF;
+  --footer-height: 1085px;
+  --announcement-dynamic-height: 30px;
+  --search-header-height: 65px;
+  /* — dependencies — */
+  --recharge-color-brand-120: --btn_primary_on_light_bg;
+  --recharge-button-secondary: --p_text_1;
+  --recharge-color-brand: --p_text_1;
+  /* — semantic — */
+  success: [object Object];
+  warning: [object Object];
+  error: [object Object];
+  info: [object Object];
+
+}

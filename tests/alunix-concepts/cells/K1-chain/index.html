@@ -1,0 +1,356 @@
+<!--
+design · pre-emit critique: P5 H5 E5 S5 R5 V5
+
+REFERENCE LOCK — K1 "Svart scen, vit sal"
+Primary reference/direction: squarespace — cinematic monochrome gallery, 0% colourfulness
+marketing shell that reserves all chroma for user/product content, whisper-weight 300
+display type, real customer-site screenshots peeking up from the fold as the hero device.
+Preserve: strictly achromatic shell (pure black + pure white + measured greys, zero chroma
+anywhere in nav/type/hairlines/buttons); weight-300 whisper display at 64-96px+ with tight
+negative tracking; radius split by role (0px hard edge on the one real button, soft edge
+only on demo-frame images); customer screenshots as the page's only source of colour; real
+screenshots, never fake browser chrome.
+Borrow only: the bottom-anchored demo card peeking up at the fold edge, reinterpreted as
+three cards that rise on scroll instead of sitting static; the small corner arrow-link.
+Role rules: chroma never enters the K1 shell itself; the only saturated colour on the page
+lives inside the vendored demo screenshots; 0px radius is button-only, never on frames;
+mono is register-only (labels/nav/numbers), never the declarative voice.
+Media strategy: photo:local — one vendored dark-stage ground photo (assets/stage-pool.webp,
+licensed as ground only, never a claim) behind the fold; three vendored real product
+screenshots (demos/*.webp) as the proof device. No stock photography anywhere.
+Reject: any chromatic accent token in the shell; a filled/pill CTA (K1 keeps the sharp-edge
+button, not K5's pill or K2's colour block); serif anywhere; K3's blue as a shell accent;
+insign's colour bands.
+Token commitments: stage bg oklch(0.08 0 0), stage ink oklch(0.97 0 0), hall bg
+oklch(0.99 0 0), hall ink oklch(0.09 0 0), mute-stage oklch(0.64 0 0), mute-hall
+oklch(0.4 0 0), hairline-stage oklch(0.97 0 0 / .14), hairline-hall oklch(0.09 0 0 / .14);
+display Space Grotesk 300-500, clamp(2.6rem,7vw,6.5rem), leading 0.94, tracking -0.02 to
+-0.045em; register IBM Plex Mono 10.5-13px, tracking 0.16-0.22em, uppercase; radius 0px
+button / 6px demo-frame; max-width 1240px.
+Secondary borrow (planhat): negative tracking escalating with size; 1px hairline borders as
+the complete substitute for shadow, no shadow anywhere; a rationed single ground photograph
+above the demo screenshots, nothing else photographic in the shell.
+Secondary borrow (aarke): a second face reserved exclusively for register (mono: labels,
+system numbers, prices), kept strictly apart from the display voice — aarke's monospace/
+grotesque split, inverted (voice is the grotesk here, not the mono).
+
+DECISION LEDGER
+| Decision | Source | Role | Why |
+| Pure black stage -> pure white hall, one hard cut | squarespace (primary) + contract world | act-shape / tonal inversion | Direct execution of "Svart scen, vit sal"; matches squarespace's own black/white bands, no gradient blend |
+| Weight-300 whisper Space Grotesk display | squarespace (primary) | display voice | Achromatic + whisper weight is squarespace's central preserve trait; forbidden list bars serif |
+| Demo screenshots as the only chroma source | squarespace (primary), "0% colourfulness, chroma confined to user content" | media role | Exact parallel to K1's authority: the three demos ARE the product, so letting them carry all colour makes the product the only vivid thing |
+| Demo cards rise on scroll (signature move) | squarespace (borrowed: static peeking cards), reinterpreted | hero device / signature move | Squarespace's cards sit static at the fold edge; K1's fingerprint requires the frames to rise, so the borrow is the position only, the motion is new |
+| Hairline-only separation, no shadow anywhere | planhat (secondary) | structural | TASTE.md's "depth without shadow"; keeps the achromatic shell free of any soft/gradient cue |
+| Mono reserved for labels/system-number texture only | aarke (secondary) | type role | Aarke's monospace/grotesque split, inverted: mono is register here, Space Grotesk carries the declarative voice |
+| Ledger, not cards, for "how it works" | TASTE.md S1/S4 + house-physics | structure | Four steps are genuinely a list; a card grid is the reflex the spec bans |
+| [behövs pris] / [behövs leveranstid] as dashed placeholder chips | brief.md binding rule | content | No invented numbers permitted anywhere |
+| "Samma händer bygger också Alunix OS." with no digits | coordinator pixel-pass note, 2026-09-04 | texture | Data-as-texture (757 entiteter · 2 847 kopplingar · ...) is K3's signature per the contract; K1 keeps the one-line "samma händer" mention but drops every number so the two rows stay ≥4/6 apart on fingerprint dimension 6 as well as on texture |
+| Demo frames moved to a full-bleed row outside .wrap, aligned on one top edge, aspect-ratio 1:1 | coordinator pixel-pass note, 2026-09-04 | hero device | The three demos are K1's authority; the settled (non-scroll) state must read as aligned, not accidentally staggered, and the row must be the widest, tallest object in the act, not a thumbnail strip |
+| Demo screenshots kept verbatim incl. Horai's in-frame hand | brief.md mandatory proof asset | content | The three screenshots are fixed proof assets the brief requires by filename; the "no photos of people" rule governs K1's own imagery choices, not the mandated third-party proof crops |
+
+FINGERPRINT — grammar: rhythmic cutlist (adapted to modern-clean: short hard-cut acts,
+reveal on nearly every element, no pin/spotlight/magnet/dwell/parallax) · nav: minimal top
+strip, wordmark + mailto, inverts ink on the stage/hall cut · hero device: dark stage, three
+demo frames float · act shape: black stage -> white hall, one hard cut · close: white hall,
+email at display scale · signature move: demo frames rise on scroll, continuously scrubbed,
+coordinated with an under-glow layer.
+
+FEELING CURVE
+1 Curiosity   the stage sits empty and dark, one pool of light, before anything appears
+2 Recognition the three demo frames rise into the light, each pulling its own colour up out of the black
+3 Trust       the ledger states the process plainly, gaps named as gaps, not hidden
+4 Resolve     the room turns white, one sentence, the email fills the screen
+
+Peak: act 2, the demo frames rising — largest scroll span, the only saturated colour on the
+page, the silence of the empty stage right before it.
+-->
+<!doctype html>
+<html lang="sv">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Alunix, webbdesign</title>
+<meta name="description" content="Tre sajter, en byggare, ingen delad mall. Se dem här.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@300;400;500;600&family=IBM+Plex+Mono:wght@400;500&display=swap" rel="stylesheet">
+<style>
+:root{
+  --stage:oklch(0.08 0 0);
+  --stage-ink:oklch(0.97 0 0);
+  --stage-mute:oklch(0.64 0 0);
+  --stage-line:oklch(0.97 0 0 / .14);
+  --hall:oklch(0.99 0 0);
+  --hall-ink:oklch(0.09 0 0);
+  --hall-mute:oklch(0.4 0 0);
+  --hall-line:oklch(0.09 0 0 / .14);
+  --voice:"Space Grotesk",system-ui,sans-serif;
+  --reg:"IBM Plex Mono",ui-monospace,monospace;
+  --ease:cubic-bezier(.16,1,.3,1);
+}
+*{box-sizing:border-box}
+html{overflow-x:clip}
+body{overflow-x:clip;margin:0;min-width:0;font-family:var(--voice);background:var(--stage);color:var(--stage-ink)}
+img{max-width:100%;display:block}
+a{color:inherit}
+h1,h2,p{margin:0}
+.wrap{max-width:1240px;margin:0 auto;padding:0 24px}
+@media(min-width:900px){.wrap{padding:0 48px}}
+
+/* nav — minimal top strip */
+.nav{position:sticky;top:0;z-index:20;display:flex;align-items:center;justify-content:space-between;
+  padding:18px 24px;font-family:var(--reg);font-size:11.5px;letter-spacing:.18em;text-transform:uppercase;
+  color:var(--stage-ink);transition:color .5s var(--ease)}
+@media(min-width:900px){.nav{padding:22px 48px}}
+.nav.on-hall{color:var(--hall-ink)}
+.nav a{text-decoration:none}
+.nav .mail{border-bottom:1px solid currentColor;padding-bottom:2px}
+
+/* acts */
+.stage{background:var(--stage);color:var(--stage-ink)}
+.hall{background:var(--hall);color:var(--hall-ink)}
+section{padding:88px 0}
+.kicker{font-family:var(--reg);font-size:11px;letter-spacing:.22em;text-transform:uppercase;color:var(--stage-mute);margin:0 0 22px}
+.hall .kicker{color:var(--hall-mute)}
+
+/* fold */
+#fold{position:relative;min-height:82vh;display:flex;align-items:flex-end;padding-bottom:64px;
+  background-image:linear-gradient(to bottom, oklch(0.08 0 0 / .55) 0%, oklch(0.08 0 0 / .93) 45%, oklch(0.08 0 0 / .99) 68%),url('assets/stage-pool.webp');
+  background-size:cover;background-position:center 30%}
+#fold .wrap{width:100%}
+.h1{font-weight:300;font-size:clamp(2.6rem,7vw,6.2rem);line-height:.94;letter-spacing:-.03em;overflow-wrap:anywhere;min-width:0;margin:0 0 26px}
+.h1 span{display:block}
+.lede{font-size:clamp(1rem,1.6vw,1.15rem);color:var(--stage-ink);opacity:.86;max-width:44ch;margin:0 0 34px;line-height:1.5}
+.btn{display:inline-block;font-family:var(--reg);font-size:14px;letter-spacing:.06em;padding:15px 26px;
+  border:1px solid var(--stage-ink);border-radius:0;text-decoration:none;color:var(--stage-ink);
+  transition:background .3s var(--ease),color .3s var(--ease)}
+.btn:hover{background:var(--stage-ink);color:var(--stage)}
+.hall .btn{border-color:var(--hall-ink);color:var(--hall-ink)}
+.hall .btn:hover{background:var(--hall-ink);color:var(--hall)}
+
+/* proof — three demo frames rise on the stage */
+.h2{font-weight:300;font-size:clamp(1.7rem,4vw,3rem);line-height:1.06;letter-spacing:-.025em;overflow-wrap:anywhere;min-width:0;margin:0 0 40px}
+.bleed{width:100%;padding:0 24px;margin:44px 0}
+@media(min-width:900px){.bleed{padding:0 clamp(24px,4vw,64px)}}
+.grid3{display:grid;grid-template-columns:1fr;gap:52px 28px;align-items:start}
+@media(min-width:820px){.grid3{grid-template-columns:repeat(3,minmax(0,1fr))}}
+.frame .shot{position:relative}
+.frame .shot::after{content:'';position:absolute;inset:-16px -16px -30px -16px;z-index:-1;pointer-events:none;
+  background:radial-gradient(60% 60% at 50% 100%, oklch(0.97 0 0 / calc(var(--p,0) * .22)), transparent 70%);
+  filter:blur(20px)}
+.frame img{width:100%;aspect-ratio:16/10;object-fit:contain;background:oklch(0.05 0 0);border-radius:6px;border:1px solid var(--stage-line);
+  transform:translateY(calc((1 - var(--p,0)) * 14px));transition:transform .1s linear}
+.frame .meta{padding-top:16px;border-top:1px solid var(--stage-line);margin-top:16px}
+.frame h3{font-weight:400;font-size:1.15rem;margin:0 0 4px}
+.frame .tag{font-size:.92rem;color:var(--stage-mute);margin:0 0 12px}
+.frame .link{display:flex;justify-content:space-between;align-items:center;font-family:var(--reg);
+  font-size:12px;letter-spacing:.05em;text-decoration:none;color:var(--stage-ink);border-top:1px solid var(--stage-line);padding-top:12px}
+.frame .link:hover{color:var(--stage-mute)}
+.texture{margin-top:56px;padding-top:20px;border-top:1px solid var(--stage-line);
+  font-family:var(--reg);font-size:12px;letter-spacing:.03em;color:var(--stage-mute)}
+
+/* how it works — ledger */
+.ledger{border-top:1px solid var(--hall-line)}
+.row{display:grid;grid-template-columns:auto 1fr auto;gap:8px 22px;align-items:baseline;
+  padding:22px 0;border-bottom:1px solid var(--hall-line)}
+@media(max-width:640px){.row{grid-template-columns:1fr}}
+.row .idx{font-family:var(--reg);font-size:12px;letter-spacing:.1em;color:var(--hall-mute);align-self:start;padding-top:3px}
+.row .body{max-width:56ch}
+.row .body b{font-weight:500;display:block;margin-bottom:4px}
+.row .body span{color:var(--hall-mute);font-size:.96rem}
+.chip{font-family:var(--reg);font-size:11px;letter-spacing:.08em;text-transform:uppercase;
+  border:1px dashed var(--hall-mute);color:var(--hall-mute);padding:6px 10px;white-space:nowrap;justify-self:end;align-self:center}
+@media(max-width:640px){.chip{justify-self:start;margin-top:8px}}
+
+/* close */
+#close{padding-bottom:120px}
+.line{font-size:clamp(1.1rem,2vw,1.4rem);margin:0 0 10px;line-height:1.4}
+.line.mute{color:var(--hall-mute);font-size:clamp(.95rem,1.4vw,1.05rem)}
+.noform{font-family:var(--reg);font-size:11px;letter-spacing:.18em;text-transform:uppercase;color:var(--hall-mute);margin:30px 0 18px}
+.mailto{display:block;font-weight:300;font-size:clamp(1.9rem,9vw,7rem);line-height:1;letter-spacing:-.03em;
+  overflow-wrap:anywhere;min-width:0;text-decoration:none;color:var(--hall-ink);border-bottom:2px solid transparent;transition:border-color .3s var(--ease)}
+.mailto:hover{border-color:var(--hall-ink)}
+footer{font-family:var(--reg);font-size:11px;letter-spacing:.1em;color:var(--hall-mute);padding:26px 0 40px;border-top:1px solid var(--hall-line)}
+
+/* reveal system — fails toward visible */
+.reveal{opacity:1;transform:none}
+.js-ready .reveal{opacity:0;transform:translateY(28px);transition:opacity 1.2s var(--ease),transform 1.2s var(--ease)}
+.js-ready .reveal.in{opacity:1;transform:none}
+
+@media (prefers-reduced-motion: reduce){
+  .js-ready .reveal{transition:none!important;opacity:1!important;transform:none!important}
+  .frame{transition:none!important}
+}
+</style>
+</head>
+<body>
+
+<nav class="nav" id="nav">
+  <a href="#fold">ALUNIX</a>
+  <a class="mail" href="mailto:hej@alunix.se">hej@alunix.se</a>
+</nav>
+
+<main>
+<!-- FOLD: dark stage statement, NOT a centered hero with a badge row -->
+<section class="stage" id="fold">
+  <div class="wrap">
+    <p class="kicker reveal">Webbdesign</p>
+    <h1 class="h1 reveal"><span>Tre sajter.</span><span>Du bedömer.</span></h1>
+    <p class="lede reveal">En byggare. Tre sajter. Ingen delad mall, ingen delad palett, ingen delad rytm mellan dem.</p>
+    <a class="btn reveal" href="mailto:hej@alunix.se">hej@alunix.se</a>
+  </div>
+</section>
+
+<!-- PROOF: three demo frames rising on the stage, NOT a testimonial carousel -->
+<section class="stage" id="proof">
+  <div class="wrap">
+    <p class="kicker reveal">Bevis</p>
+    <h2 class="h2 reveal">Du öppnar dem själv.</h2>
+  </div>
+  <div class="bleed">
+    <div class="grid3">
+      <article class="frame reveal">
+        <div class="shot"><img src="demos/calyx.webp" alt="Skärmbild av Calyx, en florists webbplats i cream-papper med Cardo och PT Mono." decoding="async"></div>
+        <div class="meta">
+          <h3>Calyx</h3>
+          <p class="tag">&raquo;Kursiv och rak i samma rad&laquo;</p>
+        </div>
+        <a class="link" href="https://anti-slop-design.vercel.app/calyx" target="_blank" rel="noopener">
+          <span>anti-slop-design.vercel.app/calyx</span><span aria-hidden="true">&#8599;</span>
+        </a>
+      </article>
+      <article class="frame reveal">
+        <div class="shot"><img src="demos/horai.webp" alt="Skärmbild av Hōrai, en restaurangwebbplats med lackröd accent och Cinzel-kapitäler." decoding="async"></div>
+        <div class="meta">
+          <h3>Hōrai</h3>
+          <p class="tag">&raquo;Fotografiet bär hela sidan&laquo;</p>
+        </div>
+        <a class="link" href="https://anti-slop-design.vercel.app/horai" target="_blank" rel="noopener">
+          <span>anti-slop-design.vercel.app/horai</span><span aria-hidden="true">&#8599;</span>
+        </a>
+      </article>
+      <article class="frame reveal">
+        <div class="shot"><img src="demos/hyperborea.webp" alt="Skärmbild av Hyperborea, en konferenswebbplats i midnattsblått med bärnstensfärgad, kodritad SVG." decoding="async"></div>
+        <div class="meta">
+          <h3>Hyperborea</h3>
+          <p class="tag">&raquo;Ett ritat solmotiv i åtta varianter&laquo;</p>
+        </div>
+        <a class="link" href="https://anti-slop-design.vercel.app/hyperborea" target="_blank" rel="noopener">
+          <span>anti-slop-design.vercel.app/hyperborea</span><span aria-hidden="true">&#8599;</span>
+        </a>
+      </article>
+    </div>
+  </div>
+  <div class="wrap">
+    <p class="texture reveal">Samma händer bygger också Alunix OS.</p>
+  </div>
+</section>
+
+<!-- HOW: hairline ledger of steps, NOT a four-icon feature grid -->
+<section class="hall" id="how">
+  <div class="wrap">
+    <p class="kicker reveal">Så här</p>
+    <h2 class="h2 reveal">Så bygger du sajten.</h2>
+    <div class="ledger">
+      <div class="row reveal">
+        <span class="idx">01</span>
+        <div class="body"><b>Material</b><span>Du skickar logotyp och text. Designen kommer ur dem, inte ur ett tema.</span></div>
+      </div>
+      <div class="row reveal">
+        <span class="idx">02</span>
+        <div class="body"><b>Förslag</b><span>Du får ett förslag att se. Svaret kan vara nej.</span></div>
+      </div>
+      <div class="row reveal">
+        <span class="idx">03</span>
+        <div class="body"><b>Bygge</b><span>Sajten byggs och testas.</span></div>
+        <span class="chip">Leveranstid: [behövs leveranstid]</span>
+      </div>
+      <div class="row reveal">
+        <span class="idx">04</span>
+        <div class="body"><b>Pris</b><span>Priset sätts per uppdrag.</span></div>
+        <span class="chip">Pris: [behövs pris]</span>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- CLOSE: one white-hall sentence + display-scale mailto, NOT a contact form -->
+<section class="hall" id="close">
+  <div class="wrap">
+    <p class="kicker reveal">Kontakt</p>
+    <p class="line reveal">Du mejlar. En person svarar.</p>
+    <p class="line mute reveal">Svaret kan vara nej. Du hör det direkt.</p>
+    <p class="noform reveal">Inget formulär</p>
+    <a class="mailto reveal" href="mailto:hej@alunix.se">hej@alunix.se</a>
+  </div>
+  <div class="wrap"><footer>Alunix &middot; webbdesign</footer></div>
+</section>
+</main>
+
+<noscript><style>.reveal{opacity:1!important;transform:none!important}.frame{--p:1!important}</style></noscript>
+
+<script>
+(function(){
+  var reduced = window.matchMedia && matchMedia('(prefers-reduced-motion: reduce)').matches;
+  var html = document.documentElement;
+  var reveals = Array.prototype.slice.call(document.querySelectorAll('.reveal'));
+  var frames = Array.prototype.slice.call(document.querySelectorAll('.frame'));
+
+  if(!reduced){ html.classList.add('js-ready'); }
+
+  function markIn(el){ el.classList.add('in'); }
+
+  // above-the-fold reveals happen at mount, no animation delay
+  reveals.forEach(function(el){
+    var r = el.getBoundingClientRect();
+    if(r.top < window.innerHeight) markIn(el);
+  });
+
+  if('IntersectionObserver' in window && !reduced){
+    var io = new IntersectionObserver(function(entries){
+      entries.forEach(function(e){ if(e.isIntersecting) markIn(e.target); });
+    }, {threshold:0});
+    reveals.forEach(function(el){ io.observe(el); });
+  } else {
+    reveals.forEach(markIn);
+  }
+
+  // failsafe: force everything visible shortly after load regardless of JS state
+  setTimeout(function(){ reveals.forEach(markIn); }, 500);
+
+  // signature move: demo frames rise on scroll, scrubbed both directions
+  function frameProgress(el){
+    var r = el.getBoundingClientRect();
+    var vh = window.innerHeight;
+    var p = (vh - r.top) / (vh * 0.82);
+    return Math.max(0, Math.min(1, p));
+  }
+  function paintFrames(){
+    frames.forEach(function(el){ el.style.setProperty('--p', reduced ? 1 : frameProgress(el)); });
+  }
+  var ticking = false;
+  function onScroll(){
+    if(reduced) return;
+    if(!ticking){
+      requestAnimationFrame(function(){ paintFrames(); ticking = false; });
+      ticking = true;
+    }
+  }
+  paintFrames();
+  window.addEventListener('scroll', onScroll, {passive:true});
+  window.addEventListener('resize', onScroll);
+
+  // nav ink inversion at the stage/hall cut
+  var nav = document.getElementById('nav');
+  var hallStart = document.getElementById('how');
+  if('IntersectionObserver' in window){
+    var navIo = new IntersectionObserver(function(entries){
+      entries.forEach(function(e){ nav.classList.toggle('on-hall', e.isIntersecting || e.boundingClientRect.top < 0); });
+    }, {threshold:0, rootMargin:'-40px 0px -85% 0px'});
+    navIo.observe(hallStart);
+  }
+
+})();
+</script>
+</body>
+</html>

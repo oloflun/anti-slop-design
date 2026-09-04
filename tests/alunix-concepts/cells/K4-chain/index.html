@@ -1,0 +1,383 @@
+<!DOCTYPE html>
+<!--
+  K4 — Journal. Alunix webbdesign-tjänsten.
+  design · pre-emit critique: P4 H4 E4 S4 R4 V4
+
+  REFERENCE LOCK
+  Primary reference / direction: none of the three is primary — principle only, borrowed
+  in equal small amounts, never structure/palette/type: Calyx (plates beside text, kickers
+  as record, ONE accent doing one job), Raus (whisper-weight 300 as the load-bearing voice,
+  hairlines instead of shadow, restrained single-accent role discipline), Redbrick Coffee
+  (running-head-plus-hairline section openers, ink accent that never fills a surface).
+  Preserve (principle, 3-5): kicker-as-record in mono, capped small, never larger than a
+  caption; plates captioned like an archive, never a bare image; exactly one accent with
+  one named job; hairlines and ton-sur-ton for depth, zero shadow, zero card; serif carries
+  voice, mono carries register, and the two never swap jobs.
+  Borrow only (1-2): the NN/total plate counter (Calyx's signature move, explicitly assigned
+  to K4 by the diversity contract); the running-head-plus-rule chapter opener (Redbrick).
+  Rejected: Calyx's cream+rust+Cardo+PT Mono system in full (K4 must look nothing like it,
+  it is Alunix's own demo shown ON this page); Raus's marigold/pine-green role split and
+  its 20-40px radius softness; Redbrick's scarlet ink and Editorial Old display serif.
+  Media strategy: the three demo screenshots as evidence plates, vendored from
+  ~/alunix/public/demos/; one atmosphere photo (k4-cabin-desk.webp, Unsplash, credited in
+  the colophon) used only as mood beside the hero headline, never as a claim about a real
+  office. No stock people, no logos, no invented testimonials.
+
+  DECISION LEDGER
+  Tier: 3-ish inside a bound contract — K4's row in contract.md fixes authority, category,
+  register, grammar, world and fingerprint; TASTE.md sections 1/4/6 set the harmony rules;
+  the catalogue lock supplies principle. Nothing here is free invention.
+  Register: editorial print. Grammar: chaptered editorial (contract-assigned; distinct from
+  Calyx's own gallery/catalog grammar, so the two already diverge on the axis TASTE calls
+  the organising logic before a single token is chosen).
+  World preamble ("Varm tryckt journal", contract): the surface (paper) and the plates carry
+  the page. Departure from the forbidden AI-look #1 (cream + terracotta + serif-italic
+  two-tone) on TWO axes, as the contract requires:
+    1. Palette temperature: cold stone-grey paper (#E7E9E3), not warm cream. Ink-violet
+       accent (#332B4D), not terracotta/rust/scarlet — and not K1's or K3's blue, not
+       Raus's pine green.
+    2. Type pairing: Fraunces (serif, weight 300 only, ROMAN only — no italic anywhere on
+       the page) paired with IBM Plex Mono for every label/counter/kicker. No roman+italic
+       two-tone headline; the two-tone move is explicitly not used here.
+  Grammar also differs from Calyx's own (gallery/catalog vs chaptered editorial), a third
+  point of separation on top of the two required by the contract.
+  Fingerprint (must hold, per contract row K4): grammar chaptered editorial · nav a plain
+  top kicker row, no fixed bar, no menu · hero device a weight-300 serif headline with one
+  atmosphere plate beside it · act shape three roman-numeral chapters, each opened by a
+  hairline running head · close a printed colophon crediting typeface, photo and person ·
+  signature move every evidence plate carries an "NN / 03" counter.
+  Accent's one job: numerals only — the three chapter numerals, the three "NN / 03"
+  counters, the four ledger numbers in Kapitel II. Never a CTA fill, never a button,
+  never large-surface color. CTAs stay ink-colored typeset links with a hairline underline.
+  Motion: one shared reveal (translateY 18px, opacity, 900ms, cubic-bezier(.16,1,.3,1)),
+  threshold 0, above-fold content revealed at mount, 1.5s failsafe, noscript fallback.
+  prefers-reduced-motion removes the travel only, never the content. No scrub, no pin, no
+  spotlight, no magnet — all banned by the chaptered-editorial grammar; the page's only
+  "set piece" is the counter incrementing into view, which is content, not decoration.
+  Copy chain run in order: Skill(copywriting) with K4's CONTENT FUNDAMENTALS (first person,
+  hantverkarens röst, longer sentences, one concrete anecdote — Hyperborea's sun redrawn
+  eight times in code) → copy-gate.md Pass 1b (every line's source named below) →
+  Skill(humanizer-svenska) on every Swedish string.
+  Pass 1b line sources: hero headline/lead — the brief's own offer language ("designen
+  härleds ur kundens eget material", "öppna dem och syna"), reused, not invented; the
+  Hyperborea anecdote — a true fact from the demo's own build (the sun motif is inline SVG,
+  code-drawn, eight variants — see hyperborea.html); the three plate captions — real facts
+  from brief.md (register/palette/type of each demo) and the demos' own taglines; Kapitel II
+  process steps — the brief's stated way of working (material first, no template, no team,
+  honest "no"); the system numbers (757/2 847/346/21/84) — brief.md's real Alunix OS figures,
+  used once, as texture, never as a claim about the web design service; colophon — states
+  who built the page, plainly, no invented press language.
+  Rejected pixels: no card, no shadow, no gradient, no rounded pill CTA, no italic anywhere,
+  no second accent, no stock photo of a person, no fabricated price or delivery time (both
+  are labelled placeholders), no customer named, never Klova.
+-->
+<html lang="sv">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Alunix, webbdesign: samma händer</title>
+<meta name="description" content="Sajter härledda ur ditt eget material, inte ur ett tema. Tre riktiga sajter som bevis. En person svarar på mejlet.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,300;9..144,400;9..144,500&family=IBM+Plex+Mono:wght@400;500&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --paper:#E7E9E3;
+    --paper-tint:#DEE1D8;
+    --paper-deep:#D3D6CB;
+    --ink:#1C1F1B;
+    --ink-soft:#4A4F47;
+    --stone:#565C54;
+    --rule:#C4C8BC;
+    --accent:#332B4D;
+    --max:1180px;
+  }
+  *{box-sizing:border-box;}
+  html,body{margin:0;padding:0;overflow-x:clip;}
+  body{
+    background:var(--paper);
+    color:var(--ink);
+    font-family:'Fraunces',serif;
+    font-optical-sizing:auto;
+    font-weight:400;
+    font-size:17px;
+    line-height:1.55;
+    -webkit-font-smoothing:antialiased;
+  }
+  img{max-width:100%;display:block;}
+  a{color:inherit;}
+  .wrap{max-width:var(--max);margin:0 auto;padding:0 32px;}
+  @media (max-width:640px){.wrap{padding:0 20px;}}
+
+  .mono{font-family:'IBM Plex Mono',monospace;letter-spacing:0.12em;text-transform:uppercase;font-size:11px;color:var(--stone);}
+  .num{font-family:'IBM Plex Mono',monospace;color:var(--accent);font-weight:500;}
+
+  /* ---------- reveal ---------- */
+  .reveal{opacity:0;transform:translateY(18px);transition:opacity .9s cubic-bezier(.16,1,.3,1),transform .9s cubic-bezier(.16,1,.3,1);}
+  .reveal.revealed{opacity:1;transform:translateY(0);}
+  @media (prefers-reduced-motion:reduce){
+    .reveal{transition:opacity .01s linear;transform:none;}
+  }
+  noscript .reveal, .no-js .reveal{opacity:1;transform:none;}
+
+  /* ---------- nav ---------- */
+  .topnav{padding:22px 0;}
+  .topnav .wrap{display:flex;justify-content:space-between;align-items:baseline;}
+  .wordmark{font-family:'Fraunces',serif;font-weight:400;font-size:19px;letter-spacing:0.01em;}
+  .topnav a.mono{text-decoration:none;border-bottom:1px solid var(--rule);}
+  .topnav a.mono:hover{border-color:var(--ink);color:var(--ink);}
+
+  /* ---------- hero ---------- */
+  .hero{padding:24px 0 72px;}
+  .hero .grid{display:grid;grid-template-columns:1.15fr 0.85fr;gap:56px;align-items:end;}
+  @media (max-width:900px){.hero .grid{grid-template-columns:1fr;gap:32px;}}
+  .hero-kicker{margin-bottom:22px;}
+  .hero h1{
+    font-weight:300;
+    font-size:clamp(2.4rem,6.4vw,4.6rem);
+    line-height:0.98;
+    letter-spacing:-0.01em;
+    margin:0 0 28px;
+    overflow-wrap:anywhere;
+    min-width:0;
+  }
+  .hero .lead{max-width:46ch;font-size:19px;line-height:1.62;color:var(--ink-soft);margin:0 0 30px;}
+  .cta{
+    display:inline-block;
+    font-family:'Fraunces',serif;
+    font-weight:500;
+    font-size:19px;
+    text-decoration:none;
+    border-bottom:1.5px solid var(--ink);
+    padding-bottom:3px;
+  }
+  .cta:hover{border-color:var(--accent);color:var(--accent);}
+  .hero-plate{position:relative;}
+  .hero-plate img{width:100%;height:340px;object-fit:cover;object-position:60% 40%;border-radius:1px;}
+  .hero-plate figcaption{margin-top:10px;}
+  figure{margin:0;}
+
+  /* ---------- chapters ---------- */
+  .chapter{padding:76px 0;}
+  .chapter + .chapter{border-top:1px solid var(--rule);}
+  .chapter-head{display:flex;align-items:baseline;gap:18px;margin-bottom:14px;}
+  .chapter-head .num{font-size:15px;}
+  .chapter-head .mono{margin:0;}
+  .rule-under{height:1px;background:var(--rule);margin:14px 0 40px;}
+  .chapter h2{
+    font-weight:300;
+    font-size:clamp(1.8rem,4vw,2.7rem);
+    line-height:1.06;
+    margin:0 0 28px;
+    max-width:20ch;
+  }
+  .chapter .intro{max-width:66ch;font-size:18px;line-height:1.68;color:var(--ink-soft);margin:0 0 8px;}
+
+  /* ---------- plates (bevis) ---------- */
+  .plates{margin-top:48px;display:grid;grid-template-columns:repeat(3,1fr);gap:40px;}
+  @media (max-width:820px){.plates{grid-template-columns:1fr;gap:48px;}}
+  .plate a{text-decoration:none;color:inherit;display:block;}
+  .plate .frame{aspect-ratio:5/4;overflow:hidden;background:var(--paper-tint);border:1px solid var(--rule);}
+  .plate img{width:100%;height:100%;object-fit:cover;object-position:left top;transition:transform .5s cubic-bezier(.16,1,.3,1);}
+  .plate a:hover img{transform:scale(1.03);}
+  .plate .cap{display:flex;justify-content:space-between;align-items:baseline;margin-top:14px;gap:10px;}
+  .plate .cap .mono{color:var(--ink);}
+  .plate p{font-size:15.5px;color:var(--ink-soft);margin:10px 0 0;line-height:1.5;}
+  .plate .open{font-family:'IBM Plex Mono',monospace;font-size:11px;letter-spacing:0.08em;text-transform:uppercase;color:var(--accent);margin-top:10px;display:inline-block;border-bottom:1px solid var(--accent);}
+
+  /* ---------- ledger (hur det går till) ---------- */
+  .ledger{margin-top:44px;border-top:1px solid var(--rule);}
+  .ledger-row{display:grid;grid-template-columns:64px 1fr;gap:22px;padding:26px 0;border-bottom:1px solid var(--rule);}
+  @media (max-width:640px){.ledger-row{grid-template-columns:40px 1fr;}}
+  .ledger-row .num{font-size:20px;padding-top:2px;}
+  .ledger-row h3{font-weight:500;font-size:18px;margin:0 0 8px;}
+  .ledger-row p{margin:0;color:var(--ink-soft);font-size:15.5px;max-width:62ch;line-height:1.6;}
+  .placeholder{
+    display:inline-block;
+    font-family:'IBM Plex Mono',monospace;
+    font-size:12px;
+    letter-spacing:0.04em;
+    color:var(--ink);
+    background:var(--paper-deep);
+    border:1px solid var(--rule);
+    padding:3px 9px;
+    margin:6px 6px 0 0;
+  }
+  .texture{margin-top:36px;max-width:66ch;font-size:15px;color:var(--stone);line-height:1.6;}
+
+  /* ---------- colophon ---------- */
+  .colophon{background:var(--paper-tint);}
+  .colophon .box{border:1px solid var(--rule);padding:44px 40px;margin-top:20px;}
+  @media (max-width:640px){.colophon .box{padding:32px 22px;}}
+  .colophon p{max-width:58ch;font-size:16.5px;line-height:1.68;color:var(--ink-soft);margin:0 0 22px;}
+  .colophon .credits{font-family:'IBM Plex Mono',monospace;font-size:12px;color:var(--stone);letter-spacing:0.04em;line-height:1.9;margin-bottom:30px;}
+  .colophon .email{font-size:clamp(1.5rem,4vw,2.2rem);font-weight:300;}
+  .colophon .email a{text-decoration:none;border-bottom:2px solid var(--ink);}
+  .colophon .email a:hover{color:var(--accent);border-color:var(--accent);}
+  .footline{margin-top:26px;}
+
+  /* focus */
+  a:focus-visible{outline:2px solid var(--accent);outline-offset:3px;}
+</style>
+</head>
+<body class="no-js">
+
+<header class="topnav">
+  <div class="wrap">
+    <span class="wordmark">Alunix</span>
+    <a class="mono" href="mailto:hej@alunix.se">hej@alunix.se</a>
+  </div>
+</header>
+
+<main>
+  <section class="hero">
+    <div class="wrap grid">
+      <div>
+        <p class="mono hero-kicker reveal">Webbdesign · en person</p>
+        <h1 class="reveal">Samma händer,<br>tre skilda röster<br>på skärmen.</h1>
+        <p class="lead reveal">Jag bygger sajter åt små företag i Sverige, och varje gång härleder jag utseendet ur vad företaget redan är, i stället för ur ett tema någon annan redan sålt till tusen andra sajter. Nedan ligger tre som redan är i drift. Öppna dem och syna själv.</p>
+        <a class="cta reveal" href="mailto:hej@alunix.se">Mejla hej@alunix.se. Jag svarar själv.</a>
+      </div>
+      <figure class="hero-plate reveal">
+        <img src="k4-cabin-desk.webp" alt="Ett skrivbord i morgonljus, ritremsa och penna, en atmosfärbild och inte ett foto av Alunix eget kontor." loading="eager">
+        <figcaption class="mono">Material, inte kontor · foto: Unsplash</figcaption>
+      </figure>
+    </div>
+  </section>
+
+  <section class="chapter" id="bevis">
+    <div class="wrap">
+      <div class="chapter-head">
+        <span class="num reveal">I</span>
+        <p class="mono reveal">Kapitel I</p>
+      </div>
+      <div class="rule-under"></div>
+      <h2 class="reveal">Tre sajter, ingen delad mall.</h2>
+      <p class="intro reveal">Det här är inte skisser i ett annat verktyg. De tre sajterna nedan ligger ute och går, och var och en är byggd ur sitt eget material: en florist vars hela ton kommer ur pappret buketterna slås in i, en restaurang där fotografiet till slut fick bära nästan hela sidan, och en konferens vars solmotiv jag ritade om åtta gånger i ren kod, inte i ett bildprogram, för att det skulle sitta skarpt i varje storlek utan att bli tyngre att ladda. Ingen av de tre delar palett, typsnitt eller rytm med någon annan. Det är hela poängen med hur jag jobbar.</p>
+
+      <div class="plates">
+        <div class="plate reveal">
+          <a href="https://anti-slop-design.vercel.app/calyx" target="_blank" rel="noopener">
+            <div class="frame"><img src="demos/calyx.webp" alt="Calyx, en cream-pappersida för en florist i Stockholm, med kursiv och rak text i samma rubrikrad." loading="lazy"></div>
+            <div class="cap"><span class="mono">Calyx · florist, Stockholm</span><span class="num mono">01 / 03</span></div>
+            <p>Kursiv och rak text i samma rad, cream-papper och en katalog med riktiga priser.</p>
+            <span class="open">Öppna calyx</span>
+          </a>
+        </div>
+        <div class="plate reveal">
+          <a href="https://anti-slop-design.vercel.app/horai" target="_blank" rel="noopener">
+            <div class="frame"><img src="demos/horai.webp" alt="Horai, en mörk sida för en tresystrarsrestaurang i Stockholm, med fotografiet som bär hela sidan." loading="lazy"></div>
+            <div class="cap"><span class="mono">Horai · restaurang, Stockholm</span><span class="num mono">02 / 03</span></div>
+            <p>Fotografiet bär hela sidan. Tre systrar, en lackröd accent, kapitäler satta i Cinzel.</p>
+            <span class="open">Öppna horai</span>
+          </a>
+        </div>
+        <div class="plate reveal">
+          <a href="https://anti-slop-design.vercel.app/hyperborea" target="_blank" rel="noopener">
+            <div class="frame"><img src="demos/hyperborea.webp" alt="Hyperborea, en midnattsblå sida för en konferens i Lund, med ett kodritat solmotiv." loading="lazy"></div>
+            <div class="cap"><span class="mono">Hyperborea · konferens, Lund</span><span class="num mono">03 / 03</span></div>
+            <p>Ett ritat solmotiv i åtta varianter, midnattsblått och bärnsten, allt satt i kod.</p>
+            <span class="open">Öppna hyperborea</span>
+          </a>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="chapter" id="process">
+    <div class="wrap">
+      <div class="chapter-head">
+        <span class="num reveal">II</span>
+        <p class="mono reveal">Kapitel II</p>
+      </div>
+      <div class="rule-under"></div>
+      <h2 class="reveal">Fyra steg, inget formulär.</h2>
+      <p class="intro reveal">Jag jobbar ensam, och det märks i hur det går till. Inget säljteam läser din brief och skickar den vidare till någon annan. Jag läser den själv, och sedan bygger jag.</p>
+
+      <div class="ledger">
+        <div class="ledger-row reveal">
+          <span class="num">.01</span>
+          <div>
+            <h3>Materialet</h3>
+            <p>Jag går igenom det du redan har: logotyp, produktbilder och ett gammalt dokument du fortfarande fyller i för hand. Designen kommer ur det, inte ur ett färdigt tema.</p>
+          </div>
+        </div>
+        <div class="ledger-row reveal">
+          <span class="num">.02</span>
+          <div>
+            <h3>Riktningen</h3>
+            <p>Jag bygger en första sida av det jag hittat och skickar den som en riktig länk, på samma sätt som Calyx, Horai och Hyperborea ligger ute nu.</p>
+          </div>
+        </div>
+        <div class="ledger-row reveal">
+          <span class="num">.03</span>
+          <div>
+            <h3>Omfattning och leverans</h3>
+            <p>Ingen av delarna är bestämd än, så jag skriver inte ut ett belopp jag inte kan hålla.</p>
+            <span class="placeholder">Pris: [behövs pris]</span>
+            <span class="placeholder">Leveranstid: [behövs leveranstid]</span>
+          </div>
+        </div>
+        <div class="ledger-row reveal">
+          <span class="num">.04</span>
+          <div>
+            <h3>Svaret</h3>
+            <p>Ibland är svaret nej, och då säger jag det direkt, innan du har lagt tid på något som ändå inte blir av.</p>
+          </div>
+        </div>
+      </div>
+
+      <p class="texture reveal">Samma händer bygger också Alunix OS, som just nu håller reda på 757 entiteter och 2&nbsp;847 kopplingar åt en annan kund, fördelade på 346 skills i 21 buntar och 84 agenter. En annan produkt, men samma sätt att arbeta.</p>
+    </div>
+  </section>
+
+  <section class="chapter colophon" id="avslut">
+    <div class="wrap">
+      <div class="chapter-head">
+        <span class="num reveal">III</span>
+        <p class="mono reveal">Kapitel III</p>
+      </div>
+      <div class="rule-under"></div>
+      <h2 class="reveal">Kolofon.</h2>
+      <div class="box reveal">
+        <p>Den här sidan är ritad, skriven och kodad av en person, samma person som ritade de tre sajterna i kapitel ett. Alunix är en enskild firma, inget team och ingen mellanhand mellan dig och den som bygger.</p>
+        <p class="credits">Satt i Fraunces och IBM Plex Mono.<br>Foto: Unsplash.<br>Utgåva 2026 · Alunix, enskild firma</p>
+        <p class="email"><a href="mailto:hej@alunix.se">hej@alunix.se</a></p>
+      </div>
+    </div>
+  </section>
+</main>
+
+<noscript>
+  <style>.reveal{opacity:1 !important;transform:none !important;}</style>
+</noscript>
+
+<script>
+(function(){
+  document.body.classList.remove('no-js');
+  var els = Array.prototype.slice.call(document.querySelectorAll('.reveal'));
+  if(!('IntersectionObserver' in window)){
+    els.forEach(function(el){ el.classList.add('revealed'); });
+    return;
+  }
+  var vh = window.innerHeight || document.documentElement.clientHeight;
+  els.forEach(function(el){
+    var r = el.getBoundingClientRect();
+    if(r.top < vh) el.classList.add('revealed');
+  });
+  var io = new IntersectionObserver(function(entries){
+    entries.forEach(function(entry){
+      if(entry.isIntersecting){
+        entry.target.classList.add('revealed');
+        io.unobserve(entry.target);
+      }
+    });
+  }, {threshold:0});
+  els.forEach(function(el){ if(!el.classList.contains('revealed')) io.observe(el); });
+  setTimeout(function(){
+    els.forEach(function(el){ el.classList.add('revealed'); });
+  }, 1500);
+})();
+</script>
+</body>
+</html>

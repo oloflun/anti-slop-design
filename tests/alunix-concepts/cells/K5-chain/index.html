@@ -1,0 +1,338 @@
+<!DOCTYPE html>
+<html lang="sv">
+<head>
+<!--
+K5 "Affisch" — Alunix webbdesign-tjänsten. Grammatik: gallery/catalog. Register: modern clean, flat färgblock.
+Fingerprint (bindande, contract.md): nav textlänkar i botten · hero ordmärke i viewport-bredd · aktform numrerade
+plåtar i full bredd · avslut kontakt som en rad · signature move ordmärket skrollar bakom plåtarna.
+Förbjudet (bindande): orange/röd som blockfärg, K3:s mörka botten, K2:s färgbyte per kapitel.
+
+REFERENCE LOCK
+Primary reference/direction: Magnetism — ordmärke som arkitektur: ett 140px edge-to-edge namn som hela hero,
+en strikt katalogrutnät av objekt där varje bild följs av en etikettrad (aldrig text ovanpå bilden).
+Preserve: ordmärket ensamt bär hela hero, ingen tagline i samma rad, ingen lockup; etikettrad (nummer, namn,
+kategori, fakta, länk) alltid UNDER varje objekt, aldrig överlagd; nav som en enkel indexlista av ord, inga
+ikoner, inga kort; radikalt begränsad färganvändning (här: en (1) kulör i stället för Magnetismens noll).
+Borrow only: studioagriculture — ett stort namn som delar ytan med annat innehåll i samma vypunkt (här: ordmärket
+LIGGER BAKOM plåtarna i stället för att ett foto blöder GENOM ordmärkets ascenders); garden-eight — total tystnad
+ovanför bilden, inget mellansteg mellan läsläge och monumentläge i typskalan.
+Role rules: canvas-kulören gör exakt en sak — den ÄR sidans enda yta, aldrig en kapitelmarkör (K2 äger färgbyte
+per kapitel, förbjudet här); samma kulör återkommer bara som länk/aktivt tillstånd på pappersytan, aldrig som en
+andra bakgrund.
+Media strategy: product surface — tre skärmbilder av riktiga levererade sajter (demos/*.webp), vendorade lokalt.
+Inga foton, ingen 3D, ingen stock, ingen illustration.
+Reject: Magnetisms akromatiska UI (K5 ska bära en kulör, inte noll); Studio Ag:s runda, kondenserade röda
+wordmark-grotesk (fel färg, fel formkänsla för en systembyggare); Garden Eight:s blackletter-aktiga display-serif
+(fel röst); kortskugga någonstans; orange/röd som blockfärg; K3:s nästan-svarta botten; K2:s färgbyte per kapitel.
+Token commitments: canvas = en (1) flat blå genom hela sidan (Tier 1, härledd ur dagens instrumentregisters
+handlingsblå, brief.md); paper = varmvit yta för plåtarnas kort; ink-on-canvas = nästan vit; accent = samma
+blånyans i en mörkare valör, bara på länkar/aktiva tillstånd på papper; display = IBM Plex Sans 700 (rak, saklig,
+ingen kondenserad grotesk, ingen serif — "en face som hör hemma hos en systembyggare, svensk, saklig");
+register = IBM Plex Mono (etiketter, siffror, nav, kickers); radius 0 överallt; inga skuggor.
+
+DECISION LEDGER
+| Decision | Source | Source rule/role | Why |
+|---|---|---|---|
+| Flat blå canvas hela sidan | brief.md dagens register (#1E5E9C handlingsblå) + contract.md K5 "flat färgblock" | Tier 1: accent blir hela ytan | Samma händer utan att kopiera K3:s roll för blått (accent-only) eller K2:s byte per kapitel |
+| IBM Plex Sans/Mono, ingen kondenserad grotesk, ingen display-serif | Uppgiftens instruktion: "en face som hör hemma hos Alunix, en systembyggare, svensk, saklig" | Reject-raden i reference-locken | Plex ritades för ett systemföretag (IBM); rak och saklig, inte Studio Ag:s runda röda grotesk eller Garden Eight:s blackletter-serif |
+| Ordmärket som fixerat bakgrundslager, plåtarna skrollar över | contract.md K5 fingerprint "signature move: ordmärket skrollar bakom plåtarna" | Fingerprint-raden är bindande | Egen mekanik, byggd för denna sida, inte hämtad från någon låst källa (ingen av de tre har denna mekanik) |
+| Etikettrad under varje plåt, aldrig text på bilden | Magnetism (primär) | caption alltid i egen rad under bilden | Matchar gallery/catalog-grammatiken och tar bort kontrastfrågan mot skärmbilden helt |
+| Textnav i botten, ingen topprad | contract.md K5 fingerprint "nav: textnav i botten" | Fingerprint-raden är bindande | Håller hero fritt från konkurrerande topprad; ordmärket får stå ensamt |
+| 0px radius, inga skuggor, hårlinjer | TASTE.md §2 punkt 3 och 5 (ton-på-ton, hårlinjer, aldrig kort; rundning är ett medvetet val) | Katalogens generella husregel, inte en enskild källas signatur | Delas av hela katalogen, låser inte K5 till en specifik referens |
+| Whisper-raden namnger produkterna men bär inga siffror | Coordinator-fix 2026-09-04: data-som-textur är K3:s signatur, K5 delar den inte | Fingerprint-raden (K5 ska skilja sig från K3 på grammar/nav/hero/aktform/avslut/signature move) | 757/2847/346/21/84 drogs ur whisper-raden; kvar står bara "Samma händer bygger Alunix OS och ett lagersystem för gods, bilar och följesedlar." |
+
+design · pre-emit critique: P5 H5 E5 S5 R5 V4
+-->
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Alunix, webbdesign</title>
+<meta name="description" content="Alunix bygger sajter åt små företag. Tre levande sajter som bevis, ingen delad mall mellan dem.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:wght@400;500&amp;family=IBM+Plex+Sans:wght@400;500;600;700&amp;display=swap" rel="stylesheet">
+<style>
+  :root{
+    --canvas: oklch(42% 0.13 258);
+    --canvas-deep: oklch(33% 0.115 258);
+    --paper: oklch(97% 0.012 85);
+    --paper-dim: oklch(93% 0.014 85);
+    --ink-on-canvas: oklch(97% 0.01 85);
+    --ink-on-canvas-dim: oklch(84% 0.045 255);
+    --ink-on-paper: oklch(24% 0.03 258);
+    --ink-on-paper-dim: oklch(46% 0.03 258);
+    --accent-on-paper: oklch(44% 0.15 258);
+    --hair-on-canvas: oklch(97% 0.01 85 / 0.28);
+    --hair-on-paper: oklch(24% 0.03 258 / 0.16);
+    --font-display: "IBM Plex Sans", system-ui, sans-serif;
+    --font-mono: "IBM Plex Mono", ui-monospace, monospace;
+    --gap: clamp(16px, 3vw, 40px);
+    --nav-h: 52px;
+    color-scheme: dark;
+  }
+  *{box-sizing:border-box;}
+  html,body{overflow-x:clip;}
+  html{scroll-behavior:smooth;}
+  body{
+    margin:0; background:var(--canvas); color:var(--ink-on-canvas);
+    font-family:var(--font-display); font-weight:400; line-height:1.5;
+    -webkit-font-smoothing:antialiased;
+  }
+  @media (prefers-reduced-motion:reduce){ html{scroll-behavior:auto;} }
+  a{color:inherit;}
+  .skip-link{position:absolute; left:-9999px; top:0; background:var(--paper); color:var(--ink-on-paper); padding:12px 18px; z-index:100;}
+  .skip-link:focus{left:var(--gap); top:var(--gap);}
+  .sr-only{position:absolute; width:1px; height:1px; padding:0; margin:-1px; overflow:hidden; clip:rect(0,0,0,0); white-space:nowrap; border:0;}
+  :focus-visible{outline:2px solid var(--ink-on-canvas); outline-offset:3px;}
+  .kicker{font-family:var(--font-mono); font-size:11px; letter-spacing:0.18em; text-transform:uppercase; margin:0;}
+
+  /* INDEX: fixed background layer, NOT a sticky hero image — the wordmark stays put while the plates move.
+     Top/height are set from JS to match .fold-spacer's own box exactly, so the glyph can never
+     grow into the fold's top kickers or bottom copy on any viewport, short or narrow. */
+  .wordmark-bg{
+    position:fixed; left:0; right:0; top:0; height:100svh; z-index:0; display:flex; align-items:center; justify-content:center;
+    pointer-events:none; overflow:hidden; padding:0 var(--gap);
+  }
+  .wordmark-bg span{
+    display:block; white-space:nowrap; font-family:var(--font-display); font-weight:700;
+    letter-spacing:-0.03em; color:var(--ink-on-canvas); font-size:26vw; line-height:1;
+  }
+  @media (prefers-reduced-motion:reduce){
+    .wordmark-bg{position:static; height:70vh;}
+  }
+
+  main{position:relative; z-index:1;}
+
+  /* INDEX: quiet catalog fold, NOT a centered marketing hero with a badge row */
+  .fold{min-height:calc(100svh - var(--nav-h)); display:flex; flex-direction:column; justify-content:space-between; padding:var(--gap);}
+  .fold-top{display:flex; justify-content:space-between; align-items:flex-start; gap:var(--gap);}
+  .fold-top .kicker{color:var(--ink-on-canvas-dim);}
+  .fold-spacer{flex:1; min-height:20vh;}
+  .fold-bottom{display:grid; grid-template-columns:minmax(0,1fr) minmax(0,1fr); gap:var(--gap); align-items:end;}
+  .fold-body{margin:0; max-width:46ch; font-size:clamp(16px,2vw,19px);}
+  .fold-aside{display:flex; flex-direction:column; gap:14px; align-items:flex-end; text-align:right;}
+  .fold-whisper{margin:0; font-family:var(--font-mono); font-size:11.5px; letter-spacing:0.02em; color:var(--ink-on-canvas-dim); max-width:38ch;}
+  .fold-cta{font-family:var(--font-mono); font-size:13px; letter-spacing:0.08em; text-decoration:underline; text-underline-offset:4px; text-decoration-color:var(--hair-on-canvas);}
+  .fold-cta:hover{text-decoration-color:currentColor;}
+
+  section{position:relative;}
+
+  /* BEVIS: full-width numbered plates, paper cards over the canvas so the wordmark reads through the gaps */
+  .plates{padding:calc(var(--gap) * 2) 0 var(--gap);}
+  .plates-intro{padding:0 var(--gap); margin-bottom:var(--gap); display:flex; flex-wrap:wrap; gap:12px 24px; align-items:baseline;}
+  .plates-intro .kicker{color:var(--ink-on-canvas-dim);}
+  .plates-lead{margin:0; font-size:15px; color:var(--ink-on-canvas-dim);}
+  .plate-list{list-style:none; margin:0; padding:0; display:flex; flex-direction:column; gap:calc(var(--gap) * 1.4);}
+  .plate{opacity:1;}
+  .plate-link{display:block; text-decoration:none; color:inherit;}
+  .plate-inner{background:var(--paper); color:var(--ink-on-paper); display:grid; grid-template-columns:minmax(0,1.4fr) minmax(0,1fr);}
+  .plate-figure{margin:0; aspect-ratio:1200/750; overflow:hidden; background:var(--paper-dim);}
+  .plate-figure img{width:100%; height:100%; object-fit:cover; display:block; transition:transform .5s cubic-bezier(.16,1,.3,1);}
+  .plate-link:hover .plate-figure img{transform:scale(1.02);}
+  .plate-meta{padding:var(--gap); display:flex; flex-direction:column; gap:10px; border-left:1px solid var(--hair-on-paper);}
+  .plate-num{font-family:var(--font-mono); font-size:12px; letter-spacing:0.1em; color:var(--ink-on-paper-dim);}
+  .plate-name{margin:0; font-family:var(--font-display); font-weight:700; font-size:clamp(24px,3vw,34px); letter-spacing:-0.01em;}
+  .plate-tag{margin:0; font-family:var(--font-mono); font-size:11px; letter-spacing:0.14em; text-transform:uppercase; color:var(--ink-on-paper-dim);}
+  .plate-facts{margin:0; font-size:14px; color:var(--ink-on-paper-dim); line-height:1.6;}
+  .plate-line{margin:8px 0 0; font-size:16px; border-top:1px solid var(--hair-on-paper); padding-top:10px;}
+  .plate-cta{margin-top:auto; padding-top:14px; font-family:var(--font-mono); font-size:12.5px; letter-spacing:0.06em; color:var(--accent-on-paper); text-decoration:underline; text-underline-offset:3px;}
+
+  /* ARBETSSATT: labelled catalog ledger, NOT a numbered feature grid, NOT a two-rail layout with an empty column */
+  .how{padding:calc(var(--gap) * 2) var(--gap);}
+  .how-head{display:flex; flex-wrap:wrap; align-items:baseline; gap:12px 24px; margin-bottom:var(--gap);}
+  .how-head .kicker{color:var(--ink-on-canvas-dim);}
+  .how-lead{margin:0; font-size:15px; color:var(--ink-on-canvas-dim);}
+  .how-list{list-style:none; margin:0; padding:0; max-width:72ch; border-top:1px solid var(--hair-on-canvas);}
+  .how-row{display:grid; grid-template-columns:56px minmax(0,1fr); gap:var(--gap); padding:18px 0; border-bottom:1px solid var(--hair-on-canvas); align-items:baseline;}
+  .how-num{font-family:var(--font-mono); font-size:12px; color:var(--ink-on-canvas-dim); letter-spacing:0.05em;}
+  .how-body{display:flex; flex-direction:column; gap:6px;}
+  .how-label{margin:0; font-family:var(--font-mono); font-size:11px; letter-spacing:0.16em; text-transform:uppercase; color:var(--ink-on-canvas-dim);}
+  .how-text{margin:0; font-size:16px; max-width:56ch;}
+  .placeholder{display:inline-block; font-family:var(--font-mono); font-size:12.5px; letter-spacing:0.04em; color:var(--ink-on-canvas-dim); border:1px dashed var(--hair-on-canvas); padding:3px 9px;}
+
+  /* KONTAKT: contact as one line, NOT a form or a card */
+  .close{padding:calc(var(--gap) * 2.4) var(--gap) calc(var(--gap) * 2 + var(--nav-h)); display:flex; flex-direction:column; gap:18px;}
+  .close .kicker{color:var(--ink-on-canvas-dim);}
+  .close-line{font-family:var(--font-display); font-weight:600; font-size:clamp(30px,7vw,72px); letter-spacing:-0.01em; text-decoration:none; border-bottom:2px solid var(--hair-on-canvas); padding-bottom:6px; width:fit-content;}
+  .close-line:hover{border-bottom-color:currentColor;}
+  .close-sub{margin:0; font-size:15px; color:var(--ink-on-canvas-dim); max-width:44ch;}
+
+  .bottom-nav{position:sticky; bottom:0; z-index:2; min-height:var(--nav-h); box-sizing:border-box; background:var(--canvas-deep); border-top:1px solid var(--hair-on-canvas); display:flex; align-items:center; gap:var(--gap); padding:14px var(--gap); font-family:var(--font-mono); font-size:12px; letter-spacing:0.12em;}
+  .bottom-nav a{text-decoration:none; padding:4px 0;}
+  .bottom-nav a:hover{text-decoration:underline; text-underline-offset:4px;}
+
+  .reveal{opacity:0; transform:translateY(28px); transition:opacity 1.2s cubic-bezier(.16,1,.3,1), transform 1.2s cubic-bezier(.16,1,.3,1);}
+  .reveal.is-visible{opacity:1; transform:translateY(0);}
+  @media (prefers-reduced-motion:reduce){
+    .reveal{opacity:1; transform:none; transition:none;}
+    .plate-link:hover .plate-figure img{transform:none;}
+  }
+
+  @media (max-width:820px){
+    .fold-bottom{grid-template-columns:1fr;}
+    .fold-aside{align-items:flex-start; text-align:left;}
+    .plate-inner{grid-template-columns:1fr;}
+    .plate-meta{border-left:none; border-top:1px solid var(--hair-on-paper);}
+    .how{grid-template-columns:1fr;}
+    .how-row{grid-template-columns:40px minmax(0,1fr);}
+    .wordmark-bg span{font-size:34vw;}
+    .bottom-nav{flex-wrap:wrap; gap:14px var(--gap);}
+  }
+</style>
+</head>
+<body>
+<a class="skip-link" href="#main">Hoppa till innehåll</a>
+<div class="wordmark-bg" aria-hidden="true"><span id="wordmark-fit">ALUNIX</span></div>
+
+<main id="main">
+  <h1 class="sr-only">Alunix, webbdesign</h1>
+
+  <header class="fold" id="top">
+    <div class="fold-top">
+      <p class="kicker">Webbdesign</p>
+      <p class="kicker">Enskild firma &middot; Sverige</p>
+    </div>
+    <div class="fold-spacer" id="wordmark-slot" aria-hidden="true"></div>
+    <div class="fold-bottom">
+      <p class="fold-body reveal">Alunix bygger sajter åt små företag, en i taget. Ingen delad mall, ingen delad palett mellan uppdragen. Designen kommer ur kundens eget material: logotyp, produkt, bransch, inte ett färdigt tema.</p>
+      <div class="fold-aside reveal">
+        <p class="fold-whisper">Samma händer bygger Alunix OS och ett lagersystem för gods, bilar och följesedlar.</p>
+        <a class="fold-cta" href="mailto:hej@alunix.se">Kontakt &middot; hej@alunix.se</a>
+      </div>
+    </div>
+  </header>
+
+  <section class="plates" id="bevis" aria-labelledby="bevis-kicker">
+    <div class="plates-intro">
+      <p class="kicker" id="bevis-kicker">Bevis</p>
+      <p class="plates-lead">Tre levande sajter, i ordning.</p>
+    </div>
+    <ol class="plate-list">
+      <li class="plate reveal">
+        <a class="plate-link" href="https://anti-slop-design.vercel.app/calyx" target="_blank" rel="noopener">
+          <div class="plate-inner">
+            <figure class="plate-figure"><img src="demos/calyx.webp" width="1200" height="750" alt="Skärmbild av Calyx, en florists sajt i cream-papper med kursiv och rak rubrikstil"></figure>
+            <div class="plate-meta">
+              <span class="plate-num">01</span>
+              <p class="plate-name">Calyx</p>
+              <p class="plate-tag">Florist</p>
+              <p class="plate-facts">Cream-papper. Cardo och PT Mono. Prissatt index.</p>
+              <p class="plate-line">&quot;Kursiv och rak i samma rad.&quot;</p>
+              <span class="plate-cta">Öppna sajten anti-slop-design.vercel.app/calyx</span>
+            </div>
+          </div>
+        </a>
+      </li>
+      <li class="plate reveal">
+        <a class="plate-link" href="https://anti-slop-design.vercel.app/horai" target="_blank" rel="noopener">
+          <div class="plate-inner">
+            <figure class="plate-figure"><img src="demos/horai.webp" width="1200" height="750" alt="Skärmbild av Hōrai, en restaurangsajt med lackröd accent och Cinzel-kapitäler"></figure>
+            <div class="plate-meta">
+              <span class="plate-num">02</span>
+              <p class="plate-name">Hōrai</p>
+              <p class="plate-tag">Restaurang</p>
+              <p class="plate-facts">Lackröd accent. Cinzel-kapitäler.</p>
+              <p class="plate-line">&quot;Fotografiet bär hela sidan.&quot;</p>
+              <span class="plate-cta">Öppna sajten anti-slop-design.vercel.app/horai</span>
+            </div>
+          </div>
+        </a>
+      </li>
+      <li class="plate reveal">
+        <a class="plate-link" href="https://anti-slop-design.vercel.app/hyperborea" target="_blank" rel="noopener">
+          <div class="plate-inner">
+            <figure class="plate-figure"><img src="demos/hyperborea.webp" width="1200" height="750" alt="Skärmbild av Hyperborea, en konferenssajt i midnattsblått och bärnsten med ett kodritat solmotiv"></figure>
+            <div class="plate-meta">
+              <span class="plate-num">03</span>
+              <p class="plate-name">Hyperborea</p>
+              <p class="plate-tag">Konferens</p>
+              <p class="plate-facts">Midnattsblå, bärnsten. Kodritad SVG.</p>
+              <p class="plate-line">&quot;Ett ritat solmotiv i åtta varianter.&quot;</p>
+              <span class="plate-cta">Öppna sajten anti-slop-design.vercel.app/hyperborea</span>
+            </div>
+          </div>
+        </a>
+      </li>
+    </ol>
+  </section>
+
+  <section class="how" id="arbetssatt" aria-labelledby="how-kicker">
+    <div class="how-head reveal">
+      <p class="kicker" id="how-kicker">Arbetssätt</p>
+      <p class="how-lead">Fem punkter. Inget formulär mellan dem.</p>
+    </div>
+    <ol class="how-list reveal">
+      <li class="how-row"><span class="how-num">01</span><div class="how-body"><p class="how-label">Underlag</p><p class="how-text">Alunix startar i det som redan finns: logotyp, produkt, bransch. Inte i ett färdigt tema.</p></div></li>
+      <li class="how-row"><span class="how-num">02</span><div class="how-body"><p class="how-label">Svar</p><p class="how-text">Den som ritar sidan svarar också i mejlen. Inget team, ingen mellanhand.</p></div></li>
+      <li class="how-row"><span class="how-num">03</span><div class="how-body"><p class="how-label">Besked</p><p class="how-text">Ibland är svaret nej. Då säger Alunix det.</p></div></li>
+      <li class="how-row"><span class="how-num">04</span><div class="how-body"><p class="how-label">Pris</p><p class="how-text"><span class="placeholder">[behövs pris]</span></p></div></li>
+      <li class="how-row"><span class="how-num">05</span><div class="how-body"><p class="how-label">Leverans</p><p class="how-text"><span class="placeholder">[behövs leveranstid]</span></p></div></li>
+    </ol>
+  </section>
+
+  <section class="close" id="kontakt" aria-labelledby="close-kicker">
+    <p class="kicker reveal" id="close-kicker">Kontakt</p>
+    <a class="close-line reveal" href="mailto:hej@alunix.se">hej@alunix.se</a>
+    <p class="close-sub reveal">En enskild firma. Samma person som bygger svarar i mejlen.</p>
+  </section>
+
+</main>
+
+<nav class="bottom-nav" aria-label="Sidnavigering">
+  <a href="#bevis">Bevis</a>
+  <a href="#arbetssatt">Arbetssätt</a>
+  <a href="#kontakt">Kontakt</a>
+</nav>
+
+<noscript><style>.reveal{opacity:1 !important; transform:none !important;}</style></noscript>
+
+<script>
+(function(){
+  // Wordmark autofit: the fixed word is sized AND positioned from .fold-spacer's own box,
+  // never from raw viewport centering. That is what stops it growing into the fold's top
+  // kickers or bottom copy on a short/narrow phone: it can only ever fill the space the
+  // fold layout already reserved for it.
+  var word = document.getElementById('wordmark-fit');
+  var bg = document.querySelector('.wordmark-bg');
+  var slot = document.getElementById('wordmark-slot');
+  function fit(){
+    if(!word || !bg || !slot) return;
+    var box = slot.getBoundingClientRect();
+    if(box.width <= 0 || box.height <= 0) return;
+    bg.style.top = box.top + 'px';
+    bg.style.height = box.height + 'px';
+    word.style.fontSize = '10vw';
+    var startBox = word.getBoundingClientRect();
+    var padX = window.innerWidth < 820 ? 32 : 64;
+    var byWidth = (box.width - padX) / startBox.width;
+    var byHeight = box.height / startBox.height;
+    var size = parseFloat(getComputedStyle(word).fontSize) * Math.min(byWidth, byHeight);
+    word.style.fontSize = Math.max(size, 1) + 'px';
+  }
+  fit();
+  window.addEventListener('resize', fit);
+  if(document.fonts && document.fonts.ready){ document.fonts.ready.then(fit); }
+
+  // Reveal system: fails toward visible. Threshold 0, above-fold revealed at mount,
+  // 1.5s failsafe, noscript fallback already covers the no-JS case.
+  var items = Array.prototype.slice.call(document.querySelectorAll('.reveal'));
+  var revealed = 0;
+  function show(el){
+    if(!el.classList.contains('is-visible')){ el.classList.add('is-visible'); revealed++; }
+  }
+  items.forEach(function(el){
+    var r = el.getBoundingClientRect();
+    if(r.top < window.innerHeight) show(el);
+  });
+  if('IntersectionObserver' in window){
+    var io = new IntersectionObserver(function(entries){
+      entries.forEach(function(e){ if(e.isIntersecting) show(e.target); });
+    }, {threshold:0});
+    items.forEach(function(el){ io.observe(el); });
+  } else {
+    items.forEach(show);
+  }
+  setTimeout(function(){ items.forEach(show); }, 1500);
+})();
+</script>
+</body>
+</html>

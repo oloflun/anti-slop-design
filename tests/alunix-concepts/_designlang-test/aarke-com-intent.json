@@ -1,0 +1,374 @@
+{
+  "pageIntent": {
+    "type": "landing",
+    "confidence": 0.29,
+    "path": "/",
+    "title": "Aarke Official Website | Aarke",
+    "description": "",
+    "signals": [
+      {
+        "kind": "dom",
+        "type": "blog-post",
+        "weight": 0.35,
+        "detail": "byline|min-read"
+      },
+      {
+        "kind": "dom",
+        "type": "legal",
+        "weight": 0.4
+      },
+      {
+        "kind": "url",
+        "type": "landing",
+        "weight": 0.45,
+        "detail": "root-path"
+      }
+    ],
+    "alternates": [
+      {
+        "type": "legal",
+        "score": 0.4
+      },
+      {
+        "type": "blog-post",
+        "score": 0.35
+      }
+    ],
+    "needsSmart": true
+  },
+  "sectionRoles": {
+    "sections": [
+      {
+        "index": 0,
+        "tag": "section",
+        "role": "content",
+        "subrole": null,
+        "confidence": 0.3,
+        "heading": null,
+        "bounds": {
+          "x": 0,
+          "y": 0,
+          "w": 1280,
+          "h": 0
+        },
+        "buttonCount": 0,
+        "cardCount": 0,
+        "slots": {},
+        "needsSmart": true
+      },
+      {
+        "index": 1,
+        "tag": "section",
+        "role": "content",
+        "subrole": null,
+        "confidence": 0.3,
+        "heading": null,
+        "bounds": {
+          "x": 0,
+          "y": 0,
+          "w": 1280,
+          "h": 0
+        },
+        "buttonCount": 0,
+        "cardCount": 0,
+        "slots": {},
+        "needsSmart": true
+      },
+      {
+        "index": 2,
+        "tag": "section",
+        "role": "content",
+        "subrole": null,
+        "confidence": 0.3,
+        "heading": null,
+        "bounds": {
+          "x": 0,
+          "y": 0,
+          "w": 1280,
+          "h": 0
+        },
+        "buttonCount": 0,
+        "cardCount": 0,
+        "slots": {},
+        "needsSmart": true
+      },
+      {
+        "index": 3,
+        "tag": "section",
+        "role": "pricing",
+        "subrole": null,
+        "confidence": 0.4,
+        "heading": null,
+        "bounds": {
+          "x": 0,
+          "y": 0,
+          "w": 1280,
+          "h": 30
+        },
+        "buttonCount": 0,
+        "cardCount": 0,
+        "slots": {
+          "lede": "Free shipping above €60 | Free 30-day returns"
+        },
+        "needsSmart": true
+      },
+      {
+        "index": 4,
+        "tag": "section",
+        "role": "content",
+        "subrole": null,
+        "confidence": 0.3,
+        "heading": null,
+        "bounds": {
+          "x": 0,
+          "y": 30,
+          "w": 1280,
+          "h": 56
+        },
+        "buttonCount": 2,
+        "cardCount": 13,
+        "slots": {
+          "ctaCount": 2,
+          "lede": "Shop\nNew Arrivals\nRe-Crafted\nIT / EUR\n0"
+        },
+        "needsSmart": true
+      },
+      {
+        "index": 5,
+        "tag": "main",
+        "role": "pricing-table",
+        "subrole": null,
+        "confidence": 0.9,
+        "heading": "Don’t forget to add",
+        "bounds": {
+          "x": 0,
+          "y": 86,
+          "w": 1280,
+          "h": 3433
+        },
+        "buttonCount": 359,
+        "cardCount": 272,
+        "slots": {
+          "heading": "Don’t forget to add",
+          "subheadings": [
+            "All products"
+          ],
+          "ctaCount": 359,
+          "lede": "All products"
+        },
+        "needsSmart": false
+      },
+      {
+        "index": 6,
+        "tag": "section",
+        "role": "content",
+        "subrole": null,
+        "confidence": 0.3,
+        "heading": "Don’t forget to add",
+        "bounds": {
+          "x": 0,
+          "y": 86,
+          "w": 1280,
+          "h": 0
+        },
+        "buttonCount": 5,
+        "cardCount": 0,
+        "slots": {
+          "heading": "Don’t forget to add",
+          "ctaCount": 5
+        },
+        "needsSmart": true
+      },
+      {
+        "index": 7,
+        "tag": "section",
+        "role": "testimonials",
+        "subrole": null,
+        "confidence": 0.4,
+        "heading": null,
+        "bounds": {
+          "x": 0,
+          "y": 0,
+          "w": 0,
+          "h": 0
+        },
+        "buttonCount": 11,
+        "cardCount": 0,
+        "slots": {
+          "ctaCount": 11
+        },
+        "needsSmart": true
+      },
+      {
+        "index": 8,
+        "tag": "section",
+        "role": "content",
+        "subrole": null,
+        "confidence": 0.3,
+        "heading": "All products",
+        "bounds": {
+          "x": 0,
+          "y": 86,
+          "w": 1280,
+          "h": 231
+        },
+        "buttonCount": 0,
+        "cardCount": 0,
+        "slots": {
+          "heading": "All products"
+        },
+        "needsSmart": true
+      },
+      {
+        "index": 9,
+        "tag": "section",
+        "role": "pricing-table",
+        "subrole": null,
+        "confidence": 0.9,
+        "heading": null,
+        "bounds": {
+          "x": 0,
+          "y": 317,
+          "w": 1280,
+          "h": 3202
+        },
+        "buttonCount": 336,
+        "cardCount": 272,
+        "slots": {
+          "ctaCount": 336
+        },
+        "needsSmart": false
+      },
+      {
+        "index": 10,
+        "tag": "nav",
+        "role": "nav",
+        "subrole": null,
+        "confidence": 0.9,
+        "heading": null,
+        "bounds": {
+          "x": 578,
+          "y": 3465,
+          "w": 124,
+          "h": 22
+        },
+        "buttonCount": 0,
+        "cardCount": 4,
+        "slots": {
+          "lede": "1\n2\n3"
+        },
+        "needsSmart": false
+      },
+      {
+        "index": 11,
+        "tag": "section",
+        "role": "feature-grid",
+        "subrole": null,
+        "confidence": 0.8,
+        "heading": null,
+        "bounds": {
+          "x": 0,
+          "y": 3519,
+          "w": 1280,
+          "h": 530
+        },
+        "buttonCount": 2,
+        "cardCount": 12,
+        "slots": {
+          "ctaCount": 2,
+          "lede": "You’ll only receive the essentials: product releases, exclusive promotions, and inspiring content. Sign up now and receive 10% off on your first order."
+        },
+        "needsSmart": false
+      },
+      {
+        "index": 12,
+        "tag": "footer",
+        "role": "footer",
+        "subrole": null,
+        "confidence": 0.95,
+        "heading": null,
+        "bounds": {
+          "x": 0,
+          "y": 3519,
+          "w": 1280,
+          "h": 530
+        },
+        "buttonCount": 2,
+        "cardCount": 12,
+        "slots": {
+          "ctaCount": 2,
+          "lede": "You’ll only receive the essentials: product releases, exclusive promotions, and inspiring content. Sign up now and receive 10% off on your first order."
+        },
+        "needsSmart": false
+      },
+      {
+        "index": 13,
+        "tag": "section",
+        "role": "content",
+        "subrole": null,
+        "confidence": 0.3,
+        "heading": null,
+        "bounds": {
+          "x": 0,
+          "y": 4049,
+          "w": 1280,
+          "h": 0
+        },
+        "buttonCount": 0,
+        "cardCount": 0,
+        "slots": {},
+        "needsSmart": true
+      },
+      {
+        "index": 14,
+        "tag": "section",
+        "role": "content",
+        "subrole": null,
+        "confidence": 0.3,
+        "heading": null,
+        "bounds": {
+          "x": 0,
+          "y": 4049,
+          "w": 1280,
+          "h": 0
+        },
+        "buttonCount": 5,
+        "cardCount": 0,
+        "slots": {
+          "heading": "",
+          "subheadings": [
+            "Thank you!"
+          ],
+          "ctaCount": 5
+        },
+        "needsSmart": true
+      }
+    ],
+    "counts": {
+      "content": 8,
+      "pricing": 1,
+      "pricing-table": 2,
+      "testimonials": 1,
+      "nav": 1,
+      "feature-grid": 1,
+      "footer": 1
+    },
+    "readingOrder": [
+      "content",
+      "content",
+      "content",
+      "pricing",
+      "testimonials",
+      "content",
+      "pricing-table",
+      "content",
+      "content",
+      "pricing-table",
+      "nav",
+      "feature-grid",
+      "footer",
+      "content",
+      "content"
+    ]
+  }
+}

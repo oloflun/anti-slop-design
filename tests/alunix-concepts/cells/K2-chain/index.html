@@ -1,0 +1,369 @@
+<!doctype html>
+<html lang="sv">
+<!--
+  design · pre-emit critique: P5 H4 E5 S4 R4 V4
+
+  K2 "Tjänsteledger" — reference lock + decision ledger (SKILL.md Step 1b)
+  Tier: 2 — reference. Contract row K2 (tests/alunix-concepts/contract.md).
+
+  Primary reference/direction: insign — one fully saturated, non-repeating flat
+  colour assigned to each category, functioning as navigation by colour; plain
+  white/black framing every saturated section.
+  Preserve: one saturated flat colour sheet per chapter, non-repeating; hero and
+  close stay plain (white / near-black), so the three chapters stay the loudest
+  part of the page; each coloured sheet carries exactly one small, specific
+  screenshot, never an abstract icon; palette itself differentiates the chapters.
+  Borrow only: from mattis-studio, the bordered/corner-marked "inspected
+  component" frame — reduced to a hairline keyline + four corner ticks around
+  each screenshot, never the version tag, live clock or slot counter (rejected:
+  fabricated scarcity, forbidden by brief). From kinhive, the idea of a
+  continuously scroll-tied colour value — reduced to each chapter's own panel
+  deepening with local scroll progress, never the marquee band or the
+  photo-layered card (no people photography exists in this brief).
+  Role rules: no two adjacent chapters share a colour family; saturated colour
+  never appears in the hero, "hur det går till" or the close band; each chapter
+  panel carries exactly one screenshot.
+  Media strategy: product surface — the three real demo screenshots, vendored
+  from ~/alunix/public/demos/, never hotlinked; no other imagery, no stock photo.
+  Reject: insign's three full-width stacked bands (K2's own forbidden structure
+  is a stacked band — this build uses a two-column split stage instead); any
+  full-bleed atmospheric photograph; K1's achromatic black/white register;
+  Mattis's scarcity counter and live clock; Kinhive's photo-layered card and
+  italic-serif emphasis word (register here is grotesque sans, not serif).
+  Token commitments: paper oklch(98% .006 85), ink oklch(16% .014 85); chapter
+  colours drawn honestly from each demo's own real accent (Calyx rust, Horai
+  lacquer red, Hyperborea amber) at full saturation — Preserve names this as
+  the palette-as-navigation system; Bricolage Grotesque (display) + Geist
+  (body) + JetBrains Mono (meta/data register only, one role, applied to
+  screenshot captions, the ledger placeholders and the close-band stats).
+
+  Decision ledger:
+  | Decision | Source | Role | Why |
+  | Split stage, not stacked band | contract.md K2 row + gate: insign's structure forbidden | act shape | Fingerprint gate + explicit forbid |
+  | Chapter colour = each demo's own real accent | brief.md demo descriptions | identity colour, display-scale only | Honest, not invented; doubles as "samma händer" proof |
+  | Corner-tick screenshot frame | mattis-studio (borrow-only) | decorative, not metadata | One licensed detail, not the whole hero-card |
+  | Panel deepens with local scroll progress | kinhive (borrow-only, reduced) | signature move | "kapitelfärgen skroll-länkad" fingerprint cell |
+  | No buttons filled with chapter colour | color.md + house-physics | accent role: display only | Accent never on small controls |
+  | CTA = solid ink button | insign's black "Visa alla tjänster" pill (observed in fold.webp) | CTA-only | Matches primary reference's own restrained CTA logic |
+  | Reused client line as hero question | brief.md §Röst, licensed for one concept | headline | Sourced, not invented; fits "en fråga per kapitel" voice rule |
+
+  Feeling curve:
+  1  Recognition   the reused question lands cold on plain white, no photo to hide behind
+  2  Curiosity     Calyx's rust sheet arrives, a real screenshot inside it, not a claim
+  3  Confidence    Horai's lacquer sheet deepens as you read, the same builder, a different hand
+  4  Trust          Hyperborea's amber sheet, no photo anywhere on it, still legible
+  5  Resolve        the page goes dark, the three colours reduce to three small ticks, one address
+
+  Peak: the Hyperborea chapter — amber on white, zero photographs anywhere on that
+  site, proven on a page that itself has none. Largest scroll span, its screenshot
+  the only one framed slightly larger.
+
+  Signature move: each chapter's own colour sheet is not static — as you scroll
+  through a chapter, that panel's colour continuously deepens (color-mix, tied to
+  a local scroll-progress custom property), like ink settling into a page as you
+  read further down it. Reduced motion removes the shift; each chapter still
+  shows its own flat colour, just fixed.
+
+  Fingerprint row (design-fingerprints.md schema):
+  K2-chain | split stage | vänsterrail, sticky | vit yta, grotesk-rubrik, inget
+  foto | fast vänstertext, högerkolumn byter färg per kapitel | mörkt band |
+  kapitelfärgen fördjupas med lokalt skrollframsteg (color-mix)
+
+  Skills invoked, in order: design (this file's chain) · copywriting ·
+  copy-gate (Pass 1b line-sourcing + structure rule) · humanizer-svenska ·
+  a11y-audit (script pass) · design-verify (shoot.py + scroll_verify.py).
+-->
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Alunix: tre riktiga sajter, samma byggare</title>
+<meta name="description" content="Webbdesign från Alunix. Tre riktiga demosajter, en utvecklare, inget team. Öppna dem och syna.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:wght@600;800&family=Geist:wght@400;500;600&family=JetBrains+Mono:wght@500;600&display=swap" rel="stylesheet">
+<style>
+:root{
+  --paper:#fbfaf7; --paper-2:#f2f0ea; --ink:#1a1815; --ink-soft:#5b564d; --rule:#ddd8cd;
+  --font-display:"Bricolage Grotesque",ui-sans-serif,system-ui,sans-serif;
+  --font-body:"Geist",ui-sans-serif,system-ui,sans-serif;
+  --font-meta:"JetBrains Mono",ui-monospace,monospace;
+  --calyx:#a34827; --calyx-deep:#7a3319; --calyx-on:#fbf3ea;
+  --horai:#7a1414; --horai-deep:#530c0c; --horai-on:#f7ece7;
+  --hb:#e8b04a; --hb-deep:#c98f2c; --hb-on:#1c1607;
+  --close-bg:#171310; --close-ink:#efe9de; --close-soft:#8f887a;
+  --ease:cubic-bezier(.16,1,.3,1);
+  --rail-w:92px;
+}
+*,*::before,*::after{box-sizing:border-box}
+html{scroll-behavior:smooth;-webkit-text-size-adjust:100%}
+@media (prefers-reduced-motion:reduce){html{scroll-behavior:auto}}
+html,body{overflow-x:clip;background:var(--paper)}
+body{margin:0;color:var(--ink);font-family:var(--font-body);font-size:17px;line-height:1.6;font-weight:400}
+h1,h2,h3{font-family:var(--font-display);margin:0;line-height:0.98;letter-spacing:-0.02em}
+p{margin:0}
+a{color:inherit}
+img{max-width:100%;display:block}
+.skip{position:absolute;left:-9999px;top:0;background:var(--ink);color:var(--paper);padding:.8em 1.2em;z-index:100;font-family:var(--font-body)}
+.skip:focus{left:12px;top:12px}
+:focus-visible{outline:2px solid var(--ink);outline-offset:3px}
+
+/* ---------- rail ---------- */
+.rail{position:sticky;top:0;height:100vh;width:var(--rail-w);float:left;display:flex;flex-direction:column;justify-content:space-between;align-items:center;padding:22px 0 26px;border-right:1px solid var(--rule);background:var(--paper);z-index:20}
+.rail__mark{font-family:var(--font-display);font-weight:800;font-size:14px;letter-spacing:0.02em;writing-mode:horizontal-tb}
+.rail__links{display:flex;flex-direction:column;gap:28px;align-items:center}
+.rail__links a{font-family:var(--font-meta);font-size:11px;letter-spacing:0.06em;text-transform:uppercase;text-decoration:none;color:var(--ink-soft);writing-mode:vertical-rl;text-orientation:mixed;padding:10px 6px;min-height:44px;display:flex;align-items:center;transition:color .2s var(--ease)}
+.rail__links a:hover,.rail__links a[aria-current]{color:var(--ink)}
+.rail__mail{font-family:var(--font-meta);font-size:10.5px;letter-spacing:0.04em;color:var(--ink-soft);text-decoration:none;writing-mode:vertical-rl;text-orientation:mixed;min-height:44px;display:flex;align-items:center}
+.rail__mail:hover{color:var(--ink)}
+main{margin-left:var(--rail-w)}
+
+/* ---------- hero ---------- */
+.hero{padding:76px 6vw 88px;max-width:1220px}
+.hero__case{font-size:17px;color:var(--ink-soft);max-width:46ch;margin-bottom:34px}
+.hero__q{font-size:clamp(2.5rem,5.6vw + 1rem,5.4rem);max-width:19ch}
+.hero__a{margin-top:30px;font-size:19px;max-width:44ch;color:var(--ink-soft)}
+.hero__cta{margin-top:38px;display:flex;gap:18px;flex-wrap:wrap;align-items:center}
+.btn{display:inline-flex;align-items:center;gap:.5em;background:var(--ink);color:var(--paper);font-family:var(--font-body);font-weight:500;font-size:15px;padding:14px 22px;text-decoration:none;border-radius:2px;min-height:44px;transition:transform .2s var(--ease),background .2s var(--ease)}
+.btn:hover{transform:translateY(-1px);background:#000}
+.hero__note{font-size:14px;color:var(--ink-soft)}
+
+/* ---------- bevis / chapters ---------- */
+.bevis{border-top:1px solid var(--rule)}
+.bevis__head{padding:64px 6vw 8px;max-width:1220px}
+.bevis__head h2{font-size:clamp(1.8rem,2.6vw + 1rem,2.6rem)}
+.bevis__head p{margin-top:16px;max-width:56ch;color:var(--ink-soft);font-size:16.5px}
+.chapter{display:grid;grid-template-columns:minmax(300px,38%) 1fr;border-top:1px solid var(--rule)}
+.chapter__text{padding:56px 5vw;display:flex;flex-direction:column;justify-content:center;gap:18px}
+.chapter__label{font-family:var(--font-meta);font-size:11px;letter-spacing:0.1em;text-transform:uppercase;color:var(--ink-soft)}
+.chapter__q{font-size:clamp(1.5rem,2.1vw + 1rem,2.15rem);max-width:15ch}
+.chapter__a{font-size:16.5px;color:var(--ink-soft);max-width:42ch}
+.chapter__quote{font-size:15px;font-style:normal;color:var(--ink-soft);border-left:2px solid var(--rule);padding-left:14px;max-width:38ch}
+.chapter__link{display:inline-flex;align-items:center;gap:.4em;font-weight:500;text-decoration:underline;text-underline-offset:3px;min-height:44px;width:fit-content}
+.chapter__panel{--p:0;position:relative;padding:48px 5vw;display:flex;align-items:center;justify-content:center;background:color-mix(in oklch,var(--c),var(--c-deep) calc(var(--p) * 55%));transition:background .05s linear}
+.chapter__frame{position:relative;width:100%;max-width:640px}
+.chapter__frame::before{content:"";position:absolute;inset:-10px;border:1px solid color-mix(in oklch,var(--on) 35%,transparent)}
+.chapter__frame img{width:100%;border:1px solid color-mix(in oklch,var(--on) 55%,transparent)}
+.chapter__cap{margin-top:14px;font-family:var(--font-meta);font-size:12px;color:var(--on);display:flex;justify-content:space-between;gap:12px;flex-wrap:wrap}
+.chapter--calyx{--c:var(--calyx);--c-deep:var(--calyx-deep);--on:var(--calyx-on)}
+.chapter--horai{--c:var(--horai);--c-deep:var(--horai-deep);--on:var(--horai-on)}
+.chapter--hb{--c:var(--hb);--c-deep:var(--hb-deep);--on:var(--hb-on)}
+.chapter--calyx .chapter__text,.chapter--horai .chapter__text{color:var(--ink)}
+.chapter--hb .chapter__panel{color:var(--hb-on)}
+.chapter__cap a{color:var(--on);text-decoration:underline}
+
+/* ---------- hur det går till ---------- */
+.hur{border-top:1px solid var(--rule);padding:70px 6vw 90px;max-width:1220px}
+.hur h2{font-size:clamp(1.8rem,2.6vw + 1rem,2.6rem)}
+.hur__grid{margin-top:40px;display:grid;grid-template-columns:1fr 1fr;gap:56px 6vw}
+.hur__qa{border-bottom:1px solid var(--rule);padding-bottom:24px}
+.hur__qa h3{font-family:var(--font-body);font-weight:600;font-size:19px;margin-bottom:10px}
+.hur__qa p{color:var(--ink-soft);font-size:16px;max-width:40ch}
+.ledger{margin-top:52px;max-width:640px}
+.ledger__row{display:flex;justify-content:space-between;align-items:center;gap:16px;padding:18px 0;border-bottom:1px solid var(--rule)}
+.ledger__row:first-child{border-top:1px solid var(--rule)}
+.ledger__label{font-size:16px}
+.placeholder{font-family:var(--font-meta);font-size:13px;color:var(--ink-soft);border:1px dashed var(--rule);padding:8px 12px;border-radius:2px;white-space:nowrap}
+
+/* ---------- close ---------- */
+.kontakt{background:var(--close-bg);color:var(--close-ink);padding:84px 6vw 60px}
+.kontakt__inner{max-width:1220px}
+.kontakt h2{font-size:clamp(2rem,3.4vw + 1rem,3.4rem);max-width:14ch}
+.kontakt__mail{display:inline-block;margin-top:28px;font-size:clamp(1.5rem,2.6vw + 1rem,2.4rem);color:var(--close-ink);text-decoration:underline;text-underline-offset:6px;text-decoration-color:var(--close-soft)}
+.kontakt__about{margin-top:26px;max-width:52ch;color:var(--close-soft);font-size:16px}
+.kontakt__caption{margin-top:14px;font-size:13px;color:var(--close-soft);max-width:36ch}
+.kontakt__close{margin-top:60px}
+.swatches{display:flex;align-items:center;gap:10px;margin-top:6px}
+.swatches i{width:16px;height:16px;display:inline-block}
+.swatches span{font-size:14px;color:var(--close-soft)}
+
+/* ---------- reveal ---------- */
+.reveal{opacity:1;transform:none}
+.reveal.js-armed{opacity:0;transform:translateY(28px);transition:opacity 1.2s var(--ease),transform 1.2s var(--ease)}
+.reveal.js-armed.in-view{opacity:1;transform:none}
+@media (prefers-reduced-motion:reduce){.reveal{transition:none!important}}
+
+/* ---------- responsive ---------- */
+@media (max-width:1023px){
+  .rail{position:sticky;float:none;width:100%;height:auto;flex-direction:row;flex-wrap:wrap;row-gap:8px;top:0;padding:12px 5vw;border-right:0;border-bottom:1px solid var(--rule)}
+  .rail__links{flex-direction:row;flex-wrap:wrap;gap:14px}
+  .rail__links a{writing-mode:horizontal-tb}
+  .rail__mail{display:none}
+  main{margin-left:0}
+  .chapter{grid-template-columns:1fr}
+  .chapter__panel{padding:36px 6vw}
+}
+@media (max-width:768px){
+  .hur__grid{grid-template-columns:1fr}
+}
+@media (max-width:414px){
+  body{font-size:16px}
+  .hero{padding:56px 5vw 64px}
+  .ledger__row{flex-direction:column;align-items:flex-start;gap:8px}
+}
+</style>
+</head>
+<body>
+<a class="skip" href="#innehall">Hoppa till innehållet</a>
+
+<nav class="rail" aria-label="Huvudnavigation">
+  <span class="rail__mark">ALUNIX</span>
+  <div class="rail__links">
+    <a href="#bevis">Bevis</a>
+    <a href="#hur">Hur det går till</a>
+    <a href="#kontakt">Kontakt</a>
+  </div>
+  <a class="rail__mail" href="mailto:hej@alunix.se">hej@alunix.se</a>
+</nav>
+
+<main id="innehall">
+
+  <header class="hero" id="top">
+    <p class="hero__case reveal">En person bygger sajten och svarar sedan i mejlen, inte ett formulär.</p>
+    <h1 class="hero__q reveal">Vad gör du för hand som inte borde göras för hand?</h1>
+    <p class="hero__a reveal">Tre riktiga sajter visar svaret. Öppna dem och syna.</p>
+    <div class="hero__cta reveal">
+      <a class="btn" href="mailto:hej@alunix.se">Mejla hej@alunix.se</a>
+      <span class="hero__note">Svar från personen som ritade sidan.</span>
+    </div>
+  </header>
+
+  <section class="bevis" id="bevis">
+    <div class="bevis__head">
+      <h2 class="reveal">Bevis</h2>
+      <p class="reveal">Tre sajter, samma byggare. Ingen delad palett. Inget delat typsnitt. Ingen delad rytm mellan dem. Det är hela poängen.</p>
+    </div>
+
+    <article class="chapter chapter--calyx">
+      <div class="chapter__text reveal">
+        <span class="chapter__label">Calyx</span>
+        <h3 class="chapter__q">Ska sajten kännas lika taktil som blommorna?</h3>
+        <p class="chapter__a">Calyx är en florist i cream och kursiv Cardo, med ett prissatt index i stället för en meny.</p>
+        <p class="chapter__quote">”Kursiv och rak i samma rad.”</p>
+        <a class="chapter__link" href="https://anti-slop-design.vercel.app/calyx" target="_blank" rel="noopener">Öppna calyx ↗</a>
+      </div>
+      <div class="chapter__panel">
+        <div class="chapter__frame">
+          <img src="demos/calyx.webp" alt="Skärmdump av Calyx, en floristsajt i cream med kursiv Cardo-rubrik och ett prissatt index" loading="lazy">
+          <p class="chapter__cap"><span>Florist · Stockholm</span><a href="https://anti-slop-design.vercel.app/calyx" target="_blank" rel="noopener">anti-slop-design.vercel.app/calyx</a></p>
+        </div>
+      </div>
+    </article>
+
+    <article class="chapter chapter--horai">
+      <div class="chapter__text reveal">
+        <span class="chapter__label">Hōrai</span>
+        <h3 class="chapter__q">Ska en enda bild bära hela sidan?</h3>
+        <p class="chapter__a">Hōrai är en tresystrarsrestaurang där fotografiet bär hela sidan, i lackröd accent och Cinzel-kapitäler.</p>
+        <p class="chapter__quote">”Fotografiet bär hela sidan.”</p>
+        <a class="chapter__link" href="https://anti-slop-design.vercel.app/horai" target="_blank" rel="noopener">Öppna hōrai ↗</a>
+      </div>
+      <div class="chapter__panel">
+        <div class="chapter__frame">
+          <img src="demos/horai.webp" alt="Skärmdump av Hōrai, en restaurangsajt i lackröd accent med Cinzel-kapitäler över ett matfotografi" loading="lazy">
+          <p class="chapter__cap"><span>Restaurang · Stockholm</span><a href="https://anti-slop-design.vercel.app/horai" target="_blank" rel="noopener">anti-slop-design.vercel.app/horai</a></p>
+        </div>
+      </div>
+    </article>
+
+    <article class="chapter chapter--hb">
+      <div class="chapter__text reveal">
+        <span class="chapter__label">Hyperborea</span>
+        <h3 class="chapter__q">Finns det inget foto, bara en idé?</h3>
+        <p class="chapter__a">Hyperborea är en konferens utan ett enda foto, bara ett solmotiv ritat i kod, i åtta varianter.</p>
+        <p class="chapter__quote">”Ett ritat solmotiv i åtta varianter.”</p>
+        <a class="chapter__link" href="https://anti-slop-design.vercel.app/hyperborea" target="_blank" rel="noopener">Öppna hyperborea ↗</a>
+      </div>
+      <div class="chapter__panel">
+        <div class="chapter__frame">
+          <img src="demos/hyperborea.webp" alt="Skärmdump av Hyperborea, en konferenssajt utan foton med ett kodritat solmotiv i amber" loading="lazy">
+          <p class="chapter__cap"><span>Konferens · Lund</span><a href="https://anti-slop-design.vercel.app/hyperborea" target="_blank" rel="noopener">anti-slop-design.vercel.app/hyperborea</a></p>
+        </div>
+      </div>
+    </article>
+  </section>
+
+  <section class="hur" id="hur">
+    <h2 class="reveal">Hur det går till</h2>
+    <div class="hur__grid">
+      <div class="hur__qa reveal">
+        <h3>Varifrån kommer designen?</h3>
+        <p>Ur ditt material: logotyp, produkt, bransch. Aldrig ur ett färdigt tema.</p>
+      </div>
+      <div class="hur__qa reveal">
+        <h3>Vem svarar när du mejlar?</h3>
+        <p>Jag. Inget formulär, inget team, ingen mellanhand.</p>
+      </div>
+      <div class="hur__qa reveal">
+        <h3>Vad händer om svaret är nej?</h3>
+        <p>Då säger jag det, direkt.</p>
+      </div>
+    </div>
+    <div class="ledger reveal">
+      <div class="ledger__row"><span class="ledger__label">Omfattning och pris</span><span class="placeholder">[behövs pris]</span></div>
+      <div class="ledger__row"><span class="ledger__label">Leveranstid</span><span class="placeholder">[behövs leveranstid]</span></div>
+    </div>
+  </section>
+
+  <section class="kontakt" id="kontakt">
+    <div class="kontakt__inner">
+      <h2 class="reveal">Skriv, så svarar jag.</h2>
+      <a class="kontakt__mail reveal" href="mailto:hej@alunix.se">hej@alunix.se</a>
+      <p class="kontakt__about reveal">Alunix är en enskild firma, en person. Samma händer bygger Alunix OS och ett lagersystem åt en annan kund, men den här sidan handlar om sajten din verksamhet behöver.</p>
+      <div class="kontakt__close reveal">
+        <div class="swatches" aria-hidden="true">
+          <i style="background:var(--calyx)"></i><i style="background:var(--horai)"></i><i style="background:var(--hb)"></i>
+        </div>
+        <p class="kontakt__caption">Tre sajter. Tre färger. Samma hand.</p>
+      </div>
+    </div>
+  </section>
+
+</main>
+
+<script>
+(function(){
+  var reduced = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+  var els = Array.prototype.slice.call(document.querySelectorAll('.reveal'));
+  var vh = window.innerHeight;
+
+  els.forEach(function(el){
+    var r = el.getBoundingClientRect();
+    if (r.top > vh) el.classList.add('js-armed');
+  });
+
+  if ('IntersectionObserver' in window) {
+    var io = new IntersectionObserver(function(entries){
+      entries.forEach(function(e){
+        if (e.isIntersecting) { e.target.classList.add('in-view'); io.unobserve(e.target); }
+      });
+    }, {threshold: 0});
+    els.forEach(function(el){ if (el.classList.contains('js-armed')) io.observe(el); });
+  }
+
+  setTimeout(function(){
+    els.forEach(function(el){ el.classList.add('in-view'); });
+  }, 1500);
+
+  if (!reduced) {
+    var chapters = Array.prototype.slice.call(document.querySelectorAll('.chapter__panel'));
+    var ticking = false;
+    function update(){
+      var h = window.innerHeight;
+      chapters.forEach(function(p){
+        var r = p.getBoundingClientRect();
+        var prog = (h - r.top) / (r.height + h);
+        prog = Math.max(0, Math.min(1, prog));
+        p.style.setProperty('--p', prog.toFixed(3));
+      });
+      ticking = false;
+    }
+    window.addEventListener('scroll', function(){
+      if (!ticking) { requestAnimationFrame(update); ticking = true; }
+    }, {passive:true});
+    update();
+  }
+})();
+</script>
+<noscript><style>.reveal{opacity:1!important;transform:none!important}</style></noscript>
+</body>
+</html>

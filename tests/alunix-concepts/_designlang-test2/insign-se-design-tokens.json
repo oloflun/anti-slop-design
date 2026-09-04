@@ -1,0 +1,394 @@
+{
+  "$metadata": {
+    "generator": "designlang",
+    "version": "7.0.0",
+    "spec": "https://design-tokens.github.io/community-group/format/",
+    "source": "https://www.insign.se",
+    "generatedAt": "2026-09-03T23:32:05.914Z"
+  },
+  "primitive": {
+    "color": {
+      "brand": {
+        "primary": {
+          "$value": "#ff7f4c",
+          "$type": "color"
+        },
+        "secondary": {
+          "$value": "#008000",
+          "$type": "color"
+        }
+      },
+      "neutral": {
+        "n100": {
+          "$value": "#000000",
+          "$type": "color"
+        },
+        "n200": {
+          "$value": "#1a1819",
+          "$type": "color"
+        },
+        "n300": {
+          "$value": "#ffffff",
+          "$type": "color"
+        },
+        "n400": {
+          "$value": "#828282",
+          "$type": "color"
+        },
+        "n500": {
+          "$value": "#181d27",
+          "$type": "color"
+        },
+        "n600": {
+          "$value": "#8c8c8c",
+          "$type": "color"
+        },
+        "n700": {
+          "$value": "#ecf1f7",
+          "$type": "color"
+        },
+        "n800": {
+          "$value": "#c6c6c6",
+          "$type": "color"
+        },
+        "n900": {
+          "$value": "#334155",
+          "$type": "color"
+        },
+        "n1000": {
+          "$value": "#414651",
+          "$type": "color"
+        },
+        "n1100": {
+          "$value": "#4b5563",
+          "$type": "color"
+        },
+        "n1200": {
+          "$value": "#d4dae3",
+          "$type": "color"
+        },
+        "n1300": {
+          "$value": "#666c76",
+          "$type": "color"
+        },
+        "n1400": {
+          "$value": "#333333",
+          "$type": "color"
+        },
+        "n1500": {
+          "$value": "#0a0a0a",
+          "$type": "color"
+        }
+      },
+      "background": {
+        "bg0": {
+          "$value": "#ffffff",
+          "$type": "color"
+        },
+        "bg1": {
+          "$value": "#1a1819",
+          "$type": "color"
+        },
+        "bg2": {
+          "$value": "#222222",
+          "$type": "color"
+        },
+        "bg3": {
+          "$value": "#eaf585",
+          "$type": "color"
+        },
+        "bg4": {
+          "$value": "#dac6fb",
+          "$type": "color"
+        },
+        "bg5": {
+          "$value": "#ff7f4c",
+          "$type": "color"
+        },
+        "bg6": {
+          "$value": "#eef1f5",
+          "$type": "color"
+        },
+        "bg7": {
+          "$value": "#ecf1f7",
+          "$type": "color"
+        }
+      },
+      "text": {
+        "text0": {
+          "$value": "#000000",
+          "$type": "color"
+        },
+        "text1": {
+          "$value": "#1a1819",
+          "$type": "color"
+        },
+        "text2": {
+          "$value": "#008000",
+          "$type": "color"
+        },
+        "text3": {
+          "$value": "#ffffff",
+          "$type": "color"
+        },
+        "text4": {
+          "$value": "#f7f7f7",
+          "$type": "color"
+        },
+        "text5": {
+          "$value": "#0a0a0a",
+          "$type": "color"
+        },
+        "text6": {
+          "$value": "#111111",
+          "$type": "color"
+        },
+        "text7": {
+          "$value": "#0b161e",
+          "$type": "color"
+        },
+        "text8": {
+          "$value": "#eaf585",
+          "$type": "color"
+        },
+        "text9": {
+          "$value": "#007aff",
+          "$type": "color"
+        }
+      }
+    },
+    "spacing": {
+      "s0": {
+        "$value": "2px",
+        "$type": "dimension"
+      },
+      "s1": {
+        "$value": "12px",
+        "$type": "dimension"
+      },
+      "s2": {
+        "$value": "14px",
+        "$type": "dimension"
+      },
+      "s3": {
+        "$value": "20px",
+        "$type": "dimension"
+      },
+      "s4": {
+        "$value": "22px",
+        "$type": "dimension"
+      },
+      "s5": {
+        "$value": "24px",
+        "$type": "dimension"
+      },
+      "s6": {
+        "$value": "29px",
+        "$type": "dimension"
+      },
+      "s7": {
+        "$value": "32px",
+        "$type": "dimension"
+      },
+      "s8": {
+        "$value": "36px",
+        "$type": "dimension"
+      },
+      "s9": {
+        "$value": "40px",
+        "$type": "dimension"
+      },
+      "s10": {
+        "$value": "46px",
+        "$type": "dimension"
+      },
+      "s11": {
+        "$value": "50px",
+        "$type": "dimension"
+      },
+      "s12": {
+        "$value": "67px",
+        "$type": "dimension"
+      },
+      "s13": {
+        "$value": "78px",
+        "$type": "dimension"
+      },
+      "s14": {
+        "$value": "80px",
+        "$type": "dimension"
+      },
+      "s15": {
+        "$value": "83px",
+        "$type": "dimension"
+      },
+      "s16": {
+        "$value": "100px",
+        "$type": "dimension"
+      },
+      "s17": {
+        "$value": "178px",
+        "$type": "dimension"
+      },
+      "s18": {
+        "$value": "267px",
+        "$type": "dimension"
+      }
+    },
+    "radius": {
+      "r0": {
+        "$value": "1px",
+        "$type": "dimension"
+      },
+      "r1": {
+        "$value": "4px",
+        "$type": "dimension"
+      },
+      "r2": {
+        "$value": "8px",
+        "$type": "dimension"
+      },
+      "r3": {
+        "$value": "12px",
+        "$type": "dimension"
+      },
+      "r4": {
+        "$value": "20px",
+        "$type": "dimension"
+      },
+      "r5": {
+        "$value": "40px",
+        "$type": "dimension"
+      },
+      "r6": {
+        "$value": "50px",
+        "$type": "dimension"
+      },
+      "r7": {
+        "$value": "75px",
+        "$type": "dimension"
+      },
+      "r8": {
+        "$value": "100px",
+        "$type": "dimension"
+      },
+      "r9": {
+        "$value": "160px",
+        "$type": "dimension"
+      }
+    },
+    "shadow": {
+      "sh0": {
+        "$value": "rgb(26, 24, 25) 0px 0px 0px 1px",
+        "$type": "shadow"
+      },
+      "sh1": {
+        "$value": "rgb(65, 70, 81) 0px 0px 0px 1px",
+        "$type": "shadow"
+      },
+      "sh2": {
+        "$value": "rgba(10, 13, 18, 0.18) 0px 0px 0px 1px inset, rgba(10, 13, 18, 0.05) 0px -2px 0px 0px inset, rgba(10, 13, 18, 0.05) 0px 1px 2px 0px",
+        "$type": "shadow"
+      },
+      "sh3": {
+        "$value": "rgba(10, 13, 18, 0.05) 0px 1px 2px 0px",
+        "$type": "shadow"
+      },
+      "sh4": {
+        "$value": "rgba(0, 0, 0, 0.1) 0px 2px 5px 0px",
+        "$type": "shadow"
+      },
+      "sh5": {
+        "$value": "rgba(0, 0, 0, 0.06) 0px 4px 4px 0px",
+        "$type": "shadow"
+      },
+      "sh6": {
+        "$value": "rgba(0, 0, 0, 0.02) 0px 4px 4px 0px",
+        "$type": "shadow"
+      },
+      "sh7": {
+        "$value": "rgba(0, 0, 0, 0.19) 0px 10px 20px 0px, rgba(0, 0, 0, 0.23) 0px 6px 6px 0px",
+        "$type": "shadow"
+      },
+      "sh8": {
+        "$value": "rgba(0, 0, 0, 0.2) 2px 8px 60px -2px",
+        "$type": "shadow"
+      }
+    },
+    "fontFamily": {
+      "f0": {
+        "$value": "Neue Haas Grotesk RoundDots - 55 Roman",
+        "$type": "fontFamily"
+      },
+      "f1": {
+        "$value": "Times New Roman",
+        "$type": "fontFamily"
+      },
+      "f2": {
+        "$value": "Helvetica",
+        "$type": "fontFamily"
+      },
+      "f3": {
+        "$value": "Neue Haas Grotesk RoundDots - 45 Light",
+        "$type": "fontFamily"
+      },
+      "f4": {
+        "$value": "none",
+        "$type": "fontFamily"
+      },
+      "f5": {
+        "$value": "ETmodules",
+        "$type": "fontFamily"
+      }
+    }
+  },
+  "semantic": {
+    "color": {
+      "action": {
+        "primary": {
+          "$value": "{primitive.color.brand.primary}",
+          "$type": "color"
+        },
+        "secondary": {
+          "$value": "{primitive.color.brand.secondary}",
+          "$type": "color"
+        }
+      },
+      "surface": {
+        "default": {
+          "$value": "{primitive.color.background.bg0}",
+          "$type": "color"
+        }
+      },
+      "text": {
+        "body": {
+          "$value": "{primitive.color.text.text0}",
+          "$type": "color"
+        }
+      }
+    },
+    "typography": {
+      "body": {
+        "$value": {
+          "fontFamily": "Neue Haas Grotesk RoundDots - 55 Roman",
+          "fontSize": "80px",
+          "fontWeight": "400",
+          "lineHeight": "80px"
+        },
+        "$type": "typography"
+      }
+    },
+    "radius": {
+      "control": {
+        "$value": "{primitive.radius.r0}",
+        "$type": "dimension"
+      }
+    },
+    "shadow": {
+      "elevated": {
+        "$value": "{primitive.shadow.sh0}",
+        "$type": "shadow"
+      }
+    }
+  }
+}
