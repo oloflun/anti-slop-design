@@ -32,8 +32,10 @@ Fullständig plan: `~/.claude/plans/uppgift-design-rework-v3-validated-hammock.m
 
 - [x] 22 r4: tre remixer av r3 (M1 kontinuerlig grund, M2 kapitel med pinnad scen, M3 galleri med rail), board 127.0.0.1:4622 — 2026-09-04
 
+- [x] 23 r5: M1 vald; tre varianter (V1 dokumentärt band, V2 cinematisk tvätt, V3 plåt i grunden) med hero-bild, fylld lucka, Exempelsida-etiketter, nya paket 26 900/38 900; board 127.0.0.1:4623; board.py serverar repo-rot som fallback — 2026-09-04/05
+
 ## In Progress
-- [ ] Antons val bland M1–M3 (board port 4622) eller ny riktning; r3-sidan kvar på port 3090.
+- [ ] Antons val bland V1–V3 (board port 4623); M1-boarden kvar på 4622.
 
 ## Remaining
 - [ ] Unsplash API-nyckel (Antons handpåläggning) → photo-sources.md får riktig sökning; fotopoolen är 19 bilder i dag.
