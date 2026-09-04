@@ -15,6 +15,7 @@ from __future__ import annotations
 
 import json
 import os
+import re
 import shutil
 import subprocess
 import sys
@@ -112,6 +113,63 @@ def main() -> int:
     except Exception:
         pass
     check("impeccable is v4", "4." in ver, ver or "no version field")
+
+    print("\n-- plugin --")
+    PLUGIN_ROOT = Path(__file__).resolve().parent
+    DESIGN_HOOK_FILES = (
+        "design-intent.py", "design-gate.py", "design-verify-gate.py",
+        "design-route.py", "design-telemetry.py", "design-vision-track.py",
+        "design-session-start.py", "design-stop.py",
+    )
+
+    try:
+        pj = json.loads((PLUGIN_ROOT / ".claude-plugin" / "plugin.json")
+                         .read_text(encoding="utf-8"))
+        check("plugin.json parses", True)
+        check("plugin.json name is anti-slop-design", pj.get("name") == "anti-slop-design")
+    except Exception as e:
+        check("plugin.json parses", False, str(e))
+
+    try:
+        mj = json.loads((PLUGIN_ROOT / ".claude-plugin" / "marketplace.json")
+                         .read_text(encoding="utf-8"))
+        check("marketplace.json parses", True)
+        plugins = mj.get("plugins", [])
+        check("marketplace.json has exactly one plugin", len(plugins) == 1,
+              f"{len(plugins)} plugins")
+        check("marketplace.json plugin source is '.'",
+              bool(plugins) and plugins[0].get("source") == ".")
+    except Exception as e:
+        check("marketplace.json parses", False, str(e))
+
+    plugin_hooks_dir = PLUGIN_ROOT / "hooks"
+    try:
+        ph = json.loads((plugin_hooks_dir / "hooks.json").read_text(encoding="utf-8"))
+        entries = [h for arr in ph.get("hooks", {}).values()
+                   for b in arr for h in b.get("hooks", [])]
+        check("plugin hooks.json has exactly 8 entries", len(entries) == 8,
+              f"{len(entries)} entries")
+        missing = []
+        for h in entries:
+            m = re.search(r'hooks/([\w.-]+\.py)"', h.get("command", ""))
+            if not m or not (plugin_hooks_dir / m.group(1)).exists():
+                missing.append(h.get("command", "<no command>"))
+        check("all plugin hook entries point at files that exist in hooks/",
+              not missing, "; ".join(missing))
+    except Exception as e:
+        check("plugin hooks.json parses", False, str(e))
+
+    # Until the flip lands, hooks/ here is still a byte-identical mirror of
+    # the live source at super-intelligence/hooks — not yet canonical itself.
+    diffs = []
+    for f in DESIGN_HOOK_FILES + ("design_hook_lib.py",):
+        live, mirror = HOOKS / f, plugin_hooks_dir / f
+        if not live.exists() or not mirror.exists():
+            diffs.append(f"missing:{f}")
+        elif live.read_bytes() != mirror.read_bytes():
+            diffs.append(f"differ:{f}")
+    check("plugin hooks byte-identical to super-intelligence/hooks",
+          not diffs, "; ".join(diffs))
 
     print("\n-- mirror --")
     sync_script = Path(__file__).resolve().parent / "scripts" / "sync-from-live.py"

@@ -108,6 +108,20 @@ Every session writes a report. The number that matters is the **route-vs-invocat
 
 Full explainer in [ROUTER.md](ROUTER.md). Verification: `python verify-design-system.py` (60 mechanical checks).
 
+### Install as a plugin
+
+This repo is a standalone Claude Code plugin — the `design` skill, the eight edit-boundary hooks above, the `design-a11y-reviewer` / `design-critic` / `design-heuristics` agents, and the design catalogue, with nothing else to install.
+
+```
+claude plugin marketplace add "C:/Users/Anton L/anti-slop-design"   # local checkout
+# or, once pushed:
+claude plugin marketplace add oloflun/anti-slop-design               # GitHub
+
+claude plugin install anti-slop-design@anti-slop-design
+```
+
+`super-intelligence` no longer ships the design hooks or the design/a11y-audit/design-catalog/design-verify/brand-system skills — this repo is their only home now. Anyone still running the old `super-intelligence` plugin cache should run `claude plugin update super-intelligence@super-intelligence` to pick up the removal, then install `anti-slop-design` as above.
+
 ## The audit — what got picked, what got demoted
 
 Out of 32 design-related skills installed on my machine (across `~/.agents/skills/` and `~/designpowers/skills/`), the router relies on five. The rest are either redundant, niche, project-locked, or process-heavy. The full audit table with per-skill scores on a five-axis rubric (anti-slop teeth / aesthetic ceiling / execution fidelity / routing clarity / maintenance cost) is in [AUDIT.md](AUDIT.md).
