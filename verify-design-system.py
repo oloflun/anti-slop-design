@@ -37,8 +37,11 @@ except Exception:
 # The copy that actually runs is the plugin's own checkout, loaded into the
 # session via ${CLAUDE_PLUGIN_ROOT} — not a ~/.claude/hooks mirror. Testing
 # the wrong copy is how a fix here can pass while the live chain stays
-# broken.
-HOOKS = Path.home() / "super-intelligence" / "hooks"
+# broken. The design hooks moved out of super-intelligence and into this
+# repo (2026-09-04) — this repo's own hooks/ IS the plugin checkout now,
+# not a mirror of an external source, so HOOKS points here directly.
+PLUGIN_ROOT = Path(__file__).resolve().parent
+HOOKS = PLUGIN_ROOT / "hooks"
 SKILLS = Path.home() / ".agents" / "skills"
 ENV = {**os.environ, "PYTHONIOENCODING": "utf-8"}
 
@@ -115,13 +118,6 @@ def main() -> int:
     check("impeccable is v4", "4." in ver, ver or "no version field")
 
     print("\n-- plugin --")
-    PLUGIN_ROOT = Path(__file__).resolve().parent
-    DESIGN_HOOK_FILES = (
-        "design-intent.py", "design-gate.py", "design-verify-gate.py",
-        "design-route.py", "design-telemetry.py", "design-vision-track.py",
-        "design-session-start.py", "design-stop.py",
-    )
-
     try:
         pj = json.loads((PLUGIN_ROOT / ".claude-plugin" / "plugin.json")
                          .read_text(encoding="utf-8"))
@@ -159,17 +155,11 @@ def main() -> int:
     except Exception as e:
         check("plugin hooks.json parses", False, str(e))
 
-    # Until the flip lands, hooks/ here is still a byte-identical mirror of
-    # the live source at super-intelligence/hooks — not yet canonical itself.
-    diffs = []
-    for f in DESIGN_HOOK_FILES + ("design_hook_lib.py",):
-        live, mirror = HOOKS / f, plugin_hooks_dir / f
-        if not live.exists() or not mirror.exists():
-            diffs.append(f"missing:{f}")
-        elif live.read_bytes() != mirror.read_bytes():
-            diffs.append(f"differ:{f}")
-    check("plugin hooks byte-identical to super-intelligence/hooks",
-          not diffs, "; ".join(diffs))
+    # hooks/ here IS the canonical source now (design hooks moved out of
+    # super-intelligence 2026-09-04) — nothing external to byte-compare it
+    # against any more. Every hook file existing is already covered by the
+    # "hook present" checks in -- install -- above (HOOKS == plugin_hooks_dir)
+    # and by the hooks.json entry check just above.
 
     print("\n-- mirror --")
     sync_script = Path(__file__).resolve().parent / "scripts" / "sync-from-live.py"
@@ -179,6 +169,10 @@ def main() -> int:
     check("repo == live (scripts/sync-from-live.py --check)", p.returncode == 0, first_line)
 
     print("\n-- settings wiring --")
+    # The plugin's own hooks.json (HOOKS/hooks.json) is self-contained — just
+    # the 8 design-hook registrations, loaded into a session via
+    # ${CLAUDE_PLUGIN_ROOT}. It never carries carl-hook.py or the gstack
+    # hooks, so those are no longer checked against it.
     try:
         st = json.loads((HOOKS / "hooks.json").read_text(encoding="utf-8"))
         cmds = [h.get("command", "") for arr in st.get("hooks", {}).values()
@@ -186,11 +180,27 @@ def main() -> int:
         for want in ("design-gate.py", "design-route.py", "design-telemetry.py",
                      "design-verify-gate.py", "design-stop.py", "design-intent.py"):
             check(f"wired: {want}", any(want in c for c in cmds))
-        check("CARL preserved", any("carl-hook.py" in c for c in cmds))
-        check("gstack hooks preserved",
-              sum("gstack" in c for c in cmds) >= 3)
     except Exception as e:
-        check("hooks.json parses", False, str(e))
+        check("plugin hooks.json parses (wiring)", False, str(e))
+
+    # The other half of the split: super-intelligence's own hooks.json must
+    # have lost every design-* reference while keeping CARL and the gstack
+    # hooks intact. Skipped (not failed) if that checkout isn't present —
+    # this machine-specific path isn't guaranteed to exist for every runner.
+    si_hooks = Path.home() / "super-intelligence" / "hooks" / "hooks.json"
+    if si_hooks.exists():
+        try:
+            st = json.loads(si_hooks.read_text(encoding="utf-8"))
+            cmds = [h.get("command", "") for arr in st.get("hooks", {}).values()
+                    for b in arr for h in b.get("hooks", [])]
+            check("super-intelligence hooks.json has no design-* entries",
+                  not any("design-" in c or "design_" in c for c in cmds),
+                  "; ".join(c for c in cmds if "design-" in c or "design_" in c))
+            check("super-intelligence: CARL preserved", any("carl-hook.py" in c for c in cmds))
+            check("super-intelligence: gstack hooks preserved",
+                  sum("gstack" in c for c in cmds) >= 3)
+        except Exception as e:
+            check("super-intelligence hooks.json parses", False, str(e))
 
     print("\n-- routing table --")
     sys.path.insert(0, str(HOOKS))

@@ -1,12 +1,21 @@
 #!/usr/bin/env python
 """Mirror the live design system into this repo. Live copies are canonical:
     SKILLS_LIVE = ~/OneDrive/Dokument/Obsidian/Knowledge Base/.agents/skills
-    HOOKS_LIVE  = ~/super-intelligence/hooks
+    HOOKS_LIVE  = this repo's own hooks/ (the plugin checkout)
+
+The design hooks moved out of super-intelligence and into this repo
+(2026-09-04, see CHANGELOG). hooks/ here is no longer a mirror of an
+external source for hook *content* — it IS the plugin, loaded into a
+session via ${CLAUDE_PLUGIN_ROOT}. What still gets synced is .claude/hooks/,
+a full local-dev copy of those same files kept for testing this repo's own
+Claude Code session; its source is now hooks/ itself, not super-intelligence.
+The one-time copy into super-intelligence/skills/design (the old plugin
+location) is gone too — that directory no longer exists there and should not
+be recreated by this script.
 
 Usage:
-    python scripts/sync-from-live.py             copy live -> repo (+ plugin)
-    python scripts/sync-from-live.py --check      report drift, write nothing
-    python scripts/sync-from-live.py --no-plugin  skip the plugin copy sync
+    python scripts/sync-from-live.py          copy live -> repo
+    python scripts/sync-from-live.py --check  report drift, write nothing
 """
 
 from __future__ import annotations
@@ -17,12 +26,17 @@ from pathlib import Path
 
 HOME = Path.home()
 SKILLS_LIVE = HOME / "OneDrive" / "Dokument" / "Obsidian" / "Knowledge Base" / ".agents" / "skills"
-HOOKS_LIVE = HOME / "super-intelligence" / "hooks"
 REPO_ROOT = Path(__file__).resolve().parent.parent
-PLUGIN_DESIGN = HOME / "super-intelligence" / "skills" / "design"
+HOOKS_LIVE = REPO_ROOT / "hooks"
 
 SKILL_NAMES = ("design", "design-verify", "brand-system", "a11y-audit", "design-catalog")
-HOOK_NAMES = ("hooks.json",)  # plus design*.py / design_*.py, see hook_files()
+# hooks.json is deliberately NOT synced here: hooks/hooks.json (HOOKS_LIVE) is
+# the plugin's own isolated 8-entry manifest, while .claude/hooks/hooks.json
+# is a full local-dev copy of every hook this repo's own Claude Code session
+# wires (carl-hook.py, marketing/business hooks, chorus, the design hooks,
+# etc. — 28 entries). Only the design-*.py / design_*.py script files are
+# shared between the two; the manifests themselves are different documents.
+HOOK_NAMES: tuple[str, ...] = ()  # scripts only, matched by hook_files()'s startswith check
 SKIP_NAMES = {"__pycache__", ".DS_Store", ".impeccable"}
 
 
@@ -86,7 +100,6 @@ def apply_pair(src_files: dict, dst_files: dict, dst_root: Path) -> tuple[int, i
 
 def main() -> int:
     check = "--check" in sys.argv[1:]
-    plugin = "--no-plugin" not in sys.argv[1:]
 
     # (prefix, src_files, dst_files, dst_root)
     pairs = [
@@ -96,9 +109,6 @@ def main() -> int:
     ]
     hooks_dst = REPO_ROOT / ".claude" / "hooks"
     pairs.append((".claude/hooks/", hook_files(HOOKS_LIVE), hook_files(hooks_dst), hooks_dst))
-    if plugin:
-        pairs.append(("(plugin) super-intelligence/skills/design/",
-                       walk_files(SKILLS_LIVE / "design"), walk_files(PLUGIN_DESIGN), PLUGIN_DESIGN))
 
     if check:
         diffs = [line for prefix, s, d, _ in pairs for line in diff_pair(s, d, prefix)]
