@@ -1,0 +1,182 @@
+{
+  "$schema": "https://schemas.wp.org/trunk/theme.json",
+  "version": 3,
+  "settings": {
+    "color": {
+      "palette": [
+        {
+          "slug": "primary",
+          "color": "#fcf0f3",
+          "name": "Primary"
+        },
+        {
+          "slug": "secondary",
+          "color": "#007aff",
+          "name": "Secondary"
+        },
+        {
+          "slug": "accent",
+          "color": "#ff4f55",
+          "name": "Accent"
+        },
+        {
+          "slug": "neutral-1",
+          "color": "#000000",
+          "name": "Neutral 1"
+        },
+        {
+          "slug": "neutral-2",
+          "color": "#ffffff",
+          "name": "Neutral 2"
+        },
+        {
+          "slug": "neutral-3",
+          "color": "#333333",
+          "name": "Neutral 3"
+        },
+        {
+          "slug": "neutral-4",
+          "color": "#808080",
+          "name": "Neutral 4"
+        },
+        {
+          "slug": "bg-ffffff",
+          "color": "#ffffff",
+          "name": "Background #ffffff"
+        },
+        {
+          "slug": "bg-fcf0f3",
+          "color": "#fcf0f3",
+          "name": "Background #fcf0f3"
+        }
+      ],
+      "gradients": []
+    },
+    "typography": {
+      "fontFamilies": [
+        {
+          "fontFamily": "LinotypeHelveticaNeueLTStdRoman",
+          "slug": "linotypehelveticaneueltstdroman",
+          "name": "LinotypeHelveticaNeueLTStdRoman"
+        },
+        {
+          "fontFamily": "Times New Roman",
+          "slug": "times-new-roman",
+          "name": "Times New Roman"
+        },
+        {
+          "fontFamily": "Arial",
+          "slug": "arial",
+          "name": "Arial"
+        },
+        {
+          "fontFamily": "LinotypeHelveticaNeueLTStdLt",
+          "slug": "linotypehelveticaneueltstdlt",
+          "name": "LinotypeHelveticaNeueLTStdLt"
+        }
+      ],
+      "fontSizes": [
+        {
+          "size": "90px",
+          "slug": "size-90",
+          "name": "90px"
+        },
+        {
+          "size": "60px",
+          "slug": "size-60",
+          "name": "60px"
+        },
+        {
+          "size": "30px",
+          "slug": "size-30",
+          "name": "30px"
+        },
+        {
+          "size": "28px",
+          "slug": "size-28",
+          "name": "28px"
+        },
+        {
+          "size": "20px",
+          "slug": "size-20",
+          "name": "20px"
+        },
+        {
+          "size": "19.2px",
+          "slug": "size-19.2",
+          "name": "19.2px"
+        },
+        {
+          "size": "16px",
+          "slug": "size-16",
+          "name": "16px"
+        },
+        {
+          "size": "14px",
+          "slug": "size-14",
+          "name": "14px"
+        }
+      ]
+    },
+    "spacing": {
+      "spacingSizes": [
+        {
+          "size": "1px",
+          "slug": "spacing-1",
+          "name": "1px"
+        },
+        {
+          "size": "15px",
+          "slug": "spacing-15",
+          "name": "15px"
+        },
+        {
+          "size": "30px",
+          "slug": "spacing-30",
+          "name": "30px"
+        },
+        {
+          "size": "40px",
+          "slug": "spacing-40",
+          "name": "40px"
+        },
+        {
+          "size": "52px",
+          "slug": "spacing-52",
+          "name": "52px"
+        },
+        {
+          "size": "60px",
+          "slug": "spacing-60",
+          "name": "60px"
+        },
+        {
+          "size": "80px",
+          "slug": "spacing-80",
+          "name": "80px"
+        },
+        {
+          "size": "100px",
+          "slug": "spacing-100",
+          "name": "100px"
+        }
+      ]
+    },
+    "layout": {
+      "contentSize": "100%",
+      "wideSize": "1400px"
+    }
+  },
+  "styles": {
+    "color": {
+      "background": "#ffffff",
+      "text": "#000000"
+    },
+    "typography": {
+      "fontSize": "12px",
+      "lineHeight": "18px",
+      "fontFamily": "LinotypeHelveticaNeueLTStdRoman"
+    },
+    "spacing": {}
+  }
+}

@@ -1,0 +1,132 @@
+:root {
+  /* Colors — Primary */
+  --color-primary: #ffdede;
+  --color-secondary: #f1ede5;
+
+  /* Colors — Neutrals */
+  --color-neutral-50: #000000;
+  --color-neutral-100: #201f1d;
+  --color-neutral-200: #ffffff;
+  --color-neutral-300: #c6c3bb;
+  --color-neutral-400: #333333;
+  --color-neutral-500: #dddddd;
+  --color-neutral-600: #b8b8b8;
+  --color-neutral-700: #6a6a6a;
+  --color-neutral-800: #cccccc;
+
+  /* Colors — Backgrounds */
+  --color-bg: #f9f9f9;
+  --color-bg-1: #000000;
+  --color-bg-2: #f1ede5;
+
+  /* Colors — Text */
+  --color-text: #000000;
+  --color-text-1: #201f1d;
+  --color-text-2: #333333;
+  --color-text-3: #f9f9f9;
+  --color-text-4: #b8b8b8;
+
+  /* Typography — Families */
+  --font-body: 'PP Mori', sans-serif;
+  --font-heading: 'GT Super Display', sans-serif;
+
+  /* Typography — Scale */
+  --font-size-63.3333: 63.3333px;
+  --font-size-36: 36px;
+  --font-size-24: 24px;
+  --font-size-23.4667: 23.4667px;
+  --font-size-21: 21px;
+  --font-size-16: 16px;
+  --font-size-14: 14px;
+  --font-size-12.8: 12.8px;
+  --font-size-10.6667: 10.6667px;
+  --font-size-10: 10px;
+  --font-size-9.33333: 9.33333px;
+  --font-size-6.66667: 6.66667px;
+
+  /* Spacing */
+  --spacing-1: 1px;
+  --spacing-24: 24px;
+  --spacing-27: 27px;
+  --spacing-30: 30px;
+  --spacing-40: 40px;
+  --spacing-53: 53px;
+  --spacing-60: 60px;
+  --spacing-67: 67px;
+  --spacing-80: 80px;
+  --spacing-85: 85px;
+  --spacing-93: 93px;
+  --spacing-100: 100px;
+  --spacing-103: 103px;
+  --spacing-149: 149px;
+  --spacing-297: 297px;
+  --spacing-333: 333px;
+  --spacing-461: 461px;
+
+  /* Border Radius */
+  --radius-sm: 3px;
+  --radius-xl: 20px;
+  --radius-full: 50px;
+  --radius-full: 100px;
+  --radius-full: 640px;
+  --radius-full: 999px;
+  --radius-full: 1600px;
+  --radius-full: 15984px;
+
+  /* Original Site Variables */
+  /* — colors — */
+  --base-color-neutral--light: #f9f9f9;
+  --base-color-brand--black: #201f1d;
+  --text-color--text-primary<deleted|relume-variable-text-color-1>: var(--base-color-neutral--black\<deleted\|relume-variable-color-neutral-1\>);
+  --link-color--link-primary<deleted|relume-variable-link-color-1>: var(--base-color-neutral--black\<deleted\|relume-variable-color-neutral-1\>);
+  --text-color--text-alternate<deleted|relume-variable-text-color-3>: var(--base-color-neutral--white\<deleted\|relume-variable-color-neutral-2\>);
+  --border-color--border-primary<deleted|relume-variable-border-color-1>: var(--base-color-neutral--black\<deleted\|relume-variable-color-neutral-1\>);
+  --base-color-neutral--white<deleted|relume-variable-color-neutral-2>: white;
+  --base-color-neutral--dark: black;
+  --base-color-brand--white: white;
+  --base-color-neutral--black<deleted|relume-variable-color-neutral-1>: black;
+  --base-color-neutral--transparent: #fff0;
+  --base-color-neutral--darker-beige: #c6c3bb;
+  --background-color--background-secondary<deleted|relume-variable-background-color-2>: var(--base-color-neutral--transparent);
+  --background-color--background-alternate<deleted|relume-variable-background-color-4>: var(--base-color-neutral--black\<deleted\|relume-variable-color-neutral-1\>);
+  --link-color--link-alternate<deleted|relume-variable-link-color-3>: var(--base-color-neutral--white\<deleted\|relume-variable-color-neutral-2\>);
+  --background-color--background-primary<deleted|relume-variable-background-color-1>: var(--base-color-neutral--white\<deleted\|relume-variable-color-neutral-2\>);
+  --background-color--background-tertiary<deleted|relume-variable-background-color-3>: var(--base-color-neutral--neutral-light\<deleted\|relume-variable-color-neutral-5\>);
+  --text-color--text-secondary<deleted|relume-variable-text-color-2>: var(--base-color-neutral--black\<deleted\|relume-variable-color-neutral-1\>);
+  --background-color--background-success<deleted|relume-variable-background-color-6>: var(--base-color-system--success-green-light\<deleted\|relume-variable-system-color-2\>);
+  --text-color--text-success<deleted|relume-variable-text-color-4>: var(--base-color-system--success-green\<deleted\|relume-variable-system-color-1\>);
+  --background-color--background-error<deleted|relume-variable-background-color-8>: var(--base-color-system--error-red-light\<deleted\|relume-variable-system-color-6\>);
+  --text-color--text-error<deleted|relume-variable-text-color-5>: var(--base-color-system--error-red\<deleted\|relume-variable-system-color-5\>);
+  --base-color-brand--beige: #f1ede5;
+  --base-color-neutral--light-grey: #6a6a6a;
+  --base-color-neutral--light-secondary: #fff3;
+  --base-color-neutral--neutral-light<deleted|relume-variable-color-neutral-5>: #aaa;
+  --base-color-system--success-green-light<deleted|relume-variable-system-color-2>: #ecfdf3;
+  --base-color-system--success-green<deleted|relume-variable-system-color-1>: #027a48;
+  --base-color-system--error-red-light<deleted|relume-variable-system-color-6>: #fef3f2;
+  --base-color-system--error-red<deleted|relume-variable-system-color-5>: #b42318;
+  /* — other — */
+  --black-archive<deleted|variable-dccb7db6>: black;
+  --dark-grey: #383838;
+  /* — dependencies — */
+  --text-color--text-primary<deleted|relume-variable-text-color-1>: --base-color-neutral--black;
+  --link-color--link-primary<deleted|relume-variable-link-color-1>: --base-color-neutral--black;
+  --text-color--text-alternate<deleted|relume-variable-text-color-3>: --base-color-neutral--white;
+  --border-color--border-primary<deleted|relume-variable-border-color-1>: --base-color-neutral--black;
+  --background-color--background-secondary<deleted|relume-variable-background-color-2>: --base-color-neutral--transparent;
+  --background-color--background-alternate<deleted|relume-variable-background-color-4>: --base-color-neutral--black;
+  --link-color--link-alternate<deleted|relume-variable-link-color-3>: --base-color-neutral--white;
+  --background-color--background-primary<deleted|relume-variable-background-color-1>: --base-color-neutral--white;
+  --background-color--background-tertiary<deleted|relume-variable-background-color-3>: --base-color-neutral--neutral-light;
+  --text-color--text-secondary<deleted|relume-variable-text-color-2>: --base-color-neutral--black;
+  --background-color--background-success<deleted|relume-variable-background-color-6>: --base-color-system--success-green-light;
+  --text-color--text-success<deleted|relume-variable-text-color-4>: --base-color-system--success-green;
+  --background-color--background-error<deleted|relume-variable-background-color-8>: --base-color-system--error-red-light;
+  --text-color--text-error<deleted|relume-variable-text-color-5>: --base-color-system--error-red;
+  /* — semantic — */
+  success: [object Object];
+  warning: [object Object];
+  error: [object Object];
+  info: [object Object];
+
+}

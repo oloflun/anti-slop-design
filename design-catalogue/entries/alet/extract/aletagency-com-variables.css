@@ -1,0 +1,103 @@
+:root {
+  /* Colors — Primary */
+  --color-primary: #dc3545;
+  --color-secondary: #e5ddc4;
+
+  /* Colors — Neutrals */
+  --color-neutral-50: #000000;
+  --color-neutral-100: #252525;
+  --color-neutral-200: #101010;
+  --color-neutral-300: #ffffff;
+  --color-neutral-400: #454545;
+  --color-neutral-500: #a2a093;
+  --color-neutral-600: #bfb5ab;
+
+  /* Colors — Backgrounds */
+  --color-bg: #e5ddc4;
+  --color-bg-1: #a2a093;
+  --color-bg-2: #dc3545;
+
+  /* Colors — Text */
+  --color-text: #000000;
+  --color-text-1: #252525;
+  --color-text-2: #101010;
+  --color-text-3: #ffffff;
+
+  /* Typography — Families */
+  --font-body: 'WorkSans-Regular', sans-serif;
+  --font-heading: 'SilkSerif-Light', sans-serif;
+  --font-body: 'SilkSerif-LightItalic', sans-serif;
+
+  /* Typography — Scale */
+  --font-size-36: 36px;
+  --font-size-20.5632: 20.5632px;
+  --font-size-12: 12px;
+  --font-size-11.52: 11.52px;
+  --font-size-9.6: 9.6px;
+
+  /* Spacing */
+  --spacing-1: 1px;
+  --spacing-59: 59px;
+  --spacing-90: 90px;
+  --spacing-154: 154px;
+  --spacing-186: 186px;
+  --spacing-237: 237px;
+  --spacing-294: 294px;
+  --spacing-320: 320px;
+  --spacing-352: 352px;
+  --spacing-435: 435px;
+  --spacing-454: 454px;
+  --spacing-474: 474px;
+
+  /* Border Radius */
+  --radius-md: 10px;
+  --radius-full: 9999px;
+
+  /* Box Shadows */
+  --shadow-sm: rgba(0, 0, 0, 0.1) 0px 1px 3px 0px, rgba(0, 0, 0, 0.06) 0px 1px 2px 0px;
+
+  /* Original Site Variables */
+  /* — colors — */
+  --primary: #007bff;
+  --secondary: #6c757d;
+  /* — spacing — */
+  --font-family-monospace: SFMono-Regular,Menlo,Monaco,Consolas,"Liberation Mono","Courier New",monospace;
+  --font-size-xlg: 9.3312px;
+  --font-size-xl: 9.6px;
+  --font-size-sm: 14.4px;
+  --font-size: 36.48px;
+  /* — typography — */
+  --font-family-sans-serif: "WorkSans-Regular";
+  /* — other — */
+  --blue: #007bff;
+  --indigo: #6610f2;
+  --purple: #6f42c1;
+  --pink: #e83e8c;
+  --red: #dc3545;
+  --orange: #fd7e14;
+  --yellow: #ffc107;
+  --green: #28a745;
+  --teal: #20c997;
+  --cyan: #17a2b8;
+  --white: #fff;
+  --gray: #6c757d;
+  --gray-dark: #343a40;
+  --success: #28a745;
+  --info: #17a2b8;
+  --warning: #ffc107;
+  --danger: #dc3545;
+  --light: #f8f9fa;
+  --dark: #343a40;
+  --breakpoint-xs: 0;
+  --breakpoint-sm: 576px;
+  --breakpoint-md: 744px;
+  --breakpoint-lg: 1024px;
+  --breakpoint-xl: 1200px;
+  --breakpoint-xlg: 1500px;
+  /* — semantic — */
+  success: [object Object];
+  warning: [object Object];
+  error: [object Object];
+  info: [object Object];
+
+}

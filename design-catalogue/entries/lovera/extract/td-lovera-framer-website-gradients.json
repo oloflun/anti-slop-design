@@ -1,0 +1,60 @@
+{
+  "$schema": "https://designlang.app/schemas/gradients.json",
+  "source": "https://td-lovera.framer.website",
+  "generated": "2026-09-04T00:28:02.372Z",
+  "count": 3,
+  "gradients": [
+    {
+      "raw": "linear-gradient(60deg, rgb(30, 31, 31) 31%, rgb(67, 70, 69) 100%)",
+      "type": "linear",
+      "direction": "60deg",
+      "stops": [
+        {
+          "color": "rgb(30, 31, 31)",
+          "position": "31%"
+        },
+        {
+          "color": "rgb(67, 70, 69)",
+          "position": "100%"
+        }
+      ],
+      "classification": "brand"
+    },
+    {
+      "raw": "radial-gradient(17.86% 56% at 37.8% 29.2%, rgb(255, 240, 235) 0%, rgba(255, 255, 250, 0) 100%)",
+      "type": "radial",
+      "direction": null,
+      "stops": [
+        {
+          "color": "17.86% 56% at 37.8%",
+          "position": "29.2%"
+        },
+        {
+          "color": "rgb(255, 240, 235)",
+          "position": "0%"
+        },
+        {
+          "color": "rgba(255, 255, 250, 0)",
+          "position": "100%"
+        }
+      ],
+      "classification": "bold"
+    },
+    {
+      "raw": "linear-gradient(rgba(47, 49, 48, 0) 0%, rgba(23, 23, 23, 0.2) 146%)",
+      "type": "linear",
+      "direction": null,
+      "stops": [
+        {
+          "color": "rgba(47, 49, 48, 0)",
+          "position": "0%"
+        },
+        {
+          "color": "rgba(23, 23, 23, 0.2)",
+          "position": "146%"
+        }
+      ],
+      "classification": "brand"
+    }
+  ]
+}

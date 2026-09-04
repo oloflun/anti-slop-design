@@ -1,0 +1,97 @@
+{
+  "materialLanguage": {
+    "label": "flat",
+    "confidence": 0,
+    "signals": [],
+    "metrics": {
+      "saturation": 0.438,
+      "shadowProfile": "soft",
+      "avgShadowBlur": 0,
+      "maxShadowBlur": 0,
+      "insetShadows": 0,
+      "avgRadius": 42.3,
+      "maxRadius": 100,
+      "hasPill": false,
+      "hasBackdropBlur": false,
+      "gradientCount": 4
+    },
+    "alternates": []
+  },
+  "imageryStyle": {
+    "label": "photography",
+    "confidence": 0.473,
+    "counts": {
+      "total": 37,
+      "svg": 0,
+      "icon": 0,
+      "hero": 0,
+      "screenshot": 0,
+      "photoLike": 33
+    },
+    "dominantAspect": "portrait",
+    "radiusProfile": "square",
+    "alternates": [],
+    "signals": [
+      "raster photo-ext",
+      "raster photo-ext",
+      "raster photo-ext",
+      "raster photo-ext",
+      "raster photo-ext",
+      "raster photo-ext",
+      "raster photo-ext",
+      "raster photo-ext",
+      "raster photo-ext",
+      "raster photo-ext"
+    ]
+  },
+  "backgroundPatterns": {
+    "labels": [
+      "line-grid"
+    ],
+    "counts": {
+      "noise": 0,
+      "dotGrid": 0,
+      "lineGrid": 19,
+      "meshCount": 0,
+      "svgPattern": 0
+    },
+    "gradientTotals": {
+      "radial": 0,
+      "linear": 20
+    },
+    "samples": [
+      {
+        "tag": "line-grid",
+        "value": "repeating-linear-gradient(90deg, rgb(255, 237, 215) 0px, rgb(255, 237, 215) 2px, rgba(255, 237, 215, 0) 0px, rgba(255, 237, 215, 0) 4px)"
+      },
+      {
+        "tag": "line-grid",
+        "value": "repeating-linear-gradient(90deg, rgb(255, 237, 215) 0px, rgb(255, 237, 215) 2px, rgba(255, 237, 215, 0) 0px, rgba(255, 237, 215, 0) 4px)"
+      },
+      {
+        "tag": "line-grid",
+        "value": "repeating-linear-gradient(90deg, rgb(255, 237, 215) 0px, rgb(255, 237, 215) 2px, rgba(255, 237, 215, 0) 0px, rgba(255, 237, 215, 0) 4px)"
+      },
+      {
+        "tag": "line-grid",
+        "value": "repeating-linear-gradient(90deg, rgb(255, 237, 215) 0px, rgb(255, 237, 215) 2px, rgba(255, 237, 215, 0) 0px, rgba(255, 237, 215, 0) 4px)"
+      },
+      {
+        "tag": "line-grid",
+        "value": "repeating-linear-gradient(90deg, rgb(255, 237, 215) 0px, rgb(255, 237, 215) 2px, rgba(255, 237, 215, 0) 0px, rgba(255, 237, 215, 0) 4px)"
+      },
+      {
+        "tag": "line-grid",
+        "value": "repeating-linear-gradient(90deg, rgb(255, 237, 215) 0px, rgb(255, 237, 215) 2px, rgba(255, 237, 215, 0) 0px, rgba(255, 237, 215, 0) 4px)"
+      },
+      {
+        "tag": "line-grid",
+        "value": "repeating-linear-gradient(90deg, rgb(255, 237, 215) 0px, rgb(255, 237, 215) 3px, rgba(255, 237, 215, 0) 0px, rgba(255, 237, 215, 0) 6px)"
+      },
+      {
+        "tag": "line-grid",
+        "value": "repeating-linear-gradient(0deg, rgb(255, 237, 215) 0px, rgb(255, 237, 215) 3px, rgba(255, 237, 215, 0) 0px, rgba(255, 237, 215, 0) 6px)"
+      }
+    ]
+  }
+}

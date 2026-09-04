@@ -1,0 +1,13 @@
+/* shadcn/ui Theme — extracted from https://altitudebev.com */
+/* Paste into your globals.css */
+
+@layer base {
+  :root {
+    --background: 0 0% 50%;
+    --foreground: 0 0% 0%;
+    --muted: 0 0% 50%;
+    --muted-foreground: 0 0% 98%;
+    --border: 0 0% 50%;
+    --radius: 32px;
+  }
+}

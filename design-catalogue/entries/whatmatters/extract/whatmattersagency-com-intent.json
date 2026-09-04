@@ -1,0 +1,373 @@
+{
+  "pageIntent": {
+    "type": "landing",
+    "confidence": 0.59,
+    "path": "/",
+    "title": "What Matters Agency",
+    "description": "Australia's leading marketing agency for multi-venue hospitality groups. We focus on mobile-native content, social media distribution and paid media. Our clients include: Sydney Fish Market, Solotel, ",
+    "signals": [
+      {
+        "kind": "dom",
+        "type": "blog-post",
+        "weight": 0.35,
+        "detail": "byline|min-read"
+      },
+      {
+        "kind": "dom",
+        "type": "legal",
+        "weight": 0.4
+      },
+      {
+        "kind": "url",
+        "type": "landing",
+        "weight": 0.45,
+        "detail": "root-path"
+      },
+      {
+        "kind": "shape",
+        "type": "landing",
+        "weight": 0.3,
+        "detail": "features+hero+footer"
+      }
+    ],
+    "alternates": [
+      {
+        "type": "legal",
+        "score": 0.4
+      },
+      {
+        "type": "blog-post",
+        "score": 0.35
+      }
+    ],
+    "needsSmart": true
+  },
+  "sectionRoles": {
+    "sections": [
+      {
+        "index": 0,
+        "tag": "div",
+        "role": "nav",
+        "subrole": null,
+        "confidence": 0.9,
+        "heading": null,
+        "bounds": {
+          "x": 0,
+          "y": 0,
+          "w": 1280,
+          "h": 72
+        },
+        "buttonCount": 1,
+        "cardCount": 0,
+        "slots": {
+          "ctaCount": 1,
+          "lede": "CONTACT"
+        },
+        "needsSmart": false
+      },
+      {
+        "index": 1,
+        "tag": "nav",
+        "role": "nav",
+        "subrole": null,
+        "confidence": 0.9,
+        "heading": null,
+        "bounds": {
+          "x": 1127.625,
+          "y": 36,
+          "w": 0,
+          "h": 0
+        },
+        "buttonCount": 0,
+        "cardCount": 0,
+        "slots": {},
+        "needsSmart": false
+      },
+      {
+        "index": 2,
+        "tag": "main",
+        "role": "feature-grid",
+        "subrole": null,
+        "confidence": 0.8,
+        "heading": "CONTENT +\nSOCIAL MEDIA +\nPAID MEDIA",
+        "bounds": {
+          "x": 0,
+          "y": 0,
+          "w": 1280,
+          "h": 6664.046875
+        },
+        "buttonCount": 2,
+        "cardCount": 70,
+        "slots": {
+          "heading": "CONTENT +\nSOCIAL MEDIA +\nPAID MEDIA",
+          "subheadings": [
+            "CONTENT +\nSOCIAL MEDIA +\nPAID MEDIA",
+            "CONTENT +\nSOCIAL MEDIA +\nPAID MEDIA",
+            "WHAT\nMATTERS\n",
+            "(AGENCY)"
+          ],
+          "ctaCount": 2,
+          "lede": "HELLO WORLD\nHELLO WORLD\nCONTENT +\nSOCIAL MEDIA +\nPAID MEDIA\nCONTENT +\nSOCIAL MEDIA +\nPAID MEDIA\nCONTENT +\nSOCIAL MEDIA +\nPAID MEDIA\nWHAT\nMATTERS"
+        },
+        "needsSmart": false
+      },
+      {
+        "index": 3,
+        "tag": "section",
+        "role": "hero",
+        "subrole": null,
+        "confidence": 0.85,
+        "heading": "CONTENT +\nSOCIAL MEDIA +\nPAID MEDIA",
+        "bounds": {
+          "x": 0,
+          "y": 0,
+          "w": 1280,
+          "h": 800
+        },
+        "buttonCount": 0,
+        "cardCount": 0,
+        "slots": {
+          "heading": "CONTENT +\nSOCIAL MEDIA +\nPAID MEDIA",
+          "subheadings": [
+            "CONTENT +\nSOCIAL MEDIA +\nPAID MEDIA",
+            "CONTENT +\nSOCIAL MEDIA +\nPAID MEDIA",
+            "WHAT\nMATTERS\n",
+            "(AGENCY)"
+          ],
+          "lede": "CONTENT +\nSOCIAL MEDIA +\nPAID MEDIA\nCONTENT +\nSOCIAL MEDIA +\nPAID MEDIA\nCONTENT +\nSOCIAL MEDIA +\nPAID MEDIA\nWHAT\nMATTERS"
+        },
+        "needsSmart": false
+      },
+      {
+        "index": 4,
+        "tag": "section",
+        "role": "content",
+        "subrole": null,
+        "confidence": 0.3,
+        "heading": "OUR CLIENTS",
+        "bounds": {
+          "x": 0,
+          "y": 840,
+          "w": 1280,
+          "h": 294.09375
+        },
+        "buttonCount": 0,
+        "cardCount": 0,
+        "slots": {
+          "heading": "OUR CLIENTS"
+        },
+        "needsSmart": true
+      },
+      {
+        "index": 5,
+        "tag": "section",
+        "role": "content",
+        "subrole": null,
+        "confidence": 0.3,
+        "heading": "CREATIVE-\nCREATIVE-\nFIRST.\nFIRST.\nHOSPITALITY\nHOSPITALITY\n FOCUSED.\n FOCUSED.\nSYSTEMS\nSYSTEMS\n ENABLED.\n ENABLED.",
+        "bounds": {
+          "x": 0,
+          "y": 1134.09375,
+          "w": 1280,
+          "h": 914.578125
+        },
+        "buttonCount": 0,
+        "cardCount": 0,
+        "slots": {
+          "heading": "CREATIVE-\nCREATIVE-\nFIRST.\nFIRST.\nHOSPITALITY\nHOSPITALITY\n FOCUSED.\n FOCUSED.\nSYSTEMS\nSYSTEMS\n ENABLED.\n ENABLED."
+        },
+        "needsSmart": true
+      },
+      {
+        "index": 6,
+        "tag": "section",
+        "role": "content",
+        "subrole": null,
+        "confidence": 0.3,
+        "heading": "OUR PROUD SELECTION",
+        "bounds": {
+          "x": 0,
+          "y": 2048.671875,
+          "w": 1280,
+          "h": 1418.46875
+        },
+        "buttonCount": 0,
+        "cardCount": 37,
+        "slots": {
+          "heading": "OUR PROUD SELECTION",
+          "subheadings": [
+            "ABCDEFGHIJKLMNOP",
+            "The best work is born out of collaboration. We\nwork as an extension of your team. Here are a few projects we poured our\nhearts into."
+          ],
+          "lede": "OUR PROUD SELECTION\nABCDEFGHIJKLMNOP\nThe best work is born out of collaboration. We\nwork as an extension of your team. Here are a few projects we poured our\nhearts into.\nSydney Fish Market"
+        },
+        "needsSmart": true
+      },
+      {
+        "index": 7,
+        "tag": "section",
+        "role": "content",
+        "subrole": null,
+        "confidence": 0.3,
+        "heading": "WE DO WHAT (REALLY) MATTERS",
+        "bounds": {
+          "x": 0,
+          "y": 3467.140625,
+          "w": 1280,
+          "h": 681.90625
+        },
+        "buttonCount": 1,
+        "cardCount": 0,
+        "slots": {
+          "heading": "WE DO WHAT (REALLY) MATTERS",
+          "subheadings": [
+            "Every Hospitality Group is a Media Network and Every Venue a TV Channel. But most only run outdated commercials, NOT shows!"
+          ],
+          "ctaCount": 1,
+          "lede": "WE DO WHAT (REALLY) MATTERS\nEvery Hospitality Group is a Media Network and Every Venue a TV Channel. But most only run outdated commercials, NOT shows!\nVIEW SOME WORK"
+        },
+        "needsSmart": true
+      },
+      {
+        "index": 8,
+        "tag": "section",
+        "role": "testimonials",
+        "subrole": null,
+        "confidence": 0.4,
+        "heading": "WHAT WE OFFER",
+        "bounds": {
+          "x": 0,
+          "y": 4149.046875,
+          "w": 1280,
+          "h": 573.15625
+        },
+        "buttonCount": 0,
+        "cardCount": 0,
+        "slots": {
+          "heading": "WHAT WE OFFER",
+          "subheadings": [
+            "ABCDEFGHIJKLMNOP",
+            "Whether your goal is to better manage output,\nreach new customers or grow, we execute on strategies that deliver\nmeasurable results."
+          ],
+          "lede": "WHAT WE OFFER\nABCDEFGHIJKLMNOP\nWhether your goal is to better manage output,\nreach new customers or grow, we execute on strategies that deliver\nmeasurable results."
+        },
+        "needsSmart": true
+      },
+      {
+        "index": 9,
+        "tag": "section",
+        "role": "content",
+        "subrole": null,
+        "confidence": 0.3,
+        "heading": "WHY PARTNER WITH WHAT MATTERS?",
+        "bounds": {
+          "x": 0,
+          "y": 4722.203125,
+          "w": 1280,
+          "h": 617.9375
+        },
+        "buttonCount": 0,
+        "cardCount": 0,
+        "slots": {
+          "heading": "WHY PARTNER WITH WHAT MATTERS?",
+          "subheadings": [
+            "THE FUTURE OF HOSPO\nIS CONTENT\n& SMART\nDISTRIBUTION.\nWE DO BOTH!",
+            "\n\n@media (max-width: 35rem) {\n\n .inline_video_wrap {\n max-width: 25rem\n }\n\n .inline_video_block.u-d-none {\n display: block; !important\n}\n\n .inline_video_block.u-xs-d-none {\n display: none; !important\n}\n}\n\nThe future of hospois contentand smartdistribution.We do both!",
+            "\n\n@media (max-width: 35rem) {\n\n .inline_video_wrap {\n max-width: 25rem\n }\n\n .inline_video_block.u-d-none {\n display: block; !important\n}\n\n .inline_video_block.u-xs-d-none {\n display: none; !important\n}\n}\n\nThe future of hospo iscontent& smartdistribution.We do both!"
+          ],
+          "lede": "WHY PARTNER WITH WHAT MATTERS?\nTHE FUTURE OF HOSPO\nIS CONTENT\n& SMART\nDISTRIBUTION.\nWE DO BOTH!"
+        },
+        "needsSmart": true
+      },
+      {
+        "index": 10,
+        "tag": "section",
+        "role": "testimonial",
+        "subrole": null,
+        "confidence": 0.8,
+        "heading": "Testimonials",
+        "bounds": {
+          "x": 0,
+          "y": 5340.140625,
+          "w": 1280,
+          "h": 763.90625
+        },
+        "buttonCount": 0,
+        "cardCount": 32,
+        "slots": {
+          "heading": "Testimonials"
+        },
+        "needsSmart": false
+      },
+      {
+        "index": 11,
+        "tag": "section",
+        "role": "hero",
+        "subrole": null,
+        "confidence": 0.4,
+        "heading": "READY TO INVEST IN WHAT MATTERS?",
+        "bounds": {
+          "x": 0,
+          "y": 6104.046875,
+          "w": 1280,
+          "h": 560
+        },
+        "buttonCount": 1,
+        "cardCount": 0,
+        "slots": {
+          "heading": "READY TO INVEST IN WHAT MATTERS?",
+          "ctaCount": 1
+        },
+        "needsSmart": true
+      },
+      {
+        "index": 12,
+        "tag": "footer",
+        "role": "footer",
+        "subrole": null,
+        "confidence": 0.95,
+        "heading": "WHAT\nMATTERS\n",
+        "bounds": {
+          "x": 0,
+          "y": 6504.06640625,
+          "w": 1280,
+          "h": 639.921875
+        },
+        "buttonCount": 0,
+        "cardCount": 10,
+        "slots": {
+          "heading": "WHAT\nMATTERS\n",
+          "subheadings": [
+            "(AGENCY)"
+          ],
+          "lede": "WHAT\nMATTERS"
+        },
+        "needsSmart": false
+      }
+    ],
+    "counts": {
+      "nav": 2,
+      "feature-grid": 1,
+      "hero": 2,
+      "content": 5,
+      "testimonials": 1,
+      "testimonial": 1,
+      "footer": 1
+    },
+    "readingOrder": [
+      "nav",
+      "feature-grid",
+      "hero",
+      "nav",
+      "content",
+      "content",
+      "content",
+      "content",
+      "testimonials",
+      "content",
+      "testimonial",
+      "hero",
+      "footer"
+    ]
+  }
+}

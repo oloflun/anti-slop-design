@@ -1,0 +1,28 @@
+# Recipe: button
+Build one button component that matches this brand.
+Palette: #000000, #ffffff, #fbf27e, #70685c, #544e45, #8c8273
+Typography: [object Object], [object Object]
+Material: flat
+Signals: Use plain Tailwind CSS without a component library. · Radius: 5, 11, 14, 20, 24, 36 · Shadows: rgba(0, 0, 0, 0) 0px 0px 0px 0px, rgba(0, 0, 0, 0) 0px 0px 0px 0px, rgba(0, 0, 0, 0) 0px 0px 0px 0px, rgba(0, 0, 0, 0) 0px 0px 0px 0px, rgba(0, 0, 0, 0.05) 0px 1px 2px 0px | rgba(250, 177, 47, 0.15) 0px 7px 15px 0px, rgba(250, 177, 47, 0.13) 0px 27px 27px 0px, rgba(250, 177, 47, 0.08) 0px 61px 37px 0px
+## Anatomy (detected)
+```json
+{
+  "kind": "button",
+  "structuralHash": "article>div>div>div",
+  "instanceCount": 4,
+  "variants": [
+    {
+      "css": {
+        "background": "rgb(255, 255, 255)",
+        "color": "rgb(0, 0, 0)",
+        "padding": "28px 28px 28px 28px",
+        "borderRadius": "20px",
+        "border": "0px solid rgb(0, 0, 0)",
+        "fontSize": "16px",
+        "fontWeight": "400"
+      },
+      "instanceCount": 4
+    }
+  ]
+}
+```

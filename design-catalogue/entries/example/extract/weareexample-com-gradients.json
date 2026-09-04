@@ -1,0 +1,40 @@
+{
+  "$schema": "https://designlang.app/schemas/gradients.json",
+  "source": "https://www.weareexample.com",
+  "generated": "2026-09-04T00:26:36.721Z",
+  "count": 2,
+  "gradients": [
+    {
+      "raw": "linear-gradient(0deg, rgb(248, 248, 239), rgb(243, 243, 240))",
+      "type": "linear",
+      "direction": "0deg",
+      "stops": [
+        {
+          "color": "rgb(248, 248, 239)",
+          "position": null
+        },
+        {
+          "color": "rgb(243, 243, 240)",
+          "position": null
+        }
+      ],
+      "classification": "brand"
+    },
+    {
+      "raw": "linear-gradient(0deg, rgb(243, 243, 240), rgb(248, 248, 239))",
+      "type": "linear",
+      "direction": "0deg",
+      "stops": [
+        {
+          "color": "rgb(243, 243, 240)",
+          "position": null
+        },
+        {
+          "color": "rgb(248, 248, 239)",
+          "position": null
+        }
+      ],
+      "classification": "brand"
+    }
+  ]
+}

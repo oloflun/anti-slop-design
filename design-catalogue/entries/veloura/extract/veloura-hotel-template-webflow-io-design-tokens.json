@@ -1,0 +1,253 @@
+{
+  "$metadata": {
+    "generator": "designlang",
+    "version": "7.0.0",
+    "spec": "https://design-tokens.github.io/community-group/format/",
+    "source": "https://veloura-hotel-template.webflow.io",
+    "generatedAt": "2026-09-04T00:29:18.487Z"
+  },
+  "primitive": {
+    "color": {
+      "brand": {
+        "primary": {
+          "$value": "#9e4632",
+          "$type": "color"
+        },
+        "secondary": {
+          "$value": "#471b10",
+          "$type": "color"
+        }
+      },
+      "neutral": {
+        "n100": {
+          "$value": "#f3eeed",
+          "$type": "color"
+        },
+        "n200": {
+          "$value": "#000000",
+          "$type": "color"
+        },
+        "n300": {
+          "$value": "#ffffff",
+          "$type": "color"
+        }
+      },
+      "background": {
+        "bg0": {
+          "$value": "#2a0800",
+          "$type": "color"
+        },
+        "bg1": {
+          "$value": "#703324",
+          "$type": "color"
+        },
+        "bg2": {
+          "$value": "#000000",
+          "$type": "color"
+        },
+        "bg3": {
+          "$value": "#eee3e0",
+          "$type": "color"
+        },
+        "bg4": {
+          "$value": "#e9dad6",
+          "$type": "color"
+        }
+      },
+      "text": {
+        "text0": {
+          "$value": "#000000",
+          "$type": "color"
+        },
+        "text1": {
+          "$value": "#2a0800",
+          "$type": "color"
+        },
+        "text2": {
+          "$value": "#eee3e0",
+          "$type": "color"
+        },
+        "text3": {
+          "$value": "#f3eeed",
+          "$type": "color"
+        },
+        "text4": {
+          "$value": "#f5ccc2",
+          "$type": "color"
+        },
+        "text5": {
+          "$value": "#e9dad6",
+          "$type": "color"
+        },
+        "text6": {
+          "$value": "#ba6957",
+          "$type": "color"
+        },
+        "text7": {
+          "$value": "#e2c6bf",
+          "$type": "color"
+        },
+        "text8": {
+          "$value": "#e8bbb0",
+          "$type": "color"
+        },
+        "text9": {
+          "$value": "#ffffff",
+          "$type": "color"
+        }
+      }
+    },
+    "spacing": {
+      "s0": {
+        "$value": "1px",
+        "$type": "dimension"
+      },
+      "s1": {
+        "$value": "32px",
+        "$type": "dimension"
+      },
+      "s2": {
+        "$value": "38px",
+        "$type": "dimension"
+      },
+      "s3": {
+        "$value": "48px",
+        "$type": "dimension"
+      },
+      "s4": {
+        "$value": "77px",
+        "$type": "dimension"
+      },
+      "s5": {
+        "$value": "90px",
+        "$type": "dimension"
+      },
+      "s6": {
+        "$value": "102px",
+        "$type": "dimension"
+      },
+      "s7": {
+        "$value": "112px",
+        "$type": "dimension"
+      },
+      "s8": {
+        "$value": "128px",
+        "$type": "dimension"
+      },
+      "s9": {
+        "$value": "136px",
+        "$type": "dimension"
+      },
+      "s10": {
+        "$value": "160px",
+        "$type": "dimension"
+      },
+      "s11": {
+        "$value": "240px",
+        "$type": "dimension"
+      },
+      "s12": {
+        "$value": "320px",
+        "$type": "dimension"
+      },
+      "s13": {
+        "$value": "448px",
+        "$type": "dimension"
+      }
+    },
+    "radius": {
+      "r0": {
+        "$value": "10px",
+        "$type": "dimension"
+      },
+      "r1": {
+        "$value": "14px",
+        "$type": "dimension"
+      },
+      "r2": {
+        "$value": "20px",
+        "$type": "dimension"
+      },
+      "r3": {
+        "$value": "50px",
+        "$type": "dimension"
+      },
+      "r4": {
+        "$value": "99px",
+        "$type": "dimension"
+      },
+      "r5": {
+        "$value": "800px",
+        "$type": "dimension"
+      },
+      "r6": {
+        "$value": "999px",
+        "$type": "dimension"
+      }
+    },
+    "shadow": {},
+    "fontFamily": {
+      "f0": {
+        "$value": "Funnel Sans",
+        "$type": "fontFamily"
+      },
+      "f1": {
+        "$value": "Ltremark",
+        "$type": "fontFamily"
+      },
+      "f2": {
+        "$value": "Funnel Display",
+        "$type": "fontFamily"
+      }
+    }
+  },
+  "semantic": {
+    "color": {
+      "action": {
+        "primary": {
+          "$value": "{primitive.color.brand.primary}",
+          "$type": "color"
+        },
+        "secondary": {
+          "$value": "{primitive.color.brand.secondary}",
+          "$type": "color"
+        }
+      },
+      "surface": {
+        "default": {
+          "$value": "{primitive.color.background.bg0}",
+          "$type": "color"
+        }
+      },
+      "text": {
+        "body": {
+          "$value": "{primitive.color.text.text0}",
+          "$type": "color"
+        }
+      }
+    },
+    "typography": {
+      "body": {
+        "$value": {
+          "fontFamily": "Funnel Sans",
+          "fontSize": "217.6px",
+          "fontWeight": "700",
+          "lineHeight": "261.12px"
+        },
+        "$type": "typography"
+      }
+    },
+    "radius": {
+      "control": {
+        "$value": "{primitive.radius.r0}",
+        "$type": "dimension"
+      }
+    },
+    "shadow": {
+      "elevated": {
+        "$value": "{primitive.shadow.sh0}",
+        "$type": "shadow"
+      }
+    }
+  }
+}

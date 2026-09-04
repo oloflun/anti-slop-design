@@ -1,0 +1,165 @@
+{
+  "$metadata": {
+    "generator": "designlang",
+    "version": "7.0.0",
+    "spec": "https://design-tokens.github.io/community-group/format/",
+    "source": "https://halston-architecture-template.webflow.io/",
+    "generatedAt": "2026-09-04T00:53:14.700Z"
+  },
+  "primitive": {
+    "color": {
+      "brand": {
+        "primary": {
+          "$value": "#583939",
+          "$type": "color"
+        }
+      },
+      "neutral": {
+        "n100": {
+          "$value": "#583939",
+          "$type": "color"
+        },
+        "n200": {
+          "$value": "#000000",
+          "$type": "color"
+        },
+        "n300": {
+          "$value": "#ffffff",
+          "$type": "color"
+        },
+        "n400": {
+          "$value": "#99988f",
+          "$type": "color"
+        }
+      },
+      "background": {
+        "bg0": {
+          "$value": "#583939",
+          "$type": "color"
+        }
+      },
+      "text": {
+        "text0": {
+          "$value": "#000000",
+          "$type": "color"
+        },
+        "text1": {
+          "$value": "#583939",
+          "$type": "color"
+        },
+        "text2": {
+          "$value": "#ffffff",
+          "$type": "color"
+        }
+      }
+    },
+    "spacing": {
+      "s0": {
+        "$value": "3px",
+        "$type": "dimension"
+      },
+      "s1": {
+        "$value": "42px",
+        "$type": "dimension"
+      },
+      "s2": {
+        "$value": "48px",
+        "$type": "dimension"
+      },
+      "s3": {
+        "$value": "64px",
+        "$type": "dimension"
+      },
+      "s4": {
+        "$value": "80px",
+        "$type": "dimension"
+      },
+      "s5": {
+        "$value": "96px",
+        "$type": "dimension"
+      },
+      "s6": {
+        "$value": "115px",
+        "$type": "dimension"
+      },
+      "s7": {
+        "$value": "192px",
+        "$type": "dimension"
+      },
+      "s8": {
+        "$value": "320px",
+        "$type": "dimension"
+      },
+      "s9": {
+        "$value": "483px",
+        "$type": "dimension"
+      }
+    },
+    "radius": {
+      "r0": {
+        "$value": "3px",
+        "$type": "dimension"
+      },
+      "r1": {
+        "$value": "50px",
+        "$type": "dimension"
+      }
+    },
+    "shadow": {},
+    "fontFamily": {
+      "f0": {
+        "$value": "General Sans",
+        "$type": "fontFamily"
+      },
+      "f1": {
+        "$value": "JetBrains Mono",
+        "$type": "fontFamily"
+      }
+    }
+  },
+  "semantic": {
+    "color": {
+      "action": {
+        "primary": {
+          "$value": "{primitive.color.brand.primary}",
+          "$type": "color"
+        }
+      },
+      "surface": {
+        "default": {
+          "$value": "{primitive.color.background.bg0}",
+          "$type": "color"
+        }
+      },
+      "text": {
+        "body": {
+          "$value": "{primitive.color.text.text0}",
+          "$type": "color"
+        }
+      }
+    },
+    "typography": {
+      "body": {
+        "$value": {
+          "fontFamily": "General Sans",
+          "fontSize": "192px",
+          "fontWeight": "500",
+          "lineHeight": "153.6px"
+        },
+        "$type": "typography"
+      }
+    },
+    "radius": {
+      "control": {
+        "$value": "{primitive.radius.r0}",
+        "$type": "dimension"
+      }
+    },
+    "shadow": {
+      "elevated": {
+        "$value": "{primitive.shadow.sh0}",
+        "$type": "shadow"
+      }
+    }
+  }
+}

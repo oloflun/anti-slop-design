@@ -1,0 +1,162 @@
+{
+  "$schema": "https://schemas.wp.org/trunk/theme.json",
+  "version": 3,
+  "settings": {
+    "color": {
+      "palette": [
+        {
+          "slug": "neutral-1",
+          "color": "#e5e7eb",
+          "name": "Neutral 1"
+        },
+        {
+          "slug": "neutral-2",
+          "color": "#222222",
+          "name": "Neutral 2"
+        },
+        {
+          "slug": "neutral-3",
+          "color": "#000000",
+          "name": "Neutral 3"
+        },
+        {
+          "slug": "neutral-4",
+          "color": "#343434",
+          "name": "Neutral 4"
+        },
+        {
+          "slug": "neutral-5",
+          "color": "#aaaaaa",
+          "name": "Neutral 5"
+        },
+        {
+          "slug": "bg-343434",
+          "color": "#343434",
+          "name": "Background #343434"
+        },
+        {
+          "slug": "bg-ececec",
+          "color": "#ececec",
+          "name": "Background #ececec"
+        }
+      ],
+      "gradients": []
+    },
+    "typography": {
+      "fontFamilies": [
+        {
+          "fontFamily": "TT Hoves Pro Trial",
+          "slug": "tt-hoves-pro-trial",
+          "name": "TT Hoves Pro Trial"
+        },
+        {
+          "fontFamily": "NeueMontreal",
+          "slug": "neuemontreal",
+          "name": "NeueMontreal"
+        }
+      ],
+      "fontSizes": [
+        {
+          "size": "24px",
+          "slug": "size-24",
+          "name": "24px"
+        },
+        {
+          "size": "21.3334px",
+          "slug": "size-21.3334",
+          "name": "21.3334px"
+        },
+        {
+          "size": "17.7778px",
+          "slug": "size-17.7778",
+          "name": "17.7778px"
+        },
+        {
+          "size": "14.2222px",
+          "slug": "size-14.2222",
+          "name": "14.2222px"
+        },
+        {
+          "size": "12.4444px",
+          "slug": "size-12.4444",
+          "name": "12.4444px"
+        },
+        {
+          "size": "9.77779px",
+          "slug": "size-9.77779",
+          "name": "9.77779px"
+        },
+        {
+          "size": "8.88889px",
+          "slug": "size-8.88889",
+          "name": "8.88889px"
+        },
+        {
+          "size": "8.88883px",
+          "slug": "size-8.88883",
+          "name": "8.88883px"
+        }
+      ]
+    },
+    "spacing": {
+      "spacingSizes": [
+        {
+          "size": "4px",
+          "slug": "spacing-4",
+          "name": "4px"
+        },
+        {
+          "size": "43px",
+          "slug": "spacing-43",
+          "name": "43px"
+        },
+        {
+          "size": "50px",
+          "slug": "spacing-50",
+          "name": "50px"
+        },
+        {
+          "size": "57px",
+          "slug": "spacing-57",
+          "name": "57px"
+        },
+        {
+          "size": "71px",
+          "slug": "spacing-71",
+          "name": "71px"
+        },
+        {
+          "size": "89px",
+          "slug": "spacing-89",
+          "name": "89px"
+        },
+        {
+          "size": "114px",
+          "slug": "spacing-114",
+          "name": "114px"
+        },
+        {
+          "size": "124px",
+          "slug": "spacing-124",
+          "name": "124px"
+        }
+      ]
+    },
+    "layout": {
+      "contentSize": "2400px",
+      "wideSize": "1400px"
+    }
+  },
+  "styles": {
+    "color": {
+      "background": "#343434",
+      "text": "#000000"
+    },
+    "typography": {
+      "fontSize": "8.88883px",
+      "lineHeight": "8.88883px",
+      "fontFamily": "TT Hoves Pro Trial"
+    },
+    "spacing": {}
+  }
+}

@@ -1,0 +1,261 @@
+{
+  "$metadata": {
+    "generator": "designlang",
+    "version": "7.0.0",
+    "spec": "https://design-tokens.github.io/community-group/format/",
+    "source": "https://www.eathungrytiger.com/",
+    "generatedAt": "2026-09-04T00:47:22.904Z"
+  },
+  "primitive": {
+    "color": {
+      "brand": {
+        "primary": {
+          "$value": "#faae33",
+          "$type": "color"
+        },
+        "secondary": {
+          "$value": "#402011",
+          "$type": "color"
+        }
+      },
+      "neutral": {
+        "n100": {
+          "$value": "#000000",
+          "$type": "color"
+        },
+        "n200": {
+          "$value": "#ffffff",
+          "$type": "color"
+        },
+        "n300": {
+          "$value": "#dddddd",
+          "$type": "color"
+        }
+      },
+      "background": {
+        "bg0": {
+          "$value": "#823513",
+          "$type": "color"
+        },
+        "bg1": {
+          "$value": "#281006",
+          "$type": "color"
+        },
+        "bg2": {
+          "$value": "#faae33",
+          "$type": "color"
+        },
+        "bg3": {
+          "$value": "#402011",
+          "$type": "color"
+        },
+        "bg4": {
+          "$value": "#000000",
+          "$type": "color"
+        }
+      },
+      "text": {
+        "text0": {
+          "$value": "#000000",
+          "$type": "color"
+        },
+        "text1": {
+          "$value": "#faae33",
+          "$type": "color"
+        },
+        "text2": {
+          "$value": "#402011",
+          "$type": "color"
+        },
+        "text3": {
+          "$value": "#ffffff",
+          "$type": "color"
+        },
+        "text4": {
+          "$value": "#f7ac32",
+          "$type": "color"
+        }
+      }
+    },
+    "spacing": {
+      "s0": {
+        "$value": "1px",
+        "$type": "dimension"
+      },
+      "s1": {
+        "$value": "23px",
+        "$type": "dimension"
+      },
+      "s2": {
+        "$value": "28px",
+        "$type": "dimension"
+      },
+      "s3": {
+        "$value": "42px",
+        "$type": "dimension"
+      },
+      "s4": {
+        "$value": "51px",
+        "$type": "dimension"
+      },
+      "s5": {
+        "$value": "61px",
+        "$type": "dimension"
+      },
+      "s6": {
+        "$value": "100px",
+        "$type": "dimension"
+      },
+      "s7": {
+        "$value": "112px",
+        "$type": "dimension"
+      },
+      "s8": {
+        "$value": "122px",
+        "$type": "dimension"
+      },
+      "s9": {
+        "$value": "128px",
+        "$type": "dimension"
+      },
+      "s10": {
+        "$value": "154px",
+        "$type": "dimension"
+      },
+      "s11": {
+        "$value": "172px",
+        "$type": "dimension"
+      },
+      "s12": {
+        "$value": "178px",
+        "$type": "dimension"
+      },
+      "s13": {
+        "$value": "192px",
+        "$type": "dimension"
+      },
+      "s14": {
+        "$value": "245px",
+        "$type": "dimension"
+      },
+      "s15": {
+        "$value": "256px",
+        "$type": "dimension"
+      },
+      "s16": {
+        "$value": "272px",
+        "$type": "dimension"
+      },
+      "s17": {
+        "$value": "296px",
+        "$type": "dimension"
+      },
+      "s18": {
+        "$value": "306px",
+        "$type": "dimension"
+      },
+      "s19": {
+        "$value": "448px",
+        "$type": "dimension"
+      }
+    },
+    "radius": {
+      "r0": {
+        "$value": "5px",
+        "$type": "dimension"
+      },
+      "r1": {
+        "$value": "8px",
+        "$type": "dimension"
+      },
+      "r2": {
+        "$value": "12px",
+        "$type": "dimension"
+      },
+      "r3": {
+        "$value": "100px",
+        "$type": "dimension"
+      },
+      "r4": {
+        "$value": "960px",
+        "$type": "dimension"
+      },
+      "r5": {
+        "$value": "1024px",
+        "$type": "dimension"
+      },
+      "r6": {
+        "$value": "1088px",
+        "$type": "dimension"
+      },
+      "r7": {
+        "$value": "1152px",
+        "$type": "dimension"
+      },
+      "r8": {
+        "$value": "1280px",
+        "$type": "dimension"
+      }
+    },
+    "shadow": {},
+    "fontFamily": {
+      "f0": {
+        "$value": "Salmond",
+        "$type": "fontFamily"
+      },
+      "f1": {
+        "$value": "Graphikx",
+        "$type": "fontFamily"
+      }
+    }
+  },
+  "semantic": {
+    "color": {
+      "action": {
+        "primary": {
+          "$value": "{primitive.color.brand.primary}",
+          "$type": "color"
+        },
+        "secondary": {
+          "$value": "{primitive.color.brand.secondary}",
+          "$type": "color"
+        }
+      },
+      "surface": {
+        "default": {
+          "$value": "{primitive.color.background.bg0}",
+          "$type": "color"
+        }
+      },
+      "text": {
+        "body": {
+          "$value": "{primitive.color.text.text0}",
+          "$type": "color"
+        }
+      }
+    },
+    "typography": {
+      "body": {
+        "$value": {
+          "fontFamily": "Salmond",
+          "fontSize": "189.44px",
+          "fontWeight": "700",
+          "lineHeight": "151.552px"
+        },
+        "$type": "typography"
+      }
+    },
+    "radius": {
+      "control": {
+        "$value": "{primitive.radius.r0}",
+        "$type": "dimension"
+      }
+    },
+    "shadow": {
+      "elevated": {
+        "$value": "{primitive.shadow.sh0}",
+        "$type": "shadow"
+      }
+    }
+  }
+}

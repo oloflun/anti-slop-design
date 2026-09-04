@@ -1,0 +1,279 @@
+{
+  "pageIntent": {
+    "type": "pricing",
+    "confidence": 0.42,
+    "path": "/",
+    "title": "Veloura - Webflow HTML website template",
+    "description": "Veloura is a fictional boutique hotel created for a modern Webflow template, showcasing elegant design, warm atmosphere, and cozy guest experiences.",
+    "signals": [
+      {
+        "kind": "dom",
+        "type": "pricing",
+        "weight": 0.6,
+        "detail": "currency+card-grid"
+      },
+      {
+        "kind": "dom",
+        "type": "blog-post",
+        "weight": 0.35,
+        "detail": "byline|min-read"
+      },
+      {
+        "kind": "url",
+        "type": "landing",
+        "weight": 0.45,
+        "detail": "root-path"
+      }
+    ],
+    "alternates": [
+      {
+        "type": "landing",
+        "score": 0.45
+      },
+      {
+        "type": "blog-post",
+        "score": 0.35
+      }
+    ],
+    "needsSmart": true
+  },
+  "sectionRoles": {
+    "sections": [
+      {
+        "index": 0,
+        "tag": "nav",
+        "role": "nav",
+        "subrole": null,
+        "confidence": 0.9,
+        "heading": null,
+        "bounds": {
+          "x": 0,
+          "y": 0,
+          "w": 1280,
+          "h": 80
+        },
+        "buttonCount": 0,
+        "cardCount": 0,
+        "slots": {
+          "lede": "HOTEL\nTEMPLATE\nHOTEL\nRELAX\nROOMS\nRESTAURANT\nCONTACT\nMENU"
+        },
+        "needsSmart": false
+      },
+      {
+        "index": 1,
+        "tag": "header",
+        "role": "nav",
+        "subrole": null,
+        "confidence": 0.9,
+        "heading": null,
+        "bounds": {
+          "x": 0,
+          "y": 0,
+          "w": 1280,
+          "h": 80
+        },
+        "buttonCount": 0,
+        "cardCount": 0,
+        "slots": {
+          "lede": "HOTEL\nTEMPLATE\nHOTEL\nRELAX\nROOMS\nRESTAURANT\nCONTACT"
+        },
+        "needsSmart": false
+      },
+      {
+        "index": 2,
+        "tag": "main",
+        "role": "pricing-table",
+        "subrole": null,
+        "confidence": 0.9,
+        "heading": "A BOUTIQUE ESCAPE IN TIMELESS STREETS",
+        "bounds": {
+          "x": 0,
+          "y": 0,
+          "w": 1280,
+          "h": 19966.375
+        },
+        "buttonCount": 41,
+        "cardCount": 78,
+        "slots": {
+          "heading": "A BOUTIQUE ESCAPE IN TIMELESS STREETS",
+          "subheadings": [
+            "Cozy interiors, warm tones, and thoughtful details that make every stay feel personal.",
+            "Corner Suite",
+            "Velvet Room",
+            "Amber Suite"
+          ],
+          "ctaCount": 41,
+          "lede": "A BOUTIQUE ESCAPE IN TIMELESS STREETS\nDISCOVER\nBOUTIQUE HOTEL\nCozy interiors, warm tones, and thoughtful details that make every stay feel personal."
+        },
+        "needsSmart": false
+      },
+      {
+        "index": 3,
+        "tag": "section",
+        "role": "content",
+        "subrole": null,
+        "confidence": 0.3,
+        "heading": "A BOUTIQUE ESCAPE IN TIMELESS STREETS",
+        "bounds": {
+          "x": 0,
+          "y": 0,
+          "w": 1280,
+          "h": 2400
+        },
+        "buttonCount": 0,
+        "cardCount": 0,
+        "slots": {
+          "heading": "A BOUTIQUE ESCAPE IN TIMELESS STREETS",
+          "lede": "A BOUTIQUE ESCAPE IN TIMELESS STREETS\nDISCOVER"
+        },
+        "needsSmart": true
+      },
+      {
+        "index": 4,
+        "tag": "section",
+        "role": "pricing-table",
+        "subrole": null,
+        "confidence": 0.9,
+        "heading": "Cozy interiors, warm tones, and thoughtful details that make every stay feel personal.",
+        "bounds": {
+          "x": 0,
+          "y": 2400,
+          "w": 1280,
+          "h": 5594.78125
+        },
+        "buttonCount": 16,
+        "cardCount": 4,
+        "slots": {
+          "heading": "Cozy interiors, warm tones, and thoughtful details that make every stay feel personal.",
+          "subheadings": [
+            "Corner Suite",
+            "Velvet Room",
+            "Amber Suite",
+            "ENJOY A COZY WEEKEND STAY"
+          ],
+          "ctaCount": 16,
+          "lede": "BOUTIQUE HOTEL\nCozy interiors, warm tones, and thoughtful details that make every stay feel personal."
+        },
+        "needsSmart": false
+      },
+      {
+        "index": 5,
+        "tag": "section",
+        "role": "feature-grid",
+        "subrole": null,
+        "confidence": 0.8,
+        "heading": "Relax that comes with",
+        "bounds": {
+          "x": 0,
+          "y": 7994.78125,
+          "w": 1280,
+          "h": 1052.46875
+        },
+        "buttonCount": 8,
+        "cardCount": 70,
+        "slots": {
+          "heading": "Relax that comes with",
+          "subheadings": [
+            "your stay in Velora"
+          ],
+          "ctaCount": 8,
+          "lede": "TREATMENTS\nRelax that comes with\nyour stay in Velora\nFEATURED\nCALM YOUR SENSES"
+        },
+        "needsSmart": false
+      },
+      {
+        "index": 6,
+        "tag": "section",
+        "role": "content",
+        "subrole": null,
+        "confidence": 0.3,
+        "heading": "Tucked away in the quiet streets of the old town - historic charm with comfort and calm.",
+        "bounds": {
+          "x": 0,
+          "y": 9047.25,
+          "w": 1280,
+          "h": 3684.78125
+        },
+        "buttonCount": 7,
+        "cardCount": 0,
+        "slots": {
+          "heading": "Tucked away in the quiet streets of the old town - historic charm with comfort and calm.",
+          "subheadings": [
+            "Gently rooted in timeless charm",
+            "Crafted for calm moments",
+            "Where elegance meets ease"
+          ],
+          "ctaCount": 7,
+          "lede": "ABOUT THE HOTEL\nTucked away in the quiet streets of the old town - historic charm with comfort and calm.\nTOWNHOUSE WITH SOUL\nGently rooted in timeless charm"
+        },
+        "needsSmart": true
+      },
+      {
+        "index": 7,
+        "tag": "section",
+        "role": "content",
+        "subrole": null,
+        "confidence": 0.3,
+        "heading": "Treatments",
+        "bounds": {
+          "x": 0,
+          "y": 12732.03125,
+          "w": 1280,
+          "h": 4901.40625
+        },
+        "buttonCount": 0,
+        "cardCount": 0,
+        "slots": {
+          "heading": "Treatments",
+          "subheadings": [
+            "Sauna room",
+            "Massages",
+            "Recharge your\nenergy with a\ncalming retreat"
+          ],
+          "lede": "Wellness\nRelax\nWellness\nRelax\nRELAX\nTreatments"
+        },
+        "needsSmart": true
+      },
+      {
+        "index": 8,
+        "tag": "section",
+        "role": "hero",
+        "subrole": null,
+        "confidence": 0.4,
+        "heading": "BOOK NOW",
+        "bounds": {
+          "x": 0,
+          "y": 17633.4375,
+          "w": 1280,
+          "h": 1600
+        },
+        "buttonCount": 5,
+        "cardCount": 0,
+        "slots": {
+          "heading": "BOOK NOW",
+          "ctaCount": 5,
+          "lede": "BOOK NOW\nReservations"
+        },
+        "needsSmart": true
+      }
+    ],
+    "counts": {
+      "nav": 2,
+      "pricing-table": 2,
+      "content": 3,
+      "feature-grid": 1,
+      "hero": 1
+    },
+    "readingOrder": [
+      "nav",
+      "nav",
+      "pricing-table",
+      "content",
+      "pricing-table",
+      "feature-grid",
+      "content",
+      "content",
+      "hero"
+    ]
+  }
+}

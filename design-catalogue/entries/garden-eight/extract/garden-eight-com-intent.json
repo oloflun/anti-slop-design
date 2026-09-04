@@ -1,0 +1,92 @@
+{
+  "pageIntent": {
+    "type": "landing",
+    "confidence": 0.45,
+    "path": "/",
+    "title": "Garden Eight",
+    "description": "Garden Eight is a digital design studio based in Tokyo.",
+    "signals": [
+      {
+        "kind": "url",
+        "type": "landing",
+        "weight": 0.45,
+        "detail": "root-path"
+      }
+    ],
+    "alternates": [],
+    "needsSmart": true
+  },
+  "sectionRoles": {
+    "sections": [
+      {
+        "index": 0,
+        "tag": "header",
+        "role": "nav",
+        "subrole": null,
+        "confidence": 0.4,
+        "heading": "GARDEN\nZERO",
+        "bounds": {
+          "x": 0,
+          "y": 0,
+          "w": 1280,
+          "h": 0
+        },
+        "buttonCount": 0,
+        "cardCount": 6,
+        "slots": {
+          "heading": "GARDEN\nZERO"
+        },
+        "needsSmart": true
+      },
+      {
+        "index": 1,
+        "tag": "nav",
+        "role": "nav",
+        "subrole": null,
+        "confidence": 0.9,
+        "heading": null,
+        "bounds": {
+          "x": 0,
+          "y": 0,
+          "w": 0,
+          "h": 0
+        },
+        "buttonCount": 0,
+        "cardCount": 6,
+        "slots": {
+          "lede": "Home  Cases  About  Archives  Contact  AI"
+        },
+        "needsSmart": false
+      },
+      {
+        "index": 2,
+        "tag": "main",
+        "role": "faq",
+        "subrole": null,
+        "confidence": 0.85,
+        "heading": null,
+        "bounds": {
+          "x": 0,
+          "y": 0,
+          "w": 1280,
+          "h": 3282.6875
+        },
+        "buttonCount": 0,
+        "cardCount": 6,
+        "slots": {
+          "lede": "We are a digital design studio\nbased in Tokyo\nWhat can we make next\nWe approach every projects with\nwonder fueled by a boundless\nspirit of inquisitiveness.\nVIEW CASES\nTOP"
+        },
+        "needsSmart": false
+      }
+    ],
+    "counts": {
+      "nav": 2,
+      "faq": 1
+    },
+    "readingOrder": [
+      "nav",
+      "nav",
+      "faq"
+    ]
+  }
+}

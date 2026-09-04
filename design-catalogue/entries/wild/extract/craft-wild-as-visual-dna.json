@@ -1,0 +1,90 @@
+{
+  "materialLanguage": {
+    "label": "flat",
+    "confidence": 0,
+    "signals": [],
+    "metrics": {
+      "saturation": 0.427,
+      "shadowProfile": "soft",
+      "avgShadowBlur": 0,
+      "maxShadowBlur": 0,
+      "insetShadows": 0,
+      "avgRadius": 8,
+      "maxRadius": 10,
+      "hasPill": false,
+      "hasBackdropBlur": false,
+      "gradientCount": 3
+    },
+    "alternates": []
+  },
+  "imageryStyle": {
+    "label": "photography",
+    "confidence": 0.75,
+    "counts": {
+      "total": 3,
+      "svg": 0,
+      "icon": 0,
+      "hero": 0,
+      "screenshot": 0,
+      "photoLike": 3
+    },
+    "dominantAspect": "square-ish",
+    "radiusProfile": "square",
+    "alternates": [],
+    "signals": [
+      "raster photo-ext",
+      "raster photo-ext",
+      "raster photo-ext"
+    ]
+  },
+  "backgroundPatterns": {
+    "labels": [
+      "line-grid"
+    ],
+    "counts": {
+      "noise": 0,
+      "dotGrid": 0,
+      "lineGrid": 9,
+      "meshCount": 0,
+      "svgPattern": 0
+    },
+    "gradientTotals": {
+      "radial": 0,
+      "linear": 22
+    },
+    "samples": [
+      {
+        "tag": "line-grid",
+        "value": "repeating-linear-gradient(90deg, rgb(10, 10, 10) 0px, rgb(10, 10, 10) 8px, rgba(0, 0, 0, 0) 8px, rgba(0, 0, 0, 0) 9px)"
+      },
+      {
+        "tag": "line-grid",
+        "value": "repeating-linear-gradient(90deg, rgb(10, 10, 10) 0px, rgb(10, 10, 10) 8px, rgba(0, 0, 0, 0) 8px, rgba(0, 0, 0, 0) 9px)"
+      },
+      {
+        "tag": "line-grid",
+        "value": "repeating-linear-gradient(90deg, rgb(10, 10, 10) 0px, rgb(10, 10, 10) 8px, rgba(0, 0, 0, 0) 8px, rgba(0, 0, 0, 0) 9px)"
+      },
+      {
+        "tag": "line-grid",
+        "value": "repeating-linear-gradient(90deg, rgb(10, 10, 10) 0px, rgb(10, 10, 10) 8px, rgba(0, 0, 0, 0) 8px, rgba(0, 0, 0, 0) 9px)"
+      },
+      {
+        "tag": "line-grid",
+        "value": "repeating-linear-gradient(90deg, rgb(10, 10, 10) 0px, rgb(10, 10, 10) 8px, rgba(0, 0, 0, 0) 8px, rgba(0, 0, 0, 0) 9px)"
+      },
+      {
+        "tag": "line-grid",
+        "value": "repeating-linear-gradient(90deg, rgb(10, 10, 10) 0px, rgb(10, 10, 10) 8px, rgba(0, 0, 0, 0) 8px, rgba(0, 0, 0, 0) 9px)"
+      },
+      {
+        "tag": "line-grid",
+        "value": "repeating-linear-gradient(90deg, rgb(10, 10, 10) 0px, rgb(10, 10, 10) 8px, rgba(0, 0, 0, 0) 8px, rgba(0, 0, 0, 0) 9px)"
+      },
+      {
+        "tag": "line-grid",
+        "value": "repeating-linear-gradient(90deg, rgb(10, 10, 10) 0px, rgb(10, 10, 10) 8px, rgba(0, 0, 0, 0) 8px, rgba(0, 0, 0, 0) 9px)"
+      }
+    ]
+  }
+}

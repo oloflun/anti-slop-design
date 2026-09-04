@@ -1,0 +1,44 @@
+{
+  "$schema": "https://designlang.app/schemas/gradients.json",
+  "source": "https://vestris.ai/",
+  "generated": "2026-09-04T00:59:19.975Z",
+  "count": 2,
+  "gradients": [
+    {
+      "raw": "linear-gradient(rgb(92, 124, 104) 0%, rgb(92, 124, 104) 100%, rgba(92, 124, 104, 0) 100%)",
+      "type": "linear",
+      "direction": null,
+      "stops": [
+        {
+          "color": "rgb(92, 124, 104)",
+          "position": "0%"
+        },
+        {
+          "color": "rgb(92, 124, 104)",
+          "position": "100%"
+        },
+        {
+          "color": "rgba(92, 124, 104, 0)",
+          "position": "100%"
+        }
+      ],
+      "classification": "bold"
+    },
+    {
+      "raw": "linear-gradient(rgba(34, 51, 37, 0) 0%, rgb(35, 52, 38) 77.9566%)",
+      "type": "linear",
+      "direction": null,
+      "stops": [
+        {
+          "color": "rgba(34, 51, 37, 0)",
+          "position": "0%"
+        },
+        {
+          "color": "rgb(35, 52, 38)",
+          "position": "77.9566%"
+        }
+      ],
+      "classification": "brand"
+    }
+  ]
+}

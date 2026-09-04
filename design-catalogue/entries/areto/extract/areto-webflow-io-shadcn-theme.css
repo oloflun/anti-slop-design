@@ -1,0 +1,19 @@
+/* shadcn/ui Theme — extracted from https://areto.webflow.io/home-two */
+/* Paste into your globals.css */
+
+@layer base {
+  :root {
+    --background: 0 0% 96%;
+    --foreground: 0 0% 0%;
+    --primary: 61 92% 77%;
+    --primary-foreground: 0 0% 0%;
+    --secondary: 141 19% 26%;
+    --secondary-foreground: 0 0% 100%;
+    --accent: 330 29% 5%;
+    --accent-foreground: 0 0% 100%;
+    --muted: 0 0% 87%;
+    --muted-foreground: 0 0% 0%;
+    --border: 0 0% 80%;
+    --radius: 8px;
+  }
+}

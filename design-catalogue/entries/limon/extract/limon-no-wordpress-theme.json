@@ -1,0 +1,182 @@
+{
+  "$schema": "https://schemas.wp.org/trunk/theme.json",
+  "version": 3,
+  "settings": {
+    "color": {
+      "palette": [
+        {
+          "slug": "primary",
+          "color": "#f7ea48",
+          "name": "Primary"
+        },
+        {
+          "slug": "secondary",
+          "color": "#103b15",
+          "name": "Secondary"
+        },
+        {
+          "slug": "accent",
+          "color": "#1d0b0d",
+          "name": "Accent"
+        },
+        {
+          "slug": "neutral-1",
+          "color": "#000000",
+          "name": "Neutral 1"
+        },
+        {
+          "slug": "neutral-2",
+          "color": "#fcf9f0",
+          "name": "Neutral 2"
+        },
+        {
+          "slug": "neutral-3",
+          "color": "#dbe2dc",
+          "name": "Neutral 3"
+        },
+        {
+          "slug": "neutral-4",
+          "color": "#ffffff",
+          "name": "Neutral 4"
+        },
+        {
+          "slug": "bg-1d0b0d",
+          "color": "#1d0b0d",
+          "name": "Background #1d0b0d"
+        },
+        {
+          "slug": "bg-fcf9f0",
+          "color": "#fcf9f0",
+          "name": "Background #fcf9f0"
+        },
+        {
+          "slug": "bg-dbe2dc",
+          "color": "#dbe2dc",
+          "name": "Background #dbe2dc"
+        }
+      ],
+      "gradients": []
+    },
+    "typography": {
+      "fontFamilies": [
+        {
+          "fontFamily": "VenusCom",
+          "slug": "venuscom",
+          "name": "VenusCom"
+        },
+        {
+          "fontFamily": "Times New Roman",
+          "slug": "times-new-roman",
+          "name": "Times New Roman"
+        },
+        {
+          "fontFamily": "FreeSans",
+          "slug": "freesans",
+          "name": "FreeSans"
+        }
+      ],
+      "fontSizes": [
+        {
+          "size": "75px",
+          "slug": "size-75",
+          "name": "75px"
+        },
+        {
+          "size": "68px",
+          "slug": "size-68",
+          "name": "68px"
+        },
+        {
+          "size": "54px",
+          "slug": "size-54",
+          "name": "54px"
+        },
+        {
+          "size": "46px",
+          "slug": "size-46",
+          "name": "46px"
+        },
+        {
+          "size": "36px",
+          "slug": "size-36",
+          "name": "36px"
+        },
+        {
+          "size": "30px",
+          "slug": "size-30",
+          "name": "30px"
+        },
+        {
+          "size": "26px",
+          "slug": "size-26",
+          "name": "26px"
+        },
+        {
+          "size": "20px",
+          "slug": "size-20",
+          "name": "20px"
+        }
+      ]
+    },
+    "spacing": {
+      "spacingSizes": [
+        {
+          "size": "0px",
+          "slug": "spacing-0",
+          "name": "0px"
+        },
+        {
+          "size": "25px",
+          "slug": "spacing-25",
+          "name": "25px"
+        },
+        {
+          "size": "30px",
+          "slug": "spacing-30",
+          "name": "30px"
+        },
+        {
+          "size": "40px",
+          "slug": "spacing-40",
+          "name": "40px"
+        },
+        {
+          "size": "45px",
+          "slug": "spacing-45",
+          "name": "45px"
+        },
+        {
+          "size": "50px",
+          "slug": "spacing-50",
+          "name": "50px"
+        },
+        {
+          "size": "60px",
+          "slug": "spacing-60",
+          "name": "60px"
+        },
+        {
+          "size": "75px",
+          "slug": "spacing-75",
+          "name": "75px"
+        }
+      ]
+    },
+    "layout": {
+      "contentSize": "1170px",
+      "wideSize": "1400px"
+    }
+  },
+  "styles": {
+    "color": {
+      "background": "#1d0b0d",
+      "text": "#000000"
+    },
+    "typography": {
+      "fontSize": "20px",
+      "lineHeight": "29px",
+      "fontFamily": "VenusCom"
+    },
+    "spacing": {}
+  }
+}

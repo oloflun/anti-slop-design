@@ -1,0 +1,40 @@
+{
+  "$schema": "https://designlang.app/schemas/gradients.json",
+  "source": "https://www.andre-candido.com/",
+  "generated": "2026-09-04T00:44:30.660Z",
+  "count": 2,
+  "gradients": [
+    {
+      "raw": "linear-gradient(to right, rgb(255, 255, 255), rgba(255, 255, 255, 0))",
+      "type": "linear",
+      "direction": "to right",
+      "stops": [
+        {
+          "color": "rgb(255, 255, 255)",
+          "position": null
+        },
+        {
+          "color": "rgba(255, 255, 255, 0)",
+          "position": null
+        }
+      ],
+      "classification": "brand"
+    },
+    {
+      "raw": "linear-gradient(270deg, rgb(255, 255, 255), rgba(255, 255, 255, 0))",
+      "type": "linear",
+      "direction": "270deg",
+      "stops": [
+        {
+          "color": "rgb(255, 255, 255)",
+          "position": null
+        },
+        {
+          "color": "rgba(255, 255, 255, 0)",
+          "position": null
+        }
+      ],
+      "classification": "brand"
+    }
+  ]
+}

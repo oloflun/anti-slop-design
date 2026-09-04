@@ -1,0 +1,177 @@
+{
+  "$schema": "https://schemas.wp.org/trunk/theme.json",
+  "version": 3,
+  "settings": {
+    "color": {
+      "palette": [
+        {
+          "slug": "primary",
+          "color": "#c4b3e0",
+          "name": "Primary"
+        },
+        {
+          "slug": "secondary",
+          "color": "#500c20",
+          "name": "Secondary"
+        },
+        {
+          "slug": "accent",
+          "color": "#fcf6ed",
+          "name": "Accent"
+        },
+        {
+          "slug": "neutral-1",
+          "color": "#e5e7eb",
+          "name": "Neutral 1"
+        },
+        {
+          "slug": "neutral-2",
+          "color": "#000000",
+          "name": "Neutral 2"
+        },
+        {
+          "slug": "bg-fcf6ed",
+          "color": "#fcf6ed",
+          "name": "Background #fcf6ed"
+        },
+        {
+          "slug": "bg-c4b3e0",
+          "color": "#c4b3e0",
+          "name": "Background #c4b3e0"
+        },
+        {
+          "slug": "bg-500c20",
+          "color": "#500c20",
+          "name": "Background #500c20"
+        }
+      ],
+      "gradients": []
+    },
+    "typography": {
+      "fontFamilies": [
+        {
+          "fontFamily": "Metrify Narrow",
+          "slug": "metrify-narrow",
+          "name": "Metrify Narrow"
+        },
+        {
+          "fontFamily": "Feature Text",
+          "slug": "feature-text",
+          "name": "Feature Text"
+        },
+        {
+          "fontFamily": "Judge",
+          "slug": "judge",
+          "name": "Judge"
+        },
+        {
+          "fontFamily": "Metrify",
+          "slug": "metrify",
+          "name": "Metrify"
+        }
+      ],
+      "fontSizes": [
+        {
+          "size": "204.8px",
+          "slug": "size-204.8",
+          "name": "204.8px"
+        },
+        {
+          "size": "100px",
+          "slug": "size-100",
+          "name": "100px"
+        },
+        {
+          "size": "60px",
+          "slug": "size-60",
+          "name": "60px"
+        },
+        {
+          "size": "41.6px",
+          "slug": "size-41.6",
+          "name": "41.6px"
+        },
+        {
+          "size": "36px",
+          "slug": "size-36",
+          "name": "36px"
+        },
+        {
+          "size": "28px",
+          "slug": "size-28",
+          "name": "28px"
+        },
+        {
+          "size": "24px",
+          "slug": "size-24",
+          "name": "24px"
+        },
+        {
+          "size": "20px",
+          "slug": "size-20",
+          "name": "20px"
+        }
+      ]
+    },
+    "spacing": {
+      "spacingSizes": [
+        {
+          "size": "4px",
+          "slug": "spacing-4",
+          "name": "4px"
+        },
+        {
+          "size": "64px",
+          "slug": "spacing-64",
+          "name": "64px"
+        },
+        {
+          "size": "96px",
+          "slug": "spacing-96",
+          "name": "96px"
+        },
+        {
+          "size": "120px",
+          "slug": "spacing-120",
+          "name": "120px"
+        },
+        {
+          "size": "144px",
+          "slug": "spacing-144",
+          "name": "144px"
+        },
+        {
+          "size": "208px",
+          "slug": "spacing-208",
+          "name": "208px"
+        },
+        {
+          "size": "311px",
+          "slug": "spacing-311",
+          "name": "311px"
+        },
+        {
+          "size": "329px",
+          "slug": "spacing-329",
+          "name": "329px"
+        }
+      ]
+    },
+    "layout": {
+      "contentSize": "100%",
+      "wideSize": "1400px"
+    }
+  },
+  "styles": {
+    "color": {
+      "background": "#fcf6ed",
+      "text": "#000000"
+    },
+    "typography": {
+      "fontSize": "18px",
+      "lineHeight": "27px",
+      "fontFamily": "Metrify Narrow"
+    },
+    "spacing": {}
+  }
+}

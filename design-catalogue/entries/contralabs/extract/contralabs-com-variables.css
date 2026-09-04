@@ -1,0 +1,96 @@
+:root {
+  /* Colors — Primary */
+  --color-primary: #fbfaf6;
+  --color-secondary: #0000ee;
+  --color-accent: #f50c0c;
+
+  /* Colors — Neutrals */
+  --color-neutral-50: #000000;
+  --color-neutral-100: #2b2b29;
+  --color-neutral-200: #a5beba;
+  --color-neutral-300: #494444;
+  --color-neutral-400: #918f66;
+  --color-neutral-500: #918989;
+  --color-neutral-600: #c8bcae;
+  --color-neutral-700: #e4e2d9;
+  --color-neutral-800: #83a5a0;
+
+  /* Colors — Backgrounds */
+  --color-bg: #fbfaf6;
+  --color-bg-1: #c8e1dd;
+  --color-bg-2: #a5beba;
+  --color-bg-3: #387478;
+  --color-bg-4: #2b2b29;
+  --color-bg-5: #918989;
+  --color-bg-6: #c8bcae;
+  --color-bg-7: #918f66;
+  --color-bg-8: #296a6c;
+  --color-bg-9: #eeede7;
+  --color-bg-10: #e4e2d9;
+  --color-bg-11: #f50c0c;
+  --color-bg-12: #0cf523;
+  --color-bg-13: #000000;
+  --color-bg-14: #e7f2f0;
+  --color-bg-15: #c8e0dc;
+  --color-bg-16: #ffffff;
+  --color-bg-17: #faf9f5;
+  --color-bg-18: #fcfbf7;
+
+  /* Colors — Text */
+  --color-text: #000000;
+  --color-text-1: #2b2b29;
+  --color-text-2: #0000ee;
+  --color-text-3: #fbfaf6;
+
+  /* Typography — Families */
+  --font-body: 'GT Standard L Regular', sans-serif;
+  --font-heading: 'Source Serif 4 Variable', sans-serif;
+  --font-body: 'Times New Roman', sans-serif;
+  --font-body: 'GT Standard 6 L Medium', sans-serif;
+  --font-body: 'CUSTOMV2;GT Standard 6 L Regular', sans-serif;
+  --font-body: 'GT Standard L Medium', sans-serif;
+
+  /* Typography — Scale */
+  --font-size-597.662: 597.662px;
+  --font-size-354.9: 354.9px;
+  --font-size-328.936: 328.936px;
+  --font-size-316.339: 316.339px;
+  --font-size-311.21: 311.21px;
+  --font-size-268: 268px;
+  --font-size-228.851: 228.851px;
+  --font-size-135.252: 135.252px;
+  --font-size-64: 64px;
+  --font-size-62: 62px;
+  --font-size-56: 56px;
+  --font-size-44: 44px;
+
+  /* Spacing */
+  --spacing-1: 1px;
+  --spacing-30: 30px;
+  --spacing-40: 40px;
+  --spacing-48: 48px;
+  --spacing-60: 60px;
+  --spacing-74: 74px;
+  --spacing-80: 80px;
+  --spacing-100: 100px;
+  --spacing-120: 120px;
+  --spacing-160: 160px;
+  --spacing-184: 184px;
+  --spacing-200: 200px;
+
+  /* Border Radius */
+  --radius-md: 8px;
+  --radius-xl: 24px;
+  --radius-full: 99px;
+  --radius-full: 10000px;
+
+  /* Original Site Variables */
+  /* — other — */
+  --one-if-corner-shape-supported: 1;
+  /* — semantic — */
+  success: [object Object];
+  warning: [object Object];
+  error: [object Object];
+  info: [object Object];
+
+}

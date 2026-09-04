@@ -1,0 +1,139 @@
+:root {
+  /* Colors — Primary */
+  --color-primary: #f9dcc5;
+  --color-secondary: #701e1f;
+  --color-accent: #ff2f2f;
+
+  /* Colors — Neutrals */
+  --color-neutral-50: #ffffff;
+  --color-neutral-100: #000000;
+  --color-neutral-200: #161616;
+  --color-neutral-300: #474747;
+  --color-neutral-400: #222222;
+
+  /* Colors — Backgrounds */
+  --color-bg: #f9dcc5;
+  --color-bg-1: #701e1f;
+  --color-bg-2: #ec7672;
+  --color-bg-3: #401714;
+
+  /* Colors — Text */
+  --color-text: #000000;
+  --color-text-1: #701e1f;
+  --color-text-2: #f9dcc5;
+  --color-text-3: #401714;
+  --color-text-4: #ffffff;
+
+  /* Typography — Families */
+  --font-sans: 'Gt Walsheim Trial', sans-serif;
+  --font-body: 'Librecaslontext', sans-serif;
+  --font-body: 'PT Sans', sans-serif;
+
+  /* Typography — Scale */
+  --font-size-184: 184px;
+  --font-size-158.113: 158.113px;
+  --font-size-133.334: 133.334px;
+  --font-size-113.208: 113.208px;
+  --font-size-66.792: 66.792px;
+  --font-size-60: 60px;
+  --font-size-47.5462: 47.5462px;
+  --font-size-46.5875: 46.5875px;
+  --font-size-24: 24px;
+  --font-size-23.4336: 23.4336px;
+  --font-size-23.2458: 23.2458px;
+  --font-size-20: 20px;
+
+  /* Spacing */
+  --spacing-1: 1px;
+  --spacing-40: 40px;
+  --spacing-60: 60px;
+  --spacing-80: 80px;
+  --spacing-100: 100px;
+  --spacing-115: 115px;
+  --spacing-120: 120px;
+  --spacing-140: 140px;
+  --spacing-175: 175px;
+  --spacing-180: 180px;
+  --spacing-203: 203px;
+  --spacing-265: 265px;
+  --spacing-420: 420px;
+  --spacing-440: 440px;
+
+  /* Border Radius */
+  --radius-sm: 4px;
+  --radius-md: 8px;
+  --radius-lg: 12px;
+  --radius-lg: 16px;
+  --radius-xl: 20px;
+  --radius-xl: 24px;
+  --radius-full: 40px;
+  --radius-full: 50px;
+  --radius-full: 60px;
+  --radius-full: 99px;
+
+  /* Original Site Variables */
+  /* — colors — */
+  --color--secondary: #f9dcc5;
+  --color--primary: #701e1f;
+  --color--transparent: transparent;
+  --_size-variables---border-radius--radius-24: 24px;
+  --color--grey: #f7f7f7;
+  --_size-variables---border-radius--radius-32: 32px;
+  --color--white: white;
+  --color--tertiary: #401714;
+  --color--black: black;
+  --_size-variables---border-radius--radius-10: 10px;
+  --color--sage-green: #1a683f;
+  --color--salmon: #ec7672;
+  --_size-variables---border-radius--radius-16: 16px;
+  --color-white-2<deleted|variable-669e398d-e0b9-4945-dd67-db7a47faee68>: white;
+  --color--golden-olive: #c4b84e;
+  --_size-variables---border-radius--radius-40: 40px;
+  --_size-variables---border-radius--radius-12: 12px;
+  --_size-variables---border-radius--radius-8: 8px;
+  --_size-variables---border-radius--radius-20: 20px;
+  --_size-variables---border-radius--radius-4: 4px;
+  --_size-variables---border-radius--radius-6: 6px;
+  /* — spacing — */
+  --_size-variables---spacing--spacing-12: 12px;
+  --_size-variables---section-padding--padding-80: 80px;
+  --_size-variables---section-padding--padding-180: 180px;
+  --_size-variables---section-padding--padding-100: 100px;
+  --_size-variables---section-padding--padding-60: 60px;
+  --_size-variables---section-padding--padding-140: 140px;
+  --_size-variables---section-padding--padding-160: 160px;
+  --_size-variables---spacing--spacing-48: 48px;
+  --_size-variables---spacing--spacing-24: 24px;
+  --_size-variables---spacing--spacing-80: 80px;
+  --_size-variables---spacing--spacing-32: 32px;
+  --_size-variables---spacing--spacing-40: 40px;
+  --_size-variables---spacing--spacing-60: 60px;
+  --_size-variables---section-padding--padding-120: 120px;
+  --_size-variables---spacing--spacing-28: 28px;
+  --_size-variables---spacing--spacing-16: 16px;
+  --_size-variables---spacing--spacing-20: 20px;
+  --_size-variables---spacing--spacing-8: 8px;
+  --_size-variables---spacing--spacing-44: 44px;
+  --_size-variables---spacing--spacing-4: 4px;
+  --_size-variables---section-padding--padding-150: 150px;
+  --_size-variables---spacing--spacing-36: 36px;
+  --_size-variables---spacing--spacing-52: 52px;
+  --_size-variables---spacing--spacing-56: 56px;
+  --_size-variables---spacing--spacing-64: 64px;
+  --_size-variables---spacing--spacing-68: 68px;
+  --_size-variables---spacing--spacing-72: 72px;
+  --_size-variables---spacing--spacing-76: 76px;
+  /* — typography — */
+  --font-family--body: "Gt Walsheim Trial", Arial, sans-serif;
+  --font-family--heading: "Gt Walsheim Trial", Arial, sans-serif;
+  --font-family--italic-style: Librecaslontext, Arial, sans-serif;
+  /* — other — */
+  --white-2<deleted|variable-5d68e527-7ed7-8628-2256-8ab60621eac4>: white;
+  --white<deleted|variable-16ce4c6c>: white;
+  /* — semantic — */
+  success: [object Object];
+  warning: [object Object];
+  error: [object Object];
+  info: [object Object];
+
+}

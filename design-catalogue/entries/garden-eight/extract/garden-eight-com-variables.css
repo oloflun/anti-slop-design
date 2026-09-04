@@ -1,0 +1,73 @@
+:root {
+  /* Colors — Primary */
+
+  /* Colors — Neutrals */
+  --color-neutral-50: #dbd6d0;
+  --color-neutral-100: #1e1f1f;
+
+  /* Colors — Backgrounds */
+  --color-bg: #1e1f1f;
+
+  /* Colors — Text */
+  --color-text: #dbd6d0;
+  --color-text-1: #1e1f1f;
+
+  /* Typography — Families */
+  --font-sans: 'lausanne', sans-serif;
+  --font-body: 'gunsan', sans-serif;
+
+  /* Typography — Scale */
+  --font-size-191.104: 191.104px;
+  --font-size-14.85: 14.85px;
+  --font-size-13.05: 13.05px;
+  --font-size-11.7: 11.7px;
+  --font-size-0: 0px;
+
+  /* Spacing */
+  --spacing-1: 1px;
+  --spacing-23: 23px;
+  --spacing-40: 40px;
+  --spacing-46: 46px;
+  --spacing-53: 53px;
+  --spacing-76: 76px;
+  --spacing-140: 140px;
+  --spacing-160: 160px;
+  --spacing-185: 185px;
+  --spacing-248: 248px;
+
+  /* Border Radius */
+  --radius-full: 56px;
+  --radius-full: 80px;
+  --radius-full: 100px;
+  --radius-full: 191px;
+  --radius-full: 1280px;
+
+  /* Box Shadows */
+  --shadow-sm: rgb(30, 31, 31) 0px 2px 2px 0px inset, rgb(219, 214, 208) 0px 3px 2px 0px inset, rgb(219, 214, 208) 0px 3px 3px 0px inset;
+
+  /* Original Site Variables */
+  /* — other — */
+  --vh: 1vh;
+  --col-black: #1e1f1f;
+  --col-black2: #1c1d1d;
+  --col-black3: #141414;
+  --col-gray: #3c3c3c;
+  --col-white: #dbd6d0;
+  --col-orange: #dc5648;
+  --tt-h: 2.5em;
+  --tt-blur: 9px;
+  --tt-r: 1.25em;
+  --form-footer-h: 5em;
+  --form-h: calc(2.7em + var(--form-footer-h));
+  --form-w: 40%;
+  --input-min-h: 2.715rem;
+  --input-max-h: 10rem;
+  /* — dependencies — */
+  --form-h: --form-footer-h;
+  /* — semantic — */
+  success: [object Object];
+  warning: [object Object];
+  error: [object Object];
+  info: [object Object];
+
+}

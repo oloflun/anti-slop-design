@@ -1,0 +1,18 @@
+/* shadcn/ui Theme — extracted from https://miti-navi.com/fr */
+/* Paste into your globals.css */
+
+@layer base {
+  :root {
+    --background: 35 34% 86%;
+    --foreground: 0 0% 14%;
+    --primary: 196 100% 4%;
+    --primary-foreground: 0 0% 100%;
+    --secondary: 36 100% 84%;
+    --secondary-foreground: 0 0% 0%;
+    --accent: 40 32% 85%;
+    --accent-foreground: 0 0% 0%;
+    --muted: 0 0% 50%;
+    --muted-foreground: 0 0% 14%;
+    --border: 0 0% 50%;
+  }
+}

@@ -1,0 +1,223 @@
+{
+  "pageIntent": {
+    "type": "landing",
+    "confidence": 0.31,
+    "path": "/",
+    "title": "Your sustainable cabins in Germany and Austria | Raus",
+    "description": "Escape everyday life and embark on an adventure: enjoy relaxing days in idyllic cabins ▶ Book your holiday in Germany or Austria now",
+    "signals": [
+      {
+        "kind": "dom",
+        "type": "blog-post",
+        "weight": 0.35,
+        "detail": "byline|min-read"
+      },
+      {
+        "kind": "url",
+        "type": "landing",
+        "weight": 0.45,
+        "detail": "root-path"
+      }
+    ],
+    "alternates": [
+      {
+        "type": "blog-post",
+        "score": 0.35
+      }
+    ],
+    "needsSmart": true
+  },
+  "sectionRoles": {
+    "sections": [
+      {
+        "index": 0,
+        "tag": "nav",
+        "role": "nav",
+        "subrole": null,
+        "confidence": 0.9,
+        "heading": null,
+        "bounds": {
+          "x": 0,
+          "y": 0,
+          "w": 0,
+          "h": 0
+        },
+        "buttonCount": 0,
+        "cardCount": 5,
+        "slots": {
+          "lede": "Book a cabinStaying with usExtras & ExperiencesBecome a hostGift Cards"
+        },
+        "needsSmart": false
+      },
+      {
+        "index": 1,
+        "tag": "header",
+        "role": "nav",
+        "subrole": null,
+        "confidence": 0.4,
+        "heading": null,
+        "bounds": {
+          "x": 0,
+          "y": 48,
+          "w": 1280,
+          "h": 140.609375
+        },
+        "buttonCount": 0,
+        "cardCount": 5,
+        "slots": {
+          "lede": "Book a cabin\nStaying with us\nExtras & Experiences\nBecome a host\nGift Cards\nen\nde"
+        },
+        "needsSmart": true
+      },
+      {
+        "index": 2,
+        "tag": "nav",
+        "role": "nav",
+        "subrole": null,
+        "confidence": 0.9,
+        "heading": null,
+        "bounds": {
+          "x": 371.265625,
+          "y": 56,
+          "w": 896.734375,
+          "h": 54
+        },
+        "buttonCount": 0,
+        "cardCount": 5,
+        "slots": {
+          "lede": "Book a cabin\nStaying with us\nExtras & Experiences\nBecome a host\nGift Cards\nen\nde"
+        },
+        "needsSmart": false
+      },
+      {
+        "index": 3,
+        "tag": "main",
+        "role": "content",
+        "subrole": null,
+        "confidence": 0.3,
+        "heading": "Book restful space outside your daily routine.",
+        "bounds": {
+          "x": 0,
+          "y": 188.609375,
+          "w": 1280,
+          "h": 3147.15625
+        },
+        "buttonCount": 0,
+        "cardCount": 0,
+        "slots": {
+          "heading": "Book restful space outside your daily routine.",
+          "subheadings": [
+            "Take a break from big city life in smart cabins close to your home.",
+            "From our journal",
+            "Anne-Christin shares: her time in a design cabin",
+            "Beatrice shares: From a dog-friendly getaway"
+          ]
+        },
+        "needsSmart": true
+      },
+      {
+        "index": 4,
+        "tag": "section",
+        "role": "content",
+        "subrole": null,
+        "confidence": 0.3,
+        "heading": "Book restful space outside your daily routine.",
+        "bounds": {
+          "x": 0,
+          "y": 188.609375,
+          "w": 1280,
+          "h": 1564.75
+        },
+        "buttonCount": 0,
+        "cardCount": 0,
+        "slots": {
+          "heading": "Book restful space outside your daily routine.",
+          "lede": "Book restful space outside your daily routine.\nIDEA 77Pet your fluffy neighbors.\nIDEA 27Lose yourself for hours in your favorite book."
+        },
+        "needsSmart": true
+      },
+      {
+        "index": 5,
+        "tag": "section",
+        "role": "content",
+        "subrole": null,
+        "confidence": 0.3,
+        "heading": "Take a break from big city life in smart cabins close to your home.",
+        "bounds": {
+          "x": 0,
+          "y": 1945.359375,
+          "w": 1280,
+          "h": 490.5625
+        },
+        "buttonCount": 0,
+        "cardCount": 0,
+        "slots": {
+          "heading": "Take a break from big city life in smart cabins close to your home.",
+          "lede": "Take a break from big city life in smart cabins close to your home.\nChoose your cabin"
+        },
+        "needsSmart": true
+      },
+      {
+        "index": 6,
+        "tag": "section",
+        "role": "content",
+        "subrole": null,
+        "confidence": 0.3,
+        "heading": "From our journal",
+        "bounds": {
+          "x": 0,
+          "y": 2627.921875,
+          "w": 1280,
+          "h": 707.84375
+        },
+        "buttonCount": 0,
+        "cardCount": 0,
+        "slots": {
+          "heading": "From our journal",
+          "subheadings": [
+            "Anne-Christin shares: her time in a design cabin",
+            "Beatrice shares: From a dog-friendly getaway",
+            "Lisa shares: About a vacation together"
+          ],
+          "lede": "From our journal\nPERSPECTIVES\nAnne-Christin shares: her time in a design cabin\nPERSPECTIVES\nBeatrice shares: From a dog-friendly getaway\nPERSPECTIVES\nLisa shares: About a vacation together\nView all articles"
+        },
+        "needsSmart": true
+      },
+      {
+        "index": 7,
+        "tag": "footer",
+        "role": "footer",
+        "subrole": null,
+        "confidence": 0.95,
+        "heading": "Sign up for updates & special deals and get 10% off your next stay!",
+        "bounds": {
+          "x": 0,
+          "y": 3559.765625,
+          "w": 1280,
+          "h": 950
+        },
+        "buttonCount": 0,
+        "cardCount": 42,
+        "slots": {
+          "heading": "Sign up for updates & special deals and get 10% off your next stay!"
+        },
+        "needsSmart": false
+      }
+    ],
+    "counts": {
+      "nav": 3,
+      "content": 4,
+      "footer": 1
+    },
+    "readingOrder": [
+      "nav",
+      "nav",
+      "nav",
+      "content",
+      "content",
+      "content",
+      "content",
+      "footer"
+    ]
+  }
+}

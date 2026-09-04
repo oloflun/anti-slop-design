@@ -1,0 +1,256 @@
+{
+  "pageIntent": {
+    "type": "landing",
+    "confidence": 0.61,
+    "path": "/",
+    "title": "Hark Capital",
+    "description": "We specialize in non-dilutive NAV loans and GP financings to financial sponsors. Dedicated NAV-based loan provider.",
+    "signals": [
+      {
+        "kind": "dom",
+        "type": "blog-post",
+        "weight": 0.35,
+        "detail": "byline|min-read"
+      },
+      {
+        "kind": "url",
+        "type": "landing",
+        "weight": 0.45,
+        "detail": "root-path"
+      },
+      {
+        "kind": "shape",
+        "type": "landing",
+        "weight": 0.3,
+        "detail": "features+hero+cta+footer"
+      }
+    ],
+    "alternates": [
+      {
+        "type": "blog-post",
+        "score": 0.35
+      }
+    ],
+    "needsSmart": false
+  },
+  "sectionRoles": {
+    "sections": [
+      {
+        "index": 0,
+        "tag": "nav",
+        "role": "nav",
+        "subrole": null,
+        "confidence": 0.9,
+        "heading": null,
+        "bounds": {
+          "x": 0,
+          "y": 0,
+          "w": 1280,
+          "h": 261.84375
+        },
+        "buttonCount": 0,
+        "cardCount": 19,
+        "slots": {
+          "lede": "Menu\nClick to Expand\nOur Solutions\nAbout Us\nNews & Insights"
+        },
+        "needsSmart": false
+      },
+      {
+        "index": 1,
+        "tag": "section",
+        "role": "hero",
+        "subrole": null,
+        "confidence": 0.85,
+        "heading": null,
+        "bounds": {
+          "x": 0,
+          "y": 0,
+          "w": 1280,
+          "h": 1113.703125
+        },
+        "buttonCount": 0,
+        "cardCount": 0,
+        "slots": {
+          "lede": "Pioneers in NAV financing\nWe provide purpose-built NAV and GP financing solutions for private equity investors and their portfolio investments across North America and Europe."
+        },
+        "needsSmart": false
+      },
+      {
+        "index": 2,
+        "tag": "section",
+        "role": "content",
+        "subrole": null,
+        "confidence": 0.3,
+        "heading": null,
+        "bounds": {
+          "x": 0,
+          "y": 1113.703125,
+          "w": 1280,
+          "h": 878.140625
+        },
+        "buttonCount": 1,
+        "cardCount": 0,
+        "slots": {
+          "ctaCount": 1,
+          "lede": "Who We Are\nSince 2013, we have been at the forefront of providing tailored fund financing solutions to middle-market sponsors, specializing in NAV financing, and GP & management company financing solutions.\nOur Story\nOur Solutions\nAs pioneers of NAV financing, we bring deep expertise, certainty of execution and a long-term partnership orientation to solutions that evolve with your needs."
+        },
+        "needsSmart": true
+      },
+      {
+        "index": 3,
+        "tag": "section",
+        "role": "content",
+        "subrole": null,
+        "confidence": 0.3,
+        "heading": null,
+        "bounds": {
+          "x": 0,
+          "y": 1991.84375,
+          "w": 1280,
+          "h": 50.234375
+        },
+        "buttonCount": 0,
+        "cardCount": 0,
+        "slots": {
+          "lede": "Core Stats"
+        },
+        "needsSmart": true
+      },
+      {
+        "index": 4,
+        "tag": "section",
+        "role": "stats",
+        "subrole": null,
+        "confidence": 0.85,
+        "heading": null,
+        "bounds": {
+          "x": 0,
+          "y": 2042.078125,
+          "w": 1280,
+          "h": 800
+        },
+        "buttonCount": 0,
+        "cardCount": 40,
+        "slots": {
+          "lede": "2013\nFounded\n$2.1B+\nCapital Deployed\n70+\nUnique Sponsors\n4\nFunds Raised"
+        },
+        "needsSmart": false
+      },
+      {
+        "index": 5,
+        "tag": "section",
+        "role": "testimonial",
+        "subrole": null,
+        "confidence": 0.8,
+        "heading": null,
+        "bounds": {
+          "x": 0,
+          "y": 2842.078125,
+          "w": 1280,
+          "h": 1502.640625
+        },
+        "buttonCount": 0,
+        "cardCount": 302,
+        "slots": {},
+        "needsSmart": false
+      },
+      {
+        "index": 6,
+        "tag": "section",
+        "role": "content",
+        "subrole": null,
+        "confidence": 0.3,
+        "heading": null,
+        "bounds": {
+          "x": 32,
+          "y": 4344.71875,
+          "w": 1216,
+          "h": 1165.56103515625
+        },
+        "buttonCount": 0,
+        "cardCount": 22,
+        "slots": {
+          "lede": "Our Solutions\nPurpose-built financing for private markets\nNAV-Based Loans\nFlexible, non-dilutive capital backed by the unrealized value of underlying portfolio investments."
+        },
+        "needsSmart": true
+      },
+      {
+        "index": 7,
+        "tag": "section",
+        "role": "pricing-table",
+        "subrole": null,
+        "confidence": 0.9,
+        "heading": null,
+        "bounds": {
+          "x": 0,
+          "y": 5571.625,
+          "w": 1280,
+          "h": 880.015625
+        },
+        "buttonCount": 0,
+        "cardCount": 73,
+        "slots": {},
+        "needsSmart": false
+      },
+      {
+        "index": 8,
+        "tag": "section",
+        "role": "content",
+        "subrole": null,
+        "confidence": 0.3,
+        "heading": null,
+        "bounds": {
+          "x": 32,
+          "y": 8949.796875,
+          "w": 1216,
+          "h": 836
+        },
+        "buttonCount": 0,
+        "cardCount": 0,
+        "slots": {
+          "lede": "Partner with us\nWhether you're seeking additional capital at the fund, manager, or portfolio level, we’re here to help. Let’s connect and explore a solution tailored to your needs."
+        },
+        "needsSmart": true
+      },
+      {
+        "index": 9,
+        "tag": "footer",
+        "role": "footer",
+        "subrole": null,
+        "confidence": 0.95,
+        "heading": null,
+        "bounds": {
+          "x": 0,
+          "y": 9829.796875,
+          "w": 1280,
+          "h": 800
+        },
+        "buttonCount": 0,
+        "cardCount": 19,
+        "slots": {},
+        "needsSmart": false
+      }
+    ],
+    "counts": {
+      "nav": 1,
+      "hero": 1,
+      "content": 4,
+      "stats": 1,
+      "testimonial": 1,
+      "pricing-table": 1,
+      "footer": 1
+    },
+    "readingOrder": [
+      "nav",
+      "hero",
+      "content",
+      "content",
+      "stats",
+      "testimonial",
+      "content",
+      "pricing-table",
+      "content",
+      "footer"
+    ]
+  }
+}

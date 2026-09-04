@@ -1,0 +1,90 @@
+{
+  "pageIntent": {
+    "type": "landing",
+    "confidence": 0.31,
+    "path": "/",
+    "title": "Halston - Webflow HTML website template",
+    "description": "Build an interactive Webflow CMS website fast with this component-based, content-rich professional template. Perfect for architecture and interior design.",
+    "signals": [
+      {
+        "kind": "dom",
+        "type": "blog-post",
+        "weight": 0.35,
+        "detail": "byline|min-read"
+      },
+      {
+        "kind": "url",
+        "type": "landing",
+        "weight": 0.45,
+        "detail": "root-path"
+      }
+    ],
+    "alternates": [
+      {
+        "type": "blog-post",
+        "score": 0.35
+      }
+    ],
+    "needsSmart": true
+  },
+  "sectionRoles": {
+    "sections": [
+      {
+        "index": 0,
+        "tag": "nav",
+        "role": "nav",
+        "subrole": null,
+        "confidence": 0.9,
+        "heading": "Wannsee Residence",
+        "bounds": {
+          "x": 0,
+          "y": 16,
+          "w": 1280,
+          "h": 48
+        },
+        "buttonCount": 0,
+        "cardCount": 6,
+        "slots": {
+          "heading": "Wannsee Residence",
+          "lede": "HALSTON\nMENU\nARCHITECTURE STUDIO\nABOUT\nSERVICES\nDISCIPLINES\nPROJECTS\nJOURNAL\nMORE\nGallery\nContact\nConsultation\nOffices\nBuy the template\nMade by Metrik Studio"
+        },
+        "needsSmart": false
+      },
+      {
+        "index": 1,
+        "tag": "main",
+        "role": "testimonial",
+        "subrole": null,
+        "confidence": 0.8,
+        "heading": "BESPOKE LIVING\nDEFINED BY CLARITY",
+        "bounds": {
+          "x": 0,
+          "y": 0,
+          "w": 1280,
+          "h": 19012.765625
+        },
+        "buttonCount": 55,
+        "cardCount": 40,
+        "slots": {
+          "heading": "BESPOKE LIVING\nDEFINED BY CLARITY",
+          "subheadings": [
+            "Founded in 2003, Halston is a\ndeliberately small practice. The\nprincipal architect leads every project\nfrom brief to handover, so the thinking\nthat shapes the first sketch carries all\nthe way through to the last detail on\nsite.",
+            "Every project begins with reading the\nsite and the brief honestly, then\ndeciding what the new work should add,\ncontrast, or preserve. Nothing is drawn\nbefore the questions have been asked\nproperly.",
+            "WHAT THE WORK IS BUILT ON. THREE\nPRINCIPLES THAT RUN THROUGH EVERY\nPROJECT WE TAKE ON.",
+            "ARCHITECTURE"
+          ],
+          "ctaCount": 55
+        },
+        "needsSmart": false
+      }
+    ],
+    "counts": {
+      "nav": 1,
+      "testimonial": 1
+    },
+    "readingOrder": [
+      "testimonial",
+      "nav"
+    ]
+  }
+}

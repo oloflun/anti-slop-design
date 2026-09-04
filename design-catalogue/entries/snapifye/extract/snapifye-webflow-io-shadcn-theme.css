@@ -1,0 +1,19 @@
+/* shadcn/ui Theme — extracted from https://snapifye.webflow.io/ */
+/* Paste into your globals.css */
+
+@layer base {
+  :root {
+    --background: 27 81% 87%;
+    --foreground: 0 0% 0%;
+    --primary: 27 81% 87%;
+    --primary-foreground: 0 0% 0%;
+    --secondary: 359 58% 28%;
+    --secondary-foreground: 0 0% 100%;
+    --accent: 0 100% 59%;
+    --accent-foreground: 0 0% 100%;
+    --muted: 0 0% 13%;
+    --muted-foreground: 0 0% 100%;
+    --border: 0 0% 13%;
+    --radius: 8px;
+  }
+}

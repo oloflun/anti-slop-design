@@ -1,0 +1,188 @@
+{
+  "$schema": "https://schemas.wp.org/trunk/theme.json",
+  "version": 3,
+  "settings": {
+    "color": {
+      "palette": [
+        {
+          "slug": "neutral-1",
+          "color": "#fafafa",
+          "name": "Neutral 1"
+        },
+        {
+          "slug": "neutral-2",
+          "color": "#000000",
+          "name": "Neutral 2"
+        },
+        {
+          "slug": "neutral-3",
+          "color": "#53606e",
+          "name": "Neutral 3"
+        },
+        {
+          "slug": "neutral-4",
+          "color": "#808080",
+          "name": "Neutral 4"
+        },
+        {
+          "slug": "bg-808080",
+          "color": "#808080",
+          "name": "Background #808080"
+        },
+        {
+          "slug": "bg-000000",
+          "color": "#000000",
+          "name": "Background #000000"
+        }
+      ],
+      "gradients": [
+        {
+          "slug": "gradient-1",
+          "gradient": "linear-gradient(rgb(135, 142, 154) 25.88%, rgb(144, 131, 142) 131.14%)",
+          "name": "Gradient 1"
+        },
+        {
+          "slug": "gradient-2",
+          "gradient": "linear-gradient(rgba(217, 217, 217, 0) 0%, rgba(168, 43, 58, 0.7) 100%)",
+          "name": "Gradient 2"
+        },
+        {
+          "slug": "gradient-3",
+          "gradient": "linear-gradient(rgb(132, 152, 153) 0%, rgb(141, 157, 141) 100%)",
+          "name": "Gradient 3"
+        },
+        {
+          "slug": "gradient-4",
+          "gradient": "linear-gradient(rgba(217, 217, 217, 0) 0%, rgba(190, 193, 58, 0.7) 100%)",
+          "name": "Gradient 4"
+        },
+        {
+          "slug": "gradient-5",
+          "gradient": "linear-gradient(rgb(137, 143, 147) 0%, rgb(150, 135, 130) 100%)",
+          "name": "Gradient 5"
+        }
+      ]
+    },
+    "typography": {
+      "fontFamilies": [
+        {
+          "fontFamily": "DepartureMono",
+          "slug": "departuremono",
+          "name": "DepartureMono"
+        },
+        {
+          "fontFamily": "HelveticaNowDisplay",
+          "slug": "helveticanowdisplay",
+          "name": "HelveticaNowDisplay"
+        },
+        {
+          "fontFamily": "EditorialNew",
+          "slug": "editorialnew",
+          "name": "EditorialNew"
+        }
+      ],
+      "fontSizes": [
+        {
+          "size": "160px",
+          "slug": "size-160",
+          "name": "160px"
+        },
+        {
+          "size": "60px",
+          "slug": "size-60",
+          "name": "60px"
+        },
+        {
+          "size": "40px",
+          "slug": "size-40",
+          "name": "40px"
+        },
+        {
+          "size": "18px",
+          "slug": "size-18",
+          "name": "18px"
+        },
+        {
+          "size": "16px",
+          "slug": "size-16",
+          "name": "16px"
+        },
+        {
+          "size": "14px",
+          "slug": "size-14",
+          "name": "14px"
+        },
+        {
+          "size": "12px",
+          "slug": "size-12",
+          "name": "12px"
+        },
+        {
+          "size": "11.2px",
+          "slug": "size-11.2",
+          "name": "11.2px"
+        }
+      ]
+    },
+    "spacing": {
+      "spacingSizes": [
+        {
+          "size": "2px",
+          "slug": "spacing-2",
+          "name": "2px"
+        },
+        {
+          "size": "36px",
+          "slug": "spacing-36",
+          "name": "36px"
+        },
+        {
+          "size": "48px",
+          "slug": "spacing-48",
+          "name": "48px"
+        },
+        {
+          "size": "56px",
+          "slug": "spacing-56",
+          "name": "56px"
+        },
+        {
+          "size": "64px",
+          "slug": "spacing-64",
+          "name": "64px"
+        },
+        {
+          "size": "78px",
+          "slug": "spacing-78",
+          "name": "78px"
+        },
+        {
+          "size": "85px",
+          "slug": "spacing-85",
+          "name": "85px"
+        },
+        {
+          "size": "96px",
+          "slug": "spacing-96",
+          "name": "96px"
+        }
+      ]
+    },
+    "layout": {
+      "contentSize": "1024px",
+      "wideSize": "1400px"
+    }
+  },
+  "styles": {
+    "color": {
+      "background": "#808080",
+      "text": "#000000"
+    },
+    "typography": {
+      "fontSize": "14px",
+      "lineHeight": "20px",
+      "fontFamily": "DepartureMono"
+    },
+    "spacing": {}
+  }
+}

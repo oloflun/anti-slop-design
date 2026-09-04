@@ -1,0 +1,77 @@
+:root {
+  /* Colors — Primary */
+  --color-primary: #f7ea48;
+  --color-secondary: #103b15;
+  --color-accent: #1d0b0d;
+
+  /* Colors — Neutrals */
+  --color-neutral-50: #000000;
+  --color-neutral-100: #fcf9f0;
+  --color-neutral-200: #dbe2dc;
+  --color-neutral-300: #ffffff;
+
+  /* Colors — Backgrounds */
+  --color-bg: #1d0b0d;
+  --color-bg-1: #fcf9f0;
+  --color-bg-2: #dbe2dc;
+  --color-bg-3: #103b15;
+
+  /* Colors — Text */
+  --color-text: #000000;
+  --color-text-1: #1d0b0d;
+  --color-text-2: #103b15;
+  --color-text-3: #f7ea48;
+  --color-text-4: #ffffff;
+
+  /* Typography — Families */
+  --font-sans: 'VenusCom', sans-serif;
+  --font-body: 'Times New Roman', sans-serif;
+  --font-body: 'FreeSans', sans-serif;
+
+  /* Typography — Scale */
+  --font-size-75: 75px;
+  --font-size-68: 68px;
+  --font-size-54: 54px;
+  --font-size-46: 46px;
+  --font-size-36: 36px;
+  --font-size-30: 30px;
+  --font-size-26: 26px;
+  --font-size-20: 20px;
+  --font-size-19: 19px;
+  --font-size-16: 16px;
+  --font-size-14: 14px;
+
+  /* Spacing */
+  --spacing-0: 0px;
+  --spacing-25: 25px;
+  --spacing-30: 30px;
+  --spacing-40: 40px;
+  --spacing-45: 45px;
+  --spacing-50: 50px;
+  --spacing-60: 60px;
+  --spacing-75: 75px;
+  --spacing-80: 80px;
+  --spacing-120: 120px;
+  --spacing-144: 144px;
+  --spacing-165: 165px;
+  --spacing-320: 320px;
+
+  /* Border Radius */
+  --radius-xs: 1px;
+  --radius-full: 100px;
+
+  /* Original Site Variables */
+  /* — typography — */
+  --fa-font-solid: normal 900 1em/1 "Font Awesome 6 Free";
+  --fa-font-regular: normal 400 1em/1 "Font Awesome 6 Free";
+  --fa-font-brands: normal 400 1em/1 "Font Awesome 6 Brands";
+  /* — other — */
+  --fa-style-family-brands: "Font Awesome 6 Brands";
+  --fa-style-family-classic: "Font Awesome 6 Free";
+  /* — semantic — */
+  success: [object Object];
+  warning: [object Object];
+  error: [object Object];
+  info: [object Object];
+
+}

@@ -1,0 +1,348 @@
+{
+  "pageIntent": {
+    "type": "landing",
+    "confidence": 0.31,
+    "path": "/",
+    "title": "Orix-Studio® | Creative Agency Template",
+    "description": "A modern creative agency website template crafted for designers, studios, and digital brands. Orix helps showcase work, present services, and build lasting trust with clients effectively.",
+    "signals": [
+      {
+        "kind": "dom",
+        "type": "blog-post",
+        "weight": 0.35,
+        "detail": "byline|min-read"
+      },
+      {
+        "kind": "url",
+        "type": "landing",
+        "weight": 0.45,
+        "detail": "root-path"
+      }
+    ],
+    "alternates": [
+      {
+        "type": "blog-post",
+        "score": 0.35
+      }
+    ],
+    "needsSmart": true
+  },
+  "sectionRoles": {
+    "sections": [
+      {
+        "index": 0,
+        "tag": "nav",
+        "role": "nav",
+        "subrole": null,
+        "confidence": 0.9,
+        "heading": null,
+        "bounds": {
+          "x": 0,
+          "y": 0,
+          "w": 1280,
+          "h": 76.40625
+        },
+        "buttonCount": 0,
+        "cardCount": 0,
+        "slots": {
+          "lede": "Orix-Studio®"
+        },
+        "needsSmart": false
+      },
+      {
+        "index": 1,
+        "tag": "header",
+        "role": "nav",
+        "subrole": null,
+        "confidence": 0.4,
+        "heading": "ORIX-STUDIO®",
+        "bounds": {
+          "x": 0,
+          "y": 0,
+          "w": 1280,
+          "h": 800
+        },
+        "buttonCount": 0,
+        "cardCount": 0,
+        "slots": {
+          "heading": "ORIX-STUDIO®",
+          "lede": "WEBSITE DESIGN"
+        },
+        "needsSmart": true
+      },
+      {
+        "index": 2,
+        "tag": "section",
+        "role": "content",
+        "subrole": null,
+        "confidence": 0.3,
+        "heading": null,
+        "bounds": {
+          "x": 0,
+          "y": 800,
+          "w": 1280,
+          "h": 569.1875
+        },
+        "buttonCount": 0,
+        "cardCount": 0,
+        "slots": {
+          "lede": "ABOUT US"
+        },
+        "needsSmart": true
+      },
+      {
+        "index": 3,
+        "tag": "section",
+        "role": "content",
+        "subrole": null,
+        "confidence": 0.3,
+        "heading": null,
+        "bounds": {
+          "x": 0,
+          "y": 1369.1875,
+          "w": 1280,
+          "h": 982
+        },
+        "buttonCount": 0,
+        "cardCount": 0,
+        "slots": {
+          "lede": "WORK"
+        },
+        "needsSmart": true
+      },
+      {
+        "index": 4,
+        "tag": "section",
+        "role": "content",
+        "subrole": null,
+        "confidence": 0.3,
+        "heading": null,
+        "bounds": {
+          "x": 0,
+          "y": 2351.1875,
+          "w": 1280,
+          "h": 984.453125
+        },
+        "buttonCount": 0,
+        "cardCount": 0,
+        "slots": {
+          "lede": "FEATURES"
+        },
+        "needsSmart": true
+      },
+      {
+        "index": 5,
+        "tag": "section",
+        "role": "content",
+        "subrole": null,
+        "confidence": 0.3,
+        "heading": "Explore Orix services designed to elevate brands. From creative design to digital solutions, we craft impactful results that drive growth, build strong identities, and deliver long-lasting success for every client.",
+        "bounds": {
+          "x": 0,
+          "y": 3335.640625,
+          "w": 1280,
+          "h": 1119.1875
+        },
+        "buttonCount": 0,
+        "cardCount": 0,
+        "slots": {
+          "heading": "Explore Orix services designed to elevate brands. From creative design to digital solutions, we craft impactful results that drive growth, build strong identities, and deliver long-lasting success for every client.",
+          "lede": "OUR SERVICES"
+        },
+        "needsSmart": true
+      },
+      {
+        "index": 6,
+        "tag": "section",
+        "role": "content",
+        "subrole": null,
+        "confidence": 0.3,
+        "heading": null,
+        "bounds": {
+          "x": 0,
+          "y": 4454.828125,
+          "w": 1280,
+          "h": 677.59375
+        },
+        "buttonCount": 0,
+        "cardCount": 0,
+        "slots": {
+          "lede": "OUR PROCESS"
+        },
+        "needsSmart": true
+      },
+      {
+        "index": 7,
+        "tag": "section",
+        "role": "content",
+        "subrole": null,
+        "confidence": 0.3,
+        "heading": null,
+        "bounds": {
+          "x": 0,
+          "y": 5132.421875,
+          "w": 1280,
+          "h": 576
+        },
+        "buttonCount": 0,
+        "cardCount": 0,
+        "slots": {
+          "lede": "WHY CHOOSE US"
+        },
+        "needsSmart": true
+      },
+      {
+        "index": 8,
+        "tag": "section",
+        "role": "testimonials",
+        "subrole": null,
+        "confidence": 0.4,
+        "heading": null,
+        "bounds": {
+          "x": 0,
+          "y": 5708.421875,
+          "w": 1280,
+          "h": 717.59375
+        },
+        "buttonCount": 0,
+        "cardCount": 0,
+        "slots": {
+          "lede": "REVIEWS"
+        },
+        "needsSmart": true
+      },
+      {
+        "index": 9,
+        "tag": "section",
+        "role": "pricing",
+        "subrole": null,
+        "confidence": 0.4,
+        "heading": "Discover flexible pricing plans designed to suit every need. At Orix, we provide clear, transparent packages that deliver exceptional value, ensuring your brand receives professional design solutions without compromise.",
+        "bounds": {
+          "x": 0,
+          "y": 6426.015625,
+          "w": 1280,
+          "h": 815.78125
+        },
+        "buttonCount": 0,
+        "cardCount": 0,
+        "slots": {
+          "heading": "Discover flexible pricing plans designed to suit every need. At Orix, we provide clear, transparent packages that deliver exceptional value, ensuring your brand receives professional design solutions without compromise.",
+          "subheadings": [
+            "$29"
+          ],
+          "lede": "PRICING"
+        },
+        "needsSmart": true
+      },
+      {
+        "index": 10,
+        "tag": "section",
+        "role": "content",
+        "subrole": null,
+        "confidence": 0.3,
+        "heading": null,
+        "bounds": {
+          "x": 0,
+          "y": 7241.796875,
+          "w": 1280,
+          "h": 685
+        },
+        "buttonCount": 0,
+        "cardCount": 0,
+        "slots": {
+          "lede": "NEWS & ARTICLE"
+        },
+        "needsSmart": true
+      },
+      {
+        "index": 11,
+        "tag": "section",
+        "role": "faq",
+        "subrole": null,
+        "confidence": 0.85,
+        "heading": null,
+        "bounds": {
+          "x": 0,
+          "y": 7926.796875,
+          "w": 1280,
+          "h": 652
+        },
+        "buttonCount": 0,
+        "cardCount": 0,
+        "slots": {
+          "lede": "FAQ"
+        },
+        "needsSmart": false
+      },
+      {
+        "index": 12,
+        "tag": "section",
+        "role": "hero",
+        "subrole": null,
+        "confidence": 0.4,
+        "heading": "Ready to take your brand to the next level? Partner with Orix today and access professional design solutions crafted to deliver lasting impact, creativity, and measurable growth for your business.",
+        "bounds": {
+          "x": 0,
+          "y": 8578.796875,
+          "w": 1280,
+          "h": 815.1875
+        },
+        "buttonCount": 1,
+        "cardCount": 0,
+        "slots": {
+          "heading": "Ready to take your brand to the next level? Partner with Orix today and access professional design solutions crafted to deliver lasting impact, creativity, and measurable growth for your business.",
+          "ctaCount": 1,
+          "lede": "LET'S CONNECT"
+        },
+        "needsSmart": true
+      },
+      {
+        "index": 13,
+        "tag": "footer",
+        "role": "footer",
+        "subrole": null,
+        "confidence": 0.95,
+        "heading": "ORIX-STUDIO®",
+        "bounds": {
+          "x": 0,
+          "y": 9393.984375,
+          "w": 1280,
+          "h": 588
+        },
+        "buttonCount": 0,
+        "cardCount": 0,
+        "slots": {
+          "heading": "ORIX-STUDIO®",
+          "lede": "Orix-Studio®"
+        },
+        "needsSmart": false
+      }
+    ],
+    "counts": {
+      "nav": 2,
+      "content": 7,
+      "testimonials": 1,
+      "pricing": 1,
+      "faq": 1,
+      "hero": 1,
+      "footer": 1
+    },
+    "readingOrder": [
+      "nav",
+      "nav",
+      "content",
+      "content",
+      "content",
+      "content",
+      "content",
+      "content",
+      "testimonials",
+      "pricing",
+      "content",
+      "faq",
+      "hero",
+      "footer"
+    ]
+  }
+}

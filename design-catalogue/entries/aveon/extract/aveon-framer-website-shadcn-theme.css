@@ -1,0 +1,19 @@
+/* shadcn/ui Theme — extracted from https://aveon.framer.website/ */
+/* Paste into your globals.css */
+
+@layer base {
+  :root {
+    --background: 33 28% 87%;
+    --foreground: 0 0% 0%;
+    --primary: 240 100% 47%;
+    --primary-foreground: 0 0% 100%;
+    --secondary: 26 39% 54%;
+    --secondary-foreground: 0 0% 100%;
+    --accent: 30 29% 13%;
+    --accent-foreground: 0 0% 100%;
+    --muted: 27 22% 20%;
+    --muted-foreground: 0 0% 0%;
+    --border: 0 0% 46%;
+    --radius: 10px;
+  }
+}

@@ -1,0 +1,106 @@
+{
+  "pageIntent": {
+    "type": "landing",
+    "confidence": 0.29,
+    "path": "/",
+    "title": "Shaping Extraordinary | Geon",
+    "description": "Shaping the Extraordinary",
+    "signals": [
+      {
+        "kind": "dom",
+        "type": "legal",
+        "weight": 0.4
+      },
+      {
+        "kind": "url",
+        "type": "landing",
+        "weight": 0.45,
+        "detail": "root-path"
+      }
+    ],
+    "alternates": [
+      {
+        "type": "legal",
+        "score": 0.4
+      }
+    ],
+    "needsSmart": true
+  },
+  "sectionRoles": {
+    "sections": [
+      {
+        "index": 0,
+        "tag": "header",
+        "role": "nav",
+        "subrole": null,
+        "confidence": 0.4,
+        "heading": null,
+        "bounds": {
+          "x": 0,
+          "y": 0,
+          "w": 1280,
+          "h": 97
+        },
+        "buttonCount": 2,
+        "cardCount": 0,
+        "slots": {
+          "ctaCount": 2,
+          "lede": "ENQUIRE\nMENU"
+        },
+        "needsSmart": true
+      },
+      {
+        "index": 1,
+        "tag": "main",
+        "role": "content",
+        "subrole": null,
+        "confidence": 0.3,
+        "heading": null,
+        "bounds": {
+          "x": 0,
+          "y": 0,
+          "w": 1280,
+          "h": 7401.984375
+        },
+        "buttonCount": 6,
+        "cardCount": 0,
+        "slots": {
+          "ctaCount": 6,
+          "lede": "SHAPING"
+        },
+        "needsSmart": true
+      },
+      {
+        "index": 2,
+        "tag": "footer",
+        "role": "footer",
+        "subrole": null,
+        "confidence": 0.95,
+        "heading": null,
+        "bounds": {
+          "x": 0,
+          "y": 7401.984375,
+          "w": 1280,
+          "h": 715
+        },
+        "buttonCount": 1,
+        "cardCount": 1,
+        "slots": {
+          "ctaCount": 1,
+          "lede": "Stay Up To Date"
+        },
+        "needsSmart": false
+      }
+    ],
+    "counts": {
+      "nav": 1,
+      "content": 1,
+      "footer": 1
+    },
+    "readingOrder": [
+      "nav",
+      "content",
+      "footer"
+    ]
+  }
+}

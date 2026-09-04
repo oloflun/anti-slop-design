@@ -1,0 +1,163 @@
+{
+  "$schema": "https://schemas.wp.org/trunk/theme.json",
+  "version": 3,
+  "settings": {
+    "color": {
+      "palette": [
+        {
+          "slug": "primary",
+          "color": "#191313",
+          "name": "Primary"
+        },
+        {
+          "slug": "neutral-1",
+          "color": "#efeeec",
+          "name": "Neutral 1"
+        },
+        {
+          "slug": "neutral-2",
+          "color": "#a8a99e",
+          "name": "Neutral 2"
+        },
+        {
+          "slug": "neutral-3",
+          "color": "#000000",
+          "name": "Neutral 3"
+        },
+        {
+          "slug": "bg-a8a99e",
+          "color": "#a8a99e",
+          "name": "Background #a8a99e"
+        },
+        {
+          "slug": "bg-191313",
+          "color": "#191313",
+          "name": "Background #191313"
+        },
+        {
+          "slug": "bg-131313",
+          "color": "#131313",
+          "name": "Background #131313"
+        }
+      ],
+      "gradients": [
+        {
+          "slug": "gradient-1",
+          "gradient": "linear-gradient(90deg, rgb(25, 19, 19), rgba(25, 19, 19, 0))",
+          "name": "Gradient 1"
+        }
+      ]
+    },
+    "typography": {
+      "fontFamilies": [
+        {
+          "fontFamily": "Times Now",
+          "slug": "times-now",
+          "name": "Times Now"
+        },
+        {
+          "fontFamily": "Inter Tight",
+          "slug": "inter-tight",
+          "name": "Inter Tight"
+        }
+      ],
+      "fontSizes": [
+        {
+          "size": "49px",
+          "slug": "size-49",
+          "name": "49px"
+        },
+        {
+          "size": "22.75px",
+          "slug": "size-22.75",
+          "name": "22.75px"
+        },
+        {
+          "size": "17.5px",
+          "slug": "size-17.5",
+          "name": "17.5px"
+        },
+        {
+          "size": "15.75px",
+          "slug": "size-15.75",
+          "name": "15.75px"
+        },
+        {
+          "size": "14px",
+          "slug": "size-14",
+          "name": "14px"
+        },
+        {
+          "size": "12.25px",
+          "slug": "size-12.25",
+          "name": "12.25px"
+        },
+        {
+          "size": "10.5px",
+          "slug": "size-10.5",
+          "name": "10.5px"
+        }
+      ]
+    },
+    "spacing": {
+      "spacingSizes": [
+        {
+          "size": "1px",
+          "slug": "spacing-1",
+          "name": "1px"
+        },
+        {
+          "size": "28px",
+          "slug": "spacing-28",
+          "name": "28px"
+        },
+        {
+          "size": "35px",
+          "slug": "spacing-35",
+          "name": "35px"
+        },
+        {
+          "size": "70px",
+          "slug": "spacing-70",
+          "name": "70px"
+        },
+        {
+          "size": "88px",
+          "slug": "spacing-88",
+          "name": "88px"
+        },
+        {
+          "size": "105px",
+          "slug": "spacing-105",
+          "name": "105px"
+        },
+        {
+          "size": "112px",
+          "slug": "spacing-112",
+          "name": "112px"
+        },
+        {
+          "size": "119px",
+          "slug": "spacing-119",
+          "name": "119px"
+        }
+      ]
+    },
+    "layout": {
+      "contentSize": "100%",
+      "wideSize": "1400px"
+    }
+  },
+  "styles": {
+    "color": {
+      "background": "#a8a99e",
+      "text": "#000000"
+    },
+    "typography": {
+      "fontSize": "14px",
+      "lineHeight": "normal",
+      "fontFamily": "Times Now"
+    },
+    "spacing": {}
+  }
+}

@@ -1,0 +1,70 @@
+:root {
+  /* Colors — Primary */
+  --color-primary: #fffaf6;
+  --color-secondary: #0000ee;
+  --color-accent: #f1efe5;
+
+  /* Colors — Neutrals */
+  --color-neutral-50: #000000;
+  --color-neutral-100: #100c08;
+  --color-neutral-200: #767676;
+
+  /* Colors — Backgrounds */
+  --color-bg: #100c08;
+  --color-bg-1: #000000;
+  --color-bg-2: #f1efe5;
+  --color-bg-3: #fffaf6;
+
+  /* Colors — Text */
+  --color-text: #000000;
+  --color-text-1: #0000ee;
+  --color-text-2: #fffaf6;
+  --color-text-3: #100c08;
+
+  /* Typography — Families */
+  --font-body: 'Inter', sans-serif;
+  --font-heading: 'Libre Caslon Condensed Variable', sans-serif;
+  --font-body: 'Times New Roman', sans-serif;
+
+  /* Typography — Scale */
+  --font-size-144: 144px;
+  --font-size-36: 36px;
+  --font-size-18: 18px;
+  --font-size-17: 17px;
+  --font-size-16: 16px;
+  --font-size-14.4: 14.4px;
+  --font-size-14: 14px;
+  --font-size-12: 12px;
+
+  /* Spacing */
+  --spacing-1: 1px;
+  --spacing-32: 32px;
+  --spacing-48: 48px;
+  --spacing-64: 64px;
+  --spacing-80: 80px;
+  --spacing-96: 96px;
+  --spacing-112: 112px;
+  --spacing-180: 180px;
+
+  /* Border Radius */
+  --radius-sm: 4px;
+  --radius-md: 7px;
+  --radius-md: 10px;
+  --radius-lg: 16px;
+  --radius-full: 48px;
+  --radius-full: 100px;
+
+  /* Box Shadows */
+  --shadow-sm: rgb(0, 0, 0) 0px 0px 0px 1px inset;
+  --shadow-xs: rgba(0, 0, 0, 0.17) 0px 0.602187px 1.56569px -1.5px, rgba(0, 0, 0, 0.14) 0px 2.28853px 5.95019px -3px, rgba(0, 0, 0, 0.02) 0px 10px 26px -4.5px;
+
+  /* Original Site Variables */
+  /* — other — */
+  --one-if-corner-shape-supported: 1;
+  /* — semantic — */
+  success: [object Object];
+  warning: [object Object];
+  error: [object Object];
+  info: [object Object];
+
+}

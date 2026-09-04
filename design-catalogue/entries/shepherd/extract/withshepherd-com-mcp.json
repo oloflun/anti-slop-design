@@ -1,0 +1,909 @@
+{
+  "colors": {
+    "all": [
+      {
+        "hex": "#000000",
+        "rgb": {
+          "r": 0,
+          "g": 0,
+          "b": 0,
+          "a": 1
+        },
+        "hsl": {
+          "h": 0,
+          "s": 0,
+          "l": 0
+        },
+        "count": 1503,
+        "contexts": [
+          "text",
+          "border",
+          "background"
+        ]
+      },
+      {
+        "hex": "#ffffff",
+        "rgb": {
+          "r": 255,
+          "g": 255,
+          "b": 255,
+          "a": 1
+        },
+        "hsl": {
+          "h": 0,
+          "s": 0,
+          "l": 100
+        },
+        "count": 125,
+        "contexts": [
+          "background",
+          "text",
+          "border"
+        ]
+      },
+      {
+        "hex": "#fdc331",
+        "rgb": {
+          "r": 253,
+          "g": 195,
+          "b": 49,
+          "a": 1
+        },
+        "hsl": {
+          "h": 43,
+          "s": 98,
+          "l": 59
+        },
+        "count": 9,
+        "contexts": [
+          "background"
+        ]
+      },
+      {
+        "hex": "#e7e7e7",
+        "rgb": {
+          "r": 231,
+          "g": 231,
+          "b": 231,
+          "a": 1
+        },
+        "hsl": {
+          "h": 0,
+          "s": 0,
+          "l": 91
+        },
+        "count": 5,
+        "contexts": [
+          "background"
+        ]
+      },
+      {
+        "hex": "#f6c449",
+        "rgb": {
+          "r": 246,
+          "g": 196,
+          "b": 73,
+          "a": 1
+        },
+        "hsl": {
+          "h": 43,
+          "s": 91,
+          "l": 63
+        },
+        "count": 2,
+        "contexts": [
+          "text",
+          "border"
+        ]
+      },
+      {
+        "hex": "#d6c5b5",
+        "rgb": {
+          "r": 214,
+          "g": 197,
+          "b": 181,
+          "a": 1
+        },
+        "hsl": {
+          "h": 29,
+          "s": 29,
+          "l": 77
+        },
+        "count": 2,
+        "contexts": [
+          "background"
+        ]
+      },
+      {
+        "hex": "#fa9742",
+        "rgb": {
+          "r": 250,
+          "g": 151,
+          "b": 66,
+          "a": 1
+        },
+        "hsl": {
+          "h": 28,
+          "s": 95,
+          "l": 62
+        },
+        "count": 1,
+        "contexts": [
+          "background"
+        ]
+      }
+    ]
+  },
+  "regions": [
+    {
+      "role": "nav",
+      "tag": "header",
+      "bounds": {
+        "x": 0,
+        "y": 38.390625,
+        "w": 1280,
+        "h": 95
+      },
+      "heading": null,
+      "buttonCount": 12,
+      "cardCount": 17,
+      "className": "nav_desktop_wrap"
+    },
+    {
+      "role": "nav",
+      "tag": "nav",
+      "bounds": {
+        "x": 249,
+        "y": 53.890625,
+        "w": 1009,
+        "h": 64
+      },
+      "heading": null,
+      "buttonCount": 12,
+      "cardCount": 17,
+      "className": "nav_links_component w-variant-23049969-09ac-2789-520b-3c6ae895bbc6"
+    },
+    {
+      "role": "nav",
+      "tag": "nav",
+      "bounds": {
+        "x": 249,
+        "y": 53.890625,
+        "w": 224,
+        "h": 0
+      },
+      "heading": null,
+      "buttonCount": 0,
+      "cardCount": 4,
+      "className": "nav_dropdown_mega_wrap w-variant-23049969-09ac-2789-520b-3c6ae895bbc6 w-dropdown-list"
+    },
+    {
+      "role": "nav",
+      "tag": "nav",
+      "bounds": {
+        "x": 396.8125,
+        "y": 53.890625,
+        "w": 224,
+        "h": 0
+      },
+      "heading": null,
+      "buttonCount": 0,
+      "cardCount": 3,
+      "className": "nav_dropdown_mega_wrap w-variant-23049969-09ac-2789-520b-3c6ae895bbc6 w-dropdown-list"
+    },
+    {
+      "role": "nav",
+      "tag": "nav",
+      "bounds": {
+        "x": 552.78125,
+        "y": 53.890625,
+        "w": 224,
+        "h": 0
+      },
+      "heading": null,
+      "buttonCount": 0,
+      "cardCount": 3,
+      "className": "nav_dropdown_mega_wrap w-variant-23049969-09ac-2789-520b-3c6ae895bbc6 w-dropdown-list"
+    },
+    {
+      "role": "nav",
+      "tag": "div",
+      "bounds": {
+        "x": 0,
+        "y": 0,
+        "w": 0,
+        "h": 0
+      },
+      "heading": null,
+      "buttonCount": 16,
+      "cardCount": 17,
+      "className": "nav_mobile_wrap w-nav"
+    },
+    {
+      "role": "nav",
+      "tag": "nav",
+      "bounds": {
+        "x": 0,
+        "y": 0,
+        "w": 0,
+        "h": 0
+      },
+      "heading": null,
+      "buttonCount": 12,
+      "cardCount": 17,
+      "className": "nav_mobile_menu_wrap w-nav-menu"
+    },
+    {
+      "role": "nav",
+      "tag": "nav",
+      "bounds": {
+        "x": 0,
+        "y": 0,
+        "w": 0,
+        "h": 0
+      },
+      "heading": null,
+      "buttonCount": 12,
+      "cardCount": 17,
+      "className": "nav_links_component"
+    },
+    {
+      "role": "nav",
+      "tag": "nav",
+      "bounds": {
+        "x": 0,
+        "y": 0,
+        "w": 0,
+        "h": 0
+      },
+      "heading": null,
+      "buttonCount": 0,
+      "cardCount": 4,
+      "className": "nav_dropdown_mega_wrap w-dropdown-list"
+    },
+    {
+      "role": "nav",
+      "tag": "nav",
+      "bounds": {
+        "x": 0,
+        "y": 0,
+        "w": 0,
+        "h": 0
+      },
+      "heading": null,
+      "buttonCount": 0,
+      "cardCount": 3,
+      "className": "nav_dropdown_mega_wrap w-dropdown-list"
+    },
+    {
+      "role": "nav",
+      "tag": "nav",
+      "bounds": {
+        "x": 0,
+        "y": 0,
+        "w": 0,
+        "h": 0
+      },
+      "heading": null,
+      "buttonCount": 0,
+      "cardCount": 3,
+      "className": "nav_dropdown_mega_wrap w-dropdown-list"
+    },
+    {
+      "role": "hero",
+      "tag": "section",
+      "bounds": {
+        "x": 0,
+        "y": 0,
+        "w": 1280,
+        "h": 845.171875
+      },
+      "heading": "Making risk frictionless  \n‍Insurance   for the builders and operators shaping   our\nphysical   world.",
+      "buttonCount": 6,
+      "cardCount": 32,
+      "className": "u-section u-theme-brand"
+    },
+    {
+      "role": "pricing",
+      "tag": "section",
+      "bounds": {
+        "x": 0,
+        "y": 845.171875,
+        "w": 1280,
+        "h": 1447.28125
+      },
+      "heading": "Smarter underwriting powered by data and technology.",
+      "buttonCount": 5,
+      "cardCount": 17,
+      "className": "u-section u-theme-light"
+    },
+    {
+      "role": "hero",
+      "tag": "section",
+      "bounds": {
+        "x": 0,
+        "y": 2292.453125,
+        "w": 1280,
+        "h": 945.6875
+      },
+      "heading": "Accelerating the world's most important commercial industries.",
+      "buttonCount": 4,
+      "cardCount": 0,
+      "className": "u-section u-theme-beige"
+    },
+    {
+      "role": "testimonials",
+      "tag": "section",
+      "bounds": {
+        "x": 0,
+        "y": 3238.140625,
+        "w": 1280,
+        "h": 1571.40625
+      },
+      "heading": "A new vision for commercial insurance.",
+      "buttonCount": 25,
+      "cardCount": 22,
+      "className": "u-section u-theme-light"
+    },
+    {
+      "role": "hero",
+      "tag": "section",
+      "bounds": {
+        "x": 0,
+        "y": 4809.546875,
+        "w": 1280,
+        "h": 409.890625
+      },
+      "heading": "Turn risk management into a competitive advantage.",
+      "buttonCount": 5,
+      "cardCount": 5,
+      "className": "u-section u-theme-light"
+    },
+    {
+      "role": "testimonials",
+      "tag": "section",
+      "bounds": {
+        "x": 0,
+        "y": 5219.4375,
+        "w": 1280,
+        "h": 308.171875
+      },
+      "heading": "PRODUCTS",
+      "buttonCount": 5,
+      "cardCount": 10,
+      "className": "u-section footer u-theme-grey"
+    },
+    {
+      "role": "content",
+      "tag": "section",
+      "bounds": {
+        "x": 439.328125,
+        "y": 5251.4375,
+        "w": 192.65625,
+        "h": 103.21875
+      },
+      "heading": "PRODUCTS",
+      "buttonCount": 0,
+      "cardCount": 3,
+      "className": "footer_group_wrap"
+    },
+    {
+      "role": "content",
+      "tag": "section",
+      "bounds": {
+        "x": 647.984375,
+        "y": 5251.4375,
+        "w": 192.671875,
+        "h": 98.0625
+      },
+      "heading": "INDUSTRIES",
+      "buttonCount": 0,
+      "cardCount": 2,
+      "className": "footer_group_wrap"
+    },
+    {
+      "role": "testimonials",
+      "tag": "section",
+      "bounds": {
+        "x": 856.65625,
+        "y": 5251.4375,
+        "w": 192.671875,
+        "h": 103.21875
+      },
+      "heading": "RESOURCES",
+      "buttonCount": 0,
+      "cardCount": 3,
+      "className": "footer_group_wrap"
+    },
+    {
+      "role": "content",
+      "tag": "section",
+      "bounds": {
+        "x": 1065.328125,
+        "y": 5251.4375,
+        "w": 192.671875,
+        "h": 81.015625
+      },
+      "heading": "COMPANY",
+      "buttonCount": 0,
+      "cardCount": 2,
+      "className": "footer_group_wrap"
+    }
+  ],
+  "componentClusters": [
+    {
+      "kind": "button",
+      "structuralHash": "button>svg>span",
+      "instanceCount": 1,
+      "variants": [
+        {
+          "css": {
+            "background": "rgba(0, 0, 0, 0)",
+            "color": "rgb(255, 255, 255)",
+            "padding": "0px 0px 0px 0px",
+            "borderRadius": "0px",
+            "border": "0px none rgb(255, 255, 255)",
+            "fontSize": "23.8px",
+            "fontWeight": "400"
+          },
+          "instanceCount": 1
+        }
+      ]
+    },
+    {
+      "kind": "button",
+      "structuralHash": "li>div",
+      "instanceCount": 2,
+      "variants": [
+        {
+          "css": {
+            "background": "rgba(0, 0, 0, 0)",
+            "color": "rgb(0, 0, 0)",
+            "padding": "0px 0px 0px 0px",
+            "borderRadius": "0px",
+            "border": "0px none rgb(0, 0, 0)",
+            "fontSize": "23.8px",
+            "fontWeight": "400"
+          },
+          "instanceCount": 2
+        }
+      ]
+    },
+    {
+      "kind": "button",
+      "structuralHash": "div>div>div",
+      "instanceCount": 11,
+      "variants": [
+        {
+          "css": {
+            "background": "rgba(0, 0, 0, 0)",
+            "color": "rgb(0, 0, 0)",
+            "padding": "0px 0px 0px 0px",
+            "borderRadius": "0px",
+            "border": "0px none rgb(0, 0, 0)",
+            "fontSize": "23.8px",
+            "fontWeight": "400"
+          },
+          "instanceCount": 11
+        }
+      ]
+    },
+    {
+      "kind": "button",
+      "structuralHash": "div>svg>div>div",
+      "instanceCount": 12,
+      "variants": [
+        {
+          "css": {
+            "background": "color(srgb 0 0 0 / 0)",
+            "color": "color(srgb 0 0 0)",
+            "padding": "18.4px 40px 18.4px 40px",
+            "borderRadius": "0px",
+            "border": "1px solid color(srgb 0 0 0 / 0.5)",
+            "fontSize": "23.8px",
+            "fontWeight": "400"
+          },
+          "instanceCount": 11
+        },
+        {
+          "css": {
+            "background": "color(srgb 1 1 1 / 0.4)",
+            "color": "rgb(0, 0, 0)",
+            "padding": "18.4px 28px 18.4px 28px",
+            "borderRadius": "0px",
+            "border": "0px none color(srgb 0 0 0)",
+            "fontSize": "23.8px",
+            "fontWeight": "400"
+          },
+          "instanceCount": 1
+        }
+      ]
+    },
+    {
+      "kind": "button",
+      "structuralHash": "div",
+      "instanceCount": 12,
+      "variants": [
+        {
+          "css": {
+            "background": "rgba(0, 0, 0, 0)",
+            "color": "color(srgb 0 0 0)",
+            "padding": "0px 0px 0px 0px",
+            "borderRadius": "0px",
+            "border": "0px none color(srgb 0 0 0)",
+            "fontSize": "15.5px",
+            "fontWeight": "400"
+          },
+          "instanceCount": 11
+        },
+        {
+          "css": {
+            "background": "rgba(0, 0, 0, 0)",
+            "color": "rgb(0, 0, 0)",
+            "padding": "0px 0px 0px 0px",
+            "borderRadius": "0px",
+            "border": "0px none rgb(0, 0, 0)",
+            "fontSize": "15.5px",
+            "fontWeight": "400"
+          },
+          "instanceCount": 1
+        }
+      ]
+    },
+    {
+      "kind": "button",
+      "structuralHash": "div>div",
+      "instanceCount": 4,
+      "variants": [
+        {
+          "css": {
+            "background": "rgba(0, 0, 0, 0)",
+            "color": "rgb(0, 0, 0)",
+            "padding": "0px 0px 0px 0px",
+            "borderRadius": "0px",
+            "border": "0px none rgb(0, 0, 0)",
+            "fontSize": "23.8px",
+            "fontWeight": "400"
+          },
+          "instanceCount": 4
+        }
+      ]
+    },
+    {
+      "kind": "card",
+      "structuralHash": "div>div>div",
+      "instanceCount": 11,
+      "variants": [
+        {
+          "css": {
+            "background": "rgb(214, 197, 181)",
+            "color": "rgb(0, 0, 0)",
+            "padding": "0px 0px 0px 0px",
+            "borderRadius": "0px",
+            "border": "0px none rgb(0, 0, 0)",
+            "fontSize": "23.8px",
+            "fontWeight": "400"
+          },
+          "instanceCount": 1
+        },
+        {
+          "css": {
+            "background": "rgba(0, 0, 0, 0)",
+            "color": "rgb(0, 0, 0)",
+            "padding": "0px 0px 0px 0px",
+            "borderRadius": "0px",
+            "border": "0px none rgb(0, 0, 0)",
+            "fontSize": "23.8px",
+            "fontWeight": "400"
+          },
+          "instanceCount": 10
+        }
+      ]
+    },
+    {
+      "kind": "card",
+      "structuralHash": "div>div",
+      "instanceCount": 8,
+      "variants": [
+        {
+          "css": {
+            "background": "rgba(0, 0, 0, 0)",
+            "color": "rgb(0, 0, 0)",
+            "padding": "0px 0px 618px 0px",
+            "borderRadius": "0px",
+            "border": "0px none rgb(0, 0, 0)",
+            "fontSize": "23.8px",
+            "fontWeight": "400"
+          },
+          "instanceCount": 1
+        },
+        {
+          "css": {
+            "background": "rgba(0, 0, 0, 0)",
+            "color": "rgb(0, 0, 0)",
+            "padding": "35px 35px 35px 35px",
+            "borderRadius": "0px",
+            "border": "0px none rgb(0, 0, 0)",
+            "fontSize": "23.8px",
+            "fontWeight": "400"
+          },
+          "instanceCount": 7
+        }
+      ]
+    },
+    {
+      "kind": "card",
+      "structuralHash": "h2",
+      "instanceCount": 3,
+      "variants": [
+        {
+          "css": {
+            "background": "rgba(0, 0, 0, 0)",
+            "color": "rgb(0, 0, 0)",
+            "padding": "0px 0px 0px 0px",
+            "borderRadius": "0px",
+            "border": "0px none rgb(0, 0, 0)",
+            "fontSize": "45px",
+            "fontWeight": "500"
+          },
+          "instanceCount": 3
+        }
+      ]
+    },
+    {
+      "kind": "button",
+      "structuralHash": "div>h5>div",
+      "instanceCount": 1,
+      "variants": [
+        {
+          "css": {
+            "background": "rgba(0, 0, 0, 0)",
+            "color": "rgb(0, 0, 0)",
+            "padding": "0px 0px 0px 0px",
+            "borderRadius": "0px",
+            "border": "0px none rgb(0, 0, 0)",
+            "fontSize": "23.8px",
+            "fontWeight": "400"
+          },
+          "instanceCount": 1
+        }
+      ]
+    },
+    {
+      "kind": "card",
+      "structuralHash": "h5",
+      "instanceCount": 1,
+      "variants": [
+        {
+          "css": {
+            "background": "rgba(0, 0, 0, 0)",
+            "color": "rgb(0, 0, 0)",
+            "padding": "0px 0px 0px 0px",
+            "borderRadius": "0px",
+            "border": "0px none rgb(0, 0, 0)",
+            "fontSize": "45px",
+            "fontWeight": "500"
+          },
+          "instanceCount": 1
+        }
+      ]
+    },
+    {
+      "kind": "card",
+      "structuralHash": "div>div>div>div",
+      "instanceCount": 4,
+      "variants": [
+        {
+          "css": {
+            "background": "rgba(0, 0, 0, 0)",
+            "color": "rgb(0, 0, 0)",
+            "padding": "0px 0px 0px 0px",
+            "borderRadius": "0px",
+            "border": "0px none rgb(0, 0, 0)",
+            "fontSize": "23.8px",
+            "fontWeight": "400"
+          },
+          "instanceCount": 4
+        }
+      ]
+    },
+    {
+      "kind": "card",
+      "structuralHash": "div>div>svg",
+      "instanceCount": 3,
+      "variants": [
+        {
+          "css": {
+            "background": "color(srgb 0.839216 0.772549 0.709804 / 0.25)",
+            "color": "rgb(0, 0, 0)",
+            "padding": "0px 0px 0px 0px",
+            "borderRadius": "0px",
+            "border": "0px none rgb(0, 0, 0)",
+            "fontSize": "23.8px",
+            "fontWeight": "400"
+          },
+          "instanceCount": 3
+        }
+      ]
+    },
+    {
+      "kind": "card",
+      "structuralHash": "div>svg>div",
+      "instanceCount": 2,
+      "variants": [
+        {
+          "css": {
+            "background": "rgb(253, 195, 49)",
+            "color": "rgb(0, 0, 0)",
+            "padding": "0px 0px 0px 0px",
+            "borderRadius": "0px",
+            "border": "0px none rgb(0, 0, 0)",
+            "fontSize": "23.8px",
+            "fontWeight": "400"
+          },
+          "instanceCount": 2
+        }
+      ]
+    },
+    {
+      "kind": "card",
+      "structuralHash": "div>div>div>div>div",
+      "instanceCount": 1,
+      "variants": [
+        {
+          "css": {
+            "background": "rgba(0, 0, 0, 0)",
+            "color": "rgb(0, 0, 0)",
+            "padding": "0px 0px 0px 0px",
+            "borderRadius": "0px",
+            "border": "0px none rgb(0, 0, 0)",
+            "fontSize": "23.8px",
+            "fontWeight": "400"
+          },
+          "instanceCount": 1
+        }
+      ]
+    },
+    {
+      "kind": "card",
+      "structuralHash": "div>a",
+      "instanceCount": 4,
+      "variants": [
+        {
+          "css": {
+            "background": "rgba(0, 0, 0, 0)",
+            "color": "rgb(0, 0, 0)",
+            "padding": "0px 0px 0px 0px",
+            "borderRadius": "0px",
+            "border": "0px none rgb(0, 0, 0)",
+            "fontSize": "23.8px",
+            "fontWeight": "400"
+          },
+          "instanceCount": 4
+        }
+      ]
+    },
+    {
+      "kind": "link",
+      "structuralHash": "a>svg>div>div",
+      "instanceCount": 4,
+      "variants": [
+        {
+          "css": {
+            "background": "rgb(0, 0, 0)",
+            "color": "rgb(255, 255, 255)",
+            "padding": "0px 0px 0px 0px",
+            "borderRadius": "0px",
+            "border": "0px none rgb(255, 255, 255)",
+            "fontSize": "23.8px",
+            "fontWeight": "400"
+          },
+          "instanceCount": 4
+        }
+      ]
+    }
+  ],
+  "accessibility": {
+    "remediation": []
+  },
+  "cssHealth": {
+    "sheets": [
+      {
+        "url": "https://www.withshepherd.com/webflow/shepherd.css",
+        "totalBytes": 246286,
+        "usedBytes": 57443,
+        "unusedBytes": 188843,
+        "unusedPercent": 77
+      },
+      {
+        "url": "https://www.withshepherd.com/webflow/overrides.css",
+        "totalBytes": 1682,
+        "usedBytes": 668,
+        "unusedBytes": 1014,
+        "unusedPercent": 60
+      },
+      {
+        "url": "https://www.withshepherd.com/",
+        "totalBytes": 815,
+        "usedBytes": 0,
+        "unusedBytes": 815,
+        "unusedPercent": 100
+      },
+      {
+        "url": "https://www.withshepherd.com/_next/static/css/c04071603c40b114.css",
+        "totalBytes": 228250,
+        "usedBytes": 18038,
+        "unusedBytes": 210212,
+        "unusedPercent": 92
+      },
+      {
+        "url": "https://www.withshepherd.com/",
+        "totalBytes": 1328,
+        "usedBytes": 1186,
+        "unusedBytes": 142,
+        "unusedPercent": 11
+      },
+      {
+        "url": "https://www.withshepherd.com/",
+        "totalBytes": 210,
+        "usedBytes": 60,
+        "unusedBytes": 150,
+        "unusedPercent": 71
+      },
+      {
+        "url": "https://www.withshepherd.com/webflow/embedded.css",
+        "totalBytes": 15002,
+        "usedBytes": 4907,
+        "unusedBytes": 10095,
+        "unusedPercent": 67
+      },
+      {
+        "url": "https://www.withshepherd.com/",
+        "totalBytes": 3693,
+        "usedBytes": 932,
+        "unusedBytes": 2761,
+        "unusedPercent": 75
+      }
+    ],
+    "totalBytes": 497266,
+    "usedBytes": 83234,
+    "unusedBytes": 414032,
+    "unusedPercent": 83,
+    "importantCount": 118,
+    "duplicates": 6620,
+    "vendorPrefixes": {
+      "webkit": 132,
+      "moz": 47,
+      "ms": 5,
+      "o": 3
+    },
+    "keyframes": [
+      {
+        "name": "menuOpen",
+        "steps": 2
+      },
+      {
+        "name": "menuClose",
+        "steps": 2
+      }
+    ],
+    "specificity": {
+      "max": [
+        1,
+        6,
+        28
+      ],
+      "average": [
+        0,
+        1.63,
+        0.16
+      ],
+      "count": 3286
+    },
+    "issues": [
+      "118 !important rules",
+      "6620 duplicate declarations",
+      "83% unused CSS"
+    ]
+  }
+}

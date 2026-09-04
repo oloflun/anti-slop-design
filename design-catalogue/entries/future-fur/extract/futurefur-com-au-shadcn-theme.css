@@ -1,0 +1,19 @@
+/* shadcn/ui Theme — extracted from https://futurefur.com.au/ */
+/* Paste into your globals.css */
+
+@layer base {
+  :root {
+    --background: 0 0% 100%;
+    --foreground: 0 0% 0%;
+    --primary: 120 100% 31%;
+    --primary-foreground: 0 0% 100%;
+    --secondary: 13 100% 41%;
+    --secondary-foreground: 0 0% 100%;
+    --accent: 23 51% 84%;
+    --accent-foreground: 0 0% 0%;
+    --muted: 0 1% 14%;
+    --muted-foreground: 0 0% 0%;
+    --border: 0 1% 14%;
+    --radius: 40px;
+  }
+}

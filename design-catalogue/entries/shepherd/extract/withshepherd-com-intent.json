@@ -1,0 +1,516 @@
+{
+  "pageIntent": {
+    "type": "landing",
+    "confidence": 0.31,
+    "path": "/",
+    "title": "Shepherd",
+    "description": "Commercial insurance for construction's middle market with industry leading speed-to-quote",
+    "signals": [
+      {
+        "kind": "dom",
+        "type": "blog-post",
+        "weight": 0.35,
+        "detail": "byline|min-read"
+      },
+      {
+        "kind": "url",
+        "type": "landing",
+        "weight": 0.45,
+        "detail": "root-path"
+      }
+    ],
+    "alternates": [
+      {
+        "type": "blog-post",
+        "score": 0.35
+      }
+    ],
+    "needsSmart": true
+  },
+  "sectionRoles": {
+    "sections": [
+      {
+        "index": 0,
+        "tag": "header",
+        "role": "nav",
+        "subrole": null,
+        "confidence": 0.9,
+        "heading": null,
+        "bounds": {
+          "x": 0,
+          "y": 38.390625,
+          "w": 1280,
+          "h": 95
+        },
+        "buttonCount": 12,
+        "cardCount": 17,
+        "slots": {
+          "ctaCount": 12,
+          "lede": "PRODUCTS\nOVERVIEW\nPRIMARY CASUALTY\nEXCESS CASUALTY\nBUILDER’S RISK\nINDUSTRIES\nOVERVIEW\nCONSTRUCTION\nRENEWABLE ENERGY & POWER\nRESOURCES\nCUSTOMER STORIES\nBLOG\nSHEPHERD SAVINGS\nCAREERS\nAbout\nABOUT\nContact\nCONTACT"
+        },
+        "needsSmart": false
+      },
+      {
+        "index": 1,
+        "tag": "nav",
+        "role": "nav",
+        "subrole": null,
+        "confidence": 0.9,
+        "heading": null,
+        "bounds": {
+          "x": 249,
+          "y": 53.890625,
+          "w": 1009,
+          "h": 64
+        },
+        "buttonCount": 12,
+        "cardCount": 17,
+        "slots": {
+          "ctaCount": 12,
+          "lede": "PRODUCTS\nOVERVIEW\nPRIMARY CASUALTY\nEXCESS CASUALTY\nBUILDER’S RISK\nINDUSTRIES\nOVERVIEW\nCONSTRUCTION\nRENEWABLE ENERGY & POWER\nRESOURCES\nCUSTOMER STORIES\nBLOG\nSHEPHERD SAVINGS\nCAREERS\nAbout\nABOUT\nContact\nCONTACT"
+        },
+        "needsSmart": false
+      },
+      {
+        "index": 2,
+        "tag": "nav",
+        "role": "nav",
+        "subrole": null,
+        "confidence": 0.9,
+        "heading": null,
+        "bounds": {
+          "x": 249,
+          "y": 53.890625,
+          "w": 224,
+          "h": 0
+        },
+        "buttonCount": 0,
+        "cardCount": 4,
+        "slots": {
+          "lede": "OVERVIEW\nPRIMARY CASUALTY\nEXCESS CASUALTY\nBUILDER’S RISK"
+        },
+        "needsSmart": false
+      },
+      {
+        "index": 3,
+        "tag": "nav",
+        "role": "nav",
+        "subrole": null,
+        "confidence": 0.9,
+        "heading": null,
+        "bounds": {
+          "x": 396.8125,
+          "y": 53.890625,
+          "w": 224,
+          "h": 0
+        },
+        "buttonCount": 0,
+        "cardCount": 3,
+        "slots": {
+          "lede": "OVERVIEW\nCONSTRUCTION\nRENEWABLE ENERGY & POWER"
+        },
+        "needsSmart": false
+      },
+      {
+        "index": 4,
+        "tag": "nav",
+        "role": "nav",
+        "subrole": null,
+        "confidence": 0.9,
+        "heading": null,
+        "bounds": {
+          "x": 552.78125,
+          "y": 53.890625,
+          "w": 224,
+          "h": 0
+        },
+        "buttonCount": 0,
+        "cardCount": 3,
+        "slots": {
+          "lede": "CUSTOMER STORIES\nBLOG\nSHEPHERD SAVINGS"
+        },
+        "needsSmart": false
+      },
+      {
+        "index": 5,
+        "tag": "div",
+        "role": "nav",
+        "subrole": null,
+        "confidence": 0.9,
+        "heading": null,
+        "bounds": {
+          "x": 0,
+          "y": 0,
+          "w": 0,
+          "h": 0
+        },
+        "buttonCount": 16,
+        "cardCount": 17,
+        "slots": {
+          "ctaCount": 16,
+          "lede": "PRODUCTSOverviewPRIMARY CASUALTYEXCESS CASUALTYBUILDER’S RISKINDUSTRIESOverviewConstructionRenewable energy & powerResourcescustomer storiesblogSHEPHERD SAVINGSCareersAboutAboutAboutContactContactContact"
+        },
+        "needsSmart": false
+      },
+      {
+        "index": 6,
+        "tag": "nav",
+        "role": "nav",
+        "subrole": null,
+        "confidence": 0.9,
+        "heading": null,
+        "bounds": {
+          "x": 0,
+          "y": 0,
+          "w": 0,
+          "h": 0
+        },
+        "buttonCount": 12,
+        "cardCount": 17,
+        "slots": {
+          "ctaCount": 12,
+          "lede": "PRODUCTSOverviewPRIMARY CASUALTYEXCESS CASUALTYBUILDER’S RISKINDUSTRIESOverviewConstructionRenewable energy & powerResourcescustomer storiesblogSHEPHERD SAVINGSCareersAboutAboutAboutContactContactContact"
+        },
+        "needsSmart": false
+      },
+      {
+        "index": 7,
+        "tag": "nav",
+        "role": "nav",
+        "subrole": null,
+        "confidence": 0.9,
+        "heading": null,
+        "bounds": {
+          "x": 0,
+          "y": 0,
+          "w": 0,
+          "h": 0
+        },
+        "buttonCount": 12,
+        "cardCount": 17,
+        "slots": {
+          "ctaCount": 12,
+          "lede": "PRODUCTSOverviewPRIMARY CASUALTYEXCESS CASUALTYBUILDER’S RISKINDUSTRIESOverviewConstructionRenewable energy & powerResourcescustomer storiesblogSHEPHERD SAVINGSCareersAboutAboutAboutContactContactContact"
+        },
+        "needsSmart": false
+      },
+      {
+        "index": 8,
+        "tag": "nav",
+        "role": "nav",
+        "subrole": null,
+        "confidence": 0.9,
+        "heading": null,
+        "bounds": {
+          "x": 0,
+          "y": 0,
+          "w": 0,
+          "h": 0
+        },
+        "buttonCount": 0,
+        "cardCount": 4,
+        "slots": {
+          "lede": "OverviewPRIMARY CASUALTYEXCESS CASUALTYBUILDER’S RISK"
+        },
+        "needsSmart": false
+      },
+      {
+        "index": 9,
+        "tag": "nav",
+        "role": "nav",
+        "subrole": null,
+        "confidence": 0.9,
+        "heading": null,
+        "bounds": {
+          "x": 0,
+          "y": 0,
+          "w": 0,
+          "h": 0
+        },
+        "buttonCount": 0,
+        "cardCount": 3,
+        "slots": {
+          "lede": "OverviewConstructionRenewable energy & power"
+        },
+        "needsSmart": false
+      },
+      {
+        "index": 10,
+        "tag": "nav",
+        "role": "nav",
+        "subrole": null,
+        "confidence": 0.9,
+        "heading": null,
+        "bounds": {
+          "x": 0,
+          "y": 0,
+          "w": 0,
+          "h": 0
+        },
+        "buttonCount": 0,
+        "cardCount": 3,
+        "slots": {
+          "lede": "customer storiesblogSHEPHERD SAVINGS"
+        },
+        "needsSmart": false
+      },
+      {
+        "index": 11,
+        "tag": "section",
+        "role": "logo-wall",
+        "subrole": null,
+        "confidence": 0.85,
+        "heading": "Making risk frictionless  \n‍Insurance   for the builders and operators shaping   our\nphysical   world.",
+        "bounds": {
+          "x": 0,
+          "y": 0,
+          "w": 1280,
+          "h": 845.171875
+        },
+        "buttonCount": 6,
+        "cardCount": 32,
+        "slots": {
+          "heading": "Making risk frictionless  \n‍Insurance   for the builders and operators shaping   our\nphysical   world.",
+          "ctaCount": 6,
+          "lede": "Making risk frictionless  \n‍Insurance   for the builders and operators shaping   our\nphysical   world.\nContact us\nCONTACT US\nTRUSTED BY\nLEADING RETAIL BROKERAGES"
+        },
+        "needsSmart": false
+      },
+      {
+        "index": 12,
+        "tag": "section",
+        "role": "testimonial",
+        "subrole": null,
+        "confidence": 0.8,
+        "heading": "Smarter underwriting powered by data and technology.",
+        "bounds": {
+          "x": 0,
+          "y": 845.171875,
+          "w": 1280,
+          "h": 1447.28125
+        },
+        "buttonCount": 5,
+        "cardCount": 17,
+        "slots": {
+          "heading": "Smarter underwriting powered by data and technology.",
+          "subheadings": [
+            "Shepherd Savings",
+            "Insurance solutions built for a changing world."
+          ],
+          "ctaCount": 5
+        },
+        "needsSmart": false
+      },
+      {
+        "index": 13,
+        "tag": "section",
+        "role": "hero",
+        "subrole": null,
+        "confidence": 0.4,
+        "heading": "Accelerating the world's most important commercial industries.",
+        "bounds": {
+          "x": 0,
+          "y": 2292.453125,
+          "w": 1280,
+          "h": 945.6875
+        },
+        "buttonCount": 4,
+        "cardCount": 0,
+        "slots": {
+          "heading": "Accelerating the world's most important commercial industries.",
+          "ctaCount": 4,
+          "lede": "Accelerating the world's most important commercial industries.\nOur technology, underwriting, and partnerships work together in tandem to help businesses move faster, safer, and with greater confidence.\nPLAY VIDEO\n1,500+\nPOLICIES ISSUED\n90%\nFASTER INDICATION TIMES\n$400B+\nINSURED VOLUME"
+        },
+        "needsSmart": true
+      },
+      {
+        "index": 14,
+        "tag": "section",
+        "role": "testimonials",
+        "subrole": null,
+        "confidence": 0.4,
+        "heading": "A new vision for commercial insurance.",
+        "bounds": {
+          "x": 0,
+          "y": 3238.140625,
+          "w": 1280,
+          "h": 1571.40625
+        },
+        "buttonCount": 25,
+        "cardCount": 22,
+        "slots": {
+          "heading": "A new vision for commercial insurance.",
+          "subheadings": [
+            "Essential coverage for annual programs or projects."
+          ],
+          "ctaCount": 25
+        },
+        "needsSmart": true
+      },
+      {
+        "index": 15,
+        "tag": "section",
+        "role": "hero",
+        "subrole": null,
+        "confidence": 0.4,
+        "heading": "Turn risk management into a competitive advantage.",
+        "bounds": {
+          "x": 0,
+          "y": 4809.546875,
+          "w": 1280,
+          "h": 409.890625
+        },
+        "buttonCount": 5,
+        "cardCount": 5,
+        "slots": {
+          "heading": "Turn risk management into a competitive advantage.",
+          "ctaCount": 5,
+          "lede": "Turn risk management into a competitive advantage.\nCONTACT US\nCONTACT US\nJoin the hundreds of builders and operators saving with Shepherd."
+        },
+        "needsSmart": true
+      },
+      {
+        "index": 16,
+        "tag": "section",
+        "role": "testimonials",
+        "subrole": null,
+        "confidence": 0.4,
+        "heading": "PRODUCTS",
+        "bounds": {
+          "x": 0,
+          "y": 5219.4375,
+          "w": 1280,
+          "h": 308.171875
+        },
+        "buttonCount": 5,
+        "cardCount": 10,
+        "slots": {
+          "heading": "PRODUCTS",
+          "subheadings": [
+            "INDUSTRIES",
+            "RESOURCES",
+            "COMPANY"
+          ],
+          "ctaCount": 5,
+          "lede": "PRODUCTS\nPRIMARY CASUALTY\nEXCESS CASUALTY\nBUILDER’S RISK\nINDUSTRIES\nCONSTRUCTION\nRENEWABLE ENERGY & POWER\nRESOURCES\nCUSTOMER STORIES\nBLOG\nSHEPHERD SAVINGS\nCOMPANY\nABOUT\nCAREERS\nContact us\nCONTACT US"
+        },
+        "needsSmart": true
+      },
+      {
+        "index": 17,
+        "tag": "section",
+        "role": "content",
+        "subrole": null,
+        "confidence": 0.3,
+        "heading": "PRODUCTS",
+        "bounds": {
+          "x": 439.328125,
+          "y": 5251.4375,
+          "w": 192.65625,
+          "h": 103.21875
+        },
+        "buttonCount": 0,
+        "cardCount": 3,
+        "slots": {
+          "heading": "PRODUCTS",
+          "lede": "PRODUCTS\nPRIMARY CASUALTY\nEXCESS CASUALTY\nBUILDER’S RISK"
+        },
+        "needsSmart": true
+      },
+      {
+        "index": 18,
+        "tag": "section",
+        "role": "content",
+        "subrole": null,
+        "confidence": 0.3,
+        "heading": "INDUSTRIES",
+        "bounds": {
+          "x": 647.984375,
+          "y": 5251.4375,
+          "w": 192.671875,
+          "h": 98.0625
+        },
+        "buttonCount": 0,
+        "cardCount": 2,
+        "slots": {
+          "heading": "INDUSTRIES",
+          "lede": "INDUSTRIES\nCONSTRUCTION\nRENEWABLE ENERGY & POWER"
+        },
+        "needsSmart": true
+      },
+      {
+        "index": 19,
+        "tag": "section",
+        "role": "testimonials",
+        "subrole": null,
+        "confidence": 0.4,
+        "heading": "RESOURCES",
+        "bounds": {
+          "x": 856.65625,
+          "y": 5251.4375,
+          "w": 192.671875,
+          "h": 103.21875
+        },
+        "buttonCount": 0,
+        "cardCount": 3,
+        "slots": {
+          "heading": "RESOURCES",
+          "lede": "RESOURCES\nCUSTOMER STORIES\nBLOG\nSHEPHERD SAVINGS"
+        },
+        "needsSmart": true
+      },
+      {
+        "index": 20,
+        "tag": "section",
+        "role": "content",
+        "subrole": null,
+        "confidence": 0.3,
+        "heading": "COMPANY",
+        "bounds": {
+          "x": 1065.328125,
+          "y": 5251.4375,
+          "w": 192.671875,
+          "h": 81.015625
+        },
+        "buttonCount": 0,
+        "cardCount": 2,
+        "slots": {
+          "heading": "COMPANY",
+          "lede": "COMPANY\nABOUT\nCAREERS"
+        },
+        "needsSmart": true
+      }
+    ],
+    "counts": {
+      "nav": 11,
+      "logo-wall": 1,
+      "testimonial": 1,
+      "hero": 2,
+      "testimonials": 3,
+      "content": 3
+    },
+    "readingOrder": [
+      "nav",
+      "nav",
+      "nav",
+      "nav",
+      "nav",
+      "nav",
+      "logo-wall",
+      "nav",
+      "nav",
+      "nav",
+      "nav",
+      "nav",
+      "testimonial",
+      "hero",
+      "testimonials",
+      "hero",
+      "testimonials",
+      "content",
+      "content",
+      "testimonials",
+      "content"
+    ]
+  }
+}

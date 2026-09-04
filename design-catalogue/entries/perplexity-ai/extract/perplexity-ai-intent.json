@@ -1,0 +1,60 @@
+{
+  "pageIntent": {
+    "type": "landing",
+    "confidence": 0.31,
+    "path": "/",
+    "title": "Just a moment...",
+    "description": "",
+    "signals": [
+      {
+        "kind": "dom",
+        "type": "blog-post",
+        "weight": 0.35,
+        "detail": "byline|min-read"
+      },
+      {
+        "kind": "url",
+        "type": "landing",
+        "weight": 0.45,
+        "detail": "root-path"
+      }
+    ],
+    "alternates": [
+      {
+        "type": "blog-post",
+        "score": 0.35
+      }
+    ],
+    "needsSmart": true
+  },
+  "sectionRoles": {
+    "sections": [
+      {
+        "index": 0,
+        "tag": "div",
+        "role": "footer",
+        "subrole": null,
+        "confidence": 0.4,
+        "heading": null,
+        "bounds": {
+          "x": 160,
+          "y": 730,
+          "w": 960,
+          "h": 70
+        },
+        "buttonCount": 0,
+        "cardCount": 0,
+        "slots": {
+          "lede": "Ray ID: a358ffbb8cb43082\nPerformance and Security by Cloudflare\nPrivacy"
+        },
+        "needsSmart": true
+      }
+    ],
+    "counts": {
+      "footer": 1
+    },
+    "readingOrder": [
+      "footer"
+    ]
+  }
+}

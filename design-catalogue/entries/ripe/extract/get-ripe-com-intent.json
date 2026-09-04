@@ -1,0 +1,361 @@
+{
+  "pageIntent": {
+    "type": "landing",
+    "confidence": 0.59,
+    "path": "/",
+    "title": "RIPE - Leadership Is a Lifestyle",
+    "description": "Leadership tools, executive coaching, and performance programs for individuals and companies ready to lead at the highest level.",
+    "signals": [
+      {
+        "kind": "dom",
+        "type": "blog-post",
+        "weight": 0.35,
+        "detail": "byline|min-read"
+      },
+      {
+        "kind": "dom",
+        "type": "legal",
+        "weight": 0.4
+      },
+      {
+        "kind": "url",
+        "type": "landing",
+        "weight": 0.45,
+        "detail": "root-path"
+      },
+      {
+        "kind": "shape",
+        "type": "landing",
+        "weight": 0.3,
+        "detail": "features+hero+footer"
+      }
+    ],
+    "alternates": [
+      {
+        "type": "legal",
+        "score": 0.4
+      },
+      {
+        "type": "blog-post",
+        "score": 0.35
+      }
+    ],
+    "needsSmart": true
+  },
+  "sectionRoles": {
+    "sections": [
+      {
+        "index": 0,
+        "tag": "header",
+        "role": "nav",
+        "subrole": null,
+        "confidence": 0.4,
+        "heading": null,
+        "bounds": {
+          "x": 0,
+          "y": 40,
+          "w": 1280,
+          "h": 72
+        },
+        "buttonCount": 0,
+        "cardCount": 0,
+        "slots": {
+          "lede": "For Individuals"
+        },
+        "needsSmart": true
+      },
+      {
+        "index": 1,
+        "tag": "nav",
+        "role": "nav",
+        "subrole": null,
+        "confidence": 0.9,
+        "heading": null,
+        "bounds": {
+          "x": 451.546875,
+          "y": 74,
+          "w": 388.8125,
+          "h": 20
+        },
+        "buttonCount": 0,
+        "cardCount": 0,
+        "slots": {
+          "lede": "For Individuals"
+        },
+        "needsSmart": false
+      },
+      {
+        "index": 2,
+        "tag": "main",
+        "role": "testimonial",
+        "subrole": null,
+        "confidence": 0.8,
+        "heading": "LEADERSHIP IS A LIFESTYLE.",
+        "bounds": {
+          "x": 0,
+          "y": 0,
+          "w": 1280,
+          "h": 7081.03125
+        },
+        "buttonCount": 2,
+        "cardCount": 48,
+        "slots": {
+          "heading": "LEADERSHIP IS A LIFESTYLE.",
+          "subheadings": [
+            "WE MEET YOU WHERE YOU ARE. THEN WE PUSH YOU FURTHER.",
+            "Get Your Mind Ripe",
+            "OYP Executive Membership",
+            "Workshops & Gatherings"
+          ],
+          "ctaCount": 2
+        },
+        "needsSmart": false
+      },
+      {
+        "index": 3,
+        "tag": "section",
+        "role": "content",
+        "subrole": null,
+        "confidence": 0.3,
+        "heading": "LEADERSHIP IS A LIFESTYLE.",
+        "bounds": {
+          "x": 0,
+          "y": 0,
+          "w": 1280,
+          "h": 800
+        },
+        "buttonCount": 0,
+        "cardCount": 0,
+        "slots": {
+          "heading": "LEADERSHIP IS A LIFESTYLE."
+        },
+        "needsSmart": true
+      },
+      {
+        "index": 4,
+        "tag": "section",
+        "role": "testimonial",
+        "subrole": null,
+        "confidence": 0.8,
+        "heading": "WE MEET YOU WHERE YOU ARE. THEN WE PUSH YOU FURTHER.",
+        "bounds": {
+          "x": 0,
+          "y": 1086,
+          "w": 1280,
+          "h": 1148
+        },
+        "buttonCount": 0,
+        "cardCount": 5,
+        "slots": {
+          "heading": "WE MEET YOU WHERE YOU ARE. THEN WE PUSH YOU FURTHER.",
+          "subheadings": [
+            "Get Your Mind Ripe",
+            "OYP Executive Membership",
+            "Workshops & Gatherings",
+            "Be Here Now Calendar"
+          ],
+          "lede": "WHY WE EXIST"
+        },
+        "needsSmart": false
+      },
+      {
+        "index": 5,
+        "tag": "section",
+        "role": "testimonials",
+        "subrole": null,
+        "confidence": 0.4,
+        "heading": "High-performing teams aren't born. They're coached.",
+        "bounds": {
+          "x": 0,
+          "y": 2234,
+          "w": 1280,
+          "h": 1016
+        },
+        "buttonCount": 0,
+        "cardCount": 5,
+        "slots": {
+          "heading": "High-performing teams aren't born. They're coached.",
+          "lede": "FOR COMPANIES"
+        },
+        "needsSmart": true
+      },
+      {
+        "index": 6,
+        "tag": "section",
+        "role": "testimonial",
+        "subrole": null,
+        "confidence": 0.8,
+        "heading": "THE RESOURCE WE NEEDED DIDN'T EXIST, SO WE MADE IT.",
+        "bounds": {
+          "x": 0,
+          "y": 3490,
+          "w": 1280,
+          "h": 1298
+        },
+        "buttonCount": 0,
+        "cardCount": 0,
+        "slots": {
+          "heading": "THE RESOURCE WE NEEDED DIDN'T EXIST, SO WE MADE IT."
+        },
+        "needsSmart": false
+      },
+      {
+        "index": 7,
+        "tag": "section",
+        "role": "testimonial",
+        "subrole": null,
+        "confidence": 0.8,
+        "heading": "When leadership becomes a way of being in the world, everything shifts.",
+        "bounds": {
+          "x": 0,
+          "y": 4788,
+          "w": 1280,
+          "h": 1358
+        },
+        "buttonCount": 2,
+        "cardCount": 24,
+        "slots": {
+          "heading": "When leadership becomes a way of being in the world, everything shifts.",
+          "subheadings": [
+            "",
+            "",
+            "",
+            "\"Over my career I've worked with four different coaches, all of whom came equipped with a barrage of psychological assessments, colored bricks, and advice. Megan is far and away the best — direct but deeply human. I couldn't give a higher vote of confidence for her and the RIPE methodology.\""
+          ],
+          "ctaCount": 2,
+          "lede": "IT LOOKS LIKE THIS"
+        },
+        "needsSmart": false
+      },
+      {
+        "index": 8,
+        "tag": "section",
+        "role": "testimonial",
+        "subrole": null,
+        "confidence": 0.8,
+        "heading": null,
+        "bounds": {
+          "x": 0,
+          "y": 5356,
+          "w": 1280,
+          "h": 646
+        },
+        "buttonCount": 2,
+        "cardCount": 24,
+        "slots": {
+          "heading": "",
+          "subheadings": [
+            "",
+            "",
+            "\"Over my career I've worked with four different coaches, all of whom came equipped with a barrage of psychological assessments, colored bricks, and advice. Megan is far and away the best — direct but deeply human. I couldn't give a higher vote of confidence for her and the RIPE methodology.\"",
+            "\"RIPE has been an incredible partner to both our leadership team and me personally. Our recent leadership offsite, led by RIPE, was unanimously viewed by our team as the best we've ever had, helping us unlock several critical breakthroughs that were essential for us at this stage of growth. What stands out most is their ability to get beneath the surface of how teams operate and drive conversations that lead to meaningful, lasting change.\""
+          ],
+          "ctaCount": 2,
+          "lede": "\"Over my career I've worked with four different coaches, all of whom came equipped with a barrage of psychological assessments, colored bricks, and advice. Megan is far and away the best — direct but deeply human. I couldn't give a higher vote of confidence for her and the RIPE methodology.\""
+        },
+        "needsSmart": false
+      },
+      {
+        "index": 9,
+        "tag": "section",
+        "role": "content",
+        "subrole": null,
+        "confidence": 0.3,
+        "heading": "FOLLOW US",
+        "bounds": {
+          "x": 0,
+          "y": 6146,
+          "w": 1280,
+          "h": 934.03125
+        },
+        "buttonCount": 0,
+        "cardCount": 2,
+        "slots": {
+          "heading": "FOLLOW US",
+          "lede": "LET'S STAY CONNECTED"
+        },
+        "needsSmart": true
+      },
+      {
+        "index": 10,
+        "tag": "section",
+        "role": "content",
+        "subrole": null,
+        "confidence": 0.3,
+        "heading": null,
+        "bounds": {
+          "x": 15.9921875,
+          "y": 6454.40625,
+          "w": 1272.546875,
+          "h": 408.1875
+        },
+        "buttonCount": 0,
+        "cardCount": 0,
+        "slots": {},
+        "needsSmart": true
+      },
+      {
+        "index": 11,
+        "tag": "section",
+        "role": "content",
+        "subrole": null,
+        "confidence": 0.3,
+        "heading": null,
+        "bounds": {
+          "x": 1304.5390625,
+          "y": 6454.40625,
+          "w": 1272.546875,
+          "h": 408.1875
+        },
+        "buttonCount": 0,
+        "cardCount": 0,
+        "slots": {},
+        "needsSmart": true
+      },
+      {
+        "index": 12,
+        "tag": "footer",
+        "role": "footer",
+        "subrole": null,
+        "confidence": 0.95,
+        "heading": "A newsletter that respects your time and pushes you to your potential. ",
+        "bounds": {
+          "x": 0,
+          "y": 7082.03125,
+          "w": 1280,
+          "h": 987.609375
+        },
+        "buttonCount": 1,
+        "cardCount": 0,
+        "slots": {
+          "heading": "A newsletter that respects your time and pushes you to your potential. ",
+          "ctaCount": 1,
+          "lede": "THE RIPE TIMES"
+        },
+        "needsSmart": false
+      }
+    ],
+    "counts": {
+      "nav": 2,
+      "testimonial": 5,
+      "content": 4,
+      "testimonials": 1,
+      "footer": 1
+    },
+    "readingOrder": [
+      "testimonial",
+      "content",
+      "nav",
+      "nav",
+      "testimonial",
+      "testimonials",
+      "testimonial",
+      "testimonial",
+      "testimonial",
+      "content",
+      "content",
+      "content",
+      "footer"
+    ]
+  }
+}

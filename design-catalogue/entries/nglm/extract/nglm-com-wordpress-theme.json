@@ -1,0 +1,157 @@
+{
+  "$schema": "https://schemas.wp.org/trunk/theme.json",
+  "version": 3,
+  "settings": {
+    "color": {
+      "palette": [
+        {
+          "slug": "neutral-1",
+          "color": "#000000",
+          "name": "Neutral 1"
+        },
+        {
+          "slug": "neutral-2",
+          "color": "#51585c",
+          "name": "Neutral 2"
+        },
+        {
+          "slug": "neutral-3",
+          "color": "#fcfcfc",
+          "name": "Neutral 3"
+        },
+        {
+          "slug": "neutral-4",
+          "color": "#c0c3c3",
+          "name": "Neutral 4"
+        },
+        {
+          "slug": "neutral-5",
+          "color": "#707575",
+          "name": "Neutral 5"
+        },
+        {
+          "slug": "bg-fcfcfc",
+          "color": "#fcfcfc",
+          "name": "Background #fcfcfc"
+        },
+        {
+          "slug": "bg-000000",
+          "color": "#000000",
+          "name": "Background #000000"
+        },
+        {
+          "slug": "bg-131516",
+          "color": "#131516",
+          "name": "Background #131516"
+        }
+      ],
+      "gradients": []
+    },
+    "typography": {
+      "fontFamilies": [
+        {
+          "fontFamily": "GD Gaio VF",
+          "slug": "gd-gaio-vf",
+          "name": "GD Gaio VF"
+        },
+        {
+          "fontFamily": "GD Trio Display",
+          "slug": "gd-trio-display",
+          "name": "GD Trio Display"
+        }
+      ],
+      "fontSizes": [
+        {
+          "size": "140.8px",
+          "slug": "size-140.8",
+          "name": "140.8px"
+        },
+        {
+          "size": "102.4px",
+          "slug": "size-102.4",
+          "name": "102.4px"
+        },
+        {
+          "size": "83.2px",
+          "slug": "size-83.2",
+          "name": "83.2px"
+        },
+        {
+          "size": "80px",
+          "slug": "size-80",
+          "name": "80px"
+        },
+        {
+          "size": "56px",
+          "slug": "size-56",
+          "name": "56px"
+        },
+        {
+          "size": "28px",
+          "slug": "size-28",
+          "name": "28px"
+        },
+        {
+          "size": "18px",
+          "slug": "size-18",
+          "name": "18px"
+        },
+        {
+          "size": "16px",
+          "slug": "size-16",
+          "name": "16px"
+        }
+      ]
+    },
+    "spacing": {
+      "spacingSizes": [
+        {
+          "size": "2px",
+          "slug": "spacing-2",
+          "name": "2px"
+        },
+        {
+          "size": "64px",
+          "slug": "spacing-64",
+          "name": "64px"
+        },
+        {
+          "size": "80px",
+          "slug": "spacing-80",
+          "name": "80px"
+        },
+        {
+          "size": "104px",
+          "slug": "spacing-104",
+          "name": "104px"
+        },
+        {
+          "size": "176px",
+          "slug": "spacing-176",
+          "name": "176px"
+        },
+        {
+          "size": "344px",
+          "slug": "spacing-344",
+          "name": "344px"
+        }
+      ]
+    },
+    "layout": {
+      "contentSize": "1280px",
+      "wideSize": "1400px"
+    }
+  },
+  "styles": {
+    "color": {
+      "background": "#fcfcfc",
+      "text": "#000000"
+    },
+    "typography": {
+      "fontSize": "16px",
+      "lineHeight": "normal",
+      "fontFamily": "GD Gaio VF"
+    },
+    "spacing": {}
+  }
+}

@@ -1,0 +1,19 @@
+/* shadcn/ui Theme — extracted from https://www.planhat.com */
+/* Paste into your globals.css */
+
+@layer base {
+  :root {
+    --background: 0 0% 100%;
+    --foreground: 0 0% 0%;
+    --primary: 85 100% 70%;
+    --primary-foreground: 0 0% 0%;
+    --secondary: 240 100% 47%;
+    --secondary-foreground: 0 0% 100%;
+    --accent: 142 71% 45%;
+    --accent-foreground: 0 0% 100%;
+    --muted: 40 4% 33%;
+    --muted-foreground: 0 0% 0%;
+    --border: 40 2% 61%;
+    --radius: 8px;
+  }
+}

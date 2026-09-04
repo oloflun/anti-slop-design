@@ -1,0 +1,19 @@
+/* shadcn/ui Theme — extracted from https://bumble.com */
+/* Paste into your globals.css */
+
+@layer base {
+  :root {
+    --background: 47 100% 68%;
+    --foreground: 0 1% 20%;
+    --primary: 47 100% 68%;
+    --primary-foreground: 0 0% 0%;
+    --secondary: 240 100% 47%;
+    --secondary-foreground: 0 0% 100%;
+    --accent: 54 100% 76%;
+    --accent-foreground: 0 0% 0%;
+    --muted: 0 0% 95%;
+    --muted-foreground: 0 0% 13%;
+    --border: 0 0% 95%;
+    --radius: 9px;
+  }
+}

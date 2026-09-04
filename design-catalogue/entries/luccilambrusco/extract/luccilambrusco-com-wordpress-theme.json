@@ -1,0 +1,152 @@
+{
+  "$schema": "https://schemas.wp.org/trunk/theme.json",
+  "version": 3,
+  "settings": {
+    "color": {
+      "palette": [
+        {
+          "slug": "primary",
+          "color": "#efecce",
+          "name": "Primary"
+        },
+        {
+          "slug": "secondary",
+          "color": "#b83529",
+          "name": "Secondary"
+        },
+        {
+          "slug": "accent",
+          "color": "#dcd69d",
+          "name": "Accent"
+        },
+        {
+          "slug": "bg-b83529",
+          "color": "#b83529",
+          "name": "Background #b83529"
+        },
+        {
+          "slug": "bg-efecce",
+          "color": "#efecce",
+          "name": "Background #efecce"
+        }
+      ],
+      "gradients": []
+    },
+    "typography": {
+      "fontFamilies": [
+        {
+          "fontFamily": "ABC Solar",
+          "slug": "abc-solar",
+          "name": "ABC Solar"
+        },
+        {
+          "fontFamily": "ABC Ginto Nord Condensed",
+          "slug": "abc-ginto-nord-condensed",
+          "name": "ABC Ginto Nord Condensed"
+        },
+        {
+          "fontFamily": "ABC Solar Semibold",
+          "slug": "abc-solar-semibold",
+          "name": "ABC Solar Semibold"
+        },
+        {
+          "fontFamily": "Flatface Script",
+          "slug": "flatface-script",
+          "name": "Flatface Script"
+        }
+      ],
+      "fontSizes": [
+        {
+          "size": "128px",
+          "slug": "size-128",
+          "name": "128px"
+        },
+        {
+          "size": "48px",
+          "slug": "size-48",
+          "name": "48px"
+        },
+        {
+          "size": "36px",
+          "slug": "size-36",
+          "name": "36px"
+        },
+        {
+          "size": "32px",
+          "slug": "size-32",
+          "name": "32px"
+        },
+        {
+          "size": "28px",
+          "slug": "size-28",
+          "name": "28px"
+        },
+        {
+          "size": "16px",
+          "slug": "size-16",
+          "name": "16px"
+        },
+        {
+          "size": "14px",
+          "slug": "size-14",
+          "name": "14px"
+        },
+        {
+          "size": "10px",
+          "slug": "size-10",
+          "name": "10px"
+        }
+      ]
+    },
+    "spacing": {
+      "spacingSizes": [
+        {
+          "size": "4px",
+          "slug": "spacing-4",
+          "name": "4px"
+        },
+        {
+          "size": "20px",
+          "slug": "spacing-20",
+          "name": "20px"
+        },
+        {
+          "size": "32px",
+          "slug": "spacing-32",
+          "name": "32px"
+        },
+        {
+          "size": "40px",
+          "slug": "spacing-40",
+          "name": "40px"
+        },
+        {
+          "size": "60px",
+          "slug": "spacing-60",
+          "name": "60px"
+        },
+        {
+          "size": "240px",
+          "slug": "spacing-240",
+          "name": "240px"
+        }
+      ]
+    },
+    "layout": {
+      "contentSize": "100%",
+      "wideSize": "1400px"
+    }
+  },
+  "styles": {
+    "color": {
+      "background": "#b83529",
+      "text": "#efecce"
+    },
+    "typography": {
+      "fontSize": "32px",
+      "lineHeight": "48px",
+      "fontFamily": "ABC Solar"
+    },
+    "spacing": {}
+  }
+}

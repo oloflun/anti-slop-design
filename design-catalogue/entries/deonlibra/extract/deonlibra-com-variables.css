@@ -1,0 +1,245 @@
+:root {
+  /* Colors — Primary */
+  --color-primary: #c00121;
+  --color-secondary: #fff8e7;
+  --color-accent: #146ff8;
+
+  /* Colors — Neutrals */
+  --color-neutral-50: #000000;
+  --color-neutral-100: #ffffff;
+  --color-neutral-200: #66635c;
+  --color-neutral-300: #808080;
+  --color-neutral-400: #f0f0f0;
+  --color-neutral-500: #1f2533;
+  --color-neutral-600: #949494;
+  --color-neutral-700: #c9c9c9;
+  --color-neutral-800: #fee9e8;
+
+  /* Colors — Backgrounds */
+  --color-bg: #fff8e7;
+  --color-bg-1: #000000;
+  --color-bg-2: #ffffff;
+  --color-bg-3: #c00121;
+
+  /* Colors — Text */
+  --color-text: #000000;
+  --color-text-1: #1f2533;
+  --color-text-2: #ffffff;
+  --color-text-3: #0a2540;
+  --color-text-4: #c00121;
+
+  /* Typography — Families */
+  --font-body: 'Inter', sans-serif;
+  --font-body: 'Times New Roman', sans-serif;
+  --font-font-2: 'Anton', sans-serif;
+  --font-body: 'Arial', sans-serif;
+  --font-body: 'GTStandard-M', sans-serif;
+  --font-body: 'Roboto', sans-serif;
+
+  /* Typography — Scale */
+  --font-size-60: 60px;
+  --font-size-48: 48px;
+  --font-size-40: 40px;
+  --font-size-32: 32px;
+  --font-size-28: 28px;
+  --font-size-22: 22px;
+  --font-size-19.2: 19.2px;
+  --font-size-18: 18px;
+  --font-size-17.92: 17.92px;
+  --font-size-16: 16px;
+  --font-size-15: 15px;
+  --font-size-14.4: 14.4px;
+
+  /* Spacing */
+  --spacing-1: 1px;
+  --spacing-20: 20px;
+  --spacing-24: 24px;
+  --spacing-30: 30px;
+  --spacing-40: 40px;
+  --spacing-48: 48px;
+  --spacing-56: 56px;
+  --spacing-60: 60px;
+  --spacing-70: 70px;
+  --spacing-78: 78px;
+  --spacing-84: 84px;
+  --spacing-100: 100px;
+  --spacing-287: 287px;
+
+  /* Border Radius */
+  --radius-sm: 3px;
+  --radius-md: 8px;
+  --radius-xl: 20px;
+  --radius-xl: 24px;
+  --radius-full: 30px;
+  --radius-full: 50px;
+
+  /* Box Shadows */
+  --shadow-sm: rgba(19, 110, 248, 0.3) 0px 0px 0px 5px;
+  --shadow-lg: rgba(8, 19, 79, 0.16) 0px 4px 13.333px 0px;
+
+  /* Original Site Variables */
+  /* — colors — */
+  --buttons-border-width: 1px;
+  --inputs-border-width: 1px;
+  --font-pcard-title-family: Anton, sans-serif;
+  --font-pcard-title-style: normal;
+  --font-pcard-title-weight: 700;
+  --font-pcard-title-scale: 1.12;
+  --font-pcard-title-transform: uppercase;
+  --font-pcard-title-size: calc(var(--font-pcard-title-scale) * var(--font-body-size));
+  --color-badge-sale: #c00121;
+  --color-badge-sale-text: #fff8e7;
+  --color-badge-soldout: #c00121;
+  --color-badge-soldout-text: #fff8e7;
+  --color-badge-hot: #c00121;
+  --color-badge-hot-text: #fff8e7;
+  --color-badge-new: #c00121;
+  --color-badge-new-text: #fff8e7;
+  --color-cart-bubble: #c00121;
+  --color-keyboard-focus: 255 248 231;
+  --pcard-radius: 2.0rem;
+  --pcard-inner-radius: 1.0rem;
+  --swiper-theme-color: #007aff;
+  --color-swiper-controls: var(--color-foreground);
+  --junipOutlineColor: #637381;
+  --junipPrimaryColor: #000;
+  --junipButtonColor: #000;
+  --junipButtonOutlineColor: undefined80;
+  --junipStarColor: #c00121;
+  --junipButtonTextColor: #000;
+  --junipBorderColor: rgba(0, 0, 0, 0.08);
+  --junipSurfaceColor: rgba(0, 0, 0, 0.03);
+  --color-secondary-button: 192,1,33;
+  --color-secondary-background: 0,0,0;
+  --color-button-before: #333333;
+  --color-button-hover-background: 0,0,0;
+  --color-text-heading: 0,0,0;
+  --color-secondary-button-text: 255,248,231;
+  --color-field-text: 0,0,0;
+  --color-button-hover-text: 255,248,231;
+  --color-secondary-button-border: 0,0,0;
+  --color-background: 255,248,231;
+  --color-border: 0,0,0;
+  --color-primary: 192,1,33;
+  --color-foreground-lighten-19: #cfc9bb;
+  --color-field: 192,1,33;
+  --color-foreground: 0,0,0;
+  --color-button-text: 255,255,255;
+  --color-product-price-sale: 192,1,33;
+  --color-foreground-lighten-60: #66635c;
+  --color-button: 0,0,0;
+  --color-link-hover: 0,0,0;
+  --color-link: 0,0,0;
+  /* — spacing — */
+  --font-body-size: 1.6rem;
+  --font-heading-letter-spacing: -0.04em;
+  --font-subheading-letter-spacing: 0.0em;
+  --buttons-letter-spacing: 0.0em;
+  --font-h1-size: clamp(
+      3.2rem,
+      calc(1.559454vw + 2.003899rem),
+      4.0rem
+    );
+  --font-h2-size: clamp(
+      2.56rem,
+      calc(1.247563vw + 1.603119rem),
+      3.2rem
+    );
+  --font-h3-size: clamp(
+      2.24rem,
+      calc(1.091618vw + 1.402729rem),
+      2.8rem
+    );
+  --font-h4-size: clamp(
+      1.76rem,
+      calc(0.8577vw + 1.102144rem),
+      2.2rem
+    );
+  --font-hd1-size: clamp(
+      4.8rem,
+      calc(2.339181vw + 3.005848rem),
+      6.0rem
+    );
+  --font-hd2-size: clamp(
+      3.84rem,
+      calc(1.871345vw + 2.404678rem),
+      4.8rem
+    );
+  --font-hd3-size: clamp(
+      2.88rem,
+      calc(1.403509vw + 1.803509rem),
+      3.6rem
+    );
+  --font-h5-size: calc(var(--font-heading-scale) * 1.8rem);
+  --font-h6-size: calc(var(--font-heading-scale) * 1.6rem);
+  --font-subheading-size: calc(var(--font-subheading-scale) * var(--font-body-size));
+  --page-width-margin: 0rem;
+  --header-padding-bottom: 4rem;
+  --header-padding-bottom-mobile: 3.2rem;
+  --header-padding-bottom-large: 6rem;
+  --header-padding-bottom-large-lg: 4rem;
+  --swiper-navigation-size: 4.8rem;
+  --page-padding: 1.5rem;
+  --swiper-navigation-icon-size: 2rem;
+  --swiper-pagination-bullet-size: 1rem;
+  --swiper-pagination-bullet-horizontal-gap: .6rem;
+  --swiper-pagination-bullet-vertical-gap: .6rem;
+  /* — typography — */
+  --font-body-family: Inter, sans-serif;
+  --font-body-style: normal;
+  --font-body-weight: 400;
+  --font-body-weight-bolder: 800;
+  --font-body-weight-bold: 700;
+  --font-body-line-height: 1.625;
+  --font-heading-family: Anton, sans-serif;
+  --font-heading-style: normal;
+  --font-heading-weight: 400;
+  --font-heading-transform: uppercase;
+  --font-heading-scale: 1.0;
+  --font-heading-mobile-scale: 0.8;
+  --font-hd1-transform: uppercase;
+  --font-subheading-family: Inter, sans-serif;
+  --font-subheading-weight: 700;
+  --font-subheading-scale: 1.12;
+  --font-subheading-transform: capitalize;
+  --font-navigation-family: Anton, sans-serif;
+  --font-navigation-weight: 900;
+  --font-button-family: Inter, sans-serif;
+  --font-button-weight: 800;
+  --textareas-radius: 1.6rem;
+  /* — radii — */
+  --buttons-radius: 2.4rem;
+  --inputs-radius: 2.4rem;
+  --blocks-radius: 2.0rem;
+  --blocks-radius-mobile: 1.6rem;
+  --small-blocks-radius: 0.6rem;
+  --medium-blocks-radius: 1.0rem;
+  --badges-radius: 0.5rem;
+  /* — other — */
+  --animation-nav: .5s cubic-bezier(.6, 0, .4, 1);
+  --animation-default: .5s cubic-bezier(.3, 1, .3, 1);
+  --animation-fast: .3s cubic-bezier(.7, 0, .3, 1);
+  --transform-origin-start: left;
+  --transform-origin-end: right;
+  --duration-default: 200ms;
+  --duration-image: 1000ms;
+  --navigation-transform: uppercase;
+  --buttons-transform: capitalize;
+  --buttons-height: 4.8rem;
+  --page-width: 1410px;
+  --swiper-navigation-offset-x: 2.4rem;
+  --header-height: 84px;
+  --header-offset-top: 56px;
+  /* — dependencies — */
+  --font-h5-size: --font-heading-scale;
+  --font-h6-size: --font-heading-scale;
+  --font-subheading-size: --font-subheading-scale,--font-body-size;
+  --font-pcard-title-size: --font-pcard-title-scale,--font-body-size;
+  --color-swiper-controls: --color-foreground;
+  /* — semantic — */
+  success: [object Object];
+  warning: [object Object];
+  error: [object Object];
+  info: [object Object];
+
+}

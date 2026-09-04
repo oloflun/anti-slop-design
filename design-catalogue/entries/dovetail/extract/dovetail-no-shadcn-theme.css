@@ -1,0 +1,17 @@
+/* shadcn/ui Theme — extracted from https://dovetail.no/ */
+/* Paste into your globals.css */
+
+@layer base {
+  :root {
+    --background: 43 86% 84%;
+    --foreground: 0 0% 0%;
+    --primary: 43 86% 84%;
+    --primary-foreground: 0 0% 0%;
+    --secondary: 32 32% 90%;
+    --secondary-foreground: 0 0% 0%;
+    --muted: 33 85% 97%;
+    --muted-foreground: 220 13% 91%;
+    --border: 33 85% 97%;
+    --radius: 16px;
+  }
+}

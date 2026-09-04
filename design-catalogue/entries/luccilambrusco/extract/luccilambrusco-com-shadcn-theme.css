@@ -1,0 +1,16 @@
+/* shadcn/ui Theme — extracted from https://www.luccilambrusco.com */
+/* Paste into your globals.css */
+
+@layer base {
+  :root {
+    --background: 5 64% 44%;
+    --foreground: 55 51% 87%;
+    --primary: 55 51% 87%;
+    --primary-foreground: 0 0% 0%;
+    --secondary: 5 64% 44%;
+    --secondary-foreground: 0 0% 100%;
+    --accent: 54 47% 74%;
+    --accent-foreground: 0 0% 0%;
+    --radius: 10px;
+  }
+}

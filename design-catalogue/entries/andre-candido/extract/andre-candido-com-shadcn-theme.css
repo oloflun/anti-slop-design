@@ -1,0 +1,19 @@
+/* shadcn/ui Theme — extracted from https://www.andre-candido.com/ */
+/* Paste into your globals.css */
+
+@layer base {
+  :root {
+    --background: 0 0% 100%;
+    --foreground: 0 0% 0%;
+    --primary: 240 17% 8%;
+    --primary-foreground: 0 0% 100%;
+    --secondary: 240 100% 47%;
+    --secondary-foreground: 0 0% 100%;
+    --accent: 52 98% 80%;
+    --accent-foreground: 0 0% 0%;
+    --muted: 0 0% 87%;
+    --muted-foreground: 0 0% 100%;
+    --border: 0 0% 49%;
+    --radius: 8px;
+  }
+}

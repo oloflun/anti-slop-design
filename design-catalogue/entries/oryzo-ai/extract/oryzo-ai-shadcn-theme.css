@@ -1,0 +1,19 @@
+/* shadcn/ui Theme — extracted from https://oryzo.ai */
+/* Paste into your globals.css */
+
+@layer base {
+  :root {
+    --background: 25 60% 4%;
+    --foreground: 33 100% 92%;
+    --primary: 25 44% 15%;
+    --primary-foreground: 0 0% 100%;
+    --secondary: 33 100% 92%;
+    --secondary-foreground: 0 0% 0%;
+    --accent: 22 100% 43%;
+    --accent-foreground: 0 0% 100%;
+    --muted: 25 23% 10%;
+    --muted-foreground: 25 60% 4%;
+    --border: 0 0% 0%;
+    --radius: 12px;
+  }
+}

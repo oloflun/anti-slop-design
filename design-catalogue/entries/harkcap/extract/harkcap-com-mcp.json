@@ -1,0 +1,521 @@
+{
+  "colors": {
+    "all": [
+      {
+        "hex": "#181818",
+        "rgb": {
+          "r": 24,
+          "g": 24,
+          "b": 24,
+          "a": 1
+        },
+        "hsl": {
+          "h": 0,
+          "s": 0,
+          "l": 9
+        },
+        "count": 1910,
+        "contexts": [
+          "text",
+          "border",
+          "background"
+        ]
+      },
+      {
+        "hex": "#ffffff",
+        "rgb": {
+          "r": 255,
+          "g": 255,
+          "b": 255,
+          "a": 1
+        },
+        "hsl": {
+          "h": 0,
+          "s": 0,
+          "l": 100
+        },
+        "count": 560,
+        "contexts": [
+          "background",
+          "text",
+          "border"
+        ]
+      },
+      {
+        "hex": "#062541",
+        "rgb": {
+          "r": 6,
+          "g": 37,
+          "b": 65,
+          "a": 1
+        },
+        "hsl": {
+          "h": 208,
+          "s": 83,
+          "l": 14
+        },
+        "count": 144,
+        "contexts": [
+          "text",
+          "border"
+        ]
+      },
+      {
+        "hex": "#f3f3f3",
+        "rgb": {
+          "r": 243,
+          "g": 243,
+          "b": 243,
+          "a": 1
+        },
+        "hsl": {
+          "h": 0,
+          "s": 0,
+          "l": 95
+        },
+        "count": 67,
+        "contexts": [
+          "background"
+        ]
+      },
+      {
+        "hex": "#919598",
+        "rgb": {
+          "r": 145,
+          "g": 149,
+          "b": 152,
+          "a": 1
+        },
+        "hsl": {
+          "h": 206,
+          "s": 3,
+          "l": 58
+        },
+        "count": 63,
+        "contexts": [
+          "border",
+          "background",
+          "text"
+        ]
+      },
+      {
+        "hex": "#00f2e5",
+        "rgb": {
+          "r": 0,
+          "g": 242,
+          "b": 229,
+          "a": 1
+        },
+        "hsl": {
+          "h": 177,
+          "s": 100,
+          "l": 47
+        },
+        "count": 60,
+        "contexts": [
+          "text",
+          "border"
+        ]
+      },
+      {
+        "hex": "#114167",
+        "rgb": {
+          "r": 17,
+          "g": 65,
+          "b": 103,
+          "a": 0.6
+        },
+        "hsl": {
+          "h": 207,
+          "s": 72,
+          "l": 24
+        },
+        "count": 57,
+        "contexts": [
+          "background",
+          "text",
+          "border"
+        ]
+      },
+      {
+        "hex": "#000000",
+        "rgb": {
+          "r": 0,
+          "g": 0,
+          "b": 0,
+          "a": 1
+        },
+        "hsl": {
+          "h": 0,
+          "s": 0,
+          "l": 0
+        },
+        "count": 45,
+        "contexts": [
+          "text",
+          "border",
+          "background"
+        ]
+      },
+      {
+        "hex": "#232323",
+        "rgb": {
+          "r": 35,
+          "g": 35,
+          "b": 35,
+          "a": 1
+        },
+        "hsl": {
+          "h": 0,
+          "s": 0,
+          "l": 14
+        },
+        "count": 25,
+        "contexts": [
+          "text",
+          "border",
+          "background"
+        ]
+      },
+      {
+        "hex": "#d4d4d4",
+        "rgb": {
+          "r": 212,
+          "g": 212,
+          "b": 212,
+          "a": 1
+        },
+        "hsl": {
+          "h": 0,
+          "s": 0,
+          "l": 83
+        },
+        "count": 19,
+        "contexts": [
+          "background",
+          "border"
+        ]
+      },
+      {
+        "hex": "#235e80",
+        "rgb": {
+          "r": 35,
+          "g": 94,
+          "b": 128,
+          "a": 0.4
+        },
+        "hsl": {
+          "h": 202,
+          "s": 57,
+          "l": 32
+        },
+        "count": 15,
+        "contexts": [
+          "background"
+        ]
+      }
+    ]
+  },
+  "regions": [
+    {
+      "role": "nav",
+      "tag": "nav",
+      "bounds": {
+        "x": 0,
+        "y": 0,
+        "w": 1280,
+        "h": 261.84375
+      },
+      "heading": null,
+      "buttonCount": 0,
+      "cardCount": 19,
+      "className": "nav_component"
+    },
+    {
+      "role": "hero",
+      "tag": "section",
+      "bounds": {
+        "x": 0,
+        "y": 0,
+        "w": 1280,
+        "h": 1113.703125
+      },
+      "heading": null,
+      "buttonCount": 0,
+      "cardCount": 0,
+      "className": "content-hero_section"
+    },
+    {
+      "role": "content",
+      "tag": "section",
+      "bounds": {
+        "x": 0,
+        "y": 1113.703125,
+        "w": 1280,
+        "h": 878.140625
+      },
+      "heading": null,
+      "buttonCount": 1,
+      "cardCount": 0,
+      "className": "intro_section"
+    },
+    {
+      "role": "content",
+      "tag": "section",
+      "bounds": {
+        "x": 0,
+        "y": 1991.84375,
+        "w": 1280,
+        "h": 50.234375
+      },
+      "heading": null,
+      "buttonCount": 0,
+      "cardCount": 0,
+      "className": "stats_section add-pad"
+    },
+    {
+      "role": "content",
+      "tag": "section",
+      "bounds": {
+        "x": 0,
+        "y": 2042.078125,
+        "w": 1280,
+        "h": 800
+      },
+      "heading": null,
+      "buttonCount": 0,
+      "cardCount": 40,
+      "className": "stats_section"
+    },
+    {
+      "role": "content",
+      "tag": "section",
+      "bounds": {
+        "x": 0,
+        "y": 2842.078125,
+        "w": 1280,
+        "h": 1502.640625
+      },
+      "heading": null,
+      "buttonCount": 0,
+      "cardCount": 302,
+      "className": "team_section"
+    },
+    {
+      "role": "content",
+      "tag": "section",
+      "bounds": {
+        "x": 32,
+        "y": 4344.71875,
+        "w": 1216,
+        "h": 1165.56103515625
+      },
+      "heading": null,
+      "buttonCount": 0,
+      "cardCount": 22,
+      "className": "solutions_section"
+    },
+    {
+      "role": "content",
+      "tag": "section",
+      "bounds": {
+        "x": 0,
+        "y": 5571.625,
+        "w": 1280,
+        "h": 880.015625
+      },
+      "heading": null,
+      "buttonCount": 0,
+      "cardCount": 73,
+      "className": "trans_section"
+    },
+    {
+      "role": "content",
+      "tag": "section",
+      "bounds": {
+        "x": 32,
+        "y": 8949.796875,
+        "w": 1216,
+        "h": 836
+      },
+      "heading": null,
+      "buttonCount": 0,
+      "cardCount": 0,
+      "className": "cta_section"
+    },
+    {
+      "role": "footer",
+      "tag": "footer",
+      "bounds": {
+        "x": 0,
+        "y": 9829.796875,
+        "w": 1280,
+        "h": 800
+      },
+      "heading": null,
+      "buttonCount": 0,
+      "cardCount": 19,
+      "className": "footer_section"
+    }
+  ],
+  "componentClusters": [
+    {
+      "kind": "button",
+      "structuralHash": "div>a>a",
+      "instanceCount": 1,
+      "variants": [
+        {
+          "css": {
+            "background": "rgb(255, 255, 255)",
+            "color": "rgb(24, 24, 24)",
+            "padding": "0px 0px 0px 0px",
+            "borderRadius": "0px",
+            "border": "0px none rgb(24, 24, 24)",
+            "fontSize": "17.8462px",
+            "fontWeight": "400"
+          },
+          "instanceCount": 1
+        }
+      ]
+    },
+    {
+      "kind": "card",
+      "structuralHash": "div>div>div",
+      "instanceCount": 8,
+      "variants": [
+        {
+          "css": {
+            "background": "rgba(0, 0, 0, 0)",
+            "color": "rgb(255, 255, 255)",
+            "padding": "16px 27.8462px 58px 27.8462px",
+            "borderRadius": "5px",
+            "border": "1px solid color(srgb 1 1 1 / 0.2)",
+            "fontSize": "17.8462px",
+            "fontWeight": "400"
+          },
+          "instanceCount": 8
+        }
+      ]
+    },
+    {
+      "kind": "card",
+      "structuralHash": "div",
+      "instanceCount": 8,
+      "variants": [
+        {
+          "css": {
+            "background": "rgba(0, 0, 0, 0)",
+            "color": "rgb(255, 255, 255)",
+            "padding": "0px 0px 0px 0px",
+            "borderRadius": "0px",
+            "border": "0px none rgb(255, 255, 255)",
+            "fontSize": "53.2308px",
+            "fontWeight": "400"
+          },
+          "instanceCount": 8
+        }
+      ]
+    }
+  ],
+  "accessibility": {
+    "remediation": []
+  },
+  "cssHealth": {
+    "sheets": [
+      {
+        "url": "https://www.harkcap.com/",
+        "totalBytes": 21828,
+        "usedBytes": 2766,
+        "unusedBytes": 19062,
+        "unusedPercent": 87
+      },
+      {
+        "url": "https://www.harkcap.com/",
+        "totalBytes": 197,
+        "usedBytes": 0,
+        "unusedBytes": 197,
+        "unusedPercent": 100
+      },
+      {
+        "url": "https://cdn.prod.website-files.com/686f86887081059cf424730d/css/hark-capital.shared.7bbddc54e.css",
+        "totalBytes": 280591,
+        "usedBytes": 68525,
+        "unusedBytes": 212066,
+        "unusedPercent": 76
+      },
+      {
+        "url": "https://5kxr4s.csb.app/style.css",
+        "totalBytes": 21579,
+        "usedBytes": 2772,
+        "unusedBytes": 18807,
+        "unusedPercent": 87
+      },
+      {
+        "url": "https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.css",
+        "totalBytes": 18454,
+        "usedBytes": 897,
+        "unusedBytes": 17557,
+        "unusedPercent": 95
+      },
+      {
+        "url": "https://www.harkcap.com/",
+        "totalBytes": 8162,
+        "usedBytes": 3447,
+        "unusedBytes": 4715,
+        "unusedPercent": 58
+      }
+    ],
+    "totalBytes": 350811,
+    "usedBytes": 78407,
+    "unusedBytes": 272404,
+    "unusedPercent": 78,
+    "importantCount": 88,
+    "duplicates": 5469,
+    "vendorPrefixes": {
+      "webkit": 79,
+      "moz": 4,
+      "ms": 4,
+      "o": 0
+    },
+    "keyframes": [
+      {
+        "name": "move-out",
+        "steps": 2
+      },
+      {
+        "name": "move-in",
+        "steps": 2
+      },
+      {
+        "name": "spin",
+        "steps": 2
+      },
+      {
+        "name": "move-out",
+        "steps": 2
+      },
+      {
+        "name": "move-in",
+        "steps": 2
+      }
+    ],
+    "specificity": {
+      "max": [
+        1,
+        6,
+        24
+      ],
+      "average": [
+        0.01,
+        1.43,
+        0.18
+      ],
+      "count": 2738
+    },
+    "issues": [
+      "88 !important rules",
+      "5469 duplicate declarations",
+      "78% unused CSS"
+    ]
+  }
+}

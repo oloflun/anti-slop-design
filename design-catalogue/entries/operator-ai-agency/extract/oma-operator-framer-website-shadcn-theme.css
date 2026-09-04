@@ -1,0 +1,17 @@
+/* shadcn/ui Theme — extracted from https://oma-operator.framer.website/ */
+/* Paste into your globals.css */
+
+@layer base {
+  :root {
+    --background: 210 11% 4%;
+    --foreground: 0 0% 0%;
+    --primary: 240 100% 47%;
+    --primary-foreground: 0 0% 100%;
+    --secondary: 155 89% 49%;
+    --secondary-foreground: 0 0% 0%;
+    --muted: 0 0% 40%;
+    --muted-foreground: 0 0% 0%;
+    --border: 180 5% 96%;
+    --radius: 8px;
+  }
+}

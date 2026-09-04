@@ -1,0 +1,311 @@
+{
+  "pageIntent": {
+    "type": "landing",
+    "confidence": 0.61,
+    "path": "/",
+    "title": "Creative Giants | Immersive Activations & Public Art Interventions UK",
+    "description": "Creative Giants design and produce immersive activations and unique public art experiences across the UK. From bold brand events to world-class exhibitions, we make ambitious ideas real.",
+    "signals": [
+      {
+        "kind": "dom",
+        "type": "blog-post",
+        "weight": 0.35,
+        "detail": "byline|min-read"
+      },
+      {
+        "kind": "url",
+        "type": "landing",
+        "weight": 0.45,
+        "detail": "root-path"
+      },
+      {
+        "kind": "shape",
+        "type": "landing",
+        "weight": 0.3,
+        "detail": "features+hero+cta+footer"
+      }
+    ],
+    "alternates": [
+      {
+        "type": "blog-post",
+        "score": 0.35
+      }
+    ],
+    "needsSmart": false
+  },
+  "sectionRoles": {
+    "sections": [
+      {
+        "index": 0,
+        "tag": "main",
+        "role": "testimonials",
+        "subrole": null,
+        "confidence": 0.4,
+        "heading": "Production, design, and the art of the possible.",
+        "bounds": {
+          "x": 0,
+          "y": 0,
+          "w": 1280,
+          "h": 10481.03125
+        },
+        "buttonCount": 18,
+        "cardCount": 52,
+        "slots": {
+          "heading": "Production, design, and the art of the possible.",
+          "subheadings": [
+            "We are artists, designers,\nproducers, creatives, clients\nand technicians. We work\ntogether to create immersive\nexperiences and bring ideas to\nlife in real-world spaces.",
+            "Halo Masterpiece",
+            "Impossible to ignore",
+            "Silent Fall"
+          ],
+          "ctaCount": 18,
+          "lede": "UNIQUE PUBLIC INTERVENTIONS // IMMERSIVE ACTIVATIONS"
+        },
+        "needsSmart": true
+      },
+      {
+        "index": 1,
+        "tag": "nav",
+        "role": "nav",
+        "subrole": null,
+        "confidence": 0.9,
+        "heading": null,
+        "bounds": {
+          "x": 0,
+          "y": 0,
+          "w": 0,
+          "h": 0
+        },
+        "buttonCount": 1,
+        "cardCount": 6,
+        "slots": {
+          "ctaCount": 1,
+          "lede": "©2025Privacy Policy | CookiesHomeProjectsAboutProcessLatest NewsContact88 London Rd, Brighton BN1 4JFhello@creativegiants.art0:00"
+        },
+        "needsSmart": false
+      },
+      {
+        "index": 2,
+        "tag": "section",
+        "role": "content",
+        "subrole": null,
+        "confidence": 0.3,
+        "heading": null,
+        "bounds": {
+          "x": 0,
+          "y": 0,
+          "w": 1280,
+          "h": 66.609375
+        },
+        "buttonCount": 2,
+        "cardCount": 0,
+        "slots": {
+          "ctaCount": 2,
+          "lede": "UNIQUE PUBLIC INTERVENTIONS // IMMERSIVE ACTIVATIONS"
+        },
+        "needsSmart": true
+      },
+      {
+        "index": 3,
+        "tag": "header",
+        "role": "hero",
+        "subrole": null,
+        "confidence": 0.85,
+        "heading": "Production, design, and the art of the possible.",
+        "bounds": {
+          "x": 0,
+          "y": 0,
+          "w": 1280,
+          "h": 1120
+        },
+        "buttonCount": 0,
+        "cardCount": 0,
+        "slots": {
+          "heading": "Production, design, and the art of the possible.",
+          "lede": "BRIGHTON, UNITED KINGDOM\nProduction, design, and the art of the possible."
+        },
+        "needsSmart": false
+      },
+      {
+        "index": 4,
+        "tag": "section",
+        "role": "content",
+        "subrole": null,
+        "confidence": 0.3,
+        "heading": "We are artists, designers,\nproducers, creatives, clients\nand technicians. We work\ntogether to create immersive\nexperiences and bring ideas to\nlife in real-world spaces.",
+        "bounds": {
+          "x": 0,
+          "y": 1120,
+          "w": 1280,
+          "h": 1024.578125
+        },
+        "buttonCount": 0,
+        "cardCount": 6,
+        "slots": {
+          "heading": "We are artists, designers,\nproducers, creatives, clients\nand technicians. We work\ntogether to create immersive\nexperiences and bring ideas to\nlife in real-world spaces.",
+          "lede": "WHAT WE DO\nWe are artists, designers,\nproducers, creatives, clients\nand technicians. We work\ntogether to create immersive\nexperiences and bring ideas to\nlife in real-world spaces."
+        },
+        "needsSmart": true
+      },
+      {
+        "index": 5,
+        "tag": "section",
+        "role": "content",
+        "subrole": null,
+        "confidence": 0.3,
+        "heading": "Halo Masterpiece",
+        "bounds": {
+          "x": 0,
+          "y": 2136.578125,
+          "w": 1280,
+          "h": 800
+        },
+        "buttonCount": 1,
+        "cardCount": 0,
+        "slots": {
+          "heading": "Halo Masterpiece",
+          "subheadings": [
+            "Impossible to ignore",
+            "Silent Fall"
+          ],
+          "ctaCount": 1
+        },
+        "needsSmart": true
+      },
+      {
+        "index": 6,
+        "tag": "section",
+        "role": "cta",
+        "subrole": null,
+        "confidence": 0.4,
+        "heading": "Let’s make\nthings happen.",
+        "bounds": {
+          "x": 0,
+          "y": 5138.578125,
+          "w": 1280,
+          "h": 2000
+        },
+        "buttonCount": 0,
+        "cardCount": 0,
+        "slots": {
+          "heading": "Let’s make\nthings happen.",
+          "lede": "GET STARTED\nLet’s make\nthings happen."
+        },
+        "needsSmart": true
+      },
+      {
+        "index": 7,
+        "tag": "section",
+        "role": "testimonial",
+        "subrole": null,
+        "confidence": 0.8,
+        "heading": null,
+        "bounds": {
+          "x": 0,
+          "y": 7138.578125,
+          "w": 1280,
+          "h": 1164.421875
+        },
+        "buttonCount": 3,
+        "cardCount": 27,
+        "slots": {
+          "ctaCount": 3
+        },
+        "needsSmart": false
+      },
+      {
+        "index": 8,
+        "tag": "section",
+        "role": "content",
+        "subrole": null,
+        "confidence": 0.3,
+        "heading": "Stay up to date",
+        "bounds": {
+          "x": 0,
+          "y": 8303,
+          "w": 1280,
+          "h": 791.09375
+        },
+        "buttonCount": 3,
+        "cardCount": 8,
+        "slots": {
+          "heading": "Stay up to date",
+          "subheadings": [
+            "CALM Missed Birthdays Wins Big",
+            "Shoulders of Giants",
+            "Missed Birthdays wins Gold at Cannes Lions 2025!",
+            "The Rise of Visual Arts at UK Music Festivals"
+          ],
+          "ctaCount": 3
+        },
+        "needsSmart": true
+      },
+      {
+        "index": 9,
+        "tag": "section",
+        "role": "hero",
+        "subrole": null,
+        "confidence": 0.4,
+        "heading": "Speak to us.",
+        "bounds": {
+          "x": 0,
+          "y": 9094.09375,
+          "w": 1280,
+          "h": 666.0625
+        },
+        "buttonCount": 3,
+        "cardCount": 0,
+        "slots": {
+          "heading": "Speak to us.",
+          "ctaCount": 3,
+          "lede": "GET IN TOUCH\nSpeak to us.\nIf you want to start a project, share an idea or simply say hi,\nwe want to hear from you.\nFirst name\nLast name\nEmail Address\nPhone number\nProject details"
+        },
+        "needsSmart": true
+      },
+      {
+        "index": 10,
+        "tag": "footer",
+        "role": "footer",
+        "subrole": null,
+        "confidence": 0.95,
+        "heading": "Ready to kick start a discovery session?",
+        "bounds": {
+          "x": 0,
+          "y": 9760.15625,
+          "w": 1280,
+          "h": 720.875
+        },
+        "buttonCount": 5,
+        "cardCount": 5,
+        "slots": {
+          "heading": "Ready to kick start a discovery session?",
+          "ctaCount": 5,
+          "lede": "UNIQUE PUBLIC INTERVENTIONS // IMMERSIVE ACTIVATIONS\nFounded by Simon Vaughan and Ben Kearns, we unite decades of combined expertise as visionary creatives and practical masterminds, redefining possibilities in the built environment.\n88 London Rd, Brighton BN1 4JF\nhello@creativegiants.art"
+        },
+        "needsSmart": false
+      }
+    ],
+    "counts": {
+      "testimonials": 1,
+      "nav": 1,
+      "content": 4,
+      "hero": 2,
+      "cta": 1,
+      "testimonial": 1,
+      "footer": 1
+    },
+    "readingOrder": [
+      "testimonials",
+      "nav",
+      "content",
+      "hero",
+      "content",
+      "content",
+      "cta",
+      "testimonial",
+      "content",
+      "hero",
+      "footer"
+    ]
+  }
+}

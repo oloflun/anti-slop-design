@@ -1,0 +1,127 @@
+{
+  "$schema": "https://schemas.wp.org/trunk/theme.json",
+  "version": 3,
+  "settings": {
+    "color": {
+      "palette": [
+        {
+          "slug": "neutral-1",
+          "color": "#dbd6d0",
+          "name": "Neutral 1"
+        },
+        {
+          "slug": "neutral-2",
+          "color": "#1e1f1f",
+          "name": "Neutral 2"
+        },
+        {
+          "slug": "bg-1e1f1f",
+          "color": "#1e1f1f",
+          "name": "Background #1e1f1f"
+        }
+      ],
+      "gradients": []
+    },
+    "typography": {
+      "fontFamilies": [
+        {
+          "fontFamily": "lausanne",
+          "slug": "lausanne",
+          "name": "lausanne"
+        },
+        {
+          "fontFamily": "gunsan",
+          "slug": "gunsan",
+          "name": "gunsan"
+        }
+      ],
+      "fontSizes": [
+        {
+          "size": "191.104px",
+          "slug": "size-191.104",
+          "name": "191.104px"
+        },
+        {
+          "size": "14.85px",
+          "slug": "size-14.85",
+          "name": "14.85px"
+        },
+        {
+          "size": "13.05px",
+          "slug": "size-13.05",
+          "name": "13.05px"
+        },
+        {
+          "size": "11.7px",
+          "slug": "size-11.7",
+          "name": "11.7px"
+        },
+        {
+          "size": "0px",
+          "slug": "size-0",
+          "name": "0px"
+        }
+      ]
+    },
+    "spacing": {
+      "spacingSizes": [
+        {
+          "size": "1px",
+          "slug": "spacing-1",
+          "name": "1px"
+        },
+        {
+          "size": "23px",
+          "slug": "spacing-23",
+          "name": "23px"
+        },
+        {
+          "size": "40px",
+          "slug": "spacing-40",
+          "name": "40px"
+        },
+        {
+          "size": "46px",
+          "slug": "spacing-46",
+          "name": "46px"
+        },
+        {
+          "size": "53px",
+          "slug": "spacing-53",
+          "name": "53px"
+        },
+        {
+          "size": "76px",
+          "slug": "spacing-76",
+          "name": "76px"
+        },
+        {
+          "size": "140px",
+          "slug": "spacing-140",
+          "name": "140px"
+        },
+        {
+          "size": "160px",
+          "slug": "spacing-160",
+          "name": "160px"
+        }
+      ]
+    },
+    "layout": {
+      "contentSize": "1200px",
+      "wideSize": "1400px"
+    }
+  },
+  "styles": {
+    "color": {
+      "background": "#1e1f1f",
+      "text": "#dbd6d0"
+    },
+    "typography": {
+      "fontSize": "13.05px",
+      "lineHeight": "18.531px",
+      "fontFamily": "lausanne"
+    },
+    "spacing": {}
+  }
+}

@@ -1,0 +1,329 @@
+{
+  "pageIntent": {
+    "type": "landing",
+    "confidence": 0.75,
+    "path": "/",
+    "title": "Vistal - Webflow HTML website template",
+    "description": "Vistal is a modern Webflow template. Customize it to match your brand and create a unique, professional experience in minutes.",
+    "signals": [
+      {
+        "kind": "url",
+        "type": "landing",
+        "weight": 0.45,
+        "detail": "root-path"
+      },
+      {
+        "kind": "shape",
+        "type": "landing",
+        "weight": 0.3,
+        "detail": "features+hero+cta"
+      }
+    ],
+    "alternates": [],
+    "needsSmart": false
+  },
+  "sectionRoles": {
+    "sections": [
+      {
+        "index": 0,
+        "tag": "div",
+        "role": "nav",
+        "subrole": null,
+        "confidence": 0.9,
+        "heading": null,
+        "bounds": {
+          "x": 0,
+          "y": 0,
+          "w": 1280,
+          "h": 88
+        },
+        "buttonCount": 8,
+        "cardCount": 0,
+        "slots": {
+          "ctaCount": 8,
+          "lede": "Home V.1\nProjects V.1\nServices\nAbout Us\nPages\nContact us"
+        },
+        "needsSmart": false
+      },
+      {
+        "index": 1,
+        "tag": "nav",
+        "role": "nav",
+        "subrole": null,
+        "confidence": 0.9,
+        "heading": null,
+        "bounds": {
+          "x": 444.484375,
+          "y": 16,
+          "w": 613.296875,
+          "h": 56
+        },
+        "buttonCount": 0,
+        "cardCount": 0,
+        "slots": {
+          "lede": "Home V.1\nProjects V.1\nServices\nAbout Us\nPages"
+        },
+        "needsSmart": false
+      },
+      {
+        "index": 2,
+        "tag": "nav",
+        "role": "nav",
+        "subrole": null,
+        "confidence": 0.9,
+        "heading": null,
+        "bounds": {
+          "x": 0,
+          "y": 0,
+          "w": 0,
+          "h": 0
+        },
+        "buttonCount": 0,
+        "cardCount": 0,
+        "slots": {
+          "lede": "Home V.1Home V.2Home V.3Projects V.1Projects V.2Projects V.3Contact V.1Contact V.2Contact V.3"
+        },
+        "needsSmart": false
+      },
+      {
+        "index": 3,
+        "tag": "main",
+        "role": "feature-grid",
+        "subrole": null,
+        "confidence": 0.8,
+        "heading": "Your gateway to prestige properties",
+        "bounds": {
+          "x": 0,
+          "y": 0,
+          "w": 1280,
+          "h": 9500.921875
+        },
+        "buttonCount": 25,
+        "cardCount": 54,
+        "slots": {
+          "heading": "Your gateway to prestige properties",
+          "subheadings": [
+            "Experience innovative architecture that transforms your vision",
+            "We deliver exceptional real estate solutions.",
+            "Seamless property solutions tailored for you.",
+            "With a commitment to excellence and customer satisfaction."
+          ],
+          "ctaCount": 25
+        },
+        "needsSmart": false
+      },
+      {
+        "index": 4,
+        "tag": "section",
+        "role": "hero",
+        "subrole": null,
+        "confidence": 0.85,
+        "heading": "Your gateway to prestige properties",
+        "bounds": {
+          "x": 0,
+          "y": 0,
+          "w": 1280,
+          "h": 1280
+        },
+        "buttonCount": 2,
+        "cardCount": 0,
+        "slots": {
+          "heading": "Your gateway to prestige properties",
+          "ctaCount": 2,
+          "lede": "Your gateway to prestige properties\nBring your architectural projects to life with a template that puts your work front and center.\nGet started"
+        },
+        "needsSmart": false
+      },
+      {
+        "index": 5,
+        "tag": "section",
+        "role": "cta",
+        "subrole": null,
+        "confidence": 0.75,
+        "heading": "Experience innovative architecture that transforms your vision",
+        "bounds": {
+          "x": 0,
+          "y": 1280,
+          "w": 1280,
+          "h": 1757.953125
+        },
+        "buttonCount": 2,
+        "cardCount": 17,
+        "slots": {
+          "heading": "Experience innovative architecture that transforms your vision",
+          "ctaCount": 2
+        },
+        "needsSmart": false
+      },
+      {
+        "index": 6,
+        "tag": "section",
+        "role": "cta",
+        "subrole": null,
+        "confidence": 0.75,
+        "heading": "We deliver exceptional real estate solutions.",
+        "bounds": {
+          "x": 0,
+          "y": 3037.953125,
+          "w": 1280,
+          "h": 1318.671875
+        },
+        "buttonCount": 8,
+        "cardCount": 0,
+        "slots": {
+          "heading": "We deliver exceptional real estate solutions.",
+          "ctaCount": 8
+        },
+        "needsSmart": false
+      },
+      {
+        "index": 7,
+        "tag": "section",
+        "role": "cta",
+        "subrole": null,
+        "confidence": 0.75,
+        "heading": "Seamless property solutions tailored for you.",
+        "bounds": {
+          "x": 0,
+          "y": 4356.625,
+          "w": 1280,
+          "h": 1046.71875
+        },
+        "buttonCount": 5,
+        "cardCount": 7,
+        "slots": {
+          "heading": "Seamless property solutions tailored for you.",
+          "ctaCount": 5,
+          "lede": "SERVICES\nSeamless property solutions tailored for you.\nLearn more\n00"
+        },
+        "needsSmart": false
+      },
+      {
+        "index": 8,
+        "tag": "section",
+        "role": "testimonials",
+        "subrole": null,
+        "confidence": 0.4,
+        "heading": "With a commitment to excellence and customer satisfaction.",
+        "bounds": {
+          "x": 0,
+          "y": 5403.34375,
+          "w": 1280,
+          "h": 1347.96875
+        },
+        "buttonCount": 0,
+        "cardCount": 0,
+        "slots": {
+          "heading": "With a commitment to excellence and customer satisfaction.",
+          "lede": "ABOUT VISTAL\nWith a commitment to excellence and customer satisfaction.\nWith a commitment to innovation, sustainability, and precision, we bring your ideas to life while enhancing functionality and aesthetics. Our team of dedicated architects and designers is here to turn your unique vision into a tangible masterpiece."
+        },
+        "needsSmart": true
+      },
+      {
+        "index": 9,
+        "tag": "section",
+        "role": "feature-grid",
+        "subrole": null,
+        "confidence": 0.8,
+        "heading": "Our feature blogs",
+        "bounds": {
+          "x": 0,
+          "y": 6751.3125,
+          "w": 1280,
+          "h": 967.703125
+        },
+        "buttonCount": 6,
+        "cardCount": 24,
+        "slots": {
+          "heading": "Our feature blogs",
+          "ctaCount": 6
+        },
+        "needsSmart": false
+      },
+      {
+        "index": 10,
+        "tag": "section",
+        "role": "faq",
+        "subrole": null,
+        "confidence": 0.85,
+        "heading": null,
+        "bounds": {
+          "x": 0,
+          "y": 7719.015625,
+          "w": 1280,
+          "h": 565.78125
+        },
+        "buttonCount": 0,
+        "cardCount": 6,
+        "slots": {},
+        "needsSmart": false
+      },
+      {
+        "index": 11,
+        "tag": "section",
+        "role": "cta",
+        "subrole": null,
+        "confidence": 0.75,
+        "heading": "Schedule a free consultation",
+        "bounds": {
+          "x": 0,
+          "y": 8284.796875,
+          "w": 1280,
+          "h": 452.375
+        },
+        "buttonCount": 2,
+        "cardCount": 0,
+        "slots": {
+          "heading": "Schedule a free consultation",
+          "ctaCount": 2,
+          "lede": "GET STARTED\nSchedule a free consultation\nWe craft inspiring spaces that blend cutting-edge design with enduring functionality, turning your vision into reality.\nGet started"
+        },
+        "needsSmart": false
+      },
+      {
+        "index": 12,
+        "tag": "section",
+        "role": "content",
+        "subrole": null,
+        "confidence": 0.3,
+        "heading": null,
+        "bounds": {
+          "x": 0,
+          "y": 36.25,
+          "w": 1280,
+          "h": 763.75
+        },
+        "buttonCount": 0,
+        "cardCount": 0,
+        "slots": {
+          "lede": "Bring your architectural projects to life with a template that puts your work front and center.\nHome V.1\nHome V.2\nHome V.3\nServices\nProjects  V.1\nProjects  V.2\nProjects  V.3\nAbout Us\nContact V.1\nContact V.2\nContact V.3\nLicensing"
+        },
+        "needsSmart": true
+      }
+    ],
+    "counts": {
+      "nav": 3,
+      "feature-grid": 2,
+      "hero": 1,
+      "cta": 4,
+      "testimonials": 1,
+      "faq": 1,
+      "content": 1
+    },
+    "readingOrder": [
+      "nav",
+      "nav",
+      "feature-grid",
+      "hero",
+      "nav",
+      "content",
+      "cta",
+      "cta",
+      "cta",
+      "testimonials",
+      "feature-grid",
+      "faq",
+      "cta"
+    ]
+  }
+}

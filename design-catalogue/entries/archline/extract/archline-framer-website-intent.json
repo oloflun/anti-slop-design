@@ -1,0 +1,248 @@
+{
+  "pageIntent": {
+    "type": "landing",
+    "confidence": 0.29,
+    "path": "/",
+    "title": "Archline® | Interior & Architecture Studio",
+    "description": "A boutique studio dedicated to creating sophisticated interiors and architectural experiences that reflect elegance, harmony, and individuality, crafting timeless spaces where beauty meets function an",
+    "signals": [
+      {
+        "kind": "dom",
+        "type": "blog-post",
+        "weight": 0.35,
+        "detail": "byline|min-read"
+      },
+      {
+        "kind": "dom",
+        "type": "legal",
+        "weight": 0.4
+      },
+      {
+        "kind": "url",
+        "type": "landing",
+        "weight": 0.45,
+        "detail": "root-path"
+      }
+    ],
+    "alternates": [
+      {
+        "type": "legal",
+        "score": 0.4
+      },
+      {
+        "type": "blog-post",
+        "score": 0.35
+      }
+    ],
+    "needsSmart": true
+  },
+  "sectionRoles": {
+    "sections": [
+      {
+        "index": 0,
+        "tag": "nav",
+        "role": "nav",
+        "subrole": null,
+        "confidence": 0.9,
+        "heading": null,
+        "bounds": {
+          "x": 0,
+          "y": 0,
+          "w": 1280,
+          "h": 80
+        },
+        "buttonCount": 0,
+        "cardCount": 0,
+        "slots": {
+          "lede": "s\nt\nu\nd\ni\no"
+        },
+        "needsSmart": false
+      },
+      {
+        "index": 1,
+        "tag": "main",
+        "role": "testimonial",
+        "subrole": null,
+        "confidence": 0.8,
+        "heading": "Harmony shaped by light, material, and space.",
+        "bounds": {
+          "x": 0,
+          "y": 0,
+          "w": 1280,
+          "h": 12099.53125
+        },
+        "buttonCount": 7,
+        "cardCount": 35,
+        "slots": {
+          "heading": "Harmony shaped by light, material, and space.",
+          "subheadings": [
+            "Archline® was founded with a vision to craft spaces that tell stories, evoke emotion, and embody timeless elegance — blending architecture, artistry, and human experience into meaningful design that transcends trends and celebrates quiet sophistication.",
+            "Our Featured Projects",
+            "We bring bold visions to life through a fusion of strategy, design, and storytelling. We partner with brands, founders, and creators to shape identities.",
+            "Designing Experiences That Resonate and Scale"
+          ],
+          "ctaCount": 7
+        },
+        "needsSmart": false
+      },
+      {
+        "index": 2,
+        "tag": "section",
+        "role": "testimonial",
+        "subrole": null,
+        "confidence": 0.8,
+        "heading": "We bring bold visions to life through a fusion of strategy, design, and storytelling. We partner with brands, founders, and creators to shape identities.",
+        "bounds": {
+          "x": 0,
+          "y": 5799.0625,
+          "w": 1280,
+          "h": 1157.40625
+        },
+        "buttonCount": 0,
+        "cardCount": 0,
+        "slots": {
+          "heading": "We bring bold visions to life through a fusion of strategy, design, and storytelling. We partner with brands, founders, and creators to shape identities."
+        },
+        "needsSmart": false
+      },
+      {
+        "index": 3,
+        "tag": "section",
+        "role": "content",
+        "subrole": null,
+        "confidence": 0.3,
+        "heading": null,
+        "bounds": {
+          "x": 0,
+          "y": 8741.96875,
+          "w": 1280,
+          "h": 36.15625
+        },
+        "buttonCount": 0,
+        "cardCount": 15,
+        "slots": {},
+        "needsSmart": true
+      },
+      {
+        "index": 4,
+        "tag": "section",
+        "role": "testimonial",
+        "subrole": null,
+        "confidence": 0.8,
+        "heading": null,
+        "bounds": {
+          "x": 0,
+          "y": 8834.125,
+          "w": 1280,
+          "h": 800
+        },
+        "buttonCount": 7,
+        "cardCount": 20,
+        "slots": {
+          "ctaCount": 7,
+          "lede": "“Every detail reflects refinement. From bespoke finishes to spatial flow, Archline brought our vision to life with precision and soul. It’s design that feels alive.”"
+        },
+        "needsSmart": false
+      },
+      {
+        "index": 5,
+        "tag": "section",
+        "role": "faq",
+        "subrole": null,
+        "confidence": 0.85,
+        "heading": "Your Answers To Popular Questions",
+        "bounds": {
+          "x": 0,
+          "y": 11024.53125,
+          "w": 1280,
+          "h": 1075
+        },
+        "buttonCount": 0,
+        "cardCount": 0,
+        "slots": {
+          "heading": "Your Answers To Popular Questions",
+          "lede": "FAQ"
+        },
+        "needsSmart": false
+      },
+      {
+        "index": 6,
+        "tag": "section",
+        "role": "content",
+        "subrole": null,
+        "confidence": 0.3,
+        "heading": null,
+        "bounds": {
+          "x": 0,
+          "y": 12099.53125,
+          "w": 1280,
+          "h": 1095.6875
+        },
+        "buttonCount": 0,
+        "cardCount": 0,
+        "slots": {
+          "lede": "Interior & Architecture Studio"
+        },
+        "needsSmart": true
+      },
+      {
+        "index": 7,
+        "tag": "footer",
+        "role": "footer",
+        "subrole": null,
+        "confidence": 0.95,
+        "heading": null,
+        "bounds": {
+          "x": 0,
+          "y": 13195.21875,
+          "w": 1280,
+          "h": 640
+        },
+        "buttonCount": 0,
+        "cardCount": 0,
+        "slots": {
+          "lede": "Menu"
+        },
+        "needsSmart": false
+      },
+      {
+        "index": 8,
+        "tag": "footer",
+        "role": "footer",
+        "subrole": null,
+        "confidence": 0.95,
+        "heading": null,
+        "bounds": {
+          "x": 0,
+          "y": 160,
+          "w": 1280,
+          "h": 640
+        },
+        "buttonCount": 0,
+        "cardCount": 0,
+        "slots": {
+          "lede": "Menu"
+        },
+        "needsSmart": false
+      }
+    ],
+    "counts": {
+      "nav": 1,
+      "testimonial": 3,
+      "content": 2,
+      "faq": 1,
+      "footer": 2
+    },
+    "readingOrder": [
+      "nav",
+      "testimonial",
+      "footer",
+      "testimonial",
+      "content",
+      "testimonial",
+      "faq",
+      "content",
+      "footer"
+    ]
+  }
+}

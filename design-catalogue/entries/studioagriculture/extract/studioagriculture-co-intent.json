@@ -1,0 +1,94 @@
+{
+  "pageIntent": {
+    "type": "landing",
+    "confidence": 0.45,
+    "path": "/",
+    "title": "Home | Studio Agriculture",
+    "description": "We are Studio Agriculture. We work with brands connected to the earth and underpinned by an integrated bigger purpose. ",
+    "signals": [
+      {
+        "kind": "url",
+        "type": "landing",
+        "weight": 0.45,
+        "detail": "root-path"
+      }
+    ],
+    "alternates": [],
+    "needsSmart": true
+  },
+  "sectionRoles": {
+    "sections": [
+      {
+        "index": 0,
+        "tag": "header",
+        "role": "nav",
+        "subrole": null,
+        "confidence": 0.4,
+        "heading": null,
+        "bounds": {
+          "x": 0,
+          "y": 0,
+          "w": 1280,
+          "h": 68
+        },
+        "buttonCount": 0,
+        "cardCount": 0,
+        "slots": {
+          "lede": "Work\nClients"
+        },
+        "needsSmart": true
+      },
+      {
+        "index": 1,
+        "tag": "main",
+        "role": "content",
+        "subrole": null,
+        "confidence": 0.3,
+        "heading": null,
+        "bounds": {
+          "x": 0,
+          "y": 0,
+          "w": 1280,
+          "h": 8886.984375
+        },
+        "buttonCount": 0,
+        "cardCount": 0,
+        "slots": {
+          "lede": "Turning dated into daring\nWe build hard-hitting brands for indispensable people whose only competition is the weatherman. We take stock of the seasons and harness industry specific knowledge to help turn a niche into the norm.\nGUTSY DESIGN FOR THE BRANDS THAT FEED US\nMore Clients"
+        },
+        "needsSmart": true
+      },
+      {
+        "index": 2,
+        "tag": "footer",
+        "role": "footer",
+        "subrole": null,
+        "confidence": 0.95,
+        "heading": null,
+        "bounds": {
+          "x": 0,
+          "y": 8886.984375,
+          "w": 1280,
+          "h": 618.125
+        },
+        "buttonCount": 1,
+        "cardCount": 1,
+        "slots": {
+          "ctaCount": 1,
+          "lede": "Design and build by"
+        },
+        "needsSmart": false
+      }
+    ],
+    "counts": {
+      "nav": 1,
+      "content": 1,
+      "footer": 1
+    },
+    "readingOrder": [
+      "nav",
+      "content",
+      "footer"
+    ]
+  }
+}

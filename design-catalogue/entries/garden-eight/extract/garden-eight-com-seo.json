@@ -1,0 +1,49 @@
+{
+  "openGraph": {
+    "image": "https://d1oo4riy5et4sg.cloudfront.net/v3-1/assets/img/ogp.png",
+    "title": "Garden Eight",
+    "description": "Garden Eight is a digital design studio based in Tokyo."
+  },
+  "twitter": {
+    "image:src": "https://d1oo4riy5et4sg.cloudfront.net/v3-1/assets/img/ogp.png",
+    "card": "summary_large_image",
+    "creator": "@GardenEight",
+    "title": "Garden Eight",
+    "description": "Garden Eight is a digital design studio based in Tokyo."
+  },
+  "description": "Garden Eight is a digital design studio based in Tokyo.",
+  "canonical": null,
+  "themeColor": "#1d1e1e",
+  "viewport": "width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no",
+  "favicons": [
+    {
+      "rel": "icon",
+      "href": "https://d1oo4riy5et4sg.cloudfront.net/v3-1/assets/icon/favicon.svg",
+      "sizes": "",
+      "type": "image/svg+xml"
+    },
+    {
+      "rel": "apple-touch-icon",
+      "href": "https://d1oo4riy5et4sg.cloudfront.net/v3-1/assets/icon/icon-192x192.png",
+      "sizes": "192x192",
+      "type": ""
+    }
+  ],
+  "manifest": "https://garden-eight.com/assets/manifest.json",
+  "structuredData": [
+    {
+      "type": "Thing",
+      "name": null,
+      "sample": "{\"@context\":\"https://schema.org\",\"@graph\":[{\"@type\":\"Organization\",\"@id\":\"https://garden-eight.com/#organization\",\"name\":\"Garden Eight\",\"description\":\"Garden Eight is a digital design studio based in Tokyo.\",\"url\":\"https://garden-eight.com/\",\"email\":\"hello@garden-eight.com\",\"address\":{\"@type\":\"PostalAddress\",\"streetAddress\":\"Kitazawa Takara Bld. 4F, 3-20-18 Kitazawa\",\"addressLocality\":\"Setagaya-ku"
+    }
+  ],
+  "score": {
+    "hasOg": true,
+    "hasTwitter": true,
+    "hasDescription": true,
+    "hasCanonical": false,
+    "hasStructuredData": true,
+    "hasFavicon": true,
+    "hasThemeColor": true
+  }
+}

@@ -1,0 +1,62 @@
+{
+  "$description": "Motion tokens extracted by designlang",
+  "duration": {
+    "sm": {
+      "$value": "200ms",
+      "$type": "duration",
+      "ms": 200
+    },
+    "md": {
+      "$value": "300ms",
+      "$type": "duration",
+      "ms": 300
+    },
+    "lg": {
+      "$value": "500ms",
+      "$type": "duration",
+      "ms": 500
+    },
+    "xl": {
+      "$value": "800ms",
+      "$type": "duration",
+      "ms": 800
+    }
+  },
+  "easing": {
+    "ease-in-out": {
+      "$value": "ease",
+      "$type": "cubicBezier",
+      "family": "ease-in-out"
+    },
+    "linear": {
+      "$value": "linear",
+      "$type": "cubicBezier",
+      "family": "linear"
+    },
+    "ease-in-417": {
+      "$value": "cubic-bezier(0.55, 0.055, 0.675, 0.19)",
+      "$type": "cubicBezier",
+      "family": "ease-in"
+    },
+    "custom-900": {
+      "$value": "cubic-bezier(0.4, 0, 0.2, 1)",
+      "$type": "cubicBezier",
+      "family": "custom"
+    },
+    "ease-out-5": {
+      "$value": "cubic-bezier(0.19, 1, 0.22, 1)",
+      "$type": "cubicBezier",
+      "family": "ease-out"
+    },
+    "custom-313": {
+      "$value": "cubic-bezier(0.645, 0.045, 0.355, 1)",
+      "$type": "cubicBezier",
+      "family": "custom"
+    }
+  },
+  "spring": {},
+  "$meta": {
+    "feel": "mixed",
+    "scrollLinked": true
+  }
+}

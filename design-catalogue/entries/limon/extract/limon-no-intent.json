@@ -1,0 +1,93 @@
+{
+  "pageIntent": {
+    "type": "landing",
+    "confidence": 0.45,
+    "path": "/",
+    "title": "Limón | Healthy Fast Food | Poke Bowls, Ceviche and Fruity Smoothies",
+    "description": "Get healthy and delicious food on the go. Enjoy one of our colourful poke bowls, our heavenly ceviche or our fruity smoothie bowls.",
+    "signals": [
+      {
+        "kind": "url",
+        "type": "landing",
+        "weight": 0.45,
+        "detail": "root-path"
+      }
+    ],
+    "alternates": [],
+    "needsSmart": true
+  },
+  "sectionRoles": {
+    "sections": [
+      {
+        "index": 0,
+        "tag": "header",
+        "role": "nav",
+        "subrole": null,
+        "confidence": 0.4,
+        "heading": null,
+        "bounds": {
+          "x": 0,
+          "y": 0,
+          "w": 1280,
+          "h": 128.40625
+        },
+        "buttonCount": 2,
+        "cardCount": 6,
+        "slots": {
+          "ctaCount": 2,
+          "lede": "HOMEMENUABOUT USFAQCONTACT"
+        },
+        "needsSmart": true
+      },
+      {
+        "index": 1,
+        "tag": "nav",
+        "role": "nav",
+        "subrole": null,
+        "confidence": 0.9,
+        "heading": null,
+        "bounds": {
+          "x": 70,
+          "y": 25,
+          "w": 457.5,
+          "h": 78.40625
+        },
+        "buttonCount": 0,
+        "cardCount": 6,
+        "slots": {
+          "lede": "HOMEMENUABOUT USFAQCONTACT"
+        },
+        "needsSmart": false
+      },
+      {
+        "index": 2,
+        "tag": "footer",
+        "role": "footer",
+        "subrole": null,
+        "confidence": 0.95,
+        "heading": null,
+        "bounds": {
+          "x": 0,
+          "y": 3663.328125,
+          "w": 1280,
+          "h": 661.15625
+        },
+        "buttonCount": 0,
+        "cardCount": 3,
+        "slots": {
+          "lede": ""
+        },
+        "needsSmart": false
+      }
+    ],
+    "counts": {
+      "nav": 2,
+      "footer": 1
+    },
+    "readingOrder": [
+      "nav",
+      "nav",
+      "footer"
+    ]
+  }
+}

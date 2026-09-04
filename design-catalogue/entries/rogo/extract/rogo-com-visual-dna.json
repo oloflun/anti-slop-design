@@ -1,0 +1,70 @@
+{
+  "materialLanguage": {
+    "label": "flat",
+    "confidence": 0.55,
+    "signals": [
+      {
+        "label": "flat",
+        "weight": 0.55,
+        "detail": "no shadows, simple radii"
+      }
+    ],
+    "metrics": {
+      "saturation": 0.126,
+      "shadowProfile": "none",
+      "avgShadowBlur": 0,
+      "maxShadowBlur": 0,
+      "insetShadows": 0,
+      "avgRadius": 6,
+      "maxRadius": 6,
+      "hasPill": false,
+      "hasBackdropBlur": false,
+      "gradientCount": 1
+    },
+    "alternates": []
+  },
+  "imageryStyle": {
+    "label": "flat-illustration",
+    "confidence": 0.411,
+    "counts": {
+      "total": 30,
+      "svg": 30,
+      "icon": 0,
+      "hero": 0,
+      "screenshot": 0,
+      "photoLike": 0
+    },
+    "dominantAspect": "ultra-wide",
+    "radiusProfile": "square",
+    "alternates": [],
+    "signals": [
+      "svg-heavy"
+    ]
+  },
+  "backgroundPatterns": {
+    "labels": [
+      "svg-pattern"
+    ],
+    "counts": {
+      "noise": 0,
+      "dotGrid": 0,
+      "lineGrid": 0,
+      "meshCount": 0,
+      "svgPattern": 2
+    },
+    "gradientTotals": {
+      "radial": 0,
+      "linear": 1
+    },
+    "samples": [
+      {
+        "tag": "svg-pattern",
+        "value": "url(\"data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 xmlns:xlink=%22http://www.w3.org/1999/xlink%22 viewBox=%220 0 102 102%22 overflow=%22visible%22><g><path d=%22M 51.127 0.002 L 48.86"
+      },
+      {
+        "tag": "svg-pattern",
+        "value": "url(\"data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 xmlns:xlink=%22http://www.w3.org/1999/xlink%22 viewBox=%220 0 102 102%22 overflow=%22visible%22><g><path d=%22M 51.129 0.002 L 48.86"
+      }
+    ]
+  }
+}

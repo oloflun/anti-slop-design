@@ -1,0 +1,22 @@
+# Design brief
+Page type: **landing**.
+Material language: **flat**.
+Voice: Tone: friendly · Headings: Title Case · CTA verbs: [object Object].
+## Tokens
+```ts
+export const tokens = {
+  colors: ['#000000', '#0000ee', '#ffffff', '#646464', '#767676', '#3d3d3d', '#d6d6d6', '#df0203'],
+  fonts: ['[object Object]', '[object Object]', '[object Object]', '[object Object]'],
+  radii: ['10', '16', '50', '999'],
+  shadows: ['rgb(0, 0, 0) 0px 0px 0px 1px inset', 'rgba(0, 0, 0, 0.14) 0px 0.711334px 0.711334px -0.55px, rgba(0, 0, 0, 0.14) 0px 1.93715px 1.93715px -1.1px, rgba(0, 0, 0, 0.13) 0px 4.25328px 4.25328px -1.65px, rgba(0, 0, 0, 0.13) 0px 9.44132px 9.44132px -2.2px, rgba(0, 0, 0, 0.11) 0px 24px 24px -2.75px', 'rgba(0, 0, 0, 0.17) 0px 0.602187px 1.56569px -1.5px, rgba(0, 0, 0, 0.14) 0px 2.28853px 5.95019px -3px, rgba(0, 0, 0, 0.02) 0px 10px 26px -4.5px'],
+};
+```
+## Sections
+- testimonials
+- pricing — heading: "Discover flexible pricing plans designed to suit every need. At Orix, we provide"
+- faq
+- hero — heading: "Ready to take your brand to the next level? Partner with Orix today and access p"
+- footer — heading: "ORIX-STUDIO®"
+## Library
+
+Use Vuetify 3 components with a custom theme object.

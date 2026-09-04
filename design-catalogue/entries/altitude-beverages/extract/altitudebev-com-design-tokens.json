@@ -1,0 +1,205 @@
+{
+  "$metadata": {
+    "generator": "designlang",
+    "version": "7.0.0",
+    "spec": "https://design-tokens.github.io/community-group/format/",
+    "source": "https://altitudebev.com",
+    "generatedAt": "2026-09-04T00:44:35.573Z"
+  },
+  "primitive": {
+    "color": {
+      "brand": {
+        "primary": {
+          "$value": "#fafafa",
+          "$type": "color"
+        }
+      },
+      "neutral": {
+        "n100": {
+          "$value": "#fafafa",
+          "$type": "color"
+        },
+        "n200": {
+          "$value": "#000000",
+          "$type": "color"
+        },
+        "n300": {
+          "$value": "#53606e",
+          "$type": "color"
+        },
+        "n400": {
+          "$value": "#808080",
+          "$type": "color"
+        }
+      },
+      "background": {
+        "bg0": {
+          "$value": "#808080",
+          "$type": "color"
+        },
+        "bg1": {
+          "$value": "#000000",
+          "$type": "color"
+        }
+      },
+      "text": {
+        "text0": {
+          "$value": "#000000",
+          "$type": "color"
+        },
+        "text1": {
+          "$value": "#fafafa",
+          "$type": "color"
+        },
+        "text2": {
+          "$value": "#07060b",
+          "$type": "color"
+        },
+        "text3": {
+          "$value": "#53606e",
+          "$type": "color"
+        },
+        "text4": {
+          "$value": "#ffffff",
+          "$type": "color"
+        }
+      }
+    },
+    "spacing": {
+      "s0": {
+        "$value": "2px",
+        "$type": "dimension"
+      },
+      "s1": {
+        "$value": "36px",
+        "$type": "dimension"
+      },
+      "s2": {
+        "$value": "48px",
+        "$type": "dimension"
+      },
+      "s3": {
+        "$value": "56px",
+        "$type": "dimension"
+      },
+      "s4": {
+        "$value": "64px",
+        "$type": "dimension"
+      },
+      "s5": {
+        "$value": "78px",
+        "$type": "dimension"
+      },
+      "s6": {
+        "$value": "85px",
+        "$type": "dimension"
+      },
+      "s7": {
+        "$value": "96px",
+        "$type": "dimension"
+      },
+      "s8": {
+        "$value": "125px",
+        "$type": "dimension"
+      },
+      "s9": {
+        "$value": "265px",
+        "$type": "dimension"
+      },
+      "s10": {
+        "$value": "288px",
+        "$type": "dimension"
+      },
+      "s11": {
+        "$value": "320px",
+        "$type": "dimension"
+      },
+      "s12": {
+        "$value": "333px",
+        "$type": "dimension"
+      },
+      "s13": {
+        "$value": "495px",
+        "$type": "dimension"
+      }
+    },
+    "radius": {
+      "r0": {
+        "$value": "32px",
+        "$type": "dimension"
+      },
+      "r1": {
+        "$value": "44px",
+        "$type": "dimension"
+      },
+      "r2": {
+        "$value": "100px",
+        "$type": "dimension"
+      },
+      "r3": {
+        "$value": "110px",
+        "$type": "dimension"
+      }
+    },
+    "shadow": {},
+    "fontFamily": {
+      "f0": {
+        "$value": "DepartureMono",
+        "$type": "fontFamily"
+      },
+      "f1": {
+        "$value": "HelveticaNowDisplay",
+        "$type": "fontFamily"
+      },
+      "f2": {
+        "$value": "EditorialNew",
+        "$type": "fontFamily"
+      }
+    }
+  },
+  "semantic": {
+    "color": {
+      "action": {
+        "primary": {
+          "$value": "{primitive.color.brand.primary}",
+          "$type": "color"
+        }
+      },
+      "surface": {
+        "default": {
+          "$value": "{primitive.color.background.bg0}",
+          "$type": "color"
+        }
+      },
+      "text": {
+        "body": {
+          "$value": "{primitive.color.text.text0}",
+          "$type": "color"
+        }
+      }
+    },
+    "typography": {
+      "body": {
+        "$value": {
+          "fontFamily": "DepartureMono",
+          "fontSize": "160px",
+          "fontWeight": "800",
+          "lineHeight": "160px"
+        },
+        "$type": "typography"
+      }
+    },
+    "radius": {
+      "control": {
+        "$value": "{primitive.radius.r0}",
+        "$type": "dimension"
+      }
+    },
+    "shadow": {
+      "elevated": {
+        "$value": "{primitive.shadow.sh0}",
+        "$type": "shadow"
+      }
+    }
+  }
+}

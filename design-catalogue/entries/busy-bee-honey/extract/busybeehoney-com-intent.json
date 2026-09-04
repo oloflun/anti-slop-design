@@ -1,0 +1,124 @@
+{
+  "pageIntent": {
+    "type": "landing",
+    "confidence": 0.29,
+    "path": "/",
+    "title": "Busy Bee Honey | America's Truly Traceable Raw Honey",
+    "description": "Shop Busy Bee Raw Honey — Pure, raw honey you can fully trace from flower to hive to bottle.",
+    "signals": [
+      {
+        "kind": "dom",
+        "type": "legal",
+        "weight": 0.4
+      },
+      {
+        "kind": "url",
+        "type": "landing",
+        "weight": 0.45,
+        "detail": "root-path"
+      }
+    ],
+    "alternates": [
+      {
+        "type": "legal",
+        "score": 0.4
+      }
+    ],
+    "needsSmart": true
+  },
+  "sectionRoles": {
+    "sections": [
+      {
+        "index": 0,
+        "tag": "nav",
+        "role": "nav",
+        "subrole": null,
+        "confidence": 0.9,
+        "heading": null,
+        "bounds": {
+          "x": 0,
+          "y": 0,
+          "w": 1265,
+          "h": 80
+        },
+        "buttonCount": 0,
+        "cardCount": 7,
+        "slots": {
+          "lede": "Trace your honey\nProducts\nLIVE HIVE\nAbout Us\nKitchen\nWhere to buy"
+        },
+        "needsSmart": false
+      },
+      {
+        "index": 1,
+        "tag": "footer",
+        "role": "footer",
+        "subrole": null,
+        "confidence": 0.95,
+        "heading": "Busy Bee Honey",
+        "bounds": {
+          "x": 0,
+          "y": 401.5,
+          "w": 1265,
+          "h": 398.5
+        },
+        "buttonCount": 0,
+        "cardCount": 13,
+        "slots": {
+          "heading": "Busy Bee Honey",
+          "lede": "Trace your honey\nProducts\nLIVE HIVE\nAbout Us\nKitchen\nWhere to buy\nFAQ\nContact us\nBusy Bee Honey\nPrivacy Policy\nTerms & Conditions\nCalifornia Transparency in Supply Chains Act"
+        },
+        "needsSmart": false
+      },
+      {
+        "index": 2,
+        "tag": "nav",
+        "role": "nav",
+        "subrole": null,
+        "confidence": 0.9,
+        "heading": null,
+        "bounds": {
+          "x": 36,
+          "y": 469.5,
+          "w": 1193,
+          "h": 12.671875
+        },
+        "buttonCount": 0,
+        "cardCount": 8,
+        "slots": {
+          "lede": "Trace your honey\nProducts\nLIVE HIVE\nAbout Us\nKitchen\nWhere to buy\nFAQ\nContact us"
+        },
+        "needsSmart": false
+      },
+      {
+        "index": 3,
+        "tag": "nav",
+        "role": "nav",
+        "subrole": null,
+        "confidence": 0.9,
+        "heading": null,
+        "bounds": {
+          "x": 36,
+          "y": 703.328125,
+          "w": 1193,
+          "h": 44.671875
+        },
+        "buttonCount": 0,
+        "cardCount": 5,
+        "slots": {
+          "lede": "Privacy Policy\nTerms & Conditions\nCalifornia Transparency in Supply Chains Act"
+        },
+        "needsSmart": false
+      }
+    ],
+    "counts": {
+      "nav": 3,
+      "footer": 1
+    },
+    "readingOrder": [
+      "nav",
+      "footer",
+      "nav",
+      "nav"
+    ]
+  }
+}

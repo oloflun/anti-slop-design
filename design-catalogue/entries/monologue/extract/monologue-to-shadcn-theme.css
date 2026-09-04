@@ -1,0 +1,19 @@
+/* shadcn/ui Theme — extracted from https://www.monologue.to/ */
+/* Paste into your globals.css */
+
+@layer base {
+  :root {
+    --background: 0 0% 7%;
+    --foreground: 0 0% 100%;
+    --primary: 5 78% 72%;
+    --primary-foreground: 0 0% 0%;
+    --secondary: 51 63% 63%;
+    --secondary-foreground: 0 0% 0%;
+    --accent: 216 60% 49%;
+    --accent-foreground: 0 0% 100%;
+    --muted: 0 0% 60%;
+    --muted-foreground: 36 16% 94%;
+    --border: 0 0% 0%;
+    --radius: 7px;
+  }
+}

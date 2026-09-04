@@ -1,0 +1,67 @@
+{
+  "pageIntent": {
+    "type": "landing",
+    "confidence": 0.31,
+    "path": "/",
+    "title": "Planhat",
+    "description": "A customer platform where commercial teams work better. We build and deploy frontier technologies—integrating data, AI and collaboration—that empower industry leaders to acquire and grow lifelong reve",
+    "signals": [
+      {
+        "kind": "dom",
+        "type": "blog-post",
+        "weight": 0.35,
+        "detail": "byline|min-read"
+      },
+      {
+        "kind": "url",
+        "type": "landing",
+        "weight": 0.45,
+        "detail": "root-path"
+      }
+    ],
+    "alternates": [
+      {
+        "type": "blog-post",
+        "score": 0.35
+      }
+    ],
+    "needsSmart": true
+  },
+  "sectionRoles": {
+    "sections": [
+      {
+        "index": 0,
+        "tag": "main",
+        "role": "testimonials",
+        "subrole": null,
+        "confidence": 0.4,
+        "heading": "Automate commercial processes across your teams",
+        "bounds": {
+          "x": 0,
+          "y": 800,
+          "w": 1280,
+          "h": 8242.015625
+        },
+        "buttonCount": 0,
+        "cardCount": 0,
+        "slots": {
+          "heading": "Automate commercial processes across your teams",
+          "subheadings": [
+            "Assemble your GTM under one roof",
+            "Deploy agents with confidence",
+            "Stay in-the-loop",
+            "THE LEADING CUSTOMER PLATFORM"
+          ],
+          "lede": "TRUSTED BY LEADING COMPANIES WORLDWIDE"
+        },
+        "needsSmart": true
+      }
+    ],
+    "counts": {
+      "testimonials": 1
+    },
+    "readingOrder": [
+      "testimonials"
+    ]
+  }
+}

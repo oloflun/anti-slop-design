@@ -1,0 +1,213 @@
+{
+  "$schema": "https://schemas.wp.org/trunk/theme.json",
+  "version": 3,
+  "settings": {
+    "color": {
+      "palette": [
+        {
+          "slug": "primary",
+          "color": "#ff7f4c",
+          "name": "Primary"
+        },
+        {
+          "slug": "secondary",
+          "color": "#008000",
+          "name": "Secondary"
+        },
+        {
+          "slug": "accent",
+          "color": "#0073aa",
+          "name": "Accent"
+        },
+        {
+          "slug": "neutral-1",
+          "color": "#000000",
+          "name": "Neutral 1"
+        },
+        {
+          "slug": "neutral-2",
+          "color": "#1a1819",
+          "name": "Neutral 2"
+        },
+        {
+          "slug": "neutral-3",
+          "color": "#ffffff",
+          "name": "Neutral 3"
+        },
+        {
+          "slug": "neutral-4",
+          "color": "#828282",
+          "name": "Neutral 4"
+        },
+        {
+          "slug": "neutral-5",
+          "color": "#181d27",
+          "name": "Neutral 5"
+        },
+        {
+          "slug": "bg-ffffff",
+          "color": "#ffffff",
+          "name": "Background #ffffff"
+        },
+        {
+          "slug": "bg-1a1819",
+          "color": "#1a1819",
+          "name": "Background #1a1819"
+        },
+        {
+          "slug": "bg-222222",
+          "color": "#222222",
+          "name": "Background #222222"
+        }
+      ],
+      "gradients": [
+        {
+          "slug": "gradient-1",
+          "gradient": "linear-gradient(-45deg, rgba(255, 255, 255, 0.4) 25%, rgba(0, 0, 0, 0) 0px, rgba(0, 0, 0, 0) 50%, rgba(255, 255, 255, 0.4) 0px, rgba(255, 255, 255, 0.4) 75%, rgba(0, 0, 0, 0) 0px, rgba(0, 0, 0, 0))",
+          "name": "Gradient 1"
+        },
+        {
+          "slug": "gradient-2",
+          "gradient": "linear-gradient(rgba(26, 24, 25, 0.86) 0%, rgba(26, 24, 25, 0.86) 100%)",
+          "name": "Gradient 2"
+        }
+      ]
+    },
+    "typography": {
+      "fontFamilies": [
+        {
+          "fontFamily": "Neue Haas Grotesk RoundDots - 55 Roman",
+          "slug": "neue-haas-grotesk-rounddots---55-roman",
+          "name": "Neue Haas Grotesk RoundDots - 55 Roman"
+        },
+        {
+          "fontFamily": "Times New Roman",
+          "slug": "times-new-roman",
+          "name": "Times New Roman"
+        },
+        {
+          "fontFamily": "Helvetica",
+          "slug": "helvetica",
+          "name": "Helvetica"
+        },
+        {
+          "fontFamily": "Neue Haas Grotesk RoundDots - 45 Light",
+          "slug": "neue-haas-grotesk-rounddots---45-light",
+          "name": "Neue Haas Grotesk RoundDots - 45 Light"
+        },
+        {
+          "fontFamily": "none",
+          "slug": "none",
+          "name": "none"
+        },
+        {
+          "fontFamily": "ETmodules",
+          "slug": "etmodules",
+          "name": "ETmodules"
+        }
+      ],
+      "fontSizes": [
+        {
+          "size": "80px",
+          "slug": "size-80",
+          "name": "80px"
+        },
+        {
+          "size": "76.8px",
+          "slug": "size-76.8",
+          "name": "76.8px"
+        },
+        {
+          "size": "67.2px",
+          "slug": "size-67.2",
+          "name": "67.2px"
+        },
+        {
+          "size": "50px",
+          "slug": "size-50",
+          "name": "50px"
+        },
+        {
+          "size": "40px",
+          "slug": "size-40",
+          "name": "40px"
+        },
+        {
+          "size": "36px",
+          "slug": "size-36",
+          "name": "36px"
+        },
+        {
+          "size": "30px",
+          "slug": "size-30",
+          "name": "30px"
+        },
+        {
+          "size": "28px",
+          "slug": "size-28",
+          "name": "28px"
+        }
+      ]
+    },
+    "spacing": {
+      "spacingSizes": [
+        {
+          "size": "2px",
+          "slug": "spacing-2",
+          "name": "2px"
+        },
+        {
+          "size": "12px",
+          "slug": "spacing-12",
+          "name": "12px"
+        },
+        {
+          "size": "14px",
+          "slug": "spacing-14",
+          "name": "14px"
+        },
+        {
+          "size": "20px",
+          "slug": "spacing-20",
+          "name": "20px"
+        },
+        {
+          "size": "22px",
+          "slug": "spacing-22",
+          "name": "22px"
+        },
+        {
+          "size": "24px",
+          "slug": "spacing-24",
+          "name": "24px"
+        },
+        {
+          "size": "29px",
+          "slug": "spacing-29",
+          "name": "29px"
+        },
+        {
+          "size": "32px",
+          "slug": "spacing-32",
+          "name": "32px"
+        }
+      ]
+    },
+    "layout": {
+      "contentSize": "100%",
+      "wideSize": "1400px"
+    }
+  },
+  "styles": {
+    "color": {
+      "background": "#ffffff",
+      "text": "#000000"
+    },
+    "typography": {
+      "fontSize": "16px",
+      "lineHeight": "normal",
+      "fontFamily": "Neue Haas Grotesk RoundDots - 55 Roman"
+    },
+    "spacing": {}
+  }
+}

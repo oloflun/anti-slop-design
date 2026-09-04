@@ -1,0 +1,19 @@
+/* shadcn/ui Theme — extracted from https://withbobbin.com/ */
+/* Paste into your globals.css */
+
+@layer base {
+  :root {
+    --background: 0 0% 0%;
+    --foreground: 0 0% 0%;
+    --primary: 56 94% 74%;
+    --primary-foreground: 0 0% 0%;
+    --secondary: 34 30% 95%;
+    --secondary-foreground: 0 0% 0%;
+    --accent: 56 90% 79%;
+    --accent-foreground: 0 0% 0%;
+    --muted: 36 18% 89%;
+    --muted-foreground: 0 0% 0%;
+    --border: 36 10% 50%;
+    --radius: 5px;
+  }
+}

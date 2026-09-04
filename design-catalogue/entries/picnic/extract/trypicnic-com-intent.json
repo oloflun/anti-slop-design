@@ -1,0 +1,432 @@
+{
+  "pageIntent": {
+    "type": "landing",
+    "confidence": 0.29,
+    "path": "/",
+    "title": "Office Lunches, Catering and Team Orders — 50+ restaurants for your team",
+    "description": "Discover zero fees zero tips office lunch delivery service, catering for large events, group ordering, and subsidized lunch programs with Trypicnic.com. Elevate your company's food experience with tai",
+    "signals": [
+      {
+        "kind": "dom",
+        "type": "blog-post",
+        "weight": 0.35,
+        "detail": "byline|min-read"
+      },
+      {
+        "kind": "dom",
+        "type": "legal",
+        "weight": 0.4
+      },
+      {
+        "kind": "url",
+        "type": "landing",
+        "weight": 0.45,
+        "detail": "root-path"
+      }
+    ],
+    "alternates": [
+      {
+        "type": "legal",
+        "score": 0.4
+      },
+      {
+        "type": "blog-post",
+        "score": 0.35
+      }
+    ],
+    "needsSmart": true
+  },
+  "sectionRoles": {
+    "sections": [
+      {
+        "index": 0,
+        "tag": "nav",
+        "role": "nav",
+        "subrole": null,
+        "confidence": 0.9,
+        "heading": null,
+        "bounds": {
+          "x": 0,
+          "y": 0,
+          "w": 1280,
+          "h": 80
+        },
+        "buttonCount": 5,
+        "cardCount": 0,
+        "slots": {
+          "ctaCount": 5,
+          "lede": "For Offices"
+        },
+        "needsSmart": false
+      },
+      {
+        "index": 1,
+        "tag": "main",
+        "role": "steps",
+        "subrole": null,
+        "confidence": 0.75,
+        "heading": "50+ restaurants delivered to your office",
+        "bounds": {
+          "x": 0,
+          "y": 0,
+          "w": 1280,
+          "h": 7379.125
+        },
+        "buttonCount": 12,
+        "cardCount": 121,
+        "slots": {
+          "heading": "50+ restaurants delivered to your office",
+          "subheadings": [
+            "Locations",
+            "Our solutions",
+            "Office meals",
+            "Team orders"
+          ],
+          "ctaCount": 12
+        },
+        "needsSmart": false
+      },
+      {
+        "index": 2,
+        "tag": "section",
+        "role": "content",
+        "subrole": null,
+        "confidence": 0.3,
+        "heading": "50+ restaurants delivered to your office",
+        "bounds": {
+          "x": 0,
+          "y": 0,
+          "w": 1280,
+          "h": 869.90625
+        },
+        "buttonCount": 2,
+        "cardCount": 0,
+        "slots": {
+          "heading": "50+ restaurants delivered to your office",
+          "subheadings": [
+            "Locations"
+          ],
+          "ctaCount": 2
+        },
+        "needsSmart": true
+      },
+      {
+        "index": 3,
+        "tag": "header",
+        "role": "nav",
+        "subrole": null,
+        "confidence": 0.4,
+        "heading": "Locations",
+        "bounds": {
+          "x": 0,
+          "y": 0,
+          "w": 0,
+          "h": 0
+        },
+        "buttonCount": 1,
+        "cardCount": 0,
+        "slots": {
+          "heading": "Locations",
+          "ctaCount": 1
+        },
+        "needsSmart": true
+      },
+      {
+        "index": 4,
+        "tag": "main",
+        "role": "content",
+        "subrole": null,
+        "confidence": 0.3,
+        "heading": null,
+        "bounds": {
+          "x": 0,
+          "y": 0,
+          "w": 0,
+          "h": 0
+        },
+        "buttonCount": 0,
+        "cardCount": 0,
+        "slots": {
+          "lede": "TBD"
+        },
+        "needsSmart": true
+      },
+      {
+        "index": 5,
+        "tag": "section",
+        "role": "content",
+        "subrole": null,
+        "confidence": 0.3,
+        "heading": null,
+        "bounds": {
+          "x": 0,
+          "y": 989.90625,
+          "w": 1280,
+          "h": 176
+        },
+        "buttonCount": 0,
+        "cardCount": 0,
+        "slots": {},
+        "needsSmart": true
+      },
+      {
+        "index": 6,
+        "tag": "section",
+        "role": "steps",
+        "subrole": null,
+        "confidence": 0.75,
+        "heading": "Our solutions",
+        "bounds": {
+          "x": 0,
+          "y": 1285.90625,
+          "w": 1280,
+          "h": 1295.59375
+        },
+        "buttonCount": 2,
+        "cardCount": 5,
+        "slots": {
+          "heading": "Our solutions",
+          "subheadings": [
+            "Office meals",
+            "Team orders",
+            "Catering",
+            "Subsidized meals"
+          ],
+          "ctaCount": 2,
+          "lede": "Our solutions\nOffice meals"
+        },
+        "needsSmart": false
+      },
+      {
+        "index": 7,
+        "tag": "section",
+        "role": "testimonial",
+        "subrole": null,
+        "confidence": 0.8,
+        "heading": "Why Picnic?",
+        "bounds": {
+          "x": 0,
+          "y": 2681.5,
+          "w": 1280,
+          "h": 1093.78125
+        },
+        "buttonCount": 0,
+        "cardCount": 4,
+        "slots": {
+          "heading": "Why Picnic?",
+          "subheadings": [
+            "No fees, no tips",
+            "Convenient delivery",
+            "Tailored options for every team",
+            "Streamlined ordering process"
+          ]
+        },
+        "needsSmart": false
+      },
+      {
+        "index": 8,
+        "tag": "section",
+        "role": "hero",
+        "subrole": null,
+        "confidence": 0.4,
+        "heading": "One delivery for many orders",
+        "bounds": {
+          "x": 0,
+          "y": 3847.28125,
+          "w": 1280,
+          "h": 737.890625
+        },
+        "buttonCount": 2,
+        "cardCount": 0,
+        "slots": {
+          "heading": "One delivery for many orders",
+          "ctaCount": 2
+        },
+        "needsSmart": true
+      },
+      {
+        "index": 9,
+        "tag": "section",
+        "role": "content",
+        "subrole": null,
+        "confidence": 0.3,
+        "heading": null,
+        "bounds": {
+          "x": 0,
+          "y": 4685.171875,
+          "w": 1280,
+          "h": 443.984375
+        },
+        "buttonCount": 0,
+        "cardCount": 0,
+        "slots": {
+          "lede": "Salads ⬝ Tacos"
+        },
+        "needsSmart": true
+      },
+      {
+        "index": 10,
+        "tag": "section",
+        "role": "hero",
+        "subrole": null,
+        "confidence": 0.4,
+        "heading": "See how we changed office lunch delivery for MBK real estate",
+        "bounds": {
+          "x": 0,
+          "y": 5169.15625,
+          "w": 1280,
+          "h": 617.890625
+        },
+        "buttonCount": 2,
+        "cardCount": 0,
+        "slots": {
+          "heading": "See how we changed office lunch delivery for MBK real estate",
+          "ctaCount": 2
+        },
+        "needsSmart": true
+      },
+      {
+        "index": 11,
+        "tag": "section",
+        "role": "hero",
+        "subrole": null,
+        "confidence": 0.4,
+        "heading": "All the options without the fees",
+        "bounds": {
+          "x": 0,
+          "y": 5787.046875,
+          "w": 1280,
+          "h": 737.890625
+        },
+        "buttonCount": 2,
+        "cardCount": 112,
+        "slots": {
+          "heading": "All the options without the fees",
+          "ctaCount": 2
+        },
+        "needsSmart": true
+      },
+      {
+        "index": 12,
+        "tag": "section",
+        "role": "hero",
+        "subrole": null,
+        "confidence": 0.4,
+        "heading": "Trusted\nby many",
+        "bounds": {
+          "x": 0,
+          "y": 6524.9375,
+          "w": 1280,
+          "h": 658.1875
+        },
+        "buttonCount": 2,
+        "cardCount": 0,
+        "slots": {
+          "heading": "Trusted\nby many",
+          "ctaCount": 2
+        },
+        "needsSmart": true
+      },
+      {
+        "index": 13,
+        "tag": "section",
+        "role": "content",
+        "subrole": null,
+        "confidence": 0.3,
+        "heading": "Follow us on Instagram @picnicatwork",
+        "bounds": {
+          "x": 0,
+          "y": 7303.125,
+          "w": 1280,
+          "h": 56
+        },
+        "buttonCount": 0,
+        "cardCount": 0,
+        "slots": {
+          "heading": "Follow us on Instagram @picnicatwork"
+        },
+        "needsSmart": true
+      },
+      {
+        "index": 14,
+        "tag": "footer",
+        "role": "footer",
+        "subrole": null,
+        "confidence": 0.95,
+        "heading": "Get started",
+        "bounds": {
+          "x": 0,
+          "y": 7379.125,
+          "w": 1280,
+          "h": 1004.203125
+        },
+        "buttonCount": 0,
+        "cardCount": 16,
+        "slots": {
+          "heading": "Get started",
+          "subheadings": [
+            "Our services",
+            "Resources",
+            "Company",
+            "Get Help"
+          ],
+          "lede": "Follow us on social media"
+        },
+        "needsSmart": false
+      },
+      {
+        "index": 15,
+        "tag": "nav",
+        "role": "nav",
+        "subrole": null,
+        "confidence": 0.9,
+        "heading": "Get started",
+        "bounds": {
+          "x": 640,
+          "y": 7925.125,
+          "w": 620,
+          "h": 356
+        },
+        "buttonCount": 0,
+        "cardCount": 16,
+        "slots": {
+          "heading": "Get started",
+          "subheadings": [
+            "Our services",
+            "Resources",
+            "Company",
+            "Get Help"
+          ],
+          "lede": "Get started\nRequest Picnic\nBecome a partner\nDownload Picnic App\nOur services\nOffice meals\nTeam Orders\nCatering\nSubsidized meals\nOffice building delivery\nResources\nPicnic blog\nBecome a Driver\nCompany\nAbout\nCareers\nReferral Program\nGet Help\nRestaurant support\nLegal\nTerms of service\nPrivacy policy"
+        },
+        "needsSmart": false
+      }
+    ],
+    "counts": {
+      "nav": 3,
+      "steps": 2,
+      "content": 5,
+      "testimonial": 1,
+      "hero": 4,
+      "footer": 1
+    },
+    "readingOrder": [
+      "nav",
+      "steps",
+      "content",
+      "nav",
+      "content",
+      "content",
+      "steps",
+      "testimonial",
+      "hero",
+      "content",
+      "hero",
+      "hero",
+      "hero",
+      "content",
+      "footer",
+      "nav"
+    ]
+  }
+}

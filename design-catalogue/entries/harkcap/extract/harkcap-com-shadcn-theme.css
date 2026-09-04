@@ -1,0 +1,19 @@
+/* shadcn/ui Theme — extracted from https://www.harkcap.com */
+/* Paste into your globals.css */
+
+@layer base {
+  :root {
+    --background: 0 0% 100%;
+    --foreground: 0 0% 0%;
+    --primary: 207 72% 24%;
+    --primary-foreground: 0 0% 100%;
+    --secondary: 177 100% 47%;
+    --secondary-foreground: 0 0% 0%;
+    --accent: 202 57% 32%;
+    --accent-foreground: 0 0% 100%;
+    --muted: 0 0% 83%;
+    --muted-foreground: 0 0% 9%;
+    --border: 0 0% 0%;
+    --radius: 6px;
+  }
+}

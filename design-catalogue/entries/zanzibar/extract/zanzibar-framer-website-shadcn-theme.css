@@ -1,0 +1,19 @@
+/* shadcn/ui Theme — extracted from https://zanzibar.framer.website */
+/* Paste into your globals.css */
+
+@layer base {
+  :root {
+    --background: 30 33% 5%;
+    --foreground: 0 0% 0%;
+    --primary: 27 100% 98%;
+    --primary-foreground: 0 0% 0%;
+    --secondary: 240 100% 47%;
+    --secondary-foreground: 0 0% 100%;
+    --accent: 50 30% 92%;
+    --accent-foreground: 0 0% 0%;
+    --muted: 0 0% 46%;
+    --muted-foreground: 0 0% 0%;
+    --border: 0 0% 46%;
+    --radius: 7px;
+  }
+}

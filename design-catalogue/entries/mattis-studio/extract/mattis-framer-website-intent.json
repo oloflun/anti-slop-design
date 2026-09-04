@@ -1,0 +1,396 @@
+{
+  "pageIntent": {
+    "type": "landing",
+    "confidence": 0.31,
+    "path": "/",
+    "title": "Mattis® Studio — Conversion-First Design & Development Agency",
+    "description": "Strategy, design, and development built around how your customers make decisions. 60+ projects shipped with measurable conversion lift.",
+    "signals": [
+      {
+        "kind": "dom",
+        "type": "blog-post",
+        "weight": 0.35,
+        "detail": "byline|min-read"
+      },
+      {
+        "kind": "url",
+        "type": "landing",
+        "weight": 0.45,
+        "detail": "root-path"
+      }
+    ],
+    "alternates": [
+      {
+        "type": "blog-post",
+        "score": 0.35
+      }
+    ],
+    "needsSmart": true
+  },
+  "sectionRoles": {
+    "sections": [
+      {
+        "index": 0,
+        "tag": "header",
+        "role": "nav",
+        "subrole": null,
+        "confidence": 0.4,
+        "heading": null,
+        "bounds": {
+          "x": 0,
+          "y": 0,
+          "w": 1280,
+          "h": 60
+        },
+        "buttonCount": 0,
+        "cardCount": 0,
+        "slots": {
+          "lede": "MATTIS®"
+        },
+        "needsSmart": true
+      },
+      {
+        "index": 1,
+        "tag": "nav",
+        "role": "nav",
+        "subrole": null,
+        "confidence": 0.9,
+        "heading": null,
+        "bounds": {
+          "x": 760.25,
+          "y": 37.796875,
+          "w": 329.375,
+          "h": 14.40625
+        },
+        "buttonCount": 0,
+        "cardCount": 0,
+        "slots": {
+          "lede": "WORKS"
+        },
+        "needsSmart": false
+      },
+      {
+        "index": 2,
+        "tag": "main",
+        "role": "pricing-table",
+        "subrole": null,
+        "confidence": 0.9,
+        "heading": "STRATEGY\nBEFORE\nPIXELS.",
+        "bounds": {
+          "x": 0,
+          "y": 0,
+          "w": 1280,
+          "h": 11938.90625
+        },
+        "buttonCount": 0,
+        "cardCount": 9,
+        "slots": {
+          "heading": "STRATEGY\nBEFORE\nPIXELS.",
+          "subheadings": [
+            "WE\nBUILD\nWEBSITES.",
+            "BUILT ON\nREPUTATION",
+            "EVERY \nRESULT HERE \nSTARTED WITH \nA PROBLEM \nWORTH \nSOLVING.",
+            "BEFORE WE\nGET STARTED."
+          ],
+          "lede": "(EST. 2019 — VERSION 1.0.4)"
+        },
+        "needsSmart": false
+      },
+      {
+        "index": 3,
+        "tag": "section",
+        "role": "testimonial",
+        "subrole": null,
+        "confidence": 0.8,
+        "heading": null,
+        "bounds": {
+          "x": 0,
+          "y": 0,
+          "w": 1280,
+          "h": 800
+        },
+        "buttonCount": 0,
+        "cardCount": 0,
+        "slots": {
+          "lede": "(EST. 2019 — VERSION 1.0.4)"
+        },
+        "needsSmart": false
+      },
+      {
+        "index": 4,
+        "tag": "section",
+        "role": "content",
+        "subrole": null,
+        "confidence": 0.3,
+        "heading": "STRATEGY\nBEFORE\nPIXELS.",
+        "bounds": {
+          "x": 0,
+          "y": 800,
+          "w": 1280,
+          "h": 794.671875
+        },
+        "buttonCount": 0,
+        "cardCount": 0,
+        "slots": {
+          "heading": "STRATEGY\nBEFORE\nPIXELS.",
+          "lede": "LAUNCHED"
+        },
+        "needsSmart": true
+      },
+      {
+        "index": 5,
+        "tag": "section",
+        "role": "content",
+        "subrole": null,
+        "confidence": 0.3,
+        "heading": "WE\nBUILD\nWEBSITES.",
+        "bounds": {
+          "x": 0,
+          "y": 1594.671875,
+          "w": 1280,
+          "h": 687.53125
+        },
+        "buttonCount": 0,
+        "cardCount": 0,
+        "slots": {
+          "heading": "WE\nBUILD\nWEBSITES."
+        },
+        "needsSmart": true
+      },
+      {
+        "index": 6,
+        "tag": "section",
+        "role": "content",
+        "subrole": null,
+        "confidence": 0.3,
+        "heading": null,
+        "bounds": {
+          "x": 0,
+          "y": 2282.203125,
+          "w": 1280,
+          "h": 2400
+        },
+        "buttonCount": 0,
+        "cardCount": 3,
+        "slots": {
+          "lede": "(01)"
+        },
+        "needsSmart": true
+      },
+      {
+        "index": 7,
+        "tag": "section",
+        "role": "testimonials",
+        "subrole": null,
+        "confidence": 0.4,
+        "heading": "BUILT ON\nREPUTATION",
+        "bounds": {
+          "x": 0,
+          "y": 4682.203125,
+          "w": 1280,
+          "h": 840.84375
+        },
+        "buttonCount": 0,
+        "cardCount": 0,
+        "slots": {
+          "heading": "BUILT ON\nREPUTATION",
+          "lede": "WHY US?"
+        },
+        "needsSmart": true
+      },
+      {
+        "index": 8,
+        "tag": "section",
+        "role": "testimonial",
+        "subrole": null,
+        "confidence": 0.8,
+        "heading": null,
+        "bounds": {
+          "x": 0,
+          "y": 5523.046875,
+          "w": 1280,
+          "h": 1255.40625
+        },
+        "buttonCount": 0,
+        "cardCount": 0,
+        "slots": {
+          "lede": "SERVICES"
+        },
+        "needsSmart": false
+      },
+      {
+        "index": 9,
+        "tag": "section",
+        "role": "testimonial",
+        "subrole": null,
+        "confidence": 0.8,
+        "heading": "EVERY \nRESULT HERE \nSTARTED WITH \nA PROBLEM \nWORTH \nSOLVING.",
+        "bounds": {
+          "x": 0,
+          "y": 6778.453125,
+          "w": 1280,
+          "h": 823.25
+        },
+        "buttonCount": 0,
+        "cardCount": 0,
+        "slots": {
+          "heading": "EVERY \nRESULT HERE \nSTARTED WITH \nA PROBLEM \nWORTH \nSOLVING.",
+          "lede": "HOW WE DO IT"
+        },
+        "needsSmart": false
+      },
+      {
+        "index": 10,
+        "tag": "section",
+        "role": "faq",
+        "subrole": null,
+        "confidence": 0.85,
+        "heading": "BEFORE WE\nGET STARTED.",
+        "bounds": {
+          "x": 0,
+          "y": 7601.703125,
+          "w": 1280,
+          "h": 735.28125
+        },
+        "buttonCount": 0,
+        "cardCount": 0,
+        "slots": {
+          "heading": "BEFORE WE\nGET STARTED.",
+          "lede": "FAQ"
+        },
+        "needsSmart": false
+      },
+      {
+        "index": 11,
+        "tag": "section",
+        "role": "testimonial",
+        "subrole": null,
+        "confidence": 0.8,
+        "heading": "PRICING.",
+        "bounds": {
+          "x": 0,
+          "y": 8336.984375,
+          "w": 1280,
+          "h": 1541.484375
+        },
+        "buttonCount": 0,
+        "cardCount": 0,
+        "slots": {
+          "heading": "PRICING.",
+          "lede": "HOW WE THINK"
+        },
+        "needsSmart": false
+      },
+      {
+        "index": 12,
+        "tag": "section",
+        "role": "testimonial",
+        "subrole": null,
+        "confidence": 0.8,
+        "heading": "WHAT OUR \nCLIENTS SAY.",
+        "bounds": {
+          "x": 0,
+          "y": 9878.46875,
+          "w": 1280,
+          "h": 974.09375
+        },
+        "buttonCount": 0,
+        "cardCount": 0,
+        "slots": {
+          "heading": "WHAT OUR \nCLIENTS SAY."
+        },
+        "needsSmart": false
+      },
+      {
+        "index": 13,
+        "tag": "section",
+        "role": "testimonial",
+        "subrole": null,
+        "confidence": 0.8,
+        "heading": "NEWS AND\nUPDATES.",
+        "bounds": {
+          "x": 0,
+          "y": 10992.546875,
+          "w": 1280,
+          "h": 946.359375
+        },
+        "buttonCount": 0,
+        "cardCount": 0,
+        "slots": {
+          "heading": "NEWS AND\nUPDATES.",
+          "lede": "SEE MORE"
+        },
+        "needsSmart": false
+      },
+      {
+        "index": 14,
+        "tag": "footer",
+        "role": "footer",
+        "subrole": null,
+        "confidence": 0.95,
+        "heading": "START A PROJECT.",
+        "bounds": {
+          "x": 0,
+          "y": 11938.90625,
+          "w": 1280,
+          "h": 1171.3125
+        },
+        "buttonCount": 1,
+        "cardCount": 0,
+        "slots": {
+          "heading": "START A PROJECT.",
+          "ctaCount": 1,
+          "lede": "Jennifer Peterson"
+        },
+        "needsSmart": false
+      },
+      {
+        "index": 15,
+        "tag": "nav",
+        "role": "nav",
+        "subrole": null,
+        "confidence": 0.9,
+        "heading": null,
+        "bounds": {
+          "x": 640,
+          "y": 12809.8125,
+          "w": 73.390625,
+          "h": 144
+        },
+        "buttonCount": 0,
+        "cardCount": 0,
+        "slots": {
+          "lede": "Home"
+        },
+        "needsSmart": false
+      }
+    ],
+    "counts": {
+      "nav": 3,
+      "pricing-table": 1,
+      "testimonial": 6,
+      "content": 3,
+      "testimonials": 1,
+      "faq": 1,
+      "footer": 1
+    },
+    "readingOrder": [
+      "nav",
+      "pricing-table",
+      "testimonial",
+      "nav",
+      "content",
+      "content",
+      "content",
+      "testimonials",
+      "testimonial",
+      "testimonial",
+      "faq",
+      "testimonial",
+      "testimonial",
+      "testimonial",
+      "footer",
+      "nav"
+    ]
+  }
+}

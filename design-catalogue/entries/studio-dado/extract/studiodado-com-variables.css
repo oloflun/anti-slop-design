@@ -1,0 +1,77 @@
+:root {
+  /* Colors — Primary */
+
+  /* Colors — Neutrals */
+  --color-neutral-50: #000000;
+  --color-neutral-100: #ffffff;
+  --color-neutral-200: #1b1b1c;
+  --color-neutral-300: #5d5346;
+
+  /* Colors — Backgrounds */
+  --color-bg: #5d5346;
+  --color-bg-1: #ffffff;
+  --color-bg-2: #1b1b1c;
+  --color-bg-3: #000000;
+
+  /* Colors — Text */
+  --color-text: #000000;
+  --color-text-1: #ffffff;
+
+  /* Typography — Families */
+  --font-sans: 'sans', sans-serif;
+  --font-heading: 'disp', sans-serif;
+
+  /* Typography — Scale */
+  --font-size-187.733: 187.733px;
+  --font-size-138.24: 138.24px;
+  --font-size-59.7333: 59.7333px;
+  --font-size-34.1333: 34.1333px;
+  --font-size-25.6: 25.6px;
+  --font-size-17.0667: 17.0667px;
+  --font-size-11.9467: 11.9467px;
+  --font-size-8.53333: 8.53333px;
+
+  /* Spacing */
+  --spacing-9: 9px;
+  --spacing-85: 85px;
+  --spacing-120: 120px;
+  --spacing-154: 154px;
+  --spacing-208: 208px;
+  --spacing-239: 239px;
+  --spacing-282: 282px;
+  --spacing-316: 316px;
+  --spacing-394: 394px;
+  --spacing-444: 444px;
+
+  /* Border Radius */
+  --radius-full: 9999px;
+
+  /* Original Site Variables */
+  /* — colors — */
+  --wp-block-synced-color: #7a00df;
+  --wp-block-synced-color--rgb: 122,0,223;
+  --wp-bound-block-color: var(--wp-block-synced-color);
+  --wp-admin-theme-color: #007cba;
+  --wp-admin-theme-color--rgb: 0,124,186;
+  --wp-admin-theme-color-darker-10: #006ba1;
+  --wp-admin-theme-color-darker-10--rgb: 0,107,160.5;
+  --wp-admin-theme-color-darker-20: #005a87;
+  --wp-admin-theme-color-darker-20--rgb: 0,90,135;
+  --wp-admin-border-width-focus: 2px;
+  /* — spacing — */
+  --wp--preset--font-size--normal: 16px;
+  --wp--preset--font-size--huge: 42px;
+  --size: 402;
+  /* — other — */
+  --wp-editor-canvas-background: #ddd;
+  --clamp: 13px;
+  --admin-bar-height: 32px;
+  /* — dependencies — */
+  --wp-bound-block-color: --wp-block-synced-color;
+  /* — semantic — */
+  success: [object Object];
+  warning: [object Object];
+  error: [object Object];
+  info: [object Object];
+
+}

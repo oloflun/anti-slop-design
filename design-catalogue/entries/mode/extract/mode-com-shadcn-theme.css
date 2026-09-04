@@ -1,0 +1,19 @@
+/* shadcn/ui Theme — extracted from https://mode.com */
+/* Paste into your globals.css */
+
+@layer base {
+  :root {
+    --background: 0 0% 100%;
+    --foreground: 0 0% 0%;
+    --primary: 78 83% 68%;
+    --primary-foreground: 0 0% 0%;
+    --secondary: 163 88% 13%;
+    --secondary-foreground: 0 0% 100%;
+    --accent: 217 80% 48%;
+    --accent-foreground: 0 0% 100%;
+    --muted: 144 6% 83%;
+    --muted-foreground: 0 0% 0%;
+    --border: 144 6% 83%;
+    --radius: 8px;
+  }
+}

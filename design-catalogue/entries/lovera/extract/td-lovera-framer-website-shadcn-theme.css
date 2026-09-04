@@ -1,0 +1,19 @@
+/* shadcn/ui Theme — extracted from https://td-lovera.framer.website */
+/* Paste into your globals.css */
+
+@layer base {
+  :root {
+    --background: 180 2% 12%;
+    --foreground: 0 0% 0%;
+    --primary: 14 100% 56%;
+    --primary-foreground: 0 0% 100%;
+    --secondary: 240 100% 47%;
+    --secondary-foreground: 0 0% 100%;
+    --accent: 14 100% 68%;
+    --accent-foreground: 0 0% 0%;
+    --muted: 15 100% 96%;
+    --muted-foreground: 0 0% 0%;
+    --border: 150 3% 87%;
+    --radius: 6px;
+  }
+}

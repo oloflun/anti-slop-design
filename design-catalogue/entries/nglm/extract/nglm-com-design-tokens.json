@@ -1,0 +1,186 @@
+{
+  "$metadata": {
+    "generator": "designlang",
+    "version": "7.0.0",
+    "spec": "https://design-tokens.github.io/community-group/format/",
+    "source": "https://www.nglm.com",
+    "generatedAt": "2026-09-04T00:25:01.128Z"
+  },
+  "primitive": {
+    "color": {
+      "brand": {
+        "primary": {
+          "$value": "#000000",
+          "$type": "color"
+        }
+      },
+      "neutral": {
+        "n100": {
+          "$value": "#000000",
+          "$type": "color"
+        },
+        "n200": {
+          "$value": "#51585c",
+          "$type": "color"
+        },
+        "n300": {
+          "$value": "#fcfcfc",
+          "$type": "color"
+        },
+        "n400": {
+          "$value": "#c0c3c3",
+          "$type": "color"
+        },
+        "n500": {
+          "$value": "#707575",
+          "$type": "color"
+        },
+        "n600": {
+          "$value": "#131516",
+          "$type": "color"
+        }
+      },
+      "background": {
+        "bg0": {
+          "$value": "#fcfcfc",
+          "$type": "color"
+        },
+        "bg1": {
+          "$value": "#000000",
+          "$type": "color"
+        },
+        "bg2": {
+          "$value": "#131516",
+          "$type": "color"
+        }
+      },
+      "text": {
+        "text0": {
+          "$value": "#000000",
+          "$type": "color"
+        },
+        "text1": {
+          "$value": "#fcfcfc",
+          "$type": "color"
+        },
+        "text2": {
+          "$value": "#707575",
+          "$type": "color"
+        },
+        "text3": {
+          "$value": "#ffffff",
+          "$type": "color"
+        },
+        "text4": {
+          "$value": "#51585c",
+          "$type": "color"
+        },
+        "text5": {
+          "$value": "#c0c3c3",
+          "$type": "color"
+        }
+      }
+    },
+    "spacing": {
+      "s0": {
+        "$value": "2px",
+        "$type": "dimension"
+      },
+      "s1": {
+        "$value": "64px",
+        "$type": "dimension"
+      },
+      "s2": {
+        "$value": "80px",
+        "$type": "dimension"
+      },
+      "s3": {
+        "$value": "104px",
+        "$type": "dimension"
+      },
+      "s4": {
+        "$value": "176px",
+        "$type": "dimension"
+      },
+      "s5": {
+        "$value": "344px",
+        "$type": "dimension"
+      }
+    },
+    "radius": {
+      "r0": {
+        "$value": "2px",
+        "$type": "dimension"
+      }
+    },
+    "shadow": {
+      "sh0": {
+        "$value": "rgb(252, 252, 252) 0px 0px 0px 1px inset",
+        "$type": "shadow"
+      },
+      "sh1": {
+        "$value": "rgb(0, 0, 0) 0px 0px 0px 1px inset",
+        "$type": "shadow"
+      },
+      "sh2": {
+        "$value": "rgba(0, 0, 0, 0.2) 0px 0px 4px 0px",
+        "$type": "shadow"
+      }
+    },
+    "fontFamily": {
+      "f0": {
+        "$value": "GD Gaio VF",
+        "$type": "fontFamily"
+      },
+      "f1": {
+        "$value": "GD Trio Display",
+        "$type": "fontFamily"
+      }
+    }
+  },
+  "semantic": {
+    "color": {
+      "action": {
+        "primary": {
+          "$value": "{primitive.color.brand.primary}",
+          "$type": "color"
+        }
+      },
+      "surface": {
+        "default": {
+          "$value": "{primitive.color.background.bg0}",
+          "$type": "color"
+        }
+      },
+      "text": {
+        "body": {
+          "$value": "{primitive.color.text.text0}",
+          "$type": "color"
+        }
+      }
+    },
+    "typography": {
+      "body": {
+        "$value": {
+          "fontFamily": "GD Gaio VF",
+          "fontSize": "140.8px",
+          "fontWeight": "400",
+          "lineHeight": "140.8px"
+        },
+        "$type": "typography"
+      }
+    },
+    "radius": {
+      "control": {
+        "$value": "{primitive.radius.r0}",
+        "$type": "dimension"
+      }
+    },
+    "shadow": {
+      "elevated": {
+        "$value": "{primitive.shadow.sh0}",
+        "$type": "shadow"
+      }
+    }
+  }
+}

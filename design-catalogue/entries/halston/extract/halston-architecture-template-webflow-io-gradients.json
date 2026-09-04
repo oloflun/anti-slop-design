@@ -1,0 +1,88 @@
+{
+  "$schema": "https://designlang.app/schemas/gradients.json",
+  "source": "https://halston-architecture-template.webflow.io/",
+  "generated": "2026-09-04T00:53:15.262Z",
+  "count": 5,
+  "gradients": [
+    {
+      "raw": "linear-gradient(rgba(0, 0, 0, 0) 40%, color(srgb 0.09 0.0894118 0.0841176))",
+      "type": "linear",
+      "direction": null,
+      "stops": [
+        {
+          "color": "rgba(0, 0, 0, 0)",
+          "position": "40%"
+        },
+        {
+          "color": "color(srgb 0.09 0.0894118 0.0841176)",
+          "position": null
+        }
+      ],
+      "classification": "brand"
+    },
+    {
+      "raw": "linear-gradient(rgba(0, 0, 0, 0), color(srgb 0.09 0.0894118 0.0841176) 70%)",
+      "type": "linear",
+      "direction": null,
+      "stops": [
+        {
+          "color": "rgba(0, 0, 0, 0)",
+          "position": null
+        },
+        {
+          "color": "color(srgb 0.09 0.0894118 0.0841176)",
+          "position": "70%"
+        }
+      ],
+      "classification": "brand"
+    },
+    {
+      "raw": "linear-gradient(rgba(0, 0, 0, 0), color(srgb 0.09 0.0894118 0.0841176))",
+      "type": "linear",
+      "direction": null,
+      "stops": [
+        {
+          "color": "rgba(0, 0, 0, 0)",
+          "position": null
+        },
+        {
+          "color": "color(srgb 0.09 0.0894118 0.0841176)",
+          "position": null
+        }
+      ],
+      "classification": "brand"
+    },
+    {
+      "raw": "linear-gradient(0deg, color(srgb 0.09 0.0894118 0.0841176), rgba(0, 0, 0, 0))",
+      "type": "linear",
+      "direction": "0deg",
+      "stops": [
+        {
+          "color": "color(srgb 0.09 0.0894118 0.0841176)",
+          "position": null
+        },
+        {
+          "color": "rgba(0, 0, 0, 0)",
+          "position": null
+        }
+      ],
+      "classification": "brand"
+    },
+    {
+      "raw": "linear-gradient(135deg, color(srgb 0.09 0.0894118 0.0841176), rgba(0, 0, 0, 0) 65%)",
+      "type": "linear",
+      "direction": "135deg",
+      "stops": [
+        {
+          "color": "color(srgb 0.09 0.0894118 0.0841176)",
+          "position": null
+        },
+        {
+          "color": "rgba(0, 0, 0, 0)",
+          "position": "65%"
+        }
+      ],
+      "classification": "brand"
+    }
+  ]
+}

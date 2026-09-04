@@ -1,0 +1,19 @@
+/* shadcn/ui Theme — extracted from https://www.happyrobot.ai */
+/* Paste into your globals.css */
+
+@layer base {
+  :root {
+    --background: 53 69% 97%;
+    --foreground: 0 0% 0%;
+    --primary: 30 12% 68%;
+    --primary-foreground: 0 0% 0%;
+    --secondary: 53 69% 97%;
+    --secondary-foreground: 0 0% 0%;
+    --accent: 30 13% 6%;
+    --accent-foreground: 0 0% 100%;
+    --muted: 33 19% 91%;
+    --muted-foreground: 12 6% 17%;
+    --border: 33 19% 91%;
+    --radius: 3px;
+  }
+}

@@ -1,0 +1,276 @@
+{
+  "pageIntent": {
+    "type": "landing",
+    "confidence": 0.45,
+    "path": "/",
+    "title": "Magnetism | Creative Agency",
+    "description": "Magnetism - Creative agency, based in Paris, supports brands to make them attractive: strategy, design, advertising and digital.",
+    "signals": [
+      {
+        "kind": "url",
+        "type": "landing",
+        "weight": 0.45,
+        "detail": "root-path"
+      }
+    ],
+    "alternates": [],
+    "needsSmart": true
+  },
+  "sectionRoles": {
+    "sections": [
+      {
+        "index": 0,
+        "tag": "nav",
+        "role": "nav",
+        "subrole": null,
+        "confidence": 0.9,
+        "heading": null,
+        "bounds": {
+          "x": 51.546875,
+          "y": 0,
+          "w": 1228.453125,
+          "h": 800
+        },
+        "buttonCount": 0,
+        "cardCount": 10,
+        "slots": {
+          "lede": "WORKS\nABOUT\nBOUTIQUE\nCCØ\n©2024\nLEGALS"
+        },
+        "needsSmart": false
+      },
+      {
+        "index": 1,
+        "tag": "header",
+        "role": "nav",
+        "subrole": null,
+        "confidence": 0.4,
+        "heading": "Magnetism",
+        "bounds": {
+          "x": 0,
+          "y": -99.640625,
+          "w": 1280,
+          "h": 99.640625
+        },
+        "buttonCount": 0,
+        "cardCount": 4,
+        "slots": {
+          "heading": "Magnetism",
+          "lede": "Magnetism\nWORKS\nABOUT\nBOUTIQUE\nCCØ"
+        },
+        "needsSmart": true
+      },
+      {
+        "index": 2,
+        "tag": "nav",
+        "role": "nav",
+        "subrole": null,
+        "confidence": 0.9,
+        "heading": null,
+        "bounds": {
+          "x": 632.796875,
+          "y": -55.984375,
+          "w": 590.3125,
+          "h": 13.328125
+        },
+        "buttonCount": 0,
+        "cardCount": 4,
+        "slots": {
+          "lede": "WORKS\nABOUT\nBOUTIQUE\nCCØ"
+        },
+        "needsSmart": false
+      },
+      {
+        "index": 3,
+        "tag": "nav",
+        "role": "nav",
+        "subrole": null,
+        "confidence": 0.9,
+        "heading": null,
+        "bounds": {
+          "x": 56.890625,
+          "y": 154.640625,
+          "w": 1166.21875,
+          "h": 13.328125
+        },
+        "buttonCount": 0,
+        "cardCount": 4,
+        "slots": {
+          "lede": "WORKS\nABOUT\nBOUTIQUE\nCCØ"
+        },
+        "needsSmart": false
+      },
+      {
+        "index": 4,
+        "tag": "main",
+        "role": "content",
+        "subrole": null,
+        "confidence": 0.3,
+        "heading": "CAMPAIGN - RICHARD MILLE",
+        "bounds": {
+          "x": 0,
+          "y": 167.96875,
+          "w": 1280,
+          "h": 7689.359375
+        },
+        "buttonCount": 0,
+        "cardCount": 197,
+        "slots": {
+          "heading": "CAMPAIGN - RICHARD MILLE",
+          "subheadings": [
+            "CAMPAIGN - LOUIS VUITTON",
+            "CAMPAIGN - HENNESSY PARADIS",
+            "CAMPAIGN - RICHARD MILLE",
+            "CAMPAIGN - EVIDENS DE BEAUTÉ"
+          ],
+          "lede": "FULL-SERVICE CREATIVE AGENCY, BASED IN PARIS, SPECIALIZING IN LUXURY, BEAUTY AND LIFESTYLE. COMBINING OUR SAVOIR-FAIRE IN STRATEGY, ART DIRECTION AND PRODUCTION, WE CRAFT TOP-TIER CAMPAIGNS, SOCIAL NARRATIVES AND DIGITAL OBJECTS."
+        },
+        "needsSmart": true
+      },
+      {
+        "index": 5,
+        "tag": "section",
+        "role": "content",
+        "subrole": null,
+        "confidence": 0.3,
+        "heading": null,
+        "bounds": {
+          "x": 0,
+          "y": 167.96875,
+          "w": 1280,
+          "h": 408.875
+        },
+        "buttonCount": 0,
+        "cardCount": 0,
+        "slots": {
+          "lede": "FULL-SERVICE CREATIVE AGENCY, BASED IN PARIS, SPECIALIZING IN LUXURY, BEAUTY AND LIFESTYLE. COMBINING OUR SAVOIR-FAIRE IN STRATEGY, ART DIRECTION AND PRODUCTION, WE CRAFT TOP-TIER CAMPAIGNS, SOCIAL NARRATIVES AND DIGITAL OBJECTS."
+        },
+        "needsSmart": true
+      },
+      {
+        "index": 6,
+        "tag": "section",
+        "role": "content",
+        "subrole": null,
+        "confidence": 0.3,
+        "heading": "CAMPAIGN - RICHARD MILLE",
+        "bounds": {
+          "x": 0,
+          "y": 576.84375,
+          "w": 1280,
+          "h": 6171.9375
+        },
+        "buttonCount": 0,
+        "cardCount": 137,
+        "slots": {
+          "heading": "CAMPAIGN - RICHARD MILLE",
+          "subheadings": [
+            "CAMPAIGN - LOUIS VUITTON",
+            "CAMPAIGN - HENNESSY PARADIS",
+            "CAMPAIGN - RICHARD MILLE",
+            "CAMPAIGN - EVIDENS DE BEAUTÉ"
+          ],
+          "lede": "CAMPAIGN - RICHARD MILLE\nCAMPAIGN"
+        },
+        "needsSmart": true
+      },
+      {
+        "index": 7,
+        "tag": "section",
+        "role": "content",
+        "subrole": null,
+        "confidence": 0.3,
+        "heading": null,
+        "bounds": {
+          "x": 56.890625,
+          "y": 6748.78125,
+          "w": 1166.21875,
+          "h": 415.953125
+        },
+        "buttonCount": 0,
+        "cardCount": 0,
+        "slots": {
+          "lede": "Created at the heart of Paris, \nwe craft emotions to connect brands with their audiences."
+        },
+        "needsSmart": true
+      },
+      {
+        "index": 8,
+        "tag": "section",
+        "role": "content",
+        "subrole": null,
+        "confidence": 0.3,
+        "heading": "MORE PROJECTS",
+        "bounds": {
+          "x": 56.890625,
+          "y": 7164.734375,
+          "w": 1166.21875,
+          "h": 692.59375
+        },
+        "buttonCount": 0,
+        "cardCount": 60,
+        "slots": {
+          "heading": "MORE PROJECTS"
+        },
+        "needsSmart": true
+      },
+      {
+        "index": 9,
+        "tag": "footer",
+        "role": "footer",
+        "subrole": null,
+        "confidence": 0.95,
+        "heading": null,
+        "bounds": {
+          "x": 0,
+          "y": 7857.328125,
+          "w": 1280,
+          "h": 800
+        },
+        "buttonCount": 0,
+        "cardCount": 6,
+        "slots": {
+          "lede": "CREATIVE AGENCY\n69 RUE DE RICHELIEU\nPARIS 02"
+        },
+        "needsSmart": false
+      },
+      {
+        "index": 10,
+        "tag": "nav",
+        "role": "nav",
+        "subrole": null,
+        "confidence": 0.9,
+        "heading": null,
+        "bounds": {
+          "x": 51.546875,
+          "y": 0,
+          "w": 1228.453125,
+          "h": 800
+        },
+        "buttonCount": 0,
+        "cardCount": 10,
+        "slots": {
+          "lede": "WORKS\nABOUT\nBOUTIQUE\nCCØ\n©2024\nLEGALS"
+        },
+        "needsSmart": false
+      }
+    ],
+    "counts": {
+      "nav": 5,
+      "content": 5,
+      "footer": 1
+    },
+    "readingOrder": [
+      "nav",
+      "nav",
+      "nav",
+      "nav",
+      "nav",
+      "content",
+      "content",
+      "content",
+      "content",
+      "content",
+      "footer"
+    ]
+  }
+}

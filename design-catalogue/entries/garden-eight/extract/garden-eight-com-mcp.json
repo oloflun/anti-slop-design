@@ -1,0 +1,136 @@
+{
+  "colors": {
+    "all": [
+      {
+        "hex": "#dbd6d0",
+        "rgb": {
+          "r": 219,
+          "g": 214,
+          "b": 208,
+          "a": 1
+        },
+        "hsl": {
+          "h": 33,
+          "s": 13,
+          "l": 84
+        },
+        "count": 433,
+        "contexts": [
+          "text",
+          "border",
+          "background"
+        ]
+      },
+      {
+        "hex": "#1e1f1f",
+        "rgb": {
+          "r": 30,
+          "g": 31,
+          "b": 31,
+          "a": 1
+        },
+        "hsl": {
+          "h": 180,
+          "s": 2,
+          "l": 12
+        },
+        "count": 406,
+        "contexts": [
+          "background",
+          "text",
+          "border"
+        ]
+      }
+    ]
+  },
+  "regions": [
+    {
+      "role": "nav",
+      "tag": "header",
+      "bounds": {
+        "x": 0,
+        "y": 0,
+        "w": 1280,
+        "h": 0
+      },
+      "heading": "GARDEN\nZERO",
+      "buttonCount": 0,
+      "cardCount": 6,
+      "className": "Hd"
+    },
+    {
+      "role": "nav",
+      "tag": "nav",
+      "bounds": {
+        "x": 0,
+        "y": 0,
+        "w": 0,
+        "h": 0
+      },
+      "heading": null,
+      "buttonCount": 0,
+      "cardCount": 6,
+      "className": null
+    },
+    {
+      "role": "content",
+      "tag": "main",
+      "bounds": {
+        "x": 0,
+        "y": 0,
+        "w": 1280,
+        "h": 3282.6875
+      },
+      "heading": null,
+      "buttonCount": 0,
+      "cardCount": 6,
+      "className": "Pc s-body"
+    }
+  ],
+  "componentClusters": [],
+  "accessibility": {
+    "remediation": []
+  },
+  "cssHealth": {
+    "sheets": [
+      {
+        "url": "https://garden-eight.com/",
+        "totalBytes": 96501,
+        "usedBytes": 15778,
+        "unusedBytes": 80723,
+        "unusedPercent": 84
+      }
+    ],
+    "totalBytes": 96501,
+    "usedBytes": 15778,
+    "unusedBytes": 80723,
+    "unusedPercent": 84,
+    "importantCount": 67,
+    "duplicates": 1784,
+    "vendorPrefixes": {
+      "webkit": 24,
+      "moz": 11,
+      "ms": 2,
+      "o": 1
+    },
+    "keyframes": [],
+    "specificity": {
+      "max": [
+        1,
+        8,
+        3
+      ],
+      "average": [
+        0.04,
+        2.02,
+        0.25
+      ],
+      "count": 1932
+    },
+    "issues": [
+      "67 !important rules",
+      "1784 duplicate declarations",
+      "84% unused CSS"
+    ]
+  }
+}

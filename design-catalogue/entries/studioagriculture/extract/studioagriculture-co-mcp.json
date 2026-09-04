@@ -1,0 +1,237 @@
+{
+  "colors": {
+    "all": [
+      {
+        "hex": "#000000",
+        "rgb": {
+          "r": 0,
+          "g": 0,
+          "b": 0,
+          "a": 1
+        },
+        "hsl": {
+          "h": 0,
+          "s": 0,
+          "l": 0
+        },
+        "count": 225,
+        "contexts": [
+          "text",
+          "border"
+        ]
+      },
+      {
+        "hex": "#e7371e",
+        "rgb": {
+          "r": 231,
+          "g": 55,
+          "b": 30,
+          "a": 1
+        },
+        "hsl": {
+          "h": 7,
+          "s": 81,
+          "l": 51
+        },
+        "count": 90,
+        "contexts": [
+          "text",
+          "border",
+          "background"
+        ]
+      },
+      {
+        "hex": "#ffffff",
+        "rgb": {
+          "r": 255,
+          "g": 255,
+          "b": 255,
+          "a": 1
+        },
+        "hsl": {
+          "h": 0,
+          "s": 0,
+          "l": 100
+        },
+        "count": 31,
+        "contexts": [
+          "background",
+          "text",
+          "border"
+        ]
+      },
+      {
+        "hex": "#eeeeee",
+        "rgb": {
+          "r": 238,
+          "g": 238,
+          "b": 238,
+          "a": 1
+        },
+        "hsl": {
+          "h": 0,
+          "s": 0,
+          "l": 93
+        },
+        "count": 8,
+        "contexts": [
+          "background"
+        ]
+      },
+      {
+        "hex": "#671235",
+        "rgb": {
+          "r": 103,
+          "g": 18,
+          "b": 53,
+          "a": 1
+        },
+        "hsl": {
+          "h": 335,
+          "s": 70,
+          "l": 24
+        },
+        "count": 1,
+        "contexts": [
+          "background"
+        ]
+      }
+    ]
+  },
+  "regions": [
+    {
+      "role": "nav",
+      "tag": "header",
+      "bounds": {
+        "x": 0,
+        "y": 0,
+        "w": 1280,
+        "h": 68
+      },
+      "heading": null,
+      "buttonCount": 0,
+      "cardCount": 0,
+      "className": "masthead"
+    },
+    {
+      "role": "content",
+      "tag": "main",
+      "bounds": {
+        "x": 0,
+        "y": 0,
+        "w": 1280,
+        "h": 8886.984375
+      },
+      "heading": null,
+      "buttonCount": 0,
+      "cardCount": 0,
+      "className": null
+    },
+    {
+      "role": "footer",
+      "tag": "footer",
+      "bounds": {
+        "x": 0,
+        "y": 8886.984375,
+        "w": 1280,
+        "h": 618.125
+      },
+      "heading": null,
+      "buttonCount": 1,
+      "cardCount": 1,
+      "className": "p20 bg-white pos-rel colophon"
+    }
+  ],
+  "componentClusters": [
+    {
+      "kind": "input",
+      "structuralHash": "input",
+      "instanceCount": 2,
+      "variants": [
+        {
+          "css": {
+            "background": "rgba(0, 0, 0, 0)",
+            "color": "rgb(231, 55, 30)",
+            "padding": "0px 0px 0px 0px",
+            "borderRadius": "0px",
+            "border": "0px 0px 1px none none solid rgb(231, 55, 30)",
+            "fontSize": "16px",
+            "fontWeight": "400"
+          },
+          "instanceCount": 2
+        }
+      ]
+    },
+    {
+      "kind": "button",
+      "structuralHash": "button",
+      "instanceCount": 1,
+      "variants": [
+        {
+          "css": {
+            "background": "rgba(0, 0, 0, 0)",
+            "color": "rgb(231, 55, 30)",
+            "padding": "0px 0px 0px 0px",
+            "borderRadius": "0px",
+            "border": "0px none rgb(231, 55, 30)",
+            "fontSize": "16px",
+            "fontWeight": "400"
+          },
+          "instanceCount": 1
+        }
+      ]
+    }
+  ],
+  "accessibility": {
+    "remediation": []
+  },
+  "cssHealth": {
+    "sheets": [
+      {
+        "url": "https://studioagriculture.co/",
+        "totalBytes": 34722,
+        "usedBytes": 13539,
+        "unusedBytes": 21183,
+        "unusedPercent": 61
+      },
+      {
+        "url": "https://studioagriculture.co/",
+        "totalBytes": 479,
+        "usedBytes": 403,
+        "unusedBytes": 76,
+        "unusedPercent": 16
+      }
+    ],
+    "totalBytes": 35201,
+    "usedBytes": 13942,
+    "unusedBytes": 21259,
+    "unusedPercent": 60,
+    "importantCount": 2,
+    "duplicates": 232,
+    "vendorPrefixes": {
+      "webkit": 6,
+      "moz": 1,
+      "ms": 1,
+      "o": 0
+    },
+    "keyframes": [],
+    "specificity": {
+      "max": [
+        0,
+        6,
+        1
+      ],
+      "average": [
+        0,
+        1.49,
+        0.14
+      ],
+      "count": 407
+    },
+    "issues": [
+      "2 !important rules",
+      "232 duplicate declarations",
+      "60% unused CSS"
+    ]
+  }
+}

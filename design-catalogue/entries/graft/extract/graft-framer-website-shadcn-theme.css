@@ -1,0 +1,19 @@
+/* shadcn/ui Theme — extracted from https://graft.framer.website/ */
+/* Paste into your globals.css */
+
+@layer base {
+  :root {
+    --background: 0 0% 100%;
+    --foreground: 0 0% 0%;
+    --primary: 28 46% 15%;
+    --primary-foreground: 0 0% 100%;
+    --secondary: 240 100% 47%;
+    --secondary-foreground: 0 0% 100%;
+    --accent: 30 14% 40%;
+    --accent-foreground: 0 0% 100%;
+    --muted: 0 0% 85%;
+    --muted-foreground: 0 0% 0%;
+    --border: 0 0% 46%;
+    --radius: 7px;
+  }
+}

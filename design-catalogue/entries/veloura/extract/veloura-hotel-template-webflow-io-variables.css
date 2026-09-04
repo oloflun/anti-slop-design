@@ -1,0 +1,210 @@
+:root {
+  /* Colors — Primary */
+  --color-primary: #9e4632;
+  --color-secondary: #471b10;
+  --color-accent: #ba5d48;
+
+  /* Colors — Neutrals */
+  --color-neutral-50: #f3eeed;
+  --color-neutral-100: #000000;
+  --color-neutral-200: #ffffff;
+
+  /* Colors — Backgrounds */
+  --color-bg: #2a0800;
+  --color-bg-1: #703324;
+  --color-bg-2: #000000;
+  --color-bg-3: #eee3e0;
+  --color-bg-4: #e9dad6;
+
+  /* Colors — Text */
+  --color-text: #000000;
+  --color-text-1: #2a0800;
+  --color-text-2: #eee3e0;
+  --color-text-3: #f3eeed;
+  --color-text-4: #f5ccc2;
+
+  /* Typography — Families */
+  --font-body: 'Funnel Sans', sans-serif;
+  --font-heading: 'Ltremark', sans-serif;
+  --font-font-2: 'Funnel Display', sans-serif;
+
+  /* Typography — Scale */
+  --font-size-217.6: 217.6px;
+  --font-size-128: 128px;
+  --font-size-115.2: 115.2px;
+  --font-size-96: 96px;
+  --font-size-76.8: 76.8px;
+  --font-size-64: 64px;
+  --font-size-56: 56px;
+  --font-size-54.4: 54.4px;
+  --font-size-51.2: 51.2px;
+  --font-size-48: 48px;
+  --font-size-36.8: 36.8px;
+  --font-size-30.4: 30.4px;
+
+  /* Spacing */
+  --spacing-1: 1px;
+  --spacing-32: 32px;
+  --spacing-38: 38px;
+  --spacing-48: 48px;
+  --spacing-77: 77px;
+  --spacing-90: 90px;
+  --spacing-102: 102px;
+  --spacing-112: 112px;
+  --spacing-128: 128px;
+  --spacing-136: 136px;
+  --spacing-160: 160px;
+  --spacing-240: 240px;
+  --spacing-320: 320px;
+  --spacing-448: 448px;
+
+  /* Border Radius */
+  --radius-md: 10px;
+  --radius-lg: 14px;
+  --radius-xl: 20px;
+  --radius-full: 50px;
+  --radius-full: 99px;
+  --radius-full: 800px;
+  --radius-full: 999px;
+
+  /* Original Site Variables */
+  /* — colors — */
+  --body-bg-dark: var(--_colors---brand-dark-6);
+  --_colors---brand-main-color: #ba6957;
+  --_colors---brand-dark-2: #9e4632;
+  --body-bg: var(--_colors---brand-light-2);
+  --_colors---brand-light-3: #e9dad6;
+  --_colors---brand-dark-3: #703324;
+  --_colors---brand-dark-4: #5a2619;
+  --_colors---brand-light-5: #f5ccc2;
+  --_colors---brand-dark-5: #471b10;
+  --_colors---brand-light-1: #f3eeed;
+  --_colors---brand-color-light-20: #f3efed33;
+  --_colors---brand-light-4: #e2c6bf;
+  --_colors---brand-light-6: #e4b3a7;
+  --_colors---brand-color-10: #ba69571a;
+  --_colors---brand-color-20: #ba695733;
+  --_colors---brand-dark-1: #ba5d48;
+  --_colors---brand-dark-6: #2a0800;
+  --_colors---brand-light-2: #eee3e0;
+  --_colors---dark-brown<deleted|variable-52d39058-521c-1b10-4036-27e59bfa685f>: #30140d;
+  --_colors---white: #fff;
+  --_colors---brand-color-40: #ba695766;
+  --_colors---border-color: #2a08001a;
+  --_colors---brand-color-light-70: #f3efedb3;
+  --_colors---transparent: #fff0;
+  --_colors---brand-color-80: #2a0800cc;
+  --_colors---brand-color-light-40: #f3efed66;
+  --_colors---brand-dark-7: #180500;
+  --_colors---brand-color-light-10: #f3efed1a;
+  /* — spacing — */
+  --body-size: 1rem;
+  --_base-text-style---h1--margins: 2rem;
+  --_base-text-style---h1--font-size: 4.5rem;
+  --_base-text-style---h1--letter-spacing: 0rem;
+  --_base-text-style---h2--margins: 2rem;
+  --_base-text-style---h2--font-size: 3rem;
+  --_base-text-style---h2--letter-spacing: 0rem;
+  --_base-text-style---h3--margins: 2rem;
+  --_base-text-style---h3--font-size: 2.5rem;
+  --_base-text-style---h3--letter-spacing: 0rem;
+  --_base-text-style---h4--margins: 2rem;
+  --_base-text-style---h4--font-size: 2rem;
+  --_base-text-style---h4--letter-spacing: 0rem;
+  --_base-text-style---h5--margins: 2rem;
+  --_base-text-style---h5--font-size: 1.8rem;
+  --_base-text-style---h5--letter-spacing: 0rem;
+  --_base-text-style---h6--margins: 2rem;
+  --_base-text-style---h6--font-size: 1.5rem;
+  --_base-text-style---paragraph--letter-spacing: 0rem;
+  --_base-text-style---paragraph--margins: 1.25rem;
+  --_base-text-style---paragraph--font-size: 1.2rem;
+  --_base-text-style---uppercase-text--font-size: .9rem;
+  --icon-size--regular: 3rem;
+  --_spacing---container-width: 94%;
+  --_spacing---container-narrow-max-width: 80rem;
+  --_spacing---container-max-width: 120rem;
+  --_spacing---padding-small: 5rem;
+  --_base-text-style---paragraph--font-size-medium: 1.4rem;
+  --_base-text-style---paragraph--font-size-large: 1.6rem;
+  --_base-text-style---paragraph--font-size-small: 1rem;
+  --_spacing---padding: 8rem;
+  --_spacing---max-widths--medium: 65rem;
+  --_spacing---max-widths--small: 55rem;
+  --_spacing---max-widths--large: 72rem;
+  --_base-text-style---paragraph--font-size-xlarge: 1.8rem;
+  --_spacing---padding-large: 12rem;
+  --_spacing---fluid-gap: 8vw;
+  --_spacing---fluid-gap-small: 5vw;
+  --icon-size--small: 2rem;
+  --icon-size--large: 6.5rem;
+  --_base-text-style---h6--letter-spacing: 0rem;
+  /* — typography — */
+  --_typography---sans-font: "Funnel Sans",sans-serif;
+  --body-font: var(--_colors---brand-dark-6);
+  --_base-text-style---h1--font-family: var(--_typography---sans-font);
+  --_base-text-style---h1--line-height: 95%;
+  --_base-text-style---h1--font-weight: var(--font-weight--medium);
+  --_base-text-style---h2--font-family: var(--_typography---sans-font);
+  --_base-text-style---h2--line-height: 95%;
+  --_base-text-style---h2--font-weight: var(--font-weight--medium);
+  --_base-text-style---h3--font-family: var(--_typography---sans-font);
+  --_base-text-style---h3--line-height: 100%;
+  --_base-text-style---h3--font-weight: var(--font-weight--medium);
+  --_base-text-style---h4--font-family: var(--_typography---sans-font);
+  --_base-text-style---h4--line-height: 100%;
+  --_base-text-style---h4--font-weight: var(--font-weight--medium);
+  --_base-text-style---h5--font-family: var(--_typography---sans-font);
+  --_base-text-style---h5--line-height: 100%;
+  --_base-text-style---h5--font-weight: var(--font-weight--medium);
+  --_base-text-style---h6--font-family: var(--_typography---sans-font);
+  --_base-text-style---h6--line-height: 100%;
+  --_base-text-style---h6--font-weight: var(--font-weight--medium);
+  --_base-text-style---paragraph--font-family: var(--_typography---sans-font);
+  --_base-text-style---paragraph--line-height: 150%;
+  --_base-text-style---paragraph--font-weight: var(--font-weight--normal);
+  --body-font-light: var(--_colors---brand-light-2);
+  --_typography---display-font: "Funnel Display",sans-serif;
+  --font-weight--medium: 500;
+  --_typography---brand-font: Ltremark,"Times New Roman",sans-serif;
+  --font-weight--semi-bold: 600;
+  --font-weight--light: 300;
+  --font-weight--normal: 400;
+  --_base-text-style---uppercase-text--font-weight: var(--font-weight--light);
+  --font-weight--bold: 700;
+  --font-weight--thin: 100;
+  --font-weight--extra-light: 200;
+  --font-weight--extra-bold: 800;
+  --font-weight--black: 900;
+  --_base-text-style---uppercase-text--font-family: var(--_typography---sans-font);
+  /* — radii — */
+  --radius--radius-normal: 20px;
+  --radius--radius-small: 10px;
+  /* — dependencies — */
+  --body-bg-dark: --_colors---brand-dark-6;
+  --body-font: --_colors---brand-dark-6;
+  --_base-text-style---h1--font-family: --_typography---sans-font;
+  --_base-text-style---h1--font-weight: --font-weight--medium;
+  --_base-text-style---h2--font-family: --_typography---sans-font;
+  --_base-text-style---h2--font-weight: --font-weight--medium;
+  --_base-text-style---h3--font-family: --_typography---sans-font;
+  --_base-text-style---h3--font-weight: --font-weight--medium;
+  --_base-text-style---h4--font-family: --_typography---sans-font;
+  --_base-text-style---h4--font-weight: --font-weight--medium;
+  --_base-text-style---h5--font-family: --_typography---sans-font;
+  --_base-text-style---h5--font-weight: --font-weight--medium;
+  --_base-text-style---h6--font-family: --_typography---sans-font;
+  --_base-text-style---h6--font-weight: --font-weight--medium;
+  --_base-text-style---paragraph--font-family: --_typography---sans-font;
+  --_base-text-style---paragraph--font-weight: --font-weight--normal;
+  --body-font-light: --_colors---brand-light-2;
+  --body-bg: --_colors---brand-light-2;
+  --_base-text-style---uppercase-text--font-weight: --font-weight--light;
+  --_base-text-style---uppercase-text--font-family: --_typography---sans-font;
+  /* — semantic — */
+  success: [object Object];
+  warning: [object Object];
+  error: [object Object];
+  info: [object Object];
+
+}

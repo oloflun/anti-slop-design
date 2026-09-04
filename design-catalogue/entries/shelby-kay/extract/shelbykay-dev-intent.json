@@ -1,0 +1,214 @@
+{
+  "pageIntent": {
+    "type": "landing",
+    "confidence": 0.61,
+    "path": "/",
+    "title": "Shelby Kay • Freelance Front-End Developer",
+    "description": "Freelance Front-End Developer based in France and working worldwide remotely. Focusing on crafting digital experiences with an editorial, modern and unique approach.",
+    "signals": [
+      {
+        "kind": "dom",
+        "type": "blog-post",
+        "weight": 0.35,
+        "detail": "byline|min-read"
+      },
+      {
+        "kind": "url",
+        "type": "landing",
+        "weight": 0.45,
+        "detail": "root-path"
+      },
+      {
+        "kind": "shape",
+        "type": "landing",
+        "weight": 0.3,
+        "detail": "features+hero"
+      }
+    ],
+    "alternates": [
+      {
+        "type": "blog-post",
+        "score": 0.35
+      }
+    ],
+    "needsSmart": false
+  },
+  "sectionRoles": {
+    "sections": [
+      {
+        "index": 0,
+        "tag": "main",
+        "role": "testimonial",
+        "subrole": null,
+        "confidence": 0.8,
+        "heading": "SH\nE\nLB\nY\nKA",
+        "bounds": {
+          "x": 0,
+          "y": 0,
+          "w": 1280,
+          "h": 6362.4375
+        },
+        "buttonCount": 0,
+        "cardCount": 19,
+        "slots": {
+          "heading": "SH\nE\nLB\nY\nKA",
+          "subheadings": [
+            "WORK",
+            "DP",
+            "LGF",
+            "INT"
+          ]
+        },
+        "needsSmart": false
+      },
+      {
+        "index": 1,
+        "tag": "section",
+        "role": "hero",
+        "subrole": null,
+        "confidence": 0.85,
+        "heading": "SH\nE\nLB\nY\nKA",
+        "bounds": {
+          "x": 0,
+          "y": 0,
+          "w": 1280,
+          "h": 800
+        },
+        "buttonCount": 0,
+        "cardCount": 0,
+        "slots": {
+          "heading": "SH\nE\nLB\nY\nKA"
+        },
+        "needsSmart": false
+      },
+      {
+        "index": 2,
+        "tag": "nav",
+        "role": "nav",
+        "subrole": null,
+        "confidence": 0.9,
+        "heading": null,
+        "bounds": {
+          "x": 19.1875,
+          "y": 767.203125,
+          "w": 460.609375,
+          "h": 16.796875
+        },
+        "buttonCount": 0,
+        "cardCount": 0,
+        "slots": {
+          "lede": "WORK\nPROFILE\nCONTACT"
+        },
+        "needsSmart": false
+      },
+      {
+        "index": 3,
+        "tag": "section",
+        "role": "content",
+        "subrole": null,
+        "confidence": 0.3,
+        "heading": "WORK",
+        "bounds": {
+          "x": 0,
+          "y": 800,
+          "w": 1280,
+          "h": 3592.9375
+        },
+        "buttonCount": 0,
+        "cardCount": 0,
+        "slots": {
+          "heading": "WORK",
+          "subheadings": [
+            "DP",
+            "LGF",
+            "INT",
+            "AF"
+          ]
+        },
+        "needsSmart": true
+      },
+      {
+        "index": 4,
+        "tag": "nav",
+        "role": "nav",
+        "subrole": null,
+        "confidence": 0.9,
+        "heading": null,
+        "bounds": {
+          "x": 19.1875,
+          "y": 800,
+          "w": 148.203125,
+          "h": 800
+        },
+        "buttonCount": 0,
+        "cardCount": 0,
+        "slots": {
+          "lede": "Félix Péault\nAtelier de Troupe\nCity of Angels\nBitcoinOS\nFrictionless Capital\nAllfeat\nBaptiste Glaymann\nThe Little Grey Film\n4THSEX\nInterstellar Lab\nDom Pérignon\nTotems\nHouses Of\nChâteau de Fieuzal\nAtelier.M"
+        },
+        "needsSmart": false
+      },
+      {
+        "index": 5,
+        "tag": "section",
+        "role": "testimonial",
+        "subrole": null,
+        "confidence": 0.8,
+        "heading": "PROFILE",
+        "bounds": {
+          "x": 0,
+          "y": 4392.9375,
+          "w": 1280,
+          "h": 1169.5
+        },
+        "buttonCount": 0,
+        "cardCount": 19,
+        "slots": {
+          "heading": "PROFILE",
+          "subheadings": [
+            "SKILLS & STACK",
+            "VALUES & MOTIVES",
+            "RECOGNITION"
+          ],
+          "lede": "PROFILE\nSKILLS & STACK\nJAVASCRIPT\nHTML5/CSS3/SCSS\nFRAMEWORKS\nVUE/NUXT, SVELTE/SVELTEKIT\nCMS\nHEADLESS - SANITY, STORYBLOK\nANIMATION\nANIME.JS, MOTION\nGIT\nVALUES & MOTIVES\nDesign driven\nInteractions\nAtomic design system\nMobile first\nNatural SEO\nAccessibility\nRECOGNITION\nBAPTISTE GLAYMANN"
+        },
+        "needsSmart": false
+      },
+      {
+        "index": 6,
+        "tag": "section",
+        "role": "content",
+        "subrole": null,
+        "confidence": 0.3,
+        "heading": "CONTACT",
+        "bounds": {
+          "x": 0,
+          "y": 5562.4375,
+          "w": 1280,
+          "h": 800
+        },
+        "buttonCount": 0,
+        "cardCount": 0,
+        "slots": {
+          "heading": "CONTACT",
+          "lede": "CONTACT\nBON\nJOUR\n@\nSHELBY\nKAY.DEV"
+        },
+        "needsSmart": true
+      }
+    ],
+    "counts": {
+      "testimonial": 2,
+      "hero": 1,
+      "nav": 2,
+      "content": 2
+    },
+    "readingOrder": [
+      "testimonial",
+      "hero",
+      "nav",
+      "content",
+      "nav",
+      "testimonial",
+      "content"
+    ]
+  }
+}

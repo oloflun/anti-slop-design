@@ -1,0 +1,19 @@
+/* shadcn/ui Theme — extracted from https://theequityfund.org */
+/* Paste into your globals.css */
+
+@layer base {
+  :root {
+    --background: 36 71% 96%;
+    --foreground: 0 0% 0%;
+    --primary: 263 42% 79%;
+    --primary-foreground: 0 0% 0%;
+    --secondary: 342 74% 18%;
+    --secondary-foreground: 0 0% 100%;
+    --accent: 36 71% 96%;
+    --accent-foreground: 0 0% 0%;
+    --muted: 0 0% 0%;
+    --muted-foreground: 220 13% 91%;
+    --border: 0 0% 0%;
+    --radius: 9999px;
+  }
+}

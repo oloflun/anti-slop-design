@@ -1,0 +1,332 @@
+{
+  "pageIntent": {
+    "type": "landing",
+    "confidence": 0.3,
+    "path": "/fr",
+    "title": "Les voiliers de nos rêves • Miti Navi",
+    "description": "Depuis 40 ans, amoureux de la vie en mer sous toutes ses formes, nous avons fait une synthèse de nos expériences et créé les voiliers de nos rêves.",
+    "signals": [
+      {
+        "kind": "shape",
+        "type": "landing",
+        "weight": 0.3,
+        "detail": "features+hero+footer"
+      }
+    ],
+    "alternates": [],
+    "needsSmart": true
+  },
+  "sectionRoles": {
+    "sections": [
+      {
+        "index": 0,
+        "tag": "header",
+        "role": "nav",
+        "subrole": null,
+        "confidence": 0.4,
+        "heading": null,
+        "bounds": {
+          "x": 0,
+          "y": -2.78125,
+          "w": 1280,
+          "h": 87.78125
+        },
+        "buttonCount": 0,
+        "cardCount": 6,
+        "slots": {
+          "lede": "MITI NAVI\nMITI NAVI\n MITI ONE\nMITI ONE\n LOCATION\nLOCATION\nRÉPARATION\nRÉPARATION\n CHANTIER NAVAL\nCHANTIER NAVAL\n CONTACT\nCONTACT\nEN\nFR"
+        },
+        "needsSmart": true
+      },
+      {
+        "index": 1,
+        "tag": "nav",
+        "role": "nav",
+        "subrole": null,
+        "confidence": 0.9,
+        "heading": null,
+        "bounds": {
+          "x": 0,
+          "y": 27.21875,
+          "w": 297.515625,
+          "h": 27.78125
+        },
+        "buttonCount": 0,
+        "cardCount": 3,
+        "slots": {
+          "lede": "MITI NAVI\nMITI NAVI\n MITI ONE\nMITI ONE\n LOCATION\nLOCATION"
+        },
+        "needsSmart": false
+      },
+      {
+        "index": 2,
+        "tag": "nav",
+        "role": "nav",
+        "subrole": null,
+        "confidence": 0.9,
+        "heading": null,
+        "bounds": {
+          "x": 929.703125,
+          "y": 27.21875,
+          "w": 350.296875,
+          "h": 27.78125
+        },
+        "buttonCount": 0,
+        "cardCount": 3,
+        "slots": {
+          "lede": "RÉPARATION\nRÉPARATION\n CHANTIER NAVAL\nCHANTIER NAVAL\n CONTACT\nCONTACT"
+        },
+        "needsSmart": false
+      },
+      {
+        "index": 3,
+        "tag": "nav",
+        "role": "nav",
+        "subrole": null,
+        "confidence": 0.9,
+        "heading": null,
+        "bounds": {
+          "x": 0,
+          "y": 0,
+          "w": 0,
+          "h": 0
+        },
+        "buttonCount": 0,
+        "cardCount": 0,
+        "slots": {
+          "lede": "MITI NAVI\n\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\tMITI ONE\n\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\tLOCATION\n\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\tRÉPARATION\n\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\tCHANTIER NAVAL\n\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\tCONTACT"
+        },
+        "needsSmart": false
+      },
+      {
+        "index": 4,
+        "tag": "main",
+        "role": "content",
+        "subrole": null,
+        "confidence": 0.3,
+        "heading": "Les voiliers de\nnos rêves",
+        "bounds": {
+          "x": 0,
+          "y": 87.78125,
+          "w": 1280,
+          "h": 4100.203125
+        },
+        "buttonCount": 0,
+        "cardCount": 12,
+        "slots": {
+          "heading": "Les voiliers de\nnos rêves",
+          "subheadings": [
+            "Un voilier selon vos envies",
+            "",
+            "",
+            "Chantier Naval"
+          ],
+          "lede": "MITI NAVI\nLes voiliers de\nnos rêves\nDÉCOUVRIR MITI NAVI\nDÉCOUVRIR MITI NAVI"
+        },
+        "needsSmart": true
+      },
+      {
+        "index": 5,
+        "tag": "main",
+        "role": "content",
+        "subrole": null,
+        "confidence": 0.3,
+        "heading": "Les voiliers de\nnos rêves",
+        "bounds": {
+          "x": 0,
+          "y": 87.78125,
+          "w": 1280,
+          "h": 4100.203125
+        },
+        "buttonCount": 0,
+        "cardCount": 12,
+        "slots": {
+          "heading": "Les voiliers de\nnos rêves",
+          "subheadings": [
+            "Un voilier selon vos envies",
+            "",
+            "",
+            "Chantier Naval"
+          ],
+          "lede": "MITI NAVI\nLes voiliers de\nnos rêves\nDÉCOUVRIR MITI NAVI\nDÉCOUVRIR MITI NAVI"
+        },
+        "needsSmart": true
+      },
+      {
+        "index": 6,
+        "tag": "section",
+        "role": "hero",
+        "subrole": null,
+        "confidence": 0.85,
+        "heading": "Les voiliers de\nnos rêves",
+        "bounds": {
+          "x": 0,
+          "y": 87.78125,
+          "w": 1280,
+          "h": 740
+        },
+        "buttonCount": 0,
+        "cardCount": 1,
+        "slots": {
+          "heading": "Les voiliers de\nnos rêves",
+          "lede": "MITI NAVI\nLes voiliers de\nnos rêves\nDÉCOUVRIR MITI NAVI\nDÉCOUVRIR MITI NAVI"
+        },
+        "needsSmart": false
+      },
+      {
+        "index": 7,
+        "tag": "section",
+        "role": "content",
+        "subrole": null,
+        "confidence": 0.3,
+        "heading": null,
+        "bounds": {
+          "x": 0,
+          "y": 827.78125,
+          "w": 1280,
+          "h": 280.734375
+        },
+        "buttonCount": 0,
+        "cardCount": 0,
+        "slots": {
+          "lede": "Depuis 40 ans, amoureux de la vie en mer sous toutes ses formes, nous avons navigué en monocoque, en catamaran, au moteur ou en goélette."
+        },
+        "needsSmart": true
+      },
+      {
+        "index": 8,
+        "tag": "section",
+        "role": "content",
+        "subrole": null,
+        "confidence": 0.3,
+        "heading": "Un voilier selon vos envies",
+        "bounds": {
+          "x": 0,
+          "y": 1108.515625,
+          "w": 1280,
+          "h": 636.5625
+        },
+        "buttonCount": 0,
+        "cardCount": 1,
+        "slots": {
+          "heading": "Un voilier selon vos envies",
+          "lede": "VOTRE PROJET\nUn voilier selon vos envies\n>\n26m\n34m\n42m\n50m\n>\nEN SAVOIR PLUS\nEN SAVOIR PLUS"
+        },
+        "needsSmart": true
+      },
+      {
+        "index": 9,
+        "tag": "section",
+        "role": "content",
+        "subrole": null,
+        "confidence": 0.3,
+        "heading": null,
+        "bounds": {
+          "x": 0,
+          "y": 1745.078125,
+          "w": 1280,
+          "h": 2442.90625
+        },
+        "buttonCount": 0,
+        "cardCount": 10,
+        "slots": {
+          "heading": "",
+          "subheadings": [
+            "",
+            "Chantier Naval",
+            "Louer votre voilier",
+            "Réparation"
+          ],
+          "lede": "VOILIER 34M"
+        },
+        "needsSmart": true
+      },
+      {
+        "index": 10,
+        "tag": "section",
+        "role": "content",
+        "subrole": null,
+        "confidence": 0.3,
+        "heading": null,
+        "bounds": {
+          "x": 0,
+          "y": 2890.671875,
+          "w": 1280,
+          "h": 114.1875
+        },
+        "buttonCount": 0,
+        "cardCount": 1,
+        "slots": {
+          "lede": "TÉLÉCHARGER NOS BROCHURES\nTÉLÉCHARGER NOS BROCHURES"
+        },
+        "needsSmart": true
+      },
+      {
+        "index": 11,
+        "tag": "section",
+        "role": "content",
+        "subrole": null,
+        "confidence": 0.3,
+        "heading": "Chantier Naval",
+        "bounds": {
+          "x": 0,
+          "y": 3004.859375,
+          "w": 1280,
+          "h": 1123.125
+        },
+        "buttonCount": 0,
+        "cardCount": 6,
+        "slots": {
+          "heading": "Chantier Naval",
+          "subheadings": [
+            "Louer votre voilier",
+            "Réparation"
+          ],
+          "lede": "NOS SERVICES\nChantier Naval"
+        },
+        "needsSmart": true
+      },
+      {
+        "index": 12,
+        "tag": "footer",
+        "role": "footer",
+        "subrole": null,
+        "confidence": 0.95,
+        "heading": null,
+        "bounds": {
+          "x": 0,
+          "y": 4187.984375,
+          "w": 1280,
+          "h": 765.25
+        },
+        "buttonCount": 0,
+        "cardCount": 8,
+        "slots": {
+          "lede": "HAUT\nDE\nPAGE"
+        },
+        "needsSmart": false
+      }
+    ],
+    "counts": {
+      "nav": 4,
+      "content": 7,
+      "hero": 1,
+      "footer": 1
+    },
+    "readingOrder": [
+      "nav",
+      "nav",
+      "nav",
+      "nav",
+      "content",
+      "content",
+      "hero",
+      "content",
+      "content",
+      "content",
+      "content",
+      "content",
+      "footer"
+    ]
+  }
+}

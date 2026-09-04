@@ -1,0 +1,92 @@
+{
+  "pageIntent": {
+    "type": "landing",
+    "confidence": 0.45,
+    "path": "/",
+    "title": "ORYZO AI",
+    "description": "A physical product, reimagined for the AI era, proving even the smallest idea can feel extraordinary.",
+    "signals": [
+      {
+        "kind": "url",
+        "type": "landing",
+        "weight": 0.45,
+        "detail": "root-path"
+      }
+    ],
+    "alternates": [],
+    "needsSmart": true
+  },
+  "sectionRoles": {
+    "sections": [
+      {
+        "index": 0,
+        "tag": "header",
+        "role": "nav",
+        "subrole": null,
+        "confidence": 0.4,
+        "heading": null,
+        "bounds": {
+          "x": 40,
+          "y": 21.328125,
+          "w": 1200,
+          "h": 0
+        },
+        "buttonCount": 0,
+        "cardCount": 8,
+        "slots": {
+          "lede": "I\nI\nN\nN\nT\nT\nR\nR\nO\nO\nF\nF\nE\nE\nA\nA\nT\nT\nU\nU\nR\nR\nE\nE\nS\nS\nP\nP\nR\nR\nO\nO\nD\nD\nU\nU\nC\nC\nT\nT\nC\nC\nO\nO\nN\nN\nT\nT\nA\nA\nC\nC\nT\nT"
+        },
+        "needsSmart": true
+      },
+      {
+        "index": 1,
+        "tag": "nav",
+        "role": "nav",
+        "subrole": null,
+        "confidence": 0.9,
+        "heading": null,
+        "bounds": {
+          "x": 976.6156005859375,
+          "y": 21.328125,
+          "w": 239.984375,
+          "h": 10.671875
+        },
+        "buttonCount": 0,
+        "cardCount": 4,
+        "slots": {
+          "lede": "I\nI\nN\nN\nT\nT\nR\nR\nO\nO\nF\nF\nE\nE\nA\nA\nT\nT\nU\nU\nR\nR\nE\nE\nS\nS\nP\nP\nR\nR\nO\nO\nD\nD\nU\nU\nC\nC\nT\nT\nC\nC\nO\nO\nN\nN\nT\nT\nA\nA\nC\nC\nT\nT"
+        },
+        "needsSmart": false
+      },
+      {
+        "index": 2,
+        "tag": "footer",
+        "role": "footer",
+        "subrole": null,
+        "confidence": 0.95,
+        "heading": null,
+        "bounds": {
+          "x": 40,
+          "y": 778.671875,
+          "w": 1200,
+          "h": 0
+        },
+        "buttonCount": 0,
+        "cardCount": 0,
+        "slots": {
+          "lede": "SCROLL TO CONTINUE"
+        },
+        "needsSmart": false
+      }
+    ],
+    "counts": {
+      "nav": 2,
+      "footer": 1
+    },
+    "readingOrder": [
+      "nav",
+      "nav",
+      "footer"
+    ]
+  }
+}

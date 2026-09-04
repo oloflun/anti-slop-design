@@ -1,0 +1,387 @@
+{
+  "colors": {
+    "all": [
+      {
+        "hex": "#1d0b0d",
+        "rgb": {
+          "r": 29,
+          "g": 11,
+          "b": 13,
+          "a": 1
+        },
+        "hsl": {
+          "h": 353,
+          "s": 45,
+          "l": 8
+        },
+        "count": 152,
+        "contexts": [
+          "text",
+          "background"
+        ]
+      },
+      {
+        "hex": "#103b15",
+        "rgb": {
+          "r": 16,
+          "g": 59,
+          "b": 21,
+          "a": 1
+        },
+        "hsl": {
+          "h": 127,
+          "s": 57,
+          "l": 15
+        },
+        "count": 88,
+        "contexts": [
+          "text",
+          "border",
+          "background"
+        ]
+      },
+      {
+        "hex": "#000000",
+        "rgb": {
+          "r": 0,
+          "g": 0,
+          "b": 0,
+          "a": 1
+        },
+        "hsl": {
+          "h": 0,
+          "s": 0,
+          "l": 0
+        },
+        "count": 59,
+        "contexts": [
+          "text"
+        ]
+      },
+      {
+        "hex": "#f7ea48",
+        "rgb": {
+          "r": 247,
+          "g": 234,
+          "b": 72,
+          "a": 1
+        },
+        "hsl": {
+          "h": 56,
+          "s": 92,
+          "l": 63
+        },
+        "count": 16,
+        "contexts": [
+          "background",
+          "text",
+          "border"
+        ]
+      },
+      {
+        "hex": "#fcf9f0",
+        "rgb": {
+          "r": 252,
+          "g": 249,
+          "b": 240,
+          "a": 1
+        },
+        "hsl": {
+          "h": 45,
+          "s": 67,
+          "l": 96
+        },
+        "count": 8,
+        "contexts": [
+          "background",
+          "text"
+        ]
+      },
+      {
+        "hex": "#dbe2dc",
+        "rgb": {
+          "r": 219,
+          "g": 226,
+          "b": 220,
+          "a": 1
+        },
+        "hsl": {
+          "h": 129,
+          "s": 11,
+          "l": 87
+        },
+        "count": 6,
+        "contexts": [
+          "text",
+          "background",
+          "border"
+        ]
+      },
+      {
+        "hex": "#ffffff",
+        "rgb": {
+          "r": 255,
+          "g": 255,
+          "b": 255,
+          "a": 1
+        },
+        "hsl": {
+          "h": 0,
+          "s": 0,
+          "l": 100
+        },
+        "count": 1,
+        "contexts": [
+          "text"
+        ]
+      }
+    ]
+  },
+  "regions": [
+    {
+      "role": "nav",
+      "tag": "header",
+      "bounds": {
+        "x": 0,
+        "y": 0,
+        "w": 1280,
+        "h": 128.40625
+      },
+      "heading": null,
+      "buttonCount": 2,
+      "cardCount": 6,
+      "className": null
+    },
+    {
+      "role": "nav",
+      "tag": "nav",
+      "bounds": {
+        "x": 70,
+        "y": 25,
+        "w": 457.5,
+        "h": 78.40625
+      },
+      "heading": null,
+      "buttonCount": 0,
+      "cardCount": 6,
+      "className": "module nav"
+    },
+    {
+      "role": "footer",
+      "tag": "footer",
+      "bounds": {
+        "x": 0,
+        "y": 3663.328125,
+        "w": 1280,
+        "h": 661.15625
+      },
+      "heading": null,
+      "buttonCount": 0,
+      "cardCount": 3,
+      "className": null
+    }
+  ],
+  "componentClusters": [
+    {
+      "kind": "button",
+      "structuralHash": "a>span",
+      "instanceCount": 1,
+      "variants": [
+        {
+          "css": {
+            "background": "rgb(247, 234, 72)",
+            "color": "rgb(16, 59, 21)",
+            "padding": "12px 34px 10px 34px",
+            "borderRadius": "1px",
+            "border": "2px solid rgba(0, 0, 0, 0)",
+            "fontSize": "14px",
+            "fontWeight": "600"
+          },
+          "instanceCount": 1
+        }
+      ]
+    },
+    {
+      "kind": "button",
+      "structuralHash": "span",
+      "instanceCount": 5,
+      "variants": [
+        {
+          "css": {
+            "background": "rgba(0, 0, 0, 0)",
+            "color": "rgb(16, 59, 21)",
+            "padding": "0px 0px 0px 0px",
+            "borderRadius": "0px",
+            "border": "0px solid rgba(0, 0, 0, 0)",
+            "fontSize": "14px",
+            "fontWeight": "600"
+          },
+          "instanceCount": 5
+        }
+      ]
+    },
+    {
+      "kind": "button",
+      "structuralHash": "a>span>i",
+      "instanceCount": 4,
+      "variants": [
+        {
+          "css": {
+            "background": "rgb(247, 234, 72)",
+            "color": "rgb(16, 59, 21)",
+            "padding": "12px 34px 10px 34px",
+            "borderRadius": "1px",
+            "border": "2px solid rgba(0, 0, 0, 0)",
+            "fontSize": "14px",
+            "fontWeight": "600"
+          },
+          "instanceCount": 1
+        },
+        {
+          "css": {
+            "background": "rgba(0, 0, 0, 0)",
+            "color": "rgb(29, 11, 13)",
+            "padding": "12px 34px 12px 34px",
+            "borderRadius": "0px",
+            "border": "0px solid rgba(159, 150, 150, 0)",
+            "fontSize": "16px",
+            "fontWeight": "400"
+          },
+          "instanceCount": 3
+        }
+      ]
+    },
+    {
+      "kind": "button",
+      "structuralHash": "i",
+      "instanceCount": 4,
+      "variants": [
+        {
+          "css": {
+            "background": "rgba(0, 0, 0, 0)",
+            "color": "rgb(16, 59, 21)",
+            "padding": "0px 0px 0px 0px",
+            "borderRadius": "0px",
+            "border": "0px solid rgba(0, 0, 0, 0)",
+            "fontSize": "14px",
+            "fontWeight": "900"
+          },
+          "instanceCount": 1
+        },
+        {
+          "css": {
+            "background": "rgba(0, 0, 0, 0)",
+            "color": "rgb(219, 226, 220)",
+            "padding": "0px 0px 0px 0px",
+            "borderRadius": "0px",
+            "border": "0px solid rgba(0, 0, 0, 0)",
+            "fontSize": "16px",
+            "fontWeight": "900"
+          },
+          "instanceCount": 3
+        }
+      ]
+    }
+  ],
+  "accessibility": {
+    "remediation": []
+  },
+  "cssHealth": {
+    "sheets": [
+      {
+        "url": "https://www.limon.no/",
+        "totalBytes": 1607,
+        "usedBytes": 585,
+        "unusedBytes": 1022,
+        "unusedPercent": 64
+      },
+      {
+        "url": "https://site-assets.cdnmns.com/c65cb95437a3f5901bc340ca8f495d07/css/external-libs.css?1786968625603",
+        "totalBytes": 241286,
+        "usedBytes": 1507,
+        "unusedBytes": 239779,
+        "unusedPercent": 99
+      },
+      {
+        "url": "https://www.limon.no/",
+        "totalBytes": 1231,
+        "usedBytes": 0,
+        "unusedBytes": 1231,
+        "unusedPercent": 100
+      },
+      {
+        "url": "https://www.limon.no/",
+        "totalBytes": 32023,
+        "usedBytes": 3400,
+        "unusedBytes": 28623,
+        "unusedPercent": 89
+      },
+      {
+        "url": "https://www.limon.no/",
+        "totalBytes": 30803,
+        "usedBytes": 8377,
+        "unusedBytes": 22426,
+        "unusedPercent": 73
+      },
+      {
+        "url": "https://site-assets.cdnmns.com/c65cb95437a3f5901bc340ca8f495d07/css/cookiebotVideoPlaceholder.css?1786968625603",
+        "totalBytes": 1231,
+        "usedBytes": 0,
+        "unusedBytes": 1231,
+        "unusedPercent": 100
+      },
+      {
+        "url": "https://www.limon.no/",
+        "totalBytes": 1892,
+        "usedBytes": 0,
+        "unusedBytes": 1892,
+        "unusedPercent": 100
+      },
+      {
+        "url": "https://www.limon.no/assets/user-style.css?1786609392",
+        "totalBytes": 181139,
+        "usedBytes": 2389,
+        "unusedBytes": 178750,
+        "unusedPercent": 99
+      },
+      {
+        "url": "https://fonts.prod.extra-cdn.com/css?family=Pragati+Narrow:400,700|Nunito:200,200i,300,300i,400,400i,600,600i,700,700i,800,800i,900,900i|Poppins:100,100i,200,200i,300,300i,400,400i,500,500i,600,600i,700,700i,800,800i,900,900i&subset=latin,latin-ext,cyrillic-ext,greek,greek-ext,cyrillic&display=swap",
+        "totalBytes": 7595,
+        "usedBytes": 0,
+        "unusedBytes": 7595,
+        "unusedPercent": 100
+      }
+    ],
+    "totalBytes": 498807,
+    "usedBytes": 16258,
+    "unusedBytes": 482549,
+    "unusedPercent": 97,
+    "importantCount": 142,
+    "duplicates": 6625,
+    "vendorPrefixes": {
+      "webkit": 969,
+      "moz": 121,
+      "ms": 70,
+      "o": 50
+    },
+    "keyframes": [],
+    "specificity": {
+      "max": [
+        3,
+        8,
+        12
+      ],
+      "average": [
+        0.06,
+        2.2,
+        0.37
+      ],
+      "count": 7158
+    },
+    "issues": [
+      "142 !important rules",
+      "6625 duplicate declarations",
+      "97% unused CSS"
+    ]
+  }
+}

@@ -1,0 +1,299 @@
+{
+  "pageIntent": {
+    "type": "landing",
+    "confidence": 0.29,
+    "path": "/",
+    "title": "DEON LIBRA",
+    "description": "WELLNESS ROOTED IN RITUAL, ART, & DROP CULTURE. POWERED BY ADAPTOGENS.",
+    "signals": [
+      {
+        "kind": "dom",
+        "type": "blog-post",
+        "weight": 0.35,
+        "detail": "byline|min-read"
+      },
+      {
+        "kind": "dom",
+        "type": "legal",
+        "weight": 0.4
+      },
+      {
+        "kind": "url",
+        "type": "landing",
+        "weight": 0.45,
+        "detail": "root-path"
+      }
+    ],
+    "alternates": [
+      {
+        "type": "legal",
+        "score": 0.4
+      },
+      {
+        "type": "blog-post",
+        "score": 0.35
+      }
+    ],
+    "needsSmart": true
+  },
+  "sectionRoles": {
+    "sections": [
+      {
+        "index": 0,
+        "tag": "section",
+        "role": "content",
+        "subrole": null,
+        "confidence": 0.3,
+        "heading": null,
+        "bounds": {
+          "x": 0,
+          "y": 56,
+          "w": 1280,
+          "h": 0
+        },
+        "buttonCount": 0,
+        "cardCount": 0,
+        "slots": {},
+        "needsSmart": true
+      },
+      {
+        "index": 1,
+        "tag": "header",
+        "role": "feature-grid",
+        "subrole": null,
+        "confidence": 0.8,
+        "heading": null,
+        "bounds": {
+          "x": 0,
+          "y": 56,
+          "w": 1280,
+          "h": 84
+        },
+        "buttonCount": 7,
+        "cardCount": 18,
+        "slots": {
+          "heading": "",
+          "ctaCount": 7,
+          "lede": "SHOP\nABOUT\nACCOUNT\nSEARCH\nLog in\nCart"
+        },
+        "needsSmart": false
+      },
+      {
+        "index": 2,
+        "tag": "nav",
+        "role": "nav",
+        "subrole": null,
+        "confidence": 0.9,
+        "heading": null,
+        "bounds": {
+          "x": 485.328125,
+          "y": 85.203125,
+          "w": 309.34375,
+          "h": 25.59375
+        },
+        "buttonCount": 0,
+        "cardCount": 11,
+        "slots": {
+          "lede": "SHOP\nABOUT\nACCOUNT\nSEARCH"
+        },
+        "needsSmart": false
+      },
+      {
+        "index": 3,
+        "tag": "nav",
+        "role": "nav",
+        "subrole": null,
+        "confidence": 0.9,
+        "heading": null,
+        "bounds": {
+          "x": 0,
+          "y": 0,
+          "w": 0,
+          "h": 0
+        },
+        "buttonCount": 1,
+        "cardCount": 13,
+        "slots": {
+          "ctaCount": 1,
+          "lede": "SHOP"
+        },
+        "needsSmart": false
+      },
+      {
+        "index": 4,
+        "tag": "main",
+        "role": "features",
+        "subrole": null,
+        "confidence": 0.4,
+        "heading": "SERVING NERVOUS SYSTEM RESETS + SENSORY RITUALS.",
+        "bounds": {
+          "x": 0,
+          "y": 140,
+          "w": 1280,
+          "h": 4642.140625
+        },
+        "buttonCount": 14,
+        "cardCount": 259,
+        "slots": {
+          "heading": "SERVING NERVOUS SYSTEM RESETS + SENSORY RITUALS.",
+          "subheadings": [
+            "",
+            "",
+            "AWARDS",
+            "4 DIELINE AWARDS"
+          ],
+          "ctaCount": 14
+        },
+        "needsSmart": true
+      },
+      {
+        "index": 5,
+        "tag": "section",
+        "role": "content",
+        "subrole": null,
+        "confidence": 0.3,
+        "heading": null,
+        "bounds": {
+          "x": 0,
+          "y": 1850.921875,
+          "w": 1280,
+          "h": 120
+        },
+        "buttonCount": 0,
+        "cardCount": 0,
+        "slots": {
+          "lede": "THIS IS WELLNESS WITH MAIN CHARACTER ENERGY."
+        },
+        "needsSmart": true
+      },
+      {
+        "index": 6,
+        "tag": "section",
+        "role": "content",
+        "subrole": null,
+        "confidence": 0.3,
+        "heading": null,
+        "bounds": {
+          "x": 0,
+          "y": 1970.921875,
+          "w": 1280,
+          "h": 102
+        },
+        "buttonCount": 0,
+        "cardCount": 0,
+        "slots": {
+          "lede": "AS SEEN IN"
+        },
+        "needsSmart": true
+      },
+      {
+        "index": 7,
+        "tag": "section",
+        "role": "content",
+        "subrole": null,
+        "confidence": 0.3,
+        "heading": "AWARDS",
+        "bounds": {
+          "x": 0,
+          "y": 2212.921875,
+          "w": 1280,
+          "h": 732
+        },
+        "buttonCount": 0,
+        "cardCount": 17,
+        "slots": {
+          "heading": "AWARDS",
+          "subheadings": [
+            "4 DIELINE AWARDS",
+            "ALLURE BEST OF BEAUTY AWARD",
+            "COSMOPOLITAN HOLY GRAIL BEAUTY AWARD",
+            "2 HYPEBAE BEAUTY AWARDS"
+          ],
+          "lede": "AWARDS\n4 DIELINE AWARDS\nALLURE BEST OF BEAUTY AWARD\nCOSMOPOLITAN HOLY GRAIL BEAUTY AWARD\n2 HYPEBAE BEAUTY AWARDS"
+        },
+        "needsSmart": true
+      },
+      {
+        "index": 8,
+        "tag": "section",
+        "role": "content",
+        "subrole": null,
+        "confidence": 0.3,
+        "heading": null,
+        "bounds": {
+          "x": 0,
+          "y": 2944.921875,
+          "w": 1280,
+          "h": 96
+        },
+        "buttonCount": 0,
+        "cardCount": 0,
+        "slots": {},
+        "needsSmart": true
+      },
+      {
+        "index": 9,
+        "tag": "section",
+        "role": "content",
+        "subrole": null,
+        "confidence": 0.3,
+        "heading": null,
+        "bounds": {
+          "x": 0,
+          "y": 3040.921875,
+          "w": 1280,
+          "h": 0
+        },
+        "buttonCount": 0,
+        "cardCount": 0,
+        "slots": {},
+        "needsSmart": true
+      },
+      {
+        "index": 10,
+        "tag": "footer",
+        "role": "footer",
+        "subrole": null,
+        "confidence": 0.95,
+        "heading": "STAY IN THE LOOP:",
+        "bounds": {
+          "x": 0,
+          "y": 4782.140625,
+          "w": 1280,
+          "h": 527
+        },
+        "buttonCount": 3,
+        "cardCount": 18,
+        "slots": {
+          "heading": "STAY IN THE LOOP:",
+          "subheadings": [
+            "ABOUT",
+            "QUICK LINKS"
+          ],
+          "ctaCount": 3
+        },
+        "needsSmart": false
+      }
+    ],
+    "counts": {
+      "content": 6,
+      "feature-grid": 1,
+      "nav": 2,
+      "features": 1,
+      "footer": 1
+    },
+    "readingOrder": [
+      "nav",
+      "content",
+      "feature-grid",
+      "nav",
+      "features",
+      "content",
+      "content",
+      "content",
+      "content",
+      "content",
+      "footer"
+    ]
+  }
+}

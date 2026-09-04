@@ -1,0 +1,44 @@
+{
+  "$schema": "https://designlang.app/schemas/gradients.json",
+  "source": "https://www.withshepherd.com/",
+  "generated": "2026-09-04T00:58:29.375Z",
+  "count": 2,
+  "gradients": [
+    {
+      "raw": "linear-gradient(90deg, rgb(253, 195, 49) 53%, rgba(0, 0, 0, 0))",
+      "type": "linear",
+      "direction": "90deg",
+      "stops": [
+        {
+          "color": "rgb(253, 195, 49)",
+          "position": "53%"
+        },
+        {
+          "color": "rgba(0, 0, 0, 0)",
+          "position": null
+        }
+      ],
+      "classification": "brand"
+    },
+    {
+      "raw": "linear-gradient(-90deg, rgb(253, 195, 49), rgba(0, 0, 0, 0))",
+      "type": "linear",
+      "direction": null,
+      "stops": [
+        {
+          "color": "-90deg",
+          "position": null
+        },
+        {
+          "color": "rgb(253, 195, 49)",
+          "position": null
+        },
+        {
+          "color": "rgba(0, 0, 0, 0)",
+          "position": null
+        }
+      ],
+      "classification": "bold"
+    }
+  ]
+}

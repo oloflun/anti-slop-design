@@ -1,0 +1,257 @@
+{
+  "$metadata": {
+    "generator": "designlang",
+    "version": "7.0.0",
+    "spec": "https://design-tokens.github.io/community-group/format/",
+    "source": "https://snapifye.webflow.io/",
+    "generatedAt": "2026-09-04T00:28:41.239Z"
+  },
+  "primitive": {
+    "color": {
+      "brand": {
+        "primary": {
+          "$value": "#f9dcc5",
+          "$type": "color"
+        },
+        "secondary": {
+          "$value": "#701e1f",
+          "$type": "color"
+        }
+      },
+      "neutral": {
+        "n100": {
+          "$value": "#ffffff",
+          "$type": "color"
+        },
+        "n200": {
+          "$value": "#000000",
+          "$type": "color"
+        },
+        "n300": {
+          "$value": "#161616",
+          "$type": "color"
+        },
+        "n400": {
+          "$value": "#474747",
+          "$type": "color"
+        },
+        "n500": {
+          "$value": "#222222",
+          "$type": "color"
+        }
+      },
+      "background": {
+        "bg0": {
+          "$value": "#f9dcc5",
+          "$type": "color"
+        },
+        "bg1": {
+          "$value": "#701e1f",
+          "$type": "color"
+        },
+        "bg2": {
+          "$value": "#ec7672",
+          "$type": "color"
+        },
+        "bg3": {
+          "$value": "#401714",
+          "$type": "color"
+        }
+      },
+      "text": {
+        "text0": {
+          "$value": "#000000",
+          "$type": "color"
+        },
+        "text1": {
+          "$value": "#701e1f",
+          "$type": "color"
+        },
+        "text2": {
+          "$value": "#f9dcc5",
+          "$type": "color"
+        },
+        "text3": {
+          "$value": "#401714",
+          "$type": "color"
+        },
+        "text4": {
+          "$value": "#ffffff",
+          "$type": "color"
+        },
+        "text5": {
+          "$value": "#ec7672",
+          "$type": "color"
+        },
+        "text6": {
+          "$value": "#161616",
+          "$type": "color"
+        }
+      }
+    },
+    "spacing": {
+      "s0": {
+        "$value": "1px",
+        "$type": "dimension"
+      },
+      "s1": {
+        "$value": "40px",
+        "$type": "dimension"
+      },
+      "s2": {
+        "$value": "60px",
+        "$type": "dimension"
+      },
+      "s3": {
+        "$value": "80px",
+        "$type": "dimension"
+      },
+      "s4": {
+        "$value": "100px",
+        "$type": "dimension"
+      },
+      "s5": {
+        "$value": "115px",
+        "$type": "dimension"
+      },
+      "s6": {
+        "$value": "120px",
+        "$type": "dimension"
+      },
+      "s7": {
+        "$value": "140px",
+        "$type": "dimension"
+      },
+      "s8": {
+        "$value": "175px",
+        "$type": "dimension"
+      },
+      "s9": {
+        "$value": "180px",
+        "$type": "dimension"
+      },
+      "s10": {
+        "$value": "203px",
+        "$type": "dimension"
+      },
+      "s11": {
+        "$value": "265px",
+        "$type": "dimension"
+      },
+      "s12": {
+        "$value": "420px",
+        "$type": "dimension"
+      },
+      "s13": {
+        "$value": "440px",
+        "$type": "dimension"
+      }
+    },
+    "radius": {
+      "r0": {
+        "$value": "4px",
+        "$type": "dimension"
+      },
+      "r1": {
+        "$value": "8px",
+        "$type": "dimension"
+      },
+      "r2": {
+        "$value": "12px",
+        "$type": "dimension"
+      },
+      "r3": {
+        "$value": "16px",
+        "$type": "dimension"
+      },
+      "r4": {
+        "$value": "20px",
+        "$type": "dimension"
+      },
+      "r5": {
+        "$value": "24px",
+        "$type": "dimension"
+      },
+      "r6": {
+        "$value": "40px",
+        "$type": "dimension"
+      },
+      "r7": {
+        "$value": "50px",
+        "$type": "dimension"
+      },
+      "r8": {
+        "$value": "60px",
+        "$type": "dimension"
+      },
+      "r9": {
+        "$value": "99px",
+        "$type": "dimension"
+      }
+    },
+    "shadow": {},
+    "fontFamily": {
+      "f0": {
+        "$value": "Gt Walsheim Trial",
+        "$type": "fontFamily"
+      },
+      "f1": {
+        "$value": "Librecaslontext",
+        "$type": "fontFamily"
+      },
+      "f2": {
+        "$value": "PT Sans",
+        "$type": "fontFamily"
+      }
+    }
+  },
+  "semantic": {
+    "color": {
+      "action": {
+        "primary": {
+          "$value": "{primitive.color.brand.primary}",
+          "$type": "color"
+        },
+        "secondary": {
+          "$value": "{primitive.color.brand.secondary}",
+          "$type": "color"
+        }
+      },
+      "surface": {
+        "default": {
+          "$value": "{primitive.color.background.bg0}",
+          "$type": "color"
+        }
+      },
+      "text": {
+        "body": {
+          "$value": "{primitive.color.text.text0}",
+          "$type": "color"
+        }
+      }
+    },
+    "typography": {
+      "body": {
+        "$value": {
+          "fontFamily": "Gt Walsheim Trial",
+          "fontSize": "184px",
+          "fontWeight": "900",
+          "lineHeight": "147.2px"
+        },
+        "$type": "typography"
+      }
+    },
+    "radius": {
+      "control": {
+        "$value": "{primitive.radius.r0}",
+        "$type": "dimension"
+      }
+    },
+    "shadow": {
+      "elevated": {
+        "$value": "{primitive.shadow.sh0}",
+        "$type": "shadow"
+      }
+    }
+  }
+}

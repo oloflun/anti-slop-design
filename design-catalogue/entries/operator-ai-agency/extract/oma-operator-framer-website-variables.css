@@ -1,0 +1,86 @@
+:root {
+  /* Colors — Primary */
+  --color-primary: #0000ee;
+  --color-secondary: #0eea8e;
+
+  /* Colors — Neutrals */
+  --color-neutral-50: #000000;
+  --color-neutral-100: #74797d;
+  --color-neutral-200: #fafafa;
+  --color-neutral-300: #d4d6d8;
+  --color-neutral-400: #f4f5f5;
+  --color-neutral-500: #08090a;
+  --color-neutral-600: #a1a5aa;
+  --color-neutral-700: #181a1b;
+  --color-neutral-800: #e4e6e7;
+  --color-neutral-900: #52575b;
+
+  /* Colors — Backgrounds */
+  --color-bg: #08090a;
+  --color-bg-1: #0d0f0f;
+  --color-bg-2: #181a1b;
+
+  /* Colors — Text */
+  --color-text: #000000;
+  --color-text-1: #08090a;
+  --color-text-2: #0000ee;
+  --color-text-3: #f4f5f5;
+  --color-text-4: #e4e6e7;
+
+  /* Typography — Families */
+  --font-sans: 'Uncut Sans Medium', sans-serif;
+  --font-body: 'Times New Roman', sans-serif;
+  --font-body: 'Geist Mono', sans-serif;
+  --font-body: 'Uncut Sans Variable', sans-serif;
+  --font-body: 'Uncut Sans Regular', sans-serif;
+  --font-body: 'Inter', sans-serif;
+
+  /* Typography — Scale */
+  --font-size-64: 64px;
+  --font-size-45: 45px;
+  --font-size-37: 37px;
+  --font-size-31: 31px;
+  --font-size-26: 26px;
+  --font-size-22: 22px;
+  --font-size-20: 20px;
+  --font-size-18: 18px;
+  --font-size-16: 16px;
+  --font-size-15: 15px;
+  --font-size-14: 14px;
+  --font-size-13: 13px;
+
+  /* Spacing */
+  --spacing-1: 1px;
+  --spacing-32: 32px;
+  --spacing-48: 48px;
+  --spacing-61: 61px;
+  --spacing-80: 80px;
+  --spacing-99: 99px;
+  --spacing-120: 120px;
+
+  /* Border Radius */
+  --radius-sm: 4px;
+  --radius-md: 8px;
+  --radius-lg: 11px;
+  --radius-full: 36px;
+  --radius-full: 50px;
+  --radius-full: 100px;
+
+  /* Box Shadows */
+  --shadow-sm: rgb(0, 0, 0) 0px 0px 0px 1px inset;
+  --shadow-xs: rgba(0, 0, 0, 0.17) 0px 0.602187px 1.56569px -1.5px, rgba(0, 0, 0, 0.14) 0px 2.28853px 5.95019px -3px, rgba(0, 0, 0, 0.02) 0px 10px 26px -4.5px;
+  --shadow-xs: rgba(255, 255, 255, 0.3) 0px 0px 3px 0px, rgba(255, 255, 255, 0.2) 0px 2px 7px 0px;
+  --shadow-xs: rgba(46, 255, 157, 0.3) 0px 0px 3px 0px, rgba(255, 255, 255, 0.2) 0px 2px 7px 0px;
+  --shadow-md: rgba(0, 0, 0, 0.1) 0px 4px 10px 0px;
+  --shadow-xl: rgba(0, 0, 0, 0.37) -62px 16px 141px 0px, rgba(0, 0, 0, 0.32) -247px 64px 250px 0px, rgba(0, 0, 0, 0.19) -557px 145px 250px 0px, rgba(0, 0, 0, 0.06) -990px 257px 250px 0px, rgba(0, 0, 0, 0.01) -1546px 402px 250px 0px;
+
+  /* Original Site Variables */
+  /* — other — */
+  --one-if-corner-shape-supported: 1;
+  /* — semantic — */
+  success: [object Object];
+  warning: [object Object];
+  error: [object Object];
+  info: [object Object];
+
+}

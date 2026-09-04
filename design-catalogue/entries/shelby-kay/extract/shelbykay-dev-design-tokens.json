@@ -1,0 +1,180 @@
+{
+  "$metadata": {
+    "generator": "designlang",
+    "version": "7.0.0",
+    "spec": "https://design-tokens.github.io/community-group/format/",
+    "source": "https://shelbykay.dev/",
+    "generatedAt": "2026-09-04T00:52:59.139Z"
+  },
+  "primitive": {
+    "color": {
+      "brand": {
+        "primary": {
+          "$value": "#d6b292",
+          "$type": "color"
+        },
+        "secondary": {
+          "$value": "#efe6d9",
+          "$type": "color"
+        }
+      },
+      "neutral": {
+        "n100": {
+          "$value": "#393c2a",
+          "$type": "color"
+        },
+        "n200": {
+          "$value": "#000000",
+          "$type": "color"
+        },
+        "n300": {
+          "$value": "#737955",
+          "$type": "color"
+        },
+        "n400": {
+          "$value": "#afa199",
+          "$type": "color"
+        },
+        "n500": {
+          "$value": "#7b8785",
+          "$type": "color"
+        }
+      },
+      "background": {
+        "bg0": {
+          "$value": "#efe6d9",
+          "$type": "color"
+        },
+        "bg1": {
+          "$value": "#000000",
+          "$type": "color"
+        },
+        "bg2": {
+          "$value": "#afa199",
+          "$type": "color"
+        },
+        "bg3": {
+          "$value": "#393c2a",
+          "$type": "color"
+        },
+        "bg4": {
+          "$value": "#d6b292",
+          "$type": "color"
+        },
+        "bg5": {
+          "$value": "#7b8785",
+          "$type": "color"
+        }
+      },
+      "text": {
+        "text0": {
+          "$value": "#393c2a",
+          "$type": "color"
+        },
+        "text1": {
+          "$value": "#737955",
+          "$type": "color"
+        },
+        "text2": {
+          "$value": "#efe6d9",
+          "$type": "color"
+        }
+      }
+    },
+    "spacing": {
+      "s0": {
+        "$value": "6px",
+        "$type": "dimension"
+      },
+      "s1": {
+        "$value": "35px",
+        "$type": "dimension"
+      },
+      "s2": {
+        "$value": "56px",
+        "$type": "dimension"
+      },
+      "s3": {
+        "$value": "80px",
+        "$type": "dimension"
+      },
+      "s4": {
+        "$value": "112px",
+        "$type": "dimension"
+      },
+      "s5": {
+        "$value": "128px",
+        "$type": "dimension"
+      },
+      "s6": {
+        "$value": "200px",
+        "$type": "dimension"
+      },
+      "s7": {
+        "$value": "248px",
+        "$type": "dimension"
+      }
+    },
+    "radius": {},
+    "shadow": {},
+    "fontFamily": {
+      "f0": {
+        "$value": "Switzer",
+        "$type": "fontFamily"
+      },
+      "f1": {
+        "$value": "Ranade",
+        "$type": "fontFamily"
+      }
+    }
+  },
+  "semantic": {
+    "color": {
+      "action": {
+        "primary": {
+          "$value": "{primitive.color.brand.primary}",
+          "$type": "color"
+        },
+        "secondary": {
+          "$value": "{primitive.color.brand.secondary}",
+          "$type": "color"
+        }
+      },
+      "surface": {
+        "default": {
+          "$value": "{primitive.color.background.bg0}",
+          "$type": "color"
+        }
+      },
+      "text": {
+        "body": {
+          "$value": "{primitive.color.text.text0}",
+          "$type": "color"
+        }
+      }
+    },
+    "typography": {
+      "body": {
+        "$value": {
+          "fontFamily": "Switzer",
+          "fontSize": "256px",
+          "fontWeight": "400",
+          "lineHeight": "230.4px"
+        },
+        "$type": "typography"
+      }
+    },
+    "radius": {
+      "control": {
+        "$value": "{primitive.radius.r0}",
+        "$type": "dimension"
+      }
+    },
+    "shadow": {
+      "elevated": {
+        "$value": "{primitive.shadow.sh0}",
+        "$type": "shadow"
+      }
+    }
+  }
+}

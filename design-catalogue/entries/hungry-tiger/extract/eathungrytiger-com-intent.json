@@ -1,0 +1,246 @@
+{
+  "pageIntent": {
+    "type": "landing",
+    "confidence": 0.59,
+    "path": "/",
+    "title": "Hungry Tiger — Bold Indian Sauces Made for Real Life",
+    "description": "Bold Indian-inspired sauces made for real life. No shortcuts, no fillers — just deep flavor crafted with heart. Discover the taste of Hungry Tiger.",
+    "signals": [
+      {
+        "kind": "dom",
+        "type": "blog-post",
+        "weight": 0.35,
+        "detail": "byline|min-read"
+      },
+      {
+        "kind": "dom",
+        "type": "legal",
+        "weight": 0.4
+      },
+      {
+        "kind": "url",
+        "type": "landing",
+        "weight": 0.45,
+        "detail": "root-path"
+      },
+      {
+        "kind": "shape",
+        "type": "landing",
+        "weight": 0.3,
+        "detail": "features+hero"
+      }
+    ],
+    "alternates": [
+      {
+        "type": "legal",
+        "score": 0.4
+      },
+      {
+        "type": "blog-post",
+        "score": 0.35
+      }
+    ],
+    "needsSmart": true
+  },
+  "sectionRoles": {
+    "sections": [
+      {
+        "index": 0,
+        "tag": "header",
+        "role": "nav",
+        "subrole": null,
+        "confidence": 0.4,
+        "heading": null,
+        "bounds": {
+          "x": 0,
+          "y": 0,
+          "w": 1280,
+          "h": 82
+        },
+        "buttonCount": 5,
+        "cardCount": 3,
+        "slots": {
+          "ctaCount": 5,
+          "lede": "SAUCE\nABOUT\nRECIPES\nGAME\nCONTACT\nBUY NOW"
+        },
+        "needsSmart": true
+      },
+      {
+        "index": 1,
+        "tag": "section",
+        "role": "testimonial",
+        "subrole": null,
+        "confidence": 0.8,
+        "heading": "BOLD FLAVOR",
+        "bounds": {
+          "x": 0,
+          "y": 0,
+          "w": 1280,
+          "h": 6400
+        },
+        "buttonCount": 6,
+        "cardCount": 0,
+        "slots": {
+          "heading": "BOLD FLAVOR",
+          "subheadings": [
+            "A NEW ANGLE\nOF FLAVOR",
+            "UNWRAP THE ADVENTURE",
+            "A NEW PERSPECTIVE\nON TASTE"
+          ],
+          "ctaCount": 6,
+          "lede": "FIRE ROASTED INDIAN SAUCE\nBOLD FLAVOR\nTIKKA MASALA\nBOLD FLAVORS FROM THE KITCHENS OF INDIA. CRAFTED FOR THOSE WHO CRAVE MORE."
+        },
+        "needsSmart": false
+      },
+      {
+        "index": 2,
+        "tag": "section",
+        "role": "content",
+        "subrole": null,
+        "confidence": 0.3,
+        "heading": "WHAT'S\nINSIDE",
+        "bounds": {
+          "x": 0,
+          "y": 6400,
+          "w": 1280,
+          "h": 1722.875
+        },
+        "buttonCount": 0,
+        "cardCount": 4,
+        "slots": {
+          "heading": "WHAT'S\nINSIDE",
+          "lede": "WHAT'S\nINSIDE\nOUR TIKKA MASALA SAUCE IS MADE WITH REAL INGREDIENTS FOR REAL FLAVOR.\nFIRE-ROASTED TOMATOES FOR A SMOKY, RICH BASE\nCREAM AND BUTTER FOR A SMOOTH, VELVETY TEXTURE\nA SIGNATURE SPICE BLEND THAT BRINGS EVERY BITE TO LIFE\nNO FILLERS.\nNO SHORTCUTS.\nJUST BOLD TASTE IN EVERY JAR"
+        },
+        "needsSmart": true
+      },
+      {
+        "index": 3,
+        "tag": "section",
+        "role": "testimonial",
+        "subrole": null,
+        "confidence": 0.8,
+        "heading": "TRADITION\n& CREATION",
+        "bounds": {
+          "x": 0,
+          "y": 8122.875,
+          "w": 1280,
+          "h": 1996.828125
+        },
+        "buttonCount": 0,
+        "cardCount": 8,
+        "slots": {
+          "heading": "TRADITION\n& CREATION",
+          "subheadings": [
+            "WHY THE JAR\nMATTERS"
+          ]
+        },
+        "needsSmart": false
+      },
+      {
+        "index": 4,
+        "tag": "section",
+        "role": "hero",
+        "subrole": null,
+        "confidence": 0.4,
+        "heading": "UNLOCK THE\nMAGIC INSIDE\nTHE JAR",
+        "bounds": {
+          "x": 0,
+          "y": 10119.703125,
+          "w": 1280,
+          "h": 921.59375
+        },
+        "buttonCount": 3,
+        "cardCount": 0,
+        "slots": {
+          "heading": "UNLOCK THE\nMAGIC INSIDE\nTHE JAR",
+          "ctaCount": 3,
+          "lede": "UNLOCK THE\nMAGIC INSIDE\nTHE JAR\nBUY NOW"
+        },
+        "needsSmart": true
+      },
+      {
+        "index": 5,
+        "tag": "section",
+        "role": "content",
+        "subrole": null,
+        "confidence": 0.3,
+        "heading": "LET'S GET\nCOOKING",
+        "bounds": {
+          "x": 0,
+          "y": 11041.296875,
+          "w": 1280,
+          "h": 1353.015625
+        },
+        "buttonCount": 3,
+        "cardCount": 65,
+        "slots": {
+          "heading": "LET'S GET\nCOOKING",
+          "subheadings": [
+            "EASY CHICKEN TANDOORI",
+            "CHICKEN TIKKA MASALA WITH RICE",
+            "PANEER TIKKA MASALA WITH RICE"
+          ],
+          "ctaCount": 3
+        },
+        "needsSmart": true
+      },
+      {
+        "index": 6,
+        "tag": "section",
+        "role": "content",
+        "subrole": null,
+        "confidence": 0.3,
+        "heading": null,
+        "bounds": {
+          "x": 0,
+          "y": 12394.3125,
+          "w": 1280,
+          "h": 800
+        },
+        "buttonCount": 1,
+        "cardCount": 0,
+        "slots": {
+          "ctaCount": 1,
+          "lede": "FLAVOR-PACKED UPDATES STRAIGHT INTO YOUR INBOX + 10% OFF YOUR FIRST JAR.\nBY SIGNING UP FOR UPDATES, YOU AGREE TO OUR PRIVACY POLICY TERMS."
+        },
+        "needsSmart": true
+      },
+      {
+        "index": 7,
+        "tag": "section",
+        "role": "content",
+        "subrole": null,
+        "confidence": 0.3,
+        "heading": null,
+        "bounds": {
+          "x": 0,
+          "y": 13194.3125,
+          "w": 1280,
+          "h": 605
+        },
+        "buttonCount": 0,
+        "cardCount": 0,
+        "slots": {
+          "lede": "HUNGRY TIGER\nSAUCE\nRECIPES\nABOUT\nGAME\nWHERE TO BUY\nCONTACT INFORMATION\nTERMS OF USE\nSALES POLICY\nPRIVACY POLICY\nOCALA, FL 34471, USA\nINFO@EATHUNGRYTIGER.COM\n2026 © HUNGRY TIGER\nALL RIGHTS RESERVED\nWEBSITE BY ARTEMII LEBEDEV"
+        },
+        "needsSmart": true
+      }
+    ],
+    "counts": {
+      "nav": 1,
+      "testimonial": 2,
+      "content": 4,
+      "hero": 1
+    },
+    "readingOrder": [
+      "nav",
+      "testimonial",
+      "content",
+      "testimonial",
+      "hero",
+      "content",
+      "content",
+      "content"
+    ]
+  }
+}

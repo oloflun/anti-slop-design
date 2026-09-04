@@ -1,0 +1,84 @@
+{
+  "materialLanguage": {
+    "label": "flat",
+    "confidence": 0,
+    "signals": [],
+    "metrics": {
+      "saturation": 0.278,
+      "shadowProfile": "soft",
+      "avgShadowBlur": 0,
+      "maxShadowBlur": 0,
+      "insetShadows": 0,
+      "avgRadius": 41.8,
+      "maxRadius": 100,
+      "hasPill": false,
+      "hasBackdropBlur": false,
+      "gradientCount": 1
+    },
+    "alternates": []
+  },
+  "imageryStyle": {
+    "label": "photography",
+    "confidence": 0.25,
+    "counts": {
+      "total": 18,
+      "svg": 0,
+      "icon": 4,
+      "hero": 0,
+      "screenshot": 0,
+      "photoLike": 9
+    },
+    "dominantAspect": "square-ish",
+    "radiusProfile": "soft",
+    "alternates": [],
+    "signals": [
+      "raster photo-ext",
+      "raster photo-ext",
+      "raster photo-ext",
+      "raster photo-ext",
+      "raster photo-ext",
+      "raster photo-ext",
+      "raster photo-ext",
+      "raster photo-ext",
+      "raster photo-ext"
+    ]
+  },
+  "backgroundPatterns": {
+    "labels": [
+      "svg-pattern"
+    ],
+    "counts": {
+      "noise": 0,
+      "dotGrid": 0,
+      "lineGrid": 0,
+      "meshCount": 0,
+      "svgPattern": 5
+    },
+    "gradientTotals": {
+      "radial": 0,
+      "linear": 1
+    },
+    "samples": [
+      {
+        "tag": "svg-pattern",
+        "value": "url(\"data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 xmlns:xlink=%22http://www.w3.org/1999/xlink%22 viewBox=%220 0 93 70%22><path d=%22M 37.007 0 L 25.016 32.941 L 40.521 32.941 L 40.52"
+      },
+      {
+        "tag": "svg-pattern",
+        "value": "url(\"data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 xmlns:xlink=%22http://www.w3.org/1999/xlink%22 viewBox=%220 0 143.267 20.541%22 overflow=%22visible%22><g><path d=%22M 24.538 19.34 "
+      },
+      {
+        "tag": "svg-pattern",
+        "value": "url(\"data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 xmlns:xlink=%22http://www.w3.org/1999/xlink%22 viewBox=%220 0 34 42%22 overflow=%22visible%22><g><path d=%22M 0 0 L 34 0 L 34 42 L 0"
+      },
+      {
+        "tag": "svg-pattern",
+        "value": "url(\"data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 xmlns:xlink=%22http://www.w3.org/1999/xlink%22 viewBox=%220 0 140 40%22 overflow=%22visible%22><g><path d=%22M 0 0 L 140 0 L 140 40 "
+      },
+      {
+        "tag": "svg-pattern",
+        "value": "url(\"data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 xmlns:xlink=%22http://www.w3.org/1999/xlink%22 viewBox=%220 0 39.991 40.032%22 overflow=%22visible%22><g><path d=%22M 19.995 31.327 "
+      }
+    ]
+  }
+}

@@ -1,0 +1,282 @@
+{
+  "pageIntent": {
+    "type": "landing",
+    "confidence": 0.51,
+    "path": "/",
+    "title": "RRE: Early-Stage Venture Capital Partner",
+    "description": "RRE is a boutique venture capital firm with 30 years of experience, backing bold early-stage founders across diverse sectors. We provide deep expertise, AI-driven insights, and committed partnerships ",
+    "signals": [
+      {
+        "kind": "dom",
+        "type": "pricing",
+        "weight": 0.6,
+        "detail": "currency+card-grid"
+      },
+      {
+        "kind": "dom",
+        "type": "blog-post",
+        "weight": 0.35,
+        "detail": "byline|min-read"
+      },
+      {
+        "kind": "url",
+        "type": "landing",
+        "weight": 0.45,
+        "detail": "root-path"
+      },
+      {
+        "kind": "shape",
+        "type": "landing",
+        "weight": 0.3,
+        "detail": "features+hero+footer"
+      }
+    ],
+    "alternates": [
+      {
+        "type": "pricing",
+        "score": 0.6
+      },
+      {
+        "type": "blog-post",
+        "score": 0.35
+      }
+    ],
+    "needsSmart": true
+  },
+  "sectionRoles": {
+    "sections": [
+      {
+        "index": 0,
+        "tag": "div",
+        "role": "nav",
+        "subrole": null,
+        "confidence": 0.9,
+        "heading": null,
+        "bounds": {
+          "x": 0,
+          "y": 0,
+          "w": 1280,
+          "h": 124
+        },
+        "buttonCount": 1,
+        "cardCount": 0,
+        "slots": {
+          "ctaCount": 1,
+          "lede": "PORTFOLIO\nTEAM"
+        },
+        "needsSmart": false
+      },
+      {
+        "index": 1,
+        "tag": "main",
+        "role": "pricing-table",
+        "subrole": null,
+        "confidence": 0.9,
+        "heading": "Backing the\nbest for the\ndistance",
+        "bounds": {
+          "x": 0,
+          "y": 124,
+          "w": 1280,
+          "h": 3926.6875
+        },
+        "buttonCount": 17,
+        "cardCount": 45,
+        "slots": {
+          "heading": "Backing the\nbest for the\ndistance",
+          "subheadings": [
+            "The confidence\nto commit early",
+            "$2.5B+",
+            "125+",
+            "400+"
+          ],
+          "ctaCount": 17
+        },
+        "needsSmart": false
+      },
+      {
+        "index": 2,
+        "tag": "section",
+        "role": "testimonial",
+        "subrole": null,
+        "confidence": 0.8,
+        "heading": "Backing the\nbest for the\ndistance",
+        "bounds": {
+          "x": 0,
+          "y": 124,
+          "w": 1280,
+          "h": 620
+        },
+        "buttonCount": 0,
+        "cardCount": 0,
+        "slots": {
+          "heading": "Backing the\nbest for the\ndistance"
+        },
+        "needsSmart": false
+      },
+      {
+        "index": 3,
+        "tag": "section",
+        "role": "pricing-table",
+        "subrole": null,
+        "confidence": 0.9,
+        "heading": "The confidence\nto commit early",
+        "bounds": {
+          "x": 0,
+          "y": 744,
+          "w": 1280,
+          "h": 707
+        },
+        "buttonCount": 6,
+        "cardCount": 3,
+        "slots": {
+          "heading": "The confidence\nto commit early",
+          "subheadings": [
+            "$2.5B+",
+            "125+",
+            "400+"
+          ],
+          "ctaCount": 6
+        },
+        "needsSmart": false
+      },
+      {
+        "index": 4,
+        "tag": "section",
+        "role": "testimonial",
+        "subrole": null,
+        "confidence": 0.8,
+        "heading": "Investment areas",
+        "bounds": {
+          "x": 0,
+          "y": 1451,
+          "w": 1280,
+          "h": 345
+        },
+        "buttonCount": 0,
+        "cardCount": 21,
+        "slots": {
+          "heading": "Investment areas"
+        },
+        "needsSmart": false
+      },
+      {
+        "index": 5,
+        "tag": "section",
+        "role": "testimonial",
+        "subrole": null,
+        "confidence": 0.8,
+        "heading": "Our difference?\nDepth.",
+        "bounds": {
+          "x": 0,
+          "y": 1796,
+          "w": 1280,
+          "h": 521
+        },
+        "buttonCount": 6,
+        "cardCount": 0,
+        "slots": {
+          "heading": "Our difference?\nDepth.",
+          "subheadings": [
+            "Deeper Experience",
+            "Deeper relationships",
+            "Deeper commitment",
+            "Amplified by AI"
+          ],
+          "ctaCount": 6
+        },
+        "needsSmart": false
+      },
+      {
+        "index": 6,
+        "tag": "section",
+        "role": "testimonial",
+        "subrole": null,
+        "confidence": 0.8,
+        "heading": "\"RRE was always going to be a core part of our round in the Seed and Series A as well. It was never a question. It’s a relationship that you really can’t replicate with another team in venture. \"",
+        "bounds": {
+          "x": 0,
+          "y": 2317,
+          "w": 1280,
+          "h": 956.6875
+        },
+        "buttonCount": 5,
+        "cardCount": 13,
+        "slots": {
+          "heading": "\"RRE was always going to be a core part of our round in the Seed and Series A as well. It was never a question. It’s a relationship that you really can’t replicate with another team in venture. \"",
+          "subheadings": [
+            "\"It's not just the money. It's the true support, conviction, and commitment that we have RRE, which is a pillar of the financial world, at our back. And that gave us a trustworthiness we didn't have on our own.\"",
+            "\"RRE knows how to scale a great company. They're good at the early stage, but they're with you every step of the way in good times and in tough times.\"",
+            "\"At RRE, you don’t just get one investor to help you. This team, honestly, I feel like they are there to make sure Tive succeeds.\"",
+            "\"I’ve known Stu for over 20 years and he has consistently been the most relied upon board member and investment executive for me, our management team and overall board. Much of our success at Prove can be attributed to Stu Ellman and the RRE team.\""
+          ],
+          "ctaCount": 5
+        },
+        "needsSmart": false
+      },
+      {
+        "index": 7,
+        "tag": "section",
+        "role": "pricing-table",
+        "subrole": null,
+        "confidence": 0.9,
+        "heading": "Latest from RRE",
+        "bounds": {
+          "x": 0,
+          "y": 3273.6875,
+          "w": 1280,
+          "h": 777
+        },
+        "buttonCount": 0,
+        "cardCount": 8,
+        "slots": {
+          "heading": "Latest from RRE",
+          "subheadings": [
+            "The SaaSpocalypse Debate: Is AI Really Killing Software?",
+            "S&P Global Market Intelligence Partners with Farsight to Launch AI-powered Financial Workflow Capability for Capital IQ Pro",
+            "Science Corp. Announces European Commercial Launch of PRIMA",
+            "AI Advice for the Ones We Love"
+          ]
+        },
+        "needsSmart": false
+      },
+      {
+        "index": 8,
+        "tag": "footer",
+        "role": "footer",
+        "subrole": null,
+        "confidence": 0.95,
+        "heading": null,
+        "bounds": {
+          "x": 0,
+          "y": 4050.6875,
+          "w": 1280,
+          "h": 890.515625
+        },
+        "buttonCount": 19,
+        "cardCount": 0,
+        "slots": {
+          "ctaCount": 19,
+          "lede": "Home\nPortfolio\nTeam\nRRE POV\nBLOG\nX\nLINKEDIN\nJOBS\nSUBSCRIBE TO RECEIVE NEWS AND UPDATES\nSUBSCRIBE\nINFO@RRE.COM\n130 E 59TH ST\nNEW YORK, NY\n5355 TOWN CENTER ROAD BOCA RATON, FL\nLIMITED PARTNER LOGIN\nGENERAL PARTNER LOGIN"
+        },
+        "needsSmart": false
+      }
+    ],
+    "counts": {
+      "nav": 1,
+      "pricing-table": 3,
+      "testimonial": 4,
+      "footer": 1
+    },
+    "readingOrder": [
+      "nav",
+      "pricing-table",
+      "testimonial",
+      "pricing-table",
+      "testimonial",
+      "testimonial",
+      "testimonial",
+      "pricing-table",
+      "footer"
+    ]
+  }
+}

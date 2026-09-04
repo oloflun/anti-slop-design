@@ -1,0 +1,15 @@
+/* shadcn/ui Theme — extracted from https://geon.au/ */
+/* Paste into your globals.css */
+
+@layer base {
+  :root {
+    --background: 28 8% 49%;
+    --foreground: 0 0% 0%;
+    --primary: 30 24% 93%;
+    --primary-foreground: 0 0% 0%;
+    --muted: 0 0% 100%;
+    --muted-foreground: 28 8% 49%;
+    --border: 27 6% 35%;
+    --radius: 10px;
+  }
+}

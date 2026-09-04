@@ -1,0 +1,187 @@
+{
+  "$schema": "https://schemas.wp.org/trunk/theme.json",
+  "version": 3,
+  "settings": {
+    "color": {
+      "palette": [
+        {
+          "slug": "primary",
+          "color": "#0052ef",
+          "name": "Primary"
+        },
+        {
+          "slug": "secondary",
+          "color": "#9ecbff",
+          "name": "Secondary"
+        },
+        {
+          "slug": "accent",
+          "color": "#ff5500",
+          "name": "Accent"
+        },
+        {
+          "slug": "neutral-1",
+          "color": "#ffffff",
+          "name": "Neutral 1"
+        },
+        {
+          "slug": "neutral-2",
+          "color": "#0b0b0b",
+          "name": "Neutral 2"
+        },
+        {
+          "slug": "neutral-3",
+          "color": "#e1e4e8",
+          "name": "Neutral 3"
+        },
+        {
+          "slug": "neutral-4",
+          "color": "#000000",
+          "name": "Neutral 4"
+        },
+        {
+          "slug": "neutral-5",
+          "color": "#797979",
+          "name": "Neutral 5"
+        },
+        {
+          "slug": "bg-ffffff",
+          "color": "#ffffff",
+          "name": "Background #ffffff"
+        },
+        {
+          "slug": "bg-121923",
+          "color": "#121923",
+          "name": "Background #121923"
+        },
+        {
+          "slug": "bg-0b0b0b",
+          "color": "#0b0b0b",
+          "name": "Background #0b0b0b"
+        }
+      ],
+      "gradients": []
+    },
+    "typography": {
+      "fontFamilies": [
+        {
+          "fontFamily": "Waldenburg-75357948a2b6a39b",
+          "slug": "waldenburg-75357948a2b6a39b",
+          "name": "Waldenburg-75357948a2b6a39b"
+        },
+        {
+          "fontFamily": "IBM Plex Mono-c20ba633a65a8c57",
+          "slug": "ibm-plex-mono-c20ba633a65a8c57",
+          "name": "IBM Plex Mono-c20ba633a65a8c57"
+        },
+        {
+          "fontFamily": "Helvetica",
+          "slug": "helvetica",
+          "name": "Helvetica"
+        }
+      ],
+      "fontSizes": [
+        {
+          "size": "112px",
+          "slug": "size-112",
+          "name": "112px"
+        },
+        {
+          "size": "72px",
+          "slug": "size-72",
+          "name": "72px"
+        },
+        {
+          "size": "60px",
+          "slug": "size-60",
+          "name": "60px"
+        },
+        {
+          "size": "48px",
+          "slug": "size-48",
+          "name": "48px"
+        },
+        {
+          "size": "38px",
+          "slug": "size-38",
+          "name": "38px"
+        },
+        {
+          "size": "32px",
+          "slug": "size-32",
+          "name": "32px"
+        },
+        {
+          "size": "24px",
+          "slug": "size-24",
+          "name": "24px"
+        },
+        {
+          "size": "20px",
+          "slug": "size-20",
+          "name": "20px"
+        }
+      ]
+    },
+    "spacing": {
+      "spacingSizes": [
+        {
+          "size": "1px",
+          "slug": "spacing-1",
+          "name": "1px"
+        },
+        {
+          "size": "32px",
+          "slug": "spacing-32",
+          "name": "32px"
+        },
+        {
+          "size": "48px",
+          "slug": "spacing-48",
+          "name": "48px"
+        },
+        {
+          "size": "64px",
+          "slug": "spacing-64",
+          "name": "64px"
+        },
+        {
+          "size": "90px",
+          "slug": "spacing-90",
+          "name": "90px"
+        },
+        {
+          "size": "103px",
+          "slug": "spacing-103",
+          "name": "103px"
+        },
+        {
+          "size": "116px",
+          "slug": "spacing-116",
+          "name": "116px"
+        },
+        {
+          "size": "127px",
+          "slug": "spacing-127",
+          "name": "127px"
+        }
+      ]
+    },
+    "layout": {
+      "contentSize": "320px",
+      "wideSize": "1400px"
+    }
+  },
+  "styles": {
+    "color": {
+      "background": "#ffffff",
+      "text": "#000000"
+    },
+    "typography": {
+      "fontSize": "12px",
+      "lineHeight": "18px",
+      "fontFamily": "Waldenburg-75357948a2b6a39b"
+    },
+    "spacing": {}
+  }
+}

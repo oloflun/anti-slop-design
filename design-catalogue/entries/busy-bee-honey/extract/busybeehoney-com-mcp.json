@@ -1,0 +1,429 @@
+{
+  "colors": {
+    "all": [
+      {
+        "hex": "#3b2722",
+        "rgb": {
+          "r": 59,
+          "g": 39,
+          "b": 34,
+          "a": 1
+        },
+        "hsl": {
+          "h": 12,
+          "s": 27,
+          "l": 18
+        },
+        "count": 1346,
+        "contexts": [
+          "text",
+          "border",
+          "background"
+        ]
+      },
+      {
+        "hex": "#f2ebd0",
+        "rgb": {
+          "r": 242,
+          "g": 235,
+          "b": 208,
+          "a": 1
+        },
+        "hsl": {
+          "h": 48,
+          "s": 57,
+          "l": 88
+        },
+        "count": 379,
+        "contexts": [
+          "background",
+          "text",
+          "border"
+        ]
+      },
+      {
+        "hex": "#000000",
+        "rgb": {
+          "r": 0,
+          "g": 0,
+          "b": 0,
+          "a": 1
+        },
+        "hsl": {
+          "h": 0,
+          "s": 0,
+          "l": 0
+        },
+        "count": 114,
+        "contexts": [
+          "text",
+          "border",
+          "background"
+        ]
+      },
+      {
+        "hex": "#ffca50",
+        "rgb": {
+          "r": 255,
+          "g": 202,
+          "b": 80,
+          "a": 1
+        },
+        "hsl": {
+          "h": 42,
+          "s": 100,
+          "l": 66
+        },
+        "count": 40,
+        "contexts": [
+          "background",
+          "border"
+        ]
+      },
+      {
+        "hex": "#6aacc2",
+        "rgb": {
+          "r": 106,
+          "g": 172,
+          "b": 194,
+          "a": 1
+        },
+        "hsl": {
+          "h": 195,
+          "s": 42,
+          "l": 59
+        },
+        "count": 35,
+        "contexts": [
+          "background"
+        ]
+      },
+      {
+        "hex": "#a0342a",
+        "rgb": {
+          "r": 160,
+          "g": 52,
+          "b": 42,
+          "a": 1
+        },
+        "hsl": {
+          "h": 5,
+          "s": 58,
+          "l": 40
+        },
+        "count": 31,
+        "contexts": [
+          "background",
+          "text",
+          "border"
+        ]
+      },
+      {
+        "hex": "#6fa162",
+        "rgb": {
+          "r": 111,
+          "g": 161,
+          "b": 98,
+          "a": 1
+        },
+        "hsl": {
+          "h": 108,
+          "s": 25,
+          "l": 51
+        },
+        "count": 21,
+        "contexts": [
+          "background"
+        ]
+      }
+    ]
+  },
+  "regions": [
+    {
+      "role": "nav",
+      "tag": "nav",
+      "bounds": {
+        "x": 0,
+        "y": 0,
+        "w": 1265,
+        "h": 80
+      },
+      "heading": null,
+      "buttonCount": 0,
+      "cardCount": 7,
+      "className": "NavBar_container__cC7Tu text-detail-nav NavBar_transparent___jQdY"
+    },
+    {
+      "role": "footer",
+      "tag": "footer",
+      "bounds": {
+        "x": 0,
+        "y": 401.5,
+        "w": 1265,
+        "h": 398.5
+      },
+      "heading": "Busy Bee Honey",
+      "buttonCount": 0,
+      "cardCount": 13,
+      "className": "Footer_container__sxZxD text-detail-footer"
+    },
+    {
+      "role": "nav",
+      "tag": "nav",
+      "bounds": {
+        "x": 36,
+        "y": 469.5,
+        "w": 1193,
+        "h": 12.671875
+      },
+      "heading": null,
+      "buttonCount": 0,
+      "cardCount": 8,
+      "className": "Footer_nav__5XMHq Footer_mainNav__B1o5O"
+    },
+    {
+      "role": "nav",
+      "tag": "nav",
+      "bounds": {
+        "x": 36,
+        "y": 703.328125,
+        "w": 1193,
+        "h": 44.671875
+      },
+      "heading": null,
+      "buttonCount": 0,
+      "cardCount": 5,
+      "className": "Footer_nav__5XMHq Footer_smallprintWrapper__JH4hP"
+    }
+  ],
+  "componentClusters": [
+    {
+      "kind": "button",
+      "structuralHash": "button>span",
+      "instanceCount": 5,
+      "variants": [
+        {
+          "css": {
+            "background": "rgba(0, 0, 0, 0)",
+            "color": "rgb(0, 0, 0)",
+            "padding": "0px 0px 0px 0px",
+            "borderRadius": "500px",
+            "border": "0px none rgb(0, 0, 0)",
+            "fontSize": "13.3333px",
+            "fontWeight": "400"
+          },
+          "instanceCount": 1
+        },
+        {
+          "css": {
+            "background": "rgb(59, 39, 34)",
+            "color": "rgb(242, 235, 208)",
+            "padding": "16px 28px 16px 28px",
+            "borderRadius": "500px",
+            "border": "2px solid rgb(59, 39, 34)",
+            "fontSize": "13.3333px",
+            "fontWeight": "400"
+          },
+          "instanceCount": 1
+        },
+        {
+          "css": {
+            "background": "rgba(255, 255, 255, 0)",
+            "color": "rgb(59, 39, 34)",
+            "padding": "16px 28px 16px 28px",
+            "borderRadius": "500px",
+            "border": "2px solid rgb(59, 39, 34)",
+            "fontSize": "13.3333px",
+            "fontWeight": "400"
+          },
+          "instanceCount": 1
+        },
+        {
+          "css": {
+            "background": "rgb(255, 202, 80)",
+            "color": "rgb(59, 39, 34)",
+            "padding": "24px 24px 24px 24px",
+            "borderRadius": "500px",
+            "border": "2px solid rgb(242, 235, 208)",
+            "fontSize": "13.3333px",
+            "fontWeight": "400"
+          },
+          "instanceCount": 2
+        }
+      ]
+    },
+    {
+      "kind": "button",
+      "structuralHash": "div>button>button",
+      "instanceCount": 1,
+      "variants": [
+        {
+          "css": {
+            "background": "rgba(0, 0, 0, 0)",
+            "color": "rgb(59, 39, 34)",
+            "padding": "0px 60px 0px 60px",
+            "borderRadius": "0px",
+            "border": "0px none rgb(59, 39, 34)",
+            "fontSize": "16px",
+            "fontWeight": "400"
+          },
+          "instanceCount": 1
+        }
+      ]
+    },
+    {
+      "kind": "button",
+      "structuralHash": "a>span>div",
+      "instanceCount": 3,
+      "variants": [
+        {
+          "css": {
+            "background": "rgb(59, 39, 34)",
+            "color": "rgb(242, 235, 208)",
+            "padding": "24px 24px 24px 24px",
+            "borderRadius": "500px",
+            "border": "2px solid rgb(59, 39, 34)",
+            "fontSize": "16px",
+            "fontWeight": "400"
+          },
+          "instanceCount": 2
+        },
+        {
+          "css": {
+            "background": "rgb(255, 202, 80)",
+            "color": "rgb(160, 52, 42)",
+            "padding": "24px 24px 24px 24px",
+            "borderRadius": "500px",
+            "border": "2px solid rgb(255, 202, 80)",
+            "fontSize": "16px",
+            "fontWeight": "400"
+          },
+          "instanceCount": 1
+        }
+      ]
+    },
+    {
+      "kind": "button",
+      "structuralHash": "button>span>div",
+      "instanceCount": 5,
+      "variants": [
+        {
+          "css": {
+            "background": "rgba(255, 255, 255, 0)",
+            "color": "rgb(59, 39, 34)",
+            "padding": "24px 40px 24px 40px",
+            "borderRadius": "1000px",
+            "border": "2px solid rgb(59, 39, 34)",
+            "fontSize": "13.3333px",
+            "fontWeight": "400"
+          },
+          "instanceCount": 5
+        }
+      ]
+    },
+    {
+      "kind": "button",
+      "structuralHash": "button",
+      "instanceCount": 5,
+      "variants": [
+        {
+          "css": {
+            "background": "rgb(59, 39, 34)",
+            "color": "rgb(0, 0, 0)",
+            "padding": "0px 0px 0px 0px",
+            "borderRadius": "50%",
+            "border": "1px solid rgb(59, 39, 34)",
+            "fontSize": "13.3333px",
+            "fontWeight": "400"
+          },
+          "instanceCount": 1
+        },
+        {
+          "css": {
+            "background": "rgba(0, 0, 0, 0)",
+            "color": "rgb(0, 0, 0)",
+            "padding": "0px 0px 0px 0px",
+            "borderRadius": "50%",
+            "border": "1px solid rgb(59, 39, 34)",
+            "fontSize": "13.3333px",
+            "fontWeight": "400"
+          },
+          "instanceCount": 4
+        }
+      ]
+    }
+  ],
+  "accessibility": {
+    "remediation": []
+  },
+  "cssHealth": {
+    "sheets": [
+      {
+        "url": "https://www.busybeehoney.com/_next/static/css/c6bcb4a0eac4b59a.css",
+        "totalBytes": 148212,
+        "usedBytes": 9882,
+        "unusedBytes": 138330,
+        "unusedPercent": 93
+      },
+      {
+        "url": "https://www.busybeehoney.com/_next/static/css/dcb99f691b3ef21a.css",
+        "totalBytes": 123049,
+        "usedBytes": 39583,
+        "unusedBytes": 83466,
+        "unusedPercent": 68
+      },
+      {
+        "url": "https://www.busybeehoney.com/_next/static/css/9310d2b4b29e440d.css",
+        "totalBytes": 5358,
+        "usedBytes": 0,
+        "unusedBytes": 5358,
+        "unusedPercent": 100
+      },
+      {
+        "url": "https://www.google.com/recaptcha/api2/anchor?ar=1&k=6LeRnP0rAAAAAAl3zgM3K5IYs1h32bEJ7r4uIqzX&co=aHR0cHM6Ly93d3cuYnVzeWJlZWhvbmV5LmNvbTo0NDM.&hl=en&v=8x-4t2pegToiW8KmThtO4AQt&size=invisible&anchor-ms=20000&execute-ms=30000&cb=epv5zpqa01zb",
+        "totalBytes": 16001,
+        "usedBytes": 0,
+        "unusedBytes": 16001,
+        "unusedPercent": 100
+      },
+      {
+        "url": "https://www.gstatic.com/recaptcha/releases/8x-4t2pegToiW8KmThtO4AQt/styles__ltr.css",
+        "totalBytes": 82980,
+        "usedBytes": 2987,
+        "unusedBytes": 79993,
+        "unusedPercent": 96
+      }
+    ],
+    "totalBytes": 375600,
+    "usedBytes": 52452,
+    "unusedBytes": 323148,
+    "unusedPercent": 86,
+    "importantCount": 54,
+    "duplicates": 5326,
+    "vendorPrefixes": {
+      "webkit": 201,
+      "moz": 40,
+      "ms": 7,
+      "o": 0
+    },
+    "keyframes": [],
+    "specificity": {
+      "max": [
+        1,
+        7,
+        2
+      ],
+      "average": [
+        0.01,
+        1.47,
+        0.13
+      ],
+      "count": 2327
+    },
+    "issues": [
+      "54 !important rules",
+      "5326 duplicate declarations",
+      "86% unused CSS"
+    ]
+  }
+}

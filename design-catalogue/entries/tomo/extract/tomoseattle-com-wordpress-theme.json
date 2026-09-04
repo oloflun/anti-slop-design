@@ -1,0 +1,167 @@
+{
+  "$schema": "https://schemas.wp.org/trunk/theme.json",
+  "version": 3,
+  "settings": {
+    "color": {
+      "palette": [
+        {
+          "slug": "primary",
+          "color": "#ff6347",
+          "name": "Primary"
+        },
+        {
+          "slug": "secondary",
+          "color": "#eee2d4",
+          "name": "Secondary"
+        },
+        {
+          "slug": "neutral-1",
+          "color": "#000000",
+          "name": "Neutral 1"
+        },
+        {
+          "slug": "neutral-2",
+          "color": "#ffffff",
+          "name": "Neutral 2"
+        },
+        {
+          "slug": "neutral-3",
+          "color": "#f0f0f0",
+          "name": "Neutral 3"
+        },
+        {
+          "slug": "neutral-4",
+          "color": "#1a1a1a",
+          "name": "Neutral 4"
+        },
+        {
+          "slug": "bg-ffffff",
+          "color": "#ffffff",
+          "name": "Background #ffffff"
+        },
+        {
+          "slug": "bg-ff6347",
+          "color": "#ff6347",
+          "name": "Background #ff6347"
+        },
+        {
+          "slug": "bg-000000",
+          "color": "#000000",
+          "name": "Background #000000"
+        }
+      ],
+      "gradients": []
+    },
+    "typography": {
+      "fontFamilies": [
+        {
+          "fontFamily": "Recife",
+          "slug": "recife",
+          "name": "Recife"
+        },
+        {
+          "fontFamily": "Times New Roman",
+          "slug": "times-new-roman",
+          "name": "Times New Roman"
+        },
+        {
+          "fontFamily": "Icons",
+          "slug": "icons",
+          "name": "Icons"
+        },
+        {
+          "fontFamily": "Arial",
+          "slug": "arial",
+          "name": "Arial"
+        }
+      ],
+      "fontSizes": [
+        {
+          "size": "28.8px",
+          "slug": "size-28.8",
+          "name": "28.8px"
+        },
+        {
+          "size": "28px",
+          "slug": "size-28",
+          "name": "28px"
+        },
+        {
+          "size": "23.04px",
+          "slug": "size-23.04",
+          "name": "23.04px"
+        },
+        {
+          "size": "13.3333px",
+          "slug": "size-13.3333",
+          "name": "13.3333px"
+        },
+        {
+          "size": "11.52px",
+          "slug": "size-11.52",
+          "name": "11.52px"
+        }
+      ]
+    },
+    "spacing": {
+      "spacingSizes": [
+        {
+          "size": "1px",
+          "slug": "spacing-1",
+          "name": "1px"
+        },
+        {
+          "size": "58px",
+          "slug": "spacing-58",
+          "name": "58px"
+        },
+        {
+          "size": "99px",
+          "slug": "spacing-99",
+          "name": "99px"
+        },
+        {
+          "size": "116px",
+          "slug": "spacing-116",
+          "name": "116px"
+        },
+        {
+          "size": "143px",
+          "slug": "spacing-143",
+          "name": "143px"
+        },
+        {
+          "size": "269px",
+          "slug": "spacing-269",
+          "name": "269px"
+        },
+        {
+          "size": "293px",
+          "slug": "spacing-293",
+          "name": "293px"
+        },
+        {
+          "size": "338px",
+          "slug": "spacing-338",
+          "name": "338px"
+        }
+      ]
+    },
+    "layout": {
+      "contentSize": "100%",
+      "wideSize": "1400px"
+    }
+  },
+  "styles": {
+    "color": {
+      "background": "#ffffff",
+      "text": "#000000"
+    },
+    "typography": {
+      "fontSize": "28.8px",
+      "lineHeight": "28.8px",
+      "fontFamily": "Recife"
+    },
+    "spacing": {}
+  }
+}

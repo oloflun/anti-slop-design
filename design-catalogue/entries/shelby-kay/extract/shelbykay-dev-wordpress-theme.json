@@ -1,0 +1,188 @@
+{
+  "$schema": "https://schemas.wp.org/trunk/theme.json",
+  "version": 3,
+  "settings": {
+    "color": {
+      "palette": [
+        {
+          "slug": "primary",
+          "color": "#d6b292",
+          "name": "Primary"
+        },
+        {
+          "slug": "secondary",
+          "color": "#efe6d9",
+          "name": "Secondary"
+        },
+        {
+          "slug": "neutral-1",
+          "color": "#393c2a",
+          "name": "Neutral 1"
+        },
+        {
+          "slug": "neutral-2",
+          "color": "#000000",
+          "name": "Neutral 2"
+        },
+        {
+          "slug": "neutral-3",
+          "color": "#737955",
+          "name": "Neutral 3"
+        },
+        {
+          "slug": "neutral-4",
+          "color": "#afa199",
+          "name": "Neutral 4"
+        },
+        {
+          "slug": "neutral-5",
+          "color": "#7b8785",
+          "name": "Neutral 5"
+        },
+        {
+          "slug": "bg-efe6d9",
+          "color": "#efe6d9",
+          "name": "Background #efe6d9"
+        },
+        {
+          "slug": "bg-000000",
+          "color": "#000000",
+          "name": "Background #000000"
+        },
+        {
+          "slug": "bg-afa199",
+          "color": "#afa199",
+          "name": "Background #afa199"
+        }
+      ],
+      "gradients": [
+        {
+          "slug": "gradient-1",
+          "gradient": "linear-gradient(90deg, rgb(57, 60, 42), rgb(57, 60, 42))",
+          "name": "Gradient 1"
+        },
+        {
+          "slug": "gradient-2",
+          "gradient": "linear-gradient(90deg, rgb(239, 230, 217), rgb(239, 230, 217))",
+          "name": "Gradient 2"
+        }
+      ]
+    },
+    "typography": {
+      "fontFamilies": [
+        {
+          "fontFamily": "Switzer",
+          "slug": "switzer",
+          "name": "Switzer"
+        },
+        {
+          "fontFamily": "Ranade",
+          "slug": "ranade",
+          "name": "Ranade"
+        }
+      ],
+      "fontSizes": [
+        {
+          "size": "256px",
+          "slug": "size-256",
+          "name": "256px"
+        },
+        {
+          "size": "140.8px",
+          "slug": "size-140.8",
+          "name": "140.8px"
+        },
+        {
+          "size": "73.92px",
+          "slug": "size-73.92",
+          "name": "73.92px"
+        },
+        {
+          "size": "24px",
+          "slug": "size-24",
+          "name": "24px"
+        },
+        {
+          "size": "20px",
+          "slug": "size-20",
+          "name": "20px"
+        },
+        {
+          "size": "16px",
+          "slug": "size-16",
+          "name": "16px"
+        },
+        {
+          "size": "14px",
+          "slug": "size-14",
+          "name": "14px"
+        },
+        {
+          "size": "11px",
+          "slug": "size-11",
+          "name": "11px"
+        }
+      ]
+    },
+    "spacing": {
+      "spacingSizes": [
+        {
+          "size": "6px",
+          "slug": "spacing-6",
+          "name": "6px"
+        },
+        {
+          "size": "35px",
+          "slug": "spacing-35",
+          "name": "35px"
+        },
+        {
+          "size": "56px",
+          "slug": "spacing-56",
+          "name": "56px"
+        },
+        {
+          "size": "80px",
+          "slug": "spacing-80",
+          "name": "80px"
+        },
+        {
+          "size": "112px",
+          "slug": "spacing-112",
+          "name": "112px"
+        },
+        {
+          "size": "128px",
+          "slug": "spacing-128",
+          "name": "128px"
+        },
+        {
+          "size": "200px",
+          "slug": "spacing-200",
+          "name": "200px"
+        },
+        {
+          "size": "248px",
+          "slug": "spacing-248",
+          "name": "248px"
+        }
+      ]
+    },
+    "layout": {
+      "contentSize": "1800px",
+      "wideSize": "1400px"
+    }
+  },
+  "styles": {
+    "color": {
+      "background": "#efe6d9",
+      "text": "#393c2a"
+    },
+    "typography": {
+      "fontSize": "10px",
+      "lineHeight": "12px",
+      "fontFamily": "Switzer"
+    },
+    "spacing": {}
+  }
+}

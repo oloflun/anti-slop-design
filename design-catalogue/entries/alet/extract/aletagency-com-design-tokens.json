@@ -1,0 +1,214 @@
+{
+  "$metadata": {
+    "generator": "designlang",
+    "version": "7.0.0",
+    "spec": "https://design-tokens.github.io/community-group/format/",
+    "source": "https://aletagency.com/",
+    "generatedAt": "2026-09-04T00:44:03.135Z"
+  },
+  "primitive": {
+    "color": {
+      "brand": {
+        "primary": {
+          "$value": "#dc3545",
+          "$type": "color"
+        },
+        "secondary": {
+          "$value": "#e5ddc4",
+          "$type": "color"
+        }
+      },
+      "neutral": {
+        "n100": {
+          "$value": "#000000",
+          "$type": "color"
+        },
+        "n200": {
+          "$value": "#252525",
+          "$type": "color"
+        },
+        "n300": {
+          "$value": "#101010",
+          "$type": "color"
+        },
+        "n400": {
+          "$value": "#ffffff",
+          "$type": "color"
+        },
+        "n500": {
+          "$value": "#454545",
+          "$type": "color"
+        },
+        "n600": {
+          "$value": "#a2a093",
+          "$type": "color"
+        },
+        "n700": {
+          "$value": "#bfb5ab",
+          "$type": "color"
+        }
+      },
+      "background": {
+        "bg0": {
+          "$value": "#e5ddc4",
+          "$type": "color"
+        },
+        "bg1": {
+          "$value": "#a2a093",
+          "$type": "color"
+        },
+        "bg2": {
+          "$value": "#dc3545",
+          "$type": "color"
+        }
+      },
+      "text": {
+        "text0": {
+          "$value": "#000000",
+          "$type": "color"
+        },
+        "text1": {
+          "$value": "#252525",
+          "$type": "color"
+        },
+        "text2": {
+          "$value": "#101010",
+          "$type": "color"
+        },
+        "text3": {
+          "$value": "#ffffff",
+          "$type": "color"
+        }
+      }
+    },
+    "spacing": {
+      "s0": {
+        "$value": "1px",
+        "$type": "dimension"
+      },
+      "s1": {
+        "$value": "59px",
+        "$type": "dimension"
+      },
+      "s2": {
+        "$value": "90px",
+        "$type": "dimension"
+      },
+      "s3": {
+        "$value": "154px",
+        "$type": "dimension"
+      },
+      "s4": {
+        "$value": "186px",
+        "$type": "dimension"
+      },
+      "s5": {
+        "$value": "237px",
+        "$type": "dimension"
+      },
+      "s6": {
+        "$value": "294px",
+        "$type": "dimension"
+      },
+      "s7": {
+        "$value": "320px",
+        "$type": "dimension"
+      },
+      "s8": {
+        "$value": "352px",
+        "$type": "dimension"
+      },
+      "s9": {
+        "$value": "435px",
+        "$type": "dimension"
+      },
+      "s10": {
+        "$value": "454px",
+        "$type": "dimension"
+      },
+      "s11": {
+        "$value": "474px",
+        "$type": "dimension"
+      }
+    },
+    "radius": {
+      "r0": {
+        "$value": "10px",
+        "$type": "dimension"
+      },
+      "r1": {
+        "$value": "9999px",
+        "$type": "dimension"
+      }
+    },
+    "shadow": {
+      "sh0": {
+        "$value": "rgba(0, 0, 0, 0.1) 0px 1px 3px 0px, rgba(0, 0, 0, 0.06) 0px 1px 2px 0px",
+        "$type": "shadow"
+      }
+    },
+    "fontFamily": {
+      "f0": {
+        "$value": "WorkSans-Regular",
+        "$type": "fontFamily"
+      },
+      "f1": {
+        "$value": "SilkSerif-Light",
+        "$type": "fontFamily"
+      },
+      "f2": {
+        "$value": "SilkSerif-LightItalic",
+        "$type": "fontFamily"
+      }
+    }
+  },
+  "semantic": {
+    "color": {
+      "action": {
+        "primary": {
+          "$value": "{primitive.color.brand.primary}",
+          "$type": "color"
+        },
+        "secondary": {
+          "$value": "{primitive.color.brand.secondary}",
+          "$type": "color"
+        }
+      },
+      "surface": {
+        "default": {
+          "$value": "{primitive.color.background.bg0}",
+          "$type": "color"
+        }
+      },
+      "text": {
+        "body": {
+          "$value": "{primitive.color.text.text0}",
+          "$type": "color"
+        }
+      }
+    },
+    "typography": {
+      "body": {
+        "$value": {
+          "fontFamily": "WorkSans-Regular",
+          "fontSize": "36px",
+          "fontWeight": "400",
+          "lineHeight": "33.84px"
+        },
+        "$type": "typography"
+      }
+    },
+    "radius": {
+      "control": {
+        "$value": "{primitive.radius.r0}",
+        "$type": "dimension"
+      }
+    },
+    "shadow": {
+      "elevated": {
+        "$value": "{primitive.shadow.sh0}",
+        "$type": "shadow"
+      }
+    }
+  }
+}

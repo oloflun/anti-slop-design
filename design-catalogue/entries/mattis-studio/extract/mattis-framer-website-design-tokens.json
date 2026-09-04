@@ -1,0 +1,246 @@
+{
+  "$metadata": {
+    "generator": "designlang",
+    "version": "7.0.0",
+    "spec": "https://design-tokens.github.io/community-group/format/",
+    "source": "https://mattis.framer.website/",
+    "generatedAt": "2026-09-04T00:56:00.203Z"
+  },
+  "primitive": {
+    "color": {
+      "brand": {
+        "primary": {
+          "$value": "#ff4500",
+          "$type": "color"
+        },
+        "secondary": {
+          "$value": "#0000ee",
+          "$type": "color"
+        }
+      },
+      "neutral": {
+        "n100": {
+          "$value": "#000000",
+          "$type": "color"
+        },
+        "n200": {
+          "$value": "#ffffff",
+          "$type": "color"
+        },
+        "n300": {
+          "$value": "#0b0b0b",
+          "$type": "color"
+        },
+        "n400": {
+          "$value": "#e9e9e9",
+          "$type": "color"
+        },
+        "n500": {
+          "$value": "#767676",
+          "$type": "color"
+        },
+        "n600": {
+          "$value": "#181818",
+          "$type": "color"
+        },
+        "n700": {
+          "$value": "#222222",
+          "$type": "color"
+        }
+      },
+      "background": {
+        "bg0": {
+          "$value": "#0b0b0b",
+          "$type": "color"
+        },
+        "bg1": {
+          "$value": "#ffffff",
+          "$type": "color"
+        },
+        "bg2": {
+          "$value": "#0d0d0d",
+          "$type": "color"
+        },
+        "bg3": {
+          "$value": "#000000",
+          "$type": "color"
+        },
+        "bg4": {
+          "$value": "#ff4500",
+          "$type": "color"
+        },
+        "bg5": {
+          "$value": "#e9e9e9",
+          "$type": "color"
+        },
+        "bg6": {
+          "$value": "#181818",
+          "$type": "color"
+        }
+      },
+      "text": {
+        "text0": {
+          "$value": "#000000",
+          "$type": "color"
+        },
+        "text1": {
+          "$value": "#0000ee",
+          "$type": "color"
+        },
+        "text2": {
+          "$value": "#ffffff",
+          "$type": "color"
+        },
+        "text3": {
+          "$value": "#0b0b0b",
+          "$type": "color"
+        },
+        "text4": {
+          "$value": "#0e0e0e",
+          "$type": "color"
+        }
+      }
+    },
+    "spacing": {
+      "s0": {
+        "$value": "1px",
+        "$type": "dimension"
+      },
+      "s1": {
+        "$value": "30px",
+        "$type": "dimension"
+      },
+      "s2": {
+        "$value": "36px",
+        "$type": "dimension"
+      },
+      "s3": {
+        "$value": "40px",
+        "$type": "dimension"
+      },
+      "s4": {
+        "$value": "50px",
+        "$type": "dimension"
+      },
+      "s5": {
+        "$value": "60px",
+        "$type": "dimension"
+      },
+      "s6": {
+        "$value": "70px",
+        "$type": "dimension"
+      },
+      "s7": {
+        "$value": "80px",
+        "$type": "dimension"
+      },
+      "s8": {
+        "$value": "90px",
+        "$type": "dimension"
+      },
+      "s9": {
+        "$value": "100px",
+        "$type": "dimension"
+      },
+      "s10": {
+        "$value": "110px",
+        "$type": "dimension"
+      },
+      "s11": {
+        "$value": "120px",
+        "$type": "dimension"
+      },
+      "s12": {
+        "$value": "130px",
+        "$type": "dimension"
+      }
+    },
+    "radius": {
+      "r0": {
+        "$value": "7px",
+        "$type": "dimension"
+      },
+      "r1": {
+        "$value": "10px",
+        "$type": "dimension"
+      },
+      "r2": {
+        "$value": "50px",
+        "$type": "dimension"
+      },
+      "r3": {
+        "$value": "100px",
+        "$type": "dimension"
+      }
+    },
+    "shadow": {
+      "sh0": {
+        "$value": "rgb(0, 0, 0) 0px 0px 0px 1px inset",
+        "$type": "shadow"
+      },
+      "sh1": {
+        "$value": "rgba(0, 0, 0, 0.17) 0px 0.602187px 1.56569px -1.5px, rgba(0, 0, 0, 0.14) 0px 2.28853px 5.95019px -3px, rgba(0, 0, 0, 0.02) 0px 10px 26px -4.5px",
+        "$type": "shadow"
+      }
+    },
+    "fontFamily": {
+      "f0": {
+        "$value": "Geist",
+        "$type": "fontFamily"
+      },
+      "f1": {
+        "$value": "Times New Roman",
+        "$type": "fontFamily"
+      }
+    }
+  },
+  "semantic": {
+    "color": {
+      "action": {
+        "primary": {
+          "$value": "{primitive.color.brand.primary}",
+          "$type": "color"
+        },
+        "secondary": {
+          "$value": "{primitive.color.brand.secondary}",
+          "$type": "color"
+        }
+      },
+      "surface": {
+        "default": {
+          "$value": "{primitive.color.background.bg0}",
+          "$type": "color"
+        }
+      },
+      "text": {
+        "body": {
+          "$value": "{primitive.color.text.text0}",
+          "$type": "color"
+        }
+      }
+    },
+    "typography": {
+      "body": {
+        "$value": {
+          "fontFamily": "Geist",
+          "fontSize": "140.498px",
+          "fontWeight": "600",
+          "lineHeight": "115.208px"
+        },
+        "$type": "typography"
+      }
+    },
+    "radius": {
+      "control": {
+        "$value": "{primitive.radius.r0}",
+        "$type": "dimension"
+      }
+    },
+    "shadow": {
+      "elevated": {
+        "$value": "{primitive.shadow.sh0}",
+        "$type": "shadow"
+      }
+    }
+  }
+}

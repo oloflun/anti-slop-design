@@ -1,0 +1,112 @@
+{
+  "pageIntent": {
+    "type": "landing",
+    "confidence": 0.31,
+    "path": "/",
+    "title": "Exclusive Tailor-Made Luxury Travel Experiences in Madeira | Insider",
+    "description": "Experience the best of Madeira with Insider’s exclusive, custom-crafted itineraries. Enjoy luxury adventures, cultural immersion, and personalized travel support. Create unforgettable memories with be",
+    "signals": [
+      {
+        "kind": "dom",
+        "type": "blog-post",
+        "weight": 0.35,
+        "detail": "byline|min-read"
+      },
+      {
+        "kind": "url",
+        "type": "landing",
+        "weight": 0.45,
+        "detail": "root-path"
+      }
+    ],
+    "alternates": [
+      {
+        "type": "blog-post",
+        "score": 0.35
+      }
+    ],
+    "needsSmart": true
+  },
+  "sectionRoles": {
+    "sections": [
+      {
+        "index": 0,
+        "tag": "div",
+        "role": "nav",
+        "subrole": null,
+        "confidence": 0.9,
+        "heading": null,
+        "bounds": {
+          "x": 0,
+          "y": 0,
+          "w": 1280,
+          "h": 133.4375
+        },
+        "buttonCount": 5,
+        "cardCount": 0,
+        "slots": {
+          "ctaCount": 5,
+          "lede": "Madeira\nAbout us\nInsider Tips\nEN\nPT\nPlan your trip\nMembers only"
+        },
+        "needsSmart": false
+      },
+      {
+        "index": 1,
+        "tag": "nav",
+        "role": "nav",
+        "subrole": null,
+        "confidence": 0.9,
+        "heading": null,
+        "bounds": {
+          "x": 563.109375,
+          "y": 19,
+          "w": 689.234375,
+          "h": 32
+        },
+        "buttonCount": 4,
+        "cardCount": 0,
+        "slots": {
+          "ctaCount": 4,
+          "lede": "Madeira\nAbout us\nInsider Tips\nEN\nPT\nPlan your trip\nMembers only"
+        },
+        "needsSmart": false
+      },
+      {
+        "index": 2,
+        "tag": "main",
+        "role": "feature-grid",
+        "subrole": null,
+        "confidence": 0.8,
+        "heading": "Your Exclusive Gateway to Madeira's Hidden Gems",
+        "bounds": {
+          "x": 0,
+          "y": 0,
+          "w": 1280,
+          "h": 8801.765625
+        },
+        "buttonCount": 14,
+        "cardCount": 264,
+        "slots": {
+          "heading": "Your Exclusive Gateway to Madeira's Hidden Gems",
+          "subheadings": [
+            "The Essence of Our Legacy",
+            "Experience Authenticity, Expertise, and Customization on Every Journey",
+            "Local Expertise",
+            "Authentic Experiences"
+          ],
+          "ctaCount": 14
+        },
+        "needsSmart": false
+      }
+    ],
+    "counts": {
+      "nav": 2,
+      "feature-grid": 1
+    },
+    "readingOrder": [
+      "nav",
+      "feature-grid",
+      "nav"
+    ]
+  }
+}

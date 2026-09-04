@@ -1,0 +1,233 @@
+{
+  "pageIntent": {
+    "type": "landing",
+    "confidence": 0.45,
+    "path": "/",
+    "title": "PAYÁ • Film Haus",
+    "description": "Cobertura especializada en eventos y producción de contenidos junto a marcas globales.",
+    "signals": [
+      {
+        "kind": "url",
+        "type": "landing",
+        "weight": 0.45,
+        "detail": "root-path"
+      }
+    ],
+    "alternates": [],
+    "needsSmart": true
+  },
+  "sectionRoles": {
+    "sections": [
+      {
+        "index": 0,
+        "tag": "header",
+        "role": "nav",
+        "subrole": null,
+        "confidence": 0.4,
+        "heading": null,
+        "bounds": {
+          "x": 0,
+          "y": 0,
+          "w": 1280,
+          "h": 0
+        },
+        "buttonCount": 1,
+        "cardCount": 0,
+        "slots": {
+          "ctaCount": 1,
+          "lede": "SERVICIOS\nARCHIVO\nNOSOTROS\nCONTACTO"
+        },
+        "needsSmart": true
+      },
+      {
+        "index": 1,
+        "tag": "nav",
+        "role": "nav",
+        "subrole": null,
+        "confidence": 0.9,
+        "heading": null,
+        "bounds": {
+          "x": 0,
+          "y": 0,
+          "w": 1280,
+          "h": 0
+        },
+        "buttonCount": 1,
+        "cardCount": 0,
+        "slots": {
+          "ctaCount": 1,
+          "lede": "SERVICIOS\nARCHIVO\nNOSOTROS\nCONTACTO"
+        },
+        "needsSmart": false
+      },
+      {
+        "index": 2,
+        "tag": "main",
+        "role": "content",
+        "subrole": null,
+        "confidence": 0.3,
+        "heading": " COBERTURA DEPORTIVA",
+        "bounds": {
+          "x": 0,
+          "y": 0,
+          "w": 1280,
+          "h": 800
+        },
+        "buttonCount": 8,
+        "cardCount": 0,
+        "slots": {
+          "heading": " COBERTURA DEPORTIVA",
+          "subheadings": [
+            " REALIZACIÓN AUDIOVISUAL",
+            " EDICIÓN & ANIMACIÓN",
+            " CONTENIDO DIGITAL"
+          ],
+          "ctaCount": 8,
+          "lede": "COBERTURA DEPORTIVA\nREALIZACIÓN AUDIOVISUAL\nEDICIÓN & ANIMACIÓN\nCONTENIDO DIGITAL\n COBERTURA DEPORTIVA\n REALIZACIÓN AUDIOVISUAL\n EDICIÓN & ANIMACIÓN\n CONTENIDO DIGITAL"
+        },
+        "needsSmart": true
+      },
+      {
+        "index": 3,
+        "tag": "section",
+        "role": "content",
+        "subrole": null,
+        "confidence": 0.3,
+        "heading": null,
+        "bounds": {
+          "x": 0,
+          "y": 0,
+          "w": 1280,
+          "h": 784
+        },
+        "buttonCount": 0,
+        "cardCount": 0,
+        "slots": {
+          "lede": "COBERTURA DEPORTIVA\nREALIZACIÓN AUDIOVISUAL\nEDICIÓN & ANIMACIÓN\nCONTENIDO DIGITAL"
+        },
+        "needsSmart": true
+      },
+      {
+        "index": 4,
+        "tag": "section",
+        "role": "hero",
+        "subrole": null,
+        "confidence": 0.4,
+        "heading": " COBERTURA DEPORTIVA",
+        "bounds": {
+          "x": 0,
+          "y": 784,
+          "w": 1280,
+          "h": 640
+        },
+        "buttonCount": 2,
+        "cardCount": 0,
+        "slots": {
+          "heading": " COBERTURA DEPORTIVA",
+          "ctaCount": 2
+        },
+        "needsSmart": true
+      },
+      {
+        "index": 5,
+        "tag": "section",
+        "role": "hero",
+        "subrole": null,
+        "confidence": 0.4,
+        "heading": " REALIZACIÓN AUDIOVISUAL",
+        "bounds": {
+          "x": 0,
+          "y": 1424,
+          "w": 1280,
+          "h": 640
+        },
+        "buttonCount": 2,
+        "cardCount": 0,
+        "slots": {
+          "heading": " REALIZACIÓN AUDIOVISUAL",
+          "ctaCount": 2
+        },
+        "needsSmart": true
+      },
+      {
+        "index": 6,
+        "tag": "section",
+        "role": "hero",
+        "subrole": null,
+        "confidence": 0.4,
+        "heading": " EDICIÓN & ANIMACIÓN",
+        "bounds": {
+          "x": 0,
+          "y": 2064,
+          "w": 1280,
+          "h": 640
+        },
+        "buttonCount": 2,
+        "cardCount": 0,
+        "slots": {
+          "heading": " EDICIÓN & ANIMACIÓN",
+          "ctaCount": 2
+        },
+        "needsSmart": true
+      },
+      {
+        "index": 7,
+        "tag": "section",
+        "role": "hero",
+        "subrole": null,
+        "confidence": 0.4,
+        "heading": " CONTENIDO DIGITAL",
+        "bounds": {
+          "x": 0,
+          "y": 2704,
+          "w": 1280,
+          "h": 712
+        },
+        "buttonCount": 2,
+        "cardCount": 0,
+        "slots": {
+          "heading": " CONTENIDO DIGITAL",
+          "ctaCount": 2
+        },
+        "needsSmart": true
+      },
+      {
+        "index": 8,
+        "tag": "footer",
+        "role": "footer",
+        "subrole": null,
+        "confidence": 0.95,
+        "heading": null,
+        "bounds": {
+          "x": 0,
+          "y": 800,
+          "w": 1280,
+          "h": 0
+        },
+        "buttonCount": 0,
+        "cardCount": 0,
+        "slots": {
+          "lede": "hola@paya.ar\nwww.paya.ar\n@paya.haus\n+54 11 6474 5445\n+54 11 5498 7695"
+        },
+        "needsSmart": false
+      }
+    ],
+    "counts": {
+      "nav": 2,
+      "content": 2,
+      "hero": 4,
+      "footer": 1
+    },
+    "readingOrder": [
+      "nav",
+      "nav",
+      "content",
+      "content",
+      "hero",
+      "footer",
+      "hero",
+      "hero",
+      "hero"
+    ]
+  }
+}

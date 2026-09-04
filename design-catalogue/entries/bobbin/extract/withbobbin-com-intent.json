@@ -1,0 +1,530 @@
+{
+  "pageIntent": {
+    "type": "landing",
+    "confidence": 0.59,
+    "path": "/",
+    "title": "Bobbin - AI lesson planning for tutors | TutorCruncher",
+    "description": "Bobbin is an AI tutoring platform from TutorCruncher that plans lessons, captures live notes, and writes parent reports — so tutors spend more time teaching.",
+    "signals": [
+      {
+        "kind": "dom",
+        "type": "blog-post",
+        "weight": 0.35,
+        "detail": "byline|min-read"
+      },
+      {
+        "kind": "dom",
+        "type": "legal",
+        "weight": 0.4
+      },
+      {
+        "kind": "url",
+        "type": "landing",
+        "weight": 0.45,
+        "detail": "root-path"
+      },
+      {
+        "kind": "shape",
+        "type": "landing",
+        "weight": 0.3,
+        "detail": "features+hero+cta+footer"
+      }
+    ],
+    "alternates": [
+      {
+        "type": "legal",
+        "score": 0.4
+      },
+      {
+        "type": "blog-post",
+        "score": 0.35
+      }
+    ],
+    "needsSmart": true
+  },
+  "sectionRoles": {
+    "sections": [
+      {
+        "index": 0,
+        "tag": "header",
+        "role": "steps",
+        "subrole": null,
+        "confidence": 0.75,
+        "heading": null,
+        "bounds": {
+          "x": 0,
+          "y": 0,
+          "w": 1280,
+          "h": 94
+        },
+        "buttonCount": 2,
+        "cardCount": 14,
+        "slots": {
+          "ctaCount": 2,
+          "lede": "By TutorCruncher\nHow it works\nTestimonials\nPricing\nFAQs\nBlog\nAbout\nLog in\nStart free trial"
+        },
+        "needsSmart": false
+      },
+      {
+        "index": 1,
+        "tag": "nav",
+        "role": "nav",
+        "subrole": null,
+        "confidence": 0.9,
+        "heading": null,
+        "bounds": {
+          "x": 384.859375,
+          "y": 28,
+          "w": 564.3125,
+          "h": 38
+        },
+        "buttonCount": 0,
+        "cardCount": 6,
+        "slots": {
+          "lede": "How it works\nTestimonials\nPricing\nFAQs\nBlog\nAbout"
+        },
+        "needsSmart": false
+      },
+      {
+        "index": 2,
+        "tag": "main",
+        "role": "pricing",
+        "subrole": null,
+        "confidence": 0.4,
+        "heading": "Better \ntesting",
+        "bounds": {
+          "x": 0,
+          "y": 0,
+          "w": 1280,
+          "h": 11940.328125
+        },
+        "buttonCount": 13,
+        "cardCount": 327,
+        "slots": {
+          "heading": "Better \ntesting",
+          "subheadings": [
+            "TutorCruncher and Bobbin are trusted by 1,800+ tutoring companies",
+            "AI tools for online and in-person tutoring",
+            "Turn your lessons into momentum",
+            "Find your flow"
+          ],
+          "ctaCount": 13
+        },
+        "needsSmart": true
+      },
+      {
+        "index": 3,
+        "tag": "section",
+        "role": "hero",
+        "subrole": null,
+        "confidence": 0.85,
+        "heading": "Better \ntesting",
+        "bounds": {
+          "x": 0,
+          "y": 0,
+          "w": 1280,
+          "h": 800
+        },
+        "buttonCount": 1,
+        "cardCount": 37,
+        "slots": {
+          "heading": "Better \ntesting",
+          "ctaCount": 1
+        },
+        "needsSmart": false
+      },
+      {
+        "index": 4,
+        "tag": "section",
+        "role": "logo-wall",
+        "subrole": null,
+        "confidence": 0.85,
+        "heading": "TutorCruncher and Bobbin are trusted by 1,800+ tutoring companies",
+        "bounds": {
+          "x": 0,
+          "y": 800,
+          "w": 1280,
+          "h": 406
+        },
+        "buttonCount": 0,
+        "cardCount": 10,
+        "slots": {
+          "heading": "TutorCruncher and Bobbin are trusted by 1,800+ tutoring companies"
+        },
+        "needsSmart": false
+      },
+      {
+        "index": 5,
+        "tag": "section",
+        "role": "testimonials",
+        "subrole": null,
+        "confidence": 0.4,
+        "heading": "AI tools for online and in-person tutoring",
+        "bounds": {
+          "x": 0,
+          "y": 1206,
+          "w": 1280,
+          "h": 1015.828125
+        },
+        "buttonCount": 0,
+        "cardCount": 97,
+        "slots": {
+          "heading": "AI tools for online and in-person tutoring"
+        },
+        "needsSmart": true
+      },
+      {
+        "index": 6,
+        "tag": "section",
+        "role": "content",
+        "subrole": null,
+        "confidence": 0.3,
+        "heading": "Turn your lessons into momentum",
+        "bounds": {
+          "x": 0,
+          "y": 2221.828125,
+          "w": 1280,
+          "h": 842.90625
+        },
+        "buttonCount": 0,
+        "cardCount": 21,
+        "slots": {
+          "heading": "Turn your lessons into momentum",
+          "subheadings": [
+            "Find your flow",
+            "Focus your mind",
+            "Feel your value"
+          ]
+        },
+        "needsSmart": true
+      },
+      {
+        "index": 7,
+        "tag": "header",
+        "role": "nav",
+        "subrole": null,
+        "confidence": 0.4,
+        "heading": "Find your flow",
+        "bounds": {
+          "x": 143.9375,
+          "y": 2491.65625,
+          "w": 232.109375,
+          "h": 103.1875
+        },
+        "buttonCount": 0,
+        "cardCount": 1,
+        "slots": {
+          "heading": "Find your flow",
+          "lede": "Find your flow\nPlanning your lesson"
+        },
+        "needsSmart": true
+      },
+      {
+        "index": 8,
+        "tag": "header",
+        "role": "nav",
+        "subrole": null,
+        "confidence": 0.4,
+        "heading": "Focus your mind",
+        "bounds": {
+          "x": 510.453125,
+          "y": 2491.65625,
+          "w": 259.078125,
+          "h": 103.1875
+        },
+        "buttonCount": 0,
+        "cardCount": 1,
+        "slots": {
+          "heading": "Focus your mind",
+          "lede": "Focus your mind\nCapturing the discussion"
+        },
+        "needsSmart": true
+      },
+      {
+        "index": 9,
+        "tag": "header",
+        "role": "nav",
+        "subrole": null,
+        "confidence": 0.4,
+        "heading": "Feel your value",
+        "bounds": {
+          "x": 901.25,
+          "y": 2491.65625,
+          "w": 237.484375,
+          "h": 103.1875
+        },
+        "buttonCount": 0,
+        "cardCount": 1,
+        "slots": {
+          "heading": "Feel your value",
+          "lede": "Feel your value\nSending progress report"
+        },
+        "needsSmart": true
+      },
+      {
+        "index": 10,
+        "tag": "section",
+        "role": "testimonials",
+        "subrole": null,
+        "confidence": 0.4,
+        "heading": "Fits the way you already work",
+        "bounds": {
+          "x": 0,
+          "y": 3064.734375,
+          "w": 1280,
+          "h": 839.59375
+        },
+        "buttonCount": 0,
+        "cardCount": 4,
+        "slots": {
+          "heading": "Fits the way you already work",
+          "subheadings": [
+            "Before the lesson",
+            "During the lesson",
+            "After the lesson",
+            "In between lessons"
+          ]
+        },
+        "needsSmart": true
+      },
+      {
+        "index": 11,
+        "tag": "section",
+        "role": "hero",
+        "subrole": null,
+        "confidence": 0.4,
+        "heading": "Try Bobbin's lesson planner for yourself...",
+        "bounds": {
+          "x": 0,
+          "y": 3904.328125,
+          "w": 1280,
+          "h": 698
+        },
+        "buttonCount": 1,
+        "cardCount": 5,
+        "slots": {
+          "heading": "Try Bobbin's lesson planner for yourself...",
+          "ctaCount": 1
+        },
+        "needsSmart": true
+      },
+      {
+        "index": 12,
+        "tag": "section",
+        "role": "content",
+        "subrole": null,
+        "confidence": 0.3,
+        "heading": "Built for tutor trust",
+        "bounds": {
+          "x": 0,
+          "y": 4602.328125,
+          "w": 1280,
+          "h": 664.21875
+        },
+        "buttonCount": 0,
+        "cardCount": 12,
+        "slots": {
+          "heading": "Built for tutor trust",
+          "subheadings": [
+            "GDPR Compliant",
+            "Encrypted data",
+            "Education-ready AI",
+            "Dedicated human support"
+          ]
+        },
+        "needsSmart": true
+      },
+      {
+        "index": 13,
+        "tag": "section",
+        "role": "testimonial",
+        "subrole": null,
+        "confidence": 0.8,
+        "heading": "Don't just take our word for it",
+        "bounds": {
+          "x": 0,
+          "y": 5266.546875,
+          "w": 1280,
+          "h": 956.625
+        },
+        "buttonCount": 2,
+        "cardCount": 36,
+        "slots": {
+          "heading": "Don't just take our word for it",
+          "ctaCount": 2
+        },
+        "needsSmart": false
+      },
+      {
+        "index": 14,
+        "tag": "section",
+        "role": "content",
+        "subrole": null,
+        "confidence": 0.3,
+        "heading": "Made for tutoring",
+        "bounds": {
+          "x": 0,
+          "y": 6223.171875,
+          "w": 1280,
+          "h": 1173.828125
+        },
+        "buttonCount": 0,
+        "cardCount": 59,
+        "slots": {
+          "heading": "Made for tutoring"
+        },
+        "needsSmart": true
+      },
+      {
+        "index": 15,
+        "tag": "section",
+        "role": "pricing-table",
+        "subrole": null,
+        "confidence": 0.9,
+        "heading": "Explore our pricing",
+        "bounds": {
+          "x": 0,
+          "y": 7397,
+          "w": 1280,
+          "h": 1001.921875
+        },
+        "buttonCount": 8,
+        "cardCount": 25,
+        "slots": {
+          "heading": "Explore our pricing",
+          "subheadings": [
+            "Starter",
+            "Plus",
+            "Pro",
+            "Custom"
+          ],
+          "ctaCount": 8
+        },
+        "needsSmart": false
+      },
+      {
+        "index": 16,
+        "tag": "section",
+        "role": "faq",
+        "subrole": null,
+        "confidence": 0.85,
+        "heading": "Frequently Asked Questions",
+        "bounds": {
+          "x": 0,
+          "y": 8398.921875,
+          "w": 1280,
+          "h": 1277.015625
+        },
+        "buttonCount": 0,
+        "cardCount": 7,
+        "slots": {
+          "heading": "Frequently Asked Questions",
+          "lede": "Frequently Asked Questions\nWhat is Bobbin by TutorCruncher?"
+        },
+        "needsSmart": false
+      },
+      {
+        "index": 17,
+        "tag": "section",
+        "role": "feature-grid",
+        "subrole": null,
+        "confidence": 0.8,
+        "heading": "Designed for tutors\nmade by TutorCruncher",
+        "bounds": {
+          "x": 0,
+          "y": 9675.9375,
+          "w": 1280,
+          "h": 1477.59375
+        },
+        "buttonCount": 0,
+        "cardCount": 11,
+        "slots": {
+          "heading": "Designed for tutors\nmade by TutorCruncher",
+          "subheadings": [
+            "Why Bobbin?"
+          ]
+        },
+        "needsSmart": false
+      },
+      {
+        "index": 18,
+        "tag": "section",
+        "role": "pricing",
+        "subrole": null,
+        "confidence": 0.4,
+        "heading": "Your lessons, your threads, all in one place",
+        "bounds": {
+          "x": 0,
+          "y": 11153.53125,
+          "w": 1280,
+          "h": 786.796875
+        },
+        "buttonCount": 1,
+        "cardCount": 3,
+        "slots": {
+          "heading": "Your lessons, your threads, all in one place",
+          "ctaCount": 1,
+          "lede": "Your lessons, your threads, all in one place\nStart your free trial today\nBack to top"
+        },
+        "needsSmart": true
+      },
+      {
+        "index": 19,
+        "tag": "footer",
+        "role": "footer",
+        "subrole": null,
+        "confidence": 0.95,
+        "heading": null,
+        "bounds": {
+          "x": 0,
+          "y": 457,
+          "w": 1280,
+          "h": 343
+        },
+        "buttonCount": 1,
+        "cardCount": 5,
+        "slots": {
+          "ctaCount": 1,
+          "lede": "by TutorCruncher\nTutorCruncher © All rights reserved 2026\nBlog\nReleases\nPrivacy policy\nTerms of service\nCookie settings"
+        },
+        "needsSmart": false
+      }
+    ],
+    "counts": {
+      "steps": 1,
+      "nav": 4,
+      "pricing": 2,
+      "hero": 2,
+      "logo-wall": 1,
+      "testimonials": 2,
+      "content": 3,
+      "testimonial": 1,
+      "pricing-table": 1,
+      "faq": 1,
+      "feature-grid": 1,
+      "footer": 1
+    },
+    "readingOrder": [
+      "steps",
+      "pricing",
+      "hero",
+      "nav",
+      "footer",
+      "logo-wall",
+      "testimonials",
+      "content",
+      "nav",
+      "nav",
+      "nav",
+      "testimonials",
+      "hero",
+      "content",
+      "testimonial",
+      "content",
+      "pricing-table",
+      "faq",
+      "feature-grid",
+      "pricing"
+    ]
+  }
+}

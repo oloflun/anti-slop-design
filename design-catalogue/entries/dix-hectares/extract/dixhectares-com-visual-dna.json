@@ -1,0 +1,103 @@
+{
+  "materialLanguage": {
+    "label": "material-you",
+    "confidence": 0.45,
+    "signals": [
+      {
+        "label": "material-you",
+        "weight": 0.45,
+        "detail": "pill shapes + soft shadows"
+      }
+    ],
+    "metrics": {
+      "saturation": 0.326,
+      "shadowProfile": "soft",
+      "avgShadowBlur": 0,
+      "maxShadowBlur": 0,
+      "insetShadows": 0,
+      "avgRadius": 3350.3,
+      "maxRadius": 9999,
+      "hasPill": true,
+      "hasBackdropBlur": false,
+      "gradientCount": 2
+    },
+    "alternates": []
+  },
+  "imageryStyle": {
+    "label": "photography",
+    "confidence": 0.218,
+    "counts": {
+      "total": 55,
+      "svg": 0,
+      "icon": 13,
+      "hero": 0,
+      "screenshot": 0,
+      "photoLike": 24
+    },
+    "dominantAspect": "square-ish",
+    "radiusProfile": "rounded",
+    "alternates": [],
+    "signals": [
+      "raster photo-ext",
+      "raster photo-ext",
+      "raster photo-ext",
+      "raster photo-ext",
+      "raster photo-ext",
+      "raster photo-ext",
+      "raster photo-ext",
+      "raster photo-ext",
+      "raster photo-ext",
+      "raster photo-ext"
+    ]
+  },
+  "backgroundPatterns": {
+    "labels": [
+      "svg-pattern"
+    ],
+    "counts": {
+      "noise": 0,
+      "dotGrid": 0,
+      "lineGrid": 0,
+      "meshCount": 0,
+      "svgPattern": 23
+    },
+    "gradientTotals": {
+      "radial": 0,
+      "linear": 19
+    },
+    "samples": [
+      {
+        "tag": "svg-pattern",
+        "value": "url(\"data:image/svg+xml;charset=utf-8,%3Csvg xmlns='http://www.w3.org/2000/svg' width='43' height='27' fill='none' viewBox='0 0 43 27'%3E%3Cpath fill='%23A15C27' d='M21.4 7.588s-2.3-.4-5.6-2.3c-3.4-1."
+      },
+      {
+        "tag": "svg-pattern",
+        "value": "url(\"data:image/svg+xml;charset=utf-8,%3Csvg xmlns='http://www.w3.org/2000/svg' width='43' height='27' fill='none' viewBox='0 0 43 27'%3E%3Cpath fill='%23A15C27' d='M21.4 7.588s-2.3-.4-5.6-2.3c-3.4-1."
+      },
+      {
+        "tag": "svg-pattern",
+        "value": "url(\"data:image/svg+xml;charset=utf-8,%3Csvg xmlns='http://www.w3.org/2000/svg' width='43' height='27' fill='none' viewBox='0 0 43 27'%3E%3Cpath fill='%23A15C27' d='M21.4 7.588s-2.3-.4-5.6-2.3c-3.4-1."
+      },
+      {
+        "tag": "svg-pattern",
+        "value": "url(\"data:image/svg+xml;charset=utf-8,%3Csvg xmlns='http://www.w3.org/2000/svg' width='43' height='27' fill='none' viewBox='0 0 43 27'%3E%3Cpath fill='%23A15C27' d='M21.6 19.412s2.3.4 5.6 2.3c3.4 1.9 "
+      },
+      {
+        "tag": "svg-pattern",
+        "value": "url(\"data:image/svg+xml;charset=utf-8,%3Csvg xmlns='http://www.w3.org/2000/svg' width='27' height='43' fill='none' viewBox='0 0 27 43'%3E%3Cpath fill='%23A15C27' d='M19.412 21.4s.4-2.3 2.3-5.6c1.9-3.4"
+      },
+      {
+        "tag": "svg-pattern",
+        "value": "url(\"data:image/svg+xml;charset=utf-8,%3Csvg xmlns='http://www.w3.org/2000/svg' width='27' height='43' fill='none' viewBox='0 0 27 43'%3E%3Cpath fill='%23A15C27' d='M19.412 21.4s.4-2.3 2.3-5.6c1.9-3.4"
+      },
+      {
+        "tag": "svg-pattern",
+        "value": "url(\"data:image/svg+xml;charset=utf-8,%3Csvg xmlns='http://www.w3.org/2000/svg' width='43' height='27' fill='none' viewBox='0 0 43 27'%3E%3Cpath fill='%23A15C27' d='M21.4 7.588s-2.3-.4-5.6-2.3c-3.4-1."
+      },
+      {
+        "tag": "svg-pattern",
+        "value": "url(\"data:image/svg+xml;charset=utf-8,%3Csvg xmlns='http://www.w3.org/2000/svg' width='43' height='27' fill='none' viewBox='0 0 43 27'%3E%3Cpath fill='%23A15C27' d='M21.6 19.412s2.3.4 5.6 2.3c3.4 1.9 "
+      }
+    ]
+  }
+}

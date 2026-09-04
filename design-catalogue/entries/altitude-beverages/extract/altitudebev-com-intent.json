@@ -1,0 +1,307 @@
+{
+  "pageIntent": {
+    "type": "landing",
+    "confidence": 0.45,
+    "path": "/",
+    "title": "Altitude Beverages | Premium Non-Alcoholic Drinks with Functional Ingredients",
+    "description": "Discover Altitude’s line of non-alcoholic beverages crafted with L-Theanine, Lion’s Mane, and Magnesium. Functional ingredients, and a balanced approach to meeting the moment",
+    "signals": [
+      {
+        "kind": "url",
+        "type": "landing",
+        "weight": 0.45,
+        "detail": "root-path"
+      }
+    ],
+    "alternates": [],
+    "needsSmart": true
+  },
+  "sectionRoles": {
+    "sections": [
+      {
+        "index": 0,
+        "tag": "aside",
+        "role": "sidebar",
+        "subrole": null,
+        "confidence": 0.4,
+        "heading": "talk@altitude.bev",
+        "bounds": {
+          "x": 0,
+          "y": 0,
+          "w": 1280,
+          "h": 800
+        },
+        "buttonCount": 5,
+        "cardCount": 6,
+        "slots": {
+          "heading": "talk@altitude.bev",
+          "subheadings": [
+            "Instagram",
+            "TikTok",
+            "Policies",
+            "Account"
+          ],
+          "ctaCount": 5
+        },
+        "needsSmart": true
+      },
+      {
+        "index": 1,
+        "tag": "main",
+        "role": "content",
+        "subrole": null,
+        "confidence": 0.3,
+        "heading": "talk@altitude.bev",
+        "bounds": {
+          "x": 0,
+          "y": 0,
+          "w": 1280,
+          "h": 800
+        },
+        "buttonCount": 5,
+        "cardCount": 5,
+        "slots": {
+          "heading": "talk@altitude.bev",
+          "subheadings": [
+            "Instagram",
+            "TikTok",
+            "Policies",
+            "Account"
+          ],
+          "ctaCount": 5
+        },
+        "needsSmart": true
+      },
+      {
+        "index": 2,
+        "tag": "nav",
+        "role": "nav",
+        "subrole": null,
+        "confidence": 0.9,
+        "heading": "talk@altitude.bev",
+        "bounds": {
+          "x": 0,
+          "y": 0,
+          "w": 0,
+          "h": 0
+        },
+        "buttonCount": 5,
+        "cardCount": 4,
+        "slots": {
+          "heading": "talk@altitude.bev",
+          "subheadings": [
+            "Instagram",
+            "TikTok",
+            "Policies",
+            "Account"
+          ],
+          "ctaCount": 5,
+          "lede": "ShopAboutFind Ustalk@altitude.bevInstagramTikTokPoliciesAccount"
+        },
+        "needsSmart": false
+      },
+      {
+        "index": 3,
+        "tag": "nav",
+        "role": "nav",
+        "subrole": null,
+        "confidence": 0.9,
+        "heading": "talk@altitude.bev",
+        "bounds": {
+          "x": 0,
+          "y": 0,
+          "w": 0,
+          "h": 0
+        },
+        "buttonCount": 5,
+        "cardCount": 0,
+        "slots": {
+          "heading": "talk@altitude.bev",
+          "subheadings": [
+            "Instagram",
+            "TikTok",
+            "Policies",
+            "Account"
+          ],
+          "ctaCount": 5,
+          "lede": "talk@altitude.bevInstagramTikTokPoliciesAccount"
+        },
+        "needsSmart": false
+      },
+      {
+        "index": 4,
+        "tag": "header",
+        "role": "nav",
+        "subrole": null,
+        "confidence": 0.4,
+        "heading": "Menu",
+        "bounds": {
+          "x": 16,
+          "y": 16,
+          "w": 1248,
+          "h": 60
+        },
+        "buttonCount": 5,
+        "cardCount": 7,
+        "slots": {
+          "heading": "Menu",
+          "ctaCount": 5,
+          "lede": "SHOP\nABOUT\nFIND US\nCART (0)"
+        },
+        "needsSmart": true
+      },
+      {
+        "index": 5,
+        "tag": "nav",
+        "role": "nav",
+        "subrole": null,
+        "confidence": 0.9,
+        "heading": null,
+        "bounds": {
+          "x": 425,
+          "y": 16,
+          "w": 430,
+          "h": 60
+        },
+        "buttonCount": 0,
+        "cardCount": 4,
+        "slots": {
+          "lede": "SHOP\nABOUT\nFIND US\nCART (0)"
+        },
+        "needsSmart": false
+      },
+      {
+        "index": 6,
+        "tag": "nav",
+        "role": "nav",
+        "subrole": null,
+        "confidence": 0.9,
+        "heading": "Menu",
+        "bounds": {
+          "x": 0,
+          "y": 0,
+          "w": 0,
+          "h": 0
+        },
+        "buttonCount": 2,
+        "cardCount": 0,
+        "slots": {
+          "heading": "Menu",
+          "ctaCount": 2,
+          "lede": "MenuCart (0)"
+        },
+        "needsSmart": false
+      },
+      {
+        "index": 7,
+        "tag": "main",
+        "role": "content",
+        "subrole": null,
+        "confidence": 0.3,
+        "heading": "An Invigorated Classic Prickly Pear Margarita",
+        "bounds": {
+          "x": 0,
+          "y": 0,
+          "w": 1280,
+          "h": 6778.203125
+        },
+        "buttonCount": 13,
+        "cardCount": 28,
+        "slots": {
+          "heading": "An Invigorated Classic Prickly Pear Margarita",
+          "subheadings": [
+            "Low-Key Sophisticated Rosemary Spritz",
+            "Just Bold Enough Lili'Koi Mai Tai",
+            "",
+            "Low-Key Sophisticated Rosemary Spritz"
+          ],
+          "ctaCount": 13,
+          "lede": "NON-ALCOHOLIC PAIRINGS FOR PERFECT VIBES"
+        },
+        "needsSmart": true
+      },
+      {
+        "index": 8,
+        "tag": "footer",
+        "role": "footer",
+        "subrole": null,
+        "confidence": 0.95,
+        "heading": null,
+        "bounds": {
+          "x": 0,
+          "y": 5978.203125,
+          "w": 1280,
+          "h": 800
+        },
+        "buttonCount": 7,
+        "cardCount": 0,
+        "slots": {
+          "ctaCount": 7,
+          "lede": "TALK(AT)ALTITUDE.BEV\nINSTAGRAM\nTIKTOK\nPOLICIES\nACCOUNT"
+        },
+        "needsSmart": false
+      },
+      {
+        "index": 9,
+        "tag": "nav",
+        "role": "nav",
+        "subrole": null,
+        "confidence": 0.9,
+        "heading": null,
+        "bounds": {
+          "x": 16,
+          "y": 6506.6875,
+          "w": 495.84375,
+          "h": 48
+        },
+        "buttonCount": 5,
+        "cardCount": 0,
+        "slots": {
+          "ctaCount": 5,
+          "lede": "TALK(AT)ALTITUDE.BEV\nINSTAGRAM\nTIKTOK"
+        },
+        "needsSmart": false
+      },
+      {
+        "index": 10,
+        "tag": "nav",
+        "role": "nav",
+        "subrole": null,
+        "confidence": 0.9,
+        "heading": null,
+        "bounds": {
+          "x": 1010.34375,
+          "y": 6506.6875,
+          "w": 253.65625,
+          "h": 48
+        },
+        "buttonCount": 2,
+        "cardCount": 0,
+        "slots": {
+          "ctaCount": 2,
+          "lede": "POLICIES\nACCOUNT"
+        },
+        "needsSmart": false
+      }
+    ],
+    "counts": {
+      "sidebar": 1,
+      "content": 2,
+      "nav": 7,
+      "footer": 1
+    },
+    "readingOrder": [
+      "sidebar",
+      "content",
+      "nav",
+      "nav",
+      "nav",
+      "content",
+      "nav",
+      "nav",
+      "footer",
+      "nav",
+      "nav"
+    ]
+  }
+}

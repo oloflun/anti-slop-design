@@ -1,0 +1,421 @@
+{
+  "pageIntent": {
+    "type": "landing",
+    "confidence": 0.51,
+    "path": "/",
+    "title": "INDOEK – Indoek Shop",
+    "description": "Celebrating Coastal Creative Culture",
+    "signals": [
+      {
+        "kind": "dom",
+        "type": "pricing",
+        "weight": 0.6,
+        "detail": "currency+card-grid"
+      },
+      {
+        "kind": "dom",
+        "type": "blog-post",
+        "weight": 0.35,
+        "detail": "byline|min-read"
+      },
+      {
+        "kind": "url",
+        "type": "landing",
+        "weight": 0.45,
+        "detail": "root-path"
+      },
+      {
+        "kind": "shape",
+        "type": "landing",
+        "weight": 0.3,
+        "detail": "features+hero+footer"
+      }
+    ],
+    "alternates": [
+      {
+        "type": "pricing",
+        "score": 0.6
+      },
+      {
+        "type": "blog-post",
+        "score": 0.35
+      }
+    ],
+    "needsSmart": true
+  },
+  "sectionRoles": {
+    "sections": [
+      {
+        "index": 0,
+        "tag": "header",
+        "role": "nav",
+        "subrole": null,
+        "confidence": 0.4,
+        "heading": "Indoek",
+        "bounds": {
+          "x": 0,
+          "y": 0,
+          "w": 1280,
+          "h": 100.59375
+        },
+        "buttonCount": 7,
+        "cardCount": 17,
+        "slots": {
+          "heading": "Indoek",
+          "ctaCount": 7,
+          "lede": "Indoek\nGALLERY\nSHOP\nLOG\nINFO\nView Cart\nCurrent Exhibit\nPast Exhibits\nEvents\nArtworks\nPrints\nBooks\nTees & Tops\nHats\nCollabs\nShop All"
+        },
+        "needsSmart": true
+      },
+      {
+        "index": 1,
+        "tag": "main",
+        "role": "pricing-table",
+        "subrole": null,
+        "confidence": 0.9,
+        "heading": null,
+        "bounds": {
+          "x": 0,
+          "y": 0,
+          "w": 1280,
+          "h": 10061.421875
+        },
+        "buttonCount": 4,
+        "cardCount": 58,
+        "slots": {
+          "ctaCount": 4,
+          "lede": "CELEBRATING COASTAL CREATIVE CULTURE"
+        },
+        "needsSmart": false
+      },
+      {
+        "index": 2,
+        "tag": "section",
+        "role": "content",
+        "subrole": null,
+        "confidence": 0.3,
+        "heading": null,
+        "bounds": {
+          "x": 0,
+          "y": 101,
+          "w": 1280,
+          "h": 0
+        },
+        "buttonCount": 0,
+        "cardCount": 0,
+        "slots": {},
+        "needsSmart": true
+      },
+      {
+        "index": 3,
+        "tag": "section",
+        "role": "hero",
+        "subrole": null,
+        "confidence": 0.85,
+        "heading": null,
+        "bounds": {
+          "x": 0,
+          "y": 101,
+          "w": 1280,
+          "h": 1200
+        },
+        "buttonCount": 0,
+        "cardCount": 1,
+        "slots": {
+          "lede": "CELEBRATING COASTAL CREATIVE CULTURE"
+        },
+        "needsSmart": false
+      },
+      {
+        "index": 4,
+        "tag": "section",
+        "role": "pricing-table",
+        "subrole": null,
+        "confidence": 0.9,
+        "heading": null,
+        "bounds": {
+          "x": 0,
+          "y": 1301,
+          "w": 1280,
+          "h": 749.65625
+        },
+        "buttonCount": 0,
+        "cardCount": 3,
+        "slots": {
+          "lede": "View Surf Shacks Vol. 3"
+        },
+        "needsSmart": false
+      },
+      {
+        "index": 5,
+        "tag": "section",
+        "role": "pricing-table",
+        "subrole": null,
+        "confidence": 0.9,
+        "heading": null,
+        "bounds": {
+          "x": 0,
+          "y": 2050.65625,
+          "w": 1280,
+          "h": 299.25
+        },
+        "buttonCount": 0,
+        "cardCount": 6,
+        "slots": {
+          "lede": "View Surf Shacks Vol. 2"
+        },
+        "needsSmart": false
+      },
+      {
+        "index": 6,
+        "tag": "section",
+        "role": "pricing-table",
+        "subrole": null,
+        "confidence": 0.9,
+        "heading": null,
+        "bounds": {
+          "x": 0,
+          "y": 2349.90625,
+          "w": 1280,
+          "h": 746.65625
+        },
+        "buttonCount": 0,
+        "cardCount": 3,
+        "slots": {
+          "lede": "View Indoek Gallery Zine"
+        },
+        "needsSmart": false
+      },
+      {
+        "index": 7,
+        "tag": "section",
+        "role": "gallery",
+        "subrole": null,
+        "confidence": 0.7,
+        "heading": null,
+        "bounds": {
+          "x": 0,
+          "y": 3096.5625,
+          "w": 1280,
+          "h": 971
+        },
+        "buttonCount": 2,
+        "cardCount": 0,
+        "slots": {
+          "ctaCount": 2,
+          "lede": "Exhibit 010 — \"Drawing Lines\" by Russell Crotty\nLearn more\nExhibit 013 — \"Wavelengths\" by Ned Evans + Jacob Ells\nLearn more\nExhibit 011 — \"Between Summers\" by Bailey Elder + Cheryly Humphreys\nLearn more\nPast Exhibits"
+        },
+        "needsSmart": false
+      },
+      {
+        "index": 8,
+        "tag": "section",
+        "role": "pricing-table",
+        "subrole": null,
+        "confidence": 0.9,
+        "heading": null,
+        "bounds": {
+          "x": 0,
+          "y": 4067.5625,
+          "w": 1280,
+          "h": 749.65625
+        },
+        "buttonCount": 0,
+        "cardCount": 3,
+        "slots": {
+          "lede": "View On Surfing Book"
+        },
+        "needsSmart": false
+      },
+      {
+        "index": 9,
+        "tag": "section",
+        "role": "gallery",
+        "subrole": null,
+        "confidence": 0.7,
+        "heading": null,
+        "bounds": {
+          "x": 0,
+          "y": 4817.21875,
+          "w": 1280,
+          "h": 931
+        },
+        "buttonCount": 2,
+        "cardCount": 0,
+        "slots": {
+          "ctaCount": 2,
+          "lede": "Exhibit 006 — 3 to 4\nLearn more\nExhibit 008 — Jim Ganzer \"Life Lived\"\nLearn more\nExhibit 009 — DJ Javier \"Sari Sari\"\nLearn more\nPast Exhibits"
+        },
+        "needsSmart": false
+      },
+      {
+        "index": 10,
+        "tag": "section",
+        "role": "pricing-table",
+        "subrole": null,
+        "confidence": 0.9,
+        "heading": null,
+        "bounds": {
+          "x": 0,
+          "y": 5748.21875,
+          "w": 1280,
+          "h": 641.328125
+        },
+        "buttonCount": 0,
+        "cardCount": 9,
+        "slots": {
+          "lede": "View Jim Ganzer \"Life Lived\"\nJim Ganzer \"Life Lived\"\nby Indoek"
+        },
+        "needsSmart": false
+      },
+      {
+        "index": 11,
+        "tag": "section",
+        "role": "pricing-table",
+        "subrole": null,
+        "confidence": 0.9,
+        "heading": null,
+        "bounds": {
+          "x": 0,
+          "y": 6389.546875,
+          "w": 1280,
+          "h": 638.328125
+        },
+        "buttonCount": 0,
+        "cardCount": 9,
+        "slots": {
+          "lede": "View Between Summers Print — Bailey Elder\nBetween Summers Print — Bailey Elder"
+        },
+        "needsSmart": false
+      },
+      {
+        "index": 12,
+        "tag": "section",
+        "role": "pricing-table",
+        "subrole": null,
+        "confidence": 0.9,
+        "heading": null,
+        "bounds": {
+          "x": 0,
+          "y": 7027.875,
+          "w": 1280,
+          "h": 638.3125
+        },
+        "buttonCount": 0,
+        "cardCount": 9,
+        "slots": {
+          "lede": "View \"Detritus\" Print — Jim Olarte + Cooper Root\n\"Detritus\" Print — Jim Olarte + Cooper Root"
+        },
+        "needsSmart": false
+      },
+      {
+        "index": 13,
+        "tag": "section",
+        "role": "pricing-table",
+        "subrole": null,
+        "confidence": 0.9,
+        "heading": null,
+        "bounds": {
+          "x": 0,
+          "y": 7666.1875,
+          "w": 1280,
+          "h": 638.328125
+        },
+        "buttonCount": 0,
+        "cardCount": 9,
+        "slots": {
+          "lede": "View Blue Drawing Lines Print — Russell Crotty\nBlue Drawing Lines Print — Russell Crotty"
+        },
+        "needsSmart": false
+      },
+      {
+        "index": 14,
+        "tag": "section",
+        "role": "pricing-table",
+        "subrole": null,
+        "confidence": 0.9,
+        "heading": null,
+        "bounds": {
+          "x": 0,
+          "y": 8304.515625,
+          "w": 1280,
+          "h": 299.25
+        },
+        "buttonCount": 0,
+        "cardCount": 6,
+        "slots": {
+          "lede": "View Current Hat"
+        },
+        "needsSmart": false
+      },
+      {
+        "index": 15,
+        "tag": "section",
+        "role": "content",
+        "subrole": null,
+        "confidence": 0.3,
+        "heading": null,
+        "bounds": {
+          "x": 0,
+          "y": 8603.765625,
+          "w": 1280,
+          "h": 1457.65625
+        },
+        "buttonCount": 0,
+        "cardCount": 0,
+        "slots": {
+          "lede": "About Us"
+        },
+        "needsSmart": true
+      },
+      {
+        "index": 16,
+        "tag": "footer",
+        "role": "footer",
+        "subrole": null,
+        "confidence": 0.95,
+        "heading": null,
+        "bounds": {
+          "x": 0,
+          "y": 10061.421875,
+          "w": 1280,
+          "h": 518.171875
+        },
+        "buttonCount": 1,
+        "cardCount": 2,
+        "slots": {
+          "ctaCount": 1,
+          "lede": "Indoek\n83 S. Palm St.\nB-1\nVentura, CA 93001"
+        },
+        "needsSmart": false
+      }
+    ],
+    "counts": {
+      "nav": 1,
+      "pricing-table": 10,
+      "content": 2,
+      "hero": 1,
+      "gallery": 2,
+      "footer": 1
+    },
+    "readingOrder": [
+      "nav",
+      "pricing-table",
+      "content",
+      "hero",
+      "pricing-table",
+      "pricing-table",
+      "pricing-table",
+      "gallery",
+      "pricing-table",
+      "gallery",
+      "pricing-table",
+      "pricing-table",
+      "pricing-table",
+      "pricing-table",
+      "pricing-table",
+      "content",
+      "footer"
+    ]
+  }
+}

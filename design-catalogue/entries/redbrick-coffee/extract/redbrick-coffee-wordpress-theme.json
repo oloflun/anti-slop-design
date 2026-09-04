@@ -1,0 +1,172 @@
+{
+  "$schema": "https://schemas.wp.org/trunk/theme.json",
+  "version": 3,
+  "settings": {
+    "color": {
+      "palette": [
+        {
+          "slug": "primary",
+          "color": "#e82c2a",
+          "name": "Primary"
+        },
+        {
+          "slug": "neutral-1",
+          "color": "#000000",
+          "name": "Neutral 1"
+        },
+        {
+          "slug": "neutral-2",
+          "color": "#212529",
+          "name": "Neutral 2"
+        },
+        {
+          "slug": "neutral-3",
+          "color": "#f2f2f2",
+          "name": "Neutral 3"
+        },
+        {
+          "slug": "neutral-4",
+          "color": "#ffffff",
+          "name": "Neutral 4"
+        },
+        {
+          "slug": "neutral-5",
+          "color": "#121212",
+          "name": "Neutral 5"
+        },
+        {
+          "slug": "bg-ffffff",
+          "color": "#ffffff",
+          "name": "Background #ffffff"
+        },
+        {
+          "slug": "bg-f2f2f2",
+          "color": "#f2f2f2",
+          "name": "Background #f2f2f2"
+        },
+        {
+          "slug": "bg-e82c2a",
+          "color": "#e82c2a",
+          "name": "Background #e82c2a"
+        }
+      ],
+      "gradients": []
+    },
+    "typography": {
+      "fontFamilies": [
+        {
+          "fontFamily": "Surt",
+          "slug": "surt",
+          "name": "Surt"
+        },
+        {
+          "fontFamily": "Times New Roman",
+          "slug": "times-new-roman",
+          "name": "Times New Roman"
+        },
+        {
+          "fontFamily": "Editorial Old",
+          "slug": "editorial-old",
+          "name": "Editorial Old"
+        },
+        {
+          "fontFamily": "GTStandard-M",
+          "slug": "gtstandard-m",
+          "name": "GTStandard-M"
+        }
+      ],
+      "fontSizes": [
+        {
+          "size": "150px",
+          "slug": "size-150",
+          "name": "150px"
+        },
+        {
+          "size": "105px",
+          "slug": "size-105",
+          "name": "105px"
+        },
+        {
+          "size": "100px",
+          "slug": "size-100",
+          "name": "100px"
+        },
+        {
+          "size": "60px",
+          "slug": "size-60",
+          "name": "60px"
+        },
+        {
+          "size": "35px",
+          "slug": "size-35",
+          "name": "35px"
+        },
+        {
+          "size": "30px",
+          "slug": "size-30",
+          "name": "30px"
+        },
+        {
+          "size": "20px",
+          "slug": "size-20",
+          "name": "20px"
+        },
+        {
+          "size": "15px",
+          "slug": "size-15",
+          "name": "15px"
+        }
+      ]
+    },
+    "spacing": {
+      "spacingSizes": [
+        {
+          "size": "1px",
+          "slug": "spacing-1",
+          "name": "1px"
+        },
+        {
+          "size": "45px",
+          "slug": "spacing-45",
+          "name": "45px"
+        },
+        {
+          "size": "64px",
+          "slug": "spacing-64",
+          "name": "64px"
+        },
+        {
+          "size": "105px",
+          "slug": "spacing-105",
+          "name": "105px"
+        },
+        {
+          "size": "210px",
+          "slug": "spacing-210",
+          "name": "210px"
+        },
+        {
+          "size": "420px",
+          "slug": "spacing-420",
+          "name": "420px"
+        }
+      ]
+    },
+    "layout": {
+      "contentSize": "100%",
+      "wideSize": "1400px"
+    }
+  },
+  "styles": {
+    "color": {
+      "background": "#ffffff",
+      "text": "#000000"
+    },
+    "typography": {
+      "fontSize": "20px",
+      "lineHeight": "24px",
+      "fontFamily": "Surt"
+    },
+    "spacing": {}
+  }
+}

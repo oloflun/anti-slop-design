@@ -1,0 +1,382 @@
+{
+  "pageIntent": {
+    "type": "landing",
+    "confidence": 0.61,
+    "path": "/",
+    "title": "T.D-Lovera",
+    "description": "Lovera is a bold, all-in-one Framer template for creative agencies—ideal for branding, copywriting, web design, and more. Packed with features and flexible sections, it’s built to drive results, boost",
+    "signals": [
+      {
+        "kind": "dom",
+        "type": "blog-post",
+        "weight": 0.35,
+        "detail": "byline|min-read"
+      },
+      {
+        "kind": "url",
+        "type": "landing",
+        "weight": 0.45,
+        "detail": "root-path"
+      },
+      {
+        "kind": "shape",
+        "type": "landing",
+        "weight": 0.3,
+        "detail": "hero+features+footer"
+      }
+    ],
+    "alternates": [
+      {
+        "type": "blog-post",
+        "score": 0.35
+      }
+    ],
+    "needsSmart": false
+  },
+  "sectionRoles": {
+    "sections": [
+      {
+        "index": 0,
+        "tag": "nav",
+        "role": "nav",
+        "subrole": null,
+        "confidence": 0.9,
+        "heading": null,
+        "bounds": {
+          "x": 40,
+          "y": 0,
+          "w": 1200,
+          "h": 68
+        },
+        "buttonCount": 0,
+        "cardCount": 0,
+        "slots": {
+          "lede": "LOVERA"
+        },
+        "needsSmart": false
+      },
+      {
+        "index": 1,
+        "tag": "section",
+        "role": "testimonial",
+        "subrole": null,
+        "confidence": 0.8,
+        "heading": "LOVERA",
+        "bounds": {
+          "x": 0,
+          "y": 0,
+          "w": 1280,
+          "h": 800
+        },
+        "buttonCount": 0,
+        "cardCount": 0,
+        "slots": {
+          "heading": "LOVERA",
+          "subheadings": [
+            "Creative studio\nfor founders"
+          ]
+        },
+        "needsSmart": false
+      },
+      {
+        "index": 2,
+        "tag": "section",
+        "role": "testimonial",
+        "subrole": null,
+        "confidence": 0.8,
+        "heading": "We help brands grow with strategic design that’s thoughtful, visually bold, and built to make an impression.",
+        "bounds": {
+          "x": 0,
+          "y": 800,
+          "w": 1280,
+          "h": 1801.203125
+        },
+        "buttonCount": 0,
+        "cardCount": 0,
+        "slots": {
+          "heading": "We help brands grow with strategic design that’s thoughtful, visually bold, and built to make an impression.",
+          "subheadings": [
+            "Thoughtful design that moves the needle",
+            "$4M raised: the strategy behind Tera’s growth",
+            "A streamlined process, executed with methodical care."
+          ],
+          "lede": "Selected clients"
+        },
+        "needsSmart": false
+      },
+      {
+        "index": 3,
+        "tag": "section",
+        "role": "content",
+        "subrole": null,
+        "confidence": 0.3,
+        "heading": "Latest\nprojects",
+        "bounds": {
+          "x": 0,
+          "y": 2601.203125,
+          "w": 1280,
+          "h": 3403.609375
+        },
+        "buttonCount": 0,
+        "cardCount": 0,
+        "slots": {
+          "heading": "Latest\nprojects",
+          "subheadings": [
+            "Super pro",
+            "Formula vintage",
+            "Fringe sports",
+            "Sprey zest"
+          ]
+        },
+        "needsSmart": true
+      },
+      {
+        "index": 4,
+        "tag": "section",
+        "role": "testimonial",
+        "subrole": null,
+        "confidence": 0.8,
+        "heading": "Services",
+        "bounds": {
+          "x": 0,
+          "y": 6004.8125,
+          "w": 1280,
+          "h": 1477
+        },
+        "buttonCount": 0,
+        "cardCount": 0,
+        "slots": {
+          "heading": "Services",
+          "subheadings": [
+            "Our services are built to help founders grow smarter, move faster, and build with clarity.",
+            "Product design",
+            "⊹",
+            "⊹"
+          ],
+          "lede": "Services\nOur services are built to help founders grow smarter, move faster, and build with clarity."
+        },
+        "needsSmart": false
+      },
+      {
+        "index": 5,
+        "tag": "section",
+        "role": "testimonial",
+        "subrole": null,
+        "confidence": 0.8,
+        "heading": "Flexible\nplans",
+        "bounds": {
+          "x": 0,
+          "y": 7481.8125,
+          "w": 1280,
+          "h": 1445.125
+        },
+        "buttonCount": 0,
+        "cardCount": 0,
+        "slots": {
+          "heading": "Flexible\nplans",
+          "subheadings": [
+            "Monthly retainer",
+            "⊹",
+            "⊹",
+            "⊹"
+          ]
+        },
+        "needsSmart": false
+      },
+      {
+        "index": 6,
+        "tag": "section",
+        "role": "testimonial",
+        "subrole": null,
+        "confidence": 0.8,
+        "heading": "Clients",
+        "bounds": {
+          "x": 0,
+          "y": 8926.9375,
+          "w": 1280,
+          "h": 840.234375
+        },
+        "buttonCount": 0,
+        "cardCount": 0,
+        "slots": {
+          "heading": "Clients",
+          "subheadings": [
+            "The closest thing to having an in-house design team without actually hiring one",
+            "Finally found a partner who understands both brand and business",
+            "Fast turnaround times without compromising on craft or depth",
+            "A process that’s as thoughtful as the final product"
+          ]
+        },
+        "needsSmart": false
+      },
+      {
+        "index": 7,
+        "tag": "section",
+        "role": "faq",
+        "subrole": null,
+        "confidence": 0.85,
+        "heading": "FAQ",
+        "bounds": {
+          "x": 0,
+          "y": 9767.171875,
+          "w": 1280,
+          "h": 632.96875
+        },
+        "buttonCount": 0,
+        "cardCount": 0,
+        "slots": {
+          "heading": "FAQ"
+        },
+        "needsSmart": false
+      },
+      {
+        "index": 8,
+        "tag": "section",
+        "role": "testimonial",
+        "subrole": null,
+        "confidence": 0.8,
+        "heading": "Process",
+        "bounds": {
+          "x": 0,
+          "y": 10400.140625,
+          "w": 1280,
+          "h": 678.40625
+        },
+        "buttonCount": 0,
+        "cardCount": 0,
+        "slots": {
+          "heading": "Process",
+          "subheadings": [
+            "Discovery",
+            "Concept",
+            "Execution",
+            "Launch"
+          ],
+          "lede": "0—1"
+        },
+        "needsSmart": false
+      },
+      {
+        "index": 9,
+        "tag": "section",
+        "role": "testimonial",
+        "subrole": null,
+        "confidence": 0.8,
+        "heading": "Stats\n& facts",
+        "bounds": {
+          "x": 0,
+          "y": 11078.546875,
+          "w": 1280,
+          "h": 2095.40625
+        },
+        "buttonCount": 0,
+        "cardCount": 3,
+        "slots": {
+          "heading": "Stats\n& facts",
+          "subheadings": [
+            "Years of experience",
+            "Happy customers",
+            "Completed projects",
+            "Awards & honor's"
+          ]
+        },
+        "needsSmart": false
+      },
+      {
+        "index": 10,
+        "tag": "section",
+        "role": "content",
+        "subrole": null,
+        "confidence": 0.3,
+        "heading": "Latest\nnews",
+        "bounds": {
+          "x": 0,
+          "y": 13173.953125,
+          "w": 1280,
+          "h": 1442.109375
+        },
+        "buttonCount": 0,
+        "cardCount": 0,
+        "slots": {
+          "heading": "Latest\nnews",
+          "subheadings": [
+            "Launching a bold identity for a leading company",
+            "Maximalism in e-commerce",
+            "Speaking at OFFF Barcelona 2025",
+            "⊹"
+          ]
+        },
+        "needsSmart": true
+      },
+      {
+        "index": 11,
+        "tag": "section",
+        "role": "content",
+        "subrole": null,
+        "confidence": 0.3,
+        "heading": "Let's talk shop",
+        "bounds": {
+          "x": 0,
+          "y": 14616.0625,
+          "w": 1280,
+          "h": 800
+        },
+        "buttonCount": 1,
+        "cardCount": 0,
+        "slots": {
+          "heading": "Let's talk shop",
+          "subheadings": [
+            "hello@elovera.studio"
+          ],
+          "ctaCount": 1,
+          "lede": "LOVERA"
+        },
+        "needsSmart": true
+      },
+      {
+        "index": 12,
+        "tag": "footer",
+        "role": "footer",
+        "subrole": null,
+        "confidence": 0.95,
+        "heading": "Subscribe",
+        "bounds": {
+          "x": 0,
+          "y": 15416.0625,
+          "w": 1280,
+          "h": 1125.625
+        },
+        "buttonCount": 1,
+        "cardCount": 3,
+        "slots": {
+          "heading": "Subscribe",
+          "ctaCount": 1,
+          "lede": "Links"
+        },
+        "needsSmart": false
+      }
+    ],
+    "counts": {
+      "nav": 1,
+      "testimonial": 7,
+      "content": 3,
+      "faq": 1,
+      "footer": 1
+    },
+    "readingOrder": [
+      "nav",
+      "testimonial",
+      "testimonial",
+      "content",
+      "testimonial",
+      "testimonial",
+      "testimonial",
+      "faq",
+      "testimonial",
+      "testimonial",
+      "content",
+      "content",
+      "footer"
+    ]
+  }
+}

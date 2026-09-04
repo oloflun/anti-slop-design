@@ -1,0 +1,167 @@
+{
+  "$schema": "https://schemas.wp.org/trunk/theme.json",
+  "version": 3,
+  "settings": {
+    "color": {
+      "palette": [
+        {
+          "slug": "primary",
+          "color": "#ffca50",
+          "name": "Primary"
+        },
+        {
+          "slug": "secondary",
+          "color": "#3b2722",
+          "name": "Secondary"
+        },
+        {
+          "slug": "accent",
+          "color": "#a0342a",
+          "name": "Accent"
+        },
+        {
+          "slug": "neutral-1",
+          "color": "#000000",
+          "name": "Neutral 1"
+        },
+        {
+          "slug": "neutral-2",
+          "color": "#6fa162",
+          "name": "Neutral 2"
+        },
+        {
+          "slug": "bg-f2ebd0",
+          "color": "#f2ebd0",
+          "name": "Background #f2ebd0"
+        },
+        {
+          "slug": "bg-ffca50",
+          "color": "#ffca50",
+          "name": "Background #ffca50"
+        },
+        {
+          "slug": "bg-a0342a",
+          "color": "#a0342a",
+          "name": "Background #a0342a"
+        }
+      ],
+      "gradients": []
+    },
+    "typography": {
+      "fontFamilies": [
+        {
+          "fontFamily": "Times New Roman",
+          "slug": "times-new-roman",
+          "name": "Times New Roman"
+        },
+        {
+          "fontFamily": "TayBirdie-Regular",
+          "slug": "taybirdie-regular",
+          "name": "TayBirdie-Regular"
+        },
+        {
+          "fontFamily": "TayMakawao-Regular",
+          "slug": "taymakawao-regular",
+          "name": "TayMakawao-Regular"
+        },
+        {
+          "fontFamily": "Arial",
+          "slug": "arial",
+          "name": "Arial"
+        },
+        {
+          "fontFamily": "barkmanhoney",
+          "slug": "barkmanhoney",
+          "name": "barkmanhoney"
+        },
+        {
+          "fontFamily": "AnonymousPro-Regular",
+          "slug": "anonymouspro-regular",
+          "name": "AnonymousPro-Regular"
+        }
+      ],
+      "fontSizes": [
+        {
+          "size": "210px",
+          "slug": "size-210",
+          "name": "210px"
+        },
+        {
+          "size": "185px",
+          "slug": "size-185",
+          "name": "185px"
+        },
+        {
+          "size": "112.667px",
+          "slug": "size-112.667",
+          "name": "112.667px"
+        },
+        {
+          "size": "76.6667px",
+          "slug": "size-76.6667",
+          "name": "76.6667px"
+        },
+        {
+          "size": "65px",
+          "slug": "size-65",
+          "name": "65px"
+        },
+        {
+          "size": "25.3333px",
+          "slug": "size-25.3333",
+          "name": "25.3333px"
+        },
+        {
+          "size": "24px",
+          "slug": "size-24",
+          "name": "24px"
+        },
+        {
+          "size": "18.6667px",
+          "slug": "size-18.6667",
+          "name": "18.6667px"
+        }
+      ]
+    },
+    "spacing": {
+      "spacingSizes": [
+        {
+          "size": "6px",
+          "slug": "spacing-6",
+          "name": "6px"
+        },
+        {
+          "size": "60px",
+          "slug": "spacing-60",
+          "name": "60px"
+        },
+        {
+          "size": "80px",
+          "slug": "spacing-80",
+          "name": "80px"
+        },
+        {
+          "size": "218px",
+          "slug": "spacing-218",
+          "name": "218px"
+        }
+      ]
+    },
+    "layout": {
+      "contentSize": "1000px",
+      "wideSize": "1400px"
+    }
+  },
+  "styles": {
+    "color": {
+      "background": "#f2ebd0",
+      "text": "#000000"
+    },
+    "typography": {
+      "fontSize": "13.3333px",
+      "lineHeight": "16px",
+      "fontFamily": "Times New Roman"
+    },
+    "spacing": {}
+  }
+}

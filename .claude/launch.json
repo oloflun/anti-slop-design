@@ -12,17 +12,21 @@
       "port": 3090
     },
     {
-      "name": "design-catalog",
-      "runtimeExecutable": "C:/Users/Anton L/design-catalog/dev.cmd",
-      "runtimeArgs": [],
+      "name": "catalogue",
+      "runtimeExecutable": "python",
+      "runtimeArgs": [
+        "-m",
+        "http.server",
+        "4610"
+      ],
       "port": 4610
     },
     {
-      "name": "shotgun-board",
+      "name": "alunix-board",
       "runtimeExecutable": "python",
       "runtimeArgs": [
         "C:/Users/Anton L/.agents/skills/design/scripts/board.py",
-        "tests/ab/07-shotgun",
+        "tests/alunix-concepts",
         "--port",
         "4620"
       ],

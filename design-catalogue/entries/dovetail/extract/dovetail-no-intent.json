@@ -1,0 +1,231 @@
+{
+  "pageIntent": {
+    "type": "landing",
+    "confidence": 0.29,
+    "path": "/",
+    "title": "Dovetail",
+    "description": "We invest in tech-enabled companies, and place them on the path to sustainable success",
+    "signals": [
+      {
+        "kind": "dom",
+        "type": "blog-post",
+        "weight": 0.35,
+        "detail": "byline|min-read"
+      },
+      {
+        "kind": "dom",
+        "type": "legal",
+        "weight": 0.4
+      },
+      {
+        "kind": "url",
+        "type": "landing",
+        "weight": 0.45,
+        "detail": "root-path"
+      }
+    ],
+    "alternates": [
+      {
+        "type": "legal",
+        "score": 0.4
+      },
+      {
+        "type": "blog-post",
+        "score": 0.35
+      }
+    ],
+    "needsSmart": true
+  },
+  "sectionRoles": {
+    "sections": [
+      {
+        "index": 0,
+        "tag": "main",
+        "role": "content",
+        "subrole": null,
+        "confidence": 0.3,
+        "heading": "Dovetail",
+        "bounds": {
+          "x": 0,
+          "y": 0,
+          "w": 1280,
+          "h": 4339.1875
+        },
+        "buttonCount": 3,
+        "cardCount": 13,
+        "slots": {
+          "heading": "Dovetail",
+          "subheadings": [
+            "About us",
+            "Our portfolio",
+            "Our investment focus",
+            "Our team"
+          ],
+          "ctaCount": 3,
+          "lede": "Dovetail\nHomepage\nAbout us\nPortfolio\nHomepage"
+        },
+        "needsSmart": true
+      },
+      {
+        "index": 1,
+        "tag": "header",
+        "role": "nav",
+        "subrole": null,
+        "confidence": 0.4,
+        "heading": "Dovetail",
+        "bounds": {
+          "x": 0,
+          "y": 0,
+          "w": 1280,
+          "h": 171
+        },
+        "buttonCount": 1,
+        "cardCount": 5,
+        "slots": {
+          "heading": "Dovetail",
+          "ctaCount": 1,
+          "lede": "Dovetail\nHomepage\nAbout us\nPortfolio\nHomepage"
+        },
+        "needsSmart": true
+      },
+      {
+        "index": 2,
+        "tag": "nav",
+        "role": "nav",
+        "subrole": null,
+        "confidence": 0.9,
+        "heading": null,
+        "bounds": {
+          "x": 737.859375,
+          "y": 67.90625,
+          "w": 422.140625,
+          "h": 34.1875
+        },
+        "buttonCount": 0,
+        "cardCount": 4,
+        "slots": {
+          "lede": "About us\nPortfolio"
+        },
+        "needsSmart": false
+      },
+      {
+        "index": 3,
+        "tag": "section",
+        "role": "content",
+        "subrole": null,
+        "confidence": 0.3,
+        "heading": "About us",
+        "bounds": {
+          "x": 0,
+          "y": 800,
+          "w": 1280,
+          "h": 516.75
+        },
+        "buttonCount": 0,
+        "cardCount": 6,
+        "slots": {
+          "heading": "About us"
+        },
+        "needsSmart": true
+      },
+      {
+        "index": 4,
+        "tag": "section",
+        "role": "cta",
+        "subrole": null,
+        "confidence": 0.75,
+        "heading": "Our portfolio",
+        "bounds": {
+          "x": 0,
+          "y": 1428.75,
+          "w": 1280,
+          "h": 783.78125
+        },
+        "buttonCount": 2,
+        "cardCount": 0,
+        "slots": {
+          "heading": "Our portfolio",
+          "ctaCount": 2
+        },
+        "needsSmart": false
+      },
+      {
+        "index": 5,
+        "tag": "section",
+        "role": "content",
+        "subrole": null,
+        "confidence": 0.3,
+        "heading": "Our investment focus",
+        "bounds": {
+          "x": 0,
+          "y": 2260.53125,
+          "w": 1280,
+          "h": 750.6875
+        },
+        "buttonCount": 0,
+        "cardCount": 0,
+        "slots": {
+          "heading": "Our investment focus",
+          "lede": "Our investment focus\n“We are hands-on growth investors looking for companies with untapped tech potential.”\nEirik, Managing Partner at Dovetail"
+        },
+        "needsSmart": true
+      },
+      {
+        "index": 6,
+        "tag": "section",
+        "role": "content",
+        "subrole": null,
+        "confidence": 0.3,
+        "heading": "Our team",
+        "bounds": {
+          "x": 0,
+          "y": 3011.21875,
+          "w": 1280,
+          "h": 770.453125
+        },
+        "buttonCount": 0,
+        "cardCount": 0,
+        "slots": {
+          "heading": "Our team"
+        },
+        "needsSmart": true
+      },
+      {
+        "index": 7,
+        "tag": "footer",
+        "role": "footer",
+        "subrole": null,
+        "confidence": 0.95,
+        "heading": null,
+        "bounds": {
+          "x": 0,
+          "y": 426.40625,
+          "w": 1280,
+          "h": 373.59375
+        },
+        "buttonCount": 0,
+        "cardCount": 1,
+        "slots": {
+          "lede": "Trondheimsveien 135\n0570 Oslo\nhello@dovetail.no\n(+47) 41 60 38 90\nPrivacy Policy\nSustainability Disclosures\nLinkedIn"
+        },
+        "needsSmart": false
+      }
+    ],
+    "counts": {
+      "content": 4,
+      "nav": 2,
+      "cta": 1,
+      "footer": 1
+    },
+    "readingOrder": [
+      "content",
+      "nav",
+      "nav",
+      "footer",
+      "content",
+      "cta",
+      "content",
+      "content"
+    ]
+  }
+}

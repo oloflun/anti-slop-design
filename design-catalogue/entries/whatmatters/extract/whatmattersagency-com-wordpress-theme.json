@@ -1,0 +1,187 @@
+{
+  "$schema": "https://schemas.wp.org/trunk/theme.json",
+  "version": 3,
+  "settings": {
+    "color": {
+      "palette": [
+        {
+          "slug": "primary",
+          "color": "#fef073",
+          "name": "Primary"
+        },
+        {
+          "slug": "secondary",
+          "color": "#ffa23c",
+          "name": "Secondary"
+        },
+        {
+          "slug": "accent",
+          "color": "#5a92e7",
+          "name": "Accent"
+        },
+        {
+          "slug": "neutral-1",
+          "color": "#050505",
+          "name": "Neutral 1"
+        },
+        {
+          "slug": "neutral-2",
+          "color": "#ffffff",
+          "name": "Neutral 2"
+        },
+        {
+          "slug": "neutral-3",
+          "color": "#6c6b6a",
+          "name": "Neutral 3"
+        },
+        {
+          "slug": "neutral-4",
+          "color": "#312821",
+          "name": "Neutral 4"
+        },
+        {
+          "slug": "neutral-5",
+          "color": "#f7f7f1",
+          "name": "Neutral 5"
+        },
+        {
+          "slug": "bg-ffffff",
+          "color": "#ffffff",
+          "name": "Background #ffffff"
+        },
+        {
+          "slug": "bg-fef073",
+          "color": "#fef073",
+          "name": "Background #fef073"
+        },
+        {
+          "slug": "bg-312821",
+          "color": "#312821",
+          "name": "Background #312821"
+        }
+      ],
+      "gradients": []
+    },
+    "typography": {
+      "fontFamilies": [
+        {
+          "fontFamily": "Inter",
+          "slug": "inter",
+          "name": "Inter"
+        },
+        {
+          "fontFamily": "Neue Haas Display",
+          "slug": "neue-haas-display",
+          "name": "Neue Haas Display"
+        },
+        {
+          "fontFamily": "Denim Ink",
+          "slug": "denim-ink",
+          "name": "Denim Ink"
+        }
+      ],
+      "fontSizes": [
+        {
+          "size": "135.434px",
+          "slug": "size-135.434",
+          "name": "135.434px"
+        },
+        {
+          "size": "98px",
+          "slug": "size-98",
+          "name": "98px"
+        },
+        {
+          "size": "97.7152px",
+          "slug": "size-97.7152",
+          "name": "97.7152px"
+        },
+        {
+          "size": "71.4336px",
+          "slug": "size-71.4336",
+          "name": "71.4336px"
+        },
+        {
+          "size": "57.2768px",
+          "slug": "size-57.2768",
+          "name": "57.2768px"
+        },
+        {
+          "size": "40px",
+          "slug": "size-40",
+          "name": "40px"
+        },
+        {
+          "size": "30px",
+          "slug": "size-30",
+          "name": "30px"
+        },
+        {
+          "size": "24px",
+          "slug": "size-24",
+          "name": "24px"
+        }
+      ]
+    },
+    "spacing": {
+      "spacingSizes": [
+        {
+          "size": "2px",
+          "slug": "spacing-2",
+          "name": "2px"
+        },
+        {
+          "size": "12px",
+          "slug": "spacing-12",
+          "name": "12px"
+        },
+        {
+          "size": "14px",
+          "slug": "spacing-14",
+          "name": "14px"
+        },
+        {
+          "size": "24px",
+          "slug": "spacing-24",
+          "name": "24px"
+        },
+        {
+          "size": "27px",
+          "slug": "spacing-27",
+          "name": "27px"
+        },
+        {
+          "size": "31px",
+          "slug": "spacing-31",
+          "name": "31px"
+        },
+        {
+          "size": "35px",
+          "slug": "spacing-35",
+          "name": "35px"
+        },
+        {
+          "size": "39px",
+          "slug": "spacing-39",
+          "name": "39px"
+        }
+      ]
+    },
+    "layout": {
+      "contentSize": "100%",
+      "wideSize": "1400px"
+    }
+  },
+  "styles": {
+    "color": {
+      "background": "#ffffff",
+      "text": "#000000"
+    },
+    "typography": {
+      "fontSize": "30px",
+      "lineHeight": "30px",
+      "fontFamily": "Inter"
+    },
+    "spacing": {}
+  }
+}

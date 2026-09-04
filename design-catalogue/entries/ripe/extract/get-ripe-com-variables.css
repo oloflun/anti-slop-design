@@ -1,0 +1,76 @@
+:root {
+  /* Colors — Primary */
+  --color-primary: #0a1714;
+  --color-secondary: #fff7eb;
+  --color-accent: #fff8bb;
+
+  /* Colors — Neutrals */
+  --color-neutral-50: #000000;
+  --color-neutral-100: #61805b;
+  --color-neutral-200: #ffffff;
+  --color-neutral-300: #767676;
+  --color-neutral-400: #bbd0b7;
+
+  /* Colors — Backgrounds */
+  --color-bg: #efe5d4;
+  --color-bg-1: #fff7eb;
+  --color-bg-2: #0a1714;
+  --color-bg-3: #61805b;
+  --color-bg-4: #fae2cd;
+  --color-bg-5: #fff8bb;
+
+  /* Colors — Text */
+  --color-text: #000000;
+  --color-text-1: #0a1714;
+  --color-text-2: #0000ee;
+  --color-text-3: #fff7eb;
+  --color-text-4: #61805b;
+
+  /* Typography — Families */
+  --font-sans: 'Inter', sans-serif;
+  --font-heading: 'BN Nautic Grotesk Bold', sans-serif;
+  --font-body: 'Times New Roman', sans-serif;
+  --font-heading: 'SeriouslyNostalgic Condensed', sans-serif;
+
+  /* Typography — Scale */
+  --font-size-128: 128px;
+  --font-size-96: 96px;
+  --font-size-88: 88px;
+  --font-size-72: 72px;
+  --font-size-64: 64px;
+  --font-size-48: 48px;
+  --font-size-32: 32px;
+  --font-size-20: 20px;
+  --font-size-18: 18px;
+  --font-size-16: 16px;
+  --font-size-14: 14px;
+  --font-size-13: 13px;
+
+  /* Spacing */
+  --spacing-1: 1px;
+  --spacing-32: 32px;
+  --spacing-37: 37px;
+  --spacing-48: 48px;
+  --spacing-53: 53px;
+  --spacing-61: 61px;
+  --spacing-80: 80px;
+  --spacing-120: 120px;
+  --spacing-160: 160px;
+  --spacing-200: 200px;
+
+  /* Border Radius */
+  --radius-lg: 16px;
+  --radius-xl: 24px;
+  --radius-full: 32px;
+  --radius-full: 100px;
+
+  /* Original Site Variables */
+  /* — other — */
+  --one-if-corner-shape-supported: 1;
+  /* — semantic — */
+  success: [object Object];
+  warning: [object Object];
+  error: [object Object];
+  info: [object Object];
+
+}

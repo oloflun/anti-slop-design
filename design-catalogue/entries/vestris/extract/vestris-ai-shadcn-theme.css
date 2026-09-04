@@ -1,0 +1,19 @@
+/* shadcn/ui Theme — extracted from https://vestris.ai/ */
+/* Paste into your globals.css */
+
+@layer base {
+  :root {
+    --background: 46 33% 92%;
+    --foreground: 0 0% 0%;
+    --primary: 65 12% 35%;
+    --primary-foreground: 0 0% 100%;
+    --secondary: 46 33% 92%;
+    --secondary-foreground: 0 0% 0%;
+    --accent: 45 32% 85%;
+    --accent-foreground: 0 0% 0%;
+    --muted: 28 10% 62%;
+    --muted-foreground: 0 0% 0%;
+    --border: 143 15% 42%;
+    --radius: 8px;
+  }
+}

@@ -1,0 +1,359 @@
+{
+  "pageIntent": {
+    "type": "landing",
+    "confidence": 0.29,
+    "path": "/",
+    "title": "NGLM – Bringing Design to the World at Scale",
+    "description": "NGLM is building a global design powerhouse through entrepreneurial independence. Portfolio includes Nordiska Galleriet, Länna Möbler, Yllw, and more.",
+    "signals": [
+      {
+        "kind": "dom",
+        "type": "blog-post",
+        "weight": 0.35,
+        "detail": "byline|min-read"
+      },
+      {
+        "kind": "dom",
+        "type": "legal",
+        "weight": 0.4
+      },
+      {
+        "kind": "url",
+        "type": "landing",
+        "weight": 0.45,
+        "detail": "root-path"
+      }
+    ],
+    "alternates": [
+      {
+        "type": "legal",
+        "score": 0.4
+      },
+      {
+        "type": "blog-post",
+        "score": 0.35
+      }
+    ],
+    "needsSmart": true
+  },
+  "sectionRoles": {
+    "sections": [
+      {
+        "index": 0,
+        "tag": "nav",
+        "role": "nav",
+        "subrole": null,
+        "confidence": 0.9,
+        "heading": null,
+        "bounds": {
+          "x": 0,
+          "y": 0,
+          "w": 1280,
+          "h": 42
+        },
+        "buttonCount": 0,
+        "cardCount": 30,
+        "slots": {
+          "lede": "Bringing Design to\nthe World at Scale\nCompanies\nAbout\nOur Model\nTeam\nTalent\nPress\nContact"
+        },
+        "needsSmart": false
+      },
+      {
+        "index": 1,
+        "tag": "nav",
+        "role": "nav",
+        "subrole": null,
+        "confidence": 0.9,
+        "heading": null,
+        "bounds": {
+          "x": 0,
+          "y": 0,
+          "w": 0,
+          "h": 0
+        },
+        "buttonCount": 0,
+        "cardCount": 8,
+        "slots": {},
+        "needsSmart": false
+      },
+      {
+        "index": 2,
+        "tag": "nav",
+        "role": "nav",
+        "subrole": null,
+        "confidence": 0.9,
+        "heading": null,
+        "bounds": {
+          "x": 0,
+          "y": 0,
+          "w": 0,
+          "h": 0
+        },
+        "buttonCount": 0,
+        "cardCount": 5,
+        "slots": {
+          "lede": "NGLMAbout NGLMBringing design to the world at scaleWhat we doDriving growth across design brandsKey figuresPerformance across the portfolioLetter from our founderWhy we existCommitmentsCulture, creativity, timelessness"
+        },
+        "needsSmart": false
+      },
+      {
+        "index": 3,
+        "tag": "nav",
+        "role": "nav",
+        "subrole": null,
+        "confidence": 0.9,
+        "heading": null,
+        "bounds": {
+          "x": 0,
+          "y": 0,
+          "w": 0,
+          "h": 0
+        },
+        "buttonCount": 0,
+        "cardCount": 4,
+        "slots": {
+          "lede": "StrategyOur ModelInnovation across the value chainBusiness ModelA vertically integrated design powerhouseStrategic FrameworkEntrepreneurial independence — collective strengthTalent at our CoreA diverse team united by shared ambition"
+        },
+        "needsSmart": false
+      },
+      {
+        "index": 4,
+        "tag": "nav",
+        "role": "nav",
+        "subrole": null,
+        "confidence": 0.9,
+        "heading": null,
+        "bounds": {
+          "x": 0,
+          "y": 0,
+          "w": 0,
+          "h": 0
+        },
+        "buttonCount": 0,
+        "cardCount": 3,
+        "slots": {
+          "lede": "PressOverview of NGLM newsPress ReleasesLatest from the groupPress KitDownloadable resources"
+        },
+        "needsSmart": false
+      },
+      {
+        "index": 5,
+        "tag": "section",
+        "role": "testimonial",
+        "subrole": null,
+        "confidence": 0.8,
+        "heading": "BUILDING THE NEXT GENERATION OF DESIGN COMPANIES",
+        "bounds": {
+          "x": 0,
+          "y": 0,
+          "w": 1280,
+          "h": 800
+        },
+        "buttonCount": 1,
+        "cardCount": 0,
+        "slots": {
+          "heading": "BUILDING THE NEXT GENERATION OF DESIGN COMPANIES",
+          "ctaCount": 1
+        },
+        "needsSmart": false
+      },
+      {
+        "index": 6,
+        "tag": "section",
+        "role": "testimonial",
+        "subrole": null,
+        "confidence": 0.8,
+        "heading": "Nordiska Galleriet",
+        "bounds": {
+          "x": 0,
+          "y": 800,
+          "w": 1280,
+          "h": 800
+        },
+        "buttonCount": 7,
+        "cardCount": 8,
+        "slots": {
+          "heading": "Nordiska Galleriet",
+          "subheadings": [
+            "Länna Möbler",
+            "Yllw",
+            "Dusty Deco",
+            "KA YO"
+          ],
+          "ctaCount": 7,
+          "lede": "Companies"
+        },
+        "needsSmart": false
+      },
+      {
+        "index": 7,
+        "tag": "section",
+        "role": "content",
+        "subrole": null,
+        "confidence": 0.3,
+        "heading": "KEY FIGURES",
+        "bounds": {
+          "x": 0,
+          "y": 1664,
+          "w": 1280,
+          "h": 294.640625
+        },
+        "buttonCount": 0,
+        "cardCount": 3,
+        "slots": {
+          "heading": "KEY FIGURES",
+          "lede": "NGLM Group\nKEY FIGURES\n7\nNumber of brands\n1.8\nB SEK\nTotal revenue\n51.2\n%\nYearly growth since inception 2017"
+        },
+        "needsSmart": true
+      },
+      {
+        "index": 8,
+        "tag": "section",
+        "role": "content",
+        "subrole": null,
+        "confidence": 0.3,
+        "heading": null,
+        "bounds": {
+          "x": 0,
+          "y": 2086.640625,
+          "w": 1280,
+          "h": 624
+        },
+        "buttonCount": 0,
+        "cardCount": 0,
+        "slots": {},
+        "needsSmart": true
+      },
+      {
+        "index": 9,
+        "tag": "section",
+        "role": "hero",
+        "subrole": null,
+        "confidence": 0.4,
+        "heading": "CREATIVES &\nENTREPRENEURS",
+        "bounds": {
+          "x": 0,
+          "y": 2838.640625,
+          "w": 1280,
+          "h": 887.0625
+        },
+        "buttonCount": 1,
+        "cardCount": 28,
+        "slots": {
+          "heading": "CREATIVES &\nENTREPRENEURS",
+          "ctaCount": 1
+        },
+        "needsSmart": true
+      },
+      {
+        "index": 10,
+        "tag": "section",
+        "role": "testimonial",
+        "subrole": null,
+        "confidence": 0.8,
+        "heading": "PRESS: LATEST\nFROM THE GROUP",
+        "bounds": {
+          "x": 0,
+          "y": 3885.703125,
+          "w": 1280,
+          "h": 773.59375
+        },
+        "buttonCount": 1,
+        "cardCount": 23,
+        "slots": {
+          "heading": "PRESS: LATEST\nFROM THE GROUP",
+          "ctaCount": 1,
+          "lede": "PRESS: LATEST\nFROM THE GROUP\nSee All News"
+        },
+        "needsSmart": false
+      },
+      {
+        "index": 11,
+        "tag": "section",
+        "role": "cta",
+        "subrole": null,
+        "confidence": 0.75,
+        "heading": "CREATING A GLOBAL DESIGN POWERHOUSE THROUGH INDEPENDENCE AND ENTREPRENEURSHIP",
+        "bounds": {
+          "x": 0,
+          "y": 4819.296875,
+          "w": 1280,
+          "h": 1018.296875
+        },
+        "buttonCount": 1,
+        "cardCount": 0,
+        "slots": {
+          "heading": "CREATING A GLOBAL DESIGN POWERHOUSE THROUGH INDEPENDENCE AND ENTREPRENEURSHIP",
+          "ctaCount": 1,
+          "lede": "Our Model\nCREATING A GLOBAL DESIGN POWERHOUSE THROUGH INDEPENDENCE AND ENTREPRENEURSHIP"
+        },
+        "needsSmart": false
+      },
+      {
+        "index": 12,
+        "tag": "section",
+        "role": "hero",
+        "subrole": null,
+        "confidence": 0.4,
+        "heading": "BRINGING DESIGN TO THE\nWORLD AT SCALE",
+        "bounds": {
+          "x": 0,
+          "y": 5997.59375,
+          "w": 1280,
+          "h": 560
+        },
+        "buttonCount": 1,
+        "cardCount": 0,
+        "slots": {
+          "heading": "BRINGING DESIGN TO THE\nWORLD AT SCALE",
+          "ctaCount": 1,
+          "lede": "BRINGING DESIGN TO THE\nWORLD AT SCALE\nContact Us"
+        },
+        "needsSmart": true
+      },
+      {
+        "index": 13,
+        "tag": "section",
+        "role": "content",
+        "subrole": null,
+        "confidence": 0.3,
+        "heading": null,
+        "bounds": {
+          "x": 0,
+          "y": 6557.59375,
+          "w": 1280,
+          "h": 460
+        },
+        "buttonCount": 0,
+        "cardCount": 0,
+        "slots": {
+          "lede": "NGLM\nOur Companies (7)\nAbout Us\nOur Model\nTeam\nTalent\nPress\nPress Releases\nPress Kit\nContact\ninfo@nglm.com\npress@nglm.com\n©2026 NGLM Group. All rights reserved.\nCookie policy"
+        },
+        "needsSmart": true
+      }
+    ],
+    "counts": {
+      "nav": 5,
+      "testimonial": 3,
+      "content": 3,
+      "hero": 2,
+      "cta": 1
+    },
+    "readingOrder": [
+      "nav",
+      "nav",
+      "nav",
+      "nav",
+      "nav",
+      "testimonial",
+      "testimonial",
+      "content",
+      "content",
+      "hero",
+      "testimonial",
+      "cta",
+      "hero",
+      "content"
+    ]
+  }
+}

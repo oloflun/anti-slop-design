@@ -1,0 +1,154 @@
+:root {
+  /* Colors — Primary */
+  --color-primary: #edc3c4;
+  --color-secondary: #f7f9fa;
+  --color-accent: #af50ff;
+
+  /* Colors — Neutrals */
+  --color-neutral-50: #f0f0f0;
+  --color-neutral-100: #000000;
+  --color-neutral-200: #090909;
+  --color-neutral-300: #333333;
+  --color-neutral-400: #475467;
+  --color-neutral-500: #344054;
+  --color-neutral-600: #dae0e8;
+  --color-neutral-700: #d0d5dd;
+  --color-neutral-800: #878787;
+
+  /* Colors — Backgrounds */
+  --color-bg: #090909;
+  --color-bg-1: #ffffff;
+  --color-bg-2: #000000;
+
+  /* Colors — Text */
+  --color-text: #000000;
+  --color-text-1: #333333;
+  --color-text-2: #f7f9fa;
+  --color-text-3: #475467;
+  --color-text-4: #ffffff;
+
+  /* Typography — Families */
+  --font-sans: 'Whyte Inktrap', sans-serif;
+  --font-mono: 'Whyte Inktrap Mono', sans-serif;
+  --font-body: 'GrandSlang', sans-serif;
+  --font-body: 'Karla', sans-serif;
+
+  /* Typography — Scale */
+  --font-size-88: 88px;
+  --font-size-80: 80px;
+  --font-size-64: 64px;
+  --font-size-48: 48px;
+  --font-size-40: 40px;
+  --font-size-32: 32px;
+  --font-size-28: 28px;
+  --font-size-24: 24px;
+  --font-size-20: 20px;
+  --font-size-18.4: 18.4px;
+  --font-size-16: 16px;
+  --font-size-14: 14px;
+
+  /* Spacing */
+  --spacing-1: 1px;
+  --spacing-24: 24px;
+  --spacing-32: 32px;
+  --spacing-38: 38px;
+  --spacing-45: 45px;
+  --spacing-64: 64px;
+  --spacing-72: 72px;
+  --spacing-80: 80px;
+  --spacing-96: 96px;
+  --spacing-128: 128px;
+  --spacing-136: 136px;
+  --spacing-160: 160px;
+  --spacing-208: 208px;
+
+  /* Border Radius */
+  --radius-sm: 4px;
+  --radius-md: 8px;
+  --radius-lg: 11px;
+  --radius-xl: 19px;
+  --radius-xl: 24px;
+  --radius-full: 50px;
+  --radius-full: 100px;
+  --radius-full: 1584px;
+
+  /* Box Shadows */
+  --shadow-xs: rgb(175, 80, 255) -0.5px -0.5px 0px 0px inset, rgb(175, 80, 255) -1px 2px 0px -2px inset, rgb(175, 80, 255) -1px 0px 0px -0.1px inset;
+  --shadow-xs: rgba(16, 24, 40, 0.06) 0px 1px 1px 0px, rgba(16, 24, 40, 0.1) 0px 1px 2px 0px;
+  --shadow-xs: rgba(16, 24, 40, 0.05) 0px 1px 2px 0px;
+  --shadow-sm: rgba(0, 0, 0, 0.25) 0px 3.2px 3.2px 0px;
+  --shadow-lg: rgba(102, 126, 234, 0.3) 0px 4px 20px 0px;
+  --shadow-lg: rgba(0, 0, 0, 0.08) 0px 12px 16px -4px, rgba(16, 24, 40, 0.03) 0px 4px 6px -2px;
+
+  /* Original Site Variables */
+  /* — colors — */
+  --nav-bg-color: #333248b3;
+  --untitled-ui--primary600: #7f56d9;
+  --untitled-ui--primary700: #6941c6;
+  --untitled-ui--primary100: #f4ebff;
+  --swiper-theme-color: #007aff;
+  /* — spacing — */
+  --spacing-layout--row-col-gap: 40px;
+  --spacing-layout--row-col-gap-sm: 32px;
+  --grid-gap-split: calc(var(--spacing-layout--row-col-gap)/2);
+  --swiper-navigation-size: 44px;
+  /* — other — */
+  --white: white;
+  --white-a75: #ffffffbf;
+  --white-a40: #fff6;
+  --grape: #373160;
+  --white-a10: #ffffff1a;
+  --almost-white: #f7f9fa;
+  --white-a20: #fff3;
+  --bright-pink: #fe2357;
+  --almost-black: #10151b;
+  --dark: #1b1b1b;
+  --bright-purple: #af50ff;
+  --black: black;
+  --bright-gray: #919699;
+  --dot-yellow: #facc39;
+  --dot-salmon: #ff685f;
+  --dot-turquoise: #5ed9c3;
+  --dot-salmon-a20: #ff685f33;
+  --dot-yellow-a20: #facc3933;
+  --dot-turquoise-a20: #5ed9c333;
+  --dark-indigo: #262a31;
+  --links: #00aeea;
+  --emerald: #00d37e;
+  --medium-gray: #5e6366;
+  --silver: #c5c5c5;
+  --indigo-grey: #333248;
+  --transparent: #fff0;
+  --nn--background: #090909;
+  --untitled-ui--white: white;
+  --untitled-ui--gray600: #475467;
+  --untitled-ui--gray50: #f9fafb;
+  --untitled-ui--gray700: #344054;
+  --untitled-ui--gray300: #d0d5dd;
+  --untitled-ui--gray800: #1d2939;
+  --untitled-ui--gray100: #f2f4f7;
+  --untitled-ui--success50: #ecfdf3;
+  --untitled-ui--success700: #027a48;
+  --untitled-ui--gray200: #eaecf0;
+  --untitled-ui--gray500: #667085;
+  --untitled-ui--gray900: #101828;
+  --black-a20: #0003;
+  --nn--white: white;
+  --type-weight--100: 100;
+  --type-weight--200: 200;
+  --type-weight--300: 300;
+  --type-weight--400: 400;
+  --type-weight--500: 500;
+  --type-weight--600: 600;
+  --type-weight--700: 700;
+  --type-weight--800: 800;
+  --type-weight--900: 900;
+  /* — dependencies — */
+  --grid-gap-split: --spacing-layout--row-col-gap;
+  /* — semantic — */
+  success: [object Object];
+  warning: [object Object];
+  error: [object Object];
+  info: [object Object];
+
+}

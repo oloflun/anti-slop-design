@@ -1,0 +1,330 @@
+{
+  "pageIntent": {
+    "type": "landing",
+    "confidence": 0.61,
+    "path": "/",
+    "title": "We Are Example | Brand Strategy, PR & Placemaking Agency | Sydney & Dubai",
+    "description": "We Are Example makes brands and places famous. Independent brand strategy, PR and placemaking agency working with luxury hospitality, drinks brands and destinations across Australia, the Middle East a",
+    "signals": [
+      {
+        "kind": "dom",
+        "type": "blog-post",
+        "weight": 0.35,
+        "detail": "byline|min-read"
+      },
+      {
+        "kind": "url",
+        "type": "landing",
+        "weight": 0.45,
+        "detail": "root-path"
+      },
+      {
+        "kind": "shape",
+        "type": "landing",
+        "weight": 0.3,
+        "detail": "hero+features"
+      }
+    ],
+    "alternates": [
+      {
+        "type": "blog-post",
+        "score": 0.35
+      }
+    ],
+    "needsSmart": false
+  },
+  "sectionRoles": {
+    "sections": [
+      {
+        "index": 0,
+        "tag": "section",
+        "role": "hero",
+        "subrole": null,
+        "confidence": 0.85,
+        "heading": "Brand Strategy, Design and PR for Hospitality, F&B and consumer brands across Australia, The Middle East & Asia Pacific",
+        "bounds": {
+          "x": 0,
+          "y": 38.390625,
+          "w": 1280,
+          "h": 550.390625
+        },
+        "buttonCount": 1,
+        "cardCount": 0,
+        "slots": {
+          "heading": "Brand Strategy, Design and PR for Hospitality, F&B and consumer brands across Australia, The Middle East & Asia Pacific",
+          "subheadings": [
+            "WE\nMAKE BRANDS\nAND PLACES\nFAMOUS"
+          ],
+          "ctaCount": 1,
+          "lede": "Brand Strategy, Design and PR for Hospitality, F&B and consumer brands across Australia, The Middle East & Asia Pacific\nWHAT WE DO\nWE\nMAKE BRANDS\nAND PLACES\nFAMOUS"
+        },
+        "needsSmart": false
+      },
+      {
+        "index": 1,
+        "tag": "section",
+        "role": "hero",
+        "subrole": null,
+        "confidence": 0.85,
+        "heading": "we make BRANDS AND PLACES FAMOUS",
+        "bounds": {
+          "x": 0,
+          "y": 0,
+          "w": 0,
+          "h": 0
+        },
+        "buttonCount": 1,
+        "cardCount": 0,
+        "slots": {
+          "heading": "we make BRANDS AND PLACES FAMOUS",
+          "subheadings": [
+            "Brand Strategy, Design and PR for Hospitality, F&B and consumer brands across Australia, The Middle East & Asia Pacific"
+          ],
+          "ctaCount": 1,
+          "lede": "we make BRANDS AND PLACES FAMOUSBrand Strategy, Design and PR for Hospitality, F&B and consumer brands across Australia, The Middle East & Asia PacificWhat we do"
+        },
+        "needsSmart": false
+      },
+      {
+        "index": 2,
+        "tag": "section",
+        "role": "gallery",
+        "subrole": null,
+        "confidence": 0.7,
+        "heading": "DESTINATIONS & PLACEMAKING",
+        "bounds": {
+          "x": 0,
+          "y": 588.78125,
+          "w": 1280,
+          "h": 880
+        },
+        "buttonCount": 0,
+        "cardCount": 8,
+        "slots": {
+          "heading": "DESTINATIONS & PLACEMAKING",
+          "subheadings": [
+            "DESTINATIONS & PLACEMAKING",
+            "DESTINATIONS & PLACEMAKING",
+            "DESTINATIONS & PLACEMAKING",
+            "DESTINATIONS & PLACEMAKING"
+          ]
+        },
+        "needsSmart": false
+      },
+      {
+        "index": 3,
+        "tag": "section",
+        "role": "content",
+        "subrole": null,
+        "confidence": 0.3,
+        "heading": "MORE VALUABLE",
+        "bounds": {
+          "x": 0,
+          "y": 1468.78125,
+          "w": 1280,
+          "h": 594.203125
+        },
+        "buttonCount": 0,
+        "cardCount": 0,
+        "slots": {
+          "heading": "MORE VALUABLE",
+          "subheadings": [
+            "more valuable"
+          ],
+          "lede": "WE ARE EXAMPLE\nWe Make Brands and Places Famous\nTHE THINGS THAT EARN ATTENTION ARE ALWAYS\nMORE VALUABLE\nTHAN THE THINGS THAT BUY IT"
+        },
+        "needsSmart": true
+      },
+      {
+        "index": 4,
+        "tag": "section",
+        "role": "content",
+        "subrole": null,
+        "confidence": 0.3,
+        "heading": "MORE VALUABLE",
+        "bounds": {
+          "x": 192,
+          "y": 1487.96875,
+          "w": 896,
+          "h": 511.015625
+        },
+        "buttonCount": 0,
+        "cardCount": 0,
+        "slots": {
+          "heading": "MORE VALUABLE",
+          "subheadings": [
+            "more valuable"
+          ],
+          "lede": "WE ARE EXAMPLE\nWe Make Brands and Places Famous\nTHE THINGS THAT EARN ATTENTION ARE ALWAYS\nMORE VALUABLE\nTHAN THE THINGS THAT BUY IT"
+        },
+        "needsSmart": true
+      },
+      {
+        "index": 5,
+        "tag": "section",
+        "role": "feature-grid",
+        "subrole": null,
+        "confidence": 0.8,
+        "heading": null,
+        "bounds": {
+          "x": 0,
+          "y": 0,
+          "w": 0,
+          "h": 0
+        },
+        "buttonCount": 1,
+        "cardCount": 9,
+        "slots": {
+          "ctaCount": 1
+        },
+        "needsSmart": false
+      },
+      {
+        "index": 6,
+        "tag": "section",
+        "role": "content",
+        "subrole": null,
+        "confidence": 0.3,
+        "heading": null,
+        "bounds": {
+          "x": 0,
+          "y": 4334.859375,
+          "w": 1280,
+          "h": 880
+        },
+        "buttonCount": 0,
+        "cardCount": 0,
+        "slots": {
+          "lede": "CAPTURING ATTENTION IS HARD.\nKeeping it is even harder.\nMOST BRANDS GET NOTICED ONCE. WE BUILD THE ONES PEOPLE KEEP COMING BACK TO."
+        },
+        "needsSmart": true
+      },
+      {
+        "index": 7,
+        "tag": "section",
+        "role": "content",
+        "subrole": null,
+        "confidence": 0.3,
+        "heading": null,
+        "bounds": {
+          "x": 0,
+          "y": 0,
+          "w": 0,
+          "h": 0
+        },
+        "buttonCount": 0,
+        "cardCount": 0,
+        "slots": {},
+        "needsSmart": true
+      },
+      {
+        "index": 8,
+        "tag": "section",
+        "role": "content",
+        "subrole": null,
+        "confidence": 0.3,
+        "heading": null,
+        "bounds": {
+          "x": 0,
+          "y": 5214.859375,
+          "w": 1280,
+          "h": 737.3125
+        },
+        "buttonCount": 0,
+        "cardCount": 12,
+        "slots": {
+          "lede": "WE WORK WITH THE BIGGEST BRANDS\nFrom Around the World\nWE HELP\nEARN THEIR NAME,\nEARN THEIR PLACE,\nAND\nEARN THEIR MOMENT\nAnd we stay until the work is done"
+        },
+        "needsSmart": true
+      },
+      {
+        "index": 9,
+        "tag": "section",
+        "role": "feature-grid",
+        "subrole": null,
+        "confidence": 0.8,
+        "heading": "FOR EXAMPLE",
+        "bounds": {
+          "x": 0,
+          "y": 5952.171875,
+          "w": 1280,
+          "h": 1834.375
+        },
+        "buttonCount": 4,
+        "cardCount": 6,
+        "slots": {
+          "heading": "FOR EXAMPLE",
+          "ctaCount": 4,
+          "lede": "OUR CULTURE NEWSLETTER\nJoin 15,000+ Readers\nFOR EXAMPLE"
+        },
+        "needsSmart": false
+      },
+      {
+        "index": 10,
+        "tag": "section",
+        "role": "testimonial",
+        "subrole": null,
+        "confidence": 0.8,
+        "heading": "FINE FORM PODCAST",
+        "bounds": {
+          "x": 0,
+          "y": 7786.546875,
+          "w": 1280,
+          "h": 720
+        },
+        "buttonCount": 1,
+        "cardCount": 0,
+        "slots": {
+          "heading": "FINE FORM PODCAST",
+          "ctaCount": 1
+        },
+        "needsSmart": false
+      },
+      {
+        "index": 11,
+        "tag": "section",
+        "role": "content",
+        "subrole": null,
+        "confidence": 0.3,
+        "heading": "The best client relationships start with good conversation",
+        "bounds": {
+          "x": 0,
+          "y": 8506.546875,
+          "w": 1280,
+          "h": 800
+        },
+        "buttonCount": 3,
+        "cardCount": 0,
+        "slots": {
+          "heading": "The best client relationships start with good conversation",
+          "subheadings": [
+            ""
+          ],
+          "ctaCount": 3
+        },
+        "needsSmart": true
+      }
+    ],
+    "counts": {
+      "hero": 2,
+      "gallery": 1,
+      "content": 6,
+      "feature-grid": 2,
+      "testimonial": 1
+    },
+    "readingOrder": [
+      "hero",
+      "feature-grid",
+      "content",
+      "hero",
+      "gallery",
+      "content",
+      "content",
+      "content",
+      "content",
+      "feature-grid",
+      "testimonial",
+      "content"
+    ]
+  }
+}

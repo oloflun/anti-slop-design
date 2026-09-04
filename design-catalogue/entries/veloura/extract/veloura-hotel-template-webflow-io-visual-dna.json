@@ -1,0 +1,77 @@
+{
+  "materialLanguage": {
+    "label": "flat",
+    "confidence": 0,
+    "signals": [],
+    "metrics": {
+      "saturation": 0.382,
+      "shadowProfile": "none",
+      "avgShadowBlur": 0,
+      "maxShadowBlur": 0,
+      "insetShadows": 0,
+      "avgRadius": 284.6,
+      "maxRadius": 999,
+      "hasPill": true,
+      "hasBackdropBlur": false,
+      "gradientCount": 10
+    },
+    "alternates": []
+  },
+  "imageryStyle": {
+    "label": "gradient-mesh",
+    "confidence": 0.208,
+    "counts": {
+      "total": 72,
+      "svg": 43,
+      "icon": 52,
+      "hero": 0,
+      "screenshot": 0,
+      "photoLike": 23
+    },
+    "dominantAspect": "square-ish",
+    "radiusProfile": "square",
+    "alternates": [
+      {
+        "label": "photography",
+        "score": 3.45
+      },
+      {
+        "label": "flat-illustration",
+        "score": 1.5
+      },
+      {
+        "label": "icon-only",
+        "score": 0.6
+      }
+    ],
+    "signals": [
+      "raster photo-ext",
+      "raster photo-ext",
+      "raster photo-ext",
+      "raster photo-ext",
+      "raster photo-ext",
+      "raster photo-ext",
+      "raster photo-ext",
+      "raster photo-ext",
+      "raster photo-ext",
+      "raster photo-ext"
+    ]
+  },
+  "backgroundPatterns": {
+    "labels": [
+      "plain"
+    ],
+    "counts": {
+      "noise": 0,
+      "dotGrid": 0,
+      "lineGrid": 0,
+      "meshCount": 0,
+      "svgPattern": 0
+    },
+    "gradientTotals": {
+      "radial": 2,
+      "linear": 13
+    },
+    "samples": []
+  }
+}

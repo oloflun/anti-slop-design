@@ -1,0 +1,208 @@
+{
+  "$schema": "https://schemas.wp.org/trunk/theme.json",
+  "version": 3,
+  "settings": {
+    "color": {
+      "palette": [
+        {
+          "slug": "primary",
+          "color": "#0a1714",
+          "name": "Primary"
+        },
+        {
+          "slug": "secondary",
+          "color": "#fff7eb",
+          "name": "Secondary"
+        },
+        {
+          "slug": "accent",
+          "color": "#fff8bb",
+          "name": "Accent"
+        },
+        {
+          "slug": "neutral-1",
+          "color": "#000000",
+          "name": "Neutral 1"
+        },
+        {
+          "slug": "neutral-2",
+          "color": "#61805b",
+          "name": "Neutral 2"
+        },
+        {
+          "slug": "neutral-3",
+          "color": "#ffffff",
+          "name": "Neutral 3"
+        },
+        {
+          "slug": "neutral-4",
+          "color": "#767676",
+          "name": "Neutral 4"
+        },
+        {
+          "slug": "neutral-5",
+          "color": "#bbd0b7",
+          "name": "Neutral 5"
+        },
+        {
+          "slug": "bg-efe5d4",
+          "color": "#efe5d4",
+          "name": "Background #efe5d4"
+        },
+        {
+          "slug": "bg-fff7eb",
+          "color": "#fff7eb",
+          "name": "Background #fff7eb"
+        },
+        {
+          "slug": "bg-0a1714",
+          "color": "#0a1714",
+          "name": "Background #0a1714"
+        }
+      ],
+      "gradients": [
+        {
+          "slug": "gradient-1",
+          "gradient": "linear-gradient(90deg, rgb(239, 229, 212) 0%, rgba(245, 234, 218, 0) 100%)",
+          "name": "Gradient 1"
+        },
+        {
+          "slug": "gradient-2",
+          "gradient": "linear-gradient(270deg, rgb(239, 229, 212) 0%, rgba(245, 234, 218, 0) 100%)",
+          "name": "Gradient 2"
+        },
+        {
+          "slug": "gradient-3",
+          "gradient": "linear-gradient(0deg, rgba(10, 23, 20, 0) 0%, rgba(10, 23, 20, 0.64) 100%)",
+          "name": "Gradient 3"
+        }
+      ]
+    },
+    "typography": {
+      "fontFamilies": [
+        {
+          "fontFamily": "Inter",
+          "slug": "inter",
+          "name": "Inter"
+        },
+        {
+          "fontFamily": "BN Nautic Grotesk Bold",
+          "slug": "bn-nautic-grotesk-bold",
+          "name": "BN Nautic Grotesk Bold"
+        },
+        {
+          "fontFamily": "Times New Roman",
+          "slug": "times-new-roman",
+          "name": "Times New Roman"
+        },
+        {
+          "fontFamily": "SeriouslyNostalgic Condensed",
+          "slug": "seriouslynostalgic-condensed",
+          "name": "SeriouslyNostalgic Condensed"
+        }
+      ],
+      "fontSizes": [
+        {
+          "size": "128px",
+          "slug": "size-128",
+          "name": "128px"
+        },
+        {
+          "size": "96px",
+          "slug": "size-96",
+          "name": "96px"
+        },
+        {
+          "size": "88px",
+          "slug": "size-88",
+          "name": "88px"
+        },
+        {
+          "size": "72px",
+          "slug": "size-72",
+          "name": "72px"
+        },
+        {
+          "size": "64px",
+          "slug": "size-64",
+          "name": "64px"
+        },
+        {
+          "size": "48px",
+          "slug": "size-48",
+          "name": "48px"
+        },
+        {
+          "size": "32px",
+          "slug": "size-32",
+          "name": "32px"
+        },
+        {
+          "size": "20px",
+          "slug": "size-20",
+          "name": "20px"
+        }
+      ]
+    },
+    "spacing": {
+      "spacingSizes": [
+        {
+          "size": "1px",
+          "slug": "spacing-1",
+          "name": "1px"
+        },
+        {
+          "size": "32px",
+          "slug": "spacing-32",
+          "name": "32px"
+        },
+        {
+          "size": "37px",
+          "slug": "spacing-37",
+          "name": "37px"
+        },
+        {
+          "size": "48px",
+          "slug": "spacing-48",
+          "name": "48px"
+        },
+        {
+          "size": "53px",
+          "slug": "spacing-53",
+          "name": "53px"
+        },
+        {
+          "size": "61px",
+          "slug": "spacing-61",
+          "name": "61px"
+        },
+        {
+          "size": "80px",
+          "slug": "spacing-80",
+          "name": "80px"
+        },
+        {
+          "size": "120px",
+          "slug": "spacing-120",
+          "name": "120px"
+        }
+      ]
+    },
+    "layout": {
+      "contentSize": "1440px",
+      "wideSize": "1400px"
+    }
+  },
+  "styles": {
+    "color": {
+      "background": "#efe5d4",
+      "text": "#000000"
+    },
+    "typography": {
+      "fontSize": "16px",
+      "lineHeight": "normal",
+      "fontFamily": "Inter"
+    },
+    "spacing": {}
+  }
+}

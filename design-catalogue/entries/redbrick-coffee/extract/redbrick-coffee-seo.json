@@ -1,0 +1,52 @@
+{
+  "openGraph": {
+    "site_name": "Redbrick Coffee",
+    "url": "https://redbrick.coffee/",
+    "title": "Redbrick Coffee",
+    "type": "website",
+    "description": "For Coffee Drinkers. Specialty coffee proudly roasted in Canberra.",
+    "image": "http://redbrick.coffee/cdn/shop/files/Redbrick.png?v=1764896925",
+    "image:secure_url": "https://redbrick.coffee/cdn/shop/files/Redbrick.png?v=1764896925",
+    "image:width": "1200",
+    "image:height": "628"
+  },
+  "twitter": {
+    "card": "summary_large_image",
+    "title": "Redbrick Coffee",
+    "description": "For Coffee Drinkers. Specialty coffee proudly roasted in Canberra."
+  },
+  "description": "For Coffee Drinkers. Specialty coffee proudly roasted in Canberra.",
+  "canonical": null,
+  "themeColor": "",
+  "viewport": "width=device-width,initial-scale=1",
+  "favicons": [
+    {
+      "rel": "icon",
+      "href": "https://redbrick.coffee/cdn/shop/files/redbrick-favicon_b6071f19-97dd-48f9-9487-1a48639935b4.png?crop=center&height=32&v=1707398439&width=32",
+      "sizes": "",
+      "type": "image/png"
+    }
+  ],
+  "manifest": null,
+  "structuredData": [
+    {
+      "type": "Organization",
+      "name": "Redbrick Coffee",
+      "sample": "{\"@context\":\"http://schema.org\",\"@type\":\"Organization\",\"name\":\"Redbrick Coffee\",\"sameAs\":[\"\",\"\",\"\",\"\",\"\",\"\",\"\",\"\",\"\"],\"url\":\"https://redbrick.coffee\"}"
+    },
+    {
+      "type": "WebSite",
+      "name": "Redbrick Coffee",
+      "sample": "{\"@context\":\"http://schema.org\",\"@type\":\"WebSite\",\"name\":\"Redbrick Coffee\",\"potentialAction\":{\"@type\":\"SearchAction\",\"target\":\"https://redbrick.coffee/search?q={search_term_string}\",\"query-input\":\"required name=search_term_string\"},\"url\":\"https://redbrick.coffee\"}"
+    }
+  ],
+  "score": {
+    "hasOg": true,
+    "hasTwitter": true,
+    "hasDescription": true,
+    "hasCanonical": false,
+    "hasStructuredData": true,
+    "hasFavicon": true,
+    "hasThemeColor": false
+  }
+}

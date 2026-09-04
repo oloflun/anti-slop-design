@@ -1,0 +1,348 @@
+{
+  "pageIntent": {
+    "type": "landing",
+    "confidence": 0.29,
+    "path": "/",
+    "title": "HappyRobot | Powering the systems that run the world",
+    "description": "Autonomous AI workers that communicate, coordinate, and operate at scale across the real economy.",
+    "signals": [
+      {
+        "kind": "dom",
+        "type": "blog-post",
+        "weight": 0.35,
+        "detail": "byline|min-read"
+      },
+      {
+        "kind": "dom",
+        "type": "legal",
+        "weight": 0.4
+      },
+      {
+        "kind": "url",
+        "type": "landing",
+        "weight": 0.45,
+        "detail": "root-path"
+      }
+    ],
+    "alternates": [
+      {
+        "type": "legal",
+        "score": 0.4
+      },
+      {
+        "type": "blog-post",
+        "score": 0.35
+      }
+    ],
+    "needsSmart": true
+  },
+  "sectionRoles": {
+    "sections": [
+      {
+        "index": 0,
+        "tag": "nav",
+        "role": "nav",
+        "subrole": null,
+        "confidence": 0.9,
+        "heading": null,
+        "bounds": {
+          "x": 0,
+          "y": 35.5,
+          "w": 1280,
+          "h": 63
+        },
+        "buttonCount": 5,
+        "cardCount": 24,
+        "slots": {
+          "ctaCount": 5,
+          "lede": "PLATFORM\nSOLUTIONS\nCUSTOMERS\nNEWSROOM\nCAREERS\nBOOK A DEMO\nPlatform overview\n→\nAgents"
+        },
+        "needsSmart": false
+      },
+      {
+        "index": 1,
+        "tag": "main",
+        "role": "testimonial",
+        "subrole": null,
+        "confidence": 0.8,
+        "heading": "Achieving Enterprise Superintelligence",
+        "bounds": {
+          "x": 0,
+          "y": 0,
+          "w": 1280,
+          "h": 7487.984375
+        },
+        "buttonCount": 4,
+        "cardCount": 46,
+        "slots": {
+          "heading": "Achieving Enterprise Superintelligence",
+          "subheadings": [
+            "The limit of what AI can do in your enterprise is not the model. It’s what the model knows about how your enterprise operates. That context is only captured one way: doing the work.",
+            "Deployed in the real world",
+            "Agents need a platform",
+            "One system. Every vertical."
+          ],
+          "ctaCount": 4
+        },
+        "needsSmart": false
+      },
+      {
+        "index": 2,
+        "tag": "section",
+        "role": "hero",
+        "subrole": null,
+        "confidence": 0.85,
+        "heading": "Achieving Enterprise Superintelligence",
+        "bounds": {
+          "x": 0,
+          "y": 0,
+          "w": 1280,
+          "h": 800
+        },
+        "buttonCount": 1,
+        "cardCount": 3,
+        "slots": {
+          "heading": "Achieving Enterprise Superintelligence",
+          "ctaCount": 1
+        },
+        "needsSmart": false
+      },
+      {
+        "index": 3,
+        "tag": "section",
+        "role": "logo-wall",
+        "subrole": null,
+        "confidence": 0.85,
+        "heading": null,
+        "bounds": {
+          "x": 0,
+          "y": 800,
+          "w": 1280,
+          "h": 723.890625
+        },
+        "buttonCount": 0,
+        "cardCount": 21,
+        "slots": {
+          "lede": "TRUSTED BY 150+ ENTERPRISES"
+        },
+        "needsSmart": false
+      },
+      {
+        "index": 4,
+        "tag": "section",
+        "role": "content",
+        "subrole": null,
+        "confidence": 0.3,
+        "heading": "The limit of what AI can do in your enterprise is not the model. It’s what the model knows about how your enterprise operates. That context is only captured one way: doing the work.",
+        "bounds": {
+          "x": 0,
+          "y": 1523.890625,
+          "w": 1280,
+          "h": 500.6875
+        },
+        "buttonCount": 0,
+        "cardCount": 0,
+        "slots": {
+          "heading": "The limit of what AI can do in your enterprise is not the model. It’s what the model knows about how your enterprise operates. That context is only captured one way: doing the work."
+        },
+        "needsSmart": true
+      },
+      {
+        "index": 5,
+        "tag": "section",
+        "role": "testimonials",
+        "subrole": null,
+        "confidence": 0.4,
+        "heading": "Deployed in the real world",
+        "bounds": {
+          "x": 0,
+          "y": 2024.578125,
+          "w": 1280,
+          "h": 804.125
+        },
+        "buttonCount": 0,
+        "cardCount": 4,
+        "slots": {
+          "heading": "Deployed in the real world"
+        },
+        "needsSmart": true
+      },
+      {
+        "index": 6,
+        "tag": "section",
+        "role": "content",
+        "subrole": null,
+        "confidence": 0.3,
+        "heading": "Agents need a platform",
+        "bounds": {
+          "x": 0,
+          "y": 2828.703125,
+          "w": 1280,
+          "h": 895.5625
+        },
+        "buttonCount": 0,
+        "cardCount": 3,
+        "slots": {
+          "heading": "Agents need a platform",
+          "lede": "Agents need a platform\nPLATFORM OVERVIEW\nAgent behavior is evaluated"
+        },
+        "needsSmart": true
+      },
+      {
+        "index": 7,
+        "tag": "section",
+        "role": "testimonial",
+        "subrole": null,
+        "confidence": 0.8,
+        "heading": "One system. Every vertical.",
+        "bounds": {
+          "x": 0,
+          "y": 3724.265625,
+          "w": 1280,
+          "h": 934.1875
+        },
+        "buttonCount": 0,
+        "cardCount": 1,
+        "slots": {
+          "heading": "One system. Every vertical."
+        },
+        "needsSmart": false
+      },
+      {
+        "index": 8,
+        "tag": "section",
+        "role": "hero",
+        "subrole": null,
+        "confidence": 0.4,
+        "heading": "This is Enterprise Superintelligence",
+        "bounds": {
+          "x": 0,
+          "y": 4658.453125,
+          "w": 1280,
+          "h": 841.25
+        },
+        "buttonCount": 2,
+        "cardCount": 3,
+        "slots": {
+          "heading": "This is Enterprise Superintelligence",
+          "ctaCount": 2
+        },
+        "needsSmart": true
+      },
+      {
+        "index": 9,
+        "tag": "section",
+        "role": "content",
+        "subrole": null,
+        "confidence": 0.3,
+        "heading": "We handle the work that matters most",
+        "bounds": {
+          "x": 0,
+          "y": 5499.703125,
+          "w": 1280,
+          "h": 805.40625
+        },
+        "buttonCount": 0,
+        "cardCount": 3,
+        "slots": {
+          "heading": "We handle the work that matters most",
+          "subheadings": [
+            "Complex workflows",
+            "Entirely yours",
+            "Across functions"
+          ],
+          "lede": "We handle the work that matters most\nDEPTH\nComplex workflows"
+        },
+        "needsSmart": true
+      },
+      {
+        "index": 10,
+        "tag": "section",
+        "role": "content",
+        "subrole": null,
+        "confidence": 0.3,
+        "heading": "Help build an entirely new way to work",
+        "bounds": {
+          "x": 0,
+          "y": 6305.109375,
+          "w": 1280,
+          "h": 629
+        },
+        "buttonCount": 0,
+        "cardCount": 5,
+        "slots": {
+          "heading": "Help build an entirely new way to work",
+          "lede": "JOIN US\nHelp build an entirely new way to work"
+        },
+        "needsSmart": true
+      },
+      {
+        "index": 11,
+        "tag": "section",
+        "role": "cta",
+        "subrole": null,
+        "confidence": 0.75,
+        "heading": "Put agents to work in complex environments",
+        "bounds": {
+          "x": 0,
+          "y": 6934.109375,
+          "w": 1280,
+          "h": 553.875
+        },
+        "buttonCount": 1,
+        "cardCount": 3,
+        "slots": {
+          "heading": "Put agents to work in complex environments",
+          "ctaCount": 1,
+          "lede": "Put agents to work in complex environments\nTALK TO A HAPPYROBOT\nBOOK A DEMO"
+        },
+        "needsSmart": false
+      },
+      {
+        "index": 12,
+        "tag": "footer",
+        "role": "footer",
+        "subrole": null,
+        "confidence": 0.95,
+        "heading": null,
+        "bounds": {
+          "x": 0,
+          "y": 7487.984375,
+          "w": 1280,
+          "h": 412.46875
+        },
+        "buttonCount": 0,
+        "cardCount": 3,
+        "slots": {
+          "lede": "PRODUCT\nPlatform overview\nAgents\nContext\nGovernance\nInterfaces\nSecurity & reliability\nDeveloper tools\nCOMPANY\nBlog\nCustomers\nNewsroom\nHub\nCareers\nMedia Kit\nCONNECT\nBook a demo\nContact\nLinkedIn\nX\nNewsletter"
+        },
+        "needsSmart": false
+      }
+    ],
+    "counts": {
+      "nav": 1,
+      "testimonial": 2,
+      "hero": 2,
+      "logo-wall": 1,
+      "content": 4,
+      "testimonials": 1,
+      "cta": 1,
+      "footer": 1
+    },
+    "readingOrder": [
+      "testimonial",
+      "hero",
+      "nav",
+      "logo-wall",
+      "content",
+      "testimonials",
+      "content",
+      "testimonial",
+      "hero",
+      "content",
+      "content",
+      "cta",
+      "footer"
+    ]
+  }
+}

@@ -1,0 +1,750 @@
+{
+  "colors": {
+    "all": [
+      {
+        "hex": "#fe3939",
+        "rgb": {
+          "r": 254,
+          "g": 57,
+          "b": 57,
+          "a": 1
+        },
+        "hsl": {
+          "h": 0,
+          "s": 99,
+          "l": 61
+        },
+        "count": 1792,
+        "contexts": [
+          "text",
+          "border",
+          "background"
+        ]
+      },
+      {
+        "hex": "#ffffff",
+        "rgb": {
+          "r": 255,
+          "g": 255,
+          "b": 255,
+          "a": 1
+        },
+        "hsl": {
+          "h": 0,
+          "s": 0,
+          "l": 100
+        },
+        "count": 1716,
+        "contexts": [
+          "text",
+          "border"
+        ]
+      },
+      {
+        "hex": "#000000",
+        "rgb": {
+          "r": 0,
+          "g": 0,
+          "b": 0,
+          "a": 1
+        },
+        "hsl": {
+          "h": 0,
+          "s": 0,
+          "l": 0
+        },
+        "count": 208,
+        "contexts": [
+          "text",
+          "border"
+        ]
+      },
+      {
+        "hex": "#dedcd3",
+        "rgb": {
+          "r": 222,
+          "g": 220,
+          "b": 211,
+          "a": 1
+        },
+        "hsl": {
+          "h": 49,
+          "s": 14,
+          "l": 85
+        },
+        "count": 106,
+        "contexts": [
+          "background",
+          "text",
+          "border"
+        ]
+      }
+    ]
+  },
+  "regions": [
+    {
+      "role": "nav",
+      "tag": "header",
+      "bounds": {
+        "x": 0,
+        "y": -1,
+        "w": 1280,
+        "h": 52
+      },
+      "heading": "Areas of expertise",
+      "buttonCount": 4,
+      "cardCount": 35,
+      "className": "header ts-body-s"
+    },
+    {
+      "role": "nav",
+      "tag": "nav",
+      "bounds": {
+        "x": 289.46875,
+        "y": -1,
+        "w": 686.53125,
+        "h": 52
+      },
+      "heading": "Areas of expertise",
+      "buttonCount": 3,
+      "cardCount": 35,
+      "className": null
+    },
+    {
+      "role": "sidebar",
+      "tag": "div",
+      "bounds": {
+        "x": 0,
+        "y": 0,
+        "w": 0,
+        "h": 0
+      },
+      "heading": null,
+      "buttonCount": 0,
+      "cardCount": 0,
+      "className": "bottom-info"
+    },
+    {
+      "role": "nav",
+      "tag": "div",
+      "bounds": {
+        "x": 0,
+        "y": 0,
+        "w": 0,
+        "h": 0
+      },
+      "heading": null,
+      "buttonCount": 0,
+      "cardCount": 0,
+      "className": "bottom-links"
+    },
+    {
+      "role": "sidebar",
+      "tag": "aside",
+      "bounds": {
+        "x": 1030,
+        "y": -1,
+        "w": 250,
+        "h": 52
+      },
+      "heading": null,
+      "buttonCount": 0,
+      "cardCount": 0,
+      "className": "desktop"
+    },
+    {
+      "role": "content",
+      "tag": "main",
+      "bounds": {
+        "x": 0,
+        "y": 0,
+        "w": 1280,
+        "h": 3827.703125
+      },
+      "heading": "WE WON",
+      "buttonCount": 6,
+      "cardCount": 7,
+      "className": null
+    },
+    {
+      "role": "hero",
+      "tag": "section",
+      "bounds": {
+        "x": 0,
+        "y": 206.703125,
+        "w": 1280,
+        "h": 751.875
+      },
+      "heading": "WE WON",
+      "buttonCount": 0,
+      "cardCount": 1,
+      "className": "module-hero-big-bang has-margins"
+    },
+    {
+      "role": "footer",
+      "tag": "footer",
+      "bounds": {
+        "x": 0,
+        "y": 3303.875,
+        "w": 1280,
+        "h": 523.828125
+      },
+      "heading": "Contact us",
+      "buttonCount": 0,
+      "cardCount": 6,
+      "className": "footer ts-body-s"
+    }
+  ],
+  "componentClusters": [
+    {
+      "kind": "button",
+      "structuralHash": "button>span",
+      "instanceCount": 6,
+      "variants": [
+        {
+          "css": {
+            "background": "rgba(0, 0, 0, 0)",
+            "color": "rgb(254, 57, 57)",
+            "padding": "0px 0px 0px 0px",
+            "borderRadius": "0px",
+            "border": "0px none rgb(254, 57, 57)",
+            "fontSize": "12px",
+            "fontWeight": "400"
+          },
+          "instanceCount": 6
+        }
+      ]
+    },
+    {
+      "kind": "button",
+      "structuralHash": "button",
+      "instanceCount": 1,
+      "variants": [
+        {
+          "css": {
+            "background": "rgba(0, 0, 0, 0)",
+            "color": "rgb(254, 57, 57)",
+            "padding": "0px 0px 0px 0px",
+            "borderRadius": "0px",
+            "border": "0px none rgb(254, 57, 57)",
+            "fontSize": "13.3333px",
+            "fontWeight": "400"
+          },
+          "instanceCount": 1
+        }
+      ]
+    },
+    {
+      "kind": "input",
+      "structuralHash": "input",
+      "instanceCount": 1,
+      "variants": [
+        {
+          "css": {
+            "background": "rgba(0, 0, 0, 0)",
+            "color": "rgb(254, 57, 57)",
+            "padding": "8px 6px 8px 6px",
+            "borderRadius": "4px",
+            "border": "1px solid rgba(254, 57, 57, 0.3)",
+            "fontSize": "10px",
+            "fontWeight": "400"
+          },
+          "instanceCount": 1
+        }
+      ]
+    }
+  ],
+  "accessibility": {
+    "remediation": []
+  },
+  "cssHealth": {
+    "sheets": [
+      {
+        "url": "https://springsummer.dk/",
+        "totalBytes": 219,
+        "usedBytes": 219,
+        "unusedBytes": 0,
+        "unusedPercent": 0
+      },
+      {
+        "url": "https://springsummer.dk/",
+        "totalBytes": 1522,
+        "usedBytes": 649,
+        "unusedBytes": 873,
+        "unusedPercent": 57
+      },
+      {
+        "url": "https://springsummer.dk/",
+        "totalBytes": 59,
+        "usedBytes": 0,
+        "unusedBytes": 59,
+        "unusedPercent": 100
+      },
+      {
+        "url": "https://springsummer.dk/",
+        "totalBytes": 13737,
+        "usedBytes": 8998,
+        "unusedBytes": 4739,
+        "unusedPercent": 34
+      },
+      {
+        "url": "https://springsummer.dk/",
+        "totalBytes": 1119,
+        "usedBytes": 980,
+        "unusedBytes": 139,
+        "unusedPercent": 12
+      },
+      {
+        "url": "https://springsummer.dk/",
+        "totalBytes": 253,
+        "usedBytes": 163,
+        "unusedBytes": 90,
+        "unusedPercent": 36
+      },
+      {
+        "url": "https://springsummer.dk/_nuxt/page-modules.DNZbWtQt.css",
+        "totalBytes": 44617,
+        "usedBytes": 5542,
+        "unusedBytes": 39075,
+        "unusedPercent": 88
+      },
+      {
+        "url": "https://springsummer.dk/_nuxt/headline-simple.B9kV6ZCD.css",
+        "totalBytes": 1049,
+        "usedBytes": 153,
+        "unusedBytes": 896,
+        "unusedPercent": 85
+      },
+      {
+        "url": "https://springsummer.dk/",
+        "totalBytes": 59,
+        "usedBytes": 47,
+        "unusedBytes": 12,
+        "unusedPercent": 20
+      },
+      {
+        "url": "https://springsummer.dk/",
+        "totalBytes": 1486,
+        "usedBytes": 816,
+        "unusedBytes": 670,
+        "unusedPercent": 45
+      },
+      {
+        "url": "https://springsummer.dk/",
+        "totalBytes": 59,
+        "usedBytes": 47,
+        "unusedBytes": 12,
+        "unusedPercent": 20
+      },
+      {
+        "url": "https://springsummer.dk/",
+        "totalBytes": 946,
+        "usedBytes": 789,
+        "unusedBytes": 157,
+        "unusedPercent": 17
+      },
+      {
+        "url": "https://springsummer.dk/_nuxt/the-footer.BE41IyYp.css",
+        "totalBytes": 3980,
+        "usedBytes": 3536,
+        "unusedBytes": 444,
+        "unusedPercent": 11
+      },
+      {
+        "url": "https://springsummer.dk/_nuxt/clock-2.DtgNt0BX.css",
+        "totalBytes": 823,
+        "usedBytes": 764,
+        "unusedBytes": 59,
+        "unusedPercent": 7
+      },
+      {
+        "url": "https://springsummer.dk/",
+        "totalBytes": 59,
+        "usedBytes": 0,
+        "unusedBytes": 59,
+        "unusedPercent": 100
+      },
+      {
+        "url": "https://springsummer.dk/",
+        "totalBytes": 318,
+        "usedBytes": 318,
+        "unusedBytes": 0,
+        "unusedPercent": 0
+      },
+      {
+        "url": "https://springsummer.dk/",
+        "totalBytes": 59,
+        "usedBytes": 47,
+        "unusedBytes": 12,
+        "unusedPercent": 20
+      },
+      {
+        "url": "https://springsummer.dk/_nuxt/arrow-link.SVcMKg4E.css",
+        "totalBytes": 3699,
+        "usedBytes": 2675,
+        "unusedBytes": 1024,
+        "unusedPercent": 28
+      },
+      {
+        "url": "https://springsummer.dk/",
+        "totalBytes": 86,
+        "usedBytes": 0,
+        "unusedBytes": 86,
+        "unusedPercent": 100
+      },
+      {
+        "url": "https://springsummer.dk/",
+        "totalBytes": 33,
+        "usedBytes": 30,
+        "unusedBytes": 3,
+        "unusedPercent": 9
+      },
+      {
+        "url": "https://springsummer.dk/",
+        "totalBytes": 59,
+        "usedBytes": 47,
+        "unusedBytes": 12,
+        "unusedPercent": 20
+      },
+      {
+        "url": "https://springsummer.dk/",
+        "totalBytes": 1742,
+        "usedBytes": 547,
+        "unusedBytes": 1195,
+        "unusedPercent": 69
+      },
+      {
+        "url": "https://springsummer.dk/_nuxt/entry.C4SqFwkE.css",
+        "totalBytes": 34862,
+        "usedBytes": 12391,
+        "unusedBytes": 22471,
+        "unusedPercent": 64
+      },
+      {
+        "url": "https://springsummer.dk/",
+        "totalBytes": 59,
+        "usedBytes": 47,
+        "unusedBytes": 12,
+        "unusedPercent": 20
+      },
+      {
+        "url": "https://springsummer.dk/",
+        "totalBytes": 593,
+        "usedBytes": 508,
+        "unusedBytes": 85,
+        "unusedPercent": 14
+      },
+      {
+        "url": "https://springsummer.dk/",
+        "totalBytes": 75,
+        "usedBytes": 0,
+        "unusedBytes": 75,
+        "unusedPercent": 100
+      },
+      {
+        "url": "https://springsummer.dk/",
+        "totalBytes": 227,
+        "usedBytes": 161,
+        "unusedBytes": 66,
+        "unusedPercent": 29
+      },
+      {
+        "url": "https://springsummer.dk/",
+        "totalBytes": 665,
+        "usedBytes": 665,
+        "unusedBytes": 0,
+        "unusedPercent": 0
+      },
+      {
+        "url": "https://springsummer.dk/",
+        "totalBytes": 4244,
+        "usedBytes": 659,
+        "unusedBytes": 3585,
+        "unusedPercent": 84
+      },
+      {
+        "url": "https://springsummer.dk/",
+        "totalBytes": 505,
+        "usedBytes": 128,
+        "unusedBytes": 377,
+        "unusedPercent": 75
+      },
+      {
+        "url": "https://springsummer.dk/",
+        "totalBytes": 1093,
+        "usedBytes": 879,
+        "unusedBytes": 214,
+        "unusedPercent": 20
+      },
+      {
+        "url": "https://springsummer.dk/",
+        "totalBytes": 1924,
+        "usedBytes": 545,
+        "unusedBytes": 1379,
+        "unusedPercent": 72
+      },
+      {
+        "url": "https://springsummer.dk/",
+        "totalBytes": 961,
+        "usedBytes": 795,
+        "unusedBytes": 166,
+        "unusedPercent": 17
+      },
+      {
+        "url": "https://springsummer.dk/",
+        "totalBytes": 822,
+        "usedBytes": 764,
+        "unusedBytes": 58,
+        "unusedPercent": 7
+      },
+      {
+        "url": "https://springsummer.dk/",
+        "totalBytes": 1479,
+        "usedBytes": 888,
+        "unusedBytes": 591,
+        "unusedPercent": 40
+      },
+      {
+        "url": "https://springsummer.dk/",
+        "totalBytes": 59,
+        "usedBytes": 0,
+        "unusedBytes": 59,
+        "unusedPercent": 100
+      },
+      {
+        "url": "https://springsummer.dk/",
+        "totalBytes": 239,
+        "usedBytes": 177,
+        "unusedBytes": 62,
+        "unusedPercent": 26
+      },
+      {
+        "url": "https://springsummer.dk/",
+        "totalBytes": 59,
+        "usedBytes": 0,
+        "unusedBytes": 59,
+        "unusedPercent": 100
+      },
+      {
+        "url": "https://springsummer.dk/",
+        "totalBytes": 179,
+        "usedBytes": 179,
+        "unusedBytes": 0,
+        "unusedPercent": 0
+      },
+      {
+        "url": "https://springsummer.dk/",
+        "totalBytes": 1066,
+        "usedBytes": 1042,
+        "unusedBytes": 24,
+        "unusedPercent": 2
+      },
+      {
+        "url": "https://springsummer.dk/",
+        "totalBytes": 59,
+        "usedBytes": 0,
+        "unusedBytes": 59,
+        "unusedPercent": 100
+      },
+      {
+        "url": "https://springsummer.dk/",
+        "totalBytes": 150,
+        "usedBytes": 31,
+        "unusedBytes": 119,
+        "unusedPercent": 79
+      },
+      {
+        "url": "https://springsummer.dk/",
+        "totalBytes": 59,
+        "usedBytes": 47,
+        "unusedBytes": 12,
+        "unusedPercent": 20
+      },
+      {
+        "url": "https://springsummer.dk/",
+        "totalBytes": 691,
+        "usedBytes": 567,
+        "unusedBytes": 124,
+        "unusedPercent": 18
+      },
+      {
+        "url": "https://springsummer.dk/_nuxt/tags.C9TxRlVY.css",
+        "totalBytes": 1030,
+        "usedBytes": 706,
+        "unusedBytes": 324,
+        "unusedPercent": 31
+      },
+      {
+        "url": "https://springsummer.dk/",
+        "totalBytes": 33,
+        "usedBytes": 30,
+        "unusedBytes": 3,
+        "unusedPercent": 9
+      },
+      {
+        "url": "https://springsummer.dk/",
+        "totalBytes": 1126,
+        "usedBytes": 1042,
+        "unusedBytes": 84,
+        "unusedPercent": 7
+      },
+      {
+        "url": "https://springsummer.dk/",
+        "totalBytes": 33,
+        "usedBytes": 30,
+        "unusedBytes": 3,
+        "unusedPercent": 9
+      },
+      {
+        "url": "https://springsummer.dk/",
+        "totalBytes": 59,
+        "usedBytes": 47,
+        "unusedBytes": 12,
+        "unusedPercent": 20
+      },
+      {
+        "url": "https://springsummer.dk/",
+        "totalBytes": 33,
+        "usedBytes": 30,
+        "unusedBytes": 3,
+        "unusedPercent": 9
+      },
+      {
+        "url": "https://springsummer.dk/",
+        "totalBytes": 3979,
+        "usedBytes": 3536,
+        "unusedBytes": 443,
+        "unusedPercent": 11
+      },
+      {
+        "url": "https://springsummer.dk/",
+        "totalBytes": 59,
+        "usedBytes": 0,
+        "unusedBytes": 59,
+        "unusedPercent": 100
+      },
+      {
+        "url": "https://springsummer.dk/",
+        "totalBytes": 33,
+        "usedBytes": 30,
+        "unusedBytes": 3,
+        "unusedPercent": 9
+      },
+      {
+        "url": "https://springsummer.dk/",
+        "totalBytes": 724,
+        "usedBytes": 708,
+        "unusedBytes": 16,
+        "unusedPercent": 2
+      },
+      {
+        "url": "https://springsummer.dk/",
+        "totalBytes": 33,
+        "usedBytes": 0,
+        "unusedBytes": 33,
+        "unusedPercent": 100
+      },
+      {
+        "url": "https://springsummer.dk/",
+        "totalBytes": 33,
+        "usedBytes": 30,
+        "unusedBytes": 3,
+        "unusedPercent": 9
+      },
+      {
+        "url": "https://springsummer.dk/",
+        "totalBytes": 903,
+        "usedBytes": 756,
+        "unusedBytes": 147,
+        "unusedPercent": 16
+      },
+      {
+        "url": "https://springsummer.dk/",
+        "totalBytes": 101,
+        "usedBytes": 101,
+        "unusedBytes": 0,
+        "unusedPercent": 0
+      },
+      {
+        "url": "https://springsummer.dk/",
+        "totalBytes": 48,
+        "usedBytes": 36,
+        "unusedBytes": 12,
+        "unusedPercent": 25
+      },
+      {
+        "url": "https://springsummer.dk/",
+        "totalBytes": 33,
+        "usedBytes": 0,
+        "unusedBytes": 33,
+        "unusedPercent": 100
+      },
+      {
+        "url": "https://springsummer.dk/",
+        "totalBytes": 33,
+        "usedBytes": 0,
+        "unusedBytes": 33,
+        "unusedPercent": 100
+      },
+      {
+        "url": "https://springsummer.dk/",
+        "totalBytes": 33,
+        "usedBytes": 30,
+        "unusedBytes": 3,
+        "unusedPercent": 9
+      },
+      {
+        "url": "https://springsummer.dk/_nuxt/default.5g2a-YdA.css",
+        "totalBytes": 16042,
+        "usedBytes": 10321,
+        "unusedBytes": 5721,
+        "unusedPercent": 36
+      },
+      {
+        "url": "https://www.google.com/recaptcha/api2/anchor?ar=1&k=6LeLwcInAAAAADpuzsrfm9xMM7VA6Za92O5Yo9u1&co=aHR0cHM6Ly9zcHJpbmdzdW1tZXIuZGs6NDQz&hl=en&v=8x-4t2pegToiW8KmThtO4AQt&size=invisible&badge=bottomleft&anchor-ms=20000&execute-ms=30000&cb=l4t28t8ea44n",
+        "totalBytes": 16001,
+        "usedBytes": 0,
+        "unusedBytes": 16001,
+        "unusedPercent": 100
+      },
+      {
+        "url": "https://www.gstatic.com/recaptcha/releases/8x-4t2pegToiW8KmThtO4AQt/styles__ltr.css",
+        "totalBytes": 82980,
+        "usedBytes": 2987,
+        "unusedBytes": 79993,
+        "unusedPercent": 96
+      }
+    ],
+    "totalBytes": 249402,
+    "usedBytes": 67260,
+    "unusedBytes": 182142,
+    "unusedPercent": 73,
+    "importantCount": 16,
+    "duplicates": 2377,
+    "vendorPrefixes": {
+      "webkit": 237,
+      "moz": 46,
+      "ms": 8,
+      "o": 14
+    },
+    "keyframes": [],
+    "specificity": {
+      "max": [
+        2,
+        7,
+        3
+      ],
+      "average": [
+        0.04,
+        1.96,
+        0.2
+      ],
+      "count": 1601
+    },
+    "issues": [
+      "16 !important rules",
+      "2377 duplicate declarations",
+      "73% unused CSS"
+    ]
+  }
+}

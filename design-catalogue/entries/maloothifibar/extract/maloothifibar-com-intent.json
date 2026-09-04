@@ -1,0 +1,271 @@
+{
+  "pageIntent": {
+    "type": "landing",
+    "confidence": 0.59,
+    "path": "/",
+    "title": "MALOOT | HiFi Bar & Cocktails in Vieux-Lille",
+    "description": "Experience bold craft cocktails and vinyl DJ sets at Maloot, Lille's premier audiophile bar. Located in Vieux-Lille. Book your table today.",
+    "signals": [
+      {
+        "kind": "dom",
+        "type": "blog-post",
+        "weight": 0.35,
+        "detail": "byline|min-read"
+      },
+      {
+        "kind": "dom",
+        "type": "legal",
+        "weight": 0.4
+      },
+      {
+        "kind": "url",
+        "type": "landing",
+        "weight": 0.45,
+        "detail": "root-path"
+      },
+      {
+        "kind": "shape",
+        "type": "landing",
+        "weight": 0.3,
+        "detail": "features+hero+footer"
+      }
+    ],
+    "alternates": [
+      {
+        "type": "legal",
+        "score": 0.4
+      },
+      {
+        "type": "blog-post",
+        "score": 0.35
+      }
+    ],
+    "needsSmart": true
+  },
+  "sectionRoles": {
+    "sections": [
+      {
+        "index": 0,
+        "tag": "nav",
+        "role": "nav",
+        "subrole": null,
+        "confidence": 0.9,
+        "heading": null,
+        "bounds": {
+          "x": 0,
+          "y": 0,
+          "w": 1280,
+          "h": 67.453125
+        },
+        "buttonCount": 12,
+        "cardCount": 9,
+        "slots": {
+          "ctaCount": 12,
+          "lede": "Drink\nListen\nAbout\nEn\nFr\nBOOK A TABLE\nBOOK A TABLE"
+        },
+        "needsSmart": false
+      },
+      {
+        "index": 1,
+        "tag": "section",
+        "role": "hero",
+        "subrole": null,
+        "confidence": 0.85,
+        "heading": "Hifi Bar\n",
+        "bounds": {
+          "x": 0,
+          "y": 0,
+          "w": 1280,
+          "h": 800
+        },
+        "buttonCount": 0,
+        "cardCount": 0,
+        "slots": {
+          "heading": "Hifi Bar\n",
+          "subheadings": [
+            "Cocktails",
+            "Vinyls"
+          ],
+          "lede": "Hifi Bar"
+        },
+        "needsSmart": false
+      },
+      {
+        "index": 2,
+        "tag": "section",
+        "role": "hero",
+        "subrole": null,
+        "confidence": 0.4,
+        "heading": "Located in the heart of\nVieux-Lille, Maloot officially\nopened its doors in early February\n2024 and has been buzzing ever\nsince.",
+        "bounds": {
+          "x": 0,
+          "y": 800,
+          "w": 1280,
+          "h": 970.375
+        },
+        "buttonCount": 6,
+        "cardCount": 0,
+        "slots": {
+          "heading": "Located in the heart of\nVieux-Lille, Maloot officially\nopened its doors in early February\n2024 and has been buzzing ever\nsince.",
+          "ctaCount": 6,
+          "lede": "Located in the heart of\nVieux-Lille, Maloot officially\nopened its doors in early February\n2024 and has been buzzing ever\nsince.\nBOOK A TABLE\nBOOK A TABLE"
+        },
+        "needsSmart": true
+      },
+      {
+        "index": 3,
+        "tag": "section",
+        "role": "content",
+        "subrole": null,
+        "confidence": 0.3,
+        "heading": "Discover unique signature\ncocktails, our selection of\nchampagnes, and premium spirits.",
+        "bounds": {
+          "x": 0,
+          "y": 1770.375,
+          "w": 1280,
+          "h": 830.1875
+        },
+        "buttonCount": 0,
+        "cardCount": 131,
+        "slots": {
+          "heading": "Discover unique signature\ncocktails, our selection of\nchampagnes, and premium spirits.",
+          "subheadings": [
+            "Chicago",
+            "Maïlen",
+            "Voyagerz",
+            "Espresso Love"
+          ]
+        },
+        "needsSmart": true
+      },
+      {
+        "index": 4,
+        "tag": "section",
+        "role": "gallery",
+        "subrole": null,
+        "confidence": 0.7,
+        "heading": "A place where every detail is designed to\nfeel warm and intimate, yet infused with\na festive energy that builds as the night\nunfolds.",
+        "bounds": {
+          "x": 0,
+          "y": 2600.5625,
+          "w": 1280,
+          "h": 784
+        },
+        "buttonCount": 0,
+        "cardCount": 75,
+        "slots": {
+          "heading": "A place where every detail is designed to\nfeel warm and intimate, yet infused with\na festive energy that builds as the night\nunfolds."
+        },
+        "needsSmart": false
+      },
+      {
+        "index": 5,
+        "tag": "section",
+        "role": "content",
+        "subrole": null,
+        "confidence": 0.3,
+        "heading": "PREVIOUS SETS",
+        "bounds": {
+          "x": 0,
+          "y": 3384.5625,
+          "w": 1280,
+          "h": 1112.125
+        },
+        "buttonCount": 66,
+        "cardCount": 83,
+        "slots": {
+          "heading": "PREVIOUS SETS",
+          "subheadings": [
+            "COSMINA X SEIF GZARA",
+            "ROMANE",
+            "BRUNZI",
+            "HOLLY MOLLY"
+          ],
+          "ctaCount": 66
+        },
+        "needsSmart": true
+      },
+      {
+        "index": 6,
+        "tag": "section",
+        "role": "testimonial",
+        "subrole": null,
+        "confidence": 0.8,
+        "heading": null,
+        "bounds": {
+          "x": 0,
+          "y": 4496.6875,
+          "w": 1280,
+          "h": 888.890625
+        },
+        "buttonCount": 0,
+        "cardCount": 0,
+        "slots": {
+          "lede": "AÏSSA & ANTOINE"
+        },
+        "needsSmart": false
+      },
+      {
+        "index": 7,
+        "tag": "section",
+        "role": "content",
+        "subrole": null,
+        "confidence": 0.3,
+        "heading": null,
+        "bounds": {
+          "x": 0,
+          "y": 5385.578125,
+          "w": 1280,
+          "h": 1309
+        },
+        "buttonCount": 0,
+        "cardCount": 0,
+        "slots": {
+          "lede": "We’re all about good music, great drinks,\nand a warm, welcoming atmosphere.\nOur lineups feature both local and\ninternational artists."
+        },
+        "needsSmart": true
+      },
+      {
+        "index": 8,
+        "tag": "footer",
+        "role": "footer",
+        "subrole": null,
+        "confidence": 0.95,
+        "heading": "Come join us —\nand experience what Maloot is all about.",
+        "bounds": {
+          "x": 0,
+          "y": 6652.578125,
+          "w": 1280,
+          "h": 763.515625
+        },
+        "buttonCount": 6,
+        "cardCount": 0,
+        "slots": {
+          "heading": "Come join us —\nand experience what Maloot is all about.",
+          "ctaCount": 6,
+          "lede": "Where\nMusic\nFeels Real\nCome join us —\nand experience what Maloot is all about.\nBOOK A TABLE\nBOOK A TABLE\n3 rue de la Barre, 59800 Lille\ncontact@maloothifibar.com\nInstagram\nYoutube\nBack to top\nCopyright MALOOT ©  - All rights reserved\nLegal Notice\nPrivacy Policy"
+        },
+        "needsSmart": false
+      }
+    ],
+    "counts": {
+      "nav": 1,
+      "hero": 2,
+      "content": 3,
+      "gallery": 1,
+      "testimonial": 1,
+      "footer": 1
+    },
+    "readingOrder": [
+      "nav",
+      "hero",
+      "hero",
+      "content",
+      "gallery",
+      "content",
+      "testimonial",
+      "content",
+      "footer"
+    ]
+  }
+}

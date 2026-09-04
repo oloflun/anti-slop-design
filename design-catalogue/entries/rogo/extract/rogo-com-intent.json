@@ -1,0 +1,198 @@
+{
+  "pageIntent": {
+    "type": "landing",
+    "confidence": 0.29,
+    "path": "/",
+    "title": "Rogo | AI for the most ambitious firms in finance",
+    "description": "Rogo is the trusted AI partner to the world’s leading financial institutions. Rogo helps finance teams make better decisions and build smarter teams.",
+    "signals": [
+      {
+        "kind": "dom",
+        "type": "blog-post",
+        "weight": 0.35,
+        "detail": "byline|min-read"
+      },
+      {
+        "kind": "dom",
+        "type": "legal",
+        "weight": 0.4
+      },
+      {
+        "kind": "url",
+        "type": "landing",
+        "weight": 0.45,
+        "detail": "root-path"
+      }
+    ],
+    "alternates": [
+      {
+        "type": "legal",
+        "score": 0.4
+      },
+      {
+        "type": "blog-post",
+        "score": 0.35
+      }
+    ],
+    "needsSmart": true
+  },
+  "sectionRoles": {
+    "sections": [
+      {
+        "index": 0,
+        "tag": "header",
+        "role": "nav",
+        "subrole": null,
+        "confidence": 0.4,
+        "heading": null,
+        "bounds": {
+          "x": 0,
+          "y": 0,
+          "w": 1280,
+          "h": 68
+        },
+        "buttonCount": 0,
+        "cardCount": 0,
+        "slots": {
+          "lede": "Felix"
+        },
+        "needsSmart": true
+      },
+      {
+        "index": 1,
+        "tag": "section",
+        "role": "content",
+        "subrole": null,
+        "confidence": 0.3,
+        "heading": null,
+        "bounds": {
+          "x": 16,
+          "y": 732,
+          "w": 1248,
+          "h": 36
+        },
+        "buttonCount": 0,
+        "cardCount": 42,
+        "slots": {},
+        "needsSmart": true
+      },
+      {
+        "index": 2,
+        "tag": "section",
+        "role": "testimonial",
+        "subrole": null,
+        "confidence": 0.8,
+        "heading": "Helping finance teams build smarter organizations",
+        "bounds": {
+          "x": 0,
+          "y": 800,
+          "w": 1280,
+          "h": 1056.8125
+        },
+        "buttonCount": 0,
+        "cardCount": 0,
+        "slots": {
+          "heading": "Helping finance teams build smarter organizations"
+        },
+        "needsSmart": false
+      },
+      {
+        "index": 3,
+        "tag": "section",
+        "role": "testimonial",
+        "subrole": null,
+        "confidence": 0.8,
+        "heading": "Why financial institutions \nchoose Rogo",
+        "bounds": {
+          "x": 0,
+          "y": 1856.8125,
+          "w": 1280,
+          "h": 2209.4375
+        },
+        "buttonCount": 0,
+        "cardCount": 0,
+        "slots": {
+          "heading": "Why financial institutions \nchoose Rogo",
+          "lede": "Why financial institutions \nchoose Rogo\nBy finance, for finance"
+        },
+        "needsSmart": false
+      },
+      {
+        "index": 4,
+        "tag": "section",
+        "role": "content",
+        "subrole": null,
+        "confidence": 0.3,
+        "heading": "By the numbers",
+        "bounds": {
+          "x": 0,
+          "y": 4066.25,
+          "w": 1280,
+          "h": 750.796875
+        },
+        "buttonCount": 0,
+        "cardCount": 0,
+        "slots": {
+          "heading": "By the numbers",
+          "lede": "By the numbers\n50,000+"
+        },
+        "needsSmart": true
+      },
+      {
+        "index": 5,
+        "tag": "section",
+        "role": "content",
+        "subrole": null,
+        "confidence": 0.3,
+        "heading": "Built for enterprise, secure by design",
+        "bounds": {
+          "x": 0,
+          "y": 4817.046875,
+          "w": 1280,
+          "h": 732.8125
+        },
+        "buttonCount": 0,
+        "cardCount": 0,
+        "slots": {
+          "heading": "Built for enterprise, secure by design"
+        },
+        "needsSmart": true
+      },
+      {
+        "index": 6,
+        "tag": "footer",
+        "role": "footer",
+        "subrole": null,
+        "confidence": 0.95,
+        "heading": "Unlock financial AI\nfor your firm",
+        "bounds": {
+          "x": 0,
+          "y": 5549.859375,
+          "w": 1280,
+          "h": 552.390625
+        },
+        "buttonCount": 0,
+        "cardCount": 0,
+        "slots": {
+          "heading": "Unlock financial AI\nfor your firm"
+        },
+        "needsSmart": false
+      }
+    ],
+    "counts": {
+      "nav": 1,
+      "content": 3,
+      "testimonial": 2,
+      "footer": 1
+    },
+    "readingOrder": [
+      "nav",
+      "content",
+      "testimonial",
+      "testimonial",
+      "content",
+      "content",
+      "footer"
+    ]
+  }
+}

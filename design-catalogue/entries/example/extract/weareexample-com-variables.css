@@ -1,0 +1,136 @@
+:root {
+  /* Colors — Primary */
+  --color-primary: #2cc9ff;
+  --color-secondary: #ff0000;
+  --color-accent: #ffdede;
+
+  /* Colors — Neutrals */
+  --color-neutral-50: #f3f3f0;
+  --color-neutral-100: #000000;
+  --color-neutral-200: #424242;
+  --color-neutral-300: #1f1f1f;
+  --color-neutral-400: #ffffff;
+  --color-neutral-500: #dddddd;
+  --color-neutral-600: #111111;
+
+  /* Colors — Backgrounds */
+  --color-bg: #f3f3f0;
+  --color-bg-1: #f8f8ef;
+  --color-bg-2: #ffffff;
+  --color-bg-3: #000000;
+  --color-bg-4: #16181b;
+
+  /* Colors — Text */
+  --color-text: #000000;
+  --color-text-1: #0e1623;
+  --color-text-2: #f3f3f0;
+  --color-text-3: #ebebeb;
+  --color-text-4: #2cc9ff;
+
+  /* Typography — Families */
+  --font-sans: 'American Grotesk', sans-serif;
+  --font-heading: 'American Grotesk Compressed', sans-serif;
+  --font-body: 'Ppeditorialnew', sans-serif;
+  --font-body: 'Menlo', sans-serif;
+
+  /* Typography — Scale */
+  --font-size-230.4: 230.4px;
+  --font-size-184.32: 184.32px;
+  --font-size-182.4: 182.4px;
+  --font-size-166.4: 166.4px;
+  --font-size-140.8: 140.8px;
+  --font-size-102.4: 102.4px;
+  --font-size-96: 96px;
+  --font-size-72: 72px;
+  --font-size-64: 64px;
+  --font-size-38.4: 38.4px;
+  --font-size-35.84: 35.84px;
+  --font-size-32: 32px;
+
+  /* Spacing */
+  --spacing-1: 1px;
+  --spacing-10: 10px;
+  --spacing-12: 12px;
+  --spacing-24: 24px;
+  --spacing-32: 32px;
+  --spacing-36: 36px;
+  --spacing-38: 38px;
+  --spacing-51: 51px;
+  --spacing-64: 64px;
+  --spacing-80: 80px;
+  --spacing-102: 102px;
+  --spacing-104: 104px;
+  --spacing-126: 126px;
+  --spacing-128: 128px;
+  --spacing-140: 140px;
+  --spacing-192: 192px;
+
+  /* Border Radius */
+  --radius-xs: 2px;
+  --radius-md: 6px;
+
+  /* Original Site Variables */
+  /* — colors — */
+  --_theme---button-primary--border<deleted|variable-a87e3064-5c4a-69d7-92b9-965bb3c7ff4e>: var(--swatch--example-ink);
+  --_theme---button-primary--background<deleted|variable-7854a355-6f26-135f-85dc-f6a60918d8cb>: var(--swatch--example-ink);
+  --_theme---button-primary--text<deleted|variable-6c906087-13b9-c243-736f-8e9d67df4dec>: var(--swatch--example-canvas);
+  --_theme---button-primary--border-hover<deleted|variable-d7733e9f-9216-e30a-de13-7132697cb2f7>: var(--_brand---color\<deleted\|variable-c816ef1c-1865-958b-4065-9cb21c63c512\>);
+  --_theme---button-primary--background-hover<deleted|variable-b111ed68-b24b-df31-e2e8-8d11cf0b80cd>: var(--_brand---color\<deleted\|variable-c816ef1c-1865-958b-4065-9cb21c63c512\>);
+  --_theme---button-primary--text-hover<deleted|variable-8bff32c4-7a72-9992-c763-f8968e78242d>: var(--_brand---text\<deleted\|variable-35d5a4aa-4191-cef6-d3a9-dbb3b7073ee4\>);
+  --_theme---text-secondary<deleted|variable-3d23388c-7f2a-c4ff-d440-16c04baf3d55>: var(--swatch--dark-secondary\<deleted\|variable-2a9d4f1d-42c1-d4ca-25b3-ed8599375376\>);
+  --_theme---color: white;
+  --_theme---button--color: white;
+  --_theme---button-primary--color: white;
+  --_brand---color<deleted|variable-c816ef1c-1865-958b-4065-9cb21c63c512>: var(--swatch--brand-1\<deleted\|variable-d7eac856-7587-f2f2-437c-16e1d155ca87\>);
+  --swatch--dark-secondary<deleted|variable-2a9d4f1d-42c1-d4ca-25b3-ed8599375376>: #3f2b88;
+  /* — spacing — */
+  --_text-style---letter-spacing<deleted|variable-6238be08-c266-d112-a212-309c40703952>: -.03em;
+  --_responsive---font-size--h1: 10vw;
+  --_responsive---font-size--h2: 8vw;
+  --_responsive---font-size--h3: 5vw;
+  --_responsive---font-size--h4: 4vw;
+  --_responsive---font-size--h5: 2.8vw;
+  --_responsive---font-size--h6: 1.4vw;
+  --_responsive---margins--padding-vertical: 5vw;
+  --_responsive---margins--padding-horizontal: 1.5vw;
+  --_responsive---margins--padding-horizontal-tight: .5vw;
+  --_text-style---font-size<deleted|variable-eb545b15-d1a3-826d-7423-64942a7b6b25>: var(--_responsive---font-size--main);
+  --_responsive---font-size--link_button: 1.4vw;
+  --_responsive---font-size--label: 1.2vw;
+  --_responsive---font-size--corners: .5vw;
+  --_responsive---font-size--para-spacing: 0vw;
+  --_responsive---font-size--main: 1.2vw;
+  --_responsive---font-size--display: 14.25vw;
+  /* — typography — */
+  --_theme---text: var(--swatch--example-ink);
+  --_text-style---number: 0;
+  --_brand---text<deleted|variable-35d5a4aa-4191-cef6-d3a9-dbb3b7073ee4>: var(--swatch--example-canvas);
+  /* — other — */
+  --_theme---background<deleted|variable-87df2d4f-56e9-8fe5-9db7-daff1403bdd4>: var(--swatch--example-canvas);
+  --max-width--main: 100vw;
+  --swatch--example-ink: #0e1623;
+  --swatch--example-canvas: #f3f3f0;
+  --swatch--example-ink-grey: #16181b;
+  --swatch--brand-1<deleted|variable-d7eac856-7587-f2f2-437c-16e1d155ca87>: #7957ff;
+  --swatch--brand-2<deleted|variable-984ff473-d605-fc54-7763-67fb10e8be8f>: #d9e45a;
+  --swatch--brand-3<deleted|variable-e52a593c-42bf-c170-4f65-91e668f14914>: #f4c7eb;
+  /* — dependencies — */
+  --_theme---background<deleted|variable-87df2d4f-56e9-8fe5-9db7-daff1403bdd4>: --swatch--example-canvas;
+  --_theme---text: --swatch--example-ink;
+  --_theme---button-primary--border<deleted|variable-a87e3064-5c4a-69d7-92b9-965bb3c7ff4e>: --swatch--example-ink;
+  --_theme---button-primary--background<deleted|variable-7854a355-6f26-135f-85dc-f6a60918d8cb>: --swatch--example-ink;
+  --_theme---button-primary--text<deleted|variable-6c906087-13b9-c243-736f-8e9d67df4dec>: --swatch--example-canvas;
+  --_theme---button-primary--border-hover<deleted|variable-d7733e9f-9216-e30a-de13-7132697cb2f7>: --_brand---color;
+  --_theme---button-primary--background-hover<deleted|variable-b111ed68-b24b-df31-e2e8-8d11cf0b80cd>: --_brand---color;
+  --_theme---button-primary--text-hover<deleted|variable-8bff32c4-7a72-9992-c763-f8968e78242d>: --_brand---text;
+  --_theme---text-secondary<deleted|variable-3d23388c-7f2a-c4ff-d440-16c04baf3d55>: --swatch--dark-secondary;
+  --_text-style---font-size<deleted|variable-eb545b15-d1a3-826d-7423-64942a7b6b25>: --_responsive---font-size--main;
+  --_brand---color<deleted|variable-c816ef1c-1865-958b-4065-9cb21c63c512>: --swatch--brand-1;
+  --_brand---text<deleted|variable-35d5a4aa-4191-cef6-d3a9-dbb3b7073ee4>: --swatch--example-canvas;
+  /* — semantic — */
+  success: [object Object];
+  warning: [object Object];
+  error: [object Object];
+  info: [object Object];
+
+}

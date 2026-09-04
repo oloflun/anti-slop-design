@@ -1,0 +1,322 @@
+{
+  "pageIntent": {
+    "type": "landing",
+    "confidence": 0.75,
+    "path": "/",
+    "title": "Craft, engineered · wild",
+    "description": "Craft is the constant. Engineering, and now AI, is how we make more of it. A point of view from wild, a design and technology studio born in Vienna.",
+    "signals": [
+      {
+        "kind": "url",
+        "type": "landing",
+        "weight": 0.45,
+        "detail": "root-path"
+      },
+      {
+        "kind": "shape",
+        "type": "landing",
+        "weight": 0.3,
+        "detail": "features+hero+cta+footer"
+      }
+    ],
+    "alternates": [],
+    "needsSmart": false
+  },
+  "sectionRoles": {
+    "sections": [
+      {
+        "index": 0,
+        "tag": "main",
+        "role": "steps",
+        "subrole": null,
+        "confidence": 0.75,
+        "heading": "CRAFT,\nENGINEERED.",
+        "bounds": {
+          "x": 0,
+          "y": 0,
+          "w": 1280,
+          "h": 7220.421875
+        },
+        "buttonCount": 5,
+        "cardCount": 3,
+        "slots": {
+          "heading": "CRAFT,\nENGINEERED.",
+          "subheadings": [
+            "Born in Vienna, where craft is a discipline.",
+            "AI is good at everything except the last 10 percent.",
+            "Explore. Generate.\nRefine. Scale.",
+            "The Brand Context Protocol."
+          ],
+          "ctaCount": 5
+        },
+        "needsSmart": false
+      },
+      {
+        "index": 1,
+        "tag": "section",
+        "role": "hero",
+        "subrole": null,
+        "confidence": 0.85,
+        "heading": "CRAFT,\nENGINEERED.",
+        "bounds": {
+          "x": 0,
+          "y": 0,
+          "w": 1280,
+          "h": 800
+        },
+        "buttonCount": 0,
+        "cardCount": 0,
+        "slots": {
+          "heading": "CRAFT,\nENGINEERED."
+        },
+        "needsSmart": false
+      },
+      {
+        "index": 2,
+        "tag": "section",
+        "role": "content",
+        "subrole": null,
+        "confidence": 0.3,
+        "heading": null,
+        "bounds": {
+          "x": 0,
+          "y": 608,
+          "w": 1280,
+          "h": 238.984375
+        },
+        "buttonCount": 0,
+        "cardCount": 0,
+        "slots": {
+          "lede": "A short point of view from us on what actually changed in\nhow we work and how the parts that matter didn't change at\nall. But first, here's some work:"
+        },
+        "needsSmart": true
+      },
+      {
+        "index": 3,
+        "tag": "section",
+        "role": "content",
+        "subrole": null,
+        "confidence": 0.3,
+        "heading": null,
+        "bounds": {
+          "x": 0,
+          "y": 844.375,
+          "w": 1280,
+          "h": 814.234375
+        },
+        "buttonCount": 2,
+        "cardCount": 0,
+        "slots": {
+          "ctaCount": 2,
+          "lede": "View case study"
+        },
+        "needsSmart": true
+      },
+      {
+        "index": 4,
+        "tag": "section",
+        "role": "content",
+        "subrole": null,
+        "confidence": 0.3,
+        "heading": "Born in Vienna, where craft is a discipline.",
+        "bounds": {
+          "x": 0,
+          "y": 1658.609375,
+          "w": 1280,
+          "h": 450.328125
+        },
+        "buttonCount": 0,
+        "cardCount": 0,
+        "slots": {
+          "heading": "Born in Vienna, where craft is a discipline."
+        },
+        "needsSmart": true
+      },
+      {
+        "index": 5,
+        "tag": "section",
+        "role": "content",
+        "subrole": null,
+        "confidence": 0.3,
+        "heading": "AI is good at everything except the last 10 percent.",
+        "bounds": {
+          "x": 0,
+          "y": 2108.9375,
+          "w": 1280,
+          "h": 775.34375
+        },
+        "buttonCount": 0,
+        "cardCount": 0,
+        "slots": {
+          "heading": "AI is good at everything except the last 10 percent."
+        },
+        "needsSmart": true
+      },
+      {
+        "index": 6,
+        "tag": "section",
+        "role": "content",
+        "subrole": null,
+        "confidence": 0.3,
+        "heading": "Explore. Generate.\nRefine. Scale.",
+        "bounds": {
+          "x": 0,
+          "y": 2884.28125,
+          "w": 1280,
+          "h": 952.65625
+        },
+        "buttonCount": 0,
+        "cardCount": 0,
+        "slots": {
+          "heading": "Explore. Generate.\nRefine. Scale."
+        },
+        "needsSmart": true
+      },
+      {
+        "index": 7,
+        "tag": "section",
+        "role": "hero",
+        "subrole": null,
+        "confidence": 0.4,
+        "heading": "The Brand Context Protocol.",
+        "bounds": {
+          "x": 0,
+          "y": 3836.9375,
+          "w": 1280,
+          "h": 304.671875
+        },
+        "buttonCount": 1,
+        "cardCount": 0,
+        "slots": {
+          "heading": "The Brand Context Protocol.",
+          "ctaCount": 1
+        },
+        "needsSmart": true
+      },
+      {
+        "index": 8,
+        "tag": "section",
+        "role": "content",
+        "subrole": null,
+        "confidence": 0.3,
+        "heading": null,
+        "bounds": {
+          "x": 0,
+          "y": 4141.609375,
+          "w": 1280,
+          "h": 635.265625
+        },
+        "buttonCount": 0,
+        "cardCount": 0,
+        "slots": {
+          "lede": "01\nBrand Truth"
+        },
+        "needsSmart": true
+      },
+      {
+        "index": 9,
+        "tag": "section",
+        "role": "testimonials",
+        "subrole": null,
+        "confidence": 0.4,
+        "heading": "Move your organisation up the levels of AI.",
+        "bounds": {
+          "x": 0,
+          "y": 4776.875,
+          "w": 1280,
+          "h": 722.21875
+        },
+        "buttonCount": 0,
+        "cardCount": 3,
+        "slots": {
+          "heading": "Move your organisation up the levels of AI."
+        },
+        "needsSmart": true
+      },
+      {
+        "index": 10,
+        "tag": "section",
+        "role": "hero",
+        "subrole": null,
+        "confidence": 0.4,
+        "heading": "The tools are everywhere. The judgment isn't.",
+        "bounds": {
+          "x": 0,
+          "y": 5499.09375,
+          "w": 1280,
+          "h": 1068.921875
+        },
+        "buttonCount": 2,
+        "cardCount": 0,
+        "slots": {
+          "heading": "The tools are everywhere. The judgment isn't.",
+          "ctaCount": 2
+        },
+        "needsSmart": true
+      },
+      {
+        "index": 11,
+        "tag": "section",
+        "role": "content",
+        "subrole": null,
+        "confidence": 0.3,
+        "heading": null,
+        "bounds": {
+          "x": 0,
+          "y": 6568.015625,
+          "w": 1280,
+          "h": 652.40625
+        },
+        "buttonCount": 0,
+        "cardCount": 0,
+        "slots": {
+          "lede": "Get in touch"
+        },
+        "needsSmart": true
+      },
+      {
+        "index": 12,
+        "tag": "footer",
+        "role": "footer",
+        "subrole": null,
+        "confidence": 0.95,
+        "heading": null,
+        "bounds": {
+          "x": 0,
+          "y": 7220.421875,
+          "w": 1280,
+          "h": 126
+        },
+        "buttonCount": 7,
+        "cardCount": 0,
+        "slots": {
+          "ctaCount": 7,
+          "lede": "play"
+        },
+        "needsSmart": false
+      }
+    ],
+    "counts": {
+      "steps": 1,
+      "hero": 3,
+      "content": 7,
+      "testimonials": 1,
+      "footer": 1
+    },
+    "readingOrder": [
+      "steps",
+      "hero",
+      "content",
+      "content",
+      "content",
+      "content",
+      "content",
+      "hero",
+      "content",
+      "testimonials",
+      "hero",
+      "content",
+      "footer"
+    ]
+  }
+}

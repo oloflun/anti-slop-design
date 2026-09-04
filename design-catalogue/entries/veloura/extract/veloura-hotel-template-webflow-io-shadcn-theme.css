@@ -1,0 +1,19 @@
+/* shadcn/ui Theme — extracted from https://veloura-hotel-template.webflow.io */
+/* Paste into your globals.css */
+
+@layer base {
+  :root {
+    --background: 11 100% 8%;
+    --foreground: 0 0% 0%;
+    --primary: 11 52% 41%;
+    --primary-foreground: 0 0% 100%;
+    --secondary: 12 63% 17%;
+    --secondary-foreground: 0 0% 100%;
+    --accent: 11 45% 51%;
+    --accent-foreground: 0 0% 100%;
+    --muted: 0 0% 100%;
+    --muted-foreground: 10 20% 94%;
+    --border: 0 0% 100%;
+    --radius: 10px;
+  }
+}

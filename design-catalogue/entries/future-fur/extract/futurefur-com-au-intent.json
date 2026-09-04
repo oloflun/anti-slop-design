@@ -1,0 +1,453 @@
+{
+  "pageIntent": {
+    "type": "landing",
+    "confidence": 0.51,
+    "path": "/",
+    "title": "Future Fur | Ultra-Soft Blankets & Throws - 100% Recycled Plastic",
+    "description": "Made from 100% recycled plastic bottles diverted from landfill, our ultra-soft blankets are a resounding “no thank you” to fast fashion and animal cruelty. Designed for a softer future that just makes",
+    "signals": [
+      {
+        "kind": "dom",
+        "type": "pricing",
+        "weight": 0.6,
+        "detail": "currency+card-grid"
+      },
+      {
+        "kind": "url",
+        "type": "landing",
+        "weight": 0.45,
+        "detail": "root-path"
+      },
+      {
+        "kind": "shape",
+        "type": "landing",
+        "weight": 0.3,
+        "detail": "features+hero+footer"
+      }
+    ],
+    "alternates": [
+      {
+        "type": "pricing",
+        "score": 0.6
+      }
+    ],
+    "needsSmart": true
+  },
+  "sectionRoles": {
+    "sections": [
+      {
+        "index": 0,
+        "tag": "header",
+        "role": "nav",
+        "subrole": null,
+        "confidence": 0.4,
+        "heading": "Keep in touch. Feel the soft.",
+        "bounds": {
+          "x": 0,
+          "y": 0,
+          "w": 1280,
+          "h": 192.265625
+        },
+        "buttonCount": 2,
+        "cardCount": 12,
+        "slots": {
+          "heading": "Keep in touch. Feel the soft.",
+          "subheadings": [
+            ""
+          ],
+          "ctaCount": 2,
+          "lede": "Shop\nAbout\nCart\n(0)\nCart"
+        },
+        "needsSmart": true
+      },
+      {
+        "index": 1,
+        "tag": "nav",
+        "role": "nav",
+        "subrole": null,
+        "confidence": 0.9,
+        "heading": null,
+        "bounds": {
+          "x": 0,
+          "y": 0,
+          "w": 0,
+          "h": 0
+        },
+        "buttonCount": 0,
+        "cardCount": 8,
+        "slots": {
+          "lede": "Shop\n                    \n                      About\n                    \n                      Contact\n                    \n                      Instagram"
+        },
+        "needsSmart": false
+      },
+      {
+        "index": 2,
+        "tag": "nav",
+        "role": "nav",
+        "subrole": null,
+        "confidence": 0.9,
+        "heading": null,
+        "bounds": {
+          "x": 328,
+          "y": 160.265625,
+          "w": 624,
+          "h": 24
+        },
+        "buttonCount": 0,
+        "cardCount": 4,
+        "slots": {
+          "lede": "Shop\nAbout"
+        },
+        "needsSmart": false
+      },
+      {
+        "index": 3,
+        "tag": "main",
+        "role": "pricing-table",
+        "subrole": null,
+        "confidence": 0.9,
+        "heading": "Dark Brown",
+        "bounds": {
+          "x": 0,
+          "y": 0,
+          "w": 1280,
+          "h": 6378.1875
+        },
+        "buttonCount": 41,
+        "cardCount": 107,
+        "slots": {
+          "heading": "Dark Brown",
+          "subheadings": [
+            "\n              \n                Dark Brown\n              \n            ",
+            "Dark Brown",
+            "\n              \n                Cream\n              \n            ",
+            "Cream"
+          ],
+          "ctaCount": 41,
+          "lede": "Fake fur\nfor real life."
+        },
+        "needsSmart": false
+      },
+      {
+        "index": 4,
+        "tag": "section",
+        "role": "hero",
+        "subrole": null,
+        "confidence": 0.85,
+        "heading": null,
+        "bounds": {
+          "x": 0,
+          "y": 0,
+          "w": 1280,
+          "h": 720
+        },
+        "buttonCount": 0,
+        "cardCount": 0,
+        "slots": {},
+        "needsSmart": false
+      },
+      {
+        "index": 5,
+        "tag": "section",
+        "role": "content",
+        "subrole": null,
+        "confidence": 0.3,
+        "heading": null,
+        "bounds": {
+          "x": 0,
+          "y": 720,
+          "w": 1280,
+          "h": 832.078125
+        },
+        "buttonCount": 1,
+        "cardCount": 0,
+        "slots": {
+          "ctaCount": 1,
+          "lede": "Fake fur\nfor real life."
+        },
+        "needsSmart": true
+      },
+      {
+        "index": 6,
+        "tag": "section",
+        "role": "content",
+        "subrole": null,
+        "confidence": 0.3,
+        "heading": null,
+        "bounds": {
+          "x": 0,
+          "y": 1552.078125,
+          "w": 1280,
+          "h": 328
+        },
+        "buttonCount": 0,
+        "cardCount": 0,
+        "slots": {
+          "lede": "Made from 100% recycled plastic bottles diverted from landfill, our ultra-soft blankets are a resounding “no thank you” to fast fashion and animal cruelty. Designed for a softer future that just makes sense."
+        },
+        "needsSmart": true
+      },
+      {
+        "index": 7,
+        "tag": "section",
+        "role": "pricing-table",
+        "subrole": null,
+        "confidence": 0.9,
+        "heading": "Dark Brown",
+        "bounds": {
+          "x": 0,
+          "y": 1880.078125,
+          "w": 1280,
+          "h": 821.390625
+        },
+        "buttonCount": 31,
+        "cardCount": 34,
+        "slots": {
+          "heading": "Dark Brown",
+          "ctaCount": 31,
+          "lede": "Skip to product information\nDark Brown\nFrom \nRegular price\n$190+\nDark Brown\nWhite\nPink\nCharcoal"
+        },
+        "needsSmart": false
+      },
+      {
+        "index": 8,
+        "tag": "section",
+        "role": "pricing-table",
+        "subrole": null,
+        "confidence": 0.9,
+        "heading": "Dark Brown",
+        "bounds": {
+          "x": 0,
+          "y": 1880.078125,
+          "w": 1280,
+          "h": 821.390625
+        },
+        "buttonCount": 31,
+        "cardCount": 34,
+        "slots": {
+          "heading": "Dark Brown",
+          "ctaCount": 31,
+          "lede": "Skip to product information\nDark Brown\nFrom \nRegular price\n$190+\nDark Brown\nWhite\nPink\nCharcoal"
+        },
+        "needsSmart": false
+      },
+      {
+        "index": 9,
+        "tag": "section",
+        "role": "pricing-table",
+        "subrole": null,
+        "confidence": 0.9,
+        "heading": "Dark Brown",
+        "bounds": {
+          "x": 953.21875,
+          "y": 2357.109375,
+          "w": 318.78125,
+          "h": 49
+        },
+        "buttonCount": 0,
+        "cardCount": 5,
+        "slots": {
+          "heading": "Dark Brown",
+          "lede": "Dark Brown\nFrom \nRegular price\n$190+\nDark Brown\nWhite\nPink\nCharcoal"
+        },
+        "needsSmart": false
+      },
+      {
+        "index": 10,
+        "tag": "section",
+        "role": "content",
+        "subrole": null,
+        "confidence": 0.3,
+        "heading": null,
+        "bounds": {
+          "x": 0,
+          "y": 2701.46875,
+          "w": 1280,
+          "h": 620
+        },
+        "buttonCount": 0,
+        "cardCount": 0,
+        "slots": {
+          "lede": "Unreal softness.\nReal comfort."
+        },
+        "needsSmart": true
+      },
+      {
+        "index": 11,
+        "tag": "section",
+        "role": "pricing-table",
+        "subrole": null,
+        "confidence": 0.9,
+        "heading": "\n              \n                Dark Brown\n              \n            ",
+        "bounds": {
+          "x": 0,
+          "y": 3321.46875,
+          "w": 1280,
+          "h": 555.5
+        },
+        "buttonCount": 8,
+        "cardCount": 73,
+        "slots": {
+          "heading": "\n              \n                Dark Brown\n              \n            ",
+          "subheadings": [
+            "Dark Brown",
+            "\n              \n                Cream\n              \n            ",
+            "Cream",
+            "\n              \n                Pink\n              \n            "
+          ],
+          "ctaCount": 8,
+          "lede": "Dark Brown\nRegular price\nFrom $190+ AU\nCream\nRegular price\nFrom $190+ AU\nPink\nRegular price\nFrom $190+ AU\nCharcoal\nRegular price\nFrom $190+ AU"
+        },
+        "needsSmart": false
+      },
+      {
+        "index": 12,
+        "tag": "section",
+        "role": "content",
+        "subrole": null,
+        "confidence": 0.3,
+        "heading": null,
+        "bounds": {
+          "x": 0,
+          "y": 3876.96875,
+          "w": 1280,
+          "h": 832.078125
+        },
+        "buttonCount": 0,
+        "cardCount": 0,
+        "slots": {},
+        "needsSmart": true
+      },
+      {
+        "index": 13,
+        "tag": "section",
+        "role": "content",
+        "subrole": null,
+        "confidence": 0.3,
+        "heading": null,
+        "bounds": {
+          "x": 0,
+          "y": 4709.046875,
+          "w": 1280,
+          "h": 263
+        },
+        "buttonCount": 0,
+        "cardCount": 0,
+        "slots": {
+          "lede": "Unbelievably soft. Surprisingly strong. Every Future Fur blanket is made to feel incredible and outlast every throw you’ve ever owned."
+        },
+        "needsSmart": true
+      },
+      {
+        "index": 14,
+        "tag": "section",
+        "role": "content",
+        "subrole": null,
+        "confidence": 0.3,
+        "heading": null,
+        "bounds": {
+          "x": 0,
+          "y": 4972.046875,
+          "w": 1280,
+          "h": 612.0625
+        },
+        "buttonCount": 0,
+        "cardCount": 0,
+        "slots": {
+          "lede": "Sensory-soft textures with surprising weight."
+        },
+        "needsSmart": true
+      },
+      {
+        "index": 15,
+        "tag": "section",
+        "role": "content",
+        "subrole": null,
+        "confidence": 0.3,
+        "heading": null,
+        "bounds": {
+          "x": 0,
+          "y": 5584.109375,
+          "w": 1280,
+          "h": 794.078125
+        },
+        "buttonCount": 1,
+        "cardCount": 0,
+        "slots": {
+          "ctaCount": 1,
+          "lede": "It’s a rug, a throw, a petnest, a play mat, a travel essential... call it what you like, it just works."
+        },
+        "needsSmart": true
+      },
+      {
+        "index": 16,
+        "tag": "footer",
+        "role": "footer",
+        "subrole": null,
+        "confidence": 0.95,
+        "heading": "Keep in touch. Feel the soft.",
+        "bounds": {
+          "x": 0,
+          "y": 6378.1875,
+          "w": 1280,
+          "h": 134
+        },
+        "buttonCount": 1,
+        "cardCount": 14,
+        "slots": {
+          "heading": "Keep in touch. Feel the soft.",
+          "ctaCount": 1,
+          "lede": "Instagram\nhello@futurefur.com.au\nShop\nAbout\nContact\nKeep in touch. Feel the soft.\nSubscribe\nCart (0)"
+        },
+        "needsSmart": false
+      },
+      {
+        "index": 17,
+        "tag": "section",
+        "role": "content",
+        "subrole": null,
+        "confidence": 0.3,
+        "heading": null,
+        "bounds": {
+          "x": 0,
+          "y": 6512.1875,
+          "w": 1280,
+          "h": 670
+        },
+        "buttonCount": 0,
+        "cardCount": 5,
+        "slots": {
+          "lede": "Terms\nShipping\nReturns\nPrivacy\nContact\n2026, All rights reserved. Design by Atollon"
+        },
+        "needsSmart": true
+      }
+    ],
+    "counts": {
+      "nav": 3,
+      "pricing-table": 5,
+      "hero": 1,
+      "content": 8,
+      "footer": 1
+    },
+    "readingOrder": [
+      "nav",
+      "nav",
+      "pricing-table",
+      "hero",
+      "nav",
+      "content",
+      "content",
+      "pricing-table",
+      "pricing-table",
+      "pricing-table",
+      "content",
+      "pricing-table",
+      "content",
+      "content",
+      "content",
+      "content",
+      "footer",
+      "content"
+    ]
+  }
+}

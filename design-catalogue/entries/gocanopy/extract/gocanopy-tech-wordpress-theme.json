@@ -1,0 +1,187 @@
+{
+  "$schema": "https://schemas.wp.org/trunk/theme.json",
+  "version": 3,
+  "settings": {
+    "color": {
+      "palette": [
+        {
+          "slug": "primary",
+          "color": "#00ffbb",
+          "name": "Primary"
+        },
+        {
+          "slug": "secondary",
+          "color": "#14323a",
+          "name": "Secondary"
+        },
+        {
+          "slug": "accent",
+          "color": "#00ff7f",
+          "name": "Accent"
+        },
+        {
+          "slug": "neutral-1",
+          "color": "#f6f5f3",
+          "name": "Neutral 1"
+        },
+        {
+          "slug": "neutral-2",
+          "color": "#000000",
+          "name": "Neutral 2"
+        },
+        {
+          "slug": "neutral-3",
+          "color": "#ffffff",
+          "name": "Neutral 3"
+        },
+        {
+          "slug": "neutral-4",
+          "color": "#979797",
+          "name": "Neutral 4"
+        },
+        {
+          "slug": "neutral-5",
+          "color": "#cecece",
+          "name": "Neutral 5"
+        },
+        {
+          "slug": "bg-1a4145",
+          "color": "#1a4145",
+          "name": "Background #1a4145"
+        },
+        {
+          "slug": "bg-000000",
+          "color": "#000000",
+          "name": "Background #000000"
+        },
+        {
+          "slug": "bg-14323a",
+          "color": "#14323a",
+          "name": "Background #14323a"
+        }
+      ],
+      "gradients": []
+    },
+    "typography": {
+      "fontFamilies": [
+        {
+          "fontFamily": "Season Sans",
+          "slug": "season-sans",
+          "name": "Season Sans"
+        },
+        {
+          "fontFamily": "Test Sohne Mono",
+          "slug": "test-sohne-mono",
+          "name": "Test Sohne Mono"
+        },
+        {
+          "fontFamily": "Season Serif",
+          "slug": "season-serif",
+          "name": "Season Serif"
+        }
+      ],
+      "fontSizes": [
+        {
+          "size": "81px",
+          "slug": "size-81",
+          "name": "81px"
+        },
+        {
+          "size": "53px",
+          "slug": "size-53",
+          "name": "53px"
+        },
+        {
+          "size": "36px",
+          "slug": "size-36",
+          "name": "36px"
+        },
+        {
+          "size": "24px",
+          "slug": "size-24",
+          "name": "24px"
+        },
+        {
+          "size": "20px",
+          "slug": "size-20",
+          "name": "20px"
+        },
+        {
+          "size": "18px",
+          "slug": "size-18",
+          "name": "18px"
+        },
+        {
+          "size": "16px",
+          "slug": "size-16",
+          "name": "16px"
+        },
+        {
+          "size": "14px",
+          "slug": "size-14",
+          "name": "14px"
+        }
+      ]
+    },
+    "spacing": {
+      "spacingSizes": [
+        {
+          "size": "2px",
+          "slug": "spacing-2",
+          "name": "2px"
+        },
+        {
+          "size": "24px",
+          "slug": "spacing-24",
+          "name": "24px"
+        },
+        {
+          "size": "36px",
+          "slug": "spacing-36",
+          "name": "36px"
+        },
+        {
+          "size": "48px",
+          "slug": "spacing-48",
+          "name": "48px"
+        },
+        {
+          "size": "56px",
+          "slug": "spacing-56",
+          "name": "56px"
+        },
+        {
+          "size": "60px",
+          "slug": "spacing-60",
+          "name": "60px"
+        },
+        {
+          "size": "64px",
+          "slug": "spacing-64",
+          "name": "64px"
+        },
+        {
+          "size": "71px",
+          "slug": "spacing-71",
+          "name": "71px"
+        }
+      ]
+    },
+    "layout": {
+      "contentSize": "100%",
+      "wideSize": "1400px"
+    }
+  },
+  "styles": {
+    "color": {
+      "background": "#1a4145",
+      "text": "#000000"
+    },
+    "typography": {
+      "fontSize": "14px",
+      "lineHeight": "20px",
+      "fontFamily": "Season Sans"
+    },
+    "spacing": {}
+  }
+}

@@ -1,0 +1,314 @@
+{
+  "pageIntent": {
+    "type": "landing",
+    "confidence": 0.61,
+    "path": "/",
+    "title": "Home | Lucci Lambrusco",
+    "description": "Co-founded by Ashley Graham, Lucci Lambrusco is a dry sparkling red wine crafted in Emilia-Romagna, Italy. Enjoy responsibly.",
+    "signals": [
+      {
+        "kind": "dom",
+        "type": "blog-post",
+        "weight": 0.35,
+        "detail": "byline|min-read"
+      },
+      {
+        "kind": "url",
+        "type": "landing",
+        "weight": 0.45,
+        "detail": "root-path"
+      },
+      {
+        "kind": "shape",
+        "type": "landing",
+        "weight": 0.3,
+        "detail": "features+hero+footer"
+      }
+    ],
+    "alternates": [
+      {
+        "type": "blog-post",
+        "score": 0.35
+      }
+    ],
+    "needsSmart": false
+  },
+  "sectionRoles": {
+    "sections": [
+      {
+        "index": 0,
+        "tag": "section",
+        "role": "hero",
+        "subrole": null,
+        "confidence": 0.85,
+        "heading": "WE TRUST YOU BUT STILL NEED TO CHECK",
+        "bounds": {
+          "x": 0,
+          "y": 0,
+          "w": 1280,
+          "h": 800
+        },
+        "buttonCount": 1,
+        "cardCount": 0,
+        "slots": {
+          "heading": "WE TRUST YOU BUT STILL NEED TO CHECK",
+          "ctaCount": 1,
+          "lede": "WE TRUST YOU BUT STILL NEED TO CHECK\nTo make sure that you're legal sipping age, pop in your birthday below.\nENTER"
+        },
+        "needsSmart": false
+      },
+      {
+        "index": 1,
+        "tag": "section",
+        "role": "content",
+        "subrole": null,
+        "confidence": 0.3,
+        "heading": null,
+        "bounds": {
+          "x": 0,
+          "y": 0,
+          "w": 1280,
+          "h": 0
+        },
+        "buttonCount": 1,
+        "cardCount": 2,
+        "slots": {
+          "ctaCount": 1,
+          "lede": "About the Wine\nWhere to Sip\nExplore Our Recipes\nGet in Touch"
+        },
+        "needsSmart": true
+      },
+      {
+        "index": 2,
+        "tag": "main",
+        "role": "testimonial",
+        "subrole": null,
+        "confidence": 0.8,
+        "heading": "MEET THE DRY SPARKLING RED WINE, CRAFTED IN EMILIA-ROMAGNA, ITALY",
+        "bounds": {
+          "x": 0,
+          "y": 0,
+          "w": 1280,
+          "h": 5134.4375
+        },
+        "buttonCount": 0,
+        "cardCount": 4,
+        "slots": {
+          "heading": "MEET THE DRY SPARKLING RED WINE, CRAFTED IN EMILIA-ROMAGNA, ITALY",
+          "subheadings": [
+            "BUBBLY.BALANCED.FRUIT-FORWARD.",
+            "FALL IN LOVE WITH LAMBRUSCO",
+            "MEET THE WOMAN BEHIND THE BUBBLES",
+            "FOREVERYOCCASION.ORNONEATALL."
+          ]
+        },
+        "needsSmart": false
+      },
+      {
+        "index": 3,
+        "tag": "section",
+        "role": "hero",
+        "subrole": null,
+        "confidence": 0.85,
+        "heading": "MEET THE DRY SPARKLING RED WINE, CRAFTED IN EMILIA-ROMAGNA, ITALY",
+        "bounds": {
+          "x": 0,
+          "y": 0,
+          "w": 1280,
+          "h": 800
+        },
+        "buttonCount": 0,
+        "cardCount": 0,
+        "slots": {
+          "heading": "MEET THE DRY SPARKLING RED WINE, CRAFTED IN EMILIA-ROMAGNA, ITALY",
+          "lede": "MEET THE DRY SPARKLING RED WINE, CRAFTED IN EMILIA-ROMAGNA, ITALY\nCo-founded by Ashley Graham"
+        },
+        "needsSmart": false
+      },
+      {
+        "index": 4,
+        "tag": "section",
+        "role": "content",
+        "subrole": null,
+        "confidence": 0.3,
+        "heading": "BUBBLY.BALANCED.FRUIT-FORWARD.",
+        "bounds": {
+          "x": 0,
+          "y": 840,
+          "w": 1280,
+          "h": 519
+        },
+        "buttonCount": 0,
+        "cardCount": 0,
+        "slots": {
+          "heading": "BUBBLY.BALANCED.FRUIT-FORWARD."
+        },
+        "needsSmart": true
+      },
+      {
+        "index": 5,
+        "tag": "section",
+        "role": "content",
+        "subrole": null,
+        "confidence": 0.3,
+        "heading": "FALL IN LOVE WITH LAMBRUSCO",
+        "bounds": {
+          "x": 0,
+          "y": 1399,
+          "w": 1280,
+          "h": 811.65625
+        },
+        "buttonCount": 0,
+        "cardCount": 0,
+        "slots": {
+          "heading": "FALL IN LOVE WITH LAMBRUSCO",
+          "lede": "FALL IN LOVE WITH LAMBRUSCO\nLooking for something refreshing, bold, and a little unexpected? Meet Italy’s original sparkling red wine. Naturally vibrant, lightly fizzy, perfectly balanced, and always enjoyed chilled. Whether pairing with good food or great company, this is the wine your glass has been waiting for.\nLearn More"
+        },
+        "needsSmart": true
+      },
+      {
+        "index": 6,
+        "tag": "section",
+        "role": "content",
+        "subrole": null,
+        "confidence": 0.3,
+        "heading": null,
+        "bounds": {
+          "x": 0,
+          "y": 2210.65625,
+          "w": 1280,
+          "h": 203
+        },
+        "buttonCount": 0,
+        "cardCount": 0,
+        "slots": {
+          "lede": "Drink Chilled.\nStay Bubbly.\nDrink Chilled.\nStay Bubbly.\nDrink Chilled.\nStay Bubbly.\nDrink Chilled.\nStay Bubbly.\nDrink Chilled.\nStay Bubbly.\nDrink Chilled.\nStay Bubbly.\nDrink Chilled.\nStay Bubbly.\nDrink Chilled.\nStay Bubbly."
+        },
+        "needsSmart": true
+      },
+      {
+        "index": 7,
+        "tag": "section",
+        "role": "testimonial",
+        "subrole": null,
+        "confidence": 0.8,
+        "heading": "MEET THE WOMAN BEHIND THE BUBBLES",
+        "bounds": {
+          "x": 0,
+          "y": 2413.65625,
+          "w": 1280,
+          "h": 800
+        },
+        "buttonCount": 0,
+        "cardCount": 0,
+        "slots": {
+          "heading": "MEET THE WOMAN BEHIND THE BUBBLES",
+          "lede": "MEET THE WOMAN BEHIND THE BUBBLES\nFor years, our co-founder Ashley Graham has had one go-to wine: Lambrusco."
+        },
+        "needsSmart": false
+      },
+      {
+        "index": 8,
+        "tag": "section",
+        "role": "content",
+        "subrole": null,
+        "confidence": 0.3,
+        "heading": "FOREVERYOCCASION.ORNONEATALL.",
+        "bounds": {
+          "x": 0,
+          "y": 3253.65625,
+          "w": 1280,
+          "h": 423
+        },
+        "buttonCount": 0,
+        "cardCount": 0,
+        "slots": {
+          "heading": "FOREVERYOCCASION.ORNONEATALL."
+        },
+        "needsSmart": true
+      },
+      {
+        "index": 9,
+        "tag": "section",
+        "role": "testimonial",
+        "subrole": null,
+        "confidence": 0.8,
+        "heading": null,
+        "bounds": {
+          "x": 0,
+          "y": 3716.65625,
+          "w": 1280,
+          "h": 895.390625
+        },
+        "buttonCount": 0,
+        "cardCount": 0,
+        "slots": {
+          "lede": "DISHES THAT LOVE LUCCI\nDiscover simple recipes and Italian classics that bring out the best in Lucci.\nExplore Dishes\nSPARKLING COCKTAILS\nShake, stir and pour — easy cocktail recipes made with Lucci for any occasion.\nExplore Cocktails"
+        },
+        "needsSmart": false
+      },
+      {
+        "index": 10,
+        "tag": "section",
+        "role": "feature-grid",
+        "subrole": null,
+        "confidence": 0.8,
+        "heading": null,
+        "bounds": {
+          "x": 0,
+          "y": 4612.046875,
+          "w": 1280,
+          "h": 522.390625
+        },
+        "buttonCount": 0,
+        "cardCount": 4,
+        "slots": {
+          "lede": "STAY BUBBLY @LUCCILAMBRUSCO"
+        },
+        "needsSmart": false
+      },
+      {
+        "index": 11,
+        "tag": "footer",
+        "role": "footer",
+        "subrole": null,
+        "confidence": 0.95,
+        "heading": null,
+        "bounds": {
+          "x": 0,
+          "y": 5174.4375,
+          "w": 1280,
+          "h": 343.5
+        },
+        "buttonCount": 1,
+        "cardCount": 2,
+        "slots": {
+          "ctaCount": 1,
+          "lede": "About the Wine\nExplore Recipes\nWhere to Sip\nGet in Touch\nInstagram\nSubscribe\n© Copyright Lucci Lambrusco 2026\nSite Credit"
+        },
+        "needsSmart": false
+      }
+    ],
+    "counts": {
+      "hero": 2,
+      "content": 5,
+      "testimonial": 3,
+      "feature-grid": 1,
+      "footer": 1
+    },
+    "readingOrder": [
+      "hero",
+      "content",
+      "testimonial",
+      "hero",
+      "content",
+      "content",
+      "content",
+      "testimonial",
+      "content",
+      "testimonial",
+      "feature-grid",
+      "footer"
+    ]
+  }
+}

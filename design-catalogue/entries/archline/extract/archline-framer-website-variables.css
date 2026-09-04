@@ -1,0 +1,79 @@
+:root {
+  /* Colors — Primary */
+  --color-primary: #fffcf3;
+  --color-secondary: #0000ee;
+  --color-accent: #33261f;
+
+  /* Colors — Neutrals */
+  --color-neutral-50: #000000;
+  --color-neutral-100: #252324;
+
+  /* Colors — Backgrounds */
+  --color-bg: #000000;
+  --color-bg-1: #fffdfa;
+  --color-bg-2: #252324;
+  --color-bg-3: #fffcf3;
+  --color-bg-4: #faf2df;
+
+  /* Colors — Text */
+  --color-text: #000000;
+  --color-text-1: #0000ee;
+  --color-text-2: #fffcf3;
+  --color-text-3: #252324;
+  --color-text-4: #33261f;
+
+  /* Typography — Families */
+  --font-sans: 'Inter Display', sans-serif;
+  --font-body: 'Times New Roman', sans-serif;
+
+  /* Typography — Scale */
+  --font-size-100: 100px;
+  --font-size-72: 72px;
+  --font-size-64: 64px;
+  --font-size-40: 40px;
+  --font-size-32: 32px;
+  --font-size-28: 28px;
+  --font-size-24: 24px;
+  --font-size-20: 20px;
+  --font-size-18.08: 18.08px;
+  --font-size-16: 16px;
+  --font-size-14.08: 14.08px;
+  --font-size-12.96: 12.96px;
+
+  /* Spacing */
+  --spacing-2: 2px;
+  --spacing-48: 48px;
+  --spacing-56: 56px;
+  --spacing-80: 80px;
+  --spacing-100: 100px;
+  --spacing-120: 120px;
+  --spacing-136: 136px;
+  --spacing-150: 150px;
+  --spacing-156: 156px;
+  --spacing-164: 164px;
+  --spacing-200: 200px;
+  --spacing-240: 240px;
+
+  /* Border Radius */
+  --radius-sm: 3px;
+  --radius-md: 8px;
+  --radius-lg: 11px;
+  --radius-full: 40px;
+  --radius-full: 50px;
+  --radius-full: 80px;
+  --radius-full: 100px;
+
+  /* Box Shadows */
+  --shadow-sm: rgb(0, 0, 0) 0px 0px 0px 1px inset;
+  --shadow-xs: rgba(0, 0, 0, 0.17) 0px 0.602187px 1.56569px -1.5px, rgba(0, 0, 0, 0.14) 0px 2.28853px 5.95019px -3px, rgba(0, 0, 0, 0.02) 0px 10px 26px -4.5px;
+
+  /* Original Site Variables */
+  /* — other — */
+  --one-if-corner-shape-supported: 1;
+  /* — semantic — */
+  success: [object Object];
+  warning: [object Object];
+  error: [object Object];
+  info: [object Object];
+
+}

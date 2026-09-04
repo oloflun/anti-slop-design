@@ -1,0 +1,473 @@
+{
+  "pageIntent": {
+    "type": "landing",
+    "confidence": 0.27,
+    "path": "/",
+    "title": "Customer.io: AI-Powered Customer Engagement Platform",
+    "description": "Customer.io is a customer engagement platform for creating personalized journeys across email, push, SMS, and in-app messaging.",
+    "signals": [
+      {
+        "kind": "dom",
+        "type": "docs",
+        "weight": 0.44999999999999996,
+        "detail": "sidebar=false article=2000"
+      },
+      {
+        "kind": "dom",
+        "type": "legal",
+        "weight": 0.4
+      },
+      {
+        "kind": "url",
+        "type": "landing",
+        "weight": 0.45,
+        "detail": "root-path"
+      }
+    ],
+    "alternates": [
+      {
+        "type": "docs",
+        "score": 0.45
+      },
+      {
+        "type": "legal",
+        "score": 0.4
+      }
+    ],
+    "needsSmart": true
+  },
+  "sectionRoles": {
+    "sections": [
+      {
+        "index": 0,
+        "tag": "header",
+        "role": "cta",
+        "subrole": null,
+        "confidence": 0.75,
+        "heading": null,
+        "bounds": {
+          "x": 0,
+          "y": 0,
+          "w": 1280,
+          "h": 64
+        },
+        "buttonCount": 4,
+        "cardCount": 14,
+        "slots": {
+          "ctaCount": 4,
+          "lede": "Platform\nSolutions\nPricing\nResources\nSign in\nGet started\nGet started\nBook a demo\nBook a demo"
+        },
+        "needsSmart": false
+      },
+      {
+        "index": 1,
+        "tag": "nav",
+        "role": "nav",
+        "subrole": null,
+        "confidence": 0.9,
+        "heading": null,
+        "bounds": {
+          "x": 428.9375,
+          "y": 0,
+          "w": 422.125,
+          "h": 64
+        },
+        "buttonCount": 3,
+        "cardCount": 8,
+        "slots": {
+          "ctaCount": 3,
+          "lede": "Platform\nSolutions\nPricing\nResources"
+        },
+        "needsSmart": false
+      },
+      {
+        "index": 2,
+        "tag": "main",
+        "role": "pricing",
+        "subrole": null,
+        "confidence": 0.4,
+        "heading": "More impact\nfrom every \np\nu\ns\nh",
+        "bounds": {
+          "x": 0,
+          "y": 64,
+          "w": 1280,
+          "h": 8182.65625
+        },
+        "buttonCount": 31,
+        "cardCount": 202,
+        "slots": {
+          "heading": "More impact\nfrom every \np\nu\ns\nh",
+          "subheadings": [
+            "Intelligence that compounds",
+            "Orchestration that scales",
+            "Built for agents, not just humans",
+            "Everything you need to\nengage customers"
+          ],
+          "ctaCount": 31
+        },
+        "needsSmart": true
+      },
+      {
+        "index": 3,
+        "tag": "section",
+        "role": "pricing",
+        "subrole": null,
+        "confidence": 0.4,
+        "heading": "More impact\nfrom every \np\nu\ns\nh",
+        "bounds": {
+          "x": 0,
+          "y": 64,
+          "w": 1280,
+          "h": 567.5
+        },
+        "buttonCount": 0,
+        "cardCount": 9,
+        "slots": {
+          "heading": "More impact\nfrom every \np\nu\ns\nh"
+        },
+        "needsSmart": true
+      },
+      {
+        "index": 4,
+        "tag": "section",
+        "role": "logo-wall",
+        "subrole": null,
+        "confidence": 0.85,
+        "heading": null,
+        "bounds": {
+          "x": 0,
+          "y": 0,
+          "w": 0,
+          "h": 0
+        },
+        "buttonCount": 0,
+        "cardCount": 9,
+        "slots": {
+          "lede": "The customer engagement platform trusted by 9,000+ brands"
+        },
+        "needsSmart": false
+      },
+      {
+        "index": 5,
+        "tag": "section",
+        "role": "content",
+        "subrole": null,
+        "confidence": 0.3,
+        "heading": null,
+        "bounds": {
+          "x": 0,
+          "y": 631.5,
+          "w": 1280,
+          "h": 685
+        },
+        "buttonCount": 0,
+        "cardCount": 1,
+        "slots": {},
+        "needsSmart": true
+      },
+      {
+        "index": 6,
+        "tag": "section",
+        "role": "logo-wall",
+        "subrole": null,
+        "confidence": 0.85,
+        "heading": null,
+        "bounds": {
+          "x": 0,
+          "y": 1316.5,
+          "w": 1280,
+          "h": 191.25
+        },
+        "buttonCount": 16,
+        "cardCount": 65,
+        "slots": {
+          "ctaCount": 16,
+          "lede": "case study\ncase study\ncase study\ncase study\ncase study\ncase study\ncase study\ncase study"
+        },
+        "needsSmart": false
+      },
+      {
+        "index": 7,
+        "tag": "section",
+        "role": "testimonials",
+        "subrole": null,
+        "confidence": 0.4,
+        "heading": "Intelligence that compounds",
+        "bounds": {
+          "x": 0,
+          "y": 1507.75,
+          "w": 1280,
+          "h": 681
+        },
+        "buttonCount": 0,
+        "cardCount": 3,
+        "slots": {
+          "heading": "Intelligence that compounds",
+          "subheadings": [
+            "Orchestration that scales",
+            "Built for agents, not just humans"
+          ],
+          "lede": "Unify your data, messaging, and AI in one platform, so every customer interaction becomes a signal you can act on to lift conversion, retention, and revenue"
+        },
+        "needsSmart": true
+      },
+      {
+        "index": 8,
+        "tag": "section",
+        "role": "testimonials",
+        "subrole": null,
+        "confidence": 0.4,
+        "heading": "Everything you need to\nengage customers",
+        "bounds": {
+          "x": 0,
+          "y": 2188.75,
+          "w": 1280,
+          "h": 1679
+        },
+        "buttonCount": 8,
+        "cardCount": 29,
+        "slots": {
+          "heading": "Everything you need to\nengage customers",
+          "subheadings": [
+            "Journeys",
+            "Audiences",
+            "Data & integrations",
+            "Design Studio"
+          ],
+          "ctaCount": 8,
+          "lede": "Capabilities\nEverything you need to\nengage customers\nPlatform overview\nJourneys"
+        },
+        "needsSmart": true
+      },
+      {
+        "index": 9,
+        "tag": "section",
+        "role": "testimonials",
+        "subrole": null,
+        "confidence": 0.4,
+        "heading": "Support every stage of the\ncustomer journey",
+        "bounds": {
+          "x": 0,
+          "y": 3867.75,
+          "w": 1280,
+          "h": 1052
+        },
+        "buttonCount": 4,
+        "cardCount": 20,
+        "slots": {
+          "heading": "Support every stage of the\ncustomer journey",
+          "subheadings": [
+            "Activation",
+            "Retention",
+            "Cross-sell & upsell",
+            "Onboarding"
+          ],
+          "ctaCount": 4,
+          "lede": "Solutions\nSupport every stage of the\ncustomer journey\nActivation"
+        },
+        "needsSmart": true
+      },
+      {
+        "index": 10,
+        "tag": "section",
+        "role": "testimonials",
+        "subrole": null,
+        "confidence": 0.4,
+        "heading": "Infrastructure built for teams and the\nagents that support them",
+        "bounds": {
+          "x": 0,
+          "y": 4919.75,
+          "w": 1280,
+          "h": 1397.40625
+        },
+        "buttonCount": 3,
+        "cardCount": 21,
+        "slots": {
+          "heading": "Infrastructure built for teams and the\nagents that support them",
+          "subheadings": [
+            "Integrates with the tools\nyou use most",
+            "Security you\ncan trust",
+            "Support you can\ncount on"
+          ],
+          "ctaCount": 3,
+          "lede": "Enterprise ready\nInfrastructure built for teams and the\nagents that support them\nIntegrations\nIntegrates with the tools\nyou use most"
+        },
+        "needsSmart": true
+      },
+      {
+        "index": 11,
+        "tag": "section",
+        "role": "testimonial",
+        "subrole": null,
+        "confidence": 0.8,
+        "heading": "Trusted to power billions of\ncustomer interactions",
+        "bounds": {
+          "x": 0,
+          "y": 6317.15625,
+          "w": 1280,
+          "h": 1318
+        },
+        "buttonCount": 0,
+        "cardCount": 16,
+        "slots": {
+          "heading": "Trusted to power billions of\ncustomer interactions",
+          "lede": "Case studies\nTrusted to power billions of\ncustomer interactions\nAll case studies"
+        },
+        "needsSmart": false
+      },
+      {
+        "index": 12,
+        "tag": "section",
+        "role": "testimonials",
+        "subrole": null,
+        "confidence": 0.4,
+        "heading": "Trusted to power billions of customer interactions",
+        "bounds": {
+          "x": 0,
+          "y": 0,
+          "w": 0,
+          "h": 0
+        },
+        "buttonCount": 0,
+        "cardCount": 9,
+        "slots": {
+          "heading": "Trusted to power billions of customer interactions",
+          "lede": "Case studiesTrusted to power billions of customer interactionsAll case studies50%Onboarding open rate4%Increase in winback conversions14%Increase in first transactions"
+        },
+        "needsSmart": true
+      },
+      {
+        "index": 13,
+        "tag": "section",
+        "role": "pricing",
+        "subrole": null,
+        "confidence": 0.4,
+        "heading": "Optimize your messaging",
+        "bounds": {
+          "x": 0,
+          "y": 7635.15625,
+          "w": 1280,
+          "h": 505.5
+        },
+        "buttonCount": 0,
+        "cardCount": 10,
+        "slots": {
+          "heading": "Optimize your messaging",
+          "lede": "Optimize your messaging\nGet started\nGet started\nBook a demo\nBook a demo\n14-day free trial\nNo credit card required\nCancel anytime"
+        },
+        "needsSmart": true
+      },
+      {
+        "index": 14,
+        "tag": "section",
+        "role": "content",
+        "subrole": null,
+        "confidence": 0.3,
+        "heading": null,
+        "bounds": {
+          "x": 0,
+          "y": 8140.65625,
+          "w": 1280,
+          "h": 106
+        },
+        "buttonCount": 0,
+        "cardCount": 10,
+        "slots": {
+          "lede": "GDPR"
+        },
+        "needsSmart": true
+      },
+      {
+        "index": 15,
+        "tag": "footer",
+        "role": "footer",
+        "subrole": null,
+        "confidence": 0.95,
+        "heading": null,
+        "bounds": {
+          "x": 0,
+          "y": 8246.65625,
+          "w": 1280,
+          "h": 748.75
+        },
+        "buttonCount": 4,
+        "cardCount": 126,
+        "slots": {
+          "ctaCount": 4
+        },
+        "needsSmart": false
+      },
+      {
+        "index": 16,
+        "tag": "section",
+        "role": "feature-grid",
+        "subrole": null,
+        "confidence": 0.8,
+        "heading": null,
+        "bounds": {
+          "x": 0,
+          "y": 8310.65625,
+          "w": 1280,
+          "h": 407.75
+        },
+        "buttonCount": 4,
+        "cardCount": 111,
+        "slots": {
+          "ctaCount": 4
+        },
+        "needsSmart": false
+      },
+      {
+        "index": 17,
+        "tag": "section",
+        "role": "content",
+        "subrole": null,
+        "confidence": 0.3,
+        "heading": null,
+        "bounds": {
+          "x": 0,
+          "y": 8814.40625,
+          "w": 1280,
+          "h": 117
+        },
+        "buttonCount": 0,
+        "cardCount": 15,
+        "slots": {
+          "lede": "Legal\n© 2026 Peaberry Software, Inc.\nAll Systems Operational"
+        },
+        "needsSmart": true
+      }
+    ],
+    "counts": {
+      "cta": 1,
+      "nav": 1,
+      "pricing": 3,
+      "logo-wall": 2,
+      "content": 3,
+      "testimonials": 5,
+      "testimonial": 1,
+      "footer": 1,
+      "feature-grid": 1
+    },
+    "readingOrder": [
+      "cta",
+      "nav",
+      "logo-wall",
+      "testimonials",
+      "pricing",
+      "pricing",
+      "content",
+      "logo-wall",
+      "testimonials",
+      "testimonials",
+      "testimonials",
+      "testimonials",
+      "testimonial",
+      "pricing",
+      "content",
+      "footer",
+      "feature-grid",
+      "content"
+    ]
+  }
+}

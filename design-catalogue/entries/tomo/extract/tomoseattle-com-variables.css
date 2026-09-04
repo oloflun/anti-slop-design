@@ -1,0 +1,62 @@
+:root {
+  /* Colors — Primary */
+  --color-primary: #ff6347;
+  --color-secondary: #eee2d4;
+
+  /* Colors — Neutrals */
+  --color-neutral-50: #000000;
+  --color-neutral-100: #ffffff;
+  --color-neutral-200: #f0f0f0;
+  --color-neutral-300: #1a1a1a;
+
+  /* Colors — Backgrounds */
+  --color-bg: #ffffff;
+  --color-bg-1: #ff6347;
+  --color-bg-2: #000000;
+  --color-bg-3: #eee2d4;
+
+  /* Colors — Text */
+  --color-text: #000000;
+  --color-text-1: #ffffff;
+
+  /* Typography — Families */
+  --font-sans: 'Recife', sans-serif;
+  --font-body: 'Times New Roman', sans-serif;
+  --font-font-2: 'Icons', sans-serif;
+  --font-body: 'Arial', sans-serif;
+
+  /* Typography — Scale */
+  --font-size-28.8: 28.8px;
+  --font-size-28: 28px;
+  --font-size-23.04: 23.04px;
+  --font-size-13.3333: 13.3333px;
+  --font-size-11.52: 11.52px;
+
+  /* Spacing */
+  --spacing-1: 1px;
+  --spacing-58: 58px;
+  --spacing-99: 99px;
+  --spacing-116: 116px;
+  --spacing-143: 143px;
+  --spacing-269: 269px;
+  --spacing-293: 293px;
+  --spacing-338: 338px;
+  --spacing-360: 360px;
+  --spacing-369: 369px;
+  --spacing-415: 415px;
+  --spacing-474: 474px;
+
+  /* Border Radius */
+  --radius-full: 100px;
+
+  /* Original Site Variables */
+  /* — other — */
+  --following-width: -400px;
+  --following-animation-duration: 450ms;
+  /* — semantic — */
+  success: [object Object];
+  warning: [object Object];
+  error: [object Object];
+  info: [object Object];
+
+}

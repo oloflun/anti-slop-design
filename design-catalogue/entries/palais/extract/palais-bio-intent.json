@@ -1,0 +1,400 @@
+{
+  "pageIntent": {
+    "type": "landing",
+    "confidence": 0.51,
+    "path": "/",
+    "title": "Pa'lais | The Plant Kitchen | Plant-based & organic spread cheeses and creamy sauces",
+    "description": "Discover our vegan spread-cheeses and sauces made entirely out of plants. Lactose-free, gluten-free, soy-free, sugar-free and additive-free.",
+    "signals": [
+      {
+        "kind": "meta",
+        "type": "blog-post",
+        "weight": 0.6,
+        "detail": "og:type=article"
+      },
+      {
+        "kind": "dom",
+        "type": "legal",
+        "weight": 0.4
+      },
+      {
+        "kind": "url",
+        "type": "landing",
+        "weight": 0.45,
+        "detail": "root-path"
+      },
+      {
+        "kind": "shape",
+        "type": "landing",
+        "weight": 0.3,
+        "detail": "features+hero+footer"
+      }
+    ],
+    "alternates": [
+      {
+        "type": "blog-post",
+        "score": 0.6
+      },
+      {
+        "type": "legal",
+        "score": 0.4
+      }
+    ],
+    "needsSmart": true
+  },
+  "sectionRoles": {
+    "sections": [
+      {
+        "index": 0,
+        "tag": "main",
+        "role": "feature-grid",
+        "subrole": null,
+        "confidence": 0.8,
+        "heading": null,
+        "bounds": {
+          "x": 0,
+          "y": 0,
+          "w": 1280,
+          "h": 6108.515625
+        },
+        "buttonCount": 16,
+        "cardCount": 89,
+        "slots": {
+          "heading": "",
+          "subheadings": [
+            "",
+            "",
+            "",
+            "Grow your\nplant kitchen"
+          ],
+          "ctaCount": 16,
+          "lede": "For professionals\nEN\nFR\nNL\nDE\nGet inspired\nOur products\nFor a better world\nContact\nStore Locator\nGrow your\nplant kitchen\nThe future\nof cooking - today\nscroll down"
+        },
+        "needsSmart": false
+      },
+      {
+        "index": 1,
+        "tag": "header",
+        "role": "feature-grid",
+        "subrole": null,
+        "confidence": 0.8,
+        "heading": null,
+        "bounds": {
+          "x": 0,
+          "y": 0,
+          "w": 0,
+          "h": 0
+        },
+        "buttonCount": 1,
+        "cardCount": 3,
+        "slots": {
+          "ctaCount": 1,
+          "lede": "en frnlde Menu"
+        },
+        "needsSmart": false
+      },
+      {
+        "index": 2,
+        "tag": "nav",
+        "role": "nav",
+        "subrole": null,
+        "confidence": 0.9,
+        "heading": null,
+        "bounds": {
+          "x": 0,
+          "y": 0,
+          "w": 0,
+          "h": 0
+        },
+        "buttonCount": 0,
+        "cardCount": 7,
+        "slots": {
+          "lede": "Get inspired Our products Pa’lais Spreads Pa’lais Cuisine  For a better world Contact  Store Locator For professionals"
+        },
+        "needsSmart": false
+      },
+      {
+        "index": 3,
+        "tag": "header",
+        "role": "feature-grid",
+        "subrole": null,
+        "confidence": 0.8,
+        "heading": null,
+        "bounds": {
+          "x": 180,
+          "y": 56,
+          "w": 920,
+          "h": 70
+        },
+        "buttonCount": 0,
+        "cardCount": 32,
+        "slots": {
+          "heading": "",
+          "subheadings": [
+            "",
+            "",
+            ""
+          ],
+          "lede": "Get inspired\nOur products\nFor a better world\nContact\nStore Locator"
+        },
+        "needsSmart": false
+      },
+      {
+        "index": 4,
+        "tag": "nav",
+        "role": "nav",
+        "subrole": null,
+        "confidence": 0.9,
+        "heading": null,
+        "bounds": {
+          "x": 360,
+          "y": 68,
+          "w": 720,
+          "h": 46
+        },
+        "buttonCount": 0,
+        "cardCount": 32,
+        "slots": {
+          "heading": "",
+          "subheadings": [
+            "",
+            "",
+            ""
+          ],
+          "lede": "Get inspired\nOur products\nFor a better world\nContact\nStore Locator"
+        },
+        "needsSmart": false
+      },
+      {
+        "index": 5,
+        "tag": "section",
+        "role": "hero",
+        "subrole": null,
+        "confidence": 0.85,
+        "heading": "Grow your\nplant kitchen",
+        "bounds": {
+          "x": 0,
+          "y": 0,
+          "w": 1280,
+          "h": 829
+        },
+        "buttonCount": 0,
+        "cardCount": 9,
+        "slots": {
+          "heading": "Grow your\nplant kitchen",
+          "subheadings": [
+            "The future\nof cooking - today"
+          ],
+          "lede": "Grow your\nplant kitchen\nThe future\nof cooking - today\nscroll down"
+        },
+        "needsSmart": false
+      },
+      {
+        "index": 6,
+        "tag": "section",
+        "role": "content",
+        "subrole": null,
+        "confidence": 0.3,
+        "heading": null,
+        "bounds": {
+          "x": 0,
+          "y": 829,
+          "w": 1280,
+          "h": 778
+        },
+        "buttonCount": 0,
+        "cardCount": 0,
+        "slots": {
+          "lede": "Pa’lais exists because we felt there needed to be more yummy and planet-friendly food. So we made our creamy spreads and sauces entirely out of plants."
+        },
+        "needsSmart": true
+      },
+      {
+        "index": 7,
+        "tag": "section",
+        "role": "content",
+        "subrole": null,
+        "confidence": 0.3,
+        "heading": "Incredible recipes that will take your taste buds to heaven and back",
+        "bounds": {
+          "x": 0,
+          "y": 1707,
+          "w": 1280,
+          "h": 514
+        },
+        "buttonCount": 2,
+        "cardCount": 0,
+        "slots": {
+          "heading": "Incredible recipes that will take your taste buds to heaven and back",
+          "subheadings": [
+            "Incredible recipes\n\n\nthat will take your taste buds to heaven and back"
+          ],
+          "ctaCount": 2,
+          "lede": ""
+        },
+        "needsSmart": true
+      },
+      {
+        "index": 8,
+        "tag": "section",
+        "role": "content",
+        "subrole": null,
+        "confidence": 0.3,
+        "heading": "Spready, saucyand non-dairy!",
+        "bounds": {
+          "x": 0,
+          "y": 2381,
+          "w": 1280,
+          "h": 593.515625
+        },
+        "buttonCount": 0,
+        "cardCount": 0,
+        "slots": {
+          "heading": "Spready, saucyand non-dairy!"
+        },
+        "needsSmart": true
+      },
+      {
+        "index": 9,
+        "tag": "section",
+        "role": "content",
+        "subrole": null,
+        "confidence": 0.3,
+        "heading": "Pa'lais Spreads",
+        "bounds": {
+          "x": 0,
+          "y": 2974.515625,
+          "w": 1280,
+          "h": 698
+        },
+        "buttonCount": 0,
+        "cardCount": 12,
+        "slots": {
+          "heading": "Pa'lais Spreads",
+          "subheadings": [
+            "Pa'lais Cuisine"
+          ]
+        },
+        "needsSmart": true
+      },
+      {
+        "index": 10,
+        "tag": "section",
+        "role": "content",
+        "subrole": null,
+        "confidence": 0.3,
+        "heading": " You arePa'lais",
+        "bounds": {
+          "x": 0,
+          "y": 3672.515625,
+          "w": 1280,
+          "h": 888
+        },
+        "buttonCount": 0,
+        "cardCount": 4,
+        "slots": {
+          "heading": " You arePa'lais",
+          "subheadings": [
+            "You are\nPa'lais"
+          ],
+          "lede": "🛒 Delhaize shoppers opgelet! Deze week vind je bij\n🎁 Online Kado Deal bij Delhaize 🎁 Nog meer goed n\nDUBBEL GENIETEN van Pa’lais 💚 Goed nieuws voor lie\nYou are\nPa'lais"
+        },
+        "needsSmart": true
+      },
+      {
+        "index": 11,
+        "tag": "section",
+        "role": "faq",
+        "subrole": null,
+        "confidence": 0.85,
+        "heading": "PA'LAIS finder",
+        "bounds": {
+          "x": 0,
+          "y": 4560.515625,
+          "w": 1280,
+          "h": 670
+        },
+        "buttonCount": 0,
+        "cardCount": 0,
+        "slots": {
+          "heading": "PA'LAIS finder",
+          "subheadings": [
+            "Got any questions?"
+          ]
+        },
+        "needsSmart": false
+      },
+      {
+        "index": 12,
+        "tag": "section",
+        "role": "hero",
+        "subrole": null,
+        "confidence": 0.4,
+        "heading": "You probably don't want another newsletter in your mailbox,\nbut then you'd miss our fantastic recipes",
+        "bounds": {
+          "x": 0,
+          "y": 5230.515625,
+          "w": 1280,
+          "h": 350
+        },
+        "buttonCount": 1,
+        "cardCount": 6,
+        "slots": {
+          "heading": "You probably don't want another newsletter in your mailbox,\nbut then you'd miss our fantastic recipes",
+          "ctaCount": 1,
+          "lede": "You probably don't want another newsletter in your mailbox,\nbut then you'd miss our fantastic recipes\nNewsletter (country)\nCountry\nBelgium\nFrance\nNetherlands\nGermany\nOther"
+        },
+        "needsSmart": true
+      },
+      {
+        "index": 13,
+        "tag": "footer",
+        "role": "footer",
+        "subrole": null,
+        "confidence": 0.95,
+        "heading": "MENU",
+        "bounds": {
+          "x": 0,
+          "y": 5580.515625,
+          "w": 1280,
+          "h": 528
+        },
+        "buttonCount": 0,
+        "cardCount": 9,
+        "slots": {
+          "heading": "MENU",
+          "subheadings": [
+            "STORE LOCATOR",
+            "CONTACT PA'LAIS"
+          ],
+          "lede": "MENU\nGet inspired\nOur products\nFor a better world\nContact\nFAQ\nFor professionals\nSTORE LOCATOR\nWe are available in various points of sale.\nCONTACT PA'LAIS\nDo you have a question? Send it to us!\nLEGAL INFORMATION\nPRIVACY POLICY\nPOWERED BY AD"
+        },
+        "needsSmart": false
+      }
+    ],
+    "counts": {
+      "feature-grid": 3,
+      "nav": 2,
+      "hero": 2,
+      "content": 5,
+      "faq": 1,
+      "footer": 1
+    },
+    "readingOrder": [
+      "feature-grid",
+      "feature-grid",
+      "nav",
+      "hero",
+      "feature-grid",
+      "nav",
+      "content",
+      "content",
+      "content",
+      "content",
+      "content",
+      "faq",
+      "hero",
+      "footer"
+    ]
+  }
+}

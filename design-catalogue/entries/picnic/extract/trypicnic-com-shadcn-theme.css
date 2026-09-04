@@ -1,0 +1,17 @@
+/* shadcn/ui Theme — extracted from https://trypicnic.com */
+/* Paste into your globals.css */
+
+@layer base {
+  :root {
+    --background: 48 24% 96%;
+    --foreground: 11 93% 56%;
+    --primary: 48 24% 96%;
+    --primary-foreground: 0 0% 0%;
+    --secondary: 11 93% 56%;
+    --secondary-foreground: 0 0% 100%;
+    --muted: 60 6% 78%;
+    --muted-foreground: 220 13% 91%;
+    --border: 0 0% 100%;
+    --radius: 8px;
+  }
+}

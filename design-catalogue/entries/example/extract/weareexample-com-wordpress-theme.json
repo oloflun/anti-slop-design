@@ -1,0 +1,203 @@
+{
+  "$schema": "https://schemas.wp.org/trunk/theme.json",
+  "version": 3,
+  "settings": {
+    "color": {
+      "palette": [
+        {
+          "slug": "primary",
+          "color": "#2cc9ff",
+          "name": "Primary"
+        },
+        {
+          "slug": "secondary",
+          "color": "#ff0000",
+          "name": "Secondary"
+        },
+        {
+          "slug": "accent",
+          "color": "#ffdede",
+          "name": "Accent"
+        },
+        {
+          "slug": "neutral-1",
+          "color": "#f3f3f0",
+          "name": "Neutral 1"
+        },
+        {
+          "slug": "neutral-2",
+          "color": "#000000",
+          "name": "Neutral 2"
+        },
+        {
+          "slug": "neutral-3",
+          "color": "#424242",
+          "name": "Neutral 3"
+        },
+        {
+          "slug": "neutral-4",
+          "color": "#1f1f1f",
+          "name": "Neutral 4"
+        },
+        {
+          "slug": "neutral-5",
+          "color": "#ffffff",
+          "name": "Neutral 5"
+        },
+        {
+          "slug": "bg-f3f3f0",
+          "color": "#f3f3f0",
+          "name": "Background #f3f3f0"
+        },
+        {
+          "slug": "bg-f8f8ef",
+          "color": "#f8f8ef",
+          "name": "Background #f8f8ef"
+        },
+        {
+          "slug": "bg-ffffff",
+          "color": "#ffffff",
+          "name": "Background #ffffff"
+        }
+      ],
+      "gradients": [
+        {
+          "slug": "gradient-1",
+          "gradient": "linear-gradient(0deg, rgb(248, 248, 239), rgb(243, 243, 240))",
+          "name": "Gradient 1"
+        },
+        {
+          "slug": "gradient-2",
+          "gradient": "linear-gradient(0deg, rgb(243, 243, 240), rgb(248, 248, 239))",
+          "name": "Gradient 2"
+        }
+      ]
+    },
+    "typography": {
+      "fontFamilies": [
+        {
+          "fontFamily": "American Grotesk",
+          "slug": "american-grotesk",
+          "name": "American Grotesk"
+        },
+        {
+          "fontFamily": "American Grotesk Compressed",
+          "slug": "american-grotesk-compressed",
+          "name": "American Grotesk Compressed"
+        },
+        {
+          "fontFamily": "Ppeditorialnew",
+          "slug": "ppeditorialnew",
+          "name": "Ppeditorialnew"
+        },
+        {
+          "fontFamily": "Menlo",
+          "slug": "menlo",
+          "name": "Menlo"
+        }
+      ],
+      "fontSizes": [
+        {
+          "size": "230.4px",
+          "slug": "size-230.4",
+          "name": "230.4px"
+        },
+        {
+          "size": "184.32px",
+          "slug": "size-184.32",
+          "name": "184.32px"
+        },
+        {
+          "size": "182.4px",
+          "slug": "size-182.4",
+          "name": "182.4px"
+        },
+        {
+          "size": "166.4px",
+          "slug": "size-166.4",
+          "name": "166.4px"
+        },
+        {
+          "size": "140.8px",
+          "slug": "size-140.8",
+          "name": "140.8px"
+        },
+        {
+          "size": "102.4px",
+          "slug": "size-102.4",
+          "name": "102.4px"
+        },
+        {
+          "size": "96px",
+          "slug": "size-96",
+          "name": "96px"
+        },
+        {
+          "size": "72px",
+          "slug": "size-72",
+          "name": "72px"
+        }
+      ]
+    },
+    "spacing": {
+      "spacingSizes": [
+        {
+          "size": "1px",
+          "slug": "spacing-1",
+          "name": "1px"
+        },
+        {
+          "size": "10px",
+          "slug": "spacing-10",
+          "name": "10px"
+        },
+        {
+          "size": "12px",
+          "slug": "spacing-12",
+          "name": "12px"
+        },
+        {
+          "size": "24px",
+          "slug": "spacing-24",
+          "name": "24px"
+        },
+        {
+          "size": "32px",
+          "slug": "spacing-32",
+          "name": "32px"
+        },
+        {
+          "size": "36px",
+          "slug": "spacing-36",
+          "name": "36px"
+        },
+        {
+          "size": "38px",
+          "slug": "spacing-38",
+          "name": "38px"
+        },
+        {
+          "size": "51px",
+          "slug": "spacing-51",
+          "name": "51px"
+        }
+      ]
+    },
+    "layout": {
+      "contentSize": "100%",
+      "wideSize": "1400px"
+    }
+  },
+  "styles": {
+    "color": {
+      "background": "#f3f3f0",
+      "text": "#000000"
+    },
+    "typography": {
+      "fontSize": "19.2px",
+      "lineHeight": "22.08px",
+      "fontFamily": "American Grotesk"
+    },
+    "spacing": {}
+  }
+}

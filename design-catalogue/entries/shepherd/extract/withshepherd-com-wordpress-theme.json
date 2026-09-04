@@ -1,0 +1,183 @@
+{
+  "$schema": "https://schemas.wp.org/trunk/theme.json",
+  "version": 3,
+  "settings": {
+    "color": {
+      "palette": [
+        {
+          "slug": "primary",
+          "color": "#fdc331",
+          "name": "Primary"
+        },
+        {
+          "slug": "secondary",
+          "color": "#d6c5b5",
+          "name": "Secondary"
+        },
+        {
+          "slug": "accent",
+          "color": "#fa9742",
+          "name": "Accent"
+        },
+        {
+          "slug": "neutral-1",
+          "color": "#000000",
+          "name": "Neutral 1"
+        },
+        {
+          "slug": "neutral-2",
+          "color": "#ffffff",
+          "name": "Neutral 2"
+        },
+        {
+          "slug": "neutral-3",
+          "color": "#e7e7e7",
+          "name": "Neutral 3"
+        },
+        {
+          "slug": "bg-ffffff",
+          "color": "#ffffff",
+          "name": "Background #ffffff"
+        },
+        {
+          "slug": "bg-fdc331",
+          "color": "#fdc331",
+          "name": "Background #fdc331"
+        },
+        {
+          "slug": "bg-d6c5b5",
+          "color": "#d6c5b5",
+          "name": "Background #d6c5b5"
+        }
+      ],
+      "gradients": [
+        {
+          "slug": "gradient-1",
+          "gradient": "linear-gradient(90deg, rgb(253, 195, 49) 53%, rgba(0, 0, 0, 0))",
+          "name": "Gradient 1"
+        },
+        {
+          "slug": "gradient-2",
+          "gradient": "linear-gradient(-90deg, rgb(253, 195, 49), rgba(0, 0, 0, 0))",
+          "name": "Gradient 2"
+        }
+      ]
+    },
+    "typography": {
+      "fontFamilies": [
+        {
+          "fontFamily": "Magistersttrial",
+          "slug": "magistersttrial",
+          "name": "Magistersttrial"
+        },
+        {
+          "fontFamily": "Gt Planar Trial",
+          "slug": "gt-planar-trial",
+          "name": "Gt Planar Trial"
+        }
+      ],
+      "fontSizes": [
+        {
+          "size": "100px",
+          "slug": "size-100",
+          "name": "100px"
+        },
+        {
+          "size": "85px",
+          "slug": "size-85",
+          "name": "85px"
+        },
+        {
+          "size": "45px",
+          "slug": "size-45",
+          "name": "45px"
+        },
+        {
+          "size": "24px",
+          "slug": "size-24",
+          "name": "24px"
+        },
+        {
+          "size": "23.8px",
+          "slug": "size-23.8",
+          "name": "23.8px"
+        },
+        {
+          "size": "18.4px",
+          "slug": "size-18.4",
+          "name": "18.4px"
+        },
+        {
+          "size": "16px",
+          "slug": "size-16",
+          "name": "16px"
+        },
+        {
+          "size": "15.5px",
+          "slug": "size-15.5",
+          "name": "15.5px"
+        }
+      ]
+    },
+    "spacing": {
+      "spacingSizes": [
+        {
+          "size": "2px",
+          "slug": "spacing-2",
+          "name": "2px"
+        },
+        {
+          "size": "40px",
+          "slug": "spacing-40",
+          "name": "40px"
+        },
+        {
+          "size": "53px",
+          "slug": "spacing-53",
+          "name": "53px"
+        },
+        {
+          "size": "58px",
+          "slug": "spacing-58",
+          "name": "58px"
+        },
+        {
+          "size": "69px",
+          "slug": "spacing-69",
+          "name": "69px"
+        },
+        {
+          "size": "79px",
+          "slug": "spacing-79",
+          "name": "79px"
+        },
+        {
+          "size": "84px",
+          "slug": "spacing-84",
+          "name": "84px"
+        },
+        {
+          "size": "92px",
+          "slug": "spacing-92",
+          "name": "92px"
+        }
+      ]
+    },
+    "layout": {
+      "contentSize": "1600px",
+      "wideSize": "1400px"
+    }
+  },
+  "styles": {
+    "color": {
+      "background": "#ffffff",
+      "text": "#000000"
+    },
+    "typography": {
+      "fontSize": "23.8px",
+      "lineHeight": "26.18px",
+      "fontFamily": "Magistersttrial"
+    },
+    "spacing": {}
+  }
+}

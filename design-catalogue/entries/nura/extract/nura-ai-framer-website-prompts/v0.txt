@@ -1,0 +1,33 @@
+Build a landing page with this exact visual language.
+COLORS:
+  #000000
+  #ffffff
+  #0000ee
+  #1a1a1a
+  #5d5d5d
+  #464646
+  #737373
+  #e7543c
+  #242424
+  #2e2e2e
+  #ededed
+  #8c8c8c
+  #ff5f54
+  #ffbe32
+FONTS: [object Object], [object Object], [object Object], [object Object]
+SPACING: 1, 24, 28, 32, 40, 64, 80, 100
+RADIUS: 1, 4, 8, 11, 15, 20
+SHADOWS: rgb(255, 255, 255) 0px 0px 0px 2px | rgb(0, 0, 0) 0px 0px 0px 1px inset | rgba(0, 0, 0, 0.17) 0px 0.602187px 1.56569px -1.5px, rgba(0, 0, 0, 0.14) 0px 2.28853px 5.95019px -3px, rgba(0, 0, 0, 0.02) 0px 10px 26px -4.5px
+MATERIAL LANGUAGE: flat
+VOICE: Tone: friendly · Headings: Sentence case
+LIBRARY: Use Vuetify 3 components with a custom theme object.
+SECTIONS (in order):
+- testimonial — heading: "Start your day with a better plan"
+- testimonial
+- testimonials — heading: "Built to organize tasks, priorities, and daily decisions"
+- testimonials
+- pricing — heading: "Flexible plans for focused work"
+- testimonials — heading: "Your days finally start working for you"
+- faq — heading: "Everything you might be wondering about"
+- footer — heading: "✦"
+Use Tailwind. Match these tokens exactly. Keep the material language consistent.

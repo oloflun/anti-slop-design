@@ -1,0 +1,264 @@
+{
+  "pageIntent": {
+    "type": "landing",
+    "confidence": 0.29,
+    "path": "/",
+    "title": "Bumble | Date, Chat & Meet New People",
+    "description": "Bumble is a social network that allows you to feel empowered while making connections, whether you're dating or looking for friends.",
+    "signals": [
+      {
+        "kind": "dom",
+        "type": "blog-post",
+        "weight": 0.35,
+        "detail": "byline|min-read"
+      },
+      {
+        "kind": "dom",
+        "type": "legal",
+        "weight": 0.4
+      },
+      {
+        "kind": "url",
+        "type": "landing",
+        "weight": 0.45,
+        "detail": "root-path"
+      }
+    ],
+    "alternates": [
+      {
+        "type": "legal",
+        "score": 0.4
+      },
+      {
+        "type": "blog-post",
+        "score": 0.35
+      }
+    ],
+    "needsSmart": true
+  },
+  "sectionRoles": {
+    "sections": [
+      {
+        "index": 0,
+        "tag": "header",
+        "role": "nav",
+        "subrole": null,
+        "confidence": 0.4,
+        "heading": null,
+        "bounds": {
+          "x": 0,
+          "y": 0,
+          "w": 1280,
+          "h": 84
+        },
+        "buttonCount": 13,
+        "cardCount": 33,
+        "slots": {
+          "ctaCount": 13,
+          "lede": "Date\nBFF\nStories\nSafety\nSupport"
+        },
+        "needsSmart": true
+      },
+      {
+        "index": 1,
+        "tag": "nav",
+        "role": "nav",
+        "subrole": null,
+        "confidence": 0.9,
+        "heading": null,
+        "bounds": {
+          "x": 171,
+          "y": 32,
+          "w": 969,
+          "h": 52
+        },
+        "buttonCount": 3,
+        "cardCount": 5,
+        "slots": {
+          "ctaCount": 3,
+          "lede": "Date\nBFF\nStories\nSafety\nSupport"
+        },
+        "needsSmart": false
+      },
+      {
+        "index": 2,
+        "tag": "main",
+        "role": "feature-grid",
+        "subrole": null,
+        "confidence": 0.8,
+        "heading": null,
+        "bounds": {
+          "x": 0,
+          "y": 0,
+          "w": 1280,
+          "h": 3922.34375
+        },
+        "buttonCount": 13,
+        "cardCount": 43,
+        "slots": {
+          "heading": "",
+          "subheadings": [
+            "We exist to bring people closer to love.",
+            "Share your ideas",
+            "Bumble Date",
+            "BFF"
+          ],
+          "ctaCount": 13,
+          "lede": "Danna, 28"
+        },
+        "needsSmart": false
+      },
+      {
+        "index": 3,
+        "tag": "section",
+        "role": "gallery",
+        "subrole": null,
+        "confidence": 0.7,
+        "heading": "We exist to bring people closer to love.",
+        "bounds": {
+          "x": 0,
+          "y": 851,
+          "w": 1280,
+          "h": 618
+        },
+        "buttonCount": 3,
+        "cardCount": 11,
+        "slots": {
+          "heading": "We exist to bring people closer to love.",
+          "ctaCount": 3
+        },
+        "needsSmart": false
+      },
+      {
+        "index": 4,
+        "tag": "section",
+        "role": "cta",
+        "subrole": null,
+        "confidence": 0.75,
+        "heading": "Share your ideas",
+        "bounds": {
+          "x": 0,
+          "y": 1509,
+          "w": 1280,
+          "h": 700
+        },
+        "buttonCount": 3,
+        "cardCount": 0,
+        "slots": {
+          "heading": "Share your ideas",
+          "ctaCount": 3
+        },
+        "needsSmart": false
+      },
+      {
+        "index": 5,
+        "tag": "section",
+        "role": "gallery",
+        "subrole": null,
+        "confidence": 0.7,
+        "heading": null,
+        "bounds": {
+          "x": 0,
+          "y": 2832.34375,
+          "w": 1280,
+          "h": 600
+        },
+        "buttonCount": 3,
+        "cardCount": 0,
+        "slots": {
+          "ctaCount": 3,
+          "lede": "\"\nWe are both naturally positive, happy-go-getters, but when you put us together, it feels like there is nothing we can’t accomplish."
+        },
+        "needsSmart": false
+      },
+      {
+        "index": 6,
+        "tag": "section",
+        "role": "cta",
+        "subrole": null,
+        "confidence": 0.75,
+        "heading": "Get the app",
+        "bounds": {
+          "x": 40,
+          "y": 3472.34375,
+          "w": 1200,
+          "h": 450
+        },
+        "buttonCount": 4,
+        "cardCount": 0,
+        "slots": {
+          "heading": "Get the app",
+          "ctaCount": 4
+        },
+        "needsSmart": false
+      },
+      {
+        "index": 7,
+        "tag": "footer",
+        "role": "footer",
+        "subrole": null,
+        "confidence": 0.95,
+        "heading": "Our apps",
+        "bounds": {
+          "x": 0,
+          "y": 3922.34375,
+          "w": 1280,
+          "h": 557
+        },
+        "buttonCount": 6,
+        "cardCount": 53,
+        "slots": {
+          "heading": "Our apps",
+          "subheadings": [
+            "Company",
+            "Legal"
+          ],
+          "ctaCount": 6
+        },
+        "needsSmart": false
+      },
+      {
+        "index": 8,
+        "tag": "nav",
+        "role": "nav",
+        "subrole": null,
+        "confidence": 0.9,
+        "heading": "Our apps",
+        "bounds": {
+          "x": 570,
+          "y": 3962.34375,
+          "w": 670,
+          "h": 307
+        },
+        "buttonCount": 0,
+        "cardCount": 18,
+        "slots": {
+          "heading": "Our apps",
+          "subheadings": [
+            "Company",
+            "Legal"
+          ]
+        },
+        "needsSmart": false
+      }
+    ],
+    "counts": {
+      "nav": 3,
+      "feature-grid": 1,
+      "gallery": 2,
+      "cta": 2,
+      "footer": 1
+    },
+    "readingOrder": [
+      "nav",
+      "feature-grid",
+      "nav",
+      "gallery",
+      "cta",
+      "gallery",
+      "cta",
+      "footer",
+      "nav"
+    ]
+  }
+}

@@ -1,0 +1,693 @@
+{
+  "colors": {
+    "all": [
+      {
+        "hex": "#ed2e38",
+        "rgb": {
+          "r": 237,
+          "g": 46,
+          "b": 56,
+          "a": 1
+        },
+        "hsl": {
+          "h": 357,
+          "s": 84,
+          "l": 55
+        },
+        "count": 2458,
+        "contexts": [
+          "text",
+          "border"
+        ]
+      },
+      {
+        "hex": "#000000",
+        "rgb": {
+          "r": 0,
+          "g": 0,
+          "b": 0,
+          "a": 1
+        },
+        "hsl": {
+          "h": 0,
+          "s": 0,
+          "l": 0
+        },
+        "count": 155,
+        "contexts": [
+          "text",
+          "border"
+        ]
+      },
+      {
+        "hex": "#fcf0f3",
+        "rgb": {
+          "r": 252,
+          "g": 240,
+          "b": 243,
+          "a": 1
+        },
+        "hsl": {
+          "h": 345,
+          "s": 67,
+          "l": 96
+        },
+        "count": 23,
+        "contexts": [
+          "background"
+        ]
+      },
+      {
+        "hex": "#ffffff",
+        "rgb": {
+          "r": 255,
+          "g": 255,
+          "b": 255,
+          "a": 1
+        },
+        "hsl": {
+          "h": 0,
+          "s": 0,
+          "l": 100
+        },
+        "count": 17,
+        "contexts": [
+          "background",
+          "text",
+          "border"
+        ]
+      },
+      {
+        "hex": "#007aff",
+        "rgb": {
+          "r": 0,
+          "g": 122,
+          "b": 255,
+          "a": 1
+        },
+        "hsl": {
+          "h": 211,
+          "s": 100,
+          "l": 50
+        },
+        "count": 16,
+        "contexts": [
+          "text",
+          "border"
+        ]
+      },
+      {
+        "hex": "#333333",
+        "rgb": {
+          "r": 51,
+          "g": 51,
+          "b": 51,
+          "a": 1
+        },
+        "hsl": {
+          "h": 0,
+          "s": 0,
+          "l": 20
+        },
+        "count": 16,
+        "contexts": [
+          "text",
+          "border"
+        ]
+      },
+      {
+        "hex": "#ff4f55",
+        "rgb": {
+          "r": 255,
+          "g": 79,
+          "b": 85,
+          "a": 1
+        },
+        "hsl": {
+          "h": 358,
+          "s": 100,
+          "l": 65
+        },
+        "count": 4,
+        "contexts": [
+          "text",
+          "border"
+        ]
+      },
+      {
+        "hex": "#808080",
+        "rgb": {
+          "r": 128,
+          "g": 128,
+          "b": 128,
+          "a": 1
+        },
+        "hsl": {
+          "h": 0,
+          "s": 0,
+          "l": 50
+        },
+        "count": 1,
+        "contexts": [
+          "text"
+        ]
+      }
+    ]
+  },
+  "regions": [
+    {
+      "role": "nav",
+      "tag": "header",
+      "bounds": {
+        "x": 0,
+        "y": 0,
+        "w": 1280,
+        "h": 153
+      },
+      "heading": null,
+      "buttonCount": 2,
+      "cardCount": 2,
+      "className": "transition noselect"
+    },
+    {
+      "role": "sidebar",
+      "tag": "aside",
+      "bounds": {
+        "x": 0,
+        "y": 0,
+        "w": 0,
+        "h": 0
+      },
+      "heading": null,
+      "buttonCount": 0,
+      "cardCount": 2,
+      "className": "mobileMenuPanel transition"
+    },
+    {
+      "role": "content",
+      "tag": "main",
+      "bounds": {
+        "x": 0,
+        "y": 0,
+        "w": 1280,
+        "h": 2520
+      },
+      "heading": "THE PULSE OF LIVING",
+      "buttonCount": 38,
+      "cardCount": 0,
+      "className": null
+    },
+    {
+      "role": "hero",
+      "tag": "section",
+      "bounds": {
+        "x": 0,
+        "y": 0,
+        "w": 1280,
+        "h": 800
+      },
+      "heading": "THE PULSE OF LIVING",
+      "buttonCount": 1,
+      "cardCount": 0,
+      "className": "swiper heroSlider noselect swiper-fade swiper-initialized swiper-horizontal swiper-pointer-events ready"
+    },
+    {
+      "role": "content",
+      "tag": "section",
+      "bounds": {
+        "x": 0,
+        "y": 880,
+        "w": 1280,
+        "h": 1640
+      },
+      "heading": "HARBOR",
+      "buttonCount": 37,
+      "cardCount": 0,
+      "className": "featuredBlocks container"
+    },
+    {
+      "role": "sidebar",
+      "tag": "aside",
+      "bounds": {
+        "x": 863.90625,
+        "y": 880,
+        "w": 383.953125,
+        "h": 786
+      },
+      "heading": "Alejandra Gandia-Blasco",
+      "buttonCount": 2,
+      "cardCount": 0,
+      "className": "swiper swiper-initialized swiper-horizontal swiper-pointer-events"
+    },
+    {
+      "role": "footer",
+      "tag": "footer",
+      "bounds": {
+        "x": 0,
+        "y": 2520,
+        "w": 1280,
+        "h": 346.46875
+      },
+      "heading": null,
+      "buttonCount": 0,
+      "cardCount": 0,
+      "className": "container noselect"
+    },
+    {
+      "role": "sidebar",
+      "tag": "aside",
+      "bounds": {
+        "x": 340,
+        "y": 59.5,
+        "w": 600,
+        "h": 721
+      },
+      "heading": null,
+      "buttonCount": 3,
+      "cardCount": 0,
+      "className": "userPanel loginPanel centeredAbsolute slowTransition uppercase fontSize2"
+    },
+    {
+      "role": "sidebar",
+      "tag": "aside",
+      "bounds": {
+        "x": 64,
+        "y": -65.09375,
+        "w": 1152,
+        "h": 970.1875
+      },
+      "heading": null,
+      "buttonCount": 4,
+      "cardCount": 15,
+      "className": "userPanel registerPanel centeredAbsolute slowTransition uppercase fontSize2"
+    }
+  ],
+  "componentClusters": [
+    {
+      "kind": "button",
+      "structuralHash": "div>button>button>button>button>a",
+      "instanceCount": 1,
+      "variants": [
+        {
+          "css": {
+            "background": "rgba(0, 0, 0, 0)",
+            "color": "rgb(237, 46, 56)",
+            "padding": "0px 0px 0px 0px",
+            "borderRadius": "0px",
+            "border": "0px none rgb(237, 46, 56)",
+            "fontSize": "12px",
+            "fontWeight": "400"
+          },
+          "instanceCount": 1
+        }
+      ]
+    },
+    {
+      "kind": "button",
+      "structuralHash": "button",
+      "instanceCount": 8,
+      "variants": [
+        {
+          "css": {
+            "background": "rgb(252, 240, 243)",
+            "color": "rgb(237, 46, 56)",
+            "padding": "0px 5px 0px 5px",
+            "borderRadius": "14px",
+            "border": "1px solid rgb(237, 46, 56)",
+            "fontSize": "12px",
+            "fontWeight": "500"
+          },
+          "instanceCount": 3
+        },
+        {
+          "css": {
+            "background": "rgba(0, 0, 0, 0)",
+            "color": "rgb(0, 0, 0)",
+            "padding": "0px 0px 0px 0px",
+            "borderRadius": "0px",
+            "border": "0px none rgb(0, 0, 0)",
+            "fontSize": "13.3333px",
+            "fontWeight": "400"
+          },
+          "instanceCount": 3
+        },
+        {
+          "css": {
+            "background": "rgba(0, 0, 0, 0)",
+            "color": "rgb(237, 46, 56)",
+            "padding": "0px 25px 0px 25px",
+            "borderRadius": "14px",
+            "border": "1px solid rgb(237, 46, 56)",
+            "fontSize": "12px",
+            "fontWeight": "400"
+          },
+          "instanceCount": 2
+        }
+      ]
+    },
+    {
+      "kind": "input",
+      "structuralHash": "input",
+      "instanceCount": 10,
+      "variants": [
+        {
+          "css": {
+            "background": "rgba(0, 0, 0, 0)",
+            "color": "rgb(237, 46, 56)",
+            "padding": "0px 0px 0px 0px",
+            "borderRadius": "0px",
+            "border": "0px 0px 1px none none solid rgb(237, 46, 56)",
+            "fontSize": "12px",
+            "fontWeight": "400"
+          },
+          "instanceCount": 10
+        }
+      ]
+    },
+    {
+      "kind": "button",
+      "structuralHash": "a",
+      "instanceCount": 29,
+      "variants": [
+        {
+          "css": {
+            "background": "rgba(0, 0, 0, 0)",
+            "color": "rgb(237, 46, 56)",
+            "padding": "0px 25px 0px 25px",
+            "borderRadius": "14px",
+            "border": "1px solid rgb(237, 46, 56)",
+            "fontSize": "12px",
+            "fontWeight": "400"
+          },
+          "instanceCount": 29
+        }
+      ]
+    },
+    {
+      "kind": "button",
+      "structuralHash": "div",
+      "instanceCount": 8,
+      "variants": [
+        {
+          "css": {
+            "background": "rgba(0, 0, 0, 0)",
+            "color": "rgb(0, 122, 255)",
+            "padding": "0px 0px 0px 0px",
+            "borderRadius": "0px",
+            "border": "0px none rgb(0, 122, 255)",
+            "fontSize": "16px",
+            "fontWeight": "400"
+          },
+          "instanceCount": 8
+        }
+      ]
+    },
+    {
+      "kind": "button",
+      "structuralHash": "input",
+      "instanceCount": 1,
+      "variants": [
+        {
+          "css": {
+            "background": "rgba(0, 0, 0, 0)",
+            "color": "rgb(237, 46, 56)",
+            "padding": "10px 20px 10px 20px",
+            "borderRadius": "14px",
+            "border": "3px solid rgb(237, 46, 56)",
+            "fontSize": "12px",
+            "fontWeight": "400"
+          },
+          "instanceCount": 1
+        }
+      ]
+    },
+    {
+      "kind": "button",
+      "structuralHash": "div>button",
+      "instanceCount": 1,
+      "variants": [
+        {
+          "css": {
+            "background": "rgba(0, 0, 0, 0)",
+            "color": "rgb(237, 46, 56)",
+            "padding": "0px 0px 0px 0px",
+            "borderRadius": "0px",
+            "border": "0px none rgb(237, 46, 56)",
+            "fontSize": "12px",
+            "fontWeight": "400"
+          },
+          "instanceCount": 1
+        }
+      ]
+    },
+    {
+      "kind": "button",
+      "structuralHash": "button>span",
+      "instanceCount": 1,
+      "variants": [
+        {
+          "css": {
+            "background": "rgba(0, 0, 0, 0)",
+            "color": "rgb(237, 46, 56)",
+            "padding": "10px 20px 10px 20px",
+            "borderRadius": "14px",
+            "border": "0px none rgb(237, 46, 56)",
+            "fontSize": "12px",
+            "fontWeight": "400"
+          },
+          "instanceCount": 1
+        }
+      ]
+    }
+  ],
+  "accessibility": {
+    "remediation": [
+      {
+        "fg": "#ed2e38",
+        "bg": "#fcf0f3",
+        "ratio": 3.74,
+        "rule": "AA-normal",
+        "suggestion": {
+          "replace": "fg",
+          "color": "#000000",
+          "newRatio": 18.9
+        }
+      }
+    ]
+  },
+  "cssHealth": {
+    "sheets": [
+      {
+        "url": "https://www.diablaoutdoor.com/en/",
+        "totalBytes": 8049,
+        "usedBytes": 2735,
+        "unusedBytes": 5314,
+        "unusedPercent": 66
+      },
+      {
+        "url": "https://www.diablaoutdoor.com/en/",
+        "totalBytes": 284,
+        "usedBytes": 0,
+        "unusedBytes": 284,
+        "unusedPercent": 100
+      },
+      {
+        "url": "https://www.diablaoutdoor.com/wp-content/themes/diabla/templates/components/featured/featured-blocks.css?ver=1",
+        "totalBytes": 4997,
+        "usedBytes": 2919,
+        "unusedBytes": 2078,
+        "unusedPercent": 42
+      },
+      {
+        "url": "https://www.diablaoutdoor.com/wp-content/themes/diabla/css/user.css?ver=1",
+        "totalBytes": 5996,
+        "usedBytes": 2998,
+        "unusedBytes": 2998,
+        "unusedPercent": 50
+      },
+      {
+        "url": "https://www.diablaoutdoor.com/wp-content/themes/diabla/css/variables.css?ver=1",
+        "totalBytes": 730,
+        "usedBytes": 646,
+        "unusedBytes": 84,
+        "unusedPercent": 12
+      },
+      {
+        "url": "https://www.diablaoutdoor.com/wp-includes/css/dist/block-library/style.min.css?ver=6.0.14",
+        "totalBytes": 88929,
+        "usedBytes": 106,
+        "unusedBytes": 88823,
+        "unusedPercent": 100
+      },
+      {
+        "url": "https://www.diablaoutdoor.com/wp-content/themes/diabla/css/fonts.css?ver=1",
+        "totalBytes": 5088,
+        "usedBytes": 1984,
+        "unusedBytes": 3104,
+        "unusedPercent": 61
+      },
+      {
+        "url": "https://www.diablaoutdoor.com/wp-content/themes/diabla/css/reset.css?ver=1",
+        "totalBytes": 1578,
+        "usedBytes": 913,
+        "unusedBytes": 665,
+        "unusedPercent": 42
+      },
+      {
+        "url": "https://www.diablaoutdoor.com/wp-content/themes/diabla/templates/components/post-thumbnails/post-thumbnails.css?ver=1",
+        "totalBytes": 1838,
+        "usedBytes": 1296,
+        "unusedBytes": 542,
+        "unusedPercent": 29
+      },
+      {
+        "url": "https://www.diablaoutdoor.com/en/",
+        "totalBytes": 52,
+        "usedBytes": 52,
+        "unusedBytes": 0,
+        "unusedPercent": 0
+      },
+      {
+        "url": "https://www.diablaoutdoor.com/wp-content/themes/diabla/templates/components/hero-slider/hero-slider.css?ver=1",
+        "totalBytes": 2069,
+        "usedBytes": 1435,
+        "unusedBytes": 634,
+        "unusedPercent": 31
+      },
+      {
+        "url": "https://www.diablaoutdoor.com/wp-content/plugins/complianz-gdpr-premium/assets/css/cookieblocker.min.css?ver=1742300216",
+        "totalBytes": 2782,
+        "usedBytes": 0,
+        "unusedBytes": 2782,
+        "unusedPercent": 100
+      },
+      {
+        "url": "https://www.diablaoutdoor.com/wp-content/themes/diabla/css/main-styles.css?ver=1",
+        "totalBytes": 27256,
+        "usedBytes": 11619,
+        "unusedBytes": 15637,
+        "unusedPercent": 57
+      },
+      {
+        "url": "https://www.diablaoutdoor.com/wp-content/themes/diabla/css/vendors/swiper-bundle.min.css?ver=1",
+        "totalBytes": 7502,
+        "usedBytes": 1598,
+        "unusedBytes": 5904,
+        "unusedPercent": 79
+      },
+      {
+        "url": "https://www.diablaoutdoor.com/wp-content/plugins/sitepress-multilingual-cms/dist/css/blocks/styles.css?ver=4.6.13",
+        "totalBytes": 59240,
+        "usedBytes": 0,
+        "unusedBytes": 59240,
+        "unusedPercent": 100
+      },
+      {
+        "url": "https://www.diablaoutdoor.com/en/",
+        "totalBytes": 1983,
+        "usedBytes": 1974,
+        "unusedBytes": 9,
+        "unusedPercent": 0
+      },
+      {
+        "url": "https://www.diablaoutdoor.com/en/",
+        "totalBytes": 190,
+        "usedBytes": 0,
+        "unusedBytes": 190,
+        "unusedPercent": 100
+      },
+      {
+        "url": "https://www.diablaoutdoor.com/en/",
+        "totalBytes": 190,
+        "usedBytes": 140,
+        "unusedBytes": 50,
+        "unusedPercent": 26
+      },
+      {
+        "url": "https://www.diablaoutdoor.com/en/",
+        "totalBytes": 190,
+        "usedBytes": 0,
+        "unusedBytes": 190,
+        "unusedPercent": 100
+      },
+      {
+        "url": "https://www.diablaoutdoor.com/en/",
+        "totalBytes": 166,
+        "usedBytes": 0,
+        "unusedBytes": 166,
+        "unusedPercent": 100
+      },
+      {
+        "url": "https://www.diablaoutdoor.com/en/",
+        "totalBytes": 190,
+        "usedBytes": 140,
+        "unusedBytes": 50,
+        "unusedPercent": 26
+      },
+      {
+        "url": "https://www.diablaoutdoor.com/wp-content/plugins/user-registration/assets/css/sweetalert2/sweetalert2.min.css?ver=10.16.7",
+        "totalBytes": 24459,
+        "usedBytes": 0,
+        "unusedBytes": 24459,
+        "unusedPercent": 100
+      },
+      {
+        "url": "https://www.diablaoutdoor.com/wp-content/plugins/user-registration/assets/css/user-registration.css?ver=3.3.3",
+        "totalBytes": 55439,
+        "usedBytes": 8517,
+        "unusedBytes": 46922,
+        "unusedPercent": 85
+      },
+      {
+        "url": "https://www.diablaoutdoor.com/wp-includes/css/dashicons.min.css?ver=6.0.14",
+        "totalBytes": 59016,
+        "usedBytes": 0,
+        "unusedBytes": 59016,
+        "unusedPercent": 100
+      },
+      {
+        "url": "https://www.diablaoutdoor.com/wp-content/uploads/complianz/css/banner-1-optin.css?v=39",
+        "totalBytes": 15141,
+        "usedBytes": 7022,
+        "unusedBytes": 8119,
+        "unusedPercent": 54
+      }
+    ],
+    "totalBytes": 373354,
+    "usedBytes": 46094,
+    "unusedBytes": 327260,
+    "unusedPercent": 88,
+    "importantCount": 337,
+    "duplicates": 3111,
+    "vendorPrefixes": {
+      "webkit": 206,
+      "moz": 33,
+      "ms": 57,
+      "o": 7
+    },
+    "keyframes": [
+      {
+        "name": "bounce",
+        "steps": 3
+      }
+    ],
+    "specificity": {
+      "max": [
+        2,
+        17,
+        53
+      ],
+      "average": [
+        0.02,
+        2.38,
+        0.45
+      ],
+      "count": 3697
+    },
+    "issues": [
+      "337 !important rules",
+      "3111 duplicate declarations",
+      "88% unused CSS"
+    ]
+  }
+}

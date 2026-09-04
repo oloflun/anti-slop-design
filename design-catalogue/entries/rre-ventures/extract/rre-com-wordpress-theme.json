@@ -1,0 +1,162 @@
+{
+  "$schema": "https://schemas.wp.org/trunk/theme.json",
+  "version": 3,
+  "settings": {
+    "color": {
+      "palette": [
+        {
+          "slug": "primary",
+          "color": "#3898ec",
+          "name": "Primary"
+        },
+        {
+          "slug": "secondary",
+          "color": "#07020a",
+          "name": "Secondary"
+        },
+        {
+          "slug": "accent",
+          "color": "#6ccfff",
+          "name": "Accent"
+        },
+        {
+          "slug": "neutral-1",
+          "color": "#ffffff",
+          "name": "Neutral 1"
+        },
+        {
+          "slug": "neutral-2",
+          "color": "#333333",
+          "name": "Neutral 2"
+        },
+        {
+          "slug": "neutral-3",
+          "color": "#cccccc",
+          "name": "Neutral 3"
+        },
+        {
+          "slug": "bg-07020a",
+          "color": "#07020a",
+          "name": "Background #07020a"
+        },
+        {
+          "slug": "bg-d3e7f1",
+          "color": "#d3e7f1",
+          "name": "Background #d3e7f1"
+        },
+        {
+          "slug": "bg-ffffff",
+          "color": "#ffffff",
+          "name": "Background #ffffff"
+        }
+      ],
+      "gradients": []
+    },
+    "typography": {
+      "fontFamilies": [
+        {
+          "fontFamily": "RRE Monument Grotesk Trial",
+          "slug": "rre-monument-grotesk-trial",
+          "name": "RRE Monument Grotesk Trial"
+        },
+        {
+          "fontFamily": "webflow-icons",
+          "slug": "webflow-icons",
+          "name": "webflow-icons"
+        }
+      ],
+      "fontSizes": [
+        {
+          "size": "80px",
+          "slug": "size-80",
+          "name": "80px"
+        },
+        {
+          "size": "56px",
+          "slug": "size-56",
+          "name": "56px"
+        },
+        {
+          "size": "32px",
+          "slug": "size-32",
+          "name": "32px"
+        },
+        {
+          "size": "24px",
+          "slug": "size-24",
+          "name": "24px"
+        },
+        {
+          "size": "20px",
+          "slug": "size-20",
+          "name": "20px"
+        },
+        {
+          "size": "16px",
+          "slug": "size-16",
+          "name": "16px"
+        },
+        {
+          "size": "15px",
+          "slug": "size-15",
+          "name": "15px"
+        },
+        {
+          "size": "12px",
+          "slug": "size-12",
+          "name": "12px"
+        }
+      ]
+    },
+    "spacing": {
+      "spacingSizes": [
+        {
+          "size": "1px",
+          "slug": "spacing-1",
+          "name": "1px"
+        },
+        {
+          "size": "48px",
+          "slug": "spacing-48",
+          "name": "48px"
+        },
+        {
+          "size": "78px",
+          "slug": "spacing-78",
+          "name": "78px"
+        },
+        {
+          "size": "96px",
+          "slug": "spacing-96",
+          "name": "96px"
+        },
+        {
+          "size": "128px",
+          "slug": "spacing-128",
+          "name": "128px"
+        },
+        {
+          "size": "200px",
+          "slug": "spacing-200",
+          "name": "200px"
+        }
+      ]
+    },
+    "layout": {
+      "contentSize": "1360px",
+      "wideSize": "1400px"
+    }
+  },
+  "styles": {
+    "color": {
+      "background": "#07020a",
+      "text": "#000000"
+    },
+    "typography": {
+      "fontSize": "15px",
+      "lineHeight": "21px",
+      "fontFamily": "RRE Monument Grotesk Trial"
+    },
+    "spacing": {}
+  }
+}

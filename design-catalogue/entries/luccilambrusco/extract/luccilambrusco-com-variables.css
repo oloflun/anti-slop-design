@@ -1,0 +1,104 @@
+:root {
+  /* Colors — Primary */
+  --color-primary: #efecce;
+  --color-secondary: #b83529;
+  --color-accent: #dcd69d;
+
+  /* Colors — Backgrounds */
+  --color-bg: #b83529;
+  --color-bg-1: #efecce;
+
+  /* Colors — Text */
+  --color-text: #efecce;
+  --color-text-1: #b83529;
+  --color-text-2: #dcd69d;
+
+  /* Typography — Families */
+  --font-body: 'ABC Solar', sans-serif;
+  --font-heading: 'ABC Ginto Nord Condensed', sans-serif;
+  --font-body: 'ABC Solar Semibold', sans-serif;
+  --font-body: 'Flatface Script', sans-serif;
+
+  /* Typography — Scale */
+  --font-size-128: 128px;
+  --font-size-48: 48px;
+  --font-size-36: 36px;
+  --font-size-32: 32px;
+  --font-size-28: 28px;
+  --font-size-16: 16px;
+  --font-size-14: 14px;
+  --font-size-10: 10px;
+
+  /* Spacing */
+  --spacing-4: 4px;
+  --spacing-20: 20px;
+  --spacing-32: 32px;
+  --spacing-40: 40px;
+  --spacing-60: 60px;
+  --spacing-240: 240px;
+
+  /* Border Radius */
+  --radius-md: 10px;
+  --radius-xl: 20px;
+  --radius-full: 50px;
+
+  /* Original Site Variables */
+  /* — colors — */
+  --tw-ring-offset-color: #fff;
+  --tw-ring-offset-shadow: 0 0 #0000;
+  --color-white: #fff;
+  --tw-ring-shadow: 0 0 #0000;
+  --tw-border-style: solid;
+  --color-error: red;
+  --color-pageBg: #b83529;
+  --tw-ring-offset-width: 0px;
+  --color-primary: #b83529;
+  --color-pageText: #efecce;
+  --color-black: #000;
+  --tw-inset-ring-shadow: 0 0 #0000;
+  --color-secondary: #efecce;
+  /* — spacing — */
+  --spacing: .1rem;
+  --tw-space-y-reverse: 0;
+  /* — typography — */
+  --font-sans: "ABC Solar","sans-serif";
+  --font-weight-bold: 700;
+  --font-body-semibold: "ABC Solar Semibold","arial","sans-serif";
+  --font-body: "ABC Solar","arial","sans-serif";
+  --text-sm--line-height: 1.42857;
+  --font-script: "Flatface Script","cursive";
+  --default-font-family: "ABC Solar","sans-serif";
+  --font-weight-normal: 400;
+  --font-mono: "courier","monospace";
+  --text-xl--line-height: 1.4;
+  --font-weight-semibold: 600;
+  --text-xl: 1.25rem;
+  --text-sm: .875rem;
+  --font-heading: "ABC Ginto Nord Condensed","serif";
+  --default-mono-font-family: "courier","monospace";
+  /* — shadows — */
+  --tw-inset-shadow-alpha: 100%;
+  --tw-shadow-alpha: 100%;
+  --tw-drop-shadow-alpha: 100%;
+  --tw-shadow: 0 0 #0000;
+  --tw-inset-shadow: 0 0 #0000;
+  /* — radii — */
+  --radius-2xl: 1rem;
+  /* — other — */
+  --tw-scale-z: 1;
+  --default-transition-timing-function: cubic-bezier(.4,0,.2,1);
+  --tw-translate-x: 0;
+  --tw-outline-style: solid;
+  --tw-scale-x: 1;
+  --tw-translate-z: 0;
+  --tw-scale-y: 1;
+  --default-transition-duration: .15s;
+  --tw-translate-y: 0;
+  --ease-in-out: cubic-bezier(.4,0,.2,1);
+  /* — semantic — */
+  success: [object Object];
+  warning: [object Object];
+  error: [object Object];
+  info: [object Object];
+
+}

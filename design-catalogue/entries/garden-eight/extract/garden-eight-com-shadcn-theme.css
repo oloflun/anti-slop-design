@@ -1,0 +1,13 @@
+/* shadcn/ui Theme — extracted from https://garden-eight.com/ */
+/* Paste into your globals.css */
+
+@layer base {
+  :root {
+    --background: 180 2% 12%;
+    --foreground: 33 13% 84%;
+    --muted: 180 2% 12%;
+    --muted-foreground: 33 13% 84%;
+    --border: 180 2% 12%;
+    --radius: 56px;
+  }
+}

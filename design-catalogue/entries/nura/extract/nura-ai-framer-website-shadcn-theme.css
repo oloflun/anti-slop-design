@@ -1,0 +1,19 @@
+/* shadcn/ui Theme — extracted from https://nura-ai.framer.website/ */
+/* Paste into your globals.css */
+
+@layer base {
+  :root {
+    --background: 0 0% 100%;
+    --foreground: 0 0% 0%;
+    --primary: 240 100% 47%;
+    --primary-foreground: 0 0% 100%;
+    --secondary: 4 100% 66%;
+    --secondary-foreground: 0 0% 100%;
+    --accent: 41 100% 60%;
+    --accent-foreground: 0 0% 0%;
+    --muted: 244 20% 27%;
+    --muted-foreground: 0 0% 0%;
+    --border: 0 0% 27%;
+    --radius: 8px;
+  }
+}

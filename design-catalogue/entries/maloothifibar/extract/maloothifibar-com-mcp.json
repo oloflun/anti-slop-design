@@ -1,0 +1,449 @@
+{
+  "colors": {
+    "all": [
+      {
+        "hex": "#efeeec",
+        "rgb": {
+          "r": 239,
+          "g": 238,
+          "b": 236,
+          "a": 1
+        },
+        "hsl": {
+          "h": 40,
+          "s": 9,
+          "l": 93
+        },
+        "count": 1412,
+        "contexts": [
+          "text",
+          "border",
+          "background"
+        ]
+      },
+      {
+        "hex": "#191313",
+        "rgb": {
+          "r": 25,
+          "g": 19,
+          "b": 19,
+          "a": 1
+        },
+        "hsl": {
+          "h": 0,
+          "s": 14,
+          "l": 9
+        },
+        "count": 1252,
+        "contexts": [
+          "text",
+          "border",
+          "background"
+        ]
+      },
+      {
+        "hex": "#a8a99e",
+        "rgb": {
+          "r": 168,
+          "g": 169,
+          "b": 158,
+          "a": 1
+        },
+        "hsl": {
+          "h": 65,
+          "s": 6,
+          "l": 64
+        },
+        "count": 745,
+        "contexts": [
+          "background",
+          "text",
+          "border"
+        ]
+      },
+      {
+        "hex": "#000000",
+        "rgb": {
+          "r": 0,
+          "g": 0,
+          "b": 0,
+          "a": 1
+        },
+        "hsl": {
+          "h": 0,
+          "s": 0,
+          "l": 0
+        },
+        "count": 55,
+        "contexts": [
+          "text",
+          "border",
+          "background"
+        ]
+      }
+    ]
+  },
+  "regions": [
+    {
+      "role": "nav",
+      "tag": "nav",
+      "bounds": {
+        "x": 0,
+        "y": 0,
+        "w": 1280,
+        "h": 67.453125
+      },
+      "heading": null,
+      "buttonCount": 12,
+      "cardCount": 9,
+      "className": "menu"
+    },
+    {
+      "role": "hero",
+      "tag": "section",
+      "bounds": {
+        "x": 0,
+        "y": 0,
+        "w": 1280,
+        "h": 800
+      },
+      "heading": "Hifi Bar\n",
+      "buttonCount": 0,
+      "cardCount": 0,
+      "className": "hero_section div-relative cursor-load div-hide"
+    },
+    {
+      "role": "hero",
+      "tag": "section",
+      "bounds": {
+        "x": 0,
+        "y": 800,
+        "w": 1280,
+        "h": 970.375
+      },
+      "heading": "Located in the heart of\nVieux-Lille, Maloot officially\nopened its doors in early February\n2024 and has been buzzing ever\nsince.",
+      "buttonCount": 6,
+      "cardCount": 0,
+      "className": "intro_section"
+    },
+    {
+      "role": "content",
+      "tag": "section",
+      "bounds": {
+        "x": 0,
+        "y": 1770.375,
+        "w": 1280,
+        "h": 830.1875
+      },
+      "heading": "Discover unique signature\ncocktails, our selection of\nchampagnes, and premium spirits.",
+      "buttonCount": 0,
+      "cardCount": 131,
+      "className": "drinks_section div-relative div-hide"
+    },
+    {
+      "role": "content",
+      "tag": "section",
+      "bounds": {
+        "x": 0,
+        "y": 2600.5625,
+        "w": 1280,
+        "h": 784
+      },
+      "heading": "A place where every detail is designed to\nfeel warm and intimate, yet infused with\na festive energy that builds as the night\nunfolds.",
+      "buttonCount": 0,
+      "cardCount": 75,
+      "className": "gallery_section div-hide"
+    },
+    {
+      "role": "content",
+      "tag": "section",
+      "bounds": {
+        "x": 0,
+        "y": 3384.5625,
+        "w": 1280,
+        "h": 1112.125
+      },
+      "heading": "PREVIOUS SETS",
+      "buttonCount": 66,
+      "cardCount": 83,
+      "className": "sets_section"
+    },
+    {
+      "role": "content",
+      "tag": "section",
+      "bounds": {
+        "x": 0,
+        "y": 4496.6875,
+        "w": 1280,
+        "h": 888.890625
+      },
+      "heading": null,
+      "buttonCount": 0,
+      "cardCount": 0,
+      "className": "founders_section"
+    },
+    {
+      "role": "content",
+      "tag": "section",
+      "bounds": {
+        "x": 0,
+        "y": 5385.578125,
+        "w": 1280,
+        "h": 1309
+      },
+      "heading": null,
+      "buttonCount": 0,
+      "cardCount": 0,
+      "className": "story_section div-hide"
+    },
+    {
+      "role": "footer",
+      "tag": "footer",
+      "bounds": {
+        "x": 0,
+        "y": 6652.578125,
+        "w": 1280,
+        "h": 763.515625
+      },
+      "heading": "Come join us —\nand experience what Maloot is all about.",
+      "buttonCount": 6,
+      "cardCount": 0,
+      "className": "footer"
+    }
+  ],
+  "componentClusters": [
+    {
+      "kind": "button",
+      "structuralHash": "a>div",
+      "instanceCount": 14,
+      "variants": [
+        {
+          "css": {
+            "background": "rgba(0, 0, 0, 0)",
+            "color": "rgb(241, 241, 241)",
+            "padding": "0px 0px 0px 0px",
+            "borderRadius": "0px",
+            "border": "0px none rgb(241, 241, 241)",
+            "fontSize": "14px",
+            "fontWeight": "300"
+          },
+          "instanceCount": 2
+        },
+        {
+          "css": {
+            "background": "rgba(0, 0, 0, 0)",
+            "color": "rgb(25, 19, 19)",
+            "padding": "0px 0px 0px 0px",
+            "borderRadius": "0px",
+            "border": "0px none rgb(25, 19, 19)",
+            "fontSize": "14px",
+            "fontWeight": "300"
+          },
+          "instanceCount": 12
+        }
+      ]
+    },
+    {
+      "kind": "button",
+      "structuralHash": "div>div>div>div",
+      "instanceCount": 10,
+      "variants": [
+        {
+          "css": {
+            "background": "rgba(0, 0, 0, 0)",
+            "color": "rgb(241, 241, 241)",
+            "padding": "8.75px 14px 8.75px 14px",
+            "borderRadius": "0px",
+            "border": "0px none rgb(241, 241, 241)",
+            "fontSize": "14px",
+            "fontWeight": "300"
+          },
+          "instanceCount": 5
+        },
+        {
+          "css": {
+            "background": "rgba(0, 0, 0, 0)",
+            "color": "rgb(25, 19, 19)",
+            "padding": "0px 0px 0px 0px",
+            "borderRadius": "0px",
+            "border": "0px none rgb(25, 19, 19)",
+            "fontSize": "10.5px",
+            "fontWeight": "300"
+          },
+          "instanceCount": 5
+        }
+      ]
+    },
+    {
+      "kind": "button",
+      "structuralHash": "div",
+      "instanceCount": 14,
+      "variants": [
+        {
+          "css": {
+            "background": "rgb(241, 241, 241)",
+            "color": "rgb(241, 241, 241)",
+            "padding": "0px 0px 0px 0px",
+            "borderRadius": "0px",
+            "border": "0px none rgb(241, 241, 241)",
+            "fontSize": "14px",
+            "fontWeight": "300"
+          },
+          "instanceCount": 2
+        },
+        {
+          "css": {
+            "background": "rgb(25, 19, 19)",
+            "color": "rgb(25, 19, 19)",
+            "padding": "0px 0px 0px 0px",
+            "borderRadius": "0px",
+            "border": "0px none rgb(25, 19, 19)",
+            "fontSize": "14px",
+            "fontWeight": "300"
+          },
+          "instanceCount": 12
+        }
+      ]
+    },
+    {
+      "kind": "button",
+      "structuralHash": "div>div",
+      "instanceCount": 34,
+      "variants": [
+        {
+          "css": {
+            "background": "rgba(0, 0, 0, 0)",
+            "color": "rgb(241, 241, 241)",
+            "padding": "0px 0px 0px 0px",
+            "borderRadius": "0px",
+            "border": "0px none rgb(241, 241, 241)",
+            "fontSize": "14px",
+            "fontWeight": "300"
+          },
+          "instanceCount": 20
+        },
+        {
+          "css": {
+            "background": "rgba(0, 0, 0, 0)",
+            "color": "rgb(25, 19, 19)",
+            "padding": "0px 0px 0px 0px",
+            "borderRadius": "0px",
+            "border": "0px none rgb(25, 19, 19)",
+            "fontSize": "14px",
+            "fontWeight": "300"
+          },
+          "instanceCount": 14
+        }
+      ]
+    },
+    {
+      "kind": "button",
+      "structuralHash": "div>div>div>div>div",
+      "instanceCount": 12,
+      "variants": [
+        {
+          "css": {
+            "background": "rgba(0, 0, 0, 0)",
+            "color": "rgb(241, 241, 241)",
+            "padding": "3.5px 3.5px 3.5px 7px",
+            "borderRadius": "0px",
+            "border": "0px none rgb(241, 241, 241)",
+            "fontSize": "14px",
+            "fontWeight": "300"
+          },
+          "instanceCount": 3
+        },
+        {
+          "css": {
+            "background": "rgba(0, 0, 0, 0)",
+            "color": "rgb(25, 19, 19)",
+            "padding": "3.5px 3.5px 3.5px 7px",
+            "borderRadius": "0px",
+            "border": "0px none rgb(25, 19, 19)",
+            "fontSize": "14px",
+            "fontWeight": "300"
+          },
+          "instanceCount": 9
+        }
+      ]
+    }
+  ],
+  "accessibility": {
+    "remediation": []
+  },
+  "cssHealth": {
+    "sheets": [
+      {
+        "url": "https://www.maloothifibar.com/",
+        "totalBytes": 397,
+        "usedBytes": 204,
+        "unusedBytes": 193,
+        "unusedPercent": 49
+      },
+      {
+        "url": "https://cdn.prod.website-files.com/687a206c136f383a7e273ef6/css/maloot.webflow.shared.e956c1e44.min.css",
+        "totalBytes": 67062,
+        "usedBytes": 21662,
+        "unusedBytes": 45400,
+        "unusedPercent": 68
+      },
+      {
+        "url": "https://www.maloothifibar.com/",
+        "totalBytes": 900,
+        "usedBytes": 470,
+        "unusedBytes": 430,
+        "unusedPercent": 48
+      },
+      {
+        "url": "https://www.maloothifibar.com/",
+        "totalBytes": 61,
+        "usedBytes": 59,
+        "unusedBytes": 2,
+        "unusedPercent": 3
+      },
+      {
+        "url": "https://assets.slater.app/slater/16127/43667.css?v=1.0",
+        "totalBytes": 7301,
+        "usedBytes": 3202,
+        "unusedBytes": 4099,
+        "unusedPercent": 56
+      }
+    ],
+    "totalBytes": 75721,
+    "usedBytes": 25597,
+    "unusedBytes": 50124,
+    "unusedPercent": 66,
+    "importantCount": 47,
+    "duplicates": 1576,
+    "vendorPrefixes": {
+      "webkit": 41,
+      "moz": 6,
+      "ms": 1,
+      "o": 0
+    },
+    "keyframes": [
+      {
+        "name": "gallery_marquee",
+        "steps": 2
+      }
+    ],
+    "specificity": {
+      "max": [
+        1,
+        6,
+        13
+      ],
+      "average": [
+        0.04,
+        1.27,
+        0.28
+      ],
+      "count": 1013
+    },
+    "issues": [
+      "47 !important rules",
+      "1576 duplicate declarations",
+      "66% unused CSS"
+    ]
+  }
+}

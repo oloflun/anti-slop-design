@@ -1,0 +1,638 @@
+{
+  "pageIntent": {
+    "type": "landing",
+    "confidence": 0.61,
+    "path": "/",
+    "title": "Monologue — Dictation, voice notes, and bot-free meeting notes",
+    "description": "Monologue brings voice dictation, voice notes, and bot-free meeting transcription together in one app for Mac, iPhone, iPad, and Apple Watch.",
+    "signals": [
+      {
+        "kind": "dom",
+        "type": "blog-post",
+        "weight": 0.35,
+        "detail": "byline|min-read"
+      },
+      {
+        "kind": "url",
+        "type": "landing",
+        "weight": 0.45,
+        "detail": "root-path"
+      },
+      {
+        "kind": "shape",
+        "type": "landing",
+        "weight": 0.3,
+        "detail": "features+hero+cta+footer"
+      }
+    ],
+    "alternates": [
+      {
+        "type": "blog-post",
+        "score": 0.35
+      }
+    ],
+    "needsSmart": false
+  },
+  "sectionRoles": {
+    "sections": [
+      {
+        "index": 0,
+        "tag": "header",
+        "role": "nav",
+        "subrole": null,
+        "confidence": 0.4,
+        "heading": null,
+        "bounds": {
+          "x": 16,
+          "y": 16,
+          "w": 1248,
+          "h": 96
+        },
+        "buttonCount": 6,
+        "cardCount": 0,
+        "slots": {
+          "ctaCount": 6,
+          "lede": "Monologue\nDictation\nNotes\nFeatures\nPricing\nDocs\nDownload for iOS\nDownload for Mac"
+        },
+        "needsSmart": true
+      },
+      {
+        "index": 1,
+        "tag": "nav",
+        "role": "nav",
+        "subrole": null,
+        "confidence": 0.9,
+        "heading": null,
+        "bounds": {
+          "x": 381.421875,
+          "y": 54.5,
+          "w": 373.234375,
+          "h": 18
+        },
+        "buttonCount": 0,
+        "cardCount": 0,
+        "slots": {
+          "lede": "Dictation\nNotes\nFeatures\nPricing\nDocs"
+        },
+        "needsSmart": false
+      },
+      {
+        "index": 2,
+        "tag": "main",
+        "role": "pricing",
+        "subrole": null,
+        "confidence": 0.4,
+        "heading": "Builders think out loud.",
+        "bounds": {
+          "x": 16,
+          "y": 112,
+          "w": 1248,
+          "h": 13377.65625
+        },
+        "buttonCount": 40,
+        "cardCount": 53,
+        "slots": {
+          "heading": "Builders think out loud.",
+          "subheadings": [
+            "Speak instead of typing",
+            "Monologue is what happens when you talk through your work instead of typing it.",
+            "Use your voice\nwherever you type",
+            "Give your coding agent the whole task"
+          ],
+          "ctaCount": 40,
+          "lede": "Start working 3× faster today"
+        },
+        "needsSmart": true
+      },
+      {
+        "index": 3,
+        "tag": "section",
+        "role": "hero",
+        "subrole": null,
+        "confidence": 0.85,
+        "heading": "Builders think out loud.",
+        "bounds": {
+          "x": 16,
+          "y": 112,
+          "w": 1248,
+          "h": 444
+        },
+        "buttonCount": 4,
+        "cardCount": 0,
+        "slots": {
+          "heading": "Builders think out loud.",
+          "ctaCount": 4,
+          "lede": "Start working 3× faster today"
+        },
+        "needsSmart": false
+      },
+      {
+        "index": 4,
+        "tag": "section",
+        "role": "hero",
+        "subrole": null,
+        "confidence": 0.4,
+        "heading": "Speak instead of typing",
+        "bounds": {
+          "x": 16,
+          "y": 556,
+          "w": 1248,
+          "h": 814.21875
+        },
+        "buttonCount": 4,
+        "cardCount": 0,
+        "slots": {
+          "heading": "Speak instead of typing",
+          "ctaCount": 4,
+          "lede": "Dictation\nVoice notes\nMeetings\nMCP, API, and CLI\nSpeak instead of typing"
+        },
+        "needsSmart": true
+      },
+      {
+        "index": 5,
+        "tag": "section",
+        "role": "content",
+        "subrole": null,
+        "confidence": 0.3,
+        "heading": null,
+        "bounds": {
+          "x": 16,
+          "y": 1370.21875,
+          "w": 1248,
+          "h": 202
+        },
+        "buttonCount": 0,
+        "cardCount": 0,
+        "slots": {
+          "lede": "Used by builders at companies including"
+        },
+        "needsSmart": true
+      },
+      {
+        "index": 6,
+        "tag": "section",
+        "role": "content",
+        "subrole": null,
+        "confidence": 0.3,
+        "heading": "Monologue is what happens when you talk through your work instead of typing it.",
+        "bounds": {
+          "x": 16,
+          "y": 1572.21875,
+          "w": 1248,
+          "h": 760
+        },
+        "buttonCount": 0,
+        "cardCount": 0,
+        "slots": {
+          "heading": "Monologue is what happens when you talk through your work instead of typing it."
+        },
+        "needsSmart": true
+      },
+      {
+        "index": 7,
+        "tag": "section",
+        "role": "pricing",
+        "subrole": null,
+        "confidence": 0.4,
+        "heading": "Use your voice\nwherever you type",
+        "bounds": {
+          "x": 16,
+          "y": 2332.21875,
+          "w": 1248,
+          "h": 3395.046875
+        },
+        "buttonCount": 0,
+        "cardCount": 5,
+        "slots": {
+          "heading": "Use your voice\nwherever you type",
+          "subheadings": [
+            "Give your coding agent the whole task",
+            "Say the list. Skip the formatting.",
+            "Text like you talk",
+            "Reply while the details are fresh"
+          ],
+          "lede": "Dictation"
+        },
+        "needsSmart": true
+      },
+      {
+        "index": 8,
+        "tag": "nav",
+        "role": "nav",
+        "subrole": null,
+        "confidence": 0.9,
+        "heading": null,
+        "bounds": {
+          "x": 117,
+          "y": 2590.265625,
+          "w": 260,
+          "h": 234
+        },
+        "buttonCount": 0,
+        "cardCount": 0,
+        "slots": {
+          "lede": "Coding\nTeam chat\nMessages\nEmail"
+        },
+        "needsSmart": false
+      },
+      {
+        "index": 9,
+        "tag": "aside",
+        "role": "sidebar",
+        "subrole": null,
+        "confidence": 0.4,
+        "heading": null,
+        "bounds": {
+          "x": 514.0640258789062,
+          "y": 2589.55517578125,
+          "w": 151.98394775390625,
+          "h": 448.22412109375
+        },
+        "buttonCount": 0,
+        "cardCount": 0,
+        "slots": {
+          "lede": "atlas-web\nTodoList.tsx\nTodoItem.tsx\napi.ts"
+        },
+        "needsSmart": true
+      },
+      {
+        "index": 10,
+        "tag": "section",
+        "role": "pricing",
+        "subrole": null,
+        "confidence": 0.4,
+        "heading": null,
+        "bounds": {
+          "x": 666.0479736328125,
+          "y": 2589.55517578125,
+          "w": 417.31201171875,
+          "h": 448.22412109375
+        },
+        "buttonCount": 0,
+        "cardCount": 0,
+        "slots": {
+          "lede": "Agent\nTodoList.tsx\nTodoList.tsx\nexport const TodoList = () => {\n  const [todos, setTodos] = useState([\n    { id: '1', title: 'Review design handoff' },\n    { id: '2', title: 'Ship pricing page' },\n  ]);\n \n  return todos.map((todo) => (\n    <TodoItem key={todo.id} todo={todo} />\n  ));\n};"
+        },
+        "needsSmart": true
+      },
+      {
+        "index": 11,
+        "tag": "header",
+        "role": "nav",
+        "subrole": null,
+        "confidence": 0.4,
+        "heading": null,
+        "bounds": {
+          "x": 666.0479736328125,
+          "y": 2635.92333984375,
+          "w": 417.31201171875,
+          "h": 66.975830078125
+        },
+        "buttonCount": 0,
+        "cardCount": 0,
+        "slots": {
+          "lede": "Agent\nTodoList.tsx"
+        },
+        "needsSmart": true
+      },
+      {
+        "index": 12,
+        "tag": "header",
+        "role": "nav",
+        "subrole": null,
+        "confidence": 0.4,
+        "heading": null,
+        "bounds": {
+          "x": 544.9760131835938,
+          "y": 5054.8994140625,
+          "w": 507.47198486328125,
+          "h": 31.2939453125
+        },
+        "buttonCount": 0,
+        "cardCount": 0,
+        "slots": {
+          "lede": "D\nDan Shipper\ndan@every.to · Today"
+        },
+        "needsSmart": true
+      },
+      {
+        "index": 13,
+        "tag": "section",
+        "role": "hero",
+        "subrole": null,
+        "confidence": 0.4,
+        "heading": "A notes app built for\nbuilders",
+        "bounds": {
+          "x": 16,
+          "y": 5727.265625,
+          "w": 1248,
+          "h": 764
+        },
+        "buttonCount": 4,
+        "cardCount": 4,
+        "slots": {
+          "heading": "A notes app built for\nbuilders",
+          "ctaCount": 4,
+          "lede": "Notes"
+        },
+        "needsSmart": true
+      },
+      {
+        "index": 14,
+        "tag": "section",
+        "role": "feature-grid",
+        "subrole": null,
+        "confidence": 0.8,
+        "heading": "Monologue adapts to\nthe way you work",
+        "bounds": {
+          "x": 16,
+          "y": 6539.265625,
+          "w": 1248,
+          "h": 1463
+        },
+        "buttonCount": 11,
+        "cardCount": 21,
+        "slots": {
+          "heading": "Monologue adapts to\nthe way you work",
+          "subheadings": [
+            "Agent Native",
+            "Your own dictionary.",
+            "100+ languages",
+            "Auto-formatting"
+          ],
+          "ctaCount": 11,
+          "lede": "Works everywhere"
+        },
+        "needsSmart": false
+      },
+      {
+        "index": 15,
+        "tag": "section",
+        "role": "hero",
+        "subrole": null,
+        "confidence": 0.4,
+        "heading": "Platforms We Support",
+        "bounds": {
+          "x": 16,
+          "y": 8050.265625,
+          "w": 1248,
+          "h": 817.046875
+        },
+        "buttonCount": 2,
+        "cardCount": 0,
+        "slots": {
+          "heading": "Platforms We Support",
+          "ctaCount": 2
+        },
+        "needsSmart": true
+      },
+      {
+        "index": 16,
+        "tag": "section",
+        "role": "testimonial",
+        "subrole": null,
+        "confidence": 0.8,
+        "heading": null,
+        "bounds": {
+          "x": 16,
+          "y": 8915.3125,
+          "w": 1248,
+          "h": 400
+        },
+        "buttonCount": 4,
+        "cardCount": 0,
+        "slots": {
+          "ctaCount": 4,
+          "lede": "“It’s the simplest voice to text app I’ve used! Instantly became a part of my personal productivity stack and has stuck.”"
+        },
+        "needsSmart": false
+      },
+      {
+        "index": 17,
+        "tag": "section",
+        "role": "pricing-table",
+        "subrole": null,
+        "confidence": 0.9,
+        "heading": "Pricing",
+        "bounds": {
+          "x": 16,
+          "y": 9379.3125,
+          "w": 1248,
+          "h": 1068.796875
+        },
+        "buttonCount": 7,
+        "cardCount": 20,
+        "slots": {
+          "heading": "Pricing",
+          "ctaCount": 7
+        },
+        "needsSmart": false
+      },
+      {
+        "index": 18,
+        "tag": "section",
+        "role": "testimonial",
+        "subrole": null,
+        "confidence": 0.8,
+        "heading": "One app for dictation,\nvoice notes, and meetings",
+        "bounds": {
+          "x": 16,
+          "y": 10496.109375,
+          "w": 1248,
+          "h": 971.546875
+        },
+        "buttonCount": 2,
+        "cardCount": 0,
+        "slots": {
+          "heading": "One app for dictation,\nvoice notes, and meetings",
+          "ctaCount": 2
+        },
+        "needsSmart": false
+      },
+      {
+        "index": 19,
+        "tag": "section",
+        "role": "faq",
+        "subrole": null,
+        "confidence": 0.85,
+        "heading": "FAQ",
+        "bounds": {
+          "x": 16,
+          "y": 11515.65625,
+          "w": 1248,
+          "h": 619
+        },
+        "buttonCount": 0,
+        "cardCount": 0,
+        "slots": {
+          "heading": "FAQ",
+          "lede": "FAQ\nWhat is Monologue?\n+\nWhich devices does Monologue support?\n+\nCan Monologue record both sides of a meeting without a bot?\n+\nDoes Monologue work offline, and how private is it?\n+\nCan I use my Monologue notes with AI agents?\n+"
+        },
+        "needsSmart": false
+      },
+      {
+        "index": 20,
+        "tag": "section",
+        "role": "content",
+        "subrole": null,
+        "confidence": 0.3,
+        "heading": "Monologue, by the numbers",
+        "bounds": {
+          "x": 16,
+          "y": 12182.65625,
+          "w": 1248,
+          "h": 364
+        },
+        "buttonCount": 0,
+        "cardCount": 3,
+        "slots": {
+          "heading": "Monologue, by the numbers",
+          "lede": "Monologue, by the numbers\n500M+\nWords dictated\n100K+\nHours saved from typing\n100K+\nNotes captured"
+        },
+        "needsSmart": true
+      },
+      {
+        "index": 21,
+        "tag": "section",
+        "role": "testimonials",
+        "subrole": null,
+        "confidence": 0.4,
+        "heading": "Built by",
+        "bounds": {
+          "x": 16,
+          "y": 12594.65625,
+          "w": 1248,
+          "h": 410
+        },
+        "buttonCount": 0,
+        "cardCount": 0,
+        "slots": {
+          "heading": "Built by"
+        },
+        "needsSmart": true
+      },
+      {
+        "index": 22,
+        "tag": "section",
+        "role": "hero",
+        "subrole": null,
+        "confidence": 0.4,
+        "heading": "Think out loud. Work faster.",
+        "bounds": {
+          "x": 16,
+          "y": 13052.65625,
+          "w": 1248,
+          "h": 437
+        },
+        "buttonCount": 2,
+        "cardCount": 0,
+        "slots": {
+          "heading": "Think out loud. Work faster.",
+          "ctaCount": 2
+        },
+        "needsSmart": true
+      },
+      {
+        "index": 23,
+        "tag": "footer",
+        "role": "footer",
+        "subrole": null,
+        "confidence": 0.95,
+        "heading": null,
+        "bounds": {
+          "x": 16,
+          "y": 13489.65625,
+          "w": 1248,
+          "h": 831.59375
+        },
+        "buttonCount": 1,
+        "cardCount": 0,
+        "slots": {
+          "ctaCount": 1,
+          "lede": "Monologue\nDictation\nCoding\nWork\nPersonal\nNotes\nCapture\nSummarize\nShare\nResources\nPricing\nChangelog\nComparisons\nHelp center\nApp Store\nSupport\nContact\nPolicies\nTerms\nPrivacy\nData privacy"
+        },
+        "needsSmart": false
+      },
+      {
+        "index": 24,
+        "tag": "section",
+        "role": "pricing",
+        "subrole": null,
+        "confidence": 0.4,
+        "heading": null,
+        "bounds": {
+          "x": 16,
+          "y": 13489.65625,
+          "w": 1248,
+          "h": 433.59375
+        },
+        "buttonCount": 1,
+        "cardCount": 0,
+        "slots": {
+          "ctaCount": 1,
+          "lede": "Monologue\nDictation\nCoding\nWork\nPersonal\nNotes\nCapture\nSummarize\nShare\nResources\nPricing\nChangelog\nComparisons\nHelp center\nApp Store\nSupport\nContact\nPolicies\nTerms\nPrivacy\nData privacy"
+        },
+        "needsSmart": true
+      },
+      {
+        "index": 25,
+        "tag": "section",
+        "role": "content",
+        "subrole": null,
+        "confidence": 0.3,
+        "heading": null,
+        "bounds": {
+          "x": 0,
+          "y": 13923.25,
+          "w": 1280,
+          "h": 398
+        },
+        "buttonCount": 0,
+        "cardCount": 0,
+        "slots": {},
+        "needsSmart": true
+      }
+    ],
+    "counts": {
+      "nav": 5,
+      "pricing": 4,
+      "hero": 5,
+      "content": 4,
+      "sidebar": 1,
+      "feature-grid": 1,
+      "testimonial": 2,
+      "pricing-table": 1,
+      "faq": 1,
+      "testimonials": 1,
+      "footer": 1
+    },
+    "readingOrder": [
+      "nav",
+      "nav",
+      "pricing",
+      "hero",
+      "hero",
+      "content",
+      "content",
+      "pricing",
+      "sidebar",
+      "pricing",
+      "nav",
+      "nav",
+      "nav",
+      "hero",
+      "feature-grid",
+      "hero",
+      "testimonial",
+      "pricing-table",
+      "testimonial",
+      "faq",
+      "content",
+      "testimonials",
+      "hero",
+      "footer",
+      "pricing",
+      "content"
+    ]
+  }
+}

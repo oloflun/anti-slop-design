@@ -1,0 +1,208 @@
+{
+  "$schema": "https://schemas.wp.org/trunk/theme.json",
+  "version": 3,
+  "settings": {
+    "color": {
+      "palette": [
+        {
+          "slug": "primary",
+          "color": "#62644e",
+          "name": "Primary"
+        },
+        {
+          "slug": "secondary",
+          "color": "#f2efe5",
+          "name": "Secondary"
+        },
+        {
+          "slug": "accent",
+          "color": "#e6e0ce",
+          "name": "Accent"
+        },
+        {
+          "slug": "neutral-1",
+          "color": "#000000",
+          "name": "Neutral 1"
+        },
+        {
+          "slug": "neutral-2",
+          "color": "#2b2927",
+          "name": "Neutral 2"
+        },
+        {
+          "slug": "neutral-3",
+          "color": "#736e6a",
+          "name": "Neutral 3"
+        },
+        {
+          "slug": "neutral-4",
+          "color": "#ffffff",
+          "name": "Neutral 4"
+        },
+        {
+          "slug": "neutral-5",
+          "color": "#5c7c68",
+          "name": "Neutral 5"
+        },
+        {
+          "slug": "bg-f2efe5",
+          "color": "#f2efe5",
+          "name": "Background #f2efe5"
+        },
+        {
+          "slug": "bg-ffffff",
+          "color": "#ffffff",
+          "name": "Background #ffffff"
+        },
+        {
+          "slug": "bg-fdfbf5",
+          "color": "#fdfbf5",
+          "name": "Background #fdfbf5"
+        }
+      ],
+      "gradients": [
+        {
+          "slug": "gradient-1",
+          "gradient": "linear-gradient(rgb(92, 124, 104) 0%, rgb(92, 124, 104) 100%, rgba(92, 124, 104, 0) 100%)",
+          "name": "Gradient 1"
+        },
+        {
+          "slug": "gradient-2",
+          "gradient": "linear-gradient(rgba(34, 51, 37, 0) 0%, rgb(35, 52, 38) 77.9566%)",
+          "name": "Gradient 2"
+        }
+      ]
+    },
+    "typography": {
+      "fontFamilies": [
+        {
+          "fontFamily": "Instrument Serif",
+          "slug": "instrument-serif",
+          "name": "Instrument Serif"
+        },
+        {
+          "fontFamily": "Geist",
+          "slug": "geist",
+          "name": "Geist"
+        },
+        {
+          "fontFamily": "Inter",
+          "slug": "inter",
+          "name": "Inter"
+        },
+        {
+          "fontFamily": "Times New Roman",
+          "slug": "times-new-roman",
+          "name": "Times New Roman"
+        },
+        {
+          "fontFamily": "Manrope",
+          "slug": "manrope",
+          "name": "Manrope"
+        }
+      ],
+      "fontSizes": [
+        {
+          "size": "96px",
+          "slug": "size-96",
+          "name": "96px"
+        },
+        {
+          "size": "75px",
+          "slug": "size-75",
+          "name": "75px"
+        },
+        {
+          "size": "73px",
+          "slug": "size-73",
+          "name": "73px"
+        },
+        {
+          "size": "69px",
+          "slug": "size-69",
+          "name": "69px"
+        },
+        {
+          "size": "64px",
+          "slug": "size-64",
+          "name": "64px"
+        },
+        {
+          "size": "36px",
+          "slug": "size-36",
+          "name": "36px"
+        },
+        {
+          "size": "20px",
+          "slug": "size-20",
+          "name": "20px"
+        },
+        {
+          "size": "18px",
+          "slug": "size-18",
+          "name": "18px"
+        }
+      ]
+    },
+    "spacing": {
+      "spacingSizes": [
+        {
+          "size": "4px",
+          "slug": "spacing-4",
+          "name": "4px"
+        },
+        {
+          "size": "19px",
+          "slug": "spacing-19",
+          "name": "19px"
+        },
+        {
+          "size": "30px",
+          "slug": "spacing-30",
+          "name": "30px"
+        },
+        {
+          "size": "40px",
+          "slug": "spacing-40",
+          "name": "40px"
+        },
+        {
+          "size": "50px",
+          "slug": "spacing-50",
+          "name": "50px"
+        },
+        {
+          "size": "56px",
+          "slug": "spacing-56",
+          "name": "56px"
+        },
+        {
+          "size": "60px",
+          "slug": "spacing-60",
+          "name": "60px"
+        },
+        {
+          "size": "72px",
+          "slug": "spacing-72",
+          "name": "72px"
+        }
+      ]
+    },
+    "layout": {
+      "contentSize": "1600px",
+      "wideSize": "1400px"
+    }
+  },
+  "styles": {
+    "color": {
+      "background": "#f2efe5",
+      "text": "#000000"
+    },
+    "typography": {
+      "fontSize": "75px",
+      "lineHeight": "75px",
+      "fontFamily": "Instrument Serif"
+    },
+    "spacing": {}
+  }
+}

@@ -1,0 +1,193 @@
+{
+  "$schema": "https://schemas.wp.org/trunk/theme.json",
+  "version": 3,
+  "settings": {
+    "color": {
+      "palette": [
+        {
+          "slug": "primary",
+          "color": "#f9dcc5",
+          "name": "Primary"
+        },
+        {
+          "slug": "secondary",
+          "color": "#701e1f",
+          "name": "Secondary"
+        },
+        {
+          "slug": "accent",
+          "color": "#ff2f2f",
+          "name": "Accent"
+        },
+        {
+          "slug": "neutral-1",
+          "color": "#ffffff",
+          "name": "Neutral 1"
+        },
+        {
+          "slug": "neutral-2",
+          "color": "#000000",
+          "name": "Neutral 2"
+        },
+        {
+          "slug": "neutral-3",
+          "color": "#161616",
+          "name": "Neutral 3"
+        },
+        {
+          "slug": "neutral-4",
+          "color": "#474747",
+          "name": "Neutral 4"
+        },
+        {
+          "slug": "neutral-5",
+          "color": "#222222",
+          "name": "Neutral 5"
+        },
+        {
+          "slug": "bg-f9dcc5",
+          "color": "#f9dcc5",
+          "name": "Background #f9dcc5"
+        },
+        {
+          "slug": "bg-701e1f",
+          "color": "#701e1f",
+          "name": "Background #701e1f"
+        },
+        {
+          "slug": "bg-ec7672",
+          "color": "#ec7672",
+          "name": "Background #ec7672"
+        }
+      ],
+      "gradients": [
+        {
+          "slug": "gradient-1",
+          "gradient": "linear-gradient(25deg, rgb(77, 245, 164), rgb(225, 255, 44))",
+          "name": "Gradient 1"
+        }
+      ]
+    },
+    "typography": {
+      "fontFamilies": [
+        {
+          "fontFamily": "Gt Walsheim Trial",
+          "slug": "gt-walsheim-trial",
+          "name": "Gt Walsheim Trial"
+        },
+        {
+          "fontFamily": "Librecaslontext",
+          "slug": "librecaslontext",
+          "name": "Librecaslontext"
+        },
+        {
+          "fontFamily": "PT Sans",
+          "slug": "pt-sans",
+          "name": "PT Sans"
+        }
+      ],
+      "fontSizes": [
+        {
+          "size": "184px",
+          "slug": "size-184",
+          "name": "184px"
+        },
+        {
+          "size": "158.113px",
+          "slug": "size-158.113",
+          "name": "158.113px"
+        },
+        {
+          "size": "133.334px",
+          "slug": "size-133.334",
+          "name": "133.334px"
+        },
+        {
+          "size": "113.208px",
+          "slug": "size-113.208",
+          "name": "113.208px"
+        },
+        {
+          "size": "66.792px",
+          "slug": "size-66.792",
+          "name": "66.792px"
+        },
+        {
+          "size": "60px",
+          "slug": "size-60",
+          "name": "60px"
+        },
+        {
+          "size": "47.5462px",
+          "slug": "size-47.5462",
+          "name": "47.5462px"
+        },
+        {
+          "size": "46.5875px",
+          "slug": "size-46.5875",
+          "name": "46.5875px"
+        }
+      ]
+    },
+    "spacing": {
+      "spacingSizes": [
+        {
+          "size": "1px",
+          "slug": "spacing-1",
+          "name": "1px"
+        },
+        {
+          "size": "40px",
+          "slug": "spacing-40",
+          "name": "40px"
+        },
+        {
+          "size": "60px",
+          "slug": "spacing-60",
+          "name": "60px"
+        },
+        {
+          "size": "80px",
+          "slug": "spacing-80",
+          "name": "80px"
+        },
+        {
+          "size": "100px",
+          "slug": "spacing-100",
+          "name": "100px"
+        },
+        {
+          "size": "115px",
+          "slug": "spacing-115",
+          "name": "115px"
+        },
+        {
+          "size": "120px",
+          "slug": "spacing-120",
+          "name": "120px"
+        },
+        {
+          "size": "140px",
+          "slug": "spacing-140",
+          "name": "140px"
+        }
+      ]
+    },
+    "layout": {
+      "contentSize": "1440px",
+      "wideSize": "1400px"
+    }
+  },
+  "styles": {
+    "color": {
+      "background": "#f9dcc5",
+      "text": "#000000"
+    },
+    "typography": {
+      "fontSize": "23.4336px",
+      "lineHeight": "23.4336px",
+      "fontFamily": "Gt Walsheim Trial"
+    },
+    "spacing": {}
+  }
+}

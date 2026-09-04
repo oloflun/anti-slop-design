@@ -1,0 +1,17 @@
+/* shadcn/ui Theme — extracted from https://tomoseattle.com/ */
+/* Paste into your globals.css */
+
+@layer base {
+  :root {
+    --background: 0 0% 100%;
+    --foreground: 0 0% 0%;
+    --primary: 9 100% 64%;
+    --primary-foreground: 0 0% 100%;
+    --secondary: 32 43% 88%;
+    --secondary-foreground: 0 0% 0%;
+    --muted: 0 0% 10%;
+    --muted-foreground: 0 0% 0%;
+    --border: 0 0% 10%;
+    --radius: 100px;
+  }
+}

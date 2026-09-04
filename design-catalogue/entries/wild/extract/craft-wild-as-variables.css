@@ -1,0 +1,88 @@
+:root {
+  /* Colors — Primary */
+  --color-primary: #d8ff00;
+  --color-secondary: #f5c518;
+  --color-accent: #6c4cf1;
+
+  /* Colors — Neutrals */
+  --color-neutral-50: #ffffff;
+  --color-neutral-100: #0a0a0a;
+  --color-neutral-200: #2a2a2a;
+  --color-neutral-300: #000000;
+  --color-neutral-400: #8b8b8b;
+
+  /* Colors — Backgrounds */
+  --color-bg: #ffffff;
+  --color-bg-1: #0a0a0a;
+
+  /* Colors — Text */
+  --color-text: #000000;
+  --color-text-1: #0a0a0a;
+  --color-text-2: #8b8b8b;
+  --color-text-3: #ffffff;
+  --color-text-4: #2a2a2a;
+
+  /* Typography — Families */
+  --font-sans: 'Sneak', sans-serif;
+  --font-heading: 'Arial', sans-serif;
+  --font-body: 'SFMono-Regular', sans-serif;
+  --font-body: 'Times New Roman', sans-serif;
+
+  /* Typography — Scale */
+  --font-size-66.56: 66.56px;
+  --font-size-43.52: 43.52px;
+  --font-size-34: 34px;
+  --font-size-28.16: 28.16px;
+  --font-size-22: 22px;
+  --font-size-18.56: 18.56px;
+  --font-size-16: 16px;
+  --font-size-15.36: 15.36px;
+  --font-size-15: 15px;
+  --font-size-14.5: 14.5px;
+  --font-size-14: 14px;
+  --font-size-13.5: 13.5px;
+
+  /* Spacing */
+  --spacing-1: 1px;
+  --spacing-12: 12px;
+  --spacing-26: 26px;
+  --spacing-35: 35px;
+  --spacing-42: 42px;
+  --spacing-49: 49px;
+  --spacing-56: 56px;
+  --spacing-98: 98px;
+  --spacing-126: 126px;
+  --spacing-168: 168px;
+  --spacing-356: 356px;
+
+  /* Border Radius */
+  --radius-md: 6px;
+  --radius-md: 10px;
+
+  /* Box Shadows */
+  --shadow-md: rgba(10, 10, 10, 0.14) 0px 2px 12px 0px;
+
+  /* Original Site Variables */
+  /* — colors — */
+  --muted: #8b8b8b;
+  /* — radii — */
+  --radius: 26px;
+  /* — other — */
+  --paper: #FFFFFF;
+  --ink: #0A0A0A;
+  --red: #e0492a;
+  --neon: #d8ff00;
+  --line: rgba(10,10,10,.12);
+  --line-2: rgba(10,10,10,.06);
+  --cell: 14px;
+  --gutter: 56px;
+  --maxw: 1176px;
+  --readw: 34ch;
+  --mono: "SFMono-Regular",ui-monospace,Menlo,Consolas,monospace;
+  /* — semantic — */
+  success: [object Object];
+  warning: [object Object];
+  error: [object Object];
+  info: [object Object];
+
+}

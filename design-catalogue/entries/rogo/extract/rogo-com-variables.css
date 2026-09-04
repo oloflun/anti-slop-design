@@ -1,0 +1,65 @@
+:root {
+  /* Colors — Primary */
+  --color-primary: #0000ee;
+
+  /* Colors — Neutrals */
+  --color-neutral-50: #000000;
+  --color-neutral-100: #ffffff;
+  --color-neutral-200: #151515;
+  --color-neutral-300: #737373;
+  --color-neutral-400: #eeedec;
+  --color-neutral-500: #383838;
+  --color-neutral-600: #444444;
+
+  /* Colors — Backgrounds */
+  --color-bg: #ffffff;
+  --color-bg-1: #737373;
+  --color-bg-2: #f7f7f7;
+  --color-bg-3: #eeedec;
+  --color-bg-4: #151515;
+
+  /* Colors — Text */
+  --color-text: #000000;
+  --color-text-1: #0000ee;
+  --color-text-2: #ffffff;
+  --color-text-3: #151515;
+  --color-text-4: #171717;
+
+  /* Typography — Families */
+  --font-sans: 'Inter', sans-serif;
+  --font-body: 'Times New Roman', sans-serif;
+  --font-font-2: 'ABC Arizona Mix Regular', sans-serif;
+
+  /* Typography — Scale */
+  --font-size-96: 96px;
+  --font-size-64: 64px;
+  --font-size-48: 48px;
+  --font-size-44: 44px;
+  --font-size-28: 28px;
+  --font-size-24: 24px;
+  --font-size-20: 20px;
+  --font-size-18: 18px;
+  --font-size-16: 16px;
+  --font-size-14: 14px;
+  --font-size-12: 12px;
+
+  /* Spacing */
+  --spacing-1: 1px;
+  --spacing-108: 108px;
+  --spacing-120: 120px;
+  --spacing-164: 164px;
+  --spacing-196: 196px;
+
+  /* Border Radius */
+  --radius-md: 6px;
+
+  /* Original Site Variables */
+  /* — other — */
+  --one-if-corner-shape-supported: 1;
+  /* — semantic — */
+  success: [object Object];
+  warning: [object Object];
+  error: [object Object];
+  info: [object Object];
+
+}

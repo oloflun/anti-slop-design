@@ -1,0 +1,17 @@
+/* shadcn/ui Theme — extracted from https://orixstudio.framer.website/ */
+/* Paste into your globals.css */
+
+@layer base {
+  :root {
+    --background: 0 0% 100%;
+    --foreground: 0 0% 0%;
+    --primary: 360 98% 44%;
+    --primary-foreground: 0 0% 100%;
+    --secondary: 240 100% 47%;
+    --secondary-foreground: 0 0% 100%;
+    --muted: 0 0% 84%;
+    --muted-foreground: 0 0% 0%;
+    --border: 0 0% 24%;
+    --radius: 10px;
+  }
+}

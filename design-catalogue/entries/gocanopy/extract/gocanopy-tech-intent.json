@@ -1,0 +1,353 @@
+{
+  "pageIntent": {
+    "type": "landing",
+    "confidence": 0.29,
+    "path": "/",
+    "title": "Real Estate Investment Management Platform | GoCanopy",
+    "description": "AI-native investment platform for institutional real estate teams. Automate workflows, preserve institutional memory, and make faster, defensible decisions.",
+    "signals": [
+      {
+        "kind": "dom",
+        "type": "blog-post",
+        "weight": 0.35,
+        "detail": "byline|min-read"
+      },
+      {
+        "kind": "dom",
+        "type": "legal",
+        "weight": 0.4
+      },
+      {
+        "kind": "url",
+        "type": "landing",
+        "weight": 0.45,
+        "detail": "root-path"
+      }
+    ],
+    "alternates": [
+      {
+        "type": "legal",
+        "score": 0.4
+      },
+      {
+        "type": "blog-post",
+        "score": 0.35
+      }
+    ],
+    "needsSmart": true
+  },
+  "sectionRoles": {
+    "sections": [
+      {
+        "index": 0,
+        "tag": "nav",
+        "role": "nav",
+        "subrole": null,
+        "confidence": 0.9,
+        "heading": null,
+        "bounds": {
+          "x": 17,
+          "y": 418,
+          "w": 1246,
+          "h": 357
+        },
+        "buttonCount": 1,
+        "cardCount": 9,
+        "slots": {
+          "ctaCount": 1,
+          "lede": "Home\nProduct\nSolutions\nAbout\nBlog\nBook a Demo"
+        },
+        "needsSmart": false
+      },
+      {
+        "index": 1,
+        "tag": "header",
+        "role": "cta",
+        "subrole": null,
+        "confidence": 0.75,
+        "heading": null,
+        "bounds": {
+          "x": 0,
+          "y": 24,
+          "w": 1280,
+          "h": 60
+        },
+        "buttonCount": 2,
+        "cardCount": 13,
+        "slots": {
+          "ctaCount": 2,
+          "lede": "Home\nProduct\nSolutions\nAbout\nBlog\nBook a Demo"
+        },
+        "needsSmart": false
+      },
+      {
+        "index": 2,
+        "tag": "nav",
+        "role": "nav",
+        "subrole": null,
+        "confidence": 0.9,
+        "heading": null,
+        "bounds": {
+          "x": 252,
+          "y": 44,
+          "w": 784,
+          "h": 20
+        },
+        "buttonCount": 1,
+        "cardCount": 9,
+        "slots": {
+          "ctaCount": 1,
+          "lede": "Home\nProduct\nSolutions\nAbout\nBlog"
+        },
+        "needsSmart": false
+      },
+      {
+        "index": 3,
+        "tag": "main",
+        "role": "content",
+        "subrole": null,
+        "confidence": 0.3,
+        "heading": "From scattered data to institutional intelligence",
+        "bounds": {
+          "x": 0,
+          "y": 0,
+          "w": 1280,
+          "h": 7174.375
+        },
+        "buttonCount": 3,
+        "cardCount": 44,
+        "slots": {
+          "heading": "From scattered data to institutional intelligence",
+          "subheadings": [
+            "Trusted by\nleading companies",
+            "When fragmented data hides the full picture",
+            "Turn fragmented sources into institutional intelligence",
+            "Ingest and Structure"
+          ],
+          "ctaCount": 3,
+          "lede": "PURPOSE-BUILT FOR INSTITUTIONAL REAL ESTATE INVESTORS\nFrom scattered data to institutional intelligence\nAI-NATIVE FROM DAY ONE"
+        },
+        "needsSmart": true
+      },
+      {
+        "index": 4,
+        "tag": "section",
+        "role": "hero",
+        "subrole": null,
+        "confidence": 0.85,
+        "heading": "From scattered data to institutional intelligence",
+        "bounds": {
+          "x": 0,
+          "y": 0,
+          "w": 1280,
+          "h": 1195.171875
+        },
+        "buttonCount": 2,
+        "cardCount": 8,
+        "slots": {
+          "heading": "From scattered data to institutional intelligence",
+          "ctaCount": 2,
+          "lede": "PURPOSE-BUILT FOR INSTITUTIONAL REAL ESTATE INVESTORS\nFrom scattered data to institutional intelligence\nAI-NATIVE FROM DAY ONE"
+        },
+        "needsSmart": false
+      },
+      {
+        "index": 5,
+        "tag": "section",
+        "role": "logo-wall",
+        "subrole": null,
+        "confidence": 0.85,
+        "heading": "Trusted by\nleading companies",
+        "bounds": {
+          "x": 0,
+          "y": 1195.171875,
+          "w": 1280,
+          "h": 143.375
+        },
+        "buttonCount": 0,
+        "cardCount": 6,
+        "slots": {
+          "heading": "Trusted by\nleading companies"
+        },
+        "needsSmart": false
+      },
+      {
+        "index": 6,
+        "tag": "section",
+        "role": "content",
+        "subrole": null,
+        "confidence": 0.3,
+        "heading": "When fragmented data hides the full picture",
+        "bounds": {
+          "x": 0,
+          "y": 1466.546875,
+          "w": 1280,
+          "h": 751
+        },
+        "buttonCount": 0,
+        "cardCount": 3,
+        "slots": {
+          "heading": "When fragmented data hides the full picture"
+        },
+        "needsSmart": true
+      },
+      {
+        "index": 7,
+        "tag": "section",
+        "role": "content",
+        "subrole": null,
+        "confidence": 0.3,
+        "heading": "Turn fragmented sources into institutional intelligence",
+        "bounds": {
+          "x": 0,
+          "y": 2345.546875,
+          "w": 1280,
+          "h": 905
+        },
+        "buttonCount": 0,
+        "cardCount": 7,
+        "slots": {
+          "heading": "Turn fragmented sources into institutional intelligence",
+          "subheadings": [
+            "Ingest and Structure",
+            "AI-Augmented Workflows",
+            "Compounded Intelligence Across the Lifecycle"
+          ]
+        },
+        "needsSmart": true
+      },
+      {
+        "index": 8,
+        "tag": "section",
+        "role": "content",
+        "subrole": null,
+        "confidence": 0.3,
+        "heading": "Evidence from\ninstitutional investors",
+        "bounds": {
+          "x": 0,
+          "y": 3698.546875,
+          "w": 1280,
+          "h": 1067.359375
+        },
+        "buttonCount": 0,
+        "cardCount": 5,
+        "slots": {
+          "heading": "Evidence from\ninstitutional investors",
+          "subheadings": [
+            "Decision-ready\nintelligence",
+            "Millions in value\nuncovered",
+            "From data prep\nto strategic analysis"
+          ]
+        },
+        "needsSmart": true
+      },
+      {
+        "index": 9,
+        "tag": "section",
+        "role": "testimonial",
+        "subrole": null,
+        "confidence": 0.8,
+        "heading": "\"GoCanopy delivers instant, consultant-grade analysis with verifiable sources that hold up under IC scrutiny.\" ",
+        "bounds": {
+          "x": 0,
+          "y": 4893.90625,
+          "w": 1280,
+          "h": 574.46875
+        },
+        "buttonCount": 1,
+        "cardCount": 7,
+        "slots": {
+          "heading": "\"GoCanopy delivers instant, consultant-grade analysis with verifiable sources that hold up under IC scrutiny.\" ",
+          "ctaCount": 1,
+          "lede": "DECISION-READY INTELLIGENCE\nFROM DATA PREP TO STRATEGIC ANALYSIS\nMILLIONS IN VALUE UNCOVERED\nADOPTED ACROSS BROOKFIELD TEAMS: LOGISTICS, HOTELS, AND MULTI-ASSET\n\"GoCanopy delivers instant, consultant-grade analysis with verifiable sources that hold up under IC scrutiny.\""
+        },
+        "needsSmart": false
+      },
+      {
+        "index": 10,
+        "tag": "section",
+        "role": "content",
+        "subrole": null,
+        "confidence": 0.3,
+        "heading": "Security",
+        "bounds": {
+          "x": 0,
+          "y": 5596.375,
+          "w": 1280,
+          "h": 798
+        },
+        "buttonCount": 0,
+        "cardCount": 4,
+        "slots": {
+          "heading": "Security"
+        },
+        "needsSmart": true
+      },
+      {
+        "index": 11,
+        "tag": "section",
+        "role": "content",
+        "subrole": null,
+        "confidence": 0.3,
+        "heading": "Turn fragmented data into complete, consistent, and defensible intelligence",
+        "bounds": {
+          "x": 0,
+          "y": 6394.375,
+          "w": 1280,
+          "h": 780
+        },
+        "buttonCount": 0,
+        "cardCount": 4,
+        "slots": {
+          "heading": "Turn fragmented data into complete, consistent, and defensible intelligence",
+          "lede": "PURPOSE-BUILT FOR INSTITUTIONAL REAL ESTATE INVESTORS\nTurn fragmented data into complete, consistent, and defensible intelligence"
+        },
+        "needsSmart": true
+      },
+      {
+        "index": 12,
+        "tag": "footer",
+        "role": "footer",
+        "subrole": null,
+        "confidence": 0.95,
+        "heading": null,
+        "bounds": {
+          "x": 0,
+          "y": 6515.375,
+          "w": 1280,
+          "h": 658.546875
+        },
+        "buttonCount": 0,
+        "cardCount": 16,
+        "slots": {
+          "lede": "GoCanopy is the AI-native intelligence platform built for institutional real estate investors.\nGoCanopy\nHome\nProduct\nSolutions\nCompany\nAbout\nBlog\nFollow us on LinkedIn\nFollow us on LinkedIn\nReady to See GoCanopy in Action?\nBook a Demo\nINTELLIGENCE THAT COMPOUNDS\nAI-NATIVE FROM DAY ONE\n© 2026 GoCanopy. All rights reserved.\nPrivacy Policy\nTerms of Service"
+        },
+        "needsSmart": false
+      }
+    ],
+    "counts": {
+      "nav": 2,
+      "cta": 1,
+      "content": 6,
+      "hero": 1,
+      "logo-wall": 1,
+      "testimonial": 1,
+      "footer": 1
+    },
+    "readingOrder": [
+      "content",
+      "hero",
+      "cta",
+      "nav",
+      "nav",
+      "logo-wall",
+      "content",
+      "content",
+      "content",
+      "testimonial",
+      "content",
+      "content",
+      "footer"
+    ]
+  }
+}

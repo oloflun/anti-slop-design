@@ -1,0 +1,84 @@
+:root {
+  /* Colors — Primary */
+  --color-primary: #191313;
+
+  /* Colors — Neutrals */
+  --color-neutral-50: #efeeec;
+  --color-neutral-100: #a8a99e;
+  --color-neutral-200: #000000;
+
+  /* Colors — Backgrounds */
+  --color-bg: #a8a99e;
+  --color-bg-1: #191313;
+  --color-bg-2: #131313;
+
+  /* Colors — Text */
+  --color-text: #000000;
+  --color-text-1: #191313;
+  --color-text-2: #f1f1f1;
+  --color-text-3: #a8a99e;
+  --color-text-4: #efeeec;
+
+  /* Typography — Families */
+  --font-sans: 'Times Now', sans-serif;
+  --font-heading: 'Inter Tight', sans-serif;
+
+  /* Typography — Scale */
+  --font-size-49: 49px;
+  --font-size-22.75: 22.75px;
+  --font-size-17.5: 17.5px;
+  --font-size-15.75: 15.75px;
+  --font-size-14: 14px;
+  --font-size-12.25: 12.25px;
+  --font-size-10.5: 10.5px;
+
+  /* Spacing */
+  --spacing-1: 1px;
+  --spacing-28: 28px;
+  --spacing-35: 35px;
+  --spacing-70: 70px;
+  --spacing-88: 88px;
+  --spacing-105: 105px;
+  --spacing-112: 112px;
+  --spacing-119: 119px;
+  --spacing-140: 140px;
+  --spacing-154: 154px;
+  --spacing-168: 168px;
+  --spacing-175: 175px;
+  --spacing-191: 191px;
+  --spacing-201: 201px;
+  --spacing-236: 236px;
+  --spacing-252: 252px;
+  --spacing-296: 296px;
+  --spacing-335: 335px;
+  --spacing-343: 343px;
+  --spacing-387: 387px;
+
+  /* Original Site Variables */
+  /* — colors — */
+  --light-theme--set-tile-color: #191313;
+  /* — typography — */
+  --light-theme--text: #191313;
+  --font--sans-serif: "Inter Tight",Arial,sans-serif;
+  --light-theme--revert-text: #a8a99e;
+  --font--serif: "Times Now","Times New Roman",sans-serif;
+  --light-theme--button-text: #f1f1f1;
+  /* — other — */
+  --overlay-20: #0003;
+  --transparent: #fff0;
+  --grey: #a8a99e;
+  --light-theme--background: #a8a99e;
+  --light-theme--button-background: #191313;
+  --overlay-60: #0009;
+  --light-theme--revert-background: #191313;
+  --white: #f1f1f1;
+  --overlay-40: #0006;
+  --overlay-08: #00000014;
+  --dark: #191313;
+  /* — semantic — */
+  success: [object Object];
+  warning: [object Object];
+  error: [object Object];
+  info: [object Object];
+
+}

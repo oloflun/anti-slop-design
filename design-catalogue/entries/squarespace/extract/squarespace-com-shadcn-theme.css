@@ -1,0 +1,17 @@
+/* shadcn/ui Theme — extracted from https://www.squarespace.com */
+/* Paste into your globals.css */
+
+@layer base {
+  :root {
+    --background: 0 0% 100%;
+    --foreground: 0 0% 0%;
+    --primary: 6 83% 7%;
+    --primary-foreground: 0 0% 100%;
+    --secondary: 166 43% 21%;
+    --secondary-foreground: 0 0% 100%;
+    --muted: 60 5% 96%;
+    --muted-foreground: 0 0% 0%;
+    --border: 0 0% 18%;
+    --radius: 6px;
+  }
+}

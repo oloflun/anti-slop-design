@@ -1,0 +1,216 @@
+{
+  "$metadata": {
+    "generator": "designlang",
+    "version": "7.0.0",
+    "spec": "https://design-tokens.github.io/community-group/format/",
+    "source": "https://www.maloothifibar.com",
+    "generatedAt": "2026-09-04T00:25:16.415Z"
+  },
+  "primitive": {
+    "color": {
+      "brand": {
+        "primary": {
+          "$value": "#191313",
+          "$type": "color"
+        }
+      },
+      "neutral": {
+        "n100": {
+          "$value": "#efeeec",
+          "$type": "color"
+        },
+        "n200": {
+          "$value": "#a8a99e",
+          "$type": "color"
+        },
+        "n300": {
+          "$value": "#000000",
+          "$type": "color"
+        }
+      },
+      "background": {
+        "bg0": {
+          "$value": "#a8a99e",
+          "$type": "color"
+        },
+        "bg1": {
+          "$value": "#191313",
+          "$type": "color"
+        },
+        "bg2": {
+          "$value": "#131313",
+          "$type": "color"
+        }
+      },
+      "text": {
+        "text0": {
+          "$value": "#000000",
+          "$type": "color"
+        },
+        "text1": {
+          "$value": "#191313",
+          "$type": "color"
+        },
+        "text2": {
+          "$value": "#f1f1f1",
+          "$type": "color"
+        },
+        "text3": {
+          "$value": "#a8a99e",
+          "$type": "color"
+        },
+        "text4": {
+          "$value": "#efeeec",
+          "$type": "color"
+        }
+      }
+    },
+    "spacing": {
+      "s0": {
+        "$value": "1px",
+        "$type": "dimension"
+      },
+      "s1": {
+        "$value": "28px",
+        "$type": "dimension"
+      },
+      "s2": {
+        "$value": "35px",
+        "$type": "dimension"
+      },
+      "s3": {
+        "$value": "70px",
+        "$type": "dimension"
+      },
+      "s4": {
+        "$value": "88px",
+        "$type": "dimension"
+      },
+      "s5": {
+        "$value": "105px",
+        "$type": "dimension"
+      },
+      "s6": {
+        "$value": "112px",
+        "$type": "dimension"
+      },
+      "s7": {
+        "$value": "119px",
+        "$type": "dimension"
+      },
+      "s8": {
+        "$value": "140px",
+        "$type": "dimension"
+      },
+      "s9": {
+        "$value": "154px",
+        "$type": "dimension"
+      },
+      "s10": {
+        "$value": "168px",
+        "$type": "dimension"
+      },
+      "s11": {
+        "$value": "175px",
+        "$type": "dimension"
+      },
+      "s12": {
+        "$value": "191px",
+        "$type": "dimension"
+      },
+      "s13": {
+        "$value": "201px",
+        "$type": "dimension"
+      },
+      "s14": {
+        "$value": "236px",
+        "$type": "dimension"
+      },
+      "s15": {
+        "$value": "252px",
+        "$type": "dimension"
+      },
+      "s16": {
+        "$value": "296px",
+        "$type": "dimension"
+      },
+      "s17": {
+        "$value": "335px",
+        "$type": "dimension"
+      },
+      "s18": {
+        "$value": "343px",
+        "$type": "dimension"
+      },
+      "s19": {
+        "$value": "387px",
+        "$type": "dimension"
+      },
+      "s20": {
+        "$value": "394px",
+        "$type": "dimension"
+      },
+      "s21": {
+        "$value": "456px",
+        "$type": "dimension"
+      }
+    },
+    "radius": {},
+    "shadow": {},
+    "fontFamily": {
+      "f0": {
+        "$value": "Times Now",
+        "$type": "fontFamily"
+      },
+      "f1": {
+        "$value": "Inter Tight",
+        "$type": "fontFamily"
+      }
+    }
+  },
+  "semantic": {
+    "color": {
+      "action": {
+        "primary": {
+          "$value": "{primitive.color.brand.primary}",
+          "$type": "color"
+        }
+      },
+      "surface": {
+        "default": {
+          "$value": "{primitive.color.background.bg0}",
+          "$type": "color"
+        }
+      },
+      "text": {
+        "body": {
+          "$value": "{primitive.color.text.text0}",
+          "$type": "color"
+        }
+      }
+    },
+    "typography": {
+      "body": {
+        "$value": {
+          "fontFamily": "Times Now",
+          "fontSize": "49px",
+          "fontWeight": "300",
+          "lineHeight": "49px"
+        },
+        "$type": "typography"
+      }
+    },
+    "radius": {
+      "control": {
+        "$value": "{primitive.radius.r0}",
+        "$type": "dimension"
+      }
+    },
+    "shadow": {
+      "elevated": {
+        "$value": "{primitive.shadow.sh0}",
+        "$type": "shadow"
+      }
+    }
+  }
+}

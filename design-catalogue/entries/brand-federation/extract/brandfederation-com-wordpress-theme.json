@@ -1,0 +1,192 @@
+{
+  "$schema": "https://schemas.wp.org/trunk/theme.json",
+  "version": 3,
+  "settings": {
+    "color": {
+      "palette": [
+        {
+          "slug": "primary",
+          "color": "#f56b20",
+          "name": "Primary"
+        },
+        {
+          "slug": "secondary",
+          "color": "#12273e",
+          "name": "Secondary"
+        },
+        {
+          "slug": "accent",
+          "color": "#083a74",
+          "name": "Accent"
+        },
+        {
+          "slug": "neutral-1",
+          "color": "#333333",
+          "name": "Neutral 1"
+        },
+        {
+          "slug": "neutral-2",
+          "color": "#ffffff",
+          "name": "Neutral 2"
+        },
+        {
+          "slug": "neutral-3",
+          "color": "#000000",
+          "name": "Neutral 3"
+        },
+        {
+          "slug": "neutral-4",
+          "color": "#edecee",
+          "name": "Neutral 4"
+        },
+        {
+          "slug": "neutral-5",
+          "color": "#222222",
+          "name": "Neutral 5"
+        },
+        {
+          "slug": "bg-ffffff",
+          "color": "#ffffff",
+          "name": "Background #ffffff"
+        },
+        {
+          "slug": "bg-edecee",
+          "color": "#edecee",
+          "name": "Background #edecee"
+        },
+        {
+          "slug": "bg-12273e",
+          "color": "#12273e",
+          "name": "Background #12273e"
+        }
+      ],
+      "gradients": []
+    },
+    "typography": {
+      "fontFamilies": [
+        {
+          "fontFamily": "Arial",
+          "slug": "arial",
+          "name": "Arial"
+        },
+        {
+          "fontFamily": "Inter",
+          "slug": "inter",
+          "name": "Inter"
+        },
+        {
+          "fontFamily": "Manrope",
+          "slug": "manrope",
+          "name": "Manrope"
+        },
+        {
+          "fontFamily": "webflow-icons",
+          "slug": "webflow-icons",
+          "name": "webflow-icons"
+        }
+      ],
+      "fontSizes": [
+        {
+          "size": "67.0476px",
+          "slug": "size-67.0476",
+          "name": "67.0476px"
+        },
+        {
+          "size": "36.5714px",
+          "slug": "size-36.5714",
+          "name": "36.5714px"
+        },
+        {
+          "size": "30.4762px",
+          "slug": "size-30.4762",
+          "name": "30.4762px"
+        },
+        {
+          "size": "24.381px",
+          "slug": "size-24.381",
+          "name": "24.381px"
+        },
+        {
+          "size": "21.3333px",
+          "slug": "size-21.3333",
+          "name": "21.3333px"
+        },
+        {
+          "size": "16px",
+          "slug": "size-16",
+          "name": "16px"
+        },
+        {
+          "size": "15.4286px",
+          "slug": "size-15.4286",
+          "name": "15.4286px"
+        },
+        {
+          "size": "13.7143px",
+          "slug": "size-13.7143",
+          "name": "13.7143px"
+        }
+      ]
+    },
+    "spacing": {
+      "spacingSizes": [
+        {
+          "size": "1px",
+          "slug": "spacing-1",
+          "name": "1px"
+        },
+        {
+          "size": "6px",
+          "slug": "spacing-6",
+          "name": "6px"
+        },
+        {
+          "size": "24px",
+          "slug": "spacing-24",
+          "name": "24px"
+        },
+        {
+          "size": "37px",
+          "slug": "spacing-37",
+          "name": "37px"
+        },
+        {
+          "size": "48px",
+          "slug": "spacing-48",
+          "name": "48px"
+        },
+        {
+          "size": "53px",
+          "slug": "spacing-53",
+          "name": "53px"
+        },
+        {
+          "size": "61px",
+          "slug": "spacing-61",
+          "name": "61px"
+        },
+        {
+          "size": "69px",
+          "slug": "spacing-69",
+          "name": "69px"
+        }
+      ]
+    },
+    "layout": {
+      "contentSize": "100%",
+      "wideSize": "1400px"
+    }
+  },
+  "styles": {
+    "color": {
+      "background": "#ffffff",
+      "text": "#000000"
+    },
+    "typography": {
+      "fontSize": "13.7143px",
+      "lineHeight": "17.1429px",
+      "fontFamily": "Arial"
+    },
+    "spacing": {}
+  }
+}

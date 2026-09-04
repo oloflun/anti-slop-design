@@ -1,0 +1,19 @@
+/* shadcn/ui Theme — extracted from https://dope.security */
+/* Paste into your globals.css */
+
+@layer base {
+  :root {
+    --background: 0 0% 4%;
+    --foreground: 0 0% 0%;
+    --primary: 359 54% 85%;
+    --primary-foreground: 0 0% 0%;
+    --secondary: 200 23% 97%;
+    --secondary-foreground: 0 0% 0%;
+    --accent: 273 100% 66%;
+    --accent-foreground: 0 0% 100%;
+    --muted: 0 0% 53%;
+    --muted-foreground: 0 0% 94%;
+    --border: 216 18% 34%;
+    --radius: 8px;
+  }
+}

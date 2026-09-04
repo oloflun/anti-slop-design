@@ -1,0 +1,140 @@
+:root {
+  /* Colors — Primary */
+  --color-primary: #e97451;
+  --color-secondary: #2d0f06;
+  --color-accent: #918037;
+
+  /* Colors — Neutrals */
+  --color-neutral-50: #f9f8f0;
+  --color-neutral-100: #0c0503;
+  --color-neutral-200: #6f675e;
+  --color-neutral-300: #e1dccf;
+
+  /* Colors — Backgrounds */
+  --color-bg: #e1dccf;
+  --color-bg-1: #0c0503;
+  --color-bg-2: #2d0f06;
+  --color-bg-3: #070100;
+  --color-bg-4: #918037;
+
+  /* Colors — Text */
+  --color-text: #3c261c;
+  --color-text-1: #e97451;
+  --color-text-2: #f9f8f0;
+  --color-text-3: #f2efde;
+  --color-text-4: #0c0503;
+
+  /* Typography — Families */
+  --font-sans: 'Mona Sans', sans-serif;
+  --font-heading: 'paradigm-pro', sans-serif;
+
+  /* Typography — Scale */
+  --font-size-72: 72px;
+  --font-size-56: 56px;
+  --font-size-24: 24px;
+  --font-size-18: 18px;
+  --font-size-16: 16px;
+  --font-size-14: 14px;
+  --font-size-12: 12px;
+
+  /* Spacing */
+  --spacing-8: 8px;
+  --spacing-64: 64px;
+  --spacing-112: 112px;
+  --spacing-207: 207px;
+
+  /* Original Site Variables */
+  /* — colors — */
+  --color-terracotta: #e97451;
+  --tw-ring-offset-shadow: 0 0 #0000;
+  --tw-ring-shadow: 0 0 #0000;
+  --color-ink: #3c261c;
+  --color-linen: #f9f8f0;
+  --color-espresso-deep: #2d0f06;
+  --tw-inset-ring-shadow: 0 0 #0000;
+  --color-espresso: #3c261c;
+  --tw-ring-offset-color: #fff;
+  --color-ink-muted: #6f675e;
+  --color-cream: #f7efc5;
+  --tw-border-style: solid;
+  --color-electric: #4a43dd;
+  --tw-ring-offset-width: 0px;
+  --color-black: #000;
+  --color-brick: #71250e;
+  --color-olive: #918037;
+  --color-parchment: #e1dccf;
+  /* — spacing — */
+  --spacing: .25rem;
+  --tw-space-y-reverse: 0;
+  /* — typography — */
+  --text-2xl: 1.5rem;
+  --leading-relaxed: 1.625;
+  --leading-snug: 1.375;
+  --text-h2: clamp(2.25rem, 1.65rem + 2.6vw, 3.5rem);
+  --text-7xl: 4.5rem;
+  --text-lg: 1.125rem;
+  --text-5xl--line-height: 1;
+  --text-2xl--line-height: calc(2 / 1.5);
+  --text-base--line-height: calc(1.5 / 1);
+  --text-display: clamp(2.75rem, 1.5rem + 5.4vw, 4.5rem);
+  --font-mono: ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, "Liberation Mono", "Courier New", monospace;
+  --tracking-wide: .025em;
+  --text-xl--line-height: calc(1.75 / 1.25);
+  --font-weight-semibold: 600;
+  --text-sm: .875rem;
+  --text-lg--line-height: calc(1.75 / 1.125);
+  --font-sans: "Mona Sans", system-ui, -apple-system, "Segoe UI", sans-serif;
+  --text-4xl: 2.25rem;
+  --text-sm--line-height: calc(1.25 / .875);
+  --text-3xl--line-height: calc(2.25 / 1.875);
+  --text-5xl: 3rem;
+  --text-6xl: 3.75rem;
+  --text-3xl: 1.875rem;
+  --text-xs--line-height: calc(1 / .75);
+  --default-font-family: "Mona Sans", system-ui, -apple-system, "Segoe UI", sans-serif;
+  --font-weight-light: 300;
+  --font-weight-medium: 500;
+  --font-weight-normal: 400;
+  --text-xs: .75rem;
+  --font-display: "paradigm-pro", "Cormorant Garamond", Georgia, serif;
+  --text-h3: clamp(1.875rem, 1.55rem + 1.5vw, 2.75rem);
+  --text-7xl--line-height: 1;
+  --text-6xl--line-height: 1;
+  --text-4xl--line-height: calc(2.5 / 2.25);
+  --text-xl: 1.25rem;
+  --text-base: 1rem;
+  --default-mono-font-family: ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, "Liberation Mono", "Courier New", monospace;
+  /* — shadows — */
+  --tw-inset-shadow-alpha: 100%;
+  --tw-drop-shadow-alpha: 100%;
+  --tw-inset-shadow: 0 0 #0000;
+  --tw-shadow-alpha: 100%;
+  --tw-shadow: 0 0 #0000;
+  /* — radii — */
+  --radius-xl: .75rem;
+  --radius-2xl: 1rem;
+  --radius-md: .375rem;
+  /* — other — */
+  --default-transition-timing-function: cubic-bezier(.4, 0, .2, 1);
+  --tw-outline-style: solid;
+  --lightningcss-dark: ;
+  --tw-gradient-via: rgba(0, 0, 0, 0);
+  --ease-out: cubic-bezier(0, 0, .2, 1);
+  --tw-divide-x-reverse: 0;
+  --tw-gradient-from: rgba(0, 0, 0, 0);
+  --ease-editorial: cubic-bezier(.22, 1, .36, 1);
+  --tw-gradient-to: rgba(0, 0, 0, 0);
+  --lightningcss-light: ;
+  --tw-divide-y-reverse: 0;
+  --tw-gradient-via-position: 50%;
+  --tw-gradient-to-position: 100%;
+  --default-transition-duration: .15s;
+  --tw-gradient-from-position: 0%;
+  --blur-sm: 8px;
+  /* — semantic — */
+  success: [object Object];
+  warning: [object Object];
+  error: [object Object];
+  info: [object Object];
+
+}

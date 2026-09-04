@@ -1,0 +1,177 @@
+{
+  "$schema": "https://schemas.wp.org/trunk/theme.json",
+  "version": 3,
+  "settings": {
+    "color": {
+      "palette": [
+        {
+          "slug": "primary",
+          "color": "#f2eeea",
+          "name": "Primary"
+        },
+        {
+          "slug": "neutral-1",
+          "color": "#867c73",
+          "name": "Neutral 1"
+        },
+        {
+          "slug": "neutral-2",
+          "color": "#000000",
+          "name": "Neutral 2"
+        },
+        {
+          "slug": "neutral-3",
+          "color": "#34312e",
+          "name": "Neutral 3"
+        },
+        {
+          "slug": "neutral-4",
+          "color": "#6c645c",
+          "name": "Neutral 4"
+        },
+        {
+          "slug": "neutral-5",
+          "color": "#5e5853",
+          "name": "Neutral 5"
+        },
+        {
+          "slug": "bg-867c73",
+          "color": "#867c73",
+          "name": "Background #867c73"
+        },
+        {
+          "slug": "bg-353330",
+          "color": "#353330",
+          "name": "Background #353330"
+        },
+        {
+          "slug": "bg-000000",
+          "color": "#000000",
+          "name": "Background #000000"
+        }
+      ],
+      "gradients": []
+    },
+    "typography": {
+      "fontFamilies": [
+        {
+          "fontFamily": "Monument Grotesk",
+          "slug": "monument-grotesk",
+          "name": "Monument Grotesk"
+        },
+        {
+          "fontFamily": "Times New Roman",
+          "slug": "times-new-roman",
+          "name": "Times New Roman"
+        },
+        {
+          "fontFamily": "GT Super Text",
+          "slug": "gt-super-text",
+          "name": "GT Super Text"
+        }
+      ],
+      "fontSizes": [
+        {
+          "size": "65px",
+          "slug": "size-65",
+          "name": "65px"
+        },
+        {
+          "size": "33px",
+          "slug": "size-33",
+          "name": "33px"
+        },
+        {
+          "size": "24px",
+          "slug": "size-24",
+          "name": "24px"
+        },
+        {
+          "size": "18px",
+          "slug": "size-18",
+          "name": "18px"
+        },
+        {
+          "size": "16px",
+          "slug": "size-16",
+          "name": "16px"
+        },
+        {
+          "size": "15px",
+          "slug": "size-15",
+          "name": "15px"
+        },
+        {
+          "size": "13px",
+          "slug": "size-13",
+          "name": "13px"
+        },
+        {
+          "size": "12px",
+          "slug": "size-12",
+          "name": "12px"
+        }
+      ]
+    },
+    "spacing": {
+      "spacingSizes": [
+        {
+          "size": "4px",
+          "slug": "spacing-4",
+          "name": "4px"
+        },
+        {
+          "size": "30px",
+          "slug": "spacing-30",
+          "name": "30px"
+        },
+        {
+          "size": "40px",
+          "slug": "spacing-40",
+          "name": "40px"
+        },
+        {
+          "size": "79px",
+          "slug": "spacing-79",
+          "name": "79px"
+        },
+        {
+          "size": "108px",
+          "slug": "spacing-108",
+          "name": "108px"
+        },
+        {
+          "size": "146px",
+          "slug": "spacing-146",
+          "name": "146px"
+        },
+        {
+          "size": "225px",
+          "slug": "spacing-225",
+          "name": "225px"
+        },
+        {
+          "size": "272px",
+          "slug": "spacing-272",
+          "name": "272px"
+        }
+      ]
+    },
+    "layout": {
+      "contentSize": "1800px",
+      "wideSize": "1400px"
+    }
+  },
+  "styles": {
+    "color": {
+      "background": "#867c73",
+      "text": "#000000"
+    },
+    "typography": {
+      "fontSize": "12px",
+      "lineHeight": "normal",
+      "fontFamily": "Monument Grotesk"
+    },
+    "spacing": {}
+  }
+}

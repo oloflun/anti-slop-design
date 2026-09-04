@@ -1,0 +1,184 @@
+{
+  "$metadata": {
+    "generator": "designlang",
+    "version": "7.0.0",
+    "spec": "https://design-tokens.github.io/community-group/format/",
+    "source": "https://miti-navi.com/fr",
+    "generatedAt": "2026-09-04T00:47:34.532Z"
+  },
+  "primitive": {
+    "color": {
+      "brand": {
+        "primary": {
+          "$value": "#000e13",
+          "$type": "color"
+        },
+        "secondary": {
+          "$value": "#ffdead",
+          "$type": "color"
+        }
+      },
+      "neutral": {
+        "n100": {
+          "$value": "#232323",
+          "$type": "color"
+        },
+        "n200": {
+          "$value": "#999999",
+          "$type": "color"
+        },
+        "n300": {
+          "$value": "#000000",
+          "$type": "color"
+        },
+        "n400": {
+          "$value": "#808080",
+          "$type": "color"
+        }
+      },
+      "background": {
+        "bg0": {
+          "$value": "#e8ded0",
+          "$type": "color"
+        },
+        "bg1": {
+          "$value": "#e6dece",
+          "$type": "color"
+        },
+        "bg2": {
+          "$value": "#000e13",
+          "$type": "color"
+        }
+      },
+      "text": {
+        "text0": {
+          "$value": "#232323",
+          "$type": "color"
+        },
+        "text1": {
+          "$value": "#000e13",
+          "$type": "color"
+        },
+        "text2": {
+          "$value": "#999999",
+          "$type": "color"
+        },
+        "text3": {
+          "$value": "#000000",
+          "$type": "color"
+        },
+        "text4": {
+          "$value": "#e8ded0",
+          "$type": "color"
+        },
+        "text5": {
+          "$value": "#e6dece",
+          "$type": "color"
+        },
+        "text6": {
+          "$value": "#808080",
+          "$type": "color"
+        }
+      }
+    },
+    "spacing": {
+      "s0": {
+        "$value": "5px",
+        "$type": "dimension"
+      },
+      "s1": {
+        "$value": "30px",
+        "$type": "dimension"
+      },
+      "s2": {
+        "$value": "40px",
+        "$type": "dimension"
+      },
+      "s3": {
+        "$value": "60px",
+        "$type": "dimension"
+      },
+      "s4": {
+        "$value": "90px",
+        "$type": "dimension"
+      },
+      "s5": {
+        "$value": "140px",
+        "$type": "dimension"
+      },
+      "s6": {
+        "$value": "240px",
+        "$type": "dimension"
+      }
+    },
+    "radius": {},
+    "shadow": {},
+    "fontFamily": {
+      "f0": {
+        "$value": "GT Pressura Mono",
+        "$type": "fontFamily"
+      },
+      "f1": {
+        "$value": "Times New Roman",
+        "$type": "fontFamily"
+      },
+      "f2": {
+        "$value": "Voyage",
+        "$type": "fontFamily"
+      },
+      "f3": {
+        "$value": "GTSectraDisplay",
+        "$type": "fontFamily"
+      }
+    }
+  },
+  "semantic": {
+    "color": {
+      "action": {
+        "primary": {
+          "$value": "{primitive.color.brand.primary}",
+          "$type": "color"
+        },
+        "secondary": {
+          "$value": "{primitive.color.brand.secondary}",
+          "$type": "color"
+        }
+      },
+      "surface": {
+        "default": {
+          "$value": "{primitive.color.background.bg0}",
+          "$type": "color"
+        }
+      },
+      "text": {
+        "body": {
+          "$value": "{primitive.color.text.text0}",
+          "$type": "color"
+        }
+      }
+    },
+    "typography": {
+      "body": {
+        "$value": {
+          "fontFamily": "GT Pressura Mono",
+          "fontSize": "180px",
+          "fontWeight": "400",
+          "lineHeight": "170px"
+        },
+        "$type": "typography"
+      }
+    },
+    "radius": {
+      "control": {
+        "$value": "{primitive.radius.r0}",
+        "$type": "dimension"
+      }
+    },
+    "shadow": {
+      "elevated": {
+        "$value": "{primitive.shadow.sh0}",
+        "$type": "shadow"
+      }
+    }
+  }
+}

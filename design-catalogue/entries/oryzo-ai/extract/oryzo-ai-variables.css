@@ -1,0 +1,190 @@
+:root {
+  /* Colors — Primary */
+  --color-primary: #382416;
+  --color-secondary: #ffedd7;
+  --color-accent: #dc5000;
+
+  /* Colors — Neutrals */
+  --color-neutral-50: #100904;
+  --color-neutral-100: #445231;
+  --color-neutral-200: #bbac97;
+  --color-neutral-300: #6c5f51;
+  --color-neutral-400: #000000;
+  --color-neutral-500: #5d6c49;
+  --color-neutral-600: #201914;
+
+  /* Colors — Backgrounds */
+  --color-bg: #100904;
+  --color-bg-1: #445231;
+  --color-bg-2: #f6e0c6;
+  --color-bg-3: #ffedd6;
+  --color-bg-4: #201914;
+
+  /* Colors — Text */
+  --color-text: #ffedd7;
+  --color-text-1: #dc5000;
+  --color-text-2: #bbac97;
+  --color-text-3: #100904;
+  --color-text-4: #5d6c49;
+
+  /* Typography — Families */
+  --font-sans: 'halyard-display-variable', sans-serif;
+  --font-body: 'Arial', sans-serif;
+  --font-body: 'Literata', sans-serif;
+  --font-body: 'DM Mono', sans-serif;
+
+  /* Typography — Scale */
+  --font-size-364: 364px;
+  --font-size-201.481: 201.481px;
+  --font-size-192: 192px;
+  --font-size-130.37: 130.37px;
+  --font-size-109.333: 109.333px;
+  --font-size-57.1437: 57.1437px;
+  --font-size-45.3333: 45.3333px;
+  --font-size-43.7333: 43.7333px;
+  --font-size-42.88: 42.88px;
+  --font-size-38.6735: 38.6735px;
+  --font-size-36.2667: 36.2667px;
+  --font-size-32.5178: 32.5178px;
+
+  /* Spacing */
+  --spacing-1: 1px;
+  --spacing-27: 27px;
+  --spacing-36: 36px;
+  --spacing-40: 40px;
+  --spacing-43: 43px;
+  --spacing-48: 48px;
+  --spacing-56: 56px;
+  --spacing-60: 60px;
+  --spacing-64: 64px;
+  --spacing-69: 69px;
+  --spacing-76: 76px;
+  --spacing-96: 96px;
+  --spacing-107: 107px;
+  --spacing-181: 181px;
+  --spacing-280: 280px;
+  --spacing-364: 364px;
+  --spacing-400: 400px;
+  --spacing-404: 404px;
+
+  /* Border Radius */
+  --radius-lg: 12px;
+  --radius-xl: 20px;
+  --radius-full: 32px;
+  --radius-full: 40px;
+  --radius-full: 50px;
+  --radius-full: 100px;
+
+  /* Box Shadows */
+  --shadow-xs: rgb(255, 160, 0) 0px 0px 3px 2px inset, rgb(224, 112, 16) 0px 0px 8px 4px inset;
+  --shadow-sm: rgba(255, 160, 0, 0.6) 0px 0px 5px 2px inset, rgb(224, 112, 16) 0px 0px 15px 8px inset, rgba(230, 100, 10, 0.45) 0px 0px 35px 15px inset, rgba(230, 80, 10, 0.35) 0px 0px 45px 20px inset;
+  --shadow-md: rgba(255, 140, 0, 0.6) 0px 0px 10px 3px;
+  --shadow-md: rgba(255, 140, 0, 0.6) 0px 0px 10px 3px, rgba(230, 80, 10, 0.25) 0px 0px 60px 45px;
+
+  /* Original Site Variables */
+  /* — colors — */
+  --color-white: #ffedd7;
+  --color-white-transparent: #ffedd700;
+  --color-black: #100904;
+  --color-black-transparent: #10090400;
+  --color-grey-brown: #6c5f51;
+  --color-green: #445231;
+  --color-green-light: #5d6c49;
+  --color-green-lightest: #f6e0c6;
+  --color-pure-white: #fff;
+  --color-pure-black: #000;
+  --color-orange: #dc5000;
+  --color-brown: #382416;
+  /* — spacing — */
+  --site-padding-x: 3.125vw;
+  --site-padding-y: calc(var(--site-row-height) * 4);
+  --grid-gap-scale: calc(24 / 90);
+  --grid-gap-width: calc((100vw - var(--site-padding-x) * 2) / ((var(--grid-columns) / var(--grid-gap-scale)) + var(--grid-columns) - 1));
+  /* — typography — */
+  --display-font: "halyard-display-variable";
+  --text-font: "halyard-text-variable";
+  /* — other — */
+  --vh: 1vh;
+  --site-row-height: calc(var(--site-padding-x) * 8 / 60);
+  --grid-columns: 16;
+  --grid-rows: 1;
+  --grid-column-width: calc(var(--grid-gap-width) / var(--grid-gap-scale));
+  --grid-span-width: calc(var(--grid-gap-width) + var(--grid-column-width));
+  --grid-span-1: var(--grid-column-width);
+  --grid-span-2: calc(var(--grid-span-width) * 1 + var(--grid-column-width));
+  --grid-span-3: calc(var(--grid-span-width) * 2 + var(--grid-column-width));
+  --grid-span-4: calc(var(--grid-span-width) * 3 + var(--grid-column-width));
+  --grid-span-5: calc(var(--grid-span-width) * 4 + var(--grid-column-width));
+  --grid-span-6: calc(var(--grid-span-width) * 5 + var(--grid-column-width));
+  --grid-span-7: calc(var(--grid-span-width) * 6 + var(--grid-column-width));
+  --grid-span-8: calc(var(--grid-span-width) * 7 + var(--grid-column-width));
+  --grid-span-9: calc(var(--grid-span-width) * 8 + var(--grid-column-width));
+  --grid-span-10: calc(var(--grid-span-width) * 9 + var(--grid-column-width));
+  --grid-span-11: calc(var(--grid-span-width) * 10 + var(--grid-column-width));
+  --grid-span-12: calc(var(--grid-span-width) * 11 + var(--grid-column-width));
+  --grid-span-13: calc(var(--grid-span-width) * 12 + var(--grid-column-width));
+  --grid-span-14: calc(var(--grid-span-width) * 13 + var(--grid-column-width));
+  --grid-span-15: calc(var(--grid-span-width) * 14 + var(--grid-column-width));
+  --grid-span-16: calc(var(--grid-span-width) * 15 + var(--grid-column-width));
+  --inner-width: calc(100vw - var(--site-padding-x) * 2);
+  --screen-unit: min(var(--inner-width) / (1920 - 60 * 2), calc(var(--vh) * 100) / 1024 * 1.25);
+  --h1: calc(164 * var(--screen-unit));
+  --h2: calc(68 * var(--screen-unit));
+  --h3: calc(45 * var(--screen-unit));
+  --h4: calc(32 * var(--screen-unit));
+  --h5: calc(20 * var(--screen-unit));
+  --sub1: calc(24 * var(--screen-unit));
+  --sub2: calc(16 * var(--screen-unit));
+  --body1: calc(38 * var(--screen-unit));
+  --body2: calc(24 * var(--screen-unit));
+  --body3: calc(18 * var(--screen-unit));
+  --link-header: calc(16 * var(--screen-unit));
+  --quote: calc(30 * var(--screen-unit));
+  --default: calc(18 * var(--screen-unit));
+  --btn: calc(16 * var(--screen-unit));
+  --site-header: 21px;
+  /* — dependencies — */
+  --site-row-height: --site-padding-x;
+  --site-padding-y: --site-row-height;
+  --grid-gap-width: --site-padding-x,--grid-columns,--grid-gap-scale,--grid-columns;
+  --grid-column-width: --grid-gap-width,--grid-gap-scale;
+  --grid-span-width: --grid-gap-width,--grid-column-width;
+  --grid-span-1: --grid-column-width;
+  --grid-span-2: --grid-span-width,--grid-column-width;
+  --grid-span-3: --grid-span-width,--grid-column-width;
+  --grid-span-4: --grid-span-width,--grid-column-width;
+  --grid-span-5: --grid-span-width,--grid-column-width;
+  --grid-span-6: --grid-span-width,--grid-column-width;
+  --grid-span-7: --grid-span-width,--grid-column-width;
+  --grid-span-8: --grid-span-width,--grid-column-width;
+  --grid-span-9: --grid-span-width,--grid-column-width;
+  --grid-span-10: --grid-span-width,--grid-column-width;
+  --grid-span-11: --grid-span-width,--grid-column-width;
+  --grid-span-12: --grid-span-width,--grid-column-width;
+  --grid-span-13: --grid-span-width,--grid-column-width;
+  --grid-span-14: --grid-span-width,--grid-column-width;
+  --grid-span-15: --grid-span-width,--grid-column-width;
+  --grid-span-16: --grid-span-width,--grid-column-width;
+  --inner-width: --site-padding-x;
+  --screen-unit: --inner-width,--vh;
+  --h1: --screen-unit;
+  --h2: --screen-unit;
+  --h3: --screen-unit;
+  --h4: --screen-unit;
+  --h5: --screen-unit;
+  --sub1: --screen-unit;
+  --sub2: --screen-unit;
+  --body1: --screen-unit;
+  --body2: --screen-unit;
+  --body3: --screen-unit;
+  --link-header: --screen-unit;
+  --quote: --screen-unit;
+  --default: --screen-unit;
+  --btn: --screen-unit;
+  /* — semantic — */
+  success: [object Object];
+  warning: [object Object];
+  error: [object Object];
+  info: [object Object];
+
+}

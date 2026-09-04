@@ -1,0 +1,281 @@
+{
+  "$metadata": {
+    "generator": "designlang",
+    "version": "7.0.0",
+    "spec": "https://design-tokens.github.io/community-group/format/",
+    "source": "https://www.insidermadeira.com",
+    "generatedAt": "2026-09-04T00:27:24.817Z"
+  },
+  "primitive": {
+    "color": {
+      "brand": {
+        "primary": {
+          "$value": "#ffdede",
+          "$type": "color"
+        },
+        "secondary": {
+          "$value": "#f1ede5",
+          "$type": "color"
+        }
+      },
+      "neutral": {
+        "n100": {
+          "$value": "#000000",
+          "$type": "color"
+        },
+        "n200": {
+          "$value": "#201f1d",
+          "$type": "color"
+        },
+        "n300": {
+          "$value": "#ffffff",
+          "$type": "color"
+        },
+        "n400": {
+          "$value": "#c6c3bb",
+          "$type": "color"
+        },
+        "n500": {
+          "$value": "#333333",
+          "$type": "color"
+        },
+        "n600": {
+          "$value": "#dddddd",
+          "$type": "color"
+        },
+        "n700": {
+          "$value": "#b8b8b8",
+          "$type": "color"
+        },
+        "n800": {
+          "$value": "#6a6a6a",
+          "$type": "color"
+        },
+        "n900": {
+          "$value": "#cccccc",
+          "$type": "color"
+        }
+      },
+      "background": {
+        "bg0": {
+          "$value": "#f9f9f9",
+          "$type": "color"
+        },
+        "bg1": {
+          "$value": "#000000",
+          "$type": "color"
+        },
+        "bg2": {
+          "$value": "#f1ede5",
+          "$type": "color"
+        }
+      },
+      "text": {
+        "text0": {
+          "$value": "#000000",
+          "$type": "color"
+        },
+        "text1": {
+          "$value": "#201f1d",
+          "$type": "color"
+        },
+        "text2": {
+          "$value": "#333333",
+          "$type": "color"
+        },
+        "text3": {
+          "$value": "#f9f9f9",
+          "$type": "color"
+        },
+        "text4": {
+          "$value": "#b8b8b8",
+          "$type": "color"
+        },
+        "text5": {
+          "$value": "#ffffff",
+          "$type": "color"
+        },
+        "text6": {
+          "$value": "#c6c3bb",
+          "$type": "color"
+        },
+        "text7": {
+          "$value": "#383838",
+          "$type": "color"
+        },
+        "text8": {
+          "$value": "#f1ede5",
+          "$type": "color"
+        },
+        "text9": {
+          "$value": "#6a6a6a",
+          "$type": "color"
+        }
+      }
+    },
+    "spacing": {
+      "s0": {
+        "$value": "1px",
+        "$type": "dimension"
+      },
+      "s1": {
+        "$value": "24px",
+        "$type": "dimension"
+      },
+      "s2": {
+        "$value": "27px",
+        "$type": "dimension"
+      },
+      "s3": {
+        "$value": "30px",
+        "$type": "dimension"
+      },
+      "s4": {
+        "$value": "40px",
+        "$type": "dimension"
+      },
+      "s5": {
+        "$value": "53px",
+        "$type": "dimension"
+      },
+      "s6": {
+        "$value": "60px",
+        "$type": "dimension"
+      },
+      "s7": {
+        "$value": "67px",
+        "$type": "dimension"
+      },
+      "s8": {
+        "$value": "80px",
+        "$type": "dimension"
+      },
+      "s9": {
+        "$value": "85px",
+        "$type": "dimension"
+      },
+      "s10": {
+        "$value": "93px",
+        "$type": "dimension"
+      },
+      "s11": {
+        "$value": "100px",
+        "$type": "dimension"
+      },
+      "s12": {
+        "$value": "103px",
+        "$type": "dimension"
+      },
+      "s13": {
+        "$value": "149px",
+        "$type": "dimension"
+      },
+      "s14": {
+        "$value": "297px",
+        "$type": "dimension"
+      },
+      "s15": {
+        "$value": "333px",
+        "$type": "dimension"
+      },
+      "s16": {
+        "$value": "461px",
+        "$type": "dimension"
+      }
+    },
+    "radius": {
+      "r0": {
+        "$value": "3px",
+        "$type": "dimension"
+      },
+      "r1": {
+        "$value": "20px",
+        "$type": "dimension"
+      },
+      "r2": {
+        "$value": "50px",
+        "$type": "dimension"
+      },
+      "r3": {
+        "$value": "100px",
+        "$type": "dimension"
+      },
+      "r4": {
+        "$value": "640px",
+        "$type": "dimension"
+      },
+      "r5": {
+        "$value": "999px",
+        "$type": "dimension"
+      },
+      "r6": {
+        "$value": "1600px",
+        "$type": "dimension"
+      },
+      "r7": {
+        "$value": "15984px",
+        "$type": "dimension"
+      }
+    },
+    "shadow": {},
+    "fontFamily": {
+      "f0": {
+        "$value": "PP Mori",
+        "$type": "fontFamily"
+      },
+      "f1": {
+        "$value": "GT Super Display",
+        "$type": "fontFamily"
+      }
+    }
+  },
+  "semantic": {
+    "color": {
+      "action": {
+        "primary": {
+          "$value": "{primitive.color.brand.primary}",
+          "$type": "color"
+        },
+        "secondary": {
+          "$value": "{primitive.color.brand.secondary}",
+          "$type": "color"
+        }
+      },
+      "surface": {
+        "default": {
+          "$value": "{primitive.color.background.bg0}",
+          "$type": "color"
+        }
+      },
+      "text": {
+        "body": {
+          "$value": "{primitive.color.text.text0}",
+          "$type": "color"
+        }
+      }
+    },
+    "typography": {
+      "body": {
+        "$value": {
+          "fontFamily": "PP Mori",
+          "fontSize": "63.3333px",
+          "fontWeight": "300",
+          "lineHeight": "63.3333px"
+        },
+        "$type": "typography"
+      }
+    },
+    "radius": {
+      "control": {
+        "$value": "{primitive.radius.r0}",
+        "$type": "dimension"
+      }
+    },
+    "shadow": {
+      "elevated": {
+        "$value": "{primitive.shadow.sh0}",
+        "$type": "shadow"
+      }
+    }
+  }
+}

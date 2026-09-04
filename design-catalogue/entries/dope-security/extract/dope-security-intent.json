@@ -1,0 +1,339 @@
+{
+  "pageIntent": {
+    "type": "landing",
+    "confidence": 0.59,
+    "path": "/",
+    "title": "dope.security – The Fly-Direct Secure Web Gateway with AI DLP",
+    "description": "The next-gen Secure Web Gateway: on-device proxy with local SSL inspection, AI DLP monitoring, and SSE capabilities for secure direct internet access.",
+    "signals": [
+      {
+        "kind": "dom",
+        "type": "blog-post",
+        "weight": 0.35,
+        "detail": "byline|min-read"
+      },
+      {
+        "kind": "dom",
+        "type": "legal",
+        "weight": 0.4
+      },
+      {
+        "kind": "url",
+        "type": "landing",
+        "weight": 0.45,
+        "detail": "root-path"
+      },
+      {
+        "kind": "shape",
+        "type": "landing",
+        "weight": 0.3,
+        "detail": "features+hero"
+      }
+    ],
+    "alternates": [
+      {
+        "type": "legal",
+        "score": 0.4
+      },
+      {
+        "type": "blog-post",
+        "score": 0.35
+      }
+    ],
+    "needsSmart": true
+  },
+  "sectionRoles": {
+    "sections": [
+      {
+        "index": 0,
+        "tag": "div",
+        "role": "logo-wall",
+        "subrole": null,
+        "confidence": 0.85,
+        "heading": null,
+        "bounds": {
+          "x": 0,
+          "y": 0,
+          "w": 1280,
+          "h": 53.59375
+        },
+        "buttonCount": 6,
+        "cardCount": 9,
+        "slots": {
+          "ctaCount": 6,
+          "lede": "PRODUCTS\nPRICING\nRESOURCES\nMANAGE AIABOUTCUSTOMERS\nBOOK A DEMO\nLOG IN"
+        },
+        "needsSmart": false
+      },
+      {
+        "index": 1,
+        "tag": "nav",
+        "role": "nav",
+        "subrole": null,
+        "confidence": 0.9,
+        "heading": null,
+        "bounds": {
+          "x": 394.40625,
+          "y": 9.390625,
+          "w": 859.59375,
+          "h": 43.203125
+        },
+        "buttonCount": 4,
+        "cardCount": 9,
+        "slots": {
+          "ctaCount": 4,
+          "lede": "PRODUCTS\nPRICING\nRESOURCES\nMANAGE AIABOUTCUSTOMERS\nBOOK A DEMO\nLOG IN"
+        },
+        "needsSmart": false
+      },
+      {
+        "index": 2,
+        "tag": "nav",
+        "role": "nav",
+        "subrole": null,
+        "confidence": 0.9,
+        "heading": null,
+        "bounds": {
+          "x": 0,
+          "y": 0,
+          "w": 0,
+          "h": 0
+        },
+        "buttonCount": 0,
+        "cardCount": 4,
+        "slots": {
+          "lede": "dope.swg →Fly-Direct proxy directly on the endpoint, now with AI-powered DLP.casb_neural →AI-driven data visibility and posture management."
+        },
+        "needsSmart": false
+      },
+      {
+        "index": 3,
+        "tag": "nav",
+        "role": "nav",
+        "subrole": null,
+        "confidence": 0.9,
+        "heading": null,
+        "bounds": {
+          "x": 0,
+          "y": 0,
+          "w": 0,
+          "h": 0
+        },
+        "buttonCount": 0,
+        "cardCount": 5,
+        "slots": {
+          "lede": "ResourcesBlogSWG & CASB DatasheetDLP DatasheetChatGPT DatasheetClaude DatasheetWhitepaperComparison ChartFAQsMediaPress KitNewsroomAwardsPodcastContactVideosEventsUpcomingPastFeatured StoryMeet Dopamine DLP →Endpoint Data Loss Prevention Powered by AI"
+        },
+        "needsSmart": false
+      },
+      {
+        "index": 4,
+        "tag": "header",
+        "role": "hero",
+        "subrole": null,
+        "confidence": 0.85,
+        "heading": "Your new Secure Web Gateway\nwithAI DLP\n",
+        "bounds": {
+          "x": 0,
+          "y": 0,
+          "w": 1280,
+          "h": 960
+        },
+        "buttonCount": 1,
+        "cardCount": 0,
+        "slots": {
+          "heading": "Your new Secure Web Gateway\nwithAI DLP\n",
+          "ctaCount": 1,
+          "lede": "Your new Secure Web Gateway\nwithAI DLP"
+        },
+        "needsSmart": false
+      },
+      {
+        "index": 5,
+        "tag": "main",
+        "role": "comparison",
+        "subrole": null,
+        "confidence": 0.7,
+        "heading": "Features",
+        "bounds": {
+          "x": 0,
+          "y": 960,
+          "w": 1280,
+          "h": 16456.6875
+        },
+        "buttonCount": 0,
+        "cardCount": 84,
+        "slots": {
+          "heading": "Features",
+          "subheadings": [
+            "SSL INSPECTION",
+            "SSL INSPECTION",
+            "URL FILTERING",
+            "URL FILTERING"
+          ],
+          "lede": "Features\nSSL INSPECTION\nSSL INSPECTION\nURL FILTERING\nURL FILTERING\nBLOCK PERSONAL EMAIL\nBLOCK PERSONAL EMAIL\nDETECT SHADOW IT/AI\nDETECT SHADOW IT/AI\nINSTANT POLICY PUSH\nINSTANT POLICY PUSH\nAI ENDPOINT DLP\nAI ENDPOINT DLP\nAI CLOUD DLP\nAI CLOUD DLP\nBEAUTIFUL UX\nBEAUTIFUL UX\nGEN 1\nGEN 2\nGEN 3\nThere’s a problem with \nswgs today.\nGen 1\n20 YEARS AGO\nA proxy “box ” was installed in-office."
+        },
+        "needsSmart": false
+      },
+      {
+        "index": 6,
+        "tag": "section",
+        "role": "content",
+        "subrole": null,
+        "confidence": 0.3,
+        "heading": "Features",
+        "bounds": {
+          "x": 0,
+          "y": 960,
+          "w": 1280,
+          "h": 1084.75
+        },
+        "buttonCount": 0,
+        "cardCount": 0,
+        "slots": {
+          "heading": "Features",
+          "subheadings": [
+            "SSL INSPECTION",
+            "SSL INSPECTION",
+            "URL FILTERING",
+            "URL FILTERING"
+          ],
+          "lede": "Features\nSSL INSPECTION\nSSL INSPECTION\nURL FILTERING\nURL FILTERING\nBLOCK PERSONAL EMAIL\nBLOCK PERSONAL EMAIL\nDETECT SHADOW IT/AI\nDETECT SHADOW IT/AI\nINSTANT POLICY PUSH\nINSTANT POLICY PUSH\nAI ENDPOINT DLP\nAI ENDPOINT DLP\nAI CLOUD DLP\nAI CLOUD DLP\nBEAUTIFUL UX\nBEAUTIFUL UX"
+        },
+        "needsSmart": true
+      },
+      {
+        "index": 7,
+        "tag": "section",
+        "role": "content",
+        "subrole": null,
+        "confidence": 0.3,
+        "heading": null,
+        "bounds": {
+          "x": 0,
+          "y": 11943.75,
+          "w": 1280,
+          "h": 1600
+        },
+        "buttonCount": 0,
+        "cardCount": 35,
+        "slots": {
+          "lede": "Watch"
+        },
+        "needsSmart": true
+      },
+      {
+        "index": 8,
+        "tag": "section",
+        "role": "content",
+        "subrole": null,
+        "confidence": 0.3,
+        "heading": null,
+        "bounds": {
+          "x": 0,
+          "y": 0,
+          "w": 0,
+          "h": 0
+        },
+        "buttonCount": 0,
+        "cardCount": 27,
+        "slots": {},
+        "needsSmart": true
+      },
+      {
+        "index": 9,
+        "tag": "section",
+        "role": "content",
+        "subrole": null,
+        "confidence": 0.3,
+        "heading": "Whether your company is small or large, we provide a first-class experience.",
+        "bounds": {
+          "x": 0,
+          "y": 13543.75,
+          "w": 1280,
+          "h": 876.359375
+        },
+        "buttonCount": 0,
+        "cardCount": 0,
+        "slots": {
+          "heading": "Whether your company is small or large, we provide a first-class experience.",
+          "lede": "d_\nWhether your company is small or large, we provide a first-class experience.\nGDPR COMPLIANT\nSOC 2 TYPE 2"
+        },
+        "needsSmart": true
+      },
+      {
+        "index": 10,
+        "tag": "section",
+        "role": "content",
+        "subrole": null,
+        "confidence": 0.3,
+        "heading": "Experience\nthe\nTrilogy",
+        "bounds": {
+          "x": 0,
+          "y": 14420.109375,
+          "w": 1280,
+          "h": 1205.390625
+        },
+        "buttonCount": 0,
+        "cardCount": 0,
+        "slots": {
+          "heading": "Experience\nthe\nTrilogy",
+          "subheadings": [
+            "The On-Device Proxy for Mac & Windows, with AI Powered Endpoint DLP",
+            "Cloud DLP Powered by AI",
+            "On-Device Proxy and LLM-Powered CASB meets Fly Direct VPN"
+          ],
+          "lede": "Experience\nthe\nTrilogy\ndope.swg\n+ casb_neural\n+ dope.vpn\nComing Soon\nThe On-Device Proxy for Mac & Windows, with AI Powered Endpoint DLP"
+        },
+        "needsSmart": true
+      },
+      {
+        "index": 11,
+        "tag": "section",
+        "role": "comparison",
+        "subrole": null,
+        "confidence": 0.7,
+        "heading": "How we compare",
+        "bounds": {
+          "x": 0,
+          "y": 15721.5,
+          "w": 1280,
+          "h": 1695.1875
+        },
+        "buttonCount": 0,
+        "cardCount": 20,
+        "slots": {
+          "heading": "How we compare",
+          "subheadings": [
+            "vs. Zscaler",
+            "vs. Netskope",
+            "vs. Cisco Umbrella",
+            "vs. Forcepoint"
+          ]
+        },
+        "needsSmart": false
+      }
+    ],
+    "counts": {
+      "logo-wall": 1,
+      "nav": 3,
+      "hero": 1,
+      "comparison": 2,
+      "content": 5
+    },
+    "readingOrder": [
+      "logo-wall",
+      "nav",
+      "nav",
+      "hero",
+      "content",
+      "nav",
+      "comparison",
+      "content",
+      "content",
+      "content",
+      "content",
+      "comparison"
+    ]
+  }
+}

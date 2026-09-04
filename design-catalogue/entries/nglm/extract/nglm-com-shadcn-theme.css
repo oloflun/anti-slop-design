@@ -1,0 +1,13 @@
+/* shadcn/ui Theme — extracted from https://www.nglm.com */
+/* Paste into your globals.css */
+
+@layer base {
+  :root {
+    --background: 0 0% 99%;
+    --foreground: 0 0% 0%;
+    --muted: 200 7% 8%;
+    --muted-foreground: 0 0% 0%;
+    --border: 180 2% 45%;
+    --radius: 2px;
+  }
+}

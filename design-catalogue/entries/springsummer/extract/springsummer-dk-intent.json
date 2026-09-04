@@ -1,0 +1,242 @@
+{
+  "pageIntent": {
+    "type": "landing",
+    "confidence": 0.59,
+    "path": "/",
+    "title": "Spring/Summer | Copenhagen based digital first Design & Brand Agency",
+    "description": "Strategic digital experiences & brand identities from Copenhagen, Scandinavian design meets innovative technology.",
+    "signals": [
+      {
+        "kind": "dom",
+        "type": "legal",
+        "weight": 0.4
+      },
+      {
+        "kind": "url",
+        "type": "landing",
+        "weight": 0.45,
+        "detail": "root-path"
+      },
+      {
+        "kind": "shape",
+        "type": "landing",
+        "weight": 0.3,
+        "detail": "features+hero+footer"
+      }
+    ],
+    "alternates": [
+      {
+        "type": "legal",
+        "score": 0.4
+      }
+    ],
+    "needsSmart": true
+  },
+  "sectionRoles": {
+    "sections": [
+      {
+        "index": 0,
+        "tag": "header",
+        "role": "nav",
+        "subrole": null,
+        "confidence": 0.4,
+        "heading": "Areas of expertise",
+        "bounds": {
+          "x": 0,
+          "y": -1,
+          "w": 1280,
+          "h": 52
+        },
+        "buttonCount": 4,
+        "cardCount": 35,
+        "slots": {
+          "heading": "Areas of expertise",
+          "subheadings": [
+            "Technologies",
+            "Have you seen",
+            "Industries we help",
+            "Platforms"
+          ],
+          "ctaCount": 4,
+          "lede": "Spring/Summer™\nWhat we do\nOur work\nAbout us\n02:53:39\nCopenhagen"
+        },
+        "needsSmart": true
+      },
+      {
+        "index": 1,
+        "tag": "nav",
+        "role": "nav",
+        "subrole": null,
+        "confidence": 0.9,
+        "heading": "Areas of expertise",
+        "bounds": {
+          "x": 289.46875,
+          "y": -1,
+          "w": 686.53125,
+          "h": 52
+        },
+        "buttonCount": 3,
+        "cardCount": 35,
+        "slots": {
+          "heading": "Areas of expertise",
+          "subheadings": [
+            "Technologies",
+            "Have you seen",
+            "Industries we help",
+            "Platforms"
+          ],
+          "ctaCount": 3,
+          "lede": "What we do\nOur work\nAbout us"
+        },
+        "needsSmart": false
+      },
+      {
+        "index": 2,
+        "tag": "div",
+        "role": "sidebar",
+        "subrole": null,
+        "confidence": 0.4,
+        "heading": null,
+        "bounds": {
+          "x": 0,
+          "y": 0,
+          "w": 0,
+          "h": 0
+        },
+        "buttonCount": 0,
+        "cardCount": 0,
+        "slots": {
+          "lede": "02:53:39Copenhagen"
+        },
+        "needsSmart": true
+      },
+      {
+        "index": 3,
+        "tag": "div",
+        "role": "nav",
+        "subrole": null,
+        "confidence": 0.4,
+        "heading": null,
+        "bounds": {
+          "x": 0,
+          "y": 0,
+          "w": 0,
+          "h": 0
+        },
+        "buttonCount": 0,
+        "cardCount": 0,
+        "slots": {},
+        "needsSmart": true
+      },
+      {
+        "index": 4,
+        "tag": "aside",
+        "role": "sidebar",
+        "subrole": null,
+        "confidence": 0.4,
+        "heading": null,
+        "bounds": {
+          "x": 1030,
+          "y": -1,
+          "w": 250,
+          "h": 52
+        },
+        "buttonCount": 0,
+        "cardCount": 0,
+        "slots": {
+          "lede": "02:53:39\nCopenhagen"
+        },
+        "needsSmart": true
+      },
+      {
+        "index": 5,
+        "tag": "main",
+        "role": "content",
+        "subrole": null,
+        "confidence": 0.3,
+        "heading": "WE WON",
+        "bounds": {
+          "x": 0,
+          "y": 0,
+          "w": 1280,
+          "h": 3827.703125
+        },
+        "buttonCount": 6,
+        "cardCount": 7,
+        "slots": {
+          "heading": "WE WON",
+          "subheadings": [
+            "Some of our work",
+            "Clients we helped in 2025",
+            "Contact us",
+            "CAN WE HELP YOU?"
+          ],
+          "ctaCount": 6,
+          "lede": "Spring/Summer is a Copenhagen based strategic design and technology agency creating impactful brands, websites, and eCommerce experiences."
+        },
+        "needsSmart": true
+      },
+      {
+        "index": 6,
+        "tag": "section",
+        "role": "hero",
+        "subrole": null,
+        "confidence": 0.85,
+        "heading": "WE WON",
+        "bounds": {
+          "x": 0,
+          "y": 206.703125,
+          "w": 1280,
+          "h": 751.875
+        },
+        "buttonCount": 0,
+        "cardCount": 1,
+        "slots": {
+          "heading": "WE WON"
+        },
+        "needsSmart": false
+      },
+      {
+        "index": 7,
+        "tag": "footer",
+        "role": "footer",
+        "subrole": null,
+        "confidence": 0.95,
+        "heading": "Contact us",
+        "bounds": {
+          "x": 0,
+          "y": 3303.875,
+          "w": 1280,
+          "h": 523.828125
+        },
+        "buttonCount": 0,
+        "cardCount": 6,
+        "slots": {
+          "heading": "Contact us",
+          "subheadings": [
+            "CAN WE HELP YOU?"
+          ],
+          "lede": "Office Address"
+        },
+        "needsSmart": false
+      }
+    ],
+    "counts": {
+      "nav": 3,
+      "sidebar": 2,
+      "content": 1,
+      "hero": 1,
+      "footer": 1
+    },
+    "readingOrder": [
+      "nav",
+      "nav",
+      "sidebar",
+      "sidebar",
+      "nav",
+      "content",
+      "hero",
+      "footer"
+    ]
+  }
+}

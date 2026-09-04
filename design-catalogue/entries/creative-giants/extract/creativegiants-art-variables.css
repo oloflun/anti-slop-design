@@ -1,0 +1,222 @@
+:root {
+  /* Colors — Primary */
+  --color-primary: #fffef7;
+  --color-secondary: #009fff;
+  --color-accent: #ffd001;
+
+  /* Colors — Neutrals */
+  --color-neutral-50: #000000;
+  --color-neutral-100: #efeeec;
+  --color-neutral-200: #666666;
+  --color-neutral-300: #aaaaaa;
+  --color-neutral-400: #1f1f1f;
+  --color-neutral-500: #131313;
+  --color-neutral-600: #444444;
+  --color-neutral-700: #cccccc;
+  --color-neutral-800: #dddddd;
+  --color-neutral-900: #ecfdf3;
+
+  /* Colors — Backgrounds */
+  --color-bg: #fffef7;
+  --color-bg-1: #ffffff;
+  --color-bg-2: #000000;
+  --color-bg-3: #ffacea;
+  --color-bg-4: #a5ebd6;
+  --color-bg-5: #101731;
+
+  /* Colors — Text */
+  --color-text: #000000;
+  --color-text-1: #ffffff;
+  --color-text-2: #fffef7;
+  --color-text-3: #efeeec;
+  --color-text-4: #009fff;
+
+  /* Typography — Families */
+  --font-sans: 'Switzer', sans-serif;
+
+  /* Typography — Scale */
+  --font-size-80.2584: 80.2584px;
+  --font-size-61.1492: 61.1492px;
+  --font-size-51.5947: 51.5947px;
+  --font-size-32.4855: 32.4855px;
+  --font-size-19.1091: 19.1091px;
+  --font-size-17.1982: 17.1982px;
+  --font-size-15.2873: 15.2873px;
+  --font-size-13.3764: 13.3764px;
+  --font-size-11.4655: 11.4655px;
+
+  /* Spacing */
+  --spacing-1: 1px;
+  --spacing-31: 31px;
+  --spacing-38: 38px;
+  --spacing-46: 46px;
+  --spacing-61: 61px;
+  --spacing-76: 76px;
+  --spacing-107: 107px;
+  --spacing-117: 117px;
+  --spacing-153: 153px;
+  --spacing-173: 173px;
+  --spacing-190: 190px;
+  --spacing-232: 232px;
+  --spacing-255: 255px;
+  --spacing-313: 313px;
+  --spacing-387: 387px;
+  --spacing-400: 400px;
+
+  /* Border Radius */
+  --radius-xl: 23px;
+  --radius-full: 50px;
+  --radius-full: 1280px;
+  --radius-full: 1529px;
+
+  /* Box Shadows */
+  --shadow-sm: rgba(255, 255, 255, 0.2) 0px 0px 0px 1px;
+
+  /* Original Site Variables */
+  /* — colors — */
+  --_theme---background-color--background-primary: var(--neutral--white);
+  --_typography---font--primary-font: Switzer, Arial, sans-serif;
+  --_theme---text-color--text-primary: var(--neutral--black);
+  --_theme---link-color--link-primary: var(--neutral--black);
+  --_theme---text-color--text-secondary: var(--neutral--neutral);
+  --_theme---text-color--text-alternate<deleted|relume-variable-text-color-3>: var(--neutral--white);
+  --_theme---border-color--border-primary: var(--neutral--black);
+  --_theme---button-primary--button-border: var(--neutral--black);
+  --_theme---button-primary--button-bg: var(--neutral--black);
+  --_theme---button-primary--button-text: var(--neutral--white);
+  --_theme---button-tertiary--button-border: var(--neutral--neutral-lightest);
+  --_theme---button-tertiary--button-bg: var(--neutral--neutral-lightest);
+  --_theme---border-color--border-tertiary: var(--neutral--neutral-light);
+  --_theme---background-color--background-secondary<deleted|relume-variable-background-color-2>: var(--neutral--neutral-lightest);
+  --_theme---background-color--background-alternate<deleted|relume-variable-background-color-4>: var(--neutral--black);
+  --_theme---link-color--link-alternate<deleted|relume-variable-link-color-3>: var(--neutral--white);
+  --_theme---background-color--background-tertiary<deleted|relume-variable-background-color-3>: var(--neutral--neutral-light);
+  --_theme---text-color--text-secondary<deleted|relume-variable-text-color-2>: var(--neutral--black);
+  --_theme---background-color--background-success: var(--system--success-green-light);
+  --_theme---text-color--text-success: var(--system--success-green);
+  --_theme---background-color--background-error: var(--system--error-red-light);
+  --_theme---text-color--text-error: var(--system--error-red);
+  --_projects---secondary: var(--brand--white);
+  --_theme---border-color--border-divider: var(--neutral--neutral-lighter);
+  --_brand---color: var(--brand--yellow);
+  --_theme---button-primary--button-icon-bg: var(--neutral--white);
+  --_theme---button-primary--button-icon: var(--neutral--black);
+  --_projects---primary: var(--brand--black);
+  --_theme---button-secondary--button-border: var(--neutral--black);
+  --_theme---button-secondary--button-text: var(--brand--black);
+  --_theme---button-secondary--button-bg: var(--neutral--transparent);
+  --_theme---button-secondary--button-icon: var(--brand--white);
+  --_theme---button-secondary--button-icon-bg: var(--neutral--black);
+  --_theme---border-color--border-secondary: var(--neutral--neutral-darker);
+  --_theme---button-tertiary--button-icon-bg: var(--neutral--transparent);
+  --_theme---button-link--button-bg: var(--neutral--transparent);
+  --_theme---button-link--button-border: var(--neutral--transparent);
+  --_theme---button-link--button-icon-bg: var(--neutral--transparent);
+  --swiper-theme-color: #007aff;
+  /* — spacing — */
+  --_typography---font-size--main: 1rem;
+  --_typography---letter-spacing--0-02em: -.02em;
+  --_typography---font-size--h1: 5.25rem;
+  --_typography---letter-spacing--0-04em: -.04em;
+  --_typography---font-size--h2: 4.625rem;
+  --_typography---font-size--h3: 4rem;
+  --_typography---font-size--h4: 3.375rem;
+  --_typography---font-size--h5: 2.75rem;
+  --_typography---font-size--h6: 2.125rem;
+  --_typography---font-size--small: .875rem;
+  --_typography---font-size--large: 1.125rem;
+  --swiper-navigation-size: 44px;
+  /* — typography — */
+  --_typography---line-height--body: 1.4;
+  --_typography---line-height--heading: 1;
+  --_typography---font-weight--light: 300;
+  --_theme---button-link--button-text: var(--neutral--black);
+  --_theme---button-tertiary--button-text: var(--neutral--black);
+  --_typography---font-weight--regular: 400;
+  --_typography---font-weight--medium: 500;
+  /* — other — */
+  --neutral--white: var(--brand--white);
+  --neutral--black: var(--brand--black);
+  --brand--white: #fffef7;
+  --brand--yellow: #ffd001;
+  --brand--black: black;
+  --black-archive<deleted|variable-dccb7db6>: black;
+  --neutral--transparent: #fff0;
+  --brand--pink: #ee77cf;
+  --neutral--neutral-dark: #444;
+  --neutral--neutral-lighter: #ccc;
+  --brand--blue: #009fff;
+  --neutral--neutral-lightest: #eee;
+  --brand--yellow-light: #fffa86;
+  --brand--yellow-dark: #d19800;
+  --brand--teal-light: #b0f0f1;
+  --brand--teal: #48d1d6;
+  --brand--teal-dark: #1e8f9c;
+  --brand--blue-light: #b6e2ff;
+  --brand--blue-dark: #007ad4;
+  --brand--pink-light: #f9d1f1;
+  --brand--pink-dark: #d32f9b;
+  --brand--orange-light: #ffd3a5;
+  --brand--orange: #fc4c00;
+  --brand--orange-dark: #cc3502;
+  --neutral--neutral-light: #aaa;
+  --neutral--neutral: #666;
+  --neutral--neutral-darker: #222;
+  --neutral--neutral-darkest: #111;
+  --system--success-green: #027a48;
+  --system--success-green-light: #ecfdf3;
+  --system--error-red: #b42318;
+  --system--error-red-light: #fef3f2;
+  --_theme---button-tertiary--button-icon: var(--neutral--black);
+  --_theme---button-link--button-icon: var(--brand--black);
+  /* — dependencies — */
+  --_theme---background-color--background-primary: --neutral--white;
+  --_theme---text-color--text-primary: --neutral--black;
+  --_theme---link-color--link-primary: --neutral--black;
+  --_theme---text-color--text-secondary: --neutral--neutral;
+  --_theme---text-color--text-alternate<deleted|relume-variable-text-color-3>: --neutral--white;
+  --_theme---border-color--border-primary: --neutral--black;
+  --neutral--white: --brand--white;
+  --_theme---button-primary--button-border: --neutral--black;
+  --_theme---button-primary--button-bg: --neutral--black;
+  --_theme---button-primary--button-text: --neutral--white;
+  --neutral--black: --brand--black;
+  --_theme---button-link--button-text: --neutral--black;
+  --_theme---button-tertiary--button-border: --neutral--neutral-lightest;
+  --_theme---button-tertiary--button-bg: --neutral--neutral-lightest;
+  --_theme---button-tertiary--button-text: --neutral--black;
+  --_theme---border-color--border-tertiary: --neutral--neutral-light;
+  --_theme---background-color--background-secondary<deleted|relume-variable-background-color-2>: --neutral--neutral-lightest;
+  --_theme---background-color--background-alternate<deleted|relume-variable-background-color-4>: --neutral--black;
+  --_theme---link-color--link-alternate<deleted|relume-variable-link-color-3>: --neutral--white;
+  --_theme---background-color--background-tertiary<deleted|relume-variable-background-color-3>: --neutral--neutral-light;
+  --_theme---text-color--text-secondary<deleted|relume-variable-text-color-2>: --neutral--black;
+  --_theme---background-color--background-success: --system--success-green-light;
+  --_theme---text-color--text-success: --system--success-green;
+  --_theme---background-color--background-error: --system--error-red-light;
+  --_theme---text-color--text-error: --system--error-red;
+  --_projects---secondary: --brand--white;
+  --_theme---border-color--border-divider: --neutral--neutral-lighter;
+  --_brand---color: --brand--yellow;
+  --_theme---button-primary--button-icon-bg: --neutral--white;
+  --_theme---button-primary--button-icon: --neutral--black;
+  --_projects---primary: --brand--black;
+  --_theme---button-secondary--button-border: --neutral--black;
+  --_theme---button-secondary--button-text: --brand--black;
+  --_theme---button-secondary--button-bg: --neutral--transparent;
+  --_theme---button-secondary--button-icon: --brand--white;
+  --_theme---button-secondary--button-icon-bg: --neutral--black;
+  --_theme---border-color--border-secondary: --neutral--neutral-darker;
+  --_theme---button-tertiary--button-icon-bg: --neutral--transparent;
+  --_theme---button-tertiary--button-icon: --neutral--black;
+  --_theme---button-link--button-bg: --neutral--transparent;
+  --_theme---button-link--button-border: --neutral--transparent;
+  --_theme---button-link--button-icon-bg: --neutral--transparent;
+  --_theme---button-link--button-icon: --brand--black;
+  /* — semantic — */
+  success: [object Object];
+  warning: [object Object];
+  error: [object Object];
+  info: [object Object];
+
+}

@@ -1,0 +1,17 @@
+/* shadcn/ui Theme — extracted from https://aletagency.com/ */
+/* Paste into your globals.css */
+
+@layer base {
+  :root {
+    --background: 45 39% 83%;
+    --foreground: 0 0% 0%;
+    --primary: 354 70% 54%;
+    --primary-foreground: 0 0% 100%;
+    --secondary: 45 39% 83%;
+    --secondary-foreground: 0 0% 0%;
+    --muted: 30 14% 71%;
+    --muted-foreground: 0 0% 0%;
+    --border: 0 0% 27%;
+    --radius: 10px;
+  }
+}

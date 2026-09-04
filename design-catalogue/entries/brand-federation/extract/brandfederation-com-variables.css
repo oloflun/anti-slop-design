@@ -1,0 +1,97 @@
+:root {
+  /* Colors — Primary */
+  --color-primary: #f56b20;
+  --color-secondary: #12273e;
+  --color-accent: #083a74;
+
+  /* Colors — Neutrals */
+  --color-neutral-50: #333333;
+  --color-neutral-100: #ffffff;
+  --color-neutral-200: #000000;
+  --color-neutral-300: #edecee;
+  --color-neutral-400: #222222;
+  --color-neutral-500: #a397af;
+  --color-neutral-600: #717d8b;
+  --color-neutral-700: #dddddd;
+
+  /* Colors — Backgrounds */
+  --color-bg: #ffffff;
+  --color-bg-1: #edecee;
+  --color-bg-2: #12273e;
+  --color-bg-3: #f56b20;
+
+  /* Colors — Text */
+  --color-text: #000000;
+  --color-text-1: #333333;
+  --color-text-2: #f56b20;
+  --color-text-3: #ffffff;
+  --color-text-4: #edecee;
+
+  /* Typography — Families */
+  --font-body: 'Arial', sans-serif;
+  --font-body: 'Inter', sans-serif;
+  --font-font-2: 'Manrope', sans-serif;
+  --font-body: 'webflow-icons', sans-serif;
+
+  /* Typography — Scale */
+  --font-size-67.0476: 67.0476px;
+  --font-size-36.5714: 36.5714px;
+  --font-size-30.4762: 30.4762px;
+  --font-size-24.381: 24.381px;
+  --font-size-21.3333: 21.3333px;
+  --font-size-16: 16px;
+  --font-size-15.4286: 15.4286px;
+  --font-size-13.7143: 13.7143px;
+  --font-size-12.1905: 12.1905px;
+  --font-size-9.14286: 9.14286px;
+  --font-size-8.22857: 8.22857px;
+
+  /* Spacing */
+  --spacing-1: 1px;
+  --spacing-6: 6px;
+  --spacing-24: 24px;
+  --spacing-37: 37px;
+  --spacing-48: 48px;
+  --spacing-53: 53px;
+  --spacing-61: 61px;
+  --spacing-69: 69px;
+  --spacing-79: 79px;
+  --spacing-85: 85px;
+  --spacing-98: 98px;
+  --spacing-104: 104px;
+  --spacing-107: 107px;
+  --spacing-128: 128px;
+  --spacing-158: 158px;
+  --spacing-192: 192px;
+  --spacing-195: 195px;
+  --spacing-256: 256px;
+
+  /* Border Radius */
+  --radius-lg: 12px;
+  --radius-xl: 20px;
+  --radius-full: 30px;
+  --radius-full: 37px;
+  --radius-full: 49px;
+  --radius-full: 80px;
+  --radius-full: 90px;
+  --radius-full: 98px;
+  --radius-full: 200px;
+  --radius-full: 300px;
+  --radius-full: 2000px;
+
+  /* Original Site Variables */
+  /* — other — */
+  --deep-navy: #12273e;
+  --slate-grey: #083a74;
+  --bright-orange: #f56b20;
+  --soft-grey: #edecee;
+  --white-smoke: white;
+  --deep-plum: #742579;
+  --transparent: #edecee00;
+  /* — semantic — */
+  success: [object Object];
+  warning: [object Object];
+  error: [object Object];
+  info: [object Object];
+
+}

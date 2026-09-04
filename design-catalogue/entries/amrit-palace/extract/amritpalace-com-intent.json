@@ -1,0 +1,370 @@
+{
+  "pageIntent": {
+    "type": "landing",
+    "confidence": 0.59,
+    "path": "/",
+    "title": "Amrit Palace",
+    "description": "Discover Amrit Palace — a fast-fine Indian restaurant blending authentic flavors with a modern dining experience. Explore our menu, catering, and gift options.",
+    "signals": [
+      {
+        "kind": "dom",
+        "type": "blog-post",
+        "weight": 0.35,
+        "detail": "byline|min-read"
+      },
+      {
+        "kind": "dom",
+        "type": "legal",
+        "weight": 0.4
+      },
+      {
+        "kind": "url",
+        "type": "landing",
+        "weight": 0.45,
+        "detail": "root-path"
+      },
+      {
+        "kind": "shape",
+        "type": "landing",
+        "weight": 0.3,
+        "detail": "hero+features"
+      }
+    ],
+    "alternates": [
+      {
+        "type": "legal",
+        "score": 0.4
+      },
+      {
+        "type": "blog-post",
+        "score": 0.35
+      }
+    ],
+    "needsSmart": true
+  },
+  "sectionRoles": {
+    "sections": [
+      {
+        "index": 0,
+        "tag": "nav",
+        "role": "nav",
+        "subrole": null,
+        "confidence": 0.9,
+        "heading": null,
+        "bounds": {
+          "x": 0,
+          "y": 0,
+          "w": 0,
+          "h": 0
+        },
+        "buttonCount": 0,
+        "cardCount": 0,
+        "slots": {
+          "lede": "Choose restaurantBook — OcalaBook — Gainesville"
+        },
+        "needsSmart": false
+      },
+      {
+        "index": 1,
+        "tag": "nav",
+        "role": "nav",
+        "subrole": null,
+        "confidence": 0.9,
+        "heading": null,
+        "bounds": {
+          "x": 0,
+          "y": 0,
+          "w": 0,
+          "h": 0
+        },
+        "buttonCount": 0,
+        "cardCount": 0,
+        "slots": {
+          "lede": "Choose restaurantAmrit Palace OcalaAmrit Palace Gainesville"
+        },
+        "needsSmart": false
+      },
+      {
+        "index": 2,
+        "tag": "nav",
+        "role": "nav",
+        "subrole": null,
+        "confidence": 0.9,
+        "heading": null,
+        "bounds": {
+          "x": 0,
+          "y": 0,
+          "w": 0,
+          "h": 0
+        },
+        "buttonCount": 0,
+        "cardCount": 0,
+        "slots": {
+          "lede": "Book — OcalaBook — Gainesville"
+        },
+        "needsSmart": false
+      },
+      {
+        "index": 3,
+        "tag": "nav",
+        "role": "nav",
+        "subrole": null,
+        "confidence": 0.9,
+        "heading": null,
+        "bounds": {
+          "x": 0,
+          "y": 0,
+          "w": 0,
+          "h": 0
+        },
+        "buttonCount": 0,
+        "cardCount": 0,
+        "slots": {
+          "lede": "Choose restaurantAmrit Palace OcalaAmrit Palace Gainesville"
+        },
+        "needsSmart": false
+      },
+      {
+        "index": 4,
+        "tag": "section",
+        "role": "hero",
+        "subrole": null,
+        "confidence": 0.85,
+        "heading": "FLAVORS\n",
+        "bounds": {
+          "x": 0,
+          "y": 0,
+          "w": 1280,
+          "h": 800
+        },
+        "buttonCount": 0,
+        "cardCount": 0,
+        "slots": {
+          "heading": "FLAVORS\n",
+          "subheadings": [
+            "THAT STAY\n"
+          ],
+          "lede": "FLAVORS"
+        },
+        "needsSmart": false
+      },
+      {
+        "index": 5,
+        "tag": "section",
+        "role": "hero",
+        "subrole": null,
+        "confidence": 0.4,
+        "heading": "THE SPIRIT OF\nINDIAN DINING",
+        "bounds": {
+          "x": 32,
+          "y": 820,
+          "w": 1216,
+          "h": 760
+        },
+        "buttonCount": 3,
+        "cardCount": 0,
+        "slots": {
+          "heading": "THE SPIRIT OF\nINDIAN DINING",
+          "ctaCount": 3,
+          "lede": "THE SPIRIT OF\nINDIAN DINING\nFrom warm hospitality to bold flavors, every detail tells a story.\nAbout Us"
+        },
+        "needsSmart": true
+      },
+      {
+        "index": 6,
+        "tag": "section",
+        "role": "pricing-table",
+        "subrole": null,
+        "confidence": 0.9,
+        "heading": "SIGNATURE\nPLATES",
+        "bounds": {
+          "x": 0,
+          "y": 1600,
+          "w": 1280,
+          "h": 1080
+        },
+        "buttonCount": 6,
+        "cardCount": 8,
+        "slots": {
+          "heading": "SIGNATURE\nPLATES",
+          "subheadings": [
+            "SIGNATURE DISHES.\nCLASSIC ROOTS."
+          ],
+          "ctaCount": 6
+        },
+        "needsSmart": false
+      },
+      {
+        "index": 7,
+        "tag": "section",
+        "role": "testimonial",
+        "subrole": null,
+        "confidence": 0.8,
+        "heading": "CATERING",
+        "bounds": {
+          "x": 0,
+          "y": 2680,
+          "w": 1280,
+          "h": 946.140625
+        },
+        "buttonCount": 2,
+        "cardCount": 0,
+        "slots": {
+          "heading": "CATERING",
+          "subheadings": [
+            "THE AMRIT WAY"
+          ],
+          "ctaCount": 2
+        },
+        "needsSmart": false
+      },
+      {
+        "index": 8,
+        "tag": "header",
+        "role": "nav",
+        "subrole": null,
+        "confidence": 0.4,
+        "heading": null,
+        "bounds": {
+          "x": 0,
+          "y": 3005,
+          "w": 1280,
+          "h": 621.140625
+        },
+        "buttonCount": 2,
+        "cardCount": 0,
+        "slots": {
+          "ctaCount": 2,
+          "lede": "Buffet Displays\nElegant and abundant buffet setups that showcase our dishes beautifully while making service smooth and efficient.\nProfessional Service Team\nOur experienced staff provides courteous, attentive service so your event runs seamlessly.\nYears of Experience\nDecades of catering knowledge and event expertise to ensure a stress-free, memorable experience for you and your guests."
+        },
+        "needsSmart": true
+      },
+      {
+        "index": 9,
+        "tag": "section",
+        "role": "hero",
+        "subrole": null,
+        "confidence": 0.4,
+        "heading": "DRINKS THAT\nCOMPLETE\nTHE EXPERIENCE",
+        "bounds": {
+          "x": 0,
+          "y": 3626.140625,
+          "w": 1280,
+          "h": 1400.375
+        },
+        "buttonCount": 3,
+        "cardCount": 0,
+        "slots": {
+          "heading": "DRINKS THAT\nCOMPLETE\nTHE EXPERIENCE",
+          "ctaCount": 3
+        },
+        "needsSmart": true
+      },
+      {
+        "index": 10,
+        "tag": "section",
+        "role": "hero",
+        "subrole": null,
+        "confidence": 0.4,
+        "heading": "GIFT A TASTE\nOF TRADITION",
+        "bounds": {
+          "x": 0,
+          "y": 5026.515625,
+          "w": 1280,
+          "h": 1200
+        },
+        "buttonCount": 2,
+        "cardCount": 4,
+        "slots": {
+          "heading": "GIFT A TASTE\nOF TRADITION",
+          "ctaCount": 2,
+          "lede": "GIFT A TASTE\nOF TRADITION\nWhether it’s a birthday, celebration, or a simple “thank you,” an Amrit Palace gift card brings people together over timeless flavors.\nOrder Now\nSHARE THE EXPERIENCE.\nGIVE THE FLAVORS THEY’LL REMEMBER."
+        },
+        "needsSmart": true
+      },
+      {
+        "index": 11,
+        "tag": "section",
+        "role": "content",
+        "subrole": null,
+        "confidence": 0.3,
+        "heading": "ROOTED IN\nEXPERIENCE",
+        "bounds": {
+          "x": 0,
+          "y": 6226.515625,
+          "w": 1280,
+          "h": 1080
+        },
+        "buttonCount": 0,
+        "cardCount": 0,
+        "slots": {
+          "heading": "ROOTED IN\nEXPERIENCE"
+        },
+        "needsSmart": true
+      },
+      {
+        "index": 12,
+        "tag": "section",
+        "role": "testimonial",
+        "subrole": null,
+        "confidence": 0.8,
+        "heading": "WHAT OUR\nGUESTS SAY",
+        "bounds": {
+          "x": 0,
+          "y": 7306.515625,
+          "w": 1280,
+          "h": 976.65625
+        },
+        "buttonCount": 0,
+        "cardCount": 10,
+        "slots": {
+          "heading": "WHAT OUR\nGUESTS SAY"
+        },
+        "needsSmart": false
+      },
+      {
+        "index": 13,
+        "tag": "section",
+        "role": "content",
+        "subrole": null,
+        "confidence": 0.3,
+        "heading": null,
+        "bounds": {
+          "x": 0,
+          "y": 8283.171875,
+          "w": 1280,
+          "h": 1001.9375
+        },
+        "buttonCount": 0,
+        "cardCount": 0,
+        "slots": {
+          "lede": "LOCATIONS\nOcala\n3415 SW College Rd Ocala, FL 34474\nGainesville\n3105 SW 34th Street Gainesville, FL 32608\nHOURS"
+        },
+        "needsSmart": true
+      }
+    ],
+    "counts": {
+      "nav": 5,
+      "hero": 4,
+      "pricing-table": 1,
+      "testimonial": 2,
+      "content": 2
+    },
+    "readingOrder": [
+      "nav",
+      "nav",
+      "nav",
+      "nav",
+      "hero",
+      "hero",
+      "pricing-table",
+      "testimonial",
+      "nav",
+      "hero",
+      "hero",
+      "content",
+      "testimonial",
+      "content"
+    ]
+  }
+}

@@ -1,0 +1,188 @@
+{
+  "$schema": "https://schemas.wp.org/trunk/theme.json",
+  "version": 3,
+  "settings": {
+    "color": {
+      "palette": [
+        {
+          "slug": "primary",
+          "color": "#d49653",
+          "name": "Primary"
+        },
+        {
+          "slug": "secondary",
+          "color": "#d8cbb8",
+          "name": "Secondary"
+        },
+        {
+          "slug": "neutral-1",
+          "color": "#2c2c2c",
+          "name": "Neutral 1"
+        },
+        {
+          "slug": "neutral-2",
+          "color": "#000000",
+          "name": "Neutral 2"
+        },
+        {
+          "slug": "neutral-3",
+          "color": "#dfdad5",
+          "name": "Neutral 3"
+        },
+        {
+          "slug": "neutral-4",
+          "color": "#222222",
+          "name": "Neutral 4"
+        },
+        {
+          "slug": "neutral-5",
+          "color": "#efefef",
+          "name": "Neutral 5"
+        },
+        {
+          "slug": "bg-d8cbb8",
+          "color": "#d8cbb8",
+          "name": "Background #d8cbb8"
+        },
+        {
+          "slug": "bg-000000",
+          "color": "#000000",
+          "name": "Background #000000"
+        },
+        {
+          "slug": "bg-2c2c2c",
+          "color": "#2c2c2c",
+          "name": "Background #2c2c2c"
+        }
+      ],
+      "gradients": [
+        {
+          "slug": "gradient-1",
+          "gradient": "linear-gradient(rgb(16, 16, 16), rgba(16, 16, 16, 0.2))",
+          "name": "Gradient 1"
+        }
+      ]
+    },
+    "typography": {
+      "fontFamilies": [
+        {
+          "fontFamily": "Satoshi",
+          "slug": "satoshi",
+          "name": "Satoshi"
+        },
+        {
+          "fontFamily": "TT Ramillas Variable",
+          "slug": "tt-ramillas-variable",
+          "name": "TT Ramillas Variable"
+        },
+        {
+          "fontFamily": "webflow-icons",
+          "slug": "webflow-icons",
+          "name": "webflow-icons"
+        }
+      ],
+      "fontSizes": [
+        {
+          "size": "176.64px",
+          "slug": "size-176.64",
+          "name": "176.64px"
+        },
+        {
+          "size": "102.4px",
+          "slug": "size-102.4",
+          "name": "102.4px"
+        },
+        {
+          "size": "61.44px",
+          "slug": "size-61.44",
+          "name": "61.44px"
+        },
+        {
+          "size": "57.6px",
+          "slug": "size-57.6",
+          "name": "57.6px"
+        },
+        {
+          "size": "44.8px",
+          "slug": "size-44.8",
+          "name": "44.8px"
+        },
+        {
+          "size": "37.12px",
+          "slug": "size-37.12",
+          "name": "37.12px"
+        },
+        {
+          "size": "23.04px",
+          "slug": "size-23.04",
+          "name": "23.04px"
+        },
+        {
+          "size": "19.2px",
+          "slug": "size-19.2",
+          "name": "19.2px"
+        }
+      ]
+    },
+    "spacing": {
+      "spacingSizes": [
+        {
+          "size": "1px",
+          "slug": "spacing-1",
+          "name": "1px"
+        },
+        {
+          "size": "40px",
+          "slug": "spacing-40",
+          "name": "40px"
+        },
+        {
+          "size": "52px",
+          "slug": "spacing-52",
+          "name": "52px"
+        },
+        {
+          "size": "62px",
+          "slug": "spacing-62",
+          "name": "62px"
+        },
+        {
+          "size": "78px",
+          "slug": "spacing-78",
+          "name": "78px"
+        },
+        {
+          "size": "90px",
+          "slug": "spacing-90",
+          "name": "90px"
+        },
+        {
+          "size": "128px",
+          "slug": "spacing-128",
+          "name": "128px"
+        },
+        {
+          "size": "147px",
+          "slug": "spacing-147",
+          "name": "147px"
+        }
+      ]
+    },
+    "layout": {
+      "contentSize": "100%",
+      "wideSize": "1400px"
+    }
+  },
+  "styles": {
+    "color": {
+      "background": "#d8cbb8",
+      "text": "#000000"
+    },
+    "typography": {
+      "fontSize": "10.88px",
+      "lineHeight": "10.88px",
+      "fontFamily": "Satoshi"
+    },
+    "spacing": {}
+  }
+}

@@ -1,0 +1,359 @@
+{
+  "colors": {
+    "all": [
+      {
+        "hex": "#eaff62",
+        "rgb": {
+          "r": 234,
+          "g": 255,
+          "b": 98,
+          "a": 1
+        },
+        "hsl": {
+          "h": 68,
+          "s": 100,
+          "l": 69
+        },
+        "count": 486,
+        "contexts": [
+          "text",
+          "border"
+        ]
+      },
+      {
+        "hex": "#377648",
+        "rgb": {
+          "r": 55,
+          "g": 118,
+          "b": 72,
+          "a": 1
+        },
+        "hsl": {
+          "h": 136,
+          "s": 36,
+          "l": 34
+        },
+        "count": 439,
+        "contexts": [
+          "background",
+          "text",
+          "border"
+        ]
+      },
+      {
+        "hex": "#000000",
+        "rgb": {
+          "r": 0,
+          "g": 0,
+          "b": 0,
+          "a": 1
+        },
+        "hsl": {
+          "h": 0,
+          "s": 0,
+          "l": 0
+        },
+        "count": 306,
+        "contexts": [
+          "text",
+          "border"
+        ]
+      }
+    ]
+  },
+  "regions": [
+    {
+      "role": "nav",
+      "tag": "header",
+      "bounds": {
+        "x": 0,
+        "y": 0,
+        "w": 1280,
+        "h": 0
+      },
+      "heading": null,
+      "buttonCount": 1,
+      "cardCount": 0,
+      "className": "site-header"
+    },
+    {
+      "role": "nav",
+      "tag": "nav",
+      "bounds": {
+        "x": 0,
+        "y": 0,
+        "w": 1280,
+        "h": 0
+      },
+      "heading": null,
+      "buttonCount": 1,
+      "cardCount": 0,
+      "className": "navigation"
+    },
+    {
+      "role": "content",
+      "tag": "main",
+      "bounds": {
+        "x": 0,
+        "y": 0,
+        "w": 1280,
+        "h": 800
+      },
+      "heading": " COBERTURA DEPORTIVA",
+      "buttonCount": 8,
+      "cardCount": 0,
+      "className": "site-main scroll-container"
+    },
+    {
+      "role": "content",
+      "tag": "section",
+      "bounds": {
+        "x": 0,
+        "y": 0,
+        "w": 1280,
+        "h": 784
+      },
+      "heading": null,
+      "buttonCount": 0,
+      "cardCount": 0,
+      "className": "seccion landing"
+    },
+    {
+      "role": "hero",
+      "tag": "section",
+      "bounds": {
+        "x": 0,
+        "y": 784,
+        "w": 1280,
+        "h": 640
+      },
+      "heading": " COBERTURA DEPORTIVA",
+      "buttonCount": 2,
+      "cardCount": 0,
+      "className": "seccion cobertura"
+    },
+    {
+      "role": "hero",
+      "tag": "section",
+      "bounds": {
+        "x": 0,
+        "y": 1424,
+        "w": 1280,
+        "h": 640
+      },
+      "heading": " REALIZACIÓN AUDIOVISUAL",
+      "buttonCount": 2,
+      "cardCount": 0,
+      "className": "seccion audiovisual"
+    },
+    {
+      "role": "hero",
+      "tag": "section",
+      "bounds": {
+        "x": 0,
+        "y": 2064,
+        "w": 1280,
+        "h": 640
+      },
+      "heading": " EDICIÓN & ANIMACIÓN",
+      "buttonCount": 2,
+      "cardCount": 0,
+      "className": "seccion animacion"
+    },
+    {
+      "role": "hero",
+      "tag": "section",
+      "bounds": {
+        "x": 0,
+        "y": 2704,
+        "w": 1280,
+        "h": 712
+      },
+      "heading": " CONTENIDO DIGITAL",
+      "buttonCount": 2,
+      "cardCount": 0,
+      "className": "seccion digital"
+    },
+    {
+      "role": "footer",
+      "tag": "footer",
+      "bounds": {
+        "x": 0,
+        "y": 800,
+        "w": 1280,
+        "h": 0
+      },
+      "heading": null,
+      "buttonCount": 0,
+      "cardCount": 0,
+      "className": "site-footer"
+    }
+  ],
+  "componentClusters": [
+    {
+      "kind": "button",
+      "structuralHash": "div>svg>span",
+      "instanceCount": 1,
+      "variants": [
+        {
+          "css": {
+            "background": "rgba(0, 0, 0, 0)",
+            "color": "rgb(234, 255, 98)",
+            "padding": "0px 0px 0px 0px",
+            "borderRadius": "0px",
+            "border": "0px none rgb(234, 255, 98)",
+            "fontSize": "16px",
+            "fontWeight": "400"
+          },
+          "instanceCount": 1
+        }
+      ]
+    },
+    {
+      "kind": "button",
+      "structuralHash": "button>svg",
+      "instanceCount": 8,
+      "variants": [
+        {
+          "css": {
+            "background": "rgba(0, 0, 0, 0)",
+            "color": "rgba(0, 0, 0, 0.8)",
+            "padding": "0px 0px 0px 0px",
+            "borderRadius": "0px",
+            "border": "0px none rgba(0, 0, 0, 0.8)",
+            "fontSize": "16px",
+            "fontWeight": "400"
+          },
+          "instanceCount": 8
+        }
+      ]
+    }
+  ],
+  "accessibility": {
+    "remediation": []
+  },
+  "cssHealth": {
+    "sheets": [
+      {
+        "url": "https://paya.ar/",
+        "totalBytes": 226,
+        "usedBytes": 0,
+        "unusedBytes": 226,
+        "unusedPercent": 100
+      },
+      {
+        "url": "https://paya.ar/paya/wp-content/themes/paya/style.css?ver=1.98",
+        "totalBytes": 47452,
+        "usedBytes": 5735,
+        "unusedBytes": 41717,
+        "unusedPercent": 88
+      },
+      {
+        "url": "https://paya.ar/paya/wp-content/themes/paya/js/assets/splide.min.css?ver=1.00",
+        "totalBytes": 5002,
+        "usedBytes": 1234,
+        "unusedBytes": 3768,
+        "unusedPercent": 75
+      },
+      {
+        "url": "https://paya.ar/paya/wp-content/plugins/foogallery/assets/css/foogallery.30488cf4.min.css?ver=3.2.6",
+        "totalBytes": 187313,
+        "usedBytes": 243,
+        "unusedBytes": 187070,
+        "unusedPercent": 100
+      },
+      {
+        "url": "/wp-includes/css/dist/block-library/common.min.css",
+        "totalBytes": 4274,
+        "usedBytes": 524,
+        "unusedBytes": 3750,
+        "unusedPercent": 88
+      },
+      {
+        "url": "/wp-includes/css/classic-themes.min.css",
+        "totalBytes": 350,
+        "usedBytes": 0,
+        "unusedBytes": 350,
+        "unusedPercent": 100
+      },
+      {
+        "url": "https://paya.ar/paya/wp-content/themes/paya/js/assets/jquery.bxslider.css?ver=1.03",
+        "totalBytes": 3904,
+        "usedBytes": 0,
+        "unusedBytes": 3904,
+        "unusedPercent": 100
+      },
+      {
+        "url": "wp-img-auto-sizes-contain-inline-css",
+        "totalBytes": 135,
+        "usedBytes": 0,
+        "unusedBytes": 135,
+        "unusedPercent": 100
+      },
+      {
+        "url": "wp-emoji-styles-inline-css",
+        "totalBytes": 340,
+        "usedBytes": 0,
+        "unusedBytes": 340,
+        "unusedPercent": 100
+      },
+      {
+        "url": "global-styles-inline-css",
+        "totalBytes": 9335,
+        "usedBytes": 3126,
+        "unusedBytes": 6209,
+        "unusedPercent": 67
+      },
+      {
+        "url": "dominant-color-styles-inline-css",
+        "totalBytes": 144,
+        "usedBytes": 0,
+        "unusedBytes": 144,
+        "unusedPercent": 100
+      },
+      {
+        "url": "https://paya.ar/",
+        "totalBytes": 284,
+        "usedBytes": 255,
+        "unusedBytes": 29,
+        "unusedPercent": 10
+      }
+    ],
+    "totalBytes": 258759,
+    "usedBytes": 11117,
+    "unusedBytes": 247642,
+    "unusedPercent": 96,
+    "importantCount": 125,
+    "duplicates": 2782,
+    "vendorPrefixes": {
+      "webkit": 56,
+      "moz": 16,
+      "ms": 26,
+      "o": 0
+    },
+    "keyframes": [
+      {
+        "name": "scroll-left",
+        "steps": 2
+      }
+    ],
+    "specificity": {
+      "max": [
+        1,
+        10,
+        63
+      ],
+      "average": [
+        0,
+        3.07,
+        0.36
+      ],
+      "count": 3162
+    },
+    "issues": [
+      "125 !important rules",
+      "2782 duplicate declarations",
+      "96% unused CSS"
+    ]
+  }
+}

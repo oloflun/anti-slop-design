@@ -1,0 +1,518 @@
+{
+  "pageIntent": {
+    "type": "landing",
+    "confidence": 0.51,
+    "path": "/",
+    "title": "Solva — AI & SaaS Template for Framer",
+    "description": "Solva is a light, elegant Framer template built for AI and SaaS products. Responsive, CMS-powered, and ready to launch fast.",
+    "signals": [
+      {
+        "kind": "dom",
+        "type": "pricing",
+        "weight": 0.6,
+        "detail": "currency+card-grid"
+      },
+      {
+        "kind": "dom",
+        "type": "blog-post",
+        "weight": 0.35,
+        "detail": "byline|min-read"
+      },
+      {
+        "kind": "dom",
+        "type": "legal",
+        "weight": 0.4
+      },
+      {
+        "kind": "url",
+        "type": "landing",
+        "weight": 0.45,
+        "detail": "root-path"
+      },
+      {
+        "kind": "shape",
+        "type": "landing",
+        "weight": 0.3,
+        "detail": "features+hero+footer"
+      }
+    ],
+    "alternates": [
+      {
+        "type": "pricing",
+        "score": 0.6
+      },
+      {
+        "type": "legal",
+        "score": 0.4
+      },
+      {
+        "type": "blog-post",
+        "score": 0.35
+      }
+    ],
+    "needsSmart": true
+  },
+  "sectionRoles": {
+    "sections": [
+      {
+        "index": 0,
+        "tag": "nav",
+        "role": "nav",
+        "subrole": null,
+        "confidence": 0.9,
+        "heading": null,
+        "bounds": {
+          "x": 0,
+          "y": 0,
+          "w": 1280,
+          "h": 76
+        },
+        "buttonCount": 1,
+        "cardCount": 0,
+        "slots": {
+          "ctaCount": 1,
+          "lede": "Solva"
+        },
+        "needsSmart": false
+      },
+      {
+        "index": 1,
+        "tag": "main",
+        "role": "testimonial",
+        "subrole": null,
+        "confidence": 0.8,
+        "heading": "The support copilot that never sleeps.",
+        "bounds": {
+          "x": 0,
+          "y": 0,
+          "w": 1280,
+          "h": 10435.96875
+        },
+        "buttonCount": 0,
+        "cardCount": 10,
+        "slots": {
+          "heading": "The support copilot that never sleeps.",
+          "subheadings": [
+            "Three ways Solva \nruns your support.",
+            "Resolve in seconds",
+            "Learn from your docs",
+            "Know when to escalate"
+          ],
+          "lede": "NEW"
+        },
+        "needsSmart": false
+      },
+      {
+        "index": 2,
+        "tag": "section",
+        "role": "testimonial",
+        "subrole": null,
+        "confidence": 0.8,
+        "heading": "The support copilot that never sleeps.",
+        "bounds": {
+          "x": 0,
+          "y": 0,
+          "w": 1280,
+          "h": 800
+        },
+        "buttonCount": 0,
+        "cardCount": 6,
+        "slots": {
+          "heading": "The support copilot that never sleeps.",
+          "lede": "NEW"
+        },
+        "needsSmart": false
+      },
+      {
+        "index": 3,
+        "tag": "section",
+        "role": "content",
+        "subrole": null,
+        "confidence": 0.3,
+        "heading": null,
+        "bounds": {
+          "x": 72,
+          "y": 656,
+          "w": 1136,
+          "h": 48
+        },
+        "buttonCount": 0,
+        "cardCount": 6,
+        "slots": {
+          "lede": "Corebit"
+        },
+        "needsSmart": true
+      },
+      {
+        "index": 4,
+        "tag": "section",
+        "role": "testimonial",
+        "subrole": null,
+        "confidence": 0.8,
+        "heading": "Three ways Solva \nruns your support.",
+        "bounds": {
+          "x": 0,
+          "y": 800,
+          "w": 1280,
+          "h": 825.71875
+        },
+        "buttonCount": 0,
+        "cardCount": 0,
+        "slots": {
+          "heading": "Three ways Solva \nruns your support.",
+          "subheadings": [
+            "Resolve in seconds",
+            "Learn from your docs",
+            "Know when to escalate"
+          ],
+          "lede": "What Solva does"
+        },
+        "needsSmart": false
+      },
+      {
+        "index": 5,
+        "tag": "section",
+        "role": "testimonial",
+        "subrole": null,
+        "confidence": 0.8,
+        "heading": "One inbox. \nEvery question, handled.",
+        "bounds": {
+          "x": 0,
+          "y": 1625.71875,
+          "w": 1280,
+          "h": 2724.3125
+        },
+        "buttonCount": 0,
+        "cardCount": 0,
+        "slots": {
+          "heading": "One inbox. \nEvery question, handled.",
+          "subheadings": [
+            "It gets smarter with every ticket it sees",
+            "It always answers in your brand voice",
+            "It clears your overnight queue for you"
+          ],
+          "lede": "Why Solva"
+        },
+        "needsSmart": false
+      },
+      {
+        "index": 6,
+        "tag": "section",
+        "role": "pricing",
+        "subrole": null,
+        "confidence": 0.4,
+        "heading": "One platform. \nEvery team it touches.",
+        "bounds": {
+          "x": 0,
+          "y": 4350.03125,
+          "w": 1280,
+          "h": 988.921875
+        },
+        "buttonCount": 0,
+        "cardCount": 0,
+        "slots": {
+          "heading": "One platform. \nEvery team it touches.",
+          "lede": "Use cases"
+        },
+        "needsSmart": true
+      },
+      {
+        "index": 7,
+        "tag": "section",
+        "role": "testimonials",
+        "subrole": null,
+        "confidence": 0.4,
+        "heading": "Enterprise-grade security, built in by default.",
+        "bounds": {
+          "x": 0,
+          "y": 5338.953125,
+          "w": 1280,
+          "h": 638.328125
+        },
+        "buttonCount": 0,
+        "cardCount": 0,
+        "slots": {
+          "heading": "Enterprise-grade security, built in by default.",
+          "subheadings": [
+            "Proven compliance",
+            "Full control",
+            "End-to-end encryption",
+            "Your data"
+          ],
+          "lede": "Security"
+        },
+        "needsSmart": true
+      },
+      {
+        "index": 8,
+        "tag": "section",
+        "role": "pricing-table",
+        "subrole": null,
+        "confidence": 0.9,
+        "heading": "Simple pricing. \nNo surprises.",
+        "bounds": {
+          "x": 0,
+          "y": 5977.28125,
+          "w": 1280,
+          "h": 1038.140625
+        },
+        "buttonCount": 0,
+        "cardCount": 4,
+        "slots": {
+          "heading": "Simple pricing. \nNo surprises.",
+          "subheadings": [
+            "Custom"
+          ],
+          "lede": "Pricing"
+        },
+        "needsSmart": false
+      },
+      {
+        "index": 9,
+        "tag": "section",
+        "role": "content",
+        "subrole": null,
+        "confidence": 0.3,
+        "heading": null,
+        "bounds": {
+          "x": 340,
+          "y": 6903.421875,
+          "w": 600,
+          "h": 48
+        },
+        "buttonCount": 0,
+        "cardCount": 4,
+        "slots": {
+          "lede": "Corebit"
+        },
+        "needsSmart": true
+      },
+      {
+        "index": 10,
+        "tag": "section",
+        "role": "testimonial",
+        "subrole": null,
+        "confidence": 0.8,
+        "heading": "Big results,\nfrom day one.",
+        "bounds": {
+          "x": 0,
+          "y": 7015.421875,
+          "w": 1280,
+          "h": 888.3125
+        },
+        "buttonCount": 0,
+        "cardCount": 0,
+        "slots": {
+          "heading": "Big results,\nfrom day one.",
+          "subheadings": [
+            "0%",
+            "0%",
+            "0%",
+            "0%"
+          ],
+          "lede": "Real results"
+        },
+        "needsSmart": false
+      },
+      {
+        "index": 11,
+        "tag": "section",
+        "role": "testimonial",
+        "subrole": null,
+        "confidence": 0.8,
+        "heading": "Less busywork, \nmore breathing room.",
+        "bounds": {
+          "x": 0,
+          "y": 7903.734375,
+          "w": 1280,
+          "h": 1300.3125
+        },
+        "buttonCount": 0,
+        "cardCount": 0,
+        "slots": {
+          "heading": "Less busywork, \nmore breathing room.",
+          "lede": "Loved by support teams"
+        },
+        "needsSmart": false
+      },
+      {
+        "index": 12,
+        "tag": "section",
+        "role": "faq",
+        "subrole": null,
+        "confidence": 0.85,
+        "heading": "You have questions. \nWe have answers.",
+        "bounds": {
+          "x": 0,
+          "y": 9204.046875,
+          "w": 1280,
+          "h": 639.921875
+        },
+        "buttonCount": 0,
+        "cardCount": 0,
+        "slots": {
+          "heading": "You have questions. \nWe have answers.",
+          "subheadings": [
+            "How is Solva different from a general AI chatbot?",
+            "How many tickets can Solva resolve on its own?",
+            "Is my data private?",
+            "Will it actually adapt to how we work?"
+          ],
+          "lede": "FAQ"
+        },
+        "needsSmart": false
+      },
+      {
+        "index": 13,
+        "tag": "section",
+        "role": "testimonial",
+        "subrole": null,
+        "confidence": 0.8,
+        "heading": "Give your team\ntheir mornings back.",
+        "bounds": {
+          "x": 0,
+          "y": 9843.96875,
+          "w": 1280,
+          "h": 592
+        },
+        "buttonCount": 0,
+        "cardCount": 0,
+        "slots": {
+          "heading": "Give your team\ntheir mornings back."
+        },
+        "needsSmart": false
+      },
+      {
+        "index": 14,
+        "tag": "footer",
+        "role": "footer",
+        "subrole": null,
+        "confidence": 0.95,
+        "heading": null,
+        "bounds": {
+          "x": 0,
+          "y": 10435.96875,
+          "w": 1280,
+          "h": 401.21875
+        },
+        "buttonCount": 0,
+        "cardCount": 0,
+        "slots": {
+          "lede": "Solva"
+        },
+        "needsSmart": false
+      },
+      {
+        "index": 15,
+        "tag": "nav",
+        "role": "nav",
+        "subrole": null,
+        "confidence": 0.9,
+        "heading": null,
+        "bounds": {
+          "x": 461.328125,
+          "y": 10531.96875,
+          "w": 176.65625,
+          "h": 170.015625
+        },
+        "buttonCount": 0,
+        "cardCount": 0,
+        "slots": {
+          "lede": "Product"
+        },
+        "needsSmart": false
+      },
+      {
+        "index": 16,
+        "tag": "nav",
+        "role": "nav",
+        "subrole": null,
+        "confidence": 0.9,
+        "heading": null,
+        "bounds": {
+          "x": 661.984375,
+          "y": 10531.96875,
+          "w": 176.671875,
+          "h": 170.015625
+        },
+        "buttonCount": 0,
+        "cardCount": 0,
+        "slots": {
+          "lede": "Company"
+        },
+        "needsSmart": false
+      },
+      {
+        "index": 17,
+        "tag": "nav",
+        "role": "nav",
+        "subrole": null,
+        "confidence": 0.9,
+        "heading": null,
+        "bounds": {
+          "x": 862.65625,
+          "y": 10531.96875,
+          "w": 176.671875,
+          "h": 170.015625
+        },
+        "buttonCount": 0,
+        "cardCount": 0,
+        "slots": {
+          "lede": "Resources"
+        },
+        "needsSmart": false
+      },
+      {
+        "index": 18,
+        "tag": "nav",
+        "role": "nav",
+        "subrole": null,
+        "confidence": 0.9,
+        "heading": null,
+        "bounds": {
+          "x": 1063.328125,
+          "y": 10531.96875,
+          "w": 176.671875,
+          "h": 134.8125
+        },
+        "buttonCount": 0,
+        "cardCount": 0,
+        "slots": {
+          "lede": "Legal"
+        },
+        "needsSmart": false
+      }
+    ],
+    "counts": {
+      "nav": 5,
+      "testimonial": 7,
+      "content": 2,
+      "pricing": 1,
+      "testimonials": 1,
+      "pricing-table": 1,
+      "faq": 1,
+      "footer": 1
+    },
+    "readingOrder": [
+      "nav",
+      "testimonial",
+      "testimonial",
+      "content",
+      "testimonial",
+      "testimonial",
+      "pricing",
+      "testimonials",
+      "pricing-table",
+      "content",
+      "testimonial",
+      "testimonial",
+      "faq",
+      "testimonial",
+      "footer",
+      "nav",
+      "nav",
+      "nav",
+      "nav"
+    ]
+  }
+}

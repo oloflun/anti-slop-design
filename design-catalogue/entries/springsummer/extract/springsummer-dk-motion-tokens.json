@@ -1,0 +1,47 @@
+{
+  "$description": "Motion tokens extracted by designlang",
+  "duration": {
+    "sm": {
+      "$value": "200ms",
+      "$type": "duration",
+      "ms": 200
+    },
+    "md": {
+      "$value": "300ms",
+      "$type": "duration",
+      "ms": 300
+    },
+    "lg": {
+      "$value": "500ms",
+      "$type": "duration",
+      "ms": 500
+    },
+    "xl": {
+      "$value": "800ms",
+      "$type": "duration",
+      "ms": 800
+    },
+    "xxl": {
+      "$value": "1.3s",
+      "$type": "duration",
+      "ms": 1300
+    }
+  },
+  "easing": {
+    "ease-in-out": {
+      "$value": "ease",
+      "$type": "cubicBezier",
+      "family": "ease-in-out"
+    },
+    "ease-out-9": {
+      "$value": "cubic-bezier(0, 0.55, 0.45, 1)",
+      "$type": "cubicBezier",
+      "family": "ease-out"
+    }
+  },
+  "spring": {},
+  "$meta": {
+    "feel": "smooth",
+    "scrollLinked": true
+  }
+}

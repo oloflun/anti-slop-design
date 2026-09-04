@@ -1,0 +1,292 @@
+{
+  "pageIntent": {
+    "type": "landing",
+    "confidence": 0.29,
+    "path": "/",
+    "title": "Accueil | Groupe Montoni",
+    "description": "Pioneer of sustainable buildings in Canada. Discover our LEED and BCZ (Zero Carbon Building) certified projects.",
+    "signals": [
+      {
+        "kind": "dom",
+        "type": "blog-post",
+        "weight": 0.35,
+        "detail": "byline|min-read"
+      },
+      {
+        "kind": "dom",
+        "type": "legal",
+        "weight": 0.4
+      },
+      {
+        "kind": "url",
+        "type": "landing",
+        "weight": 0.45,
+        "detail": "root-path"
+      }
+    ],
+    "alternates": [
+      {
+        "type": "legal",
+        "score": 0.4
+      },
+      {
+        "type": "blog-post",
+        "score": 0.35
+      }
+    ],
+    "needsSmart": true
+  },
+  "sectionRoles": {
+    "sections": [
+      {
+        "index": 0,
+        "tag": "header",
+        "role": "nav",
+        "subrole": null,
+        "confidence": 0.4,
+        "heading": null,
+        "bounds": {
+          "x": 0,
+          "y": 0,
+          "w": 1280,
+          "h": 86.390625
+        },
+        "buttonCount": 3,
+        "cardCount": 9,
+        "slots": {
+          "ctaCount": 3,
+          "lede": "Menu\nAvailable spaces\n31\nCareers\n12\nFrançais"
+        },
+        "needsSmart": true
+      },
+      {
+        "index": 1,
+        "tag": "nav",
+        "role": "nav",
+        "subrole": null,
+        "confidence": 0.9,
+        "heading": null,
+        "bounds": {
+          "x": 0,
+          "y": 0,
+          "w": 1280,
+          "h": 86.390625
+        },
+        "buttonCount": 3,
+        "cardCount": 8,
+        "slots": {
+          "ctaCount": 3,
+          "lede": "Menu\nAvailable spaces\n31\nCareers\n12\nFrançais"
+        },
+        "needsSmart": false
+      },
+      {
+        "index": 2,
+        "tag": "main",
+        "role": "content",
+        "subrole": null,
+        "confidence": 0.3,
+        "heading": "Groupe Montoni - Home",
+        "bounds": {
+          "x": 0,
+          "y": 0,
+          "w": 1280,
+          "h": 4064.296875
+        },
+        "buttonCount": 2,
+        "cardCount": 55,
+        "slots": {
+          "heading": "Groupe Montoni - Home",
+          "subheadings": [
+            "Discover Quartier Molson",
+            "Écoparc Laval 15",
+            "Our ESG report 2023-2024",
+            "Condos Industriels Châteauguay"
+          ],
+          "ctaCount": 2,
+          "lede": "Groupe Montoni - Home\nA real estate corporation dedicated to sustainable development\nDiscover Quartier Molson"
+        },
+        "needsSmart": true
+      },
+      {
+        "index": 3,
+        "tag": "section",
+        "role": "content",
+        "subrole": null,
+        "confidence": 0.3,
+        "heading": "Discover Quartier Molson",
+        "bounds": {
+          "x": 0,
+          "y": 720,
+          "w": 1280,
+          "h": 960
+        },
+        "buttonCount": 0,
+        "cardCount": 16,
+        "slots": {
+          "heading": "Discover Quartier Molson",
+          "subheadings": [
+            "Écoparc Laval 15",
+            "Our ESG report 2023-2024",
+            "Condos Industriels Châteauguay",
+            "Discover Quartier Molson"
+          ]
+        },
+        "needsSmart": true
+      },
+      {
+        "index": 4,
+        "tag": "section",
+        "role": "content",
+        "subrole": null,
+        "confidence": 0.3,
+        "heading": "Building today for the business of tomorrow",
+        "bounds": {
+          "x": 0,
+          "y": 1680,
+          "w": 1280,
+          "h": 608
+        },
+        "buttonCount": 0,
+        "cardCount": 1,
+        "slots": {
+          "heading": "Building today for the business of tomorrow"
+        },
+        "needsSmart": true
+      },
+      {
+        "index": 5,
+        "tag": "section",
+        "role": "content",
+        "subrole": null,
+        "confidence": 0.3,
+        "heading": "Building today for the business of tomorrow",
+        "bounds": {
+          "x": 0,
+          "y": 1808,
+          "w": 1280,
+          "h": 480
+        },
+        "buttonCount": 0,
+        "cardCount": 1,
+        "slots": {
+          "heading": "Building today for the business of tomorrow"
+        },
+        "needsSmart": true
+      },
+      {
+        "index": 6,
+        "tag": "section",
+        "role": "content",
+        "subrole": null,
+        "confidence": 0.3,
+        "heading": "Our people at the heart of our success",
+        "bounds": {
+          "x": 0,
+          "y": 2288,
+          "w": 1280,
+          "h": 1111.046875
+        },
+        "buttonCount": 0,
+        "cardCount": 21,
+        "slots": {
+          "heading": "Our people at the heart of our success",
+          "subheadings": [
+            "covering scopes 1, 2, and 3",
+            "MONTONI's sustainable buildings"
+          ],
+          "lede": "What defines us\nOur people at the heart of our success"
+        },
+        "needsSmart": true
+      },
+      {
+        "index": 7,
+        "tag": "section",
+        "role": "hero",
+        "subrole": null,
+        "confidence": 0.4,
+        "heading": "Latest news and articles",
+        "bounds": {
+          "x": 0,
+          "y": 3399.046875,
+          "w": 1280,
+          "h": 665.25
+        },
+        "buttonCount": 2,
+        "cardCount": 16,
+        "slots": {
+          "heading": "Latest news and articles",
+          "ctaCount": 2
+        },
+        "needsSmart": true
+      },
+      {
+        "index": 8,
+        "tag": "footer",
+        "role": "footer",
+        "subrole": null,
+        "confidence": 0.95,
+        "heading": "Join our mailing list",
+        "bounds": {
+          "x": 0,
+          "y": 4192.296875,
+          "w": 1280,
+          "h": 1144.5625
+        },
+        "buttonCount": 1,
+        "cardCount": 19,
+        "slots": {
+          "heading": "Join our mailing list",
+          "subheadings": [
+            "Social networks",
+            "Reach us",
+            "Available spaces",
+            "Working at Montoni"
+          ],
+          "ctaCount": 1
+        },
+        "needsSmart": false
+      },
+      {
+        "index": 9,
+        "tag": "aside",
+        "role": "sidebar",
+        "subrole": null,
+        "confidence": 0.4,
+        "heading": "Join our mailing list",
+        "bounds": {
+          "x": 0,
+          "y": 4192.296875,
+          "w": 1280,
+          "h": 640
+        },
+        "buttonCount": 1,
+        "cardCount": 0,
+        "slots": {
+          "heading": "Join our mailing list",
+          "ctaCount": 1
+        },
+        "needsSmart": true
+      }
+    ],
+    "counts": {
+      "nav": 2,
+      "content": 5,
+      "hero": 1,
+      "footer": 1,
+      "sidebar": 1
+    },
+    "readingOrder": [
+      "nav",
+      "nav",
+      "content",
+      "content",
+      "content",
+      "content",
+      "content",
+      "hero",
+      "footer",
+      "sidebar"
+    ]
+  }
+}

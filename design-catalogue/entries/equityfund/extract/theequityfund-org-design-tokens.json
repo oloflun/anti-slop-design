@@ -1,0 +1,173 @@
+{
+  "$metadata": {
+    "generator": "designlang",
+    "version": "7.0.0",
+    "spec": "https://design-tokens.github.io/community-group/format/",
+    "source": "https://theequityfund.org",
+    "generatedAt": "2026-09-04T00:26:08.991Z"
+  },
+  "primitive": {
+    "color": {
+      "brand": {
+        "primary": {
+          "$value": "#c4b3e0",
+          "$type": "color"
+        },
+        "secondary": {
+          "$value": "#500c20",
+          "$type": "color"
+        }
+      },
+      "neutral": {
+        "n100": {
+          "$value": "#e5e7eb",
+          "$type": "color"
+        },
+        "n200": {
+          "$value": "#000000",
+          "$type": "color"
+        }
+      },
+      "background": {
+        "bg0": {
+          "$value": "#fcf6ed",
+          "$type": "color"
+        },
+        "bg1": {
+          "$value": "#c4b3e0",
+          "$type": "color"
+        },
+        "bg2": {
+          "$value": "#500c20",
+          "$type": "color"
+        }
+      },
+      "text": {
+        "text0": {
+          "$value": "#000000",
+          "$type": "color"
+        },
+        "text1": {
+          "$value": "#500c20",
+          "$type": "color"
+        },
+        "text2": {
+          "$value": "#c4b3e0",
+          "$type": "color"
+        },
+        "text3": {
+          "$value": "#fcf6ed",
+          "$type": "color"
+        }
+      }
+    },
+    "spacing": {
+      "s0": {
+        "$value": "4px",
+        "$type": "dimension"
+      },
+      "s1": {
+        "$value": "64px",
+        "$type": "dimension"
+      },
+      "s2": {
+        "$value": "96px",
+        "$type": "dimension"
+      },
+      "s3": {
+        "$value": "120px",
+        "$type": "dimension"
+      },
+      "s4": {
+        "$value": "144px",
+        "$type": "dimension"
+      },
+      "s5": {
+        "$value": "208px",
+        "$type": "dimension"
+      },
+      "s6": {
+        "$value": "311px",
+        "$type": "dimension"
+      },
+      "s7": {
+        "$value": "329px",
+        "$type": "dimension"
+      }
+    },
+    "radius": {
+      "r0": {
+        "$value": "9999px",
+        "$type": "dimension"
+      }
+    },
+    "shadow": {},
+    "fontFamily": {
+      "f0": {
+        "$value": "Metrify Narrow",
+        "$type": "fontFamily"
+      },
+      "f1": {
+        "$value": "Feature Text",
+        "$type": "fontFamily"
+      },
+      "f2": {
+        "$value": "Judge",
+        "$type": "fontFamily"
+      },
+      "f3": {
+        "$value": "Metrify",
+        "$type": "fontFamily"
+      }
+    }
+  },
+  "semantic": {
+    "color": {
+      "action": {
+        "primary": {
+          "$value": "{primitive.color.brand.primary}",
+          "$type": "color"
+        },
+        "secondary": {
+          "$value": "{primitive.color.brand.secondary}",
+          "$type": "color"
+        }
+      },
+      "surface": {
+        "default": {
+          "$value": "{primitive.color.background.bg0}",
+          "$type": "color"
+        }
+      },
+      "text": {
+        "body": {
+          "$value": "{primitive.color.text.text0}",
+          "$type": "color"
+        }
+      }
+    },
+    "typography": {
+      "body": {
+        "$value": {
+          "fontFamily": "Metrify Narrow",
+          "fontSize": "204.8px",
+          "fontWeight": "500",
+          "lineHeight": "204.8px"
+        },
+        "$type": "typography"
+      }
+    },
+    "radius": {
+      "control": {
+        "$value": "{primitive.radius.r0}",
+        "$type": "dimension"
+      }
+    },
+    "shadow": {
+      "elevated": {
+        "$value": "{primitive.shadow.sh0}",
+        "$type": "shadow"
+      }
+    }
+  }
+}

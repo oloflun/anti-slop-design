@@ -1,0 +1,154 @@
+:root {
+  /* Colors — Primary */
+
+  /* Colors — Neutrals */
+  --color-neutral-50: #e5e7eb;
+  --color-neutral-100: #222222;
+  --color-neutral-200: #000000;
+  --color-neutral-300: #343434;
+  --color-neutral-400: #aaaaaa;
+  --color-neutral-500: #dbdbdb;
+  --color-neutral-600: #cccccc;
+
+  /* Colors — Backgrounds */
+  --color-bg: #343434;
+  --color-bg-1: #ececec;
+
+  /* Colors — Text */
+  --color-text: #000000;
+  --color-text-1: #222222;
+  --color-text-2: #aaaaaa;
+  --color-text-3: #353535;
+  --color-text-4: #ececec;
+
+  /* Typography — Families */
+  --font-sans: 'TT Hoves Pro Trial', sans-serif;
+  --font-body: 'NeueMontreal', sans-serif;
+
+  /* Typography — Scale */
+  --font-size-24: 24px;
+  --font-size-21.3334: 21.3334px;
+  --font-size-17.7778: 17.7778px;
+  --font-size-14.2222: 14.2222px;
+  --font-size-12.4444: 12.4444px;
+  --font-size-9.77779: 9.77779px;
+  --font-size-8.88889: 8.88889px;
+  --font-size-8.88883: 8.88883px;
+  --font-size-7.11117: 7.11117px;
+  --font-size-6: 6px;
+
+  /* Spacing */
+  --spacing-4: 4px;
+  --spacing-43: 43px;
+  --spacing-50: 50px;
+  --spacing-57: 57px;
+  --spacing-71: 71px;
+  --spacing-89: 89px;
+  --spacing-114: 114px;
+  --spacing-124: 124px;
+  --spacing-136: 136px;
+  --spacing-160: 160px;
+  --spacing-382: 382px;
+
+  /* Original Site Variables */
+  /* — colors — */
+  --tw-ring-offset-shadow: 0 0 #0000;
+  --tw-ring-shadow: 0 0 #0000;
+  --accent-color: #ececec;
+  --tw-ring-inset: ;
+  --tw-border-spacing-x: 0;
+  --accent-border-color: #ececec;
+  --tw-ring-color: rgba(59,130,246,.5);
+  --accent-bg-color: #ececec;
+  --tw-ring-offset-color: #fff;
+  --accent-border-hover-color: #ccc;
+  --tw-ring-offset-width: 0px;
+  --accent-hover-color: #ececec;
+  --text-color: #222;
+  --tw-shadow-colored: 0 0 #0000;
+  --tw-border-spacing-y: 0;
+  --bg-color: #ececec;
+  --accent-bg-hover-color: #ccc;
+  /* — spacing — */
+  --column-spacing: 1.5rem;
+  --layout-columns-gap: 3.0769230769vw;
+  --layout-margin: 8.2051282051vw;
+  --margin-reset-container: -1rem;
+  --tw-numeric-spacing: ;
+  /* — shadows — */
+  --tw-drop-shadow: ;
+  --tw-shadow: 0 0 #0000;
+  /* — other — */
+  --ease-in-quad: cubic-bezier(0.55,0.085,0.68,0.53);
+  --ease-in-cubic: cubic-bezier(0.55,0.055,0.675,0.19);
+  --ease-in-quart: cubic-bezier(0.895,0.03,0.685,0.22);
+  --ease-in-quint: cubic-bezier(0.755,0.05,0.855,0.06);
+  --ease-in-expo: cubic-bezier(0.95,0.05,0.795,0.035);
+  --ease-in-circ: cubic-bezier(0.6,0.04,0.98,0.335);
+  --ease-out-quad: cubic-bezier(0.25,0.46,0.45,0.94);
+  --ease-out-cubic: cubic-bezier(0.215,0.61,0.355,1);
+  --ease-out-quart: cubic-bezier(0.165,0.84,0.44,1);
+  --ease-out-quint: cubic-bezier(0.23,1,0.32,1);
+  --ease-out-expo: cubic-bezier(0.19,1,0.22,1);
+  --ease-out-circ: cubic-bezier(0.075,0.82,0.165,1);
+  --ease-in-out-quad: cubic-bezier(0.455,0.03,0.515,0.955);
+  --ease-in-out-cubic: cubic-bezier(0.645,0.045,0.355,1);
+  --ease-in-out-quart: cubic-bezier(0.77,0,0.175,1);
+  --ease-in-out-quint: cubic-bezier(0.86,0,0.07,1);
+  --ease-in-out-expo: cubic-bezier(1,0,0,1);
+  --ease-in-out-circ: cubic-bezier(0.785,0.135,0.15,0.86);
+  --vh: 1vh;
+  --layout-columns-count: 6;
+  --container-width: 100vw;
+  --layout-width: calc(var(--container-width) - var(--layout-margin)*2);
+  --layout-column-width: calc((var(--layout-width) - ((var(--layout-columns-count) - 1)*var(--layout-columns-gap)))/var(--layout-columns-count));
+  --tw-backdrop-sepia: ;
+  --transition-easing: cubic-bezier(0.38,0.005,0.215,1);
+  --tw-sepia: ;
+  --tw-ordinal: ;
+  --tw-backdrop-saturate: ;
+  --tw-backdrop-invert: ;
+  --tw-brightness: ;
+  --tw-backdrop-grayscale: ;
+  --tw-hue-rotate: ;
+  --tw-scale-y: 1;
+  --tw-pan-y: ;
+  --tw-backdrop-contrast: ;
+  --tw-backdrop-brightness: ;
+  --tw-pan-x: ;
+  --tw-translate-y: 0;
+  --tw-rotate: 0;
+  --transition-translate: 2rem;
+  --tw-contrast: ;
+  --transition-delay: 0s;
+  --tw-skew-x: 0;
+  --tw-backdrop-blur: ;
+  --tw-translate-x: 0;
+  --tw-gradient-via-position: ;
+  --tw-saturate: ;
+  --tw-scroll-snap-strictness: proximity;
+  --tw-grayscale: ;
+  --tw-scale-x: 1;
+  --tw-backdrop-hue-rotate: ;
+  --tw-gradient-to-position: ;
+  --tw-numeric-fraction: ;
+  --transition-duration: .8s;
+  --tw-skew-y: 0;
+  --tw-slashed-zero: ;
+  --tw-blur: ;
+  --tw-invert: ;
+  --transition-stagger-delay: 0.1s;
+  --tw-backdrop-opacity: ;
+  --tw-gradient-from-position: ;
+  --tw-numeric-figure: ;
+  --tw-pinch-zoom: ;
+  /* — dependencies — */
+  --layout-width: --container-width,--layout-margin;
+  --layout-column-width: --layout-width,--layout-columns-count,--layout-columns-gap,--layout-columns-count;
+  /* — semantic — */
+  success: [object Object];
+  warning: [object Object];
+  error: [object Object];
+  info: [object Object];
+
+}

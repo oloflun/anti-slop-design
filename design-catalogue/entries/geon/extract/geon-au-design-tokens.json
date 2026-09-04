@@ -1,0 +1,221 @@
+{
+  "$metadata": {
+    "generator": "designlang",
+    "version": "7.0.0",
+    "spec": "https://design-tokens.github.io/community-group/format/",
+    "source": "https://geon.au/",
+    "generatedAt": "2026-09-04T00:52:34.117Z"
+  },
+  "primitive": {
+    "color": {
+      "brand": {
+        "primary": {
+          "$value": "#f2eeea",
+          "$type": "color"
+        }
+      },
+      "neutral": {
+        "n100": {
+          "$value": "#867c73",
+          "$type": "color"
+        },
+        "n200": {
+          "$value": "#000000",
+          "$type": "color"
+        },
+        "n300": {
+          "$value": "#34312e",
+          "$type": "color"
+        },
+        "n400": {
+          "$value": "#6c645c",
+          "$type": "color"
+        },
+        "n500": {
+          "$value": "#5e5853",
+          "$type": "color"
+        },
+        "n600": {
+          "$value": "#474340",
+          "$type": "color"
+        },
+        "n700": {
+          "$value": "#ffffff",
+          "$type": "color"
+        }
+      },
+      "background": {
+        "bg0": {
+          "$value": "#867c73",
+          "$type": "color"
+        },
+        "bg1": {
+          "$value": "#353330",
+          "$type": "color"
+        },
+        "bg2": {
+          "$value": "#000000",
+          "$type": "color"
+        },
+        "bg3": {
+          "$value": "#f2eeea",
+          "$type": "color"
+        },
+        "bg4": {
+          "$value": "#5e5853",
+          "$type": "color"
+        },
+        "bg5": {
+          "$value": "#474340",
+          "$type": "color"
+        },
+        "bg6": {
+          "$value": "#34312e",
+          "$type": "color"
+        },
+        "bg7": {
+          "$value": "#6c645c",
+          "$type": "color"
+        }
+      },
+      "text": {
+        "text0": {
+          "$value": "#000000",
+          "$type": "color"
+        },
+        "text1": {
+          "$value": "#f2eeea",
+          "$type": "color"
+        },
+        "text2": {
+          "$value": "#867c73",
+          "$type": "color"
+        }
+      }
+    },
+    "spacing": {
+      "s0": {
+        "$value": "4px",
+        "$type": "dimension"
+      },
+      "s1": {
+        "$value": "30px",
+        "$type": "dimension"
+      },
+      "s2": {
+        "$value": "40px",
+        "$type": "dimension"
+      },
+      "s3": {
+        "$value": "79px",
+        "$type": "dimension"
+      },
+      "s4": {
+        "$value": "108px",
+        "$type": "dimension"
+      },
+      "s5": {
+        "$value": "146px",
+        "$type": "dimension"
+      },
+      "s6": {
+        "$value": "225px",
+        "$type": "dimension"
+      },
+      "s7": {
+        "$value": "272px",
+        "$type": "dimension"
+      },
+      "s8": {
+        "$value": "308px",
+        "$type": "dimension"
+      },
+      "s9": {
+        "$value": "427px",
+        "$type": "dimension"
+      }
+    },
+    "radius": {
+      "r0": {
+        "$value": "1px",
+        "$type": "dimension"
+      },
+      "r1": {
+        "$value": "5px",
+        "$type": "dimension"
+      },
+      "r2": {
+        "$value": "10px",
+        "$type": "dimension"
+      },
+      "r3": {
+        "$value": "100px",
+        "$type": "dimension"
+      },
+      "r4": {
+        "$value": "1280px",
+        "$type": "dimension"
+      }
+    },
+    "shadow": {},
+    "fontFamily": {
+      "f0": {
+        "$value": "Monument Grotesk",
+        "$type": "fontFamily"
+      },
+      "f1": {
+        "$value": "Times New Roman",
+        "$type": "fontFamily"
+      },
+      "f2": {
+        "$value": "GT Super Text",
+        "$type": "fontFamily"
+      }
+    }
+  },
+  "semantic": {
+    "color": {
+      "action": {
+        "primary": {
+          "$value": "{primitive.color.brand.primary}",
+          "$type": "color"
+        }
+      },
+      "surface": {
+        "default": {
+          "$value": "{primitive.color.background.bg0}",
+          "$type": "color"
+        }
+      },
+      "text": {
+        "body": {
+          "$value": "{primitive.color.text.text0}",
+          "$type": "color"
+        }
+      }
+    },
+    "typography": {
+      "body": {
+        "$value": {
+          "fontFamily": "Monument Grotesk",
+          "fontSize": "65px",
+          "fontWeight": "500",
+          "lineHeight": "55.25px"
+        },
+        "$type": "typography"
+      }
+    },
+    "radius": {
+      "control": {
+        "$value": "{primitive.radius.r0}",
+        "$type": "dimension"
+      }
+    },
+    "shadow": {
+      "elevated": {
+        "$value": "{primitive.shadow.sh0}",
+        "$type": "shadow"
+      }
+    }
+  }
+}

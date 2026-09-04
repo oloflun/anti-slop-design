@@ -1,0 +1,183 @@
+{
+  "$schema": "https://schemas.wp.org/trunk/theme.json",
+  "version": 3,
+  "settings": {
+    "color": {
+      "palette": [
+        {
+          "slug": "primary",
+          "color": "#008057",
+          "name": "Primary"
+        },
+        {
+          "slug": "secondary",
+          "color": "#123f4e",
+          "name": "Secondary"
+        },
+        {
+          "slug": "accent",
+          "color": "#b99c6a",
+          "name": "Accent"
+        },
+        {
+          "slug": "neutral-1",
+          "color": "#000000",
+          "name": "Neutral 1"
+        },
+        {
+          "slug": "neutral-2",
+          "color": "#0d0d0d",
+          "name": "Neutral 2"
+        },
+        {
+          "slug": "neutral-3",
+          "color": "#ffffff",
+          "name": "Neutral 3"
+        },
+        {
+          "slug": "neutral-4",
+          "color": "#81907a",
+          "name": "Neutral 4"
+        },
+        {
+          "slug": "bg-ffffff",
+          "color": "#ffffff",
+          "name": "Background #ffffff"
+        },
+        {
+          "slug": "bg-0d0d0d",
+          "color": "#0d0d0d",
+          "name": "Background #0d0d0d"
+        },
+        {
+          "slug": "bg-000000",
+          "color": "#000000",
+          "name": "Background #000000"
+        }
+      ],
+      "gradients": [
+        {
+          "slug": "gradient-1",
+          "gradient": "linear-gradient(rgba(13, 13, 13, 0.1), rgba(13, 13, 13, 0.8))",
+          "name": "Gradient 1"
+        }
+      ]
+    },
+    "typography": {
+      "fontFamilies": [
+        {
+          "fontFamily": "studiopro",
+          "slug": "studiopro",
+          "name": "studiopro"
+        },
+        {
+          "fontFamily": "fkroman",
+          "slug": "fkroman",
+          "name": "fkroman"
+        }
+      ],
+      "fontSizes": [
+        {
+          "size": "57.6px",
+          "slug": "size-57.6",
+          "name": "57.6px"
+        },
+        {
+          "size": "25.6px",
+          "slug": "size-25.6",
+          "name": "25.6px"
+        },
+        {
+          "size": "20.8px",
+          "slug": "size-20.8",
+          "name": "20.8px"
+        },
+        {
+          "size": "19.2px",
+          "slug": "size-19.2",
+          "name": "19.2px"
+        },
+        {
+          "size": "16px",
+          "slug": "size-16",
+          "name": "16px"
+        },
+        {
+          "size": "12.8px",
+          "slug": "size-12.8",
+          "name": "12.8px"
+        },
+        {
+          "size": "11.2px",
+          "slug": "size-11.2",
+          "name": "11.2px"
+        },
+        {
+          "size": "9.6px",
+          "slug": "size-9.6",
+          "name": "9.6px"
+        }
+      ]
+    },
+    "spacing": {
+      "spacingSizes": [
+        {
+          "size": "2px",
+          "slug": "spacing-2",
+          "name": "2px"
+        },
+        {
+          "size": "19px",
+          "slug": "spacing-19",
+          "name": "19px"
+        },
+        {
+          "size": "26px",
+          "slug": "spacing-26",
+          "name": "26px"
+        },
+        {
+          "size": "32px",
+          "slug": "spacing-32",
+          "name": "32px"
+        },
+        {
+          "size": "38px",
+          "slug": "spacing-38",
+          "name": "38px"
+        },
+        {
+          "size": "61px",
+          "slug": "spacing-61",
+          "name": "61px"
+        },
+        {
+          "size": "80px",
+          "slug": "spacing-80",
+          "name": "80px"
+        },
+        {
+          "size": "102px",
+          "slug": "spacing-102",
+          "name": "102px"
+        }
+      ]
+    },
+    "layout": {
+      "contentSize": "100%",
+      "wideSize": "1400px"
+    }
+  },
+  "styles": {
+    "color": {
+      "background": "#ffffff",
+      "text": "#000000"
+    },
+    "typography": {
+      "fontSize": "12.8px",
+      "lineHeight": "12.8px",
+      "fontFamily": "studiopro"
+    },
+    "spacing": {}
+  }
+}

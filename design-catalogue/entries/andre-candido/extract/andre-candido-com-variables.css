@@ -1,0 +1,84 @@
+:root {
+  /* Colors — Primary */
+  --color-primary: #111118;
+  --color-secondary: #0000ee;
+  --color-accent: #fef199;
+
+  /* Colors — Neutrals */
+  --color-neutral-50: #ffffff;
+  --color-neutral-100: #000000;
+  --color-neutral-200: #222222;
+  --color-neutral-300: #333333;
+  --color-neutral-400: #7c7c7c;
+  --color-neutral-500: #445567;
+  --color-neutral-600: #dddddd;
+
+  /* Colors — Backgrounds */
+  --color-bg: #ffffff;
+  --color-bg-1: #dddddd;
+  --color-bg-2: #fef199;
+  --color-bg-3: #111118;
+
+  /* Colors — Text */
+  --color-text: #000000;
+  --color-text-1: #111118;
+  --color-text-2: #333333;
+  --color-text-3: #283338;
+  --color-text-4: #222222;
+
+  /* Typography — Families */
+  --font-sans: 'PP Mori', sans-serif;
+  --font-heading: 'Editorial New', sans-serif;
+  --font-body: 'webflow-icons', sans-serif;
+
+  /* Typography — Scale */
+  --font-size-160: 160px;
+  --font-size-72: 72px;
+  --font-size-70.4: 70.4px;
+  --font-size-48: 48px;
+  --font-size-40: 40px;
+  --font-size-24: 24px;
+  --font-size-18: 18px;
+  --font-size-16: 16px;
+  --font-size-15: 15px;
+  --font-size-14: 14px;
+  --font-size-12.8: 12.8px;
+  --font-size-12: 12px;
+
+  /* Spacing */
+  --spacing-3: 3px;
+  --spacing-30: 30px;
+  --spacing-40: 40px;
+  --spacing-60: 60px;
+  --spacing-80: 80px;
+  --spacing-112: 112px;
+  --spacing-140: 140px;
+  --spacing-170: 170px;
+
+  /* Border Radius */
+  --radius-md: 8px;
+  --radius-xl: 24px;
+  --radius-full: 50px;
+  --radius-full: 80px;
+  --radius-full: 100px;
+  --radius-full: 150px;
+  --radius-full: 800px;
+
+  /* Box Shadows */
+  --shadow-xs: rgba(51, 51, 51, 0.4) 0px 0px 3px 0px;
+
+  /* Original Site Variables */
+  /* — colors — */
+  --accent: #ffed00;
+  /* — other — */
+  --black: #111118;
+  --gray: #7c7c7c;
+  --white: white;
+  --off-white: #f7f5f1;
+  /* — semantic — */
+  success: [object Object];
+  warning: [object Object];
+  error: [object Object];
+  info: [object Object];
+
+}

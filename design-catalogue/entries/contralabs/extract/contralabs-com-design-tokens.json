@@ -1,0 +1,301 @@
+{
+  "$metadata": {
+    "generator": "designlang",
+    "version": "7.0.0",
+    "spec": "https://design-tokens.github.io/community-group/format/",
+    "source": "https://contralabs.com",
+    "generatedAt": "2026-09-04T00:23:51.289Z"
+  },
+  "primitive": {
+    "color": {
+      "brand": {
+        "primary": {
+          "$value": "#fbfaf6",
+          "$type": "color"
+        },
+        "secondary": {
+          "$value": "#0000ee",
+          "$type": "color"
+        }
+      },
+      "neutral": {
+        "n100": {
+          "$value": "#000000",
+          "$type": "color"
+        },
+        "n200": {
+          "$value": "#2b2b29",
+          "$type": "color"
+        },
+        "n300": {
+          "$value": "#a5beba",
+          "$type": "color"
+        },
+        "n400": {
+          "$value": "#494444",
+          "$type": "color"
+        },
+        "n500": {
+          "$value": "#918f66",
+          "$type": "color"
+        },
+        "n600": {
+          "$value": "#918989",
+          "$type": "color"
+        },
+        "n700": {
+          "$value": "#c8bcae",
+          "$type": "color"
+        },
+        "n800": {
+          "$value": "#e4e2d9",
+          "$type": "color"
+        },
+        "n900": {
+          "$value": "#83a5a0",
+          "$type": "color"
+        }
+      },
+      "background": {
+        "bg0": {
+          "$value": "#fbfaf6",
+          "$type": "color"
+        },
+        "bg1": {
+          "$value": "#c8e1dd",
+          "$type": "color"
+        },
+        "bg2": {
+          "$value": "#a5beba",
+          "$type": "color"
+        },
+        "bg3": {
+          "$value": "#387478",
+          "$type": "color"
+        },
+        "bg4": {
+          "$value": "#2b2b29",
+          "$type": "color"
+        },
+        "bg5": {
+          "$value": "#918989",
+          "$type": "color"
+        },
+        "bg6": {
+          "$value": "#c8bcae",
+          "$type": "color"
+        },
+        "bg7": {
+          "$value": "#918f66",
+          "$type": "color"
+        },
+        "bg8": {
+          "$value": "#296a6c",
+          "$type": "color"
+        },
+        "bg9": {
+          "$value": "#eeede7",
+          "$type": "color"
+        },
+        "bg10": {
+          "$value": "#e4e2d9",
+          "$type": "color"
+        },
+        "bg11": {
+          "$value": "#f50c0c",
+          "$type": "color"
+        },
+        "bg12": {
+          "$value": "#0cf523",
+          "$type": "color"
+        },
+        "bg13": {
+          "$value": "#000000",
+          "$type": "color"
+        },
+        "bg14": {
+          "$value": "#e7f2f0",
+          "$type": "color"
+        },
+        "bg15": {
+          "$value": "#c8e0dc",
+          "$type": "color"
+        },
+        "bg16": {
+          "$value": "#ffffff",
+          "$type": "color"
+        },
+        "bg17": {
+          "$value": "#faf9f5",
+          "$type": "color"
+        },
+        "bg18": {
+          "$value": "#fcfbf7",
+          "$type": "color"
+        }
+      },
+      "text": {
+        "text0": {
+          "$value": "#000000",
+          "$type": "color"
+        },
+        "text1": {
+          "$value": "#2b2b29",
+          "$type": "color"
+        },
+        "text2": {
+          "$value": "#0000ee",
+          "$type": "color"
+        },
+        "text3": {
+          "$value": "#fbfaf6",
+          "$type": "color"
+        }
+      }
+    },
+    "spacing": {
+      "s0": {
+        "$value": "1px",
+        "$type": "dimension"
+      },
+      "s1": {
+        "$value": "30px",
+        "$type": "dimension"
+      },
+      "s2": {
+        "$value": "40px",
+        "$type": "dimension"
+      },
+      "s3": {
+        "$value": "48px",
+        "$type": "dimension"
+      },
+      "s4": {
+        "$value": "60px",
+        "$type": "dimension"
+      },
+      "s5": {
+        "$value": "74px",
+        "$type": "dimension"
+      },
+      "s6": {
+        "$value": "80px",
+        "$type": "dimension"
+      },
+      "s7": {
+        "$value": "100px",
+        "$type": "dimension"
+      },
+      "s8": {
+        "$value": "120px",
+        "$type": "dimension"
+      },
+      "s9": {
+        "$value": "160px",
+        "$type": "dimension"
+      },
+      "s10": {
+        "$value": "184px",
+        "$type": "dimension"
+      },
+      "s11": {
+        "$value": "200px",
+        "$type": "dimension"
+      }
+    },
+    "radius": {
+      "r0": {
+        "$value": "8px",
+        "$type": "dimension"
+      },
+      "r1": {
+        "$value": "24px",
+        "$type": "dimension"
+      },
+      "r2": {
+        "$value": "99px",
+        "$type": "dimension"
+      },
+      "r3": {
+        "$value": "10000px",
+        "$type": "dimension"
+      }
+    },
+    "shadow": {},
+    "fontFamily": {
+      "f0": {
+        "$value": "GT Standard L Regular",
+        "$type": "fontFamily"
+      },
+      "f1": {
+        "$value": "Source Serif 4 Variable",
+        "$type": "fontFamily"
+      },
+      "f2": {
+        "$value": "Times New Roman",
+        "$type": "fontFamily"
+      },
+      "f3": {
+        "$value": "GT Standard 6 L Medium",
+        "$type": "fontFamily"
+      },
+      "f4": {
+        "$value": "CUSTOMV2;GT Standard 6 L Regular",
+        "$type": "fontFamily"
+      },
+      "f5": {
+        "$value": "GT Standard L Medium",
+        "$type": "fontFamily"
+      }
+    }
+  },
+  "semantic": {
+    "color": {
+      "action": {
+        "primary": {
+          "$value": "{primitive.color.brand.primary}",
+          "$type": "color"
+        },
+        "secondary": {
+          "$value": "{primitive.color.brand.secondary}",
+          "$type": "color"
+        }
+      },
+      "surface": {
+        "default": {
+          "$value": "{primitive.color.background.bg0}",
+          "$type": "color"
+        }
+      },
+      "text": {
+        "body": {
+          "$value": "{primitive.color.text.text0}",
+          "$type": "color"
+        }
+      }
+    },
+    "typography": {
+      "body": {
+        "$value": {
+          "fontFamily": "GT Standard L Regular",
+          "fontSize": "597.662px",
+          "fontWeight": "400",
+          "lineHeight": "597.662px"
+        },
+        "$type": "typography"
+      }
+    },
+    "radius": {
+      "control": {
+        "$value": "{primitive.radius.r0}",
+        "$type": "dimension"
+      }
+    },
+    "shadow": {
+      "elevated": {
+        "$value": "{primitive.shadow.sh0}",
+        "$type": "shadow"
+      }
+    }
+  }
+}

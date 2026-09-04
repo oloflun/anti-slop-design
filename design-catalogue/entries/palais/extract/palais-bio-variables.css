@@ -1,0 +1,212 @@
+:root {
+  /* Colors — Primary */
+  --color-primary: #234386;
+  --color-secondary: #61a229;
+  --color-accent: #00578a;
+
+  /* Colors — Neutrals */
+  --color-neutral-50: #000000;
+  --color-neutral-100: #ffffff;
+  --color-neutral-200: #212529;
+  --color-neutral-300: #333333;
+  --color-neutral-400: #f3f5f7;
+  --color-neutral-500: #3a4856;
+  --color-neutral-600: #e3e1e8;
+  --color-neutral-700: #898989;
+  --color-neutral-800: #111111;
+
+  /* Colors — Backgrounds */
+  --color-bg: #ffffff;
+  --color-bg-1: #fbf9f6;
+  --color-bg-2: #6aa8dc;
+  --color-bg-3: #a2d3a6;
+  --color-bg-4: #234386;
+
+  /* Colors — Text */
+  --color-text: #000000;
+  --color-text-1: #0000ee;
+  --color-text-2: #ffffff;
+  --color-text-3: #234386;
+  --color-text-4: #ed7328;
+
+  /* Typography — Families */
+  --font-sans: 'Times New Roman', sans-serif;
+  --font-body: 'Lucida Grande', sans-serif;
+  --font-font-2: 'Sonder Sans Black Rough', sans-serif;
+  --font-body: 'Arial', sans-serif;
+  --font-font-4: 'Delivery Note DEMO', sans-serif;
+  --font-font-5: 'hwt-artz', sans-serif;
+  --font-body: 'Axiforma', sans-serif;
+  --font-body: 'ITC Avant Garde Std Bk', sans-serif;
+  --font-font-8: 'Sandman_Fill', sans-serif;
+
+  /* Typography — Scale */
+  --font-size-73: 73px;
+  --font-size-72: 72px;
+  --font-size-50: 50px;
+  --font-size-48: 48px;
+  --font-size-46: 46px;
+  --font-size-33: 33px;
+  --font-size-32: 32px;
+  --font-size-28: 28px;
+  --font-size-24: 24px;
+  --font-size-17: 17px;
+  --font-size-16: 16px;
+  --font-size-15: 15px;
+
+  /* Spacing */
+  --spacing-2: 2px;
+  --spacing-30: 30px;
+  --spacing-37: 37px;
+  --spacing-48: 48px;
+  --spacing-64: 64px;
+  --spacing-70: 70px;
+  --spacing-80: 80px;
+  --spacing-90: 90px;
+  --spacing-100: 100px;
+  --spacing-104: 104px;
+  --spacing-110: 110px;
+  --spacing-120: 120px;
+  --spacing-128: 128px;
+  --spacing-144: 144px;
+  --spacing-150: 150px;
+  --spacing-160: 160px;
+  --spacing-176: 176px;
+  --spacing-180: 180px;
+  --spacing-200: 200px;
+  --spacing-211: 211px;
+
+  /* Border Radius */
+  --radius-xs: 2px;
+  --radius-sm: 5px;
+  --radius-md: 8px;
+  --radius-lg: 12px;
+  --radius-lg: 16px;
+  --radius-full: 30px;
+  --radius-full: 34px;
+  --radius-full: 50px;
+
+  /* Box Shadows */
+  --shadow-sm: rgb(22, 22, 22) 2px 2px 5px 2px;
+  --shadow-md: rgba(172, 171, 171, 0.3) 0px -1px 10px 0px;
+  --shadow-xl: rgba(12, 25, 51, 0.08) 4px 8px 24px 0px;
+  --shadow-xl: rgba(0, 0, 0, 0.13) 10px 10px 26px 0px;
+  --shadow-xl: rgba(0, 0, 0, 0.05) 0px 20px 27px 0px;
+  --shadow-xl: rgba(0, 0, 0, 0.16) -14px 10px 49px 0px;
+
+  /* Original Site Variables */
+  /* — colors — */
+  --wp-block-synced-color: #7a00df;
+  --wp-block-synced-color--rgb: 122,0,223;
+  --wp-bound-block-color: var(--wp-block-synced-color);
+  --wp-admin-theme-color: #007cba;
+  --wp-admin-theme-color--rgb: 0,124,186;
+  --wp-admin-theme-color-darker-10: #006ba1;
+  --wp-admin-theme-color-darker-10--rgb: 0,107,160.5;
+  --wp-admin-theme-color-darker-20: #005a87;
+  --wp-admin-theme-color-darker-20--rgb: 0,90,135;
+  --wp-admin-border-width-focus: 2px;
+  --ss-primary-color: #5897fb;
+  --ss-bg-color: #ffffff;
+  --ss-font-color: #4d4d4d;
+  --ss-font-placeholder-color: #8d8d8d;
+  --ss-disabled-color: #dcdee2;
+  --ss-border-color: #dcdee2;
+  --ss-highlight-color: #fffb8c;
+  --ss-success-color: #00b755;
+  --ss-error-color: #dc3545;
+  --ss-focus-color: #5897fb;
+  --ss-border-radius: 4px;
+  --sb-color-gray-600: #4a5565;
+  --sb-color-gray-700: #364153;
+  --sb-color-wp-light-blue-600: #007ca8;
+  --sb-fg-muted: var(--sb-color-gray-700);
+  --sb-focus-ring: var(--sb-color-wp-light-blue-600);
+  --sb-text-secondary: var(--sb-fg-muted);
+  --wp--preset--color--black: #000;
+  --wp--preset--color--cyan-bluish-gray: #abb8c3;
+  --wp--preset--color--white: #fff;
+  --wp--preset--color--pale-pink: #f78da7;
+  --wp--preset--color--vivid-red: #cf2e2e;
+  --wp--preset--color--luminous-vivid-orange: #ff6900;
+  --wp--preset--color--luminous-vivid-amber: #fcb900;
+  --wp--preset--color--light-green-cyan: #7bdcb5;
+  --wp--preset--color--vivid-green-cyan: #00d084;
+  --wp--preset--color--pale-cyan-blue: #8ed1fc;
+  --wp--preset--color--vivid-cyan-blue: #0693e3;
+  --wp--preset--color--vivid-purple: #9b51e0;
+  --swiper-theme-color: #007aff;
+  /* — spacing — */
+  --wp--preset--font-size--normal: 16px;
+  --wp--preset--font-size--huge: 42px;
+  --ss-spacing-l: 7px;
+  --ss-spacing-m: 5px;
+  --ss-spacing-s: 3px;
+  --wp--preset--font-size--small: 13px;
+  --wp--preset--font-size--medium: 20px;
+  --wp--preset--font-size--large: 36px;
+  --wp--preset--font-size--x-large: 42px;
+  --wp--preset--spacing--20: 0.44rem;
+  --wp--preset--spacing--30: 0.67rem;
+  --wp--preset--spacing--40: 1rem;
+  --wp--preset--spacing--50: 1.5rem;
+  --wp--preset--spacing--60: 2.25rem;
+  --wp--preset--spacing--70: 3.38rem;
+  --wp--preset--spacing--80: 5.06rem;
+  --swiper-navigation-size: 44px;
+  /* — typography — */
+  --sb-text-tertiary: var(--sb-fg-subtle);
+  /* — shadows — */
+  --wp--preset--shadow--natural: 6px 6px 9px rgba(0, 0, 0, 0.2);
+  --wp--preset--shadow--deep: 12px 12px 50px rgba(0, 0, 0, 0.4);
+  --wp--preset--shadow--sharp: 6px 6px 0px rgba(0, 0, 0, 0.2);
+  --wp--preset--shadow--outlined: 6px 6px 0px -3px rgb(255, 255, 255), 6px 6px rgb(0, 0, 0);
+  --wp--preset--shadow--crisp: 6px 6px 0px rgb(0, 0, 0);
+  /* — other — */
+  --wp-editor-canvas-background: #ddd;
+  --ss-main-height: 30px;
+  --ss-content-height: 300px;
+  --ss-animation-timing: 0.2s;
+  --sb-duration-75: 75ms;
+  --sb-duration-100: 100ms;
+  --sb-duration-150: 150ms;
+  --sb-duration-200: 200ms;
+  --sb-duration-300: 300ms;
+  --sb-duration-500: 500ms;
+  --sb-duration-700: 700ms;
+  --sb-duration-1000: 1000ms;
+  --sb-opacity-disabled: 0.5;
+  --sb-fg-subtle: var(--sb-color-gray-600);
+  --wp--preset--aspect-ratio--square: 1;
+  --wp--preset--aspect-ratio--4-3: 4/3;
+  --wp--preset--aspect-ratio--3-4: 3/4;
+  --wp--preset--aspect-ratio--3-2: 3/2;
+  --wp--preset--aspect-ratio--2-3: 2/3;
+  --wp--preset--aspect-ratio--16-9: 16/9;
+  --wp--preset--aspect-ratio--9-16: 9/16;
+  --wp--preset--gradient--vivid-cyan-blue-to-vivid-purple: linear-gradient(135deg,rgb(6,147,227) 0%,rgb(155,81,224) 100%);
+  --wp--preset--gradient--light-green-cyan-to-vivid-green-cyan: linear-gradient(135deg,rgb(122,220,180) 0%,rgb(0,208,130) 100%);
+  --wp--preset--gradient--luminous-vivid-amber-to-luminous-vivid-orange: linear-gradient(135deg,rgb(252,185,0) 0%,rgb(255,105,0) 100%);
+  --wp--preset--gradient--luminous-vivid-orange-to-vivid-red: linear-gradient(135deg,rgb(255,105,0) 0%,rgb(207,46,46) 100%);
+  --wp--preset--gradient--very-light-gray-to-cyan-bluish-gray: linear-gradient(135deg,rgb(238,238,238) 0%,rgb(169,184,195) 100%);
+  --wp--preset--gradient--cool-to-warm-spectrum: linear-gradient(135deg,rgb(74,234,220) 0%,rgb(151,120,209) 20%,rgb(207,42,186) 40%,rgb(238,44,130) 60%,rgb(251,105,98) 80%,rgb(254,248,76) 100%);
+  --wp--preset--gradient--blush-light-purple: linear-gradient(135deg,rgb(255,206,236) 0%,rgb(152,150,240) 100%);
+  --wp--preset--gradient--blush-bordeaux: linear-gradient(135deg,rgb(254,205,165) 0%,rgb(254,45,45) 50%,rgb(107,0,62) 100%);
+  --wp--preset--gradient--luminous-dusk: linear-gradient(135deg,rgb(255,203,112) 0%,rgb(199,81,192) 50%,rgb(65,88,208) 100%);
+  --wp--preset--gradient--pale-ocean: linear-gradient(135deg,rgb(255,245,203) 0%,rgb(182,227,212) 50%,rgb(51,167,181) 100%);
+  --wp--preset--gradient--electric-grass: linear-gradient(135deg,rgb(202,248,128) 0%,rgb(113,206,126) 100%);
+  --wp--preset--gradient--midnight: linear-gradient(135deg,rgb(2,3,129) 0%,rgb(40,116,252) 100%);
+  /* — dependencies — */
+  --wp-bound-block-color: --wp-block-synced-color;
+  --sb-fg-muted: --sb-color-gray-700;
+  --sb-fg-subtle: --sb-color-gray-600;
+  --sb-focus-ring: --sb-color-wp-light-blue-600;
+  --sb-text-secondary: --sb-fg-muted;
+  --sb-text-tertiary: --sb-fg-subtle;
+  /* — semantic — */
+  success: [object Object];
+  warning: [object Object];
+  error: [object Object];
+  info: [object Object];
+
+}

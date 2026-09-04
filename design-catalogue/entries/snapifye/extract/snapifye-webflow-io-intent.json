@@ -1,0 +1,388 @@
+{
+  "pageIntent": {
+    "type": "landing",
+    "confidence": 0.75,
+    "path": "/",
+    "title": "Snapifye - Webflow HTML website template",
+    "description": "Snapifye is a modern Webflow photography template by Flowfye — designed for photographers to showcase portfolios with style, speed, and elegant motion.",
+    "signals": [
+      {
+        "kind": "url",
+        "type": "landing",
+        "weight": 0.45,
+        "detail": "root-path"
+      },
+      {
+        "kind": "shape",
+        "type": "landing",
+        "weight": 0.3,
+        "detail": "features+hero+cta"
+      }
+    ],
+    "alternates": [],
+    "needsSmart": false
+  },
+  "sectionRoles": {
+    "sections": [
+      {
+        "index": 0,
+        "tag": "div",
+        "role": "nav",
+        "subrole": null,
+        "confidence": 0.9,
+        "heading": null,
+        "bounds": {
+          "x": 0,
+          "y": 0,
+          "w": 1280,
+          "h": 64
+        },
+        "buttonCount": 3,
+        "cardCount": 21,
+        "slots": {
+          "ctaCount": 3,
+          "lede": "SNAPIFYE\nClose\nCONTACT"
+        },
+        "needsSmart": false
+      },
+      {
+        "index": 1,
+        "tag": "nav",
+        "role": "nav",
+        "subrole": null,
+        "confidence": 0.9,
+        "heading": null,
+        "bounds": {
+          "x": 0,
+          "y": 0,
+          "w": 0,
+          "h": 0
+        },
+        "buttonCount": 0,
+        "cardCount": 21,
+        "slots": {
+          "lede": "homeaboutSrvicesPortfoliopricingblogContactMade By Flowfye.  Powered by Webflow.Instrgramfacebooklinkedin"
+        },
+        "needsSmart": false
+      },
+      {
+        "index": 2,
+        "tag": "section",
+        "role": "hero",
+        "subrole": null,
+        "confidence": 0.85,
+        "heading": "V\nI\nN\nT\nA\nG\nE",
+        "bounds": {
+          "x": 0,
+          "y": 0,
+          "w": 1280,
+          "h": 2334.78125
+        },
+        "buttonCount": 0,
+        "cardCount": 18,
+        "slots": {
+          "heading": "V\nI\nN\nT\nA\nG\nE",
+          "subheadings": [
+            "T\nH\nR\nO\nU\nG\nH",
+            "L\nE\nN\nS"
+          ],
+          "lede": "OUR PASSIONATE PHOTOGRAPHERS DELIVER STUNNING VISUALS."
+        },
+        "needsSmart": false
+      },
+      {
+        "index": 3,
+        "tag": "main",
+        "role": "testimonial",
+        "subrole": null,
+        "confidence": 0.8,
+        "heading": "AT SNAPIFYE, WE ARE PASSIONATE STORYTELLERS, & CAPTURING TIMELESS MOMENTS WITH A TOUCH OF VINTAGE ELEGANCE.",
+        "bounds": {
+          "x": 0,
+          "y": 2334.78125,
+          "w": 1280,
+          "h": 9289.484375
+        },
+        "buttonCount": 79,
+        "cardCount": 109,
+        "slots": {
+          "heading": "AT SNAPIFYE, WE ARE PASSIONATE STORYTELLERS, & CAPTURING TIMELESS MOMENTS WITH A TOUCH OF VINTAGE ELEGANCE.",
+          "subheadings": [
+            "PHOTOGRAPHY AGENCY ✦ CREATIVE STUDIO ✦ BRANDING EXPERTS ✦ PHOTO & VIDEO SERVICES ✦ VISUAL STORYTELLERS ✦ PHOTOGRAPHY AGENCY",
+            "PHOTOGRAPHY AGENCY ✦ CREATIVE STUDIO ✦ BRANDING EXPERTS ✦ PHOTO & VIDEO SERVICES ✦ VISUAL STORYTELLERS ✦ PHOTOGRAPHY AGENCY",
+            "AT SNAPIFYE, OUR PHILOSOPHY CENTERS ON TRANSFORMING THE DIGITAL LANDSCAPE"
+          ],
+          "ctaCount": 79
+        },
+        "needsSmart": false
+      },
+      {
+        "index": 4,
+        "tag": "section",
+        "role": "content",
+        "subrole": null,
+        "confidence": 0.3,
+        "heading": "AT SNAPIFYE, WE ARE PASSIONATE STORYTELLERS, & CAPTURING TIMELESS MOMENTS WITH A TOUCH OF VINTAGE ELEGANCE.",
+        "bounds": {
+          "x": 0,
+          "y": 2334.78125,
+          "w": 1280,
+          "h": 471.1875
+        },
+        "buttonCount": 0,
+        "cardCount": 0,
+        "slots": {
+          "heading": "AT SNAPIFYE, WE ARE PASSIONATE STORYTELLERS, & CAPTURING TIMELESS MOMENTS WITH A TOUCH OF VINTAGE ELEGANCE."
+        },
+        "needsSmart": true
+      },
+      {
+        "index": 5,
+        "tag": "section",
+        "role": "content",
+        "subrole": null,
+        "confidence": 0.3,
+        "heading": null,
+        "bounds": {
+          "x": 0,
+          "y": 2805.96875,
+          "w": 1280,
+          "h": 24
+        },
+        "buttonCount": 0,
+        "cardCount": 0,
+        "slots": {},
+        "needsSmart": true
+      },
+      {
+        "index": 6,
+        "tag": "section",
+        "role": "content",
+        "subrole": null,
+        "confidence": 0.3,
+        "heading": null,
+        "bounds": {
+          "x": 0,
+          "y": 2829.96875,
+          "w": 1280,
+          "h": 494.375
+        },
+        "buttonCount": 21,
+        "cardCount": 24,
+        "slots": {
+          "ctaCount": 21,
+          "lede": "G\nG\nO\nO\nfor click\n&\n&\nS\nS\nH\nH\nA\nA\nR\nR\nE\nE"
+        },
+        "needsSmart": true
+      },
+      {
+        "index": 7,
+        "tag": "section",
+        "role": "content",
+        "subrole": null,
+        "confidence": 0.3,
+        "heading": null,
+        "bounds": {
+          "x": 0,
+          "y": 3324.34375,
+          "w": 1280,
+          "h": 959
+        },
+        "buttonCount": 0,
+        "cardCount": 2,
+        "slots": {},
+        "needsSmart": true
+      },
+      {
+        "index": 8,
+        "tag": "section",
+        "role": "feature-grid",
+        "subrole": null,
+        "confidence": 0.8,
+        "heading": null,
+        "bounds": {
+          "x": 0,
+          "y": 4283.34375,
+          "w": 1280,
+          "h": 3480.671875
+        },
+        "buttonCount": 42,
+        "cardCount": 56,
+        "slots": {
+          "ctaCount": 42
+        },
+        "needsSmart": false
+      },
+      {
+        "index": 9,
+        "tag": "section",
+        "role": "content",
+        "subrole": null,
+        "confidence": 0.3,
+        "heading": "PHOTOGRAPHY AGENCY ✦ CREATIVE STUDIO ✦ BRANDING EXPERTS ✦ PHOTO & VIDEO SERVICES ✦ VISUAL STORYTELLERS ✦ PHOTOGRAPHY AGENCY",
+        "bounds": {
+          "x": 0,
+          "y": 7764.015625,
+          "w": 1280,
+          "h": 507.1875
+        },
+        "buttonCount": 0,
+        "cardCount": 2,
+        "slots": {
+          "heading": "PHOTOGRAPHY AGENCY ✦ CREATIVE STUDIO ✦ BRANDING EXPERTS ✦ PHOTO & VIDEO SERVICES ✦ VISUAL STORYTELLERS ✦ PHOTOGRAPHY AGENCY",
+          "subheadings": [
+            "PHOTOGRAPHY AGENCY ✦ CREATIVE STUDIO ✦ BRANDING EXPERTS ✦ PHOTO & VIDEO SERVICES ✦ VISUAL STORYTELLERS ✦ PHOTOGRAPHY AGENCY"
+          ],
+          "lede": "PHOTOGRAPHY AGENCY ✦ CREATIVE STUDIO ✦ BRANDING EXPERTS ✦ PHOTO & VIDEO SERVICES ✦ VISUAL STORYTELLERS ✦ PHOTOGRAPHY AGENCY\nPHOTOGRAPHY AGENCY ✦ CREATIVE STUDIO ✦ BRANDING EXPERTS ✦ PHOTO & VIDEO SERVICES ✦ VISUAL STORYTELLERS ✦ PHOTOGRAPHY AGENCY"
+        },
+        "needsSmart": true
+      },
+      {
+        "index": 10,
+        "tag": "section",
+        "role": "hero",
+        "subrole": null,
+        "confidence": 0.85,
+        "heading": "AT SNAPIFYE, OUR PHILOSOPHY CENTERS ON TRANSFORMING THE DIGITAL LANDSCAPE",
+        "bounds": {
+          "x": 0,
+          "y": 8271.203125,
+          "w": 1280,
+          "h": 2000
+        },
+        "buttonCount": 0,
+        "cardCount": 2,
+        "slots": {
+          "heading": "AT SNAPIFYE, OUR PHILOSOPHY CENTERS ON TRANSFORMING THE DIGITAL LANDSCAPE",
+          "lede": "Our passionate photographers deliver stunning visuals.\nAT SNAPIFYE, OUR PHILOSOPHY CENTERS ON TRANSFORMING THE DIGITAL LANDSCAPE"
+        },
+        "needsSmart": false
+      },
+      {
+        "index": 11,
+        "tag": "section",
+        "role": "testimonial",
+        "subrole": null,
+        "confidence": 0.8,
+        "heading": null,
+        "bounds": {
+          "x": 0,
+          "y": 10271.203125,
+          "w": 1280,
+          "h": 777.875
+        },
+        "buttonCount": 0,
+        "cardCount": 6,
+        "slots": {
+          "lede": "\"CAPTURE FLEETING MOMENTS. FRAME MEMORIES WITH STUNNING CLARITY. PHOTOGRAPHY FREEZES TIME AND TURNS LIFE’S BEAUTY INTO FOREVER ART.\"\nVivian Guillen\nFOUNDER & CEO, RED PIXEL"
+        },
+        "needsSmart": false
+      },
+      {
+        "index": 12,
+        "tag": "section",
+        "role": "content",
+        "subrole": null,
+        "confidence": 0.3,
+        "heading": null,
+        "bounds": {
+          "x": 0,
+          "y": 11049.078125,
+          "w": 1280,
+          "h": 24
+        },
+        "buttonCount": 0,
+        "cardCount": 0,
+        "slots": {},
+        "needsSmart": true
+      },
+      {
+        "index": 13,
+        "tag": "section",
+        "role": "content",
+        "subrole": null,
+        "confidence": 0.3,
+        "heading": null,
+        "bounds": {
+          "x": 0,
+          "y": 11073.078125,
+          "w": 1280,
+          "h": 551.1875
+        },
+        "buttonCount": 15,
+        "cardCount": 17,
+        "slots": {
+          "ctaCount": 15,
+          "lede": "get in\nT\nT\nO\nO\nU\nU\nC\nC\nH\nH\nT\nwww.flowfye.com\n+098 765 4321"
+        },
+        "needsSmart": true
+      },
+      {
+        "index": 14,
+        "tag": "section",
+        "role": "pricing",
+        "subrole": null,
+        "confidence": 0.4,
+        "heading": "we're a photo\nS\nH\nO\nO\nT\nI\nN\nG\nA\nN\nD\nV\nI\nN\nT\nA\nG\nE\nV\nI\nS\nU\nA\nL\nS\nT\nU\nD\nI\nO",
+        "bounds": {
+          "x": 0,
+          "y": 11564.265625,
+          "w": 1280,
+          "h": 1011
+        },
+        "buttonCount": 66,
+        "cardCount": 30,
+        "slots": {
+          "heading": "we're a photo\nS\nH\nO\nO\nT\nI\nN\nG\nA\nN\nD\nV\nI\nN\nT\nA\nG\nE\nV\nI\nS\nU\nA\nL\nS\nT\nU\nD\nI\nO",
+          "ctaCount": 66,
+          "lede": "we're a photo\nS\nH\nO\nO\nT\nI\nN\nG\nA\nN\nD\nV\nI\nN\nT\nA\nG\nE\nV\nI\nS\nU\nA\nL\nS\nT\nU\nD\nI\nO\nHOME\nHOME\nABOUT\nABOUT\nSERVICE\nSERVICE\nCONTACT\nCONTACT\nPORTFOLIO\nPORTFOLIO\nPRICING\nPRICING\nBLOG\nBLOG\n404\n404\nSTYLE GUIDE\nSTYLE GUIDE\nLICENSES\nLICENSES\nCHANGELOG\nCHANGELOG\n© ALL RIGHTS RESERVED. FLOWFYE.  POWERED BY WEBFLOW.\nINSTRGRAM\nLINKEDIN\nFACEBOOK"
+        },
+        "needsSmart": true
+      },
+      {
+        "index": 15,
+        "tag": "section",
+        "role": "content",
+        "subrole": null,
+        "confidence": 0.3,
+        "heading": null,
+        "bounds": {
+          "x": 40,
+          "y": 12440.265625,
+          "w": 1200,
+          "h": 24
+        },
+        "buttonCount": 0,
+        "cardCount": 0,
+        "slots": {},
+        "needsSmart": true
+      }
+    ],
+    "counts": {
+      "nav": 2,
+      "hero": 2,
+      "testimonial": 2,
+      "content": 8,
+      "feature-grid": 1,
+      "pricing": 1
+    },
+    "readingOrder": [
+      "nav",
+      "nav",
+      "hero",
+      "testimonial",
+      "content",
+      "content",
+      "content",
+      "content",
+      "feature-grid",
+      "content",
+      "hero",
+      "testimonial",
+      "content",
+      "content",
+      "pricing",
+      "content"
+    ]
+  }
+}

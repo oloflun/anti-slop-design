@@ -1,0 +1,168 @@
+{
+  "$metadata": {
+    "generator": "designlang",
+    "version": "7.0.0",
+    "spec": "https://design-tokens.github.io/community-group/format/",
+    "source": "https://apolloworkspace.com",
+    "generatedAt": "2026-09-04T00:45:08.284Z"
+  },
+  "primitive": {
+    "color": {
+      "brand": {
+        "primary": {
+          "$value": "#e97451",
+          "$type": "color"
+        },
+        "secondary": {
+          "$value": "#2d0f06",
+          "$type": "color"
+        }
+      },
+      "neutral": {
+        "n100": {
+          "$value": "#f9f8f0",
+          "$type": "color"
+        },
+        "n200": {
+          "$value": "#0c0503",
+          "$type": "color"
+        },
+        "n300": {
+          "$value": "#6f675e",
+          "$type": "color"
+        },
+        "n400": {
+          "$value": "#e1dccf",
+          "$type": "color"
+        }
+      },
+      "background": {
+        "bg0": {
+          "$value": "#e1dccf",
+          "$type": "color"
+        },
+        "bg1": {
+          "$value": "#0c0503",
+          "$type": "color"
+        },
+        "bg2": {
+          "$value": "#2d0f06",
+          "$type": "color"
+        },
+        "bg3": {
+          "$value": "#070100",
+          "$type": "color"
+        },
+        "bg4": {
+          "$value": "#918037",
+          "$type": "color"
+        }
+      },
+      "text": {
+        "text0": {
+          "$value": "#3c261c",
+          "$type": "color"
+        },
+        "text1": {
+          "$value": "#e97451",
+          "$type": "color"
+        },
+        "text2": {
+          "$value": "#f9f8f0",
+          "$type": "color"
+        },
+        "text3": {
+          "$value": "#f2efde",
+          "$type": "color"
+        },
+        "text4": {
+          "$value": "#0c0503",
+          "$type": "color"
+        },
+        "text5": {
+          "$value": "#6f675e",
+          "$type": "color"
+        }
+      }
+    },
+    "spacing": {
+      "s0": {
+        "$value": "8px",
+        "$type": "dimension"
+      },
+      "s1": {
+        "$value": "64px",
+        "$type": "dimension"
+      },
+      "s2": {
+        "$value": "112px",
+        "$type": "dimension"
+      },
+      "s3": {
+        "$value": "207px",
+        "$type": "dimension"
+      }
+    },
+    "radius": {},
+    "shadow": {},
+    "fontFamily": {
+      "f0": {
+        "$value": "Mona Sans",
+        "$type": "fontFamily"
+      },
+      "f1": {
+        "$value": "paradigm-pro",
+        "$type": "fontFamily"
+      }
+    }
+  },
+  "semantic": {
+    "color": {
+      "action": {
+        "primary": {
+          "$value": "{primitive.color.brand.primary}",
+          "$type": "color"
+        },
+        "secondary": {
+          "$value": "{primitive.color.brand.secondary}",
+          "$type": "color"
+        }
+      },
+      "surface": {
+        "default": {
+          "$value": "{primitive.color.background.bg0}",
+          "$type": "color"
+        }
+      },
+      "text": {
+        "body": {
+          "$value": "{primitive.color.text.text0}",
+          "$type": "color"
+        }
+      }
+    },
+    "typography": {
+      "body": {
+        "$value": {
+          "fontFamily": "Mona Sans",
+          "fontSize": "72px",
+          "fontWeight": "300",
+          "lineHeight": "75.6px"
+        },
+        "$type": "typography"
+      }
+    },
+    "radius": {
+      "control": {
+        "$value": "{primitive.radius.r0}",
+        "$type": "dimension"
+      }
+    },
+    "shadow": {
+      "elevated": {
+        "$value": "{primitive.shadow.sh0}",
+        "$type": "shadow"
+      }
+    }
+  }
+}

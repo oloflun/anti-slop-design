@@ -1,0 +1,18 @@
+/* shadcn/ui Theme — extracted from https://apolloworkspace.com */
+/* Paste into your globals.css */
+
+@layer base {
+  :root {
+    --background: 43 23% 85%;
+    --foreground: 19 36% 17%;
+    --primary: 14 78% 62%;
+    --primary-foreground: 0 0% 100%;
+    --secondary: 14 76% 10%;
+    --secondary-foreground: 0 0% 100%;
+    --accent: 49 45% 39%;
+    --accent-foreground: 0 0% 100%;
+    --muted: 43 23% 85%;
+    --muted-foreground: 53 43% 96%;
+    --border: 43 23% 85%;
+  }
+}

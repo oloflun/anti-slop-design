@@ -1,0 +1,226 @@
+{
+  "$metadata": {
+    "generator": "designlang",
+    "version": "7.0.0",
+    "spec": "https://design-tokens.github.io/community-group/format/",
+    "source": "https://orixstudio.framer.website/",
+    "generatedAt": "2026-09-04T00:56:46.390Z"
+  },
+  "primitive": {
+    "color": {
+      "brand": {
+        "primary": {
+          "$value": "#df0203",
+          "$type": "color"
+        },
+        "secondary": {
+          "$value": "#0000ee",
+          "$type": "color"
+        }
+      },
+      "neutral": {
+        "n100": {
+          "$value": "#000000",
+          "$type": "color"
+        },
+        "n200": {
+          "$value": "#ffffff",
+          "$type": "color"
+        },
+        "n300": {
+          "$value": "#646464",
+          "$type": "color"
+        },
+        "n400": {
+          "$value": "#767676",
+          "$type": "color"
+        },
+        "n500": {
+          "$value": "#3d3d3d",
+          "$type": "color"
+        },
+        "n600": {
+          "$value": "#d6d6d6",
+          "$type": "color"
+        }
+      },
+      "background": {
+        "bg0": {
+          "$value": "#ffffff",
+          "$type": "color"
+        },
+        "bg1": {
+          "$value": "#000000",
+          "$type": "color"
+        },
+        "bg2": {
+          "$value": "#3d3d3d",
+          "$type": "color"
+        },
+        "bg3": {
+          "$value": "#f7f7f7",
+          "$type": "color"
+        }
+      },
+      "text": {
+        "text0": {
+          "$value": "#000000",
+          "$type": "color"
+        },
+        "text1": {
+          "$value": "#0000ee",
+          "$type": "color"
+        },
+        "text2": {
+          "$value": "#ffffff",
+          "$type": "color"
+        },
+        "text3": {
+          "$value": "#3d3d3d",
+          "$type": "color"
+        },
+        "text4": {
+          "$value": "#646464",
+          "$type": "color"
+        }
+      }
+    },
+    "spacing": {
+      "s0": {
+        "$value": "1px",
+        "$type": "dimension"
+      },
+      "s1": {
+        "$value": "20px",
+        "$type": "dimension"
+      },
+      "s2": {
+        "$value": "32px",
+        "$type": "dimension"
+      },
+      "s3": {
+        "$value": "54px",
+        "$type": "dimension"
+      },
+      "s4": {
+        "$value": "64px",
+        "$type": "dimension"
+      },
+      "s5": {
+        "$value": "80px",
+        "$type": "dimension"
+      },
+      "s6": {
+        "$value": "100px",
+        "$type": "dimension"
+      },
+      "s7": {
+        "$value": "130px",
+        "$type": "dimension"
+      },
+      "s8": {
+        "$value": "200px",
+        "$type": "dimension"
+      }
+    },
+    "radius": {
+      "r0": {
+        "$value": "10px",
+        "$type": "dimension"
+      },
+      "r1": {
+        "$value": "16px",
+        "$type": "dimension"
+      },
+      "r2": {
+        "$value": "50px",
+        "$type": "dimension"
+      },
+      "r3": {
+        "$value": "999px",
+        "$type": "dimension"
+      }
+    },
+    "shadow": {
+      "sh0": {
+        "$value": "rgb(0, 0, 0) 0px 0px 0px 1px inset",
+        "$type": "shadow"
+      },
+      "sh1": {
+        "$value": "rgba(0, 0, 0, 0.14) 0px 0.711334px 0.711334px -0.55px, rgba(0, 0, 0, 0.14) 0px 1.93715px 1.93715px -1.1px, rgba(0, 0, 0, 0.13) 0px 4.25328px 4.25328px -1.65px, rgba(0, 0, 0, 0.13) 0px 9.44132px 9.44132px -2.2px, rgba(0, 0, 0, 0.11) 0px 24px 24px -2.75px",
+        "$type": "shadow"
+      },
+      "sh2": {
+        "$value": "rgba(0, 0, 0, 0.17) 0px 0.602187px 1.56569px -1.5px, rgba(0, 0, 0, 0.14) 0px 2.28853px 5.95019px -3px, rgba(0, 0, 0, 0.02) 0px 10px 26px -4.5px",
+        "$type": "shadow"
+      }
+    },
+    "fontFamily": {
+      "f0": {
+        "$value": "Inter Display",
+        "$type": "fontFamily"
+      },
+      "f1": {
+        "$value": "Instrument Sans",
+        "$type": "fontFamily"
+      },
+      "f2": {
+        "$value": "Times New Roman",
+        "$type": "fontFamily"
+      },
+      "f3": {
+        "$value": "Open Sauce One",
+        "$type": "fontFamily"
+      }
+    }
+  },
+  "semantic": {
+    "color": {
+      "action": {
+        "primary": {
+          "$value": "{primitive.color.brand.primary}",
+          "$type": "color"
+        },
+        "secondary": {
+          "$value": "{primitive.color.brand.secondary}",
+          "$type": "color"
+        }
+      },
+      "surface": {
+        "default": {
+          "$value": "{primitive.color.background.bg0}",
+          "$type": "color"
+        }
+      },
+      "text": {
+        "body": {
+          "$value": "{primitive.color.text.text0}",
+          "$type": "color"
+        }
+      }
+    },
+    "typography": {
+      "body": {
+        "$value": {
+          "fontFamily": "Inter Display",
+          "fontSize": "180px",
+          "fontWeight": "500",
+          "lineHeight": "162px"
+        },
+        "$type": "typography"
+      }
+    },
+    "radius": {
+      "control": {
+        "$value": "{primitive.radius.r0}",
+        "$type": "dimension"
+      }
+    },
+    "shadow": {
+      "elevated": {
+        "$value": "{primitive.shadow.sh0}",
+        "$type": "shadow"
+      }
+    }
+  }
+}

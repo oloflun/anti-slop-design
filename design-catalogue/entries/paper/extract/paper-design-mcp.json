@@ -1,0 +1,577 @@
+{
+  "colors": {
+    "all": [
+      {
+        "hex": "#000000",
+        "rgb": {
+          "r": 0,
+          "g": 0,
+          "b": 0,
+          "a": 0.8
+        },
+        "hsl": {
+          "h": 0,
+          "s": 0,
+          "l": 0
+        },
+        "count": 4358,
+        "contexts": [
+          "text",
+          "border",
+          "background"
+        ]
+      },
+      {
+        "hex": "#1e2126",
+        "rgb": {
+          "r": 30,
+          "g": 33,
+          "b": 38,
+          "a": 1
+        },
+        "hsl": {
+          "h": 218,
+          "s": 12,
+          "l": 13
+        },
+        "count": 778,
+        "contexts": [
+          "text",
+          "border",
+          "background"
+        ]
+      },
+      {
+        "hex": "#373a40",
+        "rgb": {
+          "r": 55,
+          "g": 58,
+          "b": 64,
+          "a": 1
+        },
+        "hsl": {
+          "h": 220,
+          "s": 8,
+          "l": 23
+        },
+        "count": 544,
+        "contexts": [
+          "text",
+          "border"
+        ]
+      },
+      {
+        "hex": "#b7babf",
+        "rgb": {
+          "r": 183,
+          "g": 186,
+          "b": 191,
+          "a": 1
+        },
+        "hsl": {
+          "h": 218,
+          "s": 6,
+          "l": 73
+        },
+        "count": 192,
+        "contexts": [
+          "background",
+          "border",
+          "text"
+        ]
+      },
+      {
+        "hex": "#585c62",
+        "rgb": {
+          "r": 88,
+          "g": 92,
+          "b": 98,
+          "a": 1
+        },
+        "hsl": {
+          "h": 216,
+          "s": 5,
+          "l": 36
+        },
+        "count": 141,
+        "contexts": [
+          "text",
+          "border",
+          "background"
+        ]
+      },
+      {
+        "hex": "#82858b",
+        "rgb": {
+          "r": 130,
+          "g": 133,
+          "b": 139,
+          "a": 1
+        },
+        "hsl": {
+          "h": 220,
+          "s": 4,
+          "l": 53
+        },
+        "count": 127,
+        "contexts": [
+          "border",
+          "background"
+        ]
+      },
+      {
+        "hex": "#797979",
+        "rgb": {
+          "r": 121,
+          "g": 121,
+          "b": 121,
+          "a": 1
+        },
+        "hsl": {
+          "h": 0,
+          "s": 0,
+          "l": 47
+        },
+        "count": 120,
+        "contexts": [
+          "text",
+          "border"
+        ]
+      },
+      {
+        "hex": "#ebedef",
+        "rgb": {
+          "r": 235,
+          "g": 237,
+          "b": 239,
+          "a": 1
+        },
+        "hsl": {
+          "h": 210,
+          "s": 11,
+          "l": 93
+        },
+        "count": 109,
+        "contexts": [
+          "background",
+          "border",
+          "text"
+        ]
+      },
+      {
+        "hex": "#959595",
+        "rgb": {
+          "r": 149,
+          "g": 149,
+          "b": 149,
+          "a": 1
+        },
+        "hsl": {
+          "h": 0,
+          "s": 0,
+          "l": 58
+        },
+        "count": 72,
+        "contexts": [
+          "text",
+          "border"
+        ]
+      },
+      {
+        "hex": "#ffffff",
+        "rgb": {
+          "r": 255,
+          "g": 255,
+          "b": 255,
+          "a": 1
+        },
+        "hsl": {
+          "h": 0,
+          "s": 0,
+          "l": 100
+        },
+        "count": 31,
+        "contexts": [
+          "background",
+          "text",
+          "border"
+        ]
+      },
+      {
+        "hex": "#3d7cff",
+        "rgb": {
+          "r": 61,
+          "g": 124,
+          "b": 255,
+          "a": 1
+        },
+        "hsl": {
+          "h": 221,
+          "s": 100,
+          "l": 62
+        },
+        "count": 8,
+        "contexts": [
+          "background"
+        ]
+      },
+      {
+        "hex": "#0fa821",
+        "rgb": {
+          "r": 15,
+          "g": 168,
+          "b": 33,
+          "a": 1
+        },
+        "hsl": {
+          "h": 127,
+          "s": 84,
+          "l": 36
+        },
+        "count": 2,
+        "contexts": [
+          "text",
+          "border"
+        ]
+      },
+      {
+        "hex": "#4d94fb",
+        "rgb": {
+          "r": 77,
+          "g": 148,
+          "b": 251,
+          "a": 1
+        },
+        "hsl": {
+          "h": 216,
+          "s": 96,
+          "l": 64
+        },
+        "count": 1,
+        "contexts": [
+          "background"
+        ]
+      }
+    ]
+  },
+  "regions": [
+    {
+      "role": "nav",
+      "tag": "nav",
+      "bounds": {
+        "x": 0,
+        "y": 0,
+        "w": 1265,
+        "h": 61
+      },
+      "heading": null,
+      "buttonCount": 1,
+      "cardCount": 6,
+      "className": "fixed top-0 left-1/2 z-50 h-61 w-full -translate-x-1/2 bg-paper dark:bg-black min-[880px]:bg-transparent ease-out duration-100 max-[799px]:transition-shadow min-[880px]:transition-[background-color,box-shadow] max-[799px]:shadow-[0_1px_0_0_transparent] max-[799px]:data-[scrolled=true]:shadow-[0_1px_0_0_rgba(0,0,0,0.08)] min-[880px]:shadow-[0_1px_0_0_transparent] min-[880px]:data-[scrolled=true]:shadow-[0_1px_0_0_rgba(0,0,0,0.08)]  "
+    },
+    {
+      "role": "content",
+      "tag": "main",
+      "bounds": {
+        "x": 0,
+        "y": 0,
+        "w": 1265,
+        "h": 8583.609375
+      },
+      "heading": "design incredible",
+      "buttonCount": 42,
+      "cardCount": 79,
+      "className": "main-layer min-h-dvh w-full overflow-clip bg-cream dark:bg-off-black"
+    },
+    {
+      "role": "content",
+      "tag": "section",
+      "bounds": {
+        "x": 0,
+        "y": 60,
+        "w": 1265,
+        "h": 962.609375
+      },
+      "heading": "design incredible",
+      "buttonCount": 17,
+      "cardCount": 5,
+      "className": "flex w-full flex-col items-center"
+    },
+    {
+      "role": "footer",
+      "tag": "footer",
+      "bounds": {
+        "x": 0,
+        "y": 8583.609375,
+        "w": 1265,
+        "h": 728
+      },
+      "heading": null,
+      "buttonCount": 2,
+      "cardCount": 0,
+      "className": "footer-module__CJ3Cea__Root"
+    }
+  ],
+  "componentClusters": [
+    {
+      "kind": "button",
+      "structuralHash": "div>svg",
+      "instanceCount": 25,
+      "variants": [
+        {
+          "css": {
+            "background": "rgba(0, 0, 0, 0)",
+            "color": "rgba(0, 0, 0, 0.8)",
+            "padding": "0px 0px 0px 0px",
+            "borderRadius": "5px",
+            "border": "0px solid rgba(0, 0, 0, 0.8)",
+            "fontSize": "12px",
+            "fontWeight": "400"
+          },
+          "instanceCount": 25
+        }
+      ]
+    },
+    {
+      "kind": "button",
+      "structuralHash": "div>div",
+      "instanceCount": 1,
+      "variants": [
+        {
+          "css": {
+            "background": "rgba(0, 0, 0, 0)",
+            "color": "rgba(0, 0, 0, 0.8)",
+            "padding": "0px 0px 0px 0px",
+            "borderRadius": "5px",
+            "border": "0px solid rgba(0, 0, 0, 0.8)",
+            "fontSize": "12px",
+            "fontWeight": "400"
+          },
+          "instanceCount": 1
+        }
+      ]
+    },
+    {
+      "kind": "card",
+      "structuralHash": "div>div>div>a",
+      "instanceCount": 1,
+      "variants": [
+        {
+          "css": {
+            "background": "rgba(0, 0, 0, 0)",
+            "color": "lab(8.244 0 -0.00000298023)",
+            "padding": "40px 40px 40px 40px",
+            "borderRadius": "0px",
+            "border": "0px solid lab(8.244 0 -0.00000298023)",
+            "fontSize": "18px",
+            "fontWeight": "400"
+          },
+          "instanceCount": 1
+        }
+      ]
+    },
+    {
+      "kind": "button",
+      "structuralHash": "button>div",
+      "instanceCount": 4,
+      "variants": [
+        {
+          "css": {
+            "background": "rgba(0, 0, 0, 0)",
+            "color": "lab(8.244 0 -0.00000298023)",
+            "padding": "0px 0px 0px 0px",
+            "borderRadius": "0px",
+            "border": "0px none lab(8.244 0 -0.00000298023)",
+            "fontSize": "18px",
+            "fontWeight": "400"
+          },
+          "instanceCount": 4
+        }
+      ]
+    },
+    {
+      "kind": "card",
+      "structuralHash": "div>p>h2>p",
+      "instanceCount": 3,
+      "variants": [
+        {
+          "css": {
+            "background": "rgba(0, 0, 0, 0)",
+            "color": "lab(8.244 0 -0.00000298023)",
+            "padding": "40px 40px 40px 40px",
+            "borderRadius": "0px",
+            "border": "0px solid lab(8.244 0 -0.00000298023)",
+            "fontSize": "18px",
+            "fontWeight": "400"
+          },
+          "instanceCount": 3
+        }
+      ]
+    },
+    {
+      "kind": "button",
+      "structuralHash": "button>img",
+      "instanceCount": 12,
+      "variants": [
+        {
+          "css": {
+            "background": "rgba(0, 0, 0, 0)",
+            "color": "lab(8.244 0 -0.00000298023)",
+            "padding": "0px 0px 0px 0px",
+            "borderRadius": "0px",
+            "border": "0px none lab(8.244 0 -0.00000298023)",
+            "fontSize": "18px",
+            "fontWeight": "400"
+          },
+          "instanceCount": 12
+        }
+      ]
+    },
+    {
+      "kind": "card",
+      "structuralHash": "div>div",
+      "instanceCount": 8,
+      "variants": [
+        {
+          "css": {
+            "background": "rgba(0, 0, 0, 0)",
+            "color": "lab(8.244 0 -0.00000298023)",
+            "padding": "40px 40px 40px 40px",
+            "borderRadius": "0px",
+            "border": "0px solid lab(8.244 0 -0.00000298023)",
+            "fontSize": "18px",
+            "fontWeight": "400"
+          },
+          "instanceCount": 8
+        }
+      ]
+    },
+    {
+      "kind": "card",
+      "structuralHash": "div>p>h2>p>a",
+      "instanceCount": 1,
+      "variants": [
+        {
+          "css": {
+            "background": "rgba(0, 0, 0, 0)",
+            "color": "lab(8.244 0 -0.00000298023)",
+            "padding": "40px 40px 40px 40px",
+            "borderRadius": "0px",
+            "border": "0px solid lab(8.244 0 -0.00000298023)",
+            "fontSize": "18px",
+            "fontWeight": "400"
+          },
+          "instanceCount": 1
+        }
+      ]
+    },
+    {
+      "kind": "card",
+      "structuralHash": "div>div>a",
+      "instanceCount": 3,
+      "variants": [
+        {
+          "css": {
+            "background": "lab(98.8967 -0.385851 1.42193)",
+            "color": "lab(8.244 0 -0.00000298023)",
+            "padding": "40px 40px 40px 40px",
+            "borderRadius": "0px",
+            "border": "0px solid lab(8.244 0 -0.00000298023)",
+            "fontSize": "18px",
+            "fontWeight": "400"
+          },
+          "instanceCount": 3
+        }
+      ]
+    },
+    {
+      "kind": "card",
+      "structuralHash": "div>a",
+      "instanceCount": 2,
+      "variants": [
+        {
+          "css": {
+            "background": "lab(98.8967 -0.385851 1.42193)",
+            "color": "lab(8.244 0 -0.00000298023)",
+            "padding": "0px 0px 0px 0px",
+            "borderRadius": "0px",
+            "border": "0px solid lab(8.244 0 -0.00000298023)",
+            "fontSize": "18px",
+            "fontWeight": "400"
+          },
+          "instanceCount": 2
+        }
+      ]
+    },
+    {
+      "kind": "button",
+      "structuralHash": "button>span>span",
+      "instanceCount": 1,
+      "variants": [
+        {
+          "css": {
+            "background": "rgba(0, 0, 0, 0)",
+            "color": "lab(8.244 0 -0.00000298023)",
+            "padding": "0px 0px 0px 0px",
+            "borderRadius": "0px",
+            "border": "0px none lab(8.244 0 -0.00000298023)",
+            "fontSize": "18px",
+            "fontWeight": "400"
+          },
+          "instanceCount": 1
+        }
+      ]
+    }
+  ],
+  "accessibility": {
+    "remediation": []
+  },
+  "cssHealth": {
+    "sheets": [
+      {
+        "url": "https://paper.design/_next/static/chunks/f241aa1fde1d39a2.css?dpl=dpl_3kFUjz3AecPFbKRe2tR4CqCM4Roz",
+        "totalBytes": 5485,
+        "usedBytes": 4181,
+        "unusedBytes": 1304,
+        "unusedPercent": 24
+      },
+      {
+        "url": "https://paper.design/_next/static/chunks/7a063f7166b74219.css?dpl=dpl_3kFUjz3AecPFbKRe2tR4CqCM4Roz",
+        "totalBytes": 110487,
+        "usedBytes": 93209,
+        "unusedBytes": 17278,
+        "unusedPercent": 16
+      }
+    ],
+    "totalBytes": 115972,
+    "usedBytes": 97390,
+    "unusedBytes": 18582,
+    "unusedPercent": 16,
+    "importantCount": 25,
+    "duplicates": 1057,
+    "vendorPrefixes": {
+      "webkit": 61,
+      "moz": 6,
+      "ms": 0,
+      "o": 0
+    },
+    "keyframes": [],
+    "specificity": {
+      "max": [
+        1,
+        5,
+        6
+      ],
+      "average": [
+        0.01,
+        1.36,
+        0.27
+      ],
+      "count": 1401
+    },
+    "issues": [
+      "25 !important rules",
+      "1057 duplicate declarations"
+    ]
+  }
+}

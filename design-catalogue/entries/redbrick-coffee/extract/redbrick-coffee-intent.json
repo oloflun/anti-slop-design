@@ -1,0 +1,350 @@
+{
+  "pageIntent": {
+    "type": "landing",
+    "confidence": 0.29,
+    "path": "/",
+    "title": "Redbrick Coffee",
+    "description": "For Coffee Drinkers. Specialty coffee proudly roasted in Canberra.",
+    "signals": [
+      {
+        "kind": "dom",
+        "type": "legal",
+        "weight": 0.4
+      },
+      {
+        "kind": "url",
+        "type": "landing",
+        "weight": 0.45,
+        "detail": "root-path"
+      }
+    ],
+    "alternates": [
+      {
+        "type": "legal",
+        "score": 0.4
+      }
+    ],
+    "needsSmart": true
+  },
+  "sectionRoles": {
+    "sections": [
+      {
+        "index": 0,
+        "tag": "nav",
+        "role": "nav",
+        "subrole": null,
+        "confidence": 0.9,
+        "heading": null,
+        "bounds": {
+          "x": 318,
+          "y": 55,
+          "w": 735.328125,
+          "h": 50
+        },
+        "buttonCount": 0,
+        "cardCount": 8,
+        "slots": {
+          "lede": "Shop\nSubscriptions\nStores\nEquipment"
+        },
+        "needsSmart": false
+      },
+      {
+        "index": 1,
+        "tag": "section",
+        "role": "content",
+        "subrole": null,
+        "confidence": 0.3,
+        "heading": null,
+        "bounds": {
+          "x": 0,
+          "y": 0,
+          "w": 0,
+          "h": 0
+        },
+        "buttonCount": 0,
+        "cardCount": 34,
+        "slots": {},
+        "needsSmart": true
+      },
+      {
+        "index": 2,
+        "tag": "main",
+        "role": "pricing-table",
+        "subrole": null,
+        "confidence": 0.9,
+        "heading": "For Coffee Drinkers",
+        "bounds": {
+          "x": 0,
+          "y": 0,
+          "w": 1280,
+          "h": 4691.34375
+        },
+        "buttonCount": 10,
+        "cardCount": 37,
+        "slots": {
+          "heading": "For Coffee Drinkers",
+          "subheadings": [
+            "Blends",
+            "Coffee Coffee",
+            "Pods for all drinkers",
+            "Singles"
+          ],
+          "ctaCount": 10,
+          "lede": "Free Shipping on orders over $70\nFor Coffee Drinkers\nAbout\nWholesale\nOffice Coffee\nContact\nFor Coffee Drinkers\nBlends\nShop blends"
+        },
+        "needsSmart": false
+      },
+      {
+        "index": 3,
+        "tag": "section",
+        "role": "content",
+        "subrole": null,
+        "confidence": 0.3,
+        "heading": "For Coffee Drinkers",
+        "bounds": {
+          "x": 0,
+          "y": 64,
+          "w": 1280,
+          "h": 595
+        },
+        "buttonCount": 0,
+        "cardCount": 0,
+        "slots": {
+          "heading": "For Coffee Drinkers"
+        },
+        "needsSmart": true
+      },
+      {
+        "index": 4,
+        "tag": "section",
+        "role": "gallery",
+        "subrole": null,
+        "confidence": 0.7,
+        "heading": "Blends",
+        "bounds": {
+          "x": 0,
+          "y": 659,
+          "w": 1280,
+          "h": 379
+        },
+        "buttonCount": 1,
+        "cardCount": 5,
+        "slots": {
+          "heading": "Blends",
+          "ctaCount": 1,
+          "lede": "Blends\nShop blends"
+        },
+        "needsSmart": false
+      },
+      {
+        "index": 5,
+        "tag": "section",
+        "role": "content",
+        "subrole": null,
+        "confidence": 0.3,
+        "heading": "Coffee Coffee",
+        "bounds": {
+          "x": 0,
+          "y": 1038,
+          "w": 1280,
+          "h": 625.859375
+        },
+        "buttonCount": 1,
+        "cardCount": 0,
+        "slots": {
+          "heading": "Coffee Coffee",
+          "subheadings": [
+            "Pods for all drinkers"
+          ],
+          "ctaCount": 1,
+          "lede": "Coffee Coffee\nStock up\nPods for all drinkers"
+        },
+        "needsSmart": true
+      },
+      {
+        "index": 6,
+        "tag": "section",
+        "role": "gallery",
+        "subrole": null,
+        "confidence": 0.7,
+        "heading": "Singles",
+        "bounds": {
+          "x": 0,
+          "y": 1663.859375,
+          "w": 1280,
+          "h": 409
+        },
+        "buttonCount": 1,
+        "cardCount": 5,
+        "slots": {
+          "heading": "Singles",
+          "ctaCount": 1,
+          "lede": "Singles\nShop singles"
+        },
+        "needsSmart": false
+      },
+      {
+        "index": 7,
+        "tag": "section",
+        "role": "content",
+        "subrole": null,
+        "confidence": 0.3,
+        "heading": "Subscriptions",
+        "bounds": {
+          "x": 0,
+          "y": 2072.859375,
+          "w": 1280,
+          "h": 491.90625
+        },
+        "buttonCount": 1,
+        "cardCount": 0,
+        "slots": {
+          "heading": "Subscriptions",
+          "subheadings": [
+            "Coffee Subscriptions"
+          ],
+          "ctaCount": 1,
+          "lede": "Subscriptions\nShop All\nCoffee Subscriptions"
+        },
+        "needsSmart": true
+      },
+      {
+        "index": 8,
+        "tag": "section",
+        "role": "gallery",
+        "subrole": null,
+        "confidence": 0.7,
+        "heading": "Winter Drop",
+        "bounds": {
+          "x": 0,
+          "y": 2564.765625,
+          "w": 1280,
+          "h": 409
+        },
+        "buttonCount": 3,
+        "cardCount": 19,
+        "slots": {
+          "heading": "Winter Drop",
+          "ctaCount": 3,
+          "lede": "Winter Drop\nShop Merch\nPrevious"
+        },
+        "needsSmart": false
+      },
+      {
+        "index": 9,
+        "tag": "section",
+        "role": "cta",
+        "subrole": null,
+        "confidence": 0.75,
+        "heading": "Home Espresso",
+        "bounds": {
+          "x": 0,
+          "y": 2973.765625,
+          "w": 1280,
+          "h": 699.8125
+        },
+        "buttonCount": 1,
+        "cardCount": 0,
+        "slots": {
+          "heading": "Home Espresso",
+          "subheadings": [
+            "2 hours for years of better coffee"
+          ],
+          "ctaCount": 1,
+          "lede": "Home Espresso\nLearn More\n2 hours for years of better coffee"
+        },
+        "needsSmart": false
+      },
+      {
+        "index": 10,
+        "tag": "section",
+        "role": "content",
+        "subrole": null,
+        "confidence": 0.3,
+        "heading": "Wholesale",
+        "bounds": {
+          "x": 0,
+          "y": 3673.578125,
+          "w": 1280,
+          "h": 773.765625
+        },
+        "buttonCount": 1,
+        "cardCount": 0,
+        "slots": {
+          "heading": "Wholesale",
+          "subheadings": [
+            "Have a cafe? Or just need lots of coffee?"
+          ],
+          "ctaCount": 1,
+          "lede": "Wholesale\nEnquire\nHave a cafe? Or just need lots of coffee?"
+        },
+        "needsSmart": true
+      },
+      {
+        "index": 11,
+        "tag": "section",
+        "role": "content",
+        "subrole": null,
+        "confidence": 0.3,
+        "heading": "Subscribe to get 10% off.",
+        "bounds": {
+          "x": 0,
+          "y": 4447.34375,
+          "w": 1280,
+          "h": 244
+        },
+        "buttonCount": 1,
+        "cardCount": 0,
+        "slots": {
+          "heading": "Subscribe to get 10% off.",
+          "ctaCount": 1,
+          "lede": "Subscribe to get 10% off.\nReveal Code"
+        },
+        "needsSmart": true
+      },
+      {
+        "index": 12,
+        "tag": "footer",
+        "role": "footer",
+        "subrole": null,
+        "confidence": 0.95,
+        "heading": null,
+        "bounds": {
+          "x": 0,
+          "y": 4691.34375,
+          "w": 1280,
+          "h": 371.5
+        },
+        "buttonCount": 0,
+        "cardCount": 14,
+        "slots": {
+          "lede": "Location"
+        },
+        "needsSmart": false
+      }
+    ],
+    "counts": {
+      "nav": 1,
+      "content": 6,
+      "pricing-table": 1,
+      "gallery": 3,
+      "cta": 1,
+      "footer": 1
+    },
+    "readingOrder": [
+      "content",
+      "pricing-table",
+      "nav",
+      "content",
+      "gallery",
+      "content",
+      "gallery",
+      "content",
+      "gallery",
+      "cta",
+      "content",
+      "content",
+      "footer"
+    ]
+  }
+}

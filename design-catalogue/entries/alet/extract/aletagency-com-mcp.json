@@ -1,0 +1,264 @@
+{
+  "colors": {
+    "all": [
+      {
+        "hex": "#000000",
+        "rgb": {
+          "r": 0,
+          "g": 0,
+          "b": 0,
+          "a": 1
+        },
+        "hsl": {
+          "h": 0,
+          "s": 0,
+          "l": 0
+        },
+        "count": 867,
+        "contexts": [
+          "text",
+          "border"
+        ]
+      },
+      {
+        "hex": "#252525",
+        "rgb": {
+          "r": 37,
+          "g": 37,
+          "b": 37,
+          "a": 1
+        },
+        "hsl": {
+          "h": 0,
+          "s": 0,
+          "l": 15
+        },
+        "count": 36,
+        "contexts": [
+          "text",
+          "border",
+          "background"
+        ]
+      },
+      {
+        "hex": "#dc3545",
+        "rgb": {
+          "r": 220,
+          "g": 53,
+          "b": 69,
+          "a": 1
+        },
+        "hsl": {
+          "h": 354,
+          "s": 70,
+          "l": 54
+        },
+        "count": 31,
+        "contexts": [
+          "background"
+        ]
+      },
+      {
+        "hex": "#101010",
+        "rgb": {
+          "r": 16,
+          "g": 16,
+          "b": 16,
+          "a": 1
+        },
+        "hsl": {
+          "h": 0,
+          "s": 0,
+          "l": 6
+        },
+        "count": 16,
+        "contexts": [
+          "text",
+          "border"
+        ]
+      },
+      {
+        "hex": "#ffffff",
+        "rgb": {
+          "r": 255,
+          "g": 255,
+          "b": 255,
+          "a": 1
+        },
+        "hsl": {
+          "h": 0,
+          "s": 0,
+          "l": 100
+        },
+        "count": 4,
+        "contexts": [
+          "text",
+          "border"
+        ]
+      },
+      {
+        "hex": "#e5ddc4",
+        "rgb": {
+          "r": 229,
+          "g": 221,
+          "b": 196,
+          "a": 1
+        },
+        "hsl": {
+          "h": 45,
+          "s": 39,
+          "l": 83
+        },
+        "count": 2,
+        "contexts": [
+          "background"
+        ]
+      },
+      {
+        "hex": "#454545",
+        "rgb": {
+          "r": 69,
+          "g": 69,
+          "b": 69,
+          "a": 1
+        },
+        "hsl": {
+          "h": 0,
+          "s": 0,
+          "l": 27
+        },
+        "count": 2,
+        "contexts": [
+          "border",
+          "background"
+        ]
+      },
+      {
+        "hex": "#a2a093",
+        "rgb": {
+          "r": 162,
+          "g": 160,
+          "b": 147,
+          "a": 1
+        },
+        "hsl": {
+          "h": 52,
+          "s": 7,
+          "l": 61
+        },
+        "count": 1,
+        "contexts": [
+          "background"
+        ]
+      },
+      {
+        "hex": "#bfb5ab",
+        "rgb": {
+          "r": 191,
+          "g": 181,
+          "b": 171,
+          "a": 1
+        },
+        "hsl": {
+          "h": 30,
+          "s": 14,
+          "l": 71
+        },
+        "count": 1,
+        "contexts": [
+          "background"
+        ]
+      }
+    ]
+  },
+  "regions": [
+    {
+      "role": "nav",
+      "tag": "nav",
+      "bounds": {
+        "x": 0,
+        "y": 0,
+        "w": 1280,
+        "h": 48.9375
+      },
+      "heading": null,
+      "buttonCount": 1,
+      "cardCount": 0,
+      "className": "row align-items-center p-1 px-lg-2"
+    },
+    {
+      "role": "content",
+      "tag": "section",
+      "bounds": {
+        "x": 0,
+        "y": 0,
+        "w": 1280,
+        "h": 0
+      },
+      "heading": "ALET Agency is a Copenhagen-based creative studio and production house\nwith storytelling at our core.",
+      "buttonCount": 0,
+      "cardCount": 3,
+      "className": null
+    }
+  ],
+  "componentClusters": [],
+  "accessibility": {
+    "remediation": []
+  },
+  "cssHealth": {
+    "sheets": [
+      {
+        "url": "https://aletagency.com/_nuxt/app.css/207f205.css",
+        "totalBytes": 95177,
+        "usedBytes": 11310,
+        "unusedBytes": 83867,
+        "unusedPercent": 88
+      },
+      {
+        "url": "https://aletagency.com/fonts.css",
+        "totalBytes": 1434,
+        "usedBytes": 0,
+        "unusedBytes": 1434,
+        "unusedPercent": 100
+      },
+      {
+        "url": "D:\\Folder\\codetemp\\vue-toggles\\src\\VueToggles.vue",
+        "totalBytes": 8268,
+        "usedBytes": 524,
+        "unusedBytes": 7744,
+        "unusedPercent": 94
+      }
+    ],
+    "totalBytes": 104879,
+    "usedBytes": 11834,
+    "unusedBytes": 93045,
+    "unusedPercent": 89,
+    "importantCount": 692,
+    "duplicates": 1637,
+    "vendorPrefixes": {
+      "webkit": 28,
+      "moz": 12,
+      "ms": 1,
+      "o": 16
+    },
+    "keyframes": [],
+    "specificity": {
+      "max": [
+        1,
+        5,
+        8
+      ],
+      "average": [
+        0,
+        1.28,
+        0.14
+      ],
+      "count": 1832
+    },
+    "issues": [
+      "692 !important rules",
+      "1637 duplicate declarations",
+      "89% unused CSS"
+    ]
+  }
+}

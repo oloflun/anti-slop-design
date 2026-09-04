@@ -1,0 +1,19 @@
+/* shadcn/ui Theme — extracted from https://deonlibra.com */
+/* Paste into your globals.css */
+
+@layer base {
+  :root {
+    --background: 42 100% 95%;
+    --foreground: 0 0% 0%;
+    --primary: 350 99% 38%;
+    --primary-foreground: 0 0% 100%;
+    --secondary: 42 100% 95%;
+    --secondary-foreground: 0 0% 0%;
+    --accent: 216 94% 53%;
+    --accent-foreground: 0 0% 100%;
+    --muted: 3 92% 95%;
+    --muted-foreground: 0 0% 0%;
+    --border: 0 0% 94%;
+    --radius: 8px;
+  }
+}

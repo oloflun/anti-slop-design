@@ -1,0 +1,112 @@
+{
+  "$schema": "https://schemas.wp.org/trunk/theme.json",
+  "version": 3,
+  "settings": {
+    "color": {
+      "palette": [
+        {
+          "slug": "primary",
+          "color": "#eaff62",
+          "name": "Primary"
+        },
+        {
+          "slug": "secondary",
+          "color": "#377648",
+          "name": "Secondary"
+        },
+        {
+          "slug": "neutral-1",
+          "color": "#000000",
+          "name": "Neutral 1"
+        },
+        {
+          "slug": "bg-377648",
+          "color": "#377648",
+          "name": "Background #377648"
+        }
+      ],
+      "gradients": []
+    },
+    "typography": {
+      "fontFamilies": [
+        {
+          "fontFamily": "Annuario",
+          "slug": "annuario",
+          "name": "Annuario"
+        },
+        {
+          "fontFamily": "Times New Roman",
+          "slug": "times-new-roman",
+          "name": "Times New Roman"
+        },
+        {
+          "fontFamily": "Tuppence",
+          "slug": "tuppence",
+          "name": "Tuppence"
+        }
+      ],
+      "fontSizes": [
+        {
+          "size": "18px",
+          "slug": "size-18",
+          "name": "18px"
+        },
+        {
+          "size": "16px",
+          "slug": "size-16",
+          "name": "16px"
+        },
+        {
+          "size": "14px",
+          "slug": "size-14",
+          "name": "14px"
+        },
+        {
+          "size": "11px",
+          "slug": "size-11",
+          "name": "11px"
+        }
+      ]
+    },
+    "spacing": {
+      "spacingSizes": [
+        {
+          "size": "2px",
+          "slug": "spacing-2",
+          "name": "2px"
+        },
+        {
+          "size": "192px",
+          "slug": "spacing-192",
+          "name": "192px"
+        },
+        {
+          "size": "272px",
+          "slug": "spacing-272",
+          "name": "272px"
+        },
+        {
+          "size": "483px",
+          "slug": "spacing-483",
+          "name": "483px"
+        }
+      ]
+    },
+    "layout": {
+      "contentSize": "100%",
+      "wideSize": "1400px"
+    }
+  },
+  "styles": {
+    "color": {
+      "background": "#377648",
+      "text": "#000000"
+    },
+    "typography": {
+      "fontSize": "14px",
+      "lineHeight": "14px",
+      "fontFamily": "Annuario"
+    },
+    "spacing": {}
+  }
+}

@@ -1,0 +1,56 @@
+{
+  "$schema": "https://designlang.app/schemas/gradients.json",
+  "source": "https://www.get-ripe.com/",
+  "generated": "2026-09-04T00:57:30.277Z",
+  "count": 3,
+  "gradients": [
+    {
+      "raw": "linear-gradient(90deg, rgb(239, 229, 212) 0%, rgba(245, 234, 218, 0) 100%)",
+      "type": "linear",
+      "direction": "90deg",
+      "stops": [
+        {
+          "color": "rgb(239, 229, 212)",
+          "position": "0%"
+        },
+        {
+          "color": "rgba(245, 234, 218, 0)",
+          "position": "100%"
+        }
+      ],
+      "classification": "brand"
+    },
+    {
+      "raw": "linear-gradient(270deg, rgb(239, 229, 212) 0%, rgba(245, 234, 218, 0) 100%)",
+      "type": "linear",
+      "direction": "270deg",
+      "stops": [
+        {
+          "color": "rgb(239, 229, 212)",
+          "position": "0%"
+        },
+        {
+          "color": "rgba(245, 234, 218, 0)",
+          "position": "100%"
+        }
+      ],
+      "classification": "brand"
+    },
+    {
+      "raw": "linear-gradient(0deg, rgba(10, 23, 20, 0) 0%, rgba(10, 23, 20, 0.64) 100%)",
+      "type": "linear",
+      "direction": "0deg",
+      "stops": [
+        {
+          "color": "rgba(10, 23, 20, 0)",
+          "position": "0%"
+        },
+        {
+          "color": "rgba(10, 23, 20, 0.64)",
+          "position": "100%"
+        }
+      ],
+      "classification": "brand"
+    }
+  ]
+}

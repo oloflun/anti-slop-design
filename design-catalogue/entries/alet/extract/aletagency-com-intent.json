@@ -1,0 +1,73 @@
+{
+  "pageIntent": {
+    "type": "landing",
+    "confidence": 0.45,
+    "path": "/",
+    "title": "ALET | ALET Agency is a Copenhagen-based creative studio and production house with storytelling at our core.",
+    "description": "ALET Agency is a Copenhagen-based creative studio and production house with storytelling at our core.",
+    "signals": [
+      {
+        "kind": "url",
+        "type": "landing",
+        "weight": 0.45,
+        "detail": "root-path"
+      }
+    ],
+    "alternates": [],
+    "needsSmart": true
+  },
+  "sectionRoles": {
+    "sections": [
+      {
+        "index": 0,
+        "tag": "nav",
+        "role": "nav",
+        "subrole": null,
+        "confidence": 0.9,
+        "heading": null,
+        "bounds": {
+          "x": 0,
+          "y": 0,
+          "w": 1280,
+          "h": 48.9375
+        },
+        "buttonCount": 1,
+        "cardCount": 0,
+        "slots": {
+          "ctaCount": 1,
+          "lede": "OUR WORK\nABOUTPROCESSCONTACT"
+        },
+        "needsSmart": false
+      },
+      {
+        "index": 1,
+        "tag": "section",
+        "role": "content",
+        "subrole": null,
+        "confidence": 0.3,
+        "heading": "ALET Agency is a Copenhagen-based creative studio and production house\nwith storytelling at our core.",
+        "bounds": {
+          "x": 0,
+          "y": 0,
+          "w": 1280,
+          "h": 0
+        },
+        "buttonCount": 0,
+        "cardCount": 3,
+        "slots": {
+          "heading": "ALET Agency is a Copenhagen-based creative studio and production house\nwith storytelling at our core.",
+          "lede": "GRAPHIC DESIGN\nSOCIAL MEDIA\nART DIRECTION\nDIGITAL CURATION\nFILM PRODUCTION\nCOPYWRITING\nPHOTOGRAPHY & FILM\nCREATIVE CONSULTANCY\nALET Agency is a Copenhagen-based creative studio and production house\nwith storytelling at our core.\nLINEAR\nSwitch slider states\nRANDOM"
+        },
+        "needsSmart": true
+      }
+    ],
+    "counts": {
+      "nav": 1,
+      "content": 1
+    },
+    "readingOrder": [
+      "nav",
+      "content"
+    ]
+  }
+}

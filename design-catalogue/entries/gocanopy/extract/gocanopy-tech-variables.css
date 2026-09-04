@@ -1,0 +1,178 @@
+:root {
+  /* Colors — Primary */
+  --color-primary: #00ffbb;
+  --color-secondary: #14323a;
+  --color-accent: #00ff7f;
+
+  /* Colors — Neutrals */
+  --color-neutral-50: #f6f5f3;
+  --color-neutral-100: #000000;
+  --color-neutral-200: #ffffff;
+  --color-neutral-300: #979797;
+  --color-neutral-400: #cecece;
+  --color-neutral-500: #e2dfdf;
+
+  /* Colors — Backgrounds */
+  --color-bg: #1a4145;
+  --color-bg-1: #000000;
+  --color-bg-2: #14323a;
+  --color-bg-3: #f6f5f3;
+  --color-bg-4: #02080b;
+  --color-bg-5: #ebe9e5;
+  --color-bg-6: #c5f7e7;
+  --color-bg-7: #94f9dd;
+  --color-bg-8: #62fbd1;
+  --color-bg-9: #00ff7f;
+
+  /* Colors — Text */
+  --color-text: #000000;
+  --color-text-1: #f6f5f3;
+  --color-text-2: #14323a;
+  --color-text-3: #00ffbb;
+  --color-text-4: #ffffff;
+
+  /* Typography — Families */
+  --font-sans: 'Season Sans', sans-serif;
+  --font-mono: 'Test Sohne Mono', sans-serif;
+  --font-font-2: 'Season Serif', sans-serif;
+
+  /* Typography — Scale */
+  --font-size-81: 81px;
+  --font-size-53: 53px;
+  --font-size-36: 36px;
+  --font-size-24: 24px;
+  --font-size-20: 20px;
+  --font-size-18: 18px;
+  --font-size-16: 16px;
+  --font-size-14: 14px;
+  --font-size-12: 12px;
+  --font-size-11: 11px;
+
+  /* Spacing */
+  --spacing-2: 2px;
+  --spacing-24: 24px;
+  --spacing-36: 36px;
+  --spacing-48: 48px;
+  --spacing-56: 56px;
+  --spacing-60: 60px;
+  --spacing-64: 64px;
+  --spacing-71: 71px;
+  --spacing-80: 80px;
+  --spacing-88: 88px;
+  --spacing-112: 112px;
+  --spacing-128: 128px;
+  --spacing-160: 160px;
+  --spacing-175: 175px;
+  --spacing-241: 241px;
+  --spacing-320: 320px;
+  --spacing-350: 350px;
+
+  /* Border Radius */
+  --radius-sm: 4px;
+  --radius-md: 8px;
+  --radius-lg: 12px;
+  --radius-lg: 16px;
+
+  /* Box Shadows */
+  --shadow-sm: rgba(0, 0, 0, 0) 0px 0px 0px 0px, rgba(0, 0, 0, 0) 0px 0px 0px 0px, rgba(0, 0, 0, 0) 0px 0px 0px 0px, rgba(0, 0, 0, 0) 0px 0px 0px 0px, rgba(0, 0, 0, 0.25) 0px 25px 50px -12px;
+  --shadow-sm: rgba(0, 0, 0, 0) 0px 0px 0px 0px, rgba(0, 0, 0, 0) 0px 0px 0px 0px, rgba(0, 0, 0, 0) 0px 0px 0px 0px, rgba(0, 0, 0, 0) 0px 0px 0px 0px, rgba(0, 0, 0, 0.1) 0px 4.16px 6.24px -4.16px, rgba(0, 0, 0, 0.1) 0px 10.4px 15.6px -3.12px;
+  --shadow-sm: rgba(0, 0, 0, 0) 0px 0px 0px 0px, rgba(0, 0, 0, 0) 0px 0px 0px 0px, rgba(0, 0, 0, 0) 0px 0px 0px 0px, rgba(0, 0, 0, 0) 0px 0px 0px 0px, rgba(0, 0, 0, 0.35) 0px 16px 40px 0px;
+  --shadow-sm: rgba(0, 0, 0, 0) 0px 0px 0px 0px, rgba(0, 0, 0, 0) 0px 0px 0px 0px, rgba(0, 0, 0, 0) 0px 0px 0px 0px, rgba(0, 0, 0, 0) 0px 0px 0px 0px, rgba(0, 0, 0, 0.1) 0px 20px 25px -5px, rgba(0, 0, 0, 0.1) 0px 8px 10px -6px;
+  --shadow-sm: rgba(0, 0, 0, 0) 0px 0px 0px 0px, rgba(0, 0, 0, 0) 0px 0px 0px 0px, rgba(0, 0, 0, 0) 0px 0px 0px 0px, rgba(0, 0, 0, 0) 0px 0px 0px 0px, rgba(0, 0, 0, 0.1) 0px 1px 3px 0px, rgba(0, 0, 0, 0.1) 0px 1px 2px -1px;
+  --shadow-sm: rgba(0, 0, 0, 0) 0px 0px 0px 0px, rgba(0, 0, 0, 0) 0px 0px 0px 0px, rgba(0, 0, 0, 0) 0px 0px 0px 0px, rgba(0, 0, 0, 0) 0px 0px 0px 0px, oklab(0.298003 -0.0303611 -0.0234222 / 0.05) 0px 1px 3px 0px, oklab(0.298003 -0.0303611 -0.0234222 / 0.05) 0px 1px 2px -1px;
+
+  /* Original Site Variables */
+  /* — colors — */
+  --color-foreground-alt: #1a4145;
+  --tw-ring-offset-shadow: 0 0 #0000;
+  --tw-ring-shadow: 0 0 #0000;
+  --color-green-600: oklch(62.7% .194 149.214);
+  --color-accent-2: #94f9dd;
+  --tw-inset-ring-shadow: 0 0 #0000;
+  --color-secondary: #e2dfdf;
+  --color-brand: #235c58;
+  --color-ice: #eaebe6;
+  --tw-ring-offset-color: #fff;
+  --color-muted: #979797;
+  --color-white: #fff;
+  --tw-border-style: solid;
+  --color-background: #f6f5f3;
+  --color-red-500: oklch(63.7% .237 25.331);
+  --tw-ring-offset-width: 0px;
+  --color-primary: #0fb;
+  --color-black: #000;
+  --color-foreground: #14323a;
+  --color-accent-3: #62fbd1;
+  --color-accent-1: #c5f7e7;
+  /* — spacing — */
+  --spacing: .25rem;
+  /* — typography — */
+  --text-2xl: 1.5rem;
+  --leading-snug: 1.375;
+  --text-lg: 1.125rem;
+  --text-5xl--line-height: 1;
+  --text-2xl--line-height: 1.33333;
+  --leading-normal: 1.5;
+  --text-base--line-height: 1.5;
+  --font-mono: "Test Sohne Mono",serif;
+  --tracking-wider: .05em;
+  --text-xl--line-height: 1.4;
+  --font-weight-semibold: 600;
+  --text-sm: .875rem;
+  --text-lg--line-height: 1.55556;
+  --leading-tight: 1.25;
+  --font-sans: "Season Sans",serif;
+  --text-4xl: 2.25rem;
+  --text-sm--line-height: 1.42857;
+  --text-3xl--line-height: 1.2;
+  --text-5xl: 3rem;
+  --text-3xl: 1.875rem;
+  --text-xs: .75rem;
+  --text-xs--line-height: 1.33333;
+  --default-font-family: "Season Sans",serif;
+  --font-weight-medium: 500;
+  --font-weight-normal: 400;
+  --font-display: "Season Serif",serif;
+  --text-xl: 1.25rem;
+  --text-4xl--line-height: 1.11111;
+  --leading-loose: 2;
+  --text-base: 1rem;
+  --default-mono-font-family: "Test Sohne Mono",serif;
+  /* — shadows — */
+  --tw-inset-shadow-alpha: 100%;
+  --drop-shadow-md: 0 3px 3px #0000001f;
+  --tw-drop-shadow-alpha: 100%;
+  --tw-inset-shadow: 0 0 #0000;
+  --tw-shadow-alpha: 100%;
+  --tw-shadow: 0 0 #0000;
+  /* — radii — */
+  --radius-xl: .75rem;
+  --radius-2xl: 1rem;
+  --radius-md: .375rem;
+  --radius-lg: .5rem;
+  /* — other — */
+  --container-md: 28rem;
+  --aspect-video: 16/9;
+  --default-transition-timing-function: cubic-bezier(.4,0,.2,1);
+  --container-5xl: 64rem;
+  --tw-translate-z: 0;
+  --tw-scale-y: 1;
+  --container-3xl: 48rem;
+  --tw-translate-y: 0;
+  --blur-md: 12px;
+  --ease-out: cubic-bezier(0,0,.2,1);
+  --tw-divide-y-reverse: 0;
+  --tw-scale-z: 1;
+  --container-sm: 24rem;
+  --tw-translate-x: 0;
+  --tw-scale-x: 1;
+  --default-transition-duration: .15s;
+  --container-xl: 36rem;
+  --blur-sm: 8px;
+  /* — semantic — */
+  success: [object Object];
+  warning: [object Object];
+  error: [object Object];
+  info: [object Object];
+
+}

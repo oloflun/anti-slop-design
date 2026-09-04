@@ -1,0 +1,348 @@
+{
+  "pageIntent": {
+    "type": "legal",
+    "confidence": 0.26,
+    "path": "/en",
+    "title": "Dix Hectares",
+    "description": "Dix Hectares offers exceptional skincare products that are 100% natural, grown on the bicentennial Grand Cru terroir of Château Montrose, and formulated in harmony with the seasons for radiant skin th",
+    "signals": [
+      {
+        "kind": "dom",
+        "type": "blog-post",
+        "weight": 0.35,
+        "detail": "byline|min-read"
+      },
+      {
+        "kind": "dom",
+        "type": "legal",
+        "weight": 0.4
+      }
+    ],
+    "alternates": [
+      {
+        "type": "blog-post",
+        "score": 0.35
+      }
+    ],
+    "needsSmart": true
+  },
+  "sectionRoles": {
+    "sections": [
+      {
+        "index": 0,
+        "tag": "section",
+        "role": "cta",
+        "subrole": null,
+        "confidence": 0.75,
+        "heading": "COOKIE CONSENT",
+        "bounds": {
+          "x": 606,
+          "y": 589.4375,
+          "w": 650,
+          "h": 186.5625
+        },
+        "buttonCount": 3,
+        "cardCount": 0,
+        "slots": {
+          "heading": "COOKIE CONSENT",
+          "ctaCount": 3
+        },
+        "needsSmart": false
+      },
+      {
+        "index": 1,
+        "tag": "header",
+        "role": "nav",
+        "subrole": null,
+        "confidence": 0.4,
+        "heading": null,
+        "bounds": {
+          "x": 1310,
+          "y": 12,
+          "w": 600,
+          "h": 77
+        },
+        "buttonCount": 1,
+        "cardCount": 0,
+        "slots": {
+          "ctaCount": 1,
+          "lede": "YOUR CART"
+        },
+        "needsSmart": true
+      },
+      {
+        "index": 2,
+        "tag": "header",
+        "role": "nav",
+        "subrole": null,
+        "confidence": 0.4,
+        "heading": "JOIN THE NEWSLETTER",
+        "bounds": {
+          "x": 1286,
+          "y": 18,
+          "w": 488,
+          "h": 64
+        },
+        "buttonCount": 0,
+        "cardCount": 0,
+        "slots": {
+          "heading": "JOIN THE NEWSLETTER"
+        },
+        "needsSmart": true
+      },
+      {
+        "index": 3,
+        "tag": "header",
+        "role": "nav",
+        "subrole": null,
+        "confidence": 0.4,
+        "heading": null,
+        "bounds": {
+          "x": 1286,
+          "y": 18,
+          "w": 414.65625,
+          "h": 67
+        },
+        "buttonCount": 1,
+        "cardCount": 0,
+        "slots": {
+          "ctaCount": 1,
+          "lede": "CUSTOMIZE WITH AN EXCLUSIVE ENGRAVING"
+        },
+        "needsSmart": true
+      },
+      {
+        "index": 4,
+        "tag": "main",
+        "role": "testimonials",
+        "subrole": null,
+        "confidence": 0.4,
+        "heading": "FRENCH SKINCARE, CULTIVATED ON A GRAND CRU TERROIR\n\nDEVELOPED IN HARMONY WITH THE SEASONS\n\nDESIGNED FOR YOUR SKIN LONGEVITY",
+        "bounds": {
+          "x": 0,
+          "y": 0,
+          "w": 1280,
+          "h": 11889.953125
+        },
+        "buttonCount": 13,
+        "cardCount": 46,
+        "slots": {
+          "heading": "FRENCH SKINCARE, CULTIVATED ON A GRAND CRU TERROIR\n\nDEVELOPED IN HARMONY WITH THE SEASONS\n\nDESIGNED FOR YOUR SKIN LONGEVITY",
+          "subheadings": [
+            "LES SOINS",
+            "As the skin evolves with the seasons, so does our skincare.\n\nOur formulas are designed to support the skin's evolving needs, through the seasons and throughout life.\n\nDiscover the skincare best suited to your skin today.",
+            "PREPARE YOUR SKIN, ALL YEAR LONG",
+            "THE FERTILE BALM\n"
+          ],
+          "ctaCount": 13,
+          "lede": "FRENCH SKINCARE, CULTIVATED ON A GRAND CRU TERROIR"
+        },
+        "needsSmart": true
+      },
+      {
+        "index": 5,
+        "tag": "header",
+        "role": "nav",
+        "subrole": null,
+        "confidence": 0.4,
+        "heading": "PREPARE YOUR SKIN, ALL YEAR LONG",
+        "bounds": {
+          "x": 36,
+          "y": 1248.5625,
+          "w": 1208,
+          "h": 25
+        },
+        "buttonCount": 0,
+        "cardCount": 0,
+        "slots": {
+          "heading": "PREPARE YOUR SKIN, ALL YEAR LONG"
+        },
+        "needsSmart": true
+      },
+      {
+        "index": 6,
+        "tag": "header",
+        "role": "nav",
+        "subrole": null,
+        "confidence": 0.4,
+        "heading": "TARGETED SPRING - SUMMER SKINCARE",
+        "bounds": {
+          "x": 36,
+          "y": 1957.765625,
+          "w": 1208,
+          "h": 25
+        },
+        "buttonCount": 0,
+        "cardCount": 0,
+        "slots": {
+          "heading": "TARGETED SPRING - SUMMER SKINCARE"
+        },
+        "needsSmart": true
+      },
+      {
+        "index": 7,
+        "tag": "header",
+        "role": "nav",
+        "subrole": null,
+        "confidence": 0.4,
+        "heading": "TARGETED AUTUMN - WINTER SKINCARE",
+        "bounds": {
+          "x": 36,
+          "y": 2666.96875,
+          "w": 1208,
+          "h": 25
+        },
+        "buttonCount": 0,
+        "cardCount": 0,
+        "slots": {
+          "heading": "TARGETED AUTUMN - WINTER SKINCARE"
+        },
+        "needsSmart": true
+      },
+      {
+        "index": 8,
+        "tag": "header",
+        "role": "nav",
+        "subrole": null,
+        "confidence": 0.4,
+        "heading": null,
+        "bounds": {
+          "x": 0,
+          "y": 4118.171875,
+          "w": 1280,
+          "h": 185
+        },
+        "buttonCount": 0,
+        "cardCount": 0,
+        "slots": {
+          "lede": "FIND\nYOUR RITUAL"
+        },
+        "needsSmart": true
+      },
+      {
+        "index": 9,
+        "tag": "header",
+        "role": "nav",
+        "subrole": null,
+        "confidence": 0.4,
+        "heading": null,
+        "bounds": {
+          "x": 0,
+          "y": 5718.25,
+          "w": 1280,
+          "h": 185
+        },
+        "buttonCount": 0,
+        "cardCount": 0,
+        "slots": {
+          "lede": "EXPLORE\nBY SKIN CONCERN"
+        },
+        "needsSmart": true
+      },
+      {
+        "index": 10,
+        "tag": "header",
+        "role": "nav",
+        "subrole": null,
+        "confidence": 0.4,
+        "heading": "PRESS\n\nH\nI\nG\nH\nL\nI\nG\nH\nT\nS\n\n\n",
+        "bounds": {
+          "x": 0,
+          "y": 6574.328125,
+          "w": 1280,
+          "h": 151.34375
+        },
+        "buttonCount": 0,
+        "cardCount": 0,
+        "slots": {
+          "heading": "PRESS\n\nH\nI\nG\nH\nL\nI\nG\nH\nT\nS\n\n\n",
+          "lede": "PRESS"
+        },
+        "needsSmart": true
+      },
+      {
+        "index": 11,
+        "tag": "footer",
+        "role": "footer",
+        "subrole": null,
+        "confidence": 0.95,
+        "heading": null,
+        "bounds": {
+          "x": 0,
+          "y": 11207.953125,
+          "w": 1280,
+          "h": 282
+        },
+        "buttonCount": 1,
+        "cardCount": 10,
+        "slots": {
+          "ctaCount": 1,
+          "lede": "ABOUT\nSEE OUR FAQ\nCONTACT US\nGIFT CARD\nTERMS OF SALE\nPRIVACY POLICY\nLEGAL NOTICE\nCANCELLATION REQUEST\nJOIN THE NEWSLETTER\nReceive the latest news and exclusive benefits.\nSUBSCRIBE\nBy signing up, you agree to our privacy policy"
+        },
+        "needsSmart": false
+      },
+      {
+        "index": 12,
+        "tag": "nav",
+        "role": "nav",
+        "subrole": null,
+        "confidence": 0.9,
+        "heading": null,
+        "bounds": {
+          "x": 36,
+          "y": 11265.953125,
+          "w": 284,
+          "h": 104
+        },
+        "buttonCount": 0,
+        "cardCount": 4,
+        "slots": {
+          "lede": "ABOUT\nSEE OUR FAQ\nCONTACT US\nGIFT CARD"
+        },
+        "needsSmart": false
+      },
+      {
+        "index": 13,
+        "tag": "nav",
+        "role": "nav",
+        "subrole": null,
+        "confidence": 0.9,
+        "heading": null,
+        "bounds": {
+          "x": 344,
+          "y": 11265.953125,
+          "w": 284,
+          "h": 104
+        },
+        "buttonCount": 0,
+        "cardCount": 4,
+        "slots": {
+          "lede": "TERMS OF SALE\nPRIVACY POLICY\nLEGAL NOTICE\nCANCELLATION REQUEST"
+        },
+        "needsSmart": false
+      }
+    ],
+    "counts": {
+      "cta": 1,
+      "nav": 11,
+      "testimonials": 1,
+      "footer": 1
+    },
+    "readingOrder": [
+      "testimonials",
+      "nav",
+      "nav",
+      "nav",
+      "cta",
+      "nav",
+      "nav",
+      "nav",
+      "nav",
+      "nav",
+      "nav",
+      "footer",
+      "nav",
+      "nav"
+    ]
+  }
+}

@@ -1,0 +1,636 @@
+{
+  "pageIntent": {
+    "type": "landing",
+    "confidence": 0.27,
+    "path": "/",
+    "title": "The Content Operating System for the AI era | Sanity",
+    "description": "Sanity is the back-end built for AI content operations. Power web, mobile, and agentic applications at scale.",
+    "signals": [
+      {
+        "kind": "dom",
+        "type": "docs",
+        "weight": 0.44999999999999996,
+        "detail": "sidebar=false article=2000"
+      },
+      {
+        "kind": "dom",
+        "type": "blog-post",
+        "weight": 0.35,
+        "detail": "byline|min-read"
+      },
+      {
+        "kind": "url",
+        "type": "landing",
+        "weight": 0.45,
+        "detail": "root-path"
+      }
+    ],
+    "alternates": [
+      {
+        "type": "docs",
+        "score": 0.45
+      },
+      {
+        "type": "blog-post",
+        "score": 0.35
+      }
+    ],
+    "needsSmart": true
+  },
+  "sectionRoles": {
+    "sections": [
+      {
+        "index": 0,
+        "tag": "header",
+        "role": "cta",
+        "subrole": null,
+        "confidence": 0.75,
+        "heading": null,
+        "bounds": {
+          "x": 0,
+          "y": 36,
+          "w": 1280,
+          "h": 67
+        },
+        "buttonCount": 12,
+        "cardCount": 72,
+        "slots": {
+          "ctaCount": 12,
+          "lede": "PRODUCTS\nSOLUTIONS\nRESOURCES\nDOCS\nENTERPRISE\nPRICING\nLOG IN\nCONTACT SALES\nGET STARTED"
+        },
+        "needsSmart": false
+      },
+      {
+        "index": 1,
+        "tag": "nav",
+        "role": "nav",
+        "subrole": null,
+        "confidence": 0.9,
+        "heading": null,
+        "bounds": {
+          "x": 24,
+          "y": 36,
+          "w": 1232,
+          "h": 67
+        },
+        "buttonCount": 12,
+        "cardCount": 71,
+        "slots": {
+          "ctaCount": 12,
+          "lede": "PRODUCTS\nSOLUTIONS\nRESOURCES\nDOCS\nENTERPRISE\nPRICING\nLOG IN\nCONTACT SALES\nGET STARTED"
+        },
+        "needsSmart": false
+      },
+      {
+        "index": 2,
+        "tag": "main",
+        "role": "pricing-table",
+        "subrole": null,
+        "confidence": 0.9,
+        "heading": "The Content Operations Platform",
+        "bounds": {
+          "x": 0,
+          "y": 36,
+          "w": 1280,
+          "h": 10052.5625
+        },
+        "buttonCount": 39,
+        "cardCount": 170,
+        "slots": {
+          "heading": "The Content Operations Platform",
+          "subheadings": [
+            "Mirror how your content operations team works",
+            "Page title",
+            "Content Operations without the busywork",
+            "Power anything. One API, every platform"
+          ],
+          "ctaCount": 39
+        },
+        "needsSmart": false
+      },
+      {
+        "index": 3,
+        "tag": "section",
+        "role": "logo-wall",
+        "subrole": null,
+        "confidence": 0.85,
+        "heading": "The Content Operations Platform",
+        "bounds": {
+          "x": 0,
+          "y": 36,
+          "w": 1280,
+          "h": 764
+        },
+        "buttonCount": 3,
+        "cardCount": 5,
+        "slots": {
+          "heading": "The Content Operations Platform",
+          "ctaCount": 3
+        },
+        "needsSmart": false
+      },
+      {
+        "index": 4,
+        "tag": "section",
+        "role": "pricing-table",
+        "subrole": null,
+        "confidence": 0.9,
+        "heading": null,
+        "bounds": {
+          "x": 0,
+          "y": 800,
+          "w": 1280,
+          "h": 287.921875
+        },
+        "buttonCount": 1,
+        "cardCount": 10,
+        "slots": {
+          "ctaCount": 1,
+          "lede": "-97%"
+        },
+        "needsSmart": false
+      },
+      {
+        "index": 5,
+        "tag": "section",
+        "role": "testimonials",
+        "subrole": null,
+        "confidence": 0.4,
+        "heading": "Mirror how your content operations team works",
+        "bounds": {
+          "x": 0,
+          "y": 1087.921875,
+          "w": 1280,
+          "h": 1164.40625
+        },
+        "buttonCount": 15,
+        "cardCount": 37,
+        "slots": {
+          "heading": "Mirror how your content operations team works",
+          "subheadings": [
+            "Page title"
+          ],
+          "ctaCount": 15,
+          "lede": "Mirror how your content operations team works\nPROD\nHOME\nABOUT\nSHOP\nLOGIN\nCART [1]\nPage title"
+        },
+        "needsSmart": true
+      },
+      {
+        "index": 6,
+        "tag": "header",
+        "role": "nav",
+        "subrole": null,
+        "confidence": 0.4,
+        "heading": null,
+        "bounds": {
+          "x": 65,
+          "y": 1412.328125,
+          "w": 1150,
+          "h": 28.375
+        },
+        "buttonCount": 0,
+        "cardCount": 2,
+        "slots": {
+          "lede": "PROD\nHOME\nABOUT\nSHOP\nLOGIN\nCART [1]"
+        },
+        "needsSmart": true
+      },
+      {
+        "index": 7,
+        "tag": "nav",
+        "role": "nav",
+        "subrole": null,
+        "confidence": 0.9,
+        "heading": null,
+        "bounds": {
+          "x": 81,
+          "y": 1420.328125,
+          "w": 150,
+          "h": 12.375
+        },
+        "buttonCount": 0,
+        "cardCount": 0,
+        "slots": {
+          "lede": "PROD"
+        },
+        "needsSmart": false
+      },
+      {
+        "index": 8,
+        "tag": "nav",
+        "role": "nav",
+        "subrole": null,
+        "confidence": 0.9,
+        "heading": null,
+        "bounds": {
+          "x": 490,
+          "y": 1422.328125,
+          "w": 300,
+          "h": 8.375
+        },
+        "buttonCount": 0,
+        "cardCount": 0,
+        "slots": {
+          "lede": "HOME\nABOUT\nSHOP"
+        },
+        "needsSmart": false
+      },
+      {
+        "index": 9,
+        "tag": "nav",
+        "role": "nav",
+        "subrole": null,
+        "confidence": 0.9,
+        "heading": null,
+        "bounds": {
+          "x": 1049,
+          "y": 1422.328125,
+          "w": 150,
+          "h": 8.375
+        },
+        "buttonCount": 0,
+        "cardCount": 0,
+        "slots": {
+          "lede": "LOGIN\nCART [1]"
+        },
+        "needsSmart": false
+      },
+      {
+        "index": 10,
+        "tag": "header",
+        "role": "nav",
+        "subrole": null,
+        "confidence": 0.4,
+        "heading": null,
+        "bounds": {
+          "x": 357.234375,
+          "y": 1736.328125,
+          "w": 256.609375,
+          "h": 35
+        },
+        "buttonCount": 1,
+        "cardCount": 1,
+        "slots": {
+          "ctaCount": 1,
+          "lede": "Studio\n/\nHomepage\n/\nHero"
+        },
+        "needsSmart": true
+      },
+      {
+        "index": 11,
+        "tag": "header",
+        "role": "nav",
+        "subrole": null,
+        "confidence": 0.4,
+        "heading": null,
+        "bounds": {
+          "x": 975.078125,
+          "y": 1736.328125,
+          "w": 256.609375,
+          "h": 35
+        },
+        "buttonCount": 1,
+        "cardCount": 1,
+        "slots": {
+          "ctaCount": 1,
+          "lede": "New Content Release"
+        },
+        "needsSmart": true
+      },
+      {
+        "index": 12,
+        "tag": "section",
+        "role": "testimonials",
+        "subrole": null,
+        "confidence": 0.4,
+        "heading": "Content Operations without the busywork",
+        "bounds": {
+          "x": 0,
+          "y": 2252.328125,
+          "w": 1280,
+          "h": 1054.75
+        },
+        "buttonCount": 3,
+        "cardCount": 14,
+        "slots": {
+          "heading": "Content Operations without the busywork",
+          "ctaCount": 3
+        },
+        "needsSmart": true
+      },
+      {
+        "index": 13,
+        "tag": "section",
+        "role": "cta",
+        "subrole": null,
+        "confidence": 0.75,
+        "heading": "Power anything. One API, every platform",
+        "bounds": {
+          "x": 0,
+          "y": 3307.078125,
+          "w": 1280,
+          "h": 837.859375
+        },
+        "buttonCount": 4,
+        "cardCount": 25,
+        "slots": {
+          "heading": "Power anything. One API, every platform",
+          "ctaCount": 4
+        },
+        "needsSmart": false
+      },
+      {
+        "index": 14,
+        "tag": "section",
+        "role": "feature-grid",
+        "subrole": null,
+        "confidence": 0.8,
+        "heading": "Everything your team needs in one place",
+        "bounds": {
+          "x": 0,
+          "y": 4272.9375,
+          "w": 1280,
+          "h": 3916.40625
+        },
+        "buttonCount": 5,
+        "cardCount": 48,
+        "slots": {
+          "heading": "Everything your team needs in one place",
+          "subheadings": [
+            "The database optimized for content operations",
+            "Content workflows that mirror how you work",
+            "An agent to run content operations at scale",
+            "Programmable automation"
+          ],
+          "ctaCount": 5,
+          "lede": "Everything your team needs in one place\n01\nCONTENT-AS-DATA\n02\nEDITORIAL FREEDOM\n03\nCONTENT AGENT\n04\nAUTOMATION AT SCALE\n05\nPOWER ANY APPLICATION\nThe database optimized for content operations"
+        },
+        "needsSmart": false
+      },
+      {
+        "index": 15,
+        "tag": "section",
+        "role": "feature-grid",
+        "subrole": null,
+        "confidence": 0.8,
+        "heading": "The database optimized for content operations",
+        "bounds": {
+          "x": 230,
+          "y": 4524.34375,
+          "w": 408,
+          "h": 733
+        },
+        "buttonCount": 1,
+        "cardCount": 6,
+        "slots": {
+          "heading": "The database optimized for content operations",
+          "ctaCount": 1
+        },
+        "needsSmart": false
+      },
+      {
+        "index": 16,
+        "tag": "section",
+        "role": "feature-grid",
+        "subrole": null,
+        "confidence": 0.8,
+        "heading": "Content workflows that mirror how you work",
+        "bounds": {
+          "x": 230,
+          "y": 5257.34375,
+          "w": 408,
+          "h": 733
+        },
+        "buttonCount": 1,
+        "cardCount": 7,
+        "slots": {
+          "heading": "Content workflows that mirror how you work",
+          "ctaCount": 1
+        },
+        "needsSmart": false
+      },
+      {
+        "index": 17,
+        "tag": "section",
+        "role": "feature-grid",
+        "subrole": null,
+        "confidence": 0.8,
+        "heading": "An agent to run content operations at scale",
+        "bounds": {
+          "x": 230,
+          "y": 5990.34375,
+          "w": 408,
+          "h": 733
+        },
+        "buttonCount": 1,
+        "cardCount": 7,
+        "slots": {
+          "heading": "An agent to run content operations at scale",
+          "ctaCount": 1
+        },
+        "needsSmart": false
+      },
+      {
+        "index": 18,
+        "tag": "section",
+        "role": "feature-grid",
+        "subrole": null,
+        "confidence": 0.8,
+        "heading": "Programmable automation",
+        "bounds": {
+          "x": 230,
+          "y": 6723.34375,
+          "w": 408,
+          "h": 733
+        },
+        "buttonCount": 1,
+        "cardCount": 7,
+        "slots": {
+          "heading": "Programmable automation",
+          "ctaCount": 1
+        },
+        "needsSmart": false
+      },
+      {
+        "index": 19,
+        "tag": "section",
+        "role": "feature-grid",
+        "subrole": null,
+        "confidence": 0.8,
+        "heading": "Power web, mobile, or your own agent",
+        "bounds": {
+          "x": 230,
+          "y": 7456.34375,
+          "w": 408,
+          "h": 733
+        },
+        "buttonCount": 1,
+        "cardCount": 6,
+        "slots": {
+          "heading": "Power web, mobile, or your own agent",
+          "ctaCount": 1
+        },
+        "needsSmart": false
+      },
+      {
+        "index": 20,
+        "tag": "section",
+        "role": "pricing-table",
+        "subrole": null,
+        "confidence": 0.9,
+        "heading": "Loved by 1M+ users and 6k+ teams",
+        "bounds": {
+          "x": 0,
+          "y": 8189.34375,
+          "w": 1280,
+          "h": 744.40625
+        },
+        "buttonCount": 4,
+        "cardCount": 20,
+        "slots": {
+          "heading": "Loved by 1M+ users and 6k+ teams",
+          "ctaCount": 4,
+          "lede": "Loved by 1M+ users and 6k+ teams\n01\n02\n03"
+        },
+        "needsSmart": false
+      },
+      {
+        "index": 21,
+        "tag": "section",
+        "role": "feature-grid",
+        "subrole": null,
+        "confidence": 0.8,
+        "heading": "Enterprise-grade everything",
+        "bounds": {
+          "x": 0,
+          "y": 8933.75,
+          "w": 1280,
+          "h": 377.0625
+        },
+        "buttonCount": 1,
+        "cardCount": 4,
+        "slots": {
+          "heading": "Enterprise-grade everything",
+          "ctaCount": 1
+        },
+        "needsSmart": false
+      },
+      {
+        "index": 22,
+        "tag": "section",
+        "role": "cta",
+        "subrole": null,
+        "confidence": 0.75,
+        "heading": "Less talk, more code",
+        "bounds": {
+          "x": 0,
+          "y": 9310.8125,
+          "w": 1280,
+          "h": 777.75
+        },
+        "buttonCount": 3,
+        "cardCount": 7,
+        "slots": {
+          "heading": "Less talk, more code",
+          "subheadings": [
+            "CLI Install",
+            "MCP Server",
+            "Agent toolkit"
+          ],
+          "ctaCount": 3,
+          "lede": "Less talk, more code\nCLI Install"
+        },
+        "needsSmart": false
+      },
+      {
+        "index": 23,
+        "tag": "footer",
+        "role": "footer",
+        "subrole": null,
+        "confidence": 0.95,
+        "heading": "Footer",
+        "bounds": {
+          "x": 0,
+          "y": 10088.5625,
+          "w": 1280,
+          "h": 1286.9375
+        },
+        "buttonCount": 3,
+        "cardCount": 121,
+        "slots": {
+          "heading": "Footer",
+          "subheadings": [
+            "PRODUCTS",
+            "RESOURCES",
+            "COMPANY",
+            "TRUST AND COMPLIANCE"
+          ],
+          "ctaCount": 3
+        },
+        "needsSmart": false
+      },
+      {
+        "index": 24,
+        "tag": "nav",
+        "role": "nav",
+        "subrole": null,
+        "confidence": 0.9,
+        "heading": "PRODUCTS",
+        "bounds": {
+          "x": 473.703125,
+          "y": 10112.71875,
+          "w": 782.296875,
+          "h": 668.640625
+        },
+        "buttonCount": 1,
+        "cardCount": 110,
+        "slots": {
+          "heading": "PRODUCTS",
+          "subheadings": [
+            "RESOURCES",
+            "COMPANY",
+            "TRUST AND COMPLIANCE"
+          ],
+          "ctaCount": 1
+        },
+        "needsSmart": false
+      }
+    ],
+    "counts": {
+      "cta": 3,
+      "nav": 8,
+      "pricing-table": 3,
+      "logo-wall": 1,
+      "testimonials": 2,
+      "feature-grid": 7,
+      "footer": 1
+    },
+    "readingOrder": [
+      "cta",
+      "nav",
+      "pricing-table",
+      "logo-wall",
+      "pricing-table",
+      "testimonials",
+      "nav",
+      "nav",
+      "nav",
+      "nav",
+      "nav",
+      "nav",
+      "testimonials",
+      "cta",
+      "feature-grid",
+      "feature-grid",
+      "feature-grid",
+      "feature-grid",
+      "feature-grid",
+      "feature-grid",
+      "pricing-table",
+      "feature-grid",
+      "cta",
+      "footer",
+      "nav"
+    ]
+  }
+}

@@ -1,0 +1,298 @@
+{
+  "$metadata": {
+    "generator": "designlang",
+    "version": "7.0.0",
+    "spec": "https://design-tokens.github.io/community-group/format/",
+    "source": "https://oryzo.ai",
+    "generatedAt": "2026-09-04T00:50:00.454Z"
+  },
+  "primitive": {
+    "color": {
+      "brand": {
+        "primary": {
+          "$value": "#382416",
+          "$type": "color"
+        },
+        "secondary": {
+          "$value": "#ffedd7",
+          "$type": "color"
+        }
+      },
+      "neutral": {
+        "n100": {
+          "$value": "#100904",
+          "$type": "color"
+        },
+        "n200": {
+          "$value": "#445231",
+          "$type": "color"
+        },
+        "n300": {
+          "$value": "#bbac97",
+          "$type": "color"
+        },
+        "n400": {
+          "$value": "#6c5f51",
+          "$type": "color"
+        },
+        "n500": {
+          "$value": "#000000",
+          "$type": "color"
+        },
+        "n600": {
+          "$value": "#5d6c49",
+          "$type": "color"
+        },
+        "n700": {
+          "$value": "#201914",
+          "$type": "color"
+        }
+      },
+      "background": {
+        "bg0": {
+          "$value": "#100904",
+          "$type": "color"
+        },
+        "bg1": {
+          "$value": "#445231",
+          "$type": "color"
+        },
+        "bg2": {
+          "$value": "#f6e0c6",
+          "$type": "color"
+        },
+        "bg3": {
+          "$value": "#ffedd6",
+          "$type": "color"
+        },
+        "bg4": {
+          "$value": "#201914",
+          "$type": "color"
+        }
+      },
+      "text": {
+        "text0": {
+          "$value": "#ffedd7",
+          "$type": "color"
+        },
+        "text1": {
+          "$value": "#dc5000",
+          "$type": "color"
+        },
+        "text2": {
+          "$value": "#bbac97",
+          "$type": "color"
+        },
+        "text3": {
+          "$value": "#100904",
+          "$type": "color"
+        },
+        "text4": {
+          "$value": "#5d6c49",
+          "$type": "color"
+        },
+        "text5": {
+          "$value": "#445231",
+          "$type": "color"
+        },
+        "text6": {
+          "$value": "#ffedd6",
+          "$type": "color"
+        },
+        "text7": {
+          "$value": "#6c5f51",
+          "$type": "color"
+        },
+        "text8": {
+          "$value": "#000000",
+          "$type": "color"
+        }
+      }
+    },
+    "spacing": {
+      "s0": {
+        "$value": "1px",
+        "$type": "dimension"
+      },
+      "s1": {
+        "$value": "27px",
+        "$type": "dimension"
+      },
+      "s2": {
+        "$value": "36px",
+        "$type": "dimension"
+      },
+      "s3": {
+        "$value": "40px",
+        "$type": "dimension"
+      },
+      "s4": {
+        "$value": "43px",
+        "$type": "dimension"
+      },
+      "s5": {
+        "$value": "48px",
+        "$type": "dimension"
+      },
+      "s6": {
+        "$value": "56px",
+        "$type": "dimension"
+      },
+      "s7": {
+        "$value": "60px",
+        "$type": "dimension"
+      },
+      "s8": {
+        "$value": "64px",
+        "$type": "dimension"
+      },
+      "s9": {
+        "$value": "69px",
+        "$type": "dimension"
+      },
+      "s10": {
+        "$value": "76px",
+        "$type": "dimension"
+      },
+      "s11": {
+        "$value": "96px",
+        "$type": "dimension"
+      },
+      "s12": {
+        "$value": "107px",
+        "$type": "dimension"
+      },
+      "s13": {
+        "$value": "181px",
+        "$type": "dimension"
+      },
+      "s14": {
+        "$value": "280px",
+        "$type": "dimension"
+      },
+      "s15": {
+        "$value": "364px",
+        "$type": "dimension"
+      },
+      "s16": {
+        "$value": "400px",
+        "$type": "dimension"
+      },
+      "s17": {
+        "$value": "404px",
+        "$type": "dimension"
+      }
+    },
+    "radius": {
+      "r0": {
+        "$value": "12px",
+        "$type": "dimension"
+      },
+      "r1": {
+        "$value": "20px",
+        "$type": "dimension"
+      },
+      "r2": {
+        "$value": "32px",
+        "$type": "dimension"
+      },
+      "r3": {
+        "$value": "40px",
+        "$type": "dimension"
+      },
+      "r4": {
+        "$value": "50px",
+        "$type": "dimension"
+      },
+      "r5": {
+        "$value": "100px",
+        "$type": "dimension"
+      }
+    },
+    "shadow": {
+      "sh0": {
+        "$value": "rgb(255, 160, 0) 0px 0px 3px 2px inset, rgb(224, 112, 16) 0px 0px 8px 4px inset",
+        "$type": "shadow"
+      },
+      "sh1": {
+        "$value": "rgba(255, 160, 0, 0.6) 0px 0px 5px 2px inset, rgb(224, 112, 16) 0px 0px 15px 8px inset, rgba(230, 100, 10, 0.45) 0px 0px 35px 15px inset, rgba(230, 80, 10, 0.35) 0px 0px 45px 20px inset",
+        "$type": "shadow"
+      },
+      "sh2": {
+        "$value": "rgba(255, 140, 0, 0.6) 0px 0px 10px 3px",
+        "$type": "shadow"
+      },
+      "sh3": {
+        "$value": "rgba(255, 140, 0, 0.6) 0px 0px 10px 3px, rgba(230, 80, 10, 0.25) 0px 0px 60px 45px",
+        "$type": "shadow"
+      }
+    },
+    "fontFamily": {
+      "f0": {
+        "$value": "halyard-display-variable",
+        "$type": "fontFamily"
+      },
+      "f1": {
+        "$value": "Arial",
+        "$type": "fontFamily"
+      },
+      "f2": {
+        "$value": "Literata",
+        "$type": "fontFamily"
+      },
+      "f3": {
+        "$value": "DM Mono",
+        "$type": "fontFamily"
+      }
+    }
+  },
+  "semantic": {
+    "color": {
+      "action": {
+        "primary": {
+          "$value": "{primitive.color.brand.primary}",
+          "$type": "color"
+        },
+        "secondary": {
+          "$value": "{primitive.color.brand.secondary}",
+          "$type": "color"
+        }
+      },
+      "surface": {
+        "default": {
+          "$value": "{primitive.color.background.bg0}",
+          "$type": "color"
+        }
+      },
+      "text": {
+        "body": {
+          "$value": "{primitive.color.text.text0}",
+          "$type": "color"
+        }
+      }
+    },
+    "typography": {
+      "body": {
+        "$value": {
+          "fontFamily": "halyard-display-variable",
+          "fontSize": "364px",
+          "fontWeight": "500",
+          "lineHeight": "364px"
+        },
+        "$type": "typography"
+      }
+    },
+    "radius": {
+      "control": {
+        "$value": "{primitive.radius.r0}",
+        "$type": "dimension"
+      }
+    },
+    "shadow": {
+      "elevated": {
+        "$value": "{primitive.shadow.sh0}",
+        "$type": "shadow"
+      }
+    }
+  }
+}

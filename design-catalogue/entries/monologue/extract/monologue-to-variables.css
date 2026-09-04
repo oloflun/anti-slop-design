@@ -1,0 +1,221 @@
+:root {
+  /* Colors — Primary */
+  --color-primary: #ef8a80;
+  --color-secondary: #dcca65;
+  --color-accent: #326ec8;
+
+  /* Colors — Neutrals */
+  --color-neutral-50: #f2f0ed;
+  --color-neutral-100: #ffffff;
+  --color-neutral-200: #111111;
+  --color-neutral-300: #272727;
+  --color-neutral-400: #000000;
+  --color-neutral-500: #343434;
+  --color-neutral-600: #1b1b1b;
+  --color-neutral-700: #909090;
+  --color-neutral-800: #777777;
+  --color-neutral-900: #b2b2b2;
+
+  /* Colors — Backgrounds */
+  --color-bg: #121212;
+  --color-bg-1: #272727;
+  --color-bg-2: #2c2c2c;
+  --color-bg-3: #ffffff;
+  --color-bg-4: #232323;
+  --color-bg-5: #252525;
+  --color-bg-6: #f7f7f7;
+  --color-bg-7: #101415;
+  --color-bg-8: #0d1719;
+  --color-bg-9: #343434;
+  --color-bg-10: #1c1c1c;
+  --color-bg-11: #393939;
+  --color-bg-12: #101010;
+
+  /* Colors — Text */
+  --color-text: #ffffff;
+  --color-text-1: #f2f0ed;
+  --color-text-2: #161616;
+  --color-text-3: #282828;
+  --color-text-4: #ef8a80;
+
+  /* Typography — Families */
+  --font-sans: 'geistMono', sans-serif;
+  --font-body: 'Times New Roman', sans-serif;
+  --font-mono: 'monologueSerif', sans-serif;
+  --font-body: 'Arial', sans-serif;
+  --font-body: 'instrumentSerif', sans-serif;
+  --font-body: 'instrumentSerifItalic', sans-serif;
+  --font-body: 'monologueSerifItalic', sans-serif;
+
+  /* Typography — Scale */
+  --font-size-92: 92px;
+  --font-size-72: 72px;
+  --font-size-52: 52px;
+  --font-size-48: 48px;
+  --font-size-46.44: 46.44px;
+  --font-size-46: 46px;
+  --font-size-38.095: 38.095px;
+  --font-size-32: 32px;
+  --font-size-28: 28px;
+  --font-size-26: 26px;
+  --font-size-24: 24px;
+  --font-size-22.291: 22.291px;
+
+  /* Spacing */
+  --spacing-1: 1px;
+  --spacing-19: 19px;
+  --spacing-26: 26px;
+  --spacing-31: 31px;
+  --spacing-35: 35px;
+  --spacing-40: 40px;
+  --spacing-47: 47px;
+  --spacing-50: 50px;
+  --spacing-52: 52px;
+  --spacing-58: 58px;
+  --spacing-60: 60px;
+  --spacing-64: 64px;
+  --spacing-66: 66px;
+  --spacing-72: 72px;
+  --spacing-75: 75px;
+  --spacing-80: 80px;
+  --spacing-104: 104px;
+  --spacing-107: 107px;
+  --spacing-127: 127px;
+  --spacing-302: 302px;
+
+  /* Border Radius */
+  --radius-xs: 1px;
+  --radius-sm: 4px;
+  --radius-md: 7px;
+  --radius-md: 10px;
+  --radius-lg: 14px;
+  --radius-xl: 18px;
+  --radius-xl: 22px;
+  --radius-full: 50px;
+  --radius-full: 999px;
+
+  /* Box Shadows */
+  --shadow-xs: rgba(0, 0, 0, 0.6) 0px 0px 0.25px 0px;
+  --shadow-xs: rgba(0, 0, 0, 0.16) 0px 0.184px 0.184px 0px, rgba(0, 0, 0, 0.25) 0px 0.092px 5.517px 0px, rgba(255, 255, 255, 0.2) 0px 0.276px 0.276px 0px inset, rgba(0, 0, 0, 0.16) 0px -0.276px 0.552px 0px inset;
+  --shadow-xs: rgba(255, 255, 255, 0.1) 0px 0px 0.416667px 0.833333px;
+  --shadow-xs: rgba(0, 0, 0, 0.6) 0px 0px 0.5px 1px;
+  --shadow-xs: rgba(255, 255, 255, 0.1) 0px 0px 0.5px 1px;
+  --shadow-xs: rgba(0, 0, 0, 0.6) 0px 0px 0.5px 1px, rgba(0, 0, 0, 0.16) 0px 4px 8px 0px, rgba(0, 0, 0, 0.14) 0px 15px 15px 0px, rgba(0, 0, 0, 0.08) 0px 34px 21px 0px, rgba(0, 0, 0, 0.02) 0px 61px 24px 0px;
+  --shadow-xs: rgba(0, 0, 0, 0.6) 0px 0px 0.5px 1px, rgba(0, 0, 0, 0.16) 0px 4px 8px 0px, rgba(0, 0, 0, 0.14) 0px 15px 15px 0px, rgba(0, 0, 0, 0.08) 0px 34px 21px 0px;
+  --shadow-xs: rgba(0, 0, 0, 0.6) 0px 0px 0.5px 1px, rgba(255, 255, 255, 0.25) 0px 1px 0.5px 0px inset;
+  --shadow-xs: rgba(255, 255, 255, 0.13) 0px 1px 0px 0px inset, rgba(255, 255, 255, 0.25) 0px 1px 0.5px 0px;
+  --shadow-xs: rgba(255, 255, 255, 0.1) 0px 1px 0px 0px inset, rgba(0, 0, 0, 0.48) 0px 2px 4px 0px, rgba(0, 0, 0, 0.2) 0px 8px 18px 0px;
+  --shadow-xs: rgba(255, 255, 255, 0.8) 0px 1px 0px 0px inset, rgba(0, 0, 0, 0.48) 0px 2px 4px 0px, rgba(0, 0, 0, 0.18) 0px 8px 18px 0px;
+  --shadow-xs: rgba(255, 255, 255, 0.08) 1px 0px 0px 0px;
+  --shadow-xs: rgba(255, 255, 255, 0.54) 0px 1px 0px 0px inset, rgba(0, 0, 0, 0.28) 0px 1px 4px 0px;
+  --shadow-xs: rgba(255, 255, 255, 0.03) 0px 1px 0px 0px inset, rgba(0, 0, 0, 0.6) 0px 0px 0.5px 1px;
+  --shadow-xs: rgba(255, 255, 255, 0.07) 0px 1px 0px 0px inset, rgba(0, 0, 0, 0.2) 0px 10px 25px 0px;
+  --shadow-xs: rgba(255, 255, 255, 0.7) 0px 1px 0px 0px inset, rgba(0, 0, 0, 0.5) 0px 1px 2px 0px;
+  --shadow-xs: rgba(255, 255, 255, 0.25) 0px 1px 0px 0px inset;
+  --shadow-xs: rgba(255, 255, 255, 0.25) 0px 1px 0px 0px;
+  --shadow-xs: rgba(255, 255, 255, 0.08) 0px -1px 0px 0px inset, rgba(0, 0, 0, 0.92) 0px 14px 16px -12px, rgba(0, 0, 0, 0.88) 0px 34px 58px -28px;
+  --shadow-xs: rgba(255, 255, 255, 0.12) 0px 1px 0px 0px inset, rgba(255, 255, 255, 0.09) 0px 1px 0px 0px;
+  --shadow-xs: rgba(0, 0, 0, 0.16) 0px 0.515px 0.515px 0px, rgba(0, 0, 0, 0.25) 0px 0.257px 15.448px 0px;
+  --shadow-xs: rgba(255, 255, 255, 0.16) 0.333333px 0.333333px 0.666667px 0px inset, rgba(0, 0, 0, 0.2) -0.333333px -0.333333px 0.666667px 0px inset;
+  --shadow-xs: rgba(255, 255, 255, 0.16) 0.4px 0.4px 0.8px 0px inset, rgba(0, 0, 0, 0.2) -0.4px -0.4px 0.8px 0px inset;
+  --shadow-xs: rgba(255, 255, 255, 0.25) 0px 1px 0.5px 0px;
+  --shadow-xs: rgba(255, 255, 255, 0.25) -1px 0px 1px 0px, rgba(255, 255, 255, 0.25) 1px 0px 1px 0px;
+  --shadow-xs: rgba(255, 255, 255, 0.25) 0px -1px 1px 0px;
+  --shadow-xs: rgba(0, 0, 0, 0.06) 0px 1px 1px 0px;
+  --shadow-xs: rgba(255, 255, 255, 0.92) 0px 0px 2px 0px;
+  --shadow-xs: rgba(0, 0, 0, 0.82) 0px 0px 2px 0px;
+  --shadow-xs: rgba(255, 255, 255, 0.24) 0px 1px 1px 0px inset, rgba(0, 0, 0, 0.45) 0px -1px 1px 0px;
+  --shadow-xs: rgba(255, 255, 255, 0.2) -1px 0px 1px 0px inset, rgba(0, 0, 0, 0.22) 5px 0px 18px 0px;
+  --shadow-xs: rgba(255, 255, 255, 0.25) 1px 0px 1px 0px;
+  --shadow-xs: rgba(255, 255, 255, 0.14) 0px 1px 1px 0px;
+  --shadow-xs: rgba(255, 255, 255, 0.16) -1px 0px 1px 0px, rgba(255, 255, 255, 0.16) 1px 0px 1px 0px;
+  --shadow-xs: rgba(255, 255, 255, 0.25) -1px 0px 1px 0px, rgba(255, 255, 255, 0.25) 1px 0px 1px 0px, rgba(255, 255, 255, 0.25) 0px -1px 0.5px 0px inset;
+  --shadow-sm: rgba(255, 255, 255, 0.16) 0px 2px 2px 0px inset, rgba(0, 0, 0, 0.22) 0px 5px 12px 0px;
+  --shadow-sm: rgba(0, 0, 0, 0.05) 0px 1px 4px 0px inset;
+  --shadow-sm: rgba(255, 255, 255, 0.25) 0px 3px 2px 0px inset, rgba(0, 0, 0, 0.08) 0px -4px 1px 0px inset;
+  --shadow-sm: rgba(0, 0, 0, 0.1) 0px 1px 4px 0px;
+  --shadow-md: rgba(0, 0, 0, 0.05) 0px 2px 8px 0px;
+  --shadow-md: rgba(0, 0, 0, 0.06) -1.6px 1.6px 9.6px 0px, rgba(255, 255, 255, 0.16) 0.4px 0.4px 0.8px 0px inset, rgba(0, 0, 0, 0.2) -0.4px -0.4px 0.8px 0px inset;
+  --shadow-md: rgba(0, 0, 0, 0.16) 0px 4px 8px 0px, rgba(0, 0, 0, 0.14) 0px 15px 15px 0px, rgba(0, 0, 0, 0.08) 0px 34px 21px 0px, rgba(0, 0, 0, 0.02) 0px 61px 24px 0px;
+  --shadow-md: rgba(0, 0, 0, 0.19) 0px 4px 8px 0px, rgba(0, 0, 0, 0.17) 0px 15px 15px 0px, rgba(0, 0, 0, 0.1) 0px 34px 20px 0px, rgba(0, 0, 0, 0.03) 0px 60px 24px 0px;
+  --shadow-lg: rgba(0, 0, 0, 0.32) 0px 8px 16px 0px;
+  --shadow-lg: rgba(0, 0, 0, 0.42) 0px 12px 18px 0px;
+  --shadow-xl: rgba(0, 0, 0, 0.03) 0px 60px 24px 0px, rgba(0, 0, 0, 0.1) 0px 34px 20px 0px, rgba(0, 0, 0, 0.17) 0px 15px 15px 0px, rgba(0, 0, 0, 0.19) 0px 4px 8px 0px;
+  --shadow-xl: rgba(0, 0, 0, 0.03) 0px 95.532px 38.213px 0px, rgba(0, 0, 0, 0.1) 0px 54.135px 31.844px 0px, rgba(0, 0, 0, 0.17) 0px 23.883px 23.883px 0px, rgba(0, 0, 0, 0.19) 0px 6.369px 12.738px 0px;
+  --shadow-xl: rgba(0, 0, 0, 0.03) 0px 95.532px 38.213px 0px, rgba(0, 0, 0, 0.1) 0px 54.135px 31.844px 0px, rgba(0, 0, 0, 0.17) 0px 23.883px 23.883px 0px, rgba(0, 0, 0, 0.19) 0px 6.369px 12.738px 0px, rgba(255, 255, 255, 0.08) 0px 1px 0px 0px inset;
+  --shadow-xl: rgba(0, 0, 0, 0.04) 0px 208px 83px 0px, rgba(0, 0, 0, 0.14) 0px 117px 70px 0px, rgba(0, 0, 0, 0.23) 0px 52px 52px 0px, rgba(0, 0, 0, 0.27) 0px 13px 29px 0px;
+
+  /* Original Site Variables */
+  /* — colors — */
+  --muted: #ffffffb8;
+  --card-shadow: 0 0 .5px 1px #0009;
+  --button-primary-shadow: inset 0 1px #fffc, 0 2px 4px #0000007a, 0 8px 18px #0000002e;
+  --button-primary-shadow-hover: inset 0 1px #ffffffeb, 0 5px 8px #00000085, 0 16px 30px #00000057;
+  --button-secondary-shadow: inset 0 1px #ffffff1a, 0 2px 4px #0000007a, 0 8px 18px #0003;
+  --button-secondary-shadow-hover: inset 0 1px #ffffff29, 0 5px 8px #0000008f, 0 16px 30px #0000005c;
+  /* — spacing — */
+  --button-padding-inline: 24px;
+  --button-font-size: 20px;
+  /* — typography — */
+  --font-instrument-serif-italic: "instrumentSerifItalic", "instrumentSerifItalic Fallback", Georgia, serif;
+  --font-instrument-serif: "instrumentSerif", "instrumentSerif Fallback", Georgia, serif;
+  --font-monologue-serif: "monologueSerif", "monologueSerif Fallback", Georgia, serif;
+  --font-geist-mono: "geistMono", "geistMono Fallback";
+  --font-monologue-serif-italic: "monologueSerifItalic", "monologueSerifItalic Fallback", Georgia, serif;
+  /* — shadows — */
+  --horizontal-divider-shadow: 0 1px .5px var(--divider-highlight);
+  --horizontal-divider-shadow-reverse: 0 -1px 1px var(--divider-highlight);
+  --horizontal-divider-shadow-inset-top: inset 0 1px .5px var(--divider-highlight);
+  --horizontal-divider-shadow-inset-bottom: inset 0 -1px .5px var(--divider-highlight);
+  --vertical-divider-shadow: -1px 0 1px var(--divider-highlight), 1px 0 1px var(--divider-highlight);
+  --section-shadow: var(--horizontal-divider-shadow);
+  --header-shadow: var(--line-highlight);
+  --rail-shadow: var(--vertical-divider-shadow);
+  /* — radii — */
+  --button-radius: 8px;
+  /* — other — */
+  --lightningcss-light: ;
+  --lightningcss-dark: initial;
+  --page: #121212;
+  --surface: #272727;
+  --surface-high: #343434;
+  --ink: #f2f0ed;
+  --faint: #ffffff73;
+  --black-line: #0009;
+  --frame-stroke: #4e4e4e;
+  --white-line: #ffffff1a;
+  --mono: var(--font-geist-mono), "SFMono-Regular", Consolas, monospace;
+  --display: var(--font-monologue-serif), Georgia, serif;
+  --display-italic: var(--font-monologue-serif-italic), Georgia, serif;
+  --wordmark: var(--font-instrument-serif), Georgia, serif;
+  --wordmark-italic: var(--font-instrument-serif-italic), Georgia, serif;
+  --content-rail-max: 1200px;
+  --divider-highlight: #ffffff40;
+  --line-highlight: var(--horizontal-divider-shadow);
+  --line-highlight-inset: var(--horizontal-divider-shadow-inset-top);
+  --glass-blur: 16px;
+  --glass-blur-elevated: 25.475px;
+  --button-height: 64px;
+  /* — dependencies — */
+  --mono: --font-geist-mono;
+  --display: --font-monologue-serif;
+  --display-italic: --font-monologue-serif-italic;
+  --wordmark: --font-instrument-serif;
+  --wordmark-italic: --font-instrument-serif-italic;
+  --horizontal-divider-shadow: --divider-highlight;
+  --horizontal-divider-shadow-reverse: --divider-highlight;
+  --horizontal-divider-shadow-inset-top: --divider-highlight;
+  --horizontal-divider-shadow-inset-bottom: --divider-highlight;
+  --vertical-divider-shadow: --divider-highlight,--divider-highlight;
+  --line-highlight: --horizontal-divider-shadow;
+  --line-highlight-inset: --horizontal-divider-shadow-inset-top;
+  --section-shadow: --horizontal-divider-shadow;
+  --header-shadow: --line-highlight;
+  --rail-shadow: --vertical-divider-shadow;
+  /* — semantic — */
+  success: [object Object];
+  warning: [object Object];
+  error: [object Object];
+  info: [object Object];
+
+}

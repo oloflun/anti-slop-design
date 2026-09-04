@@ -1,0 +1,15 @@
+/* shadcn/ui Theme — extracted from https://indoek.com */
+/* Paste into your globals.css */
+
+@layer base {
+  :root {
+    --background: 40 27% 91%;
+    --foreground: 0 0% 0%;
+    --primary: 210 80% 37%;
+    --primary-foreground: 0 0% 100%;
+    --muted: 0 0% 100%;
+    --muted-foreground: 220 13% 91%;
+    --border: 0 0% 100%;
+    --radius: 8px;
+  }
+}

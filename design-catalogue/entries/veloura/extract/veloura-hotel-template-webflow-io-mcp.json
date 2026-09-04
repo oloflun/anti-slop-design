@@ -1,0 +1,769 @@
+{
+  "colors": {
+    "all": [
+      {
+        "hex": "#2a0800",
+        "rgb": {
+          "r": 42,
+          "g": 8,
+          "b": 0,
+          "a": 1
+        },
+        "hsl": {
+          "h": 11,
+          "s": 100,
+          "l": 8
+        },
+        "count": 630,
+        "contexts": [
+          "text",
+          "background",
+          "border"
+        ]
+      },
+      {
+        "hex": "#ba6957",
+        "rgb": {
+          "r": 186,
+          "g": 105,
+          "b": 87,
+          "a": 1
+        },
+        "hsl": {
+          "h": 11,
+          "s": 42,
+          "l": 54
+        },
+        "count": 319,
+        "contexts": [
+          "background",
+          "text",
+          "border"
+        ]
+      },
+      {
+        "hex": "#eee3e0",
+        "rgb": {
+          "r": 238,
+          "g": 227,
+          "b": 224,
+          "a": 1
+        },
+        "hsl": {
+          "h": 13,
+          "s": 29,
+          "l": 91
+        },
+        "count": 209,
+        "contexts": [
+          "text",
+          "border",
+          "background"
+        ]
+      },
+      {
+        "hex": "#f3eeed",
+        "rgb": {
+          "r": 243,
+          "g": 238,
+          "b": 237,
+          "a": 1
+        },
+        "hsl": {
+          "h": 10,
+          "s": 20,
+          "l": 94
+        },
+        "count": 133,
+        "contexts": [
+          "text",
+          "border",
+          "background"
+        ]
+      },
+      {
+        "hex": "#f5ccc2",
+        "rgb": {
+          "r": 245,
+          "g": 204,
+          "b": 194,
+          "a": 1
+        },
+        "hsl": {
+          "h": 12,
+          "s": 72,
+          "l": 86
+        },
+        "count": 108,
+        "contexts": [
+          "text",
+          "border"
+        ]
+      },
+      {
+        "hex": "#e8bbb0",
+        "rgb": {
+          "r": 232,
+          "g": 187,
+          "b": 176,
+          "a": 1
+        },
+        "hsl": {
+          "h": 12,
+          "s": 55,
+          "l": 80
+        },
+        "count": 84,
+        "contexts": [
+          "text",
+          "border"
+        ]
+      },
+      {
+        "hex": "#000000",
+        "rgb": {
+          "r": 0,
+          "g": 0,
+          "b": 0,
+          "a": 1
+        },
+        "hsl": {
+          "h": 0,
+          "s": 0,
+          "l": 0
+        },
+        "count": 59,
+        "contexts": [
+          "text",
+          "border",
+          "background"
+        ]
+      },
+      {
+        "hex": "#9e4632",
+        "rgb": {
+          "r": 158,
+          "g": 70,
+          "b": 50,
+          "a": 1
+        },
+        "hsl": {
+          "h": 11,
+          "s": 52,
+          "l": 41
+        },
+        "count": 14,
+        "contexts": [
+          "background"
+        ]
+      },
+      {
+        "hex": "#e2c6bf",
+        "rgb": {
+          "r": 226,
+          "g": 198,
+          "b": 191,
+          "a": 1
+        },
+        "hsl": {
+          "h": 12,
+          "s": 38,
+          "l": 82
+        },
+        "count": 13,
+        "contexts": [
+          "text",
+          "border",
+          "background"
+        ]
+      },
+      {
+        "hex": "#703324",
+        "rgb": {
+          "r": 112,
+          "g": 51,
+          "b": 36,
+          "a": 1
+        },
+        "hsl": {
+          "h": 12,
+          "s": 51,
+          "l": 29
+        },
+        "count": 9,
+        "contexts": [
+          "background",
+          "text",
+          "border"
+        ]
+      },
+      {
+        "hex": "#ba5d48",
+        "rgb": {
+          "r": 186,
+          "g": 93,
+          "b": 72,
+          "a": 1
+        },
+        "hsl": {
+          "h": 11,
+          "s": 45,
+          "l": 51
+        },
+        "count": 6,
+        "contexts": [
+          "background"
+        ]
+      },
+      {
+        "hex": "#471b10",
+        "rgb": {
+          "r": 71,
+          "g": 27,
+          "b": 16,
+          "a": 1
+        },
+        "hsl": {
+          "h": 12,
+          "s": 63,
+          "l": 17
+        },
+        "count": 4,
+        "contexts": [
+          "background"
+        ]
+      },
+      {
+        "hex": "#ffffff",
+        "rgb": {
+          "r": 255,
+          "g": 255,
+          "b": 255,
+          "a": 1
+        },
+        "hsl": {
+          "h": 0,
+          "s": 0,
+          "l": 100
+        },
+        "count": 4,
+        "contexts": [
+          "text",
+          "background"
+        ]
+      }
+    ]
+  },
+  "regions": [
+    {
+      "role": "nav",
+      "tag": "nav",
+      "bounds": {
+        "x": 0,
+        "y": 0,
+        "w": 1280,
+        "h": 80
+      },
+      "heading": null,
+      "buttonCount": 0,
+      "cardCount": 0,
+      "className": "nav"
+    },
+    {
+      "role": "nav",
+      "tag": "header",
+      "bounds": {
+        "x": 0,
+        "y": 0,
+        "w": 1280,
+        "h": 80
+      },
+      "heading": null,
+      "buttonCount": 0,
+      "cardCount": 0,
+      "className": "nav-header w-variant-a83e236b-7bf7-f89d-4ab9-e38d1c7ffc14"
+    },
+    {
+      "role": "features",
+      "tag": "main",
+      "bounds": {
+        "x": 0,
+        "y": 0,
+        "w": 1280,
+        "h": 19966.375
+      },
+      "heading": "A BOUTIQUE ESCAPE IN TIMELESS STREETS",
+      "buttonCount": 41,
+      "cardCount": 78,
+      "className": "main"
+    },
+    {
+      "role": "content",
+      "tag": "section",
+      "bounds": {
+        "x": 0,
+        "y": 0,
+        "w": 1280,
+        "h": 2400
+      },
+      "heading": "A BOUTIQUE ESCAPE IN TIMELESS STREETS",
+      "buttonCount": 0,
+      "cardCount": 0,
+      "className": "section page-load-bg-color"
+    },
+    {
+      "role": "content",
+      "tag": "section",
+      "bounds": {
+        "x": 0,
+        "y": 2400,
+        "w": 1280,
+        "h": 5594.78125
+      },
+      "heading": "Cozy interiors, warm tones, and thoughtful details that make every stay feel personal.",
+      "buttonCount": 16,
+      "cardCount": 4,
+      "className": "section is-dark"
+    },
+    {
+      "role": "features",
+      "tag": "section",
+      "bounds": {
+        "x": 0,
+        "y": 7994.78125,
+        "w": 1280,
+        "h": 1052.46875
+      },
+      "heading": "Relax that comes with",
+      "buttonCount": 8,
+      "cardCount": 70,
+      "className": "section with-bg-gradient-3"
+    },
+    {
+      "role": "content",
+      "tag": "section",
+      "bounds": {
+        "x": 0,
+        "y": 9047.25,
+        "w": 1280,
+        "h": 3684.78125
+      },
+      "heading": "Tucked away in the quiet streets of the old town - historic charm with comfort and calm.",
+      "buttonCount": 7,
+      "cardCount": 0,
+      "className": "section"
+    },
+    {
+      "role": "content",
+      "tag": "section",
+      "bounds": {
+        "x": 0,
+        "y": 12732.03125,
+        "w": 1280,
+        "h": 4901.40625
+      },
+      "heading": "Treatments",
+      "buttonCount": 0,
+      "cardCount": 0,
+      "className": "section"
+    },
+    {
+      "role": "hero",
+      "tag": "section",
+      "bounds": {
+        "x": 0,
+        "y": 17633.4375,
+        "w": 1280,
+        "h": 1600
+      },
+      "heading": "BOOK NOW",
+      "buttonCount": 5,
+      "cardCount": 0,
+      "className": "section"
+    }
+  ],
+  "componentClusters": [
+    {
+      "kind": "button",
+      "structuralHash": "a>img",
+      "instanceCount": 2,
+      "variants": [
+        {
+          "css": {
+            "background": "rgb(158, 70, 50)",
+            "color": "rgb(186, 105, 87)",
+            "padding": "0px 0px 0px 0px",
+            "borderRadius": "50%",
+            "border": "0px none rgb(186, 105, 87)",
+            "fontSize": "19.2px",
+            "fontWeight": "400"
+          },
+          "instanceCount": 2
+        }
+      ]
+    },
+    {
+      "kind": "button",
+      "structuralHash": "img",
+      "instanceCount": 8,
+      "variants": [
+        {
+          "css": {
+            "background": "rgba(0, 0, 0, 0)",
+            "color": "rgb(186, 105, 87)",
+            "padding": "0px 0px 0px 0px",
+            "borderRadius": "0px",
+            "border": "0px none rgb(186, 105, 87)",
+            "fontSize": "19.2px",
+            "fontWeight": "400"
+          },
+          "instanceCount": 8
+        }
+      ]
+    },
+    {
+      "kind": "button",
+      "structuralHash": "div>div",
+      "instanceCount": 3,
+      "variants": [
+        {
+          "css": {
+            "background": "rgba(0, 0, 0, 0)",
+            "color": "rgb(186, 105, 87)",
+            "padding": "0px 0px 0px 0px",
+            "borderRadius": "0px",
+            "border": "0px none rgb(186, 105, 87)",
+            "fontSize": "19.2px",
+            "fontWeight": "400"
+          },
+          "instanceCount": 3
+        }
+      ]
+    },
+    {
+      "kind": "button",
+      "structuralHash": "div>img",
+      "instanceCount": 6,
+      "variants": [
+        {
+          "css": {
+            "background": "rgb(158, 70, 50)",
+            "color": "rgb(186, 105, 87)",
+            "padding": "0px 0px 0px 0px",
+            "borderRadius": "50%",
+            "border": "0px none rgb(186, 105, 87)",
+            "fontSize": "19.2px",
+            "fontWeight": "400"
+          },
+          "instanceCount": 6
+        }
+      ]
+    },
+    {
+      "kind": "button",
+      "structuralHash": "a>div>div>div",
+      "instanceCount": 3,
+      "variants": [
+        {
+          "css": {
+            "background": "rgb(158, 70, 50)",
+            "color": "rgb(243, 238, 237)",
+            "padding": "0px 59.2px 0px 16px",
+            "borderRadius": "800px",
+            "border": "1px solid rgba(243, 239, 237, 0.2)",
+            "fontSize": "19.2px",
+            "fontWeight": "400"
+          },
+          "instanceCount": 3
+        }
+      ]
+    },
+    {
+      "kind": "button",
+      "structuralHash": "div",
+      "instanceCount": 5,
+      "variants": [
+        {
+          "css": {
+            "background": "rgba(0, 0, 0, 0)",
+            "color": "rgb(243, 238, 237)",
+            "padding": "0px 0px 0px 0px",
+            "borderRadius": "0px",
+            "border": "0px none rgb(243, 238, 237)",
+            "fontSize": "19.2px",
+            "fontWeight": "500"
+          },
+          "instanceCount": 5
+        }
+      ]
+    },
+    {
+      "kind": "card",
+      "structuralHash": "div>a",
+      "instanceCount": 6,
+      "variants": [
+        {
+          "css": {
+            "background": "rgba(0, 0, 0, 0)",
+            "color": "rgb(42, 8, 0)",
+            "padding": "16px 12.8px 32px 12.8px",
+            "borderRadius": "0px",
+            "border": "0px none rgb(42, 8, 0)",
+            "fontSize": "16px",
+            "fontWeight": "400"
+          },
+          "instanceCount": 6
+        }
+      ]
+    },
+    {
+      "kind": "link",
+      "structuralHash": "a>div>div>div",
+      "instanceCount": 2,
+      "variants": [
+        {
+          "css": {
+            "background": "rgba(0, 0, 0, 0)",
+            "color": "rgb(186, 105, 87)",
+            "padding": "0px 0px 0px 0px",
+            "borderRadius": "0px",
+            "border": "0px none rgb(186, 105, 87)",
+            "fontSize": "19.2px",
+            "fontWeight": "400"
+          },
+          "instanceCount": 2
+        }
+      ]
+    },
+    {
+      "kind": "card",
+      "structuralHash": "div>div>div>div",
+      "instanceCount": 2,
+      "variants": [
+        {
+          "css": {
+            "background": "rgb(226, 198, 191)",
+            "color": "rgb(42, 8, 0)",
+            "padding": "3.2px 9.6px 3.2px 9.6px",
+            "borderRadius": "10px",
+            "border": "1px solid rgb(228, 179, 167)",
+            "fontSize": "19.2px",
+            "fontWeight": "400"
+          },
+          "instanceCount": 2
+        }
+      ]
+    },
+    {
+      "kind": "card",
+      "structuralHash": "div",
+      "instanceCount": 8,
+      "variants": [
+        {
+          "css": {
+            "background": "rgba(0, 0, 0, 0)",
+            "color": "rgb(42, 8, 0)",
+            "padding": "0px 0px 0px 0px",
+            "borderRadius": "0px",
+            "border": "0px none rgb(42, 8, 0)",
+            "fontSize": "12.8px",
+            "fontWeight": "500"
+          },
+          "instanceCount": 2
+        },
+        {
+          "css": {
+            "background": "rgba(0, 0, 0, 0)",
+            "color": "rgb(186, 105, 87)",
+            "padding": "0px 0px 0px 0px",
+            "borderRadius": "0px",
+            "border": "0px none rgb(186, 105, 87)",
+            "fontSize": "19.2px",
+            "fontWeight": "400"
+          },
+          "instanceCount": 6
+        }
+      ]
+    },
+    {
+      "kind": "card",
+      "structuralHash": "div>div>img",
+      "instanceCount": 6,
+      "variants": [
+        {
+          "css": {
+            "background": "rgba(0, 0, 0, 0)",
+            "color": "rgb(186, 105, 87)",
+            "padding": "0px 0px 0px 0px",
+            "borderRadius": "14.4px",
+            "border": "0px none rgb(186, 105, 87)",
+            "fontSize": "19.2px",
+            "fontWeight": "400"
+          },
+          "instanceCount": 6
+        }
+      ]
+    },
+    {
+      "kind": "card",
+      "structuralHash": "img",
+      "instanceCount": 18,
+      "variants": [
+        {
+          "css": {
+            "background": "rgba(0, 0, 0, 0)",
+            "color": "rgb(186, 105, 87)",
+            "padding": "0px 0px 0px 0px",
+            "borderRadius": "0px",
+            "border": "0px none rgb(186, 105, 87)",
+            "fontSize": "19.2px",
+            "fontWeight": "400"
+          },
+          "instanceCount": 18
+        }
+      ]
+    },
+    {
+      "kind": "card",
+      "structuralHash": "div>div>p>div>div",
+      "instanceCount": 6,
+      "variants": [
+        {
+          "css": {
+            "background": "rgba(0, 0, 0, 0)",
+            "color": "rgb(238, 227, 224)",
+            "padding": "80px 16px 0px 16px",
+            "borderRadius": "14.4px",
+            "border": "0px none rgb(238, 227, 224)",
+            "fontSize": "19.2px",
+            "fontWeight": "400"
+          },
+          "instanceCount": 6
+        }
+      ]
+    },
+    {
+      "kind": "card",
+      "structuralHash": "div>p",
+      "instanceCount": 6,
+      "variants": [
+        {
+          "css": {
+            "background": "rgba(0, 0, 0, 0)",
+            "color": "rgb(238, 227, 224)",
+            "padding": "0px 0px 0px 0px",
+            "borderRadius": "0px",
+            "border": "0px none rgb(238, 227, 224)",
+            "fontSize": "19.2px",
+            "fontWeight": "400"
+          },
+          "instanceCount": 6
+        }
+      ]
+    },
+    {
+      "kind": "button",
+      "structuralHash": "div>img>img",
+      "instanceCount": 6,
+      "variants": [
+        {
+          "css": {
+            "background": "rgb(186, 93, 72)",
+            "color": "rgb(238, 227, 224)",
+            "padding": "0px 0px 0px 0px",
+            "borderRadius": "50%",
+            "border": "0px none rgb(238, 227, 224)",
+            "fontSize": "19.2px",
+            "fontWeight": "400"
+          },
+          "instanceCount": 6
+        }
+      ]
+    },
+    {
+      "kind": "link",
+      "structuralHash": "a>div>div",
+      "instanceCount": 4,
+      "variants": [
+        {
+          "css": {
+            "background": "rgba(0, 0, 0, 0)",
+            "color": "rgb(186, 105, 87)",
+            "padding": "0px 0px 0px 0px",
+            "borderRadius": "0px",
+            "border": "0px none rgb(186, 105, 87)",
+            "fontSize": "19.2px",
+            "fontWeight": "400"
+          },
+          "instanceCount": 4
+        }
+      ]
+    }
+  ],
+  "accessibility": {
+    "remediation": []
+  },
+  "cssHealth": {
+    "sheets": [
+      {
+        "url": "https://veloura-hotel-template.webflow.io/",
+        "totalBytes": 1696,
+        "usedBytes": 1696,
+        "unusedBytes": 0,
+        "unusedPercent": 0
+      },
+      {
+        "url": "https://cdn.prod.website-files.com/68d6a56b32400004b53bc0e9/css/veloura-hotel-template.webflow.shared.b406b5f30.min.css",
+        "totalBytes": 196530,
+        "usedBytes": 41145,
+        "unusedBytes": 155385,
+        "unusedPercent": 79
+      },
+      {
+        "url": "https://unpkg.com/lenis@1.3.23/dist/lenis.css",
+        "totalBytes": 513,
+        "usedBytes": 174,
+        "unusedBytes": 339,
+        "unusedPercent": 66
+      },
+      {
+        "url": "https://fonts.googleapis.com/css?family=Funnel+Display:300,400,500,600,700%7CFunnel+Sans:300,400,500,600,700",
+        "totalBytes": 8270,
+        "usedBytes": 0,
+        "unusedBytes": 8270,
+        "unusedPercent": 100
+      }
+    ],
+    "totalBytes": 207009,
+    "usedBytes": 43015,
+    "unusedBytes": 163994,
+    "unusedPercent": 79,
+    "importantCount": 41,
+    "duplicates": 5614,
+    "vendorPrefixes": {
+      "webkit": 38,
+      "moz": 4,
+      "ms": 1,
+      "o": 0
+    },
+    "keyframes": [],
+    "specificity": {
+      "max": [
+        1,
+        4,
+        3
+      ],
+      "average": [
+        0,
+        1.25,
+        0.12
+      ],
+      "count": 2148
+    },
+    "issues": [
+      "41 !important rules",
+      "5614 duplicate declarations",
+      "79% unused CSS"
+    ]
+  }
+}

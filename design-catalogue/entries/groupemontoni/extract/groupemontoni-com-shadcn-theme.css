@@ -1,0 +1,19 @@
+/* shadcn/ui Theme — extracted from https://groupemontoni.com */
+/* Paste into your globals.css */
+
+@layer base {
+  :root {
+    --background: 0 0% 100%;
+    --foreground: 0 0% 0%;
+    --primary: 161 100% 25%;
+    --primary-foreground: 0 0% 100%;
+    --secondary: 195 63% 19%;
+    --secondary-foreground: 0 0% 100%;
+    --accent: 38 36% 57%;
+    --accent-foreground: 0 0% 0%;
+    --muted: 101 9% 52%;
+    --muted-foreground: 0 0% 0%;
+    --border: 101 9% 52%;
+    --radius: 6px;
+  }
+}

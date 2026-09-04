@@ -1,0 +1,193 @@
+{
+  "$metadata": {
+    "generator": "designlang",
+    "version": "7.0.0",
+    "spec": "https://design-tokens.github.io/community-group/format/",
+    "source": "https://www.withshepherd.com/",
+    "generatedAt": "2026-09-04T00:58:29.078Z"
+  },
+  "primitive": {
+    "color": {
+      "brand": {
+        "primary": {
+          "$value": "#fdc331",
+          "$type": "color"
+        },
+        "secondary": {
+          "$value": "#d6c5b5",
+          "$type": "color"
+        }
+      },
+      "neutral": {
+        "n100": {
+          "$value": "#000000",
+          "$type": "color"
+        },
+        "n200": {
+          "$value": "#ffffff",
+          "$type": "color"
+        },
+        "n300": {
+          "$value": "#e7e7e7",
+          "$type": "color"
+        }
+      },
+      "background": {
+        "bg0": {
+          "$value": "#ffffff",
+          "$type": "color"
+        },
+        "bg1": {
+          "$value": "#fdc331",
+          "$type": "color"
+        },
+        "bg2": {
+          "$value": "#d6c5b5",
+          "$type": "color"
+        },
+        "bg3": {
+          "$value": "#000000",
+          "$type": "color"
+        },
+        "bg4": {
+          "$value": "#fa9742",
+          "$type": "color"
+        },
+        "bg5": {
+          "$value": "#e7e7e7",
+          "$type": "color"
+        }
+      },
+      "text": {
+        "text0": {
+          "$value": "#000000",
+          "$type": "color"
+        },
+        "text1": {
+          "$value": "#ffffff",
+          "$type": "color"
+        },
+        "text2": {
+          "$value": "#f6c449",
+          "$type": "color"
+        }
+      }
+    },
+    "spacing": {
+      "s0": {
+        "$value": "2px",
+        "$type": "dimension"
+      },
+      "s1": {
+        "$value": "40px",
+        "$type": "dimension"
+      },
+      "s2": {
+        "$value": "53px",
+        "$type": "dimension"
+      },
+      "s3": {
+        "$value": "58px",
+        "$type": "dimension"
+      },
+      "s4": {
+        "$value": "69px",
+        "$type": "dimension"
+      },
+      "s5": {
+        "$value": "79px",
+        "$type": "dimension"
+      },
+      "s6": {
+        "$value": "84px",
+        "$type": "dimension"
+      },
+      "s7": {
+        "$value": "92px",
+        "$type": "dimension"
+      },
+      "s8": {
+        "$value": "115px",
+        "$type": "dimension"
+      },
+      "s9": {
+        "$value": "126px",
+        "$type": "dimension"
+      },
+      "s10": {
+        "$value": "208px",
+        "$type": "dimension"
+      },
+      "s11": {
+        "$value": "409px",
+        "$type": "dimension"
+      }
+    },
+    "radius": {
+      "r0": {
+        "$value": "8px",
+        "$type": "dimension"
+      }
+    },
+    "shadow": {},
+    "fontFamily": {
+      "f0": {
+        "$value": "Magistersttrial",
+        "$type": "fontFamily"
+      },
+      "f1": {
+        "$value": "Gt Planar Trial",
+        "$type": "fontFamily"
+      }
+    }
+  },
+  "semantic": {
+    "color": {
+      "action": {
+        "primary": {
+          "$value": "{primitive.color.brand.primary}",
+          "$type": "color"
+        },
+        "secondary": {
+          "$value": "{primitive.color.brand.secondary}",
+          "$type": "color"
+        }
+      },
+      "surface": {
+        "default": {
+          "$value": "{primitive.color.background.bg0}",
+          "$type": "color"
+        }
+      },
+      "text": {
+        "body": {
+          "$value": "{primitive.color.text.text0}",
+          "$type": "color"
+        }
+      }
+    },
+    "typography": {
+      "body": {
+        "$value": {
+          "fontFamily": "Magistersttrial",
+          "fontSize": "100px",
+          "fontWeight": "500",
+          "lineHeight": "100px"
+        },
+        "$type": "typography"
+      }
+    },
+    "radius": {
+      "control": {
+        "$value": "{primitive.radius.r0}",
+        "$type": "dimension"
+      }
+    },
+    "shadow": {
+      "elevated": {
+        "$value": "{primitive.shadow.sh0}",
+        "$type": "shadow"
+      }
+    }
+  }
+}

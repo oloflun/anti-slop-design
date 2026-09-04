@@ -1,0 +1,217 @@
+{
+  "$metadata": {
+    "generator": "designlang",
+    "version": "7.0.0",
+    "spec": "https://design-tokens.github.io/community-group/format/",
+    "source": "https://www.limon.no/",
+    "generatedAt": "2026-09-04T00:47:45.843Z"
+  },
+  "primitive": {
+    "color": {
+      "brand": {
+        "primary": {
+          "$value": "#f7ea48",
+          "$type": "color"
+        },
+        "secondary": {
+          "$value": "#103b15",
+          "$type": "color"
+        }
+      },
+      "neutral": {
+        "n100": {
+          "$value": "#000000",
+          "$type": "color"
+        },
+        "n200": {
+          "$value": "#fcf9f0",
+          "$type": "color"
+        },
+        "n300": {
+          "$value": "#dbe2dc",
+          "$type": "color"
+        },
+        "n400": {
+          "$value": "#ffffff",
+          "$type": "color"
+        }
+      },
+      "background": {
+        "bg0": {
+          "$value": "#1d0b0d",
+          "$type": "color"
+        },
+        "bg1": {
+          "$value": "#fcf9f0",
+          "$type": "color"
+        },
+        "bg2": {
+          "$value": "#dbe2dc",
+          "$type": "color"
+        },
+        "bg3": {
+          "$value": "#103b15",
+          "$type": "color"
+        }
+      },
+      "text": {
+        "text0": {
+          "$value": "#000000",
+          "$type": "color"
+        },
+        "text1": {
+          "$value": "#1d0b0d",
+          "$type": "color"
+        },
+        "text2": {
+          "$value": "#103b15",
+          "$type": "color"
+        },
+        "text3": {
+          "$value": "#f7ea48",
+          "$type": "color"
+        },
+        "text4": {
+          "$value": "#ffffff",
+          "$type": "color"
+        },
+        "text5": {
+          "$value": "#dbe2dc",
+          "$type": "color"
+        },
+        "text6": {
+          "$value": "#fcf9f0",
+          "$type": "color"
+        }
+      }
+    },
+    "spacing": {
+      "s0": {
+        "$value": "0px",
+        "$type": "dimension"
+      },
+      "s1": {
+        "$value": "25px",
+        "$type": "dimension"
+      },
+      "s2": {
+        "$value": "30px",
+        "$type": "dimension"
+      },
+      "s3": {
+        "$value": "40px",
+        "$type": "dimension"
+      },
+      "s4": {
+        "$value": "45px",
+        "$type": "dimension"
+      },
+      "s5": {
+        "$value": "50px",
+        "$type": "dimension"
+      },
+      "s6": {
+        "$value": "60px",
+        "$type": "dimension"
+      },
+      "s7": {
+        "$value": "75px",
+        "$type": "dimension"
+      },
+      "s8": {
+        "$value": "80px",
+        "$type": "dimension"
+      },
+      "s9": {
+        "$value": "120px",
+        "$type": "dimension"
+      },
+      "s10": {
+        "$value": "144px",
+        "$type": "dimension"
+      },
+      "s11": {
+        "$value": "165px",
+        "$type": "dimension"
+      },
+      "s12": {
+        "$value": "320px",
+        "$type": "dimension"
+      }
+    },
+    "radius": {
+      "r0": {
+        "$value": "1px",
+        "$type": "dimension"
+      },
+      "r1": {
+        "$value": "100px",
+        "$type": "dimension"
+      }
+    },
+    "shadow": {},
+    "fontFamily": {
+      "f0": {
+        "$value": "VenusCom",
+        "$type": "fontFamily"
+      },
+      "f1": {
+        "$value": "Times New Roman",
+        "$type": "fontFamily"
+      },
+      "f2": {
+        "$value": "FreeSans",
+        "$type": "fontFamily"
+      }
+    }
+  },
+  "semantic": {
+    "color": {
+      "action": {
+        "primary": {
+          "$value": "{primitive.color.brand.primary}",
+          "$type": "color"
+        },
+        "secondary": {
+          "$value": "{primitive.color.brand.secondary}",
+          "$type": "color"
+        }
+      },
+      "surface": {
+        "default": {
+          "$value": "{primitive.color.background.bg0}",
+          "$type": "color"
+        }
+      },
+      "text": {
+        "body": {
+          "$value": "{primitive.color.text.text0}",
+          "$type": "color"
+        }
+      }
+    },
+    "typography": {
+      "body": {
+        "$value": {
+          "fontFamily": "VenusCom",
+          "fontSize": "75px",
+          "fontWeight": "400",
+          "lineHeight": "93.75px"
+        },
+        "$type": "typography"
+      }
+    },
+    "radius": {
+      "control": {
+        "$value": "{primitive.radius.r0}",
+        "$type": "dimension"
+      }
+    },
+    "shadow": {
+      "elevated": {
+        "$value": "{primitive.shadow.sh0}",
+        "$type": "shadow"
+      }
+    }
+  }
+}

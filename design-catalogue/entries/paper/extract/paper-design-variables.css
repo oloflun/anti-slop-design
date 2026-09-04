@@ -1,0 +1,227 @@
+:root {
+  /* Colors — Primary */
+  --color-primary: #3d7cff;
+  --color-secondary: #0fa821;
+  --color-accent: #4d94fb;
+
+  /* Colors — Neutrals */
+  --color-neutral-50: #000000;
+  --color-neutral-100: #1e2126;
+  --color-neutral-200: #373a40;
+  --color-neutral-300: #b7babf;
+  --color-neutral-400: #585c62;
+  --color-neutral-500: #82858b;
+  --color-neutral-600: #797979;
+  --color-neutral-700: #ebedef;
+  --color-neutral-800: #959595;
+  --color-neutral-900: #ffffff;
+
+  /* Colors — Backgrounds */
+  --color-bg: #f2f2f2;
+  --color-bg-1: #b7babf;
+  --color-bg-2: #ebedef;
+  --color-bg-3: #ffffff;
+  --color-bg-4: #82858b;
+  --color-bg-5: #000102;
+
+  /* Colors — Text */
+  --color-text: #222222;
+  --color-text-1: #000000;
+  --color-text-2: #959595;
+  --color-text-3: #797979;
+  --color-text-4: #010203;
+
+  /* Typography — Families */
+  --font-body: 'Inter', sans-serif;
+  --font-heading: 'Matter', sans-serif;
+  --font-body: 'Paper Mono', sans-serif;
+
+  /* Typography — Scale */
+  --font-size-64: 64px;
+  --font-size-48: 48px;
+  --font-size-36: 36px;
+  --font-size-26: 26px;
+  --font-size-22: 22px;
+  --font-size-18: 18px;
+  --font-size-17: 17px;
+  --font-size-14: 14px;
+  --font-size-13: 13px;
+  --font-size-12: 12px;
+  --font-size-11: 11px;
+  --font-size-10: 10px;
+
+  /* Spacing */
+  --spacing-1: 1px;
+  --spacing-28: 28px;
+  --spacing-40: 40px;
+  --spacing-48: 48px;
+  --spacing-52: 52px;
+  --spacing-60: 60px;
+  --spacing-64: 64px;
+  --spacing-80: 80px;
+  --spacing-90: 90px;
+  --spacing-96: 96px;
+  --spacing-112: 112px;
+  --spacing-120: 120px;
+  --spacing-146: 146px;
+  --spacing-154: 154px;
+  --spacing-240: 240px;
+
+  /* Border Radius */
+  --radius-xs: 0px;
+  --radius-sm: 4px;
+  --radius-md: 8px;
+  --radius-lg: 12px;
+  --radius-xl: 18px;
+  --radius-xl: 24px;
+  --radius-full: 41px;
+  --radius-full: 9999px;
+
+  /* Box Shadows */
+  --shadow-sm: rgba(0, 0, 0, 0) 0px 0px 0px 0px, rgba(0, 0, 0, 0) 0px 0px 0px 0px, rgba(0, 0, 0, 0) 0px 0px 0px 0px, rgba(0, 0, 0, 0) 0px 0px 0px 0px, rgba(0, 0, 0, 0) 0px 1px 0px 0px;
+  --shadow-sm: rgba(128, 128, 128, 0.15) 0px 0px 0px 1px, rgba(0, 0, 0, 0) 0px 93px 26px 0px, rgba(0, 0, 0, 0.01) 0px 59px 24px 0px, rgba(0, 0, 0, 0.05) 0px 33px 20px 0px, rgba(0, 0, 0, 0.09) 0px 15px 15px 0px, rgba(0, 0, 0, 0.1) 0px 4px 8px 0px;
+  --shadow-sm: rgb(216, 215, 216) 0px 0px 0px 0.75px inset;
+  --shadow-sm: rgb(215, 215, 215) 0px 0px 0px 0.75px inset;
+  --shadow-xs: rgba(255, 255, 255, 0.533) 0px 1px 0px 0px inset, rgba(255, 255, 255, 0.533) 0px 0px 1px 1px inset, rgba(0, 0, 0, 0.067) 0px 0.5px 1px 0px, rgba(0, 0, 0, 0.133) 0px 0px 1px 0px, rgba(0, 0, 0, 0.133) 0px 0px 4px -1px;
+  --shadow-xs: rgba(255, 255, 255, 0.533) 0px 1px 0px 0px inset, rgba(255, 255, 255, 0.533) 0px 0px 1px 1px inset, rgba(0, 0, 0, 0.133) 0px 0px 1px 0px, rgba(0, 0, 0, 0.133) 0px 0px 3px -1px;
+  --shadow-xs: rgba(255, 255, 255, 0.667) 0px 1px 0px 0px inset, rgba(255, 255, 255, 0.667) 0px 0px 1px 1px inset, rgba(0, 0, 0, 0.133) 0px 0.5px 1px 0px, rgba(0, 0, 0, 0.094) 0px 0px 1px 1px, rgba(0, 0, 0, 0.067) 0px 0px 3px -1px;
+  --shadow-xs: rgba(255, 255, 255, 0.533) 0px 1px 0px 0px inset, rgba(255, 255, 255, 0.533) 0px 0px 1px 1px inset, rgba(0, 0, 0, 0.35) 0px 2px 4px -2px, rgba(0, 0, 0, 0.3) 0px 0px 1px 0.5px;
+  --shadow-xs: rgba(255, 255, 255, 0.12) 0px 1px 0px 0px inset, rgba(0, 0, 0, 0.12) 0px -1px 0px 0px inset;
+  --shadow-md: rgba(0, 0, 0, 0.08) 0px 4px 10px 0px, rgba(0, 0, 0, 0.08) 0px 2px 4px -1px, rgba(0, 0, 0, 0.08) 0px 0px 0px 1px;
+  --shadow-md: rgba(0, 0, 0, 0.12) 0px 4px 10px 0px, rgba(0, 0, 0, 0.12) 0px 2px 4px -1px, rgba(0, 0, 0, 0.12) 0px 0px 4px -1px;
+  --shadow-md: rgba(0, 0, 0, 0.08) 0px 8px 8px -4px, rgba(0, 0, 0, 0.08) 0px 2px 4px -2px, rgba(0, 0, 0, 0.08) 0px 1px 1px -1px, rgba(0, 0, 0, 0.08) 0px 0px 0px 1px;
+  --shadow-xl: rgba(0, 0, 0, 0.12) 0px 16px 32px -16px, rgba(0, 0, 0, 0.08) 0px 8px 16px -8px, rgba(0, 0, 0, 0.04) 0px 4px 8px -4px, rgba(0, 0, 0, 0.02) 0px 2px 4px 0px, rgba(0, 0, 0, 0.08) 0px 0px 0px 1px;
+
+  /* Original Site Variables */
+  /* — colors — */
+  --tw-ring-offset-shadow: 0 0 #0000;
+  --tw-ring-shadow: 0 0 #0000;
+  --color-gray-800: lab(27.9756% 0 0);
+  --color-paper-50: lab(98.8967% -.385851 1.42193);
+  --tw-inset-ring-shadow: 0 0 #0000;
+  --color-focus: lab(69.3174% -2.26048 -37.0102);
+  --color-selection: color-mix(in oklch,lab(69.3174% -2.26048 -37.0102)50%,transparent);
+  --color-gray-300: lab(78.0416% -.138372 .510192);
+  --playlist-accent: lab(58.2618% 2.51451 -55.9466);
+  --color-blue-link: lab(46.5086% 5.16978 -55.6919);
+  --playlist-muted: lab(68.8656% 0 -.0000119209);
+  --color-dark-gray: lab(43.1948% 0 0);
+  --color-gray-500: lab(59.7944% -.0000298023 0);
+  --color-root: lab(94.2188% -1.42306 5.34524);
+  --color-blue-text: lab(58.2618% 2.51451 -55.9466);
+  --color-gray-900: lab(13.232% 0 0);
+  --color-gray-50: lab(96.4731% -.395507 1.45847);
+  --playlist-player-bg: lab(92.6688% -.0000298023 0);
+  --color-gray-950: lab(8.244% 0 -.00000298023);
+  --tw-ring-offset-color: #fff;
+  --color-gray: lab(59.7944% -.0000298023 0);
+  --color-white: lab(100% 0 0);
+  --playlist-border: lab(90.16% .431716 -1.60234);
+  --color-gray-700: lab(38.6592% -.0000149012 0);
+  --color-gray-400: lab(68.8656% 0 -.0000119209);
+  --color-gray-600: lab(43.1948% 0 0);
+  --color-cream: lab(94.2188% -1.42306 5.34524);
+  --tw-border-style: solid;
+  --color-gray-100: lab(92.6335% -.395387 1.45856);
+  --color-background: lab(98.8967% -.385851 1.42193);
+  --color-light-blue: color-mix(in oklch,lab(69.3174% -2.26048 -37.0102)70%,white);
+  --tw-ring-offset-width: 0px;
+  --color-border: lab(85.9644% -.138432 .510156);
+  --color-gray-200: lab(85.9644% -.138432 .510156);
+  --color-foreground: lab(8.244% 0 -.00000298023);
+  --color-blue: lab(69.3174% -2.26048 -37.0102);
+  --color-black: lab(0% 0 0);
+  --color-border-dark: lab(13.232% 0 0);
+  --playlist-accent-soft: color-mix(in oklch,lab(69.3174% -2.26048 -37.0102)70%,white);
+  --color-paper: lab(98.8967% -.385851 1.42193);
+  --color-note-surface: color-mix(in srgb,lab(94.2188% -1.42306 5.34524)40%,lab(98.8967% -.385851 1.42193));
+  --card-padding: 40px;
+  --color-blue-fill: lab(63.8315% -.601828 -46.527);
+  --color-paper-100: lab(94.2188% -1.42306 5.34524);
+  --color-off-black: lab(8.244% 0 -.00000298023);
+  /* — spacing — */
+  --text-lg--letter-spacing: .005em;
+  --text-3xl--letter-spacing: -.02em;
+  --text-xl--letter-spacing: -.015em;
+  --spacing: 1px;
+  --content-min-padding: 28px;
+  --text-2xl--letter-spacing: -.015em;
+  --spacing-vw: calc(1vw - 0px/100);
+  --text-base--letter-spacing: .01em;
+  --text-4xl--letter-spacing: -.02em;
+  --text-sm--letter-spacing: .015em;
+  --tw-space-y-reverse: 0;
+  --text-xs--letter-spacing: .015em;
+  /* — typography — */
+  --text-2xl: 40px;
+  --text-lg: 24px;
+  --text-2xl--line-height: 48px;
+  --text-base--line-height: 28px;
+  --font-weight-caption: 430;
+  --font-mono: "Paper Mono","SFMono-Regular",Menlo,ui-monospace,monospace;
+  --text-xl--line-height: 38px;
+  --font-weight-semibold: 550;
+  --text-sm: 16px;
+  --font-weight-semilight: 360;
+  --text-lg--line-height: 32px;
+  --playlist-text: lab(10.0558% .37308 -1.34099);
+  --text-4xl: 64px;
+  --font-weight-bold: 670;
+  --text-sm--line-height: 24px;
+  --text-3xl--line-height: 52px;
+  --text-3xl: 48px;
+  --text-xs--line-height: 20px;
+  --default-font-family: Matter,system-ui;
+  --font-weight-light: 270;
+  --text-xs: 14px;
+  --font-weight-normal: 400;
+  --font-weight-medium: 480;
+  --text-4xl--line-height: 68px;
+  --text-xl: 30px;
+  --text-base: 18px;
+  /* — shadows — */
+  --tw-inset-shadow-alpha: 100%;
+  --tw-drop-shadow-alpha: 100%;
+  --tw-inset-shadow: 0 0 #0000;
+  --tw-shadow-alpha: 100%;
+  --tw-shadow: 0 0 #0000;
+  /* — other — */
+  --device-pixel-ratio: 1;
+  --playlist-raised: lab(95.7192% .136256 -.51055);
+  --content-scale: .78;
+  --tw-outline-style: solid;
+  --lightningcss-dark: ;
+  --tw-translate-z: 0;
+  --content-max: 796px;
+  --tw-gradient-via: rgba(0, 0, 0, 0);
+  --tw-scale-y: 1;
+  --body-min-width: 375px;
+  --tw-translate-y: 0;
+  --grid-unit: 120px;
+  --hairline: 1px;
+  --container-content: min(round(down,max(375px,100*calc(1vw - 0px/100)),48px) - 28px*2,796px);
+  --tw-gradient-from: rgba(0, 0, 0, 0);
+  --tw-content: "";
+  --tw-gradient-to: rgba(0, 0, 0, 0);
+  --body-width: max(375px,100*calc(1vw - 0px/100));
+  --lightningcss-light: ;
+  --tw-divide-y-reverse: 0;
+  --tw-scale-z: 1;
+  --playlist-canvas: lab(90.1168% -.0000298023 0);
+  --tw-translate-x: 0;
+  --tw-gradient-via-position: 50%;
+  --deco-offset: -238px;
+  --content-min: round(down,max(375px,100*calc(1vw - 0px/100)),48px) - 28px*2;
+  --tw-scroll-snap-strictness: proximity;
+  --tw-scale-x: 1;
+  --tw-gradient-to-position: 100%;
+  --playlist-surface: lab(100% 0 0);
+  --tw-gradient-from-position: 0%;
+  --scrollbar-width: 0px;
+  /* — semantic — */
+  success: [object Object];
+  warning: [object Object];
+  error: [object Object];
+  info: [object Object];
+
+}

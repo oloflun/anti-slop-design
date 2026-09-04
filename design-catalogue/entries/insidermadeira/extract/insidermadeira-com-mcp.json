@@ -1,0 +1,562 @@
+{
+  "colors": {
+    "all": [
+      {
+        "hex": "#000000",
+        "rgb": {
+          "r": 0,
+          "g": 0,
+          "b": 0,
+          "a": 1
+        },
+        "hsl": {
+          "h": 0,
+          "s": 0,
+          "l": 0
+        },
+        "count": 1481,
+        "contexts": [
+          "text",
+          "border",
+          "background"
+        ]
+      },
+      {
+        "hex": "#201f1d",
+        "rgb": {
+          "r": 32,
+          "g": 31,
+          "b": 29,
+          "a": 1
+        },
+        "hsl": {
+          "h": 40,
+          "s": 5,
+          "l": 12
+        },
+        "count": 675,
+        "contexts": [
+          "text",
+          "border",
+          "background"
+        ]
+      },
+      {
+        "hex": "#ffffff",
+        "rgb": {
+          "r": 255,
+          "g": 255,
+          "b": 255,
+          "a": 1
+        },
+        "hsl": {
+          "h": 0,
+          "s": 0,
+          "l": 100
+        },
+        "count": 417,
+        "contexts": [
+          "background",
+          "text",
+          "border"
+        ]
+      },
+      {
+        "hex": "#f1ede5",
+        "rgb": {
+          "r": 241,
+          "g": 237,
+          "b": 229,
+          "a": 1
+        },
+        "hsl": {
+          "h": 40,
+          "s": 30,
+          "l": 92
+        },
+        "count": 93,
+        "contexts": [
+          "border",
+          "background",
+          "text"
+        ]
+      },
+      {
+        "hex": "#c6c3bb",
+        "rgb": {
+          "r": 198,
+          "g": 195,
+          "b": 187,
+          "a": 1
+        },
+        "hsl": {
+          "h": 44,
+          "s": 9,
+          "l": 75
+        },
+        "count": 92,
+        "contexts": [
+          "text",
+          "border"
+        ]
+      },
+      {
+        "hex": "#333333",
+        "rgb": {
+          "r": 51,
+          "g": 51,
+          "b": 51,
+          "a": 1
+        },
+        "hsl": {
+          "h": 0,
+          "s": 0,
+          "l": 20
+        },
+        "count": 4,
+        "contexts": [
+          "text",
+          "border"
+        ]
+      },
+      {
+        "hex": "#dddddd",
+        "rgb": {
+          "r": 221,
+          "g": 221,
+          "b": 221,
+          "a": 1
+        },
+        "hsl": {
+          "h": 0,
+          "s": 0,
+          "l": 87
+        },
+        "count": 3,
+        "contexts": [
+          "background"
+        ]
+      },
+      {
+        "hex": "#ffdede",
+        "rgb": {
+          "r": 255,
+          "g": 222,
+          "b": 222,
+          "a": 1
+        },
+        "hsl": {
+          "h": 0,
+          "s": 100,
+          "l": 94
+        },
+        "count": 3,
+        "contexts": [
+          "background"
+        ]
+      },
+      {
+        "hex": "#b8b8b8",
+        "rgb": {
+          "r": 184,
+          "g": 184,
+          "b": 184,
+          "a": 1
+        },
+        "hsl": {
+          "h": 0,
+          "s": 0,
+          "l": 72
+        },
+        "count": 2,
+        "contexts": [
+          "text",
+          "border"
+        ]
+      },
+      {
+        "hex": "#6a6a6a",
+        "rgb": {
+          "r": 106,
+          "g": 106,
+          "b": 106,
+          "a": 1
+        },
+        "hsl": {
+          "h": 0,
+          "s": 0,
+          "l": 42
+        },
+        "count": 2,
+        "contexts": [
+          "text",
+          "border"
+        ]
+      },
+      {
+        "hex": "#cccccc",
+        "rgb": {
+          "r": 204,
+          "g": 204,
+          "b": 204,
+          "a": 1
+        },
+        "hsl": {
+          "h": 0,
+          "s": 0,
+          "l": 80
+        },
+        "count": 1,
+        "contexts": [
+          "border"
+        ]
+      }
+    ]
+  },
+  "regions": [
+    {
+      "role": "nav",
+      "tag": "div",
+      "bounds": {
+        "x": 0,
+        "y": 0,
+        "w": 1280,
+        "h": 133.4375
+      },
+      "heading": null,
+      "buttonCount": 5,
+      "cardCount": 0,
+      "className": "navbar navbar-2 w-nav"
+    },
+    {
+      "role": "nav",
+      "tag": "nav",
+      "bounds": {
+        "x": 563.109375,
+        "y": 19,
+        "w": 689.234375,
+        "h": 32
+      },
+      "heading": null,
+      "buttonCount": 4,
+      "cardCount": 0,
+      "className": "navbar-menu w-nav-menu"
+    },
+    {
+      "role": "features",
+      "tag": "main",
+      "bounds": {
+        "x": 0,
+        "y": 0,
+        "w": 1280,
+        "h": 8801.765625
+      },
+      "heading": "Your Exclusive Gateway to Madeira's Hidden Gems",
+      "buttonCount": 14,
+      "cardCount": 264,
+      "className": "main-wrapper"
+    }
+  ],
+  "componentClusters": [
+    {
+      "kind": "button",
+      "structuralHash": "div>a>a",
+      "instanceCount": 1,
+      "variants": [
+        {
+          "css": {
+            "background": "rgba(0, 0, 0, 0)",
+            "color": "rgb(0, 0, 0)",
+            "padding": "0px 0px 0px 0px",
+            "borderRadius": "0px",
+            "border": "0px none rgb(0, 0, 0)",
+            "fontSize": "10.6667px",
+            "fontWeight": "400"
+          },
+          "instanceCount": 1
+        }
+      ]
+    },
+    {
+      "kind": "button",
+      "structuralHash": "a>div",
+      "instanceCount": 1,
+      "variants": [
+        {
+          "css": {
+            "background": "rgba(255, 255, 255, 0)",
+            "color": "rgb(249, 249, 249)",
+            "padding": "8px 12px 8px 12px",
+            "borderRadius": "640px",
+            "border": "1px solid rgb(249, 249, 249)",
+            "fontSize": "14px",
+            "fontWeight": "400"
+          },
+          "instanceCount": 1
+        }
+      ]
+    },
+    {
+      "kind": "button",
+      "structuralHash": "a>div>div",
+      "instanceCount": 3,
+      "variants": [
+        {
+          "css": {
+            "background": "rgba(255, 255, 255, 0)",
+            "color": "rgb(184, 184, 184)",
+            "padding": "0px 0px 0px 0px",
+            "borderRadius": "0px",
+            "border": "0px none rgb(184, 184, 184)",
+            "fontSize": "10.6667px",
+            "fontWeight": "400"
+          },
+          "instanceCount": 1
+        },
+        {
+          "css": {
+            "background": "rgba(255, 255, 255, 0)",
+            "color": "rgb(32, 31, 29)",
+            "padding": "0px 0px 0px 0px",
+            "borderRadius": "0px",
+            "border": "0px none rgb(32, 31, 29)",
+            "fontSize": "10.6667px",
+            "fontWeight": "400"
+          },
+          "instanceCount": 2
+        }
+      ]
+    },
+    {
+      "kind": "button",
+      "structuralHash": "div>div",
+      "instanceCount": 3,
+      "variants": [
+        {
+          "css": {
+            "background": "rgb(0, 0, 0)",
+            "color": "rgb(255, 255, 255)",
+            "padding": "8px 12px 8px 12px",
+            "borderRadius": "640px",
+            "border": "0px none rgb(241, 237, 229)",
+            "fontSize": "14px",
+            "fontWeight": "400"
+          },
+          "instanceCount": 2
+        },
+        {
+          "css": {
+            "background": "rgb(249, 249, 249)",
+            "color": "rgb(32, 31, 29)",
+            "padding": "8px 12px 8px 12px",
+            "borderRadius": "640px",
+            "border": "1px solid rgb(249, 249, 249)",
+            "fontSize": "14px",
+            "fontWeight": "400"
+          },
+          "instanceCount": 1
+        }
+      ]
+    },
+    {
+      "kind": "card",
+      "structuralHash": "div>div>h3>p",
+      "instanceCount": 3,
+      "variants": [
+        {
+          "css": {
+            "background": "rgba(0, 0, 0, 0)",
+            "color": "rgb(0, 0, 0)",
+            "padding": "0px 0px 0px 0px",
+            "borderRadius": "0px",
+            "border": "0px none rgb(0, 0, 0)",
+            "fontSize": "10.6667px",
+            "fontWeight": "400"
+          },
+          "instanceCount": 3
+        }
+      ]
+    },
+    {
+      "kind": "card",
+      "structuralHash": "div>div",
+      "instanceCount": 3,
+      "variants": [
+        {
+          "css": {
+            "background": "rgb(241, 237, 229)",
+            "color": "rgb(0, 0, 0)",
+            "padding": "0px 0px 0px 0px",
+            "borderRadius": "4px",
+            "border": "0px none rgb(0, 0, 0)",
+            "fontSize": "10.6667px",
+            "fontWeight": "400"
+          },
+          "instanceCount": 3
+        }
+      ]
+    },
+    {
+      "kind": "card",
+      "structuralHash": "div>svg",
+      "instanceCount": 3,
+      "variants": [
+        {
+          "css": {
+            "background": "rgba(0, 0, 0, 0)",
+            "color": "rgb(0, 0, 0)",
+            "padding": "0px 0px 0px 0px",
+            "borderRadius": "0px",
+            "border": "0px none rgb(0, 0, 0)",
+            "fontSize": "10.6667px",
+            "fontWeight": "400"
+          },
+          "instanceCount": 3
+        }
+      ]
+    },
+    {
+      "kind": "card",
+      "structuralHash": "p",
+      "instanceCount": 3,
+      "variants": [
+        {
+          "css": {
+            "background": "rgba(0, 0, 0, 0)",
+            "color": "rgb(0, 0, 0)",
+            "padding": "0px 0px 0px 0px",
+            "borderRadius": "0px",
+            "border": "0px none rgb(0, 0, 0)",
+            "fontSize": "9.33333px",
+            "fontWeight": "400"
+          },
+          "instanceCount": 3
+        }
+      ]
+    },
+    {
+      "kind": "input",
+      "structuralHash": "input",
+      "instanceCount": 1,
+      "variants": [
+        {
+          "css": {
+            "background": "rgba(255, 255, 255, 0)",
+            "color": "rgb(0, 0, 0)",
+            "padding": "0px 0px 0px 0px",
+            "borderRadius": "0px",
+            "border": "0px solid rgb(0, 0, 0)",
+            "fontSize": "10.6667px",
+            "fontWeight": "400"
+          },
+          "instanceCount": 1
+        }
+      ]
+    },
+    {
+      "kind": "button",
+      "structuralHash": "input",
+      "instanceCount": 1,
+      "variants": [
+        {
+          "css": {
+            "background": "rgba(255, 255, 255, 0)",
+            "color": "rgb(32, 31, 29)",
+            "padding": "0px 0px 0px 0px",
+            "borderRadius": "0px",
+            "border": "0px none rgb(32, 31, 29)",
+            "fontSize": "14px",
+            "fontWeight": "400"
+          },
+          "instanceCount": 1
+        }
+      ]
+    }
+  ],
+  "accessibility": {
+    "remediation": []
+  },
+  "cssHealth": {
+    "sheets": [
+      {
+        "url": "https://www.insidermadeira.com/",
+        "totalBytes": 1831,
+        "usedBytes": 1269,
+        "unusedBytes": 562,
+        "unusedPercent": 31
+      },
+      {
+        "url": "https://cdn.prod.website-files.com/66ec41f2f3c928308a0e9eea/css/insider-2024.webflow.shared.afebe6cbf.min.css",
+        "totalBytes": 170511,
+        "usedBytes": 23851,
+        "unusedBytes": 146660,
+        "unusedPercent": 86
+      },
+      {
+        "url": "https://www.insidermadeira.com/",
+        "totalBytes": 8001,
+        "usedBytes": 507,
+        "unusedBytes": 7494,
+        "unusedPercent": 94
+      },
+      {
+        "url": "https://www.insidermadeira.com/",
+        "totalBytes": 8830,
+        "usedBytes": 0,
+        "unusedBytes": 8830,
+        "unusedPercent": 100
+      },
+      {
+        "url": "https://www.insidermadeira.com/",
+        "totalBytes": 211,
+        "usedBytes": 202,
+        "unusedBytes": 9,
+        "unusedPercent": 4
+      }
+    ],
+    "totalBytes": 189384,
+    "usedBytes": 25829,
+    "unusedBytes": 163555,
+    "unusedPercent": 86,
+    "importantCount": 235,
+    "duplicates": 4467,
+    "vendorPrefixes": {
+      "webkit": 62,
+      "moz": 5,
+      "ms": 2,
+      "o": 0
+    },
+    "keyframes": [
+      {
+        "name": "scroll",
+        "steps": 2
+      },
+      {
+        "name": "scroll",
+        "steps": 2
+      },
+      {
+        "name": "translateX",
+        "steps": 1
+      }
+    ],
+    "specificity": {
+      "max": [
+        1,
+        5,
+        27
+      ],
+      "average": [
+        0.01,
+        1.36,
+        0.25
+      ],
+      "count": 2499
+    },
+    "issues": [
+      "235 !important rules",
+      "4467 duplicate declarations",
+      "86% unused CSS"
+    ]
+  }
+}

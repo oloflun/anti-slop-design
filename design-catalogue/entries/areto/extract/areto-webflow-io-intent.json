@@ -1,0 +1,393 @@
+{
+  "pageIntent": {
+    "type": "blog-post",
+    "confidence": 0.23,
+    "path": "/home-two",
+    "title": "Areto - Webflow HTML website template",
+    "description": "Discover Areto, your trusted business consulting partner. We provide strategic insights, expert guidance, and solutions to drive lasting success.",
+    "signals": [
+      {
+        "kind": "dom",
+        "type": "blog-post",
+        "weight": 0.35,
+        "detail": "byline|min-read"
+      },
+      {
+        "kind": "shape",
+        "type": "landing",
+        "weight": 0.3,
+        "detail": "hero+features+footer"
+      }
+    ],
+    "alternates": [
+      {
+        "type": "landing",
+        "score": 0.3
+      }
+    ],
+    "needsSmart": true
+  },
+  "sectionRoles": {
+    "sections": [
+      {
+        "index": 0,
+        "tag": "div",
+        "role": "nav",
+        "subrole": null,
+        "confidence": 0.4,
+        "heading": null,
+        "bounds": {
+          "x": 0,
+          "y": 0,
+          "w": 1280,
+          "h": 85.921875
+        },
+        "buttonCount": 5,
+        "cardCount": 0,
+        "slots": {
+          "ctaCount": 5,
+          "lede": "Home\nAbout\nPages\nBlog\nContact\nGet a quote"
+        },
+        "needsSmart": true
+      },
+      {
+        "index": 1,
+        "tag": "nav",
+        "role": "nav",
+        "subrole": null,
+        "confidence": 0.9,
+        "heading": null,
+        "bounds": {
+          "x": 207,
+          "y": 0,
+          "w": 866,
+          "h": 85.921875
+        },
+        "buttonCount": 0,
+        "cardCount": 0,
+        "slots": {
+          "lede": "Home\nAbout\nPages\nBlog\nContact"
+        },
+        "needsSmart": false
+      },
+      {
+        "index": 2,
+        "tag": "nav",
+        "role": "nav",
+        "subrole": null,
+        "confidence": 0.9,
+        "heading": null,
+        "bounds": {
+          "x": 0,
+          "y": 0,
+          "w": 0,
+          "h": 0
+        },
+        "buttonCount": 0,
+        "cardCount": 0,
+        "slots": {
+          "lede": "Home oneHome twoHome three"
+        },
+        "needsSmart": false
+      },
+      {
+        "index": 3,
+        "tag": "nav",
+        "role": "nav",
+        "subrole": null,
+        "confidence": 0.9,
+        "heading": null,
+        "bounds": {
+          "x": 0,
+          "y": 0,
+          "w": 0,
+          "h": 0
+        },
+        "buttonCount": 0,
+        "cardCount": 0,
+        "slots": {
+          "lede": "About oneAbout twoAbout three"
+        },
+        "needsSmart": false
+      },
+      {
+        "index": 4,
+        "tag": "nav",
+        "role": "nav",
+        "subrole": null,
+        "confidence": 0.9,
+        "heading": null,
+        "bounds": {
+          "x": 0,
+          "y": 0,
+          "w": 0,
+          "h": 0
+        },
+        "buttonCount": 0,
+        "cardCount": 0,
+        "slots": {
+          "lede": "Service oneService twoService threePricing onePricing twoPricing threeTeamTeam member"
+        },
+        "needsSmart": false
+      },
+      {
+        "index": 5,
+        "tag": "nav",
+        "role": "nav",
+        "subrole": null,
+        "confidence": 0.9,
+        "heading": null,
+        "bounds": {
+          "x": 0,
+          "y": 0,
+          "w": 0,
+          "h": 0
+        },
+        "buttonCount": 0,
+        "cardCount": 0,
+        "slots": {
+          "lede": "Blog oneBlog twoBlog threeBlog posts"
+        },
+        "needsSmart": false
+      },
+      {
+        "index": 6,
+        "tag": "nav",
+        "role": "nav",
+        "subrole": null,
+        "confidence": 0.9,
+        "heading": null,
+        "bounds": {
+          "x": 0,
+          "y": 0,
+          "w": 0,
+          "h": 0
+        },
+        "buttonCount": 0,
+        "cardCount": 0,
+        "slots": {
+          "lede": "Contact oneContact twoContact three"
+        },
+        "needsSmart": false
+      },
+      {
+        "index": 7,
+        "tag": "section",
+        "role": "hero",
+        "subrole": null,
+        "confidence": 0.85,
+        "heading": "Accelerating growth\nwith proven strategies",
+        "bounds": {
+          "x": 0,
+          "y": 0,
+          "w": 1280,
+          "h": 898.75
+        },
+        "buttonCount": 4,
+        "cardCount": 0,
+        "slots": {
+          "heading": "Accelerating growth\nwith proven strategies",
+          "ctaCount": 4,
+          "lede": "Accelerating growth\nwith proven strategies\nStart consulting now"
+        },
+        "needsSmart": false
+      },
+      {
+        "index": 8,
+        "tag": "section",
+        "role": "hero",
+        "subrole": null,
+        "confidence": 0.4,
+        "heading": "Empowering businesses with tailored strategies, innovative insights, and expert guidance to achieve sustainable growth, efficiency, and profitability worldwide",
+        "bounds": {
+          "x": 0,
+          "y": 898.75,
+          "w": 1280,
+          "h": 821.765625
+        },
+        "buttonCount": 19,
+        "cardCount": 23,
+        "slots": {
+          "heading": "Empowering businesses with tailored strategies, innovative insights, and expert guidance to achieve sustainable growth, efficiency, and profitability worldwide",
+          "ctaCount": 19,
+          "lede": "Empowering businesses with tailored strategies, innovative insights, and expert guidance to achieve sustainable growth, efficiency, and profitability worldwide\nStart consulting now\n01\nDigital transformation"
+        },
+        "needsSmart": true
+      },
+      {
+        "index": 9,
+        "tag": "section",
+        "role": "hero",
+        "subrole": null,
+        "confidence": 0.4,
+        "heading": "Innovative solutions that transform\nbusinesses for tomorrow",
+        "bounds": {
+          "x": 0,
+          "y": 1720.515625,
+          "w": 1280,
+          "h": 900.84375
+        },
+        "buttonCount": 20,
+        "cardCount": 4,
+        "slots": {
+          "heading": "Innovative solutions that transform\nbusinesses for tomorrow",
+          "ctaCount": 20
+        },
+        "needsSmart": true
+      },
+      {
+        "index": 10,
+        "tag": "section",
+        "role": "testimonials",
+        "subrole": null,
+        "confidence": 0.4,
+        "heading": "Transforming complex challenges into\nmeasurable business success",
+        "bounds": {
+          "x": 0,
+          "y": 2621.359375,
+          "w": 1280,
+          "h": 1110.59375
+        },
+        "buttonCount": 4,
+        "cardCount": 16,
+        "slots": {
+          "heading": "Transforming complex challenges into\nmeasurable business success",
+          "ctaCount": 4,
+          "lede": "Transforming complex challenges into\nmeasurable business success\n01\nEmpowering businesses with finance and leadership"
+        },
+        "needsSmart": true
+      },
+      {
+        "index": 11,
+        "tag": "section",
+        "role": "content",
+        "subrole": null,
+        "confidence": 0.3,
+        "heading": "Unlock growth opportunities, streamline operations, and achieve measurable results with tailored business consulting solutions designed to transform challenges",
+        "bounds": {
+          "x": 0,
+          "y": 3731.953125,
+          "w": 1280,
+          "h": 1123.71875
+        },
+        "buttonCount": 0,
+        "cardCount": 9,
+        "slots": {
+          "heading": "Unlock growth opportunities, streamline operations, and achieve measurable results with tailored business consulting solutions designed to transform challenges"
+        },
+        "needsSmart": true
+      },
+      {
+        "index": 12,
+        "tag": "section",
+        "role": "content",
+        "subrole": null,
+        "confidence": 0.3,
+        "heading": null,
+        "bounds": {
+          "x": 0,
+          "y": 4855.671875,
+          "w": 1280,
+          "h": 3200
+        },
+        "buttonCount": 2,
+        "cardCount": 0,
+        "slots": {
+          "ctaCount": 2,
+          "lede": "Success\nInnovation"
+        },
+        "needsSmart": true
+      },
+      {
+        "index": 13,
+        "tag": "section",
+        "role": "hero",
+        "subrole": null,
+        "confidence": 0.4,
+        "heading": "Trusted by 15,000+\nbusiness owners",
+        "bounds": {
+          "x": 0,
+          "y": 8055.671875,
+          "w": 1280,
+          "h": 556.53125
+        },
+        "buttonCount": 5,
+        "cardCount": 0,
+        "slots": {
+          "heading": "Trusted by 15,000+\nbusiness owners",
+          "ctaCount": 5,
+          "lede": "OUR PARTNERS\nTrusted by 15,000+\nbusiness owners"
+        },
+        "needsSmart": true
+      },
+      {
+        "index": 14,
+        "tag": "section",
+        "role": "hero",
+        "subrole": null,
+        "confidence": 0.4,
+        "heading": "Elevate the world with our\nconsultant’s expertise",
+        "bounds": {
+          "x": 0,
+          "y": 8612.203125,
+          "w": 1280,
+          "h": 578.359375
+        },
+        "buttonCount": 4,
+        "cardCount": 21,
+        "slots": {
+          "heading": "Elevate the world with our\nconsultant’s expertise",
+          "ctaCount": 4,
+          "lede": "Elevate the world with our\nconsultant’s expertise\nPatricia Smith\nSenior consultant\nMartin Philips\nStrategy director\nWilson Kenter\nTech consultant\nZain Stanton\nOperations expert\nView more members"
+        },
+        "needsSmart": true
+      },
+      {
+        "index": 15,
+        "tag": "footer",
+        "role": "footer",
+        "subrole": null,
+        "confidence": 0.95,
+        "heading": null,
+        "bounds": {
+          "x": 0,
+          "y": 9240.5625,
+          "w": 1280,
+          "h": 851.328125
+        },
+        "buttonCount": 2,
+        "cardCount": 0,
+        "slots": {
+          "ctaCount": 2,
+          "lede": "Areto\nFOLLOW US\nSubscribe our newsletter\nQuick links\nHome\nAbout\nPricing\nBlog\nContact\nUtility pages\nStyle guide\nLicense\nChangelog\nPassword protected\n404\nAddress\n410 Sandtown, California 94001, USA\nContact\n(888) 456 7890\ninfo@example.com\nDesigned by Radiant Templates.\nPowered by Webflow."
+        },
+        "needsSmart": false
+      }
+    ],
+    "counts": {
+      "nav": 7,
+      "hero": 5,
+      "testimonials": 1,
+      "content": 2,
+      "footer": 1
+    },
+    "readingOrder": [
+      "nav",
+      "nav",
+      "nav",
+      "nav",
+      "nav",
+      "nav",
+      "nav",
+      "hero",
+      "hero",
+      "hero",
+      "testimonials",
+      "content",
+      "content",
+      "hero",
+      "hero",
+      "footer"
+    ]
+  }
+}

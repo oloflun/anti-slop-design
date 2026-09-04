@@ -1,0 +1,295 @@
+{
+  "colors": {
+    "all": [
+      {
+        "hex": "#e5e7eb",
+        "rgb": {
+          "r": 229,
+          "g": 231,
+          "b": 235,
+          "a": 1
+        },
+        "hsl": {
+          "h": 220,
+          "s": 13,
+          "l": 91
+        },
+        "count": 241,
+        "contexts": [
+          "border",
+          "background"
+        ]
+      },
+      {
+        "hex": "#1d1e21",
+        "rgb": {
+          "r": 29,
+          "g": 30,
+          "b": 33,
+          "a": 1
+        },
+        "hsl": {
+          "h": 225,
+          "s": 6,
+          "l": 12
+        },
+        "count": 172,
+        "contexts": [
+          "text",
+          "background",
+          "border"
+        ]
+      },
+      {
+        "hex": "#000000",
+        "rgb": {
+          "r": 0,
+          "g": 0,
+          "b": 0,
+          "a": 1
+        },
+        "hsl": {
+          "h": 0,
+          "s": 0,
+          "l": 0
+        },
+        "count": 58,
+        "contexts": [
+          "text"
+        ]
+      },
+      {
+        "hex": "#fef9f3",
+        "rgb": {
+          "r": 254,
+          "g": 249,
+          "b": 243,
+          "a": 1
+        },
+        "hsl": {
+          "h": 33,
+          "s": 85,
+          "l": 97
+        },
+        "count": 28,
+        "contexts": [
+          "text"
+        ]
+      },
+      {
+        "hex": "#f9e5b1",
+        "rgb": {
+          "r": 249,
+          "g": 229,
+          "b": 177,
+          "a": 1
+        },
+        "hsl": {
+          "h": 43,
+          "s": 86,
+          "l": 84
+        },
+        "count": 5,
+        "contexts": [
+          "background"
+        ]
+      },
+      {
+        "hex": "#ede5dc",
+        "rgb": {
+          "r": 237,
+          "g": 229,
+          "b": 220,
+          "a": 1
+        },
+        "hsl": {
+          "h": 32,
+          "s": 32,
+          "l": 90
+        },
+        "count": 5,
+        "contexts": [
+          "background"
+        ]
+      }
+    ]
+  },
+  "regions": [
+    {
+      "role": "content",
+      "tag": "main",
+      "bounds": {
+        "x": 0,
+        "y": 0,
+        "w": 1280,
+        "h": 4339.1875
+      },
+      "heading": "Dovetail",
+      "buttonCount": 3,
+      "cardCount": 13,
+      "className": "default bg-accent"
+    },
+    {
+      "role": "nav",
+      "tag": "header",
+      "bounds": {
+        "x": 0,
+        "y": 0,
+        "w": 1280,
+        "h": 171
+      },
+      "heading": "Dovetail",
+      "buttonCount": 1,
+      "cardCount": 5,
+      "className": "fixed top-0 left-0 right-0 z-10 bg-accent"
+    },
+    {
+      "role": "nav",
+      "tag": "nav",
+      "bounds": {
+        "x": 737.859375,
+        "y": 67.90625,
+        "w": 422.140625,
+        "h": 34.1875
+      },
+      "heading": null,
+      "buttonCount": 0,
+      "cardCount": 4,
+      "className": "lg:absolute lg:right-[5.5rem] hidden lg:block transform-gpu"
+    },
+    {
+      "role": "content",
+      "tag": "section",
+      "bounds": {
+        "x": 0,
+        "y": 800,
+        "w": 1280,
+        "h": 516.75
+      },
+      "heading": "About us",
+      "buttonCount": 0,
+      "cardCount": 6,
+      "className": "content mb-28"
+    },
+    {
+      "role": "hero",
+      "tag": "section",
+      "bounds": {
+        "x": 0,
+        "y": 1428.75,
+        "w": 1280,
+        "h": 783.78125
+      },
+      "heading": "Our portfolio",
+      "buttonCount": 2,
+      "cardCount": 0,
+      "className": "content mb-12"
+    },
+    {
+      "role": "content",
+      "tag": "section",
+      "bounds": {
+        "x": 0,
+        "y": 2260.53125,
+        "w": 1280,
+        "h": 750.6875
+      },
+      "heading": "Our investment focus",
+      "buttonCount": 0,
+      "cardCount": 0,
+      "className": "content "
+    },
+    {
+      "role": "content",
+      "tag": "section",
+      "bounds": {
+        "x": 0,
+        "y": 3011.21875,
+        "w": 1280,
+        "h": 770.453125
+      },
+      "heading": "Our team",
+      "buttonCount": 0,
+      "cardCount": 0,
+      "className": "content "
+    },
+    {
+      "role": "footer",
+      "tag": "footer",
+      "bounds": {
+        "x": 0,
+        "y": 426.40625,
+        "w": 1280,
+        "h": 373.59375
+      },
+      "heading": null,
+      "buttonCount": 0,
+      "cardCount": 1,
+      "className": "pb-7 pt-24 sm:pt-7"
+    }
+  ],
+  "componentClusters": [
+    {
+      "kind": "button",
+      "structuralHash": "button>svg>span",
+      "instanceCount": 2,
+      "variants": [
+        {
+          "css": {
+            "background": "rgba(0, 0, 0, 0)",
+            "color": "rgb(29, 30, 33)",
+            "padding": "0px 0px 0px 0px",
+            "borderRadius": "9999px",
+            "border": "1px solid rgb(29, 30, 33)",
+            "fontSize": "20px",
+            "fontWeight": "400"
+          },
+          "instanceCount": 2
+        }
+      ]
+    }
+  ],
+  "accessibility": {
+    "remediation": []
+  },
+  "cssHealth": {
+    "sheets": [
+      {
+        "url": "https://dovetail.no/_next/static/chunks/1f98e9x8e_b0t.css",
+        "totalBytes": 21214,
+        "usedBytes": 13370,
+        "unusedBytes": 7844,
+        "unusedPercent": 37
+      }
+    ],
+    "totalBytes": 21214,
+    "usedBytes": 13370,
+    "unusedBytes": 7844,
+    "unusedPercent": 37,
+    "importantCount": 0,
+    "duplicates": 174,
+    "vendorPrefixes": {
+      "webkit": 13,
+      "moz": 4,
+      "ms": 0,
+      "o": 0
+    },
+    "keyframes": [],
+    "specificity": {
+      "max": [
+        0,
+        6,
+        1
+      ],
+      "average": [
+        0,
+        1.32,
+        0.19
+      ],
+      "count": 397
+    },
+    "issues": [
+      "174 duplicate declarations"
+    ]
+  }
+}

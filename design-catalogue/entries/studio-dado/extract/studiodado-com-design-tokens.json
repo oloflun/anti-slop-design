@@ -1,0 +1,169 @@
+{
+  "$metadata": {
+    "generator": "designlang",
+    "version": "7.0.0",
+    "spec": "https://design-tokens.github.io/community-group/format/",
+    "source": "https://www.studiodado.com/",
+    "generatedAt": "2026-09-04T00:59:07.505Z"
+  },
+  "primitive": {
+    "color": {
+      "brand": {
+        "primary": {
+          "$value": "#000000",
+          "$type": "color"
+        }
+      },
+      "neutral": {
+        "n100": {
+          "$value": "#000000",
+          "$type": "color"
+        },
+        "n200": {
+          "$value": "#ffffff",
+          "$type": "color"
+        },
+        "n300": {
+          "$value": "#1b1b1c",
+          "$type": "color"
+        },
+        "n400": {
+          "$value": "#5d5346",
+          "$type": "color"
+        }
+      },
+      "background": {
+        "bg0": {
+          "$value": "#5d5346",
+          "$type": "color"
+        },
+        "bg1": {
+          "$value": "#ffffff",
+          "$type": "color"
+        },
+        "bg2": {
+          "$value": "#1b1b1c",
+          "$type": "color"
+        },
+        "bg3": {
+          "$value": "#000000",
+          "$type": "color"
+        }
+      },
+      "text": {
+        "text0": {
+          "$value": "#000000",
+          "$type": "color"
+        },
+        "text1": {
+          "$value": "#ffffff",
+          "$type": "color"
+        }
+      }
+    },
+    "spacing": {
+      "s0": {
+        "$value": "9px",
+        "$type": "dimension"
+      },
+      "s1": {
+        "$value": "85px",
+        "$type": "dimension"
+      },
+      "s2": {
+        "$value": "120px",
+        "$type": "dimension"
+      },
+      "s3": {
+        "$value": "154px",
+        "$type": "dimension"
+      },
+      "s4": {
+        "$value": "208px",
+        "$type": "dimension"
+      },
+      "s5": {
+        "$value": "239px",
+        "$type": "dimension"
+      },
+      "s6": {
+        "$value": "282px",
+        "$type": "dimension"
+      },
+      "s7": {
+        "$value": "316px",
+        "$type": "dimension"
+      },
+      "s8": {
+        "$value": "394px",
+        "$type": "dimension"
+      },
+      "s9": {
+        "$value": "444px",
+        "$type": "dimension"
+      }
+    },
+    "radius": {
+      "r0": {
+        "$value": "9999px",
+        "$type": "dimension"
+      }
+    },
+    "shadow": {},
+    "fontFamily": {
+      "f0": {
+        "$value": "sans",
+        "$type": "fontFamily"
+      },
+      "f1": {
+        "$value": "disp",
+        "$type": "fontFamily"
+      }
+    }
+  },
+  "semantic": {
+    "color": {
+      "action": {
+        "primary": {
+          "$value": "{primitive.color.brand.primary}",
+          "$type": "color"
+        }
+      },
+      "surface": {
+        "default": {
+          "$value": "{primitive.color.background.bg0}",
+          "$type": "color"
+        }
+      },
+      "text": {
+        "body": {
+          "$value": "{primitive.color.text.text0}",
+          "$type": "color"
+        }
+      }
+    },
+    "typography": {
+      "body": {
+        "$value": {
+          "fontFamily": "sans",
+          "fontSize": "187.733px",
+          "fontWeight": "400",
+          "lineHeight": "150.187px"
+        },
+        "$type": "typography"
+      }
+    },
+    "radius": {
+      "control": {
+        "$value": "{primitive.radius.r0}",
+        "$type": "dimension"
+      }
+    },
+    "shadow": {
+      "elevated": {
+        "$value": "{primitive.shadow.sh0}",
+        "$type": "shadow"
+      }
+    }
+  }
+}

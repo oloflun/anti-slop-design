@@ -1,0 +1,309 @@
+{
+  "pageIntent": {
+    "type": "landing",
+    "confidence": 0.61,
+    "path": "/",
+    "title": "Diamond Rose Sanctuary • Nature Retreat & Wellness Center",
+    "description": "Escape to Diamond Rose Sanctuary, a nature preserve for rest and renewal. Join upcoming retreats, book your stay, or rent our Temple Lotus space.",
+    "signals": [
+      {
+        "kind": "dom",
+        "type": "blog-post",
+        "weight": 0.35,
+        "detail": "byline|min-read"
+      },
+      {
+        "kind": "url",
+        "type": "landing",
+        "weight": 0.45,
+        "detail": "root-path"
+      },
+      {
+        "kind": "shape",
+        "type": "landing",
+        "weight": 0.3,
+        "detail": "hero+features+cta"
+      }
+    ],
+    "alternates": [
+      {
+        "type": "blog-post",
+        "score": 0.35
+      }
+    ],
+    "needsSmart": false
+  },
+  "sectionRoles": {
+    "sections": [
+      {
+        "index": 0,
+        "tag": "header",
+        "role": "nav",
+        "subrole": null,
+        "confidence": 0.4,
+        "heading": null,
+        "bounds": {
+          "x": 0,
+          "y": 0,
+          "w": 1280,
+          "h": 48.125
+        },
+        "buttonCount": 3,
+        "cardCount": 0,
+        "slots": {
+          "ctaCount": 3,
+          "lede": "Diamond Rose Sanctuary\nUpcoming retreat\nJune 5-7, 2026\nRetreats\nRentals\nLotus Temple\nAbout\nB\no\no\nk\n \nN\no\nw\nC\no\nn\nt\na\nc\nt\n \nU\ns"
+        },
+        "needsSmart": true
+      },
+      {
+        "index": 1,
+        "tag": "main",
+        "role": "hero",
+        "subrole": null,
+        "confidence": 0.85,
+        "heading": "DIAMOND ROSE",
+        "bounds": {
+          "x": 0,
+          "y": 0,
+          "w": 1280,
+          "h": 800
+        },
+        "buttonCount": 2,
+        "cardCount": 0,
+        "slots": {
+          "heading": "DIAMOND ROSE",
+          "subheadings": [
+            "SANCTUARY",
+            "A Nature Preserve\nto Rest & Rise"
+          ],
+          "ctaCount": 2,
+          "lede": "DIAMOND ROSE\nSANCTUARY\nA Nature Preserve\nto Rest & Rise\nB\no\no\nk\n \nY\no\nu\nr\n \nS\nt\na\ny\nJ\no\ni\nn\n \na\n \nR\ne\nt\nr\ne\na\nt\nScroll to explore"
+        },
+        "needsSmart": false
+      },
+      {
+        "index": 2,
+        "tag": "section",
+        "role": "testimonial",
+        "subrole": null,
+        "confidence": 0.8,
+        "heading": null,
+        "bounds": {
+          "x": 0,
+          "y": 800,
+          "w": 1280,
+          "h": 673.5
+        },
+        "buttonCount": 2,
+        "cardCount": 0,
+        "slots": {
+          "ctaCount": 2,
+          "lede": "THE STORY\nWhat started as a home by the water\nevolved into a sanctuary — stewarded\nwith intention, rooted in preserved land,\nand dedicated to meaningful pause.\nA\nb\no\nu\nt\n \nU\ns"
+        },
+        "needsSmart": false
+      },
+      {
+        "index": 3,
+        "tag": "section",
+        "role": "content",
+        "subrole": null,
+        "confidence": 0.3,
+        "heading": "PRESERVED LAND.\nOPEN WATER",
+        "bounds": {
+          "x": 0,
+          "y": 1473.5,
+          "w": 1280,
+          "h": 800
+        },
+        "buttonCount": 0,
+        "cardCount": 0,
+        "slots": {
+          "heading": "PRESERVED LAND.\nOPEN WATER",
+          "subheadings": [
+            "THE HOUSE\nAWAITS"
+          ],
+          "lede": "THE RESIDENCE\nPRESERVED LAND.\nOPEN WATER\nTHE HOUSE\nAWAITS\nA private waterfront home set within preserved coastal land. Wide views\nof the Sound, open sky, and gardens that shift with the seasons shape the\nrhythm of your stay."
+        },
+        "needsSmart": true
+      },
+      {
+        "index": 4,
+        "tag": "section",
+        "role": "testimonial",
+        "subrole": null,
+        "confidence": 0.8,
+        "heading": "HOW THE SPACE IS LIVED IN",
+        "bounds": {
+          "x": 0,
+          "y": 4773.5,
+          "w": 1280,
+          "h": 800
+        },
+        "buttonCount": 0,
+        "cardCount": 0,
+        "slots": {
+          "heading": "HOW THE SPACE IS LIVED IN"
+        },
+        "needsSmart": false
+      },
+      {
+        "index": 5,
+        "tag": "section",
+        "role": "pricing-table",
+        "subrole": null,
+        "confidence": 0.9,
+        "heading": "RETREATS WITHIN\nTHESE WALLS",
+        "bounds": {
+          "x": 0,
+          "y": 5573.5,
+          "w": 1280,
+          "h": 1482.609375
+        },
+        "buttonCount": 6,
+        "cardCount": 7,
+        "slots": {
+          "heading": "RETREATS WITHIN\nTHESE WALLS",
+          "ctaCount": 6
+        },
+        "needsSmart": false
+      },
+      {
+        "index": 6,
+        "tag": "section",
+        "role": "testimonial",
+        "subrole": null,
+        "confidence": 0.8,
+        "heading": "FORMING IN\nTHE LIGHT",
+        "bounds": {
+          "x": 0,
+          "y": 6886.109375,
+          "w": 1280,
+          "h": 6302.046875
+        },
+        "buttonCount": 0,
+        "cardCount": 0,
+        "slots": {
+          "heading": "FORMING IN\nTHE LIGHT",
+          "subheadings": [
+            "A NEW CHAPTER\nBEGINS",
+            "A PURPOSE-BUILT\nSPACE FOR HEALING",
+            "Nonprofit Transition",
+            "A Dedicated\nHealing Environment"
+          ]
+        },
+        "needsSmart": false
+      },
+      {
+        "index": 7,
+        "tag": "section",
+        "role": "testimonial",
+        "subrole": null,
+        "confidence": 0.8,
+        "heading": "FORMING IN\nTHE LIGHT",
+        "bounds": {
+          "x": 0,
+          "y": 6886.109375,
+          "w": 1280,
+          "h": 6302.046875
+        },
+        "buttonCount": 0,
+        "cardCount": 0,
+        "slots": {
+          "heading": "FORMING IN\nTHE LIGHT",
+          "subheadings": [
+            "A NEW CHAPTER\nBEGINS",
+            "A PURPOSE-BUILT\nSPACE FOR HEALING",
+            "Nonprofit Transition",
+            "A Dedicated\nHealing Environment"
+          ]
+        },
+        "needsSmart": false
+      },
+      {
+        "index": 8,
+        "tag": "section",
+        "role": "hero",
+        "subrole": null,
+        "confidence": 0.4,
+        "heading": "REMEMBER HOW\nIT FEELS TO BREATHE",
+        "bounds": {
+          "x": 0,
+          "y": 13358.15625,
+          "w": 1280,
+          "h": 800
+        },
+        "buttonCount": 3,
+        "cardCount": 0,
+        "slots": {
+          "heading": "REMEMBER HOW\nIT FEELS TO BREATHE",
+          "ctaCount": 3,
+          "lede": "REMEMBER HOW\nIT FEELS TO BREATHE\nCome as two or ten, to celebrate, reconnect, or simply step away. Whether for\na weekend or a season, Diamond Rose offers the rare gift of space and the\nquiet reminder of what it feels like to truly breathe.\nB\no\no\nk\n \ny\no\nu\nr\n \ns\nt\na\ny\nD\ni\ns\nc\no\nv\ne\nr\n \no\nn\n \nA\ni\nr\nb\nn\nb"
+        },
+        "needsSmart": true
+      },
+      {
+        "index": 9,
+        "tag": "section",
+        "role": "content",
+        "subrole": null,
+        "confidence": 0.3,
+        "heading": null,
+        "bounds": {
+          "x": 0,
+          "y": 14158.15625,
+          "w": 1280,
+          "h": 419.1875
+        },
+        "buttonCount": 0,
+        "cardCount": 4,
+        "slots": {
+          "lede": "DISCOVER\nRENTALS\nDISCOVER\nRETREATS"
+        },
+        "needsSmart": true
+      },
+      {
+        "index": 10,
+        "tag": "section",
+        "role": "cta",
+        "subrole": null,
+        "confidence": 0.75,
+        "heading": null,
+        "bounds": {
+          "x": 0,
+          "y": 14577.34375,
+          "w": 1280,
+          "h": 801.15625
+        },
+        "buttonCount": 1,
+        "cardCount": 1,
+        "slots": {
+          "ctaCount": 1,
+          "lede": "Updates\nSign up for our newsletter to stay in touch.\nContact\ngila@frequencybreathwork.com\nSocials\nInstagram\nAdditionals\nFrequency Breathwork\nVivian Rosenthal\nSitemap\n1\nHome\n2\nRetreats\n3\nLotus Temple\n4\nRental\n5\nAbout\n© Diamond Rose Sanctuary 2026\nPrivacy Policy\nCookie Policy\nBack to top\nWebsite by Artemii Lebedev"
+        },
+        "needsSmart": false
+      }
+    ],
+    "counts": {
+      "nav": 1,
+      "hero": 2,
+      "testimonial": 4,
+      "content": 2,
+      "pricing-table": 1,
+      "cta": 1
+    },
+    "readingOrder": [
+      "nav",
+      "hero",
+      "testimonial",
+      "content",
+      "testimonial",
+      "pricing-table",
+      "testimonial",
+      "testimonial",
+      "hero",
+      "content",
+      "cta"
+    ]
+  }
+}

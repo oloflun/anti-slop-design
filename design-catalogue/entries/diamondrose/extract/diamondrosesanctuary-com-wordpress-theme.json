@@ -1,0 +1,183 @@
+{
+  "$schema": "https://schemas.wp.org/trunk/theme.json",
+  "version": 3,
+  "settings": {
+    "color": {
+      "palette": [
+        {
+          "slug": "primary",
+          "color": "#dfd7c9",
+          "name": "Primary"
+        },
+        {
+          "slug": "secondary",
+          "color": "#20462b",
+          "name": "Secondary"
+        },
+        {
+          "slug": "accent",
+          "color": "#1a3822",
+          "name": "Accent"
+        },
+        {
+          "slug": "neutral-1",
+          "color": "#303030",
+          "name": "Neutral 1"
+        },
+        {
+          "slug": "neutral-2",
+          "color": "#000000",
+          "name": "Neutral 2"
+        },
+        {
+          "slug": "bg-dfd7c9",
+          "color": "#dfd7c9",
+          "name": "Background #dfd7c9"
+        },
+        {
+          "slug": "bg-f2eada",
+          "color": "#f2eada",
+          "name": "Background #f2eada"
+        },
+        {
+          "slug": "bg-20462b",
+          "color": "#20462b",
+          "name": "Background #20462b"
+        }
+      ],
+      "gradients": [
+        {
+          "slug": "gradient-1",
+          "gradient": "linear-gradient(rgba(0, 0, 0, 0.45), rgba(0, 0, 0, 0.08) 51%, rgba(0, 0, 0, 0.6))",
+          "name": "Gradient 1"
+        },
+        {
+          "slug": "gradient-2",
+          "gradient": "linear-gradient(rgba(0, 0, 0, 0.05), rgba(0, 0, 0, 0.15) 50%, rgba(0, 0, 0, 0.5))",
+          "name": "Gradient 2"
+        },
+        {
+          "slug": "gradient-3",
+          "gradient": "linear-gradient(rgba(0, 0, 0, 0.25), rgba(0, 0, 0, 0) 50%, rgba(0, 0, 0, 0.83))",
+          "name": "Gradient 3"
+        }
+      ]
+    },
+    "typography": {
+      "fontFamilies": [
+        {
+          "fontFamily": "Aime",
+          "slug": "aime",
+          "name": "Aime"
+        },
+        {
+          "fontFamily": "NM",
+          "slug": "nm",
+          "name": "NM"
+        }
+      ],
+      "fontSizes": [
+        {
+          "size": "75.52px",
+          "slug": "size-75.52",
+          "name": "75.52px"
+        },
+        {
+          "size": "74.24px",
+          "slug": "size-74.24",
+          "name": "74.24px"
+        },
+        {
+          "size": "61.44px",
+          "slug": "size-61.44",
+          "name": "61.44px"
+        },
+        {
+          "size": "58.88px",
+          "slug": "size-58.88",
+          "name": "58.88px"
+        },
+        {
+          "size": "51.2px",
+          "slug": "size-51.2",
+          "name": "51.2px"
+        },
+        {
+          "size": "40.96px",
+          "slug": "size-40.96",
+          "name": "40.96px"
+        },
+        {
+          "size": "40.32px",
+          "slug": "size-40.32",
+          "name": "40.32px"
+        },
+        {
+          "size": "39.68px",
+          "slug": "size-39.68",
+          "name": "39.68px"
+        }
+      ]
+    },
+    "spacing": {
+      "spacingSizes": [
+        {
+          "size": "1px",
+          "slug": "spacing-1",
+          "name": "1px"
+        },
+        {
+          "size": "24px",
+          "slug": "spacing-24",
+          "name": "24px"
+        },
+        {
+          "size": "42px",
+          "slug": "spacing-42",
+          "name": "42px"
+        },
+        {
+          "size": "50px",
+          "slug": "spacing-50",
+          "name": "50px"
+        },
+        {
+          "size": "73px",
+          "slug": "spacing-73",
+          "name": "73px"
+        },
+        {
+          "size": "77px",
+          "slug": "spacing-77",
+          "name": "77px"
+        },
+        {
+          "size": "86px",
+          "slug": "spacing-86",
+          "name": "86px"
+        },
+        {
+          "size": "120px",
+          "slug": "spacing-120",
+          "name": "120px"
+        }
+      ]
+    },
+    "layout": {
+      "contentSize": "1280px",
+      "wideSize": "1400px"
+    }
+  },
+  "styles": {
+    "color": {
+      "background": "#dfd7c9",
+      "text": "#000000"
+    },
+    "typography": {
+      "fontSize": "11.52px",
+      "lineHeight": "12.096px",
+      "fontFamily": "Aime"
+    },
+    "spacing": {}
+  }
+}

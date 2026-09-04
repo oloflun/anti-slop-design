@@ -1,0 +1,68 @@
+:root {
+  /* Colors — Primary */
+  --color-primary: #f4300f;
+  --color-secondary: #0000ee;
+  --color-accent: #9cc4ff;
+
+  /* Colors — Neutrals */
+  --color-neutral-50: #333333;
+  --color-neutral-100: #eaeaea;
+  --color-neutral-200: #000000;
+  --color-neutral-300: #ffffff;
+
+  /* Colors — Backgrounds */
+  --color-bg: #ffffff;
+  --color-bg-1: #eaeaea;
+  --color-bg-2: #f4300f;
+  --color-bg-3: #9cc4ff;
+  --color-bg-4: #540a04;
+
+  /* Colors — Text */
+  --color-text: #000000;
+  --color-text-1: #333333;
+  --color-text-2: #eaeaea;
+  --color-text-3: #0000ee;
+  --color-text-4: #540a04;
+
+  /* Typography — Families */
+  --font-sans: 'Arial', sans-serif;
+  --font-heading: 'PP Migra', sans-serif;
+  --font-font-2: 'studiofeixensans', sans-serif;
+  --font-body: 'PP migra', sans-serif;
+
+  /* Typography — Scale */
+  --font-size-136: 136px;
+  --font-size-100: 100px;
+  --font-size-51.2: 51.2px;
+  --font-size-40: 40px;
+  --font-size-16: 16px;
+  --font-size-14: 14px;
+
+  /* Spacing */
+  --spacing-2: 2px;
+  --spacing-40: 40px;
+  --spacing-48: 48px;
+  --spacing-58: 58px;
+  --spacing-82: 82px;
+  --spacing-370: 370px;
+  --spacing-478: 478px;
+
+  /* Border Radius */
+  --radius-md: 8px;
+
+  /* Original Site Variables */
+  /* — other — */
+  --shop-pay-button-width: 100%;
+  --bleu_ciel: #9cc4ff;
+  --brun: #540a04;
+  --brun-50: #540a0480;
+  --scrollbar-width: 0px;
+  --orange: #f4300f;
+  --ciment: #eaeaea;
+  /* — semantic — */
+  success: [object Object];
+  warning: [object Object];
+  error: [object Object];
+  info: [object Object];
+
+}

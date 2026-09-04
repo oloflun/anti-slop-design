@@ -1,0 +1,140 @@
+{
+  "pageIntent": {
+    "type": "landing",
+    "confidence": 0.31,
+    "path": "/",
+    "title": "Paper – design, share, ship",
+    "description": "Paper is a modern and powerful design tool that helps you create, share, and ship your best work.",
+    "signals": [
+      {
+        "kind": "dom",
+        "type": "blog-post",
+        "weight": 0.35,
+        "detail": "byline|min-read"
+      },
+      {
+        "kind": "url",
+        "type": "landing",
+        "weight": 0.45,
+        "detail": "root-path"
+      }
+    ],
+    "alternates": [
+      {
+        "type": "blog-post",
+        "score": 0.35
+      }
+    ],
+    "needsSmart": true
+  },
+  "sectionRoles": {
+    "sections": [
+      {
+        "index": 0,
+        "tag": "nav",
+        "role": "nav",
+        "subrole": null,
+        "confidence": 0.9,
+        "heading": null,
+        "bounds": {
+          "x": 0,
+          "y": 0,
+          "w": 1265,
+          "h": 61
+        },
+        "buttonCount": 1,
+        "cardCount": 6,
+        "slots": {
+          "ctaCount": 1,
+          "lede": "pricing\nroadmap\nblog\nchangelog\ndocs\nsign up"
+        },
+        "needsSmart": false
+      },
+      {
+        "index": 1,
+        "tag": "main",
+        "role": "testimonial",
+        "subrole": null,
+        "confidence": 0.8,
+        "heading": "design incredible",
+        "bounds": {
+          "x": 0,
+          "y": 0,
+          "w": 1265,
+          "h": 8583.609375
+        },
+        "buttonCount": 42,
+        "cardCount": 79,
+        "slots": {
+          "heading": "design incredible",
+          "subheadings": [
+            "the connected canvas for\nteams shipping with agents",
+            "Introducing Paper Desktop\na fully connected canvas,\na whole new workflow",
+            "finally a continuous loop,\nfrom Paper to code and back",
+            "connect any agent to your canvas"
+          ],
+          "ctaCount": 42,
+          "lede": "design incredible\nthe connected canvas for\nteams shipping with agents"
+        },
+        "needsSmart": false
+      },
+      {
+        "index": 2,
+        "tag": "section",
+        "role": "testimonial",
+        "subrole": null,
+        "confidence": 0.8,
+        "heading": "design incredible",
+        "bounds": {
+          "x": 0,
+          "y": 60,
+          "w": 1265,
+          "h": 962.609375
+        },
+        "buttonCount": 17,
+        "cardCount": 5,
+        "slots": {
+          "heading": "design incredible",
+          "subheadings": [
+            "the connected canvas for\nteams shipping with agents"
+          ],
+          "ctaCount": 17,
+          "lede": "design incredible\nthe connected canvas for\nteams shipping with agents"
+        },
+        "needsSmart": false
+      },
+      {
+        "index": 3,
+        "tag": "footer",
+        "role": "footer",
+        "subrole": null,
+        "confidence": 0.95,
+        "heading": null,
+        "bounds": {
+          "x": 0,
+          "y": 8583.609375,
+          "w": 1265,
+          "h": 728
+        },
+        "buttonCount": 2,
+        "cardCount": 0,
+        "slots": {
+          "ctaCount": 2,
+          "lede": "© 2026\nPAPER\nhome\npricing\ndownloads\nchangelog\nteam@paper.design\nTOOLS\nPaper Web\nPaper Desktop\nPaper MCP\nPaper Snapshot\nPaper Shaders\nCOMMUNITY\ntwitter\ndiscord\nslack\nyoutube\ninstagram\nreddit\nRESOURCES\ndocs\nblog\nroadmap\nCOMPARE\nPaper vs Figma\nPaper vs Pencil\nLEGAL\nprivacy\nterms\ndpa\nsubprocessors"
+        },
+        "needsSmart": false
+      }
+    ],
+    "counts": {
+      "nav": 1,
+      "testimonial": 2,
+      "footer": 1
+    },
+    "readingOrder": [
+      "nav",
+      "testimonial",
+      "testimonial",
+      "footer"
+    ]
+  }
+}

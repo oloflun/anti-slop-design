@@ -294,11 +294,14 @@ python "$HOME/.agents/skills/design/scripts/shoot_slices.py" .shots/ref https://
    must clear; Tier 3: the lock names what the invented world rejects). One dominant
    reference; secondary ones contribute one or two details; never the safe intersection
    (gate 90). Token and media roles travel with the tokens (gate 91).
-5. **Start in the catalog.** `~/design-catalog` is the first source of references
-   (`Skill(design-catalog)`; `python scripts/query.py --family … --register … --grammar …`).
-   Read 2–4 entries in the register you are heading for — their `shot.png` and slices as
-   images, their reference-lock section as text — before opening anything else. Then the
-   user's URL or screenshot, then 21st.dev for product shots, then Refero MCP if configured.
+5. **Start in the catalogue.** `~/anti-slop-design/design-catalogue/` is the first source of
+   references (`Skill(design-catalog)`; `python scripts/catalogue/query.py --category …
+   --register … --grammar …`). Read 2–4 entries in the category and register you are heading
+   for — their `fold.webp` and slices as images, their reference-lock section as text — before
+   opening anything else. When the brief is Anton's own or names no references, read
+   `design-catalogue/TASTE.md` first: it says how type, image, surface and motion are meant to
+   relate, and which category the brief belongs to. Then the user's URL or screenshot, then
+   21st.dev for product shots, then Refero MCP if configured.
    Photography sources and licences: [`photo-sources.md`](references/photo-sources.md).
 
 ---

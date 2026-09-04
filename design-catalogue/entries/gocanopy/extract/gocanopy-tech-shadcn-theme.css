@@ -1,0 +1,19 @@
+/* shadcn/ui Theme — extracted from https://gocanopy.tech */
+/* Paste into your globals.css */
+
+@layer base {
+  :root {
+    --background: 186 45% 19%;
+    --foreground: 0 0% 0%;
+    --primary: 164 100% 50%;
+    --primary-foreground: 0 0% 0%;
+    --secondary: 193 49% 15%;
+    --secondary-foreground: 0 0% 100%;
+    --accent: 150 100% 50%;
+    --accent-foreground: 0 0% 0%;
+    --muted: 0 5% 88%;
+    --muted-foreground: 40 14% 96%;
+    --border: 0 0% 81%;
+    --radius: 8px;
+  }
+}

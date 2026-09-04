@@ -1,0 +1,255 @@
+{
+  "pageIntent": {
+    "type": "landing",
+    "confidence": 0.75,
+    "path": "/",
+    "title": "Caractère Bois | Ébénisterie d'Art & Créations Modernes",
+    "description": "Caractère Bois, votre ébéniste moderne. De la conception à la réalisation, nous donnons vie à vos projets en bois avec créativité et précision. Visitez notre boutique et nos projets.",
+    "signals": [
+      {
+        "kind": "url",
+        "type": "landing",
+        "weight": 0.45,
+        "detail": "root-path"
+      },
+      {
+        "kind": "shape",
+        "type": "landing",
+        "weight": 0.3,
+        "detail": "hero+features+footer"
+      }
+    ],
+    "alternates": [],
+    "needsSmart": false
+  },
+  "sectionRoles": {
+    "sections": [
+      {
+        "index": 0,
+        "tag": "section",
+        "role": "content",
+        "subrole": null,
+        "confidence": 0.3,
+        "heading": null,
+        "bounds": {
+          "x": 0,
+          "y": 0,
+          "w": 1265,
+          "h": 800
+        },
+        "buttonCount": 0,
+        "cardCount": 0,
+        "slots": {},
+        "needsSmart": true
+      },
+      {
+        "index": 1,
+        "tag": "nav",
+        "role": "nav",
+        "subrole": null,
+        "confidence": 0.9,
+        "heading": null,
+        "bounds": {
+          "x": 0,
+          "y": 723,
+          "w": 1265,
+          "h": 77
+        },
+        "buttonCount": 3,
+        "cardCount": 0,
+        "slots": {
+          "ctaCount": 3
+        },
+        "needsSmart": false
+      },
+      {
+        "index": 2,
+        "tag": "section",
+        "role": "hero",
+        "subrole": null,
+        "confidence": 0.85,
+        "heading": "MATIÈRE PREMIÈRE\n& MANIÈRE DE FAIRE",
+        "bounds": {
+          "x": 0,
+          "y": 0,
+          "w": 1265,
+          "h": 800
+        },
+        "buttonCount": 0,
+        "cardCount": 3,
+        "slots": {
+          "heading": "MATIÈRE PREMIÈRE\n& MANIÈRE DE FAIRE",
+          "lede": "MATIÈRE PREMIÈRE\n& MANIÈRE DE FAIRE\nFABRICATION\nDE CADRES DE VIE"
+        },
+        "needsSmart": false
+      },
+      {
+        "index": 3,
+        "tag": "section",
+        "role": "content",
+        "subrole": null,
+        "confidence": 0.3,
+        "heading": "Caractère Bois, c’est l’alliance subtile entre héritage artisanal et modernité. Un savoir-faire d’exception porté par des mains expertes, où chaque création raconte l’histoire d’une passion pour le bois.",
+        "bounds": {
+          "x": 0,
+          "y": 800,
+          "w": 1265,
+          "h": 800
+        },
+        "buttonCount": 0,
+        "cardCount": 0,
+        "slots": {
+          "heading": "Caractère Bois, c’est l’alliance subtile entre héritage artisanal et modernité. Un savoir-faire d’exception porté par des mains expertes, où chaque création raconte l’histoire d’une passion pour le bois."
+        },
+        "needsSmart": true
+      },
+      {
+        "index": 4,
+        "tag": "section",
+        "role": "hero",
+        "subrole": null,
+        "confidence": 0.4,
+        "heading": "Ébéniste\nmoderne",
+        "bounds": {
+          "x": 0,
+          "y": 1600,
+          "w": 1265,
+          "h": 800
+        },
+        "buttonCount": 2,
+        "cardCount": 0,
+        "slots": {
+          "heading": "Ébéniste\nmoderne",
+          "ctaCount": 2
+        },
+        "needsSmart": true
+      },
+      {
+        "index": 5,
+        "tag": "section",
+        "role": "content",
+        "subrole": null,
+        "confidence": 0.3,
+        "heading": "Le sur-mesure",
+        "bounds": {
+          "x": 0,
+          "y": 2400,
+          "w": 1265,
+          "h": 1600
+        },
+        "buttonCount": 4,
+        "cardCount": 14,
+        "slots": {
+          "heading": "Le sur-mesure",
+          "subheadings": [
+            "Un projet\nen tête ?"
+          ],
+          "ctaCount": 4,
+          "lede": "Le sur-mesure\nTOUS LES PROJETS\nUn projet\nen tête ?\nNOUS CONTACTER"
+        },
+        "needsSmart": true
+      },
+      {
+        "index": 6,
+        "tag": "section",
+        "role": "hero",
+        "subrole": null,
+        "confidence": 0.4,
+        "heading": "La boutique",
+        "bounds": {
+          "x": 0,
+          "y": 4000,
+          "w": 1265,
+          "h": 2029.5
+        },
+        "buttonCount": 2,
+        "cardCount": 31,
+        "slots": {
+          "heading": "La boutique",
+          "ctaCount": 2,
+          "lede": "La boutique\nTOUS LES ARTICLES\nLa petite frêne\n36 x 18 x 2,5\n30\n€\nLe Mini Billot\n50\n€\nLe petit Banc\n58 x 23 x 45\n190\n€\nLe Banc Origine\n100 x 25 x 45\n250\n€\nTable Croisée\n55 x 55 x 55\n450\n€"
+        },
+        "needsSmart": true
+      },
+      {
+        "index": 7,
+        "tag": "section",
+        "role": "hero",
+        "subrole": null,
+        "confidence": 0.4,
+        "heading": "Contacter\nCaractère Bois",
+        "bounds": {
+          "x": 0,
+          "y": 6029.5,
+          "w": 1265,
+          "h": 800
+        },
+        "buttonCount": 1,
+        "cardCount": 0,
+        "slots": {
+          "heading": "Contacter\nCaractère Bois",
+          "ctaCount": 1
+        },
+        "needsSmart": true
+      },
+      {
+        "index": 8,
+        "tag": "footer",
+        "role": "footer",
+        "subrole": null,
+        "confidence": 0.95,
+        "heading": null,
+        "bounds": {
+          "x": 0,
+          "y": 6829.5,
+          "w": 1265,
+          "h": 126
+        },
+        "buttonCount": 0,
+        "cardCount": 0,
+        "slots": {
+          "lede": "CARACTÈRE BOIS © 2025\nTOUS DROITS RÉSERVÉS\nSITE : STUDIO9P\nBRANDING : STUDIOOUAM\nMENTIONS LÉGALES\nCONTACT\nBOUTIQUE\nFACEBOOK\nINSTAGRAM\nLINKEDIN"
+        },
+        "needsSmart": false
+      },
+      {
+        "index": 9,
+        "tag": "section",
+        "role": "content",
+        "subrole": null,
+        "confidence": 0.3,
+        "heading": null,
+        "bounds": {
+          "x": 0,
+          "y": 0,
+          "w": 0,
+          "h": 0
+        },
+        "buttonCount": 0,
+        "cardCount": 0,
+        "slots": {
+          "lede": "Veuillez tourner votre écranPour une meilleure expérience,consultez le site au format vertical"
+        },
+        "needsSmart": true
+      }
+    ],
+    "counts": {
+      "content": 4,
+      "nav": 1,
+      "hero": 4,
+      "footer": 1
+    },
+    "readingOrder": [
+      "content",
+      "hero",
+      "content",
+      "nav",
+      "content",
+      "hero",
+      "content",
+      "hero",
+      "hero",
+      "footer"
+    ]
+  }
+}

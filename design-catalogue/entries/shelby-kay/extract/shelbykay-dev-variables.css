@@ -1,0 +1,82 @@
+:root {
+  /* Colors — Primary */
+  --color-primary: #d6b292;
+  --color-secondary: #efe6d9;
+
+  /* Colors — Neutrals */
+  --color-neutral-50: #393c2a;
+  --color-neutral-100: #000000;
+  --color-neutral-200: #737955;
+  --color-neutral-300: #afa199;
+  --color-neutral-400: #7b8785;
+
+  /* Colors — Backgrounds */
+  --color-bg: #efe6d9;
+  --color-bg-1: #000000;
+  --color-bg-2: #afa199;
+  --color-bg-3: #393c2a;
+  --color-bg-4: #d6b292;
+  --color-bg-5: #7b8785;
+
+  /* Colors — Text */
+  --color-text: #393c2a;
+  --color-text-1: #737955;
+  --color-text-2: #efe6d9;
+
+  /* Typography — Families */
+  --font-sans: 'Switzer', sans-serif;
+  --font-heading: 'Ranade', sans-serif;
+
+  /* Typography — Scale */
+  --font-size-256: 256px;
+  --font-size-140.8: 140.8px;
+  --font-size-73.92: 73.92px;
+  --font-size-24: 24px;
+  --font-size-20: 20px;
+  --font-size-16: 16px;
+  --font-size-14: 14px;
+  --font-size-11: 11px;
+  --font-size-10: 10px;
+
+  /* Spacing */
+  --spacing-6: 6px;
+  --spacing-35: 35px;
+  --spacing-56: 56px;
+  --spacing-80: 80px;
+  --spacing-112: 112px;
+  --spacing-128: 128px;
+  --spacing-200: 200px;
+  --spacing-248: 248px;
+
+  /* Original Site Variables */
+  /* — colors — */
+  --color-primary: #7b8785;
+  --color-primary-dark: #454931;
+  --color-primary-darker: #393c2a;
+  --color-beige-warm: #d6b292;
+  --color-beige: #efe6d9;
+  --color-brown-light: #afa199;
+  --color-black: #2c1c03;
+  --color-blue: #7b8785;
+  /* — spacing — */
+  --margin-side: 12px;
+  --gap: 4px;
+  /* — other — */
+  --screen: var(--vh);
+  --container-width: 1800px;
+  --columns: 8;
+  --column: calc(min(100vw, var(--container-width))/var(--columns));
+  --ease-quart: cubic-bezier(.165,.84,.44,1);
+  --ease-quart-inout: cubic-bezier(.76,0,.24,1);
+  --ease-cubic: cubic-bezier(.33,1,.68,1);
+  --ease-cubic-inout: cubic-bezier(.785,.135,.15,.86);
+  /* — dependencies — */
+  --screen: --vh;
+  --column: --container-width,--columns;
+  /* — semantic — */
+  success: [object Object];
+  warning: [object Object];
+  error: [object Object];
+  info: [object Object];
+
+}

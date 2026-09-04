@@ -1,0 +1,185 @@
+:root {
+  /* Colors — Primary */
+  --color-primary: #f8f9b8;
+  --color-secondary: #f7f7f5;
+  --color-accent: #fd8143;
+
+  /* Colors — Neutrals */
+  --color-neutral-50: #000000;
+  --color-neutral-100: #22201f;
+  --color-neutral-200: #777777;
+  --color-neutral-300: #ffffff;
+  --color-neutral-400: #646464;
+  --color-neutral-500: #d8d7d3;
+  --color-neutral-600: #0f0e0e;
+  --color-neutral-700: #eeedeb;
+  --color-neutral-800: #e0e0e0;
+  --color-neutral-900: #555555;
+
+  /* Colors — Backgrounds */
+  --color-bg: #ffffff;
+  --color-bg-1: #f8f9b8;
+  --color-bg-2: #22201f;
+  --color-bg-3: #8fb8c8;
+  --color-bg-4: #fd8143;
+  --color-bg-5: #d8d7d3;
+  --color-bg-6: #f7f7f5;
+  --color-bg-7: #eeedeb;
+
+  /* Colors — Text */
+  --color-text: #000000;
+  --color-text-1: #ffffff;
+  --color-text-2: #22201f;
+  --color-text-3: #fd8143;
+  --color-text-4: #777777;
+
+  /* Typography — Families */
+  --font-body: 'Helvetica', sans-serif;
+  --font-heading: 'FigtreeKH', sans-serif;
+  --font-body: 'Times New Roman', sans-serif;
+  --font-body: 'Arial', sans-serif;
+  --font-font-4: 'Affairs', sans-serif;
+
+  /* Typography — Scale */
+  --font-size-96: 96px;
+  --font-size-72: 72px;
+  --font-size-48: 48px;
+  --font-size-44: 44px;
+  --font-size-40: 40px;
+  --font-size-32: 32px;
+  --font-size-24: 24px;
+  --font-size-20: 20px;
+  --font-size-18: 18px;
+  --font-size-16: 16px;
+  --font-size-15: 15px;
+  --font-size-14: 14px;
+
+  /* Spacing */
+  --spacing-1: 1px;
+  --spacing-24: 24px;
+  --spacing-30: 30px;
+  --spacing-39: 39px;
+  --spacing-48: 48px;
+  --spacing-63: 63px;
+  --spacing-69: 69px;
+  --spacing-80: 80px;
+  --spacing-120: 120px;
+  --spacing-144: 144px;
+  --spacing-187: 187px;
+  --spacing-245: 245px;
+
+  /* Border Radius */
+  --radius-sm: 4px;
+  --radius-md: 8px;
+  --radius-lg: 12px;
+  --radius-full: 50px;
+  --radius-full: 100px;
+  --radius-full: 900px;
+
+  /* Box Shadows */
+  --shadow-xl: rgba(0, 0, 0, 0.15) 0px 8px 32px 0px;
+
+  /* Original Site Variables */
+  /* — colors — */
+  --color_primary_default: rgba(2, 5, 211, 1);
+  --color_primary_default_rgb: 2, 5, 211;
+  --color_primary_contrast_default: rgba(255, 255, 255, 1);
+  --color_primary_contrast_default_rgb: 255, 255, 255;
+  --color_text_default: rgba(9, 23, 71, 1);
+  --color_text_default_rgb: 9, 23, 71;
+  --color_surface_default: rgba(255, 255, 255, 1);
+  --color_surface_default_rgb: 255, 255, 255;
+  --color_background_default: rgba(255, 255, 255, 0);
+  --color_background_default_rgb: 255, 255, 255;
+  --color_destructive_default: rgba(255, 0, 0, 1);
+  --color_destructive_default_rgb: 255, 0, 0;
+  --color_success_default: rgba(23, 219, 78, 1);
+  --color_success_default_rgb: 23, 219, 78;
+  --color_alert_default: rgba(250, 181, 21, 1);
+  --color_alert_default_rgb: 250, 181, 21;
+  --color_danger_default_rgb: rgba(176, 32, 12, 1);
+  --color_bTHBi_default: #0205D3;
+  --color_bTOCT_default: rgba(213,239,2,1);
+  --color_bTHCB_default_rgb: 0205;
+  --color_cmXqS_default_rgb: 0205;
+  --color_bTNHh_default: rgba(143,184,200,1);
+  --color_bTMJp_default_rgb: 52,114,196;
+  --color_bTJVR_default_rgb: 238,238,235;
+  --color_cmXqS_default: #0205D3;
+  --color_bTHKh_default_rgb: 1,49,34;
+  --color_bTHBn_default: #0205D3;
+  --color_bTGyQ_default_rgb: 238,237,235;
+  --color_bTGyQ_default: rgba(238,237,235,1);
+  --color_bTHBJ_default: #0205D3;
+  --color_bTGLo_default_rgb: 0205;
+  --color_bTLDY_default_rgb: 100,100,100;
+  --color_bTMJp_default: rgba(52,114,196,1);
+  --color_bTILm_default_rgb: 18,22,21;
+  --color_cmXpD_default_rgb: 0205;
+  --color_bTHBF_default_rgb: 0205;
+  --color_bTHKh_default: rgba(1,49,34,1);
+  --color_bTHRY_default: rgba(106,152,201,1);
+  --color_bTJnN_default_rgb: 250,249,245;
+  --color_bTHAZ_default: #0205D3;
+  --color_bTGLo_default: #0205D3;
+  --color_bTHPB_default: #0205D3;
+  --color_bTNJy_default: rgba(248,249,184,1);
+  --color_bTGyP_default_rgb: 216,215,211;
+  --color_bTHRL_default: rgba(4,40,90,1);
+  --color_bTHAT_default: #0205D3;
+  --color_bTHAZ_default_rgb: 0205;
+  --color_bTNHW_default_rgb: 34,32,31;
+  --color_bTHHP_default: #0205D3;
+  --color_bTHBF_default: #0205D3;
+  --color_bTJVR_default: rgba(238,238,235,1);
+  --color_bTHgY_default: #0205D3;
+  --color_bTILm_default: rgba(18,22,21,1);
+  --color_bTGyP_default: rgba(216,215,211,1);
+  --color_bTHBo_default: rgba(119,119,119,1);
+  --color_bTHQP_default: rgba(149,6,6,1);
+  --color_bTHgY_default_rgb: 0205;
+  --color_bTOCT_default_rgb: 213,239,2;
+  --color_bTHBL0_default_rgb: 0205;
+  --color_bTHBL0_default: #0205D3;
+  --color_bTHBJ_default_rgb: 0205;
+  --color_bTLDY_default: rgba(100,100,100,1);
+  --color_bTHBo_default_rgb: 119,119,119;
+  --color_bTHAT_default_rgb: 0205;
+  --color_bTHBP0_default_rgb: 126,126,126;
+  --color_bTHCB_default: #0205D3;
+  --color_bTHPl_default: rgba(227,227,223,1);
+  --color_bTJnN_default: rgba(250,249,245,1);
+  --color_bTHRL_default_rgb: 4,40,90;
+  --color_bTNHh_default_rgb: 143,184,200;
+  --color_bTNJy_default_rgb: 248,249,184;
+  --color_bTHQP_default_rgb: 149,6,6;
+  --color_cmXpD_default: #0205D3;
+  --color_bTKJr_default: #0205D3;
+  --color_bTHPB_default_rgb: 0205;
+  --color_bTHBP0_default: rgba(126,126,126,1);
+  --color_bTHft_default_rgb: 0205;
+  --color_bTHPl_default_rgb: 227,227,223;
+  --color_bTHBi_default_rgb: 0205;
+  --color_bTHHP_default_rgb: 0205;
+  --color_bTNHV_default_rgb: 253,129,67;
+  --color_bTNHW_default: rgba(34,32,31,1);
+  --color_bTHRY_default_rgb: 106,152,201;
+  --color_bTHBn_default_rgb: 0205;
+  --color_bTNHV_default: rgba(253,129,67,1);
+  --color_bTHft_default: #0205D3;
+  --color_bTKJr_default_rgb: 0205;
+  /* — typography — */
+  --font_default: 'Lato';
+  --font_bTHEn_default: "Gantari";
+  --font_cmXpc_default: "Open Sans";
+  --font_bTHFe_default: "MADE Outer Sans";
+  --font_bTHBo_default: "Open Sans";
+  --font_bTHAz_default: "Affairs";
+  --font_bTIjU_default: "Open Sans";
+  /* — semantic — */
+  success: [object Object];
+  warning: [object Object];
+  error: [object Object];
+  info: [object Object];
+
+}

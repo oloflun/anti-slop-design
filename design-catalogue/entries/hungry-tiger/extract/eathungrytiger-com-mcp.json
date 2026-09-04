@@ -1,0 +1,509 @@
+{
+  "colors": {
+    "all": [
+      {
+        "hex": "#faae33",
+        "rgb": {
+          "r": 250,
+          "g": 174,
+          "b": 51,
+          "a": 1
+        },
+        "hsl": {
+          "h": 37,
+          "s": 95,
+          "l": 59
+        },
+        "count": 1724,
+        "contexts": [
+          "text",
+          "border",
+          "background"
+        ]
+      },
+      {
+        "hex": "#402011",
+        "rgb": {
+          "r": 64,
+          "g": 32,
+          "b": 17,
+          "a": 1
+        },
+        "hsl": {
+          "h": 19,
+          "s": 58,
+          "l": 16
+        },
+        "count": 946,
+        "contexts": [
+          "text",
+          "border",
+          "background"
+        ]
+      },
+      {
+        "hex": "#000000",
+        "rgb": {
+          "r": 0,
+          "g": 0,
+          "b": 0,
+          "a": 1
+        },
+        "hsl": {
+          "h": 0,
+          "s": 0,
+          "l": 0
+        },
+        "count": 62,
+        "contexts": [
+          "text",
+          "border",
+          "background"
+        ]
+      },
+      {
+        "hex": "#ffffff",
+        "rgb": {
+          "r": 255,
+          "g": 255,
+          "b": 255,
+          "a": 1
+        },
+        "hsl": {
+          "h": 0,
+          "s": 0,
+          "l": 100
+        },
+        "count": 48,
+        "contexts": [
+          "text",
+          "border"
+        ]
+      },
+      {
+        "hex": "#823513",
+        "rgb": {
+          "r": 130,
+          "g": 53,
+          "b": 19,
+          "a": 1
+        },
+        "hsl": {
+          "h": 18,
+          "s": 74,
+          "l": 29
+        },
+        "count": 13,
+        "contexts": [
+          "background"
+        ]
+      },
+      {
+        "hex": "#ffdede",
+        "rgb": {
+          "r": 255,
+          "g": 222,
+          "b": 222,
+          "a": 1
+        },
+        "hsl": {
+          "h": 0,
+          "s": 100,
+          "l": 94
+        },
+        "count": 3,
+        "contexts": [
+          "background"
+        ]
+      },
+      {
+        "hex": "#281006",
+        "rgb": {
+          "r": 40,
+          "g": 16,
+          "b": 6,
+          "a": 1
+        },
+        "hsl": {
+          "h": 18,
+          "s": 74,
+          "l": 9
+        },
+        "count": 3,
+        "contexts": [
+          "background"
+        ]
+      },
+      {
+        "hex": "#d1255c",
+        "rgb": {
+          "r": 209,
+          "g": 37,
+          "b": 92,
+          "a": 1
+        },
+        "hsl": {
+          "h": 341,
+          "s": 70,
+          "l": 48
+        },
+        "count": 3,
+        "contexts": [
+          "background"
+        ]
+      },
+      {
+        "hex": "#dddddd",
+        "rgb": {
+          "r": 221,
+          "g": 221,
+          "b": 221,
+          "a": 1
+        },
+        "hsl": {
+          "h": 0,
+          "s": 0,
+          "l": 87
+        },
+        "count": 1,
+        "contexts": [
+          "background"
+        ]
+      }
+    ]
+  },
+  "regions": [
+    {
+      "role": "nav",
+      "tag": "header",
+      "bounds": {
+        "x": 0,
+        "y": 0,
+        "w": 1280,
+        "h": 82
+      },
+      "heading": null,
+      "buttonCount": 5,
+      "cardCount": 3,
+      "className": "header"
+    },
+    {
+      "role": "hero",
+      "tag": "section",
+      "bounds": {
+        "x": 0,
+        "y": 0,
+        "w": 1280,
+        "h": 6400
+      },
+      "heading": "BOLD FLAVOR",
+      "buttonCount": 6,
+      "cardCount": 0,
+      "className": "hero_part"
+    },
+    {
+      "role": "content",
+      "tag": "section",
+      "bounds": {
+        "x": 0,
+        "y": 6400,
+        "w": 1280,
+        "h": 1722.875
+      },
+      "heading": "WHAT'S\nINSIDE",
+      "buttonCount": 0,
+      "cardCount": 4,
+      "className": "inside_sides"
+    },
+    {
+      "role": "features",
+      "tag": "section",
+      "bounds": {
+        "x": 0,
+        "y": 8122.875,
+        "w": 1280,
+        "h": 1996.828125
+      },
+      "heading": "TRADITION\n& CREATION",
+      "buttonCount": 0,
+      "cardCount": 8,
+      "className": "traditions"
+    },
+    {
+      "role": "hero",
+      "tag": "section",
+      "bounds": {
+        "x": 0,
+        "y": 10119.703125,
+        "w": 1280,
+        "h": 921.59375
+      },
+      "heading": "UNLOCK THE\nMAGIC INSIDE\nTHE JAR",
+      "buttonCount": 3,
+      "cardCount": 0,
+      "className": "fullsize"
+    },
+    {
+      "role": "content",
+      "tag": "section",
+      "bounds": {
+        "x": 0,
+        "y": 11041.296875,
+        "w": 1280,
+        "h": 1353.015625
+      },
+      "heading": "LET'S GET\nCOOKING",
+      "buttonCount": 3,
+      "cardCount": 65,
+      "className": "recipes"
+    },
+    {
+      "role": "content",
+      "tag": "section",
+      "bounds": {
+        "x": 0,
+        "y": 12394.3125,
+        "w": 1280,
+        "h": 800
+      },
+      "heading": null,
+      "buttonCount": 1,
+      "cardCount": 0,
+      "className": "discount_newsletter"
+    },
+    {
+      "role": "content",
+      "tag": "section",
+      "bounds": {
+        "x": 0,
+        "y": 13194.3125,
+        "w": 1280,
+        "h": 605
+      },
+      "heading": null,
+      "buttonCount": 0,
+      "cardCount": 0,
+      "className": "footer"
+    }
+  ],
+  "componentClusters": [
+    {
+      "kind": "button",
+      "structuralHash": "a>div>div",
+      "instanceCount": 5,
+      "variants": [
+        {
+          "css": {
+            "background": "rgb(250, 174, 51)",
+            "color": "rgb(64, 32, 17)",
+            "padding": "0px 15.552px 0px 15.552px",
+            "borderRadius": "1152px",
+            "border": "0px none rgb(64, 32, 17)",
+            "fontSize": "11.52px",
+            "fontWeight": "500"
+          },
+          "instanceCount": 5
+        }
+      ]
+    },
+    {
+      "kind": "button",
+      "structuralHash": "div>div",
+      "instanceCount": 1,
+      "variants": [
+        {
+          "css": {
+            "background": "rgba(0, 0, 0, 0)",
+            "color": "rgb(250, 174, 51)",
+            "padding": "0px 0px 0px 0px",
+            "borderRadius": "0px",
+            "border": "0px none rgb(250, 174, 51)",
+            "fontSize": "12.8px",
+            "fontWeight": "500"
+          },
+          "instanceCount": 1
+        }
+      ]
+    },
+    {
+      "kind": "button",
+      "structuralHash": "input",
+      "instanceCount": 2,
+      "variants": [
+        {
+          "css": {
+            "background": "rgba(56, 152, 236, 0)",
+            "color": "rgba(255, 255, 255, 0)",
+            "padding": "9px 15px 9px 15px",
+            "borderRadius": "100%",
+            "border": "0px outset rgb(0, 0, 0)",
+            "fontSize": "12.8px",
+            "fontWeight": "500"
+          },
+          "instanceCount": 1
+        },
+        {
+          "css": {
+            "background": "rgb(64, 32, 17)",
+            "color": "rgb(250, 174, 51)",
+            "padding": "16px 42px 12px 42px",
+            "borderRadius": "1152px",
+            "border": "0px none rgb(250, 174, 51)",
+            "fontSize": "11.52px",
+            "fontWeight": "500"
+          },
+          "instanceCount": 1
+        }
+      ]
+    },
+    {
+      "kind": "button",
+      "structuralHash": "div",
+      "instanceCount": 4,
+      "variants": [
+        {
+          "css": {
+            "background": "rgba(0, 0, 0, 0)",
+            "color": "rgb(64, 32, 17)",
+            "padding": "0px 0px 0px 0px",
+            "borderRadius": "0px",
+            "border": "0px none rgb(64, 32, 17)",
+            "fontSize": "10.24px",
+            "fontWeight": "700"
+          },
+          "instanceCount": 4
+        }
+      ]
+    },
+    {
+      "kind": "card",
+      "structuralHash": "div>div>div",
+      "instanceCount": 3,
+      "variants": [
+        {
+          "css": {
+            "background": "rgb(250, 174, 51)",
+            "color": "rgb(250, 174, 51)",
+            "padding": "14px 14px 32px 14px",
+            "borderRadius": "6px",
+            "border": "0px none rgb(250, 174, 51)",
+            "fontSize": "12.8px",
+            "fontWeight": "500"
+          },
+          "instanceCount": 3
+        }
+      ]
+    },
+    {
+      "kind": "input",
+      "structuralHash": "input",
+      "instanceCount": 2,
+      "variants": [
+        {
+          "css": {
+            "background": "rgba(255, 255, 255, 0)",
+            "color": "rgb(64, 32, 17)",
+            "padding": "16px 16px 12px 20px",
+            "borderRadius": "1088px",
+            "border": "1px solid rgba(64, 32, 17, 0.35)",
+            "fontSize": "10.88px",
+            "fontWeight": "500"
+          },
+          "instanceCount": 2
+        }
+      ]
+    }
+  ],
+  "accessibility": {
+    "remediation": []
+  },
+  "cssHealth": {
+    "sheets": [
+      {
+        "url": "https://cdn.prod.website-files.com/683fa5578c4365b4bb69fade/css/hungry-tiger.webflow.shared.bb04e25ad.min.css",
+        "totalBytes": 123853,
+        "usedBytes": 19356,
+        "unusedBytes": 104497,
+        "unusedPercent": 84
+      },
+      {
+        "url": "https://www.eathungrytiger.com/",
+        "totalBytes": 276,
+        "usedBytes": 274,
+        "unusedBytes": 2,
+        "unusedPercent": 1
+      },
+      {
+        "url": "https://www.eathungrytiger.com/",
+        "totalBytes": 109,
+        "usedBytes": 64,
+        "unusedBytes": 45,
+        "unusedPercent": 41
+      },
+      {
+        "url": "https://www.eathungrytiger.com/",
+        "totalBytes": 756,
+        "usedBytes": 431,
+        "unusedBytes": 325,
+        "unusedPercent": 43
+      },
+      {
+        "url": "https://www.eathungrytiger.com/",
+        "totalBytes": 377,
+        "usedBytes": 375,
+        "unusedBytes": 2,
+        "unusedPercent": 1
+      },
+      {
+        "url": "https://www.eathungrytiger.com/",
+        "totalBytes": 247,
+        "usedBytes": 245,
+        "unusedBytes": 2,
+        "unusedPercent": 1
+      },
+      {
+        "url": "https://www.eathungrytiger.com/",
+        "totalBytes": 145,
+        "usedBytes": 48,
+        "unusedBytes": 97,
+        "unusedPercent": 67
+      }
+    ],
+    "totalBytes": 125763,
+    "usedBytes": 20793,
+    "unusedBytes": 104970,
+    "unusedPercent": 83,
+    "importantCount": 42,
+    "duplicates": 3535,
+    "vendorPrefixes": {
+      "webkit": 64,
+      "moz": 4,
+      "ms": 1,
+      "o": 0
+    },
+    "keyframes": [
+      {
+        "name": "spin",
+        "steps": 2
+      }
+    ],
+    "specificity": {
+      "max": [
+        1,
+        4,
+        2
+      ],
+      "average": [
+        0.01,
+        1.22,
+        0.1
+      ],
+      "count": 1866
+    },
+    "issues": [
+      "42 !important rules",
+      "3535 duplicate declarations",
+      "83% unused CSS"
+    ]
+  }
+}

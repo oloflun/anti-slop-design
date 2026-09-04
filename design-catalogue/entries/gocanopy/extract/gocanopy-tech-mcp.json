@@ -1,0 +1,668 @@
+{
+  "colors": {
+    "all": [
+      {
+        "hex": "#f6f5f3",
+        "rgb": {
+          "r": 246,
+          "g": 245,
+          "b": 243,
+          "a": 1
+        },
+        "hsl": {
+          "h": 40,
+          "s": 14,
+          "l": 96
+        },
+        "count": 231,
+        "contexts": [
+          "text",
+          "border",
+          "background"
+        ]
+      },
+      {
+        "hex": "#00ffbb",
+        "rgb": {
+          "r": 0,
+          "g": 255,
+          "b": 187,
+          "a": 1
+        },
+        "hsl": {
+          "h": 164,
+          "s": 100,
+          "l": 50
+        },
+        "count": 219,
+        "contexts": [
+          "background",
+          "text",
+          "border"
+        ]
+      },
+      {
+        "hex": "#14323a",
+        "rgb": {
+          "r": 20,
+          "g": 50,
+          "b": 58,
+          "a": 1
+        },
+        "hsl": {
+          "h": 193,
+          "s": 49,
+          "l": 15
+        },
+        "count": 213,
+        "contexts": [
+          "text",
+          "border",
+          "background"
+        ]
+      },
+      {
+        "hex": "#000000",
+        "rgb": {
+          "r": 0,
+          "g": 0,
+          "b": 0,
+          "a": 1
+        },
+        "hsl": {
+          "h": 0,
+          "s": 0,
+          "l": 0
+        },
+        "count": 114,
+        "contexts": [
+          "text",
+          "border",
+          "background"
+        ]
+      },
+      {
+        "hex": "#ffffff",
+        "rgb": {
+          "r": 255,
+          "g": 255,
+          "b": 255,
+          "a": 0.08
+        },
+        "hsl": {
+          "h": 0,
+          "s": 0,
+          "l": 100
+        },
+        "count": 43,
+        "contexts": [
+          "border",
+          "text",
+          "background"
+        ]
+      },
+      {
+        "hex": "#979797",
+        "rgb": {
+          "r": 151,
+          "g": 151,
+          "b": 151,
+          "a": 1
+        },
+        "hsl": {
+          "h": 0,
+          "s": 0,
+          "l": 59
+        },
+        "count": 40,
+        "contexts": [
+          "text",
+          "border"
+        ]
+      },
+      {
+        "hex": "#cecece",
+        "rgb": {
+          "r": 206,
+          "g": 206,
+          "b": 206,
+          "a": 1
+        },
+        "hsl": {
+          "h": 0,
+          "s": 0,
+          "l": 81
+        },
+        "count": 32,
+        "contexts": [
+          "text",
+          "border"
+        ]
+      },
+      {
+        "hex": "#00ff7f",
+        "rgb": {
+          "r": 0,
+          "g": 255,
+          "b": 127,
+          "a": 0.1
+        },
+        "hsl": {
+          "h": 150,
+          "s": 100,
+          "l": 50
+        },
+        "count": 7,
+        "contexts": [
+          "border",
+          "background"
+        ]
+      },
+      {
+        "hex": "#041b19",
+        "rgb": {
+          "r": 4,
+          "g": 27,
+          "b": 25,
+          "a": 0.4
+        },
+        "hsl": {
+          "h": 175,
+          "s": 74,
+          "l": 6
+        },
+        "count": 6,
+        "contexts": [
+          "border",
+          "background"
+        ]
+      },
+      {
+        "hex": "#e2dfdf",
+        "rgb": {
+          "r": 226,
+          "g": 223,
+          "b": 223,
+          "a": 1
+        },
+        "hsl": {
+          "h": 0,
+          "s": 5,
+          "l": 88
+        },
+        "count": 3,
+        "contexts": [
+          "background",
+          "text",
+          "border"
+        ]
+      },
+      {
+        "hex": "#1a4145",
+        "rgb": {
+          "r": 26,
+          "g": 65,
+          "b": 69,
+          "a": 1
+        },
+        "hsl": {
+          "h": 186,
+          "s": 45,
+          "l": 19
+        },
+        "count": 2,
+        "contexts": [
+          "background"
+        ]
+      },
+      {
+        "hex": "#c5f7e7",
+        "rgb": {
+          "r": 197,
+          "g": 247,
+          "b": 231,
+          "a": 1
+        },
+        "hsl": {
+          "h": 161,
+          "s": 76,
+          "l": 87
+        },
+        "count": 1,
+        "contexts": [
+          "background"
+        ]
+      },
+      {
+        "hex": "#94f9dd",
+        "rgb": {
+          "r": 148,
+          "g": 249,
+          "b": 221,
+          "a": 1
+        },
+        "hsl": {
+          "h": 163,
+          "s": 89,
+          "l": 78
+        },
+        "count": 1,
+        "contexts": [
+          "background"
+        ]
+      },
+      {
+        "hex": "#62fbd1",
+        "rgb": {
+          "r": 98,
+          "g": 251,
+          "b": 209,
+          "a": 1
+        },
+        "hsl": {
+          "h": 164,
+          "s": 95,
+          "l": 68
+        },
+        "count": 1,
+        "contexts": [
+          "background"
+        ]
+      }
+    ]
+  },
+  "regions": [
+    {
+      "role": "nav",
+      "tag": "nav",
+      "bounds": {
+        "x": 17,
+        "y": 418,
+        "w": 1246,
+        "h": 357
+      },
+      "heading": null,
+      "buttonCount": 1,
+      "cardCount": 9,
+      "className": "flex flex-col divide-y divide-white/8"
+    },
+    {
+      "role": "nav",
+      "tag": "header",
+      "bounds": {
+        "x": 0,
+        "y": 24,
+        "w": 1280,
+        "h": 60
+      },
+      "heading": null,
+      "buttonCount": 2,
+      "cardCount": 13,
+      "className": "w-full fixed top-4 md:top-6 inset-x-0 z-30 will-change-transform"
+    },
+    {
+      "role": "nav",
+      "tag": "nav",
+      "bounds": {
+        "x": 252,
+        "y": 44,
+        "w": 784,
+        "h": 20
+      },
+      "heading": null,
+      "buttonCount": 1,
+      "cardCount": 9,
+      "className": "hidden lg:flex col-span-8 justify-center"
+    },
+    {
+      "role": "content",
+      "tag": "main",
+      "bounds": {
+        "x": 0,
+        "y": 0,
+        "w": 1280,
+        "h": 7174.375
+      },
+      "heading": "From scattered data to institutional intelligence",
+      "buttonCount": 3,
+      "cardCount": 44,
+      "className": "flex-1 overflow-hidden bg-foreground text-background"
+    },
+    {
+      "role": "hero",
+      "tag": "section",
+      "bounds": {
+        "x": 0,
+        "y": 0,
+        "w": 1280,
+        "h": 1195.171875
+      },
+      "heading": "From scattered data to institutional intelligence",
+      "buttonCount": 2,
+      "cardCount": 8,
+      "className": "relative z-0 overflow-hidden text-background"
+    },
+    {
+      "role": "content",
+      "tag": "section",
+      "bounds": {
+        "x": 0,
+        "y": 1195.171875,
+        "w": 1280,
+        "h": 143.375
+      },
+      "heading": "Trusted by\nleading companies",
+      "buttonCount": 0,
+      "cardCount": 6,
+      "className": "pt-5 pb-5 md:pb-0 md:pt-10 bg-foreground text-primary"
+    },
+    {
+      "role": "content",
+      "tag": "section",
+      "bounds": {
+        "x": 0,
+        "y": 1466.546875,
+        "w": 1280,
+        "h": 751
+      },
+      "heading": "When fragmented data hides the full picture",
+      "buttonCount": 0,
+      "cardCount": 3,
+      "className": "my-10 md:my-20 lg:my-24 xl:my-32"
+    },
+    {
+      "role": "content",
+      "tag": "section",
+      "bounds": {
+        "x": 0,
+        "y": 2345.546875,
+        "w": 1280,
+        "h": 905
+      },
+      "heading": "Turn fragmented sources into institutional intelligence",
+      "buttonCount": 0,
+      "cardCount": 7,
+      "className": "my-10 md:my-20 lg:my-24 xl:my-32"
+    },
+    {
+      "role": "content",
+      "tag": "section",
+      "bounds": {
+        "x": 0,
+        "y": 3698.546875,
+        "w": 1280,
+        "h": 1067.359375
+      },
+      "heading": "Evidence from\ninstitutional investors",
+      "buttonCount": 0,
+      "cardCount": 5,
+      "className": "py-10 md:py-20 lg:py-24 xl:py-32 bg-foreground"
+    },
+    {
+      "role": "testimonials",
+      "tag": "section",
+      "bounds": {
+        "x": 0,
+        "y": 4893.90625,
+        "w": 1280,
+        "h": 574.46875
+      },
+      "heading": "\"GoCanopy delivers instant, consultant-grade analysis with verifiable sources that hold up under IC scrutiny.\" ",
+      "buttonCount": 1,
+      "cardCount": 7,
+      "className": "my-10 md:my-20 lg:my-24 xl:my-32"
+    },
+    {
+      "role": "content",
+      "tag": "section",
+      "bounds": {
+        "x": 0,
+        "y": 5596.375,
+        "w": 1280,
+        "h": 798
+      },
+      "heading": "Security",
+      "buttonCount": 0,
+      "cardCount": 4,
+      "className": "py-10 md:py-20 lg:py-24 xl:py-32 bg-foreground text-background"
+    },
+    {
+      "role": "content",
+      "tag": "section",
+      "bounds": {
+        "x": 0,
+        "y": 6394.375,
+        "w": 1280,
+        "h": 780
+      },
+      "heading": "Turn fragmented data into complete, consistent, and defensible intelligence",
+      "buttonCount": 0,
+      "cardCount": 4,
+      "className": "py-10 md:pb-14 md:pt-20"
+    },
+    {
+      "role": "footer",
+      "tag": "footer",
+      "bounds": {
+        "x": 0,
+        "y": 6515.375,
+        "w": 1280,
+        "h": 658.546875
+      },
+      "heading": null,
+      "buttonCount": 0,
+      "cardCount": 16,
+      "className": "bg-foreground text-background relative w-full -z-10"
+    }
+  ],
+  "componentClusters": [
+    {
+      "kind": "button",
+      "structuralHash": "button>span",
+      "instanceCount": 1,
+      "variants": [
+        {
+          "css": {
+            "background": "rgba(0, 0, 0, 0)",
+            "color": "rgb(20, 50, 58)",
+            "padding": "0px 0px 0px 0px",
+            "borderRadius": "3.35544e+07px",
+            "border": "0px solid rgb(20, 50, 58)",
+            "fontSize": "16px",
+            "fontWeight": "400"
+          },
+          "instanceCount": 1
+        }
+      ]
+    },
+    {
+      "kind": "button",
+      "structuralHash": "button>svg",
+      "instanceCount": 3,
+      "variants": [
+        {
+          "css": {
+            "background": "rgba(0, 0, 0, 0)",
+            "color": "rgb(246, 245, 243)",
+            "padding": "8px 8px 8px 8px",
+            "borderRadius": "0px",
+            "border": "0px solid rgb(246, 245, 243)",
+            "fontSize": "16px",
+            "fontWeight": "400"
+          },
+          "instanceCount": 3
+        }
+      ]
+    },
+    {
+      "kind": "button",
+      "structuralHash": "button>span>span",
+      "instanceCount": 1,
+      "variants": [
+        {
+          "css": {
+            "background": "oklab(0 0 0 / 0.35)",
+            "color": "rgb(255, 255, 255)",
+            "padding": "0px 0px 0px 0px",
+            "borderRadius": "12px",
+            "border": "0px solid rgb(255, 255, 255)",
+            "fontSize": "16px",
+            "fontWeight": "400"
+          },
+          "instanceCount": 1
+        }
+      ]
+    },
+    {
+      "kind": "button",
+      "structuralHash": "button",
+      "instanceCount": 2,
+      "variants": [
+        {
+          "css": {
+            "background": "rgba(0, 0, 0, 0)",
+            "color": "rgb(0, 255, 187)",
+            "padding": "12px 18px 12px 18px",
+            "borderRadius": "0px",
+            "border": "0px solid rgb(0, 255, 187)",
+            "fontSize": "14px",
+            "fontWeight": "500"
+          },
+          "instanceCount": 1
+        },
+        {
+          "css": {
+            "background": "rgba(0, 0, 0, 0)",
+            "color": "rgb(20, 50, 58)",
+            "padding": "12px 0px 12px 0px",
+            "borderRadius": "0px",
+            "border": "0px solid rgb(20, 50, 58)",
+            "fontSize": "20px",
+            "fontWeight": "500"
+          },
+          "instanceCount": 1
+        }
+      ]
+    },
+    {
+      "kind": "card",
+      "structuralHash": "div>div>div>h3>div>p",
+      "instanceCount": 3,
+      "variants": [
+        {
+          "css": {
+            "background": "rgb(197, 247, 231)",
+            "color": "rgb(20, 50, 58)",
+            "padding": "40px 50px 36px 50px",
+            "borderRadius": "16px",
+            "border": "0px solid rgb(20, 50, 58)",
+            "fontSize": "16px",
+            "fontWeight": "400"
+          },
+          "instanceCount": 3
+        }
+      ]
+    },
+    {
+      "kind": "card",
+      "structuralHash": "div>h3>img>h6",
+      "instanceCount": 1,
+      "variants": [
+        {
+          "css": {
+            "background": "rgba(0, 0, 0, 0)",
+            "color": "rgb(0, 255, 187)",
+            "padding": "48px 32px 32px 32px",
+            "borderRadius": "16px",
+            "border": "1px solid rgb(0, 255, 187)",
+            "fontSize": "16px",
+            "fontWeight": "400"
+          },
+          "instanceCount": 1
+        }
+      ]
+    },
+    {
+      "kind": "card",
+      "structuralHash": "div>h3>div>h6",
+      "instanceCount": 2,
+      "variants": [
+        {
+          "css": {
+            "background": "rgba(0, 0, 0, 0)",
+            "color": "rgb(0, 255, 187)",
+            "padding": "48px 32px 32px 32px",
+            "borderRadius": "16px",
+            "border": "1px solid rgb(0, 255, 187)",
+            "fontSize": "16px",
+            "fontWeight": "400"
+          },
+          "instanceCount": 2
+        }
+      ]
+    },
+    {
+      "kind": "card",
+      "structuralHash": "div>svg>p",
+      "instanceCount": 4,
+      "variants": [
+        {
+          "css": {
+            "background": "rgba(0, 0, 0, 0)",
+            "color": "rgb(206, 206, 206)",
+            "padding": "16px 12px 16px 12px",
+            "borderRadius": "16px",
+            "border": "1px solid rgb(0, 255, 187)",
+            "fontSize": "16px",
+            "fontWeight": "500"
+          },
+          "instanceCount": 4
+        }
+      ]
+    }
+  ],
+  "accessibility": {
+    "remediation": []
+  },
+  "cssHealth": {
+    "sheets": [
+      {
+        "url": "https://gocanopy.tech/_nuxt/entry.Chqn4x7F.css",
+        "totalBytes": 73279,
+        "usedBytes": 64884,
+        "unusedBytes": 8395,
+        "unusedPercent": 11
+      }
+    ],
+    "totalBytes": 73279,
+    "usedBytes": 64884,
+    "unusedBytes": 8395,
+    "unusedPercent": 11,
+    "importantCount": 18,
+    "duplicates": 616,
+    "vendorPrefixes": {
+      "webkit": 36,
+      "moz": 15,
+      "ms": 0,
+      "o": 5
+    },
+    "keyframes": [],
+    "specificity": {
+      "max": [
+        1,
+        5,
+        2
+      ],
+      "average": [
+        0.02,
+        1.39,
+        0.18
+      ],
+      "count": 1203
+    },
+    "issues": [
+      "18 !important rules",
+      "616 duplicate declarations"
+    ]
+  }
+}
