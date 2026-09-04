@@ -90,7 +90,17 @@ tailwind.config = {
     .reveal { opacity:1; transform:none; transition:none; }
     .pl-bg { transform: none !important; }
     .word { opacity: 1; }
+    #logo { transition: none; }
   }
+
+  /* Header wordmark: hidden while the hero title is in view (collides with it
+     around ~830px embed width), restored the moment the hero scrolls past
+     and the sticky nav gains its background. JS-only — no-JS fallback is
+     simply the default visible state below. */
+  #logo { transition: opacity 300ms ease, visibility 300ms ease; }
+  #logo.logo-hidden { opacity: 0; pointer-events: none; visibility: hidden; }
+  /* static rule: the Tailwind play CDN does not always generate bg-walnut/92 when it is added at runtime */
+  #nav.nav-scrolled { background: oklch(0.22 0.022 38 / 0.92); backdrop-filter: blur(12px); -webkit-backdrop-filter: blur(12px); box-shadow: 0 10px 30px rgba(0,0,0,.25); }
 </style>
 </head>
 <body class="grain antialiased">
@@ -99,14 +109,14 @@ tailwind.config = {
 <header class="fixed top-0 left-0 right-0 z-30">
   <div class="transition-all duration-500" id="nav">
     <div class="max-w-wide mx-auto px-10 lg:px-14 py-7 flex items-center justify-between text-cream">
-      <a href="#" class="display text-2xl tracking-[0.18em]">HŌRAI</a>
+      <a href="#" id="logo" class="display text-2xl tracking-[0.18em]">HŌRAI</a>
       <a href="#reservations" class="display text-[13px] tracking-[0.28em] border border-cream/55 px-6 py-3 hover:bg-cream hover:text-walnut transition-colors duration-500">RESERVATIONS</a>
     </div>
   </div>
 </header>
 
 <!-- HERO with JS parallax -->
-<section class="relative overflow-hidden h-screen min-h-[680px] max-h-[1020px]">
+<section id="hero-section" class="relative overflow-hidden h-screen min-h-[680px] max-h-[1020px]">
   <div class="hero-img pl-bg absolute -inset-y-20 inset-x-0" id="hero-bg" style="background-position: center 38%;"></div>
   <div class="absolute inset-0 bg-gradient-to-b from-walnut/55 via-walnut/15 to-walnut/70 pointer-events-none"></div>
 
@@ -120,7 +130,7 @@ tailwind.config = {
       </p>
     </div>
     <div class="col-span-12 md:col-span-3 md:self-end mt-12 md:mt-0 md:text-right text-cream/85">
-      <p class="text-[clamp(1rem,1.2vw,1.2rem)] leading-relaxed max-w-[28ch] md:ml-auto">
+      <p class="text-cream text-[clamp(1rem,1.2vw,1.2rem)] leading-relaxed max-w-[28ch] md:ml-auto" style="text-shadow: 0 2px 10px rgba(0,0,0,0.6), 0 1px 3px rgba(0,0,0,0.5);">
         Open from Wednesday to Sunday, six o&apos;clock until late. Twenty-six covers, two seatings, one menu a night.
       </p>
       <p class="display text-[12px] tracking-[0.3em] text-cream/55 mt-8 hidden md:block">↓ SCROLL</p>
@@ -352,22 +362,35 @@ tailwind.config = {
         if (heroBg) heroBg.style.transform = `translate3d(0, ${y * 0.32}px, 0)`;
         if (heroTitle) heroTitle.style.transform = `translate3d(0, ${y * 0.12}px, 0)`;
 
-        // Nav: darken once past hero
-        const navWrap = document.getElementById('nav');
-        if (navWrap) {
-          if (y > window.innerHeight * 0.85) {
-            navWrap.classList.add('bg-walnut/92','backdrop-blur-md','shadow-lg');
-          } else {
-            navWrap.classList.remove('bg-walnut/92','backdrop-blur-md','shadow-lg');
-          }
-        }
-
         ticking = false;
       });
       ticking = true;
     }
   }
   window.addEventListener('scroll', onScroll, { passive: true });
+
+  // Header wordmark vs. hero title: the logo collides with the giant hero
+  // title at narrow embed widths (~830px), so hide it only while the hero
+  // is in view, and bring it back the same moment the sticky nav gains its
+  // scrolled-state background (both driven by this one observer so they
+  // change in lockstep). No-JS fallback: logo stays visible (default state).
+  const heroSection = document.getElementById('hero-section');
+  const logo = document.getElementById('logo');
+  const navWrap = document.getElementById('nav');
+  if (heroSection && logo) {
+    const heroObserver = new IntersectionObserver((entries) => {
+      entries.forEach((entry) => {
+        if (entry.isIntersecting) {
+          logo.classList.add('logo-hidden');
+          if (navWrap) navWrap.classList.remove('bg-walnut/92', 'backdrop-blur-md', 'shadow-lg', 'nav-scrolled');
+        } else {
+          logo.classList.remove('logo-hidden');
+          if (navWrap) navWrap.classList.add('bg-walnut/92', 'backdrop-blur-md', 'shadow-lg', 'nav-scrolled');
+        }
+      });
+    }, { threshold: 0.2 });
+    heroObserver.observe(heroSection);
+  }
 
   // Scroll-scrubbed quote — prominent staggered arrival:
   //   1. kicker fades in
