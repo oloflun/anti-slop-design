@@ -174,13 +174,13 @@
     line-height:.96;letter-spacing:-.01em;color:#f7f5f0;max-width:15ch;overflow-wrap:anywhere;min-width:0;}
   /* fold fix (client item A): height is now a direct vh clamp, not an
      aspect-ratio — 16/9 at full hero width put the plate at ~79vh regardless
-     of viewport height, blowing past a 900px-tall fold on its own. 56vh
-     matches the literal target exactly and still keeps the whole hero at or
-     under 100vh at both 1440x900 (849px total, 51px spare) and 1280x800
-     (793px total, 7px spare — the tighter of the two, see NOTES.md's
-     before/after table). */
+     of viewport height, blowing past a 900px-tall fold on its own.
+     Reverted (2026-09-05, Anton's test): back to aspect-ratio:16/9, the same
+     business-card-like proportion V3 shipped with — the fold-fit is
+     deliberately given up for this test; see verdict.md for the honest
+     height numbers at 1440x900 and 1280x800. */
   .hero-plate{position:relative;margin:10px var(--rail-x) 0;border:1px solid var(--frame-line);
-    height:clamp(300px,56vh,560px);overflow:hidden;background:#08090a;}
+    aspect-ratio:16/9;overflow:hidden;background:#08090a;}
   .hero-plate img{width:100%;height:100%;object-fit:cover;object-position:36% 66%;display:block;}
   /* Fix (post-emit): the mark previously straddled the plate's own top hairline
      via translateY(-50%), so the half riding above top:0 was cut off by

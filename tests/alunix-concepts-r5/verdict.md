@@ -69,3 +69,15 @@ Anton valde V3 och bad om två rättningar plus min egen granskning. Gjort:
 
 Skills i ledgern för r5: `design` × 4 (V1, V2, V3, V3b). Kritikern är en agenttyp (design-critic),
 fixrundorna rena CSS/JS-ändringar. Board: V3 och V3b som riktning 1 och 2 på port 4623.
+
+## Test: hero-rutans proportioner tillbaka till 16:9 (2026-09-05)
+
+Anton bad mig testa att återställa den svarta hero-rutans proportioner i V3b till originalets
+visitkortsformat (16:9), som V3b bytt mot en fast höjdklamp (`clamp(300px,56vh,560px)`) för att
+få hela heron att rymmas i en skärm. Gjort: `.hero-plate` i `cells/V3b-chain/index.html` kör
+`aspect-ratio:16/9` igen, exakt som V3.
+
+Mätt: ratio 1,778 vid både 1440×900 och 1280×800 (identiskt med V3). Ärligt pris: heron är nu
+1000 px hög vid 1440×900 (V3: 1177 px, den fasta höjden gav 849 px) — rymmer inte längre i en
+enda skärm, samma avvägning som fanns i V3. Inget överflöde, ingen konsolvarning vid 1440 eller
+390. `V3-chain` är orörd; en fryst kopia finns i `reference/V3-baseline/` för framtida jämförelse.
