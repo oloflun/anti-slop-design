@@ -172,15 +172,19 @@
      .statement (see NOTES.md's scale table) — pulled down one step to 7rem. */
   .hero-headline{font-family:var(--font);font-weight:300;font-size:clamp(2.6rem,9cqw,7rem);
     line-height:.96;letter-spacing:-.01em;color:#f7f5f0;max-width:15ch;overflow-wrap:anywhere;min-width:0;}
-  /* fold fix (client item A): height is now a direct vh clamp, not an
-     aspect-ratio — 16/9 at full hero width put the plate at ~79vh regardless
+  /* fold fix (client item A): height was a direct vh clamp, not an
+     aspect-ratio — 16/9 at full hero WIDTH put the plate at ~79vh regardless
      of viewport height, blowing past a 900px-tall fold on its own.
-     Reverted (2026-09-05, Anton's test): back to aspect-ratio:16/9, the same
-     business-card-like proportion V3 shipped with — the fold-fit is
-     deliberately given up for this test; see verdict.md for the honest
-     height numbers at 1440x900 and 1280x800. */
+     Reverted, then corrected (2026-09-05, Anton): a real visitkort shape
+     means the box is smaller, not full-bleed — width is now DERIVED from a
+     height budget (56vh) via the ratio, so the plate is a genuine 16:9 card
+     anchored left (sharing the topline/headline's --rail-x edge, item B)
+     instead of a full-width band. This restores the same fold-fit V3b's
+     height-clamp gave (headline + card + sub-line all in one 1440x900 or
+     1280x800 screen) while the card itself is honestly proportioned. */
   .hero-plate{position:relative;margin:10px var(--rail-x) 0;border:1px solid var(--frame-line);
-    aspect-ratio:16/9;overflow:hidden;background:#08090a;}
+    aspect-ratio:16/9;width:min(calc(100% - 2*var(--rail-x)),calc(56vh * 16 / 9));
+    overflow:hidden;background:#08090a;}
   .hero-plate img{width:100%;height:100%;object-fit:cover;object-position:36% 66%;display:block;}
   /* Fix (post-emit): the mark previously straddled the plate's own top hairline
      via translateY(-50%), so the half riding above top:0 was cut off by

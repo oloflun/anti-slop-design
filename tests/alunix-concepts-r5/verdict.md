@@ -81,3 +81,16 @@ Mätt: ratio 1,778 vid både 1440×900 och 1280×800 (identiskt med V3). Ärligt
 1000 px hög vid 1440×900 (V3: 1177 px, den fasta höjden gav 849 px) — rymmer inte längre i en
 enda skärm, samma avvägning som fanns i V3. Inget överflöde, ingen konsolvarning vid 1440 eller
 390. `V3-chain` är orörd; en fryst kopia finns i `reference/V3-baseline/` för framtida jämförelse.
+
+## Förtydligande: rutan skulle vara mindre, inte bara rätt form (2026-09-05)
+
+Anton förtydligade direkt efter testet ovan: rutan skulle vara mindre, så att både bilden
+och texten fortfarande ryms i en skärm. Löst genom att låta bredden härledas ur en
+höjdbudget (56vh) via förhållandet, i stället för att låta plattan sträcka sig över hela
+heroets bredd: `width:min(100% - 2*rail-x, 56vh * 16/9)`, vänsterförankrad mot samma kant
+som toppraden och rubriken.
+
+Mätt: ratio 1,778 (äkta visitkort) vid både 1440×900 (896×504 px) och 1280×800
+(796×448 px). Hero-höjd tillbaka till samma folduppfyllelse som innan testet: 792 px vid
+1440×900, 736 px vid 1280×800 — under 900 respektive 800, ingen scroll krävs för att se
+rubrik, ruta och underrad. Inget överflöde, ingen konsolvarning.
