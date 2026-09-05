@@ -46,3 +46,26 @@ etiketterna och prisraderna (Antons ord; ingen copy-kedja kördes på dem, de ä
 V1, V2, V3. V1 är den som ser mest ut som en byråsida och minst som en effekt; V2 har den starkaste
 öppningen men det pinnade blocket kostar scroll; V3:s plåt och ordscrubb är de mest egna dragen men
 heron är tystast. Alla tre är utan tomband nu, vilket var den här rundans egentliga krav.
+
+## V3 vald → V3b (2026-09-05)
+
+Anton valde V3 och bad om två rättningar plus min egen granskning. Gjort:
+
+- **Hōrai-källan** (`sites/horai.html`): navloggan döljs medan heron syns (IntersectionObserver) och
+  återkommer med den mörka bannern; öppettidsstycket i full cream med textskugga; bannern hade
+  ingen bakgrund alls eftersom Tailwinds play-CDN inte genererade `bg-walnut/92` vid körning, en
+  statisk regel löser det.
+- **Etikettrutorna** över Calyx och Hōrai borttagna; Hyperboreas bildtext kvar i det blå blocket.
+- **Min granskning** (pixlar vid 1280/1440/1920) + kritikeragenten (design-critic), bekräftade fynd:
+  hero-plåten tog 95 % av viewporten (nu 56vh, rubrik + plåt + underrad i en fold), toppraden och
+  plåten delade inte kant (gemensam `--rail-x`), det blå blockets text kläms (28ch minimum, plåten
+  48,7 % av blocket, bleed 11 % nu faktiskt synlig: en specificitetsbugg klippte den i V3),
+  jätterubrikens panel fick tomrum vid 1920 (cqw-padding), Ä-prickarna i VARUMÄRKE kolliderade med
+  raden ovanför (line-height .96), ledgerns rubriker renderades i vikt 300 (700), 44 px träffytor på
+  mobil, en gemensam paddingskala och två hårlinjetokens, samma mono-numeraler i båda 01–03-listorna,
+  jätterubriken först på mobil, tråden 2 px i accent.
+- Avvisat ur kritiken: klockan i konsolkortet och Geist-rubriken i högerspalten är R5:s bärande
+  drag som Anton valt, inte fel.
+
+Skills i ledgern för r5: `design` × 4 (V1, V2, V3, V3b). Kritikern är en agenttyp (design-critic),
+fixrundorna rena CSS/JS-ändringar. Board: V3 och V3b som riktning 1 och 2 på port 4623.

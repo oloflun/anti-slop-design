@@ -1,6 +1,39 @@
-{"brief":"M1 vidare i tre varianter: hero-bild i stället för Tidvatten, jätterubriken fyller luckan, Hyperborea-figuren löst på tre sätt, scroll över hela sidan.",
- "directions":[
-  {"id":"V1","name":"Dokumentär band","lane":"cream-panel + foto 62 %, Hyperborea som fullbreddsremsa, wipes växelvis","register":"editorial print","grammar":"continuous world"},
-  {"id":"V2","name":"Cinematisk tvätt","lane":"ljusstrålar under svart tvätt, ingen figur i blått, Hyperborea som tredje ram, pinnat tesblock","register":"cinematic dark","grammar":"continuous world"},
-  {"id":"V3","name":"Plåt i grunden","lane":"inramad ljuspöl, rubrik utanför bilden, bleedande plåt, ordscrubb","register":"modern clean","grammar":"continuous world"}],
- "engines":[{"id":"chain","name":"anti-slop chain v3 · r5"}]}
+{
+ "brief": "M1 vidare i tre varianter: hero-bild i stället för Tidvatten, jätterubriken fyller luckan, Hyperborea-figuren löst på tre sätt, scroll över hela sidan.",
+ "directions": [
+  {
+   "id": "V3",
+   "name": "Plåt i grunden",
+   "lane": "inramad ljuspöl, rubrik utanför bilden, bleedande plåt, ordscrubb",
+   "register": "modern clean",
+   "grammar": "continuous world"
+  },
+  {
+   "id": "V3b",
+   "name": "Plåt i grunden · polerad",
+   "lane": "V3 efter Antons två rättningar och min visuella granskning",
+   "register": "modern clean",
+   "grammar": "continuous world"
+  },
+  {
+   "id": "V1",
+   "name": "Dokumentär band",
+   "lane": "cream-panel + foto 62 %, Hyperborea som fullbreddsremsa, wipes växelvis",
+   "register": "editorial print",
+   "grammar": "continuous world"
+  },
+  {
+   "id": "V2",
+   "name": "Cinematisk tvätt",
+   "lane": "ljusstrålar under svart tvätt, ingen figur i blått, Hyperborea som tredje ram, pinnat tesblock",
+   "register": "cinematic dark",
+   "grammar": "continuous world"
+  }
+ ],
+ "engines": [
+  {
+   "id": "chain",
+   "name": "anti-slop chain v3 · r5"
+  }
+ ]
+}
