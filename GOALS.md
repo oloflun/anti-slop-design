@@ -163,6 +163,15 @@ hälsokontroller, inte ett mål.
 
 ## Ändringslogg
 
+- 2026-09-04/05 — claude — den skarpa designsessionen från "Next Steps" kördes: ett riktigt
+  kundprojekt (Alunix, `tests/alunix-concepts-r3/` … `-r5/`) gick igenom hela kedjan flera
+  varv (bake-off, Step 5-loopar, kritikeragent, en boardomskrivning). Route gap drev **inte**
+  till noll — stop-hooken pekade konsekvent ut `emil-design-eng`, `imagegen-frontend-web` och
+  `impeccable layout` som utpekade men olästa genom hela sessionen. Värt att undersöka som
+  egen punkt: är det äkta gap eller routrar som pekar på skills som aldrig var relevanta för
+  den här sortens bygge (ingen animationsbibliotek-fråga, ingen bildgenerering, inget
+  komponentbibliotek)? Se session-loggen för 2026-09-05.
+
 - 2026-09-03 — claude — rework v3: delmål 5–7 klara, positiva porten införd, nya delmål
   9 (pusha super-intelligence + plugin-cache) och 10 (katalogen till Vercel + OAuth) läggs
   under Öppna frågor; se hubben och `tests/ab/`.

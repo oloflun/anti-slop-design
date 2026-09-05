@@ -4,7 +4,7 @@ type: project
 status: active
 project_slug: anti-slop-design
 repo: C:\\Users\\Anton L\\anti-slop-design
-updated: 2026-09-03
+updated: 2026-09-05
 ---
 
 # Anti-Slop Design
@@ -20,6 +20,25 @@ A Claude Code **design system**. It writes no visual rules of its own beyond one
 > **Brand derives direction. Skills supply craft. Themes are the last resort.**
 
 Every failure this system was built to fix came from inverting that — a specialist skill set the visual direction and the brand got repainted in the skill author's palette.
+
+## 2026-09-04/05 Alunix bake-off: the chain run on a real client project, five rounds
+
+Anton's own agency site, Alunix, run through the full v3 chain as a real build instead of
+a blind test. `tests/alunix-concepts-r3/` (R5+R6 combined per Anton's mosaic, six pixel
+rounds) → `-r4/` (three remixes: M1 continuous ground, M2 chaptered pinned stage, M3
+gallery rail, one `design-critic` pass) → `-r5/` (three variants of the winning M1, a
+polish round on the winner, `V3-baseline` frozen for reference). `board.py` rewritten
+mid-session (single full-width pane, rating drawer, `--fallback-root` so cells can
+reference `/sites/...` and other repo-absolute paths) — that fix now lives in the live
+skill and is mirrored here.
+
+**What this proved and what it didn't.** The reference-lock, feeling-curve and fingerprint
+mechanics held up on a real multi-round client job, not just a one-shot test. What it did
+**not** prove: route gap never reached zero (see GOALS.md's changelog, 2026-09-04/05) —
+`emil-design-eng`, `imagegen-frontend-web` and `impeccable layout` were named every session
+without ever loading, on a build that never needed an animation library, generated imagery,
+or a component system. Worth a session to decide whether that is a real gap or a router
+false-positive class the intent corpus doesn't cover yet.
 
 ## 2026-09-03 rework (v3): quiet hooks, an accessibility skill, a bake-off, a catalog
 
