@@ -4,12 +4,41 @@ type: project
 status: active
 project_slug: anti-slop-design
 repo: C:\\Users\\Anton L\\anti-slop-design
-updated: 2026-09-05
+updated: 2026-09-07
 ---
 
 # Anti-Slop Design
 
 Canonical project hub. Read this first to orient; every section points at the document that carries the detail.
+
+## 2026-09-07 — motion-always policy (F-011), a real HTTP/1.0 board bug, and a chain audit
+
+The r7 Alunix board still showed no scroll motion when Anton judged it — root cause was
+Windows' Animationseffekter still off (same condition as F-001), which sets
+`prefers-reduced-motion: reduce` in every browser on the machine at once. Anton escalated
+past "fix my own review" to a permanent, global rule after the accessibility tradeoff was
+laid out plainly: **motion always plays now, everywhere this system builds, regardless of
+`prefers-reduced-motion` or any other browser/OS setting** (`design-catalogue/FEEDBACK.md`
+F-011). Applied through the whole chain — the vendored engine
+([`scripts/scroll/scrollcraft.js`](skills/design/scripts/scroll/scrollcraft.js)/`.css`),
+both r7 builds, and `a11y-audit` globally (it no longer flags missing reduced-motion
+support, anywhere it runs — not just here). WCAG 2.3.1's flash-rate limit is untouched;
+that one is a safety floor, not a preference. Separately, a real bug: `scripts/board.py`
+was still on HTTP/1.0 and dropped WebP under Chromium — the exact bug `serve.py` was built
+to fix for the cell builders, never ported to the board itself. Fixed alongside.
+
+On request, a full chain audit followed
+([`tests/alunix-ab-r7/CHAIN-AUDIT-2026-09-07.md`](tests/alunix-ab-r7/CHAIN-AUDIT-2026-09-07.md)):
+a real session-scoping bug in `design-stop.py`'s reports (counts every session in the shared
+ledger when the hook subprocess doesn't see the same `CLAUDE_CODE_SESSION_ID` the Bash tool
+does — proposed fix: read the event payload's own `session_id`, not proposed as done), the
+route-gap split into two distinct causes (`imagegen-frontend-web` fires on any `<img>` tag
+regardless of whether generation is needed; `"impeccable layout"` is simply the wrong skill
+name — the real skill is `impeccable`, and it's unclear it even loads in the builders'
+environment), and `Skill(design-catalog)` never once invoked in either r7 build — the
+orchestrator's own round-1 prompt handed builders file paths directly instead of the
+skill's own `query.py` search. New open item: F-012, motion now renders but "looks janky and
+cheap" — cause not yet established, explicitly handed to the next session.
 
 ## What it is
 
@@ -220,15 +249,25 @@ Not covered — model behaviour, provable only by a real build's telemetry repor
 
 ## Status
 
-Design system rebuilt 2026-08-01 (registers + mechanical exit bar), verified with three
-blind one-shot builds, shipped to `super-intelligence` 0.4.5 (local commit, not yet pushed).
+**This repo is the plugin now (since 2026-09-04).** The design skills (`design`,
+`a11y-audit`, `brand-system`, `design-catalog`, `design-verify`), the design hooks, and the
+three reviewer agents moved out of `super-intelligence` into this standalone
+`anti-slop-design` plugin — `super-intelligence` no longer ships or wires any of it. The
+vault's `.agents/skills/design` (and `a11y-audit`) is the live/canonical copy;
+`skills/design/` and `skills/a11y-audit/` here are the mirror, kept in sync with
+[`scripts/sync-from-live.py`](scripts/sync-from-live.py) (run manually after editing the
+live copy — not automatic, easy to forget).
 
-**Open (2026-09-03):** push `super-intelligence` and update the plugin cache so the new
-hooks run in sessions (Anton's go-ahead); the design catalog's Vercel + GitHub OAuth step;
-two Hallmark reference files (`custom-theme.md`, `macrostructures.md`) now differ from
-upstream HEAD because upstream moved, which the fidelity check reports honestly.
+Design system rebuilt 2026-08-01 (registers + mechanical exit bar), reworked again
+2026-09-03 (hooks, `a11y-audit`, reference lock, catalog), and again 2026-09-06/07 (r7:
+reference floor + per-session ledger fix + motion-always policy, F-011/F-012 above).
+
+**Open:** the design catalog's Vercel + GitHub OAuth step; two Hallmark reference files
+(`custom-theme.md`, `macrostructures.md`) differ from upstream HEAD because upstream moved
+(fidelity check reports it honestly); whether `impeccable` loads at all in the headless
+builder environment (see F-011 section above); the Stop-hook session-scoping fix (proposed,
+not done).
 
 ## Related
 
-- [[super-intelligence]] — the installer that distributes this
 - Session logs: `session-logs/` · Plans: `plans/`

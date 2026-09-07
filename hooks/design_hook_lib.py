@@ -32,6 +32,8 @@ KILL_SWITCH = "DESIGN_HOOKS_DISABLED"
 UNIVERSAL_KILL_SWITCH = "CLAUDE_HOOKS_DISABLED"  # Fas 6 assistant-bench arm B: all hooks off
 STATE_DIR_NAME = ".impeccable"
 LEDGER_NAME = "design-session.jsonl"
+PREV_LEDGER_NAME = "design-session.prev.jsonl"
+PREV_LEDGER_CAP = 4000  # max lines kept in the prev ledger after rotation
 
 # Markers that make a project root. Closest match wins, so DESIGN.md is listed
 # first on purpose: a design system nested inside a larger monorepo defines its
@@ -247,6 +249,20 @@ ARMED_NAME = ".armed"
 FORCE_ARM_ENV = "DESIGN_HOOKS_FORCE_ARM"
 
 
+def session_file(root: Path, base: str) -> Path:
+    """Per-session variant of a shared state file name (2026-09-06).
+
+    An orchestrator session and headless builder sessions share one project
+    root at once; a bare `.armed`/`.design-verb`/`.stop-blocks`/`.linked-roots`
+    is shared mutable state that a sibling's SessionStart used to clear from
+    under a running build. Suffixing with this session's id keeps sessions
+    apart; no session id collapses onto a shared "nosession" bucket.
+    """
+    sid = current_session_id()
+    sid8 = sid[:8] if sid else "nosession"
+    return state_dir(root) / f"{base}-{sid8}"
+
+
 def arm(root: Path, source: str, detail: str = "") -> None:
     """Mark this project root as a live design session.
 
@@ -260,7 +276,7 @@ def arm(root: Path, source: str, detail: str = "") -> None:
             "detail": detail,
             "session": current_session_id(),
         }
-        (state_dir(root) / ARMED_NAME).write_text(
+        session_file(root, ARMED_NAME).write_text(
             json.dumps(rec, ensure_ascii=False), encoding="utf-8")
     except Exception:
         pass
@@ -270,14 +286,14 @@ def armed(root: Path) -> bool:
     if os.environ.get(FORCE_ARM_ENV, "").strip() not in ("", "0", "false"):
         return True
     try:
-        return (root / STATE_DIR_NAME / ARMED_NAME).exists()
+        return session_file(root, ARMED_NAME).exists()
     except Exception:
         return False
 
 
 def disarm(root: Path) -> None:
     try:
-        p = root / STATE_DIR_NAME / ARMED_NAME
+        p = session_file(root, ARMED_NAME)
         if p.exists():
             p.unlink()
     except Exception:
@@ -428,6 +444,28 @@ def _has_ui_evidence(root: Path) -> bool:
     return value
 
 
+SCROLL_RE = re.compile(
+    r"\b(?:scroll|scrolla|scroll ?animation(?:s|er)?|scroll[- ]?driven|"
+    r"scrub(?:b(?:ning|ed|ing))?|parallax|pin(?:ned)?|set-piece|set piece|"
+    r"signaturr(?:ö|o)relse|koreograf(?:i|era))\b",
+    re.I,
+)
+
+
+def scroll_signal(prompt: str) -> bool:
+    """True when the prompt names scroll choreography specifically.
+
+    Separate from classify() on purpose: classify()'s corpus (42 rows in
+    tests/intent_corpus.jsonl) is tuned against exact verb/object/guard
+    interactions, and folding another concept into it risks silently
+    shifting an existing row's tier. This is an independent, additive
+    signal design-intent.py layers on top of whatever classify() decided.
+    """
+    if not prompt:
+        return False
+    return bool(SCROLL_RE.search(prompt))
+
+
 def classify(prompt: str, root: Path) -> str:
     """"high" | "medium" | "none" — how strong is this prompt's UI signal?"""
     if not prompt:
@@ -435,19 +473,61 @@ def classify(prompt: str, root: Path) -> str:
     p = prompt.strip()
     if _SLASH_DESIGN_RE.match(p):
         return "high"
-    if NEGATIVE_GUARD.search(p):
-        return "none"
-
     has_verb = bool(VERBS_RE.search(p))
     has_object = bool(OBJECTS_RE.search(p))
     has_design_word = bool(_DESIGN_WORD_RE.search(p))
     is_question = bool(_QUESTION_RE.search(p))
+
+    # The negative guard decides ambiguous prompts only. A brief that names a UI
+    # verb AND a UI object is design work even when it also says "ingen commit"
+    # or "vilka skills du laddade" (r6, 2026-09-06: one such word anywhere in a
+    # 110-line build brief silenced the gate for every arm-B cell).
+    if NEGATIVE_GUARD.search(p) and not (has_verb and has_object):
+        return "none"
 
     if has_verb and has_object:
         return "high" if _has_ui_evidence(root) else "medium"
     if has_object or has_design_word or is_question:
         return "medium"
     return "none"
+
+
+# --------------------------------------------------------------------------
+# Reference-floor roots — where the taste/feedback/catalogue/scroll
+# references actually live on disk, deduped so a junction (both
+# ~/.agents/skills/design and ~/.claude/skills/design point at the same
+# physical vault folder) is not counted twice.
+# --------------------------------------------------------------------------
+
+_DESIGN_SKILL_DIRS = (
+    HOME / ".agents" / "skills" / "design",
+    HOME / ".claude" / "skills" / "design",
+)
+
+
+def design_skill_roots() -> list[Path]:
+    seen: list[Path] = []
+    for p in _DESIGN_SKILL_DIRS:
+        try:
+            rp = p.resolve()
+        except Exception:
+            continue
+        if rp not in seen:
+            seen.append(rp)
+    return seen
+
+
+def catalogue_roots(root: Path) -> list[Path]:
+    candidates = [root / "design-catalogue", HOME / "anti-slop-design" / "design-catalogue"]
+    seen: list[Path] = []
+    for p in candidates:
+        try:
+            rp = p.resolve()
+        except Exception:
+            continue
+        if rp not in seen:
+            seen.append(rp)
+    return seen
 
 
 # --------------------------------------------------------------------------
@@ -675,9 +755,9 @@ def log(root: Path, **fields) -> None:
         pass
 
 
-def read_ledger(root: Path) -> list[dict]:
+def read_ledger(root: Path, name: str = LEDGER_NAME) -> list[dict]:
     try:
-        path = state_dir(root) / LEDGER_NAME
+        path = state_dir(root) / name
         if not path.exists():
             return []
         rows = []
@@ -692,6 +772,38 @@ def read_ledger(root: Path) -> list[dict]:
         return rows
     except Exception:
         return []
+
+
+def all_rows(root: Path) -> list[dict]:
+    """The cwd root's ledger plus every linked root's (cross-project builds).
+
+    Promoted out of design-stop.py so design-gate.py's reference floor can
+    see the same session history the Stop report does — a cross-project
+    build (site scaffold, worktree) that read the taste reference from the
+    cwd root must not look empty from the file root's ledger, or vice versa.
+    """
+    rows = read_ledger(root) + read_ledger(root, PREV_LEDGER_NAME)
+    try:
+        reg = session_file(root, ".linked-roots")
+        if reg.exists():
+            for line in reg.read_text(encoding="utf-8").splitlines():
+                line = line.strip()
+                if line:
+                    rows.extend(read_ledger(Path(line)))
+                    rows.extend(read_ledger(Path(line), PREV_LEDGER_NAME))
+        rows.sort(key=lambda r: r.get("ts", ""))
+    except Exception:
+        pass
+    return rows
+
+
+def scope_to_session(rows: list[dict]) -> list[dict]:
+    """Keep only this session's rows (plus any row too old to carry a `session`
+    field — backward compatible with a ledger written before that stamp)."""
+    sid = current_session_id()
+    if not sid:
+        return rows
+    return [r for r in rows if "session" not in r or r.get("session") == sid]
 
 
 def component_of(path: str) -> str:

@@ -188,6 +188,40 @@ def build_report(rows: list[dict], findings: list[dict], root: Path) -> tuple[st
         md.append(f"| {i} | {r.get('event','')} | `{r.get('component','')}` | {detail} |")
     md.append("")
 
+    # 8. Referensgolv — always rendered, same reasoning as section 6: a
+    # section that only appears when there is something to report is
+    # indistinguishable from one that never ran.
+    ref_reads = [r for r in rows if r.get("event") == "ref-read"]
+    taste_n = sum(1 for r in ref_reads if r.get("cat") == "taste")
+    feedback_n = sum(1 for r in ref_reads if r.get("cat") == "feedback")
+    catalogue_reads = [r for r in ref_reads if r.get("cat") == "catalogue"]
+    catalogue_slugs = sorted({r.get("slug") for r in catalogue_reads if r.get("slug")})
+    references_reads = [r for r in ref_reads
+                         if r.get("cat") == "references" and r.get("sub") != "scroll"]
+    scroll_reads = [r for r in ref_reads
+                    if r.get("cat") == "references" and r.get("sub") == "scroll"]
+    scripts_n = sum(1 for r in ref_reads if r.get("cat") == "scripts")
+
+    md.append("## 8. Referensgolv")
+    md.append("")
+    md.append(f"- **taste** — {taste_n} read(s)")
+    md.append(f"- **feedback** — {feedback_n} read(s)")
+    md.append(f"- **catalogue** — {len(catalogue_reads)} read(s)"
+              + (f" ({', '.join(catalogue_slugs)})" if catalogue_slugs else ""))
+    ref_paths = sorted({rel(r.get("file", ""), root) for r in references_reads if r.get("file")})
+    md.append(f"- **references** — {len(references_reads)} read(s)"
+              + (": " + ", ".join(f"`{p}`" for p in ref_paths[:12]) if ref_paths else ""))
+    scroll_names = sorted({Path(r.get("file", "")).name for r in scroll_reads if r.get("file")})
+    md.append(f"- **scroll** — {len(scroll_reads)} read(s)"
+              + (": " + ", ".join(f"`{n}`" for n in scroll_names) if scroll_names else ""))
+    md.append(f"- **scripts** — {scripts_n} read(s)")
+    if _scroll_condition(rows) and not scroll_reads:
+        md.append("")
+        md.append("**scroll gap** — scrollkoreografi signalerades (intent eller route) "
+                  "men inga scroll-referenser (devices.md / feel-and-fingerprint.md) "
+                  "har lästs.")
+    md.append("")
+
     # Terse context summary — the report file carries the detail.
     summary = [
         f"[design session] {len(edits)} UI edits · {len(routes)} routes · {len(skills)} skill loads",
@@ -210,29 +244,34 @@ def build_report(rows: list[dict], findings: list[dict], root: Path) -> tuple[st
     return "\n".join(summary), "\n".join(md)
 
 
-def all_rows(root: Path) -> list[dict]:
-    """The cwd root's ledger plus every linked root's (cross-project builds)."""
-    rows = L.read_ledger(root)
+def _is_reduced_shot(file: str) -> bool:
+    """A vision row's file looks like a reduced-motion capture.
+
+    Unused since the 2026-09-07 motion-always override (FEEDBACK.md F-011):
+    builds no longer branch on prefers-reduced-motion, so there is no separate
+    reduced-motion render left to verify. Kept only so old ledger rows/tests
+    referencing "rm-" filenames don't need rewriting.
+
+    Filename convention only ("reduced" anywhere, or "rm-" as a prefix) — the
+    ledger has no way to know what prefers-reduced-motion state a screenshot
+    was actually taken under, so the naming convention IS the signal.
+    """
     try:
-        reg = L.state_dir(root) / ".linked-roots"
-        if reg.exists():
-            for line in reg.read_text(encoding="utf-8").splitlines():
-                line = line.strip()
-                if line:
-                    rows.extend(L.read_ledger(Path(line)))
-        rows.sort(key=lambda r: r.get("ts", ""))
+        name = Path(file).name.lower()
     except Exception:
-        pass
-    return rows
+        return False
+    return "reduced" in name or name.startswith("rm-")
 
 
-def scope_to_session(rows: list[dict]) -> list[dict]:
-    """Keep only this session's rows (plus any row too old to carry a `session`
-    field — backward compatible with a ledger written before that stamp)."""
-    sid = L.current_session_id()
-    if not sid:
-        return rows
-    return [r for r in rows if "session" not in r or r.get("session") == sid]
+def _scroll_condition(rows: list[dict]) -> bool:
+    """True when this session's brief or a route named scroll choreography."""
+    intent_rows = [r for r in rows if r.get("event") == "intent"]
+    latest_scroll = bool(intent_rows) and intent_rows[-1].get("scroll") == 1
+    route_scroll = any(
+        r.get("event") == "route" and r.get("skill") == "design"
+        and r.get("signal") == "scroll" for r in rows
+    )
+    return latest_scroll or route_scroll
 
 
 def exit_bar_block(rows: list[dict], root: Path) -> str | None:
@@ -243,16 +282,39 @@ def exit_bar_block(rows: list[dict], root: Path) -> str | None:
     six shipped-quality defects were found in rounds run AFTER the page
     already looked done, and every one was found in a screenshot, not in code.
 
-    Capped at 2 blocks per session so a genuinely broken capture path degrades
-    to the old advisory behaviour instead of a livelock.
+    Scroll choreography no longer has a second, stricter bar: since the
+    2026-09-07 motion-always override (FEEDBACK.md F-011), builds never branch
+    on prefers-reduced-motion, so a reduced-motion capture would just be the
+    same render again, not a different one worth verifying separately.
+
+    Capped at 2 blocks per session so a
+    genuinely broken capture path degrades to the old advisory behaviour
+    instead of a livelock.
     """
     edits = [r.get("ts", "") for r in rows if r.get("event") == "edit"]
     if not edits:
         return None
-    visions = [r.get("ts", "") for r in rows if r.get("event") == "vision"]
-    if visions and max(visions) > max(edits):
+    visions = [r for r in rows if r.get("event") == "vision"]
+    vision_tss = [r.get("ts", "") for r in visions]
+
+    if not (vision_tss and max(vision_tss) > max(edits)):
+        looked = "no rendered image was ever Read" if not vision_tss else \
+            "the last rendered image you Read is older than your last edit"
+        message = (
+            f"[design-stop] {len(edits)} UI edits this session and {looked}. "
+            "The exit bar (CARL DESIGN rules 5-7): render the page, capture PNGs "
+            "(shoot.py / shoot_slices.py or the browser pane), Read every PNG so "
+            "the pixels actually enter context, fix what you see, and repeat "
+            "until a full pass finds nothing. Then state plainly whether the "
+            "result honestly beats the references named before the build. "
+            "Judging from code does not count. If capture is genuinely "
+            "impossible, say so to the user explicitly instead of stopping "
+            "silently."
+        )
+    else:
         return None
-    counter = L.state_dir(root) / ".stop-blocks"
+
+    counter = L.session_file(root, ".stop-blocks")
     try:
         n = int(counter.read_text(encoding="utf-8").strip() or "0")
     except Exception:
@@ -263,19 +325,7 @@ def exit_bar_block(rows: list[dict], root: Path) -> str | None:
         counter.write_text(str(n + 1), encoding="utf-8")
     except Exception:
         pass
-    looked = "no rendered image was ever Read" if not visions else \
-        "the last rendered image you Read is older than your last edit"
-    return (
-        f"[design-stop] {len(edits)} UI edits this session and {looked}. "
-        "The exit bar (CARL DESIGN rules 5-7): render the page, capture PNGs "
-        "(shoot.py / shoot_slices.py or the browser pane), Read every PNG so "
-        "the pixels actually enter context, fix what you see, and repeat "
-        "until a full pass finds nothing. Then state plainly whether the "
-        "result honestly beats the references named before the build. "
-        "Judging from code does not count. If capture is genuinely "
-        "impossible, say so to the user explicitly instead of stopping "
-        "silently."
-    )
+    return message
 
 
 def main() -> None:
@@ -284,7 +334,7 @@ def main() -> None:
     event = L.read_event()
     root = L.project_root(event)
 
-    rows = scope_to_session(all_rows(root))
+    rows = L.scope_to_session(L.all_rows(root))
 
     # Arm/disarm (idea-2ao follow-up): an unarmed session gets a one-line
     # advisory, never the full report and never the exit-bar block. Blocking

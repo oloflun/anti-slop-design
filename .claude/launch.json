@@ -68,6 +68,32 @@
         "."
       ],
       "port": 4623
+    },
+    {
+      "name": "alunix-board-r6",
+      "runtimeExecutable": "python",
+      "runtimeArgs": [
+        "C:/Users/Anton L/.agents/skills/design/scripts/board.py",
+        "tests/alunix-ab-r6/board",
+        "--port",
+        "4624",
+        "--fallback-root",
+        "."
+      ],
+      "port": 4624
+    },
+    {
+      "name": "alunix-board-r7",
+      "runtimeExecutable": "python",
+      "runtimeArgs": [
+        "C:/Users/Anton L/.agents/skills/design/scripts/board.py",
+        "tests/alunix-ab-r7/board",
+        "--port",
+        "4625",
+        "--fallback-root",
+        "."
+      ],
+      "port": 4625
     }
   ]
 }

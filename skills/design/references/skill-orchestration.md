@@ -209,6 +209,48 @@ Detection is automatic — `component-routing.md`'s `product` rule fires on dash
 
 Realtime collaborative UI (presence, cursors, operational transforms) is a different problem class; say so rather than treating it as a styling job.
 
+## 12. Delegated builds — briefing a build agent (2026-09-06, from the r6 post-mortem)
+
+A build delegated to a fresh agent (headless `claude -p`, or an Agent-tool subagent) fails
+in one specific way: it reads the brief as a spec to implement, skips every reference the
+brief did not name, and ships a one-shot. r6 (2026-09-06) produced six such builds. The
+rules below are the fix, and the reference floor in `design-gate.py` enforces the first one.
+
+**The brief never goes below the floor.** A brief may narrow *which* catalogue entries to
+study, never the floor itself: `design-catalogue/TASTE.md`, `design-catalogue/FEEDBACK.md`,
+`references/reference-lock.md`, each named entry's `entry.md` + `fold.webp` + `slices/` +
+`extract/<site>-DESIGN.md`, and on a scroll brief `references/scroll/README.md`,
+`grammars.md`, `devices.md`, `feel-and-fingerprint.md` + `house-physics.md` Motion. Never
+write "read nothing else" about `design-catalogue/` or `references/`. List the floor files
+in the brief explicitly, in reading order.
+
+**Rounds, not one-shot (Persuade/Experience surfaces).**
+1. *Reference digest, no HTML.* Deliverable `BRIEF.md`: three lines per floor file (what it
+   says, what is taken, what is rejected), the reference lock, the named authority
+   (TASTE.md § 1) and what steps down for it, the feeling curve, the device table
+   (≥4 families), the fingerprint against every sibling and registry row, the `?preview=`
+   plan. The orchestrator reads it against the files before round 2 begins.
+2. *Fold + set-piece only.* Screenshots in both motion modes (`reduced_motion`
+   `no-preference` and `reduce`), read as pixels by the orchestrator.
+3. *The whole page*, plus `emil-design-eng` on transitions and the copy gate on own strings.
+4. *Orchestrator findings + the reviewer trio* → 5. *Fixes*, until a full pass is clean.
+
+**The target-picture gate (the orchestrator's own brief).** Before a concept is briefed:
+(1) name one authority and list what steps down for it; (2) test it against TASTE.md § 5's
+rejected list and the AI-trope list — glass card with telemetry, dashboard over a photo,
+badge rows, gradient pill, three equal cards, spotlight cursors; (3) one display-scale
+element per screen; (4) fingerprint ≥4/6 against earlier rounds. Write the gate out, filled
+in, in the concept file. r6-K3 (glass card) would have fallen on (2); r6-K2 on (1) and (3).
+
+**Infrastructure is the orchestrator's job.** Ship the photo pack (sourced, credited,
+vendored) and any generated motion material with the brief; point the agent at
+`scripts/serve.py`; the builder makes no Unsplash calls and writes no server.
+
+**Judge in motion mode.** The orchestrator captures every round with `reduced_motion=
+"no-preference"` *and* `"reduce"`, reads both, and states in the report which mode each
+image shows. A reviewer whose OS has animations off sees only the fallback (r6: that is
+what happened, and nobody noticed for a whole round).
+
 ## 2026-09-03 rework (v3) — what changed in the orchestration
 
 **New phases.** Step 1b now ends with a reference lock and a decision ledger (`reference-lock.md`), sourced first from the design catalog (`~/design-catalog`, `Skill(design-catalog)`). Step 2b (Persuade/Experience only) picks a page grammar, writes the feeling curve, runs the fingerprint gate against the vault registry, chooses scroll devices from the vendored scroll-craft engine, and runs the bake-off board (`shotgun.md`, `scripts/board.py`) before Step 4. Step 5 gained four passes: `a11y-audit`, `verbs/critique.md`, `review-animations` + `scroll_verify.py`, and the three reviewer subagents (`design-critic`, `design-a11y-reviewer`, `design-heuristics`) reconciled by accessibility > usability > brief > personas.

@@ -131,6 +131,11 @@ tokens.
    flytande komponent (modal, sökfält) och då knappt synlig.
 8. **Rörelse bara där typ och bild är tysta.** Är auktoriteten typ eller foto: reveal och
    pin räcker. Är auktoriteten rörelsen: låt typen vara 300 och bilden suddig.
+   *Precisering (r6, 2026-09-06):* när briefen uttryckligen ber om scrollkoreografi är
+   rörelsen auktoriteten **i set-piece-akten**: där viker typ och foto (typ i vikt 300,
+   bilden får bli suddig eller resa), och resten av sidan följer regeln som den står.
+   Utan den här raden läste byggarna regel 8 som skäl att hoppa över set-piecet helt.
+   Läs också `FEEDBACK.md` bredvid den här filen: Antons domar, en regel per post.
 9. **Siffror får vara textur bara om de är sanna.** Formen (display-grad, liten etikett,
    ruled) tas; innehållet måste vara systemets eget (Alunix-regeln).
 10. **Ordmärket får vara heron.** Namnet i viewport-bredd, sloganen liten, är en fullt

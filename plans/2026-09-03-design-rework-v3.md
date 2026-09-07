@@ -36,11 +36,21 @@ Fullständig plan: `~/.claude/plans/uppgift-design-rework-v3-validated-hammock.m
 
 - [x] 24 V3 vald; V3b polerad (Hōrai-källan, etiketter bort, hero i folden, bleed synlig, kritikerfynd), board 4623 riktning 1 = V3, 2 = V3b — 2026-09-05
 
+- [x] 25 r6: isolerat A/B-test, Claude-native (Anthropics frontend-design som systemprompt, inga skills, inga hookar) mot kedjan (repots hookar via plugin-skal + live-skillen), tre nya koncept (K1 Skymning / K2 Affischen / K3 Konsolen) ur katalogen, en fryst prompt, sju headless Fable-high-processer, bevakning per cell, blind board 127.0.0.1:4624. Unsplash-API-vägen i `unsplash_sheet.py` + `scripts/keys.py` (nyckel i `~/.secrets/.env`, demo-läge 50/h). Kedjefynd: `NEGATIVE_GUARD` tystade gaten på ordet `commit` (fixad, korpus 42/42); skillen laddades men inga referenser lästes och inga procedurskills kördes. `tests/alunix-ab-r6/verdict.md` — 2026-09-05/06
+
+- [ ] 26 r7 (pågår): Antons r6-dom → `design-catalogue/FEEDBACK.md` (F-001–F-009, feedbacksystemet), referensgolv i hookarna (`ref-read`, gate nekar UI-skrivning innan TASTE/FEEDBACK/lock/katalog/scroll-refs), scroll-route + scroll-gap + rm-bild i stop, SKILL.md Step 1b/2b/Motion/Step 5, TASTE § 4.8, house-physics, skill-orchestration § 12, `scripts/serve.py`, boardens reduced-motion-varning; K1 + K2 om igen med Sonnet i rundor (`tests/alunix-ab-r7/`), Higgsfield/Kling-push-in för K1 (tak 35 cr), board 4625 — 2026-09-06
+
 ## In Progress
+- [ ] r7: båda cellerna i slutläge (sex rundor + kritikertrion, verifierade av Claude), RAPPORT.md komplett, board 4625 uppdaterad. Kvar: hans beslut om Kling-omtagning (17,5 cr) och K2:s driftkontrast (lättare slutton eller sjätte kulör).
+- [x] 2026-09-07: motion-always-regeln (F-011) — `prefers-reduced-motion` borttagen ur scrollcraft.js/.css och K1/K2, `a11y-audit` uppdaterad globalt, `board.py` HTTP/1.1+webp-mime-fix (samma bugg som `serve.py` löste, aldrig portad till boarden). Verifierat i en riktig reduced-motion-webbläsare.
+- [x] 2026-09-07: kedjerevision av r7-byggena — `tests/alunix-ab-r7/CHAIN-AUDIT-2026-09-07.md`. Fynd: Stop-hookens sessionsscoping trasig (blandar sessioner när miljövariabeln saknas i hook-processen — förslag: läs `session_id` ur event-payloaden, ej gjort än); `imagegen-frontend-web` triggar för brett (vilken `<img>` som helst); `"impeccable layout"` är fel skillnamn (riktiga namnet är `impeccable`) plus oklart om `impeccable` ens är laddningsbart för byggarna; `Skill(design-catalog)` kallades aldrig i något av K1/K2 — orkestrerarens egen runda-1-prompt gav filvägar direkt i stället för att köra skillets `query.py`-urval.
+- [ ] **Öppet för nästa session (Antons uttryckliga överlämning 2026-09-07):** rörelsen spelar nu upp korrekt (F-011) men "ser hackigt och billigt gjort ut" — orsak inte fastställd, se FEEDBACK.md F-012. Nästa agent: fastställ vilken cell/akt, mät (frame-times i push-sekvensen, `--sc-p`-kontinuitet, om något smoothing-villkor rört sig av `reduce=false`-patchningen), skriv den härledda regeln som ny FEEDBACK-post.
+- [x] Antons omdöme på r6-boarden (port 4624): underkänt, se FEEDBACK.md. Mappning: körning 1 = kedjan, körning 2 = Claude-native.
 - [ ] Antons jämförelse V3 mot V3b (board port 4623).
 
 ## Remaining
-- [ ] Unsplash API-nyckel (Antons handpåläggning) → photo-sources.md får riktig sökning; fotopoolen är 19 bilder i dag.
+- [x] Unsplash API-nyckel på plats 2026-09-05 (`~/.secrets/.env`, `scripts/keys.py`), `unsplash_sheet.py --api/--download/--verify`, photo-sources.md uppdaterad. Kvar: produktionsansökan hos Unsplash (50 → 5 000 anrop/h), Antons sak.
+- [ ] r6-fynd att ta vidare: kedjan laddar `design` men läser inga referenser och kör inga procedurskills på Fable high headless; `python -m http.server` tappar WebP-svar mot Chromium (alla sex agenter skrev egna servrar); `references/upstream/anthropic/frontend-design/SKILL.md` skiljer sig från den installerade pluginens version.
 - [ ] Liten kvarstående nyans från Reglabok-testet: B:s hero klämde in en kundsiffra i samma mening som mekaniken i stället för att leda med en bild — inte tillräckligt för en ny regel, men värt att hålla ögonen på i nästa Tier 2/3-bygge med statistik i heron.
 - [ ] Pusha `super-intelligence` (gren design-system-v2) och uppdatera plugin-cachen — Antons go-ahead.
 - [ ] Merge/push `anti-slop-design` gren `design-rework-v3` — Antons beslut.

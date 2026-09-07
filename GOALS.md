@@ -155,13 +155,58 @@ hälsokontroller, inte ett mål.
    README skriven för främlingar och en Vercel-demo, men innehållet beskriver ett
    system som är två omarbetningar gammalt. Ska det underhållas som skyltfönster,
    eller är GitHub bara backup nu?
-3. **Vilken kopia är originalet — repot eller `~/.agents/skills/design/`?** De har
-   glidit isär med nästan tusen raders diff, och båda kan i praktiken redigeras.
-   Svaret avgör åt vilket håll synken ska gå.
+3. ~~Vilken kopia är originalet — repot eller `~/.agents/skills/design/`?~~ **Löst
+   2026-09-05:** valvets `.agents/skills/design` är källan, `anti-slop-design/skills/design`
+   är spegeln (`scripts/sync-from-live.py`, körs manuellt efter varje live-redigering —
+   glömdes inte idag, men är lätt att glömma; värt att göra till en `/conclude`-standardrad).
 4. **Ska `hallmark` bort?** Den konkurrerar fortfarande om automatisk aktivering,
    och dess innehåll är redan inflyttat.
+5. **Är `impeccable` (skillet, inte referenstexten) laddningsbart i den headless-miljö
+   byggarna kör i?** `component-routing.md` pekar flera regler mot `$impeccable <verb>`
+   (layout/harden/operate/polish/…), men `impeccable` laddades noll gånger i sex fulla
+   r7-rundor per koncept. Om det inte går att ladda där behöver de reglerna peka om mot
+   `design` i stället — se `tests/alunix-ab-r7/CHAIN-AUDIT-2026-09-07.md` § 2b.
 
 ## Ändringslogg
+
+- 2026-09-06 — claude — r6 underkändes av Anton och blev r7. Fynden: hans webbläsare kör
+  reduced motion (Windows-animationer av), så alla sex celler visade sina reservlägen och
+  reservlägena var tomma; kedjan läste noll referenser för att SKILL.md gjorde TASTE.md
+  villkorad, prompten förbjöd `extract/`, ingen hook nekar i nybyggen, telemetrin ser inte
+  vilka filer som lästs och route-gapet är blint för scroll; K3 och K2:s brief var Claudes
+  smakfel. Byggt: `design-catalogue/FEEDBACK.md` (Antons domar som regler, F-001–F-009),
+  referensgolvet i hookarna (`ref-read`, gate nekar första UI-skrivningen, scroll-route,
+  scroll-gap, rm-bild i exit-bar), SKILL.md Step 1b/2b/Motion/Step 5, TASTE § 4.8,
+  house-physics, skill-orchestration § 12 (delegerade byggen i rundor, målbildsgrind),
+  `scripts/serve.py`, boardens reduced-motion-varning. r7 (`tests/alunix-ab-r7/`): K1 + K2
+  om igen med Sonnet i rundor, Higgsfield/Kling-kameraresa för K1 (tak 35 cr), board 4625.
+  Utfall 2026-09-07: båda cellerna i slutläge efter sex rundor + kritikertrion, varje runda
+  med kedjan bevisat tänd (`tests/alunix-ab-r7/RAPPORT.md`); Antons dom väntar.
+- 2026-09-07 — claude — Antons dom på boarden avslöjade att rörelsen fortfarande inte syntes;
+  grundorsaken var Windows Animationseffekter fortfarande av, samma villkor som F-001. Anton
+  eskalerade till en permanent, global regel: rörelse spelas alltid upp, oavsett webbläsare/
+  systeminställning (F-011), ett medvetet, informerat avsteg från tillgänglighet han bekräftade
+  efter att avvägningen lades fram. Genomfört genom hela kedjan (`scrollcraft.js/.css`, K1/K2,
+  `a11y-audit` globalt) och verifierat i en riktig reduced-motion-webbläsare. En separat, riktig
+  bugg hittades samtidigt: `board.py` körde HTTP/1.0 och tappade WebP (samma bugg `serve.py`
+  löste för cellerna, aldrig portad till boarden) — fixat. På Antons begäran grävdes sedan hela
+  kedjefyrningen igenom på nytt (`CHAIN-AUDIT-2026-09-07.md`): en verklig sessions-scoping-bugg
+  i Stop-hooken bevisad (räknar fel session när hook-processen saknar rätt miljövariabel, fix
+  föreslagen men inte gjord), två olika orsaker bakom route-gapet särskilda
+  (`imagegen-frontend-web` för brett villkor, `"impeccable layout"` fel skillnamn), och
+  `Skill(design-catalog)` visade sig aldrig ha kallats — orkestrerarens egen prompt gav
+  filvägar direkt i stället för att köra skillets sökning. Nytt öppet fynd (F-012): rörelsen
+  spelar nu upp korrekt men "ser hackigt och billigt gjort ut" — orsak oundersökt, uttryckligen
+  överlämnad till nästa session.
+
+- 2026-09-05/06 — claude — r6: det isolerade A/B-testet (Claude-native mot kedjan, samma
+  frysta prompt, tre nya Alunix-koncept, headless Fable-high-processer, blind board på port 4624).
+  Delmål 2 ("route gap = 0") fick sin förklaring: intentklassificerarens negativlista nollade all
+  designintention på ett enda ord (`commit`, `skills`) var som helst i briefen, så gaten uteblev för
+  hela arm B; fixad i `hooks/design_hook_lib.py` med korpusen 42/42. Djupare: när skillen väl
+  laddas läser agenten inga referenser och kör inga procedurskills, så "kedjan på" mätte bara
+  SKILL.md-i-kontext plus hookar vid skrivning. Unsplash-API:t är i drift (nyckel, skript, kredit).
+  Se `tests/alunix-ab-r6/verdict.md`.
 
 - 2026-09-04/05 — claude — den skarpa designsessionen från "Next Steps" kördes: ett riktigt
   kundprojekt (Alunix, `tests/alunix-concepts-r3/` … `-r5/`) gick igenom hela kedjan flera

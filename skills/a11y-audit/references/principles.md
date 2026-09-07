@@ -101,9 +101,9 @@ One line per principle, deduplicated by meaning, grouped by the eight audit pass
 - Content reflows to a single column at 320px width, or 200% zoom on a 1280px viewport, with no horizontal scroll (WCAG 1.4.10); tables, maps, and code blocks may scroll within their own container. [inclusive/responsive-accessibility]
 - Never lock orientation unless the function genuinely requires it. [inclusive/responsive-accessibility]
 - A simplified view is a focused version containing everything needed for core tasks, not a stripped-down "lite" mode. [inclusive/simplified-views]
-- Wrap motion in `@media (prefers-reduced-motion: no-preference)` so it is opt-in; reduced motion means reduced, not eliminated — it targets vestibular triggers (parallax, autoplay, large-scale movement), not functional feedback (loading spinners, hover colour, focus rings). [better-accessibility/motion-and-zoom]
-- Flashing content faster than 3 times per second is a seizure risk and a hard WCAG Level A line, never optional. [inclusive/motion-sensitivity]
-- Test realistic preference combinations together — dark mode plus high contrast plus reduced motion — not each in isolation. [inclusive/preference-audit]
+- ~~Wrap motion in `@media (prefers-reduced-motion: no-preference)` so it is opt-in~~ — **superseded 2026-09-07 (standing override, top of SKILL.md):** this skill no longer audits `prefers-reduced-motion` compliance at all; motion always plays, everywhere, by deliberate design-system decision. Kept here, struck through, for provenance — the underlying accessibility argument (targets vestibular triggers: parallax, autoplay, large-scale movement, not functional feedback like spinners or focus rings) is still correct in general, it's just not what this skill enforces anymore. [better-accessibility/motion-and-zoom]
+- Flashing content faster than 3 times per second is a seizure risk and a hard WCAG Level A line, never optional — the one motion check the override above does not touch. [inclusive/motion-sensitivity]
+- Test realistic preference combinations together — dark mode plus high contrast — not each in isolation; reduced motion is no longer part of that combination to test. [inclusive/preference-audit]
 
 ## Pass 6 — Interaction
 

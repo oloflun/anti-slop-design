@@ -20,11 +20,14 @@ import argparse
 import functools
 import http.server
 import json
+import mimetypes
 import os
 import sys
 import threading
 import webbrowser
 from pathlib import Path
+
+mimetypes.add_type("image/webp", ".webp")
 
 SUBMIT_EVENT = threading.Event()
 
@@ -46,6 +49,9 @@ button:focus-visible,select:focus-visible,textarea:focus-visible,input:focus-vis
 .pane-frame-wrap{flex:1;min-height:0;position:relative;background:#fff}
 .pane-frame-wrap iframe{width:100%;height:100%;border:0;display:block}
 .notbuilt{position:absolute;inset:0;display:flex;align-items:center;justify-content:center;font:12px ui-monospace,Menlo,Consolas,monospace;color:#888;background:#f4f4f2}
+.pane.fullscreen{position:fixed;inset:0;z-index:50;background:#000}
+.pane.fullscreen .pane-frame-wrap{height:100%}
+body.fs #topbar{display:none}
 #drawer{position:fixed;top:32px;right:0;bottom:0;width:min(380px,100vw);background:#1a1a1a;color:#eee;border-left:1px solid #333;padding:14px;overflow:auto;display:flex;flex-direction:column;gap:14px;z-index:10;box-shadow:-8px 0 24px rgba(0,0,0,.4)}
 #drawer h2{margin:0;font:12px ui-monospace,Menlo,Consolas,monospace;color:#9c9}
 .pane-controls{display:flex;flex-direction:column;gap:8px;font:12px system-ui,sans-serif;padding-bottom:12px;border-bottom:1px solid #333}
@@ -57,9 +63,9 @@ button.action{font:12px ui-monospace,Menlo,Consolas,monospace;padding:5px 9px;bo
 #submitbar{display:flex;flex-direction:column;gap:8px}#submitbar label{font:12px ui-monospace,Menlo,Consolas,monospace;color:#aaa}
 #submitbtn{font:13px ui-monospace,Menlo,Consolas,monospace;padding:8px 16px;background:#2a78d6;color:#fff;border:0;border-radius:3px;cursor:pointer;align-self:flex-start}
 #status{font:11px ui-monospace,Menlo,Consolas,monospace;color:#9c9}
-@media (prefers-reduced-motion:no-preference){#tabs button{transition:background .1s}}</style>
+#tabs button{transition:background .1s}</style>
 </head><body>
-<div id="topbar"><div id="tabs" role="tablist" aria-label="Directions"></div><button type="button" class="tool" id="pairbtn" aria-pressed="false" title="visa två motorer sida vid sida (tangent p)">par</button><button type="button" class="tool" id="drawerbtn" aria-pressed="false" title="betyg och kommentar (tangent f)">betyg</button><span id="hint">1-9 riktning &middot; f betyg &middot; p par</span></div>
+<div id="topbar"><div id="tabs" role="tablist" aria-label="Directions"></div><button type="button" class="tool" id="pairbtn" aria-pressed="false" title="visa två motorer sida vid sida (tangent p)">par</button><button type="button" class="tool" id="fsbtn" aria-pressed="false" title="helskärm för aktiv panel (tangent x, Esc avslutar)">helskärm</button><button type="button" class="tool" id="drawerbtn" aria-pressed="false" title="betyg och kommentar (tangent f)">betyg</button><span id="hint">1-9 riktning &middot; f betyg &middot; p par &middot; x helskärm</span></div>
 <div id="stage">
 <div class="pane" id="pane-0"><div class="pane-head"><span class="engname" id="engname-0"></span></div><div class="pane-frame-wrap"><iframe id="frame-0" title="engine A"></iframe><div class="notbuilt" id="notbuilt-0" hidden>not built</div></div></div>
 <div class="pane" id="pane-1" hidden><div class="pane-head"><span class="engname" id="engname-1"></span></div><div class="pane-frame-wrap"><iframe id="frame-1" title="engine B"></iframe><div class="notbuilt" id="notbuilt-1" hidden>not built</div></div></div>
@@ -69,7 +75,7 @@ button.action{font:12px ui-monospace,Menlo,Consolas,monospace;padding:5px 9px;bo
 <script>
 (function(){
 'use strict';
-var STATE={board:null,cellsExist:{},active:null,winStart:0,ratings:{},comments:{},remix:{},preferred:null,pair:false,drawer:false};
+var STATE={board:null,cellsExist:{},active:null,winStart:0,ratings:{},comments:{},remix:{},preferred:null,pair:false,drawer:false,fs:null,hoverPane:null};
 function $(s){return document.querySelector(s)}
 function ck(d,e){return d+'-'+e}
 function esc(s){return (s||'').replace(/[&<>"]/g,function(c){return {'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;'}[c]})}
@@ -83,6 +89,24 @@ function init(data){
   document.addEventListener('keydown', onKey); $('#submitbtn').addEventListener('click', submitFeedback);
   $('#drawerbtn').addEventListener('click', function(){toggleDrawer()});
   $('#pairbtn').addEventListener('click', function(){STATE.pair=!STATE.pair; render()});
+  $('#fsbtn').addEventListener('click', function(){toggleFullscreen()});
+  $('#stage').addEventListener('mouseover', function(e){var p=e.target.closest?e.target.closest('.pane'):null; if(p) STATE.hoverPane=paneIdx(p)});
+}
+function paneIdx(p){return parseInt(p.id.split('-')[1],10)}
+function activePaneIdx(){
+  var ae=document.activeElement, p=ae&&ae.closest?ae.closest('.pane'):null;
+  if(p&&!p.hidden) return paneIdx(p);
+  if(STATE.hoverPane!==null){var hp=$('#pane-'+STATE.hoverPane); if(hp&&!hp.hidden) return STATE.hoverPane}
+  return 0;
+}
+function toggleFullscreen(idx){
+  if(STATE.fs!==null){
+    var cur=$('#pane-'+STATE.fs); if(cur) cur.classList.remove('fullscreen');
+    STATE.fs=null; document.body.classList.remove('fs'); $('#fsbtn').setAttribute('aria-pressed','false'); return;
+  }
+  if(idx===undefined) idx=activePaneIdx();
+  var p=$('#pane-'+idx); if(!p||p.hidden) return;
+  p.classList.add('fullscreen'); STATE.fs=idx; document.body.classList.add('fs'); $('#fsbtn').setAttribute('aria-pressed','true');
 }
 function toggleDrawer(){STATE.drawer=!STATE.drawer; $('#drawer').hidden=!STATE.drawer; $('#drawerbtn').setAttribute('aria-pressed',String(STATE.drawer))}
 function renderTabs(){
@@ -104,6 +128,7 @@ function render(){
   renderTabs(); var pair=engPair(); var two=STATE.pair && STATE.board.engines.length>1;
   $('#pairbtn').setAttribute('aria-pressed',String(two));
   $('#pane-1').hidden=!two; $('#controls-1').hidden=!two; document.querySelectorAll('.pane-head').forEach(function(h){h.hidden=!two});
+  if(STATE.fs!==null && $('#pane-'+STATE.fs).hidden) toggleFullscreen();
   renderPane(0, pair[0]); if(two) renderPane(1, pair[1]);
   var d=STATE.board.directions.filter(function(x){return x.id===STATE.active})[0];
   $('#drawer-title').textContent=STATE.active+' \u00b7 '+(d?d.name:'');
@@ -146,6 +171,7 @@ var syncing=false;
 function wireScrollSync(frame){
   try{
     var w=frame.contentWindow;
+    w.addEventListener('keydown', function(ev){ if(ev.key==='Escape'||ev.key==='x'||ev.key==='X') onKey(ev) });
     w.addEventListener('scroll', function(){
       if(syncing) return; syncing=true;
       document.querySelectorAll('.pane-frame-wrap iframe').forEach(function(other){ if(other!==frame && !other.hidden && other.contentWindow){ try{other.contentWindow.scrollTo(0, w.scrollY)}catch(e){} } });
@@ -158,6 +184,8 @@ function onKey(e){
   if(e.metaKey||e.ctrlKey||e.altKey) return;
   var n=parseInt(e.key,10), maxN=Math.min(9,STATE.board.directions.length);
   if(n>=1 && n<=maxN){STATE.active=STATE.board.directions[n-1].id; render(); return}
+  if(e.key==='x'||e.key==='X'){toggleFullscreen(); return}
+  if(e.key==='Escape'){if(STATE.fs!==null) toggleFullscreen(); return}
   if(e.key==='f'||e.key==='F'){toggleDrawer(); return}
   if(e.key==='p'||e.key==='P'){if(STATE.board.engines.length>1){STATE.pair=!STATE.pair; render()} return}
   if(e.key==='ArrowRight'){STATE.winStart=(STATE.winStart+1)%STATE.board.engines.length; render()}
@@ -190,6 +218,12 @@ def cells_exist(session_dir: Path, board: dict) -> dict:
 
 def make_handler(session_dir: Path, fallback_root: Path | None = None):
     class Handler(http.server.SimpleHTTPRequestHandler):
+        # HTTP/1.0 (the stdlib default) drops WebP responses intermittently
+        # under Chromium (net::ERR_CONNECTION_RESET) -- the same bug
+        # scripts/serve.py was built to work around for cell builders. The
+        # board itself hadn't been patched with the same fix (F-011, 2026-09-07).
+        protocol_version = "HTTP/1.1"
+
         def translate_path(self, path):
             # cells may reference repo-absolute assets (/sites/..., /tests/...): fall back to the repo root
             local = super().translate_path(path)

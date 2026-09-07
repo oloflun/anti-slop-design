@@ -127,15 +127,23 @@ state which cell and why the category default lost, and write the world's **styl
   letter-spacing), with **at least two coordinated layers** (Hōrai scrubs the
   quote AND word-lights the lede; one lerped element alone is an effect, not a
   set-piece), and a `?preview=` hook so its formed state can be screenshotted.
-  Always a prefers-reduced-motion fallback.
-- **Reduced motion removes motion, not content.** When a scroll-driven piece
-  carries information — stages, counts, a sequence the section exists to show —
-  that progression still has to follow the scroll under
-  `prefers-reduced-motion: reduce`. Switch off the travel: scale, translate,
-  parallax, and any easing that keeps drifting after the scroll stops. Cutting
-  the whole scrub instead pins the piece on its last frame at every position,
-  which reads as broken rather than as calm, and it is invisible in testing
-  unless the reduced-motion pass is run separately. Verify both modes.
+- **Motion always plays** (Anton, 2026-09-07 — FEEDBACK.md F-011). This
+  overrides the earlier reduced-motion-fallback rule below and is a permanent,
+  project-wide design-system decision, not a per-build call: never read
+  `matchMedia('(prefers-reduced-motion: reduce)')` (or any other browser/OS
+  accessibility signal) to gate the shared reveal or the signature set-piece,
+  and never build a second, parallel static-fallback document/section tree.
+  Build one motion path and verify that one. `a11y-audit` does not flag
+  missing reduced-motion support in this design system — that finding is
+  intentionally suppressed (see `~/.agents/skills/a11y-audit/SKILL.md`). The
+  target of a set-piece (a window, a word, an object) is still quiet at rest
+  and lights on the first scroll; at rest the end state is not previewed.
+  (History, superseded by the rule above: reduced motion used to remove
+  travel — scale, translate, parallax, drifting easing — while keeping a
+  scroll-linked sequence of the piece's *formed* states as real sections,
+  because r6, 2026-09-06, had shown that cutting the whole scrub to a static
+  end frame reads as broken. That distinction no longer applies: there is no
+  reduced-motion branch left to get right or wrong.)
 
 **Register — what varies with it:**
 
@@ -243,7 +251,10 @@ references — this list is the fix).
 **Reading budget.** Load the references a step names, not the neighbourhood: in Step 2b
 read `scroll/README.md` and the grammar row you chose, then only the device entries you
 will use; in Step 1b two catalog entries, not the index; the `upstream/` tree is cited,
-never read whole. Over-loading is what turns a careful build into a shallow one.
+never read whole. Over-loading is what turns a careful build into a shallow one. The
+floor is never neighbourhood: TASTE.md, FEEDBACK.md, `reference-lock.md`, the named
+entries' files, and on a scroll brief `scroll/devices.md` + `scroll/feel-and-fingerprint.md`
+are always read, budget or not.
 
 **Component branch keeps:** pre-flight scan, the gate order (it inherits, it does not re-derive), the 2+1 font discipline, and a **stricter** state rule — every interactive component ships all 8 states (default · hover · `:focus-visible` · `:active` · disabled · loading · error · success) per [`interaction-and-states.md`](references/interaction-and-states.md), plus a throwaway `<Name>.preview.html` rendering all 8 stacked and labelled.
 **Component branch skips:** macrostructure, nav/footer archetypes, hero patterns, enrichment, multi-section preview, the bake-off (use `Skill(prototype)` or the Interfaces `variant` method for alternatives, and the `break` harness — `references/upstream/interfaces/skills/break/` — to render every state and worst-case content on one page). State this explicitly: *"Component scope: skipping macrostructure."*
@@ -298,9 +309,16 @@ python "$HOME/.agents/skills/design/scripts/shoot_slices.py" .shots/ref https://
    references (`Skill(design-catalog)`; `python scripts/catalogue/query.py --category …
    --register … --grammar …`). Read 2–4 entries in the category and register you are heading
    for — their `fold.webp` and slices as images, their reference-lock section as text — before
-   opening anything else. When the brief is Anton's own or names no references, read
-   `design-catalogue/TASTE.md` first: it says how type, image, surface and motion are meant to
-   relate, and which category the brief belongs to. Then the user's URL or screenshot, then
+   opening anything else. **Always** read `design-catalogue/TASTE.md` **and** `design-catalogue/FEEDBACK.md`
+   before Step 2, whether or not the brief names references (r6, 2026-09-06: a brief that
+   named two entries left both unread, and the builds failed on exactly the rules they hold).
+   TASTE.md says how type, image, surface and motion are meant to relate and which category
+   the brief belongs to; FEEDBACK.md is the owner's verdict log, each entry a rule with
+   evidence. For every named catalogue entry read `entry.md` (including its § Motion),
+   `fold.webp`, the `slices/`, and `extract/<site>-DESIGN.md` (measured scale, colours,
+   easings). A brief may narrow *which* entries, never these files. The reference floor in
+   `design-gate.py` denies the first UI write of a greenfield session until TASTE, FEEDBACK,
+   one entry and `reference-lock.md` have been read. Then the user's URL or screenshot, then
    21st.dev for product shots, then Refero MCP if configured.
    Photography sources and licences: [`photo-sources.md`](references/photo-sources.md).
 
@@ -332,6 +350,11 @@ State the tier out loud before proceeding: *"Tier 1 — deriving from the Snajp 
 **Persuade and Experience surfaces only** (landing, marketing, portfolio, campaign).
 Operate and Read surfaces get no scroll choreography (100+ uses a day means no animation)
 and skip straight to Step 3. Contract and scope rule: [`scroll/README.md`](references/scroll/README.md).
+**A brief that locks the direction skips only item 5 (the bake-off), never items 1–4.** A
+brief that asks for scroll choreography makes items 1–4 mandatory on a Persuade/Experience
+surface, and the reference floor denies the first UI write until `scroll/devices.md` and
+`scroll/feel-and-fingerprint.md` have been read (r6: every build skipped 2b whole because
+the direction was locked, and shipped without a device table).
 
 1. **Pick the page grammar** from the eight in [`scroll/grammars.md`](references/scroll/grammars.md)
    — the register decides how the page looks, the grammar decides what the page *is*.
@@ -424,7 +447,12 @@ Fall back, in this order:
 2. **Local capture** — drive Chromium via Playwright, write PNGs to disk, then **`Read` each PNG** so the image actually enters context.
 3. If neither works: **stop, say so plainly, and solve the capture problem.** Never guess from the code.
 
+Serve static builds with `scripts/serve.py` (HTTP/1.1, keep-alive, WebP mime). Never
+`python -m http.server`: it is HTTP/1.0 and drops large WebP responses under Chromium on
+Windows, and never write a server of your own (r6: all six builders lost turns rediscovering this).
+
 ```bash
+python "$HOME/.agents/skills/design/scripts/serve.py"        --port 3000 --root .
 python "$HOME/.agents/skills/design/scripts/shoot.py"        .shots/round1 http://localhost:3000
 python "$HOME/.agents/skills/design/scripts/shoot_slices.py" .shots/round1 http://localhost:3000 page 10
 python "$HOME/.agents/skills/design/scripts/measure.py"      http://localhost:3000
@@ -532,7 +560,7 @@ Done when all of these are true:
 - The category-reflex test passes at both altitudes — you could not guess the palette from the category, nor the aesthetic family from category-plus-anti-references.
 - Every numbered gate in [`gates.md`](references/gates.md) passes, including 66–88 in [`production-tells.md`](references/production-tells.md) on a marketing surface.
 - Zero em-dashes anywhere visible — headlines, eyebrows, pills, body, quotes, attribution, captions, buttons, alt text (gate 75).
-- All 8 states exist on every interactive element; reduced-motion alternative for every animation.
+- All 8 states exist on every interactive element; every animation plays unconditionally — no `prefers-reduced-motion` gate, no static-fallback branch (F-011).
 - Verified at 320 / 375 / 414 / 768; no horizontal scroll.
 - `detect.mjs` clean, or every remaining finding consciously waived and named.
 - Copy gate clean in every language on the page.

@@ -26,8 +26,17 @@ wrong. Tidvatten and Klova are here as the counterweight.
 - **One tonal inversion** somewhere on the page.
 - **Motion:** one shared reveal (translateY 28px, 1.2–1.4s,
   cubic-bezier(.16,1,.3,1)), failing toward visible; plus one signature set-piece
-  with at least two coordinated layers and a `?preview=` hook; reduced-motion
-  fallback throughout.
+  with at least two coordinated layers and a `?preview=` hook. **Motion always
+  plays** (Anton, 2026-09-07 — FEEDBACK.md F-011, overrides the reduced-motion
+  rule this replaced): never gate the reveal or the set-piece behind
+  `prefers-reduced-motion` or any other browser/OS accessibility setting, and
+  never build a parallel static-fallback document. One motion path, verified
+  once. This is a deliberate, permanent design-system override of the usual
+  accessibility guidance — `a11y-audit` does not flag it. The set-piece's
+  target (a window, a word, an object) is quiet at rest and lights on the
+  first scroll: at rest the end state is never previewed. On a scroll brief,
+  motion is the authority *inside* the set-piece act and type/photo step down
+  there (TASTE.md § 4.8).
 - **Copy in a specific voice about a specific place**, with honest numbers.
 
 ## Editorial-print invariants — Calyx · Hōrai · Hyperborea only
@@ -64,9 +73,10 @@ wrong. Tidvatten and Klova are here as the counterweight.
   `screen` opacity .35 on dark.
 - **Shared reveal:** `.reveal { opacity:0; transform:translateY(28px);
   transition: 1.2–1.4s cubic-bezier(.16,1,.3,1) }`, one IntersectionObserver
-  at threshold 0.1–0.12; `prefers-reduced-motion` neutralizes everything.
-  Reveals fail toward visible (threshold 0 for tall elements, mount reveal,
-  failsafe, noscript — see the reveal guards).
+  at threshold 0.1–0.12; plays unconditionally, never neutralized by
+  `prefers-reduced-motion` (motion-always override, 2026-09-07 — FEEDBACK.md
+  F-011). Reveals fail toward visible (threshold 0 for tall elements, mount
+  reveal, failsafe, noscript — see the reveal guards).
 - **One signature motion set-piece per page**, mathematically scrubbed, both
   directions, plus a `?preview=` debug hook forcing its formed state so it can
   be screenshot-verified.

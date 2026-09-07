@@ -48,7 +48,7 @@ def main() -> None:
     cwd_root = L.project_root({"cwd": event.get("cwd")})
     if root != cwd_root:
         try:
-            reg = L.state_dir(cwd_root) / ".linked-roots"
+            reg = L.session_file(cwd_root, ".linked-roots")
             existing = reg.read_text(encoding="utf-8").splitlines() if reg.exists() else []
             if str(root) not in existing:
                 reg.write_text("\n".join([*existing, str(root)]) + "\n", encoding="utf-8")

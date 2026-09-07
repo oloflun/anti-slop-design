@@ -41,6 +41,17 @@ roughly 2200px on the longest edge, re-encode to WebP, vendor the file into the
 repo, and credit the photographer. No step is optional, and no step substitutes
 for looking at the actual image.
 
+### Unsplash: API path first, scrape path as fallback
+
+`scripts/catalogue/unsplash_sheet.py --api <out-dir> "<phrase>" ["<phrase>" ...]`
+searches through the official API and writes `ids.json` plus `contact-sheet.html`.
+Look at the sheet, pick, then `--download <id> --to <assets-dir>`: that hits the
+download endpoint first (the API guideline's "trigger a download"), fetches
+`urls.raw` at 2200px as WebP, and appends the credit line to `credits.json`, which
+is where the site's credit text comes from. The key lives in `~/.secrets/.env` (or
+the `UNSPLASH_ACCESS_KEY` env var), set via `scripts/keys.py`; `--verify` prints the
+tier and quota. Without a key, the scrape path (`--ids-file <json>`) still works.
+
 ## Photo-search field format
 
 The catalog's photo-search fields take **2–4 phrases plus a source**, not a

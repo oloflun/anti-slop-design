@@ -97,6 +97,11 @@ Skills are **tools invoked for craft**. They do not choose the direction — the
                "<CommandDialog", "<Skeleton", "role=\"grid\"", "aria-sort",
                "<Tabs", "<Breadcrumb", "getServerSession", "<Toolbar"] },
 
+    { "id": "scroll",     "skill": "design",                          "why": "scroll choreography — Step 2b: scroll/devices.md + feel-and-fingerprint.md",
+      "path": [],
+      "code": ["data-sc-", "animation-timeline", "scroll-timeline", "scrollY", "IntersectionObserver",
+               "position: sticky", "position:sticky", "requestAnimationFrame"] },
+
     { "id": "layout",     "skill": "impeccable layout",               "why": "layout, no other signal",
       "path": [],
       "code": [],

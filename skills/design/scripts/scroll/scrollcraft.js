@@ -139,7 +139,10 @@
 (function (global) {
   'use strict';
 
-  var reduce = matchMedia('(prefers-reduced-motion: reduce)').matches;
+  // Motion always plays (Anton, 2026-09-07, FEEDBACK.md F-011): the engine
+  // never reads prefers-reduced-motion to disable or simplify travel. Left
+  // as a named constant, not deleted, so a future reversal is a one-line change.
+  var reduce = false;
   var fineMQ = matchMedia('(hover: hover) and (pointer: fine)');
   var smallMQ = matchMedia('(max-width: 860px)');
   var coarse = matchMedia('(hover: none) and (pointer: coarse)').matches;

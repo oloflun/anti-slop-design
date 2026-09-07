@@ -43,6 +43,8 @@ except Exception:
 PLUGIN_ROOT = Path(__file__).resolve().parent
 HOOKS = PLUGIN_ROOT / "hooks"
 SKILLS = Path.home() / ".agents" / "skills"
+os.environ.setdefault("CLAUDE_CODE_SESSION_ID", "verify-session-0001")
+SID8 = os.environ["CLAUDE_CODE_SESSION_ID"][:8]
 ENV = {**os.environ, "PYTHONIOENCODING": "utf-8"}
 
 PASS, FAIL = [], []
@@ -425,7 +427,7 @@ def main() -> int:
             (Path(td) / "index.html").write_text("<html></html>", encoding="utf-8")
             hso, _ = run_hook("design-intent.py", {"cwd": td, "prompt": prompt})
             ctx = (hso or {}).get("additionalContext", "")
-            armed_now = (Path(td) / ".impeccable" / ".armed").exists()
+            armed_now = (Path(td) / ".impeccable" / f".armed-{SID8}").exists()
 
             name = f"intent corpus [{expect}]: {prompt[:50]}"
             if expect == "high":
@@ -435,6 +437,8 @@ def main() -> int:
                       and "<design-gate>" not in ctx and not armed_now)
             else:  # none
                 ok = hso is None and not armed_now
+            if row.get("scroll"):
+                ok = ok and "SCROLL —" in ctx
             check(name, ok)
 
     print("\n-- behaviour: arm/disarm --")
@@ -455,7 +459,7 @@ def main() -> int:
         check("project signal caps at medium (no UI evidence)",
               bool(ctx) and "<design-gate>" not in ctx)
         check("capped session does not arm",
-              not (Path(td) / ".impeccable" / ".armed").exists())
+              not (Path(td) / ".impeccable" / f".armed-{SID8}").exists())
 
     with tempfile.TemporaryDirectory() as td:
         # tier stays "ungated" (no DESIGN.md) so nothing auto-arms.
@@ -581,6 +585,224 @@ def main() -> int:
             {"DESIGN_HOOKS_FORCE_ARM": "1"})
         check("FORCE_ARM env arms",
               "animated-navigation" in (hso or {}).get("additionalContext", ""))
+
+    print("\n-- behaviour: reference floor --")
+    with tempfile.TemporaryDirectory() as td:
+        # (a) armed greenfield project, empty ledger: the gate denies the
+        # first UI write and names every required reference.
+        (Path(td) / "package.json").write_text(
+            '{"dependencies":{"react":"18.2.0"}}', encoding="utf-8")
+        cat_dir = Path(td) / "design-catalogue"
+        cat_dir.mkdir()
+        (cat_dir / "FEEDBACK.md").write_text("# feedback", encoding="utf-8")
+        L.arm(Path(td), "verify")
+
+        hso, _ = run_hook("design-gate.py", write_ev(td, "index.html", "<html></html>"))
+        reason = (hso or {}).get("permissionDecisionReason", "")
+        check("reference floor denies a greenfield write with an empty ledger",
+              (hso or {}).get("permissionDecision") == "deny")
+        check("floor names TASTE.md", "TASTE.md" in reason)
+        check("floor names FEEDBACK.md", "FEEDBACK.md" in reason)
+        check("floor names entries (catalogue example)", "entries" in reason)
+        check("floor names reference-lock.md", "reference-lock.md" in reason)
+        check("floor names Skill(design)", "Skill(design)" in reason)
+
+        # (b) log synthetic ref-read rows for taste, feedback, one catalogue
+        # entry, and the reference lock, plus the skill load — the same
+        # write is now allowed.
+        L.log(Path(td), event="skill", skill="design", tier="ungated")
+        skill_roots = L.design_skill_roots()
+        lock_file = (skill_roots[0] / "references" / "reference-lock.md") if skill_roots \
+            else Path("references/reference-lock.md")
+        L.log(Path(td), event="ref-read", cat="taste", file=str(cat_dir / "TASTE.md"))
+        L.log(Path(td), event="ref-read", cat="feedback", file=str(cat_dir / "FEEDBACK.md"))
+        L.log(Path(td), event="ref-read", cat="catalogue", slug="acme",
+              file=str(cat_dir / "entries" / "acme" / "shot.png"))
+        L.log(Path(td), event="ref-read", cat="references", file=str(lock_file))
+
+        hso, _ = run_hook("design-gate.py", write_ev(td, "index.html", "<html></html>"))
+        check("reference floor allows the write once all four are read", hso is None)
+
+        # (c) a scroll-signalled intent with no scroll ref-reads names the
+        # two scroll references specifically.
+        L.log(Path(td), event="intent", tier="ungated", signal="build", scroll=1)
+        hso, _ = run_hook("design-gate.py", write_ev(td, "other.html", "<html></html>"))
+        reason = (hso or {}).get("permissionDecisionReason", "")
+        check("scroll intent without scroll reads denies",
+              (hso or {}).get("permissionDecision") == "deny")
+        check("floor names devices.md", "devices.md" in reason)
+        check("floor names feel-and-fingerprint.md", "feel-and-fingerprint.md" in reason)
+
+        if skill_roots:
+            L.log(Path(td), event="ref-read", cat="references", sub="scroll",
+                  file=str(skill_roots[0] / "references" / "scroll" / "devices.md"))
+            L.log(Path(td), event="ref-read", cat="references", sub="scroll",
+                  file=str(skill_roots[0] / "references" / "scroll" / "feel-and-fingerprint.md"))
+            hso, _ = run_hook("design-gate.py", write_ev(td, "other.html", "<html></html>"))
+            check("reference floor allows the write once scroll refs are read", hso is None)
+
+    # (d) the scroll route rule fires on scroll-driven markup.
+    scroll_routes = L.match_routes("index.html", '<div data-sc-act="scrub">')
+    check("scroll route rule matches data-sc- attribute",
+          any(r.get("id") == "scroll" for r in scroll_routes))
+
+    with tempfile.TemporaryDirectory() as td:
+        # (e) the exit bar's scroll-specific requirement: a reduced-motion
+        # capture, Read after the last edit, once ordinary vision already
+        # passed. (f) section 8 always renders in the report.
+        (Path(td) / "package.json").write_text("{}", encoding="utf-8")
+        L.arm(Path(td), "verify")
+        run_hook("design-route.py", write_ev(
+            td, "components/Hero.tsx",
+            'export function Hero(){return <div className="hero">x</div>}'))
+        L.log(Path(td), event="intent", tier="ungated", signal="build", scroll=1)
+        time.sleep(1.1)
+        run_hook("design-vision-track.py",
+                 {"cwd": td, "tool_name": "Read",
+                  "tool_input": {"file_path": str(Path(td) / "shots" / "fold.png")}})
+
+        p = subprocess.run(
+            [sys.executable, str(HOOKS / "design-stop.py")],
+            input=json.dumps({"cwd": td}), capture_output=True, text=True,
+            encoding="utf-8", env=ENV)
+        try:
+            blk = json.loads(p.stdout)
+        except Exception:
+            blk = {}
+        check("scroll session without a reduced-motion shot blocks the stop",
+              blk.get("decision") == "block"
+              and "reduced motion" in blk.get("reason", "").lower())
+
+        time.sleep(1.1)
+        run_hook("design-vision-track.py",
+                 {"cwd": td, "tool_name": "Read",
+                  "tool_input": {"file_path": str(Path(td) / "shots" / "rm-fold.png")}})
+        hso, _ = run_hook("design-stop.py", {"cwd": td})
+        check("adding an rm- shot clears the scroll exit bar", hso is not None)
+
+        reports = list((Path(td) / ".impeccable").glob("design-report-*.md"))
+        body = reports[-1].read_text(encoding="utf-8") if reports else ""
+        check("stop report body contains '## 8. Referensgolv'",
+              "## 8. Referensgolv" in body)
+
+    print("\n-- behaviour: concurrent sessions --")
+    # An orchestrator session and one or more headless builder sessions can
+    # share one project root at once. Before the 2026-09-06 fix, a second
+    # session's SessionStart deleted the shared .armed/.design-verb/
+    # .stop-blocks/.linked-roots files and RENAMED the ledger over prev,
+    # destroying whatever the first session had just written. These fixtures
+    # simulate two real sessions (distinct CLAUDE_CODE_SESSION_ID) touching
+    # the same root and check the second session's startup leaves the first
+    # session's live state and ledger rows intact and still findable.
+    import importlib.util
+
+    def _load_hook_module(name: str, filename: str):
+        spec = importlib.util.spec_from_file_location(name, HOOKS / filename)
+        mod = importlib.util.module_from_spec(spec)
+        spec.loader.exec_module(mod)
+        return mod
+
+    design_stop_mod = _load_hook_module("design_stop_verify", "design-stop.py")
+
+    SID_A = "aaaaaaaa-0000-0000-0000-000000000000"
+    SID_B = "bbbbbbbb-0000-0000-0000-000000000000"
+
+    with tempfile.TemporaryDirectory() as td:
+        (Path(td) / "package.json").write_text(
+            '{"dependencies":{"react":"18.2.0"}}', encoding="utf-8")
+        state_dir = Path(td) / ".impeccable"
+
+        # Session A: a high-confidence prompt arms and logs an intent row
+        # under A's own id.
+        hso, _ = run_hook("design-intent.py", {"cwd": td, "prompt": "redesign the hero"},
+                           {"CLAUDE_CODE_SESSION_ID": SID_A})
+        check("session A's intent fires", "<design-gate>" in (hso or {}).get("additionalContext", ""))
+        armed_a = state_dir / f".armed-{SID_A[:8]}"
+        check("session A armed its own per-session file", armed_a.exists())
+
+        # Session B starts (SessionStart, source=startup) on the same root.
+        run_hook("design-session-start.py", {"cwd": td, "source": "startup"},
+                 {"CLAUDE_CODE_SESSION_ID": SID_B})
+        check("B's SessionStart does not delete A's .armed file", armed_a.exists())
+        check("B's SessionStart does not create its own .armed file",
+              not (state_dir / f".armed-{SID_B[:8]}").exists())
+
+        # A's ledger rows (rotated into prev by B's SessionStart) must still
+        # be readable and still scope correctly to session A.
+        check("ledger rotated into prev, not deleted",
+              (state_dir / "design-session.prev.jsonl").exists()
+              and not (state_dir / "design-session.jsonl").exists())
+        prev_sid = os.environ.get("CLAUDE_CODE_SESSION_ID")
+        os.environ["CLAUDE_CODE_SESSION_ID"] = SID_A
+        try:
+            a_rows = design_stop_mod.scope_to_session(design_stop_mod.all_rows(Path(td)))
+        finally:
+            os.environ["CLAUDE_CODE_SESSION_ID"] = prev_sid
+        check("A's own rows are still readable via all_rows()+scope_to_session() after B's start",
+              any(r.get("event") == "intent" for r in a_rows))
+        check("scoping to A excludes nothing of B's (B wrote no rows)",
+              all(r.get("session", SID_A) == SID_A for r in a_rows))
+
+        # Session B now does its own design work — must not collide with A's
+        # per-session files, and A's report must still be gettable afterward.
+        hso, _ = run_hook("design-intent.py", {"cwd": td, "prompt": "polish the nav"},
+                           {"CLAUDE_CODE_SESSION_ID": SID_B})
+        check("session B's intent fires independently",
+              "<design-gate>" in (hso or {}).get("additionalContext", ""))
+        check("A's .armed file untouched by B's own intent firing", armed_a.exists())
+
+    with tempfile.TemporaryDirectory() as td:
+        # prev is capped at PREV_LEDGER_CAP lines — write more than that
+        # directly into the live ledger, rotate once, and check the cap held.
+        (Path(td) / "package.json").write_text("{}", encoding="utf-8")
+        state_dir = Path(td) / ".impeccable"
+        state_dir.mkdir(parents=True, exist_ok=True)
+        ledger = state_dir / "design-session.jsonl"
+        overflow = L.PREV_LEDGER_CAP + 500
+        with ledger.open("w", encoding="utf-8") as fh:
+            for i in range(overflow):
+                fh.write(json.dumps({"ts": f"t{i:06d}", "event": "edit",
+                                      "session": "filler"}) + "\n")
+        run_hook("design-session-start.py", {"cwd": td, "source": "startup"})
+        prev = state_dir / "design-session.prev.jsonl"
+        lines = [l for l in prev.read_text(encoding="utf-8").splitlines() if l.strip()] \
+            if prev.exists() else []
+        check("prev ledger is capped at PREV_LEDGER_CAP lines",
+              len(lines) == L.PREV_LEDGER_CAP, f"{len(lines)} lines")
+        check("current ledger removed after rotation", not ledger.exists())
+
+    with tempfile.TemporaryDirectory() as td:
+        # A fresh (not stale) shared .once-* flag and .stop-signature must
+        # survive a sibling session's SessionStart — only age, not another
+        # session merely starting, may prune them.
+        (Path(td) / "package.json").write_text("{}", encoding="utf-8")
+        state_dir = Path(td) / ".impeccable"
+        state_dir.mkdir(parents=True, exist_ok=True)
+        once_flag = state_dir / ".once-verify-discipline"
+        once_flag.write_text("1", encoding="utf-8")
+        sig_flag = state_dir / ".stop-signature"
+        sig_flag.write_text("deadbeef", encoding="utf-8")
+        run_hook("design-session-start.py", {"cwd": td, "source": "startup"},
+                 {"CLAUDE_CODE_SESSION_ID": SID_B})
+        check("fresh .once-* flag survives a sibling SessionStart", once_flag.exists())
+        check("fresh .stop-signature survives a sibling SessionStart", sig_flag.exists())
+
+    with tempfile.TemporaryDirectory() as td:
+        # A per-session file (or a .once-* flag) old enough that no session
+        # could still legitimately own it DOES get pruned.
+        (Path(td) / "package.json").write_text("{}", encoding="utf-8")
+        state_dir = Path(td) / ".impeccable"
+        state_dir.mkdir(parents=True, exist_ok=True)
+        stale_armed = state_dir / ".armed-deadbeef"
+        stale_armed.write_text("{}", encoding="utf-8")
+        stale_once = state_dir / ".once-old-thing"
+        stale_once.write_text("1", encoding="utf-8")
+        old = time.time() - 25 * 3600
+        os.utime(stale_armed, (old, old))
+        os.utime(stale_once, (old, old))
+        run_hook("design-session-start.py", {"cwd": td, "source": "startup"})
+        check("stale (>24h) per-session .armed-* is pruned", not stale_armed.exists())
+        check("stale (>24h) .once-* flag is pruned", not stale_once.exists())
 
     print("\n-- behaviour: false positives --")
     with tempfile.TemporaryDirectory() as td:

@@ -45,6 +45,19 @@ MEDIUM_NUDGE = (
     "first UI edit."
 )
 
+SCROLL_NUDGE = (
+    "[design] Scrollkoreografi nämnd: läs references/scroll/devices.md och "
+    "feel-and-fingerprint.md innan du bygger scrollbeteendet."
+)
+
+SCROLL_BLOCK = (
+    "SCROLL — Steg 2b är obligatoriskt: läs references/scroll/README.md, "
+    "grammars.md, devices.md, feel-and-fingerprint.md och house-physics.md "
+    "§ Motion innan första UI-filen; referensgolvet i design-gate spärrar "
+    "annars. En brief som låser riktningen hoppar bara över bake-offen "
+    "(2b punkt 5), aldrig punkt 1–4."
+)
+
 
 # Verb detection. The pre-2026-07-28 system routed by component but never by
 # task type, so build / redesign / audit / polish / study all got identical
@@ -135,9 +148,13 @@ def main() -> None:
     level = L.classify(prompt, root)
     if level == "none":
         return
+    scroll = L.scroll_signal(prompt)
     if level == "medium":
-        L.log(root, event="intent", detail="medium")
-        L.emit("UserPromptSubmit", MEDIUM_NUDGE)
+        L.log(root, event="intent", detail="medium", scroll=1 if scroll else None)
+        nudge = MEDIUM_NUDGE
+        if scroll:
+            nudge = nudge + "\n" + SCROLL_NUDGE
+        L.emit("UserPromptSubmit", nudge)
         return
 
     # level == "high"
@@ -146,7 +163,7 @@ def main() -> None:
     # Re-fire when the task type changes, not merely once per session. A
     # mid-session pivot from "build the hero" to "now audit the whole page"
     # is exactly when the wrong procedure gets used.
-    state = L.state_dir(root) / ".design-verb"
+    state = L.session_file(root, ".design-verb")
     try:
         previous = state.read_text(encoding="utf-8").strip()
     except Exception:
@@ -210,9 +227,12 @@ def main() -> None:
                  "high-end-visual-design set direction — each hardcodes a full "
                  "palette. Gate 60 denies their hex values in a locked project.")
     lines.append("</design-gate>")
+    if scroll:
+        lines.append(SCROLL_BLOCK)
 
     L.arm(root, "intent", verb)
     L.log(root, event="intent", tier=tier_now, signal=verb,
+          scroll=1 if scroll else None,
           detail=f"verb={verb}" + (f" (was {previous})" if changed and previous else ""))
     L.emit("UserPromptSubmit", "\n".join(lines))
 
