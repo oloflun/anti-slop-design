@@ -50,6 +50,88 @@ def blocking() -> bool:
     return os.environ.get("DESIGN_GATE_BLOCKING", "").strip() not in ("", "0", "false")
 
 
+# --------------------------------------------------------------------------
+# Reference floor — the r6 failure this closes: builders loaded Skill(design)
+# and wrote real UI without ever reading TASTE.md, a catalogue example, or
+# (when the brief was scroll-choreographed) the scroll references. Loading
+# the skill is not the same as having actually looked at anything it points
+# to. This runs only in the UNLOCKED (no DESIGN.md) branch of main() — a
+# locked project's contract enforcement above is unrelated and unaffected.
+# --------------------------------------------------------------------------
+
+def _check_reference_floor(root: Path) -> None:
+    if os.environ.get("DESIGN_REF_FLOOR", "").strip().lower() == "off":
+        return
+    if L.disabled():
+        return
+    if not L.armed(root):
+        return
+
+    rows = L.scope_to_session(L.all_rows(root))
+    ref_reads = [r for r in rows if r.get("event") == "ref-read"]
+
+    cat_roots = L.catalogue_roots(root)
+    cat_root = cat_roots[0] if cat_roots else (root / "design-catalogue")
+    skill_roots = L.design_skill_roots()
+    skill_root = skill_roots[0] if skill_roots else (L.HOME / ".agents" / "skills" / "design")
+
+    missing = []
+
+    # Loading the skill is the floor's first rung: the r7 probe (2026-09-06)
+    # read every reference and still never invoked Skill(design), so the
+    # procedure (Steps 0-6) was never in context. A skill-read of the
+    # skill's own SKILL.md counts the same as the Skill tool.
+    skill_loaded = any(
+        (r.get("event") == "skill" and str(r.get("skill", "")).split()[0] == "design")
+        or (r.get("event") == "skill-read" and r.get("skill") == "design"
+            and Path(r.get("file", "")).name == "SKILL.md")
+        for r in rows
+    )
+    if not skill_loaded:
+        missing.append("Du har inte laddat Skill(design) — kedjans procedur (Steps 0–6) krävs innan första UI-filen.")
+
+    if not any(r.get("cat") == "taste" for r in ref_reads):
+        taste_path = (cat_root / "TASTE.md").as_posix()
+        missing.append(f"Du har inte läst {taste_path} — smakreferensen krävs innan första UI-filen.")
+
+    feedback_path_p = cat_root / "FEEDBACK.md"
+    if feedback_path_p.exists() and not any(r.get("cat") == "feedback" for r in ref_reads):
+        missing.append(f"Du har inte läst {feedback_path_p.as_posix()} — återkopplingen krävs innan första UI-filen.")
+
+    if not any(r.get("cat") == "catalogue" for r in ref_reads):
+        entries_path = (cat_root / "entries").as_posix()
+        missing.append(f"Du har inte läst någon post under {entries_path} — minst ett katalogexempel krävs innan första UI-filen.")
+
+    has_lock = any(
+        r.get("cat") == "references" and Path(r.get("file", "")).name == "reference-lock.md"
+        for r in ref_reads
+    )
+    if not has_lock:
+        lock_path = (skill_root / "references" / "reference-lock.md").as_posix()
+        missing.append(f"Du har inte läst {lock_path} — referenslåset krävs innan första UI-filen.")
+
+    intent_rows = [r for r in rows if r.get("event") == "intent"]
+    latest_scroll = bool(intent_rows) and intent_rows[-1].get("scroll") == 1
+    route_scroll = any(
+        r.get("event") == "route" and r.get("skill") == "design" and r.get("signal") == "scroll"
+        for r in rows
+    )
+    if latest_scroll or route_scroll:
+        scroll_basenames = {
+            Path(r.get("file", "")).name for r in ref_reads if r.get("sub") == "scroll"
+        }
+        for fname in ("devices.md", "feel-and-fingerprint.md"):
+            if fname not in scroll_basenames:
+                p = (skill_root / "references" / "scroll" / fname).as_posix()
+                missing.append(f"Du har inte läst {p} — scrollkoreografins referens krävs innan första UI-filen.")
+
+    if not missing:
+        return
+
+    msg = "[design-gate · referensgolv]\n" + "\n".join(missing)
+    L.deny(msg)
+
+
 def main() -> None:
     if L.disabled():
         return
@@ -63,6 +145,7 @@ def main() -> None:
 
     root = L.project_root(event)
     if not L.design_md(root):
+        _check_reference_floor(root)
         return  # no locked system — nothing to enforce against
 
     content = L.written_content(event)

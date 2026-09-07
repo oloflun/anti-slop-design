@@ -36,7 +36,7 @@ except Exception:
 ARM_ON_SKILLS = {
     "design", "impeccable", "brand-system", "design-verify", "a11y-audit",
     "design-shotgun", "design-catalog", "hallmark", "emil-design-eng",
-    "animate", "scroll-craft",
+    "animate",
 }
 
 
