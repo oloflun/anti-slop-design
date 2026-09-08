@@ -1,0 +1,350 @@
+{
+  "pageIntent": {
+    "type": "unknown",
+    "confidence": 0,
+    "path": "/sites/vinterspelen.html",
+    "title": "Vinterspelen på Vretaholm — operafestival i 1700-talsteatern",
+    "description": "Vinterspelen spelar sjutton kvällar i januari i Vretaholms slottsteater från 1777. Originalmaskineri, salong lyst med vaxljus, orkester på tidstrogna instrument.",
+    "signals": [],
+    "alternates": [],
+    "needsSmart": true
+  },
+  "sectionRoles": {
+    "sections": [
+      {
+        "index": 0,
+        "tag": "header",
+        "role": "nav",
+        "subrole": null,
+        "confidence": 0.4,
+        "heading": null,
+        "bounds": {
+          "x": 0,
+          "y": 0,
+          "w": 1280,
+          "h": 89
+        },
+        "buttonCount": 0,
+        "cardCount": 4,
+        "slots": {
+          "lede": "Vinterspelen\nHÅLLNINGEN\nPROGRAMMET\nTEATERN\nBILJETTER\nRESAN\nBILJETTER"
+        },
+        "needsSmart": true
+      },
+      {
+        "index": 1,
+        "tag": "nav",
+        "role": "nav",
+        "subrole": null,
+        "confidence": 0.9,
+        "heading": null,
+        "bounds": {
+          "x": 350.375,
+          "y": 22,
+          "w": 615.265625,
+          "h": 44
+        },
+        "buttonCount": 0,
+        "cardCount": 0,
+        "slots": {
+          "lede": "HÅLLNINGEN\nPROGRAMMET\nTEATERN\nBILJETTER\nRESAN"
+        },
+        "needsSmart": false
+      },
+      {
+        "index": 2,
+        "tag": "nav",
+        "role": "nav",
+        "subrole": null,
+        "confidence": 0.9,
+        "heading": null,
+        "bounds": {
+          "x": 0,
+          "y": 0,
+          "w": 0,
+          "h": 0
+        },
+        "buttonCount": 0,
+        "cardCount": 1,
+        "slots": {
+          "lede": "Hållningen\n        Programmet\n        Teatern\n        Biljetter\n        Resan"
+        },
+        "needsSmart": false
+      },
+      {
+        "index": 3,
+        "tag": "main",
+        "role": "content",
+        "subrole": null,
+        "confidence": 0.3,
+        "heading": "Opera i en sal som aldrig fick elektriskt ljus.",
+        "bounds": {
+          "x": 0,
+          "y": 89,
+          "w": 1280,
+          "h": 14462.4375
+        },
+        "buttonCount": 0,
+        "cardCount": 36,
+        "slots": {
+          "heading": "Opera i en sal som aldrig fick elektriskt ljus.",
+          "subheadings": [
+            "Vi restaurerar ingenting som fortfarande fungerar.",
+            "Årets program, i den ordning de gavs.",
+            "Orfeo ed Euridice",
+            "Aeneas i Carthago"
+          ],
+          "lede": "VRETAHOLMS SLOTTSTEATER, ÖSTERGÖTLAND"
+        },
+        "needsSmart": true
+      },
+      {
+        "index": 4,
+        "tag": "section",
+        "role": "content",
+        "subrole": null,
+        "confidence": 0.3,
+        "heading": "Opera i en sal som aldrig fick elektriskt ljus.",
+        "bounds": {
+          "x": 0,
+          "y": 89,
+          "w": 1280,
+          "h": 1064.125
+        },
+        "buttonCount": 0,
+        "cardCount": 1,
+        "slots": {
+          "heading": "Opera i en sal som aldrig fick elektriskt ljus.",
+          "lede": "VRETAHOLMS SLOTTSTEATER, ÖSTERGÖTLAND"
+        },
+        "needsSmart": true
+      },
+      {
+        "index": 5,
+        "tag": "section",
+        "role": "content",
+        "subrole": null,
+        "confidence": 0.3,
+        "heading": "Vi restaurerar ingenting som fortfarande fungerar.",
+        "bounds": {
+          "x": 0,
+          "y": 1153.125,
+          "w": 1280,
+          "h": 1843.84375
+        },
+        "buttonCount": 0,
+        "cardCount": 3,
+        "slots": {
+          "heading": "Vi restaurerar ingenting som fortfarande fungerar.",
+          "lede": "HÅLLNINGEN"
+        },
+        "needsSmart": true
+      },
+      {
+        "index": 6,
+        "tag": "section",
+        "role": "content",
+        "subrole": null,
+        "confidence": 0.3,
+        "heading": "Årets program, i den ordning de gavs.",
+        "bounds": {
+          "x": 0,
+          "y": 2996.96875,
+          "w": 1280,
+          "h": 1980.21875
+        },
+        "buttonCount": 0,
+        "cardCount": 16,
+        "slots": {
+          "heading": "Årets program, i den ordning de gavs.",
+          "subheadings": [
+            "Orfeo ed Euridice",
+            "Aeneas i Carthago",
+            "La serva padrona"
+          ],
+          "lede": "TJUGONIONDE VINTERSPELEN"
+        },
+        "needsSmart": true
+      },
+      {
+        "index": 7,
+        "tag": "section",
+        "role": "content",
+        "subrole": null,
+        "confidence": 0.3,
+        "heading": "Fyra par kulisser, en vev, sju sekunder.",
+        "bounds": {
+          "x": 0,
+          "y": 4977.1875,
+          "w": 1280,
+          "h": 2001
+        },
+        "buttonCount": 0,
+        "cardCount": 0,
+        "slots": {
+          "heading": "Fyra par kulisser, en vev, sju sekunder.",
+          "lede": "AKT II, SCEN 1 TILL SCEN 3"
+        },
+        "needsSmart": true
+      },
+      {
+        "index": 8,
+        "tag": "section",
+        "role": "content",
+        "subrole": null,
+        "confidence": 0.3,
+        "heading": "Ett rum byggt kring det som står under golvet.",
+        "bounds": {
+          "x": 0,
+          "y": 6978.1875,
+          "w": 1280,
+          "h": 2825.46875
+        },
+        "buttonCount": 0,
+        "cardCount": 6,
+        "slots": {
+          "heading": "Ett rum byggt kring det som står under golvet.",
+          "subheadings": [
+            "par kulissvagnar",
+            "sekunder per byte",
+            "försänkningar",
+            "kilo i flygverket"
+          ],
+          "lede": "TEATERN"
+        },
+        "needsSmart": true
+      },
+      {
+        "index": 9,
+        "tag": "section",
+        "role": "steps",
+        "subrole": null,
+        "confidence": 0.75,
+        "heading": "Tvåhundrafjorton lågor, och ingenting bakom dem.",
+        "bounds": {
+          "x": 0,
+          "y": 9803.65625,
+          "w": 1280,
+          "h": 2288.671875
+        },
+        "buttonCount": 0,
+        "cardCount": 4,
+        "slots": {
+          "heading": "Tvåhundrafjorton lågor, och ingenting bakom dem.",
+          "lede": "LJUSET"
+        },
+        "needsSmart": false
+      },
+      {
+        "index": 10,
+        "tag": "section",
+        "role": "content",
+        "subrole": null,
+        "confidence": 0.3,
+        "heading": "Parterren",
+        "bounds": {
+          "x": 0,
+          "y": 12092.328125,
+          "w": 1280,
+          "h": 1304.875
+        },
+        "buttonCount": 0,
+        "cardCount": 6,
+        "slots": {
+          "heading": "Parterren",
+          "subheadings": [
+            "Första raden",
+            "Hertigelogen",
+            "Efterspelet",
+            "Generalrepetitionen"
+          ],
+          "lede": "BILJETTER"
+        },
+        "needsSmart": true
+      },
+      {
+        "index": 11,
+        "tag": "section",
+        "role": "content",
+        "subrole": null,
+        "confidence": 0.3,
+        "heading": "Fjorton kilometer norr om Linköping.",
+        "bounds": {
+          "x": 0,
+          "y": 13397.203125,
+          "w": 1280,
+          "h": 1154.234375
+        },
+        "buttonCount": 0,
+        "cardCount": 0,
+        "slots": {
+          "heading": "Fjorton kilometer norr om Linköping.",
+          "lede": "RESAN"
+        },
+        "needsSmart": true
+      },
+      {
+        "index": 12,
+        "tag": "footer",
+        "role": "footer",
+        "subrole": null,
+        "confidence": 0.95,
+        "heading": null,
+        "bounds": {
+          "x": 0,
+          "y": 14551.4375,
+          "w": 1280,
+          "h": 493.5
+        },
+        "buttonCount": 0,
+        "cardCount": 8,
+        "slots": {
+          "lede": "Vinterspelen\npå Vretaholm"
+        },
+        "needsSmart": false
+      },
+      {
+        "index": 13,
+        "tag": "nav",
+        "role": "nav",
+        "subrole": null,
+        "confidence": 0.9,
+        "heading": null,
+        "bounds": {
+          "x": 552,
+          "y": 14632.4375,
+          "w": 176,
+          "h": 267.75
+        },
+        "buttonCount": 0,
+        "cardCount": 5,
+        "slots": {
+          "lede": "SIDAN"
+        },
+        "needsSmart": false
+      }
+    ],
+    "counts": {
+      "nav": 4,
+      "content": 8,
+      "steps": 1,
+      "footer": 1
+    },
+    "readingOrder": [
+      "nav",
+      "nav",
+      "nav",
+      "content",
+      "content",
+      "content",
+      "content",
+      "content",
+      "content",
+      "steps",
+      "content",
+      "content",
+      "footer",
+      "nav"
+    ]
+  }
+}

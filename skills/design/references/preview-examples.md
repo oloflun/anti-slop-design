@@ -11,7 +11,7 @@ Four sample Step 5 preview blocks for the model to imitate, varied across macros
 > - **Theme** · Newsprint (cool slate paper · steel-blue accent · geometric sans)
 > - **Enrichment** · Tier-B hand-built SVG (a 60-line coffee bean with `@property --rise` 6 s breathing-loop)
 > - **Sections** · Masthead · Letter · Three Notes · Visit · Colophon
-> - **Motion** · breathing-loop on bean only (respects `prefers-reduced-motion`)
+> - **Motion** · breathing-loop on bean only (spelar alltid, F-011)
 > - **Slop test** · 58 / 58 ✓
 > - **Diversification** · first run for this project
 
@@ -44,6 +44,6 @@ Four sample Step 5 preview blocks for the model to imitate, varied across macros
 > - **Theme** · custom (vibe: "archival warmth, hand-set, no varnish" · paper oklch(94% 0.020 65) · accent oklch(58% 0.16 35) terracotta · Fraunces italic display + Source Serif 4 body)
 > - **Enrichment** · Tier-A pure-CSS coffee bean (60-line SVG, breathing-loop optional)
 > - **Sections** · Masthead · Letter · Three Notes · Visit · Colophon
-> - **Motion** · breathing-loop on bean (with reduced-motion fallback)
+> - **Motion** · breathing-loop on bean (spelar alltid, F-011)
 > - **Slop test** · 58 / 58 ✓
 > - **Diversification** · custom axes: light / italic-serif / chromatic-terracotta — differs from previous catalog Newsprint on accent hue + display style

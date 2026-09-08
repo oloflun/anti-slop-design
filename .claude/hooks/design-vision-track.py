@@ -91,7 +91,36 @@ def _classify_ref(path: str, root) -> dict | None:
         if rel.parts == ("FEEDBACK.md",):
             return {"cat": "feedback", "file": posix}
         if rel.parts[0] == "entries" and len(rel.parts) > 1:
-            return {"cat": "catalogue", "slug": rel.parts[1], "file": posix}
+            # `kind` (T3, 2026-09-08). Before this, ANY file under
+            # entries/<slug>/ logged as cat=catalogue, so a single fold.webp
+            # satisfied a floor whose prose asks for 2-4 entries read as
+            # pixels AND text. The gate could not tell a thumbnail from the
+            # entry contract. Kinds are named after what the floor needs to
+            # distinguish, not after the file system.
+            name = rel.parts[-1].lower()
+            if name == "entry.md":
+                kind = "entry-md"
+            elif name.endswith("-design-language.md") or (
+                    len(rel.parts) > 2 and rel.parts[2] == "extract" and name.endswith(".md")):
+                kind = "design-md"
+            elif name.startswith("fold."):
+                kind = "fold"
+            elif len(rel.parts) > 2 and rel.parts[2] == "slices":
+                kind = "slice"
+            elif name.startswith("shot."):
+                kind = "shot"
+            else:
+                kind = "other"
+            return {"cat": "catalogue", "slug": rel.parts[1], "kind": kind, "file": posix}
+        # The fingerprint registry lives in the vault, not the catalogue, but
+        # the floor treats it as catalogue evidence: a concept that repeats an
+        # earlier build's grammar is the failure it exists to stop.
+        if rel.parts[-1] == "design-fingerprints.md":
+            return {"cat": "registry", "file": posix}
+    # Vault path for the registry, reached directly rather than via a
+    # catalogue root.
+    if p.name == "design-fingerprints.md":
+        return {"cat": "registry", "file": posix}
     return None
 
 
@@ -99,7 +128,18 @@ def main() -> None:
     if L.disabled():
         return
     event = L.read_event()
-    if L.tool_name(event) != "Read":
+    tool = L.tool_name(event)
+
+    # Generated material is a skill call like any other and gets measured like
+    # one. Before this, a Higgsfield call left no trace at all: the ledger
+    # could tell you which reference the builder read and not that it had spent
+    # 17.5 credits on a clip (T12, 2026-09-08).
+    if L.is_generation_tool(tool):
+        root = L.project_root({"cwd": event.get("cwd")})
+        L.log(root, event="generation", **L.generation_fields(event))
+        return
+
+    if tool != "Read":
         return
     path = L.target_file(event)
     if not path:

@@ -12,7 +12,7 @@ dna: "Scandinavian design-annual celadon paper x crushed 386px display type"
 register: editorial print
 grammar: typographic poster
 lane: "A pale sage page carries a whisper-thin nav band and flush-left plum headlines crushed to near-touching leading, with a horizontal project carousel of oversized image cards scrolling off the right edge like spreads in a printed annual"
-mode: portfolio
+mode: persuade
 traits: ["386px display at 0.75 leading, letters nearly touch", "five-colour palette total, no accent hue", "4px radius on every rectangular element", "white overlay caption strip, not a full card", "live clock + city in nav, typeset not badged", "typographic arrows as the only scroll control"]
 palette: ["#fe3939", "#ffffff", "#000000", "#dedcd3"]
 type: ["Supply", "Montreal", "Grotesk"]

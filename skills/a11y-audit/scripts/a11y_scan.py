@@ -118,7 +118,10 @@ def main():
             browser = p.chromium.launch()
             for label, w, h in VIEWPORTS:
                 page = browser.new_page(viewport={"width": w, "height": h})
-                page.goto(url, wait_until="networkidle", timeout=60000)
+                try:
+                    page.goto(url, wait_until="networkidle", timeout=60000)
+                except Exception:
+                    page.goto(url, wait_until="load", timeout=60000)
                 page.wait_for_timeout(500)
                 page.add_script_tag(path=axe_path)
                 res = page.evaluate(RUN_JS)

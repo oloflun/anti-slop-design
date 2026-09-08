@@ -14,7 +14,7 @@ type: ["Bodoni Moda", "Newsreader"]
 kind: example
 source: claude
 origin: example-site
-extract: none
+extract: ok
 category: editorial
 category2: "institutional"
 status: ready
@@ -93,6 +93,24 @@ un-blurs and the caption line tightens from 0.42em tracking to almost none. It i
 a working model of the 1777 machinery the page is describing: the same drawing, the
 same seven-second wing change, driven by the reader's own scroll. Reduced motion
 and `?preview=scen` both render the finished state outright.
+
+## Motion
+
+Från källkoden (`sites/vinterspelen.html`, läst 2026-09-08).
+
+**Delad reveal:** `transition: opacity 1.3s var(--ut), transform 1.3s
+var(--ut)` med `translateY(28px)`, `IntersectionObserver`, egen rAF-loop för
+akten.
+
+**Signaturrörelse:** `smoothstep`-scrubbad akt där oskärpan går från
+`blur(17px)` till noll medan spårningen faller från `0.42em` till `-0.014em`.
+Länkarna har en egen liten rörelse: `text-decoration-color` över 0.35 s och
+`translateY(-.3em)` på understrykningen.
+
+**Att låna:** 17 px oskärpa är mer än det låter — den gör att texten *bildas*
+snarare än tonar in, och den fungerar bara för att spårningen rör sig samtidigt.
+**Att lämna:** oskärpan på en yta större än halva viewporten; den kostar GPU
+under scroll (se `performance.md`).
 
 ## Brief
 

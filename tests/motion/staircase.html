@@ -1,0 +1,26 @@
+<!doctype html>
+<meta charset="utf-8"><title>staircase fixture</title>
+<style>
+  body { margin:0; background:#0b0c0e; color:#f4f2ee; font:16px/1.5 system-ui; }
+  .spacer { height: 300vh; }
+  .stage { position: sticky; top: 0; height: 100vh; display:grid; place-items:center; }
+  /* Reads the RAW value. This is the F-012 failure, reproduced on purpose. */
+  .card { width: 40vw; height: 22vw; background:#1e5e9c;
+          transform: rotateY(calc(var(--sc-p, 0) * -180deg)); }
+</style>
+<div class="spacer" id="act" data-sc-act="pin">
+  <div class="stage"><div class="card" id="card"></div></div>
+</div>
+<script>
+  // A deliberately crude stand-in for the engine: writes --p 1:1 from the
+  // scroll event, exactly as scrollcraft's read() writes --sc-p. No lerp.
+  var act = document.getElementById('act');
+  function raw() {
+    var r = act.getBoundingClientRect();
+    var span = r.height - innerHeight;
+    var p = Math.min(1, Math.max(0, -r.top / (span || 1)));
+    act.style.setProperty("--sc-p", p.toFixed(4));
+  }
+  addEventListener('scroll', raw, { passive: true });
+  raw();
+</script>

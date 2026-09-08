@@ -1,0 +1,56 @@
+{
+  "arm": "B",
+  "key": "probe",
+  "session_id": "ff80b51d-b03a-46ff-879c-379c7c390a31",
+  "model": "claude-fable-5-1",
+  "effort": "high",
+  "cwd": "C:\\Users\\Anton L\\anti-slop-design",
+  "out_dir": null,
+  "argv": [
+    "C:\\Users\\Anton L\\AppData\\Roaming\\Claude\\claude-code\\2.1.260\\claude.exe",
+    "-p",
+    "Designa och bygg en hero-sektion för en florist i Stockholm som en fristående HTML-fil på tests/alunix-ab-r6/probes/B2.html. Använd verktyget Write för att skapa filen (inte Bash). Håll det till en fil, ingen server, inga skärmbilder. Avsluta med att skriva vilka skills du laddade, om några.",
+    "--model",
+    "claude-fable-5-1",
+    "--effort",
+    "high",
+    "--output-format",
+    "stream-json",
+    "--verbose",
+    "--include-hook-events",
+    "--dangerously-skip-permissions",
+    "--session-id",
+    "ff80b51d-b03a-46ff-879c-379c7c390a31",
+    "--no-chrome",
+    "--plugin-dir",
+    "C:\\Users\\Anton L\\anti-slop-design\\tests\\alunix-ab-r6\\plugin-b",
+    "--settings",
+    "{\"enabledPlugins\":{\"super-intelligence@super-intelligence\":false}}"
+  ],
+  "system_prompt_sha256": null,
+  "system_prompt_len": null,
+  "system_prompt_file": null,
+  "prompt_sha256": "e1e3277f5749da3de8a6835b96b685aa35aeb38cf7e2d735e5b54e4a4a9b69f5",
+  "prompt_md_sha256": "7acb190c6b537e1764caa0de4349c415528036bafe63c316527812355f0ccd76",
+  "env_keys_added": [
+    "UNSPLASH_ACCESS_KEY",
+    "UNSPLASH_APP_ID",
+    "UNSPLASH_SECRET_KEY"
+  ],
+  "start": "2026-09-05T21:42:09+00:00",
+  "end": "2026-09-05T21:46:27+00:00",
+  "exit_code": 0,
+  "result_line_numbers": [
+    159
+  ],
+  "result": {
+    "subtype": "success",
+    "is_error": false,
+    "num_turns": 14,
+    "duration_ms": 240277,
+    "total_cost_usd": 2.79921175,
+    "session_id": "ff80b51d-b03a-46ff-879c-379c7c390a31"
+  },
+  "log": "C:\\Users\\Anton L\\anti-slop-design\\tests\\alunix-ab-r6\\probes\\B2.jsonl",
+  "stderr": "C:\\Users\\Anton L\\anti-slop-design\\tests\\alunix-ab-r6\\probes\\B2.stderr.txt"
+}

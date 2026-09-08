@@ -53,7 +53,7 @@ Brief mentions any of: *fun, consumer, casual, family, kids, friendly, approacha
 
 - **Default nav:** N7 Brutal slab — heavy uppercase wordmark + tracked uppercase links + 2 px border-bottom. The voice is loud but composed.
 - **Acceptable also:** N1 Wordmark + 2 links (when destinations are minimal); N3 Side-rail (when the page is long-scroll and section-numbered, e.g. Studio).
-- **Default footer:** Ft8 Marquee scroll — horizontal repeating tagline + dot separator. Honours `prefers-reduced-motion: reduce`.
+- **Default footer:** Ft8 Marquee scroll — horizontal repeating tagline + dot separator. Rörelsen spelar alltid (F-011).
 - **Acceptable also:** Ft5 Statement; Ft3 Index columns (only when the page is a hub).
 - **Banned for playful:** N5 Floating pill (modern-minimal vocabulary, fights the loud register); N6 Newspaper masthead (editorial); Ft6 Letter close (warm-quiet voice; wrong genre).
 

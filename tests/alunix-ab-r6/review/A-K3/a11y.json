@@ -1,0 +1,37 @@
+{
+  "url": "http://127.0.0.1:3110/tests/alunix-ab-r6/runs/A/K3/index.html",
+  "violations": [
+    {
+      "id": "link-name",
+      "impact": "serious",
+      "wcag": [
+        "cat.name-role-value",
+        "wcag2a",
+        "wcag244",
+        "wcag412",
+        "section508",
+        "section508.22.a",
+        "TTv5",
+        "TT6.a",
+        "EN-301-549",
+        "EN-9.2.4.4",
+        "EN-9.4.1.2",
+        "ACT",
+        "RGAAv4",
+        "RGAA-6.2.1"
+      ],
+      "help": "Links must have discernible text",
+      "nodes": [
+        {
+          "target": "footer > .wrap > .brand[href$=\"#top\"]",
+          "html": "<a class=\"brand\" href=\"#top\"><img src=\"assets/logo-black.svg\" alt=\"\" width=\"20\" height=\"28\"><span>Alunix</span></a>"
+        }
+      ],
+      "viewports": [
+        "390x844"
+      ]
+    }
+  ],
+  "passes": 46,
+  "incomplete": 2
+}

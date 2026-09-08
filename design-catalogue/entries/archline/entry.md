@@ -47,7 +47,7 @@ interior-photo-plus-portrait "about" block, and a four-stat achievement row
 precisely because it shows how far competent visual defaults can carry a page
 even when the copy underneath them has stopped meaning anything specific.
 
-## What to preserve
+## What to borrow (principle)
 
 - **Photograph real work at dusk**, warm interior light against a cooling sky —
   it's a reliable, flattering register for architecture and interior work.

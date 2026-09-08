@@ -98,8 +98,61 @@ def _check_reference_floor(root: Path) -> None:
     if feedback_path_p.exists() and not any(r.get("cat") == "feedback" for r in ref_reads):
         missing.append(f"Du har inte läst {feedback_path_p.as_posix()} — återkopplingen krävs innan första UI-filen.")
 
-    if not any(r.get("cat") == "catalogue" for r in ref_reads):
-        entries_path = (cat_root / "entries").as_posix()
+    # Catalogue evidence (T3, 2026-09-08). The old rule accepted ANY file
+    # under entries/<slug>/ — one fold.webp cleared a floor whose prose asks
+    # for 2-4 entries read as pixels and as text. r7 (2026-09-06/07) passed
+    # that bar and still never ran Skill(design-catalog): the selection was
+    # the orchestrator's memory, not the catalogue. Three rungs now:
+    #   1. a catalogue-select row, written by scripts/catalogue/select.py,
+    #      naming >= 2 slugs -- mechanical proof the choice came out of the
+    #      whole catalogue rather than recall;
+    #   2. per selected slug: entry.md AND its fold read, plus the extract's
+    #      DESIGN.md when one exists on disk (missing extracts are a known
+    #      catalogue gap, not the builder's fault);
+    #   3. the fingerprint registry on a scroll brief (below).
+    entries_path = (cat_root / "entries").as_posix()
+    cat_reads = [r for r in ref_reads if r.get("cat") == "catalogue"]
+    select_rows = [r for r in rows if r.get("event") == "catalogue-select"]
+    selected: list[str] = []
+    for r in select_rows:
+        for slug in (r.get("slugs") or []):
+            if slug and slug not in selected:
+                selected.append(slug)
+
+    if not select_rows:
+        missing.append(
+            "Ingen katalogvalsrad i sessionen — kör "
+            "`python scripts/catalogue/select.py --brief <fil> --k 4` "
+            "(eller Skill(design-catalog)) så att urvalet görs ur hela katalogen, "
+            "inte ur minnet.")
+    elif len(selected) < 2:
+        missing.append(
+            f"Katalogvalet gav {len(selected)} post — kedjan kräver minst två "
+            f"(SKILL.md Step 1b: läs 2–4 poster). Kör select.py med --k 2 eller mer.")
+    else:
+        by_slug: dict[str, set] = {}
+        for r in cat_reads:
+            by_slug.setdefault(r.get("slug", ""), set()).add(r.get("kind", "other"))
+        for slug in selected:
+            kinds = by_slug.get(slug, set())
+            want = []
+            if "entry-md" not in kinds:
+                want.append(f"{entries_path}/{slug}/entry.md")
+            if "fold" not in kinds and "slice" not in kinds and "shot" not in kinds:
+                want.append(f"{entries_path}/{slug}/fold.webp (som bild, inte som text)")
+            if "design-md" not in kinds:
+                try:
+                    ex = cat_root / "entries" / slug / "extract"
+                    if ex.is_dir() and any(ex.glob("*-design-language.md")):
+                        want.append(f"{entries_path}/{slug}/extract/*-design-language.md")
+                except Exception:
+                    pass
+            if want:
+                missing.append(
+                    f"Vald katalogpost `{slug}` är inte läst färdigt — saknas: "
+                    + ", ".join(want))
+
+    if not cat_reads:
         missing.append(f"Du har inte läst någon post under {entries_path} — minst ett katalogexempel krävs innan första UI-filen.")
 
     has_lock = any(
@@ -124,6 +177,14 @@ def _check_reference_floor(root: Path) -> None:
             if fname not in scroll_basenames:
                 p = (skill_root / "references" / "scroll" / fname).as_posix()
                 missing.append(f"Du har inte läst {p} — scrollkoreografins referens krävs innan första UI-filen.")
+        # The fingerprint gate is >= 4-of-6 against EVERY row of the registry.
+        # A concept cannot clear a gate whose rows were never read, and the
+        # registry is the only place earlier builds are written down.
+        if not any(r.get("cat") == "registry" for r in ref_reads):
+            missing.append(
+                "Du har inte läst fingerprint-registret "
+                "(wiki/projects/_index/design-fingerprints.md) — fingerprint-gaten "
+                "(≥ 4/6 mot varje rad) kan inte hållas mot rader du inte sett.")
 
     if not missing:
         return
@@ -132,10 +193,57 @@ def _check_reference_floor(root: Path) -> None:
     L.deny(msg)
 
 
+def _check_generation(event, root) -> None:
+    """Two conditions before anything is queued at a paid backend.
+
+    1. A `generation budget: N credits` line in a BRIEF.md under this root.
+       r7 ran to a ceiling Anton set out loud and the log reconciles because of
+       it; without a written ceiling there is nothing to reconcile against.
+    2. A `get_cost` preflight earlier in the session. The cost is readable
+       without queueing a job, so spending without reading it is a choice, not
+       a constraint.
+
+    Advisory by default, like the rest of this hook: it denies, and
+    DESIGN_GEN_GATE=off turns it off for a session that knows what it is doing.
+    """
+    if os.environ.get("DESIGN_GEN_GATE", "").strip().lower() == "off":
+        return
+    rows = L.scope_to_session(L.all_rows(root))
+
+    budget = None
+    for brief in list(root.glob("**/BRIEF.md"))[:40]:
+        try:
+            m = re.search(r"generation budget:\s*([0-9]+(?:[.,][0-9]+)?)",
+                          brief.read_text(encoding="utf-8", errors="replace"), re.I)
+        except Exception:
+            continue
+        if m:
+            budget = m.group(1)
+            break
+
+    missing = []
+    if budget is None:
+        missing.append("Ingen `generation budget: N credits`-rad i nagon BRIEF.md under "
+                       "projektet. Skriv taket innan du koar ett betalt jobb "
+                       "(references/generation.md § Kreditgrinden).")
+    if not any(r.get("event") == "generation" and r.get("preflight") for r in rows):
+        missing.append("Ingen `get_cost`-preflight i sessionen. Kor samma anrop med "
+                       "`get_cost: true` forst och las kostnaden.")
+    if missing:
+        L.deny("[design-gate · genereringsgrind]\n" + "\n".join(missing))
+
+
 def main() -> None:
     if L.disabled():
         return
     event = L.read_event()
+
+    if L.is_generation_tool(L.tool_name(event)):
+        fields = L.generation_fields(event)
+        if not fields.get("preflight"):
+            _check_generation(event, L.project_root({"cwd": event.get("cwd")}))
+        return
+
     if L.tool_name(event) not in WRITE_TOOLS:
         return
 

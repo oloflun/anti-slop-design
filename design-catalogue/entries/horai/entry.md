@@ -14,7 +14,7 @@ type: ["Cinzel", "Vollkorn", "Noto Serif JP"]
 kind: example
 source: claude
 origin: example-site
-extract: none
+extract: ok
 category: hospitality
 category2: "editorial"
 status: ready
@@ -86,6 +86,29 @@ caps · kanji and course count in tracked micro-caps · a paragraph of what the 
 actually is · service days · and the price alone at the far right in red at display
 size, with a hairline rule closing the row. Three registers of type in one row,
 each doing exactly one job, and the number winning.
+
+## Motion
+
+Från källkoden (`sites/horai.html`, läst 2026-09-08).
+
+**Delad reveal:** `translateY(28px)`, samma `cubic-bezier(.16,1,.3,1)`-familj,
+`IntersectionObserver`.
+
+**Signaturrörelse — den scrubbade citatakten (`?preview=quote`).** Närheten
+mellan sektionens mitt och viewportens mitt körs genom en smoothstep till en
+klockkurva, och tre lager lerpas ur den i staplade faser (`tEarly`/`tMid`/
+`tLate`): opaciteten, `translateY(80px → 0)` och `translateY(40px → 0)` på
+skilda offset, `scale(0.66 → 1.02)`, `blur(12px → 0)` och `letter-spacing
+(0.36em → 0.12em)`. Samtidigt växer två guldlinjer 0 → 48 px och leden tänds
+ord för ord (opacitet 0.18 → 1 per ord). rAF-parallax på 0.32/0.12.
+
+**Varför det håller:** två koordinerade lager, ovanliga egenskaper (blur och
+letter-spacing, inte bara transform), scrubbad i båda riktningarna, och ett
+`?preview=`-läge som gör det formade tillståndet skärmbildsbart.
+
+**Att låna:** att animera *bokstavsavstånd och oskärpa* i stället för position,
+och att låta leden tändas ord för ord under citatet. **Att lämna:** de exakta
+värdena — de är kalibrerade mot Cinzels versaler.
 
 ## Brief
 

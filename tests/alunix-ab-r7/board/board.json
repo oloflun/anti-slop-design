@@ -1,0 +1,29 @@
+{
+  "brief": "Alunix r7: K1 Skymning och K2 Affischen om igen. Motor 1 = r6 (kedjan, Fable one-shot), motor 2 = r7 (kedjan, Sonnet i rundor).",
+  "directions": [
+    {
+      "id": "K1",
+      "name": "Skymning",
+      "lane": "",
+      "register": "cinematic dark",
+      "grammar": "filmic one-shot"
+    },
+    {
+      "id": "K2",
+      "name": "Affischen",
+      "lane": "",
+      "register": "editorial print",
+      "grammar": "typographic poster"
+    }
+  ],
+  "engines": [
+    {
+      "id": "1",
+      "name": "r6 (före)"
+    },
+    {
+      "id": "2",
+      "name": "r7 (efter)"
+    }
+  ]
+}

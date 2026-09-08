@@ -1,0 +1,75 @@
+{
+  "scrollHeight": 7675,
+  "center-hit-at-p60": {
+    "tag": "IMG",
+    "cls": "exit-frame",
+    "id": ""
+  },
+  "wheel_capture_test": {
+    "before_page_scrollY": 2160,
+    "after_page_scrollY": 5360,
+    "page_scroll_delta": 3200,
+    "iframe_internal_scrollY": 0
+  },
+  "wheel_test_edge_of_screen": {
+    "before": 2160,
+    "after": 5360,
+    "delta": 3200
+  },
+  "tab_sequence_from_iframe_area": [
+    "A.topbar__contact",
+    "IFRAME",
+    "IFRAME",
+    "A.landing-mailto",
+    "BODY",
+    "A.topbar__mark",
+    "A.topbar__contact",
+    "A.landing-mailto",
+    "BODY",
+    "A.topbar__mark",
+    "A.topbar__contact",
+    "A.landing-mailto",
+    "BODY",
+    "A.topbar__mark",
+    "A.topbar__contact"
+  ],
+  "landing_mailto": {
+    "text": "kontakt@alunix.se",
+    "href": "mailto:kontakt@alunix.se",
+    "visible": true,
+    "color": "rgb(244, 239, 230)"
+  },
+  "topbar_contact_at_landing": {
+    "href": "mailto:kontakt@alunix.se",
+    "display": "block",
+    "visibility": "visible",
+    "opacity": "1",
+    "pos": [
+      28,
+      1273.015625,
+      126.984375,
+      25.625
+    ]
+  },
+  "topbar_contact_at_hero": {
+    "display": "block",
+    "opacity": "1",
+    "color": "rgb(244, 239, 230)"
+  },
+  "console_messages_motion": [
+    "cdn.tailwindcss.com should not be used in production. To use Tailwind CSS in production, install it as a PostCSS plugin or use the Tailwind CLI: https://tailwindcss.com/docs/installation"
+  ],
+  "rm_scrollHeight": 6489,
+  "rm_center_hit_at_frame": {
+    "tag": "SECTION",
+    "cls": "rm-section rm-section--frame"
+  },
+  "rm_wheel_capture_test": {
+    "before": 2206,
+    "after": 5406,
+    "delta": 3200
+  },
+  "console_messages_rm": [
+    "cdn.tailwindcss.com should not be used in production. To use Tailwind CSS in production, install it as a PostCSS plugin or use the Tailwind CLI: https://tailwindcss.com/docs/installation"
+  ]
+}

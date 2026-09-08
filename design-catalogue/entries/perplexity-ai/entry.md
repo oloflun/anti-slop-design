@@ -4,7 +4,7 @@ url: https://www.perplexity.ai
 source_url: https://www.perplexity.ai
 captured: 2026-09-04
 origin: refero
-extract: "failed: designlang extract is a generic block/error page (Arial-only, 5-colour palette incl. default link blue, near-empty Section Roles/Page Intent), not real Perplexity content"
+extract: blocked: designlang far en generisk blocksida (bara Arial, 5-fargspalett med default lankbla, nastan tom Section Roles) - inte riktigt innehall
 category: product-focused
 category2: editorial
 family: botanical-parchment-camouflage

@@ -1,0 +1,733 @@
+<!doctype html>
+<html lang="sv">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Alunix, webbdesign</title>
+<meta name="description" content="Alunix är en webbyrå i Sverige. Vi skapar skräddarsydda webbplatser som hjälper er att exponera verksamheten.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Newsreader:ital,opsz,wght@0,6..72,400;1,6..72,400&family=Schibsted+Grotesk:wght@400;500;600&display=swap">
+<style>
+:root{
+  --ground:#F1F2EF;
+  --panel:#FFFFFF;
+  --ink:#16191E;
+  --ink-2:#555C65;
+  --line:#D7DAD4;
+  --line-2:#C3C7C0;
+  --blue:#1E5E9C;
+  --blue-soft:#E3ECF6;
+  --glass:rgba(255,255,255,.62);
+  --glass-line:rgba(255,255,255,.85);
+  --sans:"Schibsted Grotesk",system-ui,-apple-system,"Segoe UI",Helvetica,Arial,sans-serif;
+  --serif:"Newsreader",Georgia,"Times New Roman",serif;
+  --bar:56px;
+  --gutter:32px;
+  --max:1360px;
+  --ease:cubic-bezier(.2,.7,.2,1);
+}
+*{box-sizing:border-box}
+html{scroll-behavior:smooth;-webkit-text-size-adjust:100%}
+body{
+  margin:0;background:var(--ground);color:var(--ink);
+  font-family:var(--sans);font-size:16px;line-height:1.5;
+  overflow-x:hidden;
+}
+img,svg,iframe{display:block;max-width:100%}
+a{color:inherit;text-decoration:none}
+button{font:inherit;color:inherit;background:none;border:0;padding:0;cursor:pointer}
+:focus-visible{outline:2px solid var(--blue);outline-offset:3px;border-radius:4px}
+.wrap{width:min(100% - 2*var(--gutter),var(--max));margin-inline:auto}
+.label{font-size:12px;letter-spacing:.08em;text-transform:uppercase;color:var(--ink-2);font-weight:500}
+.mail{color:var(--blue);font-weight:500}
+.mail:hover{text-decoration:underline;text-underline-offset:3px}
+
+/* ---------- topbar: app chrome ---------- */
+.bar{
+  position:fixed;inset:0 0 auto 0;height:var(--bar);z-index:50;
+  background:rgba(241,242,239,.86);
+  -webkit-backdrop-filter:blur(14px);backdrop-filter:blur(14px);
+  border-bottom:1px solid var(--line);
+}
+.bar-in{
+  height:100%;display:grid;grid-template-columns:auto 1fr auto auto;
+  align-items:center;gap:20px;
+}
+.brand{display:flex;align-items:center;gap:10px;font-weight:600;letter-spacing:.01em}
+.brand img{width:20px;height:auto}
+.tabs{display:flex;gap:4px;justify-self:start}
+.tab{
+  display:flex;align-items:center;gap:8px;height:32px;padding:0 12px;border-radius:8px;
+  font-size:13.5px;font-weight:500;color:var(--ink-2);position:relative;
+  transition:background .2s var(--ease),color .2s var(--ease);
+}
+.tab .n{font-size:11.5px;letter-spacing:.06em;color:var(--ink-2);font-variant-numeric:tabular-nums}
+.tab:hover{background:rgba(22,25,30,.05);color:var(--ink)}
+.tab[aria-current="true"]{color:var(--blue);background:var(--blue-soft)}
+.tab[aria-current="true"] .n{color:var(--blue)}
+.chip-slot{width:210px;height:30px;justify-self:end}
+.bar-mail{font-size:13.5px}
+
+/* ---------- glass card (HUD) ---------- */
+.card{
+  position:fixed;left:0;top:0;z-index:60;
+  width:300px;height:190px;
+  background:var(--glass);border:1px solid var(--glass-line);
+  -webkit-backdrop-filter:blur(18px) saturate(1.3);backdrop-filter:blur(18px) saturate(1.3);
+  border-radius:14px;overflow:hidden;
+  box-shadow:0 18px 50px -20px rgba(22,25,30,.35),0 2px 6px rgba(22,25,30,.06);
+  will-change:transform,width,height;
+  visibility:hidden;
+}
+.js .card{visibility:visible}
+.card-full,.card-chip{position:absolute;inset:0}
+.card-full{padding:16px 18px 18px;display:flex;flex-direction:column;gap:10px}
+.card-head{display:flex;align-items:center;gap:8px;font-size:12px;font-weight:600;letter-spacing:.04em}
+.card-head img{width:14px}
+.dot{width:8px;height:8px;border-radius:50%;background:var(--blue);margin-left:auto;position:relative;flex:none}
+.dot::after{content:"";position:absolute;inset:-4px;border-radius:50%;border:1.5px solid var(--blue);opacity:.5;animation:pulse 2.4s var(--ease) infinite}
+@keyframes pulse{0%{transform:scale(.6);opacity:.7}70%{transform:scale(1.25);opacity:0}100%{transform:scale(1.25);opacity:0}}
+.card-open{display:flex;flex-direction:column;gap:2px;margin-top:2px}
+.card-open .k{font-size:12px;color:var(--ink-2)}
+.card-open .v{font-size:22px;font-weight:500;letter-spacing:-.01em;line-height:1.1}
+.card-dl{display:grid;grid-template-columns:auto 1fr;gap:4px 16px;margin:2px 0 0;font-size:13px}
+.card-dl dt{color:var(--ink-2)}
+.card-dl dd{margin:0;text-align:right;font-weight:500;font-variant-numeric:tabular-nums}
+.card-bar{height:2px;background:rgba(22,25,30,.12);border-radius:2px;overflow:hidden;margin-top:auto}
+.card-bar i{display:block;height:100%;width:0;background:var(--blue);transition:width .15s linear}
+.card-chip{display:flex;align-items:center;gap:8px;padding:0 12px;font-size:12.5px;font-weight:500;white-space:nowrap;opacity:0}
+.card-chip .dot{margin-left:0}
+.card-chip span:last-child{overflow:hidden;text-overflow:ellipsis}
+
+/* ---------- hero ---------- */
+.hero{position:relative;height:100vh;height:100svh;min-height:600px;overflow:hidden}
+.hero-photo{position:absolute;inset:-12% 0 -12% 0;will-change:transform}
+.hero-photo img{width:100%;height:100%;object-fit:cover;object-position:52% 50%}
+.hero-veil{position:absolute;inset:0;pointer-events:none;
+  box-shadow:inset 0 0 160px 70px var(--ground);
+  background:
+    radial-gradient(60% 60% at 24% 60%,rgba(241,242,239,.62),rgba(241,242,239,0) 70%),
+    linear-gradient(to bottom,rgba(241,242,239,.5),rgba(241,242,239,0) 22%);
+}
+.hero .wrap{position:relative;height:100%;display:grid;grid-template-columns:minmax(0,7fr) minmax(0,5fr);align-items:center;gap:40px;padding-top:var(--bar)}
+.hero-copy{max-width:640px}
+.hero h1{
+  font-family:var(--serif);font-weight:400;font-size:clamp(2.6rem,5.6vw,5.2rem);
+  line-height:1.02;letter-spacing:-.015em;margin:0 0 22px;text-wrap:balance;
+}
+.hero h1 em{font-style:italic;color:var(--blue)}
+.hero-sub{font-size:clamp(1.05rem,1.4vw,1.25rem);line-height:1.45;max-width:34ch;margin:0 0 26px;color:var(--ink)}
+.hero-hint{display:flex;align-items:center;gap:10px;font-size:13px;color:var(--ink-2)}
+.hero-hint svg{width:14px;height:14px;stroke:var(--ink-2);fill:none;stroke-width:1.6}
+.hero-cardslot{width:300px;height:190px;justify-self:end;margin-top:6vh}
+
+/* ---------- scene: pinned frame ---------- */
+.scene{position:relative}
+.stage{position:sticky;top:var(--bar);height:calc(100vh - var(--bar));height:calc(100svh - var(--bar));display:flex;flex-direction:column;background:var(--panel)}
+.stage-bar{
+  height:44px;flex:none;display:flex;align-items:center;justify-content:space-between;gap:16px;
+  border-bottom:1px solid var(--line);font-size:13px;
+}
+.stage-bar .l{font-weight:500;min-width:0;overflow:hidden;text-overflow:ellipsis;white-space:nowrap}
+.stage-bar .r{display:flex;align-items:center;gap:18px;color:var(--ink-2)}
+.stage-bar .r a{color:var(--blue);font-weight:500}
+.stage-bar .r a:hover{text-decoration:underline;text-underline-offset:3px}
+.stage-frame{position:relative;flex:1;min-height:0;background:var(--ground)}
+.stage-frame > img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;object-position:top}
+.stage-frame iframe{position:absolute;inset:0;width:100%;height:100%;border:0;background:#fff}
+.shield{position:absolute;inset:0;z-index:2;display:none}
+.js .scene.is-pinned .shield{display:block}
+.stage-frame:has(iframe.is-loaded) > img{visibility:hidden}
+
+/* ---------- build: thesis + accordion + panel ---------- */
+.build{padding:clamp(72px,9vw,120px) 0 clamp(64px,7vw,96px)}
+.build-head{max-width:920px;margin-bottom:clamp(40px,5vw,72px)}
+.thesis{
+  font-size:clamp(2rem,4.6vw,3.9rem);line-height:1;letter-spacing:-.02em;font-weight:600;
+  margin:0 0 18px;
+}
+.thesis .ln{display:block}
+.build-line{font-size:clamp(1.05rem,1.4vw,1.25rem);margin:0;color:var(--ink-2);max-width:44ch}
+.build-grid{display:grid;grid-template-columns:minmax(0,5fr) minmax(0,7fr);gap:48px;align-items:start}
+.acc{border-top:1px solid var(--line-2)}
+.acc details{border-bottom:1px solid var(--line-2)}
+.acc summary{
+  list-style:none;cursor:pointer;display:grid;grid-template-columns:44px 1fr auto;align-items:baseline;gap:12px;
+  padding:22px 0;font-size:clamp(1.25rem,1.8vw,1.6rem);font-weight:500;letter-spacing:-.01em;
+}
+.acc summary::-webkit-details-marker{display:none}
+.acc summary .n{font-size:12px;letter-spacing:.08em;color:var(--ink-2);font-weight:500;align-self:center}
+.acc summary .pm{width:18px;height:18px;position:relative;align-self:center}
+.acc summary .pm::before,.acc summary .pm::after{content:"";position:absolute;background:var(--ink);left:50%;top:50%;transform:translate(-50%,-50%)}
+.acc summary .pm::before{width:14px;height:1.5px}
+.acc summary .pm::after{width:1.5px;height:14px;transition:transform .25s var(--ease)}
+.acc details[open] summary .pm::after{transform:translate(-50%,-50%) scaleY(0)}
+.acc details[open] summary .n{color:var(--blue)}
+.acc .body{padding:0 0 24px 56px;color:var(--ink-2);font-size:1.02rem;max-width:44ch}
+.acc .body p{margin:0 0 12px}
+.acc .body .ex{font-size:13px;color:var(--ink);display:inline-flex;align-items:center;gap:8px}
+.acc .body .ex::before{content:"";width:8px;height:8px;border-radius:50%;background:var(--blue)}
+.panel{position:sticky;top:calc(var(--bar) + 24px)}
+.panel-plate{background:var(--panel);border:1px solid var(--line);border-radius:12px;overflow:hidden;box-shadow:0 30px 70px -40px rgba(22,25,30,.35)}
+.panel-bar{height:44px;display:flex;align-items:center;justify-content:space-between;gap:12px;padding:0 16px;border-bottom:1px solid var(--line);font-size:13px}
+.panel-bar .cap{font-weight:500;white-space:nowrap;overflow:hidden;text-overflow:ellipsis;min-width:0}
+.panel-bar a{color:var(--blue);font-weight:500;white-space:nowrap}
+.panel-bar a:hover{text-decoration:underline;text-underline-offset:3px}
+.panel-frames{position:relative;height:min(68vh,640px);background:var(--ground)}
+.panel-frames img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;object-position:top}
+.panel-frames iframe{position:absolute;inset:0;width:100%;height:100%;border:0;background:#fff}
+.panel-frames .pf-img[hidden],.panel-frames iframe[hidden]{display:none}
+
+/* ---------- terms ---------- */
+.terms{padding:clamp(48px,6vw,88px) 0}
+.terms .wrap{max-width:1040px}
+.terms-head{display:flex;justify-content:space-between;align-items:baseline;margin-bottom:28px}
+.terms-head h2{font-size:clamp(1.5rem,2.4vw,2.1rem);font-weight:500;letter-spacing:-.015em;margin:0}
+.row{display:grid;grid-template-columns:1fr auto;gap:24px;align-items:baseline;padding:22px 0;position:relative}
+.row::before{content:"";position:absolute;left:0;top:0;height:1px;width:100%;background:var(--line-2);transform-origin:left;transform:scaleX(var(--s,1))}
+.row:last-of-type::after{content:"";position:absolute;left:0;bottom:0;height:1px;width:100%;background:var(--line-2);transform-origin:left;transform:scaleX(var(--s,1))}
+.row .t{font-size:clamp(1rem,1.3vw,1.15rem);max-width:56ch;margin:0;opacity:var(--o,1)}
+.row .p{font-size:clamp(1.2rem,1.9vw,1.6rem);font-weight:600;letter-spacing:-.01em;white-space:nowrap;opacity:var(--o,1);font-variant-numeric:tabular-nums}
+.row .p.q{font-size:clamp(1rem,1.3vw,1.15rem);font-weight:500;color:var(--ink-2)}
+.js .terms .row:nth-child(2){--s:clamp(0,calc((var(--p) - .05) * 3),1);--o:clamp(0,calc((var(--p) - .10) * 3),1)}
+.js .terms .row:nth-child(3){--s:clamp(0,calc((var(--p) - .30) * 3),1);--o:clamp(0,calc((var(--p) - .35) * 3),1)}
+.js .terms .row:nth-child(4){--s:clamp(0,calc((var(--p) - .55) * 3),1);--o:clamp(0,calc((var(--p) - .60) * 3),1)}
+
+/* ---------- write ---------- */
+.write{padding:clamp(48px,6vw,96px) 0 clamp(56px,7vw,104px)}
+.write .wrap{max-width:1040px;display:grid;grid-template-columns:minmax(0,1fr) minmax(0,1fr);gap:48px;align-items:end}
+.write h2{font-size:clamp(1.9rem,3.2vw,2.8rem);font-weight:500;letter-spacing:-.02em;margin:0 0 12px}
+.write .lead{margin:0;color:var(--ink-2);max-width:40ch}
+.form{display:flex;flex-direction:column;gap:10px}
+.form label{font-size:13px;color:var(--ink-2)}
+.field{display:flex;gap:8px}
+.field input{
+  flex:1;min-width:0;height:48px;padding:0 14px;border:1px solid var(--line-2);border-radius:10px;
+  background:var(--panel);font:inherit;color:var(--ink);
+}
+.field input::placeholder{color:#8A9099}
+.field input:focus{outline:2px solid var(--blue);outline-offset:0;border-color:var(--blue)}
+.field button{
+  height:48px;padding:0 18px;border-radius:10px;background:var(--blue);color:#fff;font-weight:500;white-space:nowrap;
+  transition:background .2s var(--ease);
+}
+.field button:hover{background:#184D80}
+.form .note{font-size:13px;color:var(--ink-2);margin:0}
+.form .note a{color:var(--blue)}
+.right-line{font-size:clamp(1.05rem,1.4vw,1.25rem);margin:28px 0 0;padding-top:20px;border-top:1px solid var(--line-2)}
+
+/* ---------- footer ---------- */
+.foot{border-top:1px solid var(--line);padding:28px 0 40px;font-size:13px;color:var(--ink-2)}
+.foot .wrap{display:grid;grid-template-columns:auto 1fr auto;gap:24px;align-items:start}
+.foot .brand{color:var(--ink)}
+.foot ul{list-style:none;margin:0;padding:0;display:flex;flex-wrap:wrap;gap:6px 18px}
+.foot a:hover{text-decoration:underline;text-underline-offset:3px;color:var(--ink)}
+.foot .credit a{color:var(--ink)}
+
+/* ---------- reveals (IO, once) ---------- */
+.js [data-reveal]{opacity:0;transform:translateY(16px);transition:opacity .7s var(--ease),transform .7s var(--ease);transition-delay:calc(var(--i,0) * 90ms)}
+.js [data-reveal].is-in{opacity:1;transform:none}
+.js .panel[data-reveal]{opacity:1;transform:none;transition:none}
+.js .panel[data-reveal] .panel-plate{clip-path:inset(0 0 100% 0 round 12px);transition:clip-path .9s var(--ease)}
+.js .panel[data-reveal].is-in .panel-plate{clip-path:inset(0 0 0 0 round 12px)}
+
+/* ---------- responsive ---------- */
+@media (max-width:1024px){
+  .build-grid{grid-template-columns:minmax(0,1fr);gap:32px}
+  .panel{position:static}
+  .panel-frames{height:min(70vh,560px)}
+}
+@media (max-width:768px){
+  :root{--gutter:20px}
+  .bar-in{grid-template-columns:auto 1fr auto;gap:12px}
+  .brand span{display:none}
+  .tabs{order:3}
+  .tab{padding:0 9px;gap:0}
+  .tab .t{display:none}
+  .chip-slot{width:auto;justify-self:stretch;min-width:0}
+  .bar-mail{display:none}
+  .hero{min-height:560px}
+  .hero-photo img{object-position:62% 50%}
+  .hero .wrap{grid-template-columns:1fr;align-items:start;padding-top:calc(var(--bar) + 40px)}
+  .hero-veil{background:radial-gradient(95% 50% at 40% 24%,rgba(241,242,239,.88),rgba(241,242,239,0) 78%),linear-gradient(to bottom,rgba(241,242,239,.6),rgba(241,242,239,0) 34%);box-shadow:inset 0 0 90px 30px var(--ground)}
+  .hero-cardslot{display:none}
+  .card-full{padding:10px 14px;display:grid;grid-template-columns:auto 1fr auto;grid-template-rows:auto auto;column-gap:14px;row-gap:6px;align-items:center}
+  .card-head{grid-row:1}
+  .card-head .dot{margin-left:4px}
+  .card-open{grid-row:1;grid-column:2;flex-direction:row;align-items:baseline;gap:8px;margin:0}
+  .card-open .k{display:none}
+  .card-open .v{font-size:15px;white-space:nowrap}
+  .card-dl{grid-row:1;grid-column:3;display:flex;gap:10px;margin:0;font-size:12.5px}
+  .card-dl dt{display:none}
+  .card-bar{grid-row:2;grid-column:1 / -1;margin:0}
+  .stage-bar{font-size:12px}
+  .panel-bar{height:auto;min-height:44px;padding:10px 14px}
+  .panel-bar .cap{white-space:normal;font-size:12.5px;line-height:1.35}
+  .stage-bar .r span{display:none}
+  .acc summary{grid-template-columns:32px 1fr auto;padding:18px 0}
+  .acc .body{padding-left:44px}
+  .write .wrap{grid-template-columns:1fr;gap:28px}
+  .field{flex-direction:column}
+  .foot .wrap{grid-template-columns:1fr;gap:16px}
+  .chip-long{display:none}
+}
+@media (max-width:400px){
+  .tab{padding:0 7px}
+}
+
+/* ---------- reduced motion ---------- */
+@media (prefers-reduced-motion:reduce){
+  html{scroll-behavior:auto}
+  .dot::after{animation:none;opacity:0}
+  .js [data-reveal]{opacity:1;transform:none;transition:none}
+  .js .panel[data-reveal] .panel-plate{clip-path:none;transition:none}
+  .js .terms .row{--s:1;--o:1}
+  .card,.tab,.field button,.acc summary .pm::after{transition:none}
+  .hero-photo{inset:0;transform:none !important}
+}
+</style>
+</head>
+<body>
+<script>document.documentElement.classList.add('js')</script>
+
+<header class="bar">
+  <div class="wrap bar-in">
+    <a class="brand" href="#top" aria-label="Alunix, till toppen"><img src="assets/logo-black.svg" alt="" width="20" height="28"><span>Alunix</span></a>
+    <nav class="tabs" aria-label="Tjänster">
+      <a class="tab" href="#design" data-tab="design"><span class="n">01</span><span class="t">Design</span></a>
+      <a class="tab" href="#utveckling" data-tab="utveckling"><span class="n">02</span><span class="t">Utveckling</span></a>
+      <a class="tab" href="#system" data-tab="system"><span class="n">03</span><span class="t">System</span></a>
+    </nav>
+    <div class="chip-slot" id="chipSlot" aria-hidden="true"></div>
+    <a class="bar-mail mail" href="mailto:kontakt@alunix.se">kontakt@alunix.se</a>
+  </div>
+</header>
+
+<main id="top">
+
+  <!-- Akt 1: Lugn -->
+  <section class="hero" aria-labelledby="h1">
+    <div class="hero-photo" id="heroPhoto"><img src="assets/hero-desk.webp" alt="" width="2200" height="1236" fetchpriority="high"></div>
+    <div class="hero-veil"></div>
+    <div class="wrap">
+      <div class="hero-copy">
+        <h1 id="h1">Er hemsida är nutidens <em>visitkort</em></h1>
+        <p class="hero-sub">Vi skapar skräddarsydda webbplatser som hjälper er att exponera verksamheten.</p>
+        <p class="hero-hint"><svg viewBox="0 0 16 16" aria-hidden="true"><path d="M8 2v11M4 9l4 4 4-4"/></svg>Scrolla för att provköra en av våra exempelsidor</p>
+      </div>
+      <div class="hero-cardslot" id="cardSlot" aria-hidden="true"></div>
+    </div>
+  </section>
+
+  <!-- Akt 2 och 3: Övertagande och Släpp -->
+  <section class="scene" id="scene" aria-label="Provkör exempelsidan Hōrai">
+    <div class="stage">
+      <div class="stage-bar wrap">
+        <span class="l">Exempelsida: Hōrai, Asian fusion-koncept</span>
+        <span class="r"><span id="stageHint">Din scroll styr sajten</span><a href="/sites/horai.html" target="_blank" rel="noopener">Öppna sajten</a></span>
+      </div>
+      <div class="stage-frame">
+        <img src="assets/demo-horai.webp" alt="Skärmbild av exempelsidan Hōrai" width="1200" height="750">
+        <iframe id="fHorai" src="/sites/horai.html" title="Exempelsida: Hōrai" loading="eager"></iframe>
+        <div class="shield" id="shield" aria-hidden="true"></div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Akt 4: Sida vid sida -->
+  <section class="build" id="bygger" aria-labelledby="thesis">
+    <div class="wrap">
+      <div class="build-head">
+        <h2 class="thesis" id="thesis"><span class="ln" data-reveal style="--i:0">VI BYGGER</span><span class="ln" data-reveal style="--i:1">ERT VARUMÄRKE.</span></h2>
+        <p class="build-line" data-reveal style="--i:2">Webbdesign, design och system. Allt på ett ställe.</p>
+      </div>
+      <div class="build-grid">
+        <div class="acc" id="acc">
+          <details name="tjanst" id="design" data-site="calyx" open data-reveal style="--i:0">
+            <summary><span class="n">01</span><span>Design</span><span class="pm" aria-hidden="true"></span></summary>
+            <div class="body">
+              <p>Formspråk, typografi och bild för er verksamhet. Vi ritar hela sidan innan vi bygger den, så att ni ser vad ni får.</p>
+              <span class="ex">Exempelsida: Calyx, florist i Stockholm</span>
+            </div>
+          </details>
+          <details name="tjanst" id="utveckling" data-site="horai" data-reveal style="--i:1">
+            <summary><span class="n">02</span><span>Utveckling</span><span class="pm" aria-hidden="true"></span></summary>
+            <div class="body">
+              <p>Snabb kod som fungerar i alla telefoner och webbläsare. Ett CMS när ni vill ändra texter och bilder själva.</p>
+              <span class="ex">Exempelsida: Hōrai, Asian fusion-koncept</span>
+            </div>
+          </details>
+          <details name="tjanst" id="system" data-site="hyperborea" data-reveal style="--i:2">
+            <summary><span class="n">03</span><span>System</span><span class="pm" aria-hidden="true"></span></summary>
+            <div class="body">
+              <p>Bokning, betalning och kunddatabas kopplade till sidan i stället för bredvid den. Vi sätter upp det ni behöver, inte mer.</p>
+              <span class="ex">Exempelsida: Hyperborea, konferens i Lund</span>
+            </div>
+          </details>
+        </div>
+        <div class="panel" id="panel" data-reveal>
+          <div class="panel-plate">
+            <div class="panel-bar">
+              <span class="cap" id="panelCap">Exempelsida: Calyx, florist i Stockholm</span>
+              <a id="panelLink" href="/sites/calyx.html" target="_blank" rel="noopener">Öppna sajten</a>
+            </div>
+            <div class="panel-frames" id="panelFrames">
+              <img class="pf-img" data-site="calyx" src="assets/demo-calyx.webp" alt="Skärmbild av exempelsidan Calyx" width="1200" height="750">
+              <img class="pf-img" data-site="horai" src="assets/demo-horai.webp" alt="Skärmbild av exempelsidan Hōrai" width="1200" height="750" hidden>
+              <img class="pf-img" data-site="hyperborea" src="assets/demo-hyperborea.webp" alt="Skärmbild av exempelsidan Hyperborea" width="1200" height="750" hidden>
+              <iframe data-site="calyx" src="/sites/calyx.html" title="Exempelsida: Calyx" loading="lazy"></iframe>
+              <iframe data-site="horai" data-src="/sites/horai.html" title="Exempelsida: Hōrai" loading="lazy" hidden></iframe>
+              <iframe data-site="hyperborea" data-src="/sites/hyperborea.html" title="Exempelsida: Hyperborea" loading="lazy" hidden></iframe>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Akt 5: Villkor -->
+  <section class="terms" id="paket" aria-labelledby="termsH">
+    <div class="wrap">
+      <div class="terms-head">
+        <h2 id="termsH">Paket och pris</h2>
+        
+      </div>
+      <div class="rows" id="rows">
+        <div class="row"><p class="t">Standardpaket. Webbplats med CMS för egna ändringar och en första SEO-optimering.</p><span class="p">26 900 kr</span></div>
+        <div class="row"><p class="t">Paket med bokningssystem, betalning och kunddatabas.</p><span class="p">38 900 kr</span></div>
+        <div class="row"><p class="t">Helt skräddarsydda lösningar för produktkataloger, specialbyggda system med mera</p><span class="p q">Pris vid förfrågan</span></div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Akt 6: Avslut -->
+  <section class="write" id="kontakt" aria-labelledby="writeH">
+    <div class="wrap">
+      <div data-reveal style="--i:0">
+        <h2 id="writeH">Skriv till oss</h2>
+        <p class="lead">Berätta kort vad ni vill bygga. Vi svarar från <a class="mail" href="mailto:kontakt@alunix.se">kontakt@alunix.se</a>.</p>
+        <p class="right-line">Alla har rätt till bra design.</p>
+      </div>
+      <form class="form" id="mailForm" action="mailto:kontakt@alunix.se" method="get" data-reveal style="--i:1">
+        <label for="subject">Vad gäller det?</label>
+        <div class="field">
+          <input id="subject" name="subject" type="text" maxlength="140" autocomplete="off" placeholder="Till exempel: ny webbplats för vår butik">
+          <button type="submit">Öppna e-post</button>
+        </div>
+        <p class="note">Knappen öppnar ert e-postprogram med det ni skrivit som ämne, adresserat till <a href="mailto:kontakt@alunix.se">kontakt@alunix.se</a>.</p>
+      </form>
+    </div>
+  </section>
+
+</main>
+
+<footer class="foot">
+  <div class="wrap">
+    <a class="brand" href="#top"><img src="assets/logo-black.svg" alt="" width="20" height="28"><span>Alunix</span></a>
+    <ul>
+      <li>Webbyrå i Sverige</li>
+      <li><a class="mail" href="mailto:kontakt@alunix.se">kontakt@alunix.se</a></li>
+      <li><a href="/sites/calyx.html" target="_blank" rel="noopener">Exempelsida: Calyx</a></li>
+      <li><a href="/sites/horai.html" target="_blank" rel="noopener">Exempelsida: Hōrai</a></li>
+      <li><a href="/sites/hyperborea.html" target="_blank" rel="noopener">Exempelsida: Hyperborea</a></li>
+    </ul>
+    <p class="credit" style="margin:0">Foto: <a href="https://unsplash.com/@thestandingdesk" rel="noopener">TheStandingDesk</a> via <a href="https://unsplash.com/photos/qMUr7Iq1Il4" rel="noopener">Unsplash</a></p>
+  </div>
+</footer>
+
+<!-- Glaskortet: läser av vad som händer på sidan just nu -->
+<aside class="card" id="card" aria-live="polite" aria-label="Status">
+  <div class="card-full" id="cardFull">
+    <div class="card-head"><img src="assets/logo-black.svg" alt="" width="14" height="20"><span>ALUNIX</span><span class="dot" aria-hidden="true"></span></div>
+    <div class="card-open"><span class="k">Öppen just nu</span><span class="v" id="cSite">Hōrai</span></div>
+    <dl class="card-dl"><dt>Sektion</dt><dd id="cSec">Huset</dd><dt>Läge</dt><dd id="cPct">0 %</dd></dl>
+    <div class="card-bar" aria-hidden="true"><i id="cBar"></i></div>
+  </div>
+  <div class="card-chip" id="cardChip"><span class="dot" aria-hidden="true"></span><span id="chipText"><span class="chip-long">Öppen just nu: </span>Hōrai</span></div>
+</aside>
+
+<script>
+(() => {
+  const d = document, w = window;
+  const reduce = w.matchMedia('(prefers-reduced-motion: reduce)');
+  const isReduce = () => reduce.matches;
+  const clamp = (v, a, b) => Math.min(b, Math.max(a, v));
+  const lerp = (a, b, t) => a + (b - a) * t;
+  const barH = () => parseFloat(getComputedStyle(d.documentElement).getPropertyValue('--bar')) || 56;
+
+  /* ---------- Hōrai section names (Swedish labels for the card) ---------- */
+  const HORAI_SECTIONS = ['Huset', 'Huset', 'Köksnotisen', 'Menyerna', 'Rätterna', 'Rummet', 'Bokning'];
+
+  const hero = d.querySelector('.hero');
+  const heroPhoto = d.getElementById('heroPhoto');
+  const scene = d.getElementById('scene');
+  const stage = scene.querySelector('.stage');
+  const frame = d.getElementById('fHorai');
+  const stageHint = d.getElementById('stageHint');
+  const card = d.getElementById('card');
+  const cardFull = d.getElementById('cardFull');
+  const cardChip = d.getElementById('cardChip');
+  const cardSlot = d.getElementById('cardSlot');
+  const chipSlot = d.getElementById('chipSlot');
+  const cSite = d.getElementById('cSite'), cSec = d.getElementById('cSec'), cPct = d.getElementById('cPct'), cBar = d.getElementById('cBar');
+  const chipText = d.getElementById('chipText');
+
+  /* ---------- geometry ---------- */
+  let vh = 0, heroH = 0, pinStart = 0, sceneScroll = 0, releaseY = 0, gain = 1, range = 0, stageH = 0;
+  let fdoc = null, fwin = null, fsections = [];
+  let rectHero = null, rectScene = null, rectChip = null;
+  let mobile = false;
+
+  function frameRange() {
+    if (!fdoc) return 0;
+    return Math.max(0, fdoc.documentElement.scrollHeight - frame.clientHeight);
+  }
+
+  function measure() {
+    vh = w.innerHeight;
+    mobile = w.innerWidth <= 768;
+    heroH = hero.offsetHeight;
+    stageH = vh - barH();
+    range = frameRange();
+    if (isReduce() || range === 0) {
+      sceneScroll = 0;
+      gain = 1;
+    } else {
+      // The frame's own scroll length, geared so the whole test drive takes a handful of screens.
+      sceneScroll = clamp(range / 1.75, 2 * vh, 6 * vh);
+      sceneScroll = Math.min(sceneScroll, range);
+      gain = range / sceneScroll;
+    }
+    scene.style.height = (stageH + sceneScroll) + 'px';
+    pinStart = scene.offsetTop - barH();
+    releaseY = pinStart + sceneScroll;
+
+    // Card positions, all in viewport coordinates.
+    const cs = chipSlot.getBoundingClientRect();
+    rectChip = { x: cs.left, y: cs.top, w: Math.max(120, cs.width), h: cs.height, r: 999 };
+    if (mobile) {
+      const cw = w.innerWidth - 32;
+      rectHero = { x: 16, y: vh - 16 - 64, w: cw, h: 64, r: 14 };
+      rectScene = rectHero;
+    } else {
+      const wrapRect = hero.querySelector('.wrap').getBoundingClientRect();
+      const slot = cardSlot.getBoundingClientRect();
+      rectHero = { x: slot.left, y: slot.top + w.scrollY, w: slot.width, h: slot.height, r: 14 };
+      // page coordinates of the slot equal its viewport coordinates at scroll 0, which is where the card rests.
+      rectScene = { x: wrapRect.right - 300, y: vh - 24 - 190, w: 300, h: 190, r: 14 };
+    }
+  }
+
+  /* ---------- card: reads the frame ---------- */
+  let lastPct = -1, lastSec = '';
+  function readFrame() {
+    if (!fdoc) return;
+    const st = fdoc.documentElement.scrollTop || fdoc.body.scrollTop || 0;
+    const r = frameRange();
+    const pct = r ? Math.round(clamp(st / r, 0, 1) * 100) : 0;
+    const probe = st + frame.clientHeight * 0.45;
+    let idx = 0;
+    for (let i = 0; i < fsections.length; i++) if (fsections[i].offsetTop <= probe) idx = i;
+    const sec = HORAI_SECTIONS[idx] || (fsections[idx] && fsections[idx].id) || 'Huset';
+    if (pct !== lastPct) { lastPct = pct; cPct.textContent = pct + ' %'; cBar.style.width = pct + '%'; }
+    if (sec !== lastSec) { lastSec = sec; cSec.textContent = sec; }
+  }
+
+  function onFrameReady() {
+    try {
+      fdoc = frame.contentDocument; fwin = frame.contentWindow;
+      if (!fdoc || !fdoc.body) throw 0;
+      fdoc.documentElement.style.scrollBehavior = 'auto';
+      fsections = Array.from(fdoc.querySelectorAll('section'));
+      frame.classList.add('is-loaded');
+      fdoc.addEventListener('scroll', readFrame, { passive: true });
+      readFrame();
+    } catch (e) { fdoc = null; }
+    measure(); onScroll(true);
+  }
+  frame.addEventListener('load', onFrameReady);
+  if (frame.contentDocument && frame.contentDocument.readyState === 'complete' && frame.contentDocument.querySelector('section')) onFrameReady();
+
+  /* ---------- scroll choreography ---------- */
+  const cur = { x: 0, y: 0, w: 300, h: 190, r: 14, t: 0 };
+  let target = null, frameTarget = 0, frameCur = 0, raf = 0, settled = false, chipState = false;
+
+  function stateFor(y) {
+    if (mobile) {
+      const p = clamp((y - releaseY) / 240, 0, 1);
+      return { rect: mix(rectHero, rectChip, p), t: p };
+    }
+    const a = clamp((y - heroH * 0.35) / (heroH * 0.55), 0, 1);   // hero -> scene corner
+    const p = clamp((y - releaseY) / 280, 0, 1);                  // scene corner -> topbar chip
+    const base = mix(rectHero, rectScene, ease(a));
+    return { rect: mix(base, rectChip, ease(p)), t: p };
+  }
+  const ease = t => t < .5 ? 2 * t * t : 1 - Math.pow(-2 * t + 2, 2) / 2;
+  const mix = (A, B, t) => ({ x: lerp(A.x, B.x, t), y: lerp(A.y, B.y, t), w: lerp(A.w, B.w, t), h: lerp(A.h, B.h, t), r: lerp(A.r, B.r, t) });
+
+  function paintCard() {
+    card.style.transform = `translate3d(${cur.x.toFixed(2)}px,${cur.y.toFixed(2)}px,0)`;
+    card.style.width = cur.w.toFixed(2) + 'px';
+    card.style.height = cur.h.toFixed(2) + 'px';
+    card.style.borderRadius = cur.r.toFixed(1) + 'px';
+    const t = cur.t;
+    // The full card hands over to the chip early, so the pill that travels up carries a readable line.
+    cardFull.style.opacity = clamp(1 - t * 4, 0, 1);
+    cardChip.style.opacity = clamp((t - 0.1) * 4, 0, 1);
+    cardFull.style.pointerEvents = t < .2 ? 'auto' : 'none';
+  }
+
+  function tick() {
+    raf = 0;
+    let moving = false;
+    if (target) {
+      const k = isReduce() ? 1 : 0.22;
+      for (const key of ['x', 'y', 'w', 'h', 'r', 't']) {
+        const v = key === 't' ? target.t : target.rect[key];
+        const nv = lerp(cur[key], v, k);
+        if (Math.abs(nv - v) > 0.05) moving = true;
+        cur[key] = Math.abs(nv - v) > 0.05 ? nv : v;
+      }
+      paintCard();
+    }
+    if (fdoc && sceneScroll > 0) {
+      const k = isReduce() ? 1 : 0.25;
+      const nv = lerp(frameCur, frameTarget, k);
+      frameCur = Math.abs(nv - frameTarget) > 0.4 ? nv : frameTarget;
+      if (frameCur !== frameTarget) moving = true;
+      const st = fdoc.documentElement.scrollTop || 0;
+      if (Math.abs(st - frameCur) > 0.4) { fwin.scrollTo(0, frameCur); readFrame(); }
+    }
+    if (moving) raf = requestAnimationFrame(tick);
+  }
+
+  function onScroll(force) {
+    const y = w.scrollY;
+    // Hero: photo drifts slower than the page (parallax), stops once the hero has left.
+    if (!isReduce() && y < heroH) heroPhoto.style.transform = `translate3d(0,${(y * 0.28).toFixed(1)}px,0)`;
+
+    // Scene: while pinned, the page's scroll is the frame's scroll.
+    if (sceneScroll > 0) {
+      const inPin = y >= pinStart - 2 && y < releaseY;
+      scene.classList.toggle('is-pinned', y < releaseY);
+      frameTarget = clamp((y - pinStart) * gain, 0, range);
+      if (y < pinStart) frameTarget = 0;
+      if (stageHint) stageHint.textContent = y >= releaseY ? 'Klar. Sajten går att använda med musen.' : (inPin ? 'Din scroll styr sajten' : 'Din scroll styr sajten');
+    }
+
+    // Card: three resting places, interpolated by scroll position.
+    target = stateFor(y);
+    const nowChip = y >= releaseY && sceneScroll >= 0;
+    if (nowChip !== chipState) {
+      chipState = nowChip;
+      updateChip();
+    }
+    if (!raf) raf = requestAnimationFrame(tick);
+  }
+
+  /* ---------- chip text ---------- */
+  let openSite = 'horai';
+  const NAMES = { calyx: 'Calyx', horai: 'Hōrai', hyperborea: 'Hyperborea' };
+  function updateChip() {
+    const y = w.scrollY;
+    const build = d.getElementById('bygger');
+    const inBuild = build.getBoundingClientRect().top < vh * 0.6;
+    if (inBuild) chipText.innerHTML = '<span class="chip-long">Öppen just nu: </span>' + NAMES[openSite];
+    else chipText.innerHTML = '<span class="chip-long">Hōrai · </span>' + (y >= releaseY ? 'Klar' : NAMES.horai);
+  }
+
+  /* ---------- accordion <-> panel frames ---------- */
+  const acc = d.getElementById('acc');
+  const details = Array.from(acc.querySelectorAll('details'));
+  const frames = Array.from(d.querySelectorAll('#panelFrames iframe'));
+  const pimgs = Array.from(d.querySelectorAll('#panelFrames .pf-img'));
+  const panelCap = d.getElementById('panelCap'), panelLink = d.getElementById('panelLink');
+  const CAPS = {
+    calyx: 'Exempelsida: Calyx, florist i Stockholm',
+    horai: 'Exempelsida: Hōrai, Asian fusion-koncept',
+    hyperborea: 'Exempelsida: Hyperborea, konferens i Lund'
+  };
+  function showSite(site) {
+    openSite = site;
+    frames.forEach(f => {
+      const on = f.dataset.site === site;
+      if (on && !f.src && f.dataset.src) f.src = f.dataset.src;
+      f.hidden = !on;
+    });
+    pimgs.forEach(i => { i.hidden = i.dataset.site !== site; });
+    panelCap.textContent = CAPS[site];
+    panelLink.href = '/sites/' + site + '.html';
+    d.querySelectorAll('.tab').forEach(t => {
+      const on = details.find(x => x.dataset.site === site)?.id === t.dataset.tab;
+      if (on) t.setAttribute('aria-current', 'true'); else t.removeAttribute('aria-current');
+    });
+    updateChip();
+  }
+  details.forEach(det => det.addEventListener('toggle', () => {
+    if (det.open) {
+      details.forEach(o => { if (o !== det && o.open) o.open = false; });
+      showSite(det.dataset.site);
+    } else if (!details.some(o => o.open)) {
+      // Keep one open so the frame always matches an open item.
+      det.open = true;
+    }
+  }));
+  d.querySelectorAll('.tab').forEach(t => t.addEventListener('click', e => {
+    const det = d.getElementById(t.dataset.tab);
+    if (!det) return;
+    e.preventDefault();
+    if (!det.open) det.open = true;
+    const top = d.getElementById('bygger').getBoundingClientRect().top + w.scrollY - barH();
+    w.scrollTo({ top, behavior: isReduce() ? 'auto' : 'smooth' });
+    history.replaceState(null, '', '#' + t.dataset.tab);
+  }));
+  showSite('calyx');
+
+  // Tabs light up only while the accordion act is on screen.
+  const buildIO = new IntersectionObserver(es => {
+    es.forEach(en => {
+      if (!en.isIntersecting) d.querySelectorAll('.tab').forEach(t => t.removeAttribute('aria-current'));
+      else showSite(openSite);
+    });
+  }, { rootMargin: '-30% 0px -30% 0px' });
+  buildIO.observe(d.getElementById('bygger'));
+
+  /* ---------- reveals ---------- */
+  const revealIO = new IntersectionObserver(es => es.forEach(en => {
+    if (en.isIntersecting) { en.target.classList.add('is-in'); revealIO.unobserve(en.target); }
+  }), { rootMargin: '0px 0px -10% 0px', threshold: 0.05 });
+  d.querySelectorAll('[data-reveal]').forEach(el => revealIO.observe(el));
+  // Safety net: if the observer never fires, show everything.
+  setTimeout(() => d.querySelectorAll('[data-reveal]:not(.is-in)').forEach(el => {
+    if (el.getBoundingClientRect().top < vh) el.classList.add('is-in');
+  }), 2500);
+
+  /* ---------- terms: rules draw as the table enters ---------- */
+  const rowsEl = d.getElementById('rows');
+  function termsProgress() {
+    const r = rowsEl.getBoundingClientRect();
+    const p = clamp((vh - r.top) / (vh * 0.75), 0, 1);
+    rowsEl.style.setProperty('--p', p.toFixed(3));
+  }
+
+  /* ---------- mail form: subject becomes the mailto subject ---------- */
+  d.getElementById('mailForm').addEventListener('submit', e => {
+    e.preventDefault();
+    const s = d.getElementById('subject').value.trim();
+    w.location.href = 'mailto:kontakt@alunix.se' + (s ? '?subject=' + encodeURIComponent(s) : '');
+  });
+
+  /* ---------- wiring ---------- */
+  function onAny() { onScroll(); termsProgress(); }
+  w.addEventListener('scroll', onAny, { passive: true });
+  w.addEventListener('resize', () => { measure(); onAny(); });
+  reduce.addEventListener('change', () => { measure(); onAny(); });
+  measure();
+  // Start the card exactly where it rests in the hero, then let scroll drive it.
+  const s0 = stateFor(w.scrollY); Object.assign(cur, s0.rect, { t: s0.t }); paintCard();
+  onAny();
+})();
+</script>
+</body>
+</html>

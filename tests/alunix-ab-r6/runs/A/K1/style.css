@@ -1,0 +1,269 @@
+/* Alunix K1 Skymning.
+   Allt härlett ur skymningsfotot: vattnet ger natten, fönstren ger den enda kromatiska färgen. */
+
+:root {
+  --night: #0b1424;        /* vattnet i skymningsfotot, mörkat */
+  --ink: #111823;          /* text på vitt */
+  --ink-soft: #5a6270;     /* sekundär text på vitt */
+  --hair: #d7dbe1;         /* hårlinjer på vitt */
+  --paper: #ffffff;        /* det hårda klippet */
+  --window: #f2c46b;       /* fönsterljuset, på mörk grund */
+  --window-ink: #b8761c;   /* samma ljus, på vitt */
+  --mist: rgba(255,255,255,0.78);
+
+  --serif: "Newsreader", "Iowan Old Style", "Palatino Linotype", Georgia, serif;
+  --grot: "Schibsted Grotesk", "Helvetica Neue", Arial, sans-serif;
+
+  --gutter: clamp(20px, 4vw, 64px);
+  --track: 260vh;    /* zoomresan */
+  --hold: 0vh;       /* extra stilla håll; själva hållet är underlappet på 100vh före klippet */
+  --ease-out: cubic-bezier(0.2, 0.7, 0.1, 1);
+}
+
+* { box-sizing: border-box; }
+html { scroll-behavior: smooth; -webkit-text-size-adjust: 100%; }
+@media (prefers-reduced-motion: reduce) { html { scroll-behavior: auto; } }
+
+body {
+  margin: 0;
+  background: var(--paper);
+  color: var(--ink);
+  font-family: var(--grot);
+  font-size: 17px;
+  line-height: 1.5;
+  overflow-x: hidden;
+  -webkit-font-smoothing: antialiased;
+}
+
+img { display: block; max-width: 100%; }
+a { color: inherit; text-decoration-thickness: 1px; text-underline-offset: 0.18em; }
+a:focus-visible, button:focus-visible { outline: 2px solid var(--window); outline-offset: 3px; }
+.white a:focus-visible { outline-color: var(--window-ink); }
+
+.skip {
+  position: absolute; left: var(--gutter); top: -60px; z-index: 50;
+  background: var(--paper); color: var(--ink); padding: 8px 12px; font-size: 14px;
+}
+.skip:focus { top: 12px; }
+
+.wrap { padding-left: var(--gutter); padding-right: var(--gutter); max-width: 1440px; margin-left: auto; margin-right: auto; }
+
+/* ---------- Toppbar ---------- */
+.topbar {
+  position: fixed; inset: 0 0 auto 0; z-index: 30;
+  display: flex; align-items: center; justify-content: space-between;
+  padding: 18px var(--gutter);
+  color: #fff;
+  transition: color 300ms var(--ease-out), background-color 300ms var(--ease-out);
+}
+.topbar.overframe { background: rgba(11,20,36,0.55); backdrop-filter: blur(8px); -webkit-backdrop-filter: blur(8px); }
+.topbar.dark { color: var(--ink); background: var(--mist); backdrop-filter: blur(8px); -webkit-backdrop-filter: blur(8px); }
+.brand { display: inline-flex; align-items: center; gap: 10px; text-decoration: none; }
+.mark { height: 24px; width: auto; display: block; }
+.wordmark { font-family: var(--serif); font-weight: 300; font-size: 21px; letter-spacing: 0.06em; text-transform: uppercase; line-height: 1; }
+.topmail { font-size: 15px; text-decoration: none; }
+.topmail:hover { text-decoration: underline; }
+
+/* ---------- Hero: akt 1 till 3 ---------- */
+.hero { position: relative; background: var(--night); color: #fff; }
+.stage { position: relative; height: 100vh; min-height: 560px; overflow: hidden; background: var(--night); }
+
+.cam { position: absolute; inset: 0; will-change: transform; transform-origin: 50% 50%; }
+.photo { width: 100%; height: 100%; object-fit: cover; object-position: 50% 50%; }
+.dim { position: absolute; inset: 0; background: var(--night); opacity: 0; pointer-events: none; }
+
+/* mjuk mörkning bara vid kanterna där text står, ingen gradient över hela bilden */
+.stage::before, .stage::after {
+  content: ""; position: absolute; left: 0; right: 0; height: 32vh; pointer-events: none; z-index: 2;
+}
+.stage::before { top: 0; background: linear-gradient(to bottom, rgba(11,20,36,0.55), rgba(11,20,36,0)); }
+.stage::after { bottom: 0; background: linear-gradient(to top, rgba(11,20,36,0.6), rgba(11,20,36,0)); }
+
+.copy {
+  position: absolute; z-index: 3; left: var(--gutter); right: var(--gutter);
+  top: 14vh; text-align: center;
+  will-change: opacity, filter;
+}
+.h1 {
+  margin: 0 auto; max-width: 14ch;
+  font-family: var(--serif); font-weight: 200; font-optical-sizing: auto;
+  font-size: clamp(38px, 6.4vw, 92px); line-height: 1.04; letter-spacing: -0.005em;
+  text-wrap: balance;
+}
+.carry { position: relative; white-space: nowrap; }
+.carry::after {
+  content: ""; position: absolute; left: 0.02em; right: 0.02em; bottom: 0.02em; height: 0.045em;
+  background: var(--window); border-radius: 1px;
+}
+.sub {
+  margin: clamp(16px, 2.4vw, 28px) auto 0; max-width: 46ch;
+  font-size: clamp(15px, 1.25vw, 19px); line-height: 1.5; color: rgba(255,255,255,0.86);
+}
+
+.win { position: absolute; inset: 0; z-index: 4; clip-path: inset(0 0 0 0); pointer-events: none; }
+.frame { display: block; width: 100%; height: 100%; border: 0; background: #1a1410; }
+.plate { position: absolute; inset: 0; width: 100%; height: 100%; object-fit: cover; object-position: 50% 0; transition: opacity 600ms; pointer-events: none; }
+.plate.gone { opacity: 0; }
+/* fönsterljus: ligger över ramen medan fönstret är litet, tonar bort när rummet syns. Tonar aldrig ramen. */
+.glow { position: absolute; inset: 0; background: radial-gradient(ellipse at 50% 60%, #ffe9b8 0%, #f2c46b 60%, #c98a2a 100%); pointer-events: none; }
+
+.proof {
+  position: absolute; z-index: 5; left: var(--gutter); right: var(--gutter); bottom: 5vh;
+  margin: 0; text-align: center;
+  font-family: var(--serif); font-weight: 300; font-size: clamp(18px, 1.9vw, 27px); letter-spacing: 0.01em;
+  color: rgba(255,255,255,0.92);
+}
+.proof a { text-decoration: none; }
+.proof a:hover { text-decoration: underline; }
+.proof .dot { display: inline-block; margin: 0 0.6em; opacity: 0.65; }
+
+.caption {
+  position: absolute; z-index: 6; left: var(--gutter); bottom: 20px; margin: 0;
+  font-size: 13px; line-height: 1.3; color: #fff;
+  background: rgba(11,20,36,0.72); padding: 8px 12px;
+  opacity: 0; pointer-events: none;
+}
+.caption a { margin-left: 10px; }
+.caption.on { opacity: 1; pointer-events: auto; }
+
+/* Reserv utan JS eller med reduced motion: ramen står som ett eget block under fotot. */
+html:not(.motion) .win {
+  position: relative; inset: auto; height: 100vh; min-height: 480px; clip-path: none; pointer-events: auto; z-index: auto;
+}
+html:not(.motion) .plate, html:not(.motion) .glow { display: none; }
+html:not(.motion) .caption { position: static; opacity: 1; pointer-events: auto; background: transparent; padding: 14px var(--gutter) 22px; }
+html:not(.motion) .stage { height: auto; }
+html:not(.motion) .cam { position: relative; height: 100vh; min-height: 560px; }
+html:not(.motion) .stage::before, html:not(.motion) .stage::after { height: 30vh; }
+html:not(.motion) .stage::after { bottom: auto; top: calc(100vh - 30vh); }
+html:not(.motion) .proof { bottom: auto; top: calc(100vh - 5vh - 1.4em); }
+
+/* Med JS och rörelse: pinnad scen, koreografi i script.js */
+html.motion .hero { height: calc(100vh + var(--track) + var(--hold) + 100vh); }
+html.motion .stage { position: sticky; top: 0; z-index: 2; }
+html.motion .stage.cut { visibility: hidden; }
+html.motion .frame.live { pointer-events: auto; }
+html.motion .win.live { pointer-events: auto; }
+
+/* ---------- Vit grund: akt 4 och 5 ---------- */
+.white { position: relative; z-index: 1; background: var(--paper); color: var(--ink); padding-top: clamp(96px, 16vh, 180px); }
+html.motion .white { margin-top: -100vh; }
+
+.thesis {
+  margin: 0; font-family: var(--serif); font-weight: 200; font-optical-sizing: auto;
+  font-size: clamp(42px, 8.2vw, 124px); line-height: 0.98; letter-spacing: 0.01em;
+}
+.thesis .line { display: block; padding-top: 0.06em; }
+.thesis .line > span { display: block; }
+.thesis-row { margin: clamp(20px, 3vw, 40px) 0 0; font-size: clamp(17px, 1.5vw, 22px); color: var(--ink-soft); max-width: 40ch; }
+
+.rows { list-style: none; margin: clamp(80px, 14vh, 160px) auto 0; padding-left: var(--gutter); padding-right: var(--gutter); }
+.row {
+  display: grid; grid-template-columns: 5fr 7fr; gap: clamp(28px, 5vw, 96px); align-items: center;
+  padding: clamp(40px, 7vh, 96px) 0;
+}
+.row + .row { border-top: 1px solid var(--hair); }
+.row.flip .text { order: 2; }
+.row.flip .media { order: 1; }
+.text .num { display: block; font-size: 13px; letter-spacing: 0.12em; color: var(--ink-soft); font-variant-numeric: tabular-nums; }
+.text h3 { margin: 10px 0 14px; font-family: var(--serif); font-weight: 300; font-size: clamp(34px, 3.6vw, 56px); line-height: 1.05; }
+.text p { margin: 0; max-width: 34ch; color: var(--ink-soft); font-size: clamp(16px, 1.2vw, 18px); }
+.media { display: block; text-decoration: none; }
+.media img { width: 100%; height: auto; aspect-ratio: 16 / 10; object-fit: cover; object-position: top; border: 1px solid var(--hair); }
+.media .cap { display: block; margin-top: 12px; font-size: 14px; color: var(--ink-soft); }
+.media:hover .cap { text-decoration: underline; }
+
+/* Akt 5 */
+.prices { padding-top: clamp(96px, 16vh, 200px); padding-bottom: clamp(96px, 16vh, 200px); }
+.price-head {
+  margin: 0 0 clamp(36px, 5vh, 64px); font-family: var(--serif); font-weight: 300;
+  font-size: clamp(34px, 4.4vw, 68px); line-height: 1.05; letter-spacing: -0.005em;
+}
+.pkgs { list-style: none; margin: 0; padding: 0; }
+.pkg {
+  position: relative; display: grid; grid-template-columns: 1fr auto; gap: 24px clamp(24px, 5vw, 80px);
+  align-items: baseline; padding: clamp(22px, 3vh, 34px) 0;
+}
+.rule { position: absolute; left: 0; right: 0; top: 0; height: 1px; background: var(--ink); transform-origin: left center; }
+.rule.last { top: auto; bottom: 0; }
+.what { margin: 0; max-width: 46ch; font-size: clamp(16px, 1.25vw, 19px); }
+.price {
+  margin: 0; font-family: var(--serif); font-weight: 300; font-variant-numeric: tabular-nums;
+  font-size: clamp(28px, 3.6vw, 56px); line-height: 1; white-space: nowrap; text-align: right;
+}
+
+/* ---------- Landning: akt 6 ---------- */
+.land { position: relative; z-index: 1; min-height: 100vh; background: var(--night); color: #fff; overflow: hidden; display: flex; flex-direction: column; justify-content: flex-end; }
+.night { position: absolute; inset: -12vh 0 0 0; z-index: 0; will-change: transform; }
+.night img { width: 100%; height: 100%; object-fit: cover; object-position: 50% 40%; }
+.land::before {
+  content: ""; position: absolute; inset: 0; z-index: 1; pointer-events: none;
+  background: linear-gradient(to top, rgba(11,20,36,0.92) 0%, rgba(11,20,36,0.7) 38%, rgba(11,20,36,0.2) 62%, rgba(11,20,36,0) 80%);
+}
+.land > .wrap { width: 100%; }
+.land-copy { position: relative; z-index: 2; padding-top: 26vh; }
+.small { margin: 0 0 10px; font-size: 14px; letter-spacing: 0.08em; text-transform: uppercase; color: rgba(255,255,255,0.75); }
+.mail {
+  display: inline-block; font-family: var(--serif); font-weight: 200; font-optical-sizing: auto;
+  font-size: clamp(30px, 7vw, 108px); line-height: 1; letter-spacing: -0.01em; text-decoration: none;
+  overflow-wrap: anywhere;
+}
+.mail:hover { text-decoration: underline; text-decoration-thickness: 2px; }
+.line-row { margin: clamp(18px, 3vh, 32px) 0 0; font-size: clamp(15px, 1.2vw, 18px); color: rgba(255,255,255,0.8); }
+
+.foot { position: relative; z-index: 2; display: flex; flex-wrap: wrap; justify-content: space-between; gap: 16px 40px; padding-top: clamp(48px, 10vh, 120px); padding-bottom: 28px; font-size: 14px; color: rgba(255,255,255,0.7); }
+.sites { list-style: none; margin: 0; padding: 0; display: flex; flex-direction: column; gap: 6px; }
+.sites a, .credits a { text-decoration: none; }
+.sites a:hover, .credits a:hover { text-decoration: underline; }
+.credits { margin: 0; }
+
+/* ---------- Avslöjanden, bara när rörelse tillåts ---------- */
+html.motion .reveal-line > span, html.motion .thesis-row.reveal-line, html.motion .price-head.reveal-line {
+  opacity: 0; transform: translateY(0.5em);
+  transition: opacity 800ms var(--ease-out), transform 900ms var(--ease-out);
+}
+html.motion .reveal-line.in > span, html.motion .thesis-row.reveal-line.in, html.motion .price-head.reveal-line.in { opacity: 1; transform: none; }
+html.motion .thesis .line:nth-child(2) > span { transition-delay: 140ms; }
+
+html.motion .row .text, html.motion .row .media {
+  opacity: 0; transition: opacity 900ms var(--ease-out), transform 1200ms var(--ease-out);
+}
+html.motion .row .media { transform: translateX(10%); }
+html.motion .row .text { transform: translateX(-8%); }
+html.motion .row.flip .media { transform: translateX(-10%); }
+html.motion .row.flip .text { transform: translateX(8%); }
+html.motion .row.in .text, html.motion .row.in .media { opacity: 1; transform: none; }
+
+html.motion .pkg .rule { transform: scaleX(0); transition: transform 1000ms var(--ease-out); }
+html.motion .pkg .what { clip-path: inset(0 100% 0 0); transition: clip-path 900ms var(--ease-out) 200ms; }
+html.motion .pkg .price { clip-path: inset(0 0 0 100%); transition: clip-path 900ms var(--ease-out) 350ms; }
+html.motion .pkg.in .rule { transform: scaleX(1); }
+html.motion .pkg.in .what, html.motion .pkg.in .price { clip-path: inset(0 0 0 0); }
+html.motion .pkg.in .rule.last { transition-delay: 500ms; }
+
+/* ---------- Mobil ---------- */
+@media (max-width: 767px) {
+  .topbar { padding: 14px var(--gutter); }
+  .wordmark { font-size: 18px; }
+  .topmail { font-size: 14px; }
+  .copy { top: 12vh; }
+  .h1 { font-size: clamp(34px, 10.5vw, 48px); max-width: 12ch; }
+  .sub { font-size: 15px; max-width: 32ch; }
+  .proof { font-size: 17px; bottom: 4vh; }
+  .proof .dot { margin: 0 0.45em; }
+  .thesis { font-size: clamp(30px, 9.4vw, 44px); }
+  .row { grid-template-columns: 1fr; gap: 22px; padding: 40px 0; }
+  .row.flip .text { order: 1; }
+  .row.flip .media { order: 2; }
+  .pkg { grid-template-columns: 1fr; gap: 10px; }
+  .price { text-align: left; }
+  .foot { flex-direction: column; }
+  .land-copy { padding-top: 34vh; }
+  html.motion .row .text, html.motion .row.flip .text { transform: translateY(24px); }
+  html.motion .row .media, html.motion .row.flip .media { transform: translateY(32px); }
+}
+@media (max-width: 380px) {
+  .h1 { font-size: 32px; }
+  .topmail { font-size: 13px; }
+  .wordmark { font-size: 16px; }
+}

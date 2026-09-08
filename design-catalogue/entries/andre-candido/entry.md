@@ -12,7 +12,7 @@ dna: "Near-monochrome editorial studio x one highlighter-yellow footer"
 register: editorial print
 grammar: gallery/catalog
 lane: "A cream-and-ink portfolio that opens on a huge whisper-thin didone headline over capsule-shaped project tiles in full client colour, then closes on one dramatic ink-black panel where the yellow accent finally appears"
-mode: portfolio
+mode: persuade
 traits: ["160px whisper-thin didone display", "97% achromatic UI, client colour in work only", "800px capsule image radius", "tracked-out 0.107em small type", "single dark footer inversion", "circular rotating text badge"]
 palette: ["#111118", "#ffffff", "#dddddd", "#bdbdbd", "#7c7c7c", "#fef199"]
 type: ["Editorial New", "PP Mori"]

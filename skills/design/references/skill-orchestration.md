@@ -122,7 +122,7 @@ The bottom three are gate 60: their hardcoded hex appearing in a Tier 0–2 buil
 
 Routed mechanically by `component-routing.md`. Each supplies execution inside the settled direction.
 
-**Motion and interaction:** `emil-design-eng` (easing, springs, transform-origin, `:active`, reduced-motion — the default for anything that moves) · `animated-navigation` (nav-specific interaction model) · `vercel-react-view-transitions` (route/state transitions) · `slideshow` (carousel mechanics).
+**Motion and interaction:** `emil-design-eng` (easing, springs, transform-origin, `:active` — the default for anything that moves) · `animated-navigation` (nav-specific interaction model) · `vercel-react-view-transitions` (route/state transitions) · `slideshow` (carousel mechanics).
 
 **Framework correctness:** `next-best-practices` · `vercel-react-best-practices` (performance) · `vercel-composition-patterns` · `react-components` (component structure) · `shadcn-ui` (primitives) · `vercel-react-native-skills` (RN only — state N/A explicitly on web).
 

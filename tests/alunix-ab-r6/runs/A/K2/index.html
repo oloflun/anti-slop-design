@@ -1,0 +1,622 @@
+<!doctype html>
+<html lang="sv">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Alunix, webbyrå. Er hemsida är nutidens visitkort</title>
+<meta name="description" content="Alunix är en webbyrå i Sverige. Webbdesign, design och system. Allt på ett ställe.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Archivo:wdth,wght@100,900&family=Familjen+Grotesk:wght@400;500;600&display=swap">
+<script>document.documentElement.classList.add('js');</script>
+<style>
+/* ---------- Affischen: fem färger, två typsnitt, en yta ---------- */
+:root{
+  --paper:#CBD3C9;   /* salviapapper */
+  --ink:#1B1F1C;     /* bläck */
+  --white:#F5F6F2;   /* ovanpå papperet: bara plåtar */
+  --line:#A7B0A5;    /* hårlinje, stark */
+  --line2:#BFC7BC;   /* hårlinje, svag */
+  --m:clamp(20px,2.4vw,34px);
+  --bar:52px;
+  --poster:clamp(38px,9.5vw,170px);
+  --read:17px;
+  --gut:24px;
+  --maxw:1680px;
+}
+@media (max-width:899px){ :root{ --poster:12vw; --bar:48px; --gut:16px } }
+
+*,*::before,*::after{ box-sizing:border-box }
+html{ background:var(--paper); color:var(--ink); -webkit-text-size-adjust:100% }
+body{ margin:0; font:400 var(--read)/1.45 "Familjen Grotesk", "Helvetica Neue", Arial, sans-serif; background:var(--paper); color:var(--ink); overflow-x:clip }
+img,svg,iframe{ display:block; max-width:100% }
+img{ height:auto }
+a{ color:inherit; text-decoration:none }
+a:hover{ text-decoration:underline; text-underline-offset:.18em }
+:focus-visible{ outline:2px solid var(--ink); outline-offset:3px }
+.sr-only{ position:absolute; width:1px; height:1px; overflow:hidden; clip:rect(0 0 0 0); white-space:nowrap }
+
+.label{ font-size:12px; line-height:1.4; font-weight:500; letter-spacing:.14em; text-transform:uppercase }
+.poster{ font-family:Archivo, "Arial Black", sans-serif; font-weight:900; font-stretch:100%; font-size:var(--poster); line-height:.9; letter-spacing:-.02em; margin:0 }
+.wrap{ max-width:var(--maxw); margin:0 auto; padding:0 var(--m) }
+
+/* ---------- toppbar ---------- */
+.bar{ position:sticky; top:0; z-index:20; background:var(--paper); border-bottom:1px solid var(--line) }
+.bar .wrap{ height:var(--bar); display:flex; align-items:center; gap:var(--gut) }
+.bar .mark{ display:flex; align-items:center; gap:10px; margin-right:auto }
+.bar .mark img{ width:16px; height:22px }
+.bar .clock{ font-variant-numeric:tabular-nums; display:flex; gap:.6em }
+.bar .clock time:empty{ display:none }
+.bar .mail{ font-weight:500 }
+@media (max-width:599px){ .bar .clock .city{ display:none } .bar .mark .label{ display:none } }
+
+/* ---------- akt 1 till 3: affischen, bytet, andningen ---------- */
+.hero{ position:relative }
+.js:not(.rm) .hero{ height:320vh }
+.stage{ position:sticky; top:var(--bar); height:calc(100vh - var(--bar)); overflow:clip; display:flex; flex-direction:column }
+.js.rm .stage{ height:auto; min-height:0 }
+@media (max-width:899px){ .stage{ height:auto } }
+html:not(.js) .stage{ position:static; height:auto }
+.stage .desc{ margin:clamp(16px,2.6vh,28px) 0 clamp(14px,2.2vh,24px); font-size:clamp(17px,1.5vw,22px); line-height:1.35; max-width:40ch }
+
+.block{ position:relative; transform-origin:0 0; will-change:transform }
+.row{ position:relative; clip-path:inset(0 0 0 0); width:100% }
+.face{ position:absolute; left:0; top:0 }
+.fa{ display:block }
+.fa svg{ width:var(--svgw, 100%); height:auto; overflow:visible }
+.fa svg text{ font-family:Archivo, "Arial Black", sans-serif; font-weight:900; font-stretch:100%; font-size:100px; letter-spacing:-2px; fill:var(--ink) }
+.fb{ transform-origin:0 0; white-space:normal }
+.fb .poster{ display:block }
+/* utan JS eller med reduced motion: raderna ligger i flödet, ingen rullning, ingen skalning */
+html:not(.js) .row,.rm .row{ clip-path:none !important; height:auto !important; width:auto !important }
+html:not(.js) .face,.rm .face{ position:static; transform:none !important; opacity:1 !important }
+html:not(.js) .fb,.rm .fb{ display:none }
+html:not(.js) .block,.rm .block{ transform:none !important; height:auto !important; margin-top:0 !important; width:min(100%, 68vh) }
+@media (max-width:899px){ html:not(.js) .block,.rm .block{ width:100% } }
+.rm .row + .row, html:not(.js) .row + .row{ margin-top:-1px }
+
+.stage .under{ position:relative; margin:18px 0 0 }
+.stage .site{ margin:0 }
+.stage .lead{ position:absolute; left:0; top:0; opacity:0; max-width:40ch }
+.rm .stage .lead, html:not(.js) .stage .lead{ display:none }
+.hero-foot{ margin-top:auto; padding:24px 0 var(--m); display:grid; grid-template-columns:1fr minmax(0, 34ch); gap:var(--gut); align-items:end }
+.hero-foot .claim{ grid-column:2 }
+.claim .h1{ margin:0 0 .35em; font-weight:600; line-height:1.3 }
+.claim p{ margin:0 }
+.lead p{ margin:0 }
+.lead .label{ margin-bottom:.6em }
+@media (max-width:899px){
+  .hero-foot{ grid-template-columns:1fr; gap:18px }
+  .hero-foot .claim{ grid-column:1 }
+  .stage .desc{ font-size:16px }
+}
+
+/* ---------- akt 4: bevis ---------- */
+.bevis{ padding-top:clamp(40px,8vh,96px); padding-bottom:clamp(32px,6vh,72px); overflow-x:clip }
+.static-heading{ margin:0 0 .5em }
+.js:not(.rm) .static-heading{ display:none }
+.bevis .intro{ display:none; margin:0 0 3em; max-width:40ch }
+.rm .bevis .intro, html:not(.js) .bevis .intro{ display:block }
+.spread{ display:grid; grid-template-columns:repeat(12,minmax(0,1fr)); column-gap:var(--gut); row-gap:14px; margin:0 0 clamp(48px,10vh,120px) }
+.spread:last-child{ margin-bottom:0 }
+.spread .plate, .spread .cap{ grid-column:1/11 }
+.spread:nth-child(even) .plate, .spread:nth-child(even) .cap{ grid-column:3/13 }
+.plate{ position:relative; aspect-ratio:16/10; background:var(--white); border:1px solid var(--line); border-radius:2px; overflow:hidden }
+.plate iframe{ position:absolute; inset:0; width:100%; height:100%; border:0; background:var(--white) }
+.plate .shot{ position:absolute; inset:0; width:100%; height:100%; object-fit:cover; object-position:top; z-index:1 }
+.rm .plate .shot{ display:none }
+.js:not(.rm) .plate .shot{ filter:grayscale(1) }
+.js:not(.rm) .plate .shot.open{ opacity:0; pointer-events:none; transition:opacity .5s ease }
+.cap{ display:flex; justify-content:space-between; gap:var(--gut); border-top:1px solid var(--line2); padding-top:10px }
+.cap .arrow{ white-space:nowrap }
+.js:not(.rm) .spread .plate, .js:not(.rm) .spread .cap{ opacity:0; transform:translateX(-48px); transition:opacity .9s ease, transform .9s ease }
+.js:not(.rm) .spread:nth-child(even) .plate, .js:not(.rm) .spread:nth-child(even) .cap{ transform:translateX(48px) }
+.js:not(.rm) .spread .cap{ transition-delay:.15s }
+.js:not(.rm) .spread.in .plate, .js:not(.rm) .spread.in .cap{ opacity:1; transform:none }
+@media (max-width:699px){
+  .spread .plate, .spread .cap, .spread:nth-child(even) .plate, .spread:nth-child(even) .cap{ grid-column:1/-1 }
+  .plate{ aspect-ratio:4/5 }
+  .cap{ flex-direction:column; gap:6px }
+}
+
+/* ---------- akt 5 och 6: liggaren ---------- */
+.ledger{ padding-top:clamp(40px,8vh,96px); padding-bottom:clamp(40px,8vh,96px) }
+.ledger .head{ display:grid; grid-template-columns:repeat(12,minmax(0,1fr)); column-gap:var(--gut); align-items:end; margin-bottom:clamp(24px,4vh,40px) }
+.ledger .head .head-text{ grid-column:1/7 }
+.ledger .head .label{ margin:0 }
+.ledger .head p.line{ margin:.8em 0 0; max-width:36ch }
+.ledger .head figure{ grid-column:10/13; margin:0 }
+.ledger .head figure img{ width:100%; border-radius:2px; border:1px solid var(--line) }
+.ledger .head figcaption{ margin-top:8px; color:var(--ink) }
+.rm .ledger .head figure img, html:not(.js) .ledger .head figure img{ transform:none !important }
+.ledger ol, .ledger ul{ list-style:none; margin:0; padding:0; border-top:1px solid var(--line) }
+.ledger ul{ overflow-x:clip }
+.lrow{ display:grid; grid-template-columns:minmax(0,2.5fr) minmax(0,2.5fr) minmax(0,7fr); column-gap:var(--gut); align-items:baseline; padding:clamp(14px,2.4vh,28px) 0; border-bottom:1px solid var(--line) }
+.lrow .num{ font-variant-numeric:tabular-nums }
+.lrow .name{ margin:0 }
+.lrow p{ margin:0; max-width:44ch }
+.js:not(.rm) .lrow{ clip-path:inset(0 100% 0 0); transition:clip-path .9s cubic-bezier(.2,.7,.2,1) }
+.js:not(.rm) .lrow.in{ clip-path:inset(0 0 0 0) }
+.prow{ display:grid; grid-template-columns:minmax(0,9fr) minmax(0,3fr); column-gap:var(--gut); align-items:baseline; padding:clamp(14px,2.4vh,24px) 0; border-bottom:1px solid var(--line) }
+.prow p{ margin:0; max-width:56ch }
+.prow .price{ text-align:right; font-weight:600; font-variant-numeric:tabular-nums; white-space:nowrap }
+.js:not(.rm) .prow{ opacity:0; transition:opacity .7s ease }
+.js:not(.rm) .prow .price{ transform:translateX(28px); transition:transform .7s cubic-bezier(.2,.7,.2,1) }
+.js:not(.rm) .prow.in{ opacity:1 }
+.js:not(.rm) .prow.in .price{ transform:none }
+@media (max-width:699px){
+  .ledger .head{ row-gap:20px }
+  .ledger .head .head-text{ grid-column:1/-1 }
+  .ledger .head figure{ grid-column:1/8 }
+  .lrow{ grid-template-columns:minmax(0,1fr); row-gap:6px }
+  .prow{ grid-template-columns:minmax(0,1fr); row-gap:4px }
+  .prow .price{ text-align:left }
+}
+
+/* ---------- akt 7: avslutet, inverterat ---------- */
+.close{ padding-top:clamp(32px,6vh,72px) }
+.sheet{ background:var(--ink); color:var(--paper); min-height:70vh; display:flex; flex-direction:column; justify-content:flex-end }
+.js:not(.rm) .sheet{ clip-path:inset(0 100% 0 0) }
+.sheet .wrap{ width:100%; padding-top:clamp(40px,8vh,96px); padding-bottom:var(--m) }
+.sheet .poster{ max-width:10.2em }
+.sheet .mail{ display:inline-block; margin:1.6em 0 2.4em; text-decoration:underline; text-underline-offset:.2em }
+.sheet .fine{ margin:0; font-size:11px; line-height:1.5; letter-spacing:.02em; max-width:70ch }
+.sheet .fine a{ text-decoration:underline; text-underline-offset:.15em }
+
+@media (prefers-reduced-motion:reduce){
+  *{ transition:none !important; animation:none !important }
+}
+</style>
+</head>
+<body>
+
+<header class="bar">
+  <div class="wrap">
+    <a class="mark" href="#top" aria-label="Alunix, till toppen"><img src="assets/logo-black.svg" alt=""><span class="label">Alunix</span></a>
+    <span class="clock"><time id="clock" datetime=""></time><span class="city">Stockholm</span></span>
+    <a class="mail" href="mailto:kontakt@alunix.se">kontakt@alunix.se</a>
+  </div>
+</header>
+
+<main id="top">
+  <h1 class="sr-only">Alunix</h1>
+
+  <!-- Akt 1 till 3 -->
+  <section class="hero" id="hero" aria-label="Alunix">
+    <div class="stage wrap" id="stage">
+      <p class="desc">Webbdesign, design och system. Allt på ett ställe.</p>
+
+      <div class="block" id="block" aria-hidden="true">
+        <div class="row" id="row1">
+          <div class="face fa">
+            <svg viewBox="0 0 226 73" preserveAspectRatio="xMinYMin meet" data-word="ALU" data-off="0">
+              <mask id="win1" maskUnits="userSpaceOnUse" x="0" y="0" width="226" height="73"></mask>
+              <g mask="url(#win1)"><g class="strip">
+                <image href="assets/demo-calyx.webp" x="-68" y="-44" width="362" height="234" preserveAspectRatio="xMidYMid slice"/>
+                <image data-href="assets/demo-horai.webp" x="-68" y="190" width="362" height="234" preserveAspectRatio="xMidYMid slice"/>
+                <image data-href="assets/demo-hyperborea.webp" x="-68" y="424" width="362" height="234" preserveAspectRatio="xMidYMid slice"/>
+              </g></g>
+              <text x="0" y="71">ALU</text>
+            </svg>
+          </div>
+          <div class="face fb"><span class="poster">VI BYGGER</span></div>
+        </div>
+        <div class="row" id="row2">
+          <div class="face fa">
+            <svg viewBox="0 0 226 73" preserveAspectRatio="xMinYMin meet" data-word="NIX" data-off="-73">
+              <mask id="win2" maskUnits="userSpaceOnUse" x="0" y="0" width="226" height="73"></mask>
+              <g mask="url(#win2)"><g class="strip">
+                <image href="assets/demo-calyx.webp" x="-68" y="-44" width="362" height="234" preserveAspectRatio="xMidYMid slice"/>
+                <image data-href="assets/demo-horai.webp" x="-68" y="190" width="362" height="234" preserveAspectRatio="xMidYMid slice"/>
+                <image data-href="assets/demo-hyperborea.webp" x="-68" y="424" width="362" height="234" preserveAspectRatio="xMidYMid slice"/>
+              </g></g>
+              <text x="0" y="71">NIX</text>
+            </svg>
+          </div>
+          <div class="face fb"><span class="poster">ERT VARUMÄRKE.</span></div>
+        </div>
+      </div>
+
+      <div class="under">
+        <p class="site label" id="siteRow">Exempelsida: Calyx, florist i Stockholm</p>
+        <div class="lead" id="lead">
+          <p class="label">Tre exempelsidor</p>
+          <p>Tre sajter vi ritat och byggt. De ligger live här på sidan: bläddra i dem.</p>
+        </div>
+      </div>
+
+      <div class="hero-foot" id="heroFoot">
+        <div class="claim" id="claim">
+          <p class="h1">Er hemsida är nutidens visitkort</p>
+          <p>Vi skapar skräddarsydda webbplatser som hjälper er att exponera verksamheten.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Akt 4 -->
+  <section class="bevis wrap" id="bevis" aria-labelledby="bevisH">
+    <h2 class="poster static-heading" id="bevisH">VI BYGGER<br>ERT VARUMÄRKE.</h2>
+    <p class="intro">Tre sajter vi ritat och byggt. De ligger live här på sidan: bläddra i dem.</p>
+
+    <article class="spread" data-site="Calyx">
+      <div class="plate">
+        <iframe src="/sites/calyx.html" title="Calyx, florist i Stockholm" loading="lazy"></iframe>
+        <img class="shot" loading="lazy" decoding="async" src="assets/demo-calyx.webp" alt="Skärmbild av Calyx startsida" width="1200" height="750">
+      </div>
+      <div class="cap">
+        <p class="label">Exempelsida: Calyx, florist i Stockholm</p>
+        <a class="arrow" href="/sites/calyx.html" target="_blank" rel="noopener">Öppna i nytt fönster →</a>
+      </div>
+    </article>
+
+    <article class="spread" data-site="Hōrai">
+      <div class="plate">
+        <iframe src="/sites/horai.html" title="Hōrai, Asian fusion-koncept" loading="lazy"></iframe>
+        <img class="shot" loading="lazy" decoding="async" src="assets/demo-horai.webp" alt="Skärmbild av Hōrais startsida" width="1200" height="750">
+      </div>
+      <div class="cap">
+        <p class="label">Exempelsida: Hōrai, Asian fusion-koncept</p>
+        <a class="arrow" href="/sites/horai.html" target="_blank" rel="noopener">Öppna i nytt fönster →</a>
+      </div>
+    </article>
+
+    <article class="spread" data-site="Hyperborea">
+      <div class="plate">
+        <iframe src="/sites/hyperborea.html" title="Hyperborea, konferens i Lund" loading="lazy"></iframe>
+        <img class="shot" loading="lazy" decoding="async" src="assets/demo-hyperborea.webp" alt="Skärmbild av Hyperboreas startsida" width="1200" height="750">
+      </div>
+      <div class="cap">
+        <p class="label">Exempelsida: Hyperborea, konferens i Lund</p>
+        <a class="arrow" href="/sites/hyperborea.html" target="_blank" rel="noopener">Öppna i nytt fönster →</a>
+      </div>
+    </article>
+  </section>
+
+  <!-- Akt 5 -->
+  <section class="ledger wrap" id="tjanster" aria-labelledby="tjH">
+    <div class="head">
+      <div class="head-text">
+        <h2 class="label" id="tjH">Tjänster</h2>
+        <p class="line">Vi ritar, bygger och kopplar ihop. Tre delar, ett ansvar.</p>
+      </div>
+      <figure>
+        <img src="assets/desk-daylight.webp" alt="Ett skrivbord vid ett fönster i dagsljus, svartvitt" width="2200" height="1649" id="deskPhoto" loading="lazy">
+        <figcaption class="label">Foto: Annie Spratt</figcaption>
+      </figure>
+    </div>
+    <ol>
+      <li class="lrow"><span class="poster num">01</span><h3 class="label name">Design</h3><p>Identitet, typografi och layout. Vi ritar sidan innan vi bygger den.</p></li>
+      <li class="lrow"><span class="poster num">02</span><h3 class="label name">Utveckling</h3><p>Handskriven kod utan tunga teman. Vi bygger det vi ritat.</p></li>
+      <li class="lrow"><span class="poster num">03</span><h3 class="label name">System</h3><p>CMS, bokning, betalning och kunddatabas. Vi kopplar ihop det ni behöver.</p></li>
+    </ol>
+  </section>
+
+  <!-- Akt 6 -->
+  <section class="ledger wrap" id="paket" aria-labelledby="pkH">
+    <div class="head">
+      <div class="head-text">
+        <h2 class="label" id="pkH">Paket</h2>
+        <p class="line">Tre nivåer. Priset står bredvid.</p>
+      </div>
+    </div>
+    <ul>
+      <li class="prow"><p>Standardpaket. Webbplats med CMS för egna ändringar och en första SEO-optimering.</p><span class="price">26 900 kr</span></li>
+      <li class="prow"><p>Paket med bokningssystem, betalning och kunddatabas.</p><span class="price">38 900 kr</span></li>
+      <li class="prow"><p>Helt skräddarsydda lösningar för produktkataloger, specialbyggda system med mera</p><span class="price">Pris vid förfrågan</span></li>
+    </ul>
+  </section>
+
+  <!-- Akt 7 -->
+  <section class="close" id="kontakt" aria-labelledby="clH">
+    <div class="sheet" id="sheet">
+      <div class="wrap">
+        <h2 class="poster" id="clH">Alla har rätt till bra design.</h2>
+        <a class="mail" href="mailto:kontakt@alunix.se">kontakt@alunix.se</a>
+        <p class="fine">Alunix, webbyrå i Sverige. Exempelsidor: Calyx, Hōrai, Hyperborea. Foto vid tjänsterna: <a href="https://unsplash.com/@anniespratt" rel="noopener">Annie Spratt</a> via <a href="https://unsplash.com/photos/Rjp8UxEIJ38" rel="noopener">Unsplash</a>.</p>
+      </div>
+    </div>
+  </section>
+</main>
+
+<script>
+(function(){
+  'use strict';
+  const doc = document.documentElement;
+  const rmq = matchMedia('(prefers-reduced-motion: reduce)');
+  let rm = rmq.matches;
+  if (rm) doc.classList.add('rm');
+  rmq.addEventListener && rmq.addEventListener('change', e => { rm = e.matches; doc.classList.toggle('rm', rm); layout(); });
+
+  /* ---------- klockan: riktig tid i Stockholm ---------- */
+  const clockEl = document.getElementById('clock');
+  const fmt = new Intl.DateTimeFormat('sv-SE', { timeZone:'Europe/Stockholm', hour:'2-digit', minute:'2-digit', second:'2-digit', hour12:false });
+  function tick(){ const d = new Date(); clockEl.textContent = fmt.format(d); clockEl.setAttribute('datetime', d.toISOString()); }
+  tick(); setInterval(tick, 1000);
+
+  /* ---------- element ---------- */
+  const hero = document.getElementById('hero');
+  const stage = document.getElementById('stage');
+  const block = document.getElementById('block');
+  const rows = [document.getElementById('row1'), document.getElementById('row2')];
+  const svgs = rows.map(r => r.querySelector('svg'));
+  const fas = rows.map(r => r.querySelector('.fa'));
+  const fbs = rows.map(r => r.querySelector('.fb'));
+  const strips = svgs.map(s => s.querySelector('.strip'));
+  const foot = document.getElementById('heroFoot');
+  const siteRow = document.getElementById('siteRow');
+  const claim = document.getElementById('claim');
+  const lead = document.getElementById('lead');
+  const spreads = Array.from(document.querySelectorAll('.spread'));
+  const shots = spreads.map(s => s.querySelector('.shot'));
+  const lrows = Array.from(document.querySelectorAll('.lrow'));
+  const prows = Array.from(document.querySelectorAll('.prow'));
+  const deskPhoto = document.getElementById('deskPhoto');
+  const sheet = document.getElementById('sheet');
+  const siteNames = ['Exempelsida: Calyx, florist i Stockholm','Exempelsida: Hōrai, Asian fusion-koncept','Exempelsida: Hyperborea, konferens i Lund'];
+
+  /* ---------- fönstren i A, U och X: mätta i bläcket, inte gissade ---------- */
+  const NS = 'http://www.w3.org/2000/svg';
+  const BASE = 71;                    // baslinjen i SVG-enheter
+  const scan = document.createElement('canvas'); const sc = scan.getContext('2d', { willReadFrequently:true });
+  const SC = 2;                       // skannar vid 200 px, enheter är 100 px
+  function inkScan(ch, fam){
+    const W = 400, H = 400, penX = 100, penY = 260;
+    scan.width = W; scan.height = H;
+    sc.clearRect(0, 0, W, H); sc.font = `900 ${100 * SC}px ${fam}`; sc.textBaseline = 'alphabetic'; sc.fillStyle = '#000';
+    sc.fillText(ch, penX, penY);
+    const d = sc.getImageData(0, 0, W, H).data;
+    const ink = (x, y) => d[(y * W + x) * 4 + 3] > 110;
+    const runsRow = y => { const r = []; let s = -1; for (let x = 0; x < W; x++){ const k = ink(x, y); if (k && s < 0) s = x; else if (!k && s >= 0){ r.push([s, x - 1]); s = -1; } } if (s >= 0) r.push([s, W - 1]); return r; };
+    const runsCol = x => { const r = []; let s = -1; for (let y = 0; y < H; y++){ const k = ink(x, y); if (k && s < 0) s = y; else if (!k && s >= 0){ r.push([s, y - 1]); s = -1; } } if (s >= 0) r.push([s, H - 1]); return r; };
+    // gap = mellan yttersta bläckstråken på en rad (räknare och öppningar), 1.5 enheter in i bläcket
+    const regionsRows = []; let cur = null;
+    for (let y = 0; y < H; y++){
+      const r = runsRow(y); let g = null;
+      if (r.length >= 2) g = [r[0][1] + 1 - 3, r[r.length - 1][0] + 3];
+      if (g){ if (cur && y === cur.y1 + 1 && Math.abs(g[0] - cur.l[cur.l.length-1][0]) < 40){ cur.y1 = y; cur.l.push([g[0], y]); cur.r.push([g[1], y]); } else { cur = { y0:y, y1:y, l:[[g[0], y]], r:[[g[1], y]] }; regionsRows.push(cur); } }
+      else cur = null;
+    }
+    const regionsCols = []; cur = null;
+    for (let x = 0; x < W; x++){
+      const r = runsCol(x); let g = null;
+      if (r.length >= 2) g = [r[0][1] + 1 - 3, r[r.length - 1][0] + 3];
+      if (g){ if (cur && x === cur.x1 + 1 && Math.abs(g[0] - cur.t[cur.t.length-1][0]) < 40){ cur.x1 = x; cur.t.push([g[0], x]); cur.b.push([g[1], x]); } else { cur = { x0:x, x1:x, t:[[g[0], x]], b:[[g[1], x]] }; regionsCols.push(cur); } }
+      else cur = null;
+    }
+    const u = v => v / SC;
+    // bläckets yttermått, så att öppna sidor (A:s fot, U:s topp, X:s kilar) aldrig visar papper
+    let iy0 = H, iy1 = 0, ix0 = W, ix1 = 0;
+    for (let y = 0; y < H; y++) for (let x = 0; x < W; x++) if (ink(x, y)){ if (y < iy0) iy0 = y; if (y > iy1) iy1 = y; if (x < ix0) ix0 = x; if (x > ix1) ix1 = x; }
+    const polyRows = regionsRows.filter(R => R.y1 - R.y0 > 4).map(R => {
+      const yTop = Math.max(R.y0 - 3, iy0 + 1), yBot = Math.min(R.y1 + 4, iy1);
+      const pts = [];
+      pts.push([R.l[0][0], yTop]);
+      R.l.forEach(([x, y]) => pts.push([x, y]));
+      pts.push([R.l[R.l.length - 1][0], yBot], [R.r[R.r.length - 1][0], yBot]);
+      R.r.slice().reverse().forEach(([x, y]) => pts.push([x, y + 1]));
+      pts.push([R.r[0][0], yTop]);
+      return pts.map(([x, y]) => `${u(x - penX)},${u(y - penY)}`).join(' ');
+    });
+    const polyCols = regionsCols.filter(R => R.x1 - R.x0 > 4).map(R => {
+      const xL = Math.max(R.x0 - 3, ix0 + 1), xR = Math.min(R.x1 + 4, ix1);
+      const pts = [];
+      pts.push([xL, R.t[0][0]]);
+      R.t.forEach(([y, x]) => pts.push([x, y]));
+      pts.push([xR, R.t[R.t.length - 1][0]], [xR, R.b[R.b.length - 1][0]]);
+      R.b.slice().reverse().forEach(([y, x]) => pts.push([x + 1, y]));
+      pts.push([xL, R.b[0][0]]);
+      return pts.map(([x, y]) => `${u(x - penX)},${u(y - penY)}`).join(' ');
+    });
+    return { polyRows, polyCols };
+  }
+  function buildWindows(){
+    svgs.forEach(svg => {
+      const text = svg.querySelector('text');
+      const mask = svg.querySelector('mask');
+      const word = svg.dataset.word;
+      mask.querySelectorAll('.hull').forEach(n => n.remove());
+      const fam = getComputedStyle(text).fontFamily;
+      for (let i = 0; i < word.length; i++){
+        const ch = word[i];
+        if ('AUX'.indexOf(ch) < 0) continue;
+        let pen;
+        try { pen = text.getStartPositionOfChar(i).x; } catch(e){ continue; }
+        const r = inkScan(ch, fam);
+        const polys = ch === 'X' ? r.polyRows.concat(r.polyCols) : r.polyRows;
+        polys.forEach(pts => {
+          const el = document.createElementNS(NS, 'polygon');
+          el.setAttribute('points', pts); el.setAttribute('fill', '#fff'); el.setAttribute('class', 'hull');
+          el.setAttribute('transform', `translate(${pen} ${BASE})`);
+          mask.appendChild(el);
+        });
+      }
+    });
+  }
+
+  /* ---------- geometri för affischen ---------- */
+  const G = { P:100, F:400, S0:4, contentW:1000, hHero:[73,73], hTarget:[90,90], gapT:4, centerEnd:0, ready:false };
+  function layout(){
+    const P = parseFloat(getComputedStyle(fbs[0].querySelector('.poster')).fontSize);
+    const contentW = stage.clientWidth - 2 * parseFloat(getComputedStyle(stage).paddingLeft);
+    const narrow = innerWidth < 900;
+    // mät målraderna i vila
+    fbs.forEach(f => { f.style.width = contentW + 'px'; f.style.transform = 'none'; f.style.visibility = 'hidden'; f.style.position = 'absolute'; });
+    G.hTarget = fbs.map(f => f.offsetHeight);
+    fbs.forEach(f => { f.style.visibility = ''; });
+    // tillgänglig höjd för blocket (på smal skärm styr bredden ensam)
+    const stageH = stage.clientHeight;
+    const descBottom = block.offsetTop;
+    const footH = foot.offsetHeight;
+    const siteH = siteRow.offsetHeight + 18;
+    const availH = narrow ? 1e6 : Math.max(120, stageH - descBottom - siteH - footH - 8);
+    const widthLimit = (narrow ? 1.0 : 0.70) * contentW / 2.26;
+    const F = Math.min(availH / 1.47, widthLimit, 900);
+    const leadH = lead.offsetHeight + 18;
+    const targetBlockH = G.hTarget[0] + G.hTarget[1] + 0.04 * P;
+    G.centerEnd = narrow ? 0 : Math.max(0, (stageH - descBottom - targetBlockH - leadH - footH - 8) / 2);
+    if (rm){
+      // ingen resa: affischen står i sin egen storlek, rubriken ligger i flödet
+      G.ready = false;
+      svgs.forEach(sv => { sv.style.width = (2.26 * F) + 'px'; sv.style.height = (0.73 * F) + 'px'; });
+      rows.forEach(r => { r.style.height = ''; r.style.width = ''; r.style.clipPath = ''; });
+      fbs.forEach(f => { f.style.transform = ''; f.style.width = ''; f.style.opacity = ''; });
+      fas.forEach(f => { f.style.transform = ''; f.style.opacity = ''; });
+      block.style.transform = ''; block.style.height = ''; block.style.marginTop = '';
+      siteRow.style.opacity = ''; claim.style.opacity = ''; claim.style.visibility = ''; lead.style.opacity = ''; lead.style.visibility = '';
+      return;
+    }
+    // SVG-bredd i blockenheter: 2.26em av affischstorleken, skalas upp av blocket
+    svgs.forEach(sv => { sv.style.width = (2.26 * P) + 'px'; sv.style.height = (0.73 * P) + 'px'; });
+    G.P = P; G.F = F; G.S0 = F / P; G.contentW = contentW;
+    G.hHero = [0.73 * P, 0.73 * P];
+    G.gapT = 0.04 * P;
+    G.ready = true;
+    applyHero(heroP, true);
+  }
+
+  /* ---------- scrollen ---------- */
+  const clamp = (v, a, b) => Math.min(b, Math.max(a, v));
+  const lerp = (a, b, t) => a + (b - a) * t;
+  const smooth = t => t * t * (3 - 2 * t);
+  const easeIO = t => t < .5 ? 4*t*t*t : 1 - Math.pow(-2*t + 2, 3) / 2;
+  let heroP = 0, heroTarget = 0, siteIdx = -1;
+  const HOLD = 0.06, SLIDE_END = 0.58;
+
+  function stripPos(ps){
+    // två byten med vila emellan: Calyx håller, byter till Hōrai, håller, byter till Hyperborea, håller
+    const seg = [[0.12, 0.42], [0.58, 0.88]];
+    let k = 0;
+    seg.forEach(([a, b]) => { k += smooth(clamp((ps - a) / (b - a), 0, 1)); });
+    return k;
+  }
+
+  function applyHero(p, force){
+    if (!G.ready) return;
+    const ps = clamp((p - HOLD) / (SLIDE_END - HOLD), 0, 1);
+    const pb = clamp((p - SLIDE_END) / (1 - SLIDE_END), 0, 1);
+    // (1) bilden bakom masken glider
+    const k = stripPos(ps);
+    strips.forEach((g, i) => { g.setAttribute('transform', `translate(0 ${(i === 0 ? 0 : -73) - k * 234})`); });
+    const idx = Math.round(k);
+    if (idx !== siteIdx){ siteIdx = idx; siteRow.textContent = siteNames[idx]; }
+    // (2) blocket andas
+    const e = easeIO(pb);
+    const s = lerp(G.S0, 1, e);
+    block.style.transform = `scale(${s})`;
+    const rowW = G.contentW / s;
+    let visualH = 0;
+    rows.forEach((row, i) => {
+      const Hv = lerp(G.hHero[i] * G.S0, G.hTarget[i], e);   // visuell radhöjd i px
+      const h = Hv / s;                                       // i blockenheter
+      visualH += Hv + (i === 1 ? lerp(0, G.gapT, e) : 0);
+      row.style.height = h + 'px';
+      row.style.width = rowW + 'px';
+      if (i === 1) row.style.marginTop = (lerp(0, G.gapT, e) / s) + 'px';
+      // ordmärket glider en bit uppåt och tonar; rubriken kommer underifrån och tonar in: en korstoning i samma rörelse
+      fas[i].style.transform = `translateY(${-0.4 * h * e}px)`;
+      fas[i].style.opacity = 1 - clamp(e / 0.55, 0, 1);
+      row.style.clipPath = `inset(${(-0.45 * G.P * clamp((e - 0.85) / 0.15, 0, 1)).toFixed(2)}px 0 0 0)`;
+      fbs[i].style.transform = `translateY(${(0.4 * Hv + 0.35 * G.P) * (1 - e) / s}px) scale(${1 / s})`;
+      fbs[i].style.opacity = clamp((e - 0.3) / 0.5, 0, 1);
+      fbs[i].style.width = G.contentW + 'px';
+    });
+    block.style.height = visualH + 'px';
+    block.style.marginTop = (G.centerEnd * e).toFixed(1) + 'px';
+    const fade = 1 - clamp(pb * 2.2, 0, 1);
+    const rise = clamp(pb * 2.2 - 1.2, 0, 1);
+    siteRow.style.opacity = fade;
+    claim.style.opacity = fade;
+    lead.style.opacity = rise;
+    claim.style.visibility = fade === 0 ? 'hidden' : '';
+    lead.style.visibility = rise === 0 ? 'hidden' : '';
+  }
+
+  const revealed = new Set();
+  function frame(){
+    const vh = innerHeight;
+    const y = scrollY;
+    if (!rm && G.ready){
+      const top = hero.offsetTop;
+      const range = hero.offsetHeight - stage.offsetHeight - parseFloat(getComputedStyle(doc).getPropertyValue('--bar'));
+      heroTarget = clamp((y - top) / Math.max(1, range), 0, 1);
+      if (Math.abs(heroTarget - heroP) > 0.0004){ heroP += (heroTarget - heroP) * 0.16; applyHero(heroP); }
+      else if (heroP !== heroTarget){ heroP = heroTarget; applyHero(heroP); }
+    }
+    // akt 4: glid in en gång, svartvitt till mitten, sedan färg och öppen ram
+    spreads.forEach((sp, i) => {
+      const r = sp.getBoundingClientRect();
+      if (!sp.classList.contains('in') && r.top < vh * 0.85 && r.bottom > 0) sp.classList.add('in');
+      const shot = shots[i];
+      if (rm || shot.classList.contains('open')) return;
+      const c = (r.top + r.bottom) / 2;
+      const q = clamp((vh * 0.62 - c) / (vh * 0.24), 0, 1);
+      shot.style.filter = `grayscale(${1 - q})`;
+      if (q >= 1) shot.classList.add('open');
+    });
+    // akt 5: rader dras fram radvis, fotot går i annan hastighet
+    lrows.forEach((el, i) => {
+      if (el.classList.contains('in')) return;
+      const r = el.getBoundingClientRect();
+      if (r.top < vh * 0.88){ el.style.transitionDelay = (i * 120) + 'ms'; el.classList.add('in'); }
+    });
+    if (!rm && deskPhoto){
+      const r = deskPhoto.getBoundingClientRect();
+      if (r.bottom > -200 && r.top < vh + 200){
+        const d = ((r.top + r.bottom) / 2 - vh / 2) / vh;
+        deskPhoto.style.transform = `translateY(${(-d * 48).toFixed(1)}px)`;
+      }
+    }
+    // akt 6: radvis intoning, priset kommer från höger
+    prows.forEach((el, i) => {
+      if (el.classList.contains('in')) return;
+      const r = el.getBoundingClientRect();
+      if (r.top < vh * 0.9){ el.style.transitionDelay = (i * 140) + 'ms'; el.querySelector('.price').style.transitionDelay = (i * 140 + 80) + 'ms'; el.classList.add('in'); }
+    });
+    // akt 7: bläcket trycks över papperet, styrt av scrollen
+    if (!rm && sheet){
+      const r = sheet.getBoundingClientRect();
+      const p = clamp((vh - r.top) / (vh * 0.7), 0, 1);
+      sheet.style.clipPath = `inset(0 ${((1 - smooth(p)) * 100).toFixed(2)}% 0 0)`;
+    }
+    requestAnimationFrame(frame);
+  }
+
+  /* ---------- bilder som inte kom fram hämtas om (enkla utvecklingsservrar tappar anslutningar) ---------- */
+  document.querySelectorAll('img, image').forEach(el => {
+    let tries = 0;
+    el.addEventListener('error', () => {
+      if (tries++ >= 3) return;
+      const isSvg = el.tagName.toLowerCase() === 'image';
+      const src = isSvg ? el.getAttribute('href') : el.getAttribute('src');
+      const clean = src.split('?')[0];
+      setTimeout(() => { if (isSvg) el.setAttribute('href', clean + '?r=' + tries); else el.src = clean + '?r=' + tries; }, 350 * tries);
+    });
+  });
+
+  /* ---------- bild två och tre i fönstren hämtas efter den första, i tur och ordning ---------- */
+  function loadStripRest(){
+    const pending = Array.from(document.querySelectorAll('svg image[data-href]'));
+    const next = () => { const el = pending.shift(); if (!el) return; el.setAttribute('href', el.dataset.href); el.removeAttribute('data-href'); setTimeout(next, 120); };
+    next();
+  }
+  const firstStrip = document.querySelector('svg image[href]');
+  if (firstStrip){ let done = false; const go = () => { if (!done){ done = true; loadStripRest(); } }; firstStrip.addEventListener('load', go); firstStrip.addEventListener('error', go); setTimeout(go, 1500); }
+
+  function init(){
+    buildWindows();
+    layout();
+    requestAnimationFrame(frame);
+  }
+  let rt;
+  addEventListener('resize', () => { clearTimeout(rt); rt = setTimeout(() => { layout(); }, 80); });
+  init();
+  if (document.fonts && document.fonts.load){
+    Promise.all([document.fonts.load('900 100px Archivo'), document.fonts.load('400 17px "Familjen Grotesk"')])
+      .then(() => { buildWindows(); layout(); })
+      .catch(() => {});
+  }
+})();
+</script>
+</body>
+</html>

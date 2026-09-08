@@ -7,6 +7,7 @@ Captures a page with Playwright and writes, under design-catalogue/entries/<slug
   shot.png         lossless copy of fold (<=1440 wide) for vision
   slices/NN.webp    viewport-height slices of the full page (max 12)
 """
+import re
 import sys
 import os
 from pathlib import Path
@@ -48,6 +49,16 @@ def main():
         print("usage: capture.py <url|file> <slug>", file=sys.stderr)
         sys.exit(1)
     target, slug = sys.argv[1], sys.argv[2]
+
+    # Validate the slug. Without this, `capture.py --help` created
+    # design-catalogue/entries/--help/ (and `-h` did the same); both sat in the
+    # catalogue as empty entries until 2026-09-08. argparse is not used here on
+    # purpose - two positionals, no flags - so the check is explicit.
+    if not re.match(r"^[a-z0-9]+(?:-[a-z0-9]+)*$", slug):
+        print("capture: '" + slug + "' ar ingen giltig slug (kebab-case: a-z, 0-9, "
+              "bindestreck mellan ord, aldrig inledande bindestreck).", file=sys.stderr)
+        sys.exit(2)
+
     url = resolve_url(target)
 
     root = Path(__file__).resolve().parent.parent.parent

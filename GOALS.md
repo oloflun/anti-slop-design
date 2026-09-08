@@ -33,13 +33,19 @@ färdigt, och det ser inte ut som en produkt med ett slutdatum utan som ett syst
 som underhålls så länge Anton designar med AI. Det som *finns* är tre mätpunkter som
 projektet självt har infört, och de går att observera:
 
-1. **`python verify-design-system.py` går igenom.** 80 mekaniska kontroller av att
+1. **`python verify-design-system.py` går igenom.** 191 mekaniska kontroller av att
    installationen, hook-inkopplingen, routingtabellen och kontraktsspärrarna hänger
-   ihop. Senaste noteringen i hubbdokumentet: 80/80.
+   ihop (2026-09-08: 191/191). Fram till den dagen kraschade skriptet mitt i körningen
+   på ett anrop till ett namn `design-stop.py` aldrig exporterat, så den tidigare
+   noteringen 80/80 beskrev en körning som aldrig nådde slutet.
 2. **Gapet mellan "utpekad skill" och "laddad skill" är noll.** Varje session skriver
    en rapport. Hookar kan injicera text och stoppa skrivningar, men de kan inte ladda
    en skill — bara modellen kan det. Därför mäts hur ofta systemet pekade ut rätt
-   skill och ingenting laddade den. Det talet ska vara noll.
+   skill och ingenting laddade den. Det talet ska vara noll. **Sedan 2026-09-08 räknar
+   det bara skills modellen kunde ha laddat:** en skill som bara användaren får köra
+   (`disable-model-invocation`) och en rutt som pekar på något som inte är installerat
+   redovisas var för sig. Ett tal som blandar "du hoppade över ett steg" med "steget
+   går inte att ta" går inte att agera på.
 3. **Blindtestet.** Tre färska underagenter fick var sitt uppdrag utan dialog och
    utan iteration, och Anton bedömde att alla tre höll referensnivå på första
    försöket. Det gjordes 2026-08-01 och är det närmaste ett godkännandeprov
@@ -168,6 +174,12 @@ hälsokontroller, inte ett mål.
    `design` i stället — se `tests/alunix-ab-r7/CHAIN-AUDIT-2026-09-07.md` § 2b.
 
 ## Ändringslogg
+
+- 2026-09-08 — Mätpunkt 1 och 2 omskrivna efter mätning: verifieraren har 191
+  kontroller och kraschade tidigare mitt i körningen; gapet delas nu i tre hinkar.
+  Designkedjan v4 påbörjad enligt plan `trots-den-senaste-design-system-federated-raven`:
+  åtta av tretton infrastrukturuppgifter klara, r8-testet inte startat. F-012 stängd
+  som F-013 med mätning. Nytt genereringslager med Higgsfield (planens §10).
 
 - 2026-09-06 — claude — r6 underkändes av Anton och blev r7. Fynden: hans webbläsare kör
   reduced motion (Windows-animationer av), så alla sex celler visade sina reservlägen och

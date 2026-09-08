@@ -1,0 +1,348 @@
+<!doctype html>
+<html lang="sv">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Alunix, webbyrå. Er hemsida är nutidens visitkort</title>
+<meta name="description" content="Alunix är en webbyrå i Sverige. Vi skapar skräddarsydda webbplatser som hjälper er att exponera verksamheten.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Newsreader:opsz,wght@6..72,300;6..72,400&family=Schibsted+Grotesk:wght@400;500&display=swap" rel="stylesheet">
+<style>
+/* design · pre-emit critique: P5 H4 E4 S5 R5 V4
+   K1 Skymning. Lane: blue-hour Stockholm, one photograph, light serif, one amber.
+   Tier 2: brief concepts.md §K1 + catalogue rogo (hero photo carries claim and proof,
+   hard register change at the fold, claim beside real screenshot) + groupemontoni
+   (type set straight on the image, bottom-edge darkening only).
+   Reference lock: dominant rogo; montoni contributes the on-photo wordmark and the
+   edge-only darkening. Rejected: logo wall, pill CTA, announcement bar, counters.
+   Tokens derive from the dusk photo: water blue-black, window-amber, warm white. */
+:root{
+  --night:oklch(17% 0.025 268);
+  --night-2:oklch(23% 0.03 268);
+  --paper:oklch(98.5% 0.004 85);
+  --ink:oklch(19% 0.02 268);
+  --ink-soft:oklch(44% 0.015 268);
+  --light:oklch(96% 0.012 85);
+  --light-soft:oklch(80% 0.02 85);
+  --amber:oklch(82% 0.13 78);
+  --amber-ink:oklch(58% 0.13 70);
+  --rule-dark:oklch(38% 0.02 268);
+  --rule-light:oklch(86% 0.006 85);
+  --font-display:'Newsreader',Georgia,'Times New Roman',serif;
+  --font-text:'Schibsted Grotesk',system-ui,-apple-system,'Segoe UI',sans-serif;
+  --bar:64px;
+  --gutter:clamp(20px,4vw,64px);
+  --ease:cubic-bezier(.16,1,.3,1);
+}
+*{box-sizing:border-box;margin:0;padding:0}
+html,body{overflow-x:clip}
+html{background:var(--night);color:var(--light);-webkit-text-size-adjust:100%}
+body{font-family:var(--font-text);font-size:1.0625rem;line-height:1.5;font-weight:400}
+img{display:block;max-width:100%}
+a{color:inherit}
+a:focus-visible,button:focus-visible{outline:2px solid var(--amber);outline-offset:4px}
+h1,h2,h3{font-weight:300;font-family:var(--font-display);font-variation-settings:'opsz' 72}
+.display{font-family:var(--font-display);font-weight:300}
+
+/* ---------- top bar: fixed, transparent over photo, paper on white ---------- */
+.bar{position:fixed;inset:0 0 auto 0;height:var(--bar);z-index:20;display:flex;align-items:center;justify-content:space-between;padding:0 var(--gutter);color:var(--light);transition:color .4s,background-color .4s,border-color .4s;border-bottom:1px solid transparent}
+.bar .logo{display:block;height:26px;width:auto;color:inherit}
+.bar .logo svg{height:100%;width:auto;display:block}
+.bar a.mail{text-decoration:none;font-size:.9375rem;letter-spacing:.01em;border-bottom:1px solid transparent;transition:border-color .3s}
+.bar a.mail:hover{border-bottom-color:currentColor}
+.bar .now{font-size:.8125rem;color:var(--light);text-shadow:0 1px 8px oklch(10% 0.02 268 / .7);letter-spacing:.02em;display:none;position:absolute;left:50%;transform:translateX(-50%);white-space:nowrap}
+.bar.hold .now{display:block}
+.bar.paper{color:var(--ink);background:color-mix(in oklch,var(--paper) 92%,transparent);border-bottom-color:var(--rule-light);backdrop-filter:blur(8px)}
+@media (max-width:640px){.bar .now{display:none!important}}
+
+/* ---------- act 1–3: the photograph ---------- */
+.hero-track{position:relative;height:100vh}
+.hero{position:relative;height:100vh;overflow:hidden;background:var(--night)}
+/* plate = the rendered photo rectangle (cover math in CSS), so the window sits at photo percentages */
+.plate{position:absolute;top:50%;left:50%;width:max(100vw,150vh);aspect-ratio:3/2;translate:-50% -50%;transform-origin:50% 50%}
+@media (max-aspect-ratio:3/2){.plate{left:auto;right:0;translate:0 -50%}}
+.plate>img{width:100%;height:100%;object-fit:cover}
+.win{position:absolute;left:87.6%;top:34.9%;width:7%;aspect-ratio:16/10;overflow:hidden;background:var(--night-2)}
+.win img{width:100%;height:100%;object-fit:cover;object-position:top}
+/* edge darkening only where text sits, never a gradient over the whole image */
+.scrim{position:absolute;inset:auto 0 0 0;height:62%;background:linear-gradient(to top,oklch(12% 0.02 268 / .78) 0%,oklch(12% 0.02 268 / .35) 45%,transparent 100%);pointer-events:none}
+.hero-copy{position:absolute;left:var(--gutter);right:var(--gutter);bottom:clamp(40px,9vh,96px);max-width:44rem}
+.hero h1{font-size:clamp(2.5rem,6.2vw,6.25rem);line-height:.98;letter-spacing:-.015em;max-width:12ch;overflow-wrap:anywhere;min-width:0}
+.hero h1 u{text-decoration:none;background:linear-gradient(var(--amber),var(--amber)) no-repeat 0 92%/100% 2px}
+.hero .lede{margin-top:1.25rem;font-size:clamp(1.0625rem,1.5vw,1.3125rem);max-width:36ch;color:var(--light-soft)}
+.hero .proof{margin-top:2.25rem;font-family:var(--font-display);font-weight:400;font-variation-settings:'opsz' 20;font-size:clamp(1.0625rem,1.6vw,1.375rem);letter-spacing:.02em;color:var(--light)}
+.hero .proof span{opacity:.55;padding:0 .45em}
+.hero .fade{will-change:opacity,filter}
+
+/* the live frame: never transformed, never faded once shown */
+.frame{position:relative;height:100vh;background:var(--night)}
+.frame iframe,.frame>img{display:block;width:100%;height:100%;border:0;object-fit:cover;object-position:top}
+.frame .cap{position:absolute;left:var(--gutter);bottom:20px;font-size:.8125rem;color:var(--light-soft);letter-spacing:.02em}
+.frame .cap a{color:var(--light)}
+
+/* ---------- motion mode: JS on, motion allowed ---------- */
+html.motion .hero-track{height:320vh}
+html.motion .hero{position:fixed;inset:0;z-index:1}
+html.motion .frame{position:fixed;inset:0;z-index:2;visibility:hidden}
+html.motion .frame .cap{display:none}
+html.motion .frame.on{visibility:visible}
+html.motion .hero.off{visibility:hidden}
+html.motion .after,html.motion .close{position:relative;z-index:3;visibility:hidden}
+html.motion.cut .after,html.motion.cut .close{visibility:visible}
+html.motion.cut .hero,html.motion.cut .frame{visibility:hidden}
+
+/* ---------- act 4: white ---------- */
+.after{background:var(--paper);color:var(--ink)}
+.thesis{padding:calc(var(--bar) + 12vh) var(--gutter) 10vh}
+.thesis h2{font-size:clamp(2rem,10.5vw,10.5rem);line-height:.94;letter-spacing:.005em;text-transform:uppercase;overflow-wrap:anywhere;min-width:0}
+.thesis h2 .w{display:inline-block}
+.thesis .line{margin-top:clamp(1.5rem,4vh,3rem);font-size:clamp(1.125rem,1.7vw,1.5rem);color:var(--ink-soft);max-width:40ch}
+
+/* claim beside real screenshot, image side alternates; NOT a card grid */
+.rows{padding:0 var(--gutter) 6vh}
+.row{display:grid;grid-template-columns:minmax(0,5fr) minmax(0,7fr);gap:clamp(24px,5vw,96px);align-items:center;padding:clamp(48px,9vh,112px) 0;border-top:1px solid var(--rule-light)}
+.row:first-child{border-top:0}
+.row.flip .txt{order:2}
+.row .num{font-family:var(--font-display);font-weight:300;font-size:clamp(3rem,6vw,5.5rem);line-height:1;color:var(--amber-ink)}
+.row h3{font-size:clamp(2rem,3.6vw,3.5rem);line-height:1.02;margin-top:.5rem;letter-spacing:-.01em}
+.row p{margin-top:1rem;color:var(--ink-soft);max-width:34ch}
+.row figure{min-width:0}
+.row figure img{width:100%;height:auto;aspect-ratio:16/10;object-fit:cover;object-position:top;border:1px solid var(--rule-light)}
+.row figcaption{margin-top:.75rem;font-size:.875rem;color:var(--ink-soft)}
+.row figcaption a{color:var(--ink);text-decoration:none;border-bottom:1px solid var(--rule-light);transition:border-color .3s}
+.row figcaption a:hover{border-bottom-color:var(--ink)}
+@media (max-width:760px){.row{grid-template-columns:minmax(0,1fr);gap:28px}.row.flip .txt{order:0}}
+
+/* ---------- act 5: ledger, NOT a pricing card row ---------- */
+.ledger{padding:8vh var(--gutter) 14vh}
+.ledger h2{font-size:clamp(2.25rem,5.2vw,5rem);line-height:1;letter-spacing:-.01em;max-width:14ch;overflow-wrap:anywhere}
+.ledger ol{list-style:none;margin-top:clamp(2rem,6vh,4rem)}
+.ledger li{position:relative;display:grid;grid-template-columns:minmax(0,1fr) auto;gap:clamp(16px,4vw,64px);align-items:baseline;padding:clamp(22px,3.5vh,36px) 0}
+.ledger li::before{content:"";position:absolute;left:0;top:0;width:100%;height:1px;background:var(--rule-light);transform-origin:0 0}
+html.motion .ledger li::before{transform:scaleX(var(--draw,1))}
+.ledger li:last-child::after{content:"";position:absolute;left:0;bottom:0;width:100%;height:1px;background:var(--rule-light);transform-origin:0 0}
+html.motion .ledger li:last-child::after{transform:scaleX(var(--draw,1))}
+.ledger .what{font-size:clamp(1.0625rem,1.5vw,1.3125rem);max-width:44ch}
+.ledger .price{font-family:var(--font-display);font-weight:300;font-size:clamp(1.9rem,4.4vw,4.25rem);line-height:1;white-space:nowrap;text-align:right}
+.ledger .price.ask{font-size:clamp(1.25rem,2.2vw,2rem)}
+@media (max-width:520px){.ledger li{grid-template-columns:minmax(0,1fr)}.ledger .price{text-align:left}}
+
+/* ---------- act 6: night ---------- */
+.close{position:relative;min-height:100vh;display:grid;align-content:end;padding:calc(var(--bar) + 8vh) var(--gutter) 28px;background:var(--night);color:var(--light);overflow:hidden}
+.close .night{position:absolute;inset:0;z-index:0}
+.close .night img{width:100%;height:100%;object-fit:cover;object-position:50% 40%}
+.close .night::after{content:"";position:absolute;inset:auto 0 0 0;height:78%;background:linear-gradient(to top,oklch(10% 0.02 268 / .92),oklch(10% 0.02 268 / .55) 50%,transparent)}
+.close .inner{position:relative;z-index:1}
+.close .kicker{font-size:.9375rem;color:var(--light-soft)}
+.close .mail{display:inline-block;margin-top:.5rem;font-family:var(--font-display);font-weight:300;font-size:clamp(2rem,7.4vw,7.5rem);line-height:1;letter-spacing:-.02em;text-decoration:none;color:var(--light);overflow-wrap:anywhere;min-width:0;background:linear-gradient(var(--amber),var(--amber)) no-repeat 0 96%/0 2px;transition:background-size .8s var(--ease)}
+.close .mail:hover,.close .mail:focus-visible{background-size:100% 2px}
+.close .addr{margin-top:clamp(1.5rem,4vh,3rem);font-size:1rem;color:var(--light-soft);max-width:44ch}
+.close .credits{margin-top:clamp(2.5rem,8vh,6rem);display:flex;flex-wrap:wrap;gap:.5rem 2rem;font-size:.8125rem;color:var(--light-soft);border-top:1px solid var(--rule-dark);padding-top:16px}
+.close .credits a{color:var(--light);text-decoration:none;border-bottom:1px solid var(--rule-dark)}
+.close .credits a:hover{border-bottom-color:var(--light)}
+
+/* ---------- reveals: hidden only in motion mode, fail toward visible ---------- */
+html.motion .rv{opacity:0;transform:translate3d(var(--dx,0),var(--dy,0),0);transition:opacity 1.3s var(--ease),transform 1.3s var(--ease);transition-delay:var(--d,0s)}
+html.motion .rv.in{opacity:1;transform:none}
+html.motion .rv.from-l{--dx:-56px}
+html.motion .rv.from-r{--dx:56px}
+html.motion .rv.from-b{--dy:32px}
+html.motion .close{clip-path:inset(var(--cut,0%) 0 var(--cut,0%) 0)}
+
+@media (prefers-reduced-motion:reduce){
+  html.motion .rv{opacity:1;transform:none;transition:none}
+}
+</style>
+</head>
+<body>
+
+<!-- BAR: logo + typeset address, NOT a nav with buttons -->
+<header class="bar" id="bar">
+  <a class="logo" href="#top" aria-label="Alunix, till toppen">
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="80 400 827 1139" role="img" aria-label="Alunix"><path fill="currentColor" fill-rule="evenodd" d="M 430.020 513.250 C 386.700 600.458, 318.190 739.397, 297.501 782 C 289.087 799.325, 276.594 824.975, 269.739 839 C 216.342 948.248, 182.518 1018.108, 130.177 1127.250 L 122.145 1144 149.505 1144 C 176.418 1144, 176.876 1143.966, 177.531 1141.901 C 177.898 1140.746, 186.760 1121.959, 197.226 1100.151 C 207.692 1078.343, 223.776 1044.750, 232.969 1025.500 C 266.133 956.059, 277.353 933, 277.980 933 C 278.331 933, 280.408 935.587, 282.595 938.750 C 284.783 941.912, 296.100 956.500, 307.746 971.167 C 319.391 985.833, 342.181 1015.475, 358.390 1037.037 L 387.859 1076.238 461.033 1076 L 534.207 1075.762 470.560 1017.631 C 435.554 985.659, 402.500 955.397, 397.106 950.382 L 387.298 941.264 434.564 878.132 C 460.560 843.409, 486.212 809.170, 491.569 802.045 L 501.309 789.091 508.202 803.795 C 511.994 811.883, 528.404 847.925, 544.669 883.889 L 574.242 949.279 574.871 1046.639 L 575.500 1144 668.745 1144 L 761.990 1144 745.245 1108.250 C 736.035 1088.588, 724.207 1063.500, 718.960 1052.500 C 713.713 1041.500, 691.598 995.150, 669.815 949.500 C 632.586 871.478, 591.914 786.125, 562.500 724.500 C 555.315 709.450, 542.690 683.125, 534.444 666 C 526.199 648.875, 511.180 617.600, 501.069 596.500 C 490.958 575.400, 477.658 547.470, 471.514 534.434 C 465.370 521.398, 459.950 510.960, 459.469 511.240 C 458.988 511.520, 445.736 512.424, 430.020 513.250 M 833.500 720 L 833.500 780 869.750 780 L 906 780 906 720 L 906 660 869.750 660 L 833.500 660 833.500 720 M 833.500 976 L 833.500 1144 869.750 1144 L 906 1144 906 976 L 906 808 869.750 808 L 833.500 808 833.500 976"/></svg>
+  </a>
+  <span class="now" aria-hidden="true">Exempelsida: Hōrai, Asian fusion-koncept</span>
+  <a class="mail" href="mailto:kontakt@alunix.se">kontakt@alunix.se</a>
+</header>
+
+<!-- ACT 1–3: one photograph carries claim and proof, NOT a hero with a button -->
+<div class="hero-track" id="top">
+  <section class="hero" id="hero" aria-label="Alunix">
+    <div class="plate" id="plate">
+      <img src="assets/dusk.webp" width="2200" height="1467" alt="Stockholm i skymningen: Nybroviken, kajen och Nationalmuseum med tända fönster" fetchpriority="high">
+      <div class="win" id="win" aria-hidden="true"><img src="assets/demo-horai.webp" width="1200" height="750" alt=""></div>
+      <div class="scrim"></div>
+    </div>
+    <div class="hero-copy">
+      <div class="fade" id="heroFade">
+        <h1>Er hemsida är nutidens <u>visitkort</u></h1>
+        <p class="lede">Vi skapar skräddarsydda webbplatser som hjälper er att exponera verksamheten.</p>
+      </div>
+      <p class="proof" id="proof">Calyx<span>·</span>Hōrai<span>·</span>Hyperborea</p>
+    </div>
+  </section>
+</div>
+
+<!-- the window is Hōrai: live frame, untransformed -->
+<section class="frame" id="frame" aria-label="Exempelsida: Hōrai">
+  <noscript><iframe src="/sites/horai.html" title="Exempelsida: Hōrai, Asian fusion-koncept"></iframe></noscript>
+  <p class="cap">Exempelsida: <a href="/sites/horai.html">Hōrai, Asian fusion-koncept</a></p>
+</section>
+
+<main class="after" id="after">
+  <!-- ACT 4: hard cut to paper. Thesis as one display line, NOT an eyebrow + h2 + blurb stack -->
+  <section class="thesis">
+    <h2 id="thesis" aria-label="Vi bygger ert varumärke."><span class="w rv from-b" style="--d:.0s">VI</span> <span class="w rv from-b" style="--d:.08s">BYGGER</span> <span class="w rv from-b" style="--d:.16s">ERT</span> <span class="w rv from-b" style="--d:.24s">VARUMÄRKE.</span></h2>
+    <p class="line rv from-b" style="--d:.4s">Webbdesign, design och system. Allt på ett ställe.</p>
+  </section>
+
+  <!-- claim beside real screenshot, side alternates; NOT a three-column icon grid -->
+  <section class="rows" aria-label="Tjänster">
+    <article class="row">
+      <div class="txt rv from-l">
+        <div class="num">01</div>
+        <h3>Design</h3>
+        <p>Layout, typografi och bild som passar verksamheten. Ingen mall.</p>
+      </div>
+      <figure class="rv from-r">
+        <img src="assets/demo-calyx.webp" width="1200" height="750" alt="Skärmbild av Calyx, florist i Stockholm" loading="lazy">
+        <figcaption>Exempelsida: <a href="/sites/calyx.html">Calyx, florist i Stockholm</a></figcaption>
+      </figure>
+    </article>
+    <article class="row flip">
+      <div class="txt rv from-r">
+        <div class="num">02</div>
+        <h3>Utveckling</h3>
+        <p>Handskriven kod som laddar snabbt och är enkel att ändra i.</p>
+      </div>
+      <figure class="rv from-l">
+        <img src="assets/demo-horai.webp" width="1200" height="750" alt="Skärmbild av Hōrai, Asian fusion-koncept" loading="lazy">
+        <figcaption>Exempelsida: <a href="/sites/horai.html">Hōrai, Asian fusion-koncept</a></figcaption>
+      </figure>
+    </article>
+    <article class="row">
+      <div class="txt rv from-l">
+        <div class="num">03</div>
+        <h3>System</h3>
+        <p>Bokning, betalning och kunddatabas när verksamheten behöver det.</p>
+      </div>
+      <figure class="rv from-r">
+        <img src="assets/demo-hyperborea.webp" width="1200" height="750" alt="Skärmbild av Hyperborea, konferens i Lund" loading="lazy">
+        <figcaption>Exempelsida: <a href="/sites/hyperborea.html">Hyperborea, konferens i Lund</a></figcaption>
+      </figure>
+    </article>
+  </section>
+
+  <!-- ACT 5: typeset ledger, NOT pricing cards -->
+  <section class="ledger" id="ledger" aria-labelledby="priceh">
+    <h2 id="priceh" class="rv from-b">Alla har rätt till bra design.</h2>
+    <ol>
+      <li class="rv from-b" style="--d:.05s"><span class="what">Standardpaket. Webbplats med CMS för egna ändringar och en första SEO-optimering.</span><span class="price">26&nbsp;900&nbsp;kr</span></li>
+      <li class="rv from-b" style="--d:.15s"><span class="what">Paket med bokningssystem, betalning och kunddatabas.</span><span class="price">38&nbsp;900&nbsp;kr</span></li>
+      <li class="rv from-b" style="--d:.25s"><span class="what">Helt skräddarsydda lösningar för produktkataloger, specialbyggda system med mera</span><span class="price ask">Pris vid förfrågan</span></li>
+    </ol>
+  </section>
+</main>
+
+<!-- ACT 6: same city, night. Address at display size, NOT a footer link grid -->
+<footer class="close" id="close">
+  <div class="night"><img src="assets/night.webp" width="2200" height="1467" alt="Stockholm om natten: Riddarholmen sett över vattnet" loading="lazy"></div>
+  <div class="inner">
+    <p class="kicker">Skriv till oss</p>
+    <a class="mail" href="mailto:kontakt@alunix.se">kontakt@alunix.se</a>
+    <p class="addr">Alunix, webbyrå i Sverige. Skriv några rader om verksamheten, så hör vi av oss.</p>
+    <p class="credits">
+      <span>Foto skymning: <a href="https://unsplash.com/@rafaelpeier">Rafael Peier</a>, Unsplash</span>
+      <span>Foto natt: <a href="https://unsplash.com/@julianterenzio">Julian Terenzio</a>, Unsplash</span>
+    </p>
+  </div>
+</footer>
+
+<script>
+// ponytail: local python http.server resets a request now and then; one retry per image, nothing else
+document.addEventListener('error',function(e){var t=e.target;if(t&&t.tagName==='IMG'&&!t.dataset.r){t.dataset.r=1;t.src=t.src.split('?')[0]+'?r=1'}},true);
+(function(){
+  var reduce=matchMedia('(prefers-reduced-motion: reduce)').matches;
+  var html=document.documentElement;
+  if(reduce){ // static page: everything laid out in flow, nothing hidden; the frame still opens
+    var f=document.createElement('iframe');f.id='horai';f.title='Exempelsida: Hōrai, Asian fusion-koncept';f.src='/sites/horai.html';
+    var fr=document.getElementById('frame');fr.insertBefore(f,fr.firstChild);return;
+  }
+  html.classList.add('motion');
+
+  var hero=document.getElementById('hero'),plate=document.getElementById('plate'),win=document.getElementById('win'),
+      frame=document.getElementById('frame'),fade=document.getElementById('heroFade'),proof=document.getElementById('proof'),
+      bar=document.getElementById('bar'),ledger=document.getElementById('ledger'),close=document.getElementById('close'),
+      horai=null,track=document.querySelector('.hero-track');
+  var coarse=matchMedia('(pointer:coarse)').matches;
+  if(coarse){ // the brief allows the screenshot where the frame cannot be used; touch would scroll the frame, not the page
+    var im=document.createElement('img');im.src='assets/demo-horai.webp';im.alt='Skärmbild av Hōrai, Asian fusion-koncept';
+    frame.insertBefore(im,frame.firstChild);
+  } else { // one live frame, created after the hero photo so its requests never race the photograph
+    horai=document.createElement('iframe');horai.id='horai';horai.title='Exempelsida: Hōrai, Asian fusion-koncept';
+    var plateImg=plate.querySelector('img'),armed=false;
+    var arm=function(){if(armed)return;armed=true;horai.src='/sites/horai.html';frame.insertBefore(horai,frame.firstChild);wire()};
+    if(plateImg.complete)setTimeout(arm,300);else{plateImg.addEventListener('load',function(){setTimeout(arm,300)});setTimeout(arm,2500)}
+  }
+  var vw,vh,zoomEnd,holdEnd,S,T,C,lerpY=window.scrollY,rawY=window.scrollY,t0=performance.now();
+  function measure(){
+    vw=innerWidth;vh=innerHeight;
+    zoomEnd=vh*2.6;holdEnd=track.offsetHeight; // 320vh track: the white main starts here, so the cut lands exactly at its top
+    var W=Math.max(vw,1.5*vh),H=W/1.5,L=(vw/vh<1.5)?vw-W:(vw-W)/2,Tp=(vh-H)/2;
+    var wx=0.876+0.035,wy=0.349+0.035*1.5/1.6*0.6; // window centre in photo fractions (16:10 box, 7% wide)
+    var ww=W*0.07,wh=ww/1.6;
+    T={x:L+W*wx,y:Tp+H*(0.349)+wh/2};C={x:vw/2,y:vh/2};
+    S=Math.max(vw/ww,vh/wh)*1.04;
+    plate.style.transformOrigin=(wx*100)+'% '+((0.349*H+wh/2)/H*100)+'%';
+  }
+  measure();addEventListener('resize',measure);
+  var sm=function(x){return x*x*(3-2*x)};
+  var clamp=function(x){return x<0?0:x>1?1:x};
+  var frameOn=false,cut=false,hold=false;
+  function step(now){
+    rawY=window.scrollY;
+    lerpY+=(rawY-lerpY)*0.14; if(Math.abs(rawY-lerpY)<0.4)lerpY=rawY;
+    var p=clamp(lerpY/zoomEnd),f=sm(p);
+    // act 1 drift while still; fades out as soon as the zoom starts
+    var a=clamp(1-p*12),dr=1+0.018*(0.5+0.5*Math.sin((now-t0)/11000*Math.PI*2))*a;
+    var s=Math.pow(S,f)*dr, tx=(C.x-T.x)*f, ty=(C.y-T.y)*f;
+    if(!cut) plate.style.transform='translate('+tx+'px,'+ty+'px) scale('+s+')';
+    var tf=clamp(p/0.3); fade.style.opacity=1-tf; fade.style.filter=tf>0?'blur('+(tf*14)+'px)':'none';
+    proof.style.opacity=1-clamp((p-0.8)/0.12);
+    var on=p>=0.999; if(on!==frameOn){frameOn=on;frame.classList.toggle('on',on);hero.classList.toggle('off',on)}
+    var c=rawY>=holdEnd; if(c!==cut){cut=c;html.classList.toggle('cut',c)}
+    var h=on&&!c; if(h!==hold){hold=h;bar.classList.toggle('hold',h)}
+    // bar: paper on white, light over both photographs
+    var cr=close.getBoundingClientRect();
+    bar.classList.toggle('paper',c&&cr.top>64);
+    // act 5: rules draw with scroll
+    var lr=ledger.getBoundingClientRect(),lp=clamp((vh-lr.top)/(vh*0.9));
+    var lis=ledger.querySelectorAll('li');
+    for(var i=0;i<lis.length;i++){lis[i].style.setProperty('--draw',clamp((lp-i*0.22)/0.35))}
+    // act 6: the night opens from the horizon line
+    var cp=clamp((vh-cr.top)/(vh*0.85));
+    close.style.setProperty('--cut',(50-50*sm(cp))+'%');
+    requestAnimationFrame(step);
+  }
+  requestAnimationFrame(step);
+
+  // wheel over the live frame during the hold scrolls Alunix, so the page never traps inside Hōrai
+  function wire(){horai.addEventListener('load',function(){try{
+    horai.contentWindow.addEventListener('wheel',function(e){if(hold){e.preventDefault();window.scrollBy(0,e.deltaY)}},{passive:false});
+  }catch(err){}})}
+
+  // reveals: threshold 0, in-view at mount, failsafe if the observer never fires
+  var rv=[].slice.call(document.querySelectorAll('.rv')),fired=false;
+  if('IntersectionObserver' in window){
+    var io=new IntersectionObserver(function(es){fired=true;es.forEach(function(e){if(e.isIntersecting){e.target.classList.add('in');io.unobserve(e.target)}})},{threshold:0,rootMargin:'0px 0px -8% 0px'});
+    rv.forEach(function(el){io.observe(el)});
+    setTimeout(function(){if(!fired)rv.forEach(function(el){el.classList.add('in')})},3000);
+  } else rv.forEach(function(el){el.classList.add('in')});
+  // ?preview=cut|hold|zoom for screenshots of the formed states
+  var q=new URLSearchParams(location.search).get('preview');
+  if(q==='hold')scrollTo(0,zoomEnd+vh*0.3);else if(q==='cut')scrollTo(0,holdEnd);else if(q)scrollTo(0,zoomEnd*parseFloat(q)||0);
+})();
+</script>
+</body>
+</html>

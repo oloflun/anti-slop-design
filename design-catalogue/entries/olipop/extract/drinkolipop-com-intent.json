@@ -1,0 +1,463 @@
+{
+  "pageIntent": {
+    "type": "landing",
+    "confidence": 0.29,
+    "path": "/",
+    "title": "OLIPOP | Healthy Prebiotic Soda",
+    "description": "Discover a new kind of soda made with plant fiber and prebiotics. Non-GMO, gluten-free, paleo, and vegan, with high fiber and 2-5g of sugar. Enjoy a variety of delicious, refreshing and classic flavor",
+    "signals": [
+      {
+        "kind": "dom",
+        "type": "legal",
+        "weight": 0.4
+      },
+      {
+        "kind": "url",
+        "type": "landing",
+        "weight": 0.45,
+        "detail": "root-path"
+      }
+    ],
+    "alternates": [
+      {
+        "type": "legal",
+        "score": 0.4
+      }
+    ],
+    "needsSmart": true
+  },
+  "sectionRoles": {
+    "sections": [
+      {
+        "index": 0,
+        "tag": "nav",
+        "role": "nav",
+        "subrole": null,
+        "confidence": 0.9,
+        "heading": null,
+        "bounds": {
+          "x": 0,
+          "y": 0,
+          "w": 1265,
+          "h": 0
+        },
+        "buttonCount": 0,
+        "cardCount": 0,
+        "slots": {
+          "lede": "Skip to content\nAccessibility Statement"
+        },
+        "needsSmart": false
+      },
+      {
+        "index": 1,
+        "tag": "section",
+        "role": "pricing-table",
+        "subrole": null,
+        "confidence": 0.9,
+        "heading": null,
+        "bounds": {
+          "x": 0,
+          "y": 0,
+          "w": 1265,
+          "h": 110
+        },
+        "buttonCount": 26,
+        "cardCount": 445,
+        "slots": {
+          "heading": "",
+          "subheadings": [
+            "\n                      \n                        Shop 9g fiber\n                      \n                    ",
+            "\n                      \n                        Shop 6g fiber\n                      \n                    ",
+            "\n                      \n                        Shop MINIs\n                      \n                    ",
+            "\n                      \n                        Shop limited edition flavors\n                      \n                    "
+          ],
+          "ctaCount": 26,
+          "lede": "$3.99 flat rate shipping • Orders $50+ ship FREE"
+        },
+        "needsSmart": false
+      },
+      {
+        "index": 2,
+        "tag": "header",
+        "role": "nav",
+        "subrole": null,
+        "confidence": 0.4,
+        "heading": null,
+        "bounds": {
+          "x": 0,
+          "y": 40,
+          "w": 1265,
+          "h": 70
+        },
+        "buttonCount": 24,
+        "cardCount": 443,
+        "slots": {
+          "heading": "",
+          "subheadings": [
+            "\n                      \n                        Shop 9g fiber\n                      \n                    ",
+            "\n                      \n                        Shop 6g fiber\n                      \n                    ",
+            "\n                      \n                        Shop MINIs\n                      \n                    ",
+            "\n                      \n                        Shop limited edition flavors\n                      \n                    "
+          ],
+          "ctaCount": 24,
+          "lede": "Shop\n \nLearn\n \nSubscribe\nFind a store\nLog in"
+        },
+        "needsSmart": true
+      },
+      {
+        "index": 3,
+        "tag": "nav",
+        "role": "nav",
+        "subrole": null,
+        "confidence": 0.9,
+        "heading": null,
+        "bounds": {
+          "x": 60,
+          "y": 59,
+          "w": 275.515625,
+          "h": 32
+        },
+        "buttonCount": 1,
+        "cardCount": 3,
+        "slots": {
+          "ctaCount": 1,
+          "lede": "Shop\n \nLearn\n \nSubscribe"
+        },
+        "needsSmart": false
+      },
+      {
+        "index": 4,
+        "tag": "nav",
+        "role": "nav",
+        "subrole": null,
+        "confidence": 0.9,
+        "heading": null,
+        "bounds": {
+          "x": 983.046875,
+          "y": 59,
+          "w": 125.953125,
+          "h": 32
+        },
+        "buttonCount": 0,
+        "cardCount": 1,
+        "slots": {
+          "lede": "Find a store"
+        },
+        "needsSmart": false
+      },
+      {
+        "index": 5,
+        "tag": "aside",
+        "role": "sidebar",
+        "subrole": null,
+        "confidence": 0.4,
+        "heading": null,
+        "bounds": {
+          "x": 0,
+          "y": 0,
+          "w": 0,
+          "h": 0
+        },
+        "buttonCount": 5,
+        "cardCount": 5,
+        "slots": {
+          "ctaCount": 5,
+          "lede": "9g fiber line"
+        },
+        "needsSmart": true
+      },
+      {
+        "index": 6,
+        "tag": "nav",
+        "role": "nav",
+        "subrole": null,
+        "confidence": 0.9,
+        "heading": null,
+        "bounds": {
+          "x": 0,
+          "y": 0,
+          "w": 0,
+          "h": 0
+        },
+        "buttonCount": 5,
+        "cardCount": 5,
+        "slots": {
+          "ctaCount": 5,
+          "lede": "9g fiber line"
+        },
+        "needsSmart": false
+      },
+      {
+        "index": 7,
+        "tag": "header",
+        "role": "nav",
+        "subrole": null,
+        "confidence": 0.4,
+        "heading": "\n                      \n                        Shop 9g fiber\n                      \n                    ",
+        "bounds": {
+          "x": 0,
+          "y": 0,
+          "w": 0,
+          "h": 0
+        },
+        "buttonCount": 0,
+        "cardCount": 1,
+        "slots": {
+          "heading": "\n                      \n                        Shop 9g fiber\n                      \n                    "
+        },
+        "needsSmart": true
+      },
+      {
+        "index": 8,
+        "tag": "header",
+        "role": "nav",
+        "subrole": null,
+        "confidence": 0.4,
+        "heading": "\n                      \n                        Shop 6g fiber\n                      \n                    ",
+        "bounds": {
+          "x": 0,
+          "y": 0,
+          "w": 0,
+          "h": 0
+        },
+        "buttonCount": 0,
+        "cardCount": 1,
+        "slots": {
+          "heading": "\n                      \n                        Shop 6g fiber\n                      \n                    "
+        },
+        "needsSmart": true
+      },
+      {
+        "index": 9,
+        "tag": "header",
+        "role": "nav",
+        "subrole": null,
+        "confidence": 0.4,
+        "heading": "\n                      \n                        Shop MINIs\n                      \n                    ",
+        "bounds": {
+          "x": 0,
+          "y": 0,
+          "w": 0,
+          "h": 0
+        },
+        "buttonCount": 0,
+        "cardCount": 1,
+        "slots": {
+          "heading": "\n                      \n                        Shop MINIs\n                      \n                    "
+        },
+        "needsSmart": true
+      },
+      {
+        "index": 10,
+        "tag": "header",
+        "role": "nav",
+        "subrole": null,
+        "confidence": 0.4,
+        "heading": "\n                      \n                        Shop limited edition flavors\n                      \n                    ",
+        "bounds": {
+          "x": 0,
+          "y": 0,
+          "w": 0,
+          "h": 0
+        },
+        "buttonCount": 0,
+        "cardCount": 1,
+        "slots": {
+          "heading": "\n                      \n                        Shop limited edition flavors\n                      \n                    "
+        },
+        "needsSmart": true
+      },
+      {
+        "index": 11,
+        "tag": "header",
+        "role": "nav",
+        "subrole": null,
+        "confidence": 0.4,
+        "heading": "\n                      \n                        Shop variety packs\n                      \n                    ",
+        "bounds": {
+          "x": 0,
+          "y": 0,
+          "w": 0,
+          "h": 0
+        },
+        "buttonCount": 0,
+        "cardCount": 1,
+        "slots": {
+          "heading": "\n                      \n                        Shop variety packs\n                      \n                    "
+        },
+        "needsSmart": true
+      },
+      {
+        "index": 12,
+        "tag": "div",
+        "role": "nav",
+        "subrole": null,
+        "confidence": 0.4,
+        "heading": null,
+        "bounds": {
+          "x": 0,
+          "y": 0,
+          "w": 0,
+          "h": 0
+        },
+        "buttonCount": 0,
+        "cardCount": 5,
+        "slots": {
+          "lede": ""
+        },
+        "needsSmart": true
+      },
+      {
+        "index": 13,
+        "tag": "div",
+        "role": "nav",
+        "subrole": null,
+        "confidence": 0.4,
+        "heading": null,
+        "bounds": {
+          "x": 0,
+          "y": 0,
+          "w": 0,
+          "h": 0
+        },
+        "buttonCount": 0,
+        "cardCount": 5,
+        "slots": {
+          "lede": ""
+        },
+        "needsSmart": true
+      },
+      {
+        "index": 14,
+        "tag": "footer",
+        "role": "footer",
+        "subrole": null,
+        "confidence": 0.95,
+        "heading": "Sign up to get 15% off your first order",
+        "bounds": {
+          "x": 0,
+          "y": 5315.984375,
+          "w": 1265,
+          "h": 583.390625
+        },
+        "buttonCount": 1,
+        "cardCount": 30,
+        "slots": {
+          "heading": "Sign up to get 15% off your first order",
+          "subheadings": [
+            "Help",
+            "Company"
+          ],
+          "ctaCount": 1
+        },
+        "needsSmart": false
+      },
+      {
+        "index": 15,
+        "tag": "section",
+        "role": "content",
+        "subrole": null,
+        "confidence": 0.3,
+        "heading": null,
+        "bounds": {
+          "x": 0,
+          "y": 5315.984375,
+          "w": 1265,
+          "h": 0
+        },
+        "buttonCount": 0,
+        "cardCount": 0,
+        "slots": {},
+        "needsSmart": true
+      },
+      {
+        "index": 16,
+        "tag": "nav",
+        "role": "nav",
+        "subrole": null,
+        "confidence": 0.9,
+        "heading": null,
+        "bounds": {
+          "x": 60,
+          "y": 5525.765625,
+          "w": 540,
+          "h": 24
+        },
+        "buttonCount": 0,
+        "cardCount": 7,
+        "slots": {
+          "lede": "Link to Olipop Instagram\nLink to Olipop TikTok\nLink to Olipop Facebook\nLink to Olipop LinkedIn\nLink to Olipop Pinterest\nLink to Olipop Twitter\nLink to Olipop YouTube"
+        },
+        "needsSmart": false
+      },
+      {
+        "index": 17,
+        "tag": "nav",
+        "role": "nav",
+        "subrole": null,
+        "confidence": 0.9,
+        "heading": null,
+        "bounds": {
+          "x": 796.234375,
+          "y": 5366.375,
+          "w": 173.625,
+          "h": 276
+        },
+        "buttonCount": 0,
+        "cardCount": 8,
+        "slots": {
+          "lede": "FAQ\nFiber Education\nManage Subscriptions\nManage Account\nTrack Your Order\nSatisfaction Guarantee\nAccessibility\nContact Us"
+        },
+        "needsSmart": false
+      },
+      {
+        "index": 18,
+        "tag": "nav",
+        "role": "nav",
+        "subrole": null,
+        "confidence": 0.9,
+        "heading": null,
+        "bounds": {
+          "x": 993.859375,
+          "y": 5366.375,
+          "w": 211.140625,
+          "h": 312
+        },
+        "buttonCount": 0,
+        "cardCount": 9,
+        "slots": {
+          "lede": "Earn Rewards\nSustainability\nCareers\nQuality & Safety\nOLIPOP Blog\nPress\nAffiliate Program\nRegistered Dietitian Program\nWholesale"
+        },
+        "needsSmart": false
+      }
+    ],
+    "counts": {
+      "nav": 15,
+      "pricing-table": 1,
+      "sidebar": 1,
+      "footer": 1,
+      "content": 1
+    },
+    "readingOrder": [
+      "nav",
+      "pricing-table",
+      "sidebar",
+      "nav",
+      "nav",
+      "nav",
+      "nav",
+      "nav",
+      "nav",
+      "nav",
+      "nav",
+      "nav",
+      "nav",
+      "nav",
+      "footer",
+      "content",
+      "nav",
+      "nav",
+      "nav"
+    ]
+  }
+}

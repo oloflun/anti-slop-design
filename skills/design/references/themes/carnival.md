@@ -188,7 +188,7 @@ The theme's seven tics. A Carnival build should exhibit at least five of them.
 
    Used wherever the page would otherwise have a photo placeholder.
 
-7. **Marquee scroll** on banner OR footer with decorative dot separators. *"NEW EP ◆ OUT NOW ◆ ON CASSETTE ◆ BLUE VINYL ◆ NEW EP ◆..."* — horizontal scroll, honours `prefers-reduced-motion: reduce` (freeze at static state).
+7. **Marquee scroll** on banner OR footer with decorative dot separators. *"NEW EP ◆ OUT NOW ◆ ON CASSETTE ◆ BLUE VINYL ◆ NEW EP ◆..."* — horizontal scroll, spelar alltid (F-011).
 
 ## Layout pitfalls (must avoid)
 

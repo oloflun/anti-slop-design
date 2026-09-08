@@ -175,5 +175,76 @@ Ta aldrig bort en post; en regel som visar sig fel får en ny post som upphäver
   kontinuitet, om `reduce=false`-patchningen i scrollcraft.js/K1/K2 råkade ta bort någon
   smoothing-logik som var villkorad på `!reduce` och nu aldrig körs), (3) skriva den
   härledda regeln som en ny post här när orsaken är känd.
-- **Status:** öppen. Ingen fil ändrad för den här posten. Se `plans/2026-09-03-design-
-  rework-v3.md` "In Progress" för handoff-raden till nästa session.
+- **Status:** ~~öppen~~ **stängd 2026-09-08 av F-013**, som mätte orsaken i stället för
+  att gissa: två fel (värdet stegar; sidan tappar bilder), och F-011 orsakade ingendera.
+  Posten står kvar oförändrad ovanför — den var rätt formulerad som en öppen fråga.
+
+### F-013 · F-012 mätt: två orsaker, och ingen av dem var F-011
+
+- **Visades:** ingen board. Det här är en mätning, inte en dom — den stänger F-012:s
+  öppna fråga med siffror i stället för hypoteser. Instrument: nytt
+  `skills/design/scripts/motion_probe.py`, som driver sidan med ett skriptat hjul
+  (100 px var 60:e ms) och loggar bildtid och värdeförändring per frame.
+- **Mätt på:** `tests/alunix-concepts-r5/cells/V3b-chain/index.html` (2026-09-08), den
+  sida Anton faktiskt tittade på, samt två fixturer som isolerar mekanismen:
+  `tests/motion/staircase.html` (rå `--sc-p` → `rotateY`) och `tests/motion/smooth.html`
+  (samma rörelse, lerpad).
+
+| Mätpunkt | staircase-fixtur | smooth-fixtur | V3b hero | V3b jätterubrik |
+|---|---|---|---|---|
+| bildtid p95 | 16,7 ms | 16,7 ms | 140 ms (4× CPU) / 49,9 ms (otrottlad) | samma |
+| frames > 33 ms | 0 | 0 | 86 | 62 |
+| trappsteg | 18 | **0** | 9 | 16 |
+| största steg | 5,6 % | **1,4 %** | 11,8 % | 6,4 % |
+
+- **Orsak 1, värdet stegar.** `scrollcraft.js` dämpar bara två saker: videons
+  `currentTime` och pekarens `tilt`/`magnet`. `--sc-p` självt, och därmed all bespoke
+  rörelse som läser det, skrivs 1:1 från rå scrollposition i `read()`. På ett mushjul
+  betyder det att värdet står stilla mellan hacken och sedan hoppar. Fixturerna visar
+  att det inte är bildfrekvensen: **båda kör 16,7 ms p95, bara den råa stegar.**
+  Dessutom är `--sc-p` en oregistrerad custom property, alltså en sträng som CSS aldrig
+  kan interpolera, och `scrollcraft.css` sätter `transition: none` på cues och copy när
+  `.sc-ready` landar — ingenting överbryggar skrivningarna.
+- **Orsak 2, sidan är faktiskt långsam.** V3b tappar bilder även otrottlad: p95 49,9 ms
+  och 62 frames över 33 ms. `perf_probe.py` mot samma sida ger orsakerna:
+  **4,9 MB överföring** (tak 2,5), **19 typsnittsfiler / 732 kB** (tak 3 / 300 kB),
+  **17 långa tasks under scroll** (tak 0), vilande `will-change` på fyra element
+  (`h1.hero-headline`, `.calyx-wrap`, `h2.giant`, `#projekt`), och bilder utan
+  `width`/`height`, `decoding` eller `fetchpriority`. Det är en prestandaflaskhals, inte
+  en utjämningsfråga, och den syns som exakt samma ord: "hackigt".
+- **Sidofynd, eget regelbrott:** V3b:s tyngsta resurs är en **1,1 MB hero-bild hotlänkad
+  från `images.unsplash.com`**. `SKILL.md` Step 5b säger rakt ut att hero-bilden är LCP
+  och "must not depend on another company's CDN" — den ska vara nedskalad, WebP och
+  vendorad. Ingen granskning hade fångat det förrän överföringen mättes.
+- **F-011 orsakade ingendera.** Motordiffen mot uppström är fyra rader.
+  `var reduce = false` slog **på** playhead-lerpen (faktor 1,0 → 0,18) och tog inte bort
+  någon utjämning; `reduce` gatear tio ställen och alla är avstängningsgrenar.
+  F-012:s tredje hypotes är därmed motbevisad mot källan.
+- **Regel:** (1) **Bespoke rörelse läser `--sc-ps`, aldrig rå `--sc-p`**, när den driver
+  något ögat ser förflytta sig (transform, object-position, clip-path, mask-position).
+  Cue-opacitet får läsa `--sc-p`. `--sc-ps` publiceras av
+  `skills/design/scripts/scroll/sc-smooth.js`, som kopieras in bredvid motorn (motorn
+  redigeras aldrig) och registrerar egenskapen som `<number>` så CSS kan interpolera den.
+  (2) **"Ser hackigt ut" är två fel, och båda ska mätas innan något ändras** — takt och
+  bildtid. En sida kan hålla 60 fps och ändå stega, och den kan glida perfekt i värdet
+  och ändå tappa bilder. `motion_probe.py` rapporterar båda, och en signaturakt är inte
+  klar förrän `staircase = 0`, `max_step ≤ 3 %`, p95 ≤ 20 ms och noll frames över 33 ms.
+  (3) `will-change` sätts bara medan något rör sig; shimen städar motorns klassbreda
+  promoveringar i vila.
+- **Efterspel, 2026-09-08:** när `emil-design-eng` kördes över shimen (routern hade
+  namngivit den och jag hade hoppat över den, alltså precis r7:s fel) föll tre buggar ut.
+  Den allvarligaste: `--sc-ps` registrerades med `inherits: false`, vilket gör att ett
+  **barn** som läser `var(--sc-ps)` får `0` i stället för förälderns värde. Akten hade
+  stått fryst på varje sida som använde shimen, med ren konsol. Fixturen missade det
+  eftersom den inlinade en miniatyr som aldrig registrerade egenskapen. Den laddar nu den
+  riktiga filen. Två mindre: `will-change` sattes på akt-behållaren, som inte är elementet
+  som rör sig, och värdet skrevs varje frame för varje akt, vilket kostar en
+  subträds-omräkning för akter som står stilla. **Och `motion_probe` godkände buggen** —
+  ett kort som aldrig rör sig är perfekt jämnt. Därför har proben nu en `DEAD`-kontroll:
+  ett värde som inte rör sig alls medan sidan scrollas är ett fel, inte ett godkännande.
+  Lärdomen är regeln, inte buggen: **en prob som kan godkänna en död sida är sämre än
+  ingen prob**, och båda riktningarna måste bevisas mot samma fixtur.
+- **Status:** `scripts/scroll/sc-smooth.js` (ny), `scripts/motion_probe.py` (ny),
+  `tests/motion/{staircase,smooth}.html` (fixturer, bevisade i båda riktningarna),
+  `tests/alunix-concepts-r5/motion-probe-v3b/` (mätningen sparad). F-012 är därmed
+  stängd som fråga; V3b:s egen prestandaskuld är kvar och tas i V3c.

@@ -1,0 +1,299 @@
+{
+  "colors": {
+    "all": [
+      {
+        "hex": "#e5e7eb",
+        "rgb": {
+          "r": 229,
+          "g": 231,
+          "b": 235,
+          "a": 1
+        },
+        "hsl": {
+          "h": 220,
+          "s": 13,
+          "l": 91
+        },
+        "count": 389,
+        "contexts": [
+          "border"
+        ]
+      },
+      {
+        "hex": "#e3d2b8",
+        "rgb": {
+          "r": 227,
+          "g": 210,
+          "b": 184,
+          "a": 1
+        },
+        "hsl": {
+          "h": 36,
+          "s": 43,
+          "l": 81
+        },
+        "count": 354,
+        "contexts": [
+          "text",
+          "background"
+        ]
+      },
+      {
+        "hex": "#ff5c0b",
+        "rgb": {
+          "r": 255,
+          "g": 92,
+          "b": 11,
+          "a": 1
+        },
+        "hsl": {
+          "h": 20,
+          "s": 100,
+          "l": 52
+        },
+        "count": 37,
+        "contexts": [
+          "background",
+          "text"
+        ]
+      },
+      {
+        "hex": "#000102",
+        "rgb": {
+          "r": 0,
+          "g": 1,
+          "b": 2,
+          "a": 1
+        },
+        "hsl": {
+          "h": 210,
+          "s": 100,
+          "l": 0
+        },
+        "count": 8,
+        "contexts": [
+          "background",
+          "text"
+        ]
+      },
+      {
+        "hex": "#730405",
+        "rgb": {
+          "r": 115,
+          "g": 4,
+          "b": 5,
+          "a": 1
+        },
+        "hsl": {
+          "h": 359,
+          "s": 93,
+          "l": 23
+        },
+        "count": 1,
+        "contexts": [
+          "text"
+        ]
+      }
+    ]
+  },
+  "regions": [
+    {
+      "role": "nav",
+      "tag": "header",
+      "bounds": {
+        "x": 0,
+        "y": 44.5,
+        "w": 1280,
+        "h": 87
+      },
+      "heading": null,
+      "buttonCount": 0,
+      "cardCount": 4,
+      "className": "border-b border-bone/15 sticky top-0 z-40 bg-ink/85 backdrop-blur-md"
+    },
+    {
+      "role": "nav",
+      "tag": "nav",
+      "bounds": {
+        "x": 410.078125,
+        "y": 79.625,
+        "w": 436.25,
+        "h": 15.75
+      },
+      "heading": null,
+      "buttonCount": 0,
+      "cardCount": 0,
+      "className": "hidden md:flex items-center gap-9 kicker text-bone/75"
+    },
+    {
+      "role": "content",
+      "tag": "section",
+      "bounds": {
+        "x": 0,
+        "y": 131.5,
+        "w": 1280,
+        "h": 929.375
+      },
+      "heading": "Systems\nwith warmth.\n温度のある機械",
+      "buttonCount": 0,
+      "cardCount": 0,
+      "className": "relative overflow-hidden reveal in"
+    },
+    {
+      "role": "content",
+      "tag": "section",
+      "bounds": {
+        "x": 0,
+        "y": 1088.875,
+        "w": 1280,
+        "h": 86
+      },
+      "heading": null,
+      "buttonCount": 0,
+      "cardCount": 0,
+      "className": "border-y border-bone/15 py-6 overflow-hidden reveal"
+    },
+    {
+      "role": "content",
+      "tag": "section",
+      "bounds": {
+        "x": 0,
+        "y": 1174.875,
+        "w": 1280,
+        "h": 931.9375
+      },
+      "heading": "Three days. One question.",
+      "buttonCount": 0,
+      "cardCount": 20,
+      "className": "max-w-[1480px] mx-auto px-8 pt-28 pb-20 reveal"
+    },
+    {
+      "role": "content",
+      "tag": "section",
+      "bounds": {
+        "x": 0,
+        "y": 2106.8125,
+        "w": 1280,
+        "h": 1326.75
+      },
+      "heading": "Eight of forty,\non the wall.",
+      "buttonCount": 0,
+      "cardCount": 8,
+      "className": "max-w-[1480px] mx-auto px-8 py-24 reveal"
+    },
+    {
+      "role": "content",
+      "tag": "section",
+      "bounds": {
+        "x": 0,
+        "y": 3433.5625,
+        "w": 1280,
+        "h": 848.203125
+      },
+      "heading": "Sundial,\nfor forty\nconversations.",
+      "buttonCount": 0,
+      "cardCount": 2,
+      "className": "border-y border-bone/15 bg-ink2 relative overflow-hidden reveal"
+    },
+    {
+      "role": "features",
+      "tag": "section",
+      "bounds": {
+        "x": 0,
+        "y": 4281.765625,
+        "w": 1280,
+        "h": 753.75
+      },
+      "heading": "Attend",
+      "buttonCount": 0,
+      "cardCount": 3,
+      "className": "max-w-[1480px] mx-auto px-8 py-28 grid grid-cols-12 gap-x-8 reveal"
+    },
+    {
+      "role": "content",
+      "tag": "section",
+      "bounds": {
+        "x": 0,
+        "y": 5035.515625,
+        "w": 1280,
+        "h": 528.828125
+      },
+      "heading": "Write us\na letter,\nnot a form.",
+      "buttonCount": 0,
+      "cardCount": 0,
+      "className": "border-t border-bone/15 bg-ink relative overflow-hidden reveal"
+    }
+  ],
+  "componentClusters": [
+    {
+      "kind": "card",
+      "structuralHash": "article>svg>h3>p>p",
+      "instanceCount": 8,
+      "variants": [
+        {
+          "css": {
+            "background": "rgba(0, 0, 0, 0)",
+            "color": "oklch(0.94 0.02 80)",
+            "padding": "24px 0px 0px 0px",
+            "borderRadius": "0px",
+            "border": "1px 0px 0px solid rgb(229, 231, 235)",
+            "fontSize": "16px",
+            "fontWeight": "400"
+          },
+          "instanceCount": 8
+        }
+      ]
+    }
+  ],
+  "accessibility": {
+    "remediation": []
+  },
+  "cssHealth": {
+    "sheets": [
+      {
+        "url": "https://fonts.googleapis.com/css2?family=Italiana&family=Archivo:wght@400;500;600&family=Noto+Serif+JP:wght@400;700&display=swap",
+        "totalBytes": 233333,
+        "usedBytes": 0,
+        "unusedBytes": 233333,
+        "unusedPercent": 100
+      },
+      {
+        "url": "http://127.0.0.1:3055/sites/hyperborea.html",
+        "totalBytes": 1872,
+        "usedBytes": 1346,
+        "unusedBytes": 526,
+        "unusedPercent": 28
+      }
+    ],
+    "totalBytes": 235205,
+    "usedBytes": 1346,
+    "unusedBytes": 233859,
+    "unusedPercent": 99,
+    "importantCount": 0,
+    "duplicates": 1300,
+    "vendorPrefixes": {
+      "webkit": 0,
+      "moz": 0,
+      "ms": 0,
+      "o": 0
+    },
+    "keyframes": [],
+    "specificity": {
+      "max": [
+        0,
+        3,
+        1
+      ],
+      "average": [
+        0,
+        0.51,
+        0.57
+      ],
+      "count": 37
+    },
+    "issues": [
+      "1300 duplicate declarations",
+      "99% unused CSS"
+    ]
+  }
+}

@@ -12,7 +12,7 @@ dna: "Wordmark-as-architecture x full-bleed luxury campaign photography"
 register: editorial print
 grammar: gallery/catalog
 lane: "A 140px whisper-weight wordmark stretches edge-to-edge over a bone-white canvas threaded with faint field-line graphics, then the page drops into a strict 2-column grid of full-bleed, unframed campaign photographs labelled only by a hairline and a tracked-out caption row"
-mode: portfolio
+mode: persuade
 traits: ["140px weight-300 edge-to-edge wordmark", "99% achromatic, colour only in photography", "0px radius on every surface", "bullet-separated nav, no dividers", "0.10-0.22em tracking on all labels", "repeating M watermark on left margin"]
 palette: ["#e5e7eb", "#222222", "#343434", "#aaaaaa", "#cccccc", "#dbdbdb"]
 type: ["TT Hoves Pro Trial", "NeueMontreal"]

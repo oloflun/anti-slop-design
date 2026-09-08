@@ -1,0 +1,62 @@
+{
+  "url": "http://127.0.0.1:3055/tests/alunix-concepts-r5/cells/V3b-chain/index.html",
+  "wheel": "100:60",
+  "cpu": 4.0,
+  "tracks": [
+    {
+      "track": "#giant-section:--sc-p",
+      "frames": 268,
+      "frame_p95_ms": 140.02,
+      "frames_over_20ms": 86,
+      "frames_over_33ms": 86,
+      "value_range": [
+        0,
+        1
+      ],
+      "max_step_pct": 6.39,
+      "staircase": 16,
+      "reversals": 0
+    },
+    {
+      "track": ".giant:transform",
+      "frames": 268,
+      "frame_p95_ms": 140.02,
+      "frames_over_20ms": 86,
+      "frames_over_33ms": 86,
+      "value_range": [
+        0,
+        0
+      ],
+      "max_step_pct": 0.0,
+      "staircase": 0,
+      "reversals": 0
+    },
+    {
+      "track": "#hero-section:--sc-p",
+      "frames": 268,
+      "frame_p95_ms": 140.02,
+      "frames_over_20ms": 86,
+      "frames_over_33ms": 86,
+      "value_range": [
+        0.498,
+        1
+      ],
+      "max_step_pct": 11.79,
+      "staircase": 9,
+      "reversals": 0
+    }
+  ],
+  "pass": false,
+  "failures": [
+    "#giant-section:--sc-p: frame_p95 140.02 ms > 20",
+    "#giant-section:--sc-p: 86 frames > 33 ms",
+    "#giant-section:--sc-p: staircase 16",
+    "#giant-section:--sc-p: max_step 6.39 % > 3",
+    ".giant:transform: frame_p95 140.02 ms > 20",
+    ".giant:transform: 86 frames > 33 ms",
+    "#hero-section:--sc-p: frame_p95 140.02 ms > 20",
+    "#hero-section:--sc-p: 86 frames > 33 ms",
+    "#hero-section:--sc-p: staircase 9",
+    "#hero-section:--sc-p: max_step 11.79 % > 3"
+  ]
+}

@@ -1,0 +1,251 @@
+{
+  "pageIntent": {
+    "type": "blog-post",
+    "confidence": 0.23,
+    "path": "/sites/hyperborea.html",
+    "title": "Hyperborea Summit MMXXVI — Lund",
+    "description": "",
+    "signals": [
+      {
+        "kind": "dom",
+        "type": "docs",
+        "weight": 0.3,
+        "detail": "sidebar=false article=451"
+      },
+      {
+        "kind": "dom",
+        "type": "blog-post",
+        "weight": 0.35,
+        "detail": "byline|min-read"
+      }
+    ],
+    "alternates": [
+      {
+        "type": "docs",
+        "score": 0.3
+      }
+    ],
+    "needsSmart": true
+  },
+  "sectionRoles": {
+    "sections": [
+      {
+        "index": 0,
+        "tag": "header",
+        "role": "nav",
+        "subrole": null,
+        "confidence": 0.4,
+        "heading": null,
+        "bounds": {
+          "x": 0,
+          "y": 44.5,
+          "w": 1280,
+          "h": 87
+        },
+        "buttonCount": 0,
+        "cardCount": 4,
+        "slots": {
+          "lede": "Hyperborea\nPROGRAMME\nSPEAKERS\nINSTALLATION\nTICKETS\nSECURE A SEAT\n↗"
+        },
+        "needsSmart": true
+      },
+      {
+        "index": 1,
+        "tag": "nav",
+        "role": "nav",
+        "subrole": null,
+        "confidence": 0.9,
+        "heading": null,
+        "bounds": {
+          "x": 410.078125,
+          "y": 79.625,
+          "w": 436.25,
+          "h": 15.75
+        },
+        "buttonCount": 0,
+        "cardCount": 0,
+        "slots": {
+          "lede": "PROGRAMME\nSPEAKERS\nINSTALLATION\nTICKETS"
+        },
+        "needsSmart": false
+      },
+      {
+        "index": 2,
+        "tag": "section",
+        "role": "content",
+        "subrole": null,
+        "confidence": 0.3,
+        "heading": "Systems\nwith warmth.\n温度のある機械",
+        "bounds": {
+          "x": 0,
+          "y": 131.5,
+          "w": 1280,
+          "h": 929.375
+        },
+        "buttonCount": 0,
+        "cardCount": 0,
+        "slots": {
+          "heading": "Systems\nwith warmth.\n温度のある機械",
+          "lede": "PROGRAMME 003"
+        },
+        "needsSmart": true
+      },
+      {
+        "index": 3,
+        "tag": "section",
+        "role": "content",
+        "subrole": null,
+        "confidence": 0.3,
+        "heading": null,
+        "bounds": {
+          "x": 0,
+          "y": 1088.875,
+          "w": 1280,
+          "h": 86
+        },
+        "buttonCount": 0,
+        "cardCount": 0,
+        "slots": {
+          "lede": "Astrid Vinge\n·\nKenji Watanabe\n·\nMargot Lindqvist\n·\nRavi Auböck\n·\nSofia Brännström\n·\nThomas Asker\n·\nYuki Kosugi\n·\nLukas Helle\n·\nAstrid Vinge\n·\nKenji Watanabe\n·\nMargot Lindqvist\n·\nRavi Auböck\n·\nSofia Brännström\n·\nThomas Asker\n·"
+        },
+        "needsSmart": true
+      },
+      {
+        "index": 4,
+        "tag": "section",
+        "role": "testimonial",
+        "subrole": null,
+        "confidence": 0.8,
+        "heading": "Three days. One question.",
+        "bounds": {
+          "x": 0,
+          "y": 1174.875,
+          "w": 1280,
+          "h": 931.9375
+        },
+        "buttonCount": 0,
+        "cardCount": 20,
+        "slots": {
+          "heading": "Three days. One question.",
+          "subheadings": [
+            "Drawing the future",
+            "Creating together",
+            "A long, slow walk back"
+          ],
+          "lede": "PROGRAMME\nThree days. One question.\nDay 01\n12.IX · FRIDAY\nDrawing the future"
+        },
+        "needsSmart": false
+      },
+      {
+        "index": 5,
+        "tag": "section",
+        "role": "testimonial",
+        "subrole": null,
+        "confidence": 0.8,
+        "heading": "Eight of forty,\non the wall.",
+        "bounds": {
+          "x": 0,
+          "y": 2106.8125,
+          "w": 1280,
+          "h": 1326.75
+        },
+        "buttonCount": 0,
+        "cardCount": 8,
+        "slots": {
+          "heading": "Eight of forty,\non the wall.",
+          "subheadings": [
+            "Kenji Watanabe",
+            "Astrid Vinge",
+            "Margot Lindqvist",
+            "Ravi Auböck"
+          ],
+          "lede": "SPEAKERS — EDITION 03\nEight of forty,\non the wall.\nKenji Watanabe"
+        },
+        "needsSmart": false
+      },
+      {
+        "index": 6,
+        "tag": "section",
+        "role": "content",
+        "subrole": null,
+        "confidence": 0.3,
+        "heading": "Sundial,\nfor forty\nconversations.",
+        "bounds": {
+          "x": 0,
+          "y": 3433.5625,
+          "w": 1280,
+          "h": 848.203125
+        },
+        "buttonCount": 0,
+        "cardCount": 2,
+        "slots": {
+          "heading": "Sundial,\nfor forty\nconversations.",
+          "lede": "INSTALLATION 03\nSundial,\nfor forty\nconversations."
+        },
+        "needsSmart": true
+      },
+      {
+        "index": 7,
+        "tag": "section",
+        "role": "feature-grid",
+        "subrole": null,
+        "confidence": 0.8,
+        "heading": "Attend",
+        "bounds": {
+          "x": 0,
+          "y": 4281.765625,
+          "w": 1280,
+          "h": 753.75
+        },
+        "buttonCount": 0,
+        "cardCount": 3,
+        "slots": {
+          "heading": "Attend",
+          "subheadings": [
+            "Contribute",
+            "Student / Bursary"
+          ],
+          "lede": "TICKETS"
+        },
+        "needsSmart": false
+      },
+      {
+        "index": 8,
+        "tag": "section",
+        "role": "content",
+        "subrole": null,
+        "confidence": 0.3,
+        "heading": "Write us\na letter,\nnot a form.",
+        "bounds": {
+          "x": 0,
+          "y": 5035.515625,
+          "w": 1280,
+          "h": 528.828125
+        },
+        "buttonCount": 0,
+        "cardCount": 0,
+        "slots": {
+          "heading": "Write us\na letter,\nnot a form."
+        },
+        "needsSmart": true
+      }
+    ],
+    "counts": {
+      "nav": 2,
+      "content": 4,
+      "testimonial": 2,
+      "feature-grid": 1
+    },
+    "readingOrder": [
+      "nav",
+      "nav",
+      "content",
+      "content",
+      "testimonial",
+      "testimonial",
+      "content",
+      "feature-grid",
+      "content"
+    ]
+  }
+}

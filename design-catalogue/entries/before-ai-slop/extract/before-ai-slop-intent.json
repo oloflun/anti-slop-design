@@ -1,0 +1,229 @@
+{
+  "pageIntent": {
+    "type": "pricing",
+    "confidence": 0.46,
+    "path": "/sites/before-ai-slop.html",
+    "title": "Flowstack — The All-in-One Platform for Modern Teams",
+    "description": "",
+    "signals": [
+      {
+        "kind": "dom",
+        "type": "pricing",
+        "weight": 0.6,
+        "detail": "currency+card-grid"
+      },
+      {
+        "kind": "dom",
+        "type": "blog-post",
+        "weight": 0.35,
+        "detail": "byline|min-read"
+      },
+      {
+        "kind": "dom",
+        "type": "auth",
+        "weight": 0.35,
+        "detail": "auth-form-shape"
+      }
+    ],
+    "alternates": [
+      {
+        "type": "blog-post",
+        "score": 0.35
+      },
+      {
+        "type": "auth",
+        "score": 0.35
+      }
+    ],
+    "needsSmart": true
+  },
+  "sectionRoles": {
+    "sections": [
+      {
+        "index": 0,
+        "tag": "header",
+        "role": "nav",
+        "subrole": null,
+        "confidence": 0.4,
+        "heading": null,
+        "bounds": {
+          "x": 128,
+          "y": 16,
+          "w": 1024,
+          "h": 58
+        },
+        "buttonCount": 0,
+        "cardCount": 4,
+        "slots": {
+          "lede": "Flowstack\nProduct\nSolutions\nCustomers\nPricing\nDocs\nSign in\nStart free"
+        },
+        "needsSmart": true
+      },
+      {
+        "index": 1,
+        "tag": "nav",
+        "role": "nav",
+        "subrole": null,
+        "confidence": 0.9,
+        "heading": null,
+        "bounds": {
+          "x": 144,
+          "y": 16,
+          "w": 992,
+          "h": 58
+        },
+        "buttonCount": 0,
+        "cardCount": 3,
+        "slots": {
+          "lede": "Flowstack\nProduct\nSolutions\nCustomers\nPricing\nDocs\nSign in\nStart free"
+        },
+        "needsSmart": false
+      },
+      {
+        "index": 2,
+        "tag": "section",
+        "role": "feature-grid",
+        "subrole": null,
+        "confidence": 0.8,
+        "heading": "The all-in-one platform for modern teams.",
+        "bounds": {
+          "x": 64,
+          "y": 58,
+          "w": 1152,
+          "h": 636.75
+        },
+        "buttonCount": 0,
+        "cardCount": 6,
+        "slots": {
+          "heading": "The all-in-one platform for modern teams.",
+          "lede": "New · Now with AI Insights\nThe all-in-one platform for modern teams."
+        },
+        "needsSmart": false
+      },
+      {
+        "index": 3,
+        "tag": "section",
+        "role": "content",
+        "subrole": null,
+        "confidence": 0.3,
+        "heading": null,
+        "bounds": {
+          "x": 64,
+          "y": 694.75,
+          "w": 1152,
+          "h": 132
+        },
+        "buttonCount": 0,
+        "cardCount": 1,
+        "slots": {
+          "lede": "TRUSTED BY TEAMS AT"
+        },
+        "needsSmart": true
+      },
+      {
+        "index": 4,
+        "tag": "section",
+        "role": "content",
+        "subrole": null,
+        "confidence": 0.3,
+        "heading": "Everything you need to ship faster",
+        "bounds": {
+          "x": 64,
+          "y": 826.75,
+          "w": 1152,
+          "h": 486.25
+        },
+        "buttonCount": 0,
+        "cardCount": 3,
+        "slots": {
+          "heading": "Everything you need to ship faster",
+          "subheadings": [
+            "Lightning fast",
+            "Seamless integrations",
+            "Next-gen automation"
+          ]
+        },
+        "needsSmart": true
+      },
+      {
+        "index": 5,
+        "tag": "section",
+        "role": "testimonials",
+        "subrole": null,
+        "confidence": 0.4,
+        "heading": "Real results from real teams",
+        "bounds": {
+          "x": 0,
+          "y": 1313,
+          "w": 1280,
+          "h": 282
+        },
+        "buttonCount": 0,
+        "cardCount": 0,
+        "slots": {
+          "heading": "Real results from real teams",
+          "lede": "Real results from real teams\n10x\nFaster shipping\n99.99%\nUptime SLA\n50%\nCost reduction\n10k+\nHappy customers"
+        },
+        "needsSmart": true
+      },
+      {
+        "index": 6,
+        "tag": "section",
+        "role": "testimonial",
+        "subrole": null,
+        "confidence": 0.8,
+        "heading": "Ready to transform your workflow?",
+        "bounds": {
+          "x": 64,
+          "y": 1595,
+          "w": 1152,
+          "h": 340
+        },
+        "buttonCount": 0,
+        "cardCount": 1,
+        "slots": {
+          "heading": "Ready to transform your workflow?"
+        },
+        "needsSmart": false
+      },
+      {
+        "index": 7,
+        "tag": "footer",
+        "role": "footer",
+        "subrole": null,
+        "confidence": 0.95,
+        "heading": null,
+        "bounds": {
+          "x": 0,
+          "y": 1935,
+          "w": 1280,
+          "h": 81
+        },
+        "buttonCount": 0,
+        "cardCount": 0,
+        "slots": {
+          "lede": "© 2026 Flowstack Inc. · Made with ❤️ in San Francisco"
+        },
+        "needsSmart": false
+      }
+    ],
+    "counts": {
+      "nav": 2,
+      "feature-grid": 1,
+      "content": 2,
+      "testimonials": 1,
+      "testimonial": 1,
+      "footer": 1
+    },
+    "readingOrder": [
+      "nav",
+      "nav",
+      "feature-grid",
+      "content",
+      "content",
+      "testimonials",
+      "testimonial",
+      "footer"
+    ]
+  }
+}

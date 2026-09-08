@@ -6,7 +6,7 @@ Generic counterpart to scroll-craft's shoot.mjs: understands [data-sc-cue]
 when present, does not require it.
 
   python scroll_verify.py <url> [--width 1440] [--height 900]
-                           [--reduced-motion] [--out DIR]
+                           [--out DIR]
 
 Prints one JSON report, exits 0. Needs playwright (python); Pillow is
 optional (diff + contact sheet skip with a note if missing). contrast_over_
@@ -100,7 +100,6 @@ def main():
     ap.add_argument("url")
     ap.add_argument("--width", type=int, default=1440)
     ap.add_argument("--height", type=int, default=900)
-    ap.add_argument("--reduced-motion", action="store_true")
     ap.add_argument("--out", default="scroll_verify_out")
     args = ap.parse_args()
     out = Path(args.out)
@@ -113,7 +112,7 @@ def main():
         browser = pw.chromium.launch(executable_path=chrome) if chrome else pw.chromium.launch()
         if not chrome:
             report["notes"].append("No installed Chrome found; used Playwright's bundled headless shell, known to crash on some pages. Set SCROLLCRAFT_CHROME.")
-        ctx = browser.new_context(viewport={"width": args.width, "height": args.height}, device_scale_factor=1, reduced_motion="reduce" if args.reduced_motion else "no-preference")
+        ctx = browser.new_context(viewport={"width": args.width, "height": args.height}, device_scale_factor=1)  # F-011: motion always plays; no reduced-motion mode to verify
         page = ctx.new_page()
         page.goto(args.url, wait_until="load", timeout=30000)
         page.wait_for_timeout(400)

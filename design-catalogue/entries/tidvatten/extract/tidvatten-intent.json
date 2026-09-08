@@ -1,0 +1,205 @@
+{
+  "pageIntent": {
+    "type": "unknown",
+    "confidence": 0,
+    "path": "/sites/tidvatten.html",
+    "title": "Tidvatten, kallbadhus och vedeldad bastuklubb i Malmö",
+    "description": "Tidvatten är ett kallbadhus och en vedeldad bastuklubb längst ut på Pir 4 i Nyhamnen, Malmö. Öppet året runt.",
+    "signals": [],
+    "alternates": [],
+    "needsSmart": true
+  },
+  "sectionRoles": {
+    "sections": [
+      {
+        "index": 0,
+        "tag": "header",
+        "role": "nav",
+        "subrole": null,
+        "confidence": 0.4,
+        "heading": null,
+        "bounds": {
+          "x": 0,
+          "y": 0,
+          "w": 1280,
+          "h": 103.5
+        },
+        "buttonCount": 0,
+        "cardCount": 1,
+        "slots": {
+          "lede": "TIDVATTEN\nBLI MEDLEM"
+        },
+        "needsSmart": true
+      },
+      {
+        "index": 1,
+        "tag": "section",
+        "role": "content",
+        "subrole": null,
+        "confidence": 0.3,
+        "heading": "TIDVATTEN",
+        "bounds": {
+          "x": 0,
+          "y": 0,
+          "w": 1280,
+          "h": 800
+        },
+        "buttonCount": 0,
+        "cardCount": 1,
+        "slots": {
+          "heading": "TIDVATTEN"
+        },
+        "needsSmart": true
+      },
+      {
+        "index": 2,
+        "tag": "section",
+        "role": "content",
+        "subrole": null,
+        "confidence": 0.3,
+        "heading": "Kallt vatten,\nvarmt trä",
+        "bounds": {
+          "x": 0,
+          "y": 800,
+          "w": 1280,
+          "h": 1008.78125
+        },
+        "buttonCount": 0,
+        "cardCount": 3,
+        "slots": {
+          "heading": "Kallt vatten,\nvarmt trä",
+          "lede": "FILOSOFI"
+        },
+        "needsSmart": true
+      },
+      {
+        "index": 3,
+        "tag": "section",
+        "role": "content",
+        "subrole": null,
+        "confidence": 0.3,
+        "heading": null,
+        "bounds": {
+          "x": 0,
+          "y": 1808.78125,
+          "w": 1280,
+          "h": 1040
+        },
+        "buttonCount": 0,
+        "cardCount": 2,
+        "slots": {
+          "lede": "UR BADPROTOKOLLET, FEBRUARI"
+        },
+        "needsSmart": true
+      },
+      {
+        "index": 4,
+        "tag": "section",
+        "role": "content",
+        "subrole": null,
+        "confidence": 0.3,
+        "heading": "Året\npå piren",
+        "bounds": {
+          "x": 0,
+          "y": 2848.78125,
+          "w": 1280,
+          "h": 1932.21875
+        },
+        "buttonCount": 0,
+        "cardCount": 4,
+        "slots": {
+          "heading": "Året\npå piren",
+          "subheadings": [
+            "Morgonbastu",
+            "Vinterdopp",
+            "Fullmånebad",
+            "Gästeldare"
+          ],
+          "lede": "PROGRAM"
+        },
+        "needsSmart": true
+      },
+      {
+        "index": 5,
+        "tag": "section",
+        "role": "content",
+        "subrole": null,
+        "confidence": 0.3,
+        "heading": null,
+        "bounds": {
+          "x": 0,
+          "y": 4781,
+          "w": 1280,
+          "h": 1164.484375
+        },
+        "buttonCount": 0,
+        "cardCount": 0,
+        "slots": {
+          "lede": "STORA LAVARNA, ELDADE SEDAN KLOCKAN SEX\nELDKVÄLLEN I MARS, SISTA BADET FÖRE MIDNATT"
+        },
+        "needsSmart": true
+      },
+      {
+        "index": 6,
+        "tag": "section",
+        "role": "content",
+        "subrole": null,
+        "confidence": 0.3,
+        "heading": "Liggaren",
+        "bounds": {
+          "x": 0,
+          "y": 5945.484375,
+          "w": 1280,
+          "h": 1632.5625
+        },
+        "buttonCount": 0,
+        "cardCount": 3,
+        "slots": {
+          "heading": "Liggaren",
+          "subheadings": [
+            "Tolvbadet",
+            "Säsong",
+            "Helår"
+          ],
+          "lede": "MEDLEMSKAP"
+        },
+        "needsSmart": true
+      },
+      {
+        "index": 7,
+        "tag": "section",
+        "role": "content",
+        "subrole": null,
+        "confidence": 0.3,
+        "heading": "Längst ut,\ndär kajen tar slut",
+        "bounds": {
+          "x": 0,
+          "y": 7578.046875,
+          "w": 1280,
+          "h": 1240.25
+        },
+        "buttonCount": 0,
+        "cardCount": 5,
+        "slots": {
+          "heading": "Längst ut,\ndär kajen tar slut",
+          "lede": "PLATS"
+        },
+        "needsSmart": true
+      }
+    ],
+    "counts": {
+      "nav": 1,
+      "content": 7
+    },
+    "readingOrder": [
+      "nav",
+      "content",
+      "content",
+      "content",
+      "content",
+      "content",
+      "content",
+      "content"
+    ]
+  }
+}

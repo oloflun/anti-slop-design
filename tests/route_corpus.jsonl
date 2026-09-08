@@ -1,0 +1,20 @@
+{"path": "src/components/Nav.tsx", "content": "<nav className=\"top\"><DropdownMenu/></nav>", "expect": ["nav"], "reject": []}
+{"path": "src/Hero.tsx", "content": "<img src=\"\" alt=\"\">", "expect": ["imagery"], "reject": ["generation"]}
+{"path": "runs/K1/assets/index.html", "content": "<img src=\"hero.webp\" width=\"1600\" height=\"900\">", "expect": ["generation"], "reject": ["imagery"]}
+{"path": "index.html", "content": ".plate-card{transform:rotateY(calc(var(--flip)*-180deg))}", "expect": ["motion-review"], "reject": []}
+{"path": "index.html", "content": "<section data-sc-act=\"pin\" data-sc-span=\"2.2\">", "expect": ["scroll"], "reject": []}
+{"path": "index.html", "content": "<video data-sc-clip src=\"push.mp4\" poster=\"push.webp\">", "expect": ["scroll", "generation"], "reject": []}
+{"path": "styles.css", "content": ".giant{will-change:transform}", "expect": ["perf"], "reject": []}
+{"path": "styles.css", "content": "@font-face{font-family:Geist;src:url(g.woff2)}", "expect": ["perf"], "reject": []}
+{"path": "index.html", "content": "<iframe src=\"/sites/calyx.html\" loading=\"lazy\"></iframe>", "expect": ["a11y", "perf"], "reject": []}
+{"path": "tests/alunix-r8/runs/V3c/BRIEF.md", "content": "Reference lock", "expect": ["catalogue"], "reject": []}
+{"path": "src/reference-lock-notes.md", "content": "notes", "expect": ["catalogue"], "reject": []}
+{"path": "src/Form.tsx", "content": "<form onSubmit={fn}><input/></form>", "expect": ["form"], "reject": []}
+{"path": "src/Chart.tsx", "content": "<ResponsiveContainer><LineChart/></ResponsiveContainer>", "expect": ["dataviz"], "reject": []}
+{"path": "src/Carousel.tsx", "content": "const carousel = 1", "expect": ["carousel"], "reject": []}
+{"path": "app/dashboard/page.tsx", "content": "<DataTable columns={c}/>", "expect": ["product"], "reject": []}
+{"path": "src/landing/page.tsx", "content": "<Hero/><Pricing/>", "expect": ["landing"], "reject": []}
+{"path": "src/ui/button.tsx", "content": "from \"@/components/ui/button\"", "expect": ["shadcn"], "reject": []}
+{"path": "styles.css", "content": "body{color:#111}", "expect": ["layout"], "reject": ["imagery", "generation"]}
+{"path": "src/Modal.tsx", "content": "<Dialog open={o}>", "expect": ["interaction"], "reject": []}
+{"path": "src/Page.tsx", "content": "aria-label=\"Close\"", "expect": ["copy", "a11y"], "reject": []}

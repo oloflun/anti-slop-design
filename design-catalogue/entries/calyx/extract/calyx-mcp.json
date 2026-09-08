@@ -1,0 +1,278 @@
+{
+  "colors": {
+    "all": [
+      {
+        "hex": "#e5e7eb",
+        "rgb": {
+          "r": 229,
+          "g": 231,
+          "b": 235,
+          "a": 1
+        },
+        "hsl": {
+          "h": 220,
+          "s": 13,
+          "l": 91
+        },
+        "count": 147,
+        "contexts": [
+          "border"
+        ]
+      },
+      {
+        "hex": "#020201",
+        "rgb": {
+          "r": 2,
+          "g": 2,
+          "b": 1,
+          "a": 1
+        },
+        "hsl": {
+          "h": 60,
+          "s": 33,
+          "l": 1
+        },
+        "count": 85,
+        "contexts": [
+          "text",
+          "background"
+        ]
+      },
+      {
+        "hex": "#191915",
+        "rgb": {
+          "r": 25,
+          "g": 25,
+          "b": 21,
+          "a": 1
+        },
+        "hsl": {
+          "h": 60,
+          "s": 9,
+          "l": 9
+        },
+        "count": 39,
+        "contexts": [
+          "text"
+        ]
+      },
+      {
+        "hex": "#ede5d3",
+        "rgb": {
+          "r": 237,
+          "g": 229,
+          "b": 211,
+          "a": 1
+        },
+        "hsl": {
+          "h": 42,
+          "s": 42,
+          "l": 88
+        },
+        "count": 25,
+        "contexts": [
+          "background",
+          "text"
+        ]
+      },
+      {
+        "hex": "#400d05",
+        "rgb": {
+          "r": 64,
+          "g": 13,
+          "b": 5,
+          "a": 1
+        },
+        "hsl": {
+          "h": 8,
+          "s": 86,
+          "l": 14
+        },
+        "count": 5,
+        "contexts": [
+          "text"
+        ]
+      }
+    ]
+  },
+  "regions": [
+    {
+      "role": "nav",
+      "tag": "header",
+      "bounds": {
+        "x": 0,
+        "y": 0,
+        "w": 1280,
+        "h": 85
+      },
+      "heading": null,
+      "buttonCount": 0,
+      "cardCount": 1,
+      "className": "border-b border-ink/20"
+    },
+    {
+      "role": "nav",
+      "tag": "nav",
+      "bounds": {
+        "x": 944,
+        "y": 40,
+        "w": 304,
+        "h": 15.75
+      },
+      "heading": null,
+      "buttonCount": 0,
+      "cardCount": 0,
+      "className": "col-span-3 text-right kicker text-stone flex justify-end gap-7"
+    },
+    {
+      "role": "content",
+      "tag": "section",
+      "bounds": {
+        "x": 0,
+        "y": 85,
+        "w": 1280,
+        "h": 704
+      },
+      "heading": "Botanical\narchitecture,\nfrom Stockholm.",
+      "buttonCount": 0,
+      "cardCount": 1,
+      "className": "relative reveal in"
+    },
+    {
+      "role": "content",
+      "tag": "section",
+      "bounds": {
+        "x": 0,
+        "y": 817,
+        "w": 1280,
+        "h": 534.515625
+      },
+      "heading": null,
+      "buttonCount": 0,
+      "cardCount": 0,
+      "className": "max-w-[1480px] mx-auto px-8 pt-28 pb-24 reveal"
+    },
+    {
+      "role": "content",
+      "tag": "section",
+      "bounds": {
+        "x": 0,
+        "y": 1351.515625,
+        "w": 1280,
+        "h": 829.75
+      },
+      "heading": null,
+      "buttonCount": 0,
+      "cardCount": 2,
+      "className": "max-w-[1480px] mx-auto px-8 py-12 reveal"
+    },
+    {
+      "role": "content",
+      "tag": "section",
+      "bounds": {
+        "x": 0,
+        "y": 2181.265625,
+        "w": 1280,
+        "h": 823.25
+      },
+      "heading": "Eleven cuttings, this week.",
+      "buttonCount": 0,
+      "cardCount": 4,
+      "className": "max-w-[1480px] mx-auto px-8 pt-28 pb-12 reveal"
+    },
+    {
+      "role": "content",
+      "tag": "section",
+      "bounds": {
+        "x": 0,
+        "y": 3004.515625,
+        "w": 1280,
+        "h": 687.75
+      },
+      "heading": null,
+      "buttonCount": 0,
+      "cardCount": 1,
+      "className": "max-w-[1480px] mx-auto px-8 py-16 reveal"
+    },
+    {
+      "role": "pricing",
+      "tag": "section",
+      "bounds": {
+        "x": 0,
+        "y": 3692.265625,
+        "w": 1280,
+        "h": 487.53125
+      },
+      "heading": null,
+      "buttonCount": 0,
+      "cardCount": 4,
+      "className": "max-w-[1480px] mx-auto px-8 py-24 grid grid-cols-12 gap-x-8 reveal"
+    },
+    {
+      "role": "content",
+      "tag": "section",
+      "bounds": {
+        "x": 0,
+        "y": 4179.796875,
+        "w": 1280,
+        "h": 612.34375
+      },
+      "heading": "Commission\na thing\nthat lasts a week.",
+      "buttonCount": 0,
+      "cardCount": 1,
+      "className": "bg-ink text-cream relative reveal"
+    }
+  ],
+  "componentClusters": [],
+  "accessibility": {
+    "remediation": []
+  },
+  "cssHealth": {
+    "sheets": [
+      {
+        "url": "https://fonts.googleapis.com/css2?family=Cardo:ital,wght@0,400;0,700;1,400&family=PT+Mono&display=swap",
+        "totalBytes": 8779,
+        "usedBytes": 0,
+        "unusedBytes": 8779,
+        "unusedPercent": 100
+      },
+      {
+        "url": "http://127.0.0.1:3055/sites/calyx.html",
+        "totalBytes": 2319,
+        "usedBytes": 2041,
+        "unusedBytes": 278,
+        "unusedPercent": 12
+      }
+    ],
+    "totalBytes": 11098,
+    "usedBytes": 2041,
+    "unusedBytes": 9057,
+    "unusedPercent": 82,
+    "importantCount": 0,
+    "duplicates": 130,
+    "vendorPrefixes": {
+      "webkit": 0,
+      "moz": 0,
+      "ms": 0,
+      "o": 0
+    },
+    "keyframes": [],
+    "specificity": {
+      "max": [
+        0,
+        3,
+        9
+      ],
+      "average": [
+        0,
+        0.41,
+        0.89
+      ],
+      "count": 44
+    },
+    "issues": [
+      "130 duplicate declarations",
+      "82% unused CSS"
+    ]
+  }
+}

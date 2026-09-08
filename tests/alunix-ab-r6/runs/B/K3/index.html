@@ -1,0 +1,579 @@
+<!DOCTYPE html>
+<html lang="sv">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Alunix, webbdesign i Sverige</title>
+<meta name="description" content="Alunix bygger skräddarsydda webbplatser. Prova tre exempelsajter direkt på sidan.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Schibsted+Grotesk:wght@400;500;600&family=Newsreader:opsz,wght@6..72,400;6..72,500&display=swap">
+<link rel="icon" href="assets/logo-black.svg" type="image/svg+xml">
+<style>
+/* design · pre-emit critique: P4 H4 E4 S5 R4 V4
+   K3 Konsolen. Lane: "ljus konsol i dagsljus" — a page you use, not read.
+   Reference lock: bobbin (dominant: glass status card over a documentary desk photo, accordion
+   beside the matching screen) · customer-io (detail: staged product in a lived-in room, plain
+   sans, one action colour). Rejected from both: logo walls, trust rows, pill buttons, yellow.
+   Register: modern clean, light. One grotesk (Schibsted Grotesk) + one serif word in the h1. */
+:root{
+  --ground: oklch(0.985 0.006 80);
+  --ground-2: oklch(0.958 0.010 80);
+  --ink: oklch(0.22 0.012 250);
+  --ink-2: oklch(0.42 0.014 250);
+  --ink-3: oklch(0.52 0.012 250);
+  --line: oklch(0.86 0.010 80);
+  --line-strong: oklch(0.72 0.012 80);
+  --accent: oklch(0.47 0.130 252);
+  --accent-soft: oklch(0.47 0.130 252 / 0.12);
+  --on-accent: oklch(0.99 0.004 80);
+  --glass: oklch(0.99 0.004 80 / 0.66);
+  --glass-line: oklch(1 0 0 / 0.7);
+  --live: oklch(0.68 0.17 150);
+  --font-sans: "Schibsted Grotesk", "Helvetica Neue", Arial, sans-serif;
+  --font-serif: "Newsreader", Georgia, "Times New Roman", serif;
+  --bar-h: 56px;
+  --gutter: clamp(16px, 4vw, 56px);
+  --ease: cubic-bezier(.16,1,.3,1);
+}
+*{box-sizing:border-box}
+html,body{overflow-x:clip}
+html{background:var(--ground);color:var(--ink);font-family:var(--font-sans);font-size:16px;line-height:1.5;-webkit-text-size-adjust:100%}
+body{margin:0;min-height:100vh}
+img,svg,iframe{max-width:100%;display:block}
+a{color:inherit;text-decoration:none}
+button,input{font:inherit;color:inherit}
+:focus-visible{outline:2px solid var(--accent);outline-offset:3px}
+h1,h2,h3,p{margin:0;overflow-wrap:anywhere;min-width:0}
+.wrap{max-width:1440px;margin-inline:auto;padding-inline:var(--gutter)}
+.num{font-variant-numeric:tabular-nums}
+
+/* ---------- Topbar: app chrome, not marketing chrome ---------- */
+.bar{position:fixed;inset:0 0 auto 0;height:var(--bar-h);z-index:40;display:flex;align-items:center;gap:clamp(12px,2vw,32px);padding-inline:var(--gutter);
+  background:oklch(0.985 0.006 80 / 0.86);backdrop-filter:blur(14px);-webkit-backdrop-filter:blur(14px);border-bottom:1px solid var(--line)}
+.bar-logo{display:flex;align-items:center;gap:10px;font-weight:600;letter-spacing:-0.01em;flex:0 0 auto}
+.bar-logo svg{width:16px;height:22px}
+.tabs{display:flex;gap:2px;margin-inline:auto;height:100%}
+.tab{display:flex;align-items:center;gap:8px;padding:0 clamp(8px,1.2vw,16px);height:100%;font-size:14px;color:var(--ink-2);border-bottom:2px solid transparent;white-space:nowrap;transition:color .25s}
+.tab b{font-weight:500;color:var(--ink-3);font-variant-numeric:tabular-nums}
+.tab:hover{color:var(--ink)}
+.tab.is-active{color:var(--accent);border-bottom-color:var(--accent)}
+.tab.is-active b{color:var(--accent)}
+.bar-mail{font-size:14px;color:var(--ink-2);flex:0 0 auto}
+.bar-mail:hover{color:var(--accent)}
+.chip{display:none;align-items:center;gap:8px;height:30px;padding:0 10px 0 8px;border:1px solid var(--line);border-radius:4px;background:var(--glass);font-size:12.5px;color:var(--ink-2);white-space:nowrap;flex:0 0 auto}
+.chip.is-on{display:flex}
+.chip .dot{width:7px;height:7px}
+.chip strong{font-weight:500;color:var(--ink)}
+.chip .chip-pct{color:var(--accent);font-weight:500;min-width:3.2ch;text-align:right}
+@media (max-width:900px){.bar-mail{display:none}}
+@media (max-width:560px){.tab{padding:0 7px;font-size:13px}.tab b{display:none}.bar{gap:8px}.bar-logo span{display:none}.chip{padding:0 8px;gap:6px}}
+@media (max-width:420px){.chip .chip-site,.chip #chip-sec{display:none}.chip .chip-pct{min-width:0}}
+
+/* ---------- Act 1 · Hero ---------- */
+/* HERO: full-bleed documentary photo with a cream veil, NOT a centred headline on a gradient */
+.hero{position:relative;min-height:100svh;display:grid;align-items:end;padding-top:var(--bar-h);overflow:clip}
+.hero-photo{position:absolute;inset:0;z-index:-2;overflow:clip}
+.hero-photo img{width:100%;height:100%;object-fit:cover;object-position:60% 45%;transform-origin:55% 60%;will-change:transform}
+.hero-photo{-webkit-mask-image:linear-gradient(180deg,#000 0,#000 72%,transparent 100%);mask-image:linear-gradient(180deg,#000 0,#000 72%,transparent 100%)}
+.hero-veil{position:absolute;inset:0;z-index:-1;
+  background:linear-gradient(90deg,oklch(0.985 0.006 80 / 0.96) 0%,oklch(0.985 0.006 80 / 0.90) 34%,oklch(0.985 0.006 80 / 0.42) 58%,oklch(0.985 0.006 80 / 0.06) 100%),
+             linear-gradient(180deg,oklch(0.985 0.006 80 / 0.55) 0%,transparent 22%,transparent 70%,var(--ground) 100%)}
+.hero-grid{display:grid;grid-template-columns:repeat(12,minmax(0,1fr));gap:24px;align-items:end;padding-block:clamp(48px,9vh,110px) clamp(40px,8vh,96px)}
+.hero-copy{grid-column:1 / span 8}
+.hero h1{font-size:clamp(2.6rem,6.3vw,6.4rem);line-height:0.98;letter-spacing:-0.028em;font-weight:500;max-width:14ch}
+.hero h1 .serif{font-family:var(--font-serif);font-weight:400;font-style:normal;color:var(--accent);letter-spacing:-0.01em;font-size:1.08em}
+.hero .lede{margin-top:clamp(20px,3vh,32px);font-size:clamp(1.05rem,1.4vw,1.35rem);line-height:1.45;color:var(--ink-2);max-width:42ch}
+.hero-actions{margin-top:clamp(24px,4vh,40px);display:flex;gap:28px;align-items:center;flex-wrap:wrap}
+.btn{display:inline-flex;align-items:center;gap:10px;height:46px;padding:0 20px;border-radius:4px;background:var(--accent);color:var(--on-accent);font-weight:500;font-size:15px;border:1px solid transparent;white-space:nowrap;transition:background .2s,transform .2s var(--ease)}
+.btn:hover{background:oklch(0.42 0.13 252)}
+.btn:active{transform:translateY(1px)}
+.btn-ghost{background:transparent;color:var(--ink);border-color:var(--line-strong)}
+.btn-ghost:hover{background:var(--accent-soft);border-color:var(--accent);color:var(--accent)}
+.hero-side{grid-column:9 / span 4;display:flex;justify-content:flex-end}
+.slot{width:min(100%,360px)}
+@media (max-width:900px){
+  .hero-grid{grid-template-columns:1fr;gap:32px}
+  .hero-copy,.hero-side{grid-column:auto}
+  .hero-side{justify-content:flex-start}
+  .hero-photo img{object-position:62% 40%}
+  .hero-veil{background:linear-gradient(180deg,oklch(0.985 0.006 80 / 0.35) 0%,oklch(0.985 0.006 80 / 0.86) 40%,oklch(0.985 0.006 80 / 0.92) 100%)}
+}
+
+/* ---------- The console card (glass) ---------- */
+.card{width:min(100%,360px);padding:16px 18px 18px;border-radius:8px;background:var(--glass);border:1px solid var(--glass-line);
+  backdrop-filter:blur(18px) saturate(1.2);-webkit-backdrop-filter:blur(18px) saturate(1.2);
+  box-shadow:0 1px 0 oklch(1 0 0 / .6) inset,0 24px 60px -30px oklch(0.22 0.012 250 / .45);color:var(--ink)}
+.card-head{display:flex;align-items:center;justify-content:space-between;gap:12px;padding-bottom:12px;border-bottom:1px solid oklch(0.22 0.012 250 / .12)}
+.card-head svg{width:12px;height:17px}
+.card-head span{font-size:11.5px;letter-spacing:.06em;text-transform:uppercase;color:var(--ink-3);display:flex;align-items:center;gap:7px}
+.dot{width:8px;height:8px;border-radius:50%;background:var(--live);box-shadow:0 0 0 0 oklch(0.68 0.17 150 / .5);animation:pulse 2.2s ease-out infinite}
+@keyframes pulse{0%{box-shadow:0 0 0 0 oklch(0.68 0.17 150 / .55)}70%{box-shadow:0 0 0 8px oklch(0.68 0.17 150 / 0)}100%{box-shadow:0 0 0 0 oklch(0.68 0.17 150 / 0)}}
+.card dl{margin:0;display:grid;grid-template-columns:auto 1fr;column-gap:16px;row-gap:9px;padding-top:12px;font-size:14px}
+.card dt{color:var(--ink-3)}
+.card dd{margin:0;font-weight:500;text-align:right;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+.card dd.pct{color:var(--accent);font-variant-numeric:tabular-nums;font-size:22px;line-height:1;letter-spacing:-0.02em}
+.card-bar{margin-top:14px;height:3px;background:oklch(0.22 0.012 250 / .1);border-radius:2px;overflow:hidden}
+.card-bar i{display:block;height:100%;width:100%;transform:scaleX(0);transform-origin:0 50%;background:var(--accent);transition:transform .12s linear}
+/* floating (JS + motion) */
+.card.is-float{position:fixed;top:0;left:0;z-index:45;transform-origin:0 0;will-change:transform;pointer-events:none}
+.card.is-hidden{visibility:hidden}
+
+/* ---------- Act 2 · pinned scene ---------- */
+/* SCENE: the live site in a frame the visitor drives, NOT a screenshot in a fake browser */
+.scene{position:relative;background:var(--ground-2);border-block:1px solid var(--line)}
+.scene-sticky{position:sticky;top:0;height:100svh;display:flex;flex-direction:column;padding-top:var(--bar-h)}
+.scene-label{display:flex;align-items:center;justify-content:space-between;gap:16px;padding:6px var(--gutter);min-height:44px;flex:0 0 auto;font-size:14px;color:var(--ink-2);border-bottom:1px solid var(--line)}
+.scene-label a{color:var(--accent);white-space:nowrap}
+.scene-label a:hover{text-decoration:underline}
+.frame{flex:1 1 auto;width:100%;height:100%;border:0;background:oklch(0.22 0.022 38)}
+.slot-scene{position:absolute;right:var(--gutter);bottom:clamp(16px,3vh,36px);width:min(300px,calc(100% - 2*var(--gutter)));height:1px;pointer-events:none}
+.scene-hint{position:absolute;left:50%;bottom:clamp(14px,3vh,28px);transform:translateX(-50%);padding:6px 12px;border-radius:4px;background:var(--glass);border:1px solid var(--glass-line);backdrop-filter:blur(12px);-webkit-backdrop-filter:blur(12px);font-size:12.5px;color:var(--ink-2);white-space:nowrap;pointer-events:none;transition:opacity .5s}
+.scene-hint.is-off{opacity:0}
+@media (max-width:900px){.scene-hint{left:var(--gutter);transform:none}}
+
+/* ---------- Act 4 · side by side ---------- */
+/* SERVICES: exclusive accordion beside the matching live site, NOT three feature cards */
+.services{padding-block:clamp(72px,12vh,140px) clamp(64px,10vh,120px)}
+.services-head{display:grid;grid-template-columns:repeat(12,minmax(0,1fr));gap:24px;align-items:end;margin-bottom:clamp(40px,7vh,80px)}
+.services-head h2{grid-column:1 / span 8;font-size:clamp(2rem,5.2vw,5.4rem);line-height:0.96;letter-spacing:-0.03em;font-weight:500}
+.services-head h2 span{display:inline-block}
+.services-head p{grid-column:9 / span 4;font-size:clamp(1rem,1.2vw,1.2rem);color:var(--ink-2);line-height:1.45}
+.services-grid{display:grid;grid-template-columns:repeat(12,minmax(0,1fr));gap:24px;align-items:start}
+.acc{grid-column:1 / span 5;border-top:1px solid var(--line-strong)}
+.acc details{border-bottom:1px solid var(--line)}
+.acc summary{list-style:none;cursor:pointer;display:grid;grid-template-columns:3ch 1fr auto;gap:18px;align-items:baseline;padding:22px 0;font-size:clamp(1.35rem,2.2vw,2rem);font-weight:500;letter-spacing:-0.02em;line-height:1.1}
+.acc summary::-webkit-details-marker{display:none}
+.acc summary b{font-weight:500;color:var(--ink-3);font-size:.6em;font-variant-numeric:tabular-nums;transition:color .25s}
+.acc summary .plus{width:14px;height:14px;position:relative;align-self:center}
+.acc summary .plus::before,.acc summary .plus::after{content:"";position:absolute;background:var(--ink-3);inset:6px 0;transition:transform .35s var(--ease),background .25s}
+.acc summary .plus::after{inset:0 6px}
+.acc details[open] summary b,.acc details[open] summary .plus::before,.acc details[open] summary .plus::after{color:var(--accent);background:var(--accent)}
+.acc details[open] summary .plus::after{transform:scaleY(0)}
+.acc summary:hover b{color:var(--ink)}
+.acc-body{padding:0 0 26px calc(3ch + 18px);color:var(--ink-2);font-size:clamp(1rem,1.15vw,1.15rem);line-height:1.5;max-width:44ch}
+.acc-body a{color:var(--accent);display:inline-block;margin-top:10px;font-size:14px}
+.acc-body a:hover{text-decoration:underline}
+.stage{grid-column:6 / span 7;position:sticky;top:calc(var(--bar-h) + 24px)}
+.stage-label{display:flex;justify-content:space-between;gap:16px;font-size:14px;color:var(--ink-2);padding-bottom:10px;border-bottom:1px solid var(--line);margin-bottom:12px}
+.stage-label a{color:var(--accent);white-space:nowrap}
+.stage-label a:hover{text-decoration:underline}
+.stage-frames{position:relative;aspect-ratio:16/10.5;background:var(--ground-2);border:1px solid var(--line)}
+.stage-frames iframe{position:absolute;inset:0;width:100%;height:100%;border:0}
+.stage-frames iframe[hidden]{display:none}
+@media (max-width:900px){
+  .services-head{grid-template-columns:1fr;gap:20px}
+  .services-head h2,.services-head p{grid-column:auto}
+  .services-grid{grid-template-columns:1fr}
+  .acc,.stage{grid-column:auto}
+  .stage{position:static}
+  .stage-frames{aspect-ratio:9/13}
+}
+
+/* ---------- Act 5 · terms ---------- */
+/* PACKAGES: typeset ledger with the price right, NOT three pricing cards */
+.terms{padding-block:clamp(56px,9vh,110px) clamp(80px,12vh,150px);background:var(--ground)}
+.terms-head{display:grid;grid-template-columns:repeat(12,minmax(0,1fr));gap:24px;margin-bottom:clamp(28px,5vh,56px)}
+.terms-head h2{grid-column:1 / span 6;font-size:clamp(1.7rem,3.4vw,3.2rem);line-height:1.02;letter-spacing:-0.025em;font-weight:500}
+.terms-head p{grid-column:8 / span 5;color:var(--ink-2);align-self:end;max-width:40ch}
+.ledger{border-top:1px solid var(--line-strong)}
+.row{position:relative;display:grid;grid-template-columns:3ch 1fr auto;gap:24px;align-items:baseline;padding:28px 0}
+.row::after{content:"";position:absolute;left:0;right:0;bottom:0;height:1px;background:var(--line);transform-origin:0 50%}
+.row b{font-weight:500;color:var(--ink-3);font-size:14px;font-variant-numeric:tabular-nums}
+.row p{font-size:clamp(1.05rem,1.35vw,1.35rem);line-height:1.4;max-width:46ch}
+.row .price{font-size:clamp(1.6rem,3vw,2.8rem);letter-spacing:-0.03em;font-weight:500;line-height:1;white-space:nowrap;font-variant-numeric:tabular-nums}
+.row .price.ask{font-size:clamp(1.05rem,1.4vw,1.3rem);color:var(--ink-2);font-weight:400}
+@media (max-width:640px){.row{grid-template-columns:3ch 1fr;row-gap:12px}.row .price{grid-column:2}}
+@media (max-width:900px){.terms-head{grid-template-columns:1fr}.terms-head h2,.terms-head p{grid-column:auto}}
+
+/* ---------- Act 6 · close ---------- */
+/* CLOSE: a real input that writes the mail subject, NOT a form that posts nowhere */
+.close{position:relative;background:var(--ink);color:var(--ground);padding-block:clamp(64px,11vh,130px) 32px}
+.close-grid{display:grid;grid-template-columns:repeat(12,minmax(0,1fr));gap:24px;align-items:start}
+.close-form{grid-column:1 / span 7}
+.close-form label{display:block;font-size:clamp(1.8rem,4vw,3.6rem);letter-spacing:-0.03em;line-height:1;font-weight:500;margin-bottom:28px}
+.field{display:flex;gap:12px;align-items:stretch;max-width:640px}
+.field input{flex:1 1 auto;min-width:0;height:52px;padding:0 16px;border:1px solid oklch(0.985 0.006 80 / .3);border-radius:4px;background:oklch(0.985 0.006 80 / .06);color:var(--ground)}
+.field input::placeholder{color:oklch(0.985 0.006 80 / .5)}
+.field input:focus{border-color:oklch(0.985 0.006 80 / .8);outline:none}
+.field input:focus-visible{outline:2px solid var(--on-accent);outline-offset:2px}
+.field .btn{height:52px;flex:0 0 auto}
+.close-form small{display:block;margin-top:12px;font-size:13.5px;color:oklch(0.985 0.006 80 / .62)}
+.close-form small a{color:var(--ground);text-decoration:underline;text-underline-offset:3px}
+.close-aside{grid-column:9 / span 4;font-size:clamp(1rem,1.2vw,1.15rem);line-height:1.5;color:oklch(0.985 0.006 80 / .8);max-width:34ch}
+.close-aside strong{font-weight:500;color:var(--ground)}
+.foot{margin-top:clamp(56px,10vh,110px);padding-top:20px;border-top:1px solid oklch(0.985 0.006 80 / .18);display:flex;flex-wrap:wrap;gap:12px 32px;justify-content:space-between;align-items:center;font-size:13px;color:oklch(0.985 0.006 80 / .62)}
+.foot a{color:var(--ground);text-decoration:underline;text-underline-offset:3px}
+.foot a:hover{color:var(--on-accent);text-decoration-color:var(--accent)}
+.foot .foot-logo{display:flex;align-items:center;gap:10px;color:var(--ground);text-decoration:none;font-weight:500}
+.foot .foot-logo svg{width:12px;height:17px}
+@media (max-width:900px){
+  .close-grid{grid-template-columns:1fr}
+  .close-form,.close-aside{grid-column:auto}
+}
+@media (max-width:560px){.field{flex-direction:column}.field .btn{justify-content:center}}
+
+/* ---------- Reveals: fail toward visible ---------- */
+.js [data-reveal]{opacity:0;transform:translateY(28px);transition:opacity 1.2s var(--ease),transform 1.3s var(--ease);transition-delay:calc(var(--i,0) * 90ms)}
+.js [data-reveal].in{opacity:1;transform:none}
+.js [data-clip]{clip-path:inset(0 100% 0 0);transition:clip-path 1.4s var(--ease)}
+.js [data-clip].in{clip-path:inset(0 0 0 0)}
+.js [data-line]::after{transform:scaleX(0);transition:transform 1.2s var(--ease);transition-delay:calc(var(--i,0) * 120ms)}
+.js [data-line].in::after{transform:scaleX(1)}
+@media (prefers-reduced-motion:reduce){
+  .js [data-reveal],.js [data-clip],.js [data-line]::after{opacity:1;transform:none;clip-path:none;transition:none}
+  .dot{animation:none}
+  .scene-hint{display:none}
+  .hero-photo img{transform:none !important}
+  .btn,.tab,.plus::before,.plus::after{transition:none}
+}
+</style>
+</head>
+<body>
+
+<header class="bar">
+  <a class="bar-logo" href="#top" aria-label="Alunix, till toppen">
+    <svg viewBox="80 400 827 1139" aria-hidden="true"><use href="#mark"/></svg>
+    <span>Alunix</span>
+  </a>
+  <nav class="tabs" aria-label="Tjänster">
+    <a class="tab is-active" href="#design" data-tab="design"><b>01</b>Design</a>
+    <a class="tab" href="#utveckling" data-tab="utveckling"><b>02</b>Utveckling</a>
+    <a class="tab" href="#system" data-tab="system"><b>03</b>System</a>
+  </nav>
+  <div class="chip" id="chip" aria-live="off"><span class="dot" aria-hidden="true"></span><span class="chip-site"><strong id="chip-site">Hōrai</strong></span><span id="chip-sec">Klar</span><span class="chip-pct num" id="chip-pct">100 %</span></div>
+  <a class="bar-mail" href="mailto:kontakt@alunix.se">kontakt@alunix.se</a>
+</header>
+
+<svg width="0" height="0" style="position:absolute" aria-hidden="true">
+  <symbol id="mark" viewBox="80 400 827 1139"><path fill="currentColor" fill-rule="evenodd" d="M 430.020 513.250 C 386.700 600.458, 318.190 739.397, 297.501 782 C 289.087 799.325, 276.594 824.975, 269.739 839 C 216.342 948.248, 182.518 1018.108, 130.177 1127.250 L 122.145 1144 149.505 1144 C 176.418 1144, 176.876 1143.966, 177.531 1141.901 C 177.898 1140.746, 186.760 1121.959, 197.226 1100.151 C 207.692 1078.343, 223.776 1044.750, 232.969 1025.500 C 266.133 956.059, 277.353 933, 277.980 933 C 278.331 933, 280.408 935.587, 282.595 938.750 C 284.783 941.913, 295.822 957.775, 307.127 974 C 325.042 999.713, 381.481 1081.065, 429.737 1150.734 C 439.657 1165.055, 444.860 1173.418, 444.356 1174.233 C 443.926 1174.929, 440.820 1179.324, 437.455 1183.999 C 429.228 1195.427, 350.904 1307.144, 339.651 1323.500 C 334.732 1330.650, 327.687 1340.775, 323.996 1346 C 313.067 1361.472, 240.505 1466.210, 229.257 1482.750 L 218.886 1498 253.693 1497.961 L 288.500 1497.922 299.500 1481.744 C 324.141 1445.503, 476.381 1225.616, 478.506 1223.197 C 478.768 1222.899, 523.522 1286.863, 565.476 1347.500 C 568.140 1351.350, 588.572 1380.825, 610.880 1413 C 633.189 1445.175, 655.504 1477.439, 660.471 1484.697 L 669.500 1497.895 706.798 1497.947 L 744.096 1498 740.841 1493.250 C 727.956 1474.444, 658.474 1374.606, 602.522 1294.500 C 521.377 1178.323, 476.786 1114.238, 411.522 1020 C 389.621 988.375, 368.686 958.225, 364.999 953 C 342.882 921.650, 308 870.814, 308 869.930 C 308 868.958, 318.208 847.506, 341.512 799.500 C 346.852 788.500, 357.642 766.225, 365.489 750 C 373.336 733.775, 394.812 689.450, 413.213 651.500 C 431.614 613.550, 449.746 576.074, 453.505 568.221 C 457.265 560.367, 460.665 554.292, 461.060 554.721 C 461.456 555.149, 484.829 600.050, 513 654.500 C 595.807 814.548, 597.733 818.267, 612.712 847 C 620.597 862.125, 629.584 879.471, 632.684 885.546 L 638.319 896.592 633.336 903.546 C 630.596 907.371, 622.124 919.500, 614.511 930.500 C 606.897 941.500, 592.950 961.525, 583.517 975 C 550.282 1022.475, 513.571 1075.338, 501.745 1092.750 C 500.157 1095.088, 498.778 1097, 498.679 1097 C 498.581 1097, 498.620 1045.925, 498.767 983.500 L 499.033 870 467.529 870 L 436.024 870 435.762 948.679 L 435.500 1027.358 441.051 1035.429 C 444.105 1039.868, 458.527 1060.825, 473.101 1082 C 498.716 1119.217, 521.094 1151.905, 523.077 1155 C 523.877 1156.249, 524.411 1156.006, 526.269 1153.550 C 528.956 1149.997, 575.050 1083.626, 604.955 1040.250 C 642.615 985.626, 683.143 927.009, 694.212 911.152 L 704.927 895.804 701.347 888.652 C 699.378 884.718, 693.373 873.175, 688.003 863 C 682.632 852.825, 671.141 831, 662.466 814.500 C 653.792 798, 640.398 772.575, 632.701 758 C 609.734 714.509, 591.719 680.257, 553.278 607 C 533.220 568.775, 512.426 529.175, 507.069 519 C 501.712 508.825, 490.419 487.337, 481.975 471.250 C 473.530 455.163, 466.349 442, 466.016 442 C 465.684 442, 449.485 474.063, 430.020 513.250 M 459 748.072 C 445.481 750.334, 431.497 761.058, 425.189 774 C 411.946 801.174, 429.479 833.973, 460.052 839.216 C 482.335 843.037, 505.858 827.419, 511.586 805 C 519.739 773.095, 491.587 742.619, 459 748.072 M 583.028 1238.750 C 583.043 1239.162, 587.793 1246.250, 593.583 1254.500 C 599.373 1262.750, 608.679 1276.138, 614.264 1284.250 L 624.418 1299 745.199 1299 L 865.981 1299 847.826 1273.750 C 837.841 1259.862, 828.058 1246.155, 826.086 1243.288 L 822.500 1238.076 702.750 1238.038 C 636.888 1238.017, 583.012 1238.338, 583.028 1238.750"/></symbol>
+</svg>
+
+<main id="top">
+
+<!-- ACT 1 · Lugn -->
+<section class="hero" aria-labelledby="h1">
+  <div class="hero-photo"><img id="hero-img" src="assets/hero-desk.webp" width="2200" height="1467" alt="Ett skrivbord vid ett fönster i morgonljus, med växter och en lampa." fetchpriority="high"></div>
+  <div class="hero-veil" aria-hidden="true"></div>
+  <div class="wrap hero-grid">
+    <div class="hero-copy">
+      <h1 id="h1">Er hemsida är nutidens <span class="serif">visitkort</span></h1>
+      <p class="lede">Vi skapar skräddarsydda webbplatser som hjälper er att exponera verksamheten.</p>
+      <div class="hero-actions">
+        <a class="btn" href="#demo">Provkör en exempelsida</a>
+        <a class="btn btn-ghost" href="#paket">Se paketen</a>
+      </div>
+    </div>
+    <div class="hero-side">
+      <div class="slot" id="slot-hero">
+        <aside class="card" id="card" aria-label="Sidans läge just nu">
+          <div class="card-head">
+            <svg viewBox="80 400 827 1139" aria-hidden="true"><use href="#mark"/></svg>
+            <span><i class="dot" aria-hidden="true"></i> Live</span>
+          </div>
+          <dl>
+            <dt>Öppen just nu</dt><dd id="c-site">Hōrai</dd>
+            <dt>Sektion</dt><dd id="c-sec">Entré</dd>
+            <dt>Läge</dt><dd class="pct num" id="c-pct">0 %</dd>
+          </dl>
+          <div class="card-bar" aria-hidden="true"><i id="c-bar"></i></div>
+        </aside>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ACT 2 · Övertagande · ACT 3 · Släpp -->
+<section class="scene" id="demo" aria-label="Exempelsida, Hōrai">
+  <div class="scene-sticky">
+    <p class="scene-label"><span>Exempelsida: Hōrai, Asian fusion-koncept</span><a href="/sites/horai.html" target="_blank" rel="noopener">Öppna i eget fönster</a></p>
+    <iframe class="frame" id="frame-horai" src="/sites/horai.html" title="Hōrai, exempelsida"></iframe>
+    <div class="slot-scene" id="slot-scene" aria-hidden="true"></div>
+    <p class="scene-hint" id="scene-hint">Scrolla: sidan i ramen följer med</p>
+  </div>
+</section>
+
+<!-- ACT 4 · Sida vid sida -->
+<section class="services wrap" id="tjanster" aria-labelledby="h-tjanster">
+  <div class="services-head">
+    <h2 id="h-tjanster"><span data-clip>VI BYGGER ERT VARUMÄRKE.</span></h2>
+    <p data-reveal>Webbdesign, design och system. Allt på ett ställe.</p>
+  </div>
+  <div class="services-grid">
+    <div class="acc" id="acc">
+      <details name="tjanst" id="design" open data-site="calyx" data-reveal style="--i:0">
+        <summary><b>01</b><span>Design</span><i class="plus" aria-hidden="true"></i></summary>
+        <div class="acc-body">Typografi, färg, bild och layout som passar er verksamhet, inte en mall. Ni får ett formspråk som håller på alla skärmar.<br><a href="/sites/calyx.html" target="_blank" rel="noopener">Exempelsida: Calyx, florist i Stockholm</a></div>
+      </details>
+      <details name="tjanst" id="utveckling" data-site="horai" data-reveal style="--i:1">
+        <summary><b>02</b><span>Utveckling</span><i class="plus" aria-hidden="true"></i></summary>
+        <div class="acc-body">Snabb kod som laddar direkt, fungerar på mobil och går att uppdatera själv. Vi bygger med öppna standarder så att sajten inte låser er.<br><a href="/sites/horai.html" target="_blank" rel="noopener">Exempelsida: Hōrai, Asian fusion-koncept</a></div>
+      </details>
+      <details name="tjanst" id="system" data-site="hyperborea" data-reveal style="--i:2">
+        <summary><b>03</b><span>System</span><i class="plus" aria-hidden="true"></i></summary>
+        <div class="acc-body">Bokning, betalning, biljetter och kunddatabas kopplade till sajten. Ett ställe att sköta allt från.<br><a href="/sites/hyperborea.html" target="_blank" rel="noopener">Exempelsida: Hyperborea, konferens i Lund</a></div>
+      </details>
+    </div>
+    <div class="stage">
+      <p class="stage-label"><span id="stage-label">Exempelsida: Calyx, florist i Stockholm</span><a id="stage-open" href="/sites/calyx.html" target="_blank" rel="noopener">Öppna i eget fönster</a></p>
+      <div class="stage-frames">
+        <iframe data-site="calyx" src="/sites/calyx.html" title="Calyx, exempelsida"></iframe>
+        <iframe data-site="horai" src="/sites/horai.html" title="Hōrai, exempelsida" hidden></iframe>
+        <iframe data-site="hyperborea" src="/sites/hyperborea.html" title="Hyperborea, exempelsida" hidden></iframe>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ACT 5 · Villkor -->
+<section class="terms" id="paket" aria-labelledby="h-paket">
+  <div class="wrap">
+    <div class="terms-head">
+      <h2 id="h-paket" data-reveal>Tre paket. Priset står här.</h2>
+      <p data-reveal style="--i:1">Vi säger vad som ingår innan vi börjar, inte efter. Inga tillägg ni inte bett om.</p>
+    </div>
+    <div class="ledger">
+      <div class="row" data-line style="--i:0"><b>01</b><p>Standardpaket. Webbplats med CMS för egna ändringar och en första SEO-optimering.</p><span class="price">26 900 kr</span></div>
+      <div class="row" data-line style="--i:1"><b>02</b><p>Paket med bokningssystem, betalning och kunddatabas.</p><span class="price">38 900 kr</span></div>
+      <div class="row" data-line style="--i:2"><b>03</b><p>Helt skräddarsydda lösningar för produktkataloger, specialbyggda system med mera</p><span class="price ask">Pris vid förfrågan</span></div>
+    </div>
+  </div>
+</section>
+
+<!-- ACT 6 · Avslut -->
+<section class="close" id="kontakt" aria-labelledby="h-kontakt">
+  <div class="wrap">
+    <div class="close-grid">
+      <form class="close-form" id="mailform" data-reveal action="mailto:kontakt@alunix.se" method="get">
+        <label for="msg" id="h-kontakt">Skriv till oss</label>
+        <div class="field">
+          <input type="text" id="msg" name="subject" placeholder="Vad vill ni bygga?" autocomplete="off" maxlength="140">
+          <button class="btn" type="submit">Öppna mejl</button>
+        </div>
+        <small>Knappen öppnar ert mejlprogram till <a href="mailto:kontakt@alunix.se">kontakt@alunix.se</a> med raden som ämne. Ingenting skickas härifrån.</small>
+      </form>
+      <p class="close-aside" data-reveal style="--i:1"><strong>Alla har rätt till bra design.</strong> Därför står priserna på sidan, och därför får ni provköra sajterna innan ni skriver till oss.</p>
+    </div>
+    <footer class="foot">
+      <a class="foot-logo" href="#top"><svg viewBox="80 400 827 1139" aria-hidden="true"><use href="#mark"/></svg>Alunix</a>
+      <span>Exempelsidor: <a href="/sites/calyx.html" target="_blank" rel="noopener">Calyx</a>, <a href="/sites/horai.html" target="_blank" rel="noopener">Hōrai</a>, <a href="/sites/hyperborea.html" target="_blank" rel="noopener">Hyperborea</a></span>
+      <span>Foto: <a href="https://unsplash.com/@anniespratt" target="_blank" rel="noopener">Annie Spratt</a> via <a href="https://unsplash.com/photos/gdi9fJboJQU" target="_blank" rel="noopener">Unsplash</a></span>
+    </footer>
+  </div>
+</section>
+
+</main>
+
+<script>
+(function(){
+  'use strict';
+  const html = document.documentElement;
+  html.classList.add('js');
+  const reduced = matchMedia('(prefers-reduced-motion: reduce)').matches;
+  const clamp = (v,a,b)=>Math.max(a,Math.min(b,v));
+  const smooth = t=>{t=clamp(t,0,1);return t*t*(3-2*t);};
+  const $ = s=>document.querySelector(s);
+
+  /* ---- section names per site (read by index, fallback: the section's own heading) ---- */
+  const NAMES = {
+    horai:['Entré','Huset','Citatet','Menyerna','Rätterna','Rummet','Bord'],
+    calyx:['Entré','Ateljén','Bild','Index','Bild','Röster','Uppdrag'],
+    hyperborea:['Entré','Löpsedel','Program','Talare','Soluret','Biljetter','Brev']
+  };
+  const TITLES = {horai:'Hōrai', calyx:'Calyx', hyperborea:'Hyperborea'};
+
+  function readFrame(frame, site){
+    try{
+      const w = frame.contentWindow, d = frame.contentDocument;
+      if(!w || !d || !d.body) return null;
+      const max = Math.max(1, d.documentElement.scrollHeight - w.innerHeight);
+      const top = w.scrollY || d.documentElement.scrollTop || 0;
+      const secs = d.querySelectorAll('section');
+      let idx = 0;
+      for(let i=0;i<secs.length;i++){ if(secs[i].offsetTop <= top + w.innerHeight*0.45) idx = i; }
+      let name = (NAMES[site]||[])[idx];
+      if(!name){ const h = secs[idx] && secs[idx].querySelector('h1,h2'); name = h ? h.textContent.trim().replace(/\s+/g,' ').slice(0,24) : 'Sektion ' + (idx+1); }
+      return {pct: Math.round(clamp(top/max,0,1)*100), name, top, max};
+    }catch(e){ return null; }
+  }
+
+  /* ---- console card + bar chip ---- */
+  const card = $('#card'), chip = $('#chip');
+  const cSite=$('#c-site'), cSec=$('#c-sec'), cPct=$('#c-pct'), cBar=$('#c-bar');
+  const chSite=$('#chip-site'), chSec=$('#chip-sec'), chPct=$('#chip-pct');
+  let current = {site:'horai', sec:'Entré', pct:0};
+  function paint(){
+    cSite.textContent = TITLES[current.site]; cSec.textContent = current.sec; cPct.textContent = current.pct + ' %';
+    cBar.style.transform = 'scaleX(' + (current.pct/100) + ')';
+    chSite.textContent = TITLES[current.site]; chSec.textContent = current.sec; chPct.textContent = current.pct + ' %';
+  }
+  paint();
+
+  /* ---- the pinned Hōrai scene ---- */
+  const scene = $('#demo'), sceneSticky = scene.querySelector('.scene-sticky'), frame = $('#frame-horai'), hint = $('#scene-hint');
+  let range = 0, frameReady = false, fw = null, fd = null;
+  let cur = 0, target = 0, lastWritten = -1, pinned = false;
+  const FALLBACK = 2400;
+  function sizeScene(){
+    if(reduced){ scene.style.height = ''; range = 0; return; }
+    if(frameReady){
+      const max = Math.max(0, fd.documentElement.scrollHeight - fw.innerHeight);
+      range = Math.min(max, 7000);   // ponytail: 1:1 page px = frame px, capped so the pin cannot run away
+    } else range = FALLBACK;
+    scene.style.height = 'calc(100svh + ' + range + 'px)';
+  }
+  sizeScene();
+  frame.addEventListener('load', ()=>{
+    try{
+      fw = frame.contentWindow; fd = frame.contentDocument;
+      fd.documentElement.style.scrollBehavior = 'auto';
+      frameReady = true; sizeScene();
+      // user scrolls inside the frame: move the page to match, so both directions stay coherent
+      fw.addEventListener('scroll', ()=>{
+        if(reduced || !pinned) { if(mode==='horai'){const r=readFrame(frame,'horai'); if(r){current.sec=r.name;current.pct=r.pct;paint();}} return; }
+        const top = fw.scrollY;
+        if(Math.abs(top - lastWritten) > 1.5){
+          cur = target = lastWritten = top;
+          const y = sceneStart() + (range ? top/(fd.documentElement.scrollHeight - fw.innerHeight)*range : 0);
+          window.scrollTo(0, y);
+        }
+      }, {passive:true});
+    }catch(e){ console.warn('frame not readable', e); }
+  });
+  const sceneStart = ()=> scene.offsetTop;
+  const sceneEnd = ()=> scene.offsetTop + range;
+
+  /* ---- side-by-side frames ---- */
+  const stageFrames = Array.from(document.querySelectorAll('.stage-frames iframe'));
+  const details = Array.from(document.querySelectorAll('#acc details'));
+  const tabs = Array.from(document.querySelectorAll('.tab'));
+  const stageLabel = $('#stage-label'), stageOpen = $('#stage-open');
+  const LABEL = {calyx:'Exempelsida: Calyx, florist i Stockholm', horai:'Exempelsida: Hōrai, Asian fusion-koncept', hyperborea:'Exempelsida: Hyperborea, konferens i Lund'};
+  let active = 'calyx';
+  let mode = 'horai'; // which frame the card reads: 'horai' (acts 1–3) or 'stage' (act 4+)
+  function showSite(site){
+    active = site;
+    stageFrames.forEach(f=>{ f.hidden = f.dataset.site !== site; });
+    stageLabel.textContent = LABEL[site]; stageOpen.href = '/sites/' + site + '.html';
+    tabs.forEach(t=>t.classList.toggle('is-active', details.find(d=>d.dataset.site===site).id === t.dataset.tab));
+    if(mode==='stage'){ const f = stageFrames.find(f=>f.dataset.site===site); const r = readFrame(f, site); current = {site, sec: r?r.name:'Entré', pct: r?r.pct:0}; paint(); }
+  }
+  details.forEach(d=>{
+    d.addEventListener('toggle', ()=>{ if(d.open) showSite(d.dataset.site); });
+  });
+  tabs.forEach(t=>{
+    t.addEventListener('click', e=>{
+      e.preventDefault();
+      const d = document.getElementById(t.dataset.tab); d.open = true;
+      window.scrollTo({top: $('#tjanster').offsetTop - 56, behavior: reduced ? 'auto' : 'smooth'});
+    });
+  });
+  stageFrames.forEach(f=>{
+    f.addEventListener('load', ()=>{
+      try{
+        f.contentWindow.addEventListener('scroll', ()=>{
+          if(mode==='stage' && f.dataset.site===active){ const r = readFrame(f, active); if(r){ current.sec=r.name; current.pct=r.pct; paint(); } }
+        }, {passive:true});
+      }catch(e){}
+    });
+  });
+
+  /* ---- mail form: the typed line becomes the subject ---- */
+  $('#mailform').addEventListener('submit', e=>{
+    e.preventDefault();
+    const v = $('#msg').value.trim();
+    location.href = 'mailto:kontakt@alunix.se' + (v ? '?subject=' + encodeURIComponent(v) : '');
+  });
+
+  /* ---- reveals (threshold 0, on-screen at mount, timed failsafe) ---- */
+  const revealables = Array.from(document.querySelectorAll('[data-reveal],[data-clip],[data-line]'));
+  if('IntersectionObserver' in window && !reduced){
+    const io = new IntersectionObserver(es=>es.forEach(en=>{ if(en.isIntersecting){ en.target.classList.add('in'); io.unobserve(en.target);} }), {threshold:0, rootMargin:'0px 0px -6% 0px'});
+    revealables.forEach(el=>{ const r = el.getBoundingClientRect(); if(r.top < innerHeight && r.bottom > 0) el.classList.add('in'); else io.observe(el); });
+    setTimeout(()=>revealables.forEach(el=>el.classList.add('in')), 2500);
+  } else revealables.forEach(el=>el.classList.add('in'));
+
+  /* ---- scroll loop ---- */
+  const heroImg = $('#hero-img'), slotHero = $('#slot-hero'), slotScene = $('#slot-scene'), hero = $('.hero'), services = $('#tjanster');
+  let floating = false, cardW = 0, cardH = 0;
+  function measureCard(){
+    if(reduced) return;
+    if(floating){ card.classList.remove('is-float'); card.style.transform=''; card.style.width=''; }
+    const r = card.getBoundingClientRect(); cardW = r.width; cardH = r.height;
+    slotHero.style.minHeight = cardH + 'px';
+    if(floating){ card.classList.add('is-float'); card.style.width = cardW + 'px'; }
+  }
+  if(!reduced){ measureCard(); floating = true; card.classList.add('is-float'); card.style.width = cardW + 'px'; }
+  addEventListener('resize', ()=>{ measureCard(); sizeScene(); }, {passive:true});
+
+  let raf = 0;
+  function loop(){
+    raf = 0;
+    const y = scrollY, vh = innerHeight;
+    const heroH = hero.offsetHeight;
+    const sStart = sceneStart(), sEnd = sceneEnd();
+
+    // act 1: hero photo scale, scroll-linked
+    if(!reduced){ const t = clamp(y / heroH, 0, 1); heroImg.style.transform = 'scale(' + (1 + 0.09*t) + ') translateY(' + (t*8) + '%)'; }
+
+    // act 2: pinned scene drives the frame
+    pinned = !reduced && frameReady && y >= sStart && y <= sEnd;
+    if(!reduced && frameReady && range > 0){
+      const p = clamp((y - sStart) / range, 0, 1);
+      const max = fd.documentElement.scrollHeight - fw.innerHeight;
+      target = p * max;
+      if(y < sStart - vh) { cur = target = 0; }
+      const diff = target - cur;
+      if(Math.abs(diff) > 0.5){ cur += diff * 0.22; if(Math.abs(target-cur) < 0.5) cur = target; const v = Math.round(cur); lastWritten = v; fw.scrollTo(0, v); }
+      hint.classList.toggle('is-off', y > sStart + vh*0.4 || y < sStart - vh*0.5);
+    }
+
+    // which frame does the card read
+    const newMode = y > services.offsetTop - vh*0.45 ? 'stage' : 'horai';
+    if(newMode !== mode){ mode = newMode; if(mode==='horai'){ current.site='horai'; } else { current.site = active; } }
+    if(mode==='horai'){ const r = readFrame(frame,'horai'); if(r){ current.sec = r.name; current.pct = r.pct; } if(!reduced && y > sEnd + 4){ current.sec = 'Klar'; current.pct = 100; } }
+    else { const f = stageFrames.find(f=>f.dataset.site===active); const r = readFrame(f, active); if(r){ current.sec=r.name; current.pct=r.pct; } }
+    paint();
+
+    // act 3: card travel hero → scene corner → bar chip
+    if(!reduced && floating){
+      const rH = slotHero.getBoundingClientRect(), rS = slotScene.getBoundingClientRect(), rB = chip.getBoundingClientRect();
+      const t1 = smooth(y / (heroH - vh*0.15));
+      const t2 = smooth((y - sEnd) / (vh*0.45));
+      let x, yy, s;
+      const sS = Math.min(1, rS.width / cardW);
+      if(t2 <= 0){
+        x = rH.left + (rS.left + rS.width - cardW*sS - rH.left)*t1;
+        yy = rH.top + (rS.top - cardH*sS - rH.top)*t1;
+        s = 1 + (sS - 1)*t1;
+      } else {
+        const bx = rB.width ? rB.left : innerWidth - 220, by = rB.width ? rB.top : 13;
+        x = (rS.left + rS.width - cardW*sS) + (bx - (rS.left + rS.width - cardW*sS))*t2;
+        yy = (rS.top - cardH*sS) + (by - (rS.top - cardH*sS))*t2;
+        s = sS + (0.12 - sS)*t2;
+      }
+      card.style.transform = 'translate(' + x + 'px,' + yy + 'px) scale(' + s + ')';
+      card.style.opacity = t2 > 0 ? String(1 - smooth((t2-0.55)/0.35)) : '1';
+      card.classList.toggle('is-hidden', t2 >= 0.95);
+      chip.classList.toggle('is-on', t2 >= 0.5);
+    } else if(reduced){
+      chip.classList.toggle('is-on', y > heroH);
+    }
+  }
+  function onScroll(){ if(!raf) raf = requestAnimationFrame(loop); }
+  addEventListener('scroll', onScroll, {passive:true});
+  // keep lerping while the frame is still catching up
+  (function tick(){ if(!reduced && frameReady && Math.abs(target-cur) > 0.5) loop(); requestAnimationFrame(tick); })();
+  loop();
+
+  /* ---- ?preview=<0..1> lands mid-scene for screenshots ---- */
+  const pv = new URLSearchParams(location.search).get('preview');
+  if(pv !== null){
+    const go = ()=>{ sizeScene(); const f = parseFloat(pv||'0.5'); window.scrollTo(0, sceneStart() + f*range);
+      const max = fd.documentElement.scrollHeight - fw.innerHeight; cur = target = f*max; lastWritten = Math.round(cur); fw.scrollTo(0, lastWritten); loop(); };
+    if(frameReady) go(); else frame.addEventListener('load', ()=>setTimeout(go, 200));
+  }
+})();
+</script>
+</body>
+</html>

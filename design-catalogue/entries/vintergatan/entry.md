@@ -14,7 +14,7 @@ type: ["Cormorant Garamond", "EB Garamond", "IBM Plex Mono"]
 kind: example
 source: claude
 origin: example-site
-extract: none
+extract: ok
 category: editorial
 category2: "consumer-brand"
 status: ready
@@ -92,6 +92,23 @@ scroll position, with a hairline "thread" drawing itself down the left. Both
 directions work, the CSS resting state is the finished state (so no-JS and
 reduced-motion readers get the type outright), and `?preview=setpiece` locks it
 open for capture. Ambition and a way out of it, shipped together.
+
+## Motion
+
+Från källkoden (`sites/vintergatan.html`, läst 2026-09-08).
+
+**Delad reveal:** `translateY(28px)`, `transition: opacity 1.25s
+cubic-bezier(.16,1,.3,1), transform 1.25s`.
+
+**Signaturrörelse (`?preview=setpiece`).** En egen `requestAnimationFrame`-loop
+driver akten: `smoothstep` mot sektionens läge ger `s`, och ur `s` lerpas
+`translateY(34px → 0)` tillsammans med opacitet och spårning
+(`letter-spacing 0.22em → -0.015em`), alltså från spärrad etikett till satt
+rubrik i en enda rörelse.
+
+**Att låna:** spårningen som animerad egenskap — texten *sätter sig* i stället
+för att glida in. **Att lämna:** rAF-loopen om sidan redan kör motorn; då hör
+samma rörelse hemma på `--sc-ps`.
 
 ## Brief
 

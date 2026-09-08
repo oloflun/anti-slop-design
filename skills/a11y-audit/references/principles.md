@@ -177,6 +177,10 @@ Paths are relative to `references/upstream` in the `design` skill.
 - `inclusive/accessibility-decisions/skills/`: accessibility-debt-tracking, accessibility-testing-strategy, compliance-mapping, decision-documentation, document, handoff, review, stakeholder-communication, tradeoff-analysis (each `/SKILL.md`)
 - `inclusive/accessible-content/skills/`: alt-text-design, form-labelling, heading-structure, link-text-design, multimedia-accessibility, readable-content, review, rewrite, structure, table-accessibility (each `/SKILL.md`)
 - `inclusive/adaptive-interfaces/skills/`: colour-independence, flexible-typography, information-density, preference-audit, responsive-accessibility, responsive-review, simplified-views, specify, user-preference-respect (each `/SKILL.md`)
-- `inclusive/cognitive-accessibility/skills/`: adaptive-personalisation, assess-load, cognitive-load-assessment, contextual-help-design, error-prevention-recovery, focus-attention-design, memory-load-reduction, plain-language-design, review, simplify, wayfinding-navigation (each `/SKILL.md`)
+- `inclusive/cognitive-accessibility/skills/`: assess-load, cognitive-load-assessment, contextual-help-design, error-prevention-recovery, focus-attention-design, memory-load-reduction, plain-language-design, review, simplify, wayfinding-navigation (each `/SKILL.md`). Upstream also ships an
+  `adaptive-personalisation/` directory, but its `SKILL.md` is byte-identical to
+  `contextual-help-design/SKILL.md`, frontmatter included — a packaging bug, not a
+  twelfth skill. It is not cited here because there is nothing behind the name
+  (verified 2026-09-08).
 - `inclusive/inclusive-interaction/skills/`: audit, design-flow, feedback-and-status, gesture-alternatives, keyboard-navigation, keyboard-review, motion-sensitivity, multi-modal-input, touch-target-design, voice-interaction (each `/SKILL.md`)
 - `inclusive/inclusive-personas/skills/`: ability-spectrum-mapping, assistive-technology-scenarios, audit-stories, disability-inclusive-personas, edge-case-identification, generate, inclusive-user-stories, scenario-map, situational-impairment-mapping (each `/SKILL.md`)

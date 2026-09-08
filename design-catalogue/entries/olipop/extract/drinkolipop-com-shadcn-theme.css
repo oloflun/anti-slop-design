@@ -1,0 +1,19 @@
+/* shadcn/ui Theme — extracted from https://drinkolipop.com */
+/* Paste into your globals.css */
+
+@layer base {
+  :root {
+    --background: 0 0% 100%;
+    --foreground: 0 0% 0%;
+    --primary: 167 92% 14%;
+    --primary-foreground: 0 0% 100%;
+    --secondary: 60 100% 75%;
+    --secondary-foreground: 0 0% 0%;
+    --accent: 155 55% 74%;
+    --accent-foreground: 0 0% 0%;
+    --muted: 0 0% 94%;
+    --muted-foreground: 0 0% 23%;
+    --border: 0 0% 60%;
+    --radius: 8px;
+  }
+}

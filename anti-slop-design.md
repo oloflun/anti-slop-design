@@ -4,12 +4,51 @@ type: project
 status: active
 project_slug: anti-slop-design
 repo: C:\\Users\\Anton L\\anti-slop-design
-updated: 2026-09-07
+updated: 2026-09-09
 ---
 
 # Anti-Slop Design
 
 Canonical project hub. Read this first to orient; every section points at the document that carries the detail.
+
+## 2026-09-08 — designkedjan v4: mätlagret byggt, F-012 stängd, Higgsfield inkopplat
+
+Efter r7 bad Anton om en full omarbetning: varje uppström läst i sin helhet med motiverade
+uteslutningar, ett obligatoriskt katalog-först-steg, ett prestandalager, en lyft-procedur
+som ersätter "kör polish", och ett Alunix-test med agent-team. Planen ligger i
+`~/.claude/plans/trots-den-senaste-design-system-federated-raven.md` och är godkänd.
+**Åtta av tretton infrastrukturuppgifter är klara, testet är inte startat.** Full
+överlämning: [`HANDOFF-2026-09-08-designkedjan-v4.md`](HANDOFF-2026-09-08-designkedjan-v4.md).
+
+**F-012 är stängd med mätning.** "Hackigt och billigt" var två fel, och F-011 orsakade
+ingendera. Motorn dämpar bara video och pekare; `--sc-p` skrivs 1:1 från rå scrollposition,
+så bespoke rörelse stegar med hjulet. Två fixturer med identisk bildfrekvens (16,7 ms p95)
+skiljer sig med 18 trappsteg mot 0. V3b är dessutom genuint tung: 4,9 MB, 19 typsnittsfiler,
+17 långa tasks under scroll, och en hero-bild hotlänkad från Unsplash i strid med Step 5b.
+Åtgärd: [`scripts/scroll/sc-smooth.js`](skills/design/scripts/scroll/sc-smooth.js) publicerar
+en lerpad `--sc-ps`. Regeln står i
+[`references/motion-smoothness.md`](skills/design/references/motion-smoothness.md), posten som
+F-013 i `design-catalogue/FEEDBACK.md`.
+
+**Tre nya mätskript, alla bevisade i båda riktningarna** — `motion_probe.py`, `perf_probe.py`
+och `preflight_taste.py`. Principen är ny och gäller nu generellt: en kontroll som bara kan
+avfyra är lika värdelös som en som aldrig gör det, så varje skript prövas mot en trasig
+fixtur som måste falla **och** mot ett känt-gott bygge som måste hålla tyst. Den regeln fångade
+tre egna fel samma dag, bland dem att `motion_probe` godkände ett kort som inte rörde sig alls.
+
+**Referensgolvet kräver nu ett mekaniskt katalogval.** `scripts/catalogue/select.py` väljer
+referenser deterministiskt ur hela katalogen och skriver raden golvet läser, så ett bygge inte
+kan gå vidare på referenser någon mindes. Routingen pekar bara på laddbara skills igen:
+fallback-namnet hade aldrig gått att ladda.
+
+**Higgsfield är inkopplat och mätt** — se
+[`references/generation.md`](skills/design/references/generation.md). MCP:n kör, skillsen
+levererar procedur, och varje anrop loggas med modell och kostnad. `sync_agents` körs aldrig:
+den laddar upp Antons egna skills till Higgsfields marknadsplats.
+
+**Bärande begränsning just nu:** hookarna i sessionerna är inaktuella plugin-cache-kopior från
+super-intelligence, så allt hook-arbete är bevisat men inte i drift. Det är T2 i planen och det
+blockerar r8.
 
 ## 2026-09-07 — motion-always policy (F-011), a real HTTP/1.0 board bug, and a chain audit
 

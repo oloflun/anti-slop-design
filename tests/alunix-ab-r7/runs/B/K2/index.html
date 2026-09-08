@@ -1,0 +1,1024 @@
+<!doctype html>
+<html lang="sv">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>Alunix: Er hemsida är nutidens visitkort</title>
+<meta name="description" content="Alunix är en webbyrå i Sverige. Webbdesign, design och system. Allt på ett ställe.">
+<link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'><rect width='32' height='32' fill='%231B1F1C'/></svg>">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Archivo:wdth,wght@62.5..125,100..900&family=Familjen+Grotesk:wght@400;500;600&display=swap">
+<script>document.documentElement.classList.add('js');</script>
+<link rel="stylesheet" href="scrollcraft.css">
+<style>
+/*
+  design · pre-emit critique: P5 H4 E4 S5 R5 V4
+  K2 Affischen v2, runda 3 — hela sidan.
+  Auktoritet: typen (ALU/NIX, sedan VI BYGGER ERT VARUMÄRKE). Viker: fotot (en
+  dämpad plate i heron, skärmbilder som plates i akt B), färgen (ingen accent,
+  fem toner totalt), siffrorna (kickers i akt C, aldrig ordmärkesgrad).
+  Reference lock: Spring/Summer (primär — krossad affischtyp, femfärgstak,
+  typsatt klocka i nav) + Indoek (lånad detalj — foto maskat genom bokstävernas
+  öppningar, A-K2:s bevisade inkScan()-teknik). Inga hex eller typsnitt
+  kopierade rakt av.
+  Typsnitt: Archivo (display, en variabel familj) + Familjen Grotesk (register).
+  Roller korsar aldrig. Ordmärket ALU/NIX vid normal bredd (100%); alla senare
+  rubriker ("VI BYGGER ERT VARUMÄRKE.", "Alla har rätt till bra design.") vid
+  smalare bredd (82%) — samma familjs breddaxel gör kontrasten, ingen tredje
+  font.
+  Runda 3-rättelse: andningen är en ISÄRGLIDNING, inte en korstoning. ALU och
+  NIX förblir bläcksvarta hela tiden; raderna glider isär via transform (aldrig
+  opacitet på bokstäverna) och rubriken reser sig i gapet som uppstår.
+*/
+:root{
+  /* ---- fem färger, ingen accent ---- */
+  --paper:  oklch(85% 0.028 135);
+  --ink:    oklch(22% 0.012 150);
+  --white:  oklch(98.5% 0.004 120);
+  --line-1: oklch(74% 0.024 135);
+  --line-2: oklch(45% 0.02 140);
+  --line-2-onink: oklch(68% 0.02 140);
+
+  --font-display: "Archivo", "Helvetica Neue", Arial, sans-serif;
+  --font-text:    "Familjen Grotesk", "Helvetica Neue", Arial, sans-serif;
+
+  --bar: 52px;
+  --gutter: clamp(20px, 3.2vw, 48px);
+  --maxw: 1680px;
+  --ease: cubic-bezier(.16,1,.3,1);
+  --step: cubic-bezier(.2,.8,.2,1);
+
+  /* engine tokens: reused, no new hue introduced anywhere */
+  --sc-canvas: var(--paper);
+  --sc-surface: var(--white);
+  --sc-ink: var(--ink);
+  --sc-ink-soft: var(--line-2);
+  --sc-accent: var(--ink);
+  --sc-accent-ink: var(--paper);
+  --sc-font-display: var(--font-display);
+  --sc-font-text: var(--font-text);
+  color-scheme: light;
+}
+@media (max-width: 899px){
+  :root{ --bar: 46px; }
+}
+
+*,*::before,*::after{ box-sizing:border-box }
+html{ background:var(--paper); overflow-x:clip }
+body{ margin:0; overflow-x:clip; font-family:var(--font-text); font-weight:400;
+      font-size:clamp(15px,0.92vw + 11px,18px); line-height:1.45; color:var(--ink);
+      background:var(--sc-canvas); -webkit-font-smoothing:antialiased }
+img,svg{ display:block; max-width:100% }
+a{ color:inherit; text-decoration:none }
+a:hover{ text-decoration:underline; text-underline-offset:.2em }
+:focus-visible{ outline:2px solid var(--ink); outline-offset:3px; border-radius:2px }
+/* Runda 6, fynd 1: :focus-visible mot avslutets driftade mörka grund mäter
+   1,04:1 (var(--ink) på var(--ink)-nära bakgrund) — men ett hårdkodat
+   var(--paper) hade varit OSYNLIGT om fokus landar TIDIGT i akten (grunden
+   fortfarande papper-ljus). currentColor återanvänder .close:s egen redan
+   kontrastsäkra text-switch (updateCloseMix, samma brytpunkt t≈0,52) i
+   stället för att gissa en fast färg — ringen är alltid samma ton som den
+   text den omger, som redan garanterat bär mot grunden. Scopat till .close,
+   aldrig globalt: resten av sidan har pappersvit botten hela tiden. */
+.close :focus-visible{ outline-color:currentColor; outline-offset:3px }
+.sr-only{ position:absolute; width:1px; height:1px; overflow:hidden; clip:rect(0 0 0 0); white-space:nowrap; border:0; padding:0; margin:-1px }
+.wrap{ max-width:var(--maxw); margin:0 auto; padding-inline:var(--gutter) }
+
+.caps{ font-family:var(--font-text); font-size:11px; line-height:1.4; font-weight:600;
+       letter-spacing:.16em; text-transform:uppercase; color:var(--line-2) }
+
+/* ---------------------------------------------------------------- toppbar */
+.bar{ position:sticky; top:0; z-index:30; height:var(--bar);
+      background:var(--paper); border-bottom:1px solid var(--line-1) }
+/* Runda 6, fynd 13: klockan ska stå typsatt i mitten av toppbaren (Spring/
+   Summer-referensen), inte hänga ihop med mejladressen som ett andra
+   höger-element. Tre zoner i grid ger en RIKTIG mittpunkt oavsett hur breda
+   logga/mejl råkar vara, till skillnad från en flex-rad där bara ett
+   margin-right:auto skjuter allt annat åt höger som en klump. */
+.bar .wrap{ height:100%; display:grid; grid-template-columns:1fr auto 1fr; align-items:center; gap:var(--gutter) }
+.bar .mark{ display:flex; align-items:center; gap:9px; justify-self:start; font-weight:600; font-size:14px }
+.bar .mark svg{ width:14px; height:19px }
+.bar .clock{ font-family:var(--font-text); font-variant-numeric:tabular-nums; display:flex; gap:.55em;
+             justify-self:center; font-size:14px; font-weight:500 }
+.bar .mail{ justify-self:end; font-size:14px; font-weight:500 }
+@media (max-width:560px){ .bar .clock span{ display:none } .bar .mark span.name{ display:none } }
+
+/* --------------------------------------------------------- akt A: heron --- */
+/* En flow-akts progress blir positiv en hel skärmhöjd innan akten faktiskt
+   syns (top - vh), så akt E:s egen drift (updateCloseMix(), JS, runda 6 fynd
+   2) börjar färga --sc-canvas medan läsaren fortfarande läser prislistan
+   ovanför. Varje tidigare sektion får därför en egen ogenomskinlig botten så
+   den aldrig visar den drivande sidbottnen förrän akt E:s egen ruta faktiskt
+   är i vy. */
+.hero{ position:relative; background:var(--paper) }
+/* height set by the engine via data-sc-span while pinned; stripped to auto
+   below (JS) before mount() ever runs when reduced motion is on, so there is
+   no dead scroll track left behind (F-001). */
+html:not(.js) .hero, .rm .hero{ height:auto }
+.stage{ position:sticky; top:var(--bar); height:calc(100vh - var(--bar)); overflow:clip;
+        display:flex; flex-direction:column; justify-content:space-between; padding-block:clamp(14px,2.4vh,26px) 0 }
+.rm .stage, html:not(.js) .stage{ position:static; height:auto; overflow:visible; padding-block:clamp(28px,5vh,56px) }
+/* Below 899px the composition stacks to one column and the poster rows alone
+   already exceed a phone/tablet viewport height — a pin forcing everything
+   into 100vh made the wordmark bleed into the copy underneath it. No pin
+   below that width, but the scrub itself still runs (runda 6, fynd 12): JS
+   drives --open from ordinary scroll position through this natural-height,
+   unpinned stage instead. */
+@media (max-width:899px){ .stage{ position:static; height:auto; overflow:visible; padding-block:clamp(28px,5vh,56px) } }
+
+/* Runda 5: .desc/.under tonar bort med --open i stället för att flytta sig —
+   .under fyller redan sin tilldelade höjd exakt i vila (uppmätt: dess egen
+   botten föll på stagets egen 900px-gräns), så att FLYTTA den (translateY)
+   klippte bort radens andra textrad av misstag. Opacitet kostar ingen layout
+   och kan aldrig klippas: när den är osynlig finns inget kvar att kollidera
+   med, så raderna får fritt utrymme utan att röra vid något synligt.
+   --open ärvs från #stage, satt av JS. */
+.desc{ margin:0 0 clamp(4px,0.9vh,10px); max-width:38ch; font-size:clamp(15px,1.15vw,19px); color:var(--ink);
+       /* emil-design-eng: fadea klart INNAN raden fysiskt når hit (open≈0,6),
+          inte exakt vid open=1 — annars hinner den solida bokstaven (z-index:1)
+          måla över en fortfarande-halvsynlig textrad, vilket läser som att
+          bokstaven "suddar ut" texten i stället för en ren övergång. */
+       opacity:calc(1 - min(1, var(--open,0) * 1.6)) }
+
+/* --- kompositionen: blocket + platen bredvid, platen aldrig under --- */
+/* Runda 6, fynd 16: vid ?preview=open (öppet läge) flyttar row-a:s -14vh-
+   transform ALU:s topp OVANFÖR .stage:s egen boxkant (uppmätt: row1-topp
+   33,7px mot stage-topp 52px, ett 18px-underskott) — .stage{overflow:clip}
+   klipper då bort strimlans översta 18px. Extra fast headroom (inte bara
+   vh) ovanför blocket löser det utan att röra gapmätningen (measureGeometry
+   mäter avståndet MELLAN raderna, aldrig deras absoluta position). */
+.composition{ display:grid; grid-template-columns:minmax(0,7fr) minmax(0,3fr); gap:var(--gutter);
+              align-items:start; flex:1 1 auto; min-height:0; padding-block:calc(6vh + 22px) 1vh }
+/* Runda 6, fynd 14: platen låg FÖRE ordmärket i mobilens stapel (order:-1) —
+   fotot mötte besökaren innan blocket, tvärtemot desktopläsordningen (blocket
+   är auktoriteten, se filens öppningskommentar). Tar bort ordet, DOM-ordningen
+   (blocket, sedan platen) räcker. */
+@media (max-width:899px){
+  .composition{ grid-template-columns:minmax(0,1fr); gap:18px }
+}
+
+.block{ position:relative; display:flex; flex-direction:column; min-width:0 }
+.row{ position:relative; min-width:0; z-index:1 }
+/* krossad bas: raderna rör nästan vid varandra i vila (--open:0). Separationen
+   är ett transform ovanpå denna bas — det stör aldrig flödet, så blocket
+   krockar aldrig med vad som ligger under det (runda 2:s 768px-bugg). */
+.row-b{ margin-top:-2.6vw }
+/* Runda 4: gapet mäts i vh (den faktiskt begränsande dimensionen i en pinnad
+   100vh-hög scen), inte vw — annars skalar separationen med bredd, inte höjd,
+   och rubriken tvingas till lässtorlek för att få plats. */
+/* Runda 5: separationen minskad (5,5/8vh → 4/6vh) så gapet blir rubrikens
+   höjd plus luft, inte mer — JS-konstanterna ROW_A_VH/ROW_B_VH måste matcha
+   dessa två tal exakt, se signaturaktens script. */
+.row-a{ transform: translateY(calc(var(--open,0) * -14vh)) }
+.row-b{ transform: translateY(calc(var(--open,0) * 11vh)) }
+@media (max-width:899px){ .row-b{ margin-top:0.4em } }
+
+.fa{ display:block }
+.fa svg{ display:block; width:100%; height:auto; overflow:visible }
+.fa svg text{ font-family:var(--font-display); font-weight:900; font-stretch:100%;
+              font-size:100px; letter-spacing:-1.5px; fill:var(--ink) }
+/* Ordmärket förblir bläcksvart hela tiden — ingen opacitet här, någonsin.
+   Det är affischen, inte ett lager som ska tona bort. */
+
+/* rubriken som reser sig i gapet mellan raderna. Zero-height ankare mellan
+   row-a och row-b i flödet, sedan centrerad via translateY(-50%) — så att
+   den alltid sitter exakt i sömmen oavsett hur mycket raderna separerat. */
+.headingWrap{ position:relative; height:0; overflow:visible; z-index:2 }
+.headingWrap h2{ position:absolute; left:0; right:0; top:0; transform:translateY(-50%); margin:0;
+                 font-family:var(--font-display); font-weight:900; font-stretch:82%; text-transform:uppercase;
+                 letter-spacing:-0.02em; line-height:1; color:var(--ink);
+                 /* satt av JS: mätt ur det faktiska gapet vid p=1, se measureGeometry().
+                    clamp() är bara en no-js/pre-mätning-reserv. */
+                 font-size:var(--heading-fs, clamp(1.5rem, 5.4vh, 3.6rem)) }
+.headingWrap .hline{ display:block }
+#block .headingWrap .hline{ opacity:0; transform:translateY(10px) }
+/* Runda 6, fynd 9 (blockerande): :not(.rm) uteslöt reduced motion helt, så
+   ?preview=open under prefers-reduced-motion visade ett tomt gap — JS satte
+   --l1/--l2 korrekt till 1, men ingen regel läste dem under .rm, så
+   basregelns opacity:0 (ovan) vann. Under vanlig reduced motion (ingen
+   preview) är --l1/--l2 redan 0 via apply(0) i init(), så denna regel ändrar
+   inget normalt beteende — den gör bara den forcerade förhandsvisningen
+   möjlig att se. */
+.js #block .headingWrap .hline:nth-child(1){ opacity:var(--l1,0); transform:translateY(calc((1 - var(--l1,0)) * 10px)) }
+.js #block .headingWrap .hline:nth-child(2){ opacity:var(--l2,0); transform:translateY(calc((1 - var(--l2,0)) * 10px)) }
+
+.under{ margin-top:clamp(4px,0.8vh,10px); opacity:calc(1 - min(1, var(--open,0) * 1.6)) }
+.site{ margin:0; font-family:var(--font-text); font-size:12px; font-weight:600; letter-spacing:.14em;
+       text-transform:uppercase; color:var(--line-2) }
+
+.lead{ margin-top:clamp(14px,2.4vh,26px); max-width:46ch }
+.lead h1{ margin:0 0 .4em; font-family:var(--font-text); font-weight:600; font-size:clamp(16px,1.3vw,20px); line-height:1.35 }
+.lead p{ margin:0; color:var(--ink) }
+
+/* --- platen: en dämpad svartvit dokumentärbild, aldrig under ordmärket --- */
+.plate{ position:relative; align-self:start }
+.plate figure{ margin:0; border:1px solid var(--line-1); border-radius:2px; overflow:hidden; background:var(--white) }
+.plate img{ width:100%; height:auto; aspect-ratio:4/5; object-fit:cover; filter:grayscale(1) contrast(1.04) brightness(1.01) }
+.plate figcaption{ margin-top:8px; font-family:var(--font-text); font-size:11px; letter-spacing:.1em;
+                    text-transform:uppercase; color:var(--line-2) }
+@media (max-width:899px){
+  .plate img{ aspect-ratio:16/9 }
+  /* Runda 6, fynd 12/14: platen ligger nu EFTER blocket i den enkla kolumnen
+     (fynd 14 tog bort order:-1) — row-b:s neråtrörelse kan annars köra rakt
+     in i fotot under. Samma opacitetsteknik som .desc/.under (runda 5):
+     tonar bort innan raden fysiskt hinner dit, ingen layoutkostnad. */
+  .plate{ opacity:calc(1 - min(1, var(--open,0) * 1.6)) }
+}
+
+/* ---- reduced motion / no-js / narrow: det formade "isär"-läget, som egen sektion ---- */
+/* Runda 6, fynd 12: narrow width forcerade .opened synlig oavsett .rm, för
+   att den var den ENDA vägen till det formade läget när mobilen alltid
+   skippade JS-övergången. Nu när heroAct får en riktig scrollkopplad
+   övergång även vid smal bredd (utan reduce), skulle den gamla regeln
+   återskapa exakt fynd 4:s problem: två ordmärken i rad, nu bara av en annan
+   anledning. .opened är kvar precis där den faktiskt fortfarande behövs:
+   reduced motion (ingen JS-driven rörelse alls) och no-js. */
+.opened{ display:none; background:var(--paper) }
+.rm .opened, html:not(.js) .opened{ display:block; padding:clamp(48px,9vh,96px) var(--gutter) clamp(48px,9vh,96px) }
+@media (max-width:899px){ .rm .opened, html:not(.js) .opened{ padding:clamp(40px,7vh,72px) var(--gutter) clamp(40px,7vh,72px) } }
+/* Runda 6, fynd 4: ordmärket dyker upp krossat i heron och sedan öppnat här,
+   utan förklaring, under reduced motion/mobil — läser som en obemotiverad
+   dubblett. En kicker med samma hårlinje som akt B/C/D:s sektionsrubriker
+   sätter denna sektion i sitt sammanhang: det som redan visats, nu öppnat. */
+.opened .kicker{ display:block; padding-bottom:10px; border-bottom:1px solid var(--line-1); margin-bottom:clamp(20px,3.4vh,36px) }
+.opened .block{ max-width:var(--maxw); margin:0 auto }
+.opened .row-a{ transform:translateY(-14vh) }
+.opened .row-b{ transform:translateY(11vh) }
+.opened .headingWrap .hline{ opacity:1; transform:none }
+
+/* reduced motion (removed, F-011, 2026-09-07): motion always plays. */
+
+/* ------------------------------------------------------------- akt B: bevis */
+.proof{ padding-block:clamp(48px,9vh,110px); background:var(--paper) }
+.proof > .caps{ display:block; padding-bottom:10px; border-bottom:1px solid var(--line-1);
+  margin-bottom:clamp(20px,3.4vh,36px) }
+.spread{ display:grid; grid-template-columns:minmax(0,3fr) minmax(0,7fr); gap:clamp(16px,2.6vw,32px);
+  padding-block:clamp(28px,5vh,56px) }
+.spread + .spread{ border-top:1px solid var(--line-1) }
+.spread.alt{ grid-template-columns:minmax(0,7fr) minmax(0,3fr) }
+/* Den spegelvända kolumnordningen kommer från fysisk DOM-ordning (ram före
+   bildtext i markupen för .alt), aldrig från CSS `order` — `order` flyttar
+   bara måleriet, aldrig tabbordningen, och hade låtit en tangentbordsläsare
+   nå länken före iframen (WCAG 2.4.3). */
+.spread-cap{ display:flex; flex-direction:column; justify-content:space-between; gap:16px }
+.spread-cap .caps{ margin:0 }
+/* Runda 6, fynd 6: 21,75px hög i vila, under 24px-golvet för en träffyta.
+   Padding runt texten (inte line-height) håller baslinjen still. */
+.spread-cap .arrow{ font-family:var(--font-text); font-weight:600; font-size:15px; display:inline-block;
+  padding:5px 0; margin:-5px 0 }
+.spread-cap .arrow::after{ content:" →"; display:inline-block; transition:transform 200ms var(--ease) }
+.spread-cap .arrow:hover::after{ transform:translateX(5px) }
+.frame{ position:relative; aspect-ratio:16/10; background:var(--white); border:1px solid var(--line-1); border-radius:2px; overflow:clip }
+/* tabindex=-1 (runda 6, fynd 3): iframen är en visuell förhandsvisning, inte
+   ett andra sätt att nå exempelsidan — länken i spread-cap gör det jobbet.
+   Utan detta bröt tre inbäddade sajter tangentbordsordningen med tre extra,
+   meningslösa stopp innan "Öppna X"-länken. */
+.frame iframe{ position:absolute; inset:0; width:100%; height:100%; border:0; background:var(--white) }
+.frame .shot{ position:absolute; inset:0; width:100%; height:100%; object-fit:cover; object-position:top }
+.js:not(.rm) .frame .shot{ filter:grayscale(calc(1 - clamp(0, (var(--sc-p,0) - 0.4) * 3, 1)));
+  opacity:calc(1 - clamp(0, (var(--sc-p,0) - 0.78) * 5, 1)) }
+.rm .frame .shot, html:not(.js) .frame .shot{ display:none }
+@media (max-width:860px){
+  .spread, .spread.alt{ grid-template-columns:minmax(0,1fr) }
+  .frame{ aspect-ratio:4/5 }
+}
+
+/* --------------------------------------------------------- akt C och D: liggare */
+.ledger{ padding-block:clamp(40px,7vh,88px); background:var(--paper) }
+.ledger > .caps{ display:block; padding-bottom:10px; border-bottom:1px solid var(--line-1); margin-bottom:clamp(20px,3.4vh,36px) }
+.ledger .poster{ margin:clamp(20px,3.4vh,36px) 0 clamp(8px,1.6vh,16px); font-family:var(--font-display); font-weight:900;
+  font-stretch:82%; text-transform:uppercase; letter-spacing:-0.02em; line-height:1.05;
+  font-size:clamp(1.9rem,5vw,3.6rem); color:var(--ink) }
+
+.services{ list-style:none; margin:0; padding:0 }
+.services li{ display:grid; grid-template-columns:minmax(0,1fr) minmax(0,2.6fr); gap:clamp(12px,2vw,28px);
+  padding-block:clamp(16px,2.6vh,26px); border-bottom:1px solid var(--line-1);
+  opacity:0; transform:translateY(18px); transition:opacity .9s var(--ease), transform .9s var(--ease) }
+.js:not(.rm) .services li.sc-in{ opacity:1; transform:none }
+.rm .services li, html:not(.js) .services li{ opacity:1; transform:none }
+.services .num{ font-family:var(--font-text); font-weight:600; font-size:12px; letter-spacing:.16em; color:var(--line-2) }
+.services h3{ grid-column:2; margin:0 0 .3em; font-family:var(--font-text); font-weight:600; font-size:15px;
+  text-transform:uppercase; letter-spacing:.06em; color:var(--ink) }
+.services p{ grid-column:2; margin:0; max-width:52ch }
+@media (max-width:640px){ .services li{ grid-template-columns:minmax(0,1fr) } .services h3, .services p{ grid-column:1 } }
+
+.pricelist{ list-style:none; margin:clamp(36px,6.4vh,64px) 0 0; padding:0 }
+.pricelist li{ position:relative; display:grid; grid-template-columns:minmax(0,1fr) auto; gap:clamp(12px,2vw,28px);
+  align-items:baseline; padding-block:clamp(18px,3vh,30px) }
+.pricelist li::before{ content:""; position:absolute; left:0; right:0; bottom:0; height:1px; background:var(--line-1);
+  transform-origin:left; transform:scaleX(0); transition:transform 1s var(--ease) }
+.js:not(.rm) .pricelist li.sc-in::before{ transform:scaleX(1) }
+.rm .pricelist li::before, html:not(.js) .pricelist li::before{ transform:scaleX(1) }
+.pricelist p{ margin:0; max-width:52ch }
+.pricelist .price{ font-family:var(--font-display); font-weight:900; font-stretch:88%; font-size:clamp(1.4rem,3.4vw,2.6rem);
+  white-space:nowrap; opacity:0; transform:translateX(22px);
+  transition:opacity .8s var(--ease) .1s, transform .8s var(--ease) .1s }
+.js:not(.rm) .pricelist li.sc-in .price{ opacity:1; transform:none }
+.rm .pricelist .price, html:not(.js) .pricelist .price{ opacity:1; transform:none }
+.pricelist .price.ask{ font-family:var(--font-text); font-weight:600; font-size:15px; letter-spacing:.1em; text-transform:uppercase }
+@media (max-width:640px){ .pricelist li{ grid-template-columns:minmax(0,1fr) } .pricelist .price{ justify-self:start } }
+
+/* ------------------------------------------------------------- akt E: avslut */
+/* Runda 4, rättelse 3: kontaktlänken låg längst ned i en flex-end-kolumn med en
+   hel skärmhöjd tomt ovanför. Akten är nu högst 70vh och innehållet sitter i
+   den övre tredjedelen (padding-top ~23vh), kolofonen direkt under — det mörka
+   rummet under blir en avsiktlig ram, inte ett tomt golv. */
+/* Runda 6, fynd 2: motorns egen bakgrundsdrift (--sc-canvas) hade bara EN
+   data-sc-drift-zon på sidan, så dess driftB/driftA-par blev samma zon två
+   gånger (ingen "föregående" zon finns) — mixColor(X,X,t) ger alltid X,
+   grunden HOPPADE till fullt mörker direkt, oavsett t (uppmätt: 1,29:1).
+   scrollcraft.js redigeras aldrig, så fixen är att data-sc-drift-attributet
+   är borttaget ur markupen och updateCloseMix() (JS) sätter --sc-canvas
+   direkt, varje bildruta, oberoende av motorns egen (trasiga) mekanik. */
+/* En krossfade av TEXTEN mellan ink och paper, i takt med en bakgrund som
+   själv spänner mellan exakt samma två toner, MÅSTE passera en punkt där
+   text och grund ligger nära varandra i ljushet — oavsett kurvform eller
+   synk (uppmätt: ink mot grunden faller under 4,5:1 runt 40% mix, paper
+   kommer inte upp i 4,5:1 förrän ~65%; ingen kontinuerlig väg mellan de två
+   ändpunkterna undviker den zonen helt). color: var(--ink) är no-js/pre-JS-
+   reserven (rätt så länge grunden aldrig driftar utan JS); updateCloseMix()
+   sätter `color` direkt som ett DISKRET val vid den
+   analytiskt bästa brytpunkten (t≈0,52, där ink och paper ger samma
+   kontrast mot grunden) i stället för en fortsatt tuning — sämsta läget
+   krymper då från 2,88:1 (kontinuerlig fade) till ≈3,5:1. Se NOTES.md,
+   runda 6, fynd 2: ett fullständigt "aldrig under 4,5:1" kräver antingen en
+   mindre mörk driftändpunkt eller ett tredje kulör utanför de fem låsta
+   tonerna — flaggat till Anton, inte löst tyst. */
+.close{ height:70vh; max-height:70vh;
+  padding-block:clamp(48px,23vh,220px) 0;
+  color: var(--ink) }
+.close .mail-link{ font-family:var(--font-text); font-weight:600; font-size:clamp(17px,1.6vw,22px);
+  text-decoration:underline; text-underline-offset:.22em; display:inline-block; width:fit-content }
+html:not(.js) .close .mail-link{ opacity:1 }
+/* Runda 6: kolofonens line-2/line-2-onink-par presterade SÄMRE än ink/paper
+   genom hela driften (bästa läge sjönk till ≈1,0-2,6:1 över ett brett
+   spann, och startvärdet 4,70:1 var redan marginellt för 11px-text) — bytt
+   till samma ink/paper-par och samma diskreta brytpunkt som huvudtexten.
+   Den visuella distinktionen (kolofonen ska kännas mindre framträdande än
+   mejllänken) kommer nu enbart från storlek/spärrning, inte från en
+   kulör som inte bär kontrasten. */
+.colophon{ margin-top:clamp(16px,3vh,28px); padding-top:16px;
+  border-top:1px solid var(--line-1);
+  font-size:11px; letter-spacing:.05em }
+  /* color: ärvs från .close — samma diskreta ink/paper-brytpunkt, se ovan */
+.colophon p{ margin:0 0 4px }
+.colophon a{ text-decoration:underline; text-underline-offset:.18em }
+html:not(.js) .colophon{ opacity:1 }
+</style>
+</head>
+<body>
+
+<header class="bar">
+  <div class="wrap">
+    <a class="mark" href="#top" aria-label="Alunix, till toppen">
+      <svg viewBox="80 400 827 1139" aria-hidden="true" focusable="false"><path fill="currentColor" fill-rule="evenodd" d="M 430.020 513.250 C 386.700 600.458, 318.190 739.397, 297.501 782 C 289.087 799.325, 276.594 824.975, 269.739 839 C 216.342 948.248, 182.518 1018.108, 130.177 1127.250 L 122.145 1144 149.505 1144 C 176.418 1144, 176.876 1143.966, 177.531 1141.901 C 177.898 1140.746, 186.760 1121.959, 197.226 1100.151 C 207.692 1078.343, 223.776 1044.750, 232.969 1025.500 C 266.133 956.059, 277.353 933, 277.980 933 C 278.331 933, 280.408 935.587, 282.595 938.750 C 284.783 941.913, 295.822 957.775, 307.127 974 C 325.042 999.713, 381.481 1081.065, 429.737 1150.734 C 439.657 1165.055, 444.860 1173.418, 444.356 1174.233 C 443.926 1174.929, 440.820 1179.324, 437.455 1183.999 C 429.228 1195.427, 350.904 1307.144, 339.651 1323.500 C 334.732 1330.650, 327.687 1340.775, 323.996 1346 C 313.067 1361.472, 240.505 1466.210, 229.257 1482.750 L 218.886 1498 253.693 1497.961 L 288.500 1497.922 299.500 1481.744 C 324.141 1445.503, 476.381 1225.616, 478.506 1223.197 C 478.768 1222.899, 523.522 1286.863, 565.476 1347.500 C 568.140 1351.350, 588.572 1380.825, 610.880 1413 C 633.189 1445.175, 655.504 1477.439, 660.471 1484.697 L 669.500 1497.895 706.798 1497.947 L 744.096 1498 740.841 1493.250 C 727.956 1474.444, 658.474 1374.606, 602.522 1294.500 C 521.377 1178.323, 476.786 1114.238, 411.522 1020 C 389.621 988.375, 368.686 958.225, 364.999 953 C 342.882 921.650, 308 870.814, 308 869.930 C 308 868.958, 318.208 847.506, 341.512 799.500 C 346.852 788.500, 357.642 766.225, 365.489 750 C 373.336 733.775, 394.812 689.450, 413.213 651.500 C 431.614 613.550, 449.746 576.074, 453.505 568.221 C 457.265 560.367, 460.665 554.292, 461.060 554.721 C 461.456 555.149, 484.829 600.050, 513 654.500 C 595.807 814.548, 597.733 818.267, 612.712 847 C 620.597 862.125, 629.584 879.471, 632.684 885.546 L 638.319 896.592 633.336 903.546 C 630.596 907.371, 622.124 919.500, 614.511 930.500 C 606.897 941.500, 592.950 961.525, 583.517 975 C 550.282 1022.475, 513.571 1075.338, 501.745 1092.750 C 500.157 1095.088, 498.778 1097, 498.679 1097 C 498.581 1097, 498.620 1045.925, 498.767 983.500 L 499.033 870 467.529 870 L 436.024 870 435.762 948.679 L 435.500 1027.358 441.051 1035.429 C 444.105 1039.868, 458.527 1060.825, 473.101 1082 C 498.716 1119.217, 521.094 1151.905, 523.077 1155 C 523.877 1156.249, 524.411 1156.006, 526.269 1153.550 C 528.956 1149.997, 575.050 1083.626, 604.955 1040.250 C 642.615 985.626, 683.143 927.009, 694.212 911.152 L 704.927 895.804 701.347 888.652 C 699.378 884.718, 693.373 873.175, 688.003 863 C 682.632 852.825, 671.141 831, 662.466 814.500 C 653.792 798, 640.398 772.575, 632.701 758 C 609.734 714.509, 591.719 680.257, 553.278 607 C 533.220 568.775, 512.426 529.175, 507.069 519 C 501.712 508.825, 490.419 487.337, 481.975 471.250 C 473.530 455.163, 466.349 442, 466.016 442 C 465.684 442, 449.485 474.063, 430.020 513.250 M 459 748.072 C 445.481 750.334, 431.497 761.058, 425.189 774 C 411.946 801.174, 429.479 833.973, 460.052 839.216 C 482.335 843.037, 505.858 827.419, 511.586 805 C 519.739 773.095, 491.587 742.619, 459 748.072 M 583.028 1238.750 C 583.043 1239.162, 587.793 1246.250, 593.583 1254.500 C 599.373 1262.750, 608.679 1276.138, 614.264 1284.250 L 624.418 1299 745.199 1299 L 865.981 1299 847.826 1273.750 C 837.841 1259.862, 828.058 1246.155, 826.086 1243.288 L 822.500 1238.076 702.750 1238.038 C 636.888 1238.017, 583.012 1238.338, 583.028 1238.750"/></svg>
+      <span class="name">Alunix</span>
+    </a>
+    <p class="clock"><time id="clock" datetime=""></time><span>Stockholm</span></p>
+    <a class="mail" href="mailto:kontakt@alunix.se">kontakt@alunix.se</a>
+  </div>
+</header>
+
+<main id="top">
+<h1 class="sr-only">Alunix</h1>
+
+<!-- AKT A: heron. Ordmärket är bläcksvart hela tiden — ingen korstoning. -->
+<section class="hero" id="heroAct" data-sc-act="pin" data-sc-span="3" aria-label="Alunix">
+  <div class="stage wrap" data-sc-stage id="stage">
+
+    <p class="desc">Webbdesign, design och system. Allt på ett ställe.</p>
+
+    <div class="composition">
+      <div class="block" id="block">
+
+        <div class="row row-a" id="row1">
+          <div class="fa">
+            <svg viewBox="0 0 226 73" preserveAspectRatio="xMinYMin meet" data-word="ALU" aria-hidden="true">
+              <mask id="win1" maskUnits="userSpaceOnUse" x="0" y="0" width="226" height="73"></mask>
+              <g mask="url(#win1)"><g class="strip" id="strip1">
+                <image href="assets/demo-calyx.webp" x="-68" y="-44" width="362" height="234" preserveAspectRatio="xMidYMid slice"/>
+                <image data-href="assets/demo-horai.webp" x="-68" y="190" width="362" height="234" preserveAspectRatio="xMidYMid slice"/>
+                <image data-href="assets/demo-hyperborea.webp" x="-68" y="424" width="362" height="234" preserveAspectRatio="xMidYMid slice"/>
+              </g></g>
+              <text x="0" y="71">ALU</text>
+            </svg>
+          </div>
+        </div>
+
+        <div class="headingWrap">
+          <h2 id="gapHeading"><span class="hline">VI BYGGER</span><span class="hline">ERT VARUMÄRKE.</span></h2>
+        </div>
+
+        <div class="row row-b" id="row2">
+          <div class="fa">
+            <svg viewBox="0 0 226 73" preserveAspectRatio="xMinYMin meet" data-word="NIX" aria-hidden="true">
+              <mask id="win2" maskUnits="userSpaceOnUse" x="0" y="0" width="226" height="73"></mask>
+              <g mask="url(#win2)"><g class="strip" id="strip2">
+                <image href="assets/demo-calyx.webp" x="-68" y="-44" width="362" height="234" preserveAspectRatio="xMidYMid slice"/>
+                <image data-href="assets/demo-horai.webp" x="-68" y="190" width="362" height="234" preserveAspectRatio="xMidYMid slice"/>
+                <image data-href="assets/demo-hyperborea.webp" x="-68" y="424" width="362" height="234" preserveAspectRatio="xMidYMid slice"/>
+              </g></g>
+              <text x="0" y="71">NIX</text>
+            </svg>
+          </div>
+        </div>
+
+      </div>
+
+      <div class="plate">
+        <figure>
+          <img src="assets/plate-desk.webp" alt="Ett skrivbord vid ett fönster, svartvitt" width="1600" height="2000" loading="eager">
+        </figure>
+        <figcaption class="caps">Foto: Ricardo Loaiza, Unsplash</figcaption>
+      </div>
+    </div>
+
+    <div class="under">
+      <p class="site" id="siteRow">Exempelsida: Calyx, florist i Stockholm</p>
+      <div class="lead">
+        <h2>Er hemsida är nutidens visitkort</h2>
+        <p>Vi skapar skräddarsydda webbplatser som hjälper er att exponera verksamheten.</p>
+      </div>
+    </div>
+
+  </div>
+</section>
+
+<!-- Reduced motion / no-js / smala skärmar: samma formade läge som ?preview=open,
+     som egen sektion. Ingen spöktext, inget hopp — se F-001. -->
+<section class="opened" aria-label="Nästa avsnitt">
+  <p class="caps kicker">Ordmärket öppet</p>
+  <div class="block" id="blockStatic">
+    <div class="row row-a">
+      <div class="fa">
+        <svg viewBox="0 0 226 73" preserveAspectRatio="xMinYMin meet" data-word="ALU" aria-hidden="true">
+          <mask id="win1b" maskUnits="userSpaceOnUse" x="0" y="0" width="226" height="73"></mask>
+          <g mask="url(#win1b)"><g class="strip" transform="translate(0 -468)">
+            <image href="assets/demo-calyx.webp" x="-68" y="-44" width="362" height="234" preserveAspectRatio="xMidYMid slice"/>
+            <image href="assets/demo-horai.webp" x="-68" y="190" width="362" height="234" preserveAspectRatio="xMidYMid slice"/>
+            <image href="assets/demo-hyperborea.webp" x="-68" y="424" width="362" height="234" preserveAspectRatio="xMidYMid slice"/>
+          </g></g>
+          <text x="0" y="71">ALU</text>
+        </svg>
+      </div>
+    </div>
+    <div class="headingWrap">
+      <h2><span class="hline">VI BYGGER</span><span class="hline">ERT VARUMÄRKE.</span></h2>
+    </div>
+    <div class="row row-b">
+      <div class="fa">
+        <svg viewBox="0 0 226 73" preserveAspectRatio="xMinYMin meet" data-word="NIX" aria-hidden="true">
+          <mask id="win2b" maskUnits="userSpaceOnUse" x="0" y="0" width="226" height="73"></mask>
+          <g mask="url(#win2b)"><g class="strip" transform="translate(0 -468)">
+            <image href="assets/demo-calyx.webp" x="-68" y="-44" width="362" height="234" preserveAspectRatio="xMidYMid slice"/>
+            <image href="assets/demo-horai.webp" x="-68" y="190" width="362" height="234" preserveAspectRatio="xMidYMid slice"/>
+            <image href="assets/demo-hyperborea.webp" x="-68" y="424" width="362" height="234" preserveAspectRatio="xMidYMid slice"/>
+          </g></g>
+          <text x="0" y="71">NIX</text>
+        </svg>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- AKT B: bevis. Rubriken stannar i akt A:s gap (F-003: ett displayelement per
+     skärm) — akt B öppnar direkt med kickern, ingen dubblett i displaygrad. -->
+<section class="proof wrap" aria-label="Exempelsidor">
+  <h2 class="caps">Bevis</h2>
+
+  <article class="spread" data-sc-act="flow">
+    <div class="spread-cap">
+      <p class="caps">Exempelsida: Calyx, florist i Stockholm</p>
+      <a class="arrow" href="/sites/calyx.html">Öppna Calyx</a>
+    </div>
+    <div class="frame" data-sc-reveal="left" data-sc-reveal-at="0.08 0.5">
+      <iframe src="/sites/calyx.html" title="Calyx, exempelsida" loading="lazy" tabindex="-1"></iframe>
+      <img class="shot" src="assets/demo-calyx.webp" alt="Calyx, förstasidan: rubriken Botanical architecture över en bukett i rosa, vitt och grönt" width="1200" height="750" loading="lazy">
+    </div>
+  </article>
+
+  <article class="spread alt" data-sc-act="flow">
+    <!-- Fysisk DOM-ordning matchar den visuella (ram vänster, bildtext höger)
+         för denna spegelvända spread — CSS `order` hade flyttat bildtexten
+         visuellt men aldrig tabbordningen, som alltid följer DOM:en. En
+         tangentbordsläsare hade då nått "Öppna Hōrai" före iframen, tvärtemot
+         det visuella flödet (WCAG 2.4.3). -->
+    <div class="frame" data-sc-reveal="right" data-sc-reveal-at="0.08 0.5">
+      <iframe src="/sites/horai.html" title="Hōrai, exempelsida" loading="lazy" tabindex="-1"></iframe>
+      <img class="shot" src="assets/demo-horai.webp" alt="Hōrai, förstasidan: ordet Hōrai i serif över ett dukat bord i varmt ljus" width="1200" height="750" loading="lazy">
+    </div>
+    <div class="spread-cap">
+      <p class="caps">Exempelsida: Hōrai, Asian fusion-koncept</p>
+      <a class="arrow" href="/sites/horai.html">Öppna Hōrai</a>
+    </div>
+  </article>
+
+  <article class="spread" data-sc-act="flow">
+    <div class="spread-cap">
+      <p class="caps">Exempelsida: Hyperborea, konferens i Lund</p>
+      <a class="arrow" href="/sites/hyperborea.html">Öppna Hyperborea</a>
+    </div>
+    <div class="frame" data-sc-reveal="left" data-sc-reveal-at="0.08 0.5">
+      <iframe src="/sites/hyperborea.html" title="Hyperborea, exempelsida" loading="lazy" tabindex="-1"></iframe>
+      <img class="shot" src="assets/demo-hyperborea.webp" alt="Hyperborea, förstasidan: rubriken Systems with warmth mot mörk grund och en orange sol" width="1200" height="750" loading="lazy">
+    </div>
+  </article>
+</section>
+
+<!-- AKT C: tjänster -->
+<section class="ledger wrap" aria-label="Tjänster">
+  <h2 class="caps">Tjänster</h2>
+  <ol class="services" data-sc-in data-sc-stagger="90">
+    <li>
+      <span class="num" aria-hidden="true">01</span>
+      <h3>Design</h3>
+      <p>Identitet, typografi och layout, ritade innan koden skrivs.</p>
+    </li>
+    <li>
+      <span class="num" aria-hidden="true">02</span>
+      <h3>Utveckling</h3>
+      <p>Handskriven kod utan färdiga teman. Sidan förblir er egen.</p>
+    </li>
+    <li>
+      <span class="num" aria-hidden="true">03</span>
+      <h3>System</h3>
+      <p>CMS, bokning, betalning och kunddatabas i samma lösning.</p>
+    </li>
+  </ol>
+</section>
+
+<!-- AKT D: pris -->
+<section class="ledger wrap" aria-label="Paket och priser">
+  <p class="caps">Paket</p>
+  <h2 class="poster">Alla har rätt till bra design.</h2>
+  <ul class="pricelist" data-sc-in data-sc-stagger="120">
+    <li>
+      <p>Standardpaket. Webbplats med CMS för egna ändringar och en första SEO-optimering.</p>
+      <span class="price">26 900 kr</span>
+    </li>
+    <li>
+      <p>Paket med bokningssystem, betalning och kunddatabas.</p>
+      <span class="price">38 900 kr</span>
+    </li>
+    <li>
+      <p>Helt skräddarsydda lösningar för produktkataloger, specialbyggda system med mera</p>
+      <span class="price ask">Pris vid förfrågan</span>
+    </li>
+  </ul>
+</section>
+
+<!-- AKT E: avslut. Grunden driftar papper till bläck; sidan slutar på minsta typen. -->
+<section class="close wrap" id="closeAct" data-sc-act="flow" aria-label="Kontakt">
+  <a class="mail-link" data-sc-cue="0.06" href="mailto:kontakt@alunix.se">kontakt@alunix.se</a>
+  <footer class="colophon" data-sc-cue="0.12">
+    <p>Alunix, webbyrå i Sverige. Exempelsidor: <a href="/sites/calyx.html">Calyx</a>, <a href="/sites/horai.html">Hōrai</a>, <a href="/sites/hyperborea.html">Hyperborea</a>.</p>
+    <p>Foto: <a href="https://unsplash.com/@rickpekar" rel="noopener">Ricardo Loaiza</a>, <a href="https://unsplash.com/photos/a-black-and-white-photo-of-a-desk-and-a-window-zQYJiCOWRV8" rel="noopener">Unsplash</a>.</p>
+  </footer>
+</section>
+
+</main>
+
+<script src="scrollcraft.js"></script>
+<script>
+(function(){
+  'use strict';
+  var doc = document.documentElement;
+  // Motion always plays (F-011, 2026-09-07): never read prefers-reduced-motion,
+  // not even for live changes. reduce is permanently false; syncRm(true) never runs.
+  var reduce = false;
+
+  /* Below 899px the composition stacks to one column and the poster rows alone
+     exceed the viewport height a pin can borrow — see the matching CSS media
+     query on .stage. The engine must never treat heroAct as a PINNED act at
+     this width (data-sc-span would still force a 300vh inline height on the
+     element regardless of .stage's own static/auto CSS, leaving a dead
+     scroll track above content that never moves), so the attributes are
+     always stripped here, same as reduced motion.
+     Runda 6, fynd 12: stripping the attributes used to also skip the JS
+     scroll-driven apply()/onScroll() pipeline entirely — phone visitors got
+     two static wordmarks (crushed in hero, open in .opened) with no
+     transition between them ("signaturen finns inte alls under 900 px").
+     That pipeline never actually depended on the engine or on being pinned:
+     onScroll() reads heroAct's own offsetTop/offsetHeight directly, which
+     are valid, finite numbers whether or not anything is pinned. So narrow
+     width alone no longer skips the transition — only reduced motion does,
+     honouring the user's actual stated preference instead of a layout
+     workaround that happened to piggyback on the same flag. */
+  var narrowMQ = matchMedia('(max-width: 899px)');
+  var narrow = narrowMQ.matches;
+  var stripAct = reduce || narrow;
+  var skipScroll = reduce;
+
+  var heroActEl = document.getElementById('heroAct');
+  if (stripAct && heroActEl){
+    heroActEl.removeAttribute('data-sc-act');
+    heroActEl.removeAttribute('data-sc-span');
+  }
+  /* Crossing the breakpoint live (rotate, resize a real window) changes which
+     layout mode is structurally correct; simplest robust fix is a reload
+     rather than trying to un-mount and re-mount the engine mid-session. */
+  narrowMQ.addEventListener && narrowMQ.addEventListener('change', function(){ location.reload(); });
+
+  var params = new URLSearchParams(location.search);
+  var preview = params.get('preview'); // calyx | horai | hyperborea | open
+
+  /* ---------------- klockan: riktig tid i Stockholm ---------------- */
+  var clockEl = document.getElementById('clock');
+  var fmt = new Intl.DateTimeFormat('sv-SE', { timeZone:'Europe/Stockholm', hour:'2-digit', minute:'2-digit', second:'2-digit', hour12:false });
+  function tick(){ var d = new Date(); clockEl.textContent = fmt.format(d); clockEl.setAttribute('datetime', d.toISOString()); }
+  tick(); setInterval(tick, 1000);
+
+  /* ---------------- fönstren: mask ur bläcket, aldrig gissad ---------------- */
+  var NS = 'http://www.w3.org/2000/svg';
+  var BASE = 71;
+  var scan = document.createElement('canvas');
+  var sc = scan.getContext('2d', { willReadFrequently:true });
+  var SC = 2;
+
+  function inkScan(ch, fam){
+    var W = 400, H = 400, penX = 100, penY = 260;
+    scan.width = W; scan.height = H;
+    sc.clearRect(0,0,W,H); sc.font = '900 ' + (100*SC) + 'px ' + fam; sc.textBaseline = 'alphabetic'; sc.fillStyle = '#000';
+    sc.fillText(ch, penX, penY);
+    var d = sc.getImageData(0,0,W,H).data;
+    var ink = function(x,y){ return d[(y*W+x)*4+3] > 110; };
+    var runsRow = function(y){ var r=[],s=-1; for (var x=0;x<W;x++){ var k=ink(x,y); if (k && s<0) s=x; else if (!k && s>=0){ r.push([s,x-1]); s=-1; } } if (s>=0) r.push([s,W-1]); return r; };
+    var runsCol = function(x){ var r=[],s=-1; for (var y=0;y<H;y++){ var k=ink(x,y); if (k && s<0) s=y; else if (!k && s>=0){ r.push([s,y-1]); s=-1; } } if (s>=0) r.push([s,H-1]); return r; };
+    var regionsRows = []; var cur = null;
+    for (var y=0;y<H;y++){
+      var r = runsRow(y); var g = null;
+      if (r.length >= 2) g = [r[0][1]+1-3, r[r.length-1][0]+3];
+      if (g){ if (cur && y === cur.y1+1 && Math.abs(g[0]-cur.l[cur.l.length-1][0]) < 40){ cur.y1=y; cur.l.push([g[0],y]); cur.r.push([g[1],y]); } else { cur = { y0:y, y1:y, l:[[g[0],y]], r:[[g[1],y]] }; regionsRows.push(cur); } }
+      else cur = null;
+    }
+    var regionsCols = []; cur = null;
+    for (var x=0;x<W;x++){
+      var rc = runsCol(x); var gc = null;
+      if (rc.length >= 2) gc = [rc[0][1]+1-3, rc[rc.length-1][0]+3];
+      if (gc){ if (cur && x === cur.x1+1 && Math.abs(gc[0]-cur.t[cur.t.length-1][0]) < 40){ cur.x1=x; cur.t.push([gc[0],x]); cur.b.push([gc[1],x]); } else { cur = { x0:x, x1:x, t:[[gc[0],x]], b:[[gc[1],x]] }; regionsCols.push(cur); } }
+      else cur = null;
+    }
+    var u = function(v){ return v / SC; };
+    var iy0=H, iy1=0, ix0=W, ix1=0;
+    for (var yy=0; yy<H; yy++) for (var xx=0; xx<W; xx++) if (ink(xx,yy)){ if (yy<iy0) iy0=yy; if (yy>iy1) iy1=yy; if (xx<ix0) ix0=xx; if (xx>ix1) ix1=xx; }
+    var polyRows = regionsRows.filter(function(R){ return R.y1-R.y0 > 4; }).map(function(R){
+      var yTop = Math.max(R.y0-3, iy0+1), yBot = Math.min(R.y1+4, iy1);
+      var pts = [];
+      pts.push([R.l[0][0], yTop]);
+      R.l.forEach(function(p){ pts.push([p[0],p[1]]); });
+      pts.push([R.l[R.l.length-1][0], yBot], [R.r[R.r.length-1][0], yBot]);
+      R.r.slice().reverse().forEach(function(p){ pts.push([p[0], p[1]+1]); });
+      pts.push([R.r[0][0], yTop]);
+      return pts.map(function(p){ return u(p[0]-penX) + ',' + u(p[1]-penY); }).join(' ');
+    });
+    var polyCols = regionsCols.filter(function(R){ return R.x1-R.x0 > 4; }).map(function(R){
+      var xL = Math.max(R.x0-3, ix0+1), xR = Math.min(R.x1+4, ix1);
+      var pts = [];
+      pts.push([xL, R.t[0][0]]);
+      R.t.forEach(function(p){ pts.push([p[1],p[0]]); });
+      pts.push([xR, R.t[R.t.length-1][0]], [xR, R.b[R.b.length-1][0]]);
+      R.b.slice().reverse().forEach(function(p){ pts.push([p[1]+1, p[0]]); });
+      pts.push([xL, R.b[0][0]]);
+      return pts.map(function(p){ return u(p[0]-penX) + ',' + u(p[1]-penY); }).join(' ');
+    });
+    return { polyRows: polyRows, polyCols: polyCols };
+  }
+
+  /* Delad selektor: bygger fönster i BÅDA heron (#block) och det statiska
+     "isär"-läget (#blockStatic), samma teknik, ingen gissad kopia. */
+  function buildWindows(){
+    var svgs = Array.prototype.slice.call(document.querySelectorAll('svg[data-word]'));
+    svgs.forEach(function(svg){
+      var text = svg.querySelector('text');
+      var mask = svg.querySelector('mask');
+      var word = svg.dataset.word;
+      Array.prototype.forEach.call(mask.querySelectorAll('.hull'), function(n){ n.remove(); });
+      var fam = getComputedStyle(text).fontFamily;
+      for (var i=0; i<word.length; i++){
+        var ch = word[i];
+        if ('AUX'.indexOf(ch) < 0) continue;
+        var pen;
+        try { pen = text.getStartPositionOfChar(i).x; } catch(e){ continue; }
+        var r = inkScan(ch, fam);
+        /* Runda 6, fynd 11: X:et kombinerade rad- OCH kolumn-polygoner, vilket
+           öppnade både de vågräta och lodräta gapen samtidigt — bläcket svaldes,
+           läste som ett foto med ett tunt kors i stället för X:ets fyra kilar
+           som riktiga fönster. polyRows ensamt (samma teknik som A och U) ger
+           X:ets timglas-formade mittgap som EN sammanhängande region, korrekt. */
+        var polys = r.polyRows;
+        polys.forEach(function(pts){
+          var el = document.createElementNS(NS, 'polygon');
+          el.setAttribute('points', pts); el.setAttribute('fill', '#fff'); el.setAttribute('class', 'hull');
+          el.setAttribute('transform', 'translate(' + pen + ' ' + BASE + ')');
+          mask.appendChild(el);
+        });
+      }
+    });
+  }
+
+  /* ---------------- signaturakten: papperet glider, raderna glider isär ---------------- */
+  /* Runda 6, fynd 2: räknar om closeAct:s raw-progress SJÄLV med exakt samma
+     formel motorn använder för en icke-pinnad ("flow") akt (scrollcraft.js:829,
+     y+vh-top över height+vh) i stället för att läsa motorns publicerade --sc-p
+     — det senare vore beroende av script-registreringsordning mellan denna
+     IIFE och motorns egen rAF-throttlade scroll-lyssnare (kapplöpning om vem
+     som hinner uppdatera --sc-p först i en given bildruta). Att räkna
+     oberoende har ingen sådan kapplöpning. */
+  var closeEl = document.getElementById('closeAct');
+  /* data-sc-drift is NOT used in the markup (removed) — the engine's own
+     drift mixes driftB/driftA, and with only ONE data-sc-drift element on
+     the page, drifts[d-1] falls back to drifts[d] itself (no "previous"
+     zone exists), so mixColor(X, X, t) always returns X regardless of t:
+     --sc-canvas SNAPS to the full dark target the instant raw leaves 0,
+     instead of easing. That is the actual root cause behind fynd 2's
+     measured contrast dip (grunden mörknar direkt, texten hinner inte med)
+     — not a curve mismatch. scrollcraft.js is vendored, never edited, so the
+     fix lives entirely here: drive BOTH the text mix and the background from
+     the exact same t, in this one function, so they can never go out of sync. */
+  /* Brytpunkten 0.52 är analytiskt uppmätt (canvas-luminans, se shots/
+     _crossing_check.py): den punkt där ink och paper ger EXAKT samma
+     kontrast mot bakgrunden mitt i driften — varken före eller efter den
+     är bättre att växla vid, given ink/paper är de enda två textfärgerna
+     tillgängliga. En diskret växling (ingen crossfade av TEXTEN) undviker
+     att båda färgerna är svaga SAMTIDIGT, vilket en kontinuerlig mix gjorde. */
+  var CLOSE_SWITCH_T = 0.52;
+  function updateCloseMix(){
+    if (!closeEl) return;
+    var top = closeEl.offsetTop, h = Math.max(closeEl.offsetHeight, 1);
+    var raw = clamp((scrollY + innerHeight - top) / (h + innerHeight), 0, 1);
+    var t = smooth(clamp(raw / 0.35, 0, 1));
+    var pct = (t * 100).toFixed(2) + '%';
+    doc.style.setProperty('--sc-canvas', 'color-mix(in oklch, #1b1f1c ' + pct + ', var(--paper))');
+    closeEl.style.color = t < CLOSE_SWITCH_T ? '' : 'var(--paper)';
+  }
+
+  var heroAct = document.getElementById('heroAct');
+  var stageEl = document.getElementById('stage');
+  var block = document.getElementById('block');
+  var strips = [document.getElementById('strip1'), document.getElementById('strip2')];
+  var siteRow = document.getElementById('siteRow');
+  var siteNames = ['Exempelsida: Calyx, florist i Stockholm', 'Exempelsida: Hōrai, Asian fusion-koncept', 'Exempelsida: Hyperborea, konferens i Lund'];
+  var siteIdx = -1;
+
+  var clamp = function(v,a,b){ return Math.min(b, Math.max(a, v)); };
+  var lerp = function(a,b,t){ return a + (b-a)*t; };
+  var smooth = function(t){ t = clamp(t,0,1); return t*t*(3-2*t); };
+  var stepEase = function(t){ t = clamp(t,0,1); return t*t*(3-2*t); };
+
+  /* Runda 5: rubriken i gapet är displayelementet, mätt ur det faktiska gapet
+     i stället för en gissad clamp(). ROW_A_VH/ROW_B_VH MÅSTE matcha .row-a/
+     .row-b:s CSS-translateY exakt — de är samma tal, en gång i CSS (statiskt,
+     för no-js/rest) och en gång här (för att räkna ut gapets pixelhöjd vid
+     valfri --open utan att röra DOM:en varje bildruta). */
+  var ROW_A_VH = 14, ROW_B_VH = 11;
+  var geom = { baseGapPx: 0, rowATravelPx: 0, rowBTravelPx: 0, headingHeightPx: 90 };
+
+  function measureGeometry(){
+    var row1El = document.getElementById('row1');
+    var row2El = document.getElementById('row2');
+    var h2 = block.querySelector('.headingWrap h2');
+    if (!row1El || !row2El || !h2) return;
+    var priorOpen = stageEl.style.getPropertyValue('--open');
+
+    // 1) gapet i vila (--open:0) ger baslinjen; resans två tal (i px, vid
+    //    DENNA viewport-höjd) läggs på för att räkna ut gapet vid p=1.
+    stageEl.style.setProperty('--open', '0');
+    var r1 = row1El.getBoundingClientRect();
+    var r2 = row2El.getBoundingClientRect();
+    geom.baseGapPx = r2.top - r1.bottom;
+    geom.rowATravelPx = (ROW_A_VH / 100) * innerHeight;
+    geom.rowBTravelPx = (ROW_B_VH / 100) * innerHeight;
+    var finalGapPx = geom.baseGapPx + geom.rowATravelPx + geom.rowBTravelPx;
+
+    // 2) font-size: två rader + en radhöjds luft ska fylla det slutliga
+    //    gapet exakt (2 rader + 1 luft = 3 enheter, radhöjd 1). Detta ÄR
+    //    formeln som ger ≥5× lässtorleken när geometrin tillåter det — en
+    //    golv-clamp som tvingade 5× oavsett gap gjorde rubriken TALLARE än
+    //    gapet självt kunde bära (osynlig, se runda 5:s felsökning). Golvet
+    //    här är bara en förnuftskontroll mot ett degenererat värde på en
+    //    extrem viewport, långt under vad formeln normalt ger. Ett tak satt
+    //    av kolumnens bredd så "ERT VARUMÄRKE." aldrig svämmar över (≈14
+    //    tecken, kondenserad fet stil ≈0,62em per tecken i snitt).
+    var readingSize = parseFloat(getComputedStyle(document.body).fontSize) || 17;
+    var floor = readingSize * 2.2;
+    var blockWidth = block.getBoundingClientRect().width || 900;
+    var widthCeil = blockWidth / (14 * 0.62);
+    var fs = clamp(finalGapPx / 3, floor, Math.min(widthCeil, 220));
+    document.documentElement.style.setProperty('--heading-fs', fs.toFixed(1) + 'px');
+
+    // 3) rubrikens EGEN höjd mäts vid den nya storleken (layout, inte
+    //    opacitet, styr offsetHeight, så detta stämmer även vid --open:0).
+    geom.headingHeightPx = h2.offsetHeight || fs * 2;
+
+    stageEl.style.setProperty('--open', priorOpen || '0');
+  }
+
+  /* Byte: p 0.06–0.58, två övergångar med vila. Isärglidning: p 0.62–0.84, ett
+     tydligt steg (raderna glider isär via transform, aldrig opacitet på
+     bokstäverna) som sedan håller till p 1. Rubrikens två rader reser sig
+     staggrat inom samma fönster (kinetic lines). */
+  function stripPos(ps){
+    var seg = [[0.12,0.42],[0.58,0.88]];
+    var k = 0;
+    seg.forEach(function(pair){ k += smooth(clamp((ps - pair[0]) / (pair[1] - pair[0]), 0, 1)); });
+    return k;
+  }
+
+  /* Runda 6, fynd 7: en kortvarig låg-opacitets-överlappning syntes vid
+     p≈0,8 — rubrikraderna hann inte hålla kvar 1 innan nästa bildruta räknade
+     om l1/l2 från gapPx på nytt. Ett lås per rad: så snart en rad når full
+     synlighet stannar den där resten av scrollen, oavsett efterföljande
+     smärre svängningar i gapPx (lerp-jitter, scroll som studsar en pixel). */
+  var l1Locked = false, l2Locked = false;
+
+  var forced = null;
+  if (preview === 'calyx') forced = 0;
+  else if (preview === 'horai') forced = 0.34;
+  else if (preview === 'hyperborea') forced = 0.55;
+  else if (preview === 'open') forced = 1;
+
+  var target = 0, cur = 0;
+
+  function apply(p){
+    var byte = clamp((p - 0.06) / (0.58 - 0.06), 0, 1);
+    var k = stripPos(byte);
+    strips.forEach(function(strip){ strip.setAttribute('transform', 'translate(0 ' + (-k * 234) + ')'); });
+    var idx = clamp(Math.round(k), 0, 2);
+    if (idx !== siteIdx){ siteIdx = idx; siteRow.textContent = siteNames[idx]; }
+
+    var openT = clamp((p - 0.62) / (0.84 - 0.62), 0, 1);
+    var open = stepEase(openT);
+    stageEl.style.setProperty('--open', open.toFixed(4));
+
+    /* Runda 5: rubriken kopplas till GAPETS FAKTISKA HÖJD (mätt i px av
+       measureGeometry()), inte ett fast p-fönster — annars hinner den tona in
+       innan raderna faktiskt separerat tillräckligt, vilket var precis vad
+       d-25.png visade (ERT VARUMÄRKE. kolliderade med N). Rad 1 får plats och
+       börjar synas vid halva rubrikhöjden (en rad + luft); rad 2 väntar tills
+       HELA rubrikhöjden får plats, så den aldrig visas förrän båda raderna
+       faktiskt ryms. */
+    var gapPx = geom.baseGapPx + open * (geom.rowATravelPx + geom.rowBTravelPx);
+    var half = geom.headingHeightPx / 2;
+    var l1 = stepEase(clamp((gapPx - half) / half, 0, 1));
+    var l2 = stepEase(clamp((gapPx - geom.headingHeightPx) / half, 0, 1));
+    if (l1 >= 0.999) l1Locked = true;
+    if (l2 >= 0.999) l2Locked = true;
+    if (l1Locked) l1 = 1;
+    if (l2Locked) l2 = 1;
+    block.style.setProperty('--l1', l1.toFixed(4));
+    block.style.setProperty('--l2', l2.toFixed(4));
+  }
+
+  function frame(){
+    cur += (target - cur) * 0.15;
+    if (Math.abs(target - cur) < 0.0004) cur = target;
+    apply(cur);
+    if (cur !== target) requestAnimationFrame(frame);
+  }
+
+  /* Runda 6, fynd 12: vid smal bredd är .stage inte pinnad (position:static),
+     så heroAct:s egen offsetHeight är dess NATURLIGA innehållshöjd — som på
+     vissa telefonstorlekar (uppmätt: 783px innehåll mot 844px viewport) är
+     KORTARE än viewporten. Pin-formeln (scrollY-top)/(height-vh) kollapsar
+     då till nästan-noll resa (clamp till 1px), och hela övergången
+     komprimeras till en enda scroll-pixel — osynlig för besökaren, exakt
+     samma symptom som fynd 12 klagade på men av en ny orsak. flow-formeln
+     (samma som motorn använder för icke-pinnade akter, scrollcraft.js:829,
+     och samma som updateCloseMix()) har alltid minst en viewport-höjds resa
+     oavsett innehållshöjd, och degraderar aldrig till nära-noll. */
+  var raf = false;
+  function onScroll(){
+    if (forced !== null || skipScroll) return;
+    var p;
+    if (narrow){
+      /* Runda 6, fynd 12: p måste följa BLOCKET (ALU/NIX) genom viewporten,
+         inte hela heroAct-sektionen (som på smal bredd även innehåller
+         platen och lead-texten UNDER blocket, staplat i en kolumn — desktop
+         har dem sida vid sida, så där betyder "hela sektionen" nästan
+         detsamma som "blocket"). Med hela sektionen som nämnare hann
+         isärglidningsfönstret (raw 0,62–0,84) inte starta förrän blocket
+         redan rullat ur synhåll ovanför viewporten — besökaren skulle
+         aldrig SE övergången äga rum. blockTop/blockH läses varje bildruta
+         (getBoundingClientRect, billigt) snarare än cachat, eftersom
+         --heading-fs (measureGeometry) kan ändra blockets höjd marginellt
+         vid font-inläsning/resize.
+         entryY klampas till 0 av samma skäl som tidigare: blocket sitter
+         nära dokumenttoppen, en "en viewport innan" startpunkt existerar
+         inte som en riktig scrollposition. */
+      var r = block.getBoundingClientRect();
+      var blockTop = r.top + scrollY;
+      var entryY = Math.max(blockTop - innerHeight, 0);
+      /* exit = blocket:s EGEN topp når viewportens topp (blocket "landar"
+         överst), inte när det hunnit rulla helt förbi (blockTop+blockH) —
+         annars är isärglidningsfönstret (raw 0,62–0,84) redan halvvägs
+         utanför skärmens ovankant innan besökaren hunnit se det. */
+      var exitY = blockTop;
+      p = clamp((scrollY - entryY) / Math.max(exitY - entryY, 1), 0, 1);
+    } else {
+      var top = heroAct.offsetTop, h = heroAct.offsetHeight;
+      var travel = Math.max(h - innerHeight, 1);
+      p = clamp((scrollY - top) / travel, 0, 1);
+    }
+    target = p;
+    if (!raf){ raf = true; requestAnimationFrame(function(){ frame(); raf = false; }); }
+  }
+
+  /* ---- bilder som inte kom fram hämtas om (utvecklingsservrar tappar anslutningar ibland) ---- */
+  document.querySelectorAll('img, image').forEach(function(el){
+    var tries = 0;
+    el.addEventListener('error', function(){
+      if (tries++ >= 3) return;
+      var isSvg = el.tagName.toLowerCase() === 'image';
+      var src = isSvg ? el.getAttribute('href') : el.getAttribute('src');
+      var clean = src.split('?')[0];
+      setTimeout(function(){ if (isSvg) el.setAttribute('href', clean + '?r=' + tries); else el.src = clean + '?r=' + tries; }, 350 * tries);
+    });
+  });
+
+  /* ---- bild två och tre i heroAct:s fönster hämtas efter den första, i tur och ordning ---- */
+  function loadStripRest(){
+    var pending = Array.prototype.slice.call(document.querySelectorAll('svg image[data-href]'));
+    (function next(){ var el = pending.shift(); if (!el) return; el.setAttribute('href', el.dataset.href); el.removeAttribute('data-href'); setTimeout(next, 120); })();
+  }
+  var firstStrip = document.querySelector('svg image[href]');
+  if (firstStrip){ var done = false; var go = function(){ if (!done){ done = true; loadStripRest(); } }; firstStrip.addEventListener('load', go); firstStrip.addEventListener('error', go); setTimeout(go, 1500); }
+
+  function init(){
+    buildWindows();
+    measureGeometry();
+    if (forced !== null){
+      target = forced; cur = forced; apply(forced);
+    } else if (skipScroll){
+      apply(0);
+    } else {
+      onScroll();
+    }
+    updateCloseMix();
+  }
+
+  /* ---- reveal guards (house-physics Motion): fail toward visible ----
+     scrollcraft.js is copied unchanged (NOTE.md), so its own IntersectionObserver
+     for [data-sc-in] is never edited here. This is a page-level supplement on
+     top of it, not a replacement: elements already in the viewport at mount
+     get revealed immediately (threshold-0/mount-reveal), and a 3s failsafe
+     reveals every [data-sc-in] regardless of whether the engine's own observer
+     ever fired for it. Runda 4, rättelse 2: tjänsteraderna saknades in a
+     full-page capture even after the 3s failsafe fired and getComputedStyle
+     confirmed opacity:1 and the sc-in class present — the DOM state was
+     correct, but content that a browser never actually painted at its normal
+     viewport size can fail to composite correctly when a tool extends the
+     capture area beyond it (Chromium quirk, same family as the round-3 iframe
+     finding). Forcing the inline style directly, not only toggling the class
+     that drives the CSS transition, removes any dependency on that transition
+     ever visibly completing — belt and braces for exactly this failure mode. */
+  function revealNow(el){
+    el.classList.add('sc-in');
+    el.style.opacity = '1';
+    el.style.transform = 'none';
+    Array.prototype.forEach.call(el.children, function(kid){
+      kid.classList.add('sc-in');
+      kid.style.opacity = '1';
+      kid.style.transform = 'none';
+      /* .pricelist .price is a grandchild (span inside the li), driven by its
+         own CSS rule keyed off the li's sc-in class — force it directly too. */
+      Array.prototype.forEach.call(kid.querySelectorAll('.price'), function(p){
+        p.style.opacity = '1'; p.style.transform = 'none';
+      });
+    });
+  }
+  Array.prototype.forEach.call(document.querySelectorAll('[data-sc-in]'), function(el){
+    var r = el.getBoundingClientRect();
+    if (r.top < innerHeight && r.bottom > 0) revealNow(el);
+  });
+  setTimeout(function(){
+    Array.prototype.forEach.call(document.querySelectorAll('[data-sc-in]'), revealNow);
+  }, 3000);
+
+  addEventListener('scroll', onScroll, { passive:true });
+  /* updateCloseMix körs oberoende av skipScroll/forced — akt E:s egen drift
+     drivs av motorns scroll-lyssnare oavsett reduced motion (bara CSS-
+     transitions stängs av av mediefrågan, inte JS-satta egenskaper), så
+     kontrastsynkroniseringen måste följa med i alla lägen. */
+  addEventListener('scroll', updateCloseMix, { passive:true });
+  addEventListener('resize', function(){
+    measureGeometry();
+    if (forced !== null) apply(forced);
+    else if (!skipScroll) onScroll();
+    updateCloseMix();
+  });
+  init();
+  if (document.fonts && document.fonts.load){
+    Promise.all([document.fonts.load('900 100px Archivo'), document.fonts.load('400 16px "Familjen Grotesk"')])
+      .then(function(){
+        buildWindows();
+        measureGeometry();
+        if (forced !== null) apply(forced); else if (!skipScroll) onScroll();
+      })
+      .catch(function(){});
+  }
+})();
+</script>
+<script>ScrollCraft.mount(document.body);</script>
+</body>
+</html>

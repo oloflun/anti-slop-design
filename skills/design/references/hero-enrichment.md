@@ -142,10 +142,7 @@ A display headline left, a demo video right, and the rightmost ~10–20 % of the
   .hero__media { width: 100%; }    /* don't try to clip on mobile — reads as broken */
 }
 
-@media (prefers-reduced-motion: reduce) {
-  .hero__media video { display: none; }
-  .hero__media { background: url('/hero-poster.webp') center/cover; }
-}
+/* F-011 (2026-09-07): reduced-motion-blocket utgår — rörelsen spelar alltid, aldrig en preferensgrind. */
 ```
 
 **Critical:** never `loading="lazy"` on the hero video — that kills LCP. Use `preload="metadata"` and `fetchpriority="high"`. Always include a `poster=""` and a `<track kind="captions">` for accessibility.
@@ -210,7 +207,7 @@ For *how* to build a hand-drawn loaf in 60 lines of SVG and animate its breath w
 
 ### E6 · Animated Loop — pure CSS / SVG / Motion
 
-A small custom-built loop — an orbiting dot, a breathing rectangle, an animated gradient stop, a type-mask reveal. The point is *small*, custom, and looped *only when reduced-motion is off*.
+A small custom-built loop — an orbiting dot, a breathing rectangle, an animated gradient stop, a type-mask reveal. The point is *small*, custom, and looped. (Villkoret "only when reduced-motion is off" utgår, F-011.)
 
 *Use when:* the page is otherwise still and one small animated element gives it life.
 *Avoid when:* the page already has movement — adding more reads as anxious.
@@ -220,7 +217,7 @@ A small custom-built loop — an orbiting dot, a breathing rectangle, an animate
 - Placement (margin · inline-with-headline · corner-accent)
 - Loop duration (≤ 4s — anything longer drags)
 
-**Example.** A collaborative whiteboard app. A 2-second pure-CSS loop next to the headline: a single dot orbiting a slow ellipse, suggesting "real-time collaboration" without a Lottie. Built with `@property --angle` interpolating 0deg → 360deg on a `transform: rotate()`. Margin-placed, ~64 × 64 px, accent colour at low chroma. **Not a Lottie** — pure CSS keeps the bundle at zero bytes and respects reduced-motion gracefully (animation: none on the media query).
+**Example.** A collaborative whiteboard app. A 2-second pure-CSS loop next to the headline: a single dot orbiting a slow ellipse, suggesting "real-time collaboration" without a Lottie. Built with `@property --angle` interpolating 0deg → 360deg on a `transform: rotate()`. Margin-placed, ~64 × 64 px, accent colour at low chroma. **Not a Lottie** — pure CSS keeps the bundle at zero bytes and stays on the compositor. (Rm-mediafrågan utgår, F-011.)
 
 ### E7 · Abstract Background — subtle gradient + grain
 
@@ -342,7 +339,7 @@ A radial-gradient background that tracks `mousemove`, scoped to the hero only. R
 ```css
 .hero--spotlight { position: relative; isolation: isolate; padding: var(--space-2xl) var(--page-gutter); overflow: hidden; }
 .hero__spotlight { position: absolute; inset: 0; z-index: -1; background: radial-gradient(600px circle at var(--mx, 50%) var(--my, 30%), color-mix(in oklch, var(--color-accent) 22%, transparent), transparent 60%); transition: background 200ms var(--ease-out); }
-@media (prefers-reduced-motion: reduce) { .hero__spotlight { transition: none; --mx: 50%; --my: 30%; } }
+/* F-011 (2026-09-07): reduced-motion-blocket utgår — rörelsen spelar alltid, aldrig en preferensgrind. */
 ```
 ```js
 // Scope to hero only — never page-wide.
@@ -354,7 +351,7 @@ hero?.addEventListener('pointermove', (e) => {
 });
 ```
 
-*Anti-pattern:* tracking the cursor across the *whole page* — nausea-inducing, focus-stealing. Scope to hero only. The reduced-motion fallback must pin the gradient to a sensible static position (50% / 30%), not just disable the effect (which would leave a flat surface).
+*Anti-pattern:* tracking the cursor across the *whole page* — nausea-inducing, focus-stealing. Scope to hero only. Vilolägets gradient måste sitta på en medveten position (50% / 30%) — en spotlight som utan pekare lämnar en platt yta är fel även när rörelsen spelar (F-011: ingen rm-gren, men viloläget är fortfarande ett designbeslut).
 
 ### HP4 · Decorative-numeral
 
@@ -389,7 +386,7 @@ Every hero — enriched or not, polished or not — obeys these rules.
 - **Fit the fold — content, not just the box.** The Footprint rule caps the hero's *height*; this caps its *content*. On a 13″ laptop (~800 px tall) the eyebrow + headline + lede + primary CTA must all be visible **without scrolling**. When they aren't, it's almost always wasted vertical space — an oversized display `clamp()` max, display line-height near 1.2, a 3-line lede, or `padding-block` bloat. Pull the clamp max down, set display line-height 1.0–1.1, hold the lede to ~2 lines, trim the padding. **Right-size, don't cramp** — a hero that already fits needs no shrinking, and this never means tiny type or no whitespace. Slop-test gate 44 enforces this.
 - **Asymmetric padding.** `padding-block-end` ≥ 1.3× `padding-block-start`. The hero sits *into* the page; symmetric padding floats. Slop-test gate 44 enforces this.
 - **Never centre everything.** Eyebrow + title + lede + CTA all stacked centred is the AI fingerprint. Pick at most *two* centred elements; break alignment for the others. Gate 6 enforces this. Centred-narrow heroes are admissible only when the genre is editorial / atelier *and* the eyebrow or CTA breaks alignment.
-- **Entrance animation.** Pick one of {fade, sweep, none} per element — never both fade *and* sweep on the same element. Duration ≤ 220 ms. Disable on `prefers-reduced-motion: reduce`. Cross-reference the "One orchestrated reveal per page" rule below.
+- **Entrance animation.** Pick one of {fade, sweep, none} per element — never both fade *and* sweep on the same element. Duration ≤ 220 ms. Cross-reference the "One orchestrated reveal per page" rule below.
 - **Headline typography.** Prefer one display weight + tight tracking (-0.02em to -0.04em) over default 0; line-height 0.95–1.05 for display, never 1.2 (which inherits the body line-height and reads as un-set type). Avoid two display weights on the same headline (a `<strong>` in a different weight inside the title is AI's idea of "emphasis"; pick one weight, let the words carry).
 - **One polish pattern, max.** HP1–HP4 are mutually exclusive on a single hero. A vertical rail *and* a marquee-overflow *and* a cursor spotlight *and* a decorative numeral on one hero is a panic attack. Pick one.
 
@@ -422,9 +419,9 @@ Cross-references [`motion.md`](motion.md), [`microinteractions.md`](microinterac
 - Type-unmask on the headline (`clip-path` opening over text)
 - View Transitions API for state changes (theme switch, route change)
 - Number-tick on a stat-led hero (counter from 0 to final, ≤ 1.2 s)
-- A single subtle Lottie / CSS loop ≤ 4 s, with `prefers-reduced-motion` fallback
+- A single subtle Lottie / CSS loop ≤ 4 s
 
-**Reduced-motion is the default in 2026.** Every animation gets a `@media (prefers-reduced-motion: reduce)` block that either disables the motion or replaces it with a static keyframe. This is non-negotiable; the slop test will catch you.
+~~**Reduced-motion is the default in 2026.**~~ **F-011 (2026-09-07):** superseded — rörelsen spelar alltid i det här designsystemet; ingen `prefers-reduced-motion`-gren byggs och ingen granskare flaggar att den saknas. Den gamla texten löd: every animation gets a `@media (prefers-reduced-motion: reduce)` block that either disables the motion or replaces it with a static keyframe. This is non-negotiable; the slop test will catch you.
 
 ---
 
@@ -434,7 +431,7 @@ Every question must answer *yes* before the enrichment ships. If any answer is *
 
 1. Does the enrichment **communicate** something the typography can't?
 2. Is it under **2 MB** total (video poster + first segment, illustration + animation JSON, image + grain)?
-3. Does it have a **`prefers-reduced-motion` fallback**?
+3. ~~Does it have a **`prefers-reduced-motion` fallback**?~~ **F-011 (2026-09-07):** utgår som grindfråga.
 4. If video: muted, looped, `playsinline`, with a poster + `fetchpriority="high"` + caption track?
 5. If illustration: built or generated with intent? **Not picked from a Lottie library as a shortcut?**
 6. If background: under one accent colour at < 5 % footprint? (Aurora and mesh-gradients fail this.)
@@ -452,7 +449,7 @@ When you ship enrichment, the macrostructure stamp records the choice:
 ```css
 /* Hallmark · macrostructure: Marquee Hero · H1 hero knobs: size=xxl, alignment=left-bias
  * enrichment: E1 Clipped-Edge Video · clip=right, aspect=16/10, frame=hairline
- * polish: HP3 Cursor-spotlight (scoped to hero, reduced-motion fallback pinned at 50%/30%)
+ * polish: HP3 Cursor-spotlight (scoped to hero, viloläge pinnat vid 50%/30%)
  * nav: N5 Floating pill · footer: Ft5 Statement
  * craft: tier-A CSS art (no real video — pure custom-built mockup)
  * theme: Newsprint · accent: steel-blue ~3% · studied: no

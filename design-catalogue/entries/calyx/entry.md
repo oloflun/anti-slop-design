@@ -14,7 +14,7 @@ type: ["Cardo", "PT Mono"]
 kind: example
 source: claude
 origin: example-site
-extract: none
+extract: ok
 category: editorial
 category2: "luxury-craft"
 status: ready
@@ -77,6 +77,26 @@ The commission counter. Every image plate carries a mono caption on the left and
 `NN / 14` counter on the right, so the page reads as a numbered run of real jobs
 with a finite capacity — reinforced by the copy ("We accept eleven commissions a
 week"). Scarcity stated as bookkeeping, not as a badge.
+
+## Motion
+
+Från källkoden (`sites/calyx.html`, läst 2026-09-08).
+
+**Delad reveal.** `.reveal { opacity: 0; transform: translateY(28px) }` →
+`transition: opacity 1.2s cubic-bezier(.16,1,.3,1), transform 1.2s
+cubic-bezier(.16,1,.3,1)`, en `IntersectionObserver` med `threshold: 0.12`.
+Bilder får samma kurva över 1.4 s på enbart `transform`, så fotot sätter sig
+långsammare än typen ovanpå det.
+
+**Signaturrörelse:** ingen scrubbad akt. Calyx är den lugnaste av
+exempelsajterna: rörelsen är reveal och ingenting annat, och sidans moment är
+typografiska (88 px kursiva anfanger, prisliggaren), inte kinetiska. Det är
+ett medvetet val, inte en lucka — en sida vars auktoritet är typen behöver
+inte en akt för att bära.
+
+**Att låna:** kurvan och de två hastigheterna (typ 1.2 s, bild 1.4 s) — bilden
+ska aldrig hinna före texten. **Att lämna:** frånvaron av set-piece, om din
+sida faktiskt har ett moment att bära.
 
 ## Brief
 

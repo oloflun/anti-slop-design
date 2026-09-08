@@ -1,0 +1,201 @@
+{
+  "$metadata": {
+    "generator": "designlang",
+    "version": "7.0.0",
+    "spec": "https://design-tokens.github.io/community-group/format/",
+    "source": "http://127.0.0.1:3055/sites/vinterspelen.html",
+    "generatedAt": "2026-09-08T18:43:00.641Z"
+  },
+  "primitive": {
+    "color": {
+      "brand": {
+        "primary": {
+          "$value": "#290d00",
+          "$type": "color"
+        },
+        "secondary": {
+          "$value": "#b36b13",
+          "$type": "color"
+        }
+      },
+      "neutral": {
+        "n100": {
+          "$value": "#e5e7eb",
+          "$type": "color"
+        },
+        "n200": {
+          "$value": "#050302",
+          "$type": "color"
+        },
+        "n300": {
+          "$value": "#6c6557",
+          "$type": "color"
+        },
+        "n400": {
+          "$value": "#b2a285",
+          "$type": "color"
+        }
+      },
+      "background": {
+        "bg0": {
+          "$value": "#010304",
+          "$type": "color"
+        },
+        "bg1": {
+          "$value": "#000102",
+          "$type": "color"
+        },
+        "bg2": {
+          "$value": "#d2c4a9",
+          "$type": "color"
+        },
+        "bg3": {
+          "$value": "#010000",
+          "$type": "color"
+        },
+        "bg4": {
+          "$value": "#b2a285",
+          "$type": "color"
+        }
+      },
+      "text": {
+        "text0": {
+          "$value": "#000000",
+          "$type": "color"
+        },
+        "text1": {
+          "$value": "#d5cbb8",
+          "$type": "color"
+        },
+        "text2": {
+          "$value": "#6c6557",
+          "$type": "color"
+        },
+        "text3": {
+          "$value": "#b36b13",
+          "$type": "color"
+        },
+        "text4": {
+          "$value": "#050302",
+          "$type": "color"
+        },
+        "text5": {
+          "$value": "#290d00",
+          "$type": "color"
+        }
+      }
+    },
+    "spacing": {
+      "s0": {
+        "$value": "2px",
+        "$type": "dimension"
+      },
+      "s1": {
+        "$value": "56px",
+        "$type": "dimension"
+      },
+      "s2": {
+        "$value": "64px",
+        "$type": "dimension"
+      },
+      "s3": {
+        "$value": "80px",
+        "$type": "dimension"
+      },
+      "s4": {
+        "$value": "96px",
+        "$type": "dimension"
+      },
+      "s5": {
+        "$value": "112px",
+        "$type": "dimension"
+      },
+      "s6": {
+        "$value": "121px",
+        "$type": "dimension"
+      },
+      "s7": {
+        "$value": "128px",
+        "$type": "dimension"
+      },
+      "s8": {
+        "$value": "240px",
+        "$type": "dimension"
+      },
+      "s9": {
+        "$value": "258px",
+        "$type": "dimension"
+      }
+    },
+    "radius": {},
+    "shadow": {
+      "sh0": {
+        "$value": "oklab(0.772 0.0129615 0.123321 / 0.42) 0px 0px 0px 1px",
+        "$type": "shadow"
+      },
+      "sh1": {
+        "$value": "oklab(0.42 0.0327558 0.100812 / 0.45) 0px 0px 0px 1px",
+        "$type": "shadow"
+      }
+    },
+    "fontFamily": {
+      "f0": {
+        "$value": "Newsreader",
+        "$type": "fontFamily"
+      },
+      "f1": {
+        "$value": "Bodoni Moda",
+        "$type": "fontFamily"
+      }
+    }
+  },
+  "semantic": {
+    "color": {
+      "action": {
+        "primary": {
+          "$value": "{primitive.color.brand.primary}",
+          "$type": "color"
+        },
+        "secondary": {
+          "$value": "{primitive.color.brand.secondary}",
+          "$type": "color"
+        }
+      },
+      "surface": {
+        "default": {
+          "$value": "{primitive.color.background.bg0}",
+          "$type": "color"
+        }
+      },
+      "text": {
+        "body": {
+          "$value": "{primitive.color.text.text0}",
+          "$type": "color"
+        }
+      }
+    },
+    "typography": {
+      "body": {
+        "$value": {
+          "fontFamily": "Newsreader",
+          "fontSize": "101.12px",
+          "fontWeight": "500",
+          "lineHeight": "95.0528px"
+        },
+        "$type": "typography"
+      }
+    },
+    "radius": {
+      "control": {
+        "$value": "{primitive.radius.r0}",
+        "$type": "dimension"
+      }
+    },
+    "shadow": {
+      "elevated": {
+        "$value": "{primitive.shadow.sh0}",
+        "$type": "shadow"
+      }
+    }
+  }
+}

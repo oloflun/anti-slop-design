@@ -1,0 +1,100 @@
+C:\Users\Anton L\.claude\skills\design\scripts\scroll_verify.py:43: DeprecationWarning: Image.Image.getdata is deprecated and will be removed in Pillow 14 (2027-10-15). Use get_flattened_data instead.
+  return list(Image.open(io.BytesIO(png_bytes)).convert("L").resize((w, h)).getdata())
+C:\Users\Anton L\.claude\skills\design\scripts\scroll_verify.py:140: DeprecationWarning: Image.Image.getdata is deprecated and will be removed in Pillow 14 (2027-10-15). Use get_flattened_data instead.
+  px = list(plate.crop((x0, y0, min(x1, plate.width), min(y1, plate.height))).getdata())
+{
+  "url": "http://127.0.0.1:3201/tests/alunix-ab-r7/runs/B/K1/index.html",
+  "positions": [
+    0,
+    300,
+    600,
+    900,
+    1200,
+    1500,
+    1800,
+    2100,
+    2400,
+    2700,
+    3000,
+    3300,
+    3600,
+    3900,
+    4200,
+    4500,
+    4800,
+    5100,
+    5400,
+    5700,
+    6000,
+    6300,
+    6600,
+    6775
+  ],
+  "deadScroll": [
+    {
+      "from": 2100,
+      "to": 2400,
+      "diff": 0.0005
+    }
+  ],
+  "cuesNeverFull": [],
+  "unrevealed": [
+    "P.loading-indicator:Laddar \u2026"
+  ],
+  "contrastUnderMedia": [
+    {
+      "text": "",
+      "worst": 1.15,
+      "floor": 4.5
+    },
+    {
+      "text": "kontakt@alunix.se",
+      "worst": 2.45,
+      "floor": 4.5
+    },
+    {
+      "text": "Er hemsida \u00e4r nutidens visitkort",
+      "worst": 1.11,
+      "floor": 3.0
+    },
+    {
+      "text": "Vi skapar skr\u00e4ddarsydda webbplatser som ",
+      "worst": 1.03,
+      "floor": 3.0
+    },
+    {
+      "text": "Calyx\u00a0\u00b7\u00a0H\u014drai\u00a0\u00b7\u00a0Hyperborea",
+      "worst": 1.56,
+      "floor": 4.5
+    },
+    {
+      "text": "Laddar\u00a0\u2026",
+      "worst": 1.16,
+      "floor": 4.5
+    },
+    {
+      "text": "VI BYGGER ERT VARUM\u00c4RKE.",
+      "worst": 1.55,
+      "floor": 3.0
+    },
+    {
+      "text": "Webbdesign, design och system. Allt p\u00e5 e",
+      "worst": 2.15,
+      "floor": 3.0
+    }
+  ],
+  "contactSheet": "tests\\alunix-ab-r7\\runs\\B\\K1\\shots\\r6-sv\\sheet.png",
+  "notes": [],
+  "blankBands": [
+    {
+      "from": 859,
+      "to": 3982,
+      "px": 3123
+    },
+    {
+      "from": 6645,
+      "to": 7675,
+      "px": 1030
+    }
+  ]
+}

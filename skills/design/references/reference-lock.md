@@ -57,7 +57,7 @@ the rest. Nothing else survives into the lock.
 
 ### Sources, in order
 
-1. **The design catalog** — `~/design-catalog`,
+1. **The design catalog** — `~/anti-slop-design/design-catalogue/`,
    `python scripts/query.py --family … --register … --grammar …`. Query by the
    register named in `SKILL.md`'s table, not by vibe.
 2. **User-supplied URL or screenshot** — Tier 2's native input; also valid at any

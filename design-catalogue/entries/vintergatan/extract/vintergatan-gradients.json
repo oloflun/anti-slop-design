@@ -1,0 +1,48 @@
+{
+  "$schema": "https://designlang.app/schemas/gradients.json",
+  "source": "http://127.0.0.1:3055/sites/vintergatan.html",
+  "generated": "2026-09-08T18:42:53.149Z",
+  "count": 2,
+  "gradients": [
+    {
+      "raw": "linear-gradient(oklch(0.21 0.02 55 / 0.38), oklch(0.21 0.02 55 / 0.32) 38%, oklch(0.21 0.02 55 / 0.7) 72%, oklch(0.21 0.02 55 / 0.88))",
+      "type": "linear",
+      "direction": null,
+      "stops": [
+        {
+          "color": "oklch(0.21 0.02 55 / 0.38)",
+          "position": null
+        },
+        {
+          "color": "oklch(0.21 0.02 55 / 0.32)",
+          "position": "38%"
+        },
+        {
+          "color": "oklch(0.21 0.02 55 / 0.7)",
+          "position": "72%"
+        },
+        {
+          "color": "oklch(0.21 0.02 55 / 0.88)",
+          "position": null
+        }
+      ],
+      "classification": "bold"
+    },
+    {
+      "raw": "linear-gradient(to right, oklch(0.215 0.02 45 / 0.55), oklch(0.215 0.02 45 / 0) 45%)",
+      "type": "linear",
+      "direction": "to right",
+      "stops": [
+        {
+          "color": "oklch(0.215 0.02 45 / 0.55)",
+          "position": null
+        },
+        {
+          "color": "oklch(0.215 0.02 45 / 0)",
+          "position": "45%"
+        }
+      ],
+      "classification": "brand"
+    }
+  ]
+}

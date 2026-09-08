@@ -12,7 +12,7 @@ dna: "Whisper-small caption typography x a scattered contact-sheet image field"
 register: editorial print
 grammar: gallery/catalog
 lane: "A single warm taupe surface holds the entire site with no section ever changing colour, while an asymmetric, irregularly-offset field of editorial photography scatters across it like a contact sheet, ringed by floating uppercase category captions and a widely-tracked serif masthead"
-mode: portfolio
+mode: persuade
 traits: ["11-13px UI text, never scaled up for 'primary'", "one monolithic taupe surface, no section changes", "0px image radius, 9999px pill exclusively for the toggle", "wordmark at 0.5-0.8em tracking, letters detached", "scattered irregular-offset image field, no grid", "zero accent colour, photography is the only chroma"]
 palette: ["#ada59b", "#000000", "#252525", "#101010", "#454545"]
 type: ["SilkSerif", "WorkSans"]

@@ -45,13 +45,31 @@
 
   <div class="spacer"></div>
 
-  <!-- section revealed only by IntersectionObserver threshold 0.5; never
-       fires because the test never scrolls (and reduced-motion runs jump
-       via scrollTo, not a gradual scroll that crosses the threshold slowly
-       enough for the default rootMargin -- kept literally IO-gated) -->
+  <!-- Two unrevealed sections, deliberately different causes.
+
+       #reveal-section is the historical one: the reveal system skips setting
+       up the observer entirely under prefers-reduced-motion. Measured
+       2026-09-08: now that reflow.py no longer emulates reduced motion
+       (F-011), this section DOES reveal during the walk, so the check no
+       longer fires on it. That is correct and intended -- the defect it
+       models cannot occur in a design system with no reduced-motion branch.
+       It is kept as documentation of why the check exists, not as a live
+       assertion. Do not "fix" the check to catch it again.
+
+       #reveal-always is the one an F-011-compliant page CAN still ship, and
+       the case reflow.py's check (c) now exists for: an observer with a
+       threshold the page's own scroll never satisfies, no preference involved.
+       Without this row the check would be proven only against a defect class
+       the design system has abolished. -->
   <section id="reveal-section" class="reveal">
     <h2>This section never reveals</h2>
     <p>Gated behind an IntersectionObserver with threshold 0.5 that this test never satisfies.</p>
+  </section>
+
+  <section id="reveal-always" class="reveal">
+    <h2>This section never reveals either</h2>
+    <p>Observer threshold 0.99 on an element taller than the viewport, so it can
+       never be fully intersecting. No preference query anywhere.</p>
   </section>
 
   <script>
@@ -71,6 +89,18 @@
       }, { threshold: 0.5 });
       io.observe(target);
     }
+
+    // Bug 2, preference-independent: threshold 0.99 on an element taller than
+    // the viewport can never be satisfied, so this section stays opacity:0 for
+    // every user regardless of settings. This is the failure an F-011 page can
+    // still ship, and the one reflow.py check (c) is now named for.
+    var always = document.getElementById('reveal-always');
+    always.style.minHeight = '120vh';
+    new IntersectionObserver(function (entries) {
+      entries.forEach(function (entry) {
+        if (entry.isIntersecting) { always.style.opacity = '1'; }
+      });
+    }, { threshold: 0.99 }).observe(always);
   </script>
 
 </body>

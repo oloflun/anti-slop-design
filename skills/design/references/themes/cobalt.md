@@ -27,7 +27,7 @@ The aesthetic: the developer-product landing and docs home — a cool engineered
    <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;600;700&family=Inter:wght@400;500;600&family=JetBrains+Mono:wght@400;500;600&display=swap" rel="stylesheet" />
    ```
 2. **A small reveal script** — one `IntersectionObserver` adding `.is-in` (fade + ~10px rise, ease-out ~600ms). Plus a one-shot "type-in" of a single line in the hero code demo, then static.
-3. **A working ⌘K command palette** — a small JS overlay that opens on click **and** ⌘K / Ctrl+K (Esc or backdrop closes; Arrow↑/↓ select; type-to-filter), `role="dialog"` / `aria-modal`, focus-managed, reduced-motion safe. The ⌘K in the nav actually works — Cobalt's signature interactive move.
+3. **A working ⌘K command palette** — a small JS overlay that opens on click **and** ⌘K / Ctrl+K (Esc or backdrop closes; Arrow↑/↓ select; type-to-filter), `role="dialog"` / `aria-modal`, focus-managed. The ⌘K in the nav actually works — Cobalt's signature interactive move.
 
 ## The signature moves
 
@@ -49,7 +49,7 @@ The aesthetic: the developer-product landing and docs home — a cool engineered
 
 ## Motion
 
-Composed and sparse. The one hero type-in (plays once). Section reveals fade + rise. Hover: cobalt underline-grow on nav/links; a 1px border-colour shift to cobalt on the code card / focusable surfaces. **No bounce, no parallax, no autoplay.** Everything gates behind `prefers-reduced-motion: no-preference`; reduced-motion ships static + fully visible.
+Composed and sparse. The one hero type-in (plays once). Section reveals fade + rise. Hover: cobalt underline-grow on nav/links; a 1px border-colour shift to cobalt on the code card / focusable surfaces. **No bounce, no parallax, no autoplay.** Rörelsen spelar alltid och gatas inte bakom någon preferens (F-011); reveals faller mot *synligt* utan JS.
 
 ## Anti-patterns
 
@@ -138,9 +138,7 @@ body { background: var(--color-paper); color: var(--color-ink-2);
 .btn--primary { background: var(--color-accent); color: var(--color-accent-ink);
                 border-radius: 6px; }
 
-@media (prefers-reduced-motion: reduce) {
-  .reveal { opacity: 1; transform: none; transition: none; }
-}
+/* F-011 (2026-09-07): reduced-motion-blocket utgår — rörelsen spelar alltid, aldrig en preferensgrind. */
 ```
 
 Plus the Space Grotesk + Inter + JetBrains Mono link and the small reveal/type-in script. The canonical build to mirror is [`site/examples/cobalt-01/`](../../../../site/examples/cobalt-01/).

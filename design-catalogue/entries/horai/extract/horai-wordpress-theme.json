@@ -1,0 +1,183 @@
+{
+  "$schema": "https://schemas.wp.org/trunk/theme.json",
+  "version": 3,
+  "settings": {
+    "color": {
+      "palette": [
+        {
+          "slug": "primary",
+          "color": "#650001",
+          "name": "Primary"
+        },
+        {
+          "slug": "secondary",
+          "color": "#06190f",
+          "name": "Secondary"
+        },
+        {
+          "slug": "accent",
+          "color": "#e0cbab",
+          "name": "Accent"
+        },
+        {
+          "slug": "neutral-1",
+          "color": "#e5e7eb",
+          "name": "Neutral 1"
+        },
+        {
+          "slug": "neutral-2",
+          "color": "#040202",
+          "name": "Neutral 2"
+        },
+        {
+          "slug": "neutral-3",
+          "color": "#1e1513",
+          "name": "Neutral 3"
+        },
+        {
+          "slug": "bg-e0cbab",
+          "color": "#e0cbab",
+          "name": "Background #e0cbab"
+        },
+        {
+          "slug": "bg-040202",
+          "color": "#040202",
+          "name": "Background #040202"
+        }
+      ],
+      "gradients": [
+        {
+          "slug": "gradient-1",
+          "gradient": "linear-gradient(oklch(0.22 0.022 38), oklch(0.22 0.022 38))",
+          "name": "Gradient 1"
+        },
+        {
+          "slug": "gradient-2",
+          "gradient": "radial-gradient(rgba(0, 0, 0, 0) 0%, rgba(0, 0, 0, 0.45) 60%, rgba(0, 0, 0, 0.85) 100%)",
+          "name": "Gradient 2"
+        }
+      ]
+    },
+    "typography": {
+      "fontFamilies": [
+        {
+          "fontFamily": "Vollkorn",
+          "slug": "vollkorn",
+          "name": "Vollkorn"
+        },
+        {
+          "fontFamily": "Cinzel",
+          "slug": "cinzel",
+          "name": "Cinzel"
+        },
+        {
+          "fontFamily": "Noto Serif JP",
+          "slug": "noto-serif-jp",
+          "name": "Noto Serif JP"
+        }
+      ],
+      "fontSizes": [
+        {
+          "size": "192px",
+          "slug": "size-192",
+          "name": "192px"
+        },
+        {
+          "size": "114px",
+          "slug": "size-114",
+          "name": "114px"
+        },
+        {
+          "size": "89.6px",
+          "slug": "size-89.6",
+          "name": "89.6px"
+        },
+        {
+          "size": "81.92px",
+          "slug": "size-81.92",
+          "name": "81.92px"
+        },
+        {
+          "size": "71.68px",
+          "slug": "size-71.68",
+          "name": "71.68px"
+        },
+        {
+          "size": "58.88px",
+          "slug": "size-58.88",
+          "name": "58.88px"
+        },
+        {
+          "size": "51.2px",
+          "slug": "size-51.2",
+          "name": "51.2px"
+        },
+        {
+          "size": "46.08px",
+          "slug": "size-46.08",
+          "name": "46.08px"
+        }
+      ]
+    },
+    "spacing": {
+      "spacingSizes": [
+        {
+          "size": "10px",
+          "slug": "spacing-10",
+          "name": "10px"
+        },
+        {
+          "size": "57px",
+          "slug": "spacing-57",
+          "name": "57px"
+        },
+        {
+          "size": "67px",
+          "slug": "spacing-67",
+          "name": "67px"
+        },
+        {
+          "size": "114px",
+          "slug": "spacing-114",
+          "name": "114px"
+        },
+        {
+          "size": "152px",
+          "slug": "spacing-152",
+          "name": "152px"
+        },
+        {
+          "size": "190px",
+          "slug": "spacing-190",
+          "name": "190px"
+        },
+        {
+          "size": "209px",
+          "slug": "spacing-209",
+          "name": "209px"
+        },
+        {
+          "size": "410px",
+          "slug": "spacing-410",
+          "name": "410px"
+        }
+      ]
+    },
+    "layout": {
+      "contentSize": "1880px",
+      "wideSize": "1400px"
+    }
+  },
+  "styles": {
+    "color": {
+      "background": "#e0cbab",
+      "text": "#040202"
+    },
+    "typography": {
+      "fontSize": "28.5px",
+      "lineHeight": "38px",
+      "fontFamily": "Vollkorn"
+    },
+    "spacing": {}
+  }
+}

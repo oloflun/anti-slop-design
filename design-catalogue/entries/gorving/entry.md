@@ -4,7 +4,7 @@ url: https://gorving.ca
 source_url: https://gorving.ca
 captured: 2026-09-04
 origin: raw-url
-extract: failed: cloudflare interstitial (bot block), motion inferred from image
+extract: blocked: cloudflare interstitial (bot block) - mekaniken last ur bilden i stallet, markt inferred i ## Motion
 category: consumer-brand
 category2: hospitality
 family: outdoor-slab-poster

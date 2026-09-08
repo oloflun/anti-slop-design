@@ -46,7 +46,7 @@ feature grid, just two paragraphs of continuous prose. For a studio selling
 emotional/experiential design thinking, writing in continuous sentences rather
 than fragmented marketing copy matches the message to the medium.
 
-## What to preserve
+## What to borrow (principle)
 
 - **Let a headline span the boundary between photograph and white ground**,
   with the meaning of the words tracking the visual transition (image → page,

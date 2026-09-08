@@ -1,0 +1,156 @@
+{
+  "$metadata": {
+    "generator": "designlang",
+    "version": "7.0.0",
+    "spec": "https://design-tokens.github.io/community-group/format/",
+    "source": "http://127.0.0.1:3055/sites/hyperborea.html",
+    "generatedAt": "2026-09-08T18:42:21.470Z"
+  },
+  "primitive": {
+    "color": {
+      "brand": {
+        "primary": {
+          "$value": "#ff5c0b",
+          "$type": "color"
+        },
+        "secondary": {
+          "$value": "#730405",
+          "$type": "color"
+        }
+      },
+      "neutral": {
+        "n100": {
+          "$value": "#e5e7eb",
+          "$type": "color"
+        },
+        "n200": {
+          "$value": "#000102",
+          "$type": "color"
+        }
+      },
+      "background": {
+        "bg0": {
+          "$value": "#000102",
+          "$type": "color"
+        },
+        "bg1": {
+          "$value": "#010205",
+          "$type": "color"
+        }
+      },
+      "text": {
+        "text0": {
+          "$value": "#e3d2b8",
+          "$type": "color"
+        },
+        "text1": {
+          "$value": "#000102",
+          "$type": "color"
+        },
+        "text2": {
+          "$value": "#ff5c0b",
+          "$type": "color"
+        },
+        "text3": {
+          "$value": "#730405",
+          "$type": "color"
+        }
+      }
+    },
+    "spacing": {
+      "s0": {
+        "$value": "4px",
+        "$type": "dimension"
+      },
+      "s1": {
+        "$value": "48px",
+        "$type": "dimension"
+      },
+      "s2": {
+        "$value": "56px",
+        "$type": "dimension"
+      },
+      "s3": {
+        "$value": "80px",
+        "$type": "dimension"
+      },
+      "s4": {
+        "$value": "96px",
+        "$type": "dimension"
+      },
+      "s5": {
+        "$value": "112px",
+        "$type": "dimension"
+      },
+      "s6": {
+        "$value": "176px",
+        "$type": "dimension"
+      }
+    },
+    "radius": {},
+    "shadow": {},
+    "fontFamily": {
+      "f0": {
+        "$value": "Archivo",
+        "$type": "fontFamily"
+      },
+      "f1": {
+        "$value": "Italiana",
+        "$type": "fontFamily"
+      },
+      "f2": {
+        "$value": "Noto Serif JP",
+        "$type": "fontFamily"
+      }
+    }
+  },
+  "semantic": {
+    "color": {
+      "action": {
+        "primary": {
+          "$value": "{primitive.color.brand.primary}",
+          "$type": "color"
+        },
+        "secondary": {
+          "$value": "{primitive.color.brand.secondary}",
+          "$type": "color"
+        }
+      },
+      "surface": {
+        "default": {
+          "$value": "{primitive.color.background.bg0}",
+          "$type": "color"
+        }
+      },
+      "text": {
+        "body": {
+          "$value": "{primitive.color.text.text0}",
+          "$type": "color"
+        }
+      }
+    },
+    "typography": {
+      "body": {
+        "$value": {
+          "fontFamily": "Archivo",
+          "fontSize": "140.8px",
+          "fontWeight": "400",
+          "lineHeight": "129.536px"
+        },
+        "$type": "typography"
+      }
+    },
+    "radius": {
+      "control": {
+        "$value": "{primitive.radius.r0}",
+        "$type": "dimension"
+      }
+    },
+    "shadow": {
+      "elevated": {
+        "$value": "{primitive.shadow.sh0}",
+        "$type": "shadow"
+      }
+    }
+  }
+}

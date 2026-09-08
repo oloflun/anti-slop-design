@@ -145,7 +145,11 @@ def main() -> int:
         ph = json.loads((plugin_hooks_dir / "hooks.json").read_text(encoding="utf-8"))
         entries = [h for arr in ph.get("hooks", {}).values()
                    for b in arr for h in b.get("hooks", [])]
-        check("plugin hooks.json has exactly 8 entries", len(entries) == 8,
+        # 10 since T12 (2026-09-08): the two generation matchers, one on
+        # PreToolUse for the credit gate and one on PostToolUse for the ledger.
+        # The count is asserted rather than bounded so a hook added by accident
+        # still shows up as a failure.
+        check("plugin hooks.json has exactly 10 entries", len(entries) == 10,
               f"{len(entries)} entries")
         missing = []
         for h in entries:
@@ -230,8 +234,48 @@ def main() -> int:
                                capture_output=True, text=True).stdout
             differ = [l for l in d.splitlines() if "differ" in l]
             missing = [l for l in d.splitlines() if l.startswith(f"Only in {src}")]
-            check(f"{label}: ported refs byte-identical", not differ,
-                  f"{len(differ)} differ")
+
+            # Deliberate divergences from upstream hallmark. The chain is a
+            # fork with an owner's overrides on it, so "byte-identical" is the
+            # wrong bar; "identical except where we wrote down why" is the
+            # right one. A file may diverge only if it is named here AND the
+            # local copy actually carries the marker that explains it, so a
+            # future accidental edit to one of these files still fails.
+            ALLOWED_DIVERGENCE = {
+                # F-011 (2026-09-07): motion always plays. Every
+                # prefers-reduced-motion mandate and code block was struck.
+                "assets.md": "F-011", "custom-craft.md": "F-011",
+                "custom-theme.md": "F-011", "hero-enrichment.md": "F-011",
+                "microinteractions.md": "F-011", "motion.md": "F-011",
+                "preview-examples.md": "F-011", "slop-test.md": "F-011",
+                "ft8-marquee-scroll.md": "F-011", "n8-terminal-command.md": "F-011",
+                "h7-demo-video-clipped-by-viewport-edge.md": "F-011",
+                "playful.md": "F-011", "carnival.md": "F-011", "cobalt.md": "F-011",
+                "hum.md": "F-011", "lumen.md": "F-011",
+                # Pre-existing drift, corrected 2026-09-08: the local line
+                # said the nav archetypes were N1-N9 while components/ has
+                # shipped n1..n13 (plus n1b) for some time. Upstream says
+                # N1a-N13; the chain names its own files.
+                "macrostructures.md": "N1–N13",
+            }
+            unexplained = []
+            for line in differ:
+                name = Path(line.split(" and ")[0].replace("Files ", "").strip().strip("'\"")).name
+                marker = ALLOWED_DIVERGENCE.get(name)
+                if not marker:
+                    unexplained.append(f"{name} (no recorded reason)")
+                    continue
+                try:
+                    body = (Path(dst) / name).read_text(encoding="utf-8", errors="replace")
+                except Exception:
+                    body = ""
+                    for cand in Path(dst).rglob(name):
+                        body = cand.read_text(encoding="utf-8", errors="replace"); break
+                if marker not in body:
+                    unexplained.append(f"{name} (diverges but carries no {marker} note)")
+            check(f"{label}: ported refs identical except recorded divergences",
+                  not unexplained,
+                  "; ".join(unexplained[:6]))
             check(f"{label}: no upstream refs missing", not missing,
                   f"{len(missing)} missing")
         shutil.rmtree(up.parent, ignore_errors=True)
@@ -616,12 +660,32 @@ def main() -> int:
             else Path("references/reference-lock.md")
         L.log(Path(td), event="ref-read", cat="taste", file=str(cat_dir / "TASTE.md"))
         L.log(Path(td), event="ref-read", cat="feedback", file=str(cat_dir / "FEEDBACK.md"))
-        L.log(Path(td), event="ref-read", cat="catalogue", slug="acme",
-              file=str(cat_dir / "entries" / "acme" / "shot.png"))
         L.log(Path(td), event="ref-read", cat="references", file=str(lock_file))
 
+        # T3 (2026-09-08): one file under entries/<slug>/ no longer clears the
+        # floor. The gate now wants a catalogue-select row naming >= 2 slugs,
+        # and for each of them entry.md plus a fold/slice/shot read.
+        L.log(Path(td), event="ref-read", cat="catalogue", slug="acme", kind="shot",
+              file=str(cat_dir / "entries" / "acme" / "shot.png"))
         hso, _ = run_hook("design-gate.py", write_ev(td, "index.html", "<html></html>"))
-        check("reference floor allows the write once all four are read", hso is None)
+        reason = (hso or {}).get("permissionDecisionReason", "")
+        check("floor still denies with one catalogue file and no select row",
+              (hso or {}).get("permissionDecision") == "deny")
+        check("floor names the catalogue selection step", "select.py" in reason)
+
+        L.log(Path(td), event="catalogue-select", slugs=["acme", "beta"], brief="BRIEF.md")
+        hso, _ = run_hook("design-gate.py", write_ev(td, "index.html", "<html></html>"))
+        reason = (hso or {}).get("permissionDecisionReason", "")
+        check("floor denies when a selected slug is not read through",
+              (hso or {}).get("permissionDecision") == "deny" and "beta" in reason)
+
+        for slug in ("acme", "beta"):
+            L.log(Path(td), event="ref-read", cat="catalogue", slug=slug, kind="entry-md",
+                  file=str(cat_dir / "entries" / slug / "entry.md"))
+            L.log(Path(td), event="ref-read", cat="catalogue", slug=slug, kind="fold",
+                  file=str(cat_dir / "entries" / slug / "fold.webp"))
+        hso, _ = run_hook("design-gate.py", write_ev(td, "index.html", "<html></html>"))
+        check("reference floor allows the write once the selection is read through", hso is None)
 
         # (c) a scroll-signalled intent with no scroll ref-reads names the
         # two scroll references specifically.
@@ -639,7 +703,50 @@ def main() -> int:
             L.log(Path(td), event="ref-read", cat="references", sub="scroll",
                   file=str(skill_roots[0] / "references" / "scroll" / "feel-and-fingerprint.md"))
             hso, _ = run_hook("design-gate.py", write_ev(td, "other.html", "<html></html>"))
-            check("reference floor allows the write once scroll refs are read", hso is None)
+            reason = (hso or {}).get("permissionDecisionReason", "")
+            check("scroll brief also demands the fingerprint registry",
+                  (hso or {}).get("permissionDecision") == "deny"
+                  and "design-fingerprints.md" in reason)
+            L.log(Path(td), event="ref-read", cat="registry",
+                  file="design-fingerprints.md")
+            hso, _ = run_hook("design-gate.py", write_ev(td, "other.html", "<html></html>"))
+            check("reference floor allows the write once scroll refs and registry are read",
+                  hso is None)
+
+    # T5 (2026-09-08): the route corpus. 90+ writes routed to a fallback whose
+    # skill name ("impeccable layout") is not loadable, imagery fired on every
+    # <img> including material already vendored, and 17 named skills had no
+    # mechanical route at all -- so "route-vs-invocation gap = 0" could not be
+    # measured for exactly the skills that were never called. Each case pins
+    # one route that must fire and, where it matters, one that must not.
+    corpus = PLUGIN_ROOT / "tests" / "route_corpus.jsonl"
+    if corpus.exists():
+        failures = []
+        cases = 0
+        for line in corpus.read_text(encoding="utf-8").splitlines():
+            line = line.strip()
+            if not line:
+                continue
+            c = json.loads(line)
+            cases += 1
+            ids = {r["id"] for r in L.match_routes(c["path"], c["content"])}
+            for want in c.get("expect", []):
+                if want not in ids:
+                    failures.append(f"{c['path']}: missing {want}")
+            for no in c.get("reject", []):
+                if no in ids:
+                    failures.append(f"{c['path']}: unwanted {no}")
+        check(f"route corpus ({cases} cases) routes as specified", not failures,
+              "; ".join(failures[:5]))
+        fb = [r for r in L.routing_table().get("rules", []) if r.get("fallback")]
+        check("fallback route names a loadable skill",
+              bool(fb) and fb[0]["skill"] == "impeccable",
+              f"fallback={fb[0]['skill'] if fb else 'none'}")
+        named = {r["skill"].split()[0] for r in L.routing_table().get("rules", [])}
+        for must in ("a11y-audit", "review-animations", "design-catalog"):
+            check(f"{must} has a mechanical route", must in named)
+    else:
+        check("route corpus present", False, "tests/route_corpus.jsonl missing")
 
     # (d) the scroll route rule fires on scroll-driven markup.
     scroll_routes = L.match_routes("index.html", '<div data-sc-act="scrub">')
@@ -669,16 +776,21 @@ def main() -> int:
             blk = json.loads(p.stdout)
         except Exception:
             blk = {}
-        check("scroll session without a reduced-motion shot blocks the stop",
-              blk.get("decision") == "block"
-              and "reduced motion" in blk.get("reason", "").lower())
+        # F-011 (2026-09-07): builds no longer branch on prefers-reduced-motion,
+        # so there is no second render to verify. The old expectation — that a
+        # scroll session is blocked until an rm- capture exists — is inverted:
+        # one read capture after the last edit is the whole bar.
+        check("scroll session is NOT blocked for a missing reduced-motion shot (F-011)",
+              not (blk.get("decision") == "block"
+                   and "reduced motion" in blk.get("reason", "").lower()))
 
         time.sleep(1.1)
         run_hook("design-vision-track.py",
                  {"cwd": td, "tool_name": "Read",
                   "tool_input": {"file_path": str(Path(td) / "shots" / "rm-fold.png")}})
         hso, _ = run_hook("design-stop.py", {"cwd": td})
-        check("adding an rm- shot clears the scroll exit bar", hso is not None)
+        check("stop still reports after a second capture (F-011: no rm bar left)",
+              hso is not None)
 
         reports = list((Path(td) / ".impeccable").glob("design-report-*.md"))
         body = reports[-1].read_text(encoding="utf-8") if reports else ""
@@ -735,7 +847,10 @@ def main() -> int:
         prev_sid = os.environ.get("CLAUDE_CODE_SESSION_ID")
         os.environ["CLAUDE_CODE_SESSION_ID"] = SID_A
         try:
-            a_rows = design_stop_mod.scope_to_session(design_stop_mod.all_rows(Path(td)))
+            # design-stop.py imports the shared lib as L; it has never re-exported
+            # these names, so the old call crashed the whole verifier before the
+            # remaining checks ran (pre-existing, found 2026-09-08).
+            a_rows = design_stop_mod.L.scope_to_session(design_stop_mod.L.all_rows(Path(td)))
         finally:
             os.environ["CLAUDE_CODE_SESSION_ID"] = prev_sid
         check("A's own rows are still readable via all_rows()+scope_to_session() after B's start",

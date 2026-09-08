@@ -31,6 +31,15 @@
             "timeout": 8
           }
         ]
+      },
+      {
+        "matcher": "mcp__.*__(generate_|upscale_|reframe|remove_background|outpaint_image|motion_control)",
+        "hooks": [
+          {
+            "type": "command",
+            "command": "python \"${CLAUDE_PLUGIN_ROOT}/hooks/design-gate.py\""
+          }
+        ]
       }
     ],
     "PostToolUse": [
@@ -61,6 +70,15 @@
             "type": "command",
             "command": "python \"${CLAUDE_PLUGIN_ROOT}/hooks/design-vision-track.py\"",
             "timeout": 8
+          }
+        ]
+      },
+      {
+        "matcher": "mcp__.*__(generate_|upscale_|reframe|remove_background|outpaint_image|motion_control)",
+        "hooks": [
+          {
+            "type": "command",
+            "command": "python \"${CLAUDE_PLUGIN_ROOT}/hooks/design-vision-track.py\""
           }
         ]
       }

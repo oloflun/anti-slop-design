@@ -1,0 +1,220 @@
+{
+  "pageIntent": {
+    "type": "blog-post",
+    "confidence": 0.23,
+    "path": "/sites/horai.html",
+    "title": "Hōrai — A Three-Sister Restaurant, Stockholm",
+    "description": "",
+    "signals": [
+      {
+        "kind": "dom",
+        "type": "blog-post",
+        "weight": 0.35,
+        "detail": "byline|min-read"
+      },
+      {
+        "kind": "shape",
+        "type": "landing",
+        "weight": 0.3,
+        "detail": "hero+features"
+      }
+    ],
+    "alternates": [
+      {
+        "type": "landing",
+        "score": 0.3
+      }
+    ],
+    "needsSmart": true
+  },
+  "sectionRoles": {
+    "sections": [
+      {
+        "index": 0,
+        "tag": "header",
+        "role": "nav",
+        "subrole": null,
+        "confidence": 0.4,
+        "heading": null,
+        "bounds": {
+          "x": 0,
+          "y": 0,
+          "w": 1280,
+          "h": 116.5
+        },
+        "buttonCount": 0,
+        "cardCount": 1,
+        "slots": {
+          "lede": "RESERVATIONS"
+        },
+        "needsSmart": true
+      },
+      {
+        "index": 1,
+        "tag": "section",
+        "role": "hero",
+        "subrole": null,
+        "confidence": 0.85,
+        "heading": "HŌRAI",
+        "bounds": {
+          "x": 0,
+          "y": 0,
+          "w": 1280,
+          "h": 800
+        },
+        "buttonCount": 0,
+        "cardCount": 1,
+        "slots": {
+          "heading": "HŌRAI",
+          "lede": "蓬莱"
+        },
+        "needsSmart": false
+      },
+      {
+        "index": 2,
+        "tag": "section",
+        "role": "testimonial",
+        "subrole": null,
+        "confidence": 0.8,
+        "heading": "THE\nHOUSE",
+        "bounds": {
+          "x": 0,
+          "y": 800,
+          "w": 1280,
+          "h": 788.5
+        },
+        "buttonCount": 0,
+        "cardCount": 0,
+        "slots": {
+          "heading": "THE\nHOUSE",
+          "lede": "家"
+        },
+        "needsSmart": false
+      },
+      {
+        "index": 3,
+        "tag": "section",
+        "role": "testimonial",
+        "subrole": null,
+        "confidence": 0.8,
+        "heading": null,
+        "bounds": {
+          "x": 0,
+          "y": 1588.5,
+          "w": 1280,
+          "h": 1040
+        },
+        "buttonCount": 0,
+        "cardCount": 1,
+        "slots": {
+          "lede": "A KITCHEN NOTE · CHAPTER ONE"
+        },
+        "needsSmart": false
+      },
+      {
+        "index": 4,
+        "tag": "section",
+        "role": "testimonial",
+        "subrole": null,
+        "confidence": 0.8,
+        "heading": "THE\nMENUS",
+        "bounds": {
+          "x": 0,
+          "y": 2628.5,
+          "w": 1280,
+          "h": 2186.09375
+        },
+        "buttonCount": 0,
+        "cardCount": 3,
+        "slots": {
+          "heading": "THE\nMENUS",
+          "subheadings": [
+            "SANSAI",
+            "SEKAI",
+            "UMI"
+          ],
+          "lede": "献"
+        },
+        "needsSmart": false
+      },
+      {
+        "index": 5,
+        "tag": "section",
+        "role": "content",
+        "subrole": null,
+        "confidence": 0.3,
+        "heading": null,
+        "bounds": {
+          "x": 0,
+          "y": 4814.59375,
+          "w": 1280,
+          "h": 1263.859375
+        },
+        "buttonCount": 0,
+        "cardCount": 0,
+        "slots": {
+          "lede": "SANSAI · SECOND COURSE · PICKLED MOUNTAIN VEGETABLES, SOFT TOFU\nSEKAI · FIFTH COURSE · HAND-CUT YAKISOBA WITH WAGYU SCRAPS"
+        },
+        "needsSmart": true
+      },
+      {
+        "index": 6,
+        "tag": "section",
+        "role": "content",
+        "subrole": null,
+        "confidence": 0.3,
+        "heading": "THE ROOM",
+        "bounds": {
+          "x": 0,
+          "y": 6078.453125,
+          "w": 1280,
+          "h": 880
+        },
+        "buttonCount": 0,
+        "cardCount": 1,
+        "slots": {
+          "heading": "THE ROOM",
+          "lede": "部屋"
+        },
+        "needsSmart": true
+      },
+      {
+        "index": 7,
+        "tag": "section",
+        "role": "content",
+        "subrole": null,
+        "confidence": 0.3,
+        "heading": "RESERVATIONS\nOPEN MONDAYS",
+        "bounds": {
+          "x": 0,
+          "y": 6958.453125,
+          "w": 1280,
+          "h": 1128.515625
+        },
+        "buttonCount": 0,
+        "cardCount": 1,
+        "slots": {
+          "heading": "RESERVATIONS\nOPEN MONDAYS",
+          "lede": "予約"
+        },
+        "needsSmart": true
+      }
+    ],
+    "counts": {
+      "nav": 1,
+      "hero": 1,
+      "testimonial": 3,
+      "content": 3
+    },
+    "readingOrder": [
+      "nav",
+      "hero",
+      "testimonial",
+      "testimonial",
+      "testimonial",
+      "content",
+      "content",
+      "content"
+    ]
+  }
+}

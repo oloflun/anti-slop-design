@@ -1,0 +1,301 @@
+{
+  "colors": {
+    "all": [
+      {
+        "hex": "#e5e7eb",
+        "rgb": {
+          "r": 229,
+          "g": 231,
+          "b": 235,
+          "a": 1
+        },
+        "hsl": {
+          "h": 220,
+          "s": 13,
+          "l": 91
+        },
+        "count": 210,
+        "contexts": [
+          "border"
+        ]
+      },
+      {
+        "hex": "#040202",
+        "rgb": {
+          "r": 4,
+          "g": 2,
+          "b": 2,
+          "a": 1
+        },
+        "hsl": {
+          "h": 0,
+          "s": 33,
+          "l": 1
+        },
+        "count": 145,
+        "contexts": [
+          "text",
+          "background"
+        ]
+      },
+      {
+        "hex": "#efdfcc",
+        "rgb": {
+          "r": 239,
+          "g": 223,
+          "b": 204,
+          "a": 1
+        },
+        "hsl": {
+          "h": 33,
+          "s": 52,
+          "l": 87
+        },
+        "count": 47,
+        "contexts": [
+          "text",
+          "background"
+        ]
+      },
+      {
+        "hex": "#650001",
+        "rgb": {
+          "r": 101,
+          "g": 0,
+          "b": 1,
+          "a": 1
+        },
+        "hsl": {
+          "h": 359,
+          "s": 100,
+          "l": 20
+        },
+        "count": 12,
+        "contexts": [
+          "text"
+        ]
+      },
+      {
+        "hex": "#1e1513",
+        "rgb": {
+          "r": 30,
+          "g": 21,
+          "b": 19,
+          "a": 1
+        },
+        "hsl": {
+          "h": 11,
+          "s": 22,
+          "l": 10
+        },
+        "count": 10,
+        "contexts": [
+          "text"
+        ]
+      },
+      {
+        "hex": "#e0cbab",
+        "rgb": {
+          "r": 224,
+          "g": 203,
+          "b": 171,
+          "a": 1
+        },
+        "hsl": {
+          "h": 36,
+          "s": 46,
+          "l": 77
+        },
+        "count": 3,
+        "contexts": [
+          "background"
+        ]
+      },
+      {
+        "hex": "#06190f",
+        "rgb": {
+          "r": 6,
+          "g": 25,
+          "b": 15,
+          "a": 1
+        },
+        "hsl": {
+          "h": 148,
+          "s": 61,
+          "l": 6
+        },
+        "count": 3,
+        "contexts": [
+          "text"
+        ]
+      }
+    ]
+  },
+  "regions": [
+    {
+      "role": "nav",
+      "tag": "header",
+      "bounds": {
+        "x": 0,
+        "y": 0,
+        "w": 1280,
+        "h": 116.5
+      },
+      "heading": null,
+      "buttonCount": 0,
+      "cardCount": 1,
+      "className": "fixed top-0 left-0 right-0 z-30"
+    },
+    {
+      "role": "hero",
+      "tag": "section",
+      "bounds": {
+        "x": 0,
+        "y": 0,
+        "w": 1280,
+        "h": 800
+      },
+      "heading": "HŌRAI",
+      "buttonCount": 0,
+      "cardCount": 1,
+      "className": "relative overflow-hidden h-screen min-h-[680px] max-h-[1020px]"
+    },
+    {
+      "role": "content",
+      "tag": "section",
+      "bounds": {
+        "x": 0,
+        "y": 800,
+        "w": 1280,
+        "h": 788.5
+      },
+      "heading": "THE\nHOUSE",
+      "buttonCount": 0,
+      "cardCount": 0,
+      "className": "relative"
+    },
+    {
+      "role": "content",
+      "tag": "section",
+      "bounds": {
+        "x": 0,
+        "y": 1588.5,
+        "w": 1280,
+        "h": 1040
+      },
+      "heading": null,
+      "buttonCount": 0,
+      "cardCount": 1,
+      "className": "relative overflow-hidden h-[130vh] min-h-[1000px] bg-walnut"
+    },
+    {
+      "role": "content",
+      "tag": "section",
+      "bounds": {
+        "x": 0,
+        "y": 2628.5,
+        "w": 1280,
+        "h": 2186.09375
+      },
+      "heading": "THE\nMENUS",
+      "buttonCount": 0,
+      "cardCount": 3,
+      "className": "relative bg-paper"
+    },
+    {
+      "role": "content",
+      "tag": "section",
+      "bounds": {
+        "x": 0,
+        "y": 4814.59375,
+        "w": 1280,
+        "h": 1263.859375
+      },
+      "heading": null,
+      "buttonCount": 0,
+      "cardCount": 0,
+      "className": "bg-paper2/55 py-32 md:py-44"
+    },
+    {
+      "role": "content",
+      "tag": "section",
+      "bounds": {
+        "x": 0,
+        "y": 6078.453125,
+        "w": 1280,
+        "h": 880
+      },
+      "heading": "THE ROOM",
+      "buttonCount": 0,
+      "cardCount": 1,
+      "className": "relative"
+    },
+    {
+      "role": "content",
+      "tag": "section",
+      "bounds": {
+        "x": 0,
+        "y": 6958.453125,
+        "w": 1280,
+        "h": 1128.515625
+      },
+      "heading": "RESERVATIONS\nOPEN MONDAYS",
+      "buttonCount": 0,
+      "cardCount": 1,
+      "className": "bg-walnut text-cream py-32 md:py-44 relative"
+    }
+  ],
+  "componentClusters": [],
+  "accessibility": {
+    "remediation": []
+  },
+  "cssHealth": {
+    "sheets": [
+      {
+        "url": "https://fonts.googleapis.com/css2?family=Cinzel:wght@400;500;600;700;800&family=Vollkorn:ital,wght@0,400;0,500;0,600;1,400;1,500&family=Noto+Serif+JP:wght@400;500;700&display=swap",
+        "totalBytes": 358330,
+        "usedBytes": 0,
+        "unusedBytes": 358330,
+        "unusedPercent": 100
+      },
+      {
+        "url": "http://127.0.0.1:3055/sites/horai.html",
+        "totalBytes": 4236,
+        "usedBytes": 2689,
+        "unusedBytes": 1547,
+        "unusedPercent": 37
+      }
+    ],
+    "totalBytes": 362566,
+    "usedBytes": 2689,
+    "unusedBytes": 359877,
+    "unusedPercent": 99,
+    "importantCount": 1,
+    "duplicates": 2218,
+    "vendorPrefixes": {
+      "webkit": 2,
+      "moz": 0,
+      "ms": 0,
+      "o": 0
+    },
+    "keyframes": [],
+    "specificity": {
+      "max": [
+        1,
+        3,
+        24
+      ],
+      "average": [
+        0.05,
+        0.35,
+        1.92
+      ],
+      "count": 84
+    },
+    "issues": [
+      "1 !important rule",
+      "2218 duplicate declarations",
+      "99% unused CSS"
+    ]
+  }
+}

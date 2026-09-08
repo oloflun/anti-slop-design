@@ -1,0 +1,142 @@
+:root {
+  /* Colors — Primary */
+  --color-primary: #290d00;
+  --color-secondary: #b36b13;
+  --color-accent: #d2c4a9;
+
+  /* Colors — Neutrals */
+  --color-neutral-50: #e5e7eb;
+  --color-neutral-100: #050302;
+  --color-neutral-200: #6c6557;
+  --color-neutral-300: #b2a285;
+
+  /* Colors — Backgrounds */
+  --color-bg: #010304;
+  --color-bg-1: #000102;
+  --color-bg-2: #d2c4a9;
+  --color-bg-3: #010000;
+  --color-bg-4: #b2a285;
+
+  /* Colors — Text */
+  --color-text: #000000;
+  --color-text-1: #d5cbb8;
+  --color-text-2: #6c6557;
+  --color-text-3: #b36b13;
+  --color-text-4: #050302;
+
+  /* Typography — Families */
+  --font-body: 'Newsreader', sans-serif;
+  --font-heading: 'Bodoni Moda', sans-serif;
+
+  /* Typography — Scale */
+  --font-size-101.12: 101.12px;
+  --font-size-81.92: 81.92px;
+  --font-size-64: 64px;
+  --font-size-44.8: 44.8px;
+  --font-size-39.04: 39.04px;
+  --font-size-24.32: 24.32px;
+  --font-size-23: 23px;
+  --font-size-21: 21px;
+  --font-size-19: 19px;
+  --font-size-18: 18px;
+  --font-size-16: 16px;
+  --font-size-15.5: 15.5px;
+
+  /* Spacing */
+  --spacing-2: 2px;
+  --spacing-56: 56px;
+  --spacing-64: 64px;
+  --spacing-80: 80px;
+  --spacing-96: 96px;
+  --spacing-112: 112px;
+  --spacing-121: 121px;
+  --spacing-128: 128px;
+  --spacing-240: 240px;
+  --spacing-258: 258px;
+
+  /* Box Shadows */
+  --shadow-sm: oklab(0.772 0.0129615 0.123321 / 0.42) 0px 0px 0px 1px;
+  --shadow-sm: oklab(0.42 0.0327558 0.100812 / 0.45) 0px 0px 0px 1px;
+
+  /* Original Site Variables */
+  /* — colors — */
+  --tw-ring-offset-shadow: 0 0 #0000;
+  --tw-ring-shadow: 0 0 #0000;
+  --tw-ring-inset: ;
+  --tw-border-spacing-x: 0;
+  --tw-ring-color: rgb(59 130 246 / 0.5);
+  --tw-ring-offset-color: #fff;
+  --tw-ring-offset-width: 0px;
+  --tw-shadow-colored: 0 0 #0000;
+  --tw-border-spacing-y: 0;
+  /* — spacing — */
+  --tw-numeric-spacing: ;
+  --tw-contain-size: ;
+  /* — typography — */
+  --font-titel: "Bodoni Moda",ui-serif,Georgia,serif;
+  --font-brod: Newsreader,ui-serif,Georgia,serif;
+  /* — shadows — */
+  --tw-drop-shadow: ;
+  --tw-shadow: 0 0 #0000;
+  /* — other — */
+  --sal: oklch(0.213 0.026 208);
+  --sal2: oklch(0.262 0.028 205);
+  --sal3: oklch(0.312 0.026 203);
+  --natt: oklch(0.128 0.016 60);
+  --papper: oklch(0.918 0.021 86);
+  --papper2: oklch(0.862 0.026 84);
+  --tryck: oklch(0.245 0.021 58);
+  --tryck2: oklch(0.392 0.019 56);
+  --kalk: oklch(0.928 0.014 84);
+  --kalk2: oklch(0.735 0.016 84);
+  --ockra: oklch(0.772 0.124 84);
+  --ockra-djup: oklch(0.420 0.106 72);
+  --karmin: oklch(0.487 0.146 26);
+  --ut: cubic-bezier(.16,1,.3,1);
+  --in: cubic-bezier(.7,0,.84,0);
+  --matt: 1480px;
+  --tw-backdrop-sepia: ;
+  --tw-sepia: ;
+  --tw-ordinal: ;
+  --tw-backdrop-saturate: ;
+  --tw-contain-style: ;
+  --tw-backdrop-invert: ;
+  --tw-brightness: ;
+  --tw-backdrop-grayscale: ;
+  --tw-hue-rotate: ;
+  --tw-scale-y: 1;
+  --tw-pan-y: ;
+  --tw-backdrop-contrast: ;
+  --tw-backdrop-brightness: ;
+  --tw-pan-x: ;
+  --tw-translate-y: 0;
+  --tw-rotate: 0;
+  --tw-contrast: ;
+  --tw-skew-x: 0;
+  --tw-backdrop-blur: ;
+  --tw-translate-x: 0;
+  --tw-gradient-via-position: ;
+  --tw-saturate: ;
+  --tw-scroll-snap-strictness: proximity;
+  --tw-grayscale: ;
+  --tw-scale-x: 1;
+  --tw-backdrop-hue-rotate: ;
+  --tw-gradient-to-position: ;
+  --tw-numeric-fraction: ;
+  --tw-skew-y: 0;
+  --tw-slashed-zero: ;
+  --tw-blur: ;
+  --tw-invert: ;
+  --tw-backdrop-opacity: ;
+  --tw-gradient-from-position: ;
+  --tw-numeric-figure: ;
+  --tw-pinch-zoom: ;
+  --tw-contain-paint: ;
+  --tw-contain-layout: ;
+  /* — semantic — */
+  success: [object Object];
+  warning: [object Object];
+  error: [object Object];
+  info: [object Object];
+
+}

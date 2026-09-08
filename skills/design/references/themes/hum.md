@@ -154,7 +154,7 @@ Available easings:
 - `--ease-snap: cubic-bezier(0.22, 1, 0.36, 1)` (easeOutExpo — for tick-ups and reveals)
 - `--ease-out`, `--ease-in-out` (standard fallbacks)
 
-`prefers-reduced-motion: reduce`:
+Viloläge (ingen rm-gren, F-011):
 - Spring hovers collapse to opacity/colour transitions only (no scale, no rotate, no wobble).
 - Counters render at final value instantly.
 - Character mark stops pulsing (stays at final state).

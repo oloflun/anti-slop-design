@@ -14,7 +14,7 @@ type: ["Inter"]
 kind: antipattern
 source: claude
 origin: example-site
-extract: none
+extract: ok
 category: product-focused
 category2: ""
 status: ready
@@ -81,6 +81,21 @@ gradient word inside the headline, the two-button hero, the avatar cluster, the
 logo row, the icon triptych, the stat band, the centred CTA. Nothing was chosen
 against the average. Keep this entry as the measuring stick: if a new page can be
 described entirely by naming its slots, it has landed here.
+
+## Motion
+
+Från källkoden (`sites/before-ai-slop.html`, läst 2026-09-08).
+
+**Ingen rörelse alls.** Noll `transition`, noll `animation`, noll `@keyframes`,
+ingen `IntersectionObserver`. Det är avsiktligt: sidan är kedjans egen
+anti-referens — en typisk mallsida — och frånvaron av rörelse är en av de
+saker som gör den platt.
+
+**Vad den lär ut:** en sida utan en enda författad rörelse läses som en mall
+även när typografin är oklanderlig. Rörelse är inte dekoration ovanpå en
+färdig sida; den är en av de fem relationerna.
+
+**Att låna:** ingenting. Den finns som jämförelse, aldrig som förlaga.
 
 ## Brief
 

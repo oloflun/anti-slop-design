@@ -15,7 +15,7 @@ A nav formatted as a CLI prompt: `> studio --catalog --voice --get▮`. The "lin
 .nav-term__line a { color: var(--color-ink); text-decoration: underline; text-underline-offset: 2px; }
 .caret { display: inline-block; width: 1ch; animation: blink 1.05s steps(2) infinite; color: var(--color-accent); }
 @keyframes blink { 50% { opacity: 0; } }
-@media (prefers-reduced-motion: reduce) { .caret { animation: none; opacity: 1; } }
+/* F-011 (2026-09-07): reduced-motion-blocket utgår — rörelsen spelar alltid, aldrig en preferensgrind. */
 ```
 
 *Anti-pattern:* using `>` prompt vocabulary on a non-developer site (a wedding photographer's portfolio with a `> view --gallery` nav reads as set decoration). N8 belongs to genuine terminal / CLI brands only.

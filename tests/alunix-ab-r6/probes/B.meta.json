@@ -1,0 +1,56 @@
+{
+  "arm": "B",
+  "key": "probe",
+  "session_id": "fcc5e36b-e3b3-4bbb-bb84-a34cd21ad83a",
+  "model": "claude-fable-5-1",
+  "effort": "high",
+  "cwd": "C:\\Users\\Anton L\\anti-slop-design",
+  "out_dir": null,
+  "argv": [
+    "C:\\Users\\Anton L\\AppData\\Roaming\\Claude\\claude-code\\2.1.260\\claude.exe",
+    "-p",
+    "Skriv filen tests/alunix-ab-r6/probes/B.html med en <h1> och en inline-stil som använder hexfärgen #1E5E9C. Svara sedan med en lista över alla skills du har tillgängliga (namnen), eller 'inga', och säg om du har ett verktyg som heter Skill.",
+    "--model",
+    "claude-fable-5-1",
+    "--effort",
+    "high",
+    "--output-format",
+    "stream-json",
+    "--verbose",
+    "--include-hook-events",
+    "--dangerously-skip-permissions",
+    "--session-id",
+    "fcc5e36b-e3b3-4bbb-bb84-a34cd21ad83a",
+    "--no-chrome",
+    "--plugin-dir",
+    "C:\\Users\\Anton L\\anti-slop-design\\tests\\alunix-ab-r6\\plugin-b",
+    "--settings",
+    "{\"enabledPlugins\":{\"super-intelligence@super-intelligence\":false}}"
+  ],
+  "system_prompt_sha256": null,
+  "system_prompt_len": null,
+  "system_prompt_file": null,
+  "prompt_sha256": "3f6f610ff78966510c22a0fcca2c23ac1ecd963fa5092a87632fcf83cb377c1e",
+  "prompt_md_sha256": "7acb190c6b537e1764caa0de4349c415528036bafe63c316527812355f0ccd76",
+  "env_keys_added": [
+    "UNSPLASH_ACCESS_KEY",
+    "UNSPLASH_APP_ID",
+    "UNSPLASH_SECRET_KEY"
+  ],
+  "start": "2026-09-05T21:40:02+00:00",
+  "end": "2026-09-05T21:41:14+00:00",
+  "exit_code": 0,
+  "result_line_numbers": [
+    24
+  ],
+  "result": {
+    "subtype": "success",
+    "is_error": false,
+    "num_turns": 2,
+    "duration_ms": 61868,
+    "total_cost_usd": 0.9096554999999998,
+    "session_id": "fcc5e36b-e3b3-4bbb-bb84-a34cd21ad83a"
+  },
+  "log": "C:\\Users\\Anton L\\anti-slop-design\\tests\\alunix-ab-r6\\probes\\B.jsonl",
+  "stderr": "C:\\Users\\Anton L\\anti-slop-design\\tests\\alunix-ab-r6\\probes\\B.stderr.txt"
+}

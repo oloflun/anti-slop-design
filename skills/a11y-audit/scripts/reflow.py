@@ -1,12 +1,14 @@
-"""Reflow checks: 320px overflow, 200% zoom overflow, reduced-motion hiding.
+"""Reflow checks: 320px overflow, 200% zoom overflow, unrevealed content.
 
     python reflow.py <url|file> [--out f]
 
 (a) At 320px width: elements whose right edge exceeds the viewport.
 (b) At 200% zoom emulation (720x450, deviceScaleFactor 2): same overflow check.
-(c) With prefers-reduced-motion: reduce, elements still at opacity:0 after
-    2s at three scroll positions (0%, 50%, 100%) -- content a reveal system
-    never shows because it depended on a scroll/observer event that never fired.
+(c) Elements still at opacity:0 after 2s at three scroll positions
+    (0%, 50%, 100%) -- content a reveal system never shows because it
+    depended on a scroll/observer event that never fired. Under F-011 the
+    design system has no reduced-motion branch, so this is an
+    unrevealed-content check, not a preference check.
 
 Exit 0 with findings in the JSON. Exit 2 only on tool failure.
 """
@@ -80,6 +82,20 @@ def to_url(arg):
     return Path(arg).resolve().as_uri()
 
 
+def goto(page, url):
+    """networkidle, falling back to load.
+
+    A page with a looping animation that touches the network, a long-poll, or
+    an unfinished video never reaches networkidle, and a 60s hard failure of
+    the whole run is the wrong answer to "this page moves". capture.py already
+    carried this fallback; the a11y scripts did not (2026-09-08).
+    """
+    try:
+        page.goto(url, wait_until="networkidle", timeout=60000)
+    except Exception:
+        page.goto(url, wait_until="load", timeout=60000)
+
+
 def main():
     ap = argparse.ArgumentParser()
     ap.add_argument("target")
@@ -93,29 +109,43 @@ def main():
 
             # (a) 320px width
             page = browser.new_page(viewport={"width": 320, "height": 800})
-            page.goto(url, wait_until="networkidle", timeout=60000)
+            goto(page, url)
             page.wait_for_timeout(500)
             overflow_320 = page.evaluate(OVERFLOW_JS)
             page.close()
 
             # (b) 200% zoom emulation
             page = browser.new_page(viewport={"width": 720, "height": 450}, device_scale_factor=2)
-            page.goto(url, wait_until="networkidle", timeout=60000)
+            goto(page, url)
             page.wait_for_timeout(500)
             overflow_zoom = page.evaluate(OVERFLOW_JS)
             page.close()
 
-            # (c) reduced motion, three scroll positions
+            # (c) unrevealed content at three scroll positions (F-011: no
+            #     reduced-motion branch exists to isolate, so this is purely
+            #     "did the reveal ever fire").
             page = browser.new_page(viewport={"width": 1440, "height": 900})
-            page.emulate_media(reduced_motion="reduce")
-            page.goto(url, wait_until="networkidle", timeout=60000)
+            goto(page, url)
             page.wait_for_timeout(500)
-            hidden_selectors = set()
-            for frac in (0.0, 0.5, 1.0):
-                page.evaluate(f"window.scrollTo(0, Math.round(document.documentElement.scrollHeight * {frac}))")
-                page.wait_for_timeout(2000)
-                for sel in page.evaluate(HIDDEN_JS):
-                    hidden_selectors.add(sel)
+            # Walk the page in half-viewport steps rather than jumping
+            # 0/50/100%. Three jumps skip most of the document, so an
+            # IntersectionObserver that works perfectly for a real reader
+            # never gets its chance to fire and the check reports healthy
+            # content as unrevealed -- measured 2026-09-08 on the reference
+            # build sites/calyx.html: 14 false positives from jumping, 0 from
+            # walking. A check that flags a known-good page gets narrowed, not
+            # waived. Elements are only counted as unrevealed if they are
+            # STILL hidden after the whole walk, so a slow reveal cannot be
+            # caught mid-transition.
+            doc_h = page.evaluate("document.documentElement.scrollHeight")
+            vh = 900
+            step = max(1, vh // 2)
+            ys = list(range(0, max(0, doc_h - vh) + step, step))[:60] or [0]
+            for y in ys:
+                page.evaluate(f"window.scrollTo(0, {y})")
+                page.wait_for_timeout(350)
+            page.wait_for_timeout(1500)   # let the last reveal land
+            hidden_selectors = set(page.evaluate(HIDDEN_JS))
             page.close()
             browser.close()
     except Exception as e:
@@ -125,8 +155,8 @@ def main():
     out = {
         "overflow320": overflow_320,
         "overflowZoom200": overflow_zoom,
-        "hiddenUnderReducedMotion": len(hidden_selectors),
-        "hiddenSelectors": sorted(hidden_selectors),
+        "unrevealed": len(hidden_selectors),
+        "unrevealedSelectors": sorted(hidden_selectors),
     }
     text = json.dumps(out, indent=2, ensure_ascii=False)
     print(text)

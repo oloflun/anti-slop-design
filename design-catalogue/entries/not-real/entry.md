@@ -12,7 +12,7 @@ dna: "Didone gallery-label serif x chromatic CGI on a three-colour vellum canvas
 register: editorial print
 grammar: gallery/catalog
 lane: "A warm off-white vellum canvas holds a staggered, asymmetric grid of full-bleed CGI renders at native resolution, each captioned below by an em-dash-split serif title and a slash-delimited sans metadata line, with a rotated running-text strip pinned to the right margin"
-mode: portfolio
+mode: persuade
 traits: ["three colours total, chromatic content only in artwork", "0px radius everywhere, zero elevation", "em-dash title / italic subtitle pairing", "staggered vertical offset grid, no rigid rows", "vertical rotated metadata strip", "single weight (400) on both typefaces"]
 palette: ["#292a2c", "#f2f2f2", "#000000"]
 type: ["ogg", "telegraf"]

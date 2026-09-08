@@ -1,0 +1,389 @@
+/* Alunix K1 Skymning — runda 3. Sex tokens + två typsnitt (scripts/scroll/NOTE.md).
+   Aldrig restylad: .sc-stage, .sc-copy, .sc-scrim, [data-sc-*]. Allt annat härifrån. */
+
+:root {
+  --sc-canvas:      #0b1424;
+  --sc-surface:     #121c30;
+  --sc-ink:         #f4efe6;
+  --sc-ink-soft:    #b9c0d0;
+  --sc-accent:      #f2c46b;
+  --sc-accent-ink:  #1c1408;
+
+  --sc-font-display: "Newsreader", Georgia, serif;
+  --sc-font-text:    "Schibsted Grotesk", system-ui, sans-serif;
+
+  /* egna, ej motorns sex-plus-två: mörk ink + dämpad grå för det vita klippet
+     i akt 4-5 (house-physics: en gråton per grund, inte samma på båda). */
+  --ink-on-white:      #17181b;
+  --ink-soft-on-white: #5c5f68;
+  --paper:             #ffffff;
+  --hairline-on-white: color-mix(in oklab, var(--ink-on-white) 16%, transparent);
+
+  /* Runda 6, fynd 5: --sc-accent (#f2c46b) själv är för ljus för text på
+     vitt (misslyckas AA); --sc-accent-ink är till för text PÅ accenten, inte
+     accenten SOM text. --amber-ink är samma ton, mörkad tills den håller som
+     liten text -- fortfarande "en accent", bara vid en annan ljushet. */
+  --amber-ink: #8a5a12;
+
+  /* Utgångens mål (runda 3): bevisradens Hōrai-plate, uppmätt med
+     shots/measure-exit-target.py mot den byggda #proof-horai-media. Platen
+     ligger inte i bild i den sista rutan av #exit:s eget pin-intervall (den
+     kräver ytterligare scroll förbi ingressen och första uppslaget i #proof
+     — mätt, inte gissat: se NOTES.md) — målet är därför platens naturliga
+     viloläge, centrerat i viewporten, dit krympningen siktar. */
+  --exit-tx: 74.5%;
+  --exit-ty: 50.0%;
+  --exit-sx: 0.321;
+  --exit-sy: 0.386;
+}
+
+html, body { overflow-x: clip; }
+
+/* Bugg (runda 6, a11y-fynd 9): motorns :focus-visible-ring (scrollcraft.css,
+   var(--sc-accent) -- guld) mäter 1,65:1 mot en nästan vit toppbar/ljus
+   sektion. Bara i ljusa zoner: byt till mörk ink. Mörk zon behåller amber. */
+.topbar.zone-light :focus-visible,
+.proof-section :focus-visible,
+.ledger-section :focus-visible {
+  outline-color: var(--ink-on-white);
+}
+
+/* ------------------------------------------------------------- toppbar -- */
+.topbar {
+  position: fixed; inset: 0 0 auto 0; z-index: 80;
+  display: flex; align-items: center; justify-content: space-between;
+  padding: clamp(1rem, 3vw, 1.75rem) clamp(1.25rem, 4vw, 2.5rem);
+  pointer-events: none;
+}
+/* Two static gradient layers, cross-fading by opacity only: swapping the
+   gradient stops themselves (as one layer previously did) is an instant snap
+   no matter what transitions, since only opacity/transform truly interpolate. */
+.topbar::before, .topbar::after {
+  content: ""; position: absolute; inset: 0; height: 220%; z-index: -1;
+  transition: opacity 300ms var(--sc-ease-out, ease);
+}
+.topbar::before {
+  background: linear-gradient(180deg, rgba(6,10,18,0.68) 0%, rgba(6,10,18,0.2) 55%, transparent 82%);
+  opacity: 0.95;
+}
+.topbar.is-dim::before { opacity: 0; }
+.topbar::after {
+  background: linear-gradient(180deg, rgba(4,6,10,0.82) 0%, rgba(4,6,10,0.82) 55%, transparent 100%);
+  opacity: 0;
+}
+.topbar.is-dim::after { opacity: 1; }
+
+/* Paper zone (akt 4-5, white ground): flip to ink-on-paper with a hairline,
+   drop the dark scrim entirely. Toggled by script.js's section observer. */
+.topbar.zone-light { background: color-mix(in oklab, var(--paper) 92%, transparent); border-bottom: 1px solid var(--hairline-on-white); }
+.topbar.zone-light::before, .topbar.zone-light::after { opacity: 0 !important; }
+.topbar.zone-light .topbar__contact { color: var(--ink-on-white); border-bottom-color: color-mix(in oklab, var(--ink-on-white) 40%, transparent); }
+.topbar.zone-light .topbar__label { color: var(--ink-soft-on-white); }
+.topbar.zone-light .topbar__mark-img--white { opacity: 0; }
+.topbar.zone-light .topbar__mark-img--black { opacity: 1; }
+
+.topbar__mark { pointer-events: auto; line-height: 0; position: relative; display: block; width: 112px; height: 22px; }
+.topbar__mark-img { height: 20px; width: auto; filter: drop-shadow(0 1px 3px rgba(0,0,0,0.4)); position: absolute; inset: 0; transition: opacity 300ms var(--sc-ease-out, ease); }
+.topbar__mark-img--black { opacity: 0; filter: none; }
+.topbar__contact {
+  pointer-events: auto;
+  font-family: var(--sc-font-text); font-size: var(--sc-t-sm);
+  color: var(--sc-ink); text-decoration: none;
+  border-bottom: 1px solid color-mix(in oklab, var(--sc-ink) 40%, transparent);
+  transition: color 150ms ease, border-color 150ms ease;
+  /* scroll_verify.py mätte 3.66:1 (golv 4.5) mot skymningsfotots ljusa
+     himmel: den bakomliggande skrimmen räcker inte överallt. En mjuk
+     textskugga håller kontrasten även över de ljusaste molnen, utan att
+     ändra skrimmen som täcker resten av bilden. */
+  text-shadow: 0 1px 4px rgba(0,0,0,0.7), 0 1px 1px rgba(0,0,0,0.5);
+}
+.topbar.zone-light .topbar__contact { text-shadow: none; }
+.topbar__contact:hover { border-bottom-color: var(--sc-accent); color: var(--sc-accent); }
+.topbar__label {
+  font-family: var(--sc-font-text); font-size: var(--sc-t-xs);
+  letter-spacing: var(--sc-track-wide); text-transform: uppercase;
+  color: var(--sc-ink-soft); opacity: 0; white-space: nowrap;
+  position: absolute; left: 50%; translate: -50% 0;
+  transition: color 300ms var(--sc-ease-out, ease);
+}
+@media (max-width: 860px) { .topbar__label { display: none; } }
+
+/* ------------------------------------------------------- reservläge/motion toggle -- */
+.motion-only { display: none; }
+html.motion .motion-only { display: block; }
+html.motion .rm-only { display: none; }
+.rm-only { display: block; }
+
+/* ------------------------------------------------------ akt 1-4a signatur -- */
+.sig-stage { background: var(--sc-canvas); overflow: clip; }
+
+/* Fas 1 (p 0-0.46): kameraresan, ritad själv på canvasen. Fas "fortsatt zoom"
+   (p 0.46-0.50): hela lagret (foto + fönstermask) skalas tillsammans med en
+   CSS-transform, ursprung satt av script.js till fönstrets mittpunkt vid sista
+   rutan. Fas "bytet" (p 0.50-0.52): lagret tonar bort medan den riktiga ramen
+   tonar in -- samma bro-tekniker (oskärpa vid korstoningen) som runda 3, nu
+   smalare fönster (0,02 i stället för 0,35 av den gamla akten) per denna
+   rundas exakta faströrelser. */
+.sig-photo-layer {
+  position: absolute; inset: 0;
+  /* Bugg (runda 5): canvasen är svart (2d-kontext med alpha:false) tills
+     script.js hunnit rita en riktig ruta -- vid p=0 direkt efter
+     sidladdning, innan f001.webp laddat, visade heron rubriken mot svart.
+     dusk.webp här bakom canvasen täcker exakt den luckan; en gång canvasen
+     ritar något alls (opak {alpha:false}) döljer den bakgrunden helt, så
+     det finns aldrig två bilder synliga samtidigt. */
+  background-image: url("assets/dusk.webp");
+  background-size: cover;
+  background-position: center;
+  --zoom2: clamp(0, (var(--sc-p, 0) - 0.46) / 0.04, 1);
+  --xfade1: clamp(0, (var(--sc-p, 0) - 0.50) / 0.02, 1);
+  transform-origin: var(--sig-window-x, 50%) var(--sig-window-y, 50%);
+  transform: scale(calc(1 + var(--zoom2) * 0.282));
+  opacity: calc(1 - var(--xfade1));
+  filter: blur(calc(4 * var(--xfade1) * (1 - var(--xfade1)) * 6px));
+}
+.window-glow, .window-fill, .window-glass {
+  position: absolute; left: 0; top: 0; width: 0; height: 0;
+  opacity: 0; z-index: 2; pointer-events: none;
+}
+.window-glow {
+  background: radial-gradient(closest-side, color-mix(in oklab, var(--sc-accent) 85%, white) 0%, color-mix(in oklab, var(--sc-accent) 40%, transparent) 60%, transparent 100%);
+}
+.window-fill { object-fit: cover; display: block; }
+/* Bugg (runda 6, större): spröjsmasken (den riktiga rutans egna pixlar,
+   multiply ovanpå Hōrai-fyllningen) lästes som ett moiré-mönster vid
+   ?preview=window snarare än en glasreflex -- för skarp, för stark. Mjukad
+   med 1px oskärpa och en lägre topp-opacitet (i JS, se applyHero) så bara
+   reflexen/tonen blir kvar och ordmärket läses tydligt. */
+.window-glass { overflow: hidden; mix-blend-mode: multiply; filter: blur(1px); }
+.window-glass__canvas { width: 100%; height: 100%; display: block; }
+.sig-canvas { position: absolute; inset: 0; width: 100%; height: 100%; display: block; }
+/* Bugg (runda 6, större): materialets egna artefakter (banderoll, skylt,
+   lyktstolpe) i rutorna ~38-62 mildras -- aldrig döljs -- med en mjuk
+   mörkning i högra tredjedelen, opacitet satt av script.js (topp 0,25)
+   bara under samma intervall som scrubben snabbas upp. */
+.sig-vignette {
+  position: absolute; inset: 0; z-index: 3; opacity: 0; pointer-events: none;
+  background: linear-gradient(to right, transparent 55%, rgba(4,4,6,0.95) 100%);
+}
+
+.hero-copy {
+  filter: blur(calc(min(var(--sc-p, 0), 0.3) * 46.67px));
+}
+.hero-title {
+  font-weight: 300; font-size: clamp(2.2rem, 3.4rem + 1.6vw, 5.5rem);
+  line-height: 1.05; letter-spacing: -0.01em; color: var(--sc-ink);
+  max-width: 16ch;
+}
+.accent-u { text-decoration: underline; text-decoration-color: var(--sc-accent); text-decoration-thickness: 2px; text-underline-offset: 0.1em; }
+/* scroll_verify.py flaggade denna som en cue som aldrig når full opacitet
+   (peak 0.86) -- opaciteten var en smaksak (en "tystare" underrad), inte en
+   avsiktlig cue-gräns, och håller inte isär de två. Dämpningen sker nu genom
+   en egen ton i stället, så cuen faktiskt kan nå 1. */
+.hero-sub { color: var(--sc-ink); margin-top: var(--sc-4); font-size: var(--sc-t-lg); }
+
+.site-names {
+  position: absolute; left: var(--sc-gutter); bottom: clamp(1.25rem, 4vh, 2.5rem);
+  z-index: 5; margin: 0;
+  font-family: var(--sc-font-text); font-size: var(--sc-t-sm);
+  letter-spacing: var(--sc-track-normal); color: var(--sc-ink-soft);
+}
+.site-names--static { position: static; margin-top: var(--sc-6); color: var(--sc-ink-soft); }
+/* Runda 6, fynd 13: en stillsam laddningsrad i sajtnamnsradens position tills
+   de 100 rutorna är hämtade -- togglas i script.js, aldrig CSS-animerad. */
+.loading-indicator {
+  /* Samma felklass som fynd 1 igen: opaciteten hanteras manuellt i JS (inget
+     data-sc-cue), så motorns automatiska pointer-events-växling för
+     cue-element (som räddar .site-names) gäller aldrig här. Statisk text,
+     inget att klicka i -- pointer-events:none permanent. */
+  pointer-events: none;
+  position: absolute; left: var(--sc-gutter); bottom: clamp(1.25rem, 4vh, 2.5rem);
+  z-index: 5; margin: 0; opacity: 0;
+  font-family: var(--sc-font-text); font-size: var(--sc-t-sm);
+  letter-spacing: var(--sc-track-normal); color: var(--sc-ink-soft);
+}
+
+/* -------------------------------------------------------------- akt 3 ram -- */
+/* Ramen syns FÖRST vid p 0.50 (--xfade1, delad med .sig-photo-layer ovan) och
+   tonar bort igen vid p 0.70-0.72 (--xfade2) när den byts mot sin skärmbild
+   -- "utan skarv" på båda sidor, aldrig synlig utanför [0.50, 0.72]. */
+.reveal-frame-slot { position: absolute; inset: 0; z-index: 2; }
+.reveal-frame-slot iframe {
+  position: absolute; inset: 0; width: 100%; height: 100%; border: 0;
+  --xfade1: clamp(0, (var(--sc-p, 0) - 0.50) / 0.02, 1);
+  --xfade2: clamp(0, (var(--sc-p, 0) - 0.70) / 0.02, 1);
+  opacity: calc(var(--xfade1) * (1 - var(--xfade2)));
+  /* Bro på BÅDA korstoningarna denna ram deltar i (in vid 0.50, ut vid
+     0.70) -- emil-design-eng flaggade att bara utgången var bruad, vilket
+     lät fotolagret (som redan bruar sin egen sida av samma inträde) möta en
+     skarp ram och läsa som två objekt i stället för en enda upplösning. */
+  filter: blur(calc(4 * var(--xfade1) * (1 - var(--xfade1)) * 6px + 4 * var(--xfade2) * (1 - var(--xfade2)) * 6px));
+}
+
+/* -------------------------------------------------------------- akt 4a exit -- */
+.exit-sweep { position: absolute; inset: 0; background: var(--paper); z-index: 4; }
+.exit-frame-wrap {
+  /* Bugg (runda 6, blockerande): detta lager täcker HELA scenen med
+     position:absolute;inset:0 även vid opacitet 0 -- opacitet döljer inte
+     hit-testing. Det låg ovanpå .reveal-frame-slot (z-index 3 mot 2) under
+     hela ramens klickbara fönster (p 0,50-0,71) och tog emot alla klick själv.
+     Den har inget eget interaktivt innehåll (bara en krympande skärmbild),
+     så pointer-events:none permanent kostar inget och stänger hålet helt. */
+  pointer-events: none;
+  position: absolute; inset: 0; z-index: 3;
+  --xfade2: clamp(0, (var(--sc-p, 0) - 0.70) / 0.02, 1);
+  --exitp: clamp(0, (var(--sc-p, 0) - 0.72) / 0.28, 1);
+  opacity: var(--xfade2);
+  filter: blur(calc(4 * var(--xfade2) * (1 - var(--xfade2)) * 6px));
+  transform-origin: var(--exit-tx) var(--exit-ty);
+  /* Icke-uniform skala (sx/sy separat) mot den uppmätta rektangeln: bilden
+     INUTI omslaget använder object-fit:cover, så den kompenserar löpande för
+     omslagets skiftande proportioner under resan i stället för att sträckas. */
+  transform: scale(calc(1 - var(--exitp) * (1 - var(--exit-sx))),
+                    calc(1 - var(--exitp) * (1 - var(--exit-sy))));
+}
+.exit-frame { position: absolute; inset: 0; width: 100%; height: 100%; object-fit: cover; display: block; }
+/* Samma klass av fel som .exit-frame-wrap (fynd 1): den här behållaren
+   spänner över en stor bottenyta med position:absolute även innan sin
+   rubrik/underrad blivit synliga, och blockerade klick i ramens område vid
+   elementFromPoint-kontrollen (punkt 1000,600 träffade .exit-copy i stället
+   för ramen). Inget klickbart innehåll här (bara rubrik+underrad, ingen
+   länk), så pointer-events:none permanent är säkert. */
+.exit-copy { position: absolute; z-index: 5; left: var(--sc-gutter); right: var(--sc-gutter); bottom: clamp(2.5rem, 12vh, 6rem); pointer-events: none; }
+.exit-heading {
+  max-width: 20ch; font-weight: 600; color: var(--ink-on-white);
+  font-size: clamp(2rem, 1.4rem + 3.6vw, 4.5rem); line-height: 1.16;
+}
+/* Ä:s prickar sitter ovanför versalhöjden och kapas av motorns
+   .sc-split--line-mask (overflow:hidden) vid en trång line-height -- exakt
+   samma fel r6 en gång rättade ("VARUMÄRKE" tappade prickarna). Fixen är
+   densamma: luft ovanför masken, aldrig overflow borttaget (motorklassen
+   rörs inte). */
+.exit-heading .sc-split--line { padding-top: 0.16em; margin-top: -0.16em; }
+.exit-lede { font-family: var(--sc-font-text); font-size: var(--sc-t-lg); color: var(--ink-soft-on-white); margin-top: var(--sc-4); max-width: 40ch; }
+.exit-heading--static, .exit-lede--static { position: static; color: var(--ink-on-white); max-width: 24ch; }
+.exit-lede--static { color: var(--ink-soft-on-white); margin-top: var(--sc-3); }
+
+/* ---------------------------------------------------------- akt 4b bevisrad -- */
+/* Bugg (runda 5): en pinnad akt (data-sc-act="pin"/"scrub") lämnar alltid
+   exakt en viewport-hög "svans" i slutet av sin egen sektion -- utrymmet
+   position:sticky kräver för att den fastnålade scenen ska kunna glida bort
+   normalt (höjd - vh = den aktiva pin-sträckan, resten är svansen). Den
+   svansen kommer FÖRE #proof oavsett vad #proof själv har för toppmarginal,
+   och gav ett tomt vitt fält på mer än en skärmhöjd mellan den färdigrests
+   rubriken och första bevisraden. Fixen drar upp #proof i det utrymmet med
+   en negativ marginal (vitt möter vitt, samma --paper-ton på båda sidor, så
+   det syns aldrig som en skarv) i stället för att försöka korta av själva
+   pin-mekaniken, som är gemensam för alla pinnade akter på sidan. Uppmätt
+   mot skärmbilder (shots/gap-*.png) tills luften höll sig under en halv
+   skärmhöjd. */
+.proof-section {
+  background: var(--paper); position: relative; z-index: 1;
+  margin-top: -62vh;
+  padding-top: clamp(1.5rem, 3vw, 2.5rem);
+  padding-bottom: var(--sc-section);
+}
+/* Bildsidan bär 7 kolumner, texten 5 (BRIEF § "Bygg raden"): bilden är den
+   tyngre, redovisande sidan; texten är etiketten bredvid. */
+.proof-row { display: grid; grid-template-columns: 7fr 5fr; gap: clamp(1.5rem, 4vw, var(--sc-8)); align-items: center; }
+.proof-row + .proof-row { margin-top: clamp(3rem, 8vw, var(--sc-10)); }
+.proof-row--reverse { grid-template-columns: 5fr 7fr; }
+.proof-row__media { margin: 0; grid-row: 1; }
+.proof-row--reverse .proof-row__media { grid-column: 2; }
+.proof-row__media img { width: 100%; display: block; aspect-ratio: 4/3; object-fit: cover; }
+.proof-row__media--left, .proof-row__media--right { margin-top: 0; }
+.proof-row:not(.proof-row--reverse) .proof-row__text { margin-top: clamp(1.5rem, 6vh, 6rem); }
+.proof-row--reverse .proof-row__media { margin-top: clamp(1.5rem, 6vh, 6rem); }
+/* Bugg (runda 6, större): en fylld amberbricka bakom siffran är en badge --
+   bryter både "accenten gör exakt två saker" (understrykningen under
+   "visitkort", hover-strecket i toppbaren och landningen) och
+   målbildsgrindens badge-förbud. Siffran är nu ren text i --amber-ink. */
+.proof-row__num { font-family: var(--sc-font-text); font-size: var(--sc-t-sm); color: var(--amber-ink); letter-spacing: var(--sc-track-wide); margin: 0 0 var(--sc-3); }
+.proof-row__title { font-weight: 500; font-size: var(--sc-t-3xl); color: var(--ink-on-white); margin: 0; }
+.proof-row__body { color: var(--ink-soft-on-white); font-size: var(--sc-t-base); margin-top: var(--sc-3); max-width: 36ch; }
+.proof-row__site { font-family: var(--sc-font-text); font-size: var(--sc-t-xs); letter-spacing: var(--sc-track-wide); text-transform: uppercase; color: var(--ink-soft-on-white); margin-top: var(--sc-4); }
+/* Bugg (runda 6, blockerande fynd 4): tangentbordet hade inget att stanna på
+   i bevisraden -- tre Tab-tryck hoppade rakt från toppbaren till sidfoten.
+   Typsatt länk i samma register som K2 (text, ingen knapp). */
+.proof-row__link { display: inline-block; margin-top: var(--sc-5); font-family: var(--sc-font-text); font-size: var(--sc-t-base); color: var(--ink-on-white); text-decoration: none; border-bottom: 1px solid color-mix(in oklab, var(--ink-on-white) 40%, transparent); }
+.proof-row__link:hover { color: var(--amber-ink); border-bottom-color: var(--amber-ink); transition: color 150ms ease, border-color 150ms ease; }
+
+/* ------------------------------------------------------------ akt 5 liggare -- */
+.ledger-section { background: var(--paper); padding-block: var(--sc-section); }
+.ledger-heading { color: var(--ink-on-white); font-weight: 300; font-size: clamp(2rem, 1.5rem + 3vw, 4rem); margin: 0 0 var(--sc-8); }
+.ledger-list { border-top: 1px solid var(--hairline-on-white); }
+.ledger-row {
+  position: relative; display: grid; grid-template-columns: 1fr auto; align-items: baseline;
+  gap: var(--sc-4); padding-block: clamp(1.5rem, 4vw, var(--sc-7));
+  border-bottom: 1px solid var(--hairline-on-white);
+}
+.ledger-row__hairline {
+  position: absolute; left: 0; right: 0; bottom: -1px; height: 1px; margin: 0;
+  background: var(--ink-on-white); transform-origin: left center;
+  /* Ritas i takt med scrollen: --sc-p publiceras på #ledger (flow-akt),
+     varje rad har sitt eget fönster via en index-offset (--row-i). */
+  transform: scaleX(clamp(0, (var(--sc-p, 0) - 0.15 - var(--row-i, 0) * 0.18) / 0.22, 1));
+}
+.ledger-row__desc { color: var(--ink-soft-on-white); font-size: var(--sc-t-base); max-width: 46ch; margin: 0; }
+.ledger-row__price { font-family: var(--sc-font-display); font-weight: 500; font-size: clamp(1.5rem, 1.1rem + 2vw, 3rem); color: var(--ink-on-white); text-align: right; white-space: nowrap; margin: 0; font-variant-numeric: tabular-nums; }
+.ledger-list--static .ledger-row__hairline--static { transform: scaleX(1); }
+
+/* --------------------------------------------------------------- akt 6 landning -- */
+.landing-section { position: relative; min-height: 100vh; min-height: 100svh; overflow: clip; display: flex; align-items: flex-end; background: var(--sc-canvas); }
+/* Bugg (runda 6, blockerande fynd 2): motorns flow-formel för --sc-p antar
+   att en sektion kan scrollas en HEL viewport förbi sin egen topp innan p når
+   1 -- sant för en sektion med mer innehåll under sig, falskt för sidans
+   SISTA sektion, där sidan tar slut innan dess. --sc-p fastnade på 0,50 vid
+   maximal scroll (bekräftat: (top+height+vh-top)/(height+vh) med height=vh
+   ger exakt 0,5), så nattfotot öppnade sig aldrig helt -- ~45% svart kvar på
+   mobil. Fixat med en egen --landing-p (script.js, applyLanding()) räknad
+   mot den FAKTISKT nåbara scrollsträckan (scrollHeight-innerHeight), aldrig
+   motorns --sc-p för det här elementet. */
+.landing-night { position: absolute; inset: 0; z-index: 0; clip-path: inset(calc(50% - min(var(--landing-p, 0), 1) * 50%) 0 calc(50% - min(var(--landing-p, 0), 1) * 50%) 0); }
+.landing-night__img { position: absolute; inset: 0; width: 100%; height: 100%; object-fit: cover; }
+/* scroll_verify.py mätte kontakt@alunix.se ner mot 1.53:1 (golv 3.0) mot
+   nattfotots ljusa partier (upplysta fasader, torn). En skrim bara där
+   texten sitter, aldrig hela bilden. */
+.landing-scrim { position: absolute; inset: 0; z-index: 1; background: linear-gradient(0deg, rgba(5,8,14,0.92) 0%, rgba(5,8,14,0.55) 45%, transparent 78%); }
+.landing-copy { position: relative; z-index: 2; padding-bottom: clamp(2.5rem, 8vh, 5rem); width: 100%; }
+.landing-mailto { font-family: var(--sc-font-display); font-weight: 300; font-size: clamp(2rem, 1.3rem + 4vw, 5rem); color: var(--sc-ink); text-decoration: none; border-bottom: 2px solid color-mix(in oklab, var(--sc-ink) 40%, transparent); }
+.landing-mailto:hover { border-bottom-color: var(--sc-accent); color: var(--sc-accent); transition: color 200ms ease, border-color 200ms ease; }
+.landing-address { font-size: var(--sc-t-lg); color: var(--sc-ink-soft); margin-top: var(--sc-5); max-width: 42ch; }
+.landing-credits { font-family: var(--sc-font-text); font-size: var(--sc-t-xs); color: var(--sc-ink-soft); margin-top: var(--sc-8); }
+.landing-copy--static { padding: clamp(1.5rem,5vw,3rem); position: static; }
+
+/* ---------------------------------------------------------- reservläge -- */
+.rm-only { background: var(--sc-canvas); }
+.rm-section { position: relative; min-height: 100vh; min-height: 100svh; overflow: clip; }
+.rm-section--hero { display: flex; flex-direction: column; justify-content: flex-end; padding: clamp(1.5rem,5vw,3rem); }
+.rm-section__bg { position: absolute; inset: 0; width: 100%; height: 100%; object-fit: cover; z-index: 0; }
+.rm-section__scrim { position: absolute; inset: 0; z-index: 1; background: linear-gradient(0deg, rgba(6,10,18,0.85) 0%, rgba(6,10,18,0.35) 45%, transparent 70%); }
+.rm-hero-copy { position: relative; z-index: 2; max-width: 40rem; }
+.rm-section--window { display: flex; flex-direction: column; align-items: center; justify-content: center; gap: var(--sc-5); background: #05070c; }
+.rm-window-stage { position: relative; width: min(92vw, 1200px); aspect-ratio: 3 / 2; overflow: clip; border-radius: 2px; }
+.rm-window-stage__photo, .rm-window-mask__fill { position: absolute; inset: 0; width: 100%; height: 100%; object-fit: cover; }
+.rm-window-mask { position: absolute; z-index: 2; overflow: hidden; }
+.rm-window-mask__glass { position: absolute; inset: 0; mix-blend-mode: multiply; background: linear-gradient(180deg, rgba(255,224,170,0.22), rgba(20,14,8,0.3)); }
+.rm-section--frame { display: flex; flex-direction: column; align-items: center; justify-content: center; gap: var(--sc-4); background: #05070c; }
+.rm-frame-static { width: min(94vw, 1400px); aspect-ratio: 16 / 9; object-fit: cover; display: block; border: 1px solid color-mix(in oklab, var(--sc-ink) 16%, transparent); }
+.rm-frame-link { font-family: var(--sc-font-text); font-size: var(--sc-t-base); color: var(--sc-ink); text-decoration: none; border-bottom: 1px solid color-mix(in oklab, var(--sc-ink) 40%, transparent); }
+.rm-frame-link:hover { color: var(--sc-accent); border-bottom-color: var(--sc-accent); }
+.rm-caption { font-family: var(--sc-font-text); font-size: var(--sc-t-sm); color: var(--sc-ink-soft); text-align: center; margin: 0; }
+.rm-section--proof { background: var(--paper); display: flex; flex-direction: column; justify-content: center; padding: clamp(1.5rem,6vw,4rem); gap: var(--sc-7); }
+.rm-proof-rows { display: flex; flex-direction: column; gap: var(--sc-8); }
+.rm-proof-row { display: grid; grid-template-columns: 1fr 1fr; gap: var(--sc-6); align-items: center; }
+.rm-proof-row img { width: 100%; aspect-ratio: 4/3; object-fit: cover; display: block; }
+.rm-section--ledger { background: var(--paper); display: flex; flex-direction: column; justify-content: center; padding: clamp(1.5rem,6vw,4rem); }
+.rm-section--landing { display: flex; align-items: flex-end; }
+
+@media (max-width: 860px) {
+  .hero-title { max-width: 14ch; }
+  .exit-heading, .exit-heading--static { max-width: none; }
+  .proof-row, .proof-row--reverse { grid-template-columns: 1fr; }
+  .proof-row--reverse .proof-row__media { grid-column: 1; }
+  .proof-row:not(.proof-row--reverse) .proof-row__text,
+  .proof-row--reverse .proof-row__media { margin-top: var(--sc-5); }
+  .rm-proof-row { grid-template-columns: 1fr; }
+  .ledger-row { grid-template-columns: 1fr; }
+  .ledger-row__price { text-align: left; }
+}

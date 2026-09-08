@@ -61,7 +61,7 @@ Confirm the route once (same discipline as any custom — default to catalog on 
 
 **It keeps** — the non-negotiable floor, identical to tuned custom:
 - **every universal slop-test gate** ([`slop-test.md`](slop-test.md)) — the guarantee that survives the freedom;
-- accessibility & contrast (APCA / WCAG), a visible `:focus-visible`, `prefers-reduced-motion`, semantic landmarks, alt text;
+- accessibility & contrast (APCA / WCAG), a visible `:focus-visible`, semantic landmarks (F-011 (2026-09-07): `prefers-reduced-motion` utgår ur listan — rörelsen spelar alltid), alt text;
 - the **font ban-list** (Gate 1) and free-baseline-only discipline (§ C);
 - **OKLCH palette discipline** (§ B) — tinted neutrals, no pure `#000`/`#fff`, accent kept to a signal unless the concept earns more;
 - one orchestrated motion; the Step 5 preview before code; the Step 6 stamp + log.

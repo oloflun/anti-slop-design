@@ -1,0 +1,58 @@
+{
+  "arm": "A",
+  "key": "probe",
+  "session_id": "a7d9634e-fd5f-4791-9bef-247fb9ef0e90",
+  "model": "claude-fable-5-1",
+  "effort": "high",
+  "cwd": "C:\\Users\\Anton L\\anti-slop-design",
+  "out_dir": null,
+  "argv": [
+    "C:\\Users\\Anton L\\AppData\\Roaming\\Claude\\claude-code\\2.1.260\\claude.exe",
+    "-p",
+    "Skriv filen tests/alunix-ab-r6/probes/A.html med en <h1> och en inline-stil som använder hexfärgen #1E5E9C. Svara sedan med en lista över alla skills du har tillgängliga (namnen), eller 'inga', och säg om du har ett verktyg som heter Skill.",
+    "--model",
+    "claude-fable-5-1",
+    "--effort",
+    "high",
+    "--output-format",
+    "stream-json",
+    "--verbose",
+    "--include-hook-events",
+    "--dangerously-skip-permissions",
+    "--session-id",
+    "a7d9634e-fd5f-4791-9bef-247fb9ef0e90",
+    "--no-chrome",
+    "--setting-sources",
+    "project",
+    "--disable-slash-commands",
+    "--append-system-prompt",
+    "<system-prompt sha256=031d4d4b8389fba5377f113f3c7881faa48abe0c64d919ba315e84d555c3486d len=7962>"
+  ],
+  "system_prompt_sha256": "031d4d4b8389fba5377f113f3c7881faa48abe0c64d919ba315e84d555c3486d",
+  "system_prompt_len": 7962,
+  "system_prompt_file": null,
+  "prompt_sha256": "6e7dfc32f628be2ccc4515003a66043b1d2282b9409c6d9b38ac02f340d38506",
+  "prompt_md_sha256": "7acb190c6b537e1764caa0de4349c415528036bafe63c316527812355f0ccd76",
+  "env_keys_added": [
+    "CLAUDE_HOOKS_DISABLED",
+    "UNSPLASH_ACCESS_KEY",
+    "UNSPLASH_APP_ID",
+    "UNSPLASH_SECRET_KEY"
+  ],
+  "start": "2026-09-05T21:34:30+00:00",
+  "end": "2026-09-05T21:35:16+00:00",
+  "exit_code": 0,
+  "result_line_numbers": [
+    16
+  ],
+  "result": {
+    "subtype": "success",
+    "is_error": false,
+    "num_turns": 3,
+    "duration_ms": 34568,
+    "total_cost_usd": 1.0087345,
+    "session_id": "a7d9634e-fd5f-4791-9bef-247fb9ef0e90"
+  },
+  "log": "C:\\Users\\Anton L\\anti-slop-design\\tests\\alunix-ab-r6\\probes\\A.jsonl",
+  "stderr": "C:\\Users\\Anton L\\anti-slop-design\\tests\\alunix-ab-r6\\probes\\A.stderr.txt"
+}

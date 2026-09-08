@@ -17,9 +17,9 @@ A horizontal infinite-scroll line of repeating tagline + dot separator: `STUDIO 
 .foot-marquee__track { display: flex; gap: var(--space-2xl); white-space: nowrap; padding-block: var(--space-md); animation: foot-marquee 32s linear infinite; }
 .foot-marquee__track span { font-family: var(--font-display); font-weight: 700; letter-spacing: 0.08em; font-size: clamp(1rem, 2.5vw, 1.5rem); }
 @keyframes foot-marquee { from { transform: translateX(0); } to { transform: translateX(-50%); } }
-@media (prefers-reduced-motion: reduce) { .foot-marquee__track { animation: none; } }
+/* F-011 (2026-09-07): reduced-motion-blocket utgår — rörelsen spelar alltid, aldrig en preferensgrind. */
 ```
 
-*Anti-pattern:* using Ft8 on editorial / quiet contexts — the motion reads as loud. Pair only with playful / sport / manifesto voices, and always honour `prefers-reduced-motion: reduce`.
+*Anti-pattern:* using Ft8 on editorial / quiet contexts — the motion reads as loud. Pair only with playful / sport / manifesto voices. Rörelsen spelar alltid (F-011); marquee-hastigheten är därför ett smakbeslut, inte en preferensfråga.
 
 ---

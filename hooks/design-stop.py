@@ -83,7 +83,21 @@ def build_report(rows: list[dict], findings: list[dict], root: Path) -> tuple[st
         skill = r.get("skill", "")
         if skill and skill != "copy-gate":
             wanted[skill].add(r.get("component", "?"))
-    gaps = {s: c for s, c in wanted.items() if s.split()[0] not in loaded and s not in loaded}
+    unloaded = {s: c for s, c in wanted.items()
+                if s.split()[0] not in loaded and s not in loaded}
+    # Split the unloaded routes by whether the agent could have closed them.
+    # Counting a user-invocable-only skill or a route to a skill that does not
+    # exist as an "invocation gap" made the number impossible to act on
+    # (2026-09-08).
+    gaps, user_only, broken = {}, {}, {}
+    for sk, comps in unloaded.items():
+        st = L.skill_status(sk)
+        if st == "user-only":
+            user_only[sk] = comps
+        elif st == "missing":
+            broken[sk] = comps
+        else:
+            gaps[sk] = comps
 
     # 3. coverage
     routed_files = {r.get("file", "") for r in routes}
@@ -123,6 +137,25 @@ def build_report(rows: list[dict], findings: list[dict], root: Path) -> tuple[st
         md.append("**UNLOADED STRONG ROUTES = 0.** Every strong craft route was "
                   "invoked or read.")
     md.append("")
+
+    if user_only:
+        md.append("### Routed, but only the user can run them")
+        md.append("")
+        md.append("_These set `disable-model-invocation`, so no agent can close them. "
+                  "They are listed so the work is visible, not as a gap._")
+        md.append("")
+        for sk, comps in sorted(user_only.items()):
+            md.append(f"- `/{sk}` for {', '.join(sorted(comps))}")
+        md.append("")
+    if broken:
+        md.append("### Broken routes")
+        md.append("")
+        md.append("_The route names something that is not an installed skill. This is a "
+                  "defect in `component-routing.md`, not a skipped step._")
+        md.append("")
+        for sk, comps in sorted(broken.items()):
+            md.append(f"- `{sk}` (no such skill) for {', '.join(sorted(comps))}")
+        md.append("")
 
     md.append("## 3. Coverage")
     md.append("")
@@ -201,6 +234,30 @@ def build_report(rows: list[dict], findings: list[dict], root: Path) -> tuple[st
     scroll_reads = [r for r in ref_reads
                     if r.get("cat") == "references" and r.get("sub") == "scroll"]
     scripts_n = sum(1 for r in ref_reads if r.get("cat") == "scripts")
+
+    gens = [r for r in rows if r.get("event") == "generation" and not r.get("preflight")]
+    pres = [r for r in rows if r.get("event") == "generation" and r.get("preflight")]
+    if gens or pres:
+        md.append("## 7b. Genererat material")
+        md.append("")
+        spent = sum(float(r.get("credits") or 0) for r in gens)
+        models = sorted({r.get("model", "?") for r in gens})
+        md.append(f"{len(gens)} jobb · {len(pres)} get_cost-preflights · "
+                  f"{spent:.1f} credits lasta · modeller: {', '.join(models) or 'okand'}")
+        md.append("")
+        md.append("| Modell | Jobb | Credits |")
+        md.append("|---|---|---|")
+        for r in gens[:20]:
+            md.append(f"| `{r.get('model','?')}` | `{str(r.get('job',''))[:8]}` | "
+                      f"{r.get('credits','?')} |")
+        if len(gens) > len(pres):
+            md.append("")
+            md.append(f"**{len(gens) - len(pres)} jobb utan foregaende get_cost.** "
+                      "Kostnaden ar lasbar utan att koa nagot; att inte lasa den ar ett val.")
+        md.append("")
+        md.append("Stam av mot `credits.json` och mot `balance` fore och efter "
+                  "(references/generation.md § Kreditgrinden).")
+        md.append("")
 
     md.append("## 8. Referensgolv")
     md.append("")

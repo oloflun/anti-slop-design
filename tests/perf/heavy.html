@@ -1,0 +1,23 @@
+<!doctype html>
+<meta charset="utf-8"><title>heavy fixture</title>
+<style>
+  /* every one of these is a planted defect */
+  * { transition: all .3s ease; }
+  .promoted { will-change: transform; }
+  .wash { position: fixed; inset: 0; backdrop-filter: blur(18px); pointer-events: none; }
+  @font-face { font-family: NoDisplay; src: url(data:font/woff2;base64,d09GMg==); }
+  body { margin: 0; font-family: NoDisplay, system-ui; }
+  .tall { height: 300vh; }
+</style>
+<div class="wash"></div>
+<img id="hero" src="heavy-hero.png">
+<div class="tall">
+  <div class="promoted">a</div><div class="promoted">b</div><div class="promoted">c</div>
+</div>
+<img id="below" src="heavy-hero.png" style="height: 100vh">
+<script>
+  // one long task on load, one on every scroll
+  function block(ms){ var t = performance.now(); while (performance.now() - t < ms) {} }
+  block(120);
+  addEventListener('scroll', function(){ block(80); }, { passive: true });
+</script>

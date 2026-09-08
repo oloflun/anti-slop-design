@@ -57,7 +57,7 @@ hidden by polish notes.
 structural fingerprint, stamp-vs-page, `DESIGN.md` drift. Read-only.
 
 **(b) `Skill(a11y-audit)`** — mechanical checks plus WCAG/COGA judgment:
-accessible names, keyboard reachability, focus visibility, reduced-motion
+accessible names, keyboard reachability, focus visibility,
 compliance, colour-alone state. Overlaps `better-accessibility`; where both
 flag the same symptom, report it once under Accessibility.
 
@@ -68,7 +68,7 @@ that judges *quality*, not just violations — what stops a gate-clean,
 accessible page from being flat.
 
 **(d) `Skill(review-animations)`** on any motion in scope — durations,
-easings, interruptibility, `prefers-reduced-motion` fallback, whether a state
+easings, interruptibility, whether a state
 change leaves a static cue when the animation doesn't run.
 
 **(e) The six Interfaces domain checklists**, sources of truth for their
@@ -98,7 +98,7 @@ from `better-interface`, never averaged down because the surface is minor:
 - An interactive control with no accessible name.
 - A keyboard-reachable control with no visible focus indicator.
 - A control or path reachable by pointer but not by keyboard.
-- Motion or auto-playing content that ignores `prefers-reduced-motion`.
+- ~~Motion or auto-playing content that ignores `prefers-reduced-motion`.~~ **F-011 (2026-09-07):** denna trigger utgår; ett bygge utan rm-gren är korrekt här.
 - Content or a control clipped, overlapped, or unreachable at 320px width or
   200% zoom.
 - Body or control text whose rendered contrast pair fails its required ratio.

@@ -1,0 +1,56 @@
+{
+  "arm": "B",
+  "key": "K2",
+  "session_id": "4521eca7-ad94-4215-ac3b-c100f40efe30",
+  "model": "claude-sonnet-5",
+  "effort": "high",
+  "cwd": "C:\\Users\\Anton L\\anti-slop-design",
+  "out_dir": "C:\\Users\\Anton L\\anti-slop-design\\tests\\alunix-ab-r7\\runs\\B\\K2",
+  "argv": [
+    "C:\\Users\\Anton L\\AppData\\Roaming\\Claude\\claude-code\\2.1.260\\claude.exe",
+    "-p",
+    "# Runda 6 (K2 Affischen): kritikertrion, verifierade fynd\n\nTre granskare (design-critic, design-a11y-reviewer, design-heuristics) har gått igenom sidan i\nbåda lägena. Orkestreraren har verifierat fynden nedan mot bilder och mätningar; rapporterna\nligger i `tests/alunix-ab-r7/review/B-K2/{critic,a11y,heuristics}.md`. Rätta i den här ordningen.\n\n## Blockerande (a11y)\n\n1. **Focus-ringen är osynlig i avslutet.** `:focus-visible { outline: 2px solid var(--ink) }`\n   mot den driftade mörka grunden mäter 1,04:1. Lägg en `.close`-scopad regel med\n   `outline-color: var(--paper)` (≈9,7:1) och offset 3 px. Kontrollera med Tab till\n   `kontakt@alunix.se` och en skärmbild.\n2. **Kontrasten faller under driften.** Grunden (`driftT = smooth(raw/0.35)` i motorn) blir\n   mörk innan textens `--textmix` (på `--sc-p`) hunnit ljusna: uppmätt 1,29–4,48:1 mellan\n   scrollY ≈ 5400 och 5700. Driv textens mix på samma värde som grunden (läs motorns\n   `--sc-canvas` eller spegla dess kurva), så att paret aldrig går under 4,5:1 under\n   övergången. Verifiera med en kontrastmätning i 5 steg genom övergången (Playwright +\n   canvas-luminans, som granskaren gjorde), inte bara i ändlägena.\n\n## Större\n\n3. **Tangentbordsordningen går genom de tre inbäddade sajterna** (17 stopp, två utanför\n   skärmen). Sätt `tabindex=\"-1\"` på de tre `.frame iframe` och behåll `Öppna … →`-länken som\n   den enda vägen in i exempelsajten.\n4. **Ordmärket två gånger i rad under reduced motion / mobil** utan koppling. Lägg en kicker\n   `FORMAT LÄGE: BLOCKET ÖPPET` (liten, spärrad) eller en hårlinje med bildtext mellan heron\n   och `.opened`, och `aria-hidden=\"true\"` på heron-rubriken `#gapHeading` när `.rm` är aktiv\n   (den finns kvar i a11y-trädet trots opacity 0).\n5. **Rubriknivåer:** `Bevis` och `Tjänster` är `<p class=\"caps\">`; gör dem till\n   `<h2 class=\"caps\">` med samma stil. `aria-hidden=\"true\"` på båda ordmärkes-`<svg>` (sr-only\n   `<h1>Alunix</h1>` finns redan).\n\n## Mindre\n\n6. `.spread-cap .arrow` är 21,75 px hög: padding så att träffytan blir ≥ 24 px.\n7. Den kortvariga låg-opacitets-överlappningen av rubriken vid p ≈ 0,8 i hero-scrubben\n   (heuristikpasset `m-hero-08-80pct.png`): lås rubrikens opacitet till 1 så snart gapet är\n   öppet, ingen fortsatt toning.\n8. Avslutets mörka yta: höjden max 70 vh (runda 4 bad om det; mät att det håller).\n\n## Kritikerns fynd\n\n9. **`?preview=open` är trasigt under reduced motion** (blockerande): `.js:not(.rm) #block\n   .headingWrap .hline` matchar aldrig med `.rm`, så reservregeln `opacity:0` vinner och gapet\n   står tomt. Ta bort `:not(.rm)` (eller lägg en `.rm`-regel som läser samma `--l1/--l2`).\n10. **`?preview=open` kolliderar på mobil** (blockerande): under 899 px ligger platen ovanför\n    blocket men `.row-a { transform: translateY(calc(var(--open)*-14vh)) }` körs ändå och ALU\n    trycks in i fotot. Gata `--open`-transformerna bakom samma 900 px-gräns som pinningen.\n11. **X:et sväljs av masken** (hög): `buildWindows()` öppnar både rader och kolumner för X\n    (`polyRows.concat(polyCols)`), så X läses som ett foto med ett tunt kryss. Använd bara\n    `polyRows` för X (som A och U) eller välj kilarna för hand så att bläcket bär.\n12. **Signaturen finns inte alls under 900 px** i något läge (hög): `narrowMQ` tar bort\n    `data-sc-act` oavsett rörelseläge, så telefonbesökare får två statiska ordmärken i rad.\n    Bygg en mobilakt: en kortare pin (span 1,6) där platen inte deltar, eller en scroll-länkad\n    korstoning av maskbilden utan pin; det formade läget (blocket öppet) ska nås av scrollen.\n13. **Klockan ska stå i mitten** av toppbaren (målbilden): tre zoner (logga vänster, klocka\n    centrerad, mejl höger), inte två element som hänger till höger.\n14. **Mobilens ordning** (`.plate { order: -1 }`) sätter fotot före ordmärket: blocket först,\n    platen efter.\n15. **Tankstreck i `<title>`**: `Alunix: Er hemsida är nutidens visitkort` (gate 75).\n16. **ALU:s överkant klipps 18 px** vid `?preview=open` (`#row1` topp 33,7 px mot `.stage` 52 px):\n    begränsa `ROW_A_VH` eller ge `.composition` en toppmarginal.\n17. Rubriken i gapet vid 62,5 px (3,5× läsgrad) accepteras av orkestreraren som sidans andra\n    displaynivå (samma som `Alla har rätt till bra design.`); ingen ändring.\n18. `Stockholm` vid klockan står kvar som antagande tills Anton säger annat; ingen ändring.\n\n## Verifiering (server 3202)\n\nSamma uppsättning som runda 5 i båda lägena plus: Tab-vandring med skärmbild på fokus i\navslutet, kontrastsvep genom driften (fem värden i NOTES.md), rm-övergången hero → `.opened`.\n`Skill(design-verify)` sist. Läs varje bild. Avsluta med bilder du läste, vad som ändrades,\noch vilket av fynden du inte kunde rätta och varför.\n",
+    "--model",
+    "claude-sonnet-5",
+    "--effort",
+    "high",
+    "--output-format",
+    "stream-json",
+    "--verbose",
+    "--include-hook-events",
+    "--dangerously-skip-permissions",
+    "--resume",
+    "4521eca7-ad94-4215-ac3b-c100f40efe30",
+    "--no-chrome",
+    "--plugin-dir",
+    "C:\\Users\\Anton L\\anti-slop-design\\tests\\alunix-ab-r6\\plugin-b",
+    "--settings",
+    "{\"enabledPlugins\":{\"super-intelligence@super-intelligence\":false}}"
+  ],
+  "system_prompt_sha256": null,
+  "system_prompt_len": null,
+  "system_prompt_file": null,
+  "prompt_sha256": "18de7e91976bd067a16618e78ef87c6ab3ec99a6df779a047baaa3940aee0dd8",
+  "prompt_md_sha256": "4cd998035c25ac1aca7a78bacd6129674a3cb7276268f0e1a3e35086d17446a7",
+  "env_keys_added": [
+    "UNSPLASH_ACCESS_KEY",
+    "UNSPLASH_APP_ID",
+    "UNSPLASH_SECRET_KEY"
+  ],
+  "start": "2026-09-07T01:12:02+00:00",
+  "end": "2026-09-07T01:56:04+00:00",
+  "exit_code": 1,
+  "result_line_numbers": [
+    1568
+  ],
+  "result": {
+    "subtype": "success",
+    "is_error": true,
+    "num_turns": 119,
+    "duration_ms": 2620110,
+    "total_cost_usd": 11.786897999999995,
+    "session_id": "4521eca7-ad94-4215-ac3b-c100f40efe30"
+  },
+  "log": "C:\\Users\\Anton L\\anti-slop-design\\tests\\alunix-ab-r7\\logs\\round-6\\B-K2.jsonl",
+  "stderr": "C:\\Users\\Anton L\\anti-slop-design\\tests\\alunix-ab-r7\\logs\\round-6\\B-K2.stderr.txt"
+}

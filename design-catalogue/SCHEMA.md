@@ -10,7 +10,7 @@ entries/<slug>/
   shot.webp         full page, longest edge <= 2200 (capture.py; for refero: the jpg re-encoded)
   shot.png          lossless fold for vision       (capture.py)
   slices/NN.webp    viewport slices, max 12        (capture.py)
-  extract/          designlang output when a live URL exists (--full --screenshots)
+  extract/          designlang output when a live URL exists (--wait 2000 --ignore-widgets -q)
 ```
 
 ## Frontmatter (all keys required; empty string or [] when unknown)
@@ -84,7 +84,7 @@ status: ready | pending
 ```bash
 # from repo root
 python scripts/catalogue/capture.py <url> <slug>
-designlang <url> --full --screenshots --wait 3000 -o design-catalogue/entries/<slug>/extract
+designlang <url> --wait 2000 --ignore-widgets -q -o design-catalogue/entries/<slug>/extract
 python scripts/catalogue/index.py          # rebuilds index.json + categories.json, reports gaps
 python scripts/catalogue/query.py --category playful
 ```

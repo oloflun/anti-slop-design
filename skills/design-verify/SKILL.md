@@ -92,7 +92,7 @@ From the source's verifier: *"console errors, screenshot, layout, JS probing, de
 **Links** — `a` and `a:hover` are palette colours, not browser blue (gate 61).
 **Design-system adherence** — every face and colour on the page traces to the locked tokens.
 **Recreation fidelity** — when rebuilding from a reference, values match the source exactly. `5px` is not `4px` (gate 63).
-**Motion** — one authored moment, not scattered effects; `prefers-reduced-motion` honoured.
+**Motion** — one authored moment, not scattered effects; motion plays unconditionally — no `prefers-reduced-motion` gate and no parallel static-fallback tree (FEEDBACK.md F-011, 2026-09-07). A build that ships an rm branch is the deviation; a build without one is correct.
 
 Then run the mechanical pass once:
 

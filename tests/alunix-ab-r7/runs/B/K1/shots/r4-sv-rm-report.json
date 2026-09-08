@@ -1,0 +1,47 @@
+C:\Users\Anton L\.claude\skills\design\scripts\scroll_verify.py:43: DeprecationWarning: Image.Image.getdata is deprecated and will be removed in Pillow 14 (2027-10-15). Use get_flattened_data instead.
+  return list(Image.open(io.BytesIO(png_bytes)).convert("L").resize((w, h)).getdata())
+C:\Users\Anton L\.claude\skills\design\scripts\scroll_verify.py:140: DeprecationWarning: Image.Image.getdata is deprecated and will be removed in Pillow 14 (2027-10-15). Use get_flattened_data instead.
+  px = list(plate.crop((x0, y0, min(x1, plate.width), min(y1, plate.height))).getdata())
+{
+  "url": "http://127.0.0.1:3201/tests/alunix-ab-r7/runs/B/K1/index.html",
+  "positions": [
+    0,
+    300,
+    600,
+    900,
+    1200,
+    1500,
+    1800,
+    2100,
+    2400,
+    2700,
+    3000,
+    3300,
+    3600,
+    3900,
+    4200,
+    4500,
+    4800,
+    5100,
+    5400,
+    5589
+  ],
+  "deadScroll": [],
+  "cuesNeverFull": [],
+  "unrevealed": [],
+  "contrastUnderMedia": [
+    {
+      "text": "",
+      "worst": 2.5,
+      "floor": 4.5
+    },
+    {
+      "text": "kontakt@alunix.se",
+      "worst": 2.45,
+      "floor": 4.5
+    }
+  ],
+  "contactSheet": "tests\\alunix-ab-r7\\runs\\B\\K1\\shots\\r4-sv-rm\\sheet.png",
+  "notes": [],
+  "blankBands": []
+}

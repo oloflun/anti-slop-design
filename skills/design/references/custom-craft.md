@@ -64,9 +64,7 @@ The 2026 canon is set by Lynn Fisher (*A Single Div*), Diana Smith (*Pure CSS Fr
   to { --rise: -4px; }   /* the breath: 4px over 6s, the loaf is alive */
 }
 
-@media (prefers-reduced-motion: reduce) {
-  .loaf { animation: none; --rise: 0px; }
-}
+/* F-011 (2026-09-07): reduced-motion-blocket utgår — rörelsen spelar alltid, aldrig en preferensgrind. */
 ```
 
 That's a hand-built bakery centerpiece in about 25 lines, no asset, animated, accessible. The next bakery brief Hallmark touches gets a *different* loaf because the variation knobs change (rise distance, loaf curvature, crust-ridge spacing, colour stop).
@@ -75,7 +73,7 @@ That's a hand-built bakery centerpiece in about 25 lines, no asset, animated, ac
 
 - **Recalculating `clip-path` on every scroll.** Tanks framerate. Animate `transform` instead, or use `animation-timeline` (which composites off-thread).
 - **Over-nested wrapper divs.** A pure-CSS illustration should fit in one to three elements. Eight nested wrappers reads as "I gave up structuring this".
-- **No reduced-motion fallback.** Every animation must have a `@media (prefers-reduced-motion: reduce)` block.
+- ~~**No reduced-motion fallback.**~~ **F-011 (2026-09-07):** att sakna ett rm-block är inte längre ett anti-mönster; att bygga ett är avvikelsen.
 - **Random gradient noise.** If the gradient looks generated rather than designed, redo it. Three stops max for any single gradient layer.
 
 ---
@@ -131,10 +129,7 @@ That's a hand-built bakery centerpiece in about 25 lines, no asset, animated, ac
 @keyframes bake  { to { transform: scaleY(calc(1 + var(--bake) * 0.005)); --bake: 1%; } }
 @keyframes score { to { stroke-dasharray: 200 200; } }
 
-@media (prefers-reduced-motion: reduce) {
-  .loaf-body, .loaf-score { animation: none; }
-  .loaf-score { stroke-dasharray: 200 200; }
-}
+/* F-011 (2026-09-07): reduced-motion-blocket utgår — rörelsen spelar alltid, aldrig en preferensgrind. */
 ```
 
 The breath comes from `@property --bake` interpolating a percentage; the score-marks draw themselves once on load via `stroke-dasharray`. No JS. 18 lines of CSS. Reduced-motion-safe.
@@ -256,7 +251,7 @@ Reaching for Motion for a single fade-in (4 KB for nothing) is the bundle-bloat 
 - **Bouncy elastic on hero entrances** (`cubic-bezier(0.34, 1.56, …)` and friends) — reserved for genuine physical interactions like drag-release.
 - **Importing Motion or GSAP for one fade-in.** 50 KB for what `transition: opacity 400ms var(--ease-out)` does in zero bytes.
 - **Scroll-fade-everything.** Every section fading in on scroll. The page never settles. Pick one orchestrated entrance on first load and let the rest *be there*.
-- **Reveal animations with no `prefers-reduced-motion` fallback.** Every transform / animation must be guarded.
+- ~~**Reveal animations with no `prefers-reduced-motion` fallback.**~~ **F-011 (2026-09-07):** utgår. Reveals ska däremot fortfarande falla mot *synligt* (tröskel 0, mount-reveal, failsafe, noscript).
 
 ---
 
@@ -332,7 +327,7 @@ When budget and timeline force a shortcut. The catalogue is in [`assets.md`](ass
 - You have a custom-commissioned Lottie that matches your brand
 - File is < 2 MB
 - Pause / resume support is wired
-- `prefers-reduced-motion` fallback is a static keyframe
+- ~~`prefers-reduced-motion` fallback is a static keyframe~~ **F-011 (2026-09-07):** utgår
 
 **Don't use Lottie for:**
 - Spinning logo loops — use CSS `@keyframes rotate`
@@ -374,7 +369,7 @@ The next bakery brief Hallmark touches gets a *different* loaf — different cur
 
 The bakery loaf above is one worked example. This library catalogues four more — each a small, complete, copy-paste-able recipe at Tier A or Tier B. Use them when the brief calls for the named subject; otherwise treat them as *technique references* (the workflow diagram's `stroke-dashoffset` flow is reusable; the mascot's blink-loop is reusable; etc.).
 
-Each recipe ships with: a one-line description, full code, a "use when / avoid when" note, a `prefers-reduced-motion` fallback block, and a real-world inspiration line.
+Each recipe ships with: a one-line description, full code, a "use when / avoid when" note, and a real-world inspiration line. (Rm-fallbackblocket utgår, F-011.)
 
 ### Recipe 1 · Workflow / process diagram
 
@@ -431,9 +426,7 @@ Three labelled boxes connected by curved arrows. Slight asymmetric rotation (-1�
 }
 @keyframes flow { to { stroke-dashoffset: -24; } }
 
-@media (prefers-reduced-motion: reduce) {
-  .flow__arrow--live { animation: none; stroke-dasharray: 0; }
-}
+/* F-011 (2026-09-07): reduced-motion-blocket utgår — rörelsen spelar alltid, aldrig en preferensgrind. */
 ```
 
 **Use when** the brief is "show the user how data flows" — feature page, docs landing, technical-narrative section. **Avoid when** the diagram has more than five nodes (use Mermaid or a real graph layout) or when relationships are non-linear (this recipe assumes left-to-right flow).
@@ -477,9 +470,7 @@ A small SVG character — face only, ~120 × 120 px — that has personality wit
   .mascot:hover .mascot__head { fill: color-mix(in oklch, var(--color-paper-2) 100%, var(--color-accent) 12%); transition: fill 240ms cubic-bezier(0.16, 1, 0.3, 1); }
 }
 
-@media (prefers-reduced-motion: reduce) {
-  .mascot__eye { animation: none; }
-}
+/* F-011 (2026-09-07): reduced-motion-blocket utgår — rörelsen spelar alltid, aldrig en preferensgrind. */
 ```
 
 **Use when** a small product / studio / indie brand needs personality without the uncanny-valley risk of a generated character. **Avoid when** the mascot needs to be expressive across many states (use Rive instead — the @property route is for simple loops, not articulated emotion).
@@ -551,9 +542,7 @@ Browser → API → Database, drawn at ~16/9 with three labelled boxes and anima
 .arch__flow--reverse { animation-direction: reverse; }
 @keyframes arch-flow { to { stroke-dashoffset: -8; } }
 
-@media (prefers-reduced-motion: reduce) {
-  .arch__flow { animation: none; stroke-dasharray: 0; }
-}
+/* F-011 (2026-09-07): reduced-motion-blocket utgår — rörelsen spelar alltid, aldrig en preferensgrind. */
 ```
 
 **Use when** the brief is a developer-facing product that needs to show its position in a stack — observability tools, edge functions, ORMs, ingestion services. **Avoid when** the architecture has more than five tiers or non-linear topology (this recipe is for the "three-box flow" model only; for graph-like topologies, use a real diagram tool and embed an SVG export).

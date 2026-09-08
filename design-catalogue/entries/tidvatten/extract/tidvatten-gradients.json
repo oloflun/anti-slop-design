@@ -1,0 +1,68 @@
+{
+  "$schema": "https://designlang.app/schemas/gradients.json",
+  "source": "http://127.0.0.1:3055/sites/tidvatten.html",
+  "generated": "2026-09-08T18:42:28.721Z",
+  "count": 3,
+  "gradients": [
+    {
+      "raw": "linear-gradient(oklch(0.2 0.022 245 / 0.7), oklch(0.2 0.022 245 / 0.15), oklch(0.2 0.022 245 / 0.85))",
+      "type": "linear",
+      "direction": null,
+      "stops": [
+        {
+          "color": "oklch(0.2 0.022 245 / 0.7)",
+          "position": null
+        },
+        {
+          "color": "oklch(0.2 0.022 245 / 0.15)",
+          "position": null
+        },
+        {
+          "color": "oklch(0.2 0.022 245 / 0.85)",
+          "position": null
+        }
+      ],
+      "classification": "bold"
+    },
+    {
+      "raw": "linear-gradient(oklch(0.2 0.022 245), oklch(0.2 0.022 245 / 0.4), oklch(0.2 0.022 245))",
+      "type": "linear",
+      "direction": null,
+      "stops": [
+        {
+          "color": "oklch(0.2 0.022 245)",
+          "position": null
+        },
+        {
+          "color": "oklch(0.2 0.022 245 / 0.4)",
+          "position": null
+        },
+        {
+          "color": "oklch(0.2 0.022 245)",
+          "position": null
+        }
+      ],
+      "classification": "bold"
+    },
+    {
+      "raw": "radial-gradient(rgba(0, 0, 0, 0) 0%, oklch(0.1 0.02 250 / 0.5) 62%, oklch(0.1 0.02 250 / 0.85) 100%)",
+      "type": "radial",
+      "direction": null,
+      "stops": [
+        {
+          "color": "rgba(0, 0, 0, 0)",
+          "position": "0%"
+        },
+        {
+          "color": "oklch(0.1 0.02 250 / 0.5)",
+          "position": "62%"
+        },
+        {
+          "color": "oklch(0.1 0.02 250 / 0.85)",
+          "position": "100%"
+        }
+      ],
+      "classification": "bold"
+    }
+  ]
+}

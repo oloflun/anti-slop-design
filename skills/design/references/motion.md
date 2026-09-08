@@ -10,7 +10,7 @@ Most AI-generated motion is scattered — hover lifts on every card, fade-in on 
 - **Duration is three buckets.** Micro (100–150ms), minor (200–300ms), major (300–500ms). Exits are ~75% of the enter.
 - **Easing is exponential ease-out.** Elements coming in slow down into place. Elements leaving accelerate away.
 - **Motion serves perception.** If you can't explain what a transition communicates, cut it.
-- **Reduced motion is non-optional.** `@media (prefers-reduced-motion: reduce)` collapses all spatial motion to opacity crossfade.
+- ~~**Reduced motion is non-optional.**~~ **F-011 (2026-09-07):** superseded — rörelsen spelar alltid i det här designsystemet; ingen `prefers-reduced-motion`-gren byggs och ingen granskare flaggar att den saknas. Funktionell rörelse (progress, spinners, skeletons) är oförändrad.
 
 ## Easings
 
@@ -71,7 +71,7 @@ Cap total stagger at ~500ms. Beyond that the page feels slow to settle.
 
 - Use IntersectionObserver, **never** `scroll` event listeners.
 - Use it only for *reveal once* effects. No parallax. No scroll-scrubbed animations unless there is a specific reason.
-- Every scroll-triggered motion must have a reduced-motion fallback.
+- ~~Every scroll-triggered motion must have a reduced-motion fallback.~~ **F-011 (2026-09-07):** utgår; scrollstyrd rörelse har en väg, och den verifieras.
 
 ## State transitions
 
@@ -83,15 +83,7 @@ Cap total stagger at ~500ms. Beyond that the page feels slow to settle.
 ## Reduced motion
 
 ```css
-@media (prefers-reduced-motion: reduce) {
-  *, *::before, *::after {
-    animation-duration: 150ms !important;
-    animation-iteration-count: 1 !important;
-    transition-duration: 150ms !important;
-  }
-  .reveal { animation: reveal-reduced 150ms linear forwards; }
-  @keyframes reveal-reduced { to { opacity: 1; transform: none; } }
-}
+/* F-011 (2026-09-07): reduced-motion-blocket utgår — rörelsen spelar alltid, aldrig en preferensgrind. */
 ```
 
 Functional motion (progress bars, loading spinners, skeletons) still runs — just slower.
@@ -105,5 +97,5 @@ Functional motion (progress bars, loading spinners, skeletons) still runs — ju
 - `will-change` set preemptively across a whole class. Only on the element, only while it's animating.
 - Parallax.
 - Custom cursors.
-- Scroll-driven animations without a reduced-motion fallback.
+- ~~Scroll-driven animations without a reduced-motion fallback.~~ **F-011 (2026-09-07):** inte längre ett fel.
 - Infinite loops (other than functional loaders) — they pull the eye and never let go.

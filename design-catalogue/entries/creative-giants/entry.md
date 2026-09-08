@@ -12,7 +12,7 @@ dna: "Art-book poster typography x rationed saturated accent cards"
 register: editorial print
 grammar: typographic poster
 lane: "A warm off-white canvas opens on a single weight-300 headline set at poster scale, drops straight into a full-bleed documentary photograph, then runs a sequence of whitespace-led editorial sections where colour appears only as single accent cards, never as background"
-mode: portfolio
+mode: persuade
 traits: ["84px weight-300 display, -0.04em tracking", "1440px pill on interactive only, 0px on editorial", "bone-white canvas, never pure white", "chromatic accents rationed to single-card hits", "full-bleed sharp-cornered photography", "near-invisible chrome — logo + one Menu pill"]
 palette: ["#fffef7", "#000000", "#666666", "#8a0467", "#03624c", "#ffd001"]
 type: ["Switzer"]

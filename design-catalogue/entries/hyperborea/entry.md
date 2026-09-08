@@ -14,7 +14,7 @@ type: ["Italiana", "Archivo", "Noto Serif JP"]
 kind: example
 source: claude
 origin: example-site
-extract: none
+extract: ok
 category: institutional
 category2: "editorial"
 status: ready
@@ -88,6 +88,27 @@ shapes — circle, triangle, arc, dot — in the page's amber, rust and slate, w
 name in Italiana and the role and city in Archivo micro-caps beneath. The page
 gains a consistent portrait gallery that no photo commission could match for
 coherence, and the illustration budget is a few dozen lines of markup.
+
+## Motion
+
+Från källkoden (`sites/hyperborea.html`, läst 2026-09-08).
+
+**Delad reveal:** `translateY(28px)`, `transition: opacity 1.4s
+cubic-bezier(.16,1,.3,1), transform 1.4s`, `IntersectionObserver` med
+`threshold: 0.1`.
+
+**Signaturrörelse:** en 18-sekunders idle-float på den ritade solen
+(`@keyframes rise`, `translateY(0 → -4px)`), plus en andra namngiven keyframe
+(`m`) på det ritade systemet. Ingen scrubbad akt: sidan har noll fotografier
+och åtta unika SVG-porträtt, så rörelsen ligger i identiteten i stället för i
+scrollen.
+
+**Hover:** `translateY(-12px)` på de lyftbara korten i programmet.
+
+**Att låna:** en långsam, nästan omärklig loop på ett *ritat* objekt är billig
+och läses som liv, inte som effekt — 18 s är långt nog att aldrig fånga ögat.
+**Att lämna:** loopen om sidans huvudmotiv är ett foto; då rör sig fotot i
+stället.
 
 ## Brief
 

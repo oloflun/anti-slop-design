@@ -1,0 +1,72 @@
+{
+ "note": "Fönsteröppningen (glasytan innanför karmen) per nyckelruta, som fraktioner av rutan (1440x960). Interpolera linjärt mellan nyckelrutor. Formen: rektangel (x,y,w,h) vars övre del är en halvellips med höjd arch*h. Före ruta 58 är fönstret för litet att bära Hōrai: visa bara varmt ljus. Nycklade för hand av orkestreraren 2026-09-07 ur pro-klippet; toleransen är ±2 % av rutan, kontrollera mot rutorna som bilder. Fönstret är det bågkrönta bottenvåningsfönstret till vänster om banderollen; porten ligger till höger utanför bild från ruta 70.",
+ "frames": 100,
+ "fps": 10,
+ "first_frame_with_horai": 64,
+ "keys": [
+  {
+   "frame": 58,
+   "x": 0.535,
+   "y": 0.41,
+   "w": 0.065,
+   "h": 0.21,
+   "arch": 0.22
+  },
+  {
+   "frame": 64,
+   "x": 0.47,
+   "y": 0.36,
+   "w": 0.105,
+   "h": 0.27,
+   "arch": 0.22
+  },
+  {
+   "frame": 70,
+   "x": 0.425,
+   "y": 0.335,
+   "w": 0.175,
+   "h": 0.4,
+   "arch": 0.22
+  },
+  {
+   "frame": 76,
+   "x": 0.345,
+   "y": 0.235,
+   "w": 0.315,
+   "h": 0.56,
+   "arch": 0.24
+  },
+  {
+   "frame": 82,
+   "x": 0.355,
+   "y": 0.155,
+   "w": 0.315,
+   "h": 0.71,
+   "arch": 0.24
+  },
+  {
+   "frame": 88,
+   "x": 0.335,
+   "y": 0.14,
+   "w": 0.345,
+   "h": 0.72,
+   "arch": 0.24
+  },
+  {
+   "frame": 94,
+   "x": 0.31,
+   "y": 0.125,
+   "w": 0.385,
+   "h": 0.78,
+   "arch": 0.24
+  },
+  {
+   "frame": 100,
+   "x": 0.31,
+   "y": 0.125,
+   "w": 0.385,
+   "h": 0.78,
+   "arch": 0.24
+  }
+ ]
+}

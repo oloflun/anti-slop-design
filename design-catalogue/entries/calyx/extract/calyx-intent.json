@@ -1,0 +1,226 @@
+{
+  "pageIntent": {
+    "type": "blog-post",
+    "confidence": 0.35,
+    "path": "/sites/calyx.html",
+    "title": "Calyx — Botanical Architecture, Stockholm",
+    "description": "",
+    "signals": [
+      {
+        "kind": "dom",
+        "type": "blog-post",
+        "weight": 0.35,
+        "detail": "byline|min-read"
+      }
+    ],
+    "alternates": [],
+    "needsSmart": true
+  },
+  "sectionRoles": {
+    "sections": [
+      {
+        "index": 0,
+        "tag": "header",
+        "role": "nav",
+        "subrole": null,
+        "confidence": 0.4,
+        "heading": null,
+        "bounds": {
+          "x": 0,
+          "y": 0,
+          "w": 1280,
+          "h": 85
+        },
+        "buttonCount": 0,
+        "cardCount": 1,
+        "slots": {
+          "lede": "VOL. IX · SPRING\nCalyx\nINDEX\nSTUDIO\nCOMMISSION"
+        },
+        "needsSmart": true
+      },
+      {
+        "index": 1,
+        "tag": "nav",
+        "role": "nav",
+        "subrole": null,
+        "confidence": 0.9,
+        "heading": null,
+        "bounds": {
+          "x": 944,
+          "y": 40,
+          "w": 304,
+          "h": 15.75
+        },
+        "buttonCount": 0,
+        "cardCount": 0,
+        "slots": {
+          "lede": "INDEX\nSTUDIO\nCOMMISSION"
+        },
+        "needsSmart": false
+      },
+      {
+        "index": 2,
+        "tag": "section",
+        "role": "testimonial",
+        "subrole": null,
+        "confidence": 0.8,
+        "heading": "Botanical\narchitecture,\nfrom Stockholm.",
+        "bounds": {
+          "x": 0,
+          "y": 85,
+          "w": 1280,
+          "h": 704
+        },
+        "buttonCount": 0,
+        "cardCount": 1,
+        "slots": {
+          "heading": "Botanical\narchitecture,\nfrom Stockholm."
+        },
+        "needsSmart": false
+      },
+      {
+        "index": 3,
+        "tag": "section",
+        "role": "testimonial",
+        "subrole": null,
+        "confidence": 0.8,
+        "heading": null,
+        "bounds": {
+          "x": 0,
+          "y": 817,
+          "w": 1280,
+          "h": 534.515625
+        },
+        "buttonCount": 0,
+        "cardCount": 0,
+        "slots": {
+          "lede": "A NOTE FROM THE ATELIER"
+        },
+        "needsSmart": false
+      },
+      {
+        "index": 4,
+        "tag": "section",
+        "role": "testimonial",
+        "subrole": null,
+        "confidence": 0.8,
+        "heading": null,
+        "bounds": {
+          "x": 0,
+          "y": 1351.515625,
+          "w": 1280,
+          "h": 829.75
+        },
+        "buttonCount": 0,
+        "cardCount": 2,
+        "slots": {
+          "lede": "CMSN. 0211 — HOTEL PIGALLE, DROTTNINGGATAN\n02 / 14\nCMSN. 0188 — PRIVATE, STRANDVÄGEN 7B\n02 / 14"
+        },
+        "needsSmart": false
+      },
+      {
+        "index": 5,
+        "tag": "section",
+        "role": "testimonial",
+        "subrole": null,
+        "confidence": 0.8,
+        "heading": "Eleven cuttings, this week.",
+        "bounds": {
+          "x": 0,
+          "y": 2181.265625,
+          "w": 1280,
+          "h": 823.25
+        },
+        "buttonCount": 0,
+        "cardCount": 4,
+        "slots": {
+          "heading": "Eleven cuttings, this week.",
+          "subheadings": [
+            "Midnight Orchid",
+            "Old Lavender, New Pine",
+            "Hyacinth, in Spite of April",
+            "Untitled, for a Restaurant"
+          ],
+          "lede": "INDEX — AVAILABLE NOW\nEleven cuttings, this week.\n.01\nMidnight Orchid"
+        },
+        "needsSmart": false
+      },
+      {
+        "index": 6,
+        "tag": "section",
+        "role": "content",
+        "subrole": null,
+        "confidence": 0.3,
+        "heading": null,
+        "bounds": {
+          "x": 0,
+          "y": 3004.515625,
+          "w": 1280,
+          "h": 687.75
+        },
+        "buttonCount": 0,
+        "cardCount": 1,
+        "slots": {
+          "lede": "THE GROWING PARTNERS — SÖDERÅSEN, MAY ’25\n—"
+        },
+        "needsSmart": true
+      },
+      {
+        "index": 7,
+        "tag": "section",
+        "role": "testimonial",
+        "subrole": null,
+        "confidence": 0.8,
+        "heading": null,
+        "bounds": {
+          "x": 0,
+          "y": 3692.265625,
+          "w": 1280,
+          "h": 487.53125
+        },
+        "buttonCount": 0,
+        "cardCount": 4,
+        "slots": {
+          "lede": "SOME RECENT NOTES\nA"
+        },
+        "needsSmart": false
+      },
+      {
+        "index": 8,
+        "tag": "section",
+        "role": "content",
+        "subrole": null,
+        "confidence": 0.3,
+        "heading": "Commission\na thing\nthat lasts a week.",
+        "bounds": {
+          "x": 0,
+          "y": 4179.796875,
+          "w": 1280,
+          "h": 612.34375
+        },
+        "buttonCount": 0,
+        "cardCount": 1,
+        "slots": {
+          "heading": "Commission\na thing\nthat lasts a week."
+        },
+        "needsSmart": true
+      }
+    ],
+    "counts": {
+      "nav": 2,
+      "testimonial": 5,
+      "content": 2
+    },
+    "readingOrder": [
+      "nav",
+      "nav",
+      "testimonial",
+      "testimonial",
+      "testimonial",
+      "testimonial",
+      "content",
+      "testimonial",
+      "content"
+    ]
+  }
+}

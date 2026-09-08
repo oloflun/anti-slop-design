@@ -1,0 +1,18 @@
+/* shadcn/ui Theme — extracted from http://127.0.0.1:3055/sites/vinterspelen.html */
+/* Paste into your globals.css */
+
+@layer base {
+  :root {
+    --background: 200 60% 1%;
+    --foreground: 0 0% 0%;
+    --primary: 19 100% 8%;
+    --primary-foreground: 0 0% 100%;
+    --secondary: 33 81% 39%;
+    --secondary-foreground: 0 0% 100%;
+    --accent: 40 31% 74%;
+    --accent-foreground: 0 0% 0%;
+    --muted: 39 23% 61%;
+    --muted-foreground: 220 13% 91%;
+    --border: 39 23% 61%;
+  }
+}

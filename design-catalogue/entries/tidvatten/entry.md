@@ -14,7 +14,7 @@ type: ["Familjen Grotesk", "Literata", "Fragment Mono"]
 kind: example
 source: claude
 origin: example-site
-extract: none
+extract: ok
 category: hospitality
 category2: "institutional"
 status: ready
@@ -95,6 +95,24 @@ EK.` beneath. Both numerals are scrubbed continuously by the section's distance
 from viewport centre, so the contrast builds as you arrive and unwinds as you
 leave. The entire proposition of a cold-bath club stated as two numbers and the
 walk between them.
+
+## Motion
+
+Från källkoden (`sites/tidvatten.html`, läst 2026-09-08).
+
+**Delad reveal:** `translateY(28px)`, `transition: opacity 1.25s
+cubic-bezier(.16,1,.3,1), transform 1.25s`; bilder 1.4 s på `transform`.
+
+**Signaturrörelse — de två temperaturerna (`?preview=grader`).** `2°` och
+`85°` körs mot varandra ur oskärpa när sektionen centreras: en `smoothstep`
+mot sektionens position ger `t`, och ur den lerpas talens position
+(`translateY(26px → 0)` på ett sent offset), deras opacitet och deras oskärpa.
+Monoraden under dem löser upp sig på ett eget, senare offset — så siffrorna
+landar först och texten bekräftar dem.
+
+**Att låna:** två sanna tal som möts är en hel akt. Den behöver ingen bild och
+ingen tredje idé. **Att lämna:** mekanismen om dina två tal inte är verkliga
+mätvärden — påhittad precision är värre än ingen akt.
 
 ## Brief
 

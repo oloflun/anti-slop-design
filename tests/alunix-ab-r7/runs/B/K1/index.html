@@ -1,0 +1,269 @@
+<!doctype html>
+<!--
+  Alunix K1 Skymning, runda 3: hela sidan. Motorn (scrollcraft.js/.css)
+  oförändrad. Fönstermasken (F-010) och utgångens krympning till bevisraden
+  är bespoke, drivna av window-track.json och --sc-p. Exit-målet
+  (--exit-tx/--exit-ty/--exit-sx/--exit-sy) är uppmätta CSS-tokens, låsta av
+  scripts/measure-exit-target.py mot den byggda bevisraden nedanför.
+-->
+<html lang="sv">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>Alunix — Er hemsida är nutidens visitkort</title>
+<meta name="description" content="Alunix bygger skräddarsydda webbplatser. Se tre exempel: Calyx, Hōrai, Hyperborea.">
+<link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'><rect width='32' height='32' rx='4' fill='%230b1424'/><rect x='13' y='7' width='6' height='10' rx='3' fill='%23f2c46b'/></svg>">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Newsreader:ital,wght@0,300;0,500;0,600&family=Schibsted+Grotesk:wght@400;500;600&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="scrollcraft.css">
+<link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+<span data-sc-progress></span>
+<div class="sc-grain" aria-hidden="true"></div>
+
+<header class="topbar" id="topbar">
+  <a class="topbar__mark" href="#top" aria-label="Alunix, till toppen">
+    <img class="topbar__mark-img topbar__mark-img--white" src="assets/logo-white.svg" alt="Alunix" width="112" height="22">
+    <img class="topbar__mark-img topbar__mark-img--black" src="assets/logo-black.svg" alt="Alunix" width="112" height="22">
+  </a>
+  <span class="topbar__label" id="topbar-label">Exempelsida: Hōrai, Asian fusion-koncept</span>
+  <a class="topbar__contact" href="mailto:kontakt@alunix.se">kontakt@alunix.se</a>
+</header>
+
+<main id="top">
+
+  <!-- ============================ MOTION-BUILD ============================ -->
+  <!-- Dold som standard (se style.css); JS visar den bara när JS kör och
+       prefers-reduced-motion INTE gäller. Reservläget nedanför är annars vad
+       som visas (F-001: aldrig dolt i vila, aldrig ett hopp). -->
+  <div class="motion-only" id="motion-build">
+
+    <!-- Runda 4: hela signaturen (akt 1-4a) är NU EN enda pinnad akt. Tre
+         separata motorakter i rad visade varsin scen en viewport innan sin
+         egen progress lämnat 0 (motorns ground-or-greet), vilket dubblade
+         fönstret vid 20-25% och Hōrai vid 34-46%. En enda pin (span 5,0) med
+         allt bespoke på --sc-p har bara EN scen i taget, alltid.
+         Faser (av aktens EGEN p, 0-1):
+           0.00-0.46  kameraresan, ritad själv på canvasen (aldrig motorns
+                      data-sc-scrub/data-sc-sequence — kartläggningen är vår)
+           0.46-0.50  fortsatt CSS-inzoomning på sista rutan tills öppningen
+                      fyller viewporten
+           0.50-0.52  bytet till den riktiga ramen, utan skarv
+           0.52-0.70  ramen pinnad, klickbar, raden i toppbaren
+           0.70-0.72  ramen byts mot sin skärmbild i samma ruta
+           0.72-1.00  utgången: krymper till bevisradens uppmätta rektangel,
+                      vitt sveper in, rubriken reser sig radvis -->
+    <section id="signature" data-sc-act="pin" data-sc-span="5.0">
+      <div data-sc-stage class="sig-stage">
+
+        <div class="sig-photo-layer" id="sig-photo-layer">
+          <canvas class="sig-canvas" aria-hidden="true"></canvas>
+          <div class="window-glow" aria-hidden="true"></div>
+          <img class="window-fill" src="assets/demo-horai.webp" alt="" aria-hidden="true">
+          <div class="window-glass" aria-hidden="true"><canvas class="window-glass__canvas"></canvas></div>
+          <div class="sig-vignette" id="sig-vignette" aria-hidden="true"></div>
+          <div class="sc-scrim sc-scrim--band" aria-hidden="true"></div>
+        </div>
+
+        <div class="sc-copy sc-copy--lead hero-copy" data-sc-cue="0 0.15 0">
+          <h1 class="sc-display hero-title">Er hemsida är <span class="accent-u">nutidens visitkort</span></h1>
+          <p class="sc-lede hero-sub">Vi skapar skräddarsydda webbplatser som hjälper er att exponera verksamheten.</p>
+        </div>
+        <p class="site-names" data-sc-cue="0 0.4 0 0.25">Calyx&nbsp;·&nbsp;Hōrai&nbsp;·&nbsp;Hyperborea</p>
+        <p class="loading-indicator" id="loading-indicator" aria-live="polite">Laddar&nbsp;…</p>
+
+        <div class="reveal-frame-slot" id="reveal-frame-slot"></div>
+
+        <div class="exit-sweep" data-sc-reveal="down" data-sc-reveal-at="0.72 0.88" aria-hidden="true"></div>
+        <div class="exit-frame-wrap" id="exit-frame-wrap">
+          <img class="exit-frame" src="assets/demo-horai.webp" alt="Hōrai, startsidan, mörk restaurangidentitet med serifwordmark.">
+        </div>
+        <div class="exit-copy">
+          <h2 class="sc-display exit-heading" data-sc-cue="0.79 1 0.06 0" data-sc-kinetic="lines">VI BYGGER ERT VARUMÄRKE.</h2>
+          <p class="exit-lede" data-sc-cue="0.81 1 0.1 0">Webbdesign, design och system. Allt på ett ställe.</p>
+        </div>
+
+      </div>
+    </section>
+
+    <!-- Akt 4b Klarhet, bevisraden: tre uppslag, bildsidan växlar. -->
+    <section id="proof" class="proof-section" data-sc-act="reveal" data-topbar-zone="light">
+      <div class="sc-wrap proof-row">
+        <figure class="proof-row__media proof-row__media--left" data-sc-reveal="right" data-sc-reveal-at="0.02 0.3">
+          <img src="assets/demo-calyx.webp" alt="Calyx, startsidan, ljus botanisk florist-identitet.">
+        </figure>
+        <div class="proof-row__text" data-sc-in>
+          <p class="proof-row__num">01</p>
+          <h3 class="proof-row__title">Design</h3>
+          <p class="proof-row__body">Vi formger identitet och gränssnitt: typsnitt, färg och layout som håller ihop.</p>
+          <p class="proof-row__site">Exempelsida: Calyx, florist i Stockholm</p>
+          <a class="proof-row__link" href="/sites/calyx.html">Öppna Calyx →</a>
+        </div>
+      </div>
+      <div class="sc-wrap proof-row proof-row--reverse" id="proof-horai">
+        <div class="proof-row__text" data-sc-in>
+          <p class="proof-row__num">02</p>
+          <h3 class="proof-row__title">Utveckling</h3>
+          <p class="proof-row__body">Vi bygger webbplatsen i kod, sida för sida, och driftsätter den när den är klar.</p>
+          <p class="proof-row__site">Exempelsida: Hōrai, Asian fusion-koncept</p>
+          <a class="proof-row__link" href="/sites/horai.html">Öppna Hōrai →</a>
+        </div>
+        <figure class="proof-row__media proof-row__media--right" id="proof-horai-media" data-sc-reveal="left" data-sc-reveal-at="0.1 0.38">
+          <img src="assets/demo-horai.webp" alt="Hōrai, startsidan, mörk restaurangidentitet med serifwordmark.">
+        </figure>
+      </div>
+      <div class="sc-wrap proof-row">
+        <figure class="proof-row__media proof-row__media--left" data-sc-reveal="right" data-sc-reveal-at="0.18 0.46">
+          <img src="assets/demo-hyperborea.webp" alt="Hyperborea, startsidan, mörk konferensidentitet med solmotiv.">
+        </figure>
+        <div class="proof-row__text" data-sc-in>
+          <p class="proof-row__num">03</p>
+          <h3 class="proof-row__title">System</h3>
+          <p class="proof-row__body">Vi sätter upp ett CMS så innehållet går att ändra utan vår hjälp.</p>
+          <p class="proof-row__site">Exempelsida: Hyperborea, konferens i Lund</p>
+          <a class="proof-row__link" href="/sites/hyperborea.html">Öppna Hyperborea →</a>
+        </div>
+      </div>
+    </section>
+
+    <!-- Akt 5 Räkning: liggare, hårlinjer ritas i takt med scrollen (--sc-p). -->
+    <section id="ledger" class="ledger-section" data-sc-act="flow" data-topbar-zone="light">
+      <div class="sc-wrap">
+        <h2 class="sc-display ledger-heading" data-sc-in>Alla har rätt till bra design.</h2>
+        <div class="ledger-list">
+          <div class="ledger-row" style="--row-i:0" data-sc-in>
+            <p class="ledger-row__hairline" aria-hidden="true"></p>
+            <p class="ledger-row__desc">Standardpaket. Webbplats med CMS för egna ändringar och en första SEO-optimering.</p>
+            <p class="ledger-row__price">26&nbsp;900 kr</p>
+          </div>
+          <div class="ledger-row" style="--row-i:1" data-sc-in>
+            <p class="ledger-row__hairline" aria-hidden="true"></p>
+            <p class="ledger-row__desc">Paket med bokningssystem, betalning och kunddatabas.</p>
+            <p class="ledger-row__price">38&nbsp;900 kr</p>
+          </div>
+          <div class="ledger-row" style="--row-i:2" data-sc-in>
+            <p class="ledger-row__hairline" aria-hidden="true"></p>
+            <p class="ledger-row__desc">Helt skräddarsydda lösningar för produktkataloger, specialbyggda system med mera</p>
+            <p class="ledger-row__price">Pris vid förfrågan</p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Akt 6 Landning: natt, kontaktrad, sista akten håller (ingen tonar bort). -->
+    <section id="landing" class="landing-section" data-sc-act="drift" data-sc-drift="#0b1424" data-topbar-zone="dark">
+      <div class="landing-night" aria-hidden="true">
+        <img class="landing-night__img" src="assets/night.webp" alt="">
+      </div>
+      <div class="landing-scrim" aria-hidden="true"></div>
+      <div class="sc-wrap landing-copy" data-sc-cue="0.15">
+        <a class="landing-mailto" href="mailto:kontakt@alunix.se">kontakt@alunix.se</a>
+        <p class="landing-address">Alunix, webbyrå i Sverige. Skriv några rader om verksamheten, så hör vi av oss.</p>
+        <p class="landing-credits">Foto: Rafael Peier, Julian Terenzio. Rörelse genererad med Higgsfield, Kling 3.0.</p>
+      </div>
+    </section>
+
+  </div>
+
+  <!-- ============================ RESERVLÄGE (F-001) ============================ -->
+  <!-- Visas som standard (ingen JS, eller prefers-reduced-motion: reduce).
+       Sex egna sektioner i ordning, ingen tumnagel, inget hopp. -->
+  <div class="rm-only" id="rm-build">
+
+    <section class="rm-section rm-section--hero">
+      <img class="rm-section__bg" src="assets/dusk.webp" alt="Stockholm i blå timmen, sett från kajen.">
+      <div class="rm-section__scrim" aria-hidden="true"></div>
+      <div class="rm-hero-copy">
+        <h1 class="sc-display hero-title">Er hemsida är <span class="accent-u">nutidens visitkort</span></h1>
+        <p class="sc-lede hero-sub">Vi skapar skräddarsydda webbplatser som hjälper er att exponera verksamheten.</p>
+      </div>
+      <p class="site-names site-names--static">Calyx&nbsp;·&nbsp;Hōrai&nbsp;·&nbsp;Hyperborea</p>
+    </section>
+
+    <section class="rm-section rm-section--window">
+      <div class="rm-window-stage" id="rm-window-stage">
+        <img class="rm-window-stage__photo" src="assets/push/push-last.webp" alt="" id="rm-window-photo">
+        <div class="rm-window-mask" id="rm-window-mask" aria-hidden="true">
+          <img class="rm-window-mask__fill" src="assets/demo-horai.webp" alt="">
+          <div class="rm-window-mask__glass" aria-hidden="true"></div>
+        </div>
+      </div>
+      <figcaption class="rm-caption">Fönstret är Hōrai</figcaption>
+    </section>
+
+    <!-- Bugg (runda 6): en scrollbar <iframe> här fångade mushjulet i
+         reduced motion (sex hjultick rörde bara ramens inre scroll, aldrig
+         sidan) -- F-001 vill ha det FORMADE läget, inte en levande,
+         interaktiv ram. Statisk skärmbild + länk i stället. -->
+    <section class="rm-section rm-section--frame">
+      <img class="rm-frame-static" src="assets/demo-horai.webp" alt="Hōrai, startsidan, mörk restaurangidentitet med serifwordmark.">
+      <a class="rm-frame-link" href="/sites/horai.html">Öppna Hōrai →</a>
+      <figcaption class="rm-caption">Exempelsida: Hōrai, Asian fusion-koncept</figcaption>
+    </section>
+
+    <!-- data-topbar-zone här (inte bara på motion-versionen): elementen med
+         attributet i .motion-only är display:none under reduced motion och
+         korsar därför aldrig IntersectionObserver (fynd 10 kvarstod trots
+         initTopbarZones() eftersom den bara hade osynliga element att
+         observera). -->
+    <section class="rm-section rm-section--proof" data-topbar-zone="light">
+      <h2 class="sc-display exit-heading exit-heading--static">VI BYGGER ERT VARUMÄRKE.</h2>
+      <p class="exit-lede exit-lede--static">Webbdesign, design och system. Allt på ett ställe.</p>
+      <div class="rm-proof-rows">
+        <div class="rm-proof-row">
+          <img src="assets/demo-calyx.webp" alt="Calyx, startsidan.">
+          <div><p class="proof-row__num">01</p><h3 class="proof-row__title">Design</h3><p class="proof-row__body">Vi formger identitet och gränssnitt: typsnitt, färg och layout som håller ihop.</p><p class="proof-row__site">Exempelsida: Calyx, florist i Stockholm</p><a class="proof-row__link" href="/sites/calyx.html">Öppna Calyx →</a></div>
+        </div>
+        <div class="rm-proof-row">
+          <img src="assets/demo-horai.webp" alt="Hōrai, startsidan.">
+          <div><p class="proof-row__num">02</p><h3 class="proof-row__title">Utveckling</h3><p class="proof-row__body">Vi bygger webbplatsen i kod, sida för sida, och driftsätter den när den är klar.</p><p class="proof-row__site">Exempelsida: Hōrai, Asian fusion-koncept</p><a class="proof-row__link" href="/sites/horai.html">Öppna Hōrai →</a></div>
+        </div>
+        <div class="rm-proof-row">
+          <img src="assets/demo-hyperborea.webp" alt="Hyperborea, startsidan.">
+          <div><p class="proof-row__num">03</p><h3 class="proof-row__title">System</h3><p class="proof-row__body">Vi sätter upp ett CMS så innehållet går att ändra utan vår hjälp.</p><p class="proof-row__site">Exempelsida: Hyperborea, konferens i Lund</p><a class="proof-row__link" href="/sites/hyperborea.html">Öppna Hyperborea →</a></div>
+        </div>
+      </div>
+    </section>
+
+    <section class="rm-section rm-section--ledger" data-topbar-zone="light">
+      <h2 class="sc-display ledger-heading">Alla har rätt till bra design.</h2>
+      <div class="ledger-list ledger-list--static">
+        <div class="ledger-row ledger-row--static">
+          <p class="ledger-row__hairline ledger-row__hairline--static" aria-hidden="true"></p>
+          <p class="ledger-row__desc">Standardpaket. Webbplats med CMS för egna ändringar och en första SEO-optimering.</p>
+          <p class="ledger-row__price">26&nbsp;900 kr</p>
+        </div>
+        <div class="ledger-row ledger-row--static">
+          <p class="ledger-row__hairline ledger-row__hairline--static" aria-hidden="true"></p>
+          <p class="ledger-row__desc">Paket med bokningssystem, betalning och kunddatabas.</p>
+          <p class="ledger-row__price">38&nbsp;900 kr</p>
+        </div>
+        <div class="ledger-row ledger-row--static">
+          <p class="ledger-row__hairline ledger-row__hairline--static" aria-hidden="true"></p>
+          <p class="ledger-row__desc">Helt skräddarsydda lösningar för produktkataloger, specialbyggda system med mera</p>
+          <p class="ledger-row__price">Pris vid förfrågan</p>
+        </div>
+      </div>
+    </section>
+
+    <section class="rm-section rm-section--landing" data-topbar-zone="dark">
+      <img class="landing-night__img landing-night__img--static" src="assets/night.webp" alt="">
+      <div class="landing-scrim" aria-hidden="true"></div>
+      <div class="landing-copy landing-copy--static">
+        <a class="landing-mailto" href="mailto:kontakt@alunix.se">kontakt@alunix.se</a>
+        <p class="landing-address">Alunix, webbyrå i Sverige. Skriv några rader om verksamheten, så hör vi av oss.</p>
+        <p class="landing-credits">Foto: Rafael Peier, Julian Terenzio. Rörelse genererad med Higgsfield, Kling 3.0.</p>
+      </div>
+    </section>
+
+  </div>
+
+</main>
+
+<script src="scrollcraft.js"></script>
+<script src="script.js"></script>
+</body>
+</html>

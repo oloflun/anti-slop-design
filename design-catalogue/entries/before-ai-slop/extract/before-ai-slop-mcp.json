@@ -1,0 +1,426 @@
+{
+  "colors": {
+    "all": [
+      {
+        "hex": "#e5e7eb",
+        "rgb": {
+          "r": 229,
+          "g": 231,
+          "b": 235,
+          "a": 1
+        },
+        "hsl": {
+          "h": 220,
+          "s": 13,
+          "l": 91
+        },
+        "count": 114,
+        "contexts": [
+          "border"
+        ]
+      },
+      {
+        "hex": "#1f2937",
+        "rgb": {
+          "r": 31,
+          "g": 41,
+          "b": 55,
+          "a": 1
+        },
+        "hsl": {
+          "h": 215,
+          "s": 28,
+          "l": 17
+        },
+        "count": 63,
+        "contexts": [
+          "text"
+        ]
+      },
+      {
+        "hex": "#ffffff",
+        "rgb": {
+          "r": 255,
+          "g": 255,
+          "b": 255,
+          "a": 0.9
+        },
+        "hsl": {
+          "h": 0,
+          "s": 0,
+          "l": 100
+        },
+        "count": 20,
+        "contexts": [
+          "background",
+          "text",
+          "border"
+        ]
+      },
+      {
+        "hex": "#475569",
+        "rgb": {
+          "r": 71,
+          "g": 85,
+          "b": 105,
+          "a": 1
+        },
+        "hsl": {
+          "h": 215,
+          "s": 19,
+          "l": 35
+        },
+        "count": 17,
+        "contexts": [
+          "text"
+        ]
+      },
+      {
+        "hex": "#64748b",
+        "rgb": {
+          "r": 100,
+          "g": 116,
+          "b": 139,
+          "a": 1
+        },
+        "hsl": {
+          "h": 215,
+          "s": 16,
+          "l": 47
+        },
+        "count": 13,
+        "contexts": [
+          "text"
+        ]
+      },
+      {
+        "hex": "#94a3b8",
+        "rgb": {
+          "r": 148,
+          "g": 163,
+          "b": 184,
+          "a": 1
+        },
+        "hsl": {
+          "h": 215,
+          "s": 20,
+          "l": 65
+        },
+        "count": 7,
+        "contexts": [
+          "text"
+        ]
+      },
+      {
+        "hex": "#0f172a",
+        "rgb": {
+          "r": 15,
+          "g": 23,
+          "b": 42,
+          "a": 1
+        },
+        "hsl": {
+          "h": 222,
+          "s": 47,
+          "l": 11
+        },
+        "count": 3,
+        "contexts": [
+          "background"
+        ]
+      },
+      {
+        "hex": "#059669",
+        "rgb": {
+          "r": 5,
+          "g": 150,
+          "b": 105,
+          "a": 1
+        },
+        "hsl": {
+          "h": 161,
+          "s": 94,
+          "l": 30
+        },
+        "count": 3,
+        "contexts": [
+          "text"
+        ]
+      },
+      {
+        "hex": "#4f46e5",
+        "rgb": {
+          "r": 79,
+          "g": 70,
+          "b": 229,
+          "a": 1
+        },
+        "hsl": {
+          "h": 243,
+          "s": 75,
+          "l": 59
+        },
+        "count": 2,
+        "contexts": [
+          "text"
+        ]
+      },
+      {
+        "hex": "#eef2ff",
+        "rgb": {
+          "r": 238,
+          "g": 242,
+          "b": 255,
+          "a": 1
+        },
+        "hsl": {
+          "h": 226,
+          "s": 100,
+          "l": 97
+        },
+        "count": 1,
+        "contexts": [
+          "background"
+        ]
+      },
+      {
+        "hex": "#6366f1",
+        "rgb": {
+          "r": 99,
+          "g": 102,
+          "b": 241,
+          "a": 1
+        },
+        "hsl": {
+          "h": 239,
+          "s": 84,
+          "l": 67
+        },
+        "count": 1,
+        "contexts": [
+          "background"
+        ]
+      },
+      {
+        "hex": "#334155",
+        "rgb": {
+          "r": 51,
+          "g": 65,
+          "b": 85,
+          "a": 1
+        },
+        "hsl": {
+          "h": 215,
+          "s": 25,
+          "l": 27
+        },
+        "count": 1,
+        "contexts": [
+          "text"
+        ]
+      },
+      {
+        "hex": "#cbd5e1",
+        "rgb": {
+          "r": 203,
+          "g": 213,
+          "b": 225,
+          "a": 1
+        },
+        "hsl": {
+          "h": 213,
+          "s": 27,
+          "l": 84
+        },
+        "count": 1,
+        "contexts": [
+          "border"
+        ]
+      },
+      {
+        "hex": "#ecfdf5",
+        "rgb": {
+          "r": 236,
+          "g": 253,
+          "b": 245,
+          "a": 1
+        },
+        "hsl": {
+          "h": 152,
+          "s": 81,
+          "l": 96
+        },
+        "count": 1,
+        "contexts": [
+          "background"
+        ]
+      }
+    ]
+  },
+  "regions": [
+    {
+      "role": "nav",
+      "tag": "header",
+      "bounds": {
+        "x": 128,
+        "y": 16,
+        "w": 1024,
+        "h": 58
+      },
+      "heading": null,
+      "buttonCount": 0,
+      "cardCount": 4,
+      "className": "sticky top-4 z-30 mx-auto max-w-5xl px-4"
+    },
+    {
+      "role": "nav",
+      "tag": "nav",
+      "bounds": {
+        "x": 144,
+        "y": 16,
+        "w": 992,
+        "h": 58
+      },
+      "heading": null,
+      "buttonCount": 0,
+      "cardCount": 3,
+      "className": "bg-white/90 backdrop-blur-md border border-slate-200/80 rounded-full shadow-sm flex items-center justify-between px-6 py-3"
+    },
+    {
+      "role": "pricing",
+      "tag": "section",
+      "bounds": {
+        "x": 64,
+        "y": 58,
+        "w": 1152,
+        "h": 636.75
+      },
+      "heading": "The all-in-one platform for modern teams.",
+      "buttonCount": 0,
+      "cardCount": 6,
+      "className": "max-w-6xl mx-auto px-6 pt-24 pb-16 grid md:grid-cols-2 gap-12 items-center"
+    },
+    {
+      "role": "content",
+      "tag": "section",
+      "bounds": {
+        "x": 64,
+        "y": 694.75,
+        "w": 1152,
+        "h": 132
+      },
+      "heading": null,
+      "buttonCount": 0,
+      "cardCount": 1,
+      "className": "max-w-6xl mx-auto px-6 pb-16 text-center"
+    },
+    {
+      "role": "content",
+      "tag": "section",
+      "bounds": {
+        "x": 64,
+        "y": 826.75,
+        "w": 1152,
+        "h": 486.25
+      },
+      "heading": "Everything you need to ship faster",
+      "buttonCount": 0,
+      "cardCount": 3,
+      "className": "max-w-6xl mx-auto px-6 py-16"
+    },
+    {
+      "role": "testimonials",
+      "tag": "section",
+      "bounds": {
+        "x": 0,
+        "y": 1313,
+        "w": 1280,
+        "h": 282
+      },
+      "heading": "Real results from real teams",
+      "buttonCount": 0,
+      "cardCount": 0,
+      "className": "bg-slate-50 border-y border-slate-200"
+    },
+    {
+      "role": "pricing",
+      "tag": "section",
+      "bounds": {
+        "x": 64,
+        "y": 1595,
+        "w": 1152,
+        "h": 340
+      },
+      "heading": "Ready to transform your workflow?",
+      "buttonCount": 0,
+      "cardCount": 1,
+      "className": "max-w-6xl mx-auto px-6 py-20 text-center"
+    },
+    {
+      "role": "footer",
+      "tag": "footer",
+      "bounds": {
+        "x": 0,
+        "y": 1935,
+        "w": 1280,
+        "h": 81
+      },
+      "heading": null,
+      "buttonCount": 0,
+      "cardCount": 0,
+      "className": "border-t border-slate-200 py-8 text-center text-xs text-slate-500"
+    }
+  ],
+  "componentClusters": [],
+  "accessibility": {
+    "remediation": []
+  },
+  "cssHealth": {
+    "sheets": [
+      {
+        "url": "https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap",
+        "totalBytes": 9884,
+        "usedBytes": 0,
+        "unusedBytes": 9884,
+        "unusedPercent": 100
+      },
+      {
+        "url": "http://127.0.0.1:3055/sites/before-ai-slop.html",
+        "totalBytes": 430,
+        "usedBytes": 332,
+        "unusedBytes": 98,
+        "unusedPercent": 23
+      }
+    ],
+    "totalBytes": 10314,
+    "usedBytes": 332,
+    "unusedBytes": 9982,
+    "unusedPercent": 97,
+    "importantCount": 0,
+    "duplicates": 147,
+    "vendorPrefixes": {
+      "webkit": 1,
+      "moz": 0,
+      "ms": 0,
+      "o": 0
+    },
+    "keyframes": [],
+    "specificity": {
+      "max": [
+        0,
+        1,
+        10
+      ],
+      "average": [
+        0,
+        0.06,
+        1.21
+      ],
+      "count": 33
+    },
+    "issues": [
+      "147 duplicate declarations",
+      "97% unused CSS"
+    ]
+  }
+}

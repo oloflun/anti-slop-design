@@ -12,7 +12,7 @@ dna: "Museum wall-text typography x floating biomorphic cream sculpture"
 register: editorial print
 grammar: typographic poster
 lane: "A warm parchment canvas at near-museum gutter width holds a single 215px headline against floating cream-toned 3D sculptural forms, with nothing else above the fold — one typographic moment, one sculptural moment, separated by silence"
-mode: portfolio
+mode: persuade
 traits: ["215px display at 0.77-1.30 leading", "binary two-tone palette, no accent", "1440px pill or 30px card, nothing between", "180px gallery-scale gutters", "biomorphic cream 3D forms as sole imagery", "zero UI shadow, only the sculpture casts one"]
 palette: ["#dbd6d0", "#1e1f1f", "#000000"]
 type: ["Lausanne", "Gunsan"]

@@ -1,0 +1,188 @@
+{
+  "$schema": "https://schemas.wp.org/trunk/theme.json",
+  "version": 3,
+  "settings": {
+    "color": {
+      "palette": [
+        {
+          "slug": "primary",
+          "color": "#3b0604",
+          "name": "Primary"
+        },
+        {
+          "slug": "secondary",
+          "color": "#751510",
+          "name": "Secondary"
+        },
+        {
+          "slug": "accent",
+          "color": "#e7dec4",
+          "name": "Accent"
+        },
+        {
+          "slug": "neutral-1",
+          "color": "#e5e7eb",
+          "name": "Neutral 1"
+        },
+        {
+          "slug": "neutral-2",
+          "color": "#040201",
+          "name": "Neutral 2"
+        },
+        {
+          "slug": "neutral-3",
+          "color": "#1c1611",
+          "name": "Neutral 3"
+        },
+        {
+          "slug": "bg-e7dec4",
+          "color": "#e7dec4",
+          "name": "Background #e7dec4"
+        },
+        {
+          "slug": "bg-040202",
+          "color": "#040202",
+          "name": "Background #040202"
+        },
+        {
+          "slug": "bg-040201",
+          "color": "#040201",
+          "name": "Background #040201"
+        }
+      ],
+      "gradients": [
+        {
+          "slug": "gradient-1",
+          "gradient": "linear-gradient(oklch(0.21 0.02 55 / 0.38), oklch(0.21 0.02 55 / 0.32) 38%, oklch(0.21 0.02 55 / 0.7) 72%, oklch(0.21 0.02 55 / 0.88))",
+          "name": "Gradient 1"
+        },
+        {
+          "slug": "gradient-2",
+          "gradient": "linear-gradient(to right, oklch(0.215 0.02 45 / 0.55), oklch(0.215 0.02 45 / 0) 45%)",
+          "name": "Gradient 2"
+        }
+      ]
+    },
+    "typography": {
+      "fontFamilies": [
+        {
+          "fontFamily": "EB Garamond",
+          "slug": "eb-garamond",
+          "name": "EB Garamond"
+        },
+        {
+          "fontFamily": "IBM Plex Mono",
+          "slug": "ibm-plex-mono",
+          "name": "IBM Plex Mono"
+        },
+        {
+          "fontFamily": "Cormorant Garamond",
+          "slug": "cormorant-garamond",
+          "name": "Cormorant Garamond"
+        }
+      ],
+      "fontSizes": [
+        {
+          "size": "153.6px",
+          "slug": "size-153.6",
+          "name": "153.6px"
+        },
+        {
+          "size": "121.6px",
+          "slug": "size-121.6",
+          "name": "121.6px"
+        },
+        {
+          "size": "89.6px",
+          "slug": "size-89.6",
+          "name": "89.6px"
+        },
+        {
+          "size": "70.4px",
+          "slug": "size-70.4",
+          "name": "70.4px"
+        },
+        {
+          "size": "53.76px",
+          "slug": "size-53.76",
+          "name": "53.76px"
+        },
+        {
+          "size": "51.2px",
+          "slug": "size-51.2",
+          "name": "51.2px"
+        },
+        {
+          "size": "43.52px",
+          "slug": "size-43.52",
+          "name": "43.52px"
+        },
+        {
+          "size": "36px",
+          "slug": "size-36",
+          "name": "36px"
+        }
+      ]
+    },
+    "spacing": {
+      "spacingSizes": [
+        {
+          "size": "4px",
+          "slug": "spacing-4",
+          "name": "4px"
+        },
+        {
+          "size": "40px",
+          "slug": "spacing-40",
+          "name": "40px"
+        },
+        {
+          "size": "48px",
+          "slug": "spacing-48",
+          "name": "48px"
+        },
+        {
+          "size": "56px",
+          "slug": "spacing-56",
+          "name": "56px"
+        },
+        {
+          "size": "64px",
+          "slug": "spacing-64",
+          "name": "64px"
+        },
+        {
+          "size": "80px",
+          "slug": "spacing-80",
+          "name": "80px"
+        },
+        {
+          "size": "96px",
+          "slug": "spacing-96",
+          "name": "96px"
+        },
+        {
+          "size": "128px",
+          "slug": "spacing-128",
+          "name": "128px"
+        }
+      ]
+    },
+    "layout": {
+      "contentSize": "1480px",
+      "wideSize": "1400px"
+    }
+  },
+  "styles": {
+    "color": {
+      "background": "#e7dec4",
+      "text": "#040201"
+    },
+    "typography": {
+      "fontSize": "10.5px",
+      "lineHeight": "15.75px",
+      "fontFamily": "EB Garamond"
+    },
+    "spacing": {}
+  }
+}

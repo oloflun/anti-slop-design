@@ -47,7 +47,7 @@ proof) but the two halves don't share any visual language — no colour, texture
 or type-weight carries over — so the page reads as two different sites stapled
 together.
 
-## What to preserve
+## What to borrow (principle)
 
 - **Open on cinematic, editorial-style photography** rather than generic office
   or team stock imagery, even for a conventional service business.

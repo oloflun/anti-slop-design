@@ -173,7 +173,7 @@ A clip-path triangle (the prism) + an incoming beam from the left + a chromatic 
 - **Size.** 240–480 px max dimension on desktop. Scales down to ~180 px on mobile but never disappears.
 - **Pulse, not rotation.** Night apparatus *pulses* (3% intensity oscillation, 4s period). It does *not* rotate. Rotation was the orb's signature; the apparatus's signature is that it's clearly machined.
 - **Day Foundry: no perpetual motion.** Day apparatus reveals once on first paint (320ms) and stays static. The light is captured.
-- **`prefers-reduced-motion: reduce`:** all pulses freeze at maximum intensity, all reveals collapse to final state.
+- ~~**`prefers-reduced-motion: reduce`:** all pulses freeze at maximum intensity, all reveals collapse to final state.~~ **F-011:** utgår — pulser och reveals spelar alltid.
 
 ## The seven signature moves
 
@@ -213,9 +213,7 @@ Classical Instrument Serif at `--text-display`, **all-lowercase, upright**, with
   from { transform: scaleX(0); }
   to   { transform: scaleX(1); }
 }
-@media (prefers-reduced-motion: reduce) {
-  .hero__title em::after { animation: none; }
-}
+/* F-011 (2026-09-07): reduced-motion-blocket utgår — rörelsen spelar alltid, aldrig en preferensgrind. */
 ```
 
 **Rules:** the coloured word is the verb, never a noun. One word per headline, never two. The underline is the persistent landmark — once drawn, never animates again. `<em>` is repurposed semantically (still emphasis), but renders without italic.
@@ -296,7 +294,7 @@ Lumen's motion stack is **lighter than Hum, heavier than Coral**.
 
 **No magnetic cursors. No bento tile flips. No flashy parallax. No particle systems. No rotating orbs.** If you reach for any of these, you've drifted out of Lumen.
 
-`prefers-reduced-motion: reduce` collapses all animations to instant final state.
+(Rm-kollapsen utgår, F-011: animationerna spelar alltid.)
 
 ## Required dependencies
 

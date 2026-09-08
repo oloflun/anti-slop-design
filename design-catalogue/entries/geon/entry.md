@@ -45,7 +45,7 @@ each project as a catalogue entry — name, one-line pitch, "explore" link, full
 bleed photo — which is the right grammar for a developer with a multi-project
 pipeline.
 
-## What to preserve
+## What to borrow (principle)
 
 - **Crop architectural photography tight enough to read as texture or sculpture**
   for the hero, saving the wide establishing shot for later in the page.

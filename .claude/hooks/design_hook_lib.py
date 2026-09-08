@@ -49,12 +49,35 @@ def disabled() -> bool:
 
 
 def read_event() -> dict:
-    """Parse the hook event from stdin. Returns {} on anything unexpected."""
+    """Parse the hook event from stdin. Returns {} on anything unexpected.
+
+    Side effect, deliberate: the harness does not reliably export
+    CLAUDE_CODE_SESSION_ID to the hook process, but every event carries
+    `session_id`. Without this, scope_to_session() falls back to "all rows"
+    and a Stop report counts another session's edits (CHAIN-AUDIT 2026-09-07
+    saw 213 edits reported for a session with 2). Seeding the env from the
+    event makes session scoping work for every hook in the chain.
+    """
     try:
         raw = sys.stdin.read()
-        return json.loads(raw) if raw.strip() else {}
+        event = json.loads(raw) if raw.strip() else {}
     except Exception:
         return {}
+    try:
+        sid = event.get("session_id")
+        if sid:
+            # The event's id WINS over an inherited env var. A hook process
+            # spawned inside a nested session (the r6/r7 harness runs
+            # `claude -p` children that inherit the parent's environment)
+            # would otherwise be told it is the parent session and scope the
+            # ledger to the wrong rows -- the exact shape of the 213-edits
+            # report in CHAIN-AUDIT 2026-09-07. Measured 2026-09-08: with
+            # "only if unset", a child hook silently read zero of its own
+            # rows because the parent id was already exported.
+            os.environ["CLAUDE_CODE_SESSION_ID"] = str(sid)
+    except Exception:
+        pass
+    return event
 
 
 def emit(event_name: str, context: str) -> None:
@@ -666,6 +689,13 @@ def match_routes(path: str, content: str) -> list[dict]:
         if rule.get("fallback"):
             fallback = rule
             continue
+        # `not_path` suppresses a rule for paths it must never claim. The
+        # imagery rule used to fire on every `<img` in the project, including
+        # material already sourced and vendored under assets/ — 90+ routes,
+        # zero of them actionable, and a permanent false gap in the Stop
+        # report (2026-09-08).
+        if any(frag.lower() in low_path for frag in rule.get("not_path", [])):
+            continue
         matched_on = None
         for frag in rule.get("path", []):
             if frag.lower() in low_path:
@@ -728,6 +758,103 @@ def trap_hits(content: str) -> list[tuple[str, str]]:
 # --------------------------------------------------------------------------
 # Ledger
 # --------------------------------------------------------------------------
+
+# --------------------------------------------------------------------------
+# Generated material
+#
+# The generation backend is reached through an MCP whose server segment is a
+# UUID in this install, so the tool name is matched on the OPERATION, not on
+# the provider: mcp__<anything>__generate_image and friends. That keeps the
+# ledger honest if the connector is renamed or a second provider is added.
+# --------------------------------------------------------------------------
+
+GEN_TOOL = re.compile(
+    r"^mcp__.+__(generate_(image|video|audio|3d)(_batch)?|upscale_(image|video)"
+    r"|reframe|remove_background|outpaint_image|motion_control)$")
+
+COST_TOOL_HINT = "get_cost"
+
+
+def is_generation_tool(name: str) -> bool:
+    return bool(GEN_TOOL.match(name or ""))
+
+
+def generation_fields(event: dict) -> dict:
+    """Model, cost-preflight flag and job id, dug out of an MCP call."""
+    ti = tool_input(event) or {}
+    params = ti.get("params")
+    if isinstance(params, str):
+        try:
+            params = json.loads(params)
+        except Exception:
+            params = {}
+    if not isinstance(params, dict):
+        params = {}
+    out = {"tool": tool_name(event), "model": params.get("model", "")}
+    if params.get(COST_TOOL_HINT):
+        out["preflight"] = 1
+    if params.get("count"):
+        out["count"] = params.get("count")
+    resp = event.get("tool_response") or event.get("tool_result") or {}
+    if isinstance(resp, str):
+        m = re.search(r"[0-9a-f]{8}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{12}", resp)
+        if m:
+            out["job"] = m.group(0)
+        m = re.search(r"([0-9]+(?:\.[0-9]+)?)\s*credit", resp, re.I)
+        if m:
+            out["credits"] = float(m.group(1))
+    elif isinstance(resp, dict):
+        for k in ("job_id", "id", "jobId"):
+            if resp.get(k):
+                out["job"] = str(resp[k]); break
+        for k in ("cost", "credits", "price"):
+            if isinstance(resp.get(k), (int, float)):
+                out["credits"] = resp[k]; break
+    return {k: v for k, v in out.items() if v not in (None, "")}
+
+
+def _skill_dir(name: str):
+    """Where an installed skill lives, or None. First word only: routes name
+    commands like "impeccable layout", and the skill is `impeccable`."""
+    base = (name or "").strip().split()[0] if (name or "").strip() else ""
+    if not base:
+        return None
+    for root in (HOME / ".agents" / "skills", HOME / ".claude" / "skills"):
+        d = root / base
+        try:
+            if (d / "SKILL.md").exists():
+                return d
+        except Exception:
+            continue
+    return None
+
+
+def skill_status(name: str) -> str:
+    """How a routed skill can be reached: 'ok', 'user-only', or 'missing'.
+
+    The route-vs-invocation gap is only meaningful for skills the model could
+    have loaded and did not. Two other cases were being counted in the same
+    bucket and made the number untrustworthy (2026-09-08):
+
+      user-only  the skill sets `disable-model-invocation`, so ONLY the user
+                 can run it (/review-animations). An agent cannot close this
+                 gap no matter what it does.
+      missing    the route names something that is not an installed skill at
+                 all. That is a bug in component-routing.md, not a skipped
+                 step - the fallback rule shipped as "impeccable layout" for
+                 months and could never load once.
+    """
+    d = _skill_dir(name)
+    if d is None:
+        return "missing"
+    try:
+        head = (d / "SKILL.md").read_text(encoding="utf-8", errors="replace")[:1200]
+        if "disable-model-invocation: true" in head:
+            return "user-only"
+    except Exception:
+        pass
+    return "ok"
+
 
 def current_session_id() -> str:
     """The running Claude Code session's id. Hooks inherit it via env."""

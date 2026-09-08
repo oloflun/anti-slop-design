@@ -150,7 +150,7 @@ When characters or specific scenes can't be hand-built economically. **Always po
 2. **Use reference images** for brand consistency. Nanobanana 2's character-consistency feature is its differentiator vs. Midjourney; feed it your brand assets so generations stay on-style.
 3. **Stamp the model in the macrostructure comment** (`generated: nanobanana-2 · post-processed`). Provenance matters.
 4. **Verify SynthID watermark** is present on Google-generated images.
-5. **No animation.** None of these models output multi-frame; assemble via custom-craft if motion is needed.
+5. **These four still models output no multi-frame.** Moving material is generated through Higgsfield instead — see [`generation.md`](generation.md) for the model route, the credit gate and the frame-level QA, and § Encoding below for how a clip has to be encoded before it can be scrubbed. (The old rule here read "No animation"; that stopped being true for this vault on 2026-09-08.)
 
 ### Avoid
 
@@ -260,7 +260,7 @@ When budget and timeline force a shortcut and even Tier C is overkill.
      <source src="/hero.h264.mp4" type="video/mp4">
    </video>
    ```
-3. **Always include a `poster=""`** — prevents layout shift, gives reduced-motion users a static fallback.
+3. **Always include a `poster=""`** — prevents layout shift, and is the frame the page holds before the clip is decoded. (Motivet "static fallback for reduced-motion users" utgår, F-011; posterkravet står kvar.)
 4. **`fetchpriority="high"` on the LCP element.** **Never `loading="lazy"`** on the hero — that kills LCP.
 5. **VTT captions for accessibility.** Even on muted demo loops; people may unmute.
 6. **No sound on autoplay.** Browsers block it anyway, but the principle is firm.
@@ -281,6 +281,40 @@ When budget and timeline force a shortcut and even Tier C is overkill.
 - **`loading="lazy"` on hero video** — kills LCP, tanks Core Web Vitals.
 
 ---
+
+## Encoding a clip that will be scrubbed
+
+A hero video that *plays* and a clip that gets *scrubbed* are different files. A normal
+web encode places a keyframe every two to five seconds; it plays perfectly and seeks like
+mud, because every seek decodes forward from the last keyframe. Upstream scroll-craft
+states the whole trick in one line: **"A tighter GOP reduces decoder work during repeated
+seeks."**
+
+```bash
+# desktop
+ffmpeg -v error -y -i "$input" -an -vf "unsharp=5:5:0.8:5:5:0.0"   -c:v libx264 -preset slow -crf 20 -pix_fmt yuv420p   -g 8 -keyint_min 8 -sc_threshold 0 -movflags +faststart "$output"
+
+# mobile: same, plus scale, and tighter still
+ffmpeg -v error -y -i "$input" -an   -vf "scale=-2:'min(720,ih)',unsharp=5:5:0.8:5:5:0.0"   -c:v libx264 -preset slow -crf 23 -pix_fmt yuv420p   -g 4 -keyint_min 4 -sc_threshold 0 -movflags +faststart "$output"
+```
+
+Rules around it:
+
+- **The poster is the clip's own first frame.** Any other image is a jump on load.
+- **Extract the last frame with a reverse filter, not a timestamp seek** — the exact
+  final decoded frame, because in a multi-leg clip that frame is the next leg's start
+  image.
+- **Never stream-copy** a graded intermediate; re-encode.
+- **Decimate 60 fps sources to 24–30 fps** before the dense-GOP pass. At GOP 8 a 60 fps
+  file is several times the size for motion no hand can resolve.
+- **Budget:** ≤ 32 MiB for all desktop clips on a page, ≤ 16 MiB for all mobile clips,
+  fetched as a Blob after first paint so `currentTime` stays seekable and the clip never
+  sits on the LCP path.
+- **Cut phone clips portrait.** A landscape file shown `cover` in a portrait viewport
+  decodes the whole frame and throws three quarters of it away.
+
+Where the footage comes from, and the QA it has to pass before it is vendored:
+[`generation.md`](generation.md).
 
 ## Photography
 

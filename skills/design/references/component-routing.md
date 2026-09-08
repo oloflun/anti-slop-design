@@ -13,7 +13,7 @@ Skills are **tools invoked for craft**. They do not choose the direction — the
 | Building | Invoke | Because |
 |---|---|---|
 | Nav, header, menu, animated dropdown | `animated-navigation` | Rollout tabs, flying-arrow motion, expanding underline, glass dropdown reveal, mobile menu — the full interaction model with real timings |
-| Button, modal, drawer, popover, tooltip, toast, sheet, accordion; anything with drag, swipe, gesture, or a press feel | `emil-design-eng` | Easing curves, spring config, `transform-origin` correctness, `:active` states, reduced-motion, GPU vs JS. Outputs a Before/After/Why table |
+| Button, modal, drawer, popover, tooltip, toast, sheet, accordion; anything with drag, swipe, gesture, or a press feel | `emil-design-eng` | Easing curves, spring config, `transform-origin` correctness, `:active` states, GPU vs JS. Outputs a Before/After/Why table |
 | Carousel, slider, gallery | `slideshow` | 3D carousel mechanics. In project-a, the project's carousel rules bind on top |
 | Route or state transition | `vercel-react-view-transitions` | `<ViewTransition>`, `addTransitionType`, directional navigation, list reorder |
 | shadcn primitive | `shadcn-ui` | Correct primitive usage and theming against the locked tokens |
@@ -64,9 +64,10 @@ Skills are **tools invoked for craft**. They do not choose the direction — the
       "path": ["chart", "graph", "metric", "kpi", "dashboard", "stat"],
       "code": ["recharts", "d3", "victory", "visx", "<ResponsiveContainer", "chartjs", "plotly"] },
 
-    { "id": "imagery",    "skill": "imagegen-frontend-web",           "why": "imagery-led section",
+    { "id": "imagery",    "skill": "imagegen-frontend-web",           "why": "imagery-led section where the image does not exist yet — never for material already vendored under assets/",
       "path": ["hero", "gallery", "showcase"],
-      "code": ["next/image", "<img", "<picture", "backgroundImage"] },
+      "not_path": ["assets/", "credits.json"],
+      "code": ["src=\"\"", "src={undefined}", "TODO: image", "placeholder-image"] },
 
     { "id": "form",       "skill": "impeccable harden",               "why": "form — 8 states required",
       "path": ["form", "input", "field", "checkout", "signup", "login", "contact"],
@@ -102,7 +103,27 @@ Skills are **tools invoked for craft**. They do not choose the direction — the
       "code": ["data-sc-", "animation-timeline", "scroll-timeline", "scrollY", "IntersectionObserver",
                "position: sticky", "position:sticky", "requestAnimationFrame"] },
 
-    { "id": "layout",     "skill": "impeccable layout",               "why": "layout, no other signal",
+    { "id": "generation", "skill": "design",                          "why": "generated material — references/generation.md owns the model route, the credit gate and the provenance stamp",
+      "path": ["assets/", "credits.json", "frames/", "higgsfield"],
+      "code": ["<video", "data-sc-clip", ".mp4", "poster=", "generated:"] },
+
+    { "id": "perf",       "skill": "design",                          "why": "performance surface — references/performance.md (budget, gate 93)",
+      "path": [],
+      "code": ["will-change", "backdrop-filter", "filter:", "@font-face", "<iframe", "loading=\"lazy\"", "fetchpriority"] },
+
+    { "id": "motion-review", "skill": "review-animations",            "why": "motion written — emil-design-eng builds it, review-animations grades it (both must be invoked by name)",
+      "path": [],
+      "code": ["rotateY", "rotateX", "clip-path", "--sc-p", "--sc-ps", "transform-origin", "@keyframes", "transition:"] },
+
+    { "id": "a11y",       "skill": "a11y-audit",                      "why": "interactive or media surface — the audit is invoked by name, never approximated",
+      "path": [],
+      "code": ["<iframe", "<video", "<button", "<a ", "aria-", "tabindex", "role=\""] },
+
+    { "id": "catalogue",  "skill": "design-catalog",                  "why": "brief or lock being written — the catalogue owns selection (Step 0)",
+      "path": ["BRIEF.md", "reference-lock", "concepts.md"],
+      "code": [] },
+
+    { "id": "layout",     "skill": "impeccable",                      "why": "layout, no other signal",
       "path": [],
       "code": [],
       "fallback": true }

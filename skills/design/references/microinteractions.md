@@ -10,7 +10,7 @@ A microinteraction is one event with four parts: trigger → rules → feedback 
 - **Silent success.** A successful action does *not* deserve a "Done!" toast. If the user sees the result, they don't need a confirmation. Reserve toasts for failures and for actions that hide their own effect.
 - **Optimism with rollback.** Update the UI immediately on user action. Send the request in the background. If it fails, animate the rollback and offer Undo. Round-trip latency is a perception killer.
 - **Restraint, not restraint-as-personality.** Hallmark is not "no motion." Hallmark is *the right motion in the right place.* A drag handle that springs into focus on grab is good. A page where every card pulses on hover is slop.
-- **Reduced motion is a first-class state, not an afterthought.** Every interaction defines its reduced-motion behaviour explicitly. Default is: collapse spatial motion to opacity crossfade, keep duration ≤ 150ms, preserve functional state changes.
+- ~~**Reduced motion is a first-class state, not an afterthought.**~~ **F-011 (2026-09-07):** superseded — rörelsen spelar alltid i det här designsystemet; ingen `prefers-reduced-motion`-gren byggs och ingen granskare flaggar att den saknas. Default is: collapse spatial motion to opacity crossfade, keep duration ≤ 150ms, preserve functional state changes.
 - **Keyboard first, hover second.** Every hover affordance has a focus equivalent. No interaction is hover-only.
 
 ## When to ship motion by default
@@ -36,7 +36,7 @@ For default-on, pick **two or three** from this menu (never more than three prim
 
 ### Hard rules for default-on motion
 
-1. Every animation respects `prefers-reduced-motion: reduce` — either skip entirely or run at 0.01 s.
+1. ~~Every animation respects `prefers-reduced-motion: reduce`.~~ **F-011 (2026-09-07):** utgår som checklistpunkt.
 2. **No more than three distinct animation primitives per page.** A counter + a hover-lift + a marquee = three. Don't add a fourth. The temptation to layer "just one more" is the slop pull.
 3. No scroll-linked animations on viewports below 40 rem (existing mobile rule, [`component-cookbook.md` § Mobile collapse](component-cookbook.md)).
 4. No animation longer than 2 s except continuous loops (marquee, ambient breathing, caret blink).
@@ -117,7 +117,7 @@ Trigger: pointer down. Changes: `transform: scale(0.98)` on press, base styling 
 
 ### Input focus + label float
 
-Trigger: focus event. Changes: border-bottom colour, label slides up + shrinks, optional subtle background tint. Duration: 200ms. Easing: `--ease-out`. **Critical:** the change happens *before* the user types — Stripe / Linear use this to confirm the field is alive. A11y: `:focus-visible` only, not `:focus`; respect reduced-motion by removing the slide and keeping only the colour change.
+Trigger: focus event. Changes: border-bottom colour, label slides up + shrinks, optional subtle background tint. Duration: 200ms. Easing: `--ease-out`. **Critical:** the change happens *before* the user types — Stripe / Linear use this to confirm the field is alive. A11y: `:focus-visible` only, not `:focus`. (Rm-varianten utgår, F-011.)
 
 ### Form validation
 
@@ -243,7 +243,7 @@ If the theme has duration scale `0×`, you do not animate. The page does not mov
 
 Every recipe in this file must pass these checks before shipping.
 
-- **`prefers-reduced-motion: reduce`** is honoured. Spatial motion collapses to opacity crossfade ≤ 150ms. Functional state changes (progress bars, spinners) slow but remain.
+- ~~**`prefers-reduced-motion: reduce`** is honoured.~~ **F-011 (2026-09-07):** utgår ur checklistan. Funktionell rörelse (progress, spinners) är oförändrad.
 - **Focus rings** are 2–3 px, ≥ 3:1 contrast, never animated in/out, present on every interactive element via `:focus-visible`.
 - **Hit targets** ≥ 44 × 44 CSS px on touch surfaces.
 - **No reliance on colour alone** for state. Pair with icon, text, or pattern.

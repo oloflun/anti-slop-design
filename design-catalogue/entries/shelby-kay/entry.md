@@ -12,7 +12,7 @@ dna: "265px edge-to-edge wordmark x low-opacity botanical greenhouse atmosphere"
 register: editorial print
 grammar: typographic poster
 lane: "A warm linen canvas holds a 265px sage wordmark stretched to the viewport edge over a barely-visible botanical photograph, with a rotated surname running down the right margin and a text-only bottom nav — no button, no shadow, no rounded corner anywhere on the page"
-mode: portfolio
+mode: persuade
 traits: ["26x type-scale ratio (265px to 10px)", "two-colour ink system, olive + sage only", "0px radius everywhere, zero elevation", "botanical photography at 10-15% opacity", "rotated 90° side label as running header", "tonal section shifts, cream to tan to taupe"]
 palette: ["#393c2a", "#737955", "#efe6d9", "#d6b292", "#afa199", "#7b8785"]
 type: ["Ranade", "Switzer"]

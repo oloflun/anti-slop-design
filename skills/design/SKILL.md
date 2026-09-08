@@ -576,6 +576,11 @@ Ported verbatim from upstream. **The references are the source of truth**; this 
 |---|---|
 | [`reference-lock.md`](references/reference-lock.md) | Step 1b, every tier — lock block + decision ledger before code |
 | [`photo-sources.md`](references/photo-sources.md) | Step 5b — sources, licences, the photo-search field |
+| [`catalogue-first.md`](references/catalogue-first.md) | **Step 0 — always. The catalogue is the bar; selection is mechanical, not recalled** |
+| [`generation.md`](references/generation.md) | Step 5b — generated material: model route, credit gate, provenance, who may generate |
+| [`performance.md`](references/performance.md) | Step 4 while writing, Step 5 to verify — the budget (gate 93) |
+| [`motion-smoothness.md`](references/motion-smoothness.md) | Any scroll-driven motion — `--sc-ps`, the two faults behind "hackigt" (F-013) |
+| [`lift.md`](references/lift.md) | Step 7 — the pass order that replaces "run polish" |
 | [`scroll/`](references/scroll/) | Step 2b on Persuade pages — grammars, devices, feel, fingerprint |
 | [`shotgun.md`](references/shotgun.md) | Step 2b — the bake-off board |
 | [`verbs/critique.md`](references/verbs/critique.md) · [`verbs/review.md`](references/verbs/review.md) | Step 5 pass 10 · the `audit` verb |

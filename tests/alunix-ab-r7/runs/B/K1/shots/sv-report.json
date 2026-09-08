@@ -1,0 +1,84 @@
+C:\Users\Anton L\.claude\skills\design\scripts\scroll_verify.py:43: DeprecationWarning: Image.Image.getdata is deprecated and will be removed in Pillow 14 (2027-10-15). Use get_flattened_data instead.
+  return list(Image.open(io.BytesIO(png_bytes)).convert("L").resize((w, h)).getdata())
+C:\Users\Anton L\.claude\skills\design\scripts\scroll_verify.py:140: DeprecationWarning: Image.Image.getdata is deprecated and will be removed in Pillow 14 (2027-10-15). Use get_flattened_data instead.
+  px = list(plate.crop((x0, y0, min(x1, plate.width), min(y1, plate.height))).getdata())
+{
+  "url": "http://127.0.0.1:3201/tests/alunix-ab-r7/runs/B/K1/index.html",
+  "positions": [
+    0,
+    300,
+    600,
+    900,
+    1200,
+    1500,
+    1800,
+    2100,
+    2400,
+    2700,
+    3000,
+    3300,
+    3600,
+    3900,
+    4200,
+    4500,
+    4800,
+    5100,
+    5400,
+    5700,
+    6000,
+    6300,
+    6600,
+    6900,
+    7200,
+    7500,
+    7692
+  ],
+  "deadScroll": [],
+  "cuesNeverFull": [
+    {
+      "el": "P.sc-lede:Vi skapar skr\u00e4ddarsydda webbpl",
+      "peakOpacity": 0.86
+    },
+    {
+      "el": "P.landing-address:Alunix, webbyr\u00e5 i Sverige. Skr",
+      "peakOpacity": 0.88
+    }
+  ],
+  "unrevealed": [],
+  "contrastUnderMedia": [
+    {
+      "text": "",
+      "worst": 1.02,
+      "floor": 4.5
+    },
+    {
+      "text": "kontakt@alunix.se",
+      "worst": 3.66,
+      "floor": 4.5
+    },
+    {
+      "text": "kontakt@alunix.se",
+      "worst": 1.53,
+      "floor": 3.0
+    }
+  ],
+  "contactSheet": "tests\\alunix-ab-r7\\runs\\B\\K1\\shots\\sv\\sheet.png",
+  "notes": [],
+  "blankBands": [
+    {
+      "from": 859,
+      "to": 2340,
+      "px": 1481
+    },
+    {
+      "from": 3240,
+      "to": 4900,
+      "px": 1660
+    },
+    {
+      "from": 7563,
+      "to": 8592,
+      "px": 1029
+    }
+  ]
+}

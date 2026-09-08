@@ -1,0 +1,124 @@
+:root {
+  /* Colors — Primary */
+  --color-primary: #3b0604;
+  --color-secondary: #751510;
+  --color-accent: #e7dec4;
+
+  /* Colors — Neutrals */
+  --color-neutral-50: #e5e7eb;
+  --color-neutral-100: #040201;
+  --color-neutral-200: #1c1611;
+
+  /* Colors — Backgrounds */
+  --color-bg: #e7dec4;
+  --color-bg-1: #040202;
+  --color-bg-2: #040201;
+
+  /* Colors — Text */
+  --color-text: #040201;
+  --color-text-1: #1c1611;
+  --color-text-2: #dfd4b7;
+  --color-text-3: #93611c;
+  --color-text-4: #3b0604;
+
+  /* Typography — Families */
+  --font-body: 'EB Garamond', sans-serif;
+  --font-body: 'IBM Plex Mono', sans-serif;
+  --font-font-2: 'Cormorant Garamond', sans-serif;
+
+  /* Typography — Scale */
+  --font-size-153.6: 153.6px;
+  --font-size-121.6: 121.6px;
+  --font-size-89.6: 89.6px;
+  --font-size-70.4: 70.4px;
+  --font-size-53.76: 53.76px;
+  --font-size-51.2: 51.2px;
+  --font-size-43.52: 43.52px;
+  --font-size-36: 36px;
+  --font-size-30: 30px;
+  --font-size-24: 24px;
+  --font-size-20: 20px;
+  --font-size-17.5: 17.5px;
+
+  /* Spacing */
+  --spacing-4: 4px;
+  --spacing-40: 40px;
+  --spacing-48: 48px;
+  --spacing-56: 56px;
+  --spacing-64: 64px;
+  --spacing-80: 80px;
+  --spacing-96: 96px;
+  --spacing-128: 128px;
+
+  /* Original Site Variables */
+  /* — colors — */
+  --tw-ring-offset-shadow: 0 0 #0000;
+  --tw-ring-shadow: 0 0 #0000;
+  --tw-ring-inset: ;
+  --tw-ring-offset-width: 0px;
+  --tw-border-spacing-x: 0;
+  --tw-shadow-colored: 0 0 #0000;
+  --tw-border-spacing-y: 0;
+  --tw-ring-color: rgb(59 130 246 / 0.5);
+  --tw-ring-offset-color: #fff;
+  /* — spacing — */
+  --tw-contain-size: ;
+  --tw-numeric-spacing: ;
+  /* — shadows — */
+  --tw-shadow: 0 0 #0000;
+  --tw-drop-shadow: ;
+  /* — other — */
+  --c-papper: oklch(0.955 0.018 92);
+  --c-black: oklch(0.21 0.02 55);
+  --c-oxblod: oklch(0.42 0.125 28);
+  --c-guld: oklch(0.74 0.10 85);
+  --c-benvit: oklch(0.94 0.02 90);
+  --c-mork: oklch(0.215 0.02 45);
+  --f-display: "Cormorant Garamond", ui-serif, Georgia, serif;
+  --f-body: "EB Garamond", ui-serif, Georgia, serif;
+  --f-mono: "IBM Plex Mono", ui-monospace, monospace;
+  --tw-contrast: ;
+  --tw-backdrop-sepia: ;
+  --tw-sepia: ;
+  --tw-skew-x: 0;
+  --tw-ordinal: ;
+  --tw-backdrop-saturate: ;
+  --tw-backdrop-blur: ;
+  --tw-contain-style: ;
+  --tw-translate-x: 0;
+  --tw-gradient-via-position: ;
+  --tw-backdrop-invert: ;
+  --tw-saturate: ;
+  --tw-scroll-snap-strictness: proximity;
+  --tw-grayscale: ;
+  --tw-scale-x: 1;
+  --tw-backdrop-hue-rotate: ;
+  --tw-gradient-to-position: ;
+  --tw-brightness: ;
+  --tw-numeric-fraction: ;
+  --tw-backdrop-grayscale: ;
+  --tw-hue-rotate: ;
+  --tw-scale-y: 1;
+  --tw-pan-y: ;
+  --tw-backdrop-contrast: ;
+  --tw-skew-y: 0;
+  --tw-backdrop-brightness: ;
+  --tw-slashed-zero: ;
+  --tw-blur: ;
+  --tw-invert: ;
+  --tw-pan-x: ;
+  --tw-translate-y: 0;
+  --tw-backdrop-opacity: ;
+  --tw-gradient-from-position: ;
+  --tw-numeric-figure: ;
+  --tw-rotate: 0;
+  --tw-pinch-zoom: ;
+  --tw-contain-layout: ;
+  --tw-contain-paint: ;
+  /* — semantic — */
+  success: [object Object];
+  warning: [object Object];
+  error: [object Object];
+  info: [object Object];
+
+}

@@ -4,7 +4,7 @@ url: https://drinkolipop.com
 source_url: https://drinkolipop.com
 captured: 2026-09-04
 origin: refero
-extract: failed: [2m  - navigating to "https://drinkolipop.com/", waiting until "domcontentloaded"[22m
+extract: ok
 category: playful
 category2: "consumer-brand"
 family: apothecary-soda-fountain
