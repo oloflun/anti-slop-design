@@ -182,11 +182,17 @@ one that exists.
 **Apparatus is licensed by the business, and budgeted.** Edition markers, plate
 indices, roman-numeral dates, colophons and mono micro-labels belong to businesses
 that plausibly publish an edition, catalogue or archive. Everywhere else they are
-wallpaper: eight whispering 10px labels make the whole page whisper. Outside the
-print registers the budget is **at most four mono micro-labels on the page**, and
-each survivor passes a function test — does it identify, differentiate, locate, or
-enable an action? A label that only decorates is deleted, or promoted into fewer
-words at larger size with a real job on the page.
+wallpaper: eight whispering 10px labels make the whole page whisper. **On a
+marketing page the default is zero mono/micro-labels and zero decorative captions**
+(Anton, 2026-09-19, FEEDBACK.md F-016 — supersedes the earlier four-label budget as
+the default outside the print registers). Every survivor is an explicit exception,
+never a quota to spend, and each one passes a function test — does it identify,
+differentiate, locate, or enable an action? A label or caption that only decorates
+or describes the page/example rather than the subject (see
+[`anti-patterns.md` § Descriptive microtext](references/anti-patterns.md), gate 99)
+is deleted, or promoted into fewer words at a real reading size with a real job on
+the page. When a framed element still needs a name (a screenshot, an embedded
+demo), carry it on `title`/`aria-label`, not a visible caption line.
 
 **In-situ negation.** Every section's source comment names the slop default it
 replaces — `<!-- INDEX: typeset ledger, NOT a card row -->`. The decision is
@@ -419,7 +425,7 @@ Trigger summary — the full table with detection patterns is in the reference:
 Read [`process.md`](references/process.md) for the five-step working method and the question-calibration table, and [`scope-discipline.md`](references/scope-discipline.md) for what you may and may not touch.
 
 Binding while building:
-- [`gates.md`](references/gates.md) — every numbered gate, now 1–91 (89 calm-editorial autopilot · 90 reference averaging · 91 token-role drift). Non-negotiable.
+- [`gates.md`](references/gates.md) — every numbered gate, now 1–98 (89 calm-editorial autopilot · 90 reference averaging · 91 token-role drift · 92 shape consistency lock · 93 performance budget · 94 motion continuity · 95 catalogue selection logged · 96 TASTE § 5 hit · 97 arrow suffix on a link or button · 98 dark ground with no color-scheme or theme-color). Non-negotiable.
 - **Reveal systems fail toward visible — while building, not at the exit.** Content that starts at `opacity: 0` has an observer threshold of 0, reveals everything on or above the fold at mount, a timed failsafe, a `noscript` fallback, and a count of un-revealed elements. AB09 shipped a page that was empty below the fold in every capture because this sat only in the exit bar.
 - [`production-tells.md`](references/production-tells.md) — gates 66–88, the micro-decoration signatures. Load on every marketing, landing, or portfolio build.
 - [`typography.md`](references/typography.md), [`color.md`](references/color.md), [`layout-and-space.md`](references/layout-and-space.md), [`motion.md`](references/motion.md), [`copy.md`](references/copy.md), [`anti-patterns.md`](references/anti-patterns.md) — load every build.
@@ -580,6 +586,9 @@ Ported verbatim from upstream. **The references are the source of truth**; this 
 | [`generation.md`](references/generation.md) | Step 5b — generated material: model route, credit gate, provenance, who may generate |
 | [`performance.md`](references/performance.md) | Step 4 while writing, Step 5 to verify — the budget (gate 93) |
 | [`motion-smoothness.md`](references/motion-smoothness.md) | Any scroll-driven motion — `--sc-ps`, the two faults behind "hackigt" (F-013) |
+| [`scroll/pace.md`](references/scroll/pace.md) | Any multi-act or worldflight sequence — `rate = weight / clip_seconds`, the third fault called "not smooth" (gate 94) |
+| [`page-mechanics.md`](references/page-mechanics.md) | Step 4, every build — focus selectors, touch, anchor offsets, `content-visibility`, what the `<head>` needs |
+| [`numbers.md`](references/numbers.md) | Step 4 and Step 5 — the ~90 measurable floors, the Utopia `clamp()` formula, and where the chain's own number wins |
 | [`lift.md`](references/lift.md) | Step 7 — the pass order that replaces "run polish" |
 | [`scroll/`](references/scroll/) | Step 2b on Persuade pages — grammars, devices, feel, fingerprint |
 | [`shotgun.md`](references/shotgun.md) | Step 2b — the bake-off board |

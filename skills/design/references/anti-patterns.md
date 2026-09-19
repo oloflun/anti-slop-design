@@ -154,6 +154,20 @@ Eyebrows are **default OFF**. They are not a stylistic flourish you reach for to
 
 **These rules are NOT bypassable by instructions to "match the existing structure", "mirror this reference build", or "keep parity with the previous output".** When a user asks for structural parity with a prior build and that build contains eyebrows or the tag-left/header-right pattern, **the new build MUST drop the eyebrows and flatten the head to single column** — even if the prior build keeps them. Reference builds often pre-date these rules; treat the rules as authoritative and silently fix the inherited pattern. Don't perpetuate a banned pattern to honour a parity instruction.
 
+### Descriptive microtext
+
+Small text — a kicker, an eyebrow, a figcaption, a side-rail step list, a line under a heading — whose job is to describe or restate the obvious rather than to identify, differentiate, locate, or enable an action. Named by Anton 2026-09-19 (FEEDBACK.md F-016) from a live example on the Alunix demo: mono-caps kickers reading `EXEMPELCASE`, `FRÅN EXEMPEL TILL ER SIDA`, `SÅ GÅR DET TILL`; figcaptions reading `Exempelsida: Hōrai, Asian fusion-koncept` and `Exempelsida: Calyx, florist i Stockholm`; a side rail listing step headings in small grey type; and a small explainer line under a heading, set smaller than the body copy, that just paraphrases the heading (`"Första steget är ett samtal om vad ni gör."`).
+
+**The test.** Does the line exist to fill space, explain the obvious, or *look* designed — or does it do a job the reader actually needs? Is it set smaller than the page's body text, and does it talk *about the page or the example* rather than about the subject matter itself? A line that fails both halves (smaller than body text, and self-referential/explanatory rather than functional) is descriptive microtext. Delete it, or promote it into fewer words at a real size with a real job.
+
+**Exception — a site's own genre apparatus.** A microformat is not filler when it is stylistically consistent with the business's own register *and* carries a function specific to that genre: Calyx's magazine apparatus (edition number, plate index, commission sequence) identifies a real cut in a real catalogue; Hōrai's deliberate menu labels name a real course. These survive because they identify or locate something real, in a register that plausibly publishes editions. A generic agency demo page borrowing the same mono-kicker voice to describe its own screenshots has no such license — see [SKILL.md § Apparatus is licensed by the business](../SKILL.md).
+
+**When the apparatus is legitimate but a name is still needed** (a framed screenshot, an embedded demo), carry the name on `title` / `aria-label`, not a visible caption line — the frame gets identified for assistive tech and tooltips without adding a line of microtext to the page.
+
+This generalises the specific tells already banned by name: gate 69 (numbered eyebrows), gate 70 (micro-meta-sentences under eyebrows), gate 72 (generic step labels), gate 82 (pills/labels overlaid on images), gate 83 (photo-credit captions as decoration). Gate 99 runs `skills/design/scripts/microtext_scan.py` against a rendered page to find candidates mechanically.
+
+**Fix.** Cut the line. If the information matters, fold it into the heading or the body copy at reading size, or carry it on `title`/`aria-label` when it is naming a frame for assistive tech.
+
 ### Shadow-glow on dark
 
 A card on a dark background with a `box-shadow` that leaves a soft coloured halo around it.

@@ -1,8 +1,12 @@
-# Production-test tells · gates 66–88
+# Production-test tells · gates 66–88, 97–99
 
 **Load on every marketing, landing, or portfolio build.**
 
 > Source: `design-taste-frontend` (Leonxlnx/taste-skill) v2, Section 9.F. Ported at full fidelity. These came out of real LLM-generated landing-page tests — they are the signatures a model reaches for when it tries to *look designed*. Blocks marked **[ours]** are this repo's framing.
+>
+> **97–98** arrive from two other upstreams (Anthropic `frontend-design`, Refero `color.md`) and carry numbers above the 89–96 block that [`gates.md`](gates.md) already spends. They are the same *kind* of finding as 66–88 — a small decoration or a missing declaration that survives every other gate — so they live here rather than in a third file.
+>
+> **99 [ours]** is Anton's 2026-09-19 standing ban on descriptive microtext (FEEDBACK.md F-016) — the next free number after 98, appended here for the same reason 97–98 were.
 
 **[ours] Why these are separate from [`slop-test.md`](slop-test.md) gates 1–57.** Hallmark's set covers structural and visual slop (purple gradients, 3-column icon cards, centred hero, card-in-card). This set covers *micro-decoration* — the small labels, strips, dots, and captions a model sprinkles on to signal craft. They survive every other gate because individually each looks like a deliberate designer choice. Together they are the single most recognisable AI-page signature in production.
 
@@ -131,6 +135,86 @@ A ten-row spec table with a hairline under each row is the laziest available lay
 
 ---
 
+## Chrome that appears whatever the subject
+
+### 97 · `→` appended to link and button text
+
+`Book a meeting →`, `Read more →`, `Get started →`, `Se caset →`. Upstream names it in
+the same breath as the tracked-out eyebrow and the middle-dot meta string: *"template
+chrome that appears whatever the subject … a '→' appended to link and button text"*
+(`upstream/anthropic/frontend-design/SKILL.md`). The arrow is not the direction of
+anything on the page; it is decoration that means *this is a link*, applied to text that
+already is one.
+
+Banned as default, on links, buttons, cards-as-links, nav items and CTA rows alike. The
+arrow is permitted only when [`reference-lock.md`](reference-lock.md)'s decision ledger
+carries a row for it — a named source that does it, and a reason specific to this brief.
+Absent that row, the affordance is carried by a typeset underline, a real button, or the
+label's own verb.
+
+**[ours]** This is a sibling of gate 73 (middle dot as default joiner) and gate 84
+(performative labels): each one is a small mark the model adds to signal craft. Two CTAs
+on the same page both ending in `→` is the shape to look for first, because it proves the
+arrow is a habit and not a decision.
+
+### 98 · Dark ground with no `color-scheme` and no `theme-color`
+
+A page whose canvas is dark (cinematic dark, illustrated dark, or any locked dark theme)
+that never declares it to the browser. Refero states the consequence plainly: *"Without
+`color-scheme: dark`, scrollbars stay light gray on dark backgrounds"*, form controls
+`<input>` / `<select>` / `<textarea>` *"get wrong default colors"*, and *"System dialogs
+and autofill appear broken"* (`upstream/refero/.../references/color.md`). The tell is a
+pale scrollbar down the right edge of a black page, and a white native control the moment
+the reader touches a field.
+
+Required on every dark-canvas build:
+
+```html
+<meta name="color-scheme" content="light dark">
+<meta name="theme-color" content="#0f0f0f" media="(prefers-color-scheme: dark)">
+<meta name="theme-color" content="#ffffff" media="(prefers-color-scheme: light)">
+```
+
+```css
+:root { color-scheme: light; }
+[data-theme="dark"] { color-scheme: dark; }
+```
+
+A page locked to one theme declares that one value rather than the pair; `theme-color`
+matches the page background it actually ships. Refero's own pre-ship list carries both as
+checkboxes: *"`color-scheme` set on `<html>` for dark mode (fixes scrollbars, inputs)"*
+and *"`<meta name="theme-color">` matches page background"*.
+
+### 99 · Descriptive microtext
+
+Small text set smaller than the page's body copy whose job is to describe or restate the
+obvious rather than to identify, differentiate, locate, or enable an action — a kicker
+naming what the section *is* (`EXEMPELCASE`, `SÅ GÅR DET TILL`), a figcaption naming what
+a screenshot demonstrates (`Exempelsida: Hōrai, Asian fusion-koncept`), a side-rail list
+of step headings in small grey type, or a line under a heading that just paraphrases it.
+Banned outright, 2026-09-19 (Anton, FEEDBACK.md F-016), after live examples on the Alunix
+demo pages.
+
+**Full definition, the test, and the genre-apparatus exception:** [`anti-patterns.md` §
+Descriptive microtext](anti-patterns.md). **Check:**
+`skills/design/scripts/microtext_scan.py URL_OR_FILE` — flags visible text smaller than
+the page's median `<p>` font-size that also looks like a kicker/eyebrow/caption/rail
+(class name, uppercase-plus-tracking, or a short grey line beside a heading). Exit code
+is non-zero on any finding; a finding is a candidate for a human/reviewer to judge against
+the genre-apparatus exception, not an automatic fail. `--price-ledger` adds gate-adjacent
+coverage for F-017 — a price column's text cell sized like its digit cells.
+
+**[ours]** Sibling of gates 69, 70, 72, 82, and 83, which each ban one named shape of this
+same failure; 99 is the general test that catches shapes those miss (a side-rail of step
+titles, a paraphrase line under a heading with no eyebrow at all).
+
+**[ours]** Unlike the rest of this file, 98 is a *missing* declaration rather than an
+added decoration. It earns its place here because the symptom reads identically to one:
+browser chrome that does not belong to the design, appearing on every dark page a model
+builds and on no dark page a designer ships.
+
+---
+
 ## [ours] Mechanical coverage summary
 
 | Gate | Mechanically caught by |
@@ -140,5 +224,7 @@ A ten-row spec table with a hairline under each row is the laziest available lay
 | 75 | `em-dash-overuse` (threshold, not zero-tolerance) |
 | 76 | `italic-serif-display` (display italic, not the break-composition) |
 | 84 | `theater-slop-phrase`, `marketing-buzzword` (some phrasings) |
+| 97 | not covered — grep the built page for `→` in anchor, button and CTA text |
+| 98 | not covered — grep the built page for `color-scheme` and `theme-color` |
 
 Everything else in 66–88 is model-enforced. Run this file as a checklist before emit; the pre-emit self-critique in the front door is where it binds.

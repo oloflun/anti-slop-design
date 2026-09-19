@@ -216,6 +216,44 @@ Ta aldrig bort en post; en regel som visar sig fel får en ny post som upphäver
   från `images.unsplash.com`**. `SKILL.md` Step 5b säger rakt ut att hero-bilden är LCP
   och "must not depend on another company's CDN" — den ska vara nedskalad, WebP och
   vendorad. Ingen granskning hade fångat det förrän överföringen mättes.
+
+### F-014 · Ungated-tier auto-arm kan aldrig fånga kedjans egna exempelsajter
+
+- **Visades:** Stop-hooken på orkestrerarsessionen själv, 2026-09-09: "12 UI-filer
+  ändrade utan armad designsession (ingen rapport)". Verifierat mekaniskt exakt: sju
+  `sites/*.html` (F-011-saneringen) och fem `skills/design/scripts/*.py`
+  (rörelsegrind-fixen, F-013:s uppföljning) — allt riktigt arbete, tidigare noggrant
+  testat åt båda hållen av den agent som utförde det, men osynligt för kedjans egen
+  mätning.
+- **Första hypotesen var fel, och det är värt att skriva ner varför.** Antog att
+  `Agent`-subagenter kör i egna sessioner utan delad ledger. Testat empiriskt: en
+  dispatchad subagent läste tillbaka **exakt** samma `CLAUDE_CODE_SESSION_ID` som
+  föräldern (`echo $CLAUDE_CODE_SESSION_ID` gav identiskt värde i båda). Ledgern
+  (T1:s session-scopning) delas alltså redan korrekt mellan förälder och
+  dispatchad subagent — det är inte ett sessions-scoping-problem.
+- **Den verkliga orsaken:** `hooks/design-route.py`s auto-arm-gren kräver
+  `tier(root) == "0-locked"` (rad ~76: `auto_arm = (not was_armed and tier ==
+  "0-locked" and strong_routes and ...)`). `anti-slop-design`-repot har ingen
+  `DESIGN.md` — `L.tier(Path('.'))` ger **"ungated"**, bekräftat direkt. Det är
+  korrekt för en klientsajt utan låst kontrakt (ingen kan auto-arma bara på en
+  routningsträff), men träffar precis så här: kedjans EGNA `sites/*.html` —
+  exemplen andra sessioner läser som referens — ligger i samma ogaterade repo och
+  kan därför **aldrig** auto-arma, oavsett hur stark routningsträffen är. Arming
+  kräver i stället antingen ett `UserPromptSubmit` klassat som designintent
+  (`design-intent.py`) eller ett explicit `Skill(design)`-anrop
+  (`design-telemetry.py`) — ingen av de vägarna körs av en dispatchad
+  `Agent`-subagent, och orkestreraren laddade själv aldrig skillen.
+- **Regel, föreslagen men inte verkställd:** mekanismen fungerar som avsedd för
+  klientprojekt; gapet är specifikt att repots EGNA `sites/`-mapp aldrig kan nå
+  `0-locked`. Två vägar, ingen byggd: (a) varje session som redigerar `sites/*.html`
+  eller `skills/design/scripts/*.py` instrueras/kontrolleras att explicit köra
+  `Skill(design)` eller motsvarande innan skrivning, oavsett tier; (b)
+  `design-route.py` får ett uttryckligt undantag som auto-armar på en stark
+  hantverksroute även vid `tier == "ungated"` när sökvägen ligger under `sites/`
+  i det egna repot (repots demosajter är per definition "på riktigt", inte en
+  ogaterad kundmapp). Nästa session som rör kedjan äger att välja och bevisa vald
+  väg åt båda hållen (en icke-triggande redigering nekas fortfarande att passera
+  ogranskad; en riktig routningsträff mot `sites/` armar).
 - **F-011 orsakade ingendera.** Motordiffen mot uppström är fyra rader.
   `var reduce = false` slog **på** playhead-lerpen (faktor 1,0 → 0,18) och tog inte bort
   någon utjämning; `reduce` gatear tio ställen och alla är avstängningsgrenar.
@@ -248,3 +286,70 @@ Ta aldrig bort en post; en regel som visar sig fel får en ny post som upphäver
   `tests/motion/{staircase,smooth}.html` (fixturer, bevisade i båda riktningarna),
   `tests/alunix-concepts-r5/motion-probe-v3b/` (mätningen sparad). F-012 är därmed
   stängd som fråga; V3b:s egen prestandaskuld är kvar och tas i V3c.
+
+## 2026-09-15 · r8-boarden (port 4626), K4 Delaren dömd som mönster, inte som sida
+
+### F-015 · Före/efter-delaren är ett referensmönster, inte ett helsideskoncept
+- **Visades:** K4-r8 på boarden, hela sidan: den tippande delaren mellan
+  `sites/before-ai-slop.html` och Calyx, R3-läget med plan 004 öppen.
+- **Antons ord (ur beställningen 2026-09-15, återgivet):** K4-slidern från förra sessionen
+  sparas som referens för den typen av före/efter-showcase, inte som helsideskoncept.
+  Huvuduppgiften är i stället K3:s ritning som processakt i V3-sidan.
+- **Dom:** hade kunnat bli bra som del, inte som helhet. Delaren som mekanik håller
+  (två hela sidor i miniatyr, ps 0,40 med Calyx som vyns största objekt, verified i R3);
+  som bärande idé för en hel byråsida räcker den inte.
+- **Regel:** en showcase-mekanik som bevisar ett påstående (före/efter) är ett
+  *mönster* i katalogen av egna akter, inte ett koncept. Den får återanvändas som en
+  sektion i en sida vars grammatik bär den; den bygger ingen sida ensam. K4-cellen
+  parkeras som det mönstret, med sin BRIEF, NOTES och `?preview=`-lägen som
+  referensmaterial. Plan 004 (bildtexten klipps under 640) förblir öppen och stänger
+  inte cellen, eftersom cellen inte längre ska skeppas.
+- **Status:** bara här, plus raden i `tests/alunix-r8/STATUS.md` och `runs/K4/NOTES.md`.
+
+## 2026-09-19 · Antons stående förbud, ingen board — läst direkt av Alunix-sidan
+
+### F-016 · Liten "beskrivande" stiltypisk AI-text är helt förbjuden
+- **Visades:** ingen board. Antons ord är ett stående beslut, inte en dom över en
+  körning, men han pekade konkret på Alunix-sidan (`tests/alunix-r8`): små
+  kickers/eyebrows ("EXEMPELCASE", "FRÅN EXEMPEL TILL ER SIDA", "SÅ GÅR DET TILL"),
+  bildtexter ("Exempelsida: Hōrai, Asian fusion-koncept", "Exempelsida: Calyx, florist
+  i Stockholm"), sidomenyer som listar stegrubriker i liten grå text, och små
+  förklarande rader under rubriker i liten storlek ("Första steget är ett samtal om
+  vad ni gör.").
+- **Antons ord:** "All sån liten 'beskrivande' stiltypisk AI-text är härmed helt
+  förbjuden och jag vill att designsystemet härmed aktivt arbetar emot det och kollar
+  efter det i befintliga sidor."
+- **Dom:** dåligt, generellt — inte begränsat till Alunix-cellen som visade det.
+- **Regel:** ingen liten text vars enda jobb är att fylla, förklara det uppenbara,
+  eller se designad ut. Testet: gör raden ett jobb läsaren behöver (identifierar,
+  differentierar, lokaliserar eller möjliggör en handling), eller talar den bara om
+  sidan/exemplet i mindre storlek än brödtexten? Det senare tas bort. Antons uttryckliga
+  undantag: en sajts egen genre-apparat som är stilenlig OCH bär en funktion i den
+  genren är inte utfyllnad — Calyx tidskriftsapparat (utgåva, löpnummer, plats-index)
+  och Hōrais avsiktliga etiketter (rätt-namn, servis-nummer) identifierar verkliga
+  saker på riktiga sajter i den genren; en digital byrås demo-sida i Alunix genre har
+  ingen sådan licens.
+- **Status:** portad till `anti-patterns.md` § Descriptive microtext (gate 99),
+  `production-tells.md` gate 99, `gates.md`, SKILL.md § Apparatus (marknadssidor:
+  default noll), kontroll `skills/design/scripts/microtext_scan.py`,
+  `design-catalogue/MICROTEXT-AUDIT.md`.
+
+### F-017 · Prisliggarens displaystorlek är bara för siffror, inte för texten bredvid
+- **Visades:** ingen board — samma session, prisliggarmönstret i katalogen
+  (`house-physics.md` § Ledger, redan i bruk i Calyx/Hyperborea).
+- **Antons ord (parafraserat i beställningen, samma dag):** displaystorlek i en
+  priskolumn är bara för siffror (kompakta figurer som bildar rytm); text i samma
+  kolumn ("Pris vid förfrågan") sätts ett steg mindre och linjeras mot siffrornas
+  baslinje; en kontaktrad storleksätts som en handling, inte som en rubrik.
+- **Dom:** regel, inte ett fel som redan visats — katalogens befintliga ledgers
+  (Calyx, Hyperborea) skrevs redan så (siffra i display, valuta i kicker), men
+  regeln stod inte skriven separat från valutaetiketten, så en textrad ("Pris vid
+  förfrågan", "Kontakta oss") kunde av misstag ärva samma display-storlek som
+  priset. Skrivs ner nu så nästa bygge inte chansar.
+- **Regel:** i en ledger-rad bär enbart siffercellen display-storleken; en textcell i
+  samma kolumn (`"Pris vid förfrågan"`, en enhet, en villkorstext) sätts ett
+  typografiskt steg mindre än siffran och baslinjelinjeras mot den, aldrig
+  samma storlek. En kontaktrad (telefon, mejl, boka-länk) storlekssätts som en
+  handling — knapptext- eller länkstorlek — aldrig som en rubrik.
+- **Status:** portad till `house-physics.md` § Ledger, never card grid, kontrollen
+  `microtext_scan.py --price-ledger`.
