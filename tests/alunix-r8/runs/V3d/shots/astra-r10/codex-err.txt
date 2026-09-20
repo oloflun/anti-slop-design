@@ -1,0 +1,1650 @@
+Reading prompt from stdin...
+2026-09-19T04:15:58.256797Z ERROR codex_core::session::session: failed to load skill C:\Users\Anton L\OneDrive\Dokument\Obsidian\Knowledge Base\.agents\skills\conclude\SKILL.md: missing YAML frontmatter delimited by ---
+OpenAI Codex v0.154.0
+--------
+workdir: C:\Users\Anton L\anti-slop-design
+model: gpt-6-astra
+provider: openai
+approval: never
+sandbox: read-only
+reasoning effort: medium
+reasoning summaries: none
+session id: 01a0b7e0-af87-7c70-bfc5-a6127a3f042f
+--------
+user
+Du granskar sidan tests/alunix-r8/runs/V3d/index.html (repo-roten är arbetskatalogen) i läget REFERENCE PARITY + helhet, slutkontroll efter rundorna R9 och R10. Läs tests/alunix-r8/runs/V3d/PARITET.md (tabellen du dömer mot), tests/alunix-r8/runs/V3d/plans/054-tesband-och-case.md (beställningen), tests/alunix-r8/runs/V3d/reviews/r8-astra.md (förra granskningen, 3 fixar, alla vid 390), tests/alunix-r8/runs/V3d/plans/056-astra-r8-mobil.md (R9) och NOTES.md § "V3d R9" och "V3d R10".
+
+Bifogade bilder, i ordning. Bild 1-23 är PAR: vänster V3d (vår skärm), höger referensen (hoy/insign), samma höjd; radens id står i bildens underkant. Bild 24 är en ensam V3d-skärm (ingen referens). Alla togs med mouse.wheel från toppen, ramarna laddade, en skärmbild per sida:
+1. P03-1-390  2. P03-3-390  3. P03-5-390  4. P04-curtain-390  5. P17-1-390  6. P17-3-390  7. P17-5-390  8. P19-1-390  9. P19-3-390  10. P19-6-390  11. P20-390  12. P15b-390  13. P01-390  14. P07-390  15. P01-1440  16. P03-1-1440  17. P03-3-1440  18. P08-1440  19. P12-1440  20. P14-1440  21. P17-3-1440  22. P19-3-1440  23. P20-1440
+24. J-390-down-4450: tesbandet vid 390, den bildruta (20 px hjulsteg) där mening 3 går in.
+
+Uppmätt av mig (lita på detta, mät inte om):
+- Alla 1440-skärmar är pixelidentiska med r8 (där höll varje PARITET-rad).
+- Tesbandet 390: strecken till bildens överkant 16 px, bilden 449 px hög i mening 1-2 och 483 px i mening 3-5, bildens överkant y=309 i mening 1-2 och y=274 i mening 3-5 (375: 302 / 268). Hjulsvep i 20 px-steg: fotot hoppar 35 px i ETT hjulsteg (scrollY 4430 -> 4450) när mening 3 går in, och tillbaka på vägen upp. Orsak jag hittat: .thesis-lines är ett grid där alla .ts staplas i samma cell; .js .ts animerar letter-spacing (+.06em när --in=0), mening 3 radbryts då till 5 rader (174 px) i stället för 4 (139 px), så radens höjd krymper när mening 3 blir aktiv. Med letter-spacing låst till -.02em under 768 (injicerat bara för mätning) står fotot på y=274 i alla fem meningar och hoppet försvinner.
+- Hōrai -03 vid 390: ramens ih 568, #quote-text y=162..273 (nav täcker 0..117), opacitet .974, blur .31 px, samma i preview och med hjul; #quote-jp y=80 (bakom naven). 375: ih 545, citat 151..262, .973 / .32 px.
+- Calyx -03 vid 390: ih 517, första figuren y=-28..455 i ramen, märkningen 424..455 (helt inne). 375: ih 496, samma.
+- Tesbyten och casebyten, 20 px hjulsteg ner och upp vid 390 (tes även 375): 0 bildrutor med två synliga meningar/steg, 0 px överlapp. Ramarnas scroll monoton.
+- Hela sidan 1440 och 390, hjul 150 px: 0 rubrikkollisioner. Horisontell scroll 0 vid 320/375/390/414/768/1024/1280/1440/1920.
+
+Leadens beslut (döm dem inte som fynd): sites/* rörs aldrig och ramarna transformeras aldrig. Att Hōrais text klipps i högerkanten vid 390 (bild 8, 9, 10, 11) beror på att sites/horai.html renderas 675 px bred; det är känt och ligger hos Anton. Gränsen "högst fyra mörka skivor i rad" är struken.
+
+Invarianter (ordagrant, bryt dem aldrig):
+- Motion always plays (F-011). prefers-reduced-motion is deliberately not honoured on this project. Suggesting a reduced-motion fallback, a static alternative, or a @media (prefers-reduced-motion) block is out of scope.
+- The scroll engine is never edited. scroll/scrollcraft.js and scrollcraft.css are vendored; sc-smooth.js is the sanctioned shim.
+- --sc-p is the raw scroll position; --sc-ps is the smoothed one. Anything that physically moves must read --sc-ps.
+- No em-dashes in visible text (gate 75).
+- Copyn är låst (copy-gaten körd), döm inte ordval. Palett och typsnitt väljs inte om.
+- Review only, no patches.
+
+Uppgift: för VARJE par, svara på en rad: håller vår skärm referensens nivå (skala, iscensättning, vad som äger viewporten, hur mycket skärmen tar ställning)? Om inte: vilket konkret drag (mått, andel, vad som ska äga viewporten) stänger gapet. En korrekt men tydligt svagare skärm är ett fynd. Bedöm också om r8:s tre fixar är stängda mot sina Expected i r8-astra.md. Varje pixelfynd: bildnummer + region. Varje kodfynd: index.html:rad. Ge sedan högst 8 fynd, mest materiella först, och en disposition (ship/fix). Uppfinn inga fynd; säg "håller" när det håller.
+
+warning: Exceeded skills context budget. All skill descriptions were removed and 40 additional skills were not included in the model-visible skills list.
+codex
+Jag läser paritetstabellen, beställningen och R8–R10-underlaget och bedömer sedan varje bildpar mot referensens nivå. Jag använder dina mätningar och gör inga ändringar.
+exec
+"C:\\WINDOWS\\System32\\WindowsPowerShell\\v1.0\\powershell.exe" -Command "Get-Content -LiteralPath 'tests/alunix-r8/runs/V3d/PARITET.md','tests/alunix-r8/runs/V3d/plans/054-tesband-och-case.md','tests/alunix-r8/runs/V3d/reviews/r8-astra.md','tests/alunix-r8/runs/V3d/plans/056-astra-r8-mobil.md'" in C:\Users\Anton L\anti-slop-design
+ succeeded in 462ms:
+# V3d Â· PARITET
+
+Tabellen granskaren (Astra) och lead dÃ¶mer mot. En rad per skÃ¤rm i V3d. Varje rad har en
+referensbild ur `runs/V3c/shots/fasA/` (alla sÃ¶kvÃ¤gar nedan Ã¤r relativa till den mappen) och
+ett uttalat drag som V3d ska matcha. **Referensen visar nivÃ¥n, inte formen**: vi lÃ¥nar hur den
+iscensÃ¤tter skÃ¤rmen (skala, vad som Ã¤ger viewporten, hur mycket luft), aldrig dess palett,
+typsnitt, knappar eller copy.
+
+## Hur en rad dÃ¶ms
+
+1. Byggaren skjuter vÃ¥r skÃ¤rm vid 1440x900 (och 390x844 dÃ¤r kolumnen 390 Ã¤r ifylld) i det lÃ¤ge
+   raden anger, och lÃ¤gger den **bredvid** referensbilden i samma hÃ¶jd med PIL:
+   `shots/r1/par/<rad-id>-<bredd>.png` (vÃ¤nster V3d, hÃ¶ger referensen, 24 px mellanrum,
+   radens id och referensens filnamn i bildens underkant i 14 px).
+2. Den som dÃ¶mer lÃ¤ser par-bilden som bild och skriver en rad: **hÃ¥ller nivÃ¥n** eller
+   **hÃ¥ller inte, fÃ¶r att â€¦** med det mÃ¤tbara skÃ¤let (en storlek, en andel av viewporten, ett
+   element som saknas).
+3. **Slutvillkor:** varje rad i tabellen kan lÃ¤sas "hÃ¥ller nivÃ¥n" i sin par-bild. En rad som
+   hÃ¥ller i 1440 men inte i 390 hÃ¥ller inte.
+
+## Tabellen
+
+Plan 054 (2026-09-19): P03, P04 och P14 omskrivna, P05 utgÃ¥ngen, P17 till P20 nya. Par-bilderna
+fÃ¶r de raderna lÃ¤ggs i `shots/r7/par/`.
+
+| Id | SkÃ¤rm i V3d (lÃ¤ge) | Referens 1440 | Referens 390 | Vad referensen gÃ¶r som vi ska matcha |
+|---|---|---|---|---|
+| **P01** fold | `?preview=front`, scrollY 0 | `hoy-1440/hoy-webb-1440--s00.png` | `hoy-390/hoy-home-390--s00.png` | Ett displayelement och en bild delar skÃ¤rmen och inget annat; rubriken i affischskala utan konkurrerande text. VÃ¥r fold (rubrik ~120 px, kortet 62 % vw) ska lÃ¤sas lika ensam och lika stor. |
+| **P02** kortets baksida | `?preview=back` | `hoy-1440/hoy-home-1440--s00.png` | `hoy-390/hoy-home-390--s00.png` | Objektet Ã¤ger mitten av skÃ¤rmen, ett ord i displaystorlek ovanpÃ¥ eller bredvid, tom grund runt om. |
+| **P03** tesbandet (plan 054) | `?preview=thesis-01` till `-05`, en bild per mening | `hoy-1440/hoy-home-1440--s01.png` | `hoy-390/hoy-home-390--s01.png` | MÃ¤ttad grund Ã¤ger hela skÃ¤rmen, displayrubrik vÃ¤nster, bild hÃ¶ger, inget annat. VÃ¥r blÃ¥ stage 100 % vw x 100 % vh, meningen i 88 px (390: 35,5) ensam i rubrikplatsen, Hyperborea â‰¥ 36 % vw flush mot hÃ¶gerkanten. Varje mening ska lÃ¤sas som skÃ¤rmens enda rubrik, inte som en bildtext. |
+| **P04** ridÃ¥n (plan 054, ersÃ¤tter jÃ¤ttesektionen) | `?preview=curtain` (halvvÃ¤gs) och `?preview=chapter` | `hoy-1440/hoy-home-1440--s03.png` | `hoy-390/hoy-home-390--s03.png` | Kapitlet presenteras pÃ¥ egen grund med en rubrik i displaystorlek. Hos oss: det blÃ¥a lyfter av en stilla kapitelskÃ¤rm pÃ¥ ritbordet, rubriken stÃ¥r still (Â±1 px) genom hela lyftet, och kanten mellan materialen Ã¤r en ren hÃ¥rlinje, inget glapp och inget blankt band. |
+| **P05** (utgÃ¥ngen) | HÅrai-bandet finns inte lÃ¤ngre (plan 054 steg 5); HÅrai dÃ¶ms i P19 | | | |
+| **P06** processens kapitelskÃ¤rm | scrollY = `#process` topp | `hoy-1440/hoy-home-1440--s03.png` | `hoy-390/hoy-home-390--s03.png` | En rubrik i displaystorlek Ã¤ger hela skÃ¤rmen pÃ¥ ren grund med en hÃ¥rlinje; kapitlet presenteras innan det bÃ¶rjar. VÃ¥r "FrÃ¥n samtal till lanserad sida." â‰¥ 100 px vid 1440. |
+| **P07** steg 01 | `?preview=process-01` | `hoy-1440/hoy-home-1440--s03.png` | `hoy-390/hoy-webb-390--s00.png` | Ett stort element pÃ¥ tom grund. Siffran 01 (â‰¥ 150 px) och rubriken i bandet, det tomma arket â‰¥ 76 % vw under; skÃ¤rmen Ã¤r ett steg, inte ett stycke bredvid en ruta. |
+| **P08** steg 02 | `?preview=process-02` | `hoy-1440/hoy-webb-1440--s08.png` | `hoy-390/hoy-webb-390--s08.png` | Displaytypografi och en stor bild delar skÃ¤rmen jÃ¤mnt; bilden Ã¤r minst 44 % vw. MÃ¥ttkedjan 320/768/1440 i 44 px accent ska lÃ¤sas pÃ¥ avstÃ¥nd. |
+| **P09** steg 03 | `?preview=process-03` | `hoy-1440/hoy-home-1440--s06.png` | `hoy-390/hoy-home-390--s05.png` | Ett kapitel per skÃ¤rm: rubrik, text, bild, allt inom en viewport, ingen del av nÃ¤sta kapitel synlig. |
+| **P10** steg 04 | `?preview=process-04` | `hoy-1440/hoy-home-1440--s07.png` | `hoy-390/hoy-home-390--s06.png` | Samma kapitelform med ett byte i materialet mellan kapitlen; skiftet mellan steg 03 och 04 ska synas som ett scenbyte (bandet byts), inte som att texten rullar vidare. |
+| **P11** steg 05 | `?preview=process-05` | `hoy-1440/hoy-webb-1440--s07.png` | `hoy-390/hoy-webb-390--s05.png` | Produktytan i full bredd, ~78 % vw, Ã¤r skÃ¤rmens auktoritet. Calyx â‰¥ 50 % av arket och arket â‰¥ 76 % vw. |
+| **P12** steg 06 | `?preview=process-06` | `hoy-1440/hoy-webb-1440--s01.png` | `hoy-390/hoy-webb-390--s01.png` | Bilden Ã¤ger skÃ¤rmen nÃ¤stan kant i kant. Calyx i fÃ¤rg â‰¥ 80 % av arket, â‰¥ 960x540 px vid 1440; ritningen har dragit sig tillbaka; fÃ¥r inte lÃ¤sas som en lampa i ett mÃ¶rkt rum. |
+| **P13** steg 07 | `?preview=process-07` | `hoy-1440/hoy-webb-1440--s10.png` | `hoy-390/hoy-webb-390--s09.png` | Bild och avslutande text i balans, bilden stÃ¶rst; revisionsfÃ¤ltet och siffran 07 Ã¤r detaljer, inte konkurrenter. |
+| **P14** case-kapitlet (plan 054, ersÃ¤tter "Hur vi tÃ¤nker") | `?preview=cases` | `hoy-1440/hoy-webb-1440--s04.png` | `hoy-390/hoy-webb-390--s03.png` | Ljus grund i full bredd, en rubrik i displaystorlek Ã¤ger skÃ¤rmen (â‰¥ 100 px vid 1440), kort stycke under. FÃ¶rsta ljusa skÃ¤rmen efter ritbordet; ska lÃ¤sas som ett nytt kapitel, inte som en fortsÃ¤ttning pÃ¥ processen. |
+| **P15** pris + kontakt | dokumentets slut (sista viewporten) och en viewport fÃ¶re | `hoy-1440/hoy-home-1440--s08.png` och `hoy-1440/hoy-home-1440--s09.png` | `insign-390/insign-390--s10.png` | Avslutet Ã¤r ett kapitel pÃ¥ en egen grund: en rubrik, text i lÃ¤sbar storlek, en tydlig kontaktvÃ¤g i brÃ¶dtextens eller kapitelrubrikens storlek, inte i displaystorlek. VÃ¥r `Alla har rÃ¤tt till bra design.` bÃ¤r displayskalan, priserna stÃ¥r i display-siffror, adressen i 46 / 28 px. Priset och adressen lÃ¤ses som samma avslutning pÃ¥ samma fotografi. |
+
+| **P17** case Calyx | `?preview=case-calyx-01`, `-03`, `-05` (tre par-bilder per bredd) | `hoy-1440/hoy-webb-1440--s02.png` | `hoy-390/hoy-webb-390--s01.png` | Text vÃ¤nster, produktytan hÃ¶ger och stÃ¶rst, bÃ¥da halvorna bÃ¤r. Hos oss: sajtens ram â‰¥ 58 % vw x 88 % vh flush mot hÃ¶gerkanten, `Calyx` 104 px, steget i 32 + 20 px; det sajten visar i ramen Ã¤r det steget beskriver (ankaret i ramens Ã¶vre tredjedel). 390: ramen Ã¶verst â‰¥ 50 % vh, texten under lÃ¤sbar utan att nÃ¥ ramen. |
+| **P18** bryggan | `?preview=bridge` | `hoy-1440/hoy-webb-1440--s03.png` | `hoy-390/hoy-webb-390--s02.png` | En mening i displaystorlek Ã¤ger en mÃ¶rk skÃ¤rm, inget annat konkurrerar. Hos oss: svart plÃ¥t, rubriken â‰¥ 72 px (390: â‰¥ 40), ett stycke under; skarven papper mot svart syns som en hÃ¥rlinje, inte som ett avbrott. |
+| **P19** case HÅrai | `?preview=case-horai-01`, `-03`, `-06` | `hoy-1440/hoy-home-1440--s02.png` | `hoy-390/hoy-home-390--s02.png` | Bild vÃ¤nster, text hÃ¶ger, bilden stÃ¶rst (spegeln av P17). Hos oss: ramen flush mot vÃ¤nsterkanten, texten till hÃ¶ger pÃ¥ svart plÃ¥t; vid `-03` syns HÅrais citat i sitt formade lÃ¤ge inne i ramen. |
+| **P20** HÅrai â†’ priset | scrollY dÃ¤r `.case--horai` slÃ¤pper och `#pris` tar Ã¶ver (en viewport) | `hoy-1440/hoy-home-1440--s08.png` | `insign-390/insign-390--s10.png` | Grunden byter material pÃ¥ en ren kant och nÃ¤sta kapitel bÃ¶rjar med sin rubrik. Svart plÃ¥t mot fotot med scrim; `Alla har rÃ¤tt till bra design.` nÃ¥r skÃ¤rmens Ã¶vre halva utan ett tomt band emellan. |
+
+## Sammanhanget, en rad till
+
+| Id | SkÃ¤rm | Referens | Vad som ska hÃ¥lla |
+|---|---|---|---|
+| **P16** hela sidan | helsidesskivor 1440 i ett kontaktark (`shots/r1/sheet-1440.png`) | `hoy-1440/hoy-home-1440--s00.png` till `--s10.png` i ett kontaktark bredvid | Grunden byter material i en lÃ¤sbar rytm (hoy: lila, grÃ¤ddvit, rÃ¶d). V3d efter plan 054: foto, blÃ¥tt, ritbordet, papper, svart plÃ¥t, foto. Case-kapitlet och Calyx-caset Ã¤r det ljusa fÃ¤ltet mellan ritbordet och den svarta plÃ¥ten; ingen skiva dÃ¤r tvÃ¥ material mÃ¶ts utan en synlig kant. |
+# 054 Â· V3d: tesbandet Ã¤ger sin skÃ¤rm, jÃ¤ttesektionen gÃ¥r, casen ersÃ¤tter "Hur vi tÃ¤nker"
+
+- **Status**: TODO (V3d R7, en byggrunda, hÃ¶gst tvÃ¥ fixrundor)
+- **BestÃ¤llning**: Anton 2026-09-19, punkterna 1 till 5. Detta Ã¤r golvet, inte ett fÃ¶rslag.
+- **Ordning**: visuellt fÃ¶rst, punkterna i Antons ordning. FÃ¶ljdfel lagas i samma runda;
+  **ett djÃ¤rvt drag backas aldrig fÃ¶r att laga ett fel** (`runs/V3c/RAPPORT-LOOPEN.md` fel 5).
+- **Copy**: alla synliga strÃ¤ngar stÃ¥r i `COPY-V3d-v0.md` (v0). Byggaren skriver in v0
+  ordagrant; copy-agenten kÃ¶r kedjan efterÃ¥t och rÃ¶r bara strÃ¤ngar. LÃ¥st copy ur `PRODUCT.md`
+  Â§ Brand Commitments rÃ¶rs aldrig.
+- **Estimated scope**: 1 fil (`runs/V3d/index.html`). Bort: `.stagger` (markup 1650 till
+  1748), `#principer` (1994 till 2020) och deras CSS (~300 rader). Nytt: ~260 rader CSS, 4
+  sektioner markup, ~110 rader JS. TvÃ¥ live-iframes fÃ¶re och efter (ingen tredje), ingen ny
+  asset, inga `sites/*`-Ã¤ndringar.
+- **Underlag, lÃ¤st som bilder denna session**: nulÃ¤get i hjulscroll vid 1440 (19 skÃ¤rmar) och
+  390 (16 skÃ¤rmar), `shots/lead-r6/sheet-d.png`, Calyx och HÅrai skrollade inuti en 840x760-ram
+  (15 + 11 skÃ¤rmar), referenserna hoy-1440 (23), highway-1440 + insign-1440 (22) och hoy-390
+  (20) i kontaktark. Listan stÃ¥r i `NOTES.md` Â§ Arkitekten R7.
+
+## Problem
+
+Tesen, sidans enda mÃ¤ttade fÃ¤rgblock, Ã¤r en ruta pÃ¥ 651x720 px (45 % vw, 80 % vh) med en
+rubrik pÃ¥ 64,8 px och ett stÃ¶dÂ­stycke pÃ¥ 15,2 px bredvid en svart jÃ¤tte. Den Ã¤ger ingen skÃ¤rm.
+JÃ¤ttesektionen ("VI BYGGER ERT VARUMÃ„RKE." med liggaren 01 till 03) delar skÃ¤rm med Calyx och
+tesen i fyra hjulskÃ¤rmar av sex (nulÃ¤gets `d-03` till `d-06`) och gÃ¶r bandet till ett kollage.
+"Hur vi tÃ¤nker" Ã¤r tre pÃ¥stÃ¥enden pÃ¥ papper dÃ¤r sidan borde visa arbetet. Calyx och HÅrai
+syns bara som tvÃ¥ stilla ramar bredvid varandra (`d-06`); ingen lÃ¤sare fÃ¥r veta hur de
+blev till. Copyn i processakten Ã¤r 60 till 75 ord per steg i 17 px, och flera marginalrader
+hÃ¤nvisar till saker besÃ¶karen inte kan se ("radavstÃ¥ndet i liggaren", "revisionsfÃ¤ltet").
+
+## Sidans nya ordning
+
+| # | Sektion | Grund | Enhet i scroll (1440x900) | RÃ¶relse (lÃ¤ser `--sc-ps`) |
+|---|---|---|---|---|
+| 1 | Hero, orÃ¶rd | foto | 3,4 vh | kortvÃ¤ndningen, orÃ¶rd |
+| 2 | **Tesbandet**, `section.thesis` (ny, pinnad) | blÃ¥tt `--c-accent` | 5,5 vh | meningsbytet + Hyperborea + streckrÃ¤knaren |
+| 3 | **RidÃ¥n**: tesens stage lyfter av kapitelskÃ¤rmen | blÃ¥tt Ã¶ver ritbordet | 1 vh (Ã¶verlapp) | ren scroll, sticky kapitel |
+| 4 | Processakten, orÃ¶rd form, ny copy | ritbordet `--c-drafting` | ~9,8 vh | orÃ¶rd |
+| 5 | **Case-kapitlet** `section.cases-chapter` (ny) | papper `--bg` | 1 vh | rubrikens ordljus |
+| 6 | **Case Calyx** `section.case--calyx` (ny, pinnad), text vÃ¤nster, sajt hÃ¶ger | papper | 5,5 vh | sajtens scroll + textsteg + stegskenan |
+| 7 | **Bryggan** `section.case-bridge` (ny) | svart plÃ¥t `--c-black` | 1 vh | delad reveal |
+| 8 | **Case HÅrai** `section.case--horai` (ny, pinnad), sajt vÃ¤nster, text hÃ¶ger | svart plÃ¥t | 6,4 vh | samma mekanik, spegelvÃ¤nd |
+| 9 | Priset, orÃ¶rt lÃ¤ge | foto + scrim | ~0,9 vh | hÃ¥rlinjerna, orÃ¶rda |
+| 10 | Avslutet, orÃ¶rt | foto + scrim | ~0,3 vh | orÃ¶rd |
+
+Sidan vÃ¤xer frÃ¥n ~18,6 till ~34 viewports vid 1440 (uppskattat, se frÃ¥ga Q6). Material i
+fÃ¶ljd: foto, blÃ¥tt, ritbordet, papper, svart plÃ¥t, foto. TvÃ¥ ljusa fÃ¤lt fÃ¶rsvinner (papperet
+i bandet och "Hur vi tÃ¤nker"); papperet kommer tillbaka som case-kapitlet och Calyx-caset,
+6,5 vh sammanhÃ¤ngande.
+
+## Target, en rad per bestÃ¤llningspunkt
+
+Alla mÃ¥l mÃ¤ts i skÃ¤rmbild (Playwright `mouse.wheel`, aldrig `scrollTo`) eller
+`getBoundingClientRect`/`getComputedStyle` pÃ¥ den byggda sidan. Inget mÃ¥l Ã¤r en tidsgrÃ¤ns;
+prestanda Ã¤r en grind (Â§ Verification C).
+
+| | Synligt mÃ¥l | 1440x900 | 390x844 |
+|---|---|---|---|
+| **1** | tesbandets blÃ¥a stage | **1440x900 = 100 % vw x 100 % vh** (i dag 651x720 = 45 % x 80 %) | 390x844, 100 % x 100 % |
+| **1** | meningarnas font-size, **alla fem lika** (`.ts`, `getComputedStyle`) | **88 px** (i dag rubrik 64,8, stycke 15,2) | **35,5 px** (i dag 32 / 15,2) |
+| **1** | varje mening Ã¤ger rubrikplatsen i ett eget scrollintervall | 5 intervall om **810 px** (0,9 vh, lÃ¤ngre Ã¤n PageDown 787 px); i varje `?preview=thesis-0N` syns exakt en mening, noll glyfpixlar av nÃ¥gon annan | 5 intervall om 760 px |
+| **1** | bytet i bÃ¥da riktningarna | 12-ramssekvens ned och upp genom grÃ¤nsen 2/3: utgÃ¥ende mening stiger ut genom rubrikradens Ã¶verkant, inkommande stiger upp ur dess underkant, monotont bÃ¥da vÃ¤garna | samma |
+| **1** | "Vi hjÃ¤lper er att synas pÃ¥ rÃ¤tt sÃ¤tt." i sekvensen | mening 4 av 5 | samma |
+| **1** | texten i DOM:en | 5 element `.ts` i `.thesis-lines`, alla i tillgÃ¤nglighetstrÃ¤det (axe/`innerText`), ingen `display:none`/`visibility:hidden`/`aria-hidden` | samma |
+| **1** | Hyperborea-plÃ¥ten | â‰¥ **36 % vw**, flush mot viewportens hÃ¶gerkant (gridbrott), grÃ¥skala till fÃ¤rg vid mening 3 | full bredd minus rail, under meningen |
+| **1** | 0 delade ord i nÃ¥gon mening | 768/1024/1280/1440/1920 | 320/375/390 |
+| **2** | jÃ¤ttesektionen borta | `#giant-section`, `.stagger`, `.col` = 0 trÃ¤ffar i DOM | samma |
+| **2** | lÃ¥st copy kvar | 16/16 rader ur `PRODUCT.md` Â§ Brand Commitments finns i DOM:en ordagrant | samma |
+| **2** | ridÃ¥n | vid scrollY = tesens pinslut + 0,5 vh: Ã¶vre halvan blÃ¥tt, undre halvan kapitelskÃ¤rmen pÃ¥ ritbordet; kapitelrubrikens `top` **ofÃ¶rÃ¤ndrad (Â±1 px)** genom hela ridÃ¥ns 900 px | samma, 844 px |
+| **3** | copyn | varje strÃ¤ng i `COPY-V3d-v0.md` kolumn v0 stÃ¥r i DOM:en ordagrant; processtycken â‰¤ 50 ord; noll tankstreck | samma |
+| **4** | case-kapitlet | 100 % vh papper, rubrik **â‰¥ 100 px** ensam pÃ¥ skÃ¤rmen | â‰¥ 56 px |
+| **4** | Calyx: sida fÃ¶r text / sajt | text **vÃ¤nster**, sajtens ram **hÃ¶ger**, ramens hÃ¶gerkant = viewportens hÃ¶gerkant | sajt Ã¶verst (sticky i stagen), text under |
+| **4** | Calyx: ramens storlek | **â‰¥ 58 % vw x â‰¥ 88 % vh** (â‰ˆ 835x790) | 390 x â‰¥ 50 % vh (â‰ˆ 420) |
+| **4** | Calyx: sajten rullar i takt | i varje `?preview=case-calyx-0N` stÃ¥r ramens `contentWindow.scrollY` pÃ¥ stegets ankare **Â±2 px**, och ankarets sektion syns i ramens Ã¶vre tredjedel; i en hjulsekvens (80 px/steg) Ã¤r ramens scrollY monotont stigande ned och monotont fallande upp | samma |
+| **4** | Calyx: textstegen | 5 steg, vart och ett ensamt i textplatsen i **810 px** scroll; steg N byter in samtidigt som sajten bÃ¶rjar rÃ¶ra sig mot sektion N och stÃ¥r fÃ¤rdigt nÃ¤r sajten landar | 760 px |
+| **4** | Calyx: case-sektionens hÃ¶jd | **5,5 vh** | 5,5 vh |
+| **4** | bryggan | 100 % vh svart plÃ¥t, rubrik â‰¥ 72 px, inget annat Ã¤n rubrik och ett stycke | â‰¥ 40 px |
+| **4** | HÅrai: sida fÃ¶r text / sajt | sajtens ram **vÃ¤nster**, flush mot viewportens vÃ¤nsterkant, text **hÃ¶ger** | sajt Ã¶verst, text under (samma som Calyx, se device-tabellen) |
+| **4** | HÅrai: ramens storlek, takt, steg | som Calyx; 6 steg, **6,4 vh** | som Calyx |
+| **4** | HÅrais egna scrollrÃ¶relser | husets ordljus och citatets skÃ¤rpa spelar inne i ramen nÃ¤r sajten rullar (skÃ¤rmbild vid `case-horai-02` och `-03`) | samma |
+| **4** | iframe-budgeten | exakt **2** `iframe` i dokumentet, Calyx och HÅrai, en gÃ¥ng var | samma |
+| **4** | priset efter HÅrai | `#pris` direkt efter `.case--horai`, pÃ¥ fotot, ofÃ¶rÃ¤ndrat | samma |
+| **5** | materialrytm | inga tvÃ¥ sektioner med samma grund kant i kant utan en sektionsgrÃ¤ns som syns; ljusbudget: â‰¥ 1 skiva om 900 px med > 50 % ljusa pixlar mellan processakten och priset (case-kapitlet) | samma |
+| **5** | varje rad i `PARITET.md` | "hÃ¥ller nivÃ¥n" i en par-bild | samma |
+
+## Tokens
+
+Inga nya fÃ¤rger. Nya ytor Ã¥teranvÃ¤nder befintliga tokens: tesen `--c-accent` (accentens
+fÃ¶rsta av tvÃ¥ fÃ¶rekomster, som i dag), case-kapitlet och Calyx `--bg`/`--ink` (papperet som
+"Hur vi tÃ¤nker" hade), bryggan och HÅrai `--c-black`/`--c-paper` med `--hairline-dark` (jÃ¤ttens
+material, som dÃ¤rmed stannar pÃ¥ sidan). BrÃ¶dtexten i casen `color-mix(in srgb, var(--ink)
+80%, var(--bg))`: rÃ¤knat â‰¥ 11:1 pÃ¥ papper och â‰¥ 12:1 pÃ¥ svart; mÃ¤t om pÃ¥ pixel.
+
+## Steps
+
+### 1 Â· Tesbandet Ã¤ger sin skÃ¤rm, meningarna byter plats
+
+1. **Markup.** ErsÃ¤tt hela `<div class="stagger">â€¦</div>` (rad 1650 till 1748, inklusive
+   kommentaren ovanfÃ¶r) med en fristÃ¥ende sektion direkt efter `</section>` fÃ¶r heron:
+
+```html
+<!-- TES: en pinnad akt, en mening i taget i rubrikplatsen. INTE en rubrik
+     med ett stÃ¶dstycke bredvid en jÃ¤tte. Alla meningar ligger i DOM:en. -->
+<section class="thesis" id="tes" data-sc-act="pin" data-sc-span="5.5" aria-labelledby="tes-1">
+  <div data-sc-stage class="thesis-stage">
+    <div class="thesis-lines">
+      <h2 class="ts" id="tes-1" style="--i:0">Det fÃ¶rsta intrycket Ã¤r digitalt.</h2>
+      <p class="ts" style="--i:1">SkÃ¤rmen mÃ¶ter besÃ¶karen fÃ¶re texten.</p>
+      <p class="ts" style="--i:2">Innan ett ord Ã¤r lÃ¤st bÃ¤r layout och bild hela argumentet.</p>
+      <p class="ts" style="--i:3">Vi hjÃ¤lper er att synas pÃ¥ rÃ¤tt sÃ¤tt.</p>
+      <p class="ts" style="--i:4">VI BYGGER ERT VARUMÃ„RKE.</p>
+    </div>
+    <div class="thesis-ticks" aria-hidden="true"><i></i><i></i><i></i><i></i><i></i></div>
+    <figure class="thesis-figure">
+      <div class="thesis-photo-box"><img src="â€¦demo-hyperborea.webp" â€¦(orÃ¶rt) alt="(v0)"></div>
+      <figcaption class="thesis-caption"><span class="cap-line">Exempelsida: Hyperborea, konferens i Lund</span></figcaption>
+    </figure>
+  </div>
+</section>
+```
+
+   `data-sc-in` pÃ¥ `.thesis-text` fÃ¶rsvinner med den gamla markupen (flÃ¶desrevealen fÃ¥r inte
+   ligga i en pinnad stage). `img` behÃ¥ller `src`, `width`, `height`, `loading`; `alt` enligt
+   v0. StrÃ¤ngarna 2 och 3 Ã¤r dagens `.thesis-support` delad i tvÃ¥ element, ordagrant.
+   Meningen "VI BYGGER ERT VARUMÃ„RKE." kommer frÃ¥n jÃ¤ttesektionen (se steg 2 och Q1).
+
+2. **CSS.** ErsÃ¤tt `.panel-thesis` till och med `.thesis-photo-box img` (rad 614 till 697)
+   och tesens rader i `@media (max-width:900px)` (1559 till 1564) och `(max-width:640px)`
+   (1581 till 1582):
+
+```css
+/* PLAN 054 1. Tesbandet: pinnad akt, 5,5 vh. INTE en ruta pÃ¥ 45 % vw. */
+.thesis{position:relative;z-index:2;}
+.thesis-stage{background:var(--c-accent);color:var(--c-white);
+  display:grid;grid-template-columns:minmax(0,1fr) minmax(0,.62fr);
+  grid-template-rows:minmax(0,1fr) auto;column-gap:clamp(24px,4vw,64px);
+  padding:clamp(72px,12svh,120px) 0 clamp(28px,5svh,48px) var(--rail-x);
+  border-bottom:1px solid var(--frame-line);overflow:clip;}
+.thesis-lines{grid-column:1;grid-row:1;align-self:center;display:grid;min-width:0;}
+.ts{grid-area:1/1;align-self:start;min-width:0;
+  font-family:var(--f-display);font-weight:700;
+  font-size:clamp(2rem,5vw + 1rem,6rem);line-height:.98;letter-spacing:-.02em;
+  text-transform:uppercase;text-wrap:balance;overflow-wrap:normal;hyphens:manual;}
+/* Bytet: rubrikradens Ã¶verkant och underkant Ã¤r en springa. UtgÃ¥ende
+   mening stiger ut genom Ã¶verkanten, inkommande stiger upp ur
+   underkanten. --in/--out lÃ¤ser --sc-ps (F-014), linjÃ¤rt Ã¶ver --f. */
+.js .ts{--a:calc(var(--i) / 5);--b:calc((var(--i) + 1) / 5);--f:.04;
+  --in:clamp(0,calc((var(--sc-ps,0) - var(--a) + var(--f) / 2) / var(--f)),1);
+  --out:clamp(0,calc((var(--sc-ps,0) - var(--b) + var(--f) / 2) / var(--f)),1);
+  clip-path:inset(calc(var(--out) * 100%) 0 calc((1 - var(--in)) * 100%) 0);
+  transform:translateY(calc((1 - var(--in)) * .55em - var(--out) * .55em));
+  letter-spacing:calc(-.02em + (1 - var(--in)) * .06em);}
+.js .ts:first-child{--in:1;}
+.js .ts:last-child{--out:0;}
+/* Lager 3: fem streck, det aktiva i fullt papper. Inga siffror (PRODUCT.md). */
+.thesis-ticks{grid-column:1;grid-row:2;display:flex;gap:10px;margin-top:clamp(20px,3svh,32px);}
+.thesis-ticks i{width:32px;height:2px;background:color-mix(in srgb,var(--c-white) 38%,var(--c-accent));}
+/* :nth-child(N) fÃ¥r background var(--c-white) nÃ¤r --sc-ps ligger i dess intervall:
+   background:color-mix(in srgb,var(--c-white) calc(38% + 62% * var(--on)),var(--c-accent))
+   med --on = clamp(0, 1 - abs((var(--sc-ps) - (N - .5) / 5) * 10) + 1, 1) skrivet ut per N. */
+.thesis-figure{grid-column:2;grid-row:1 / span 2;align-self:end;min-width:0;margin:0;}
+.thesis-photo-box{position:relative;aspect-ratio:16/10;overflow:clip;
+  border:1px solid var(--frame-line);border-right:0;}
+/* Lager 2: fÃ¤rgen kommer med mening 3 ("layout och bild"), beskÃ¤rningen drar Ã¥t. */
+.thesis-photo-box img{width:100%;height:100%;object-fit:cover;
+  filter:grayscale(calc(1 - clamp(0,calc((var(--sc-ps,0) - .4) / .2),1))) contrast(1.05);
+  transform:scale(calc(1 + .06 * var(--sc-ps,0)));transform-origin:70% 40%;}
+.thesis-caption{margin-top:12px;padding-right:var(--rail-x);}
+.thesis-caption .cap-line{/* orÃ¶rd deklaration frÃ¥n rad 663 till 665 */}
+@media (max-width:767px){
+  .thesis-stage{grid-template-columns:minmax(0,1fr);grid-template-rows:auto auto auto;
+    padding:clamp(56px,9svh,80px) var(--rail-x) clamp(20px,3svh,32px);row-gap:16px;}
+  .thesis-lines{align-self:start;min-height:calc(7 * .98 * clamp(2rem,5vw + 1rem,6rem));}
+  .thesis-figure{grid-column:1;grid-row:3;}
+  .thesis-photo-box{border-right:1px solid var(--frame-line);}
+  .thesis-caption{padding-right:0;}
+}
+```
+
+   `.thesis-lines` fÃ¥r vid < 768 en min-hÃ¶jd lika med sju rader, sÃ¥ att den lÃ¤ngsta meningen
+   (mening 3, 57 tecken) aldrig flyttar plÃ¥ten nÃ¤r den byter in. Vid â‰¥ 768 centreras raderna
+   i sin rad och plÃ¥ten stÃ¥r bottenstÃ¤lld; den lÃ¤ngsta meningen tar 5 rader Ã  86 px = 430 px
+   i en spalt pÃ¥ ~790 px.
+
+3. **Drift.** `.thesis` ersÃ¤tter `.panel-thesis` i `thesisEl` (JS rad 2289). `giantEl` finns
+   inte lÃ¤ngre: skriv om `driftColor()` (rad 2116 till 2130) till tvÃ¥ ben som bara lÃ¤ser
+   tesen, **svart â†’ `--c-accent-deep` Ã¶ver t 0 till 0,35, `--c-accent-deep` â†’ svart Ã¶ver t
+   0,65 till 1**, och ta bort `giantTop`, `giantH`, `driftHand` (rad 2292, 2303, 2309) och
+   `DRIFT_STOPS[2]`. Grunden syns bara i heron och i priset; priset ska stÃ¥ pÃ¥ fotots
+   neutrala ton som heron, inte i blÃ¥tt.
+
+### 2 Â· JÃ¤ttesektionen bort, ridÃ¥n frÃ¥n tesen till ritningen
+
+4. **Vad som bor i jÃ¤ttesektionen och Ã¤r lÃ¥st** (`PRODUCT.md` Â§ Brand Commitments):
+   - `VI BYGGER ERT VARUMÃ„RKE.` â†’ **mening 5 i tesens sekvens** (steg 1). SkÃ¤l:
+     `PRODUCT.md` Â§ Product Purpose kallar raden ordagrant "Tesrubriken". Den hÃ¶r hemma i
+     tesbandet, och den avslutar sekvensen som svar pÃ¥ "Vi hjÃ¤lper er att synas pÃ¥ rÃ¤tt
+     sÃ¤tt." Samma storlek som de andra meningarna, som Anton bestÃ¤llt.
+   - `Webbdesign, design och system. Allt pÃ¥ ett stÃ¤lle.` â†’ **kapitelskÃ¤rmen** i processakten,
+     som stycke direkt under "FrÃ¥n samtal till lanserad sida." (steg 6). SkÃ¤l: raden sÃ¤ger
+     vad som kommer ur samma stÃ¤lle; kapitelskÃ¤rmen inleder just hur det gÃ¶rs.
+   - `Design`, `Utveckling`, `System`: finns redan kvar pÃ¥ kortets baksida (`.card-services`,
+     rad 1631) och i `.sr-only` (rad 1643). Inget flyttas.
+   - OlÃ¥st och borta med sektionen: numreringen 01 till 03 och tjÃ¤nsternas tre underrader.
+     Samma innehÃ¥ll bÃ¤rs av processstegen 03 Design och 04 Utveckling (bokning, betalning,
+     kunddatabas). Se Q2.
+5. **Ta bort** `#giant-section` och allt som bara tjÃ¤nar den: CSS rad 879 till 1026
+   (`.panel-giant`, `.giant`, `.giant-sub`, `#giant-section`, `.ledger-wrap`, `.thread*`,
+   `.ledger`, `.ledger-row`, `.ledger-body`, `.is-scrubbed â€¦`, `@container`); **men behÃ¥ll
+   `.ledger-num`** (rad 994 till 995) eller flytta dess tvÃ¥ kvarvarande deklarationer in i
+   `#process .ledger-num`: stegens siffror anvÃ¤nder klassen. Greppa varje borttagen selektor
+   efter kvarvarande anvÃ¤ndare innan den raderas. JS: `giant`/`is-scrubbed` (rad 2531 till
+   2534), `?preview=ledger` och `?preview=bleed` (rad 2558 till 2573). CSS fÃ¶r `.stagger`,
+   `.col*`, `.calyx-fig`, `.horai-fig`, `.calyx-wrap`, `.horai-wrap` (rad 567 till 602,
+   713 till 735, 737 till 738, 766 till 783, 820 till 821, 1029 till 1031, 1554 till 1558).
+   `.frame-wrap`, `.frame-wrap iframe`, `.frame-wrap.is-asleep`, `.frame-wrap.frame-poster`,
+   `.frame-cap` och `:focus-within` stÃ¥r kvar (casen anvÃ¤nder dem).
+6. **RidÃ¥n.** KapitelskÃ¤rmen blir stÃ¥ende medan tesens stage lyfter av den. Inget skrivs
+   per bildruta; det Ã¤r ren scroll.
+   - Markup: omslut `.process-chapter` (rad 1769 till 1774) i `<div class="chapter-hold">`.
+     LÃ¤gg `<p class="process-locked">Webbdesign, design och system. Allt pÃ¥ ett stÃ¤lle.</p>`
+     efter `h2#process-title`, fÃ¶re `.process-lead`.
+   - CSS (ersÃ¤tter `.process-chapter` rad 1053 till 1055):
+
+```css
+/* PLAN 054 2. RidÃ¥n: #process ligger en skÃ¤rm in under tesen. Kapitlet Ã¤r
+   sticky i sin hÃ¥llare, sÃ¥ det stÃ¥r still medan tesens blÃ¥ stage glider
+   upp av det. INTE ett nytt blÃ¥tt block, INTE en korsfadning. */
+#process{position:relative;z-index:1;margin-top:-100svh;}
+.chapter-hold{height:calc(200svh + 40svh);}
+.process-chapter{position:sticky;top:0;height:100svh;display:flex;
+  flex-direction:column;justify-content:center;padding-block:clamp(72px,12svh,120px);}
+.process-locked{font-family:var(--font);font-weight:300;
+  font-size:clamp(1.25rem,1.6vw,1.5rem);line-height:1.4;max-width:34ch;
+  margin-top:clamp(20px,3svh,32px);padding-inline:var(--rail-x);}
+```
+
+   RÃ¤kning: hÃ¥llarens Ã¶verkant = tesens underkant - 100svh = exakt den scrollY dÃ¤r tesens
+   pin slÃ¤pper. Kapitlet bÃ¶rjar klibba i samma Ã¶gonblick som stagen bÃ¶rjar lÃ¤mna, stÃ¥r still
+   i 1 vh medan stagen lyfter, och sedan 0,4 vh ensamt innan band 01 kommer. Tesens
+   `border-bottom` (`--frame-line`) Ã¤r ridÃ¥ns kant.
+   - `measureAct` mÃ¤ter om `processTop` och ankarna (ofÃ¶rÃ¤ndrad kod); `--s1..--e7` flyttas
+     med. `?preview=process-0N` ska landa som i dag: kontrollera alla sju vid 1440 och 390.
+
+### 3 Â· Copyn, enklare och tydligare
+
+7. Skriv in varje strÃ¤ng i `COPY-V3d-v0.md` dÃ¤r status Ã¤r **fÃ¶renklad** eller **ny**, med
+   `Edit` per strÃ¤ng, och sÃ¤tt `<!-- copy v0, 054 -->` fÃ¶re varje Ã¤ndrat element. RÃ¶r inga
+   strÃ¤ngar med status **lÃ¥st** eller **ofÃ¶rÃ¤ndrad**. SVG-texterna i arket (`320`, `768`,
+   `1440`, `7 rem`, `16:9`, `96 px`, `A`) Ã¤r mÃ¥tt och rÃ¶rs inte.
+
+### 4 Â· Case-kapitlet, Calyx, bryggan, HÅrai
+
+**Etikett: "Exempelcase".** SkÃ¤l: Calyx och HÅrai Ã¤r Alunix egna exempelsajter;
+"Kundcase" pÃ¥stÃ¥r en kund som inte finns (`PRODUCT.md` Â§ absences, "Kunder utÃ¶ver de tre
+exempelsajterna"). "Exempelcase" delar fÃ¶rledet med de lÃ¥sta bildtexterna
+("Exempelsida: â€¦"), sÃ¥ etiketten och bildtexten sÃ¤ger samma sak. Casetexternas fÃ¶rsta steg
+sÃ¤ger dessutom uttryckligen att sajten Ã¤r ett exempel vi byggt fÃ¶r en tÃ¤nkt verksamhet.
+
+**Iframe-mekaniken: levande ram, skrollad inifrÃ¥n med `contentWindow.scrollTo`.** VÃ¤gt mot en
+lÃ¥ng skÃ¤rmbild i en mask:
+
+| | Levande ram, `scrollTo` | LÃ¥ng skÃ¤rmbild, `translateY` |
+|---|---|---|
+| Beviset | sajten kÃ¶r pÃ¥ riktigt: HÅrais ordljus och citatskÃ¤rpa och Calyx reveals spelar i takt (`PRODUCT.md` princip 1, "Beviset ska gÃ¥ att anvÃ¤nda") | en bild av sajten; HÅrais egna rÃ¶relser syns aldrig |
+| LÃ¥s | ramen transformeras aldrig; dokumentet inuti skrollar (samma som en lÃ¤sare som skrollar i den) | inget lÃ¥s berÃ¶rt |
+| Kostnad | ramens eget dokument layoutar/mÃ¥lar nÃ¤r det skrollar; tvÃ¥ ramar finns redan i dag, sÃ¶vs utanfÃ¶r 40 % | en transform pÃ¥ en stor bild, billigast |
+| TillfÃ¶rlitlighet | same-origin, synkron; risker: HÅrais `scroll-behavior:smooth` (lÃ¶s: `behavior:'instant'`), Tailwind-CDN:ns omlayout efter load (lÃ¶s: `ResizeObserver` i ramens dokument), ramen ej laddad vid snabb scroll (lÃ¶s: `frame-poster` finns redan, montering tidigarelÃ¤ggs) | nya assets (tvÃ¥ helsidesbilder, ~1 till 2 MB), mÃ¥ste tas om vid varje sajtÃ¤ndring |
+
+Valt: levande ram. Blir det ramens kostnad som faller i grinden (Â§ Boundaries) stoppar
+byggaren och skriver i NOTES; skÃ¤rmbildsvÃ¤gen Ã¤r lead:s beslut, inte en tyst retrÃ¤tt.
+
+**Bandets nya roll.** Bandet (`.stagger`) upphÃ¶r. Tesbandet stÃ¥r ensamt och behÃ¥ller
+Hyperborea som sin bild, som i dag en stillbild (ingen ram). Calyx- och HÅrai-ramarna flyttar
+in i casen: fortfarande exakt tvÃ¥ live-iframes. Sidan visar Hyperborea en gÃ¥ng, HÅrai en gÃ¥ng.
+Calyx syns tvÃ¥ gÃ¥nger i fÃ¶ljd, i arkets steg 05 till 07 som bild och direkt efter i caset som
+levande sajt; det Ã¤r Ã¶vergÃ¥ngen, inte en upprepning: processaktens sista not sÃ¤ger att
+"ritningen finns kvar som ram runt den fÃ¤rdiga sidan", case-kapitlet sÃ¤ger "SÃ¥ blev
+ritningen en sida", och Calyx-caset Ã¶ppnar samma sajt i full storlek.
+
+8. **Markup, fyra sektioner** efter `</section>` fÃ¶r `#process` och fÃ¶re `#pris`; hela
+   `#principer` (rad 1994 till 2020) tas bort:
+
+```html
+<!-- CASE-KAPITEL: en rubrik som Ã¤ger skÃ¤rmen pÃ¥ papper. INTE ett kortrutnÃ¤t med case. -->
+<section class="cases-chapter" id="case" data-sc-act="flow" aria-labelledby="case-title">
+  <p class="kicker-sans">Exempelcase</p>
+  <h2 id="case-title" class="cases-title">SÃ¥ blev ritningen en sida.</h2>
+  <p class="cases-lead">(v0)</p>
+</section>
+
+<!-- CASE CALYX: text vÃ¤nster, sajten hÃ¶ger och skrollad i takt. INTE en stilla
+     skÃ¤rmbild bredvid en punktlista. -->
+<section class="case case--calyx on-paper" id="case-calyx" data-sc-act="pin"
+         data-sc-span="5.5" aria-labelledby="calyx-title">
+  <div data-sc-stage class="case-stage">
+    <div class="case-text">
+      <p class="kicker-sans">Exempelcase</p>
+      <h2 id="calyx-title" class="case-title">Calyx</h2>
+      <ol class="case-steps">
+        <li class="cs" style="--i:0"><h3>(v0)</h3><p>(v0)</p></li>
+        â€¦ fem li, --i 0 till 4, text ur COPY-V3d-v0 â€¦
+      </ol>
+      <div class="case-rail" aria-hidden="true"><span>(h3 1)</span>â€¦<span>(h3 5)</span></div>
+    </div>
+    <figure class="frame-fig case-fig">
+      <div class="frame-wrap case-wrap calyx-wrap frame-poster">
+        <iframe data-src="/sites/calyx.html" loading="lazy" inert
+                title="Exempelsida: Calyx, florist i Stockholm"></iframe>
+      </div>
+      <figcaption class="frame-cap">Exempelsida: Calyx, florist i Stockholm</figcaption>
+    </figure>
+  </div>
+</section>
+
+<!-- BRYGGA: en mening pÃ¥ svart plÃ¥t mellan tvÃ¥ sajter. INTE en tredje ram. -->
+<section class="case-bridge" data-sc-act="flow" aria-labelledby="bridge-title">
+  <h2 id="bridge-title" class="bridge-title" data-sc-in>(v0)</h2>
+  <p class="bridge-p" data-sc-in>(v0)</p>
+</section>
+
+<!-- CASE HÅŒRAI: spegelvÃ¤nt, sajten vÃ¤nster, texten hÃ¶ger. -->
+<section class="case case--horai" id="case-horai" data-sc-act="pin" data-sc-span="6.4"
+         aria-labelledby="horai-title"> â€¦ samma anatomi, sex li, .case-fig FÃ–RE .case-text i
+  DOM:en, ramen /sites/horai.html med title "Exempelsida: HÅrai, Asian fusion-koncept" â€¦ </section>
+```
+
+   `.rv`-omslaget runt ramen tas bort (ingen reveal pÃ¥ casens ramar: stagen sjÃ¤lv glider in,
+   och en ram fÃ¥r aldrig klippas med clip-path, plan 036). `.calyx-wrap`/`.horai-wrap` stÃ¥r
+   kvar enbart som krokar fÃ¶r `frame-poster`-bilden (rad 820 till 821). `id="projekt"` flyttar
+   till `#case`.
+
+9. **CSS fÃ¶r casen** (nytt block efter `.frame-cap`):
+
+```css
+/* PLAN 054 4. Casen: pinnad stage, text och sajt delar skÃ¤rmen 5/7.
+   Ramen mÃ¶ter viewportens kant (gridbrottet). */
+.case--calyx{--bg:var(--bg);--ink:var(--ink);}
+.case--horai{--bg:var(--c-black);--ink:var(--c-paper);--c-line-on-paper:var(--hairline-dark);}
+.case-stage{background:var(--bg);color:var(--ink);display:grid;
+  grid-template-columns:minmax(0,5fr) minmax(0,7fr);column-gap:clamp(24px,4vw,64px);
+  padding-block:clamp(24px,4svh,40px);}
+.case--calyx .case-text{grid-column:1;padding-left:var(--rail-x);}
+.case--calyx .case-fig{grid-column:2;}
+.case--horai .case-fig{grid-column:1;grid-row:1;}
+.case--horai .case-text{grid-column:2;grid-row:1;padding-right:var(--rail-x);}
+.case--horai .case-stage{grid-template-columns:minmax(0,7fr) minmax(0,5fr);}
+.case-fig{min-width:0;display:flex;flex-direction:column;}
+.case-wrap{flex:1;min-height:0;border:1px solid var(--c-line-on-paper);}
+.case--calyx .case-wrap{border-right:0;}
+.case--horai .case-wrap{border-left:0;}
+.case-text{display:flex;flex-direction:column;justify-content:center;min-width:0;}
+.case-title{font-family:var(--f-display);font-weight:700;
+  font-size:clamp(3.5rem,7.2vw,7.5rem);line-height:.95;letter-spacing:-.03em;margin-top:12px;}
+.case-steps{list-style:none;margin:clamp(28px,5svh,48px) 0 0;padding:0;display:grid;}
+.cs{grid-area:1/1;min-width:0;}
+.cs h3{font-family:var(--f-display);font-weight:700;font-size:clamp(1.5rem,2.2vw,2rem);
+  line-height:1.05;letter-spacing:-.01em;text-transform:uppercase;}
+.cs p{font-size:clamp(1.0625rem,1.4vw,1.25rem);line-height:1.55;max-width:36ch;margin-top:.7rem;
+  color:color-mix(in srgb,var(--ink) 80%,var(--bg));}
+/* Samma springa som tesen, N ur sektionen (Calyx 5, HÅrai 6). */
+.case--calyx{--n:5;} .case--horai{--n:6;}
+.js .cs{--a:calc(var(--i) / var(--n));--b:calc((var(--i) + 1) / var(--n));--f:.04;
+  /* --in, --out, clip-path, transform, letter-spacing exakt som .js .ts */}
+.js .cs:first-child{--in:1;} .js .cs:last-child{--out:0;}
+/* Stegskenan: stegens rubriker i 13 px, det aktiva i fullt blÃ¤ck, en
+   hÃ¥rlinje fylls i takt med --sc-ps. Lager 3. */
+.case-rail{display:flex;flex-wrap:wrap;gap:6px 18px;margin-top:clamp(28px,5svh,48px);
+  padding-top:12px;border-top:1px solid var(--c-line-on-paper);
+  font-size:13px;font-weight:600;letter-spacing:.04em;}
+.case-rail span{color:color-mix(in srgb,var(--ink) calc(62% + 38% * var(--on,0)),var(--bg));}
+/* --on per span: samma formel som .thesis-ticks, N ur --n, skrivet per nth-child. */
+```
+
+   Stagens hÃ¶jd Ã¤r motorns 100svh (`[data-sc-stage]{height:100svh}` rad 327 gÃ¤ller redan).
+   `.case-wrap` fyller figuren under bildtexten: vid 1440x900 â‰ˆ 835 x 790.
+
+10. **CSS fÃ¶r kapitlet och bryggan:**
+
+```css
+.cases-chapter{background:var(--bg);color:var(--ink);min-height:100svh;display:flex;
+  flex-direction:column;justify-content:center;padding:clamp(72px,12svh,120px) var(--rail-x);}
+.cases-title{/* = .process-title (rad 1056 till 1059): 3,5rem till 7,5rem */}
+.cases-title{--edge:calc(var(--sc-ps,0) * 260%);background-image:linear-gradient(100deg,
+  var(--ink) 0 calc(var(--edge) - 12%),color-mix(in srgb,var(--ink) 62%,var(--bg)) calc(var(--edge) + 12%) 100%);
+  -webkit-background-clip:text;background-clip:text;color:transparent;}
+.cases-lead{font-size:1.25rem;line-height:1.5;max-width:44ch;margin-top:clamp(20px,3svh,32px);
+  color:color-mix(in srgb,var(--ink) 80%,var(--bg));}
+.case-bridge{background:var(--c-black);color:var(--c-paper);min-height:100svh;display:grid;
+  place-content:center;padding:clamp(72px,12svh,120px) var(--rail-x);
+  border-top:1px solid var(--frame-line);}
+.bridge-title{font-family:var(--f-display);font-weight:700;
+  font-size:clamp(2.5rem,5vw + .5rem,5.5rem);line-height:.98;letter-spacing:-.02em;max-width:18ch;}
+.bridge-p{font-size:1.25rem;line-height:1.5;max-width:44ch;margin-top:clamp(20px,3svh,32px);
+  color:color-mix(in srgb,var(--c-paper) 80%,var(--c-black));}
+```
+
+   Kapitelrubrikens ordljus lÃ¤ser kapitlets egna flÃ¶des-`--sc-ps` (0,5 nÃ¤r rubriken stÃ¥r i
+   mitten): fronten har passerat hela rubriken vid ~0,5, bÃ¥da Ã¤ndarna lÃ¤sbara (62 % blÃ¤ck â‰¥
+   6:1 pÃ¥ papper).
+
+11. **JS: montering.** I `latchTick` (rad 2172): byt villkoret `heroAct.cur >= 0.80` mot att
+    processakten har nÃ¥tt steg 05: flytta monteringen in i `if (process){â€¦}`-grenen efter
+    `procAct` Ã¤r hittad, `if (!framesMounted && stepAnchors[4] && procAct.cur >= stepAnchors[4].s)`.
+    TvÃ¥ levande sajter ska inte starta under tesens meningsbyte. Observern (rad 2490 till
+    2506) stÃ¥r kvar ofÃ¶rÃ¤ndrad: den observerar `.frame-wrap` och sÃ¶ver utanfÃ¶r 40 %.
+    Ta bort `reveals` (rad 2085 till 2089 och slingan 2217 till 2227) och `measureFrames`
+    (rad 2384 till 2396); `@property --rv` (rad 761) och `.rv`-reglerna gÃ¥r med.
+
+12. **JS: sajten rullar i takt.** Nytt, efter `measureAct`:
+
+```js
+/* PLAN 054 4. Casens ramar skrollas INIFRÃ…N, ur aktens LERPADE vÃ¤rde (cur),
+   i latchTick. Ramen sjÃ¤lv transformeras aldrig (PRODUCT.md). Ankarna mÃ¤ts
+   i ramens dokument (same-origin) vid load och vid varje storleksÃ¤ndring
+   dÃ¤r, aldrig per bildruta. */
+var CASES = [
+  { el: document.getElementById('case-calyx'), anchors: [
+      ['top', 0], ['#studio', 0], ['#studio + section', 0], ['#index', 0], ['#commission', 0] ] },
+  { el: document.getElementById('case-horai'), anchors: [
+      ['top', 0], ['#hero-section + section', 0.30], ['#quote-section', -0.40],
+      ['#quote-section + section', 0], ['#reservations', -1], ['#reservations', 0] ] }
+].filter(function(C){ return C.el; });
+/* Andra talet: fÃ¶rskjutning i ramhÃ¶jder. 0,30 = husets stycke stÃ¥r en tredjedel
+   ned sÃ¥ ordljuset spelar; -0,40 = citatets eget "formade lÃ¤ge" (horai.html rad
+   481); -1 = rummet (sektionen fÃ¶re bokningen) stÃ¥r i ramen. MÃ¤tt vid bygget,
+   justeras mot skÃ¤rmbild, skrivs i NOTES. */
+function measureCase(C){
+  var f = C.el.querySelector('iframe'), w = f && f.contentWindow, d = f && f.contentDocument;
+  if (!d || !d.documentElement) return;
+  var ih = w.innerHeight, max = d.documentElement.scrollHeight - ih;
+  C.f = f; C.w = w; C.y = C.anchors.map(function(a){
+    var t = a[0] === 'top' ? 0 : (d.querySelector(a[0]) || {}).offsetTop || 0;
+    return Math.max(0, Math.min(max, Math.round(t + a[1] * ih)));
+  });
+}
+function caseY(C, p){
+  var n = C.y.length, k = Math.min(n - 1, Math.floor(p * n)), t = p * n - k;
+  if (k === 0) return C.y[0];
+  var u = Math.min(1, t / 0.45); u = u * u * (3 - 2 * u);   /* resa 45 %, stÃ¥ 55 % */
+  return C.y[k - 1] + (C.y[k] - C.y[k - 1]) * u;
+}
+```
+
+   - Koppling: i `mountFrame` (rad 2458), efter `f.src = s`, lÃ¤gg en `load`-lyssnare som
+     letar upp sitt `CASES`-objekt, kÃ¶r `measureCase` och sÃ¤tter
+     `new f.contentWindow.ResizeObserver(function(){ measureCase(C); }).observe(f.contentDocument.documentElement)`.
+     Ã„ven `resize` pÃ¥ fÃ¶nstret kÃ¶r `measureCase` fÃ¶r varje Ã¤rende.
+   - I `latchTick`, efter reveals-slingans plats: fÃ¶r varje `C` med `C.y`: `act =
+     findAct(acts, C.el)`; `y = caseY(C, act.cur)`; om `Math.abs(y - C.last) >= 0.5`:
+     `C.w.scrollTo({ top: y, left: 0, behavior: 'instant' }); C.last = y`. Om aktens
+     `--sc-p` och `cur` skiljer > 0,0005: `again = true` (samma mÃ¶nster som processen,
+     rad 2213 till 2214). **Ingen `getComputedStyle`, ingen `scrollHeight`-lÃ¤sning per
+     bildruta.**
+   - Steg N:s text byter in vid p = N/n, samma Ã¶gonblick som `caseY` bÃ¶rjar resan mot
+     ankare N; sajten landar vid p = (N + 0,45)/n, lÃ¥ngt innan steget byter ut.
+
+13. **Mobilen, < 768.** Samma pinnade akt; stagen staplas med sajten Ã¶verst:
+
+```css
+@media (max-width:767px){
+  .case-stage,.case--horai .case-stage{grid-template-columns:minmax(0,1fr);
+    grid-template-rows:52svh minmax(0,1fr);padding:0 0 clamp(16px,3svh,24px);}
+  .case .case-fig{grid-column:1;grid-row:1;}
+  .case .case-text{grid-column:1;grid-row:2;justify-content:flex-start;
+    padding:clamp(16px,3svh,24px) var(--rail-x) 0;}
+  .case-wrap,.case--calyx .case-wrap,.case--horai .case-wrap{border:0;
+    border-bottom:1px solid var(--c-line-on-paper);}
+  .case-text > .kicker-sans{display:none;}
+  .case-title{font-size:clamp(2rem,9vw,2.5rem);margin-top:0;}
+  .case-steps{margin-top:14px;}
+  .cs h3{font-size:1.375rem;} .cs p{font-size:1rem;max-width:none;}
+  .case-rail{display:none;}
+}
+```
+
+   **SkÃ¤l, sajten ovanfÃ¶r texten pÃ¥ bÃ¥da casen:** vid 390 finns ingen sida att spegla;
+   Ã¶gat lÃ¤ser uppifrÃ¥n, och texten Ã¤r sajtens bildtext fÃ¶r det som syns just dÃ¥. Spegeln
+   bÃ¤rs av grunden (papper mot svart plÃ¥t) och av ordningen i DOM:en, inte av en
+   spegelvÃ¤nd stapel som skulle lÃ¤gga HÅrais text ovanfÃ¶r en ram texten Ã¤nnu inte
+   beskrivit. Kickern och skenan dÃ¶ljs under 768 (de upprepar rubriken och stegens
+   rubriker; ytan behÃ¶vs fÃ¶r stycket). Casestyckena Ã¤r â‰¤ 40 ord (COPY-V3d-v0), vilket ger
+   â‰¤ 9 rader i 16 px vid 320 och ryms under en ram pÃ¥ 52svh vid 320x568.
+
+### 5 Â· Balans och Ã¶vergÃ¥ngar
+
+14. **Ã–vergÃ¥ngarna, en i taget, och vad som bÃ¤r dem:**
+    - hero â†’ tes: heronts pin slÃ¤pper, den blÃ¥ stagen stiger in i full bredd. Pin fÃ¶ljer pÃ¥
+      pin; avsteg frÃ¥n "aldrig samma familj tvÃ¥ gÃ¥nger i rad" (devices.md), namngivet: tesens
+      meningsbyte Ã¤r Antons bestÃ¤llning, och materialbytet foto â†’ blÃ¥tt plus heronts 160 px
+      luft fÃ¶re (`.stagger`s padding-top fÃ¶rsvinner, ersÃ¤tts av `.thesis{margin-top:
+      clamp(160px,18vh,200px)}` pÃ¥ fotots grund) gÃ¶r grÃ¤nsen lÃ¤sbar.
+    - tes â†’ process: ridÃ¥n (steg 6).
+    - process â†’ case-kapitel: arkets sista bild Ã¤r Calyx i fÃ¤rg; sedan papper med "SÃ¥ blev
+      ritningen en sida." HÃ¥rd materialgrÃ¤ns ritbordet â†’ papper, som hoy (hoy-home s03 â†’ s04).
+    - Calyx â†’ brygga: papper â†’ svart plÃ¥t, hÃ¥rd grÃ¤ns med `--frame-line` Ã¶verst.
+    - brygga â†’ HÅrai: samma svarta plÃ¥t; HÅrais ram glider in frÃ¥n vÃ¤nster kant med stagen.
+    - HÅrai â†’ pris: svart plÃ¥t â†’ foto med scrim, orÃ¶rt prisblock.
+15. **Tre sektionsanatomier till** (utÃ¶ver hero, process, pris): pinnad helbredd med
+    bytande rad (tes), kapitel i centrerad spalt (case-kapitel, brygga), delad diptyk med
+    ram mot kanten (casen). Ingen anatomi tvÃ¥ gÃ¥nger i rad utom kapitlet och Calyx-caset,
+    som skiljs av pin mot flÃ¶de.
+16. **Ingen ny accent.** `#1e5e9c` fortfarande exakt tvÃ¥ fÃ¶rekomster (tesen, "Boka ett
+    mÃ¶te"). Monobudgeten: jÃ¤ttens siffror fÃ¶rsvinner, kvar Ã¤r tre av fyra (kortets kicker,
+    kortets tjÃ¤nsterad, tesens bildtext).
+
+## Device-tabell
+
+| Bredd | Tesbandet | RidÃ¥n | Case-kapitel / brygga | Casen |
+|---|---|---|---|---|
+| **1440x900** | stage 1440x900; meningar 88 px i spalt ~790 px, â‰¤ 5 rader; Hyperborea ~40 % vw flush hÃ¶ger, fÃ¤rg frÃ¥n mening 3; streck under raderna | kapitlet stÃ¥r, blÃ¥tt lyfter 900 px | 104 / 88 px rubrik | text 5/12 (~500 px, h2 104 px, steg 32 px + 20 px); ram 7/12 â‰ˆ 835x790 flush mot kanten |
+| **1280x800** | 80 px, â‰¤ 5 rader | 800 px | 92 / 80 px | ram â‰ˆ 740x700 |
+| **1024x768** | 67 px, â‰¤ 5 rader; plÃ¥t ~36 % vw | 768 px | 74 / 67 px | ram â‰ˆ 590x670 (Calyx byter till sin smala layout, vÃ¤ntat) |
+| **768x1024** | 54 px; staplad under 768 gÃ¤ller inte, 768 Ã¤r tvÃ¥ spalter: plÃ¥t 0,62fr â‰ˆ 280 px | 1024 px | 56 / 54 px | tvÃ¥ spalter: text ~290 px, steg 17 px; ram â‰ˆ 430x960 |
+| **390x844** | 35,5 px, raderna Ã¶verst (min 7 rader), plÃ¥t 344 px bred under, bildtext under plÃ¥ten | 844 px | 56 / 40 px | ram 390x439 Ã¶verst, text under: h2 35 px, steg 22 + 16 px |
+| **320x568** | 32 px, plÃ¥t 288 px | 568 px | 56 / 40 px | ram 320x295, text under â‰¤ 9 rader |
+
+Noll horisontell scroll 320 till 1920, mÃ¤tt pÃ¥ elementens rektanglar (gate 34). Vid 200 %
+zoom pÃ¥ 1440 (720 css-px) gÃ¤ller 768-raden. HÅrai vid 390 har ett eget kÃ¤nt Ã¶verflÃ¶de i
+`sites/horai.html` (r3 fix 7, rÃ¶rs aldrig); det syns som en kapad underrubrik inne i ramen.
+
+## `?preview=`
+
+Varje lÃ¤ge sÃ¤tter `window.__scFreezeMotion = true` (befintligt, rad 2544). En gemensam
+`aimPin(el, p)`: `target = elTop + p * (el.offsetHeight - innerHeight)`, samma settle-slinga
+och driftlyssnare som `aimPreview` (rad 2621 till 2659), klar nÃ¤r aktens `--sc-ps` = p Â±
+0,002. Casen vÃ¤ntar dessutom in ramens `load` + `measureCase` och kÃ¶r `kickLatch()` sÃ¥ att
+ramen hinner skrollas.
+
+| LÃ¤ge | p | Visar |
+|---|---|---|
+| `thesis-01` â€¦ `thesis-05` | (N - 0,5)/5 | mening N ensam i rubrikplatsen |
+| `curtain` | tesens pinslut + 0,5 vh (scrollY) | halvt blÃ¥tt, halvt kapitel |
+| `chapter` | kapitlet sticky, blÃ¥tt borta | kapitelskÃ¤rmen ensam |
+| `cases` | `#case` centrerad, `--sc-ps` 0,5 | case-kapitlet med rubriken tÃ¤nd |
+| `case-calyx-01` â€¦ `-05` | (N - 1 + 0,8)/5 | steg N, sajten landad pÃ¥ ankare N |
+| `bridge` | `.case-bridge` centrerad | bryggan |
+| `case-horai-01` â€¦ `-06` | (N - 1 + 0,8)/6 | steg N, sajten landad pÃ¥ ankare N |
+| `front`, `mid`, `back`, `process-01` â€¦ `-07` | ofÃ¶rÃ¤ndrade | som i dag |
+
+`ledger` och `bleed` tas bort (deras mÃ¥l finns inte lÃ¤ngre).
+
+## Repo conventions
+
+- Motorn `scroll/scrollcraft.js`, `scrollcraft.css`, `scroll/sc-smooth.js` och `sites/*`
+  orÃ¶rda. Inga nya `@property`.
+- F-011: ingen `prefers-reduced-motion`, ingen statisk fallback. F-014: allt som rÃ¶r sig
+  lÃ¤ser `--sc-ps` (CSS) eller shimens `cur` (JS); rÃ¥ `--sc-p` driver ingenting.
+- No-JS: `.js`-grindarna gÃ¶r att meningarna och casestegen utan skript stÃ¥r staplade men
+  Ã¶verlagrade i samma cell. LÃ¤gg `.no-js .ts,.no-js .cs{grid-area:auto;}` sÃ¥ de staplas i
+  flÃ¶det och alla syns (reveal faller mot synligt).
+- LÃ¥st copy ordagrant. Gate 75: noll tankstreck (U+2010 till U+2015, U+2212). Radie 0,
+  inga skuggor. Gate 47: ramarna Ã¤r riktiga sajter, ingen ritad webblÃ¤sarkrom.
+
+## Boundaries (STOPPA och skriv i NOTES)
+
+- En lÃ¥st strÃ¤ng skulle behÃ¶va Ã¤ndras.
+- Ramens synk krÃ¤ver en lÃ¤sning av `getComputedStyle` eller `scrollHeight` per bildruta.
+- `motion_probe` pÃ¥ `#case-calyx:--sc-ps` eller `#case-horai:--sc-ps` ger `staircase` > 0,
+  eller bildrutor > 33 ms fler Ã¤n dubbla processaktens vÃ¤rde i samma kÃ¶rning (cpu 1).
+  DÃ¥ beslutar lead om skÃ¤rmbildsvÃ¤gen; byggaren byter inte sjÃ¤lv.
+- RidÃ¥n gÃ¶r att nÃ¥gon `?preview=process-0N` inte lÃ¤ngre landar pÃ¥ `--eN`.
+
+## Verification
+
+**A. Synligt, det som avgÃ¶r.** `PARITET.md`: par-bilder vid 1440 och 390 fÃ¶r varje rad,
+lÃ¤sta som bilder, varje rad "hÃ¥ller nivÃ¥n" eller lagad i samma runda. Plus Target-tabellen
+rad fÃ¶r rad med uppmÃ¤tt vÃ¤rde. Lead lÃ¤ser sjÃ¤lv par-bilderna fÃ¶r P03, P04, P14, P17 till
+P20 bredvid referensen innan runda rÃ¤knas klar.
+
+**B. MÃ¤tt.**
+- 1: `getComputedStyle(.ts).fontSize` fÃ¶r alla fem vid 320/390/768/1024/1280/1440/1920
+  (identiska per bredd); ordbrytningsskriptet (R3:s) pÃ¥ `.ts`, `.case-title`, `.cs h3`,
+  `.cases-title`, `.bridge-title`; hjulsekvens 80 px/steg genom hela tesen, ned och upp,
+  kontaktark, med `--in`/`--out` per mening utskrivna per ram.
+- 2: grep `giant-section|stagger|principer` = 0 i markup; 16 lÃ¥sta strÃ¤ngar ordagrant i
+  `document.body.innerText`; ridÃ¥n: kapitelrubrikens `top` var 50:e px genom ridÃ¥n.
+- 4: vid varje `case-*-0N`: `C.w.scrollY` mot `C.y[N-1]`; hjulsekvens 80 px/steg genom bÃ¥da
+  casen, ramens `scrollY` utskriven per ram, monoton bÃ¥da riktningarna; skÃ¤rmbild per ram,
+  kontaktark; `document.querySelectorAll('iframe').length === 2`.
+- 5: ljusbudgeten per skiva om 900 px vid 1440 (andel pixlar med relativ luminans > 0,5),
+  som i plan 048 Â§ Beslut G punkt 4.
+- Kontrast: `contrast_over_media.py --url` pÃ¥ tesen (thesis-03), kapitlet, casestegen (bÃ¥da
+  grunderna), bryggan, priset; `background-clip:text` lÃ¤ses med pixelmetoden (NOTES R1).
+
+**C. Grinden (inte mÃ¥let).** `scroll_verify` 1440 och 390; `motion_probe` med kontroll-
+protokollet pÃ¥ `#tes`, `#process`, `#case-calyx`, `#case-horai` ned och upp, cpu 1 och 4,
+wheel 100:60 och 20:120, `staircase 0`, `max_step` â‰¤ 3 %; `a11y_scan` + `reflow` vid 390 och
+768; `tab_walk`; grep `prefers-reduced-motion` 0; inline-hex utanfÃ¶r `:root` inte fler Ã¤n
+fÃ¶re (CSS 16, markup/JS 2).
+
+**Done when:** varje mÃ¥lrad har ett uppmÃ¤tt vÃ¤rde som nÃ¥r mÃ¥let, varje rad i `PARITET.md`
+hÃ¥ller nivÃ¥n i sin par-bild, grinden Ã¤r ren eller varje avvikelse namngiven, och copy-agenten
+har fÃ¥tt `COPY-V3d-v0.md` som underlag.
+
+## FrÃ¥gor till Anton (bygget stoppar inte; antagandet gÃ¤ller tills svar)
+
+| # | FrÃ¥ga | Antagande |
+|---|---|---|
+| Q1 | `VI BYGGER ERT VARUMÃ„RKE.` bodde i jÃ¤ttesektionen. FÃ¥r den bli femte och sista meningen i tesens sekvens (PRODUCT.md kallar den "Tesrubriken")? Alternativet Ã¤r kapitelskÃ¤rmen i processakten. | Mening 5 i tesen |
+| Q2 | TjÃ¤nsterna numrerade 01 till 03 med underrader (PRODUCT.md Â§ Product Purpose) fÃ¶rsvinner med sektionen; namnen stÃ¥r kvar pÃ¥ kortets baksida. Ska numreringen synas nÃ¥gonstans igen? | Nej; processtegen 03 och 04 bÃ¤r innehÃ¥llet |
+| Q3 | Etiketten "Exempelcase". HÃ¥ller den, eller fÃ¶redrar du "SÃ¥ arbetade vi"? | "Exempelcase" |
+| Q4 | Casetexterna Ã¤r dikt om vÃ¥r egen process fÃ¶r tvÃ¥ tÃ¤nkta verksamheter och sÃ¤ger det i fÃ¶rsta steget. Ã„r tonen rÃ¤tt, och fÃ¥r vi sÃ¤ga "en tÃ¤nkt florist"? | Ja |
+| Q5 | "Hur vi tÃ¤nker" fÃ¶rsvinner helt, Ã¤ven "Vi visar innan vi pÃ¥stÃ¥r" och "Sidan ska fungera fÃ¶r alla". Saknar du nÃ¥gon av dem? | Ingen flyttas |
+| Q6 | Sidan blir ~34 viewports lÃ¥ng vid 1440 (i dag ~18,6). Casen stÃ¥r fÃ¶r ~12 av dem. Ok, eller ska HÅrai kortas till fem steg? | Ok |
+| Q7 | Ramarna fÃ¶rblir `inert` (ingen klick i sajterna); de rullar bara i takt med sidan. RÃ¤cker det som "levande"? | Ja |
+fix
+
+## persistence
+Egna bilder och mÃ¥tt i `shots/astra-r8/`. Samma verktyg som r7 (`capture.py`, `sweep.py`), men `sweep.py` lÃ¤ser nu varje `.ts`/`.cs`:s **berÃ¤knade** `clip-path` (box-shorthand-parser, 1 till 4 token) i stÃ¤llet fÃ¶r att rÃ¤kna om sidans formel, sÃ¥ mÃ¤tningen fÃ¶ljer koden som den faktiskt stÃ¥r. Varje lÃ¤ge nÃ¥ddes med `mouse.wheel` frÃ¥n toppen i en ren sida, en skÃ¤rmbild per sida, ramarna laddade (`settle_media`). Par-bilder `Pxx-1440.png` / `Pxx-390.png` fÃ¶r alla PARITET-rader (P05 utgÃ¥ngen), 768-bilder i `ours/`. Alla kollisioner Ã¤r dÃ¶mda i enskilda skÃ¤rmbilder, inga ark.
+
+MÃ¤tsvep (`sw-thesis.log`, `sw-cases.log`, `sw-whole.log`, `sweep-*.json`):
+- **Tesbandet, 20 px-steg ner och upp:** 1440 208/208 bildrutor, 768 236/237, 390 195/196. 0 bildrutor med tvÃ¥ synliga meningar, 0 px Ã¶verlapp.
+- **Casen, 20 px-steg ner och upp:** Calyx och HÅrai vid 1440, 768 och 390. Totalt 2 874 bildrutor, 0 med tvÃ¥ synliga steg och 0 px Ã¶verlapp. Ramens scroll Ã¤r monoton (0 bakÃ¥tsteg) i alla sex svepen. Fram och bak i vila Ã¤r lika vid alla punkter utom HÅrai 70 % (68 / 86 / 91 px vid 1440 / 768 / 390). Det Ã¤r samma lilla avvikelse som i r7, vid steget "Rummet", och den hÃ¥lls utanfÃ¶r material_fixes.
+- **Hela sidan, 150 px-steg:** 1440 201 bildrutor och 390 170, 0 rubrikkollisioner (`elementFromPoint`) och 0 horisontell scroll.
+- **MÃ¥tt (`measure8.py`, `measure8.json`, `q390.py`, `q390b.py`):** se fidelity.
+
+Codex (`gpt-6-astra`, medium, read-only) kÃ¶rde en gÃ¥ng med 24 par-bilder: 20 vid 1440 och 4 vid 390 (`prompt.txt`, `imgs.txt`, `codex-out.txt`). De 390-par som inte bifogades lÃ¤ste jag sjÃ¤lv, en bild i taget.
+- **Fyra fynd kom tillbaka och tre Ã¶verlevde** (HÅrai 390, tesbandet 390, Calyx 390 -03).
+- **SlÃ¤ppt, fynd 4 ("prisrubriken kommer fÃ¶r sent i P20").** Rubrikens topp ligger vid ~68 % vh i `P20-1440.png`. Men det lÃ¤get Ã¤r konstruerat av mig: `capture.py` placerar `#pris` Ã¶verkant exakt vid 50 % vh. Mellan kanten och rubriken finns inget tomt band, bara fotot med scrim som grund, och rubriken nÃ¥r Ã¶vre halvan vid nÃ¤sta hjulsteg. Koden Ã¤r ofÃ¶rÃ¤ndrad sedan r7, dÃ¤r raden hÃ¶ll. Det hÃ¤r Ã¤r inget sidfel.
+- **Codex rad 22 (Calyx 390).** Omformulerat efter egen mÃ¤tning: den andra bilden i paret kan inte stÃ¥ bredvid den fÃ¶rsta, eftersom Calyx staplar bilderna pÃ¥ mobil. Det som gÃ¥r att stÃ¤nga Ã¤r att mÃ¤rkningen saknas, se fix 3.
+
+Leadens egen kontroll (`lead-r8/sheet.png`, tesen vid 1440) stÃ¤mmer med mina svep. Den tÃ¤cker dock inte 390, och det Ã¤r dÃ¤r de Ã¥terstÃ¥ende fynden finns.
+
+## fidelity
+**r7-fixarna:**
+- **Fix 1, tesbytet: stÃ¤ngd.** Ã–verlappet Ã¤r 0 px vid 1440, 768 och 390, i bÃ¥da riktningarna och i alla 1 280 bildrutor. `index.html:615â€“617` har de asymmetriska fÃ¶nstren.
+- **Fix 2, Calyx-grunden: stÃ¤ngd.** `backgroundColor` Ã¤r `rgb(253, 251, 244)` och ink `rgb(22, 20, 15)` vid 1440, 768 och 390 (`P17-1-1440.png`, `P17-3-390.png`: papper, inte foto).
+- **Fix 3, casestegen: stÃ¤ngd.** 0 px Ã¶verlapp, bÃ¥da casen, tre bredder, bÃ¥da riktningarna.
+- **Fix 4, HÅrais citat: Ã¶ppen vid 390.** Vid 1440 Ã¤r citatet format och skarpt i ramen (`P19-3-1440.png`), och vid 768 syns det (jp y=233). Vid 390 har `#quote-jp` opacitet 1 och `#quote-text` blur 0, men bÃ¥da ligger **ovanfÃ¶r** ramens synliga yta: jp y=-139..-114, citatet y=-58..53, och sajtens nav tÃ¤cker 0..117. I `P19-3-390.png` syns bara bylinen "LINNEA BERGSTRÃ–M" pÃ¥ en nÃ¤stan tom mÃ¶rk ram. Se fix 1.
+- **Fix 5, Calyx-ramen: stÃ¤ngd.** 922Ã—807 vid 1440 (64,0 % vw, 89,7 % vh), 492Ã—924 vid 768 och 451 px vid 390 (53,4 % vh).
+- **Fix 6, Hyperboreas andel: stÃ¤ngd.** 534Ã—334 vid 1440 (37,1 % vw) och 285 px vid 768 (37,1 %), flush mot hÃ¶ger.
+- **Fix 7, tomt band vid 390: Ã¶ppen, bandet har flyttat.** Mellan meningen och strecken Ã¤r det nu 41 px, men mellan strecken (slutar y=258) och bilden (bÃ¶rjar y=543) stÃ¥r **285 px tomt blÃ¥tt**, 34 % vh, i alla fem meningarna (`P03-3-390.png`, `ours/P03-*-390.png`). Bilden Ã¤r ofÃ¶rÃ¤ndrat 343Ã—215. Se fix 2.
+- **Fix 8, `?preview=chapter`: stÃ¤ngd.** Band 01 bÃ¶rjar y=1080 vid 1440 (vh 900) och y=1261 vid 390 (vh 844). `P04-chapter-1440.png` visar kapitlet ensamt.
+
+**PARITET, rad fÃ¶r rad:**
+- **P01 fold: hÃ¥ller nivÃ¥n.** OfÃ¶rÃ¤ndrad. Heron och kortet Ã¤ger folden vid bÃ¥da bredderna.
+- **P02 kortets baksida: hÃ¥ller nivÃ¥n.**
+- **P03 tesbandet: hÃ¥ller inte.**
+  - 1440 hÃ¥ller: meningen ensam i 88 px, Hyperborea 37,1 % vw flush hÃ¶ger, rena byten.
+  - 390 hÃ¥ller inte: 285 px tomt blÃ¥tt band mellan strecken och bilden, och bilden Ã¤r bara 25 % vh (`P03-3-390.png`). Referensen fyller skÃ¤rmen med rubrik, text och bild utan dÃ¶tt fÃ¤lt.
+- **P04 ridÃ¥n: hÃ¥ller nivÃ¥n.** HÃ¥rlinjekanten Ã¤r ren vid bÃ¥da bredderna, och kapitlet stÃ¥r ensamt i `P04-chapter-1440/390`.
+- **P05:** utgÃ¥ngen.
+- **P06 kapitelskÃ¤rmen: hÃ¥ller nivÃ¥n.** Samma bilder som P04.
+- **P07 steg 01: hÃ¥ller nivÃ¥n.**
+- **P08 steg 02: hÃ¥ller nivÃ¥n.** MÃ¥ttkedjan lÃ¤ses pÃ¥ avstÃ¥nd vid bÃ¥da bredderna.
+- **P09 steg 03: hÃ¥ller nivÃ¥n.**
+- **P10 steg 04: hÃ¥ller nivÃ¥n.**
+- **P11 steg 05: hÃ¥ller nivÃ¥n.**
+- **P12 steg 06: hÃ¥ller nivÃ¥n.**
+- **P13 steg 07: hÃ¥ller nivÃ¥n.**
+- **P14 case-kapitlet: hÃ¥ller nivÃ¥n.** Pappersgrund och rubriken i 103,68 px.
+- **P15 pris + kontakt: hÃ¥ller nivÃ¥n.** Som i r7. Rubriken Ã¤r kapad i sista viewporten vid 390, men priser och adress bÃ¤r avslutet.
+- **P16 hela sidan: hÃ¥ller nivÃ¥n.** Calyx-caset stÃ¥r nu pÃ¥ papper. Rytmen gÃ¥r foto â†’ blÃ¥tt â†’ ritbord â†’ papper (kapitel och Calyx) â†’ svart plÃ¥t (brygga och HÅrai) â†’ foto (`sheet-whole-1440-1.png`, bara fÃ¶r rytmen). 0 kollisioner.
+- **P17 case Calyx: hÃ¥ller inte, vid 390.**
+  - 1440 hÃ¥ller: ram 64 % Ã— 89,7 % pÃ¥ papper, och `-03` visar bildparet med tvÃ¥ mÃ¤rkningar (y=449 och 579).
+  - 390, `-03`: ramen Ã¤r 451 px och visar ett enda beskuret foto. MÃ¤rkningen som steget beskriver ("med en liten mÃ¤rkning under varje") ligger vid y=500, utanfÃ¶r ramens 450 (`P17-3-390.png`). Se fix 3.
+- **P18 bryggan: hÃ¥ller nivÃ¥n.**
+- **P19 case HÅrai: hÃ¥ller inte, vid 390.**
+  - 1440 hÃ¥ller: citatet formas skarpt i ramen, och spegelkompositionen hÃ¥ller.
+  - 390, `-03`: citatet syns inte i ramen (fix 1).
+- **P20 HÅrai â†’ priset: hÃ¥ller nivÃ¥n.** Kanten Ã¤r ren och det finns inget tomt band (`P20-1440.png`). Codex fynd om rubriklÃ¤get Ã¤r slÃ¤ppt, se persistence.
+
+## ceiling
+- **Motor och shim:** n/a. Allt som rÃ¶r sig lÃ¤ser `--sc-ps`, motorn Ã¤r orÃ¶rd, `sites/*` Ã¤r orÃ¶rda. F-011 respected.
+- **Referenserna:** hoy fyller varje mobilskÃ¤rm med sitt innehÃ¥ll. V3d gÃ¶r det vid 1440 i alla rader. Vid 390 Ã¥terstÃ¥r tre skÃ¤rmar dÃ¤r den inramade sajtens egen mobillayout eller en rad utan fyllnad lÃ¤mnar skÃ¤rmen utan det steget lovar.
+- **HÅrais egen citatlayout** (`sites/horai.html:157â€“173`) Ã¤r en `overflow-hidden`-sektion pÃ¥ 1000 px med en `sticky`-kolumn pÃ¥ 487 px, och `sticky` fastnar aldrig inom `overflow-hidden`. Vid en ram pÃ¥ 450 px kan citatet dÃ¤rfÃ¶r inte stÃ¥ bÃ¥de format (sektionen centrerad) och synligt. Det Ã¤r en egenskap hos sajten. Fixen mÃ¥ste gÃ¶ras pÃ¥ sidans sida, via ramhÃ¶jd eller ankare.
+
+## material_fixes
+1. **HÅrais citat vid 390, `index.html:2178` (ankaret `['#quote-section','center']`) och mobilraden `index.html:881`.** MÃ¤tt vid `?preview=case-horai-03`, 390Ã—844: ramens `innerHeight` Ã¤r 450, sektionen Ã¤r centrerad, och `#quote-text` ligger pÃ¥ y=-58..53 och `#quote-jp` pÃ¥ -139..-114, bakom och ovanfÃ¶r navigationen (0..117). Formeln i ramen (`q390b.py`, sajten i ramens mÃ¥tt 390Ã—450): `#quote-text`-topp = ih âˆ’ 507,5 nÃ¤r sektionen Ã¤r centrerad. NÃ¤r ankaret flyttas s px ovanfÃ¶r centrum blir det opacitet/blur 0,97/0,4 px vid s=100, 0,81/2,3 px vid s=200 och 0,64/4,3 px vid s=272. Expected: vid 390, i preview och med hjul till samma lÃ¤ge, ligger `#quote-text` helt inom [117, ih] med opacitet â‰¥ 0,95 och `blur` â‰¤ 0,5 px. MÃ¤tt krav: ih â‰¥ 625 om ankaret fÃ¶rblir centrerat, eller ih â‰¥ 525 om ankaret sÃ¤tts 100 px ovanfÃ¶r centrum. 1440 och 768 ska vara ofÃ¶rÃ¤ndrade (i dag skarpt och synligt dÃ¤r).
+2. **Tesbandets tomma band vid 390, `index.html:628` och `index.html:629`, samt mobilreglerna `index.html:649` och `index.html:654`.** MÃ¤tt: `.thesis-figure` Ã¤rver `align-self:end` frÃ¥n rad 628, sÃ¥ figuren strÃ¤cks aldrig Ã¶ver `1fr`-raden. `.thesis-photo-box` behÃ¥ller `aspect-ratio:16/10` frÃ¥n rad 629, sÃ¥ `flex:1` vÃ¤xer aldrig. Bilden stÃ¥r kvar pÃ¥ 343Ã—215 pÃ¥ y=543, med 285 px tomt blÃ¥tt ovanfÃ¶r. Expected, vid â‰¤767: figuren fyller rad 3 (`align-self:stretch`) och boxen tappar aspect-ratio (`aspect-ratio:auto`). MÃ¤tbart: avstÃ¥ndet frÃ¥n strecken till bildens Ã¶verkant Ã¤r 16â€“32 px, bilden Ã¤r â‰¥ 400 px hÃ¶g vid 390Ã—844 med bildtexten kvar inom stagen, bildens y Ã¤r lika i alla fem meningarna, och 0 horisontell scroll.
+3. **Calyx `-03` vid 390, ankaret `['#studio + section', 0]` pÃ¥ `index.html:2176`.** MÃ¤tt: i ramen (ih 450, `contentWindow.scrollY` 1425) stÃ¥r fÃ¶rsta mÃ¤rkningen ("Cmsn. 0211 â€¦") pÃ¥ y=500, alltsÃ¥ under ramen. Bara ett foto syns, utan mÃ¤rkning (`P17-3-390.png`). Expected: vid â‰¤767 fÃ¥r steget ett ankare, till exempel ett fÃ¶rskjutet vÃ¤rde eller ett `figcaption`-ankare, sÃ¥ att minst ett foto och dess mÃ¤rkning ligger helt inne i ramen, i preview och med hjul. 1440 ska vara ofÃ¶rÃ¤ndrad (tvÃ¥ mÃ¤rkningar synliga i dag).
+
+## keep
+- **Bytena:** de asymmetriska `--in`/`--out`-fÃ¶nstren i `.js .ts` och `.js .cs` (`index.html:615â€“617`, `863â€“866`). De ger exakt en synlig mening eller ett synligt steg i varje bildruta vid tre bredder, och mÃ¤tningen lÃ¤ser den berÃ¤knade `clip-path`.
+- **Calyx pÃ¥ papper:** grunden Ã¤rvs frÃ¥n `:root`, och den cykliska raden Ã¤r borta. Det ger P16 sin ljusa strÃ¤cka.
+- **Casramarna:** 64 % vw Ã— 89,7 % vh vid 1440, 53 % vh vid 390, flush mot kanten, spegelvÃ¤nda fÃ¶r HÅrai.
+- **Hyperborea:** 37,1 % vw vid 1440 och 768.
+- **RidÃ¥n och kapitlet:** `ridaY(120)` i preview, den stillastÃ¥ende kapitelrubriken och hÃ¥rlinjekanten.
+- **Casens synk:** monoton, lika fram och bak (utom HÅrai 70 %, nÃ¥gra tiotal px), exakt 2 iframes.
+- **GrundnivÃ¥:** processakten P07â€“P13, bryggan och avslutet ofÃ¶rÃ¤ndrade. 0 horisontell scroll och 0 rubrikkollisioner vid alla bredder. F-011 respected.
+# 056 â€” Astras granskning av R8 (reviews/r8-astra.md), tre mobilfynd (390)
+
+V3d runda 9. Astras femte pass: alla R7-fixar stÃ¤ngda utom tvÃ¥, bÃ¥da Ã¶ppna bara vid 390.
+Vid 1440 hÃ¥ller varje PARITET-rad â€” inget dÃ¤r rÃ¶rs. `sites/*` rÃ¶rs aldrig, copyn rÃ¶rs inte.
+
+## Fix 1 (HIGH) â€” HÅrais citat dÃ¶ljs bakom navet vid 390
+
+`case-horai-03` centrerar `#quote-section` i ramen (Astra r7 fix 4, uppfÃ¶ljning), men vid
+390 Ã¤r ramens innerhÃ¶jd bara 450px. En sant centrerad `min-h-[1000px]`-sektion i en sÃ¥ kort
+ram lÃ¤gger citatet delvis bakom sajtens egen nav (`sites/horai.html`, orÃ¶rd). Astras egna
+mÃ¥ltal: ih â‰¥ 625px om ankaret fÃ¶rblir centrerat, ELLER ih â‰¥ 525px om ankaret lÃ¤ggs 100px
+ovanfÃ¶r centrum.
+
+**Fix:** hÃ¶j HÅrais egen mobila case-fig-rad frÃ¥n delad `58svh` till en HÅrai-specifik
+`72svh` (568px ih vid 844, klart Ã¶ver 525-trÃ¶skeln), och lÃ¤gg ett offset-lÃ¤ge i
+`measureCase()`: `a[2]` = extra px lÃ¤ggs till `'center'`-berÃ¤kningen, `a[3]` = ih-trÃ¶skel
+under vilken offset:et aktiveras. HÅrais citat-ankare blir
+`['#quote-section', 'center', -100, 700]` â€” vid 390 (ihâ‰ˆ568<700) skiftar ankaret 100px
+ovanfÃ¶r sant centrum; vid 768/1440 (ih redan uppmÃ¤tt godtyckligt hÃ¶gre Ã¤n 700 i tidigare
+rundor) fÃ¶rblir trÃ¶skeln ouppfylld och ankaret exakt sant centrerat, som i dag. Ingen
+Ã¤ndring vid 1440 by construction (villkoret Ã¤r pÃ¥ ramens EGEN uppmÃ¤tta hÃ¶jd, inte
+brytpunkt i CSS).
+
+## Fix 2 (HIGH) â€” tomt blÃ¥tt band i tesbandet vid 390
+
+`.thesis-figure` Ã¤rver `align-self:end` (bas-regeln, rad 628, aldrig Ã¥terstÃ¤lld i
+`@media (max-width:767px)`). Grid-raden (`grid-row:3`, `1fr`) Ã¤r hÃ¶g, men align-self:end
+gÃ¶r att figuren bara tar sin EGEN innehÃ¥llshÃ¶jd och lÃ¤ggs i radens underkant â€” figurens
+flex-container (`display:flex;flex-direction:column`) fÃ¥r dÃ¥ ingen definit hÃ¶jd, sÃ¥
+`.thesis-photo-box{flex:1;min-height:0}` har inget fritt utrymme att vÃ¤xa in i och faller
+tillbaka pÃ¥ sin `aspect-ratio:16/10` (bas-regeln, rad 629, ocksÃ¥ aldrig Ã¥terstÃ¤lld) = 215px
+hÃ¶g bild. Resultat: ett tomt band ovanfÃ¶r den korta bilden, mÃ¤tt 285px.
+
+**Fix:** i `@media (max-width:767px)`, lÃ¤gg `align-self:stretch` pÃ¥ `.thesis-figure` och
+`aspect-ratio:auto` pÃ¥ `.thesis-photo-box`. Figuren fyller nu hela grid-raden, flex:1 fÃ¥r
+fritt utrymme att vÃ¤xa in i, bilden fyller raden (object-fit:cover, redan satt, beskÃ¤r utan
+distorsion). Ingen av de nya reglerna lÃ¤ser `--sc-ps` â€” bilden flyttar sig inte mellan
+meningarna.
+
+## Fix 3 (HIGH) â€” Calyx steg 03: bildtexten hamnar under ramen vid 390
+
+Ankaret `['#studio + section', 0]` siktar pÃ¥ sektionens EGEN topp, men fÃ¶rsta figurens
+(`photo-1` + figcaption) topp ligger ~76px lÃ¤ngre ner (sektionens egen padding/gap), och
+figur+bildtext tillsammans Ã¤r 484px hÃ¶ga (uppmÃ¤tt direkt i `sites/calyx.html` vid 390Ã—844:
+`figTopAbsâ‰ˆ1631`, `capBottomAbsâ‰ˆ2115`). Vid nuvarande ih=450 rÃ¤cker varken befintlig hÃ¶jd
+eller ankarplacering fÃ¶r att fÃ¥ hela figur+bildtext innanfÃ¶r ramen.
+
+**Fix:** tvÃ¥ delar. (a) HÃ¶j Calyx-radens (delade `.case-stage`-basregel) `58svh` till
+`66svh` (517px ih vid 844, â‰¥484px behÃ¶vda + marginal). (b) Byt Calyx steg 3-ankaret frÃ¥n
+`['#studio + section', 0]` till `['#studio + section figure', 0]` â€” `querySelector` trÃ¤ffar
+FÃ–RSTA figuren (photo-1 + dess bildtext), vars topp ligger precis vid sektionens
+bildinnehÃ¥ll i stÃ¤llet fÃ¶r sektionens yttre padding. Med ih=517 och ankare vid figurens
+egen topp ryms figur+bildtext (484px) helt inom ramen (â‰ˆ33px marginal).
+
+Calyx-basregelns hÃ¶jning till 66svh Ã¤r delad med HÅrai INNAN HÅrai-overridet (72svh)
+lÃ¤ggs till direkt efter â€” samma mÃ¶nster som den redan befintliga
+`.case--horai .case-stage{grid-template-columns:...}`-overriden vid desktop (rad 844).
+
+## GÃ¶r
+
+1. Kirurgiska `Edit` i `index.html`: (1) `.case-stage`-basregelns mobila `grid-template-rows`
+   58svhâ†’66svh + ny `.case--horai .case-stage{grid-template-rows:72svh minmax(0,1fr);}`-rad
+   direkt efter. (2) `measureCase()` + `CASES`-arrayens HÅrai-ankare (offset-lÃ¤ge). (3)
+   `.thesis-figure`/`.thesis-photo-box` i tesbandets mobila media query (align-self/
+   aspect-ratio). Calyx steg 3-ankaret i `CASES`-arrayen. Copyn rÃ¶rs inte.
+2. Enskilda skÃ¤rmbilder (inga kontaktark) vid 390 och 375 fÃ¶r `?preview=thesis-01..05`,
+   `case-horai-03`, `case-calyx-03`, plus hjulsekvens genom samma lÃ¤gen. LÃ¤s varje bild.
+3. Samma lÃ¤gen vid 1440, pixel-fÃ¶r-pixel mot `shots/astra-r8/ours/`-baslinjen. OfÃ¶rÃ¤ndrat.
+4. Kort grind: noll horisontell scroll 320â€“1920, `a11y_scan` vid 390, lÃ¥st copy 15/15,
+   grep noll tankstreck.
+5. `NOTES.md` Â§ V3d R9, tabell fix/mÃ¥l/fÃ¶re/efter/bild.
+
+exec
+"C:\\WINDOWS\\System32\\WindowsPowerShell\\v1.0\\powershell.exe" -Command "rg -n 'V3d R9|V3d R10' NOTES.md; rg --files -g AGENTS.md" in C:\Users\Anton L\anti-slop-design
+ exited 1 in 551ms:
+rg: NOTES.md: IO error for operation on NOTES.md: Det går inte att hitta filen. (os error 2)
+
+exec
+"C:\\WINDOWS\\System32\\WindowsPowerShell\\v1.0\\powershell.exe" -Command "rg --files --hidden -g AGENTS.md -g NOTES.md -g '"'!node_modules'"' -g '"'!.git'"'; Get-Content -Encoding utf8 -LiteralPath 'tests/alunix-r8/runs/V3d/plans/054-tesband-och-case.md' | Select-Object -Skip 130 -First 170" in C:\Users\Anton L\anti-slop-design
+ succeeded in 556ms:
+tests\alunix-concepts\cells\K6-chain\NOTES.md
+tests\alunix-concepts\cells\K5-chain\NOTES.md
+tests\alunix-concepts\cells\K4-chain\NOTES.md
+tests\alunix-concepts\cells\K3-chain\NOTES.md
+tests\alunix-concepts\cells\K2-chain\NOTES.md
+tests\alunix-concepts\cells\K1-chain\NOTES.md
+.claude\worktrees\agent-ad7cf06e8c2d70e4e\tests\alunix-concepts-r5\reference\V3-baseline\NOTES.md
+.claude\worktrees\agent-ad7cf06e8c2d70e4e\tests\alunix-concepts-r5\cells\V3b-chain\NOTES.md
+.claude\worktrees\agent-ad7cf06e8c2d70e4e\tests\alunix-concepts-r5\cells\V3-chain\NOTES.md
+.claude\worktrees\agent-ad7cf06e8c2d70e4e\tests\alunix-concepts-r5\cells\V2-chain\NOTES.md
+.claude\worktrees\agent-ad7cf06e8c2d70e4e\tests\alunix-concepts-r5\cells\V1-chain\NOTES.md
+tests\alunix-ab-r7\runs\B\K2\NOTES.md
+.claude\worktrees\agent-ad7cf06e8c2d70e4e\tests\alunix-concepts-r4\cells\M3-chain\NOTES.md
+.claude\worktrees\agent-ad7cf06e8c2d70e4e\tests\alunix-concepts-r4\cells\M2-chain\NOTES.md
+.claude\worktrees\agent-ad7cf06e8c2d70e4e\tests\alunix-concepts-r4\cells\M1-chain\NOTES.md
+.claude\worktrees\agent-ad7cf06e8c2d70e4e\tests\alunix-concepts-r3\build\NOTES.md
+.claude\worktrees\agent-ad7cf06e8c2d70e4e\tests\alunix-concepts-r2\cells\R6-chain\NOTES.md
+tests\alunix-ab-r7\runs\B\K1\NOTES.md
+.claude\worktrees\agent-ad7cf06e8c2d70e4e\tests\alunix-concepts-r2\cells\R5-chain\NOTES.md
+.claude\worktrees\agent-ad7cf06e8c2d70e4e\tests\alunix-concepts-r2\cells\R4-chain\NOTES.md
+.claude\worktrees\agent-ad7cf06e8c2d70e4e\tests\alunix-concepts-r2\cells\R3-chain\NOTES.md
+.claude\worktrees\agent-ad7cf06e8c2d70e4e\tests\alunix-concepts-r2\cells\R2-chain\NOTES.md
+.claude\worktrees\agent-ad7cf06e8c2d70e4e\tests\alunix-concepts-r2\cells\R1-chain\NOTES.md
+tests\alunix-ab-r6\runs\B\K3\NOTES.md
+.claude\worktrees\agent-ad7cf06e8c2d70e4e\tests\alunix-concepts\cells\K6-chain\NOTES.md
+tests\alunix-ab-r6\runs\B\K2\NOTES.md
+.claude\worktrees\agent-ad7cf06e8c2d70e4e\tests\alunix-concepts\cells\K5-chain\NOTES.md
+tests\alunix-ab-r6\runs\B\K1-nogate\NOTES.md
+.claude\worktrees\agent-ad7cf06e8c2d70e4e\tests\alunix-concepts\cells\K4-chain\NOTES.md
+.claude\worktrees\agent-ad7cf06e8c2d70e4e\tests\alunix-concepts\cells\K3-chain\NOTES.md
+tests\alunix-ab-r6\runs\B\K1\NOTES.md
+tests\alunix-r8\runs\V3d\NOTES.md
+.claude\worktrees\agent-ad7cf06e8c2d70e4e\tests\alunix-concepts\cells\K2-chain\NOTES.md
+tests\alunix-ab-r6\runs\A\K3\NOTES.md
+.claude\worktrees\agent-ad7cf06e8c2d70e4e\tests\alunix-concepts\cells\K1-chain\NOTES.md
+tests\alunix-ab-r6\runs\A\K2\NOTES.md
+tests\alunix-ab-r6\runs\A\K1\NOTES.md
+tests\alunix-r8\runs\V3c\NOTES.md
+tests\alunix-r8\runs\K4\NOTES.md
+tests\alunix-r8\runs\K3\NOTES.md
+tests\alunix-r8\board\cells\V3d-r8\NOTES.md
+tests\alunix-r8\board\cells\V3c-r8\NOTES.md
+tests\alunix-r8\board\cells\K4-r8\NOTES.md
+tests\alunix-concepts-r5\reference\V3-baseline\NOTES.md
+tests\alunix-r8\board\cells\K3-r8\NOTES.md
+tests\alunix-concepts-r5\cells\V3b-chain\NOTES.md
+tests\alunix-concepts-r5\cells\V3-chain\NOTES.md
+tests\alunix-concepts-r3\build\NOTES.md
+tests\alunix-concepts-r2\cells\R6-chain\NOTES.md
+tests\alunix-concepts-r2\cells\R5-chain\NOTES.md
+tests\alunix-concepts-r5\cells\V2-chain\NOTES.md
+tests\alunix-concepts-r5\cells\V1-chain\NOTES.md
+tests\alunix-concepts-r4\cells\M3-chain\NOTES.md
+tests\alunix-concepts-r2\cells\R4-chain\NOTES.md
+tests\alunix-concepts-r2\cells\R2-chain\NOTES.md
+tests\alunix-concepts-r2\cells\R1-chain\NOTES.md
+tests\alunix-concepts-r2\cells\R3-chain\NOTES.md
+tests\alunix-concepts-r4\cells\M2-chain\NOTES.md
+tests\alunix-concepts-r4\cells\M1-chain\NOTES.md
+/* PLAN 054 1. Tesbandet: pinnad akt, 5,5 vh. INTE en ruta på 45 % vw. */
+.thesis{position:relative;z-index:2;}
+.thesis-stage{background:var(--c-accent);color:var(--c-white);
+  display:grid;grid-template-columns:minmax(0,1fr) minmax(0,.62fr);
+  grid-template-rows:minmax(0,1fr) auto;column-gap:clamp(24px,4vw,64px);
+  padding:clamp(72px,12svh,120px) 0 clamp(28px,5svh,48px) var(--rail-x);
+  border-bottom:1px solid var(--frame-line);overflow:clip;}
+.thesis-lines{grid-column:1;grid-row:1;align-self:center;display:grid;min-width:0;}
+.ts{grid-area:1/1;align-self:start;min-width:0;
+  font-family:var(--f-display);font-weight:700;
+  font-size:clamp(2rem,5vw + 1rem,6rem);line-height:.98;letter-spacing:-.02em;
+  text-transform:uppercase;text-wrap:balance;overflow-wrap:normal;hyphens:manual;}
+/* Bytet: rubrikradens överkant och underkant är en springa. Utgående
+   mening stiger ut genom överkanten, inkommande stiger upp ur
+   underkanten. --in/--out läser --sc-ps (F-014), linjärt över --f. */
+.js .ts{--a:calc(var(--i) / 5);--b:calc((var(--i) + 1) / 5);--f:.04;
+  --in:clamp(0,calc((var(--sc-ps,0) - var(--a) + var(--f) / 2) / var(--f)),1);
+  --out:clamp(0,calc((var(--sc-ps,0) - var(--b) + var(--f) / 2) / var(--f)),1);
+  clip-path:inset(calc(var(--out) * 100%) 0 calc((1 - var(--in)) * 100%) 0);
+  transform:translateY(calc((1 - var(--in)) * .55em - var(--out) * .55em));
+  letter-spacing:calc(-.02em + (1 - var(--in)) * .06em);}
+.js .ts:first-child{--in:1;}
+.js .ts:last-child{--out:0;}
+/* Lager 3: fem streck, det aktiva i fullt papper. Inga siffror (PRODUCT.md). */
+.thesis-ticks{grid-column:1;grid-row:2;display:flex;gap:10px;margin-top:clamp(20px,3svh,32px);}
+.thesis-ticks i{width:32px;height:2px;background:color-mix(in srgb,var(--c-white) 38%,var(--c-accent));}
+/* :nth-child(N) får background var(--c-white) när --sc-ps ligger i dess intervall:
+   background:color-mix(in srgb,var(--c-white) calc(38% + 62% * var(--on)),var(--c-accent))
+   med --on = clamp(0, 1 - abs((var(--sc-ps) - (N - .5) / 5) * 10) + 1, 1) skrivet ut per N. */
+.thesis-figure{grid-column:2;grid-row:1 / span 2;align-self:end;min-width:0;margin:0;}
+.thesis-photo-box{position:relative;aspect-ratio:16/10;overflow:clip;
+  border:1px solid var(--frame-line);border-right:0;}
+/* Lager 2: färgen kommer med mening 3 ("layout och bild"), beskärningen drar åt. */
+.thesis-photo-box img{width:100%;height:100%;object-fit:cover;
+  filter:grayscale(calc(1 - clamp(0,calc((var(--sc-ps,0) - .4) / .2),1))) contrast(1.05);
+  transform:scale(calc(1 + .06 * var(--sc-ps,0)));transform-origin:70% 40%;}
+.thesis-caption{margin-top:12px;padding-right:var(--rail-x);}
+.thesis-caption .cap-line{/* orörd deklaration från rad 663 till 665 */}
+@media (max-width:767px){
+  .thesis-stage{grid-template-columns:minmax(0,1fr);grid-template-rows:auto auto auto;
+    padding:clamp(56px,9svh,80px) var(--rail-x) clamp(20px,3svh,32px);row-gap:16px;}
+  .thesis-lines{align-self:start;min-height:calc(7 * .98 * clamp(2rem,5vw + 1rem,6rem));}
+  .thesis-figure{grid-column:1;grid-row:3;}
+  .thesis-photo-box{border-right:1px solid var(--frame-line);}
+  .thesis-caption{padding-right:0;}
+}
+```
+
+   `.thesis-lines` får vid < 768 en min-höjd lika med sju rader, så att den längsta meningen
+   (mening 3, 57 tecken) aldrig flyttar plåten när den byter in. Vid ≥ 768 centreras raderna
+   i sin rad och plåten står bottenställd; den längsta meningen tar 5 rader à 86 px = 430 px
+   i en spalt på ~790 px.
+
+3. **Drift.** `.thesis` ersätter `.panel-thesis` i `thesisEl` (JS rad 2289). `giantEl` finns
+   inte längre: skriv om `driftColor()` (rad 2116 till 2130) till två ben som bara läser
+   tesen, **svart → `--c-accent-deep` över t 0 till 0,35, `--c-accent-deep` → svart över t
+   0,65 till 1**, och ta bort `giantTop`, `giantH`, `driftHand` (rad 2292, 2303, 2309) och
+   `DRIFT_STOPS[2]`. Grunden syns bara i heron och i priset; priset ska stå på fotots
+   neutrala ton som heron, inte i blått.
+
+### 2 · Jättesektionen bort, ridån från tesen till ritningen
+
+4. **Vad som bor i jättesektionen och är låst** (`PRODUCT.md` § Brand Commitments):
+   - `VI BYGGER ERT VARUMÄRKE.` → **mening 5 i tesens sekvens** (steg 1). Skäl:
+     `PRODUCT.md` § Product Purpose kallar raden ordagrant "Tesrubriken". Den hör hemma i
+     tesbandet, och den avslutar sekvensen som svar på "Vi hjälper er att synas på rätt
+     sätt." Samma storlek som de andra meningarna, som Anton beställt.
+   - `Webbdesign, design och system. Allt på ett ställe.` → **kapitelskärmen** i processakten,
+     som stycke direkt under "Från samtal till lanserad sida." (steg 6). Skäl: raden säger
+     vad som kommer ur samma ställe; kapitelskärmen inleder just hur det görs.
+   - `Design`, `Utveckling`, `System`: finns redan kvar på kortets baksida (`.card-services`,
+     rad 1631) och i `.sr-only` (rad 1643). Inget flyttas.
+   - Olåst och borta med sektionen: numreringen 01 till 03 och tjänsternas tre underrader.
+     Samma innehåll bärs av processstegen 03 Design och 04 Utveckling (bokning, betalning,
+     kunddatabas). Se Q2.
+5. **Ta bort** `#giant-section` och allt som bara tjänar den: CSS rad 879 till 1026
+   (`.panel-giant`, `.giant`, `.giant-sub`, `#giant-section`, `.ledger-wrap`, `.thread*`,
+   `.ledger`, `.ledger-row`, `.ledger-body`, `.is-scrubbed …`, `@container`); **men behåll
+   `.ledger-num`** (rad 994 till 995) eller flytta dess två kvarvarande deklarationer in i
+   `#process .ledger-num`: stegens siffror använder klassen. Greppa varje borttagen selektor
+   efter kvarvarande användare innan den raderas. JS: `giant`/`is-scrubbed` (rad 2531 till
+   2534), `?preview=ledger` och `?preview=bleed` (rad 2558 till 2573). CSS för `.stagger`,
+   `.col*`, `.calyx-fig`, `.horai-fig`, `.calyx-wrap`, `.horai-wrap` (rad 567 till 602,
+   713 till 735, 737 till 738, 766 till 783, 820 till 821, 1029 till 1031, 1554 till 1558).
+   `.frame-wrap`, `.frame-wrap iframe`, `.frame-wrap.is-asleep`, `.frame-wrap.frame-poster`,
+   `.frame-cap` och `:focus-within` står kvar (casen använder dem).
+6. **Ridån.** Kapitelskärmen blir stående medan tesens stage lyfter av den. Inget skrivs
+   per bildruta; det är ren scroll.
+   - Markup: omslut `.process-chapter` (rad 1769 till 1774) i `<div class="chapter-hold">`.
+     Lägg `<p class="process-locked">Webbdesign, design och system. Allt på ett ställe.</p>`
+     efter `h2#process-title`, före `.process-lead`.
+   - CSS (ersätter `.process-chapter` rad 1053 till 1055):
+
+```css
+/* PLAN 054 2. Ridån: #process ligger en skärm in under tesen. Kapitlet är
+   sticky i sin hållare, så det står still medan tesens blå stage glider
+   upp av det. INTE ett nytt blått block, INTE en korsfadning. */
+#process{position:relative;z-index:1;margin-top:-100svh;}
+.chapter-hold{height:calc(200svh + 40svh);}
+.process-chapter{position:sticky;top:0;height:100svh;display:flex;
+  flex-direction:column;justify-content:center;padding-block:clamp(72px,12svh,120px);}
+.process-locked{font-family:var(--font);font-weight:300;
+  font-size:clamp(1.25rem,1.6vw,1.5rem);line-height:1.4;max-width:34ch;
+  margin-top:clamp(20px,3svh,32px);padding-inline:var(--rail-x);}
+```
+
+   Räkning: hållarens överkant = tesens underkant - 100svh = exakt den scrollY där tesens
+   pin släpper. Kapitlet börjar klibba i samma ögonblick som stagen börjar lämna, står still
+   i 1 vh medan stagen lyfter, och sedan 0,4 vh ensamt innan band 01 kommer. Tesens
+   `border-bottom` (`--frame-line`) är ridåns kant.
+   - `measureAct` mäter om `processTop` och ankarna (oförändrad kod); `--s1..--e7` flyttas
+     med. `?preview=process-0N` ska landa som i dag: kontrollera alla sju vid 1440 och 390.
+
+### 3 · Copyn, enklare och tydligare
+
+7. Skriv in varje sträng i `COPY-V3d-v0.md` där status är **förenklad** eller **ny**, med
+   `Edit` per sträng, och sätt `<!-- copy v0, 054 -->` före varje ändrat element. Rör inga
+   strängar med status **låst** eller **oförändrad**. SVG-texterna i arket (`320`, `768`,
+   `1440`, `7 rem`, `16:9`, `96 px`, `A`) är mått och rörs inte.
+
+### 4 · Case-kapitlet, Calyx, bryggan, Hōrai
+
+**Etikett: "Exempelcase".** Skäl: Calyx och Hōrai är Alunix egna exempelsajter;
+"Kundcase" påstår en kund som inte finns (`PRODUCT.md` § absences, "Kunder utöver de tre
+exempelsajterna"). "Exempelcase" delar förledet med de låsta bildtexterna
+("Exempelsida: …"), så etiketten och bildtexten säger samma sak. Casetexternas första steg
+säger dessutom uttryckligen att sajten är ett exempel vi byggt för en tänkt verksamhet.
+
+**Iframe-mekaniken: levande ram, skrollad inifrån med `contentWindow.scrollTo`.** Vägt mot en
+lång skärmbild i en mask:
+
+| | Levande ram, `scrollTo` | Lång skärmbild, `translateY` |
+|---|---|---|
+| Beviset | sajten kör på riktigt: Hōrais ordljus och citatskärpa och Calyx reveals spelar i takt (`PRODUCT.md` princip 1, "Beviset ska gå att använda") | en bild av sajten; Hōrais egna rörelser syns aldrig |
+| Lås | ramen transformeras aldrig; dokumentet inuti skrollar (samma som en läsare som skrollar i den) | inget lås berört |
+| Kostnad | ramens eget dokument layoutar/målar när det skrollar; två ramar finns redan i dag, sövs utanför 40 % | en transform på en stor bild, billigast |
+| Tillförlitlighet | same-origin, synkron; risker: Hōrais `scroll-behavior:smooth` (lös: `behavior:'instant'`), Tailwind-CDN:ns omlayout efter load (lös: `ResizeObserver` i ramens dokument), ramen ej laddad vid snabb scroll (lös: `frame-poster` finns redan, montering tidigareläggs) | nya assets (två helsidesbilder, ~1 till 2 MB), måste tas om vid varje sajtändring |
+
+Valt: levande ram. Blir det ramens kostnad som faller i grinden (§ Boundaries) stoppar
+byggaren och skriver i NOTES; skärmbildsvägen är lead:s beslut, inte en tyst reträtt.
+
+**Bandets nya roll.** Bandet (`.stagger`) upphör. Tesbandet står ensamt och behåller
+Hyperborea som sin bild, som i dag en stillbild (ingen ram). Calyx- och Hōrai-ramarna flyttar
+in i casen: fortfarande exakt två live-iframes. Sidan visar Hyperborea en gång, Hōrai en gång.
+Calyx syns två gånger i följd, i arkets steg 05 till 07 som bild och direkt efter i caset som
+levande sajt; det är övergången, inte en upprepning: processaktens sista not säger att
+"ritningen finns kvar som ram runt den färdiga sidan", case-kapitlet säger "Så blev
+ritningen en sida", och Calyx-caset öppnar samma sajt i full storlek.
+
+8. **Markup, fyra sektioner** efter `</section>` för `#process` och före `#pris`; hela
+   `#principer` (rad 1994 till 2020) tas bort:
+
+```html
+<!-- CASE-KAPITEL: en rubrik som äger skärmen på papper. INTE ett kortrutnät med case. -->
+<section class="cases-chapter" id="case" data-sc-act="flow" aria-labelledby="case-title">
+  <p class="kicker-sans">Exempelcase</p>
+  <h2 id="case-title" class="cases-title">Så blev ritningen en sida.</h2>
+  <p class="cases-lead">(v0)</p>
+</section>
+
+<!-- CASE CALYX: text vänster, sajten höger och skrollad i takt. INTE en stilla
+     skärmbild bredvid en punktlista. -->
+<section class="case case--calyx on-paper" id="case-calyx" data-sc-act="pin"
+         data-sc-span="5.5" aria-labelledby="calyx-title">
+  <div data-sc-stage class="case-stage">
+    <div class="case-text">
+      <p class="kicker-sans">Exempelcase</p>
+      <h2 id="calyx-title" class="case-title">Calyx</h2>
+      <ol class="case-steps">
+        <li class="cs" style="--i:0"><h3>(v0)</h3><p>(v0)</p></li>
+
+exec
+"C:\\WINDOWS\\System32\\WindowsPowerShell\\v1.0\\powershell.exe" -Command "rg -n -A 95 '"'^## .*V3d R9|''^## .*V3d R10'"' tests/alunix-r8/runs/V3d/NOTES.md; "'$v=Get-Content -Encoding utf8 '"'tests/alunix-r8/runs/V3d/index.html'; foreach("'$range in @(@(596,665),@(870,912),@(2150,2270))){for($i=$range[0];$i -le $range[1];$i++){ '"'{0}: {1}' -f "'$i,$v[$i-1] }}' in C:\Users\Anton L\anti-slop-design
+ succeeded in 340ms:
+796:## V3d R9
+797-
+798-Astras granskning av R8 (`reviews/r8-astra.md`), läst i sin helhet. Tre material_fixes,
+799-alla bara vid 390 — vid 1440 höll varje PARITET-rad redan (Astra bekräftar detta
+800-explicit; ingen ändring tillåten där). Verifierade mot fil och bild i `shots/astra-r8/`.
+801-Plan: `plans/056-astra-r8-mobil.md`. `Skill(design)` körd först. Copyn rörd inte
+802-(`sites/*` rörs aldrig — Hōrais fix löstes på vår sida, ramens höjd + ankaret).
+803-Kirurgiska `Edit`, motorn orörd.
+804-
+805-### Fixtabell
+806-
+807-| # | Mål | Före | Efter | Bild |
+808-|---|---|---|---|---|
+809-| 1 · Hōrais citat vid 390 | Citatet helt synligt, under navens underkant, vid `case-horai-03` | Ramens innerhöjd 450px; en sant centrerad `min-h-[1000px]`-sektion i en så kort ram lade citatet delvis bakom sajtens egen nav | Hōrai-specifik mobil radhöjd `58svh`→`72svh` (ih 450→568px). `measureCase()` fick ett valfritt kort-ramsoffset (`a[2]`/`a[3]`): citat-ankaret blir `['#quote-section','center',-100,700]` — vid ih<700 skiftar ankaret 100px ovanför sant centrum, annars oförändrat sant centrerat | Citatet ("Cooking is a conversation between three flowers...") helt synligt under navet vid 390 OCH 375. 1440: ih=805>700, villkoret aldrig sant, ankaret exakt sant centrerat precis som i R8 | `shots/r9/w390/case-horai-03.png`, `w375/case-horai-03.png` |
+810-| 2 · tomt band i tesbandet vid 390 | Gap mellan streck och foto ≤32px, foto ≥400px högt | `.thesis-figure` ärvde `align-self:end` (bas-regel, aldrig återställd i mobilfönstret) — figuren tog bara sin egen innehållshöjd i stället för att fylla grid-radens `1fr`, så `.thesis-photo-box{flex:1}` hade inget fritt utrymme att växa in i och föll tillbaka på sin ärvda `aspect-ratio:16/10` = 215px hög bild, 285px tomt band ovanför | I `@media (max-width:767px)`: `.thesis-figure{align-self:stretch}`, `.thesis-photo-box{aspect-ratio:auto}` — figuren fyller nu hela raden, flex:1 får fritt utrymme, bilden fyller raden (object-fit:cover beskär utan distorsion) | Bilden fyller raden i alla fem meningar (`thesis-01`…`05`), inget tomt band, identisk vertikal position mellan meningarna, ingen läser `--sc-ps` | `shots/r9/w390/thesis-01.png` … `thesis-05.png` |
+811-| 3 · Calyx steg 03 vid 390 | Minst ett foto med sin bildtext helt inne i ramen | `['#studio + section', 0]` siktade sektionens egen topp, ~76px ovanför första figurens topp (mätt direkt i `sites/calyx.html`: `figTopAbs≈1631`, `capBottomAbs≈2115`, figur+bildtext 484px) — varken höjd eller ankarplacering räckte i en 450px ram | Delad mobil radhöjd `58svh`→`66svh` (ih 450→517px). Ankaret fick samma offset-mekanism som fix 1: `['#studio + section', 0, 76, 700]` — vid ih<700 läggs +76px (figurens egen topp i stället för sektionens padding) | Foto 1 ("Cmsn. 0211 — Hotel Pigalle, Drottninggatan") med HELA bildtexten ("02/14") synligt inom ramen vid 390 OCH 375. 1440: ih=805>700, offset ej tillämpat, ankaret oförändrat | `shots/r9/w390/case-calyx-03.png`, `w375/case-calyx-03.png` |
+812-
+813-### Verifiering
+814-
+815-- **Enskilda skärmbilder** (inga kontaktark), 390 och 375, `?preview=thesis-01..05`,
+816-  `case-horai-03`, `case-calyx-03` — alla lästa. Tesbandets fem meningar: bilden fyller
+817-  raden i varje, identisk position. Hōrais citat: helt synligt under navet (den
+818-  horisontella textklippningen som syns på höger kant är sajtens EGEN responsiva
+819-  textstorlek vid smal ram — bekräftat oberoende av vår scrollposition genom en
+820-  fristående capture av `sites/horai.html` scrollad till `#quote-section`; `sites/*`
+821-  rörs aldrig, och Astras fynd gällde vertikal skymning bakom navet, inte detta).
+822-  Calyx steg 3: foto + hel bildtext inom ramen.
+823-- **Regressionskoll, Hōrais övriga steg** (01, 02, 06) vid 390, samma delade
+824-  radhöjdsändring: hero, ordljus och bokningssektionen renderar oförändrat, ingen
+825-  text klipps av caseramen.
+826-- **Hjulsekvens** vid 390: 20 hjulsteg genom tesbandet (thesis-01-startpunkt) och 25–30
+827-  steg genom vardera casens `?preview=`-01-startpunkt — rent, inga glitch, inga
+828-  överlappande sektioner, ramarnas synk med värdsidans scroll fungerar genom hela
+829-  sekvensen.
+830-- **1440, pixel-för-pixel mot `shots/astra-r8/ours/`-baslinjen**: `thesis-02/03/04/05`
+831-  bytidentiska (0px diff). `thesis-01`, `case-calyx-03` (P17-3), `case-horai-03` (P19-3)
+832-  visar en mycket svag diff (max enstaka pixelkanter, 143–227 av 255 vid enstaka
+833-  pixlar) — undersökt med en diff-mask: uteslutande tunna konturer längs text- och
+834-  bildkanter (typsnittshintning/subpixel-rendering mellan separata sidladdningar), INGA
+835-  förskjutna block eller ändrad komposition. Visuell sida-vid-sida-jämförelse: identisk
+836-  layout, position och innehåll. Ingen strukturell ändring vid 1440, som krävt.
+837-- **Noll horisontell scroll**: 320/375/390/414/768/1024/1280/1440/1920, `scrollWidth`=
+838-  `clientWidth` på alla nio.
+839-- **`a11y_scan.py`** vid 390: 0 violations, 41 passes.
+840-- **Låst copy**: 15/15 rader ordagrant — ingen av de tre fixarna rörde en textsträng
+841-  (alla tre är CSS/JS-ankare mot tredjepartssidornas EGEN DOM, aldrig copy).
+842-- **Grep, tankstreck**: 1 träff, samma HTML-kommentar som R1–R8 (inte synlig text, rör
+843-  ett tidigare rundas flip-card-kod, oberört denna runda).
+844-
+845-**V3d R9 klar**
+846-
+847:## V3d R10
+848-
+849-Lead-fynd efter R9 (`shots/lead-r9/thesis-01.png`, `thesis-03.png`): tesbandets mobila
+850-foto (R9 fix 2) fyller nu raden, men `object-fit:cover` med standardankaret (center)
+851-beskär vänsterkanten — Hyperboreas rubrik "Systems" läses som "ystems". Orsak: boxen är
+852-portrait vid 320–767 (t.ex. 343×448 vid 390) mot bildkällans 16:10 (1200×750); en
+853-center-beskärning tar lika mycket från båda sidorna. En kirurgisk `Edit`, `Skill(design)`
+854-körd först (targeted change, scope-discipline: en CSS-egenskap, inget gate/re-derivation).
+855-
+856-### Fixtabell
+857-
+858-| # | Mål | Före | Efter | Bild |
+859-|---|---|---|---|---|
+860-| 1 · vänsterkanten beskärs vid 390 | "Systems" helt läsbart vid 320/375/390/414/768, fyllnad/höjd från R9 orörd, 1440 oförändrat | `.thesis-photo-box img` utan `object-position` (standard 50% 50%) — i en portrait-box (16:10-bild i t.ex. 343×448) beskär cover båda sidorna lika, rubrikens vänsterdel försvinner | `object-position:left top` tillagt på `.thesis-photo-box img`, scopat i `@media (max-width:767px)` (samma brytpunkt som R9:s fix 2 — 768 matchar redan 16:10 mot bildens 16:10, ingen beskärning sker där oavsett ankare; 1440 matchar aldrig regeln) | "Systems with warmth" helt läsbart vid 320/375/390/414, oförändrat vid 768 (matchade redan), **byte-identiskt** vid 1440 (`diff.getbbox()`→`None`) | `shots/r10/after/thesis-01-{320,375,390,414}.png` |
+861-
+862-### Verifiering
+863-
+864-- **Enskilda skärmbilder** (inga kontaktark), `?preview=thesis-01` och `thesis-03` vid
+865-  320/375/390/414/768/1440, alla lästa. Rubriken "Systems"/"System" hel vid alla fem
+866-  mobil-/tablet-bredder, sajtens egen vänsterkant (logo, "EDITION MMXXVI · VOL. 03",
+867-  nav) synlig i varje.
+868-- **1440, pixel-för-pixel**: `thesis-01` mot R10:s egen `before/`-fångst (samma URL,
+869-  före ändringen) — `getbbox()` → `None`, byte-identiskt. `thesis-03` mot R9:s
+870-  `shots/astra-r8/ours/P03-3-1440.png`-baslinje — `getbbox()` → `None`, byte-identiskt.
+871-- **768**: bekräftat redan korrekt före fixen (boxens 16:10-form matchar bildens
+872-  16:10-källa exakt, ingen beskärning sker oavsett `object-position`) — medtaget i
+873-  verifieringen som `Mål` kräver, ingen kodändring behövdes för den bredden.
+874-- **Noll horisontell scroll**: `scrollWidth`=`clientWidth` vid 320/375/390/414/768/1440.
+875-
+876-**V3d R10 klar**
+596:     padding:clamp(72px,12svh,120px) 0 clamp(28px,5svh,48px) var(--rail-x);
+597:     border-bottom:1px solid var(--frame-line);overflow:clip;}
+598:   .thesis-lines{grid-column:1;grid-row:1;align-self:center;display:grid;min-width:0;}
+599:   .ts{grid-area:1/1;align-self:start;min-width:0;
+600:     font-family:var(--f-display);font-weight:700;
+601:     font-size:clamp(2rem,5vw + 1rem,6rem);line-height:.98;letter-spacing:-.02em;
+602:     text-transform:uppercase;text-wrap:balance;overflow-wrap:normal;hyphens:manual;}
+603:   /* Bytet: rubrikradens överkant och underkant är en springa. Utgående
+604:      mening stiger ut genom överkanten, inkommande stiger upp ur
+605:      underkanten. --in/--out läser --sc-ps (F-014), linjärt över --f.
+606:      Astra r7 material_fixes #1: symmetriska ±f/2-fönster kring samma
+607:      punkt b (mening N:s eget slut = mening N+1:s eget start) lät båda
+608:      transformeras SAMTIDIGT över samma spann - två meningar delvis
+609:      synliga på en gång, uppmätt 130px överlapp vid 1440. Asymmetriskt
+610:      i stället: --in öppnar över [a, a+f] (från sin EGEN start), --out
+611:      stänger över [b-f, b] (till sin EGEN slutpunkt). Vid b är utgående
+612:      redan helt stängd (--out=1) precis när inkommande fortfarande
+613:      står på 0 (--in=0, ej påbörjad) - en ren växling, 0px överlapp,
+614:      0px lucka. */
+615:   .js .ts{--a:calc(var(--i) / 5);--b:calc((var(--i) + 1) / 5);--f:.04;
+616:     --in:clamp(0,calc((var(--sc-ps,0) - var(--a)) / var(--f)),1);
+617:     --out:clamp(0,calc((var(--sc-ps,0) - (var(--b) - var(--f))) / var(--f)),1);
+618:     clip-path:inset(calc(var(--out) * 100%) 0 calc((1 - var(--in)) * 100%) 0);
+619:     transform:translateY(calc((1 - var(--in)) * .55em - var(--out) * .55em));
+620:     letter-spacing:calc(-.02em + (1 - var(--in)) * .06em);}
+621:   .js .ts:first-child{--in:1;}
+622:   .js .ts:last-child{--out:0;}
+623:   /* Lager 3: fem streck, det aktiva i fullt papper. Inga siffror (PRODUCT.md). */
+624:   .thesis-ticks{grid-column:1;grid-row:2;display:flex;gap:10px;margin-top:clamp(20px,3svh,32px);}
+625:   .thesis-ticks i{width:32px;height:2px;background:color-mix(in srgb,var(--c-white) 38%,var(--c-accent));}
+626:   .js .thesis-ticks i{--on:clamp(0,calc(1 - abs((var(--sc-ps,0) - (var(--i) + .5) / 5) * 10) + 1),1);
+627:     background:color-mix(in srgb,var(--c-white) calc(38% + 62% * var(--on)),var(--c-accent));}
+628:   .thesis-figure{grid-column:2;grid-row:1 / span 2;align-self:end;min-width:0;margin:0;}
+629:   .thesis-photo-box{position:relative;aspect-ratio:16/10;overflow:clip;
+630:     border:1px solid var(--frame-line);border-right:0;}
+631:   /* Lager 2: färgen kommer med mening 3 ("layout och bild"), beskärningen drar åt. */
+632:   .thesis-photo-box img{width:100%;height:100%;object-fit:cover;
+633:     filter:grayscale(calc(1 - clamp(0,calc((var(--sc-ps,0) - .4) / .2),1))) contrast(1.05);
+634:     transform:scale(calc(1 + .06 * var(--sc-ps,0)));transform-origin:70% 40%;}
+635:   .thesis-caption{margin-top:12px;padding-right:var(--rail-x);}
+636:   .thesis-caption .cap-line{font-family:var(--f-mono);font-weight:400;
+637:     font-size:10.5px;letter-spacing:.22em;text-transform:uppercase;
+638:     color:rgba(255,255,255,.92);}
+639:   @media (max-width:767px){
+640:     /* Astra r7 material_fixes #7: min-height reserverade 7 radhöjder
+641:        (243px), men ingen mening tar mer än 4 (mening 3, längst, 60
+642:        tecken) - ett ~104px tomt blått band stod kvar mellan meningen
+643:        och strecken. 7->4. Tredje raden (bilden) satt till 1fr i stället
+644:        för auto: det frigjorda utrymmet går dit i stället för att bli
+645:        dött utrymme längst ned i stagen. */
+646:     .thesis-stage{grid-template-columns:minmax(0,1fr);grid-template-rows:auto auto 1fr;
+647:       padding:clamp(56px,9svh,80px) var(--rail-x) clamp(20px,3svh,32px);row-gap:16px;}
+648:     .thesis-lines{align-self:start;min-height:calc(4 * .98 * clamp(2rem,5vw + 1rem,6rem));}
+649:     /* Astra r8 material_fixes #2: bas-regelns align-self:end (rad ~628)
+650:        återställdes aldrig här - figuren tog bara sin EGEN innehållshöjd
+651:        i stället för att fylla grid-radens 1fr, så flex:1 nedan hade
+652:        inget fritt utrymme att växa in i och föll tillbaka på
+653:        aspect-ratio:16/10 (bas-regeln, rad ~629, också aldrig
+654:        återställd) = en kort bild med ett 285px tomt band ovanför. */
+655:     .thesis-figure{grid-column:1;grid-row:3;min-height:0;display:flex;flex-direction:column;align-self:stretch;}
+656:     /* flex:1 i stället för aspect-ratio-styrd höjd: boxen växer för att
+657:        fylla den frigjorda raden. object-fit:cover (redan satt på img,
+658:        rad ~619) beskär utan att distordera - ingen av dessa regler
+659:        läser --sc-ps, så bilden flyttar sig aldrig mellan meningarna. */
+660:     .thesis-photo-box{border-right:1px solid var(--frame-line);flex:1;min-height:0;aspect-ratio:auto;}
+661:     /* R10 (lead-r9 fynd): boxen (portrait vid 320-767, t.ex. 343x448 vid
+662:        390) är mycket smalare än bildens 16:10-källa (1200x750) - cover
+663:        kröp tidigare kring center (standard 50% 50%) och skar bort både
+664:        vänster- och högerkanten, "Systems" blev "ystems". Vänsterankrad
+665:        beskärning visar rubriken hel. Bara i detta fönster: vid 768 matchar
+870:   .cs p{font-size:clamp(1.0625rem,1.4vw,1.25rem);line-height:1.55;max-width:36ch;margin-top:.7rem;
+871:     color:color-mix(in srgb,var(--ink) 80%,var(--bg));}
+872:   /* Samma springa som tesens .ts (--in/--out/clip-path/transform/letter-
+873:      spacing), N ur sektionens egen --n (Calyx 5, Hōrai 6). Astra r7
+874:      material_fixes #3: samma symmetriska ±f/2-bugg som tesen (fix 1) -
+875:      asymmetriska fönster, se kommentaren vid .js .ts. */
+876:   .case--calyx{--n:5;} .case--horai{--n:6;}
+877:   .js .cs{--a:calc(var(--i) / var(--n));--b:calc((var(--i) + 1) / var(--n));--f:.04;
+878:     --in:clamp(0,calc((var(--sc-ps,0) - var(--a)) / var(--f)),1);
+879:     --out:clamp(0,calc((var(--sc-ps,0) - (var(--b) - var(--f))) / var(--f)),1);
+880:     clip-path:inset(calc(var(--out) * 100%) 0 calc((1 - var(--in)) * 100%) 0);
+881:     transform:translateY(calc((1 - var(--in)) * .55em - var(--out) * .55em));
+882:     letter-spacing:calc(-.01em + (1 - var(--in)) * .06em);}
+883:   .js .cs:first-child{--in:1;} .js .cs:last-child{--out:0;}
+884:   /* Stegskenan: stegens rubriker i 13px, det aktiva i fullt bläck. */
+885:   .case-rail{display:flex;flex-wrap:wrap;gap:6px 18px;margin-top:clamp(28px,5svh,48px);
+886:     padding-top:12px;border-top:1px solid var(--c-line-on-paper);
+887:     font-size:13px;font-weight:600;letter-spacing:.04em;}
+888:   .case-rail span{color:color-mix(in srgb,var(--ink) calc(62% + 38% * var(--on,0)),var(--bg));}
+889:   .js .case-rail span{--on:clamp(0,calc(1 - abs((var(--sc-ps,0) - (var(--i) + .5) / var(--n)) * (2 * var(--n))) + 1),1);}
+890:   @media (max-width:767px){
+891:     /* Astra r7 material_fixes #5: 52svh gav case-fig 438,9px vid 844,
+892:        minus bildtextens ~39px = 400px = 47,4%vh (mål >=50%/422px).
+893:        58svh: 489,5-39=450,5px=53,4%vh. Astra r8 material_fixes #3: 450px
+894:        räcker inte för Calyx steg 3 (figur+bildtext 484px, uppmätt direkt
+895:        i sites/calyx.html). 66svh: 557-39=517,5px - rymmer 484px med
+896:        marginal. */
+897:     .case-stage,.case--horai .case-stage{grid-template-columns:minmax(0,1fr);
+898:       grid-template-rows:66svh minmax(0,1fr);padding:0 0 clamp(16px,3svh,24px);}
+899:     /* Astra r8 material_fixes #1: Hōrais citat (case-horai-03) centreras
+900:        sant i ramen, men vid en 450px ram hamnar det delvis bakom sajtens
+901:        egen nav (sites/horai.html, orörd). Astras måltal: ih>=625px
+902:        centrerat, eller ih>=525px med ankaret 100px ovanför centrum. En
+903:        Hōrai-specifik rad (samma specificitet som den delade regeln
+904:        ovan, senare i källordningen vinner den) höjer ih till ~568px;
+905:        measureCase() nedan lägger sedan ett -100px-offset på just
+906:        Hōrais citat-ankare när ramen är kort. */
+907:     .case--horai .case-stage{grid-template-rows:72svh minmax(0,1fr);}
+908:     .case .case-fig{grid-column:1;grid-row:1;}
+909:     .case .case-text{grid-column:1;grid-row:2;justify-content:flex-start;
+910:       padding:clamp(16px,3svh,24px) var(--rail-x) 0;}
+911:     .case-wrap,.case--calyx .case-wrap,.case--horai .case-wrap{border:0;
+912:       border-bottom:1px solid var(--c-line-on-paper);}
+2150:          som --band-h/--sheet-h ovan - inte en per-bildruta-skrivning.
+2151:          Läses av tickerspringans clip-path (--slit-start). */
+2152:       process.style.setProperty('--life', life.toFixed(1) + 'px');
+2153:       /* PLAN 048 F step 16. Ankare vid >=768: steget ritar under de
+2154:          första 60% av sitt sticky-intervall (s) och står färdigt de
+2155:          sista 30% (e, --eN). Mobilformlerna (sheetH-beroende) står kvar. */
+2156:       stepAnchors = [];
+2157:       for (var i = 0; i < lis.length; i++){
+2158:         var lr = lis[i].getBoundingClientRect(), y0 = lr.top + window.scrollY - top, yc = y0 + lr.height / 2;
+2159:         var s = mobile
+2160:           ? (y0 + vh * (i === 0 ? 0.05 : 0.35)) / life
+2161:           : (i === 0 ? (y0 + 0.5 * vh) : (y0 + vh)) / life;
+2162:         var e = mobile ? (y0 + (vh - sheetH)) / life : (y0 + 1.6 * vh) / life;
+2163:         process.style.setProperty('--s' + (i + 1), s.toFixed(4));
+2164:         process.style.setProperty('--e' + (i + 1), e.toFixed(4));
+2165:         stepAnchors.push({ s: s, yc: yc, y0: y0 });
+2166:       }
+2167:       /* PLAN 048 E step 9. Indexerad per data-step som en LISTA: #p-cam
+2168:          omslöt gruppen, så en enkel objekttilldelning kunde tappa en grupp
+2169:          om ett steg någonsin fick fler än en. querySelectorAll fångar alla,
+2170:          data-on växlas på varje. */
+2171:       if (!Object.keys(sheetGroups).length){
+2172:         process.querySelectorAll('.process-sheet g[data-step]').forEach(function(g){
+2173:           var step = g.getAttribute('data-step');
+2174:           (sheetGroups[step] || (sheetGroups[step] = [])).push(g);
+2175:         });
+2176:       }
+2177:     }
+2178:   }
+2179:   measureAct();
+2180:   addEventListener('resize', measureAct, { passive:true });
+2181:   addEventListener('load', measureAct);
+2182:   addEventListener('resize', function(){
+2183:     CASES.forEach(function(C){ if (C.w) measureCase(C); });
+2184:   }, { passive:true });
+2185: 
+2186:   /* PLAN 054 steg 4. Casens ramar skrollas INIFRÅN, ur aktens LERPADE värde
+2187:      (cur), i latchTick. Ramen själv transformeras aldrig (PRODUCT.md).
+2188:      Ankarna mäts i ramens dokument (same-origin) vid load och vid varje
+2189:      storleksändring där, aldrig per bildruta. Andra talet per ankare:
+2190:      förskjutning i ramhöjder - 0,30 = husets stycke står en tredjedel ned
+2191:      så ordljuset spelar; -1 = rummet (sektionen före bokningen) står i
+2192:      ramen.
+2193:      Astra r7 material_fixes #4: -0,40 lade citatsektionens överkant
+2194:      0,40×ramhöjd UNDER ramens topp - horai.html formar/skärper citatet
+2195:      när SEKTIONEN står centrerad i ramen (rad ~481), inte vid dess
+2196:      överkant. För en sektion H hög i en ram I hög är "centrerad"
+2197:      scrollY = sectionTop + H/2 - I/2, dvs. andra talet
+2198:      a = H/(2I) - 0,5. quote-section är h-[130vh] (H=1,3×I oavsett I:s
+2199:      faktiska värde, ett förhållande): a = (1,3I)/(2I) - 0,5 = 0,15. */
+2200:   var CASES = [
+2201:     { el: document.getElementById('case-calyx'), anchors: [
+2202:         /* Astra r8 material_fixes #3: ['#studio + section', 0] siktade
+2203:            sektionens egen topp - ~76px ovanför figur 1:s topp (mätt med
+2204:            getBoundingClientRect), och figur+bildtext (484px) fick inte
+2205:            plats i en 450px ram ändå. Ankaret pekar fortfarande på
+2206:            SEKTIONEN, inte figuren - .duo/.reveal delar en transform med
+2207:            sektionen, vilket gör figurens EGNA offsetTop relativt
+2208:            sektionen (inte dokumentet), så en direkt figur-selektor gav
+2209:            ett värde som mätts lokalt, inte absolut. a[2]/a[3]
+2210:            (measureCase) lägger i stället ett flatt +76px-tillägg när
+2211:            ramen är kort. */
+2212:         ['top', 0], ['#studio', 0], ['#studio + section', 0, 76, 700], ['#index', 0], ['#commission', 0] ] },
+2213:     { el: document.getElementById('case-horai'), anchors: [
+2214:         /* Astra r8 material_fixes #1: 'center' allena stämmer bara när
+2215:            ramen är hög nog (>=625px). a[2]/a[3] nedan (measureCase)
+2216:            lägger ett -100px-offset ovanför sant centrum när den
+2217:            uppmätta ih är under 700px (bara vid korta/mobila ramar -
+2218:            vid 1440/768, där ih redan mätts godtyckligt över 700,
+2219:            förblir ankaret sant centrerat precis som i dag). */
+2220:         ['top', 0], ['#hero-section + section', 0.30], ['#quote-section', 'center', -100, 700],
+2221:         ['#quote-section + section', 0], ['#reservations', -1], ['#reservations', 0] ] }
+2222:   ].filter(function(C){ return C.el; });
+2223:   CASES.forEach(function(C){ C.last = -1; });
+2224:   /* Astra r7 material_fixes #4, uppföljning: den fasta kvoten +0,15
+2225:      (räknad mot h-[130vh]) stämde bara vid 1440 (ramens ih~807px ger
+2226:      1,3*ih=1049 > min-h-[1000px], så 130vh-formeln vinner där). Vid 390
+2227:      är ramens ih~450px, 1,3*ih=585 < 1000 - Tailwinds min-height-golv
+2228:      vinner i stället, den RIKTIGA sektionshöjden är 1000px, inte
+2229:      1,3*ih, och kvoten 0,15 landade fel (uppmätt: opacitet 0,81,
+2230:      blur 2,5px i stället för 1/0px). 'center' läser elementets EGEN
+2231:      offsetHeight vid varje mätning i stället för att anta ett
+2232:      förhållande - fungerar rätt oavsett vilken av Tailwinds två klasser
+2233:      som råkar vinna vid en given ramhöjd. */
+2234:   /* Astra r8 material_fixes #1/#3, tillägg: a[2]/a[3] är ett valfritt
+2235:      kort-ramsoffset - a[2] px läggs till (oavsett om andra talet är
+2236:      'center' eller ett förhållande) ENDAST när den uppmätta ih
+2237:      understiger tröskeln a[3]. Vid en hög (desktop/tablet) ram är
+2238:      villkoret aldrig sant, ankaret förblir precis som i dag - ingen
+2239:      ändring där by construction (tröskeln läser ramens EGEN uppmätta
+2240:      höjd, inte en CSS-brytpunkt). */
+2241:   function measureCase(C){
+2242:     var f = C.el.querySelector('iframe'), w = f && f.contentWindow, d = f && f.contentDocument;
+2243:     if (!d || !d.documentElement) return;
+2244:     var ih = w.innerHeight, max = d.documentElement.scrollHeight - ih;
+2245:     C.f = f; C.w = w; C.y = C.anchors.map(function(a){
+2246:       var el = a[0] === 'top' ? null : d.querySelector(a[0]);
+2247:       var t = el ? el.offsetTop : 0;
+2248:       var off = a[1] === 'center' ? (el ? (el.offsetHeight - ih) / 2 : 0) : a[1] * ih;
+2249:       if (a[2] && ih < (a[3] || Infinity)) off += a[2];
+2250:       return Math.max(0, Math.min(max, Math.round(t + off)));
+2251:     });
+2252:   }
+2253:   function caseY(C, p){
+2254:     var n = C.y.length, k = Math.min(n - 1, Math.floor(p * n)), t = p * n - k;
+2255:     if (k === 0) return C.y[0];
+2256:     var u = Math.min(1, t / 0.45); u = u * u * (3 - 2 * u);
+2257:     return C.y[k - 1] + (C.y[k] - C.y[k - 1]) * u;
+2258:   }
+2259: 
+2260:   /* PLAN 019, R6, device-tabellens rad 9. --sc-ps som DRIVER ritningen
+2261:      kommer från motorn (#process har data-sc-act="flow"); den här läsaren
+2262:      räknar en EGEN, billig approximation ur rå scrollY (F-013, ingen
+2263:      getComputedStyle per bildruta). */
+2264:   function processPs(){
+2265:     var travel = processH + window.innerHeight;
+2266:     if (travel <= 0) return 0;
+2267:     var ps = (window.scrollY + window.innerHeight - processTop) / travel;
+2268:     if (ps < 0) ps = 0; else if (ps > 1) ps = 1;
+2269:     return ps;
+2270:   }
+
+exec
+"C:\\WINDOWS\\System32\\WindowsPowerShell\\v1.0\\powershell.exe" -Command "Get-Content -Encoding utf8 'tests/alunix-r8/runs/V3d/plans/054-tesband-och-case.md' | Select-Object -Skip 300 -First 190" in C:\Users\Anton L\anti-slop-design
+ succeeded in 349ms:
+        … fem li, --i 0 till 4, text ur COPY-V3d-v0 …
+      </ol>
+      <div class="case-rail" aria-hidden="true"><span>(h3 1)</span>…<span>(h3 5)</span></div>
+    </div>
+    <figure class="frame-fig case-fig">
+      <div class="frame-wrap case-wrap calyx-wrap frame-poster">
+        <iframe data-src="/sites/calyx.html" loading="lazy" inert
+                title="Exempelsida: Calyx, florist i Stockholm"></iframe>
+      </div>
+      <figcaption class="frame-cap">Exempelsida: Calyx, florist i Stockholm</figcaption>
+    </figure>
+  </div>
+</section>
+
+<!-- BRYGGA: en mening på svart plåt mellan två sajter. INTE en tredje ram. -->
+<section class="case-bridge" data-sc-act="flow" aria-labelledby="bridge-title">
+  <h2 id="bridge-title" class="bridge-title" data-sc-in>(v0)</h2>
+  <p class="bridge-p" data-sc-in>(v0)</p>
+</section>
+
+<!-- CASE HŌRAI: spegelvänt, sajten vänster, texten höger. -->
+<section class="case case--horai" id="case-horai" data-sc-act="pin" data-sc-span="6.4"
+         aria-labelledby="horai-title"> … samma anatomi, sex li, .case-fig FÖRE .case-text i
+  DOM:en, ramen /sites/horai.html med title "Exempelsida: Hōrai, Asian fusion-koncept" … </section>
+```
+
+   `.rv`-omslaget runt ramen tas bort (ingen reveal på casens ramar: stagen själv glider in,
+   och en ram får aldrig klippas med clip-path, plan 036). `.calyx-wrap`/`.horai-wrap` står
+   kvar enbart som krokar för `frame-poster`-bilden (rad 820 till 821). `id="projekt"` flyttar
+   till `#case`.
+
+9. **CSS för casen** (nytt block efter `.frame-cap`):
+
+```css
+/* PLAN 054 4. Casen: pinnad stage, text och sajt delar skärmen 5/7.
+   Ramen möter viewportens kant (gridbrottet). */
+.case--calyx{--bg:var(--bg);--ink:var(--ink);}
+.case--horai{--bg:var(--c-black);--ink:var(--c-paper);--c-line-on-paper:var(--hairline-dark);}
+.case-stage{background:var(--bg);color:var(--ink);display:grid;
+  grid-template-columns:minmax(0,5fr) minmax(0,7fr);column-gap:clamp(24px,4vw,64px);
+  padding-block:clamp(24px,4svh,40px);}
+.case--calyx .case-text{grid-column:1;padding-left:var(--rail-x);}
+.case--calyx .case-fig{grid-column:2;}
+.case--horai .case-fig{grid-column:1;grid-row:1;}
+.case--horai .case-text{grid-column:2;grid-row:1;padding-right:var(--rail-x);}
+.case--horai .case-stage{grid-template-columns:minmax(0,7fr) minmax(0,5fr);}
+.case-fig{min-width:0;display:flex;flex-direction:column;}
+.case-wrap{flex:1;min-height:0;border:1px solid var(--c-line-on-paper);}
+.case--calyx .case-wrap{border-right:0;}
+.case--horai .case-wrap{border-left:0;}
+.case-text{display:flex;flex-direction:column;justify-content:center;min-width:0;}
+.case-title{font-family:var(--f-display);font-weight:700;
+  font-size:clamp(3.5rem,7.2vw,7.5rem);line-height:.95;letter-spacing:-.03em;margin-top:12px;}
+.case-steps{list-style:none;margin:clamp(28px,5svh,48px) 0 0;padding:0;display:grid;}
+.cs{grid-area:1/1;min-width:0;}
+.cs h3{font-family:var(--f-display);font-weight:700;font-size:clamp(1.5rem,2.2vw,2rem);
+  line-height:1.05;letter-spacing:-.01em;text-transform:uppercase;}
+.cs p{font-size:clamp(1.0625rem,1.4vw,1.25rem);line-height:1.55;max-width:36ch;margin-top:.7rem;
+  color:color-mix(in srgb,var(--ink) 80%,var(--bg));}
+/* Samma springa som tesen, N ur sektionen (Calyx 5, Hōrai 6). */
+.case--calyx{--n:5;} .case--horai{--n:6;}
+.js .cs{--a:calc(var(--i) / var(--n));--b:calc((var(--i) + 1) / var(--n));--f:.04;
+  /* --in, --out, clip-path, transform, letter-spacing exakt som .js .ts */}
+.js .cs:first-child{--in:1;} .js .cs:last-child{--out:0;}
+/* Stegskenan: stegens rubriker i 13 px, det aktiva i fullt bläck, en
+   hårlinje fylls i takt med --sc-ps. Lager 3. */
+.case-rail{display:flex;flex-wrap:wrap;gap:6px 18px;margin-top:clamp(28px,5svh,48px);
+  padding-top:12px;border-top:1px solid var(--c-line-on-paper);
+  font-size:13px;font-weight:600;letter-spacing:.04em;}
+.case-rail span{color:color-mix(in srgb,var(--ink) calc(62% + 38% * var(--on,0)),var(--bg));}
+/* --on per span: samma formel som .thesis-ticks, N ur --n, skrivet per nth-child. */
+```
+
+   Stagens höjd är motorns 100svh (`[data-sc-stage]{height:100svh}` rad 327 gäller redan).
+   `.case-wrap` fyller figuren under bildtexten: vid 1440x900 ≈ 835 x 790.
+
+10. **CSS för kapitlet och bryggan:**
+
+```css
+.cases-chapter{background:var(--bg);color:var(--ink);min-height:100svh;display:flex;
+  flex-direction:column;justify-content:center;padding:clamp(72px,12svh,120px) var(--rail-x);}
+.cases-title{/* = .process-title (rad 1056 till 1059): 3,5rem till 7,5rem */}
+.cases-title{--edge:calc(var(--sc-ps,0) * 260%);background-image:linear-gradient(100deg,
+  var(--ink) 0 calc(var(--edge) - 12%),color-mix(in srgb,var(--ink) 62%,var(--bg)) calc(var(--edge) + 12%) 100%);
+  -webkit-background-clip:text;background-clip:text;color:transparent;}
+.cases-lead{font-size:1.25rem;line-height:1.5;max-width:44ch;margin-top:clamp(20px,3svh,32px);
+  color:color-mix(in srgb,var(--ink) 80%,var(--bg));}
+.case-bridge{background:var(--c-black);color:var(--c-paper);min-height:100svh;display:grid;
+  place-content:center;padding:clamp(72px,12svh,120px) var(--rail-x);
+  border-top:1px solid var(--frame-line);}
+.bridge-title{font-family:var(--f-display);font-weight:700;
+  font-size:clamp(2.5rem,5vw + .5rem,5.5rem);line-height:.98;letter-spacing:-.02em;max-width:18ch;}
+.bridge-p{font-size:1.25rem;line-height:1.5;max-width:44ch;margin-top:clamp(20px,3svh,32px);
+  color:color-mix(in srgb,var(--c-paper) 80%,var(--c-black));}
+```
+
+   Kapitelrubrikens ordljus läser kapitlets egna flödes-`--sc-ps` (0,5 när rubriken står i
+   mitten): fronten har passerat hela rubriken vid ~0,5, båda ändarna läsbara (62 % bläck ≥
+   6:1 på papper).
+
+11. **JS: montering.** I `latchTick` (rad 2172): byt villkoret `heroAct.cur >= 0.80` mot att
+    processakten har nått steg 05: flytta monteringen in i `if (process){…}`-grenen efter
+    `procAct` är hittad, `if (!framesMounted && stepAnchors[4] && procAct.cur >= stepAnchors[4].s)`.
+    Två levande sajter ska inte starta under tesens meningsbyte. Observern (rad 2490 till
+    2506) står kvar oförändrad: den observerar `.frame-wrap` och söver utanför 40 %.
+    Ta bort `reveals` (rad 2085 till 2089 och slingan 2217 till 2227) och `measureFrames`
+    (rad 2384 till 2396); `@property --rv` (rad 761) och `.rv`-reglerna går med.
+
+12. **JS: sajten rullar i takt.** Nytt, efter `measureAct`:
+
+```js
+/* PLAN 054 4. Casens ramar skrollas INIFRÅN, ur aktens LERPADE värde (cur),
+   i latchTick. Ramen själv transformeras aldrig (PRODUCT.md). Ankarna mäts
+   i ramens dokument (same-origin) vid load och vid varje storleksändring
+   där, aldrig per bildruta. */
+var CASES = [
+  { el: document.getElementById('case-calyx'), anchors: [
+      ['top', 0], ['#studio', 0], ['#studio + section', 0], ['#index', 0], ['#commission', 0] ] },
+  { el: document.getElementById('case-horai'), anchors: [
+      ['top', 0], ['#hero-section + section', 0.30], ['#quote-section', -0.40],
+      ['#quote-section + section', 0], ['#reservations', -1], ['#reservations', 0] ] }
+].filter(function(C){ return C.el; });
+/* Andra talet: förskjutning i ramhöjder. 0,30 = husets stycke står en tredjedel
+   ned så ordljuset spelar; -0,40 = citatets eget "formade läge" (horai.html rad
+   481); -1 = rummet (sektionen före bokningen) står i ramen. Mätt vid bygget,
+   justeras mot skärmbild, skrivs i NOTES. */
+function measureCase(C){
+  var f = C.el.querySelector('iframe'), w = f && f.contentWindow, d = f && f.contentDocument;
+  if (!d || !d.documentElement) return;
+  var ih = w.innerHeight, max = d.documentElement.scrollHeight - ih;
+  C.f = f; C.w = w; C.y = C.anchors.map(function(a){
+    var t = a[0] === 'top' ? 0 : (d.querySelector(a[0]) || {}).offsetTop || 0;
+    return Math.max(0, Math.min(max, Math.round(t + a[1] * ih)));
+  });
+}
+function caseY(C, p){
+  var n = C.y.length, k = Math.min(n - 1, Math.floor(p * n)), t = p * n - k;
+  if (k === 0) return C.y[0];
+  var u = Math.min(1, t / 0.45); u = u * u * (3 - 2 * u);   /* resa 45 %, stå 55 % */
+  return C.y[k - 1] + (C.y[k] - C.y[k - 1]) * u;
+}
+```
+
+   - Koppling: i `mountFrame` (rad 2458), efter `f.src = s`, lägg en `load`-lyssnare som
+     letar upp sitt `CASES`-objekt, kör `measureCase` och sätter
+     `new f.contentWindow.ResizeObserver(function(){ measureCase(C); }).observe(f.contentDocument.documentElement)`.
+     Även `resize` på fönstret kör `measureCase` för varje ärende.
+   - I `latchTick`, efter reveals-slingans plats: för varje `C` med `C.y`: `act =
+     findAct(acts, C.el)`; `y = caseY(C, act.cur)`; om `Math.abs(y - C.last) >= 0.5`:
+     `C.w.scrollTo({ top: y, left: 0, behavior: 'instant' }); C.last = y`. Om aktens
+     `--sc-p` och `cur` skiljer > 0,0005: `again = true` (samma mönster som processen,
+     rad 2213 till 2214). **Ingen `getComputedStyle`, ingen `scrollHeight`-läsning per
+     bildruta.**
+   - Steg N:s text byter in vid p = N/n, samma ögonblick som `caseY` börjar resan mot
+     ankare N; sajten landar vid p = (N + 0,45)/n, långt innan steget byter ut.
+
+13. **Mobilen, < 768.** Samma pinnade akt; stagen staplas med sajten överst:
+
+```css
+@media (max-width:767px){
+  .case-stage,.case--horai .case-stage{grid-template-columns:minmax(0,1fr);
+    grid-template-rows:52svh minmax(0,1fr);padding:0 0 clamp(16px,3svh,24px);}
+  .case .case-fig{grid-column:1;grid-row:1;}
+  .case .case-text{grid-column:1;grid-row:2;justify-content:flex-start;
+    padding:clamp(16px,3svh,24px) var(--rail-x) 0;}
+  .case-wrap,.case--calyx .case-wrap,.case--horai .case-wrap{border:0;
+    border-bottom:1px solid var(--c-line-on-paper);}
+  .case-text > .kicker-sans{display:none;}
+  .case-title{font-size:clamp(2rem,9vw,2.5rem);margin-top:0;}
+  .case-steps{margin-top:14px;}
+  .cs h3{font-size:1.375rem;} .cs p{font-size:1rem;max-width:none;}
+  .case-rail{display:none;}
+}
+```
+
+   **Skäl, sajten ovanför texten på båda casen:** vid 390 finns ingen sida att spegla;
+   ögat läser uppifrån, och texten är sajtens bildtext för det som syns just då. Spegeln
+   bärs av grunden (papper mot svart plåt) och av ordningen i DOM:en, inte av en
+   spegelvänd stapel som skulle lägga Hōrais text ovanför en ram texten ännu inte
+   beskrivit. Kickern och skenan döljs under 768 (de upprepar rubriken och stegens
+   rubriker; ytan behövs för stycket). Casestyckena är ≤ 40 ord (COPY-V3d-v0), vilket ger
+   ≤ 9 rader i 16 px vid 320 och ryms under en ram på 52svh vid 320x568.
+
+### 5 · Balans och övergångar
+
+14. **Övergångarna, en i taget, och vad som bär dem:**
+    - hero → tes: heronts pin släpper, den blå stagen stiger in i full bredd. Pin följer på
+      pin; avsteg från "aldrig samma familj två gånger i rad" (devices.md), namngivet: tesens
+      meningsbyte är Antons beställning, och materialbytet foto → blått plus heronts 160 px
+      luft före (`.stagger`s padding-top försvinner, ersätts av `.thesis{margin-top:
+
+codex
+Tesbandets tomma fält är borta, men R8:s krav på samma bildposition i alla fem meningar är fortfarande öppet. Hōrais citat klarar sina mätgränser. Calyx visar hela märkningen, men figurens översta 28 px ligger fortfarande utanför ramen, så jag skiljer den visuella pariteten från det striktare Expected-kravet.
+codex
+**Disposition: fix.** Referensnivån håller i de bifogade stillbilderna, men tesbandets 35 px-hopp blockerar slutgodkännande. Calyx har dessutom en mindre kvarstående avvikelse mot R8:s uttryckliga Expected.
+
+Jag utgår från dina mätningar. Oförändrade 1440-skärmar behåller R8:s godkännande.
+
+| Bild | Par | Bedömning |
+|---|---|---|
+| 1 | P03-1-390 | **Håller som stillbild.** Displaymeningen och den stora bilden äger den blå skärmen. Sekvensen underkänns dock av positionshoppet, fynd 1. |
+| 2 | P03-3-390 | **Håller som stillbild.** Fyra tydliga rubrikrader och en dominerande produktyta ger tillräcklig tyngd. Samma sekvensfynd. |
+| 3 | P03-5-390 | **Håller som stillbild.** Den korta meningen behåller displayskalan; bilden bär resten. Samma sekvensfynd. |
+| 4 | P04-curtain-390 | **Håller.** Ren materialkant och ett kapitel som avtäcks under ridån; den delvis täckta rubriken hör till övergången. |
+| 5 | P17-1-390 | **Håller.** Blommorna äger övre skärmen, texten får en tydlig egen plats på papper. |
+| 6 | P17-3-390 | **Håller referensnivån.** Foto och full märkning gör exemplet begripligt; hela fotot ryms däremot inte enligt Expected, fynd 2. |
+| 7 | P17-5-390 | **Håller.** Den stora seriftypografin i ramen och den lugnare förklaringen under ger tydlig hierarki. |
+| 8 | P19-1-390 | **Håller inom beslutad avgränsning.** Restaurangbilden äger skärmen och casetexten är underordnad. |
+| 9 | P19-3-390 | **Håller inom beslutad avgränsning.** Citatet syns under navigationen och bär den avsedda pausen. |
+| 10 | P19-6-390 | **Håller inom beslutad avgränsning.** Bokningssektionens stora typografi dominerar, med läsbar förklaring under. |
+| 11 | P20-390 | **Håller som övergång.** Svart möter foto på en ren kant och prisrubriken etablerar nästa kapitel. Inget separat tomt band. |
+| 12 | P15b-390 | **Håller som övergångsbild.** Samma sammanhängande materialbyte; bilden visar däremot inte pris- och kontaktavslutet och kan inte ensam verifiera hela P15. |
+| 13 | P01-390 | **Håller.** Rubrik och kort delar folden med tydlig rangordning; stödtexten konkurrerar inte. |
+| 14 | P07-390 | **Håller.** Det breda tomma arket och den stora 01-markeringen gör skärmen till ett processsteg med egen identitet. |
+| 15 | P01-1440 | **Håller.** Affischrubrik och stort kort äger kompositionen. |
+| 16 | P03-1-1440 | **Håller.** Mättad helskärm, ensam displaymening och bild som bryter ut mot högerkanten. |
+| 17 | P03-3-1440 | **Håller.** Den längre meningen behåller auktoriteten; bilden förblir ett tydligt andra element. |
+| 18 | P08-1440 | **Håller.** Arket dominerar och måttkedjan läses på avstånd; bandet ovanför förklarar utan att konkurrera. |
+| 19 | P12-1440 | **Håller.** Calyx i färg fyller huvuddelen av arket och blir skärmens huvudmotiv. |
+| 20 | P14-1440 | **Håller.** Pappersgrunden och den stora ensamma rubriken etablerar ett nytt kapitel med tydligt ställningstagande. |
+| 21 | P17-3-1440 | **Håller.** Bildparet är störst, båda märkningarna syns och textspalten bär självständigt. |
+| 22 | P19-3-1440 | **Håller.** Spegelkompositionen fungerar; det formade citatet äger den stora vänsterytan. |
+| 23 | P20-1440 | **Håller.** Ren övergång till fotografiet och tydlig ny rubrik. Jag återöppnar inte R8:s avförda fynd om fångstens rubrikposition. |
+
+**R8:s tre fixar mot sina Expected:**
+
+- **Fix 1, Hōrais citat: stängd.** Bild 9, citatområdet under navigationen: y=162–273 ligger inom [117, 568], opacitet .974 och blur .31 px klarar gränserna. Även 375 klarar dem. Japanskan bakom navigationen ingick inte i Expected för `#quote-text`.
+- **Fix 2, tesbandet: delvis stängd, fortfarande öppen.** Gapet 16 px, bildhöjden 449/483 px, bildtextens placering och noll horisontell scroll klarar kraven. Samma y i alla fem meningar klaras inte.
+- **Fix 3, Calyx: delvis stängd.** Bild 6 visar hela märkningen inom ramen. Kravet på minst ett **helt** foto tillsammans med märkningen klaras inte när första figurens topp ligger på y=−28.
+
+**Två fynd, i prioritetsordning:**
+
+1. **Tesbilden hoppar när mening 3 går in.** Bild 24, streckraden och bildens överkant, tillsammans med bild 1–3: y ändras från 309 till 274 i ett enda hjulsteg och tillbaka på uppvägen. Det bryter den annars kontrollerade iscensättningen. Orsaken finns i `index.html:620`, där animerad teckenbredd ändrar radbrytningen i det gemensamma gridet på `index.html:598`; mobilens minhöjd på `index.html:648` förhindrar inte detta. **Stängning:** lås mobilens `letter-spacing` till −.02em med tillräcklig specificitet och behåll meningsrörelsen. Din provning visar rätt resultat: y=274 genom alla fem meningar vid 390, utan hopp. Samma stabilitet ska hålla vid 375.
+
+2. **Calyx-fotot är fortfarande beskuret upptill mot Expected.** Bild 6, ramens överkant: första figuren ligger på −28…455 i en 517 px hög ram. Märkningen är räddad, men hela foto-plus-märkning är inte inne. Ankaret finns på `index.html:2212`, med offset tillämpat på `index.html:2249`. **Stängning:** minska ramens scroll vid detta mobilankare med cirka 28 px. Med dina mått hamnar figuren då på 0…483, vilket ryms även i 375-ramens 496 px. Behåll desktopankaret.
+
+Helheten håller materialrytmen och skärmarnas hierarki. Dina svep styrker rena byten utan överlapp eller rubrikkollisioner. **Fix före ship, främst för tesbandets synliga layoutskutt.**
+tokens used
+76 395

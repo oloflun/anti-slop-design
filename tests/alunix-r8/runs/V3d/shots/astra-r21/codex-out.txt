@@ -1,0 +1,54 @@
+**A) Pair verdicts**
+
+Measurements below refer to our viewport, excluding the comparison caption.
+
+1. **Holds the reference’s level.** The entering blue surface already occupies approximately 39% of the screen.
+2. **Holds the reference’s level.** Insetting the plate makes the scroll effect spatially readable.
+3. **Holds the reference’s level.** The changing plate occupies approximately 50% of the viewport area.
+4. **Holds the reference’s level.** The landing line develops above the heading without crossing it.
+5. **Does not hold, because** the small descriptive line remains beneath the chapter title, contrary to F-016. Move: remove that secondary line from this screen.
+6. **Does not hold, because** the title screen still includes that 24px descriptive line. Move: let the display title stand alone.
+7. **Holds the reference’s level.** The approximately 168px numeral and 32px text establish a clear band above the empty drawing.
+8. **Holds the reference’s level.** Full-ink step text and the developing drawing give the screen one readable subject.
+9. **Holds the reference’s level.** The 136px, single-line title and 20px lead meet the chapter target.
+10. **Holds the reference’s level.** Title, price rhythm and underlined contact fit within one screen.
+11. **Holds the reference’s level.** The flush-right frame occupies approximately 64% of width and 94% of height.
+12. **Holds the reference’s level.** The booking remains fully inside the large, flush-left frame.
+13. **Holds the reference’s level.** Approximately 224px separates the frames; the intervening ground is consistently black.
+14. **Holds the reference’s level in this capture.** The photograph develops without a hard boundary; the blurred heading remains near the bottom.
+15. **Holds the reference’s level.** The plate owns approximately 59% of viewport area; the title enters below its landing line.
+16. **Holds the reference’s level.** Approximately 28px step text, 168px numeral and 81% viewport-width sheet meet the targets.
+17. **Holds the reference’s level.** The colour image now owns most of the drawing surface beneath a compact band.
+18. **Holds the reference’s level.** The complete offer and contact remain comfortably inside one screen.
+19. **Holds the reference’s level in this capture.** The outgoing paragraph remains readable and no outer paper-to-black boundary appears.
+20. **Does not hold, because** the mobile plate starts around y494 while its construction lines start around y445, then extends roughly 190px below their current ends. Move: derive the mobile plate and construction geometry from one interpolated rectangle.
+21. **Does not hold, because** the small descriptive line remains below the title. Move: remove it from the chapter screen.
+22. **Holds the reference’s level.** Approximately 22px text meets the mobile target; one step remains the sole subject.
+23. **Holds the reference’s level.** The complete offer, three rows and contact fit within the mobile screen.
+24. **Holds the reference’s level.** The frame occupies approximately 66% of viewport height, with the case explanation below.
+
+**B) Findings, most material first**
+
+1. **Heading clipping remains possible between the supplied settled captures.** Thesis text, case headings and incoming process bands use continuous inset wipes. Intermediate values necessarily cut through glyphs. See [index.html:655](tests/alunix-r8/runs/V3d/index.html:655), [1018](tests/alunix-r8/runs/V3d/index.html:1018), [1034](tests/alunix-r8/runs/V3d/index.html:1034) and [1334](tests/alunix-r8/runs/V3d/index.html:1334). **Move:** keep headings outside these clipping masks and transition each heading as a complete unit. This is a code finding, not a claim that the attached settled frames show the failure.
+
+2. **The mobile transition separates the plate from its drawing.** Image **20, lower-left**, shows the approximately 49px offset and mismatched lower extents described above. The surface and lines share timing but not intermediate geometry. **Move:** use one mobile rectangle calculation for both layers.
+
+3. **The advertised solidifying contour is not actually attached to the clipped rectangle.** [index.html:1183](tests/alunix-r8/runs/V3d/index.html:1183) clips the original box; the inset shadow at [1190](tests/alunix-r8/runs/V3d/index.html:1190) stays on that original box’s edges. Clipping does not relocate the shadow to the new perimeter. Images **4 and 15, plate sides**, consequently rely on separate construction lines. **Move:** draw the contour on an element whose actual bounds follow the shrinking rectangle.
+
+4. **F-016 still has a visible exception.** Images **5, 6 and 21, below the chapter heading**, retain the small descriptive line at [index.html:1832](tests/alunix-r8/runs/V3d/index.html:1832). **Move:** remove its visible chapter placement; no wording revision is needed.
+
+**C) Transition verdict**
+
+**Now fine enough on desktop; no longer too restrained. Mobile still needs coordination.**
+
+The effect has advanced from isolated hairlines to a substantial changing surface: approximately **39–59% of viewport area** in the desktop sequence. It remains visibly active across **all five supplied stages**, spanning **594px of captured scroll**, approximately **64% of viewport height**. Outer construction strokes and the landing line are **2 CSS px**, stations **1px**. Pure white against `#1e5e9c` provides **6.70:1 nominal contrast**, resolving the earlier contrast weakness.
+
+The title stays below the landing line in these captures. The remaining contour defect affects finish, not the effect’s overall strength.
+
+At **390**, the single closing move is **coordinating plate and construction bounds throughout the transition**. More stroke weight or extra scroll duration would not solve that separation.
+
+**D) Two-sheet solution**
+
+**It reads as a deliberate chapter break, although leisurely, rather than an unexplained dead gap.** The chapter heading supplies a reason for the first sheet to leave before the process sheet arrives.
+
+It is weaker at **1920**, where the heading leaves substantially more unoccupied horizontal ground. If tightening is needed, shorten the chapter’s trailing space while preserving a complete title-only screen. Keep both sheets in their accepted, separate flow.

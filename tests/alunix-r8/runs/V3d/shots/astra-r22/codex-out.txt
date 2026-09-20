@@ -1,0 +1,8 @@
+No actionable defect found in the two changes. Static review only.
+
+- **A, [index.html:1183](C:/Users/Anton%20L/anti-slop-design/tests/alunix-r8/runs/V3d/index.html:1183):** The clip and `::after` use identical interpolated insets. Their outer rectangles coincide throughout `--tx` for nondegenerate dimensions. The parent has no border/padding to offset their reference boxes.
+- **[index.html:1197](C:/Users/Anton%20L/anti-slop-design/tests/alunix-r8/runs/V3d/index.html:1197):** `clamp(...)` is valid inside the substituted percentage calculation; its output stays within 0–1, and `.3` is a nonzero constant.
+- **[index.html:1198](C:/Users/Anton%20L/anti-slop-design/tests/alunix-r8/runs/V3d/index.html:1198):** The pseudo-element adds border painting and layout work when its insets change. It does not introduce a stacking context or pointer target; painting stays clipped. Literal “every viewport width” needs one qualification: below **4px remaining width/height**, the two 2px borders cannot shrink further, so exact box coincidence fails. This is the [CSS sizing floor](https://www.w3.org/TR/css-sizing-3/), not evidence of a normal-viewport regression.
+- **B, [index.html:2555](C:/Users/Anton%20L/anti-slop-design/tests/alunix-r8/runs/V3d/index.html:2555):** Correct: the geometry read synchronously resolves preceding layout writes and measures the transformed, unclipped plane. No measured division or new NaN path; both distances are nonnegative. The selector runs during measurement/load/resize/preview, not the scroll/rAF loop. The read can force layout, which is a cost, not stale geometry.
+
+No visible em-dashes found; the sole literal match is a CSS comment at line 430.

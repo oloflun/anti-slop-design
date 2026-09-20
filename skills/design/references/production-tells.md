@@ -208,6 +208,14 @@ coverage for F-017 — a price column's text cell sized like its digit cells.
 same failure; 99 is the general test that catches shapes those miss (a side-rail of step
 titles, a paraphrase line under a heading with no eyebrow at all).
 
+**[ours] Extended 2026-09-20 (FEEDBACK.md F-018): the same ban at body size.** A section
+lede that narrates the section — what follows, in what order, why it exists — or that
+disclaims the material before showing it, is the same failure typeset larger, and
+`microtext_scan.py` cannot see it because it is not small. The scanner is a floor for the
+small case only; the body-size case is caught by reading, and by the copy gate. Test: cut
+the lede and read the section. If nothing is lost but a description of what the reader can
+already see, it was filler, and a heading standing alone is the better setting.
+
 **[ours]** Unlike the rest of this file, 98 is a *missing* declaration rather than an
 added decoration. It earns its place here because the symptom reads identically to one:
 browser chrome that does not belong to the design, appearing on every dark page a model

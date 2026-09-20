@@ -168,6 +168,18 @@ This generalises the specific tells already banned by name: gate 69 (numbered ey
 
 **Fix.** Cut the line. If the information matters, fold it into the heading or the body copy at reading size, or carry it on `title`/`aria-label` when it is naming a frame for assistive tech.
 
+#### The page narrating itself
+
+The same failure at body size, where the size test above cannot see it. Named by Anton 2026-09-20 (FEEDBACK.md F-018) from the Alunix demo's chapter lede: *"Calyx är en florist i Stockholm och Hōrai en restaurang. Ingen av dem finns, men sidorna är färdiga. Vi går igenom vad vi valde i dem och varför."* Three moves carry it, and each is independently a tell:
+
+1. **The roadmap.** A sentence describing the section's own disposition — what follows, in what order, and why. The reader looking at a case section already knows it contains cases.
+2. **The disclaimer.** A caveat about the material's status, placed before the material. It apologises for the work in the sentence before the work argues for itself.
+3. **The setup → caveat → roadmap cadence.** The LLM default shape for "introduce a section". It is recognisable by its tempo, not by its vocabulary, which is why rewriting the words does not fix it.
+
+**The test.** Cut the line and read the section. If the reader loses nothing but a description of what they can already see, the line was filler. A section that then has only a heading is set so the heading carries alone — it is never given a lede to fill the space.
+
+**Rule.** No text on the page refers to the page. A lede, a kicker, or an opening line is about the business, the work, or the reader's question — never about what the section below contains, what order it comes in, or why it exists.
+
 ### Shadow-glow on dark
 
 A card on a dark background with a `box-shadow` that leaves a soft coloured halo around it.

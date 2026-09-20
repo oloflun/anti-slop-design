@@ -15,6 +15,11 @@ and POST /api/feedback -> JSON body appended to feedback.jsonl; if
 body.submit is true, also written to feedback.json (pretty).
 
     python board.py <session-dir> [--port 4620] [--open] [--until-submit]
+                    [--fallback-root .] [--single]
+
+--single serves one cell at a time in full width: the pair toggle is gone and
+`p` does nothing. Half-width panes make every cell look worse than it is
+(r5, 2026-09-08), so a board meant for a verdict is opened with --single.
 """
 import argparse
 import functools
@@ -75,7 +80,7 @@ button.action{font:12px ui-monospace,Menlo,Consolas,monospace;padding:5px 9px;bo
 <script>
 (function(){
 'use strict';
-var STATE={board:null,cellsExist:{},active:null,winStart:0,ratings:{},comments:{},remix:{},preferred:null,pair:false,drawer:false,fs:null,hoverPane:null};
+var STATE={board:null,cellsExist:{},active:null,winStart:0,ratings:{},comments:{},remix:{},preferred:null,pair:false,single:false,drawer:false,fs:null,hoverPane:null};
 function $(s){return document.querySelector(s)}
 function ck(d,e){return d+'-'+e}
 function esc(s){return (s||'').replace(/[&<>"]/g,function(c){return {'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;'}[c]})}
@@ -83,12 +88,14 @@ function post(payload){return fetch('/api/feedback',{method:'POST',headers:{'Con
 fetch('/api/state').then(function(r){return r.json()}).then(init);
 function init(data){
   STATE.board=data.board; STATE.cellsExist=data.cellsExist; STATE.active=data.board.directions[0].id;
-  STATE.pair=data.board.engines.length>1; document.title=(data.board.brief||'Bake-off board').slice(0,80);
-  $('#pairbtn').hidden=data.board.engines.length<2;
+  STATE.single=!!data.single;
+  STATE.pair=!STATE.single && data.board.engines.length>1; document.title=(data.board.brief||'Bake-off board').slice(0,80);
+  $('#pairbtn').hidden=STATE.single||data.board.engines.length<2;
+  if(STATE.single) $('#hint').textContent='1-9 riktning · f betyg · x helskärm';
   render();
   document.addEventListener('keydown', onKey); $('#submitbtn').addEventListener('click', submitFeedback);
   $('#drawerbtn').addEventListener('click', function(){toggleDrawer()});
-  $('#pairbtn').addEventListener('click', function(){STATE.pair=!STATE.pair; render()});
+  $('#pairbtn').addEventListener('click', function(){if(STATE.single) return; STATE.pair=!STATE.pair; render()});
   $('#fsbtn').addEventListener('click', function(){toggleFullscreen()});
   $('#stage').addEventListener('mouseover', function(e){var p=e.target.closest?e.target.closest('.pane'):null; if(p) STATE.hoverPane=paneIdx(p)});
 }
@@ -125,7 +132,7 @@ function engPair(){
   return [eng[a], eng[b]];
 }
 function render(){
-  renderTabs(); var pair=engPair(); var two=STATE.pair && STATE.board.engines.length>1;
+  renderTabs(); var pair=engPair(); var two=!STATE.single && STATE.pair && STATE.board.engines.length>1;
   $('#pairbtn').setAttribute('aria-pressed',String(two));
   $('#pane-1').hidden=!two; $('#controls-1').hidden=!two; document.querySelectorAll('.pane-head').forEach(function(h){h.hidden=!two});
   if(STATE.fs!==null && $('#pane-'+STATE.fs).hidden) toggleFullscreen();
@@ -187,7 +194,7 @@ function onKey(e){
   if(e.key==='x'||e.key==='X'){toggleFullscreen(); return}
   if(e.key==='Escape'){if(STATE.fs!==null) toggleFullscreen(); return}
   if(e.key==='f'||e.key==='F'){toggleDrawer(); return}
-  if(e.key==='p'||e.key==='P'){if(STATE.board.engines.length>1){STATE.pair=!STATE.pair; render()} return}
+  if(e.key==='p'||e.key==='P'){if(!STATE.single && STATE.board.engines.length>1){STATE.pair=!STATE.pair; render()} return}
   if(e.key==='ArrowRight'){STATE.winStart=(STATE.winStart+1)%STATE.board.engines.length; render()}
   else if(e.key==='ArrowLeft'){STATE.winStart=(STATE.winStart-1+STATE.board.engines.length)%STATE.board.engines.length; render()}
 }
@@ -216,13 +223,22 @@ def cells_exist(session_dir: Path, board: dict) -> dict:
             out[key] = (session_dir / "cells" / key / "index.html").is_file()
     return out
 
-def make_handler(session_dir: Path, fallback_root: Path | None = None):
+def make_handler(session_dir: Path, fallback_root: Path | None = None, single: bool = False):
     class Handler(http.server.SimpleHTTPRequestHandler):
         # HTTP/1.0 (the stdlib default) drops WebP responses intermittently
         # under Chromium (net::ERR_CONNECTION_RESET) -- the same bug
         # scripts/serve.py was built to work around for cell builders. The
         # board itself hadn't been patched with the same fix (F-011, 2026-09-07).
         protocol_version = "HTTP/1.1"
+
+        def end_headers(self):
+            # Without Cache-Control the stdlib sends only Last-Modified, and
+            # browsers then apply HEURISTIC freshness: a cell rebuilt minutes
+            # ago is served from cache without revalidating, so the board shows
+            # the previous round and the reviewer judges a stale page. Cost us a
+            # round on 2026-09-20. The board is a review surface, never a CDN.
+            self.send_header("Cache-Control", "no-store, must-revalidate")
+            super().end_headers()
 
         def translate_path(self, path):
             # cells may reference repo-absolute assets (/sites/..., /tests/...): fall back to the repo root
@@ -245,7 +261,8 @@ def make_handler(session_dir: Path, fallback_root: Path | None = None):
         def do_GET(self):  # noqa: N802 (stdlib override)
             if self.path.split("?", 1)[0] == "/api/state":
                 board = load_board(session_dir)
-                self._json(200, {"board": board, "cellsExist": cells_exist(session_dir, board)})
+                self._json(200, {"board": board, "cellsExist": cells_exist(session_dir, board),
+                                 "single": single})
                 return
             super().do_GET()
 
@@ -276,12 +293,15 @@ def main():
     ap.add_argument("--open", action="store_true")
     ap.add_argument("--until-submit", action="store_true")
     ap.add_argument("--fallback-root", default=None, help="serve /paths missing in session_dir from this root (repo root)")
+    ap.add_argument("--single", action="store_true",
+                    help="one cell at a time in full width; no pair toggle (half-width flatters nothing)")
     args = ap.parse_args()
     fallback_root = Path(args.fallback_root).resolve() if args.fallback_root else None
     session_dir = Path(args.session_dir).resolve()
     load_board(session_dir)  # fail fast if board.json is missing/invalid
     (session_dir / "board.html").write_text(TEMPLATE, encoding="utf-8")
-    handler = functools.partial(make_handler(session_dir, fallback_root), directory=str(session_dir))
+    handler = functools.partial(make_handler(session_dir, fallback_root, args.single),
+                                directory=str(session_dir))
     httpd = http.server.ThreadingHTTPServer(("127.0.0.1", args.port), handler)
     url = f"http://127.0.0.1:{args.port}/board.html"
     print(f"BOARD_URL: {url}")

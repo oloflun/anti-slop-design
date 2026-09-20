@@ -1,0 +1,43 @@
+You are an independent reviewer in REFERENCE PARITY mode plus whole-page (helhet). Round R7 review. Target: tests/alunix-r8/runs/V3d/index.html (read-only; read it). Parity table: tests/alunix-r8/runs/V3d/PARITET.md (read it; P03, P04, P14, P17-P20 are new/rewritten). Plan: tests/alunix-r8/runs/V3d/plans/054-tesband-och-case.md. Builder notes: tests/alunix-r8/runs/V3d/NOTES.md section "V3d R7".
+
+The order (Anton, 2026-09-19): thesis band larger, body sentences as large as the heading, the sentences swap ONE AT A TIME on scroll, "Vi hjälper er att synas på rätt sätt." added; the "Vi bygger ert varumärke" giant section removed with a curtain transition to the drawing (process act); "Hur vi tänker" replaced by Exempelcase: Calyx with text left and the live site scrolling right in step with the page, a bridge, Hōrai mirrored, then the price. Copy has passed its own gate: do not judge wording, only whether text is visible and works. Lead decisions: sites/* is never edited (findings inside the demo sites are only noted); the "max four dark slices in a row" limit is struck.
+The reference shows LEVEL not FORM: judge scale, staging, what owns the viewport, how much each screen commits. Never propose a different palette, typeface or copy.
+
+Invariants (verbatim):
+- Motion always plays (F-011). prefers-reduced-motion is deliberately not honoured on this project, a considered accessibility trade-off confirmed by the owner. Suggesting a reduced-motion fallback, a static alternative, or a @media (prefers-reduced-motion) block is out of scope.
+- The scroll engine is never edited. scroll/scrollcraft.js and scrollcraft.css are vendored; findings about them are reported, never fixed; a page-level shim (sc-smooth.js) is the sanctioned way around them.
+- --sc-p is the raw scroll position; --sc-ps is the smoothed one. Anything that physically moves must read --sc-ps. "use --sc-p for consistency" is backwards.
+- No em-dashes in visible text (gate 75).
+- Review only, no patches.
+
+Output contract (for your awareness): disposition (recapture/rebuild/fix/ship), then persistence, fidelity (one line per PARITET row: "holds the level" / "does not hold, gap: ..."), ceiling, material_fixes (max 8, each with file:line, a measured value and an Expected), keep. "ship" requires every row to hold the reference's level.
+
+Measurements the reviewer already took (mouse.wheel, Playwright): thesis sweep 40px steps: at 1440, 768 and 390, in all four sentence transitions, two .ts sentences are visible at once with their visible clip windows overlapping in y (max 130 px at 1440, 62 at 768, 41 at 390). Case steps .cs: same pattern, 9 px overlap in every transition. Calyx .case-stage computed background rgba(0,0,0,0) and --bg empty. Thesis photo 496x310 at 1440 (34.4% vw), at 390 a 220 px empty blue band between the sentence and the ticks. Calyx frame 806x789 at 1440 (56% vw, 87.7% vh); at 390 the frame is 400 px (47% vh). Case iframe scroll: monotonic in both directions, forward/backward equal at rest (one Hōrai point differs 68-98 px). Horizontal scroll 0 at all widths.
+
+Attached images, in order. "Pxx-W" images are PAIRS: LEFT = V3d, RIGHT = reference, same height. Positions reached by mouse wheel from the top.
+1 P01-1440 fold
+2 P02-1440 card back (?preview=back)
+3 P03-3-1440 thesis band, sentence 3 at rest
+4 thesis-1440 mid-swap frame (sentence 2 to 3), single screenshot, not a pair
+5 P04-curtain-1440 blue stage lifting off the chapter screen
+6 P04-chapter-1440 chapter screen alone
+7 P07-1440 step 01
+8 P11-1440 step 05
+9 P12-1440 step 06
+10 P13-1440 step 07
+11 P14-1440 case chapter
+12 P17-1-1440 Calyx step 1
+13 P17-3-1440 Calyx step 3
+14 P18-1440 bridge
+15 P19-3-1440 Hōrai step 3 ("En paus", the site's quote should be in its formed state)
+16 P20-1440 Hōrai releasing to the price
+17 P15a-1440 last viewport
+18 sheet-whole-1440-1: our wheel frames every 300 px from Calyx to the end (P16 rhythm)
+19 P03-4-390 thesis sentence 4
+20 thesis-390 mid-swap frame (sentence 2 to 3), single screenshot
+21 P17-3-390 Calyx step 3
+22 P19-3-390 Hōrai step 3
+23 strip-390: wheel frames 390, top row thesis exit/curtain/chapter, bottom row case chapter into Calyx
+24 case-horai mid-step frame 1440 (step 3 to 4), single screenshot
+
+Questions per pair: does our screen hold the reference's level (hoy/highwaymedia/insign), and if not, what move closes the gap. Plus code/logic errors visible in the pixels, each with index.html line. Give file:line for every code finding and image number + region for every pixel finding.

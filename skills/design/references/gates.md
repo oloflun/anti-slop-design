@@ -12,7 +12,7 @@ Three sources, one numbering space:
 | **89–91** | This repo — reference-lock discipline (Refero-derived) | Below |
 | **92–96** | This repo — shape, budget, continuity, provenance, profile | Below |
 | **97–98** | `design-taste-frontend` v2, ported 2026-09-09 — two further production tells | [`production-tells.md`](production-tells.md) |
-| **99** | This repo — Anton's 2026-09-19 ban on descriptive microtext (F-016) | [`production-tells.md`](production-tells.md) |
+| **99** | This repo — Anton's 2026-09-19 ban on descriptive microtext (F-016), extended 2026-09-20 to body-size text that narrates the page (F-018) | [`production-tells.md`](production-tells.md) |
 | **mechanical** | impeccable v4 detector, 68 deterministic rules | `detect.mjs`, mapped below |
 
 The numbering space is shared and append-only: 66–88, 97 and 98, and now 99 all live in

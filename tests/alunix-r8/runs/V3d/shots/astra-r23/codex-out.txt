@@ -1,0 +1,81 @@
+1. **The transition: a construction surface has become the main event.**
+
+The ugly part is the mismatch between visual mass and visual information. A large, opaque rectangle pushes across the composition, but its four hairlines cannot justify its size. It looks like an unfinished component covering the page. The blue-on-blue overlap gives it neither the substance of a sheet nor the clarity of a diagram.
+
+Then the rectangle empties out into an outline. That makes the arrival feel like a disappearance. We have spent considerable scroll distance watching something become less substantial.
+
+My ranking:
+
+- **Worst overall: Q07.** The mobile screen is divided between a severely cropped previous project and an empty blue slab. Neither forms a complete composition. There is no clear destination for the eye.
+- **Second: Q08.** Two empty outlined compartments read as missing content. The chapter title appears underneath like the caption to an unfinished object.
+- **Worst desktop: Q02.** The plate dominates the centre, while the next heading is clipped at the bottom. The least informative object receives the most space.
+- **Q04–Q05 prolong the damage.** The heading finally arrives, but the enormous distance to the first process step makes this feel like another waiting room.
+
+Q06 contains lettering inside the project image, but aesthetically it functions as cropped image texture. It does not explain where we are going. The supplied measurements confirm what the eye feels: the passage spends too long without meaningful reading.
+
+The references establish their sections differently:
+
+- **Highway names the destination first.** “Så arbetar vi” sits directly above the pink line and its solid node. The line belongs to an identified process. Our lines arrive before their purpose. Highway is itself sparse, and its cookie panel obscures the composition, but the heading-to-marker relationship is explicit.
+- **Insign enters with occupied structure.** Repeated icons, headings and paragraphs make the grid legible through its contents. On mobile, the coloured panel already carries a label, proposition and list. Our grid exposes its scaffolding and asks that scaffolding to hold attention.
+- **Hoy gives emptiness a strong anchor.** The quotation or chapter title is large enough, and positioned deliberately enough, to own the open ground. Its whitespace amplifies a statement. Our plate owns the ground while the statement waits outside it.
+
+**Build the transition as a short arrival into a populated process sheet.**
+
+Reduce the drawing passage from 594px to **200–240px of desktop scroll**, and from 539px to **100–140px on mobile**. Do not add a stationary hold after it lands.
+
+At each stage:
+
+- **Start:** the outgoing blue section still has its recognisable project image. The incoming chapter title enters at the lower edge, before a blank plate can occupy the centre.
+- **Halfway:** the title is fully readable. The sheet’s leading edge, first process number, step heading and description are visible together. Lines draw around content that is already present.
+- **Arrival:** the title sits **40–56px above the sheet on desktop, 24–32px on mobile**. Its short introduction sits directly beneath it. The first complete process step is visible within the same viewport.
+
+The sheet should contain the actual process: numbered stages, short headings, descriptions and a clear connection between them. Give the hairlines jobs as dividers or connectors. Remove unused compartments. At desktop width, populate the existing column structure; on mobile, use one continuous vertical sequence.
+
+Keep the chapter title out of its own full-screen pause. The beautiful version is a drawing acquiring meaning as it arrives: a number, a statement, a connection, then the whole process. Every increment of movement should reveal something worth looking at.
+
+2. **The case chapter: the introduction is competing with the work.**
+
+“Exempelcase” currently behaves like a major destination. Its broad, heavy word shape occupies almost twice the ink width of “Calyx”, at approximately the same ink height. The nominal 136px versus 171px relationship is irrelevant to the eye. The introductory heading feels bigger.
+
+The symmetrical empty ground compounds this. With 333px above and below, the page formally presents the label as an exhibit. A screen later, it presents the actual exhibit. That is two entrances for one section.
+
+On mobile, the introduction again receives an entire screen, and its 40px heading exceeds the 36px case title. The hierarchy reverses precisely where space is most expensive.
+
+Use these targets:
+
+| Element | Desktop, 1920px wide | Mobile, 390px wide |
+|---|---:|---:|
+| “Exempelcase” size | **64–72px** | **26–28px** |
+| Empty ground before heading | **96–120px** | **48–64px** |
+| Heading to lead | **20–24px** | **16–20px** |
+| Lead to first case display | **48–64px** | **28–40px** |
+
+Keep the existing case-heading sizes. The introduction should have roughly **half Calyx’s visible letter height on desktop**, and clearly less on mobile.
+
+Remove the viewport-height chapter treatment. Aim for an introductory block of approximately **320–380px desktop** and **250–300px mobile**, including its surrounding air. Align it with the case section’s outer content edge.
+
+The first case image should already be visible beneath the introduction in the same screen. The eye should register “Exempelcase”, read the brief lead, and immediately land on the flowers. That restores the proper rhythm: introduction, evidence.
+
+3. **The price typography: hierarchy should come from scale and alignment.**
+
+The current ledger has several competing centres. The serif figures pull strongly to the right, descriptions sit lower and quieter, and “Pris vid förfrågan” creates a third typographic scale. The long descriptions and differently sized prices do not settle onto a consistent horizontal relationship. On mobile, the bold serif prices form separate little headlines beneath each description.
+
+With Public Sans throughout, use **one bold section heading and regular-weight ledger text**:
+
+- **Heading:** 80–88px desktop, 40–44px mobile; bold; line-height around **1.05–1.1**. Preserve its compact two-line shape.
+- **Figures:** **52–56px desktop, 32–34px mobile**, regular weight, line-height **1.05–1.1**. Their size and isolated position provide sufficient emphasis.
+- **Descriptions:** **18–20px desktop, 17–18px mobile**, regular, with approximately **1.4 line-height**.
+
+On desktop, give descriptions about **62% of the ledger width** and prices the remaining **38%**, with at least **40–48px of clear separation**. Right-align all price entries to one fixed edge. The largest amount should determine the space reserved for that column.
+
+Align the **first description baseline with the price baseline** in every row. Let wrapped descriptions continue below that shared baseline. This gives each row a visible point of agreement.
+
+Set “Pris vid förfrågan” at **26–28px desktop, 22–24px mobile**, regular, in the same price position. It should read as another value in the ledger.
+
+Make **“kr” approximately 60–65% of the figure size**, regular, on the same baseline, with a restrained **8–10px desktop gap**. The amount should land first; the currency should finish it.
+
+Use one thin hairline across the full ledger width at each row boundary. Allow **24–28px vertical row padding on desktop**. The lines should organise the text without becoming the strongest repeated marks over the photograph.
+
+On mobile, stack each description above its price with **8–12px between them**, both left-aligned. Use **20–24px between the price and the next divider**, then similar breathing room before the following description. Keep each description-price pair visibly closer together than neighbouring rows.
+
+The resulting hierarchy is physical: bold heading, spacious ledger, large regular amounts, smaller currency, quiet rules. Consistent placement will give the prices the authority that the serif currently tries to supply.

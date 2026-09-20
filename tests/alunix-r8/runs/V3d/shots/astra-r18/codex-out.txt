@@ -1,0 +1,54 @@
+**The blue → drawing transition is too restrained.** The sequence shows progression, but the drawing never resolves into the promised composition: its horizontal landing line is effectively missing, and its connection across the blue edge breaks at smaller widths.
+
+Measurements below refer to our viewport, excluding the comparison strip. Screenshot-derived percentages are approximate.
+
+**A) Pair-by-pair**
+
+1. **Does not hold**, because no drawing is visible at t0. Begin with a short, visible stroke on the blue so the transition announces itself.
+2. **Does not hold**, because four faint strokes occupy only about 17% of viewport height. Increase the blue strokes to 2px and extend their draw across 25–30% vh.
+3. **Does not hold**, because the crossing is visible but has no horizontal destination. Restore the full-width landing line.
+4. **Does not hold**, because the verticals terminate independently while the title enters below. Complete the horizontal connection before the title inks fully.
+5. **Does not hold**, because the supposedly formed screen still has four disconnected verticals. Render the landing line across the sheet width, 40px above the title.
+6. **Holds the reference’s level**: the approximately 120px title owns a clean chapter screen. Remove the small supporting line to satisfy F-016.
+7. **Does not hold**, because the sheet spans approximately 64% vw, below 76%. Widen the outer drawing composition and rebudget its height.
+8. **Holds the reference’s level**: approximately 136px serif title, one line, with a subordinate lead.
+9. **Holds the reference’s level**: title, price rhythm and underlined contact fit one screen with clear margins.
+10. **Holds the reference’s level**: the borderless, edge-flush frame occupies approximately 64% vw × 94% vh.
+11. **Holds the reference’s level**: booking fits inside the dominant frame; no frame scrollbar or added border is visible.
+12. **Holds the reference’s level**: approximately 225px between frames, black surrounding ground and no bridging text.
+13. **Holds the reference’s level** for this intermediate state: the photo develops through black and the entering title is blurred. The capture alone cannot establish its sharpening deadline.
+14. **Does not hold**, because the left sheet-edge stroke is absent above the blue boundary. Preserve all four crossings through the breakpoint.
+15. **Holds the reference’s level**: approximately 81% vw sheet, 168px numeral and 28px explanatory text.
+16. **Holds the reference’s level**: the colour sheet occupies approximately 81% vw and the complete step band remains legible.
+17. **Holds the reference’s level**: the complete price section fits, with a clear right-hand numeral rhythm and bottom contact.
+18. **Does not hold**, because the remaining text appears cut away rather than travelling upward. Increase the text column’s upward travel beyond the current 32px before completing its disappearance.
+19. **Does not hold**, because none of the four lines originates visibly on blue. Reserve a blue drawing zone and continue those same strokes across its edge.
+20. **Does not hold**, because the formed mobile state still lacks its horizontal landing line; the verticals read as empty scaffolding. Complete the connected drawing above the title.
+21. **Does not hold**, because the numeral is approximately 86px against the stated 150px target, while roughly the bottom 40% remains empty. Rebudget the numeral and step spacing within this screen.
+22. **Holds the reference’s level**: the 40px serif chapter title and approximately 20px lead form a deliberate, readable pause.
+23. **Holds the reference’s level**: all prices and contact fit, with strong hierarchy. Increase the contact from 17px toward the requested 21px.
+24. **Holds the reference’s level**: the frame owns approximately 66% vh above the case explanation, without an added border.
+
+**B) Material findings, most important first**
+
+1. **The horizontal landing line is only 1px wide.** `.seam i` has specificity **0,1,1**; `.seam-h` has **0,1,0**. Consequently, `width:1px` wins over the later calculated width. Use `.seam .seam-h` or restrict the vertical-width rule to vertical strokes. Evidence: images **5 and 20**, immediately above the title. [index.html:1161](C:/Users/Anton%20L/anti-slop-design/tests/alunix-r8/runs/V3d/index.html:1161), [index.html:1174](C:/Users/Anton%20L/anti-slop-design/tests/alunix-r8/runs/V3d/index.html:1174).
+
+2. **The blue origin is conditionally deleted.** The geometry sets a stroke’s blue height to zero when free space is under 64px or it intersects the ticks. This explains the incomplete crossing in **14** and absent blue strokes in **19–20**. Reserve drawing space by adjusting the surrounding thesis layout or ticks; retain the exact sheet coordinates. [index.html:2440](C:/Users/Anton%20L/anti-slop-design/tests/alunix-r8/runs/V3d/index.html:2440).
+
+3. **The transition lacks sufficient visual weight.** Images **2–5**, central drawing region: 1px strokes are too weak to carry this much empty space. Use **2px white strokes on blue**, continuing into **1px ink strokes on dark**, with a **1.5px horizontal landing line**. Let the connected effect span at least **76% vw × 35–45% vh**. Keep its progression on `--sc-ps`. [index.html:1164](C:/Users/Anton%20L/anti-slop-design/tests/alunix-r8/runs/V3d/index.html:1164).
+
+4. **The desktop drawing becomes proportionally smaller on the larger screen.** Image **7**: approximately **64% vw**, versus approximately **81%** in image **15**. The height-constrained 880:495 formula causes this. At 1920, 76% width would require about 821px height at that ratio, leaving insufficient room for the band. Recompose the outer sheet more shallowly while preserving its inner 16:9 drawing. [index.html:1193](C:/Users/Anton%20L/anti-slop-design/tests/alunix-r8/runs/V3d/index.html:1193).
+
+5. **Calyx’s text exit is primarily a wipe.** Image **18**, left text column: the implementation clips through its full height but moves only **32px**. Give the column substantial upward travel, approximately **120–180px**, before the paper finishes turning black; keep the frame stationary. [index.html:1030](C:/Users/Anton%20L/anti-slop-design/tests/alunix-r8/runs/V3d/index.html:1030).
+
+6. **Mobile process staging falls below the stated numeral target.** Image **21**, numeral and lower empty region: `22vw` gives **85.8px at 390**, not 150px. Increase the numeral and reduce surrounding vertical spacing to retain one coherent screen. [index.html:1522](C:/Users/Anton%20L/anti-slop-design/tests/alunix-r8/runs/V3d/index.html:1522).
+
+7. **A small descriptive line remains despite F-016.** Images **6 and 20**, below the chapter title: `.process-locked` still renders the supporting sentence at 20–24px. Remove that element under the supplied “ALL small descriptive text removed” instruction. This concerns its presence, not its wording. [index.html:1147](C:/Users/Anton%20L/anti-slop-design/tests/alunix-r8/runs/V3d/index.html:1147).
+
+8. **Contact sizing reaches the requested action scale only at 1920.** The formula produces approximately **21.1px / 19.4px / 17px** at 1920 / 1440 / 390. Set a 21px floor while preserving the current underline and screen fit. Images **9, 17, 23**, bottom contact. [index.html:1622](C:/Users/Anton%20L/anti-slop-design/tests/alunix-r8/runs/V3d/index.html:1622).
+
+**C) Transition verdict**
+
+**Too restrained, and structurally incomplete.** The measurable correction is a connected drawing: four clearly visible blue origins, uninterrupted edge crossings, and a full-width horizontal landing 40px above the title. Restore that structure first, then increase stroke weight and occupied area.
+
+Across the supplied sequence, the case presentations and price finale sustain the reference’s level. The process transition is the main cohesion break. Reverse scrubbing and the exact price-sharpening deadline require additional motion evidence; these stills do not prove either.

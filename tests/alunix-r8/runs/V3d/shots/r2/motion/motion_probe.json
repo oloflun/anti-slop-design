@@ -1,0 +1,26 @@
+{
+  "url": "http://127.0.0.1:8791/tests/alunix-r8/runs/V3d/index.html",
+  "wheel": "100:60",
+  "cpu": 1.0,
+  "tracks": [
+    {
+      "track": "#giant-section:--sc-ps",
+      "dead": true,
+      "frames": 237,
+      "frame_p95_ms": 16.8,
+      "frames_over_20ms": 1,
+      "frames_over_33ms": 1,
+      "value_range": [
+        0,
+        0
+      ],
+      "max_step_pct": 0.0,
+      "staircase": 0,
+      "reversals": 0
+    }
+  ],
+  "pass": false,
+  "failures": [
+    "#giant-section:--sc-ps: DEAD - vardet rorde sig inte alls medan sidan scrollades (kontrollera att elementet arver egenskapen och att akten faktiskt driver den)"
+  ]
+}

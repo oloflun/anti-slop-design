@@ -1,0 +1,25 @@
+Du granskar sidan tests/alunix-r8/runs/V3d/index.html (repo-roten är arbetskatalogen) i läget REFERENCE PARITY + helhet, slutgranskning efter rundorna R12-R15. Läs tests/alunix-r8/runs/V3d/PARITET.md (tabellen du dömer mot; OBS: P21 skrevs för en egen prisbro #bro som togs bort i R13, nu är #pris en enda enhet, döm P21 mot den enheten), tests/alunix-r8/runs/V3d/plans/057-hyperborea-ridan-case-pris.md och NOTES.md § "V3d R12" till "V3d R15".
+
+Antons feedback 2026-09-19 (efter skärmbilder vid 1920) som R12-R15 skulle lösa: Hyperborea upp och större i den blå sektionen; övergången blått -> ritning lagad (ingen rubrik halvt dold av en annan yta); roligare case-rubriker; bättre casetext byggd på referensernas case (insign/highwaymedia/hoy); tesbandet slutar på "Vi hjälper er att synas på rätt sätt." (VI BYGGER ERT VARUMÄRKE. borttagen); prisblocket med "Alla har rätt till bra design." som rubrik och en säljande text.
+
+Bifogade bilder, i ordning. Alla är PAR: vänster V3d (vår skärm), höger referensen (hoy/insign), samma höjd; radens id står i bildens underkant. Referenser finns bara vid 1440 och 390, så 1920-paren har 1440-referensen till höger. Alla togs med mouse.wheel från toppen i Chromium UTAN --hide-scrollbars (sidans rullningslist syns alltså vid höger kant, det är korrekt), ramarna laddade, en skärmbild per sida:
+1. P01-1920  2. P03-1-1920  3. P03-4-1920  4. P04-curtain-1920  5. P04-chapter-1920  6. P17-1-1920  7. P17-3-1920  8. P19-1-1920  9. P19-3-1920  10. P21-bro-1920  11. P21-skarv-1920  12. P15a-1920
+13. P03-1-1440  14. P17-1-1440  15. P19-1-1440  16. P21-bro-1440
+17. P03-1-390  18. P04-curtain-390  19. P17-1-390  20. P17-3-390  21. P19-1-390  22. P19-3-390  23. P21-bro-390  24. P15a-390
+
+Uppmätt av mig (lita på detta):
+- Ramarnas rullningslister: innerWidth-clientWidth och innerHeight-clientHeight i båda iframes = 0 i varje fångst vid 1920, 1440 och 390.
+- Horisontell scroll i huvuddokumentet: 0 i varje fångst.
+- Hōrais steg-rubrik (h3) i case-horai-0N: vid preview-målet p=(N-1+0.8)/6 (index.html rad ~2665) ligger casets --sc-ps=0.1333 inne i stegets --out-fönster [b-.04, b] = [0.1267, 0.1667] (index.html rad ~965-970), så .cs klipps 16,6 % uppifrån och h3 (21 px av ett 131 px li vid 390, 33 av 261 vid 1440) klipps helt eller delvis. Calyx: (0.8)/5 = 0.16 = exakt b-f, --out = 0, h3 syns. Syns i bild 8, 9, 15, 21, 22.
+
+Leadens beslut (döm dem inte som fynd): sites/* rörs aldrig, ramarna transformeras aldrig; Hōrais text som klipps i högerkanten vid 390 (horai.html renderas 675 px bred) och Calyx egen nav som krockar vid 390 noteras bara. Case-rubrikens mening visas på mobil bara i steg 1 (R15). Case-namnen sätts i Geist tills Anton godkänner Cardo/Cinzel. Copyn är låst och copy-gaten körd: döm inte ordval.
+
+Invarianter (ordagrant, bryt dem aldrig):
+- Motion always plays (F-011). prefers-reduced-motion is deliberately not honoured on this project. Suggesting a reduced-motion fallback, a static alternative, or a @media (prefers-reduced-motion) block is out of scope.
+- The scroll engine is never edited. scroll/scrollcraft.js and scrollcraft.css are vendored; sc-smooth.js is the sanctioned shim.
+- --sc-p is the raw scroll position; --sc-ps is the smoothed one. Anything that physically moves must read --sc-ps.
+- No em-dashes in visible text (gate 75).
+- Palett och typsnitt väljs inte om. Ingen estetisk omriktning utanför PARITET-raderna.
+- Review only, no patches.
+
+Uppgift: för VARJE par (1-24), svara på en rad: håller vår skärm referensens nivå (skala, iscensättning, vad som äger viewporten, hur mycket skärmen tar ställning)? Om inte: vilket konkret drag (mått, andel, vad som ska äga viewporten) stänger gapet. En korrekt men tydligt svagare skärm är ett fynd. Kontrollera också: halvklippta rubriker, överlagrade meningar/steg, delade ord eller tal över radbrytning, text som klipps av viewportens underkant där den borde rymmas. Varje pixelfynd: bildnummer + region. Varje kodfynd: index.html:rad. Ge sedan högst 8 fynd, mest materiella först, och en disposition (ship/fix). Uppfinn inga fynd; säg "håller" när det håller.

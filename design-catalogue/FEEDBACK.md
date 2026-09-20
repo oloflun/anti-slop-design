@@ -353,3 +353,31 @@ Ta aldrig bort en post; en regel som visar sig fel får en ny post som upphäver
   handling — knapptext- eller länkstorlek — aldrig som en rubrik.
 - **Status:** portad till `house-physics.md` § Ledger, never card grid, kontrollen
   `microtext_scan.py --price-ledger`.
+
+### F-018 · Sidan får aldrig berätta vad den strax ska göra
+- **Visades:** boardgranskning 2026-09-20, Alunix V3d (`tests/alunix-r8`), ingressen
+  under kapitelrubriken Exempelcase: "Calyx är en florist i Stockholm och Hōrai en
+  restaurang. Ingen av dem finns, men sidorna är färdiga. Vi går igenom vad vi valde i
+  dem och varför."
+- **Antons ord:** "är återigen helt hjärndött, och precis samma AI-slop som jag
+  reagerade på tidigare."
+- **Dom:** dåligt, generellt. Samma familj som F-016, men en annan storlek: detta är
+  brödtext, inte småtext, så `microtext_scan.py` ser den aldrig.
+- **Diagnos, tre drag som bär felet:**
+  1. **Färdplanen.** "Vi går igenom vad vi valde i dem och varför" beskriver sidans
+     egen disposition. En läsare som ser en case-sektion vet redan att den innehåller
+     case; raden talar om formen i stället för att säga något.
+  2. **Brasklappen.** "Ingen av dem finns" ber om ursäkt för arbetet innan det visats,
+     och sänker det läsaren just ska bedöma.
+  3. **Uppställningen.** Formen uppställning → brasklapp → färdplan är LLM-default för
+     "introducera ett avsnitt" och känns igen på sitt tempo, inte på sina ord.
+- **Regel:** ingen text på sidan refererar till sidan. En ingress, en kicker eller en
+  inledande rad handlar om verksamheten, arbetet eller läsarens fråga — aldrig om vad
+  avsnittet nedanför innehåller, i vilken ordning det kommer, eller varför det finns.
+  Ingen brasklapp om materialets status före materialet. Testet: stryk raden och se om
+  läsaren tappar något annat än en beskrivning av det hen ändå ser. Gör hen inte det,
+  var raden utfyllnad — och ett avsnitt som bara har en rubrik ska hellre sättas så att
+  rubriken bär ensam än förses med en ingress som fyller ut.
+- **Status:** portad till `anti-patterns.md` § Descriptive microtext (ny underrubrik
+  § The page narrating itself), `production-tells.md` gate 99, `gates.md` gate 99,
+  `skills/design/references/copy-gate.md`.

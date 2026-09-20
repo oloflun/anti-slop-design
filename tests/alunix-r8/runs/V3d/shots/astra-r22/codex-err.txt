@@ -1,0 +1,510 @@
+2026-09-19T23:34:46.751397Z ERROR codex_core::session::session: failed to load skill C:\Users\Anton L\OneDrive\Dokument\Obsidian\Knowledge Base\.agents\skills\conclude\SKILL.md: missing YAML frontmatter delimited by ---
+OpenAI Codex v0.154.0
+--------
+workdir: C:\Users\Anton L\anti-slop-design
+model: gpt-6-astra
+provider: openai
+approval: never
+sandbox: read-only
+reasoning effort: low
+reasoning summaries: none
+session id: 01a0bc05-a22e-7383-a165-b5b0ea36e642
+--------
+user
+Read-only code review, tightly scoped. Target file (absolute path):
+C:\Users\Anton L\anti-slop-design\tests\alunix-r8\runs\V3d\index.html
+
+This is a confirmation round. TWO code sites changed since the last review and
+ONLY those two are in scope:
+
+  A. index.html around lines 1180-1201: the CSS rule `.tes-plane` (clip-path with
+     inset(calc(var(--tx) * var(--pl-t)) ...)), the new custom property
+     `--p-edge` and the new `.tes-plane::after` rule that draws the sheet
+     contour with `border:2px solid color-mix(...)` and `inset:` values that
+     must interpolate with the SAME --tx/--pl-* numbers as the clip-path.
+  B. index.html around lines 2540-2560 inside function measureAct(): the new
+     read of `.tes-plane`s own getBoundingClientRect() used to compute
+     `--pl-l` and `--pl-r` (previously computed against window.innerWidth).
+
+Question I need answered: is there any way these two changes are WRONG as code?
+Specifically: does the ::after box coincide with the clip-path rectangle in every
+tx state and at every viewport width; is `clamp(0,calc((var(--tx) - .6) / .3),1)`
+valid where it is substituted; can the ::after add overflow, a new paint/compositing
+cost, or a stacking/hit-testing change (it is inside a pointer-events:none element);
+is the getBoundingClientRect() read placed so that it cannot read a stale or
+mid-layout box (note the same function writes --pl-h and --pl-t before the read);
+is there any division by a measured zero, NaN, or unclamped value; is the
+querySelector inside measureAct on a hot path.
+
+IN SCOPE for you: logic, lifecycle, resource loading, arithmetic, state, DOM
+contracts. Listeners added and never removed, observers/rAF loops running
+off-screen, non-monotonic or wrongly clamped scroll maths, division by a measured
+zero, will-change left on permanently, dead or duplicated CSS/JS, hard-coded values
+contradicting a token defined nearby, <img> without width/height, iframes without
+loading="lazy", aria-*/role on elements that cannot carry them, anything that would
+throw in the console on a real load.
+
+OUT OF SCOPE, do not report: palette, typography, spacing, composition, whether it
+looks good, or any alternative aesthetic direction.
+
+Project invariants you MUST respect (you have not read this project's rules):
+- Motion always plays (F-011). prefers-reduced-motion is deliberately NOT honoured
+  on this project; it is a considered accessibility trade-off the owner confirmed,
+  not an oversight. Do NOT suggest a reduced-motion fallback, a static alternative,
+  or a @media (prefers-reduced-motion) block.
+- The scroll engine is never edited. scroll/scrollcraft.js and scrollcraft.css are
+  vendored; findings about them are reported, never fixed.
+- `--sc-p` is the RAW scroll position; `--sc-ps` is the SMOOTHED one. Anything that
+  physically moves must read `--sc-ps`. Do not suggest using --sc-p "for consistency".
+- No em-dashes in visible text (zero tolerance) - worth a scan while you are in there.
+- Review only, no patches. Return findings, not a rewritten file.
+
+Every finding must carry file:line and a concrete expected behaviour. If a site is
+correct, say so in one line rather than inventing a finding. Keep it short.
+
+warning: Exceeded skills context budget. All skill descriptions were removed and 40 additional skills were not included in the model-visible skills list.
+codex
+I’ll check both changed sites and their surrounding dependencies, keeping the review read-only and scoped to code correctness.
+
+exec
+"C:\\WINDOWS\\System32\\WindowsPowerShell\\v1.0\\powershell.exe" -Command '$p='"'C:\\Users\\Anton L\\anti-slop-design\\tests\\alunix-r8\\runs\\V3d\\index.html'; "'$s=Get-Content -LiteralPath $p; foreach($r in @(@(1120,1225),@(2470,2620))){ for($i=$r[0];$i -le $r[1];$i++){ '"'{0}: {1}' -f "'$i,$s[$i-1] } }; rg -n -- '"'tes-plane|--pl-|--tx|measureAct|—' "'$p' in C:\Users\Anton L\anti-slop-design
+ succeeded in 481ms:
+1120:      ritas OVANFÃ–R kapitlets egen Ã¶verkant (bottom:100%) fÃ¶r att nÃ¥ in i1129:      scrollY dÃ¤r kapitlet fyller skÃ¤rmen helt, inte ett fÃ¶nster. Varje
+1130:      hjultick (eller ridaY(100):s egen avrundning) som landar Ã¤ven 1px
+1131:      fÃ¶rbi den punkten visar redan nÃ¤sta sektions topp (band 01) i
+1132:      nederkanten - uppmÃ¤tt av lead vid 1920x930. 120svh ger ett runt 20svh
+1133:      drÃ¶jfÃ¶nster dÃ¤r kapitlet verkligen stÃ¥r ensamt, vid alla bredder. */
+1134:   .process-chapter{position:relative;min-height:120svh;display:flex;
+1135:     flex-direction:column;justify-content:center;padding-block:clamp(72px,12svh,120px);}
+1136:   /* PLAN 061 B1. Kapitlets EGEN klocka: en nÃ¤stlad flow-akt (motorn samlar
+1137:      [data-sc-act] generiskt), ingen ny mÃ¤tning. Kapitlets hÃ¶jd Ã¤r exakt
+1138:      120svh (R14), livet 2,2vh: kant pÃ¥ 0,846vh -> tx 0 (p 0,07), kant pÃ¥
+1139:      0,208vh -> tx 1 (p 0,36), fÃ¶nstret 0,29 brett. */
+1140:   .process-chapter{--tx:clamp(0,calc((var(--sc-ps,0) - .07) / .29),1);}
+1141:   .process-title{font-family:var(--f-display);font-weight:700;
+1142:     /* PLAN 051 fix 4 (R4, Astra material_fixes #4): golvet hÃ¶jt 2,75rem
+1143:        (44px, uppmÃ¤tt under Astras 56px-mÃ¥l vid 390) -> 3.5rem (56px). */
+1144:     font-size:clamp(3.5rem,7.2vw,7.5rem);line-height:.95;letter-spacing:-.03em;
+1145:     color:var(--ink);max-width:14ch;
+1146:     padding:.6rem var(--rail-x) 0;}
+1147:   /* PLAN 054 steg 2: bÃ¤r nu jÃ¤ttesektionens lÃ¥sta rad "Webbdesign, design
+1148:      och system. Allt pÃ¥ ett stÃ¤lle." - kapitelskÃ¤rmen inleder just hur
+1149:      det gÃ¶rs, samma skÃ¤l som PRODUCT.md ger fÃ¶r raden. */
+1150:   .process-locked{font-family:var(--font);font-weight:300;
+1151:     font-size:clamp(1.25rem,1.6vw,1.5rem);line-height:1.4;max-width:34ch;
+1152:     color:var(--ink);margin-top:clamp(20px,3svh,32px);padding-inline:var(--rail-x);}
+1153:   /* PLAN 060 7.2 (F-016, Antons beslut 2026-09-19): .process-lead ("Sju
+1154:      steg, samma ordning...") och kapitlets kicker ("SÃ¥ gÃ¥r det till") Ã¤r
+1155:      borta - listan under och rubriken bÃ¤r kapitlet ensamma. */
+1156: 
+1157:   /* PLAN 062 B1/B2. BlÃ¥kopian, arket: det blÃ¥ tesplanet krymper, scrubbat
+1158:      pÃ¥ --tx (F-014), frÃ¥n en hel skÃ¤rm till EXAKT ritningsarkets rektangel
+1159:      i steg 01. Syntetisk yta (INTE tesbandets egen DOM - #tes Ã¤r en
+1160:      separat, redan pinnad sektion; vid tx=0 har dess sista mening och foto
+1161:      redan lÃ¤mnat bildrutan, mÃ¤tt 214px ren blÃ¥ yta ovan kanten vid 1920,
+1162:      R16/R18) mÃ¥lad ovanfÃ¶r kapitlets egen Ã¶verkant (bottom:100%), samma
+1163:      z-index-lager (3) som redan vinner Ã¶ver #tes (2, PLAN 061 B2). INTE
+1164:      bara fyra lÃ¶sa streck (R18/Astra: "hÃ¤nger i luften", fÃ¶r Ã¥terhÃ¥llsam).
+1165:      --pl-t/--pl-r/--pl-b/--pl-l skrivs en gÃ¥ng av measureAct (JS, som
+1166:      --x1..--x4), aldrig per bildruta. Egna namn, INTE --p-t/--p-l: de Ã¤r
+1167:      redan registrerade @property <number> fÃ¶r processarkets ritmekanik
+1168:      (rad ~236-237, ~1440-1470) - en skrivning dit med ett "px"-vÃ¤rde Ã¤r
+1169:      ogiltigt mot den registrerade syntaxen och tystnar till 0 (upptÃ¤ckt
+1170:      live denna runda, se NOTES). */
+1171:   /* Planet spÃ¤nner FRÃ…N --pl-h (JS, sÃ¤kerhetsbegrÃ¤nsad - se mÃ¥ttblocket:
+1172:      samma "fri" som --upN redan bevisat Ã¤r fri frÃ¥n levande .ts-text) TILL
+1173:      landningslinjen (samma --dn linjerna landar vid, chapter-relativt) -
+1174:      inte ett fast 100vh (upptÃ¤ckt live denna runda: #tes:s sticky-scen
+1175:      kunde stÃ¥ pinnad lÃ¤ngre Ã¤n en viewporthÃ¶jd pÃ¥ vissa bredder, och ett
+1176:      opakt fast-100vh-plan mÃ¥lade dÃ¥ Ã¶ver levande stegtext). Arkets
+1177:      rektangel landar med sin UNDERKANT exakt vid landningslinjen (samma
+1178:      punkt linjerna redan mÃ¶ts vid), sÃ¥ bottenklippet Ã¤r alltid 0: ingen
+1179:      fjÃ¤rde variabel behÃ¶vs. */
+1180:   .tes-plane{position:absolute;left:50%;width:100vw;transform:translateX(-50%);
+1181:     top:calc(-1 * var(--pl-h,0px));height:calc(var(--pl-h,0px) + var(--dn,0px));pointer-events:none;
+1182:     background:color-mix(in oklab,var(--c-accent),var(--c-drafting) calc(var(--tx) * 100%));
+1183:     clip-path:inset(calc(var(--tx) * var(--pl-t,0px)) calc(var(--tx) * var(--pl-r,0px))
+1184:       0 calc(var(--tx) * var(--pl-l,0px)));}
+1185:   /* PLAN 066 fynd 1 (Astra r21). box-shadow:inset mÃ¥lar vid ELEMENTETS
+1186:      EGEN border-box (.tes-plane Ã¤r left:50%;width:100vw;translateX(-50%),
+1187:      alltsÃ¥ x -5..vw+5) - clip-path flyttar inte skuggan, den klipper bort
+1188:      den, sÃ¥ bara topp- och bottenlinjen (som redan lÃ¥g innanfÃ¶r klippet)
+1189:      syntes: tvÃ¥ vÃ¥grÃ¤ta streck, ingen rektangel (uppmÃ¤tt, contour2.json:
+1190:      skuggans sidor lÃ¥g kvar pÃ¥ x -5/1915 i VARJE tx-lÃ¤ge medan den klippta
+1191:      rektangeln vandrade frÃ¥n 168..1736 mot 341..1558). Ett ::after, med
+1192:      SAMMA --tx/--pl-*-tal som clip-path (botten alltid 0, som planet
+1193:      sjÃ¤lvt) och en riktig border i stÃ¤llet fÃ¶r box-shadow, sitter pÃ¥ ett
+1194:      element vars EGEN box krymper - konturen sluter sig om alla fyra sidor
+1195:      genom hela tx, inte bara topp/botten. Tonas in sent (0,6->0,9) sÃ¥
+1196:      arket lÃ¤ses som att det STELNAR, inte en ram som funnits hela tiden. */
+1197:   .tes-plane{--p-edge:clamp(0,calc((var(--tx) - .6) / .3),1);}
+1198:   .tes-plane::after{content:"";position:absolute;pointer-events:none;
+1199:     inset:calc(var(--tx) * var(--pl-t,0px)) calc(var(--tx) * var(--pl-r,0px))
+1200:       0 calc(var(--tx) * var(--pl-l,0px));
+1201:     border:2px solid color-mix(in srgb,var(--c-white) calc(var(--p-edge) * 100%),transparent);}
+1202:   /* PLAN 065 (Lead r20b, reservvÃ¤gen ur R20 tagen). Omlandningen till
+1203:      position:fixed (data-frozen/data-gone, plan 063/064) lÃ¤kte aldrig -
+1204:      R20b fann konturen fortfarande genom band 01:s text vid 1920, och tvÃ¥
+1205:      ark staplade vid 390. Borttagen helt: arket rullar ut med kapitlet i
+1206:      normalt flÃ¶de igen, som R19a - krymper mot ritningsarkets rektangel
+1207:      (--tx, ofÃ¶rÃ¤ndrat), landar, och rullar sedan bort med scrollen precis
+1208:      som .process-title bredvid det gÃ¶r. Aldrig position:fixed, aldrig tvÃ¥
+1209:      ark samtidigt - by construction, inte uppmÃ¤tt. */
+1210: 
+1211:   /* PLAN 061 B3/B4/B5, rÃ¤ttad Astra r18 fynd 1-2. Ritningens egna linjer
+1212:      (arkets kanter + stationerna 320/768) som ett ANDRA, koordinerat
+1213:      lager: samma --tx-fÃ¶nster (0,30/0,75/0,70-0,85) som R18, ofÃ¶rÃ¤ndrad
+1214:      mekanik. Fix 1: .seam-h Ã¤gde tidigare bara specificitet 0,1,0 mot
+1215:      .seam i:s 0,1,1 - .seam i{width:1px} vann alltid och landningslinjen
+1216:      ritades som en 1x1px-punkt. .seam .seam-h{} (0,2,0) vinner nu. Fix 2:
+1217:      arkets kantlinjer (data-l 1/4) och landningslinjen 2px (min-kravet);
+1218:      stationerna (data-l 2/3) 1px kvar, arkets egna hjÃ¤lplinjer, tunnare
+1219:      per K3-registret. --seam-on-blue rÃ¤ttad till ren vit (:root, var en
+1220:      62%-blandning som mÃ¤tte 2,86:1 mot --c-accent i R18, under 3:1) - se
+1221:      Verification fÃ¶r uppmÃ¤tt kontrast. */
+1222:   .seam{position:absolute;inset:0;pointer-events:none;}
+1223:   .seam i{position:absolute;display:block;width:1px;}
+1224:   .seam [data-l="1"],.seam [data-l="4"]{width:2px;}
+1225:   .seam [data-l="1"]{left:var(--x1);} .seam [data-l="2"]{left:var(--x2);}
+2470:       var mobile = window.matchMedia('(max-width:767px)').matches;
+2471:       var sheetH = 0;
+2472:       /* PLAN 048 F step 16. --band-h (desktop) eller --sheet-h (mobil)
+2473:          skrivs FÃ–RE li-rektanglarna lÃ¤ses: bÃ¤gge stegens min-height beror
+2474:          pÃ¥ talet (.process-steps li{min-height:calc(var(--band-h) + 90svh)}
+2475:          respektive calc(100svh - var(--sheet-h))), sÃ¥ en lÃ¤sning innan
+2476:          skrivningen vore inaktuell. */
+2477:       if (!mobile){
+2478:         var bands = process.querySelectorAll('.step-band');
+2479:         var bandH = 0;
+2480:         for (var b = 0; b < bands.length; b++){ bandH = Math.max(bandH, bands[b].scrollHeight); }
+2481:         bandH = Math.ceil(bandH);
+2482:         if (bandH && bandH !== lastBandH){
+2483:           lastBandH = bandH;
+2484:           process.style.setProperty('--band-h', bandH + 'px');
+2485:         }
+2486:       } else if (stick){
+2487:         sheetH = stick.getBoundingClientRect().height;
+2488:         process.style.setProperty('--sheet-h', sheetH.toFixed(1) + 'px');
+2489:       }
+2490:       /* PLAN 061 1.3 (BlÃ¥kopian). LÃ¤ses HÃ„R, efter att --band-h/--sheet-h
+2491:          satt arkets slutliga mÃ¥tt: linjernas x = arkets egna stationer
+2492:          (samma tal som #p-open/mÃ¥ttkedjan, 195,6/469,3 av 880), en gÃ¥ng
+2493:          per mÃ¤tning som --band-h/--life, aldrig per bildruta. */
+2494:       var chapterEl = process.querySelector('.process-chapter');
+2495:       var sheetEl = process.querySelector('.process-sheet');
+2496:       var titleEl = document.getElementById('process-title');
+2497:       if (chapterEl && sheetEl && titleEl){
+2498:         var C = chapterEl.getBoundingClientRect();
+2499:         var L = sheetEl.getBoundingClientRect();
+2500:         var T = titleEl.getBoundingClientRect();
+2501:         var x1 = L.left, x2 = L.left + L.width * 195.6 / 880,
+2502:             x3 = L.left + L.width * 469.3 / 880, x4 = L.left + L.width - 1;
+2503:         chapterEl.style.setProperty('--x1', (x1 - C.left).toFixed(1) + 'px');
+2504:         chapterEl.style.setProperty('--x2', (x2 - C.left).toFixed(1) + 'px');
+2505:         chapterEl.style.setProperty('--x3', (x3 - C.left).toFixed(1) + 'px');
+2506:         chapterEl.style.setProperty('--x4', (x4 - C.left).toFixed(1) + 'px');
+2507:         chapterEl.style.setProperty('--dn', Math.max(0, T.top - C.top - 40).toFixed(1) + 'px');
+2508:         /* PLAN 062 B1, rÃ¤ttad live denna runda (geometrisk kontroll fann
+2509:            .tes-plane Ã¶ver P.ts vid tidiga scrollÃ¤gen). Ett FAST
+2510:            100vh-plan reste sig hÃ¶gre Ã¤n den fria blÃ¥ ytan B3 (2061)
+2511:            redan mÃ¤tte upp - #tes:s EGEN sticky-scen stÃ¥r kvar (still
+2512:            pinnad) lÃ¤ngre Ã¤n 100vh ovanfÃ¶r kanten pÃ¥ vissa bredder, sÃ¥
+2513:            planet (opakt, samma z-index-lager som redan vinner Ã¶ver #tes)
+2514:            mÃ¥lade rakt Ã¶ver levande stegtext INNAN dess pin ens slÃ¤ppt.
+2515:            Planets EGEN hÃ¶jd ovanfÃ¶r kanten begrÃ¤nsas nu av EXAKT samma
+2516:            "fri" som --upN redan anvÃ¤nder (stage.bottom - lÃ¤gsta av
+2517:            foto/.ts-underkanter): en yta som per konstruktion ALDRIG har
+2518:            levande tesinnehÃ¥ll, oavsett bredd. "En hel skÃ¤rm" blir alltsÃ¥
+2519:            "sÃ¥ mycket blÃ¥tt som sÃ¤kert kan visas", inte ett hÃ¥rdkodat
+2520:            100vh - samma sÃ¤kerhetsmarginal som linjerna (B3) redan Ã¤r
+2521:            byggda och verifierade mot. */
+2522:         var stageEl = document.querySelector('.thesis-stage');
+2523:         var photoEl = document.querySelector('.thesis-photo-box');
+2524:         var tsEls = document.querySelectorAll('.ts');
+2525:         var tickEls = document.querySelectorAll('.thesis-ticks i');
+2526:         var fri = 0;
+2527:         if (stageEl){
+2528:           var stageR = stageEl.getBoundingClientRect();
+2529:           var lowest = photoEl ? photoEl.getBoundingClientRect().bottom : 0;
+2530:           for (var ti = 0; ti < tsEls.length; ti++){
+2531:             lowest = Math.max(lowest, tsEls[ti].getBoundingClientRect().bottom);
+2532:           }
+2533:           fri = Math.max(0, stageR.bottom - lowest);
+2534:         }
+2535:         var planeH = Math.min(fri, vh);
+2536:         chapterEl.style.setProperty('--pl-h', planeH.toFixed(1) + 'px');
+2537:         /* PLAN 063, fynd denna runda: .process-sheet byter till 320/200
+2538:            under 768 (rad ~1640, K3-registret) - 495/880 var hÃ¥rdkodat
+2539:            obetingat sedan plan 062, aldrig fel synligt fÃ¶rrÃ¤n frysmÃ¥let
+2540:            jÃ¤mfÃ¶rdes pixel mot pixel med det riktiga arket (Â±11px fel vid
+2541:            390, verify_continuity.py). Samma brytpunkt som CSS:n. */
+2542:         var sheetAspect = window.innerWidth < 768 ? 200 / 320 : 495 / 880;
+2543:         var pW = x4 - x1;
+2544:         var pH = pW * sheetAspect;
+2545:         var planeTop = C.top - planeH;
+2546:         var landingY = T.top - 40;
+2547:         var pTop = landingY - pH;
+2548:         chapterEl.style.setProperty('--pl-t', Math.max(0, pTop - planeTop).toFixed(1) + 'px');
+2549:         /* PLAN 066 fynd 2 (Astra r21). .tes-plane Ã¤r CSS 100vw - bredare Ã¤n
+2550:            window.innerWidth (clientWidth) med rullningslistens bredd - och
+2551:            translateX(-50%)-centrerad, sÃ¥ dess EGEN vÃ¤nsterkant sitter vid
+2552:            -scrollbarWidth/2, inte 0. --pl-r/--pl-l rÃ¤knade tidigare mot
+2553:            innerWidth/0, gav +5/-6px fel mot --x1/--x4 (uppmÃ¤tt, contour2.json).
+2554:            LÃ¤ser planets EGEN getBoundingClientRect() i stÃ¤llet. */
+2555:         var planeElNow = process.querySelector('.tes-plane');
+2556:         var planeBox = planeElNow ? planeElNow.getBoundingClientRect() : { left: 0, right: window.innerWidth };
+2557:         chapterEl.style.setProperty('--pl-r', Math.max(0, planeBox.right - x4).toFixed(1) + 'px');
+2558:         chapterEl.style.setProperty('--pl-l', Math.max(0, x1 - planeBox.left).toFixed(1) + 'px');
+2559:         /* B3: den blÃ¥ delen finns bara dÃ¤r det blÃ¥ Ã¤r tomt. 0 om < 64px
+2560:            eller om linjen x krockar tickstrecken Â±16px, annars
+2561:            min(fri - 32, 22svh). */
+2562:         if (stageEl){
+2563:           var tickRects = [];
+2564:           for (var ki = 0; ki < tickEls.length; ki++) tickRects.push(tickEls[ki].getBoundingClientRect());
+2565:           var xs = [x1, x2, x3, x4];
+2566:           for (var xi = 0; xi < 4; xi++){
+2567:             var hitsTick = tickRects.some(function(r){ return xs[xi] >= r.left - 16 && xs[xi] <= r.right + 16; });
+2568:             var up = (fri < 64 || hitsTick) ? 0 : Math.min(fri - 32, 0.22 * vh);
+2569:             chapterEl.style.setProperty('--up' + (xi + 1), Math.max(0, up).toFixed(1) + 'px');
+2570:           }
+2571:         }
+2572:       }
+2573:       var processRect2 = process.getBoundingClientRect();
+2574:       processTop = processRect2.top + window.scrollY;
+2575:       processH = processRect2.height;
+2576:       top = processTop;
+2577:       var life = processH + vh;
+2578:       /* PLAN 049 fix 5. --life skrivet en gÃ¥ng per mÃ¤tning, samma mÃ¶nster
+2579:          som --band-h/--sheet-h ovan - inte en per-bildruta-skrivning.
+2580:          LÃ¤ses av tickerspringans clip-path (--slit-start). */
+2581:       process.style.setProperty('--life', life.toFixed(1) + 'px');
+2582:       /* PLAN 048 F step 16. Ankare vid >=768: steget ritar under de
+2583:          fÃ¶rsta 60% av sitt sticky-intervall (s) och stÃ¥r fÃ¤rdigt de
+2584:          sista 30% (e, --eN). Mobilformlerna (sheetH-beroende) stÃ¥r kvar. */
+2585:       stepAnchors = [];
+2586:       for (var i = 0; i < lis.length; i++){
+2587:         var lr = lis[i].getBoundingClientRect(), y0 = lr.top + window.scrollY - top, yc = y0 + lr.height / 2;
+2588:         var s = mobile
+2589:           ? (y0 + vh * (i === 0 ? 0.05 : 0.35)) / life
+2590:           : (i === 0 ? (y0 + 0.5 * vh) : (y0 + vh)) / life;
+2591:         var e = mobile ? (y0 + (vh - sheetH)) / life : (y0 + 1.6 * vh) / life;
+2592:         process.style.setProperty('--s' + (i + 1), s.toFixed(4));
+2593:         process.style.setProperty('--e' + (i + 1), e.toFixed(4));
+2594:         stepAnchors.push({ s: s, yc: yc, y0: y0 });
+2595:       }
+2596:       /* PLAN 048 E step 9. Indexerad per data-step som en LISTA: #p-cam
+2597:          omslÃ¶t gruppen, sÃ¥ en enkel objekttilldelning kunde tappa en grupp
+2598:          om ett steg nÃ¥gonsin fick fler Ã¤n en. querySelectorAll fÃ¥ngar alla,
+2599:          data-on vÃ¤xlas pÃ¥ varje. */
+2600:       if (!Object.keys(sheetGroups).length){
+2601:         process.querySelectorAll('.process-sheet g[data-step]').forEach(function(g){
+2602:           var step = g.getAttribute('data-step');
+2603:           (sheetGroups[step] || (sheetGroups[step] = [])).push(g);
+2604:         });
+2605:       }
+2606:     }
+2607:   }
+2608:   measureAct();
+2609:   addEventListener('resize', measureAct, { passive:true });
+2610:   addEventListener('load', measureAct);
+2611:   addEventListener('resize', function(){
+2612:     CASES.forEach(function(C){ if (C.w) measureCase(C); });
+2613:   }, { passive:true });
+2614: 
+2615:   /* PLAN 054 steg 4. Casens ramar skrollas INIFRÃ…N, ur aktens LERPADE vÃ¤rde
+2616:      (cur), i latchTick. Ramen sjÃ¤lv transformeras aldrig (PRODUCT.md).
+2617:      Ankarna mÃ¤ts i ramens dokument (same-origin) vid load och vid varje
+2618:      storleksÃ¤ndring dÃ¤r, aldrig per bildruta. Andra talet per ankare:
+2619:      fÃ¶rskjutning i ramhÃ¶jder - 0,30 = husets stycke stÃ¥r en tredjedel ned
+2620:      sÃ¥ ordljuset spelar; -1 = rummet (sektionen fÃ¶re bokningen) stÃ¥r i
+430:       vändningen. overflow:clip står kvar som skydd — folden är för tät (13 px till
+1108:     i flödet, mätt en gång i measureAct (14 tal, --s1..--e7). */
+1140:  .process-chapter{--tx:clamp(0,calc((var(--sc-ps,0) - .07) / .29),1);}
+1158:     på --tx (F-014), från en hel skärm till EXAKT ritningsarkets rektangel
+1165:     --pl-t/--pl-r/--pl-b/--pl-l skrivs en gång av measureAct (JS, som
+1171:  /* Planet spänner FRÅN --pl-h (JS, säkerhetsbegränsad - se måttblocket:
+1180:  .tes-plane{position:absolute;left:50%;width:100vw;transform:translateX(-50%);
+1181:    top:calc(-1 * var(--pl-h,0px));height:calc(var(--pl-h,0px) + var(--dn,0px));pointer-events:none;
+1182:    background:color-mix(in oklab,var(--c-accent),var(--c-drafting) calc(var(--tx) * 100%));
+1183:    clip-path:inset(calc(var(--tx) * var(--pl-t,0px)) calc(var(--tx) * var(--pl-r,0px))
+1184:      0 calc(var(--tx) * var(--pl-l,0px)));}
+1186:     EGEN border-box (.tes-plane är left:50%;width:100vw;translateX(-50%),
+1192:     SAMMA --tx/--pl-*-tal som clip-path (botten alltid 0, som planet
+1197:  .tes-plane{--p-edge:clamp(0,calc((var(--tx) - .6) / .3),1);}
+1198:  .tes-plane::after{content:"";position:absolute;pointer-events:none;
+1199:    inset:calc(var(--tx) * var(--pl-t,0px)) calc(var(--tx) * var(--pl-r,0px))
+1200:      0 calc(var(--tx) * var(--pl-l,0px));
+1207:     (--tx, oförändrat), landar, och rullar sedan bort med scrollen precis
+1213:     lager: samma --tx-fönster (0,30/0,75/0,70-0,85) som R18, oförändrad
+1228:    clip-path:inset(0 0 calc((1 - clamp(0,calc(var(--tx) / .30),1)) * 100%) 0);}
+1234:    clip-path:inset(0 0 calc((1 - clamp(0,calc((var(--tx) - .30) / .45),1)) * 100%) 0);}
+1239:    clip-path:inset(0 calc((1 - clamp(0,calc((var(--tx) - .70) / .15),1)) * 100%) 0 0);}
+1240:  .js .process-title{--edge:calc(clamp(0,calc((var(--tx) - .78) / .22),1) * 130%);
+1244:  html:not(.js) .seam,html:not(.js) .tes-plane{display:none;}
+1247:     per steg. --band-h skrivs av measureAct (högsta .step-band), fallback
+1338:     skrivs av measureAct (samma mönster som --band-h, en gång per
+1444:     fallback här (no-JS-golvet); JS (measureAct) skriver de uppmätta. */
+1827:        <div class="tes-plane" aria-hidden="true"></div>
+1829:             lager, samma --tx-klocka. -->
+2352:       ingen JS-tillståndsmaskin kvar för .tes-plane. Den rullar ut med
+2353:       kapitlet i normalt flöde (--tx styr fortfarande krympningen). */
+2460:  function measureAct(){
+2509:           .tes-plane över P.ts vid tidiga scrollägen). Ett FAST
+2536:        chapterEl.style.setProperty('--pl-h', planeH.toFixed(1) + 'px');
+2548:        chapterEl.style.setProperty('--pl-t', Math.max(0, pTop - planeTop).toFixed(1) + 'px');
+2549:        /* PLAN 066 fynd 2 (Astra r21). .tes-plane är CSS 100vw - bredare än
+2552:           -scrollbarWidth/2, inte 0. --pl-r/--pl-l räknade tidigare mot
+2555:        var planeElNow = process.querySelector('.tes-plane');
+2557:        chapterEl.style.setProperty('--pl-r', Math.max(0, planeBox.right - x4).toFixed(1) + 'px');
+2558:        chapterEl.style.setProperty('--pl-l', Math.max(0, x1 - planeBox.left).toFixed(1) + 'px');
+2608:  measureAct();
+2609:  addEventListener('resize', measureAct, { passive:true });
+2610:  addEventListener('load', measureAct);
+3053:     innan load/fonts.ready hunnit dispatcha resize -> measureAct() med de
+3058:     EFTER relayout (rad 1605-1607) så measureAct redan kört (dispatchEvent
+3062:    measureAct();
+3114:           händelser (tes-planets fryst/borta-växling, latchTick) hann
+
+web search: 
+web search: site.w3.org CSS inset opposing insets exceeds size proportionally reduced border box absolute minimum border padding ...
+exec
+"C:\\WINDOWS\\System32\\WindowsPowerShell\\v1.0\\powershell.exe" -Command '$p='"'C:\\Users\\Anton L\\anti-slop-design\\tests\\alunix-r8\\runs\\V3d\\index.html'; rg -n -- 'box-sizing|\\*::|::after|process-sheet\\{|min-width|fonts.ready|dispatchEvent|function measureAct|--p-edge' "'$p; $s=Get-Content -LiteralPath $p; foreach($r in @(@(2458,2471),@(3045,3068),@(1620,1665))){for($i=$r[0];$i -le $r[1];$i++){ '"'{0}: {1}' -f "'$i,$s[$i-1] }}' in C:\Users\Anton L\anti-slop-design
+ succeeded in 3499ms:
+242:  *{box-sizing:border-box;}
+269:     för V3b:s `::after` i `mix-blend-mode: color`, som läser sidans backdrop.
+293:     läggs ovanpå (::after) inne i .ground:s egen contain:strict-kontext. */
+309:  .ground::after{content:"";position:absolute;inset:0;
+398:    color:#f7f5f0;max-width:15ch;text-wrap:balance;overflow-wrap:anywhere;min-width:0;}
+470:  .face--front::after{content:"";position:absolute;inset:0;background:var(--c-black);
+629:  .thesis-lines{grid-column:1;grid-row:1;align-self:center;display:grid;min-width:0;}
+630:  .ts{grid-area:1/1;align-self:start;min-width:0;
+649:     min-width:1024px nedan) får ordet ALDRIG bli 0,66em bredare mitt i
+665:  .thesis-figure{grid-column:2;grid-row:1 / span 2;align-self:end;min-width:0;margin:0;}
+714:  @media (min-width:1024px){
+739:  .frame-fig{display:flex;flex-direction:column;min-width:0;will-change:auto;}
+872:  .price-ledger::before,.price-row::after{content:"";display:block;height:1px;
+878:  .price-row::after{width:100%;margin-top:.8rem;}
+879:  .price-row:nth-child(1)::after{--d:0.30;}
+880:  .price-row:nth-child(2)::after{--d:0.34;}
+881:  .price-row:nth-child(3)::after{--d:0.38;}
+893:     z -1) och ::after (slöjan, z -1) i .price:s egen stapelkontext; slöjan
+895:  .price::after{content:"";position:absolute;inset:0;z-index:-1;pointer-events:none;
+969:  .case-fig{min-width:0;display:flex;flex-direction:column;}
+974:  .case-text{display:flex;flex-direction:column;justify-content:center;min-width:0;}
+1000:  .cs{grid-area:1/1;min-width:0;}
+1191:     rektangeln vandrade från 168..1736 mot 341..1558). Ett ::after, med
+1197:  .tes-plane{--p-edge:clamp(0,calc((var(--tx) - .6) / .3),1);}
+1198:  .tes-plane::after{content:"";position:absolute;pointer-events:none;
+1201:    border:2px solid color-mix(in srgb,var(--c-white) calc(var(--p-edge) * 100%),transparent);}
+1255:  .process-sheet{display:block;height:auto;max-width:none;aspect-ratio:880/495;
+1341:  @media (min-width:768px){
+1582:    .process-steps::after{display:none;}
+1659:    .process-sheet{aspect-ratio:320/200;width:100%;max-width:none;}
+2396:  function relayout(){ dispatchEvent(new Event('resize')); }
+2398:  if (document.fonts && document.fonts.ready) document.fonts.ready.then(relayout);
+2460:  function measureAct(){
+2906:      dispatchEvent(new Event('resize'));
+2933:      dispatchEvent(new Event('resize'));
+2989:  /* PLAN 060 § ?preview=-hookar, pris-in (ny, B4): slöjan (.price::after)
+3053:     innan load/fonts.ready hunnit dispatcha resize -> measureAct() med de
+3057:     kan ha ändrats: vid skripttid OCH efter load/fonts.ready, registrerat
+3058:     EFTER relayout (rad 1605-1607) så measureAct redan kört (dispatchEvent
+3098:      dispatchEvent(new Event('resize'));
+3120:        requestAnimationFrame(function(){ dispatchEvent(new Event('scroll')); });
+3141:  if (document.fonts && document.fonts.ready) document.fonts.ready.then(aimPreview);
+2458:   var sheetGroups = {};
+2459:   var lastBandH = null;
+2460:   function measureAct(){
+2461:     if (thesisEl){ var tr = thesisEl.getBoundingClientRect(); thesisTop = tr.top + window.scrollY; thesisH = tr.height; }
+2462:     if (process){
+2463:       var pr = process.getBoundingClientRect();
+2464:       processTop = pr.top + window.scrollY;
+2465:       processH = pr.height;
+2466: 
+2467:       var lis = process.querySelectorAll('.process-steps li');
+2468:       var vh = window.innerHeight;
+2469:       var top = processTop, stick = process.querySelector('.process-stick');
+2470:       var mobile = window.matchMedia('(max-width:767px)').matches;
+2471:       var sheetH = 0;
+3045:   /* PLAN 019, R6, Step 7 / PLAN 037, R9 loop 3. Sju lÃ¤gen: process-01..07,
+3046:      ett per steg. Sedan stegens fÃ¶nster ankras i li:arnas egen position
+3047:      (inte en tabell) Ã¤r mÃ¥lpunkten li N:s mitt (stepAnchors[i].yc), inte
+3048:      lÃ¤ngre ett mittvÃ¤rde ur en fast tabell. __scFreezeMotion sÃ¤tts redan
+3049:      ovan (rad ~1533-1536); frysningen gÃ¶r att motorns rÃ¥-progress vid den
+3050:      scrollposition PER KONSTRUKTION motsvarar --eN (li:s mitt = stegets
+3051:      --eN per definition i Step 5), sÃ¥ ingen forcePs-slinga behÃ¶vs.
+3052:      AVVIKELSE FRÃ…N R8: mÃ¥lscrollen rÃ¤knades fÃ¶rut EN gÃ¥ng vid skripttid,
+3053:      innan load/fonts.ready hunnit dispatcha resize -> measureAct() med de
+3054:      riktiga typsnittens radbrytning - prosan i steg 01 vÃ¤ximde/krympte och
+3055:      li 02-07 flyttade sig medan scrollpositionen stod kvar dÃ¤r den var
+3056:      (H-30, preview_check.json). aimPreview() rÃ¤knar om varje gÃ¥ng layouten
+3057:      kan ha Ã¤ndrats: vid skripttid OCH efter load/fonts.ready, registrerat
+3058:      EFTER relayout (rad 1605-1607) sÃ¥ measureAct redan kÃ¶rt (dispatchEvent
+3059:      Ã¤r synkron) nÃ¤r aimPreview lÃ¤ser stepAnchors. */
+3060:   var aimLastY = null;
+3061:   function aimOnce(pi){
+3062:     measureAct();
+3063:     var mobilePrev = window.matchMedia('(max-width:767px)').matches;
+3064:     var stickEl = process.querySelector('.process-stick');
+3065:     var sheetHPrev = mobilePrev && stickEl ? stickEl.getBoundingClientRect().height : 0;
+3066:     /* PLAN 025 B: --eN vid mobil Ã¤r nu y0 + (vh - sheetH) (li:s Ã¶verkant
+3067:        vid arkets underkant), inte yc + 0.5*(vh+sheetH); mÃ¥lscrollen fÃ¶ljer
+3068:        samma formel.
+1620:        Noll beskÃ¤rning: nÃ¤r rutans egen proportion matchar bildens blir
+1621:        "slice" identiskt med fit. */
+1622:     #p-opening{d:path("M8 20 H312 V191 H8 Z");}
+1623:     #p-open-rect,#p-live-img{x:8px;y:20px;width:304px;height:171px;}
+1624:     /* MÃ¥ttlinjen och siffrorna (nedan, MOBILE_TEXT) fÃ¶ljer samma +6/-4 px-
+1625:        offset mot Ã¶ppningens nya underkant (191) som de hade mot den gamla
+1626:        (280) - sjÃ¤lva mÃ¶nstret rÃ¶rs inte, bara talen rÃ¤knas om. */
+1627:     #p-dim-width{d:path("M0 197 H320");}
+1628:     #p-lead-169{d:path("M304 68 L296 60 H200");}
+1629:     #p-dot-169{cx:304px;cy:68px;}
+1630:     /* PLAN 053 fix 1 (R6 Astra material_fixes #1, r5-astra.md), justerad av
+1631:        PLAN 055 fix (R7, Astra r6-astra.md material_fixes #2). y2..18
+1632:        rÃ¤ckte inte: #p-cam:s zoom (1,05 kring y 100, :1522) lyfter
+1633:        Ã¶ppningens TRANSFORMERADE Ã¶verkant frÃ¥n 20 till 100+(20-100)*1,05=16
+1634:        enheter - fÃ¤ltets underkant (18) lÃ¥g alltsÃ¥ 2 enheter INNANFÃ–R den
+1635:        zoomade bilden. FÃ¤ltet sÃ¤nkt till y0..14 (samma 32 breda box):
+1636:        underkanten (14) ligger nu 2 enheter OVANFÃ–R den zoomade Ã¶verkanten
+1637:        (16), aldrig Ã¶ver fotot. */
+1638:     #p-title{d:path("M280 0 H312 V14 H280 Z");}
+1639:     #p-rev{x:280px;y:0px;width:32px;height:14px;}
+1640:     /* #p-glyph (steg 01:s ordmÃ¤rke, :1857) Ã¤r ark-fast i viewBox-enheter
+1641:        (translate(24,24), ingen mobil CSS-override tidigare) - pÃ¥
+1642:        skrivbordet (880 bred) ligger 24,24 utanfÃ¶r Ã¶ppningens 264..802,
+1643:        men i mobilens 320 breda viewBox ligger den mitt i Ã¶ppningens
+1644:        8..312 och stod kvar i full ton Ã¶ver Calyx Ã¶vre vÃ¤nstra hÃ¶rn hela
+1645:        vÃ¤gen till steg 07 (ingen cam-fade, till skillnad frÃ¥n #p-hatch/
+1646:        #p-ledgers som redan har den, rad ~1218). Samma tillbakadragning
+1647:        hÃ¤r: tonar ut i takt med att kameran zoomar in (05->07), precis
+1648:        som allt annat som annars skulle ligga ovanpÃ¥ fotot. */
+1649:     #p-glyph{opacity:var(--cam-fade);}
+1650:     /* PLAN 053 fix 1: 304 * 1,08 = 328 > 320 - Ã¶ppningen (och klippytan
+1651:        som delar #p-cam:s transform, se PLAN 052-kommentaren vid
+1652:        #p-opening) vÃ¤xte utanfÃ¶r det fasta 320 breda arket vid --cam=1,
+1653:        uppmÃ¤tt 367px liveyta i ett 358px ark. 0,05 i stÃ¤llet fÃ¶r 0,08:
+1654:        304 * 1,05 = 319,2 <= 320, ingen beskÃ¤rning mot arkets egen kant. */
+1655:     #p-cam{transform-origin:160px 100px;transform:scale(calc(1 + 0.05 * var(--cam)));}
+1656:     /* width:100% ersÃ¤tter skrivbordsformelns calc(), som annars gav arket
+1657:        296px (mindre Ã¤n sin egen sticky-behÃ¥llares 343px) - samma fel som
+1658:        .process-stick:s height ovan, samma fix: fyll behÃ¥llaren. */
+1659:     .process-sheet{aspect-ratio:320/200;width:100%;max-width:none;}
+1660:     #p-m320,#p-m768,#p-m1440{font-size:34px;}
+1661:   }
+1662: 
+1663:   /* ---------------------------------------------------------- s7, avslutet
+1664:      En rad, en adress, ingenting mer. Ligger pÃ¥ den kontinuerliga grunden,
+1665:      full bredd under bÃ¥da spalterna, och stÃ¤nger sidan i stÃ¤llet fÃ¶r att
+
+codex
+No actionable defect found in the two changes. Static review only.
+
+- **A, [index.html:1183](C:/Users/Anton%20L/anti-slop-design/tests/alunix-r8/runs/V3d/index.html:1183):** The clip and `::after` use identical interpolated insets. Their outer rectangles coincide throughout `--tx` for nondegenerate dimensions. The parent has no border/padding to offset their reference boxes.
+- **[index.html:1197](C:/Users/Anton%20L/anti-slop-design/tests/alunix-r8/runs/V3d/index.html:1197):** `clamp(...)` is valid inside the substituted percentage calculation; its output stays within 0–1, and `.3` is a nonzero constant.
+- **[index.html:1198](C:/Users/Anton%20L/anti-slop-design/tests/alunix-r8/runs/V3d/index.html:1198):** The pseudo-element adds border painting and layout work when its insets change. It does not introduce a stacking context or pointer target; painting stays clipped. Literal “every viewport width” needs one qualification: below **4px remaining width/height**, the two 2px borders cannot shrink further, so exact box coincidence fails. This is the [CSS sizing floor](https://www.w3.org/TR/css-sizing-3/), not evidence of a normal-viewport regression.
+- **B, [index.html:2555](C:/Users/Anton%20L/anti-slop-design/tests/alunix-r8/runs/V3d/index.html:2555):** Correct: the geometry read synchronously resolves preceding layout writes and measures the transformed, unclipped plane. No measured division or new NaN path; both distances are nonnegative. The selector runs during measurement/load/resize/preview, not the scroll/rAF loop. The read can force layout, which is a cost, not stale geometry.
+
+No visible em-dashes found; the sole literal match is a CSS comment at line 430.
+tokens used
+26 641

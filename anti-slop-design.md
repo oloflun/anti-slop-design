@@ -4,12 +4,56 @@ type: project
 status: active
 project_slug: anti-slop-design
 repo: C:\\Users\\Anton L\\anti-slop-design
-updated: 2026-09-09
+updated: 2026-09-21
 ---
 
 # Anti-Slop Design
 
+## Nulage 2026-09-20
+
+Alunix-landningssidans V3d-variant ar byggd med allt Anton bestallt (processtexten i vanster
+spalt om ritningen, stampelruta i overgangen, Exempelcase nedskalat, prissektionen utan Young
+Serif, egen kontaktsektion med formular). Antons dom 2026-09-20: punkterna ar gjorda men nivan
+ar inte nadd. Overgangen blaa -> ritning, processektionernas tathet, case-overgangen och
+case-ingressen ar underkanda. Plan 067 § Verification har aldrig korts.
+
+**Nasta agent borjar i `tests/alunix-r8/runs/V3d/HANDOFF-2026-09-20.md`.** Rataranskriptet for
+hela sessionen ligger i
+`~/.claude/projects/C--Users-Anton-L-anti-slop-design/09682a1d-0752-4109-a0dc-1b4a1af7a4ac.jsonl`.
+
+Blockerare: veckokvoten slut till 2026-09-23.
+
 Canonical project hub. Read this first to orient; every section points at the document that carries the detail.
+
+## 2026-09-10 — T2 klart, r8-testet genom R3, motion/perf-proberna kalibrerade
+
+**Den bärande begränsningen från 2026-09-08 är löst.** Designsystemet är registrerat
+som egen lokal marketplace och installerat direkt (10 hookar, byte-identiska med
+repot) — sessioner laddar inte längre en inaktuell plugin-cache-kopia från
+super-intelligence. `super-intelligence`s egen kopia (`b48f233`) är pushad efter en
+sekretskanning.
+
+**r8-testet (Alunix, tre koncept) har körts genom R3** med en headless Opus-lead
+(`claude -p --resume`, återupptagen per fas/runda av den bevakande sessionen; byggare
+och granskare som `Agent`-subagenter, inte terminal-teammates — se
+`tests/alunix-r8/PROTOCOL.md` § "Valt läge 2026-09-09"). R3 var första gången
+kvartetten (design-critic/heuristics/a11y/perf) och `codex-review` bevisades köra på
+riktigt: en verklig `codex exec`-process (`gpt-5.5`, read-only, riktig
+kontoanvändning), inte bara en rapport med rätt form. V3c (byggde hela sidan) ligger
+närmast mål; K3 och K4 (fixrundor) är båda blockerade på var sin ersättningsplan efter
+att arkitekten hittade följdfel i tidigare rundors fixar. Full status:
+`tests/alunix-r8/STATUS.md`, kostnadsbild och beslut per runda:
+`tests/alunix-r8/LEAD-REPORT.md`. Boarden (`localhost:4626`,
+`.claude/launch.json`-posten `alunix-board-r8`) väntar på Antons egen granskning
+innan R4 startas.
+
+**Tre mätskript kalibrerade om eller lagade under samma test:**
+`motion_probe.py`s `max_step`-gräns gäller nu bara det dämpade spelhuvudet `--sc-ps`
+(en härledd `transform`-kurva rapporteras men grindar inte — en smoothsteppad kurva
+toppar naturligt på ~4,4 %/ruta); `perf_probe.py` attribuerar en cells egen
+resursvikt separat från vad dess `<iframe>`-exempelsajter drar in; `contrast_over_media.py`
+var en engångsskript med hårdkodad port och gick inte att köra i r8 — nu ett riktigt
+CLI. Fullt session-underlag: `session-logs/2026-09-10-session-log.md`.
 
 ## 2026-09-08 — designkedjan v4: mätlagret byggt, F-012 stängd, Higgsfield inkopplat
 

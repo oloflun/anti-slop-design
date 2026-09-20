@@ -1,0 +1,27 @@
+{
+  "url": "http://127.0.0.1:8795/tests/alunix-r8/runs/V3d/index.html",
+  "wheel": "20:120",
+  "cpu": 1.0,
+  "tracks": [
+    {
+      "track": "#giant-section:--sc-ps",
+      "dead": false,
+      "frames": 354,
+      "frame_p95_ms": 23.55,
+      "frames_over_20ms": 17,
+      "frames_over_33ms": 17,
+      "value_range": [
+        0.3194,
+        0.7839
+      ],
+      "max_step_pct": 0.84,
+      "staircase": 0,
+      "reversals": 0
+    }
+  ],
+  "pass": false,
+  "failures": [
+    "#giant-section:--sc-ps: frame_p95 23.55 ms > 20",
+    "#giant-section:--sc-ps: 17 frames > 33 ms"
+  ]
+}
