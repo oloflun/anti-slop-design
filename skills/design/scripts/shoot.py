@@ -31,9 +31,11 @@ async def main(out_dir: str, urls: list[str]) -> None:
         page = await browser.new_page(
             viewport={"width": WIDTH, "height": HEIGHT},
             device_scale_factor=1,
-            # The verification browser had reduced-motion on, which hid every
-            # reveal. Capture what a normal visitor sees.
-            reduced_motion="no-preference",
+            # F-011: motion always plays, so the harness shoots under the
+            # hostile setting rather than hiding it. Forcing "no-preference"
+            # (what this line used to do) made a page that still branches on
+            # prefers-reduced-motion photograph as if it did not.
+            reduced_motion="reduce",
         )
         for url in urls:
             await page.goto(url, wait_until="networkidle", timeout=60000)

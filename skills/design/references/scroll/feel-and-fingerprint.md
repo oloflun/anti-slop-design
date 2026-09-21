@@ -69,6 +69,90 @@ up; a different easing on kinetic lines; more cards in a rail; a third
 Test: describe the move to someone who has seen the other builds — if they
 can't tell it apart from something the kit already does, it isn't one.
 
+## Being in it, not watching it
+
+Upstream `feel.md` § 4. *"A film plays whether you are there or not. The
+difference between a viewer and a participant is whether the page acknowledges
+that somebody specific is here: how fast they are moving, where their pointer
+is, whether they stopped."*
+
+Five techniques, in the kit's own vocabulary:
+
+- **Pointer parallax that moves the world, not a card.** `data-sc-spotlight`
+  publishes `--sc-mx` / `--sc-my`. Drive a *background layer's* transform off
+  them instead of a highlight, and the environment shifts as the visitor
+  moves, slightly, the way a real space does when you lean.
+- **Dwell-triggered detail.** Hold still on an act and something further
+  arrives — a caption, a second line, a small annotation. Reward for stopping.
+  Mechanically: **read `--sc-p` staying constant across a few frames**, in the
+  page's own JS, and reveal something that was **never needed for
+  comprehension**.
+- **Scroll velocity shaping intensity.** Fast scrolling raises grain, blur,
+  chromatic offset, ground saturation; slow scrolling settles it. *"The page
+  feels like it is being driven rather than played back, and it costs one
+  derived custom property."*
+- **The page addressing "you" at one moment that lands.** Not throughout,
+  which is just copywriting. **One line**, at the emotional turn, in second
+  person, when the visitor is already implicated. *"It works because it is the
+  only time."*
+- **A trace of where they have been.** Anything that accumulates as they
+  travel, so arriving at the end means having a record rather than reaching a
+  footer.
+
+**Embodiment is seasoning. One or two per page.** *"A page that reacts to
+everything feels haunted, not alive: the visitor stops reading and starts
+poking, which is the opposite of what any of this is for."* Pick the one that
+serves the peak and leave the rest.
+
+These are gated to `(hover: hover) and (pointer: fine)` — a pointer-capability
+query, which stands.
+Upstream also turns them off under reduced motion — **that half utgår, F-011**.
+The rule that does survive is upstream's own:
+*"a technique that only exists on desktop cannot be the thing that carries the
+page's meaning."*
+
+## Pacing as emotion
+
+Upstream `feel.md` § 5. *"Scroll distance is emotional time. It is the only
+clock this medium has, and it is fully under your control, which makes it the
+cheapest emotional instrument in the kit and the one most often left at
+default."*
+
+| Pacing | Reads as | Built with |
+|---|---|---|
+| Short acts, hard cuts | Adrenaline, pulse, impatience | Acts under 1.4 vh, no `pin`, `dwell` at 0 |
+| A long pin | Held breath, pressure, attention | `data-sc-span` 3+, overlapping cues, one idea |
+| An empty viewport before a reveal | Silence before the drop | A ground-only act, no cue until the next one |
+| A slow settle mid-act | The shot landing | `data-sc-dwell` 0.35–0.6, cue peak on the settle |
+| A fast cue with a long plateau | Confidence, arrival | `data-sc-cue="0.1 0.9 0.08 0.4"` |
+| A slow ramp in | Hesitation, dawning | Long `rampIn` — **once per page**, it is close to feeling broken |
+
+Four rules follow:
+
+- **Silence must be authored, not left over.** *"An empty screen you meant
+  reads as anticipation. An empty screen you did not mean reads as a page that
+  failed to load, and the harness reports both as dead scroll."* If the empty
+  viewport before the peak is deliberate, **say so in `BRIEF.md`** so the
+  verification pass can tell it from dead scroll. This is the sentence that
+  keeps `scroll_verify.py`'s `blankBands` check from being either useless or a
+  false alarm.
+- **Give the peak room.** The peak act has the largest span on the page by a
+  visible margin. *"If every act is 2.2 vh, the page has no shape, whatever
+  the curve in BRIEF.md says."*
+- **Compress the administrative parts.** Specs, logistics, FAQ, credentials
+  are information, not experience — flow sections at short stagger, never
+  pinned acts with dwell. Spending scroll on them spends the visitor's
+  patience on the part they will not remember.
+- **A continuous world is the exception to pacing variety.** All of the above
+  is about a page of *acts*. A worldflight is one camera move, and *"a camera
+  that changes speed between legs reads as broken rather than as
+  expressive."* There, hold one pace and let the peak carry the shape by being
+  the single long leg — [`pace.md`](pace.md).
+
+The total-length budget stays **8–14 viewport-heights**. Pacing is how that
+budget is spent, not permission to spend more: *"a page that needs 20 vh to
+land its curve has too many acts, not too little room."*
+
 ## The fingerprint gate
 
 Registry: `VAULT/wiki/projects/_index/design-fingerprints.md`, per-vault,
@@ -93,6 +177,27 @@ the plan, not the log** — rewriting a row to fit is what makes it worthless.
 **Row format** — one row per shipped build, all six dimensions plus a world
 note and the path: `| Build | Grammar | Nav | Hero device | Act-sequence
 shape | Close pattern | Signature move | Register | World / palette | Path |`
+
+**Rows are append-only.** From upstream `templates/FINGERPRINTS.md`:
+
+> *"A build that has been superseded stays in the table, because the space it
+> occupies is still occupied."*
+
+A replaced, retired or rejected build keeps its row. The registry does not
+record what is live; it records what surface has already been taken, and a
+surface stays taken whether or not the build that claimed it is still up.
+Deleting a row silently frees a shape for reuse, which is the same failure as
+editing one to make room — *"never edit a row to make room for it. If a
+planned build fails, change the plan."*
+
+**Fill every column.** A row with blanks cannot be scored 4-of-6 against, so
+it weakens the gate for every build after it.
+
+**Keep a "what is taken" list beside the table.** Add a bullet whenever a
+build claims something a later build should avoid reusing: a grammar, a nav
+treatment, a close pattern, a signature move, an act-count-and-length band.
+*"The shared columns are what the next build inherits as a constraint, so
+writing them down is the whole point."*
 
 After shipping, append the row and say what it shares with prior rows — the
 shared columns are exactly what the *next* build has to avoid.

@@ -1,5 +1,13 @@
 # Copy
 
+> **Diverges from upstream Hallmark: T6 port (2026-09-09).** This file has been
+> extended with material ported from the upstream packages named in the design
+> chain's v4 plan, sections 2.1 to 2.5. Every addition is traceable to a source
+> file; where a port collided with a rule already in this file, the conflict is
+> resolved in the text and the winner is named. Upstream is no longer the bar
+> here, and `verify-design-system.py` records the divergence rather than
+> treating it as drift.
+
 Words are part of the design. A great layout with stock copy looks generic. Tight copy in an average layout reads as considered.
 
 ## Principles
@@ -10,6 +18,8 @@ Words are part of the design. A great layout with stock copy looks generic. Tigh
 - **Errors are instructions.** Describe what broke, why, how to fix — in that order.
 - **Active voice.** "We couldn't find your account" beats "Your account could not be found".
 - **Consistency.** Pick one of "Delete" or "Remove". Pick one of "Sign in" or "Log in". Use it everywhere.
+- **One name per action, all the way through.** *"An action keeps the same name through the whole flow, so the button that says 'Publish' produces a toast that says 'Published.'"* (`upstream/anthropic/frontend-design/SKILL.md`.) The button, the confirmation, the toast, the empty state and the log entry use one verb. A button labelled "Publish" that reports "Your post is live" has broken the trail the reader was following.
+- **Reading age 12–14.** Aim for roughly 6th–8th grade: short sentences, common words, one idea per sentence — *"if a sentence has 'and' in the middle, consider splitting it"* (designpowers `accessible-content` § 1). This is a floor on comprehension, not a ceiling on voice: the tone samples further down all clear it. Jargon is allowed only where the audience demonstrably uses it, and then it gets a plain explanation the first time.
 
 ## Buttons
 
@@ -42,6 +52,110 @@ Three beats:
 - Medium wait (>2s): spinner + "Loading…".
 - Long wait (>10s): spinner + progress indication + an honest label — "Compiling (this can take a minute)."
 
+## The six things a piece of copy answers
+
+Refero's universal structure. Any block of page copy answers these, in roughly this order;
+*"if copy feels empty, one of these is missing"*
+(`upstream/refero/skills/refero-design/references/copywriting.md`):
+
+1. **Context** — where is the reader right now?
+2. **Job to be done** — what are they trying to accomplish?
+3. **Solution** — what do you offer?
+4. **Outcome** — what changes for them?
+5. **Conditions** — limits, tradeoffs, requirements.
+6. **Next step** — what should they do now?
+
+**Point 5 is the one that gets dropped**, and it is the one that buys the other five their
+credibility. "Works with Gmail and Outlook. iCloud is next" is a limit stated out loud, and
+it makes the two supported clients believable. A page that lists only capabilities reads as
+a brochure; a page that names one honest limit reads as a product someone actually built.
+It is also the honest-copy rule from the other direction — see gate 46 and
+[`copy-gate.md`](copy-gate.md) § Interaction with honest copy: an unearned proof point is
+banned, and a stated constraint is the thing that replaces it.
+
+## Scenes, not claims
+
+*"People remember images, not abstractions."* The scene template is **who + where + what
+happens + what changes**.
+
+- Bad: *"A better workflow for teams."*
+- Good: *"At 10:03 the PM drops a task. At 10:07 the designer has real references and a draft."*
+
+A claim asserts a property of the product. A scene puts the reader somewhere and lets them
+watch the property happen. When a section refuses to get concrete, it is usually because
+nobody has decided who the reader is or what minute of their day this is — that is a brief
+problem surfacing as a copy problem, and it goes back to the brief rather than getting
+another adjective.
+
+## Rhythm
+
+*"Flat rhythm kills attention."* Change sentence length every one to two lines. One
+paragraph, one punch.
+
+> Fewer clicks.
+> Clearer decisions.
+> Less arguing in Slack.
+
+This is the positive form of a rule the [`copy-gate.md`](copy-gate.md) humanizer pass only
+states negatively (the AI cadence is even, mid-length, and never varies). Landing a
+three-word sentence after a long one is the fastest human signal in the text.
+
+## The sticky-line test
+
+*"Every important page needs at least one line that can be screenshotted, quoted,
+remembered."* Patterns that carry it: *"Not another X. Finally Y."* · *"Less noise. More
+decisions."* · *"Stop guessing. Start seeing."*
+
+Read the built page and point at the line. If nothing is quotable, nothing sticks, and the
+page is a competent brochure. One line per page, not one per section — a page where every
+heading is trying to be the sticky line has no sticky line.
+
+## Quotes and testimonials
+
+From `design-taste-frontend` § 4.10:
+
+- **Max 3 lines** of quote body. Never 6. A longer original gets cut — *"a landing-page
+  quote is a snippet, not the full review."* At footer-testimonial sizes the cap can
+  stretch slightly; the spirit is "fits in a glance".
+- **Attribution is name + role + optionally company.** Never a bare first name
+  (`- Sarah`). A quote nobody can place is a quote nobody believes.
+- **Real typographic quote marks, or none at all.** Not straight ASCII.
+- **No dashes inside the quote body** as a design flourish. Attribution uses ` - ` or a
+  line break — gate 75, zero tolerance, and it applies inside quotation marks exactly as it
+  does outside them.
+- A quote the business has not been given is a fabricated testimonial: gate 46, not a
+  styling question.
+
+## Headings, labels, alt text
+
+The structural half of copy. All four are content, and all four are read aloud by somebody.
+From designpowers `accessible-content`:
+
+- **One H1 per page**, describing the page's purpose. Headings follow H1 → H2 → H3 without
+  skipping levels, and are descriptive enough that *"a screen reader user scanning headings
+  alone should understand the page structure"*. Never use a heading tag to get big bold
+  text — that is what CSS is for.
+- **Placeholders are not labels.** They disappear on focus. Every input carries a visible
+  label, programmatically associated (`<label for>` or `aria-labelledby`).
+- **Format hints go before the input, not after.** "DD/MM/YYYY" above the field, where it
+  is read before the reader types, not below it where it is read after they got it wrong.
+- **Required state is visible and announced**, not carried by an asterisk alone.
+- **Errors are associated with their field** via `aria-describedby`, placed adjacent to it,
+  and announced (`aria-live="assertive"` or by moving focus).
+- **Alt text is content, not metadata:**
+
+| Image type | Alt text approach |
+|---|---|
+| Informative | Describe the information the image conveys, not the image |
+| Decorative | Empty alt (`alt=""`) — do not describe decoration |
+| Functional (button/link) | Describe the action: "Search", not "magnifying glass" |
+| Complex (chart, diagram) | Brief alt plus a full description in surrounding text or `<details>` |
+| Image of text | Reproduce the full text |
+
+Link text follows the same rule as buttons: *"Read the accessibility guidelines"*, never
+"Read more". Where several "Read more" links genuinely must coexist, each one is
+distinguished by `aria-label` or by visible text.
+
 ## Microcopy bans
 
 - "Click here." Link text must stand alone.
@@ -64,6 +178,45 @@ Three beats:
 If the text is loaded from a CMS, configure Smart Quotes in the CMS. If it's hard-coded, write it correctly.
 
 ---
+
+## Voice and tone
+
+**Voice is who you are. Tone is how you say it right now.** Voice stays constant across the
+page; tone adapts to the moment. Ported from designpowers `voice-and-tone`, which supplies
+the axis this file's tone samples were missing: the samples show what a voice *sounds*
+like, this shows how to *state* one so a second writer can hold it.
+
+**Step 1 — name 3 to 5 voice attributes, each as "this, not that".** The second column is
+the load-bearing one; *"the 'not that' column prevents drift"*, because every attribute has
+a cheap version the model reaches for first.
+
+| Attribute | This | Not that |
+|---|---|---|
+| Warm | Friendly, approachable | Sycophantic, emoji-heavy |
+| Knowledgeable | Confident, precise | Academic, condescending |
+| Direct | Clear, action-oriented | Blunt, cold, robotic |
+| Encouraging | Celebrates effort | Patronising, fake-cheerful |
+
+**Step 2 — set tone per context.** One voice, six settings:
+
+| Context | Feel |
+|---|---|
+| Success | Celebration, warmth, brief |
+| Error | Calm, helpful, **no blame** |
+| Onboarding | Welcoming, confidence-building |
+| Empty state | Inviting, action-oriented |
+| Loading | Reassuring, brief |
+| Destructive | Clear, calm, reversible |
+
+**Step 3 — write the vocabulary list.** Two columns, always/never, in this product's own
+domain words: *water* not *irrigate*, *happy* not *optimal*, *you* not *the user*. The list
+is a constraint the copy pass is held to, not a suggestion.
+
+The attributes and the vocabulary belong in `BRIEF.md` alongside the tone the design-context
+gate committed to ([`SKILL.md`](../SKILL.md) Step 1), so the copy gate has something
+specific to enforce instead of generically good copy. Where the brand-derivation pass has
+already written CONTENT FUNDAMENTALS, that is this artifact — extend it, don't write a
+second one.
 
 ## Voice samples per tone
 
@@ -161,6 +314,35 @@ Three voice patterns: *extreme abbreviation*, *principle as opening*, *refusal o
 - *"This page doesn't move."* — names the design decision openly
 
 ---
+
+## Four moves that make a line memorable
+
+Removing tells leaves clean, dead copy. These are the moves that put a person back in,
+from SlopMonster's § After the tells are gone
+(`upstream/slopmonster/references/signs-of-ai-writing.md`) and § 3 and § 5 of its
+principles. They are craft moves, not gates: each one is a decision a writer makes, and one
+per page is usually the whole difference.
+
+- **Say one thing a model would not risk.** *"An opinion, a preference, a thing that failed.
+  Safety is the texture of AI writing."* A page that never states a preference has no
+  author. "We do not do overlays. If the roof needs replacing, it gets stripped" is a
+  sentence with a cost attached, which is why it reads as true.
+- **Refusal as positioning.** *"A refusal positions better than a promise — anyone can
+  promise quality, almost nobody publishes the work they turn down."* This is the move the
+  [`reference-lock.md`](reference-lock.md) instruction *"borrow the move, never the
+  sentence"* points at without naming: the Brutalist and Austere samples above are almost
+  all refusals. Name what this business will not do, in its own words.
+- **Teach something on the way past.** *"A page that explains how the thing works earns
+  trust that a page of claims cannot buy, and it arms the reader to spot a bad competitor —
+  a favour they remember."* One mechanism, explained plainly, somewhere in the middle of the
+  page. "A roof is seven layers. Most quotes only price two."
+- **Keep one rough edge.** A contraction, a fragment, a sentence starting with "And".
+  *"One rough edge is texture. Five is sloppy."* Deliberate, and counted.
+
+The mechanical companion to these — strip the adjectives, find the number, name the noun,
+cut the throat-clearing, read it aloud, verify and mark on the page — is a pass in
+[`copy-gate.md`](copy-gate.md), run after the skills and before the linter. These four are
+what that pass leaves room for.
 
 ## Banned opening lines (anti-patterns)
 

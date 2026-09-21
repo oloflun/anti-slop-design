@@ -410,6 +410,14 @@ re-read: in AB11 it changed little and appended a summary it was told not to wri
 A section lede that describes the section is slop at any type size, and the size-based
 scanner cannot see it. Added to every pass as a standing check.
 
+**Mechanised 2026-09-21.** The rule was written as prose on 09-20 and broken by the next
+sentence the chain delivered, which is the whole argument for `chain-discipline.md` § R2.
+The test is now `scripts/self_reference_scan.py`: it flags every sentence whose *subject* is
+the page, the section, the example or the selection — `page-as-subject`,
+`selection-justification`, `narration-of-disposition`, `meta-label`. Run it on the built copy
+before the gate closes, and run `--selftest` first: it asserts the rejected lede is flagged
+and that genuine service copy is not.
+
 **The shape**, from the Alunix chapter lede Anton rejected twice: *setup* ("X är en
 florist och Y en restaurang") → *disclaimer* ("Ingen av dem finns") → *roadmap* ("Vi går
 igenom vad vi valde i dem och varför"). It is recognisable by its cadence, not its

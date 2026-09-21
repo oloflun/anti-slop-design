@@ -1,0 +1,126 @@
+:root {
+  /* Colors — Primary */
+  --color-primary: #624058;
+  --color-secondary: #ec8aa3;
+  --color-accent: #d4edda;
+
+  /* Colors — Neutrals */
+  --color-neutral-50: #232323;
+  --color-neutral-100: #000000;
+  --color-neutral-200: #ffffff;
+  --color-neutral-300: #495057;
+  --color-neutral-400: #929292;
+  --color-neutral-500: #656565;
+  --color-neutral-600: #dee2e6;
+  --color-neutral-700: #cccccc;
+  --color-neutral-800: #333333;
+  --color-neutral-900: #ffe8ee;
+
+  /* Colors — Backgrounds */
+  --color-bg: #ffffff;
+  --color-bg-1: #000000;
+  --color-bg-2: #f7f7f7;
+
+  /* Colors — Text */
+  --color-text: #000000;
+  --color-text-1: #232323;
+  --color-text-2: #624058;
+  --color-text-3: #222222;
+  --color-text-4: #ec8aa3;
+
+  /* Typography — Families */
+  --font-body: 'Inter', sans-serif;
+  --font-heading: 'Outfit', sans-serif;
+  --font-body: 'Open Sans', sans-serif;
+
+  /* Typography — Scale */
+  --font-size-102.4: 102.4px;
+  --font-size-84: 84px;
+  --font-size-60: 60px;
+  --font-size-56: 56px;
+  --font-size-54: 54px;
+  --font-size-42: 42px;
+  --font-size-34: 34px;
+  --font-size-30: 30px;
+  --font-size-26: 26px;
+  --font-size-25.6: 25.6px;
+  --font-size-24: 24px;
+  --font-size-22: 22px;
+
+  /* Spacing */
+  --spacing-0: 0px;
+  --spacing-20: 20px;
+  --spacing-25: 25px;
+  --spacing-28: 28px;
+  --spacing-40: 40px;
+  --spacing-45: 45px;
+  --spacing-50: 50px;
+  --spacing-60: 60px;
+  --spacing-70: 70px;
+  --spacing-73: 73px;
+  --spacing-100: 100px;
+  --spacing-106: 106px;
+  --spacing-120: 120px;
+  --spacing-140: 140px;
+  --spacing-200: 200px;
+  --spacing-240: 240px;
+  --spacing-385: 385px;
+
+  /* Border Radius */
+  --radius-sm: 3px;
+  --radius-md: 10px;
+  --radius-lg: 15px;
+  --radius-xl: 20px;
+  --radius-full: 25px;
+  --radius-full: 30px;
+  --radius-full: 50px;
+  --radius-full: 100px;
+
+  /* Box Shadows */
+  --shadow-lg: rgba(0, 0, 0, 0.1) 0px 0px 29px -4px;
+
+  /* Original Site Variables */
+  /* — colors — */
+  --primary: #007bff;
+  --secondary: #6c757d;
+  --swiper-theme-color: #007aff;
+  /* — spacing — */
+  --font-family-monospace: SFMono-Regular,Menlo,Monaco,Consolas,Liberation Mono,Courier New,monospace;
+  --swiper-navigation-size: 44px;
+  /* — typography — */
+  --font-family-sans-serif: -apple-system,BlinkMacSystemFont,Segoe UI,Roboto,Helvetica Neue,Arial,sans-serif,Apple Color Emoji,Segoe UI Emoji,Segoe UI Symbol;
+  /* — other — */
+  --blue: #007bff;
+  --indigo: #6610f2;
+  --purple: #6f42c1;
+  --pink: #e83e8c;
+  --red: #dc3545;
+  --orange: #fd7e14;
+  --yellow: #ffc107;
+  --green: #28a745;
+  --teal: #20c997;
+  --cyan: #17a2b8;
+  --white: #fff;
+  --gray: #6c757d;
+  --gray-dark: #343a40;
+  --success: #28a745;
+  --info: #17a2b8;
+  --warning: #ffc107;
+  --danger: #dc3545;
+  --light: #f8f9fa;
+  --dark: #343a40;
+  --breakpoint-xs: 0;
+  --breakpoint-sm: 576px;
+  --breakpoint-md: 768px;
+  --breakpoint-lg: 992px;
+  --breakpoint-xl: 1200px;
+  --c: rgb(35, 35, 35);
+  --b: rgb(35, 35, 35);
+  --a: rgb(35, 35, 35);
+  /* — semantic — */
+  success: [object Object];
+  warning: [object Object];
+  error: [object Object];
+  info: [object Object];
+
+}

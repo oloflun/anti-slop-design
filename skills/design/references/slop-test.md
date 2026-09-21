@@ -25,6 +25,49 @@ Record the six scores in a one-line stamp comment at the top of the file: `/* Ha
 
 ---
 
+## Three litmus tests
+
+Run these against the rendered page before the gate list. Each one removes something and
+asks whether the page notices. A gate asks "did you commit a named sin"; a litmus test
+asks "is this element carrying its weight at all". Ported from Refero's § Litmus Tests
+(`upstream/refero/skills/refero-design/references/anti-ai-slop.md`).
+
+**Image test.** *"If the first viewport works fine without the hero image → the image is
+too weak. Make it dominant or remove it."* A hero photograph sitting politely beside the
+copy at 40 % of the fold, contributing atmosphere and nothing else, is the shape this
+catches. Two outcomes only: make it the dominant element of the first viewport, or cut it
+and let the type carry the fold. There is no third setting where a weak image is fine
+because "the section needed something".
+
+**Card test.** *"If removing border + shadow + background + radius doesn't hurt
+interaction or understanding → it's not a card, remove it."* Strip all four from the
+rendered element and re-read the section. If the grouping still reads and nothing became
+harder to act on, the card was a container drawn around text. Replace it with proximity, a
+hairline, or a spacing step. This is the mechanical form of the rule
+[`house-physics.md`](house-physics.md) states as taste, and it is the fastest route out of
+the bordered-card default that gates 3, 4 and 5 only catch in their worst shapes.
+
+**Brand test.** *"If the brand disappears after hiding the nav → hierarchy is too weak."*
+Upstream's three fixes, re-punctuated to keep gate 75 clean: make the brand louder with a
+bigger logo, the brand colour in the hero, or distinctive typography. Hide the
+nav (or scroll past it) and look at the page again. When the only thing that said whose
+page this is was the wordmark in the top-left, the hierarchy is doing no brand work at
+all. The fix is one of the three upstream names, chosen against the locked tokens — never
+a fourth colour or a fifth face invented for the occasion.
+
+Refero's other three tests are already in this system and are not restated here: the
+**identity test** and the **editorial test** are in
+[`reference-lock.md`](reference-lock.md) § Anti-averaging, and the **copy test** ("if
+deleting 30 % of copy improves the page, keep deleting") is in
+[`copy-gate.md`](copy-gate.md). Run each where it lives; do not score the same test twice.
+
+The same three tests are dimensions in [`verbs/critique.md`](verbs/critique.md) (Image
+under Composition, Card under Composition, Brand under Brand consistency). Here they are a
+pre-ship self-check the builder runs on their own output; there they are a reviewer's
+finding. A failure found here is fixed silently; a failure found there is a P1.
+
+---
+
 ## Visual
 
 1. Is the display font Inter, Roboto, Open Sans, Poppins, Lato, or a system default?
@@ -65,7 +108,7 @@ Record the six scores in a one-line stamp comment at the top of the file: `/* Ha
 24. Is any padding / gap / margin a value that isn't on the named spacing scale (`--space-3xs` … `--space-5xl`, multiples of 4 px)? Arbitrary `padding: 17px` is a tell.
 25. Is any prose container's `max-width` outside the 45–75 ch range? Measure must read; under 45 ch is choppy, over 75 ch loses the eye.
 26. Does any interactive element lack `:focus-visible`, `:active`, OR `:disabled` styling? (Eight states is the rule. Default + hover is two; you need at least default + hover + focus-visible + active + disabled present in code.)
-27. ~~Is there any `transform` / `animation` keyframe that is NOT covered by a `@media (prefers-reduced-motion: reduce)` fallback?~~ **F-011 (2026-09-07):** gate 27 utgår. Ersätts av: spelar rörelsen villkorslöst, och faller varje reveal mot *synligt* utan JS? Every motion gets a reduced-motion alternative.
+27. ~~Is there any `transform` / `animation` keyframe that is NOT covered by a `@media (prefers-reduced-motion: reduce)` fallback?~~ **F-011 (2026-09-07):** gate 27 utgår. Ersätts av: spelar rörelsen villkorslöst, och faller varje reveal mot *synligt* utan JS? *(Superseded trailing clause removed 2026-09-09: the line still ended "Every motion gets a reduced-motion alternative", which is the exact requirement F-011 struck. F-011 wins — it is the standing decision and the rest of the line already states the replacement test.)*
 
 ## Hero enrichment gates
 

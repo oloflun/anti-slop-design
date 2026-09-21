@@ -35,9 +35,29 @@ At every tier, a major visual choice with no source in the lock is not shipped.
 
 ---
 
+## A brief is not a build target
+
+Refero states the rule this file exists to enforce, in one sentence: *"**A brief is not a
+build target.** Before implementation, lock either a user-provided visual source, an
+existing product/design-system target, a selected generated mockup, or an explicit
+reference-locked direction approved for direct build."*
+
+This is the sentence that closes the skip route. When the direction feels obvious and the
+signature act is being built straight from the brief, the visual target still gets named
+first — one line saying what this is being built *toward* and what must not drift:
+
+```text
+Build target: [existing UI / user screenshot / URL capture / selected mockup / approved reference lock]
+What must not drift: [canvas, typography, accent roles, layout, media, density]
+```
+
+If no target exists and the visual direction is material, explore options or get one
+reference-locked direction approved. A build whose only stated source is the brief is a
+build with no source at all.
+
 ## Research loop
 
-Three to five angles, not one query:
+Six angles, not one query:
 
 1. **Broad aesthetic** — the mood in plain language ("warm coastal Nordic hospitality").
 2. **Domain / category** — what this business actually is.
@@ -45,6 +65,24 @@ Three to five angles, not one query:
 4. **Register** — the row from `SKILL.md`'s register table this brief lands in.
 5. **Anti-reference** — one thing this build should *not* look like, sharpening the
    boundary the same way a rejected direction does in the lock block below.
+6. **Cross-domain wildcard** — one reference from *outside* the category, chosen for a
+   quality rather than a subject. *"A banking app can be inspired by a meditation app's
+   calm."* Upstream's map:
+
+   | This brief's domain | Look at |
+   |---|---|
+   | Healthcare | Meditation apps (calm), fitness apps (motivation), journaling (reflection) |
+   | Finance | Productivity tools (clarity), weather apps (data viz), news apps (hierarchy) |
+   | Education | Games (engagement), music apps (progression), social apps (community) |
+   | E-commerce | Editorial sites (storytelling), gallery apps (browsing), travel (discovery) |
+   | Enterprise | Consumer apps (polish), design tools (power + clarity), docs (wayfinding) |
+
+   *"Don't force connections — but don't limit yourself to competitors either."* Competitors
+   solve the same problem the same way, which is precisely how a category default becomes
+   invisible. `select.py --wildcard` is the catalogue-side version of this angle.
+
+**Quality over quantity: *"5 excellent references beat 20 mediocre ones."*** A wall of
+screenshots is not research; it is deferred judgment. Curate down before capturing.
 
 Then: **capture 3–4 full references as images and read them**, long pages in
 viewport-sized slices. Memory returns wrong facts — two market-leading pages
@@ -52,8 +90,36 @@ turned out to *centre* their heroes, and one coloured words inside the headline
 instead of switching typeface, opposite of what was assumed before the images
 were opened.
 
+**Every captured reference carries two lines, not one:**
+
+```text
+What to take: [the specific element or quality to learn from]
+What to leave: [what does not apply here]
+```
+
+*"This prevents wholesale copying."* A reference with no lesson is decoration, and a
+reference with only a "take" line is the one that quietly becomes the whole build. The
+"leave" line is also what makes the primary/borrowed split below enforceable rather than
+declarative.
+
+**Extract more than colour and type.** From each reference, read out: layout system,
+section rhythm and composition · card, button and surface treatments · borders, shadows,
+radius · elevation and depth rules · imagery, graphic and illustration treatment · media
+asset strategy (real asset, generated, code-native primitive, product screenshot, or
+placeholder) · do and don't rules · **one memorable visual move to adapt**. A lock that
+carries a palette and a typeface and nothing structural is why a build "referenced" a page
+it looks nothing like.
+
+**Give each source a bounded job.** *"Primary style: overall mood, density, and structure.
+Secondary styles: specific borrowed details. User context: adapt everything to the product,
+audience, and task."* A source with no job is a source that gets averaged.
+
 From the 3–4 captured, pick **one primary** and take **1–2 borrowed details** from
 the rest. Nothing else survives into the lock.
+
+**Flag accessibility failures in the references themselves.** *"A beautiful reference with
+2:1 contrast ratios is not inspiration — it's a cautionary tale."* Name it when you capture
+it, so the trait does not travel into the lock as craft.
 
 ### Sources, in order
 
@@ -68,6 +134,33 @@ the rest. Nothing else survives into the lock.
 4. **Refero MCP**, if configured — `refero_search_styles` → `refero_get_style`.
    Optional. State plainly when it is not configured rather than silently skipping
    it; do not treat its absence as license to skip the research loop itself.
+
+### When the results are weak
+
+Sparse or generic results are a query problem before they are a source problem. Climb this
+ladder before concluding the catalogue has nothing (Refero `mcp-tools.md` § If Results Are
+Weak):
+
+1. **Broaden the query.**
+2. **Remove extra adjectives or constraints.** Two adjectives and a register is usually one
+   adjective too many.
+3. **Search adjacent categories.**
+4. **Try a known-product or best-brand query.** Name a specific strong player instead of
+   describing a type.
+5. **Inspect later pages.** The first page of any index is the most averaged part of it.
+
+Only after all five is "no usable reference in this register" a finding — and then it is
+stated in the lock, not silently converted into invention.
+
+### Transcribe the category's live headlines
+
+Before writing a word of copy, read the **five best live pages in the category and quote
+their headlines verbatim** into the lock. *"The bar is what the reader has already seen, not
+what sounds nice in isolation"* (`upstream/slopmonster/references/sources.md`). Five lines,
+copied exactly, with the source named. They belong here rather than in
+[`copy-gate.md`](copy-gate.md) because they are a *reference* capture: the same discipline
+as the four screenshots, applied to language, and read before the copy pass rather than
+during it.
 
 ## The reference-lock block
 
@@ -94,9 +187,38 @@ Every entry in the lock traces back through this table:
 | Decision | Source | Source rule/role | Why |
 |---|---|---|---|
 | [palette / type / layout / media choice] | [reference / catalog query / brand asset / craft rule] | [token or component role to preserve] | [reason specific to this brief] |
+| **Memorable detail** | [the reference the move was adapted from] | [what the move does on this page] | [why *this* brief earns it] |
 
 **A major visual choice with no row here is not shipped.** Not "shipped and
 justified after" — the row exists before the choice does.
+
+**The `Memorable detail` row is mandatory, and the rule applies to it too.** Refero's
+requirement is unambiguous: *"Create at least one memorable detail: a visual move,
+interaction, layout choice, or copy detail users would remember."* No row, not shipped —
+including for the signature act itself, which is the row most often left blank on the
+grounds that it is obvious. An example of a filled row from upstream's own worked case:
+*"Memorable detail | 'Operational value' strip showing saved hours/cost by plan | Brief +
+analytics product context | Metric strip as evidence, not decoration | Makes pricing feel
+tied to outcome."*
+
+## The asset lock
+
+Written **before** anyone starts searching or generating — Step 5b has a pipeline but no
+spec upstream of it, and an asset sourced without a spec is an asset chosen by whatever the
+search returned. One block per media slot:
+
+```text
+Asset role: [hero image / texture / illustration / thumbnail / cutout]
+Slot: [dimensions / aspect ratio / location on the page]
+Art direction: [source, palette, subject, rendering, crop, density]
+Avoid: [wrong palette, extra text, brand drift, generic placeholders]
+```
+
+The `Avoid` line is the one that earns its keep: it is the reject field applied to a single
+asset, and it is what a QA pass compares the delivered frame against.
+*"Generated assets must be placed into the implementation before handoff or documented as
+blocked"* — never quietly downgraded to a gradient. That downgrade is the media-role drift
+this file's next section already bans, caught one step earlier.
 
 ---
 
@@ -148,6 +270,44 @@ A placeholder with no aspect ratio, no art direction, and generic alt text is th
 same failure as no image at all — it just fails one render cycle later.
 
 ---
+
+## Three persona sketches
+
+`SKILL.md` Step 5 pass 12 and [`verbs/review.md`](verbs/review.md) § 4 both resolve ties
+with "named personas". Nothing in the chain created any, so the tie-break pointed at an
+artifact that did not exist. It does now, and it is three lines in `BRIEF.md` — not the
+per-project persona documents upstream files away, which is a research deliverable this
+chain has no room for.
+
+Select and write **three**, following upstream's proportions (*"2–3 primary users, 1–2 edge
+case users, 1 stress case user"*), compressed to one line each:
+
+```text
+Primary: [who they are] · [device and connection] · [what they came to do]
+Edge:    [who sits at the margin] · [the ability or context that puts them there] · [what breaks first]
+Stress:  [the same job under a named difficult circumstance] · [what they cannot afford to lose]
+```
+
+**The conditions are situational, not only permanent.** Upstream's spectrum is explicit that
+*"bright sunlight, noisy environment, one hand occupied, driving, multitasking, emotional
+distress, unfamiliar language, slow connection"* belong beside vision, hearing, motor and
+cognitive conditions. A stress persona on a Swedish harbour-restaurant page is a person on a
+phone, outdoors, in sun, deciding where to eat in the next ten minutes — and that persona
+decides more layout questions than any abstract one.
+
+**Write the intersections down.** *"A sighted user in bright sunlight has similar needs to a
+low-vision user. A stressed parent holding a baby has similar motor constraints to someone
+with limited hand mobility. A non-native speaker has similar needs to someone with a
+cognitive processing difference."* Each intersection is a universal-design opportunity: one
+fix that pays twice.
+
+**Then ask the one question that makes the set honest:** *"Which persona makes you most
+uncomfortable?"* — *"that one probably needs the most attention."* Ask it of the brief, and
+of the user when there is a user to ask. Discomfort is the signal that a persona was
+included for completeness and is about to be designed around rather than for.
+
+Sketches that read as cardboard cutouts have failed. The check is upstream's own: *"do these
+feel like real people, or cardboard cutouts?"*
 
 ## Feeding Step 2 and Step 5
 

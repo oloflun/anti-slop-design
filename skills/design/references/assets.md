@@ -14,7 +14,7 @@ When imagery is needed *and* the user hasn't supplied real assets, pick from thi
 | --- | --- | --- |
 | 1 | **Hallmark imagery kit** ([`imagery-kit.md`](imagery-kit.md)) | Brief allows non-photographic imagery: SaaS landings, manifestos, agency / studio splash, type-led portfolio, editorial-led marketing. **Always preferred** when the kit's register fits. |
 | 2 | **Hand-built SVG composition** (Tier B from custom-craft.md) | Editorial-typographic brief where "imagery" can be a stamp / wordmark / colour-blocked composition. Use when the kit doesn't carry the register. |
-| 3 | **Picsum** — `https://picsum.photos/seed/<seed>/<w>/<h>` | Generic photo slot, keyword anchoring not critical. Use a deterministic seed (brand-name + slot-name) so the same render produces the same image. |
+| 3 | **Picsum** — `https://picsum.photos/seed/<seed>/<w>/<h>` | **Prototype only, never production.** Generic photo slot, keyword anchoring not critical. Use a deterministic seed (brand-name + slot-name) so the same render produces the same image. |
 | 4 | **Unsplash Source** — `https://source.unsplash.com/<w>x<h>/?<keywords>` | Keyword-anchored photo slot — food, travel, portrait, real product. Pass 1–2 specific keywords, never zero. |
 | 5 | **Local `public/placeholder-<type>.{jpg,svg}`** | Self-contained projects with no third-party deps. Single neutral grey-block SVG checked into the repo. |
 
@@ -30,6 +30,26 @@ When imagery is needed *and* the user hasn't supplied real assets, pick from thi
 - Do not add a third-party script, tracking pixel, widget, or API dependency as an asset shortcut. Asset sources provide files; they do not get to execute code in the page.
 - When remote assets remain in production, state the privacy and availability tradeoff in the handoff: visitors will request those third-party hosts, and the page depends on their uptime and integrity.
 - For user-supplied brand or customer logos, prefer official asset pages or checked-in files. Do not hotlink a logo from an unrelated site.
+
+**Picsum never ships.** `design-taste-frontend` § 4.8 lists Picsum as an acceptable default
+when no image-generation tool exists, and that is where the conflict with this file's
+Remote-asset-safety rule sits. **This system's rule wins:** every shipped image is vendored
+or self-hosted, so a `picsum.photos` URL in a build is a hotlink to a third party that
+serves a *different photograph* the moment their index changes. Picsum is legitimate while
+the layout is being composed and illegitimate the moment the page is handed over. Before
+handoff, every remaining Picsum URL is either replaced with a vendored file or converted to
+an honest labelled placeholder per § Swappability. Upstream's third tier — *"leave
+clearly-labeled placeholder slots (`<!-- TODO: hero product photo, 1600x1200 -->`) and say
+at the end: this page needs real images at [list of placements]"* — is what replaces it, and
+it is already this file's rule too.
+
+Two rules from § 4.8 that this file did not carry and that hold regardless of source:
+
+- **Even a minimalist page needs real images.** *"A pure-text page is not minimalism. It is
+  incomplete work."* Even a restrained editorial build wants two or three real images (hero,
+  one product or lifestyle shot, one supporting image). Generate black-and-white photography
+  if the register is restrained; do not skip imagery because the dial is low.
+- **Hero needs a real visual.** *"Text + gradient blob is not a hero, it's a placeholder."*
 
 **Anti-patterns:**
 
@@ -57,8 +77,34 @@ When imagery is needed *and* the user hasn't supplied real assets, pick from thi
 1. **Pick one library per project.** Mixing Material + Heroicons + Lucide on the same page is the icon-set tell. The skill's audit verb catches this.
 2. **Sizes 16 / 20 / 24 / 32 only.** Snap to grid. 18-px icons don't exist in this canon.
 3. **Stroke 2 px default** (most libraries' regular weight). Switch to bold (2.5 px) only for icons under 20 px or as emphasis.
-4. **Monochrome with `currentColor`.** Icons inherit text colour. Brand-coloured icons only on the singular primary CTA — not as decoration.
+4. **Monochrome with `currentColor`.** Icons inherit text colour. Brand-coloured icons only on the singular primary CTA — not as decoration. Semantic colour (red error, green success, amber warning) is for *status only, never decoration*.
 5. **No emoji-as-icon.** Emoji break alignment, accessibility, and brand consistency. Use a real icon library.
+6. **Meaningful icons need 3:1 contrast** (WCAG non-text). Applies to icon buttons, toggles and status indicators — an icon carrying meaning is held to the non-text threshold, not to nothing.
+
+### Optical corrections — what separates adequate from premium
+
+Cited from Refero `icons.md` (`upstream/refero/skills/refero-design/references/icons.md`),
+which treats icons as typography rather than decoration:
+
+- **Geometric centre is not visual centre.** Play triangles shift right 0.5–1px; chevrons
+  and arrows shift toward the point. **The circle test:** *"put the icon in a circle. Looks
+  centred? If not, adjust."*
+- **Equal visual mass, not equal measurements.** Circles read lighter than squares;
+  diagonals read thinner than horizontals at the same stroke.
+- **Icon size pairs to text size**, as a starting point adjusted by eye:
+
+  | Text size | Icon size |
+  |---|---|
+  | 14–16px | 16px |
+  | 16–18px | 18–20px |
+  | Headings | 20–24px |
+
+- **Alignment:** `align-items: center` plus, often, a 0.5–1px manual nudge.
+- **Weight harmony:** *"Semibold text + thin icon = 'from different systems.'"* Match the
+  weights or use the solid variant.
+- Pre-ship: readable at 50 % scale · states clear in greyscale · outline icons do not
+  disappear on a dark ground · icons do not overpower the text in a row · icon buttons meet
+  3:1 · 44px+ hit area · one style everywhere.
 
 ### Import patterns
 
@@ -105,6 +151,19 @@ import { ArrowRightIcon } from "@heroicons/react/24/outline";
 2. **Height-aligned, not width-aligned.** Pick a baseline (typically 32–48 px height) and let the width float. Brand proportions matter; stretching is a tell.
 3. **2–3× height as gutter.** Logos need breathing room. A wall with 32-px logos wants 64–96-px gutters.
 4. **No hairline borders, no glow halos.** Just the marks on the page.
+5. **Logo-only (mandatory).** *"Logo wall = logos and nothing else."* No industry or category
+   label under each mark — no `Vercel` + *hosting*, no `Stripe` + *payments*, no `Cloudflare`
+   + *infra*. *"The logo is the credibility, the label adds nothing the user does not already
+   know."* Permitted alongside the mark: the brand name as alt text for screen readers, and
+   optionally a link to the brand's own site. That is the whole allowance.
+6. **Real marks, not text wordmarks — including for invented brands.** A logo wall built from
+   `<span>Acme Co</span>` styled in a row reads as generic. Use Simple Icons for real brands;
+   for a brand name the build invented, draw a simple monogram (one letter in a circle, a
+   two-letter ligature, an abstract glyph) as inline SVG matching the page style. Invented
+   *customer* logos remain banned outright by gate 46 — this rule is about the mark's form,
+   never a licence to fabricate the customer.
+7. **Both grounds.** Every logo renders correctly on light and dark: white-on-dark,
+   black-on-light, or a single-colour theme variable.
 
 ### Import patterns
 
@@ -313,6 +372,54 @@ Rules around it:
 - **Cut phone clips portrait.** A landscape file shown `cover` in a portrait viewport
   decodes the whole frame and throws three quarters of it away.
 
+### Resolve ffmpeg once, then reuse it
+
+The encode lines above and the poster and PSNR steps around them must all call the **same**
+binary. Upstream's `encode.sh` *"goes looking for a full build precisely because the one on
+PATH may be stripped"*, while the poster and seam-check lines call bare `ffmpeg` — and on a
+stripped build the failure is misleading rather than obvious: the WebP muxer is missing and
+you get `Unable to choose an output format for 'poster.webp'`, *"which reads like a bad
+filename rather than a missing encoder"*, and `-lavfi psnr` fails with
+`No such filter: 'psnr'`. Resolve the full build once and reuse the variable:
+
+```bash
+FF=$(ls -d "$HOME"/AppData/Local/Microsoft/WinGet/Packages/Gyan.FFmpeg_*/ffmpeg-*-full_build/bin/ffmpeg.exe 2>/dev/null | head -1)
+"$FF" -y -i assets/01.mp4 -frames:v 1 -vf scale=1600:-2 -c:v libwebp -quality 82 assets/p01.webp
+```
+
+### Camera moves — what scrubs well is not what watches well
+
+A clip that will be scrubbed is directed differently from one that plays. Four rules, and
+each maps to a failure a reader can produce by parking the playhead:
+
+- **One continuous move, one direction.** A dolly-in, a drift down, a slow orbit.
+  *"Any cut, snap or direction reversal becomes a jolt under the wheel, because the reader
+  controls the playhead and will sit on the reversal."*
+- **Slower than feels right in preview.** The move is spread across two or three viewport
+  heights of scroll. *"A move that looks sedate at 24fps feels correct under a hand."*
+- **The subject stays in frame throughout.** The reader may park anywhere.
+- **Nothing enters or leaves.** *"A person walking in is a different shot at frame 1 and
+  frame 120, and the poster will match neither."*
+
+**Prompt shape: what continues, how the camera moves, then the negatives.** Upstream's own
+example, which is the form to copy:
+
+> The camera pushes slowly and steadily forward toward the can, a smooth continuous dolly-in
+> with a very slight downward tilt. The blurred window slides past on the left as parallax.
+> The can stays perfectly still and in frame throughout. One single continuous take, no cuts,
+> no camera shake, no zoom snap. Slow, cinematic, controlled.
+
+The negatives are not optional garnish: judder, warping, morphing, flicker and scene changes
+are *"the failure modes that specifically wreck a scrub"*, and a clip that watches acceptably
+can still be unusable under a hand.
+
+**Seam locking, when a clip is a chain.** Pin the last frame as well as the first, so leg
+N's tail is leg N+1's head and the joint is frame-identical:
+
+```bash
+ffmpeg -y -sseof -0.05 -i leg1.mp4 -frames:v 1 -q:v 2 seam1.png
+```
+
 Where the footage comes from, and the QA it has to pass before it is vendored:
 [`generation.md`](generation.md).
 
@@ -408,8 +515,8 @@ Where the footage comes from, and the QA it has to pass before it is vendored:
 1. **Lottie is last resort.** Reach for it only when complex character motion can't be hand-built. See [`custom-craft.md`](custom-craft.md) Tier F.
 2. **Custom-commissioned over library pulls.** A LottieFiles community animation that fits your brand exists; one that fits *and* doesn't look like every other LottieFiles community animation is rare. Commission ($100–$300 on Upwork; $1,000+ from a studio) for hero work.
 3. **< 2 MB file size.** Anything heavier loses to its own loading state.
-4. **Pause / resume support.** Required for accessibility (motion-sensitive users need control).
-5. **Reduced-motion fallback** to a static keyframe. Required.
+4. **Pause / resume support.** Required for accessibility. WCAG 2.2.2 governs anything that moves for more than five seconds; the *control* is required, and F-011 does not touch it.
+5. ~~**Reduced-motion fallback** to a static keyframe. Required.~~ **F-011 (2026-09-07):** motion plays unconditionally in this system, so there is no preference-gated static keyframe. What survives from this line is the *poster*: the animation's first frame is what the page holds before the file decodes, exactly as for video (§ Hero / demo video rule 3). The pause control in rule 4 is the accessibility affordance; the preference gate is not.
 6. **Don't use Lottie for what CSS can do.** Spinning logos, checkmark draws, loading spinners, hover micro-interactions — all CSS territory. The skill catches the "Lottie shortcut" anti-pattern in its slop test.
 
 ### Avoid

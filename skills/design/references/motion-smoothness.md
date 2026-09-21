@@ -95,16 +95,22 @@ someone diagnosed the complaint to root cause: *"Two separate faults get describ
   `data-sc-lerp` **0.12**, not the 0.18 default, and widen `data-sc-seam` to ~0.16.
 
 `motion_probe.py` reports `max_step` per act, so an act that surges relative to its
-neighbours shows up as a spread across runs rather than as a feeling.
+neighbours shows up as a spread across runs rather than as a feeling. Full port, with
+the weight arithmetic and the worldflight knob values: [`scroll/pace.md`](scroll/pace.md).
 
 ## The bar
 
 A signature act is not finished until, at 4× CPU throttling:
 
 - `staircase = 0`
-- `max_step ≤ 3 %` of the value's own range
+- `max_step ≤ 3 %` of the value's own range **on the damped playhead `--sc-ps`**; on a
+  derived track (`transform`, `clip-path`, …) it is reported, not gated — a smoothstepped
+  value peaks at ~4.4 % per frame by its own derivative, and `staircase` is the number
+  that catches a step there (r8 R2: V3c's flip at 4.12 %, staircase 0, was correct)
 - frame p95 ≤ 20 ms, zero frames over 33 ms
 - both scroll directions measured, not just downward
+- measured in a quiet window: run `tests/motion/smooth.html` first as a control; if the
+  control shows any frame over 33 ms, the host is busy and the page's numbers are noise
 
 ## What the harness still cannot tell you
 
@@ -122,6 +128,7 @@ stays — documented here rather than silently tolerated.
 
 ## Related
 
-[`scroll/devices.md`](scroll/devices.md) · [`performance.md`](performance.md) ·
+[`scroll/devices.md`](scroll/devices.md) · [`scroll/pace.md`](scroll/pace.md) ·
+[`performance.md`](performance.md) ·
 [`motion.md`](motion.md) · `scripts/motion_probe.py` · `scripts/scroll/sc-smooth.js` ·
 FEEDBACK.md F-011, F-012, F-013.

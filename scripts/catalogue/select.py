@@ -205,6 +205,18 @@ def main() -> int:
         ranked.append((sc, e, why))
     ranked.sort(key=lambda r: (-r[0], r[1].get("slug", "")))
 
+    # A brief that matched nothing scores every entry 0 (own sites -5), and the
+    # tie-break then hands back the first four slugs alphabetically. r8 R1
+    # (2026-09-10): a builder ran this against an unfilled BRIEF skeleton and
+    # got aarke, aevi-wellness, alet, altitude-beverages written into its ledger
+    # as a "selection". That is not a selection; refuse to record it.
+    if not ranked or ranked[0][0] <= 0:
+        sys.stderr.write("select: briefen gav noll poang for varje post - register-, "
+                         "grammatik- och kategoriraderna ar tomma eller okanda. Fyll i "
+                         "dem (eller kor mot BRIEF-draft.md) och kor om. Ingen "
+                         "catalogue-select-rad skriven.\n")
+        return 1
+
     picked = list(ranked[:max(1, args.k)])
 
     if args.wildcard and brief.get("category"):

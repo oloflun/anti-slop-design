@@ -21,6 +21,58 @@ Cutlist's peak problem — it bans the devices a peak normally wants — is
 solved by moving the peak into the fixed chrome layer rather than breaking
 the grammar; see uniqueness.md §2.8.
 
+## Two grammars carry a hard precondition
+
+Both are the kind of thing that is discovered a full build too late. Check
+them at grammar selection, not at verification.
+
+### Live surface: the honesty rule (§2.3)
+
+The page behaves like the product — *"not a screenshot of it, and not a
+div-built fake: the actual surface, running, with scroll driving its state."*
+`taste.md`'s ban on fake dashboards and fake terminals is **not suspended
+here**, and this grammar is where it is most tempting to suspend it.
+
+> The surface has to be **real markup running real logic on real or
+> clearly-labelled sample data.**
+
+That labelled-sample escape is the whole way in for a **concept product**:
+every panel is operable markup computing its state from data arrays in the
+page, and **the page says on its face that the scenario is a demo**. Both
+halves are required — operable, and labelled.
+
+What stays banned is *"the painting of a surface"*: an image, or dummy divs,
+posing as something that runs. **If the panels cannot actually compute, the
+grammar is unavailable. Pick another.** This is a build-feasibility question
+disguised as a style choice, so answer it before the score table exists.
+
+Note the shape of the close this implies: *"a magnetic button is the wrong
+ending for a page that spent its whole length being a tool"* — the close is an
+**actual input** the visitor can put a cursor in.
+
+### Continuous world requires worldflight (§2.4)
+
+> **This grammar REQUIRES worldflight mode.** `data-sc-mode="worldflight"`,
+> one fixed stage, one spacer, legs that crossfade.
+
+Building it out of pinned acts is **not a lesser version of this grammar, it
+is a different and worse page**, and it has already been tried. The owner's
+verdict on the act-based attempt:
+
+> *"awful… you're literally going from scrolling down to static page and then
+> you start scrolling down again… weird clear page lines scrolling up… very
+> cheap looking."*
+
+Every one of those is the same defect. **A pinned act is a block in the
+document; a document made of blocks has seams; and a world with seams is not a
+world.** Do not reach for `scrub` acts here, however long the spans are made.
+
+This is also the expensive one: *"a single unbroken flight is the most fragile
+thing you can build"*, the seam law is not optional, and the build should be
+budgeted with a reroll in it. Choose this grammar only when the brief is
+literally about travel through a place. Its pace bar has its own file —
+[`pace.md`](pace.md).
+
 ## Register × grammar fit
 
 The six registers are `../../SKILL.md` § The craft floor's own list. Each row

@@ -143,6 +143,17 @@
        (HSL L 0,365 -> 0,52) tills kontrasten mätt gav 5,16:1 mot golvet
        4,5:1. Bara för ?process=invert; --c-accent på papper rörs inte. */
     --c-accent-on-dark:#3286d8;
+    /* R24 FEL 2. Accenten SÅ SOM TESBANDET BÄR DEN. #process skriver om
+       --c-accent till --c-accent-on-dark (rad ~1673, PLAN 048 C), och
+       .tes-plane ligger INNE i #process - så planets color-mix fick
+       #3286d8 (oklab 0.6099 -0.0476 -0.1401) medan .thesis-stage bar
+       #1e5e9c (oklab 0.4746 -0.0375 -0.1125). Tva bla ytor med en hard
+       skarv, och planets blandning var aldrig boven: procenten resolvade
+       till 0 % som avsett. Token skrivs på :root, där var(--c-accent)
+       resolveras EN gång och det beräknade värdet ärver oförändrat ned -
+       #process:s överskrivning av --c-accent når den aldrig. En alias, inte
+       en ny färg: samma #1e5e9c, nu läsbar inifrån den inverterade akten. */
+    --c-accent-band:var(--c-accent);
     /* PLAN 048 C. Processaktens grund i V3d: ritbordet i mörker. Kall
        blåsvart, chroma 0,022 (grafiten har 0,012) - läser som ett eget
        material mot både fotot och jättens svarta plåt, blir aldrig en
@@ -227,6 +238,36 @@
   @property --p-thin { syntax: "<number>"; inherits: false; initial-value: 0; }
   @property --p-fill { syntax: "<number>"; inherits: false; initial-value: 0; }
   @property --p-fall { syntax: "<number>"; inherits: false; initial-value: 0; }
+
+  /* R24 FEL 1 (kedjedisciplin M1). Varje numerisk custom property som ett
+     skript, ett prov eller en granskare LÄSER maste vara registrerad.
+     Oregistrerad ar vardet en tokenstrom - getPropertyValue('--tx') gav
+     "clamp(0,calc((0.3205 - 0.2258) / 0.1613),1)", parseFloat gav NaN, och
+     NaN blir tyst 0 i varje filter och varje if. Samma falla gjorde
+     --slit-p-filtret verkningslost i r18 OCH i Astras r21- och r22-korning,
+     och fick lead att rapportera "tx ar 0" nar den var 0,59.
+     inherits:true - de ar alla lästa av ÄTTLINGAR (.tes-plane/.seam/
+     .process-title laser --tx, .cases-chapter::after och .cases-title laser
+     --cx), och oregistrerade
+     custom properties ärver per default. inherits:false hade brutit akten.
+     initial-value:0 - de ar alla enheterlösa tal i 0..1.
+     INTE --x1, --x2, --x3, --x4, --sx1..4, --pl-t, --pl-r, --pl-l eller
+     --dn: de bär px, en <number>-registrering hade gjort dem ogiltiga och
+     tystnat dem till 0.
+     INTE --sc-ps: motorn registrerar den sjalv (sc-smooth.js
+     CSS.registerProperty), och motorn rörs aldrig. */
+  @property --tx     { syntax: "<number>"; inherits: true; initial-value: 0; }
+  @property --cx     { syntax: "<number>"; inherits: true; initial-value: 0; }
+  @property --slit-p { syntax: "<number>"; inherits: true; initial-value: 0; }
+  /* --tx-a/--tx-b las av sidans egen aimFlow (R24 fel 4) och maste darfor
+     ocksa vara registrerade. Deras initialvarden ar INTE 0: CSS:ns
+     fallback ar var(--tx-a,.07)/var(--tx-b,.29), och en registrering med
+     initial-value:0 hade tyst bytt ut den fallbacken mot 0 - alltsa
+     division med noll i --tx-formeln i varje bildruta innan measureAct
+     hunnit skriva dem. Samma tal som fallbacken, sa beteendet ar identiskt
+     fore och efter registreringen. */
+  @property --tx-a   { syntax: "<number>"; inherits: true; initial-value: 0.07; }
+  @property --tx-b   { syntax: "<number>"; inherits: true; initial-value: 0.29; }
 
   *{box-sizing:border-box;}
   /* PLAN 037, R9 loop 3: hela sidans scrollposition räknas av motorn/
@@ -786,8 +827,8 @@
      (rad 2235-2317), men ett snabbt hjul kan ändå hinna förbi innan sidan
      (typsnitt, bilder) hunnit färdigrendera (uppmätt: läst readyState
      "loading" när ramen redan var i synfältet vid 800px hjulsteg).
-     `background-image` på WRAPPERN i stället för en `<img>`-nod i
-     dokumentet: en `<img>`, även med `position:absolute` och explicit
+     `background-image` på WRAPPERN i stället för en bildnod i
+     dokumentet: en bildnod, även med `position:absolute` och explicit
      `width`/`height`, visade sig ge en engångs layoutkrock i en HELT
      annan sektion (`.step-band`s 3-kolumnsgrid, `#process`, uppmätt
      --band-h 216 -> 1849px) - en bakgrundsbild målas, skapar ingen box,
@@ -841,7 +882,16 @@
   .price{position:relative;isolation:isolate;color:var(--invert-ink);
     min-height:100svh;display:flex;flex-direction:column;justify-content:flex-end;
     padding:clamp(120px,18svh,200px) var(--rail-x) clamp(48px,8svh,96px);
-    background:linear-gradient(180deg,var(--c-black) 0,var(--c-black) 10svh,transparent 45svh);}
+    /* R24 FEL 8.2, övergången till kontakten. Den andra gradienten är ny och
+       ligger ÖVERST i stacken: fotot löses upp i svart mot sektionens
+       nederkant, så att priset och den nu svarta kontakten möts i en
+       gradient i stället för i en rak kant. Permanent, inte klockad - en
+       klockad slöja har ett mellanläge, och mellanläget är grått (exakt vad
+       R24 dömde ut hos .chapter-plate: "varje mellanläge var en
+       halvtransparent grå slöja"). En gradient har inget mellanläge. */
+    background:
+      linear-gradient(to bottom,transparent 0,transparent 74%,var(--c-black) 100%),
+      linear-gradient(180deg,var(--c-black) 0,var(--c-black) 10svh,transparent 45svh);}
   /* PLAN 067 6.3: .close::before struken ur listan - footern ligger på
      papper nu, ingen scrim mot ett foto längre (§ keep-avvikelse, motiverad
      av grundbytet, inte en regression). */
@@ -933,20 +983,22 @@
   .cases-chapter{background:var(--bg);color:var(--ink);display:flex;
     flex-direction:column;justify-content:center;position:relative;
     padding:clamp(56px,14svh,140px) var(--rail-x) clamp(32px,7svh,72px);}
-  /* PLAN 067 5.2. Ritningsarket öppnar sig till kapitlets papper. Samma
-     inset()-grammatik och samma --pl-*-mönster som .tes-plane, spegelvänd.
-     INTE en hård kant, INTE en gradient, INTE en fjärde mekanik. */
+  /* R24 FEL 6. .chapter-plate BORTTAGEN. Plan 067 5.2 lät plattan både växa
+     (inset() mot arkets fyra kanter) och skifta fyllning (color-mix drafting
+     -> papper) på SAMMA klocka. Två fel följde, båda uppmätta:
+     (1) --cp-up kapades av `fri`, som mäts i TESAKTEN ~10 000 px längre upp -
+         samma klass av fel som fel 4, ett mått flyttat utan sin målpunkt.
+         Plattan hamnade 217 px ovanför kapitlets överkant i stället för 834,
+         --cp-t vände till 0, och den synliga rektangeln satt fast vid arkets
+         UNDERKANT: en 198 px remsa som sköt 77 px ut över papperet.
+     (2) Fyllningen korsade drafting -> papper mitt i växten, så varje
+         mellanläge var en halvtransparent grå slöja över papperet.
+     Plattan kan inte göra båda jobben på en klocka utan att måla grått över
+     papper någonstans. Kapitlet bär övergången själv: processaktens mörka
+     svans slutar i en ren fullbreddskant vid kapitlets överkant.
+     Landningshårlinjen (5.4) står kvar och räknas som förut. */
   .cases-chapter{--cx:clamp(0,calc(var(--sc-ps,0) / .34),1);}
-  .chapter-plate{position:absolute;left:50%;width:100vw;transform:translateX(-50%);
-    top:calc(-1 * var(--cp-up,0px));height:calc(var(--cp-up,0px) + 100%);
-    pointer-events:none;z-index:0;
-    background:color-mix(in oklab,var(--c-drafting),var(--bg) calc(var(--cx) * 100%));
-    clip-path:inset(calc((1 - var(--cx)) * var(--cp-t,0px))
-                    calc((1 - var(--cx)) * var(--cp-r,0px))
-                    calc((1 - var(--cx)) * var(--cp-b,0px))
-                    calc((1 - var(--cx)) * var(--cp-l,0px)));}
-  .cases-chapter > :not(.chapter-plate){position:relative;z-index:1;}
-  html:not(.js) .chapter-plate{display:none;}
+  .cases-chapter > *{position:relative;z-index:1;}
   /* PLAN 067 5.4: landningshårlinjen, samma roll som .tes-plane-övergångens
      egen (§ keep) - ingen etikett, ingen siffra (F-016). */
   .cases-chapter::after{content:"";position:absolute;z-index:2;pointer-events:none;
@@ -1173,7 +1225,26 @@
      mätte 390 px död svart mellan rubriken och steg 01 i det gamla draget.
      clamp(560px,86svh,920px): kapitlet kort nog att steg 01 redan hunnit
      öppna sin slot när rubriken bläckas färdigt (C5, Target 7:5/7:6/7:19). */
-  .process-chapter{position:relative;min-height:clamp(560px,86svh,920px);display:flex;
+  /* R24 F3 (Antons skärmbild 2701). Rubriken skars av i underkant.
+     Grundorsaken är INTE rubrikens egen ruta och INTE background-clip -
+     titelklipp.py mätte lost_px 0 på kapitlet (glyferna är hela). Den är
+     att stämpelrutan hänger UNDER landningslinjen (--dn + 1px, "landnings-
+     linjen som överlinje", C2) och därför sticker ut nedanför kapitlets
+     egen box: uppmätt 1920x930 -> kapitlet 800px högt, stämpelns underkant
+     933,4px, alltså 133px utanför. Den ytan ägs av .process-stick, som är
+     sticky med z-index:2 och OPACITET --bg - ett fast plan som målade över
+     rubrikens sista rad. Beviset: elementFromPoint mitt i "lanserad sida."
+     gav process-stick i tre av tre punkter.
+     Fixen ger kapitlet den höjd dess eget innehåll kräver, uttryckt i de
+     tal JS redan skriver (--dn = landningslinjen, --stamp-h = stämpelns
+     scrollHeight), i stället för ett nytt hårdkodat tal. max() behåller
+     nuvarande höjd där stämpeln redan ryms (mobil: ingen ändring, uppmätt
+     390 -> 0px tillväxt). Ingen cirkularitet: --dn läses ur vh och arkets
+     bredd i .process-grid, aldrig ur kapitlets höjd. */
+  .process-chapter{position:relative;
+    min-height:max(clamp(560px,86svh,920px),
+                   calc(var(--dn,0px) + var(--stamp-h,0px) + 56px));
+    display:flex;
     flex-direction:column;justify-content:center;padding-block:clamp(72px,12svh,120px);}
   /* PLAN 067 C3/7.5 (river PLAN 061 B1, giltig bara så länge kapitlet var
      exakt 120svh - det är det inte längre, C4). Klockan räknas av measureAct
@@ -1181,6 +1252,25 @@
      7:15). Draget halverat till 260-300px vid 1920 / 220-260px vid 390
      (Target 7:3), mot gårdagens 594/539. */
   .process-chapter{--tx:clamp(0,calc((var(--sc-ps,0) - var(--tx-a,.07)) / var(--tx-b,.29)),1);}
+  /* R24. KapitelEtiketten. Samma mono-röst och spärrning som .card-kicker -
+     sidans befintliga label-språk, inte ett nytt. INGEN text-transform:
+     Anton skrev etiketten med kolon, och versaler + kolon är en trasig
+     konvention. --c-mute-on-dark, för processakten står på --c-drafting. */
+  /* R24, a11y-fynd 2026-09-21 (a11y_scan, color-contrast, serious; 1440 och
+     390). Etiketten står på en mark som VANDRAR: .tes-plane ligger över
+     stämpelrutans hela yta (dess höjd är pl-.h + --dn + --stamp-h) och går
+     från accentblått till skiffer på --tx. --c-mute-on-dark
+     (rgba(255,255,255,.62)) ger 7,38:1 mot skiffern men bara **3,64:1** mot
+     den blå änden (uppmätt i pixlar över hela aktens scrollsvep, värsta
+     läget, mark rgb(30,94,156) = --c-accent-band). 12,5px text kräver 4,5:1.
+     Ingen slöja, ingen skugga (huset räddar aldrig text med scrim): etiketten
+     byter till --ink, som klarar båda markerna med marginal - 6,0:1 mot den
+     blå, 15,2:1 mot skiffern, båda räknade mot värsta uppmätta pixel.
+     Skopat till .process-kicker: .card-kicker står på en fast mörk yta och
+     rörs inte. */
+  .process-kicker{font-family:var(--f-mono);font-weight:400;
+    font-size:clamp(.6875rem,.62rem + .18vw,.8125rem);letter-spacing:.2em;
+    color:var(--ink);margin:0 0 clamp(10px,1.6svh,18px);}
   .process-title{font-family:var(--f-display);font-weight:700;
     /* PLAN 051 fix 4 (R4, Astra material_fixes #4): golvet höjt 2,75rem
        (44px, uppmätt under Astras 56px-mål vid 390) -> 3.5rem (56px).
@@ -1237,9 +1327,17 @@
      stämpelruta i den. Färgen hålls på --c-accent till tx 0,75 och vänder
      över sista fjärdedelen (C8): en döv skiffer i mitten annars, som varken
      är accenten ovanför eller ritbordets ton under. */
+  /* R24 FEL 2. --c-accent-band, inte --c-accent: planet ligger inuti
+     #process, där --c-accent är överskriven till --c-accent-on-dark
+     (#3286d8). Vid tx <= 0,75 ska fyllningen vara OSKILJBAR från
+     .thesis-stage (#1e5e9c, C8) - med den överskrivna token mätte planet
+     oklab(0.6099 -0.0476 -0.1401) mot bandets oklab(0.4746 -0.0375
+     -0.1125), alltså två blå ytor med hård skarv (worst-6880-1920.png).
+     Blandningen var aldrig boven: procenten resolvade till 0 % hela tiden
+     (uppmätt, fill-broken.json). Se --c-accent-band i :root. */
   .tes-plane{position:absolute;left:50%;width:100vw;transform:translateX(-50%);
     top:calc(-1 * var(--pl-h,0px));height:calc(var(--pl-h,0px) + var(--dn,0px) + var(--stamp-h,0px));pointer-events:none;
-    background:color-mix(in oklab,var(--c-accent),var(--c-drafting)
+    background:color-mix(in oklab,var(--c-accent-band),var(--c-drafting)
       calc(clamp(0,calc((var(--tx) - .75) / .25),1) * 100%));
     clip-path:inset(calc(var(--tx) * var(--pl-t,0px)) calc(var(--tx) * var(--pl-r,0px))
       0 calc(var(--tx) * var(--pl-l,0px)));}
@@ -1438,15 +1536,38 @@
      INTE en rullande lista, INTE ett band över arket, INTE en ny bytesformel
      - sticky top:0 + --slit-p är R18/R21/R22:s egen, med 0 glyfspringor. */
   @media (min-width:1024px){
-    .process-grid{grid-template-columns:clamp(18rem,23vw,28.75rem) minmax(0,1fr);
-      column-gap:clamp(28px,3.2vw,64px);padding-left:var(--rail-x);}
+    /* R24 F5 (Antons skärmbild 2702: "spalten är för trång - 19 % av
+       viewporten"). Uppmätt före: textspalten 409,9px av 1920 (21,3 %),
+       steg 02 i 6 rader, steg 01/04 i 7. Copyn är rätt (28-34 ord), det är
+       kolumnen som är fel - den var låst till 23vw med taket 28,75rem.
+       Ett vridet handtag: railytan och spalten delar 503px, så varje px
+       texten får tar arket. Här: 27vw (518,4px vid 1920), gapet 61,4 -> 49,9
+       och bandets högerpadding 30,7 -> 19,2. Textspalten blir 499,2px
+       (+21,7 %). Arket går 68,8 % -> 65,4 % vw.
+       DET ÄR EN AVVÄGning och den skrivs ner: 68,8 % står i HANDOFF
+       2026-09-20 § 4 som ett accepterat tal, och det är nu ändrat på order
+       ("det är spalten som är fel"). Ingen höjdbunden aritmetik rörs - arket
+       är fortfarande breddbundet och tar hela sin kolumn. 1440 mäts separat. */
+    .process-grid{grid-template-columns:clamp(20rem,27vw,31rem) minmax(0,1fr);
+      column-gap:clamp(28px,2.6vw,50px);padding-left:var(--rail-x);}
     .process-steps{grid-area:auto;grid-column:1;}
     .process-steps li{border-right:1px solid var(--c-line-on-dark);}   /* B5 */
     .process-stick{grid-area:auto;grid-column:2;top:0;margin-top:0;
       height:100svh;padding:clamp(12px,2svh,24px) 0;justify-content:flex-end;}
     .process-sheet{width:min(100%,calc((100svh - 2 * clamp(12px,2svh,24px)) * 880 / 495));}
     .step-band{grid-template-columns:minmax(0,1fr);grid-template-rows:auto auto 1fr;
-      padding-left:0;padding-right:clamp(14px,1.6vw,32px);border-bottom:0;}
+      padding-left:0;padding-right:clamp(12px,1vw,20px);border-bottom:0;}
+    /* R24 F4 (Antons skärmbilder 2700/2702: "siffran och etiketten sitter
+       ihop"). Uppmätt före, riktig hjulscroll: siffrans box-underkant mot
+       etikettens box-överkant = +2,1px (steg 01), -2,3px (02), -2,3px (04)
+       vid 1920; +2,7 / -2,6 / -2,6 vid 1440 - alltså överlapp på fem av sex
+       mätpunkter. Två orsaker: radgapet (8-14px) är ingenting under en
+       168px-siffra, och #process .ledger-num bär transform:translateY(
+       (1 - k) * .08em) som skjuter ned glyfen ytterligare ~13px i olyst
+       läge. Marginalen nedan adderar till radens yttermått, alltså bara
+       siffra->etikett - inte etikett->text, som redan står rätt (11,2px).
+       siffrans egen klocka, radgapet och --band-h rörs inte. */
+    .step-band > .ledger-num{margin-bottom:clamp(18px,2.8svh,34px);}
       /* PLAN 067 2.x fix: basreglens padding:… var(--rail-x) … satte VÄNSTER
          padding på .step-band till rail-x igen, ovanpå .process-grids egen
          padding-left:var(--rail-x) (rad ovan) - dubbel ränna, INTE avsiktlig.
@@ -1776,12 +1897,57 @@
      --sc-ps direkt, ingen transition på det som scrubbas). INTE en modal,
      INTE hjälptexter under fälten (F-016/gate 99) - etiketterna identifierar
      fälten, det är deras funktion, inte dekoration. */
-  .contact{position:relative;isolation:isolate;background:var(--bg);color:var(--ink);
+  /* R24 FEL 8.2. Sektionen är INVERTERAD till svart på Antons order
+     ("Testa att invertera den sektionen till svart och skapa en snygg
+     övergång från bilden med prissektionen"). Det river plan 067 B11/B12,
+     som valde papper - ordern går före planen.
+
+     Inverteringen görs med husets eget mönster, samma som .case--horai:
+     --bg/--ink/--c-line-on-paper omdeklareras på sektionen, och varje regel
+     inuti den läser dem. Ingen regel skrivs om, ingen färg hårdkodas.
+     --c-line-on-paper byter till --hairline-dark så fältens underlinjer syns
+     mot svart; etikett- och statusfärgerna är redan color-mix mot --ink/
+     --bg och följer med automatiskt. */
+  .contact{position:relative;isolation:isolate;
+    --bg:var(--c-black);--ink:var(--c-paper);
+    /* INTE --hairline-dark. Fältens underlinje är fältets ENDA synliga
+       avgränsning, alltså en icke-textlig UI-komponent och bunden av WCAG
+       1.4.11:s 3:1. --hairline-dark (rgba(255,255,255,.18)) ger uppmätt
+       **1,67:1** mot #0b0c0e - den försvann i princip. 42 % papper ger
+       **3,78:1**, mätt, med marginal. Samma uppmätta fälla som kortets
+       understrykning en gång hade (2,92:1, rad ~578). */
+    --c-line-on-paper:color-mix(in srgb, var(--ink) 42%, var(--bg));
+    background:var(--bg);color:var(--ink);
     min-height:100svh;display:flex;align-items:center;
     padding:clamp(72px,12svh,140px) var(--rail-x) clamp(40px,6svh,80px);}
-  .contact-veil{position:absolute;inset:0;z-index:-1;pointer-events:none;
-    background:var(--c-black);
-    opacity:calc(1 - clamp(0,calc((var(--sc-ps,0) - .02) / .22),1));}
+  /* R24 FEL 8.2. .contact-veil är BORTTAGEN, både regeln och elementet.
+     Den var svart över papper och lyftes; sedan jag vände sektionen till
+     svart hade den inget jobb kvar, och min första version av den - papper
+     i delvis opacitet över svart - blev en platt grå skiva med hård
+     överkant. Övergången ligger nu i .price:s egen bakgrundsstack, som en
+     permanent gradient utan mellanläge. Inget element, ingen klocka,
+     inget grått. */
+  /* R24 F2 (Antons skärmbild 2703: "gör även texten 'Berätta om er
+     verksamhet' större och mer Impactful"). Rubriken hade INGEN regel alls -
+     uppmätt font-family "Public Sans" 24px, webbläsarens egen h2-default.
+     Det är inte en smakfråga: TASTE.md § 4.6 förbjuder mellannivån ("aldrig
+     en 32px-mellannivå" - mellanrubriker är antingen kickers eller
+     displaystora), och 24px mot 16px body är varken eller.
+     Nu husets displayröst, samma som .process-title och prisets .statement:
+     Geist 700, clamp mot 4,5rem (72px) vid 1920, leading .95, tracking -.03em.
+     Härledd storlek, inte gissad: 72 / 16 = 4,5x body, alltså över TASTE:s
+     5x-golv räknat mot den faktiska body-storleken i sektionen.
+     Leden under står kvar orörd (NOTES F2: "leden under stannar där den är").
+     Ingen ny färg, inget nytt typsnitt - bara den röst sektionen saknade. */
+  .contact-head h2{font-family:var(--f-display);font-weight:700;
+    font-size:clamp(2.75rem,3.75vw,4.5rem);line-height:.95;letter-spacing:-.03em;
+    color:var(--ink);max-width:18ch;margin:0;}
+  /* Sammet: leden hade margin-top 0 (uppmätt) och låg dikt an under en 72px
+     rubrik - den lästes som en bildtext till rubriken, inte som dess led.
+     Storleken rörs inte (NOTES F2: "leden under stannar där den är"); bara
+     luften mellan dem, som huset redan ger på andra håll (.card-kicker
+     margin-top, .process-locked margin-top). */
+  .contact-head .contact-lead{margin-top:clamp(12px,1.8svh,22px);}
   .js .contact-inner{--k:clamp(0,calc((var(--sc-ps,0) - .06) / .20),1);
     opacity:var(--k);filter:blur(calc((1 - var(--k)) * 4px));}
   .contact-inner:focus-within{opacity:1;filter:none;}
@@ -1792,6 +1958,31 @@
       column-gap:clamp(24px,2.4vw,44px);row-gap:clamp(24px,3.4svh,40px);}
     .field--wide,.contact-actions,.contact-status{grid-column:1 / -1;}
   }
+  /* R24 FEL 8.4. Bäraren för kortbaksidan. .card-back är position:absolute/
+     inset:0 och mäter i cqw, alltså kräver den en förälder med egen storlek
+     och container-type - heron ger det via .plate-card, här ger den här
+     regeln det. Samma kortproportion (1,586 = 85,6 x 54 mm) som heron.
+     Ingen rotation, ingen baksida-att-vända-till: baksidan visas som den är. */
+  .contact-card{position:relative;container-type:inline-size;
+    aspect-ratio:1.586;width:min(100%,400px);
+    background:var(--c-black);margin-top:clamp(28px,4.4svh,48px);}
+  /* R24 F1 (Anton 2026-09-21: "Jag menade framsidan på visitkortet, den med
+     motiv och logga"). Kortet visade baksidan; ytan inuti byts, omslaget
+     står kvar orört (samma aspect-ratio, samma bredd, samma container-type).
+     Framsidan är herons EGEN: samma .face--front, samma .logo-dock, samma
+     ljuspölsfoto - samma objekt, två platser (gate 47/79: ritad form, aldrig
+     innehåll; ingen påhittad chrome).
+     MÄRKET ÄR ETT <use>, INTE EN KOPIA: herons path bär id="alunix-mark-path"
+     och pathen är ~4 kB. En kopia hade gett dubbelt id (ogiltig HTML) och
+     kolliderat med herons setFace-JS, som slår upp samma id.
+     .logo-dock mäter i cqw och hade gett 48px (min-golvet) på ett 400px-kort
+     - 19 % av korthöjden. Skopat till kortets egen skala: 7cqw = 28px, vilket
+     är den höjd NOTES F1 angav. Ingenting i heron rörs: regeln är skopad
+     till .contact-card. */
+  .contact-card .face{position:absolute;inset:0;}
+  .contact-card .logo-dock{left:clamp(14px,3.5cqw,22px);top:clamp(14px,3.5cqw,22px);
+    height:clamp(18px,7cqw,28px);}
+  .contact-card .face--front img{transform:none;object-position:50% 58%;}
   .field{position:relative;margin:0;}
   .field label{display:block;font-family:var(--font);font-weight:300;
     font-size:clamp(1.0625rem,.85rem + .28vw,1.1875rem);line-height:1.3;
@@ -1805,9 +1996,14 @@
   .field textarea{resize:vertical;min-height:132px;}
   .field input:not(:placeholder-shown),.field textarea:not(:placeholder-shown){
     border-bottom-color:color-mix(in srgb,var(--ink) 44%,var(--bg));}
+  /* R24 FEL 8.1. Anton: "animationen är lite för hastig och kan göras
+     långsammare och mjukare". 200 ms -> 360 ms, och en ren ease-out-kurva i
+     stället för husets --ease: en underline som växer från vänster ska
+     ackumulera fart tidigt och landa mjukt, inte accelerera in i kanten.
+     Fältformen i övrigt är orörd - Anton gillar den. */
   .field::after{content:"";position:absolute;left:0;right:0;bottom:0;height:2px;
     background:var(--ink);transform:scaleX(0);transform-origin:left center;
-    transition:transform .2s var(--ease);}
+    transition:transform .36s cubic-bezier(.22,.61,.36,1);}
   .field:focus-within::after{transform:scaleX(1);}
   .field input:focus-visible,.field textarea:focus-visible{
     outline:2px solid var(--ink);outline-offset:4px;}
@@ -1865,10 +2061,22 @@
   /* PLAN 067 6.3 (B11): footern byter grund kort/svart -> --bg/--ink.
      Kontaktsektionen ovanför äger nu övergången till mörkt (dess egen
      .contact-veil); footern är bara den låsta reservvägen in, på papper. */
-  .close{position:relative;isolation:isolate;z-index:1;background:var(--bg);color:var(--ink);
+  /* R24 FEL 8.2/8.5. Sidfoten inverteras med samma tokenmönster som
+     .contact, annars blir den en grädd remsa under en svart sektion - den
+     hårdaste kanten på hela sidan, och precis den skarv Anton klagat på
+     förut. Topp-padding sänkt (24-40 -> 12-20 px) så raden hamnar direkt
+     under knappen i stället för att flyta iväg: "flytta upp Eller mejla
+     kontakt@alunix.se". */
+  .close{position:relative;isolation:isolate;z-index:1;
+    --bg:var(--c-black);--ink:var(--c-paper);
+    /* Samma 42 % som .contact: hårlinjen är dekorativ och bunden av 1.4.11
+       bara om den bär betydelse, men --hairline-dark ger 1,67:1 och en
+       hårlinje ingen ser är ingen hårlinje. Ett värde, båda ytorna. */
+    --c-line-on-paper:color-mix(in srgb, var(--ink) 42%, var(--bg));
+    background:var(--bg);color:var(--ink);
     display:flex;flex-direction:column;justify-content:flex-start;align-items:flex-start;
     gap:clamp(16px,2.4svh,24px);
-    padding:clamp(24px,4svh,40px) var(--rail-x) clamp(32px,6svh,64px);}
+    padding:clamp(12px,2svh,20px) var(--rail-x) clamp(32px,6svh,64px);}
   /* Hårlinjen ritas ur --sc-ps (F-014), ingen transition, ingen JS.
      PLAN 067 3.6/6.3: align-self:stretch (var 527px, inte liggarens
      högerkant) och --c-line-on-paper i stället för --hairline-dark - grunden
@@ -1948,7 +2156,7 @@
               <p class="card-kicker">Digital byrå</p>
               <hr class="card-rule">
               <p class="card-services"><span>Design</span><span>Utveckling</span><span>System</span></p>
-              <a class="card-cta" href="mailto:kontakt@alunix.se">Boka ett möte</a>
+              <a class="card-cta" href="#kontakt">Boka ett möte</a>
             </div>
           </div>
 
@@ -2045,6 +2253,16 @@
              stämpelrutan EFTER, annars hade linjerna legat ovanpå texten.
              Motsägelsen flaggad i NOTES, löst mot det uttalade målet. -->
         <div class="chapter-stamp">
+          <!-- R24, Antons tillägg 2026-09-21: "Ovanför 'Från samtal till
+               lanserad sida.' vill jag att du lägger till 'Vår Process:'".
+
+               Etiketten NAMNGER kapitlet, den beskriver det inte - det är
+               den tillåtna sidan av F-016/gate 69-70, som förbjuder
+               ögonbryn som säger vad avsnittet ska komma att göra. Prov:
+               self_reference_scan.py flaggar den inte.
+               Ordagrant enligt beställningen, kolon kvar: i mono med
+               spärrning läses den som apparat, inte som en mening. -->
+          <p class="process-kicker">Vår process:</p>
           <h2 id="process-title" class="process-title">Från samtal till lanserad sida.</h2>
           <!-- copy final, plan 054 § Copy: låst rad ur jättesektionen (PRODUCT.md
                § Brand Commitments), flyttad hit - kapitelskärmen inleder just
@@ -2067,56 +2285,66 @@
           <div class="step-band">
           <span class="ledger-num" aria-hidden="true">01</span>
           <h3 class="process-step-title">Uppstart</h3>
-          <!-- copy v1, copy-gate i R7 -->
-          <p class="process-p">Vi börjar med ett samtal om er verksamhet och vad sidan ska göra för er. Efter samtalet skriver vi ner vad vi hört och vad vi föreslår. Ni läser igenom underlaget och rättar det innan något ritas.</p>
+          <!-- R24 fel 5/9, COPY-V3d-r24-steg.md § Stegen. 01 är Antons egen
+               målmening och står ordagrant. 33 ord. -->
+          <p class="process-p">Vi börjar med ett samtal om er verksamhet samt vad ni vill att sidan ska göra för er. Utifrån det skapar vi ett initialt underlag som ni rättar innan det går till ritbordet.</p>
           </div>
         </li>
         <li data-step="02">
           <div class="step-band">
           <span class="ledger-num" aria-hidden="true">02</span>
           <h3 class="process-step-title">Planering</h3>
-          <!-- copy v1, copy-gate i R7 -->
-          <p class="process-p">Vi ritar strukturen som en enkel skiss innan vi formger något. Där ser ni vilka sidor som finns och vad varje sida ska få besökaren att göra. Mobilen planerar vi från början, i samma skiss som datorn.</p>
+          <!-- R24 fel 5, COPY-V3d-r24-steg.md. 28 ord, humanizer-svenska
+               ändrade "innan något formges" -> "innan vi formger något" och
+               "från mobilen och uppåt" -> "mobilen först". -->
+          <p class="process-p">Vi ritar strukturen som en skiss innan vi formger något. Där ser ni vilka sidor som behövs och vad varje sida ska få besökaren att göra, mobilen först.</p>
           </div>
         </li>
         <li data-step="03">
           <div class="step-band">
           <span class="ledger-num" aria-hidden="true">03</span>
           <h3 class="process-step-title">Design</h3>
-          <!-- copy v1, copy-gate i R7 -->
-          <p class="process-p">När strukturen är klar formger vi sidan efter er verksamhet. Förslaget lägger vi på en testadress, så att ni ser det på er egen telefon precis som era kunder kommer att se det. Ni lämnar synpunkter, vi justerar och ni godkänner innan vi bygger.</p>
+          <!-- R24 fel 5, COPY-V3d-r24-steg.md. 31 ord, mot 41 före. -->
+          <p class="process-p">När strukturen står formger vi sidan efter er verksamhet. Förslaget lägger vi på en testadress, där ni ser det på er egen telefon och säger till innan det går till bygge.</p>
           </div>
         </li>
         <li data-step="04">
           <div class="step-band">
           <span class="ledger-num" aria-hidden="true">04</span>
           <h3 class="process-step-title">Utveckling</h3>
-          <!-- copy v1, copy-gate i R7 -->
-          <p class="process-p">Vi bygger sidan i kod från grunden, utan färdig mall, så att den laddar snabbt. Texter och bilder ändrar ni själva i ett innehållssystem. Sidan är er att bygga vidare på när ni vill lägga till mer.</p>
+          <!-- R24 fel 5, COPY-V3d-r24-steg.md. 34 ord. Avslutet är en bild
+               (att bygga vidare på det vi lämnat), inte en upprepning. -->
+          <p class="process-p">Vi bygger sidan i kod från grunden, utan färdig mall, så att den laddar snabbt. Texter och bilder ändrar ni själva, och vill ni lägga till mer bygger ni vidare på det vi lämnat.</p>
           </div>
         </li>
         <li data-step="05">
           <div class="step-band">
           <span class="ledger-num" aria-hidden="true">05</span>
           <h3 class="process-step-title">Innehåll</h3>
-          <!-- copy v1, copy-gate i R7 -->
-          <p class="process-p">Ni behöver inte ha något färdigt när vi börjar. Texter och bilder ni redan har bearbetar vi, så att texten blir kort att läsa och bilderna sitter rätt i formatet. Saknas något säger vi till i tid.</p>
+          <!-- R24 fel 9. P4 besvarad av Anton 2026-09-21, ordagrant ur
+               COPY-V3d-r24-steg.md § P4. 31 ord, tre meningar: den försiktiga
+               formen (säger aldrig att vi inte fotograferar), textlöftet, och
+               bearbeta-bygga-vidare-komplettera i Antons ordning. Ändra inget
+               annat i steg 05. -->
+          <p class="process-p">Ni behöver inte ha något färdigt. Det ni har bearbetar vi, bygger vidare på och kompletterar där något saknas. Texten skriver vi åt er, om ni inte vill ha er egen.</p>
           </div>
         </li>
         <li data-step="06">
           <div class="step-band">
           <span class="ledger-num" aria-hidden="true">06</span>
           <h3 class="process-step-title">Lansering</h3>
-          <!-- copy v1, copy-gate i R7 -->
-          <p class="process-p">Innan sidan går live kontrollerar vi varje länk och varje formulär. Vi testar sidan med tangentbord och skärmläsare, på telefon och på dator. Sedan går vi igenom den med er och visar hur ni ändrar innehållet själva.</p>
+          <!-- R24 fel 5, COPY-V3d-r24-steg.md. 31 ord. -->
+          <p class="process-p">Innan sidan publiceras går vi igenom varje länk, formulär och bild. Vi testar den med tangentbord och skärmläsare, på telefon och på dator, och visar er hur ni ändrar innehållet själva.</p>
           </div>
         </li>
         <li data-step="07">
           <div class="step-band">
           <span class="ledger-num" aria-hidden="true">07</span>
           <h3 class="process-step-title">Förvaltning</h3>
-          <!-- copy v1, copy-gate i R7 -->
-          <p class="process-p">Vi finns kvar efter lansering. Nya sidor och ändringar går samma väg som bygget, så ni ser dem på testadressen innan de syns för era kunder. Har ni en fråga mejlar ni oss på kontakt@alunix.se.</p>
+          <!-- R24 fel 5, COPY-V3d-r24-steg.md. 34 ord. Enda ändringen mot
+               v1: "innan de syns för era kunder" -> "innan era kunder gör
+               det", passivformen bort. kontakt@alunix.se står (låst copy). -->
+          <p class="process-p">Vi finns kvar efter lansering. Nya sidor och ändringar går samma väg som bygget, så ni ser dem på testadressen innan era kunder gör det. Har ni en fråga mejlar ni oss på kontakt@alunix.se.</p>
           </div>
         </li>
       </ol>
@@ -2271,16 +2499,25 @@
        INTE ett kortrutnät med case. Ersätter "Hur vi tänker" - ingen av de
        tre gamla raderna flyttas (lead, plan 054 § Frågor Q5). -->
   <section class="cases-chapter" id="case" data-sc-act="flow" aria-labelledby="case-title">
-    <!-- PLAN 067 5.1. Blåkopian baklänges: arket (ritningen) öppnar sig ut i
-         kapitlets papper, samma inset()-grammatik som .tes-plane, spegelvänd.
-         aria-hidden: rent dekorativ yta, ingen egen information. -->
-    <div class="chapter-plate" aria-hidden="true"></div>
+    <!-- R24 FEL 6. .chapter-plate (plan 067 5.1) borttagen - se CSS-blocket
+         ovan för de två uppmätta orsakerna. Ingen platta, ingen slöja. -->
     <!-- PLAN 060 1/7: rubriken ÄR namnet, ingen kicker ovanför (F-016). -->
     <h2 id="case-title" class="cases-title">Exempelcase</h2>
-    <!-- PLAN 067 4.3 (Q3, alternativ A): ordagrant ur COPY-V3d-r23.md, ersätter
-         den gamla fem-meningarsingressen. STOPP-villkoret (filen saknas) gällde
-         inte - COPY-V3d-r23.md fanns. -->
-    <p class="cases-lead">Vi har ingen husstil. Formen kommer ur verksamheten, och därför valde vi de två projekt som ligger längst ifrån varandra.</p>
+    <!-- R24 FEL 7. .cases-lead BORTTAGEN. Anton fällde raden två gånger:
+         "fortfarande fruktansvärd AI-slop ... det är väldigt tydligt."
+
+         Felet satt i ÄMNET, inte i orden. Varje variant förklarade SIDANS EGET
+         URVAL - "därför valde vi de två projekt som ligger längst ifrån
+         varandra" svarar på en fråga ingen ställt. Det är F-018, sidan som
+         berättar om sig själv, bara i brödtextstorlek där microtext_scan.py
+         inte ser den. Att byta ord medan kadensen står kvar reproducerar felet,
+         vilket är varför andra försöket blev lika illa.
+
+         Rubriken står ensam. Anton har uttryckligen godkänt det ("eller ingen
+         alls om det är bättre"), och en mening som handlar om kundens situation
+         vore den tredje varianten på samma stans. Prov:
+         `skills/design/scripts/self_reference_scan.py` - 0 traffar.
+         .cases-lead-CSS:en star kvar men ar oanvand. -->
   </section>
 
   <!-- CASE CALYX: text vänster, sajten höger och skrollad i takt (JS,
@@ -2416,11 +2653,49 @@
        är äldre än denna beställning - Anton flaggad, se COPY-V3d-r23.md
        § Flaggat för Anton #2, låslistan uppdaterad av lead. -->
   <section class="contact" id="kontakt" data-sc-act="flow" aria-labelledby="kontakt-title">
-    <div class="contact-veil" aria-hidden="true"></div>
     <div class="contact-inner">
       <div class="contact-head">
         <h2 id="kontakt-title">Berätta om er verksamhet.</h2>
-        <p class="contact-lead">Så säger vi vad en sida kan göra för den.</p>
+        <p class="contact-lead">Så berättar vi vad vi kan göra för er.</p>
+        <!-- R24 FEL 8.4. Anton: "testa att lägga en bild undertill under texten,
+             bredvid formuläret, till exempel baksidan på visitkortet."
+
+             Det ÄR visitkortets baksida: samma .card-back som herons vändbara
+             kort visar, samma markup och samma klasser, ingen ny komponent.
+             Anton sa "en bild" - men baksidan finns redan som DOM, så en bild
+             av den vore en skärmbild av något sidan kan rendera skarpare själv.
+             gate 47 förbjuder påhittad chrome, inte återanvända egna element.
+
+             CTA:n är utbytt mot adressen: en "Boka ett möte"-knapp inuti
+             kontaktsektionen pekar på sig själv. Ett visitkorts baksida bär
+             adressen, inte ännu en uppmaning. .card-mark/.card-kicker/
+             .card-rule/.card-services är oförändrade och läser redan
+             mörk-grunds-tokens, så de står oförändrade mot den svarta ytan. -->
+        <!-- R24 F1, Antons rättelse 2026-09-21: "Jag menade framsidan på
+             visitkortet, den med motiv och logga."
+             Baksidan (ALUNIX / DIGITAL BYRÅ / tjänsteraden) står kvar på
+             herons vändbara kort längst upp, där den hör hemma; här står
+             framsidan - ljuspölsfotot som motiv med Alunix-märket i övre
+             vänstra hörnet. Samma markup och samma klasser som herons
+             .face--front, alltså samma objekt två gånger, inte en bild av
+             det (gate 47 förbjuder påhittad chrome, inte återanvända egna
+             element).
+             Märket är ett <use href="#alunix-mark-path"/>, aldrig en kopia:
+             pathen är ~4 kB och bär id:t; en kopia hade gett dubbelt id
+             (ogiltig HTML) och kolliderat med herons setFace-JS, som slår
+             upp samma id. Bildnoden får inget id - heroPoolImg är upptaget.
+             Laddas lazy: kortet står under folden i en sektion som redan
+             scrollar in sin egen text, så det får aldrig bli LCP. -->
+        <div class="contact-card" aria-hidden="true">
+          <div class="face face--front">
+            <div class="logo-dock" aria-hidden="true">
+              <svg viewBox="80 400 827 1139" role="presentation" focusable="false"><use href="#alunix-mark-path"/></svg>
+            </div>
+            <img src="/tests/alunix-concepts-r3/build/assets/k1-stage-pool.webp"
+                 width="1600" height="1067"
+                 loading="lazy" decoding="async" alt="">
+          </div>
+        </div>
       </div>
       <form class="contact-form">
         <p class="field"><label for="k-namn">Namn</label>
@@ -2456,7 +2731,7 @@
   <!-- PLAN 067 6.3 (K-ALT, COPY-V3d-r23.md, ordagrant): raden är sidfotens
        väg in nu när kontaktformuläret ovan finns - en handling, inte en bar
        adress upprepad tre gånger på sidan. -->
-  <a class="close-mailto" href="mailto:kontakt@alunix.se">Eller mejla kontakt@alunix.se</a>
+  <a class="close-mailto" href="mailto:kontakt@alunix.se">Eller mejla oss direkt på kontakt@alunix.se</a>
 </footer>
 
 <script src="scroll/scrollcraft.js"></script>
@@ -2887,31 +3162,20 @@
           }
         }
       }
-      /* PLAN 067 5.3. Blåkopian baklänges: arket öppnar sig ut i
-         .cases-chapter:s papper i stället för att krympa in i .tes-plane.
-         Arkets VILANDE rektangel (sticky släppt) räknas analytiskt ur
-         processTop/processH/stickens padding - measureAct skrollar aldrig
-         sidan för att mäta ett läge, samma disciplin som --pl-* ovan.
-         --cp-t/-r/-b/-l skrivs mot PLATTANS EGEN getBoundingClientRect(),
-         aldrig window.innerWidth (plan 066 fynd 2). En gång per mätning. */
+      /* R24 FEL 6. .chapter-plate är borttagen (se CSS-blocket). Kvar av
+         --cp-* finns bara landningshårlinjens tre nycklar, och de räknas nu
+         ARITMETISKT ur kapitlets egen rektangel i stället för ur plattans
+         getBoundingClientRect(): plattan var 100vw centrerad på kapitlet, så
+         dess vänsterkant låg på caseC.left + caseC.width/2 - innerWidth/2.
+         Samma tal som plattan gav (604 / 6 vid 1920), ingen mätning av ett
+         element som inte finns kvar, och measureAct skrollar fortfarande
+         aldrig sidan för att mäta ett läge. En gång per mätning. */
       var caseEl = document.getElementById('case');
-      var plateEl = caseEl ? caseEl.querySelector('.chapter-plate') : null;
-      if (caseEl && plateEl && stick && chapterEl && sheetEl){
+      if (caseEl){
         var caseC = caseEl.getBoundingClientRect();
-        var caseTopDoc = caseC.top + window.scrollY;
-        var stickPadBottom = parseFloat(getComputedStyle(stick).paddingBottom) || 0;
-        var arkBottomDoc = processTop + processH - stickPadBottom;
-        var arkTopDoc = arkBottomDoc - pH;
-        var cpUpIdeal = Math.max(0, caseTopDoc - arkTopDoc);
-        var cpUp = Math.min(cpUpIdeal, fri);
-        caseEl.style.setProperty('--cp-up', cpUp.toFixed(1) + 'px');
-        var plateBox = plateEl.getBoundingClientRect();
-        var plateTopDoc = caseTopDoc - cpUp;
-        var plateBottomDoc = caseTopDoc + caseC.height;
-        caseEl.style.setProperty('--cp-t', Math.max(0, arkTopDoc - plateTopDoc).toFixed(1) + 'px');
-        caseEl.style.setProperty('--cp-b', Math.max(0, plateBottomDoc - arkBottomDoc).toFixed(1) + 'px');
-        caseEl.style.setProperty('--cp-r', Math.max(0, plateBox.right - x4).toFixed(1) + 'px');
-        caseEl.style.setProperty('--cp-l', Math.max(0, x1 - plateBox.left).toFixed(1) + 'px');
+        var plateLeft = caseC.left + caseC.width / 2 - window.innerWidth / 2;
+        caseEl.style.setProperty('--cp-l', Math.max(0, x1 - plateLeft).toFixed(1) + 'px');
+        caseEl.style.setProperty('--cp-r', Math.max(0, plateLeft + window.innerWidth - x4).toFixed(1) + 'px');
         /* 5.4: landningshårlinjens ankare, samma mönster som --dn ovan men
            mot casets EGEN rubrik (T2), i casets lokala koordinater. */
         var caseTitleEl = document.getElementById('case-title');
@@ -3290,10 +3554,23 @@
     }
     settle();
   }
+  /* R24 FEL 4. Malpunkten raknas ur --tx-a/--tx-b, inte ur plan 061:s
+     hardkodade .07 + .29*k/4. C3 bytte aktens fonster till utraknade tal
+     (uppmatt 0,2258 / 0,1613) och planens 7.4 antog att malpunkterna
+     foljde med automatiskt - de gor de inte: vid tes-till-ritning-3 lag
+     arket 1329 px UNDER viewporten. Varje granskning som anvant
+     forhandsvisningarna sedan R23 matte alltsa fel scrollage.
+     tx = clamp(0,(sc_ps - txA)/txB, 1)  =>  sc_ps = txA + (k/4)*txB ger
+     tx = k/4 exakt: -0 landar pa tx 0, -4 pa tx 1. */
   if (mode && /^tes-till-ritning-[0-4]$/.test(mode)){
     var seamK = parseInt(mode.slice(-1), 10);
-    var seamP = .07 + .29 * seamK / 4;
-    aimFlow(document.querySelector('.process-chapter'), seamP);
+    var seamCh = document.querySelector('.process-chapter');
+    var seamCs = seamCh ? getComputedStyle(seamCh) : null;
+    var seamA = seamCs ? parseFloat(seamCs.getPropertyValue('--tx-a')) : NaN;
+    var seamB = seamCs ? parseFloat(seamCs.getPropertyValue('--tx-b')) : NaN;
+    if (isNaN(seamA)) seamA = .07;      /* oregistrerad/ej skriven an */
+    if (isNaN(seamB)) seamB = .29;
+    aimFlow(seamCh, seamA + (seamK / 4) * seamB);
   }
   /* curtain/chapter: ridån (§ ridån) är ren scroll - .process-chapter
      PLAN 057 2: stod tidigare i flödet utan egen akt; PLAN 061 B1 gav den

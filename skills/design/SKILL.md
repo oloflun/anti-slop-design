@@ -22,6 +22,8 @@ This file dispatches. It does not teach — the references carry the full detail
 
 Not branch-specific. They apply to new work, audit, redesign, study, and component-scope alike.
 
+**Read [`chain-discipline.md`](references/chain-discipline.md) first — it is resident, not routed.** It is the one file in this shelf that is about the chain rather than the page: nine rules won from a five-day run that spent 37 build rounds on 10 orders and still missed the level. Every rule in it came from a measurement, a review or a plan that lied to this chain and was believed. They govern how you measure (M1–M3), how you verify (V1–V2), how you orchestrate (O1–O2) and how you review (R1–R2), and the round ladder in § 5 is why the spiral happened. No builder, reviewer or orchestrator runs without it.
+
 1. **Pre-emit self-critique.** Before handing back any output, score it 1–5 on six axes — Philosophy, Hierarchy, Execution, Specificity, Restraint, Variety. Anything **< 3** triggers a revision pass. Stamp the six scores at the top of the artifact (`/* design · pre-emit critique: P5 H4 E5 S4 R5 V5 */`). See [`slop-test.md`](references/slop-test.md) § Pre-emit self-critique.
 
 2. **Honest copy — no fabricated content.** If the user did not supply a metric, do not invent one. Stat-led layouts, comparison rows, and proof bars must use real numbers, a placeholder (`—` plus a labelled grey block, "metric to confirm"), or a different macrostructure. *"+47 % conversion"*, *"trusted by 50,000+ teams"*, and *"10× faster"* are slop the moment they're invented. Same rule for testimonials, logos, and case-study counts. See [`anti-patterns.md`](references/anti-patterns.md) § Invented metrics and gate **46**.
@@ -318,6 +320,12 @@ python "$HOME/.agents/skills/design/scripts/shoot_slices.py" .shots/ref https://
    opening anything else. **Always** read `design-catalogue/TASTE.md` **and** `design-catalogue/FEEDBACK.md`
    before Step 2, whether or not the brief names references (r6, 2026-09-06: a brief that
    named two entries left both unread, and the builds failed on exactly the rules they hold).
+   Read [`chain-discipline.md`](references/chain-discipline.md) and
+   [`fault-taxonomy.md`](references/fault-taxonomy.md) with them — the two other resident
+   files. R2 is why a copy rule written as prose gets broken by the next fluent paragraph you
+   write; the taxonomy is why a reviewer who says "this feels off" has done the owner's job
+   for him. Almost every pushback he gives is a measurable relationship between two things,
+   and the taxonomy names which two.
    TASTE.md says how type, image, surface and motion are meant to relate and which category
    the brief belongs to; FEEDBACK.md is the owner's verdict log, each entry a rule with
    evidence. For every named catalogue entry read `entry.md` (including its § Motion),

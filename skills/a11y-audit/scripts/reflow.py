@@ -100,6 +100,11 @@ def main():
     ap = argparse.ArgumentParser()
     ap.add_argument("target")
     ap.add_argument("--out")
+    # Additive: the three checks below (320, 720x450@2x zoom, 1440) always
+    # run unchanged. Alunix r8 R4 needed the same element-box overflow check
+    # at plan 001's other two short-viewport fold sizes (1280x600, 1024x640).
+    ap.add_argument("--extra-viewport", action="append", default=[],
+                     help="WxH, repeatable; runs the same overflow check at each")
     args = ap.parse_args()
 
     try:
@@ -147,6 +152,16 @@ def main():
             page.wait_for_timeout(1500)   # let the last reveal land
             hidden_selectors = set(page.evaluate(HIDDEN_JS))
             page.close()
+
+            extra = {}
+            for spec in args.extra_viewport:
+                w, h = spec.lower().split("x")
+                page = browser.new_page(viewport={"width": int(w), "height": int(h)})
+                goto(page, url)
+                page.wait_for_timeout(500)
+                extra[spec] = page.evaluate(OVERFLOW_JS)
+                page.close()
+
             browser.close()
     except Exception as e:
         sys.stderr.write(f"reflow tool failure: {e}\n")
@@ -158,6 +173,8 @@ def main():
         "unrevealed": len(hidden_selectors),
         "unrevealedSelectors": sorted(hidden_selectors),
     }
+    if extra:
+        out["overflowExtra"] = extra
     text = json.dumps(out, indent=2, ensure_ascii=False)
     print(text)
     if args.out:

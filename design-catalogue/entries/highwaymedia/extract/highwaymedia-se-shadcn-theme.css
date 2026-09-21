@@ -1,0 +1,19 @@
+/* shadcn/ui Theme — extracted from https://highwaymedia.se/webbyra-goteborg/ */
+/* Paste into your globals.css */
+
+@layer base {
+  :root {
+    --background: 0 0% 100%;
+    --foreground: 0 0% 0%;
+    --primary: 318 21% 32%;
+    --primary-foreground: 0 0% 100%;
+    --secondary: 345 72% 73%;
+    --secondary-foreground: 0 0% 0%;
+    --accent: 134 41% 88%;
+    --accent-foreground: 0 0% 0%;
+    --muted: 0 0% 7%;
+    --muted-foreground: 0 0% 14%;
+    --border: 0 0% 57%;
+    --radius: 10px;
+  }
+}

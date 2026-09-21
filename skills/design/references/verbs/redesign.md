@@ -1,5 +1,11 @@
 # `hallmark redesign`
 
+> **Diverges from upstream Hallmark: T6 port (2026-09-09).** Extended with the
+> redesign material named in the design chain's v4 plan, sections 2.2 and 2.5:
+> mode detection, the modernisation levers in priority order, the preservation
+> rules, and the knob-delta form. Where two upstream fix-priority lists
+> collided, the winner is named in the text.
+
 The user wants a different page from the same content. They are not happy with the current visual structure — typically because it reads as templated, generic, or AI-shaped. Your job is to redesign the page's structure, rhythm, and component voice while respecting the existing implementation boundaries unless the user explicitly confirms a full rebuild.
 
 ## Non-destructive implementation rule
@@ -25,6 +31,129 @@ Before anything else, decide whether the redesign is **single-page** or **multi-
 
 If any of those fires → **multi-page redesign**. Go to § Multi-page flow.
 If none fires → **single-page redesign**. Go to § Single-page flow.
+
+## Step 0b · Detect the mode
+
+Scope says how many files. Mode says how much of the existing brand survives, and
+*"misclassifying the mode is the single biggest source of bad redesign output"*
+(`design-taste-frontend` § 11.A). Three modes:
+
+- **Greenfield** — no existing site, or a full overhaul the user approved. Dials from the
+  brief, nothing preserved.
+- **Redesign · Preserve** — modernise without breaking the brand. Audit first, extract the
+  brand tokens, evolve gradually.
+- **Redesign · Overhaul** — a new visual language on top of existing content. Treat as
+  greenfield for visuals; preserve content and information architecture.
+
+If it is ambiguous, ask **once**: *"Should this redesign preserve the existing brand, or are
+we starting visually from scratch?"* One question, then proceed — this is not the
+multi-round approval ceremony the front door already replaced.
+
+## Step 0c · Audit before touching
+
+Document the current state before proposing anything. Seven readings, from § 11.B:
+
+- **Brand tokens** — primary and accent colours, type stack, logo treatment, radii.
+- **Information architecture** — page tree, primary nav, key conversion paths.
+- **Content blocks** — what exists, what is doing work, what is filler.
+- **Patterns to preserve** — signature interactions, recognisable hero, copy voice.
+- **Patterns to retire** — AI-slop tells, broken layouts, dead links, generic stock imagery,
+  performance traps.
+- **Dial reading of the existing site** — infer its current variance, motion and density.
+  *"That's your starting point, not the baseline."*
+- **SEO baseline** — ranking pages, meta titles, structured data, OG cards.
+  ***"SEO migration is the #1 redesign risk."***
+
+The audit is also what makes the fingerprint decision honest: you cannot pick *a different*
+structural fingerprint from the source until you have written down what the source's was.
+
+## Modernisation levers, in priority order
+
+Apply in this order and **stop when the brief is satisfied** (§ 11.D). The order is
+ranked by visual lift per unit of risk, which is why type comes first and block
+replacement last:
+
+1. **Typography refresh** — *"biggest visual lift per unit of risk."*
+2. **Spacing and rhythm** — section padding, vertical rhythm.
+3. **Colour recalibration** — desaturate, unify neutrals, keep the brand accent.
+4. **Motion layer** — micro-interactions on the components that already exist.
+5. **Hero and key-section recomposition** — restructure top-of-funnel.
+6. **Full block replacement** — only when the existing block is unsalvageable.
+
+A second, older list from `redesign-existing-projects` ranks the same work slightly
+differently: font swap → colour palette cleanup → hover and active states → layout and
+spacing → replace generic components → add loading, empty and error states → polish the
+type scale. **Where the two disagree, § 11.D wins** — it is the current upstream, and it
+ranks by risk rather than by visible effect. The older list contributes two steps § 11.D
+does not name at all, and those are kept: **states** (hover, active, loading, empty, error)
+sit between levers 3 and 4, because a redesign that never adds a state ships a page that
+looks new and behaves exactly as unfinished as the old one.
+
+**Decision tree** (§ 11.E): information architecture, content and SEO sound →
+**targeted evolution**, levers 1–4, *"~70 % of value at ~40 % of risk"*. Visual debt is
+structural (broken IA, no design system, broken mobile) → **full redesign** with strict
+content preservation. The brand itself is changing → **greenfield**.
+
+## Preservation rules
+
+From § 11.C, and they bind in Preserve *and* Overhaul mode:
+
+- **Do not change the information architecture** unless asked. Page slugs, anchor ids and
+  primary nav labels stay stable, for SEO and for muscle memory.
+- **Extract the brand colours before applying any palette rule.** A brand that is already
+  purple stays purple; the anti-purple default is for invented palettes, not for a brand
+  that owns the hue.
+- **Preserve copy voice** unless a rewrite was asked for. *"Visual modernisation ≠ content
+  rewrite."*
+- **Honour existing accessibility wins.** Do not regress focus states, alt text, keyboard
+  navigation, or contrast. A redesign that loses a focus ring has made the page worse no
+  matter how it looks.
+- **Respect existing analytics events.** Do not rename buttons, form fields, or section ids
+  that downstream tracking depends on.
+
+## What never changes silently
+
+Never modify these without explicit user approval (§ 11.F). Each one breaks something
+outside the page:
+
+- URL structure and route slugs.
+- Primary nav labels.
+- Form field names or order (breaks analytics and browser autofill).
+- Brand logo or wordmark.
+- Existing legal, consent, or cookie copy.
+
+"Silently" is the operative word: any of these may change when the user asks for it. What is
+banned is changing one as a side effect of a visual decision.
+
+## The random inversion
+
+*"A single dark-background section breaking an otherwise light page looks like a copy-paste
+accident."* Either commit to a full dark theme or hold one background tone through the page.
+Where a section genuinely needs separation, *"use a slightly darker shade of the same
+palette — not a sudden jump to `#111` in the middle of a cream page."*
+
+This is the same rule the page-theme lock states from the other side: **one deliberate tonal
+inversion per page is the allowance, and it is a composition decision** (a footer, a single
+full-bleed act) with a real transition. Two inversions, or one that arrives without a
+reason, is the accident. When a redesign inherits a random inversion from the source, flatten
+it rather than reproducing it for parity.
+
+## Same archetype, different fingerprint
+
+When the user overrides the rotation — *"use Bento Grid again, I want the same shape"* — the
+diversification rule does not evaporate, it moves down a level. State the delta out loud in
+the hallmark form:
+
+> *"Last build was Bento Grid (you requested it). You've asked for it again, so I'll pick
+> different knob values. Knob deltas: tiles=8 (was 6), accent=full-bleed (was corner-only),
+> spans=irregular (was even). Same archetype, different fingerprint."*
+
+(Upstream's wording, with its one dash re-punctuated: this line is spoken output, and gate 75
+applies to anything the chain writes for a human to read.)
+
+The user gets the shape they asked for; the build still differs on the within-archetype
+knobs from [`component-cookbook.md`](../component-cookbook.md). Silently repeating the
+previous knob values is how two "different" builds turn out to be one build twice.
 
 ---
 
@@ -88,7 +217,8 @@ tokens (`var(--space-md)`), never raw values.
 ## Motion
 - Easings: cubic-bezier(<x>, <y>, <z>, <w>) named `--ease-out`, etc.
 - Reveal pattern: <fade only / fade + slide / none>
-- Reduced-motion fallback: opacity-only, ≤ 150 ms.
+- Motion plays unconditionally. No preference gate, no static fallback (F-011).
+- Every reveal falls back to *visible* without JS.
 
 ## Microinteractions stance
 - <silent success / celebratory toasts: never>

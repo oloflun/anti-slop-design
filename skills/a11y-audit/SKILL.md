@@ -8,7 +8,7 @@ description: Runs a full accessibility audit of an interface — a mechanical sc
 
 Eight passes over the target, in order. Each pass produces evidence; the report in pass 8 is only as good as what was actually inspected. `references/principles.md` holds the full principle catalog this procedure draws on, tagged by source. `references/report-template.md` holds the exact report skeleton.
 
-**Standing override (Anton, 2026-09-07, permanent, global — applies to every audit this skill runs, not just one project):** motion always plays. Do not raise a finding, escalation, or debt-ledger item for an animation, autoplay, or scroll set-piece that ignores `prefers-reduced-motion` or any other browser/OS motion-accessibility signal — that is intentional in every design system this skill audits, not a defect. This is a deliberate, informed trade against real accessibility guidance (vestibular-disorder / motion-sensitivity users lose their opt-out); it is not an oversight, so do not "helpfully" flag it anyway. Every other WCAG check still applies in full, including the hard, preference-independent seizure-safety limit (no content flashing more than three times per second, WCAG 2.3.1) — that one is not a preference, it stays enforced regardless.
+**Standing override — F-011 (Anton, 2026-09-07, permanent, global — applies to every audit this skill runs, not just one project):** motion always plays. Do not raise a finding, escalation, or debt-ledger item for an animation, autoplay, or scroll set-piece that ignores `prefers-reduced-motion` or any other browser/OS motion-accessibility signal — that is intentional in every design system this skill audits, not a defect. This is a deliberate, informed trade against real accessibility guidance (vestibular-disorder / motion-sensitivity users lose their opt-out); it is not an oversight, so do not "helpfully" flag it anyway. Every other WCAG check still applies in full, including the hard, preference-independent seizure-safety limit (no content flashing more than three times per second, WCAG 2.3.1) — that one is not a preference, it stays enforced regardless.
 
 ## 0 · Scope + coverage
 
@@ -49,21 +49,73 @@ Walk Perceivable / Operable / Understandable / Robust. Cite the WCAG 2.2 AA succ
 
 For each screen or step, rate the three loads — **intrinsic** (inherent to the task, reduce by chunking not by removing function), **extraneous** (added by the design, eliminate ruthlessly), **germane** (the user's actual engagement, protect it by removing the other two). Then check wayfinding's three questions hold at every point: **where am I, where can I go, how do I get back** — each answerable in under a second, without memory. Verify focus (one primary action per screen, interruptions controllable), error recovery (undo, confirmation on destructive actions, preserved input), and memory load (nothing the user must carry in their head between steps that the interface could show instead).
 
+Then rate every screen or step on six dimensions, with the thresholds — this is what turns "feels complex" into a finding:
+
+| Dimension | Low (good) | Medium (review) | High (redesign) |
+| --- | --- | --- | --- |
+| Decisions required | 0–1 | 2–3 | 4+ |
+| Items to remember | none | 1–2 | 3+ |
+| New concepts to learn | none | 1 | 2+ |
+| Steps to complete | 1–2 | 3–5 | 6+ |
+| Reading complexity | plain language | some jargon | dense / technical |
+| Visual complexity | clean, focused | moderate | cluttered |
+
+**If any single dimension rates High, that screen needs redesign before launch** — the rating is not averaged across the six, exactly as an escalation trigger is never averaged down. Walk the flow as a user who is tired, stressed and unfamiliar; where you pause, re-read, or feel uncertain is a load spike, and the next question is whether the difficulty is intrinsic (chunk it) or extraneous (delete it). Report as a screen-by-screen table with the ratings, then recommendations sorted by impact.
+
 ## 4 · Content pass
 
-Reading age 12–14 (grade 6–8; grade 4–6 for buttons, labels, and errors) — flag anything denser. Heading hierarchy: one H1, no skipped levels, headings that alone tell the page's story. Labels: every input has a visible, programmatic label; placeholders are never labels. Alt text by the decision table: decorative → `alt=""`; functional → the action; informative → the meaning; complex → short alt plus an extended description nearby; never "image of…". Link text stands alone out of context — no "click here" or "read more". Error messages follow **what happened + why + what to do**, in plain language, never blaming the user. Tables carry a caption and scoped headers, never used for layout. Multimedia: accurate synced captions (never unreviewed auto-captions), transcripts for audio, audio description for meaningful visual content, no autoplay.
+Reading age 12–14 (grade 6–8; grade 4–6 for buttons, labels, and errors) — flag anything denser. Heading hierarchy: one H1, no skipped levels, headings that alone tell the page's story, and **depth never past H4** — a page reaching H5 has a structure problem, not a markup problem. Labels: every input has a visible, programmatic label; placeholders are never labels. Alt text by the decision table: decorative → `alt=""`; functional → the action; informative → the meaning; complex → short alt plus an extended description nearby; never "image of…". Link text stands alone out of context — no "click here" or "read more". Error messages follow **what happened + why + what to do**, in plain language, never blaming the user. Tables carry a caption and scoped headers, never used for layout. Multimedia: accurate synced captions (never unreviewed auto-captions), transcripts for audio, audio description for meaningful visual content, keyboard-accessible play / pause / stop / volume / seek controls.
+
+**Autoplay — the explicit ruling.** F-011 removes the *preference gate*, not the *control*. Two different things sit under the word "autoplay" and only one of them is overridden:
+
+| Case | Verdict |
+| --- | --- |
+| A silent, decorative video or scroll set-piece that starts on its own and ignores `prefers-reduced-motion` | **Not a finding.** F-011, by design. |
+| **Audio** that starts on its own | **Finding, HIGH.** Audio is not motion; it collides with a screen reader and with whatever the person is listening to. WCAG 1.4.2 stands untouched. |
+| Any autoplaying media with **no reachable pause / stop control** | **Finding.** The user must be able to stop it once it is running, and that control must be keyboard-reachable and labelled. Removing the preference gate did not remove the user's ability to act. |
+| Content flashing more than three times per second | **Finding, HIGH.** Seizure safety, not a preference (WCAG 2.3.1). |
 
 ## 5 · Adaptive pass
 
-Respect every system preference automatically, never ask the user to reconfigure what the OS already knows: `prefers-color-scheme` (real dark mode — dark grey not pure black, off-white not pure white), `prefers-contrast`, `prefers-reduced-transparency` (solid surfaces, no backdrop blur), `forced-colors`. `prefers-reduced-motion` is the one preference this skill does not audit — see the standing override above. Text in `rem`, never `px`; layout survives 200% zoom and reflows at 320px with no horizontal scroll; density has at least a comfortable default and never drops below 44×44 touch targets or 1.5 line-height at any level. Colour independence: every colour-carried meaning has a second encoding (icon, text, pattern, shape), and the interface passes the **greyscale test** — convert it to greyscale and confirm status, errors, charts, and links are all still legible.
+Respect every system preference automatically, never ask the user to reconfigure what the OS already knows: `prefers-color-scheme` (real dark mode — dark grey not pure black, off-white not pure white), `prefers-contrast`, `prefers-reduced-transparency` (solid surfaces, no backdrop blur), `forced-colors`. `prefers-reduced-motion` is the one preference this skill does not audit — see the F-011 standing override above; everything else in this list is audited in full. Text in `rem`, never `px`; layout survives 200% zoom and reflows at 320px with no horizontal scroll; density has at least a comfortable default and never drops below 44×44 touch targets or 1.5 line-height at any level. Colour independence: every colour-carried meaning has a second encoding (icon, text, pattern, shape), and the interface passes the **greyscale test**. **In running prose, the underline is the accessible indicator and colour is the enhancement** — an inline link distinguished by colour alone fails colour independence no matter how strong the contrast; the design system's own styling clause on this is gate 61, and a link that drops the underline needs a second non-colour channel in its place (weight, a background, a marker), not a stronger hue. Run the greyscale test explicitly — convert the interface to greyscale and confirm status, errors, charts, and links are all still legible — and report the result rather than assuming it.
 
 ## 6 · Interaction pass
 
-Native element first, ARIA last — `<button>` for actions, `<a href>` for navigation, never `<div onClick>`; no ARIA beats bad ARIA. Focus-visible ring at least 2px solid with 3:1 contrast against every adjacent colour it crosses, never bare `outline: none`. Hit areas: 24×24 CSS px is the WCAG 2.5.8 AA floor, 44×44 the touch target, 40×40 a reasonable desktop target; extend with a pseudo-element on the label or button, never overlapping another target. Every gesture (swipe, pinch, drag, long-press, shake) has a button-based alternative — gestures are shortcuts, never gatekeepers. Skip link is the first focusable element on any page with repeated navigation. Composite widgets (tabs, menus, toolbars) use roving tabindex — one Tab stop, active item `0`, the rest `-1`, arrow keys move both. Modals set `inert` on the background, trap focus inside, and return it to the trigger on close. Never a positive `tabindex` anywhere. Paste is never blocked in any field — password managers and 2FA autofill depend on it — and every field about the user carries a meaningful `autocomplete`.
+Native element first, ARIA last — `<button>` for actions, `<a href>` for navigation, never `<div onClick>`; no ARIA beats bad ARIA. Focus-visible ring at least 2px solid with 3:1 contrast against every adjacent colour it crosses, never bare `outline: none`. Hit areas: 24×24 CSS px is the WCAG 2.5.8 AA floor, 44×44 the touch target, 40×40 a reasonable desktop target; extend with a pseudo-element on the label or button, never overlapping another target. Every gesture (swipe, pinch, drag, long-press, shake) has a button-based alternative — gestures are shortcuts, never gatekeepers. Skip link is the first focusable element on any page with repeated navigation. Composite widgets (tabs, menus, toolbars) use roving tabindex — one Tab stop, active item `0`, the rest `-1`, arrow keys move both. Modals set `inert` on the background, trap focus inside, and return it to the trigger on close. **Landmarks: `banner`, `navigation`, `main`, `contentinfo` are the minimum on every page** — screen-reader users navigate by region before they navigate by heading, and a page with no regions is one undifferentiated run. Prefer the native elements (`<header>`, `<nav>`, `<main>`, `<footer>`) over explicit `role=`; where a landmark type repeats (two navs, several significant forms), each instance carries a distinguishing `aria-label`. **Every `<iframe>` carries a `title`** — an untitled frame announces as "frame" and nothing more, and on a page embedding a map, a video, a preview or a live demo this is the single most likely automated finding. Both checks are cheap and both are routinely missing, because no build reference mentions them; `tab_walk.py` will not catch either, so check the markup. Never a positive `tabindex` anywhere. Paste is never blocked in any field — password managers and 2FA autofill depend on it — and every field about the user carries a meaningful `autocomplete`.
 
 ## 7 · Persona walkthrough
 
 Build 4–6 personas spanning permanent, temporary, and situational conditions (not four permanent-disability personas and nothing else — a broken arm and a parent holding a baby belong in the set too). For each persona, walk every key task from the brief and record whether it **works**, **works with friction**, **works with workaround**, or **fails**. Compile into a barrier matrix: task × persona, one cell per combination. A task that fails for any persona is a finding regardless of how it looks for the rest.
+
+**Name the technology, not the disability.** "A blind user" produces a guess; "JAWS on Windows Firefox, navigating by headings" produces a walkthrough. Cover at minimum: one screen-reader user, one keyboard-only user, one low-vision user using magnification, one user with a cognitive difference, and one user in a situational-impairment context.
+
+The inventory to pick from:
+
+| Sense | Technologies, and what each one changes |
+| --- | --- |
+| Vision | **Screen reader** (JAWS, NVDA, VoiceOver, TalkBack) — reads aloud, navigates by headings, links and landmarks. **Magnifier** (ZoomText, OS zoom) — sees only a fraction of the screen at a time. **Braille display** — text to braille in real time, alongside a screen reader. **High-contrast mode** — system-level colour override. |
+| Motor | **Switch device** — one or two buttons scanning through options; *much slower than a keyboard, and every extra step counts*. **Voice control** (Dragon, Voice Access) — spoken commands. **Head pointer / eye tracking** — limited precision. **Mouth stick / stylus**. |
+| Hearing | Captions, visual alerts replacing audio ones, hearing loop / Bluetooth to hearing aids. |
+| Cognitive | **Text-to-speech** (not a screen reader — the person sees the screen but processes better by hearing), reading ruler, simplified view, password managers as memory relief. |
+
+**The switch device is the worst case for anything long and pinned.** A page whose primary content is a several-screen scroll sequence with pinned acts costs a switch user one scan cycle per step, and there is no "skip to the end of the act" unless the build provides one. Walk that case explicitly rather than inferring it from the keyboard walkthrough.
+
+**Scenario template — eight fields**, and a scenario is not done until all eight are filled:
+
+```
+Name:            [name]
+Role/context:    [who they are beyond their disability]
+Technology:      [devices, AT, browser, settings]
+Environment:     [where, when, what else is happening]
+Task:            [what they are trying to accomplish]
+Steps:           [how they interact, step by step, using their AT]
+Pain points:     [where the design fails or creates friction]
+Success:         [what a good outcome looks like for this person]
+```
+
+The scenario's job is to surface a specific failure a developer could fix — not to describe a goal. If it does not name a step where the design breaks, it hasn't been walked.
+
+Two source lists worth pulling from rather than inventing: `situational-impairment-mapping`'s permanent / temporary / situational split per sense (bright sunlight, a noisy train, gloves, one hand holding a child are the same barriers as their permanent counterparts), and `edge-case-identification`'s content cases — long hyphenated names, non-Latin scripts on a Swedish/English page, a single character, an empty value (`references/principles.md` carries both, tagged by source).
 
 ## 8 · Report
 
@@ -75,7 +127,41 @@ Assemble in `references/report-template.md`'s exact shape:
 - **Verdict** — `Block` when any `HIGH` remains, `Approve` otherwise. Never `Approve` coverage you did not inspect.
 - **Legal map** — which of EAA/EN 301 549, ADA, Section 508, and WCAG 2.2 AA each finding touches. Most organisations target WCAG 2.2 AA; EAA (in effect since June 2025) and EN 301 549 align with it; ADA and Section 508 case law references it.
 - **SEO flag** — mark findings on headings, alt text, `lang`, link text, or reflow as SEO-relevant; the same structural signals search crawlers and screen readers both depend on.
-- **Deferred items** append to `.impeccable/a11y-debt.md` in the audited project — never dropped silently. Each entry: issue, severity, who's affected, WCAG criterion, why deferred, remediation deadline (critical: this sprint, major: 30 days, minor: 90 days). Accepting accessibility debt requires the user's explicit acknowledgement in the conversation, not an assumed sign-off.
+- **Deferred items** append to `.impeccable/a11y-debt.md` in the audited project — never dropped silently. Accepting accessibility debt requires the user's explicit acknowledgement in the conversation, not an assumed sign-off.
+
+### The debt-entry format — an eight-field ADR
+
+A one-line "deferred: contrast on the footer" is how a decision gets silently reversed two redesigns later by someone who wasn't in the room. Write each entry as a decision record (`inclusive/decision-documentation`):
+
+| Field | What goes in it |
+| --- | --- |
+| **Title** | Clear and searchable — "Form validation: inline errors instead of summary banner", not "form fix". |
+| **Date and author** | When, and by whom. |
+| **Context** | The situation and the constraints that produced the decision. |
+| **Decision** | What was decided, specifically enough to implement. |
+| **Alternatives considered** | What else was evaluated and why it was rejected. |
+| **Accessibility impact** | Who benefits and how — named groups, not "users". |
+| **Risks and tradeoffs** | What was sacrificed, and why that was acceptable. |
+| **Evidence** | The testing, research, or WCAG criterion supporting it. |
+
+Plus the four deferral fields this skill requires on top: severity, **who is excluded** (named groups), **severity of exclusion** — blocked or friction — and a **remediation deadline** (critical: this sprint · major: 30 days · minor: 90 days) with a **review date**.
+
+Store it alongside the code where it travels with the implementation. *Never only in someone's head or in a chat thread* — documentation is the immune system that protects a good decision from being undone by someone who doesn't know why it was made.
+
+## Folding a HIGH: mandatory tradeoff analysis
+
+A `HIGH` finding is never quietly downgraded. If one is going to be accepted rather than fixed, it is folded **by name**, through this analysis, and the result goes in the debt ledger in the format above (`inclusive/tradeoff-analysis`). Six questions:
+
+1. **Who benefits from option A?** Which groups gain, roughly how many, and how severe the barrier is without it.
+2. **Who benefits from option B?** The same analysis for the alternative.
+3. **Who is harmed by each?** Which groups lose access or degrade, how badly, and whether the harm is permanent or temporary.
+4. **What is the severity asymmetry?** **Blocked beats friction** — a user who *cannot* complete the task is more severely affected than one for whom it is *harder*, and blockers get removed before friction gets reduced. Permanent conditions outrank situational ones, because a situational user has other options and a permanent user may not.
+5. **What is the reversibility?** Reversible → take the faster option and schedule the improvement. Irreversible → take the more inclusive option and accept the delay.
+6. **What is the precedent?** A shortcut taken once becomes the standard unless it is documented as an exception.
+
+**Red lines — tradeoffs that are never made:** never ship a feature that is entirely inaccessible by keyboard; never deprioritise a fix that blocks task completion; never treat "we'll fix it later" as acceptable without a tracked item and a date.
+
+**The one crossed red line, and why it does not generalise.** Upstream's fourth red line is *"never remove existing accessibility to meet a deadline"*, and **F-011 crossed it deliberately** — motion-sensitivity users lost an opt-out they previously had. It is exempt not because the rule is wrong but because it was crossed the way this section demands: analysed, named, attested by the decision owner in writing, permanent rather than a deadline expedient, and recorded with its cost stated (`design-catalogue/FEEDBACK.md` F-011). That is the bar. **An attested override is a decision; an unattested one is the red line.** Nothing else in this skill inherits the exemption, and F-011 does not widen by analogy to any other preference.
 
 ## Cheapest fix ladder
 
@@ -112,4 +198,6 @@ Automated tools (axe, this skill's scripts) catch roughly 30% of real barriers �
 | Proposing a step-5 fix (new ARIA, new token) where step 1–4 would work | Walk the cheapest-fix ladder before proposing an addition |
 | A colour-only status indicator passed because the label happened to be nearby | Run the greyscale test explicitly and report the result |
 | `Approve` issued on a domain never actually inspected | Mark that domain `Not reviewed` in the coverage table instead |
-| An accessibility-debt item deferred with no deadline or owner | Every debt entry needs severity, WCAG criterion, remediation deadline, and explicit user acknowledgement |
+| An accessibility-debt item deferred with no deadline or owner | Every debt entry needs severity, WCAG criterion, remediation deadline, and explicit user acknowledgement — written in the eight-field ADR shape, not as a one-liner |
+| A `HIGH` accepted rather than fixed, with no analysis behind it | Run the six tradeoff questions, name who is excluded and whether they are blocked or merely slowed, and record it with a review date |
+| Landmarks and `<iframe title>` never checked because no script reports them | Read the markup: four landmarks minimum, a title on every frame. `a11y_scan.py` catches `region` and `landmark-one-main`; the frame title and the label on a repeated landmark it does not |

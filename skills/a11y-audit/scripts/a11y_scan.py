@@ -108,7 +108,19 @@ def main():
     ap = argparse.ArgumentParser()
     ap.add_argument("target")
     ap.add_argument("--out")
+    # Additive: the default 1440x900 + 390x844 pair is unchanged unless this
+    # is passed. Alunix r8 R4 needed 1280x600/1024x640/720x450 (plan 001's
+    # short-viewport fold sizes), which no CLI flag could reach before this.
+    ap.add_argument("--viewport", action="append", default=[],
+                     help="WxH, repeatable; REPLACES the default pair when given")
     args = ap.parse_args()
+
+    viewports = VIEWPORTS
+    if args.viewport:
+        viewports = []
+        for spec in args.viewport:
+            w, h = spec.lower().split("x")
+            viewports.append((spec, int(w), int(h)))
 
     try:
         url = to_url(args.target)
@@ -116,7 +128,7 @@ def main():
         per_viewport = []
         with sync_playwright() as p:
             browser = p.chromium.launch()
-            for label, w, h in VIEWPORTS:
+            for label, w, h in viewports:
                 page = browser.new_page(viewport={"width": w, "height": h})
                 try:
                     page.goto(url, wait_until="networkidle", timeout=60000)

@@ -85,7 +85,8 @@ async def main(urls):
         browser = await p.chromium.launch()
         page = await browser.new_page(
             viewport={"width": 1440, "height": 900},
-            reduced_motion="no-preference",
+            # F-011: shoot under the hostile setting — motion must play anyway.
+            reduced_motion="reduce",
         )
         out = {}
         for url in urls:

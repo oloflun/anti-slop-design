@@ -34,6 +34,7 @@ except Exception:
 
 
 WRITE_TOOLS = {"Write", "Edit", "MultiEdit", "NotebookEdit", "apply_patch"}
+SHELL_TOOLS = {"Bash", "PowerShell"}
 
 # Contract rules only. These read DESIGN.md directly and are unambiguous.
 CONTRACT_RULES = {
@@ -113,9 +114,14 @@ def _check_reference_floor(root: Path) -> None:
     entries_path = (cat_root / "entries").as_posix()
     cat_reads = [r for r in ref_reads if r.get("cat") == "catalogue"]
     select_rows = [r for r in rows if r.get("event") == "catalogue-select"]
+    # The LATEST selection is the lock. r8 R1 (2026-09-10): the V3c builder ran
+    # select.py once against the unfilled skeleton (zero scores, alphabetical
+    # top four) and once against the real draft; a union of both rows would
+    # have denied R2 for four slugs that were never the lock. Re-running
+    # select.py supersedes, it does not accumulate.
     selected: list[str] = []
-    for r in select_rows:
-        for slug in (r.get("slugs") or []):
+    if select_rows:
+        for slug in (select_rows[-1].get("slugs") or []):
             if slug and slug not in selected:
                 selected.append(slug)
 
@@ -242,6 +248,31 @@ def main() -> None:
         fields = L.generation_fields(event)
         if not fields.get("preflight"):
             _check_generation(event, L.project_root({"cwd": event.get("cwd")}))
+        return
+
+    # Shell authoring of a UI file bypasses every check below (r8 probe,
+    # 2026-09-09: `cat > B.html <<'EOF'` sailed past the reference floor and
+    # left no ledger row). Deny it in an armed session and point at Write/Edit,
+    # where the floor and the contract can actually read the content.
+    if L.tool_name(event) in SHELL_TOOLS:
+        cmd = str(L.tool_input(event).get("command") or "")
+        targets = L.shell_ui_write_targets(cmd)
+        if not targets:
+            return
+        root = L.project_root({"cwd": event.get("cwd")})
+        msg = ("[design-gate · skalskrivning]\n"
+               "UI-filer författas bara med Write eller Edit, så att referensgolvet och "
+               "kontraktet kan granska innehållet. Skalvägen kringgår båda: "
+               + ", ".join(targets) +
+               "\nKopiera (cp, mv, Copy-Item) är tillåtet. Omdirigering, heredoc, tee, "
+               "sed -i, Set-Content/Out-File och inline-skript som skriver filen är det inte.")
+        if L.armed(root):
+            L.log(root, event="gate-deny", file=targets[0],
+                  component=L.component_of(targets[0]), signal="shell-write",
+                  detail=cmd[:160], tier=L.tier(root))
+            L.deny(msg)
+        else:
+            L.emit("PreToolUse", msg + "\n(Sessionen är inte armad, så detta är en varning, inte ett nej.)")
         return
 
     if L.tool_name(event) not in WRITE_TOOLS:

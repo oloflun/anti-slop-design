@@ -1,0 +1,42 @@
+{
+  "pageIntent": {
+    "type": "unknown",
+    "confidence": 0,
+    "path": "/webbyra-goteborg",
+    "title": "Webbyrå Göteborg | Prisvärd webbutveckling | Highway Media",
+    "description": "Söker du en webbyrå i Göteborg? Vi erbjuder modern och behovsanpassad webbutveckling som leder till ökad tillväxt. Kontakta oss för kostnadsfri rådgivning!",
+    "signals": [],
+    "alternates": [],
+    "needsSmart": true
+  },
+  "sectionRoles": {
+    "sections": [
+      {
+        "index": 0,
+        "tag": "nav",
+        "role": "nav",
+        "subrole": null,
+        "confidence": 0.9,
+        "heading": null,
+        "bounds": {
+          "x": 0,
+          "y": 15,
+          "w": 1280,
+          "h": 75
+        },
+        "buttonCount": 0,
+        "cardCount": 0,
+        "slots": {
+          "lede": "010 - 444 14 02 Starta projekt Support"
+        },
+        "needsSmart": false
+      }
+    ],
+    "counts": {
+      "nav": 1
+    },
+    "readingOrder": [
+      "nav"
+    ]
+  }
+}

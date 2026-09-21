@@ -14,7 +14,11 @@ wheel at a fixed cadence:
 
   frame_p95_ms     95th percentile frame time
   frames_over_20ms / frames_over_33ms
-  max_step         largest single-frame change, as % of the value's own range
+  max_step         largest single-frame change, as % of the value's own range.
+                   Gated (> 3 % fails) only on the damped playhead --sc-ps; on a
+                   derived track it is reported, because a smoothstepped value
+                   peaks at ~4.4 %/frame by its own derivative and `staircase`
+                   is what catches a real step there. Never track raw --sc-p.
   staircase        frames where the value did NOT move and the next frame
                    jumped more than 3% of the range. This is the number that
                    names the F-012 failure: a page can hold 60fps and still
@@ -56,9 +60,15 @@ PROBE_JS = r"""
       if (!n) return 0;
       var p = n[1].split(',').map(parseFloat);
       // 2D matrix(a,b,c,d,e,f): rotation from (a,b), translation from (e,f).
+      // At zero rotation, prefer translateY (p[5]) when it is live, else fall
+      // back to translateX (p[4]). A pure translateX move (Alunix r8 V3c
+      // plan 008, the Hyperborea-plate bleed) left p[5] pinned at 0 forever
+      // and reported DEAD though the element was visibly sliding - found
+      // 2026-09-15, same class of blind spot as the rotateY fix above.
       if (p.length === 6) {
         var rot = Math.atan2(p[1], p[0]) * 180 / Math.PI;
-        return rot !== 0 ? rot : p[5];
+        if (rot !== 0) return rot;
+        return p[5] !== 0 ? p[5] : p[4];
       }
       if (p.length === 16) {
         // Column-major matrix3d. A rotateY lives in m11/m31, NOT in the
@@ -251,12 +261,20 @@ def main() -> int:
         page.wait_for_timeout(700)
 
         page.mouse.move(args.width // 2, args.height // 2)
+        # Frames recorded before the first wheel tick belong to page load, not to
+        # the scroll. Counting them made the known-good fixture (tests/motion/
+        # smooth.html) fail the "0 frames > 33 ms" bar on its own load spike, and
+        # a gate the reference build cannot pass measures nothing (gates.md,
+        # "Both directions"). Mark the drag and drop everything before it.
+        page.evaluate("window.__mp && (window.__mp.dragStart = performance.now())")
         for _ in range(args.ticks):
             page.mouse.wheel(0, px)
             page.wait_for_timeout(gap)
         page.wait_for_timeout(600)          # let any lerp land before we stop
 
         frames = page.evaluate("window.__mp ? window.__mp.frames : []")
+        drag_start = page.evaluate("window.__mp ? (window.__mp.dragStart || 0) : 0")
+        frames = [f for f in frames if f["t"] >= drag_start]
         browser.close()
 
     out = {"url": args.url, "wheel": args.wheel, "cpu": args.cpu, "tracks": []}
@@ -279,8 +297,18 @@ def main() -> int:
             fails.append(t["track"] + ": " + str(t["frames_over_33ms"]) + " frames > 33 ms")
         if t["staircase"]:
             fails.append(t["track"] + ": staircase " + str(t["staircase"]))
-        if t["max_step_pct"] > 3.0:
-            fails.append(t["track"] + ": max_step " + str(t["max_step_pct"]) + " % > 3")
+        # max_step is a continuity bar for the PLAYHEAD (--sc-p / --sc-ps): a
+        # smoothed playhead that jumps more than 3 % of its range in one frame
+        # is not smoothed. It is not a bar for derived properties: a value that
+        # is deliberately eased (smoothstep on a card flip, a 1.2 s cubic-bezier
+        # reveal) has a per-frame slope that exceeds 3 % at flawless 60 fps by
+        # construction, so the bar failed every eased act and passed only linear
+        # ones (r8 R2, 2026-09-10: V3c 4.12 % on the flip with staircase 0 and
+        # p95 16.7 ms; the calyx reveal 8.47 % at 60 fps). For derived tracks
+        # the F-013 faults are already caught above: staircase and frame time.
+        is_playhead = t["track"].rsplit(":", 1)[-1].startswith("--sc-p")
+        if is_playhead and t["max_step_pct"] > 3.0:
+            fails.append(t["track"] + ": max_step " + str(t["max_step_pct"]) + " % > 3 (spelhuvud)")
     out["pass"] = not fails
     out["failures"] = fails
 

@@ -1,0 +1,17 @@
+/* shadcn/ui Theme — extracted from https://www.hoy.se/ */
+/* Paste into your globals.css */
+
+@layer base {
+  :root {
+    --background: 260 66% 41%;
+    --foreground: 0 0% 0%;
+    --primary: 45 92% 86%;
+    --primary-foreground: 0 0% 0%;
+    --secondary: 260 66% 41%;
+    --secondary-foreground: 0 0% 100%;
+    --muted: 0 0% 0%;
+    --muted-foreground: 220 13% 91%;
+    --border: 0 0% 0%;
+    --radius: 2px;
+  }
+}

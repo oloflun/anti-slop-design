@@ -21,7 +21,8 @@ async def main(out_dir: str, url: str, slug: str, max_slices: int) -> None:
         page = await browser.new_page(
             viewport={"width": WIDTH, "height": HEIGHT},
             device_scale_factor=1,
-            reduced_motion="no-preference",
+            # F-011: shoot under the hostile setting — motion must play anyway.
+            reduced_motion="reduce",
         )
         await page.goto(url, wait_until="networkidle", timeout=60000)
         await page.wait_for_timeout(1500)

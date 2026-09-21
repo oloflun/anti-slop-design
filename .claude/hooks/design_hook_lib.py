@@ -656,6 +656,37 @@ def is_ui_file(path: str, content: str | None = None) -> bool:
     return True
 
 
+# The shell bypass (r8 probe, 2026-09-09): a headless Opus builder wrote its
+# UI file with `cat > x.html <<'EOF'`. Every gate in this chain keys on the
+# Write/Edit tools, so the reference floor, the contract check and the route
+# ledger all saw nothing. These patterns name the shell constructs that
+# AUTHOR a file; copying (cp, mv, Copy-Item) is deliberately not among them,
+# because vendoring the scroll engine into runs/<cell>/scroll/ is a copy.
+_UI_EXT_RX = r"(?:html?|css|scss|sass|less|jsx?|tsx?|vue|svelte|astro)"
+_SHELL_PATH = r"""["']?([^\s"'|;&<>]+\.""" + _UI_EXT_RX + r""")["']?(?=[\s;&|)]|$)"""
+_SHELL_AUTHORING = [
+    re.compile(r"(?<!<)>{1,2}\s*" + _SHELL_PATH),                                   # cat > x.html, echo >> x.css
+    re.compile(r"\btee\b(?:\s+-\w+)*\s+" + _SHELL_PATH),                            # tee x.html
+    re.compile(r"\b(?:Set-Content|Out-File|Add-Content)\b[^|;\n]*?" + _SHELL_PATH, re.I),
+    re.compile(r"\bsed\b[^|;\n]*?\s-i\S*[^|;\n]*?\s" + _SHELL_PATH),                # sed -i ... x.html
+    re.compile(r"open\(\s*[\"']([^\"']+\." + _UI_EXT_RX + r")[\"']\s*,\s*[\"'][wa]"),  # python open(x,'w')
+    re.compile(r"writeFile(?:Sync)?\(\s*[\"']([^\"']+\." + _UI_EXT_RX + r")[\"']"),   # node fs.writeFile
+]
+
+
+def shell_ui_write_targets(command: str) -> list[str]:
+    """UI files a shell command would AUTHOR (not copy). Empty = nothing to gate."""
+    if not command:
+        return []
+    found: list[str] = []
+    for rx in _SHELL_AUTHORING:
+        for m in rx.finditer(command):
+            p = m.group(1).strip()
+            if p and is_ui_file(p) and p not in found:
+                found.append(p)
+    return found
+
+
 # Skills whose route is about the surrounding framework, not the component
 # being crafted — react-components and next-best-practices route on generic
 # structural signals ("export function", "app/") that fire on almost every

@@ -185,7 +185,7 @@ Two complete alternative workflows exist. They are **not** wired into this route
 | `polish` vs `impeccable polish` | Prefer `impeccable polish` — `polish` has the stale `/teach-impeccable` dependency |
 | `ui-ux-pro-max` palettes vs the tier gate | Its 161 palettes are a **Tier-3 menu only** |
 | `webpage-builder` | **Project-locked** to the project-a-next Swedish B2B design system. Never fire outside that project |
-| `design-md` vs `brand-system` | Both emit DESIGN.md; `design-md` is Stitch-only and prose-only |
+| `design-md` vs `brand-system` | Both emit DESIGN.md; `design-md` is Stitch-only and prose-only. **Demoted to Stitch-import (2026-09-09):** its only sanctioned job is turning a Stitch export into a brief. It never writes the contract file — run `$impeccable document` afterwards to produce the canonical `DESIGN.md` the gate can read (§ 4) |
 
 ---
 
@@ -231,7 +231,8 @@ in the brief explicitly, in reading order.
    (≥4 families), the fingerprint against every sibling and registry row, the `?preview=`
    plan. The orchestrator reads it against the files before round 2 begins.
 2. *Fold + set-piece only.* Screenshots in both motion modes (`reduced_motion`
-   `no-preference` and `reduce`), read as pixels by the orchestrator.
+   `no-preference` and `reduce`), read as pixels by the orchestrator, and compared:
+   under F-011 they must match.
 3. *The whole page*, plus `emil-design-eng` on transitions and the copy gate on own strings.
 4. *Orchestrator findings + the reviewer trio* → 5. *Fixes*, until a full pass is clean.
 
@@ -246,10 +247,15 @@ in, in the concept file. r6-K3 (glass card) would have fallen on (2); r6-K2 on (
 vendored) and any generated motion material with the brief; point the agent at
 `scripts/serve.py`; the builder makes no Unsplash calls and writes no server.
 
-**Judge in motion mode.** The orchestrator captures every round with `reduced_motion=
-"no-preference"` *and* `"reduce"`, reads both, and states in the report which mode each
-image shows. A reviewer whose OS has animations off sees only the fallback (r6: that is
-what happened, and nobody noticed for a whole round).
+**Judge in motion mode — now a regression test.** The orchestrator captures every round
+with `reduced_motion="no-preference"` *and* `"reduce"`, reads both, and the two sets must
+be **identical**. Before F-011 the point was to label which mode an image showed, because
+a reviewer whose OS had animations off saw only the fallback (r6: that is what happened,
+and nobody noticed for a whole round). There is no fallback any more, so a difference
+between the two sets is not a labelling problem — it is a reduced-motion branch that has
+crept back into the build, and it fails the round. `shoot.py`, `measure.py` and
+`shoot_slices.py` default to `"reduce"` for exactly this reason: the hostile setting is
+the one worth photographing.
 
 ## 2026-09-03 rework (v3) — what changed in the orchestration
 

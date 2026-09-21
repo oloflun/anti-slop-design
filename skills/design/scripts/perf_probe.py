@@ -188,7 +188,13 @@ def main() -> int:
         print("perf_probe: playwright saknas (" + str(e) + ")", file=sys.stderr)
         return 2
 
+    # Two ledgers. `transfer` is the page's OWN weight: responses whose frame is
+    # the main frame. `embedded` is everything an <iframe> pulled in. The budget
+    # is judged on the page's own weight only; r8 R3 (2026-09-10) showed a cell
+    # at 334 kB / 3 font files reported as 4.9 MB / 19 fonts because two live
+    # example sites were embedded as proof, and the cell may not edit those.
     transfer = {}
+    embedded = {}
 
     with sync_playwright() as p:
         browser = p.chromium.launch()
@@ -205,12 +211,17 @@ def main() -> int:
                 cl = int(resp.headers.get("content-length") or 0)
             except Exception:
                 return
+            try:
+                own = resp.frame == page.main_frame
+            except Exception:
+                own = True
             kind = ("image" if ct.startswith("image/") else
                     "font" if "font" in ct else
                     "script" if "javascript" in ct else
                     "style" if "css" in ct else
                     "video" if ct.startswith("video/") else "other")
-            e = transfer.setdefault(kind, {"bytes": 0, "count": 0, "largest": 0, "largest_url": ""})
+            ledger = transfer if own else embedded
+            e = ledger.setdefault(kind, {"bytes": 0, "count": 0, "largest": 0, "largest_url": ""})
             e["bytes"] += cl
             e["count"] += 1
             if cl > e["largest"]:
@@ -304,6 +315,8 @@ def main() -> int:
         "lcp_ms": round(perf["lcp"]), "cls": round(perf["cls"], 4),
         "long_tasks": len(perf["long"]), "long_tasks_under_scroll": len(perf["scrollLong"]),
         "transfer": transfer, "total_bytes": total_bytes, "dom_nodes": static["nodes"],
+        "embedded": embedded,
+        "embedded_bytes": sum(v["bytes"] for v in embedded.values()),
         "findings": findings, "pass": not findings,
     }
 
@@ -318,6 +331,11 @@ def main() -> int:
         print("  LCP %d ms | CLS %.3f | long tasks %d (%d under scroll) | %.0f kB | %d noder"
               % (out["lcp_ms"], out["cls"], out["long_tasks"],
                  out["long_tasks_under_scroll"], total_bytes / 1000, static["nodes"]))
+        if embedded:
+            ef = embedded.get("font", {"count": 0})
+            print("  inbaddat (iframes, utanfor budgeten): %.0f kB, %d typsnittsfiler, %d svar"
+                  % (out["embedded_bytes"] / 1000, ef["count"],
+                     sum(v["count"] for v in embedded.values())))
         seen = {}
         for f in findings:
             seen.setdefault(f["rule"], []).append(f["detail"])

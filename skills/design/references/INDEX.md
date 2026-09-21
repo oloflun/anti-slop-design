@@ -4,6 +4,13 @@ This is the shelf map. `SKILL.md` (the L0 entry) dispatches by task type; this
 file answers the inverse question — "what lives where, for the part I'm looking
 at". Catalog only; every card below is a pointer, not content.
 
+## Resident — read on every job, by every agent
+
+| File | Use it for |
+|---|---|
+| `chain-discipline.md` | The nine rules about the chain itself — how to measure (M1–M3), verify (V1–V2), orchestrate (O1–O2) and review (R1–R2), and the round ladder (§ 5). Won from 37 build rounds on 10 orders. Read before the shelf, not after. |
+| `fault-taxonomy.md` | Every pushback the owner has given across the whole run, sorted by **cause** — eleven classes, ten of them measurable. `FEEDBACK.md` is the log in the order he gave it; this is the analysis, and it is what lets a reviewer name the class and its unit before he has to say it again. The three he repeats are the seam, the collision and the AI register. |
+
 ## Craft — how to derive and execute direction
 
 | File | Use it for |

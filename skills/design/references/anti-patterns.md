@@ -176,7 +176,9 @@ The same failure at body size, where the size test above cannot see it. Named by
 2. **The disclaimer.** A caveat about the material's status, placed before the material. It apologises for the work in the sentence before the work argues for itself.
 3. **The setup → caveat → roadmap cadence.** The LLM default shape for "introduce a section". It is recognisable by its tempo, not by its vocabulary, which is why rewriting the words does not fix it.
 
-**The test.** Cut the line and read the section. If the reader loses nothing but a description of what they can already see, the line was filler. A section that then has only a heading is set so the heading carries alone — it is never given a lede to fill the space.
+**The test, mechanical.** `skills/design/scripts/self_reference_scan.py` — run on the built page or a text dump. It reports four categories: `page-as-subject` (the sentence points at the page it is on), `selection-justification` (it explains the page's own selection), `narration-of-disposition` (it announces what the page is about to do), `meta-label` (it names the artefact). The subject of the sentence is the test, not its vocabulary, which is why rewriting the words never fixed it. It carries a `--selftest` that must pass first: the rejected Alunix lede **is** flagged, and genuine service copy ("vad sidan ska göra för er", "vi bearbetar texter ni har") is **not**. Candidates, not verdicts — a functional genre label may be a legitimate exception (F-016).
+
+**The test, by hand.** Cut the line and read the section. If the reader loses nothing but a description of what they can already see, the line was filler. A section that then has only a heading is set so the heading carries alone — it is never given a lede to fill the space.
 
 **Rule.** No text on the page refers to the page. A lede, a kicker, or an opening line is about the business, the work, or the reader's question — never about what the section below contains, what order it comes in, or why it exists.
 
