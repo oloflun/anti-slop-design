@@ -175,6 +175,31 @@ hälsokontroller, inte ett mål.
 
 ## Ändringslogg
 
+- 2026-09-22 — claude — Alunix V3d:F1–F5 åtgärdade och mätta (kapitelrubriken
+  skars av arkets sticky-plan, inte av sin egen ruta — föregående sessions
+  slutsats var fel; siffra→etikett överlappade på fem av sex mätpunkter;
+  spalten 409,9 → 475,8px mot att arket går 68,8 → 66,6 % vw). Ruttgapet, det
+  vill säga mätpunkt 2 nedan, drevs till **noll** genom att `a11y-audit` och
+  `review-animations` laddades och kördes som procedur, inte ur minnet — och
+  a11y-passet gav ett HIGH-fynd (kontrast 3,64:1 på `.process-kicker` över en
+  vandrande blå yta) som jag först avskrev och sedan fick tillbaka av
+  mätningen. Sidan gjordes självständig utan att ändras (beroendena
+  vendorerade på de sökvägar den redan frågar efter), lades i ett nytt privat
+  repo `oloflun/alunix` och publicerades live på Vercel. Mätpunkt 1 och 3
+  orörda. Se `session-logs/2026-09-22-session-log.md`.
+
+- 2026-09-10 — claude — T2 klart: designsystemet registrerat som egen lokal marketplace
+  och installerat direkt (10 hookar, byte-identiska med repot) — sessioner laddar inte
+  längre en äldre plugin-cache-kopia. r8-testet (Alunix, tre koncept V3c/K3/K4, headless
+  Opus-lead bevakad av mig) körde fas 0 till R3; kvartetten + `codex-review` bevisad
+  fungerande på riktigt för första gången (verklig `codex exec`-process, `gpt-5.5`,
+  riktig kontoanvändning). Under vägen: `motion_probe.py`s `max_step`-gräns omkalibrerad
+  att bara gälla det dämpade spelhuvudet, inte härledda spår (den gamla baren straffade
+  korrekt easing); `review-animations` mister sin `disable-model-invocation`-flagga så
+  byggare kan köra den i egen session; `perf_probe.py` och `contrast_over_media.py`
+  omskrivna — båda var trasiga för en sida med inbäddade `<iframe>`-exempelsajter.
+  V3c närmast mål, K3/K4 blockerade på ersättningsplaner. Se
+  `session-logs/2026-09-10-session-log.md` och `tests/alunix-r8/STATUS.md`.
 - 2026-09-08 — Mätpunkt 1 och 2 omskrivna efter mätning: verifieraren har 191
   kontroller och kraschade tidigare mitt i körningen; gapet delas nu i tre hinkar.
   Designkedjan v4 påbörjad enligt plan `trots-den-senaste-design-system-federated-raven`:

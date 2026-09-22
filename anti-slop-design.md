@@ -4,12 +4,37 @@ type: project
 status: active
 project_slug: anti-slop-design
 repo: C:\\Users\\Anton L\\anti-slop-design
-updated: 2026-09-21
+updated: 2026-09-22
 ---
 
 # Anti-Slop Design
 
-## Nulage 2026-09-20
+## Nulage 2026-09-22
+
+Alunix V3d:s F1–F5 är åtgärdade, mätta och verifierade, och **sidan är publicerad**:
+live på `https://alunix-three.vercel.app`, källan i det nya privata repot
+`oloflun/alunix` med sidan självständig i roten (`index.html` byte-identisk med
+cellen här, beroendena vendorerade på de absoluta sökvägar sidan redan frågar
+efter). F3:s grundorsak var inte rubrikens egen ruta som förra sessionen antog —
+`titelklipp.py` mätte `lost_px 0`, glyferna var hela — utan `.process-stick`,
+arkets opaka sticky-plan, som täckte rubrikens sista rad eftersom stämpelrutan
+hänger 133px nedanför kapitlets box.
+
+**Ruttgapet — projektets egen mätpunkt 2 — är noll för sessionen.** `a11y-audit`
+och `review-animations` laddades och kördes som procedur, med CARL-kontrollen mot
+`tests/a11y/broken.html` först. a11y-passet gav ett HIGH-fynd som jag först
+avskrev: `.process-kicker` mätte 7,38:1 i ett scrolläge men **3,64:1** i aktens
+värsta, eftersom marken vandrar från accentblått till skiffer. Åtgärdat till
+5,99:1. Full rapport i `tests/alunix-r8/runs/V3d/reviews/a11y-r24f.md`,
+skuldbok i `.impeccable/a11y-debt.md`.
+
+**Kvar:** F6/F7 (stora fyrkantiga block och den hårda vågräta skarven i
+blå→ritning-övergången) är orörda; plan 067 § Verification är fortfarande
+obetald; `<nav>`-landmärket saknas i sidhuvudet (två taggar, daterad skuld).
+**`design-rework-v3` finns bara på den här disken — 29 commits före `origin/main`,
+grenen finns inte på GitHub.** Det kräver Antons beslut; repot är publikt.
+
+## 2026-09-20 — V3d byggd, nivan inte nadd
 
 Alunix-landningssidans V3d-variant ar byggd med allt Anton bestallt (processtexten i vanster
 spalt om ritningen, stampelruta i overgangen, Exempelcase nedskalat, prissektionen utan Young
@@ -21,7 +46,8 @@ case-ingressen ar underkanda. Plan 067 § Verification har aldrig korts.
 hela sessionen ligger i
 `~/.claude/projects/C--Users-Anton-L-anti-slop-design/09682a1d-0752-4109-a0dc-1b4a1af7a4ac.jsonl`.
 
-Blockerare: veckokvoten slut till 2026-09-23.
+Blockerare: veckokvoten slut till 2026-09-23. *(Inaktuell: sessionen 2026-09-22 korde utan
+kvotproblem, och F1–F5 ar atgardade. Texten star kvar som historik.)*
 
 Canonical project hub. Read this first to orient; every section points at the document that carries the detail.
 
@@ -345,11 +371,21 @@ Design system rebuilt 2026-08-01 (registers + mechanical exit bar), reworked aga
 2026-09-03 (hooks, `a11y-audit`, reference lock, catalog), and again 2026-09-06/07 (r7:
 reference floor + per-session ledger fix + motion-always policy, F-011/F-012 above).
 
-**Open:** the design catalog's Vercel + GitHub OAuth step; two Hallmark reference files
-(`custom-theme.md`, `macrostructures.md`) differ from upstream HEAD because upstream moved
-(fidelity check reports it honestly); whether `impeccable` loads at all in the headless
-builder environment (see F-011 section above); the Stop-hook session-scoping fix (proposed,
-not done).
+**Open:** **`design-rework-v3` är opushat — 29 commits, allt septemberarbete inklusive
+hela V3d, finns bara på den här disken; grenen finns inte på `origin`.** F6/F7 är
+orörda (stora fyrkantiga block och den hårda vågräta skarven i blå→ritning).
+Plan 067 § Verification är obetald. `<nav>`-landmärket saknas i sidhuvudet på
+V3d-sidan (två taggar, daterad skuld i `.impeccable/a11y-debt.md` till
+2026-12-20). `skills/design/scripts/contrast.py` har en hårdkodad URL
+(`localhost:3055`) och kan inte pekas på en sida — a11y-audit föreskriver den och
+den kunde därför inte köras som avsett. `memory/BLOCKS.md` är 25 293 tecken mot
+sin egen `limit: 3000`. `oloflun/alunix` har en kvarvarande juli-prototyp i
+`app/`/`components/`/`lib/` — den byggs inte och publiceras inte, men radering
+kräver Antons ord. Sedan tidigare: katalogens Vercel + GitHub OAuth-steg; två
+Hallmark-referensfiler (`custom-theme.md`, `macrostructures.md`) skiljer sig från
+upstream HEAD därför att upstream flyttat (fidelity-kontrollen rapporterar det
+ärligt); huruvida `impeccable` laddas alls i den headless byggmiljön (se F-011
+ovan); Stop-hookens sessions-scopningsfix (föreslagen, inte gjord).
 
 ## Related
 
