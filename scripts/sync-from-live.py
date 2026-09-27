@@ -21,6 +21,7 @@ Usage:
 from __future__ import annotations
 
 import hashlib
+import subprocess
 import sys
 from pathlib import Path
 
@@ -122,6 +123,8 @@ def main() -> int:
         deleted += de
         unchanged += u
     print(f"copied {copied}, deleted {deleted}, unchanged {unchanged}")
+    # keep the slim plugin build (what the marketplace installs) in step
+    subprocess.run([sys.executable, str(REPO_ROOT / "scripts" / "build-plugin.py")], check=True)
     return 0
 
 
