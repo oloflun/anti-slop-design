@@ -23,6 +23,122 @@ stops, one theme family. On a page of many *short* acts several can be
 part-way through at once — paint grounds per section instead of drifting; see
 upstream §10.
 
+## The engine: GSAP + Lenis (house default from 2026-09-24)
+
+**Every new build animates with GSAP** (+ScrollTrigger, SplitText when text is
+split) **and Lenis.** Scrollcraft (`scripts/scroll/`) stays only for pages already
+built on it — do not port an existing scrollcraft page to GSAP+Lenis just because
+it's the new default. **Never mix the two engines on one page**: two scroll owners
+is two RAF loops fighting for the same frame. Anton's instruction: GSAP+Lenis for
+all animations, applied wherever the motion fits the design and elements of each
+page.
+
+Vendored locally from `scripts/motion/vendor/` (gsap 3.15.0, ScrollTrigger,
+SplitText, lenis 1.3.26 + `lenis.css`) — copy the whole folder into the build's
+`assets/vendor/`; never a CDN at runtime. GSAP 3.13+ including SplitText is free.
+
+The init, verbatim — house deviations from Lenis's own defaults, each explained
+once here so no builder reads the Lenis README and takes the default instead:
+
+```js
+var lenis = new Lenis({ autoRaf: false, anchors: true, respectReducedMotion: false, lerp: 0.075, wheelMultiplier: 0.6 });
+window.__lenis = lenis;
+gsap.ticker.add(function (time) { lenis.raf(time * 1000); });
+gsap.ticker.lagSmoothing(500, 33);
+lenis.on('scroll', ScrollTrigger.update);
+```
+
+- **`respectReducedMotion: false`.** Lenis's own default is `true`, which would
+  silently switch off all motion for Anton, whose Windows runs with animation
+  effects off (house rule F-011 / CARL design decision 2026-09-07). Rörelse spelar
+  alltid — motion always plays.
+- **`anchors: true`.** Lenis's default is `false`, which breaks in-page anchor
+  links silently — no error, they just stop scrolling to the target.
+- **`autoRaf: false`, driven by `gsap.ticker`.** `gsap.ticker` is the only RAF
+  driver on the page; Lenis's own rAF loop would be a second one racing it.
+- **`gsap.ticker.lagSmoothing(500, 33)`, not `0`.** With `0`, one stalled frame (GC, a GPU queue, a
+  first paint) hands Lenis the whole lost time at once and a running `scrollTo` jumps to catch
+  up — measured Alunix V3g 2026-09-25: 490–724 px in a single frame after a click. With
+  `(500, 33)` a stall over 500 ms counts as 33 ms: the scroll pauses and resumes (max step
+  38–90 px over four runs). Lenis and ScrollTrigger share the same clamped clock, so they
+  stay in sync.
+- **`lenis.on('scroll', ScrollTrigger.update)`**
+  keep GSAP's tab-blur catch-up off and ScrollTrigger's cached positions synced to
+  Lenis's virtual scroll on every frame.
+- **`window.__lenis`** is the dev hook every jump-test drives:
+  `lenis.scrollTo(el, {immediate:true})`, never `window.scrollTo`.
+
+No `scrollerProxy` (Lenis scrolls the real page, not a virtual container). No CSS
+`scroll-behavior: smooth` anywhere — it fights Lenis's own smoothing.
+
+**Iframes.** `lenis.css` sets `pointer-events: none` on iframes while smooth-scroll
+is active — wanted behaviour for scroll-driven embeds (a showcase iframe the reader
+scrolls *past*). For an embed the reader should scroll *inside*, set
+`data-lenis-prevent` on it.
+
+### Scrollcraft device → GSAP equivalent
+
+| Scrollcraft | GSAP + Lenis |
+|---|---|
+| `scrub` (`data-sc-act=scrub`) | ScrollTrigger `scrub: true` timeline |
+| `pin` | `pin: true`, created **once** at init |
+| `pan` | pinned timeline, `xPercent` |
+| `reveal` | `ScrollTrigger.batch` or a per-element trigger, fail toward visible |
+| `kinetic` | SplitText `type:'lines,words,chars', mask:'lines'` + per-word `white-space: nowrap`; the mask needs `padding-bottom` with an equal negative margin so descenders survive |
+| `parallax` | `yPercent` scrub |
+| `count` | tween on a plain object + `snap` / `gsap.utils.snap` |
+| `tilt` / `magnet` | `gsap.quickTo`, gated `(hover: hover)` |
+| grid dissolve | `stagger: {grid, from:'random'}` |
+| `responsive` (`gsap.matchMedia`) | `gsap.matchMedia()` |
+
+### Load-bearing rules
+
+- Create every ScrollTrigger **in page order.**
+- **Never mix `scrub` and `toggleActions` on one trigger.**
+- The **last element on the page** uses `end: 'bottom bottom'`.
+- **With Lenis, use `scrub: true`, not a numeric scrub.** Lenis is the ONE
+  smoothing layer on the page — a numeric scrub value stacks a second lag on top
+  of it. Measured jank in V3f's showcase, 2026-09-24.
+- **A pin is created once at init and is never killed/recreated on user
+  interaction.** V3f's click handler did that and produced a hard, visible
+  transition where the pin snapped instead of holding.
+- **`end` is set in pixels via a function, with `invalidateOnRefresh: true` —
+  never a `'+=Nvh'` string.** ScrollTrigger silently ignores the `vh` suffix on
+  that shorthand — measured V3f R5.
+
+- **An iframe inside a pinned element needs an explicit `pinSpacer`.** ScrollTrigger re-parents
+  the pinned element into its own pin-spacer on every `refresh()`, and a re-parented iframe
+  reloads its document. If that iframe's `load` then asks for a refresh, the page runs a
+  reload loop for the whole visit (measured Alunix V3f/V3g 2026-09-25: 6–12 reloads per
+  iframe per pass, ~1/s, and the thesis headline two sections away lost half its frames).
+  Put a wrapper in the markup (`<div class="x-pin-spacer"><div class="x-stage">…`) and pass
+  `pinSpacer: '.x-pin-spacer'`. Never call `refresh()` from an iframe's `load`; an iframe
+  has fixed dimensions and cannot change the outer layout.
+- **Every scrubbed trigger uses `scrub: true`** — hero and thesis pins included, not only
+  the one being edited this round. A numeric scrub anywhere is a second smoothing layer.
+- **House pace (Anton 2026-09-25: "scrollen går för snabbt … man kastas förbi kortet").**
+  Lenis `wheelMultiplier: 0.6` and `lerp: 0.075` — one wheel notch moves ~60 px and glides.
+  A pin whose content the reader must watch happen (a card flip, a step change) spans at
+  least 200 vh of scroll; nothing the reader should see may complete within one or two
+  notches. Slower is only better if it stays even: verify with `section_probe.py`.
+- **A timeline driven by `.progress(p)` must last exactly 1.** Tweens placed at absolute
+  positions on a 0–1 scale end before 1, so the timeline is shorter and `progress(p)` runs
+  it out of step with everything else driven by `p` — measured V3g 2026-09-25: late steps
+  never faded in, and scrolling back left the active text at opacity 0. End every such
+  timeline with `tl.set({}, {}, 1)`, and check a step by jumping to it AND by scrolling back
+  to it, not only on the first forward pass.
+- **Check: `scripts/section_probe.py URL --baseline <previous.json>`** after every round,
+  on the WHOLE page, not only the edited section. It fails on an iframe that loads more
+  than once, on any refresh during the scroll pass, and on any section whose p95 frame time
+  got worse than the approved baseline. Verified to fail on V3f and V3g before the fix.
+
+### Skills to load before the first line of motion code
+
+In order: `lenis` → `gsap-core` → `gsap-scrolltrigger` → `gsap-timeline` →
+`gsap-plugins` (if SplitText/Flip) → `gsap-performance` → `gsap-utils` (if
+needed). Plus the UI-skills registry's `ibelick/fixing-motion-performance` — see
+[`skill-orchestration.md`](../skill-orchestration.md).
+
 ## The cue contract — what verification actually catches you on
 
 `data-sc-cue="from [to [rampIn [rampOut]]]"`, all in act progress 0–1.

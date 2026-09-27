@@ -203,6 +203,41 @@ Detection is automatic — `component-routing.md`'s `product` rule fires on dash
 
 **Hand off the engine, keep the design.** For a serious data grid (TanStack, AG Grid), a code editor (Monaco, CodeMirror), an enterprise context with an official system (Fluent, Carbon, Atlaskit, Polaris), or native mobile (Apple HIG, Material) — use the right tool for the mechanism, themed to the locked tokens. The router still owns the tokens, the mode declaration, the eight-state discipline, and verification. Handing off the grid engine is correct; applying landing-page taste to a data grid is not.
 
+## UI Skills registry (`mcp__ui-skills__*`)
+
+A hosted registry of external craft skills, fetched live — not installed. Two rules
+govern when it's touched at all:
+
+- **`get_skill` is called AFTER the register (§ 5) is locked, never before.** It
+  supplies craft, not direction; fetching it early is how a registry skill's own
+  opinion quietly becomes the direction instead of executing inside one.
+- **`list_skills` is always called with a `query`.** Without one it crashes on the
+  size of the full list.
+- **A fetched skill that changes a decision is logged in the decision ledger**
+  (`reference-lock.md`) — same rule as any other reference.
+
+| Skill | Use |
+|---|---|
+| `ibelick/fixing-motion-performance` | **Always, for motion.** Loaded alongside the GSAP skill chain (`scroll/devices.md` § The engine) before the first line of motion code. |
+| `jakubkrehel/better-typography` | **Always.** |
+| `jakubkrehel/better-layout` | **Always.** |
+| `zeke/swiss-design` | Per register — swiss / grid-first / rutverk. |
+| `elithrar/neo-industrial-design` | Per register — industrial, editorial-brutalist. |
+| `ericzakariasson/scandinavian-design` | Per register — Nordic restrained. |
+
+**Not used, with reason:**
+
+- `emilkowalski/*`, `greensock/gsap-*`, leonxlnx taste variants — superseded by the
+  local `emil-design-eng` and `gsap-*` skills already in the catalog.
+- `vercel-labs|antfu/web-design-guidelines` — same text already installed locally
+  as `web-design-guidelines`; disabling a local skill does not disable the
+  knowledge, so fetching the registry copy adds nothing.
+- `mengto/animation-on-scroll` — its IntersectionObserver reveals conflict with the
+  GSAP+Lenis engine (`scroll/devices.md` § The engine): two reveal mechanisms
+  fighting over the same elements.
+- `addyosmani/*` audits — `design-perf-reviewer` covers them.
+- `superfuture/design-review` — `design-critic` covers it.
+
 ## 11. What is genuinely out of scope
 
 `ab-testing` · `seo-audit` · `programmatic-seo` · `site-architecture` · `competitors` · `popups` · `free-tools` · `directory-submissions` · `sales-enablement` · `churn-prevention` · `community-marketing` — marketing skills that may *inform* a page's content but never its visual direction.
@@ -256,6 +291,36 @@ between the two sets is not a labelling problem — it is a reduced-motion branc
 crept back into the build, and it fails the round. `shoot.py`, `measure.py` and
 `shoot_slices.py` default to `"reduce"` for exactly this reason: the hostile setting is
 the one worth photographing.
+
+### The lead's pixel review (own check, not a follow-up)
+
+From `HANDOFF-V3f.md` § 4 (anti-slop-design repo). **The lead's pixel review is a
+check the lead runs, not a follow-up on the builder's own verification** — every
+round of V3f found faults the builder's own verification had already approved.
+Delegating this to "the builder says it's clean" is how those faults ship.
+
+1. **Real wheel scroll**, not an instant jump: `page.mouse.wheel` in steps of
+   4×120 px.
+2. **One screenshot per ~half viewport**, stitched into a contact sheet.
+3. **The intro captured at 60, 150, 250 and 400 ms.**
+4. **The final state at max scroll, on every width.**
+5. **Capture retries 3× before a failure is read as a regression** — a stalled
+   screenshot is as often the environment (a parallel tab loading the same page)
+   as it is a real defect.
+6. **The lead reads every image.** Not a subset, not a summary of what changed —
+   every frame in the contact sheet.
+
+Template script: `tests/alunix-r8/lead_motion_capture.py` (anti-slop-design repo).
+
+**Browsers stay off the desktop (Anton, 2026-09-25).** Every verification browser — probes,
+`verify*.py`, contact sheets, a builder's own ad-hoc Playwright scripts — runs **headless**,
+**one at a time**. Headed windows piled up over Anton's screen and crashed the machine. For
+frame timing use the new-headless Chromium channel with the GPU forced on
+(`channel="chromium"`, `--enable-gpu --ignore-gpu-blocklist --use-angle=d3d11`); calibrated
+2026-09-25 it gives the same 16.7 ms median as headed, while the old headless shell inflates
+frame times 5–10×. Serialize with the lock file `%TEMP%/alunix-browser.lock` (pattern:
+`single_flight()` in `tests/alunix-r8/showcase_probe.py`). Compare A/B only within one mode and
+over repeated runs; a single click-window p95 is noise.
 
 ## 2026-09-03 rework (v3) — what changed in the orchestration
 

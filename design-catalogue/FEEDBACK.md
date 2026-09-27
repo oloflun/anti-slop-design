@@ -381,3 +381,65 @@ Ta aldrig bort en post; en regel som visar sig fel får en ny post som upphäver
 - **Status:** portad till `anti-patterns.md` § Descriptive microtext (ny underrubrik
   § The page narrating itself), `production-tells.md` gate 99, `gates.md` gate 99,
   `skills/design/references/copy-gate.md`.
+
+## 2026-09-25 · r8-boarden (port 4626), V3g "Rutverket · mjuk showcase" runda 2
+
+### F-019 · Textrutans rubrik får inte ta över
+- **Visades:** V3g R2, showcasens textruta på desktop med stegrubriken i cirka 120 px
+  (`En mening som saktar in`, `Ett mejl räcker`) över ett stort skuggat stegtal (`03`, `05`).
+- **Antons ord:** "showcasen är bättre men rubriken är alldeles för stor och ger inte önskad
+  effekt, det tar över på ett dåligt sätt, testa en annan layout på texten men behåll
+  mekanismen."
+- **Dom:** mekanismen bra (övertoning, räknare, mintspår), typografin i rutan dålig.
+- **Regel:** i en ruta som följer en levande sajt är sajten huvudsaken och texten
+  bildtexten. Stegrubriken står i rubrikskala (h3, ungefär 28–32 px), inte i displayskala.
+  Rutans tomma yta fylls med innehåll, aldrig med förstorad text eller jättesiffror, och
+  aldrig med ornament (se F-022, som upphäver den tidigare formuleringen "fylls med struktur").
+- **Status:** V3g EFFECTS.md, runda 3-briefen.
+
+### F-020 · Scrollen går för fort, och mjukheten får inte offras för farten
+- **Visades:** V3g R2, hela sidan med Lenis-standard (ett hjulsteg = 100 px) och hero-pinnen
+  `+=120%`.
+- **Antons ord:** "när man scrollar ned en gång på hjulet så hoppar man ned från toppen av
+  sidan och kastas förbi kortet så man knappt hinner se det vändas … tvinga sakta ned
+  scrollen … var extra noga med att se till att den är mjuk och jämn hela vägen." Om
+  showcasen: "den hoppar ned för sidan väldigt hastigt mellan texterna."
+- **Dom:** dåligt, generellt.
+- **Regel:** husets tempo är `wheelMultiplier: 0.6`, `lerp: 0.075`. En pin vars innehåll
+  läsaren ska se ske spänner minst 200 vh. Den inbäddade sajten glider mellan ankare över
+  större delen av segmentet, aldrig i ett ryck. Allt verifieras jämnt med `section_probe.py`.
+- **Status:** `references/scroll/devices.md` § Load-bearing rules.
+
+### F-021 · En bra effekt försämrades av en ändring någon annanstans
+- **Visades:** V3g R2 mot V3f. Tesrubriken "Det första intrycket är digitalt." var orörd i
+  koden men märkbart mer statisk och ryckig.
+- **Antons ord:** "var också bättre förra rundan, nu är den mer statisk och ryckig. Ta reda
+  på anledningen … systemet får inte ta fel på bra effekter och göra de sämre, agenterna
+  måste ha tydliga instruktioner och riktlinjer för vad som är bra."
+- **Grundorsak (mätt):** iframes i en pinnad scen laddades om vid varje
+  `ScrollTrigger.refresh()`, eftersom pin-spacern flyttar dem i DOM:en. Varje omladdning bad
+  om en ny refresh, och loopen gick hela besöket: 6–12 omladdningar per iframe per pass.
+  Felet fanns redan i V3f. R2 förladdade den andra sajten och dubblade kostnaden, och tesens
+  p95 gick från 33 till 50–100 ms.
+- **Regel:** godkända effekter skyddas. De står i körningens `EFFECTS.md` med en uppmätt
+  signatur. Varje runda kör `section_probe.py` på HELA sidan mot baslinjen, och en sektion
+  som blivit sämre blockerar rundan även om ingen rad i den ändrats. En iframe i en pin
+  kräver en egen `pinSpacer`, och en refresh anropas aldrig från en iframes `load`.
+- **Status:** `references/motion.md` § Approved effects are protected,
+  `references/scroll/devices.md`, `scripts/section_probe.py`.
+
+### F-022 · Dekorativa streck läses som ofärdig kod
+- **Visades:** V3g R4–R5, showcasens textruta med en lodrät "stegskala" (tunn linje, fem–sex
+  streck, glidande mintmarkör) som skulle bära rutans höjd. Specen var leadens egen (R3), och
+  leaden godkände den själv på skärmbild.
+- **Antons ord:** "Hur godkändes de gröna strecken? Det ser ut som något ofärdigt som släppts
+  igenom koden. Det räcker med att flytta upp stycket istället, men hela utseendet på det ser
+  fortfarande för platt ut, lös det."
+- **Dom:** dåligt, generellt.
+- **Regel:** ett element som inte bär innehåll och inte är ett godkänt husgrepp (rastret,
+  cellnätet, mintlinjen som markering) byggs inte för att fylla yta. Tom yta är ett
+  kompositionsproblem: flytta innehållet, eller ge ytan riktigt innehåll (bild, detalj ur
+  arbetet). "Det syns i alla fall" räcker inte som godkännande. Leadens egen spec granskas med
+  samma fråga som byggarens: skulle Anton se det här som färdigt?
+- **Status:** V3g runda 6-briefen; `references/motion.md` § Approved effects (leaden är inte
+  undantagen).

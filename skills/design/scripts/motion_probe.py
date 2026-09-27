@@ -60,15 +60,9 @@ PROBE_JS = r"""
       if (!n) return 0;
       var p = n[1].split(',').map(parseFloat);
       // 2D matrix(a,b,c,d,e,f): rotation from (a,b), translation from (e,f).
-      // At zero rotation, prefer translateY (p[5]) when it is live, else fall
-      // back to translateX (p[4]). A pure translateX move (Alunix r8 V3c
-      // plan 008, the Hyperborea-plate bleed) left p[5] pinned at 0 forever
-      // and reported DEAD though the element was visibly sliding - found
-      // 2026-09-15, same class of blind spot as the rotateY fix above.
       if (p.length === 6) {
         var rot = Math.atan2(p[1], p[0]) * 180 / Math.PI;
-        if (rot !== 0) return rot;
-        return p[5] !== 0 ? p[5] : p[4];
+        return rot !== 0 ? rot : p[5];
       }
       if (p.length === 16) {
         // Column-major matrix3d. A rotateY lives in m11/m31, NOT in the

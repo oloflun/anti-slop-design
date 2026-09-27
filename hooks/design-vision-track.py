@@ -24,6 +24,36 @@ except Exception:
 
 IMAGE_EXTS = (".png", ".jpg", ".jpeg", ".webp", ".gif", ".bmp")
 
+# inspo (visual reference archive) and ui-skills (a skill library, not a design
+# one) both arrive as MCP calls, not Read/generation — the route/reference-floor
+# hooks never see them. Logged here, not in design-route.py, because vision-
+# track already owns "advisory instrumentation for a tool that isn't a file
+# write" (see is_generation_tool above).
+_MCP_TRACKED = {"mcp__inspo__": "inspo", "mcp__ui-skills__": "ui-skills"}
+
+
+def _mcp_server(tool: str) -> str:
+    """'inspo' | 'ui-skills' | '' for a tracked MCP call."""
+    for prefix, server in _MCP_TRACKED.items():
+        if tool.startswith(prefix):
+            return server
+    return ""
+
+
+def _mcp_fields(tool: str, event: dict) -> dict:
+    """Tool suffix + a short arg naming what was asked for."""
+    suffix = tool.split("__", 2)[-1]
+    ti = L.tool_input(event)
+    if suffix == "get_skill":
+        arg = ti.get("name", "")
+    elif suffix.startswith("search") or suffix == "recommend":
+        arg = ti.get("query") or ti.get("brief") or ""
+    elif suffix in ("get_screen", "get_design_system"):
+        arg = ti.get("slug", "")
+    else:
+        arg = ""
+    return {"tool": suffix, "arg": str(arg)[:80]}
+
 # A Read of a skill's own reference material closes the Stop report's route
 # gap the same way invoking the Skill tool does (design-telemetry.py's
 # "skill" event) — an agent that opened emil-design-eng/SKILL.md and applied
@@ -137,6 +167,12 @@ def main() -> None:
     if L.is_generation_tool(tool):
         root = L.project_root({"cwd": event.get("cwd")})
         L.log(root, event="generation", **L.generation_fields(event))
+        return
+
+    mcp_server = _mcp_server(tool)
+    if mcp_server:
+        root = L.project_root({"cwd": event.get("cwd")})
+        L.log(root, event="mcp", server=mcp_server, **_mcp_fields(tool, event))
         return
 
     if tool != "Read":

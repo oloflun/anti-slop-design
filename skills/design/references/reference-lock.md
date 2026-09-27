@@ -126,12 +126,16 @@ it, so the trait does not travel into the lock as craft.
 1. **The design catalog** — `~/anti-slop-design/design-catalogue/`,
    `python scripts/query.py --family … --register … --grammar …`. Query by the
    register named in `SKILL.md`'s table, not by vibe.
-2. **User-supplied URL or screenshot** — Tier 2's native input; also valid at any
+2. **Inspo MCP** (`mcp__inspo__*`), per [`inspo-mcp.md`](inspo-mcp.md) — the second
+   source, right after the catalogue, when the catalogue lacks the page's form. The
+   primary reference's tokens are fetched with `get_design_system`, never read off
+   an image.
+3. **User-supplied URL or screenshot** — Tier 2's native input; also valid at any
    tier as a borrowed-detail source.
-3. **21st.dev** for tech/SaaS product shots — browse, screenshot, study the
+4. **21st.dev** for tech/SaaS product shots — browse, screenshot, study the
    treatment; borrow the principle and rebuild it in the locked tokens, never paste
    a component with its own palette into a Tier 0–2 build.
-4. **Refero MCP**, if configured — `refero_search_styles` → `refero_get_style`.
+5. **Refero MCP**, if configured — `refero_search_styles` → `refero_get_style`.
    Optional. State plainly when it is not configured rather than silently skipping
    it; do not treat its absence as license to skip the research loop itself.
 

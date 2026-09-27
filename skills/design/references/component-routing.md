@@ -111,6 +111,21 @@ Skills are **tools invoked for craft**. They do not choose the direction — the
       "path": [],
       "code": ["will-change", "backdrop-filter", "filter:", "@font-face", "<iframe", "loading=\"lazy\"", "fetchpriority"] },
 
+    { "id": "gsap-core",  "skill": "gsap-core",                        "why": "GSAP animation API written",
+      "path": [],
+      "code": ["gsap\\.|ScrollTrigger|new Lenis|SplitText"],
+      "regex": true },
+
+    { "id": "gsap-scrolltrigger", "skill": "gsap-scrolltrigger",       "why": "GSAP/ScrollTrigger/Lenis scroll-driven motion",
+      "path": [],
+      "code": ["gsap\\.|ScrollTrigger|new Lenis|SplitText"],
+      "regex": true },
+
+    { "id": "gsap-lenis", "skill": "lenis",                            "why": "GSAP/ScrollTrigger/Lenis scroll-driven motion",
+      "path": [],
+      "code": ["gsap\\.|ScrollTrigger|new Lenis|SplitText"],
+      "regex": true },
+
     { "id": "motion-review", "skill": "review-animations",            "why": "motion written — emil-design-eng builds it, review-animations grades it (both must be invoked by name)",
       "path": [],
       "code": ["rotateY", "rotateX", "clip-path", "--sc-p", "--sc-ps", "transform-origin", "@keyframes", "transition:"] },

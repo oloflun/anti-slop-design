@@ -332,8 +332,10 @@ python "$HOME/.agents/skills/design/scripts/shoot_slices.py" .shots/ref https://
    `fold.webp`, the `slices/`, and `extract/<site>-DESIGN.md` (measured scale, colours,
    easings). A brief may narrow *which* entries, never these files. The reference floor in
    `design-gate.py` denies the first UI write of a greenfield session until TASTE, FEEDBACK,
-   one entry and `reference-lock.md` have been read. Then the user's URL or screenshot, then
-   21st.dev for product shots, then Refero MCP if configured.
+   one entry and `reference-lock.md` have been read. If the catalogue lacks the page's form,
+   query Inspo per [`references/inspo-mcp.md`](references/inspo-mcp.md) before the user's
+   URL/21st.dev/Refero. Then the user's URL or screenshot, then 21st.dev for product shots,
+   then Refero MCP if configured.
    Photography sources and licences: [`photo-sources.md`](references/photo-sources.md).
 
 ---
@@ -589,6 +591,7 @@ Ported verbatim from upstream. **The references are the source of truth**; this 
 | Reference | Load when |
 |---|---|
 | [`reference-lock.md`](references/reference-lock.md) | Step 1b, every tier — lock block + decision ledger before code |
+| [`inspo-mcp.md`](references/inspo-mcp.md) | Step 1b — the catalogue lacks the page's form; second source, before the user's URL/21st.dev/Refero |
 | [`photo-sources.md`](references/photo-sources.md) | Step 5b — sources, licences, the photo-search field |
 | [`catalogue-first.md`](references/catalogue-first.md) | **Step 0 — always. The catalogue is the bar; selection is mechanical, not recalled** |
 | [`generation.md`](references/generation.md) | Step 5b — generated material: model route, credit gate, provenance, who may generate |

@@ -37,6 +37,37 @@ def rel(path: str, root: Path) -> str:
         return Path(path).name
 
 
+def mcp_summary_line(rows: list[dict]) -> str:
+    """'MCP: inspo 5 (recommend, search_screens×2, get_screen×2) · ui-skills 2 (...)' or 'MCP: none'.
+
+    get_skill's arg IS the point of the call (which skill loaded) so it lists
+    the names; every other tool just gets a ×count — the query/slug text is
+    already 80-char-truncated in the ledger row and would clutter this line.
+    """
+    mcps = [r for r in rows if r.get("event") == "mcp"]
+    if not mcps:
+        return "MCP: none"
+    by_server: "OrderedDict[str, list[dict]]" = OrderedDict()
+    for r in mcps:
+        by_server.setdefault(r.get("server", "?"), []).append(r)
+    parts = []
+    for server, items in by_server.items():
+        by_tool: "OrderedDict[str, list[str]]" = OrderedDict()
+        for r in items:
+            by_tool.setdefault(r.get("tool", "?"), []).append(r.get("arg", ""))
+        bits = []
+        for tool, args in by_tool.items():
+            if tool == "get_skill":
+                named = ", ".join(a for a in args if a)
+                bits.append(f"{tool}: {named}" if named else tool)
+            elif len(args) > 1:
+                bits.append(f"{tool}×{len(args)}")
+            else:
+                bits.append(tool)
+        parts.append(f"{server} {len(items)} ({', '.join(bits)})")
+    return "MCP: " + " · ".join(parts)
+
+
 def build_report(rows: list[dict], findings: list[dict], root: Path) -> tuple[str, str]:
     """Returns (context_summary, full_markdown)."""
     edits = [r for r in rows if r.get("event") == "edit"]
@@ -106,6 +137,7 @@ def build_report(rows: list[dict], findings: list[dict], root: Path) -> tuple[st
     md = [f"# Design session report — {datetime.now(timezone.utc):%Y-%m-%d %H:%M UTC}", ""]
     md.append(f"{len(edits)} UI edits · {len(routes)} routes emitted · "
               f"{len(skills)} skill invocations · {len(denies)} denials · {len(traps)} trap firings")
+    md.append(mcp_summary_line(rows))
     md.append("")
 
     md.append("## 1. Component → skills, in order")

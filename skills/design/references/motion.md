@@ -304,6 +304,53 @@ Trigger once with IntersectionObserver at a `-100px` root margin. *"Fire it once
 
 **Parallax, reconciled with § Bans.** The ban below stands for *casual* parallax — a background image drifting on an ordinary page because it was easy. Parallax as a **declared device inside a scroll grammar** is sanctioned, and only under the rate discipline and layer rules in [`scroll/devices.md`](scroll/devices.md) § 6: the rate is hundreds of pixels of total travel, adjacent planes differ by 10–30%, copy rides at 1×, never body copy on a moving layer, and never a `transition: transform` on a parallaxed element.
 
+## Choreography per section (GSAP + Lenis)
+
+**Every section gets one row in a choreography table before code.** Element →
+motion → trigger → duration/ease → reduced-motion state. The motion is chosen from
+the element itself — headline, image, list, card — not picked off a menu of
+available effects. Template: `tests/alunix-r8/runs/V3f/RORELSE-SPEC.md`
+(anti-slop-design repo) — a per-section spec written this way, opening with the
+grip in one sentence, is what separated a 30%-image-area composition from a
+4.3%-image-area document on the same brief (see [`inspo-mcp.md`](inspo-mcp.md)).
+
+**Reading rule: every headline stands fully visible, unclipped and still for
+≥ 40 vh of scroll.** Motion plays only before and after that window — never during
+it. Cropping a word is only allowed where the glyphs lose something that does not
+carry the reading (descenders, one side of an overhanging letter) — **never the
+baseline.** A first impression the reader can't hold still on long enough to read
+is not a reveal, it's a miss.
+
+**Fail toward visible, with self-completion.** Any reveal or interaction that gates
+content completes itself: the contact card flips itself at section progress 0.7 whether
+or not the reader ever touches it; jumping to an anchor or scrolling to the page's
+max shows the final state, not a mid-animation one. Check template:
+`max_scroll_residual_check()` in `tests/alunix-r8/runs/V3f/verify_motion.py` — after
+`lenis.scrollTo('bottom', {immediate:true})`, every element must be at its resting
+transform, not partway through a rise or sweep.
+
+**State switches crossfade, never snap.** A tab, a case choice, a step change —
+opacity/transform tweens, interruptible — never a hard class-toggle snap. Stacked
+steps share one grid cell (`grid-area: 1/1`) so the swap costs no layout shift
+(V3d's `.cs` pattern).
+
+**Iframes and embeds load before the interaction that reveals them, and never
+navigate during a transition.** A same-origin document still loading inside a
+just-revealed or just-pinned element is a race the browser loses visibly.
+
+**Approved effects are protected (Anton 2026-09-25).** When Anton has judged an effect good
+("rubrikerna blev mycket bättre", "första intrycket … var bättre förra rundan"), it goes into
+the run's `EFFECTS.md` with what makes it good and its measured signature (per-section p95
+from `section_probe.py`, pin length, easing). Every later brief names those effects and
+states they are not to be changed. A round may only change what its brief names; any
+section outside the brief that measures worse than its approved baseline is a regression
+and blocks the round, even when no line of that section changed — V3g's thesis regressed
+through a shared mechanism (the refresh loop), not an edit.
+
+**An image-area floor is never met by enlarging the same image.** Screenshots used
+as thumbnails are shot fresh at 2× and shown zoomed out — not the same low-res
+capture blown up to fill the slot.
+
 ## State transitions
 
 - Button hover / active: micro duration, `--ease-out`, `transform: translateY(-1px)` on hover, `translateY(0)` on active. Never a `box-shadow` transition on hover on a dark background (glow effect).

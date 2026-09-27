@@ -215,6 +215,15 @@
             "command": "python \"${CLAUDE_PLUGIN_ROOT}/hooks/design-vision-track.py\""
           }
         ]
+      },
+      {
+        "matcher": "mcp__inspo__.*|mcp__ui-skills__.*",
+        "hooks": [
+          {
+            "type": "command",
+            "command": "python \"${CLAUDE_PLUGIN_ROOT}/hooks/design-vision-track.py\""
+          }
+        ]
       }
     ],
     "SessionStart": [

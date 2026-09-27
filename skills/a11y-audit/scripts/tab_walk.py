@@ -63,10 +63,6 @@ def main():
     ap.add_argument("target")
     ap.add_argument("--max", type=int, default=200)
     ap.add_argument("--out")
-    # Additive: defaults to 1440x900 unchanged. Alunix r8 R4 needed the tab
-    # walk repeated at plan 001's short-viewport fold sizes.
-    ap.add_argument("--width", type=int, default=1440)
-    ap.add_argument("--height", type=int, default=900)
     args = ap.parse_args()
 
     try:
@@ -74,7 +70,7 @@ def main():
         stops = []
         with sync_playwright() as p:
             browser = p.chromium.launch()
-            page = browser.new_page(viewport={"width": args.width, "height": args.height})
+            page = browser.new_page(viewport={"width": 1440, "height": 900})
             try:
                 page.goto(url, wait_until="networkidle", timeout=60000)
             except Exception:

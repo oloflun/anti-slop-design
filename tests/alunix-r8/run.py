@@ -61,7 +61,7 @@ PROMPT_MD = R8 / "PROMPT.md"
 CONCEPTS_MD = R8 / "concepts.md"
 BRIEF_MD = R8 / "brief.md"
 
-PORTS = {"V3c": 3301, "V3d": 3304, "K3": 3302, "K4": 3303}
+PORTS = {"V3c": 3301, "V3d": 3304, "K3": 3302, "K4": 3303, "V3g": 3307}
 DEFAULT_MODEL = "claude-opus-5"
 
 BOARD_PORT = 4626
@@ -70,6 +70,8 @@ ENGINE_ID = "r8"          # board cells are board/cells/<cell>-r8
 BRIEF_FALLBACK = "Alunix r8"
 
 FORCE_ARM_ENV = "DESIGN_HOOKS_FORCE_ARM"
+STRIP_ENV = ("ANTHROPIC_BASE_URL", "ANTHROPIC_AUTH_TOKEN", "ANTHROPIC_DEFAULT_HAIKU_MODEL",
+             "CLAUDE_CODE_SUBAGENT_MODEL", "DESIGN_HOOKS_DISABLED")
 CHROME_ENV = "SCROLLCRAFT_CHROME"
 # Same candidates as skills/design/scripts/scroll_verify.py, same reason: a
 # real Chrome, because the bundled headless shell has crashed mid-screenshot.
@@ -171,6 +173,12 @@ def build_cell(cell, exe: str, sysprompt_mode: str, budget: str | None) -> None:
 
     cell.env[FORCE_ARM_ENV] = "1"
     added.append(FORCE_ARM_ENV)
+
+    # 2026-09-25: ~/.bashrc sources ~/.deepseek-claude/env, which routes every
+    # child claude.exe to DeepSeek (whose key now 401s). Builders run on
+    # standard Anthropic, per CLAUDE.md § Credential routing.
+    for k in STRIP_ENV:
+        cell.env.pop(k, None)
 
     chrome = os.environ.get(CHROME_ENV, "").strip() or find_chrome()
     if chrome:
