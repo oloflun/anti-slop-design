@@ -1,0 +1,61 @@
+{
+  "url": "http://127.0.0.1:3305/tests/alunix-r8/runs/V3g/index.html",
+  "wheel": "100:60",
+  "cpu": 4.0,
+  "tracks": [
+    {
+      "track": "#cardFlip:transform",
+      "dead": false,
+      "frames": 196,
+      "frame_p95_ms": 66.7,
+      "frames_over_20ms": 139,
+      "frames_over_33ms": 139,
+      "value_range": [
+        -180,
+        0
+      ],
+      "max_step_pct": 2.7,
+      "staircase": 0,
+      "reversals": 0
+    },
+    {
+      "track": ".hero-oh .dither-layer:transform",
+      "dead": false,
+      "frames": 196,
+      "frame_p95_ms": 66.7,
+      "frames_over_20ms": 139,
+      "frames_over_33ms": 139,
+      "value_range": [
+        -34.04,
+        0
+      ],
+      "max_step_pct": 1.87,
+      "staircase": 0,
+      "reversals": 1
+    },
+    {
+      "track": ".hero-nv .dither-layer:transform",
+      "dead": false,
+      "frames": 196,
+      "frame_p95_ms": 66.7,
+      "frames_over_20ms": 139,
+      "frames_over_33ms": 139,
+      "value_range": [
+        0,
+        34.04
+      ],
+      "max_step_pct": 1.87,
+      "staircase": 0,
+      "reversals": 1
+    }
+  ],
+  "pass": false,
+  "failures": [
+    "#cardFlip:transform: frame_p95 66.7 ms > 20",
+    "#cardFlip:transform: 139 frames > 33 ms",
+    ".hero-oh .dither-layer:transform: frame_p95 66.7 ms > 20",
+    ".hero-oh .dither-layer:transform: 139 frames > 33 ms",
+    ".hero-nv .dither-layer:transform: frame_p95 66.7 ms > 20",
+    ".hero-nv .dither-layer:transform: 139 frames > 33 ms"
+  ]
+}

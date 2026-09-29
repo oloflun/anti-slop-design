@@ -1,0 +1,43 @@
+{
+  "url": "http://127.0.0.1:3305/tests/alunix-r8/runs/V3g/index.html",
+  "width": 1440,
+  "height": 900,
+  "headed": true,
+  "click_window": {
+    "nominal_duration_ms": 1500,
+    "actual_duration_ms": 1537.3,
+    "frame_stats": {
+      "count": 48,
+      "median_ms": 16.7,
+      "p95_ms": 166.8,
+      "p99_ms": 383.5,
+      "max_ms": 383.5,
+      "over_33ms_count": 10
+    },
+    "biggest_window_scrollY_jump_px": 358.4,
+    "iframe_scroll": {
+      "max_single_frame_delta_px": 0.0,
+      "stall_then_lurch_events": 0,
+      "total_frames": 48
+    }
+  },
+  "pin_active_after_click": true,
+  "through_scroll_target_px": 5357,
+  "through_scroll": {
+    "frame_stats": {
+      "count": 230,
+      "median_ms": 16.7,
+      "p95_ms": 17.4,
+      "p99_ms": 99.9,
+      "max_ms": 100.3,
+      "over_33ms_count": 10
+    },
+    "iframe_scroll": {
+      "max_single_frame_delta_px": 994.4,
+      "stall_then_lurch_events": 0,
+      "total_frames": 230
+    }
+  },
+  "console_errors": [],
+  "no_shots": true
+}

@@ -1,0 +1,10 @@
+motion_probe FAIL  http://127.0.0.1:3305/tests/alunix-r8/runs/V3g/index.html
+  #cardFlip:transform                p95  66.7 ms | >33ms 139 | max_step  2.70% | staircase   0 | rev  0
+  .hero-oh .dither-layer:transform   p95  66.7 ms | >33ms 139 | max_step  1.87% | staircase   0 | rev  1
+  .hero-nv .dither-layer:transform   p95  66.7 ms | >33ms 139 | max_step  1.87% | staircase   0 | rev  1
+  FAIL #cardFlip:transform: frame_p95 66.7 ms > 20
+  FAIL #cardFlip:transform: 139 frames > 33 ms
+  FAIL .hero-oh .dither-layer:transform: frame_p95 66.7 ms > 20
+  FAIL .hero-oh .dither-layer:transform: 139 frames > 33 ms
+  FAIL .hero-nv .dither-layer:transform: frame_p95 66.7 ms > 20
+  FAIL .hero-nv .dither-layer:transform: 139 frames > 33 ms

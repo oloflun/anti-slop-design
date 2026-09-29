@@ -1,0 +1,49 @@
+{
+  "stops": [
+    {
+      "walkId": "1",
+      "tag": "button",
+      "name": "Out-of-order tab stop (tabindex=3)",
+      "hasFocusIndicator": true,
+      "rect": {
+        "top": 240,
+        "left": 24,
+        "width": 218,
+        "height": 21
+      },
+      "inViewport": true,
+      "tabIndex": 3
+    },
+    {
+      "walkId": "2",
+      "tag": "a",
+      "name": "Link with no focus indicator",
+      "hasFocusIndicator": false,
+      "rect": {
+        "top": 206,
+        "left": 24,
+        "width": 192,
+        "height": 17
+      },
+      "inViewport": true,
+      "tabIndex": 0
+    }
+  ],
+  "issues": [
+    {
+      "kind": "positive_tabindex",
+      "index": 0,
+      "detail": "<button> has tabindex=3"
+    },
+    {
+      "kind": "no_focus_indicator",
+      "index": 1,
+      "detail": "<a> 'Link with no focus indicator' has no visible focus indicator"
+    },
+    {
+      "kind": "unreachable_interactive",
+      "index": null,
+      "detail": "<div onclick> 'Fake button (div onclick, no role)' has a click handler but is never keyboard-focusable (no role/tabindex)"
+    }
+  ]
+}

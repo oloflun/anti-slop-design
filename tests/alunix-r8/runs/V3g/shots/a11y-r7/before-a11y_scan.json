@@ -1,0 +1,70 @@
+{
+  "url": "http://127.0.0.1:3307/tests/alunix-r8/runs/V3g/index.before-r7.html",
+  "violations": [
+    {
+      "id": "aria-prohibited-attr",
+      "impact": "serious",
+      "wcag": [
+        "cat.aria",
+        "wcag2a",
+        "wcag412",
+        "EN-301-549",
+        "EN-9.4.1.2",
+        "RGAAv4",
+        "RGAA-7.1.1"
+      ],
+      "help": "Elements must only use permitted ARIA attributes",
+      "nodes": [
+        {
+          "target": ".tes-line.cell:nth-child(1) > .headline-20",
+          "html": "<p class=\"headline-20\" aria-label=\"Skärmen möter besökaren före texten.\" style=\"position: relative; z-index: 1;\">"
+        },
+        {
+          "target": ".tes-line.cell:nth-child(2) > .headline-20",
+          "html": "<p class=\"headline-20\" aria-label=\"Innan ett ord är läst bär layout och bild hela argumentet.\" style=\"position: relative; z-index: 1;\">"
+        },
+        {
+          "target": ".tes-line.cell:nth-child(3) > .headline-20",
+          "html": "<p class=\"headline-20\" aria-label=\"Vi hjälper er att synas på rätt sätt.\" style=\"position: relative; z-index: 1;\">"
+        },
+        {
+          "target": ".footer-mark",
+          "html": "<span class=\"footer-mark\" aria-label=\"ALUNIX\">"
+        }
+      ],
+      "viewports": [
+        "1440x900",
+        "390x844"
+      ]
+    },
+    {
+      "id": "color-contrast",
+      "impact": "serious",
+      "wcag": [
+        "cat.color",
+        "wcag2aa",
+        "wcag143",
+        "TTv5",
+        "TT13.c",
+        "EN-301-549",
+        "EN-9.1.4.3",
+        "ACT",
+        "RGAAv4",
+        "RGAA-3.2.1"
+      ],
+      "help": "Elements must meet minimum color contrast ratio thresholds",
+      "nodes": [
+        {
+          "target": "#showcase-calyx > .showcase-head.cell > .caption.mono",
+          "html": "<p class=\"mono caption\" style=\"margin-top: 8px; position: relative; z-index: 1;\">Florist, Stockholm</p>"
+        }
+      ],
+      "viewports": [
+        "1440x900",
+        "390x844"
+      ]
+    }
+  ],
+  "passes": 43,
+  "incomplete": 3
+}
