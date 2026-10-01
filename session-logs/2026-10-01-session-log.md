@@ -54,8 +54,10 @@ togs bort (R8, R8b).
 
 ## Open Threads
 - Ta Antons beslut om Hōrai steg 1 (annan detalj eller inget band) och Calyx vid 1280 (bandet döljs).
-- Följ integrationsplanen i `tests/alunix-r8/HANDOFF-V3f.md` § 6, steg 1 till 8, live först och sedan
-  spegel. Beslutet om GSAP+Lenis som andra motor bredvid scrollcraft är Antons.
+- **Rättelse 2026-10-02:** integrationsplanen i `HANDOFF-V3f.md` var delvis fel. Steg 1–7 var redan gjorda av en
+  tidigare session, och GSAP+Lenis är redan standardmotor (CARL design-012). Handoffen är omskriven: § 6 visar läget fil för fil,
+  § 7 det som återstår. Det verkliga hålet är distribution: `lenis` och de åtta `gsap-*` finns bara globalt, inte i pluginet
+  (1.1.0) och bara `lenis` i `super-intelligence`. Dessutom saknas A/B-körningen och provbygget för MCP-raden i ledgern.
 - Kör om R7b (klickregressionen i V3g) och ta de sex besluten i `runs/V3g/AUDIT.md`.
 - `verify_motion.py` kraschar när 12+ sidor öppnas i en webbläsare. Starta en ny webbläsare per kontroll.
 - Copy-diffen flaggar `ALUNIX` och `kontakt@alunix.se` som dubbletter i V3f. Anton avgör om de accepteras.
