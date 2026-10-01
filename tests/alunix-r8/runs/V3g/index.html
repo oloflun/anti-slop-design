@@ -28,6 +28,9 @@
   --mint-soft:#a3fbcb;
   --rust:#9c5a3a;
   --lacquer:#b23524;
+  /* R8: sekundär brödtext, ett värde per grund (8,9:1 på --paper, 11,8:1 på --black) */
+  --ink-2:#4a4a4a;
+  --paper-2:#bdbdbd;
   --seam:1px solid #000;
 
   --headline-50:clamp(3.25rem, 0.418rem + 12.082vw, 12.5rem);
@@ -335,6 +338,9 @@ a{color:inherit;}
 .showcase-row{padding:var(--cellpad);display:flex;flex-direction:column;justify-content:center;}
 .showcase-row h3{margin-bottom:0;}
 .showcase-row p{max-width:52ch;font-size:15px;margin-top:8px;}
+/* R8 mobil: ingressen ett steg större än dagens 15 px, andra stycket som i dag */
+.showcase-row .showcase-lede{font-size:17px;line-height:1.4;}
+.showcase-row .showcase-more{line-height:1.5;}
 
 @media (min-width:768px) and (min-height:561px){
   /* R6 runda 6 (F-019/F-022): tre celler i sidans eget rutverk (gap:1px,
@@ -345,15 +351,15 @@ a{color:inherit;}
      Den lodräta stegskalan (R3-R4) är borttagen helt - Anton (F-022):
      "Det ser ut som något ofärdigt". Tom yta löses nu med riktigt innehåll
      (en bild ur arbetet), inte med ett dekorativt streck. */
-  .showcase-rows{display:grid;grid-template-rows:auto auto 1fr;gap:1px;background:#000;height:100%;}
-  .showcase-panel--calyx .showcase-box-head,
-  .showcase-panel--calyx .showcase-steps{background:var(--paper);color:var(--ink);}
-  .showcase-panel--horai .showcase-box-head,
-  .showcase-panel--horai .showcase-steps{background:var(--black);color:var(--paper);}
-  .showcase-panel--horai .showcase-row p{color:#bdbdbd;}
-  /* räknarcellen: NN/NN överst, mintspåret under - som R3, innan R4 flyttade
-     räknaren ned i den nu borttagna skalan. */
-  .showcase-box-head{padding:var(--cellpad);}
+  /* R8 (Anton 2026-09-29, "ta bort rutorna"): EN yta under casehuvudet, NOT
+     tre celler med fogar. Samma tre rader i gridden (räknare, text, lupp), men
+     gap 0 och en enda bakgrund på behållaren: inga cellkanter, ingen
+     bakgrundsväxling, inga skarvar mellan räknaren, texten och luppen. */
+  .showcase-rows{display:grid;grid-template-rows:auto auto 1fr;gap:0;height:100%;position:relative;}
+  .showcase-panel--calyx .showcase-rows{background:var(--paper);color:var(--ink);}
+  .showcase-panel--horai .showcase-rows{background:var(--black);color:var(--paper);}
+  /* räknaren och mintspåret: en rad direkt på ytan, utan box (skyddad effekt) */
+  .showcase-box-head{padding:var(--cellpad) var(--cellpad) 0;}
   .showcase-counter{display:block;font-size:13px;margin-bottom:10px;}
   .showcase-track{position:relative;height:4px;}
   .showcase-track::before{content:'';position:absolute;top:50%;left:0;right:0;height:1px;background:#000;transform:translateY(-50%);}
@@ -365,9 +371,27 @@ a{color:inherit;}
      headline-40-tokenet R2 lånade; jättesiffran är borttagen. */
   /* R6b: toppjusterad. Centrerad (basregeln) satte stegrubriken 14 px lägre i
      steg med tre rader än i steg med fyra, så rubriken hoppade vid varje byte. */
-  .showcase-row{grid-area:1/1;padding:0 var(--cellpad) calc(var(--cellpad)*1.4);justify-content:flex-start;}
+  /* R8: texten tar mer plats - rubrik i h3-skala (30 px, F-019), ingress
+     20-22 px i full textfärg, andra stycket 16-17 px i sekundärfärg (mätt
+     >= 4,5:1 per grund). Båda följer fönsterhöjden så att det längsta steget
+     ryms vid 1280x800. Mått högst 46ch, luft på 8-skalan (16/16). */
+  .showcase-steps{padding-top:32px;}
+  /* 16 px under texten: de osynliga stegens y:12 (övertoningen) ryms i raden */
+  .showcase-row{grid-area:1/1;padding:0 var(--cellpad) 16px;justify-content:flex-start;}
   .showcase-row h3{font-size:30px;line-height:1.15;font-weight:500;}
-  .showcase-row p{font-size:18px;line-height:1.5;max-width:40ch;}
+  .showcase-row p{max-width:46ch;margin-top:16px;}
+  .showcase-row .showcase-lede{font-size:clamp(20px, calc(12px + 1vh), 22px);line-height:1.4;letter-spacing:-.01em;}
+  .showcase-row .showcase-more{font-size:clamp(16px, calc(8px + 1vh), 17px);line-height:1.55;letter-spacing:0;}
+  .showcase-panel--calyx .showcase-more{color:var(--ink-2);}
+  .showcase-panel--horai .showcase-more{color:var(--paper-2);}
+  /* R8: under ca 860 px höjd tar texten sina nedre värden (h3 28, radavstånd
+     1,35/1,5, 24 px överst) så att luppen behåller en läsbar storlek. */
+  @media (max-height:860px){
+    .showcase-steps{padding-top:24px;}
+    .showcase-row h3{font-size:28px;}
+    .showcase-row .showcase-lede{line-height:1.35;}
+    .showcase-row .showcase-more{line-height:1.5;}
+  }
   /* detaljcellen: en <figure> per steg, grid-stackad (samma grid-area:1/1-
      teknik som .showcase-row ovan), färglager under och ett dither-rutnät
      ovanpå (buildTileGrid, samma mekanism som #kontakt/tes-bilden) som
@@ -380,10 +404,18 @@ a{color:inherit;}
      till bildens proportion och passas in (contain) med container-enheter, så
      att färglagret och rutnätet ovanpå alltid täcker samma yta. Med cover
      klipptes luppen (adressen, priset) och rutorna gled ur linje mot färgen. */
-  .showcase-detail{position:relative;overflow:hidden;min-height:0;container-type:size;}
-  .showcase-panel--calyx .showcase-detail{background:var(--grey);}
-  .showcase-panel--horai .showcase-detail{background:var(--black);}
-  .showcase-figure{position:absolute;left:50%;top:50%;translate:-50% -50%;width:min(100cqw,140.58cqh);height:min(100cqh,71.13cqw);margin:0;opacity:0;}
+  /* R8b (F-019: sajten är huvudsaken, inget får täcka ramen): luppen är ett
+     band i kolumnens fulla bredd, kant i kant mot vänster, höger och botten,
+     utan ram, inset eller skugga, NOT ett utklipp över skarven. Bandets höjd
+     är det som blir kvar under det längsta steget (1fr), 24 px under texten
+     (16 i raden + 8 här). Utsnittet är cover: figuren behåller bildens
+     proportion (så att dither-rutnätet ligger kvar på färgen, R6b) och
+     överfyller bandet, som klipper; --fx/--fy per figur är object-position
+     som bråk, valt så att loupe.py STEPS mål står kvar i bild. Under 160 px
+     band döljs luppen: texten vinner. */
+  .showcase-detail{position:relative;overflow:hidden;min-height:0;margin-top:8px;container-type:size;}
+  .showcase-figure{--fw:max(100cqw, calc(100cqh * 1.4058));position:absolute;width:var(--fw);aspect-ratio:1.4058;left:calc((100cqw - var(--fw)) * var(--fx, .5));top:calc((100cqh - var(--fw) / 1.4058) * var(--fy, .5));margin:0;opacity:0;}
+  @container (max-height:159.98px){ .showcase-figure{display:none;} }
   .showcase-figure:first-child{opacity:1;}
   .showcase-figure img{position:absolute;inset:0;width:100%;height:100%;object-fit:fill;}
 }
@@ -399,7 +431,7 @@ a{color:inherit;}
   .showcase-side{display:contents;}
   .showcase-head{order:1;}
   .showcase-embed-cell{order:2;}
-  .showcase-rows{display:flex;flex-direction:column;gap:1px;background:#000;order:3;}
+  .showcase-rows{display:flex;flex-direction:column;gap:0;background:#000;order:3;}
   /* R6 runda 6: .showcase-box-head hålls INTE display:none längre. Mätt
      (shots/r6-mobile-before, före denna runda): den borttagna stegskalan
      (.showcase-scale) hade ALDRIG en egen mobilregel, så dess räknartext
@@ -412,11 +444,14 @@ a{color:inherit;}
      därför osynligt till 0px, precis som förut. */
   .showcase-detail{display:none;}
   .showcase-steps{display:contents;}
-  .showcase-panel--calyx .showcase-row:nth-child(odd){background:var(--paper);}
-  .showcase-panel--calyx .showcase-row:nth-child(even){background:var(--grey);}
-  .showcase-panel--horai .showcase-row:nth-child(odd){background:var(--black);color:var(--paper);}
-  .showcase-panel--horai .showcase-row:nth-child(odd) p{color:#bdbdbd;}
-  .showcase-panel--horai .showcase-row:nth-child(even){background:var(--grey);}
+  /* R8: raderna utan rutor - en yta per case, luften skiljer raderna åt, NOT
+     randiga celler med svarta fogar. Den aktiva raden står i 1, de andra i
+     MOBILE_INACTIVE_OPACITY (mätt >= 4,5:1 på båda styckena). */
+  .showcase-panel--calyx .showcase-row{background:var(--paper);}
+  .showcase-panel--horai .showcase-row{background:var(--black);color:var(--paper);}
+  .showcase-panel--horai .showcase-row p{color:var(--paper-2);}
+  .showcase-panel--horai .showcase-row .showcase-lede{color:var(--paper);}
+  .showcase-rows .showcase-row{padding:24px var(--cellpad);}
 }
 
 /* ------------------------------------------------------------- pris */
@@ -757,32 +792,33 @@ a{color:inherit;}
               <div class="showcase-track"><div class="showcase-track-fill"></div></div>
             </div>
             <div class="showcase-steps">
-              <div class="showcase-row is-active" data-row="0"><div class="showcase-row-text"><h3 class="h3">Sidan öppnar som ett omslag</h3><p>Vi lade rubriken direkt på fotot och utgåvans nummer i nedre hörnet, som på ett magasin. En bukett säljer på hur den ser ut, så fotot fick nästan hela första skärmen.</p></div></div>
-              <div class="showcase-row" data-row="1"><div class="showcase-row-text"><h3 class="h3">En serif, också i namnet</h3><p>Namnet, rubrikerna och brödtexten går i samma serif, och kursiven sköter betoningen. Ett andra rubriktypsnitt hade dragit åt reklam. Bara etiketterna fick ett eget, skrivmaskinslikt typsnitt.</p></div></div>
-              <div class="showcase-row" data-row="2"><div class="showcase-row-text"><h3 class="h3">Varje bild har ett nummer</h3><p>Fotona står parvis, och under varje bild skrev vi uppdragets nummer och adress. Då läses de som beställningar ateljén har levererat.</p></div></div>
-              <div class="showcase-row" data-row="3"><div class="showcase-row-text"><h3 class="h3">Utbudet som prislista</h3><p>Veckans utbud blev en lista med löpnummer, namn och pris i högerkant. Ett rutnät med kort hade krävt nytt foto varje vecka. Med en lista räcker det att skriva om en rad.</p></div></div>
-              <div class="showcase-row" data-row="4"><div class="showcase-row-text"><h3 class="h3">Ett mejl räcker</h3><p>Där ett formulär brukar stå satte vi en e-postadress. Besökaren skriver om rummet och ljuset med egna ord, och ateljén svarar med vad som finns den veckan.</p></div></div>
+              <!-- R8: rubrik + ingress + stycke direkt på kolumnens yta, NOT en bildtextruta i cellnätet -->
+              <div class="showcase-row is-active" data-row="0"><div class="showcase-row-text"><h3 class="h3">Sidan öppnar som ett omslag</h3><p class="showcase-lede">En florist säljer något man vill röra vid, och på en skärm kommer ett stort foto närmast. Vi lät fotot ta nästan hela första skärmen och lade rubriken direkt på det, med utgåvans nummer nere i hörnet som på ett magasinsomslag.</p><p class="showcase-more">En vanlig startsida med meny och bokningsknapp överst hade också fungerat. Då hade knappen varit det första ögat fastnar på. Tidskriftsformen ger dessutom ateljén ett skäl att byta omslag när säsongen byter, och vårnumret står redan i menyraden.</p></div></div>
+              <div class="showcase-row" data-row="1"><div class="showcase-row-text"><h3 class="h3">En serif får bära allt</h3><p class="showcase-lede">Rubriker, brödtext och ordmärket går i samma klassiska serif, och kursiven sköter betoningen. En ateljé som gör arrangemang för hotell och restauranger ska kännas som något tryckt man får hem.</p><p class="showcase-more">Ett andra rubriktypsnitt hade gett mer kontrast och fått sidan att likna reklam. Bara etiketter och bildtexter fick ett eget typsnitt. Det är jämnbrett som en skrivmaskin, och texterna läses som anteckningar i marginalen.</p></div></div>
+              <div class="showcase-row" data-row="2"><div class="showcase-row-text"><h3 class="h3">Varje bild är ett uppdrag</h3><p class="showcase-lede">Fotona står parvis, och det högra ligger lite lägre än det vänstra, som två blad på ett bord. Under varje bild står uppdragets nummer och adressen där buketten stod, till exempel Hotel Pigalle på Drottninggatan.</p><p class="showcase-more">En bildtext som säger "vårbukett" berättar inget som besökaren inte redan ser. Numret och gatan visar att buketten har stått någonstans, i ett rum man kan gå in i.</p></div></div>
+              <div class="showcase-row" data-row="3"><div class="showcase-row-text"><h3 class="h3">Veckans utbud på en rad var</h3><p class="showcase-lede">Utbudet byts varje vecka. Ett rutnät med kort hade krävt ett nytt foto av varje bukett varje vecka, och det är ett arbete som lätt blir liggande när det är mycket att binda. Vi satte utbudet i en lista: löpnummer, namn i kursiv, en kort beskrivning och priset i högerkant.</p><p class="showcase-more">Siffrorna har samma bredd, så kolumnen står rak när en rad byts ut. Ateljén behöver bara skriva om en rad, och besökaren jämför fyra buketter utan att scrolla.</p></div></div>
+              <div class="showcase-row" data-row="4"><div class="showcase-row-text"><h3 class="h3">Ett mejl räcker</h3><p class="showcase-lede">Den som beställer blommor till ett rum vill kunna beskriva ljuset, rummet och vad som ska serveras, och det går dåligt i formulärfält. Där formuläret brukar stå satte vi en e-postadress.</p><p class="showcase-more">Ateljén svarar med vad som går att få tag på den veckan och skickar förslaget i ett mejl, utan portal och utan kalenderlänk. Det tar längre tid än en bokningsknapp, men svaret kommer från den som ska binda buketten.</p></div></div>
             </div>
             <!-- R6b: detaljcellen - ett förstoringsglas per steg ur calyx.html självt,
                  2,5-3x det iframen visar. Utsnitten och varför: loupe.py, STEPS. -->
             <div class="showcase-detail" aria-hidden="true">
-              <figure class="showcase-figure is-active" data-row="0">
+              <figure class="showcase-figure is-active" data-row="0" style="--fy:.83">
                 <img class="dither-layer" src="assets/steps/calyx-1-dither.webp" alt="" loading="lazy">
                 <img class="color-layer" src="assets/steps/calyx-1.webp" alt="" loading="lazy" style="clip-path:inset(0 100% 0 0)">
               </figure>
-              <figure class="showcase-figure" data-row="1">
+              <figure class="showcase-figure" data-row="1" style="--fy:.27">
                 <img class="dither-layer" src="assets/steps/calyx-2-dither.webp" alt="" loading="lazy">
                 <img class="color-layer" src="assets/steps/calyx-2.webp" alt="" loading="lazy" style="clip-path:inset(0 100% 0 0)">
               </figure>
-              <figure class="showcase-figure" data-row="2">
+              <figure class="showcase-figure" data-row="2" style="--fx:1;--fy:.8">
                 <img class="dither-layer" src="assets/steps/calyx-3-dither.webp" alt="" loading="lazy">
                 <img class="color-layer" src="assets/steps/calyx-3.webp" alt="" loading="lazy" style="clip-path:inset(0 100% 0 0)">
               </figure>
-              <figure class="showcase-figure" data-row="3">
+              <figure class="showcase-figure" data-row="3" style="--fy:.5">
                 <img class="dither-layer" src="assets/steps/calyx-4-dither.webp" alt="" loading="lazy">
                 <img class="color-layer" src="assets/steps/calyx-4.webp" alt="" loading="lazy" style="clip-path:inset(0 100% 0 0)">
               </figure>
-              <figure class="showcase-figure" data-row="4">
+              <figure class="showcase-figure" data-row="4" style="--fy:.48">
                 <img class="dither-layer" src="assets/steps/calyx-5-dither.webp" alt="" loading="lazy">
                 <img class="color-layer" src="assets/steps/calyx-5.webp" alt="" loading="lazy" style="clip-path:inset(0 100% 0 0)">
               </figure>
@@ -801,39 +837,39 @@ a{color:inherit;}
               <div class="showcase-track"><div class="showcase-track-fill"></div></div>
             </div>
             <div class="showcase-steps">
-              <div class="showcase-row is-active" data-row="0"><div class="showcase-row-text"><h3 class="h3">Ett namn, en gång</h3><p>Vi satte namnet i stora versaler över det mörka fotot och lät loggan i menyraden vänta tills fotot rullat förbi. Annars hade namnet stått två gånger på samma skärm.</p></div></div>
-              <div class="showcase-row" data-row="1"><div class="showcase-row-text"><h3 class="h3">Ett tecken som stämpel</h3><p>Över rubriken om huset satte vi 家, tecknet för hus, i samma röda färg, som en stämpel på ett brev. Stycket bredvid tänds ord för ord medan ni scrollar, så att det läses långsamt.</p></div></div>
-              <div class="showcase-row" data-row="2"><div class="showcase-row-text"><h3 class="h3">En mening som saktar in</h3><p>Mellan huset och menyerna lade vi en enda mening på mörk grund. Ovanför står samma tanke på japanska, i rött. Meningen är skarp bara mitt på skärmen, så farten sjunker innan priserna kommer.</p></div></div>
-              <div class="showcase-row" data-row="3"><div class="showcase-row-text"><h3 class="h3">Priset står större än namnet</h3><p>Vi gav varje meny en romersk siffra och satte priset i rött, större än menyns namn. Utan à la carte väljer man en hel meny och letar först efter priset.</p></div></div>
-              <div class="showcase-row" data-row="4"><div class="showcase-row-text"><h3 class="h3">Rummet före bokningen</h3><p>Matsalen fick en bild över hela bredden, strax före bokningen. Rubriken och 部屋, tecknen för rum, står direkt på fotot. Den som ska boka vill se var den ska sitta.</p></div></div>
-              <div class="showcase-row" data-row="5"><div class="showcase-row-text"><h3 class="h3">Knappen fanns där hela tiden</h3><p>Vi lät bokningsknappen ligga kvar i menyraden hela vägen ned. Den som bestämt sig redan vid första menyn ska inte behöva leta efter den.</p></div></div>
+              <div class="showcase-row is-active" data-row="0"><div class="showcase-row-text"><h3 class="h3">Ett namn, en gång</h3><p class="showcase-lede">Hōrai har ingen skylt mot gatan, så namnet måste sitta på sidan. Vi satte det i stora romerska versaler över ett mörkt foto av en tallrik, med 蓬莱 i små spärrade tecken ovanför.</p><p class="showcase-more">Loggan i menyraden hade visat namnet en gång till på samma skärm. Den väntar i stället tills fotot har rullat förbi och tänds först då, så att namnet aldrig står två gånger samtidigt.</p></div></div>
+              <div class="showcase-row" data-row="1"><div class="showcase-row-text"><h3 class="h3">Ett tecken som stämpel</h3><p class="showcase-lede">Stycket om huset börjar nästan osynligt och tänds ord för ord medan man scrollar. Det går inte att skumma. Man läser i den takt någon berättar.</p><p class="showcase-more">Rubriken ligger kvar i rött medan stycket läses, med 家, tecknet för hus, ovanför som en stämpel. Rött används bara till tecknen, rubrikerna och priserna, så ögat hittar priserna längre ned utan att leta.</p></div></div>
+              <div class="showcase-row" data-row="2"><div class="showcase-row-text"><h3 class="h3">En mening som saktar in</h3><p class="showcase-lede">Mellan huset och menyerna står en enda mening på valnötsbrun grund. Den kommer in suddig, är skarp när den står mitt på skärmen och suddas ut igen när man scrollar vidare.</p><p class="showcase-more">Här hade en bild kunnat ligga. Vi valde en mening som bara går att läsa när man stannar, ungefär som pausen mellan två rätter, så att menyerna efteråt inte läses i samma andetag som huset.</p></div></div>
+              <div class="showcase-row" data-row="3"><div class="showcase-row-text"><h3 class="h3">Priset står större än namnet</h3><p class="showcase-lede">Det finns ingen à la carte, bara en meny per kväll. Det är alltså priset gästen jämför, så vi satte det i rött och större än menyns namn, och gav varje meny en romersk siffra.</p><p class="showcase-more">Dryckerna ligger i en egen grön ton under priset, så att tillägget syns utan att blandas ihop med menyn. En restaurang som sätter priset litet ser ut att gömma det.</p></div></div>
+              <div class="showcase-row" data-row="4"><div class="showcase-row-text"><h3 class="h3">Rummet före bokningen</h3><p class="showcase-lede">Strax före bokningen kommer matsalen, som en bild över hela bredden med texten direkt på fotot och en mörk toning från vänster. Den som funderar på att boka får se var man kommer att sitta.</p><p class="showcase-more">De flesta restauranger visar rummet högst upp. Vi lade det sist, eftersom det gör mest nytta när gästen redan har läst menyn och håller på att bestämma sig.</p></div></div>
+              <div class="showcase-row" data-row="5"><div class="showcase-row-text"><h3 class="h3">Knappen fanns där hela tiden</h3><p class="showcase-lede">Bokningsknappen ligger kvar i menyraden hela vägen ned. Den som bestämde sig redan vid fotot ska inte behöva leta.</p><p class="showcase-more">Längst ned står när veckans platser släpps, på måndagar vid lunch, och en e-postadress för sällskap som inte passar i ett formulär. Huset har tjugosex platser och två sittningar per kväll.</p></div></div>
             </div>
             <!-- R6 runda 6: detaljcellen - en <figure> per steg ur horai.html självt.
                  Ingen loading=lazy (Hōrai-panelen är display:none tills klick) -
                  färg+dither förvärms explicit i JS (prewarmInactiveCase), aldrig i
                  activateCase. Utsnitten och varför: loupe.py, STEPS. -->
             <div class="showcase-detail" aria-hidden="true">
-              <figure class="showcase-figure is-active" data-row="0">
+              <figure class="showcase-figure is-active" data-row="0" style="--fy:.5">
                 <img class="dither-layer" src="assets/steps/horai-1-dither.webp" alt="">
                 <img class="color-layer" src="assets/steps/horai-1.webp" alt="" style="clip-path:inset(0 100% 0 0)">
               </figure>
-              <figure class="showcase-figure" data-row="1">
+              <figure class="showcase-figure" data-row="1" style="--fy:.62">
                 <img class="dither-layer" src="assets/steps/horai-2-dither.webp" alt="">
                 <img class="color-layer" src="assets/steps/horai-2.webp" alt="" style="clip-path:inset(0 100% 0 0)">
               </figure>
-              <figure class="showcase-figure" data-row="2">
+              <figure class="showcase-figure" data-row="2" style="--fy:.55">
                 <img class="dither-layer" src="assets/steps/horai-3-dither.webp" alt="">
                 <img class="color-layer" src="assets/steps/horai-3.webp" alt="" style="clip-path:inset(0 100% 0 0)">
               </figure>
-              <figure class="showcase-figure" data-row="3">
+              <figure class="showcase-figure" data-row="3" style="--fy:.4">
                 <img class="dither-layer" src="assets/steps/horai-4-dither.webp" alt="">
                 <img class="color-layer" src="assets/steps/horai-4.webp" alt="" style="clip-path:inset(0 100% 0 0)">
               </figure>
-              <figure class="showcase-figure" data-row="4">
+              <figure class="showcase-figure" data-row="4" style="--fy:.62">
                 <img class="dither-layer" src="assets/steps/horai-5-dither.webp" alt="">
                 <img class="color-layer" src="assets/steps/horai-5.webp" alt="" style="clip-path:inset(0 100% 0 0)">
               </figure>
-              <figure class="showcase-figure" data-row="5">
+              <figure class="showcase-figure" data-row="5" style="--fy:.28">
                 <img class="dither-layer" src="assets/steps/horai-6-dither.webp" alt="">
                 <img class="color-layer" src="assets/steps/horai-6.webp" alt="" style="clip-path:inset(0 100% 0 0)">
               </figure>
@@ -1805,6 +1841,7 @@ a{color:inherit;}
      (ut 0-15%, in 15-30%), var 50% (25%/25%) - kortare övertoning, längre
      still-stående läsfönster. */
   var STEP_OUT_FRAC = 0.15, STEP_IN_FRAC = 0.15;
+  var STEP_LAG_FRAC = 0.2; /* R8: andra stycket följer första med 20 % av fönstret */
   var RES_START = 0.30, RES_DUR = 0.20; /* figure resolve window, per segment (R6b) */
   function activeStepIndexFor(n, p){
     var pp = Math.max(0, Math.min(1, p)), kf = pp * n;
@@ -1873,8 +1910,16 @@ a{color:inherit;}
       C.steps = Array.prototype.slice.call(box.querySelectorAll('.showcase-row'));
       C.textEls = C.steps.map(function(row){ return row.querySelector('.showcase-row-text'); });
       var n = C.anchors.length;
-      gsap.set(C.textEls, { opacity: 0, y: 12 });
-      gsap.set(C.textEls[0], { opacity: 1, y: 0 });
+      /* R8: övertoningen gäller hela steget, i två led - rubrik + ingress
+         (C.leadParts) och andra stycket (C.moreParts), som följer 20 % av
+         fönstret efter (ca 60 ms av en 0,3 s-toning) och slutar i samma
+         fönster. Fortfarande bara opacity och transform, skrubbat av pinnen.
+         .showcase-row-text själv står kvar i 1 (mobilens radtoning äger den). */
+      C.leadParts = C.textEls.map(function(t){ return Array.prototype.slice.call(t.querySelectorAll('h3, .showcase-lede')); });
+      C.moreParts = C.textEls.map(function(t){ return Array.prototype.slice.call(t.querySelectorAll('.showcase-more')); });
+      [C.leadParts, C.moreParts].forEach(function(list){
+        list.forEach(function(parts, i){ gsap.set(parts, i === 0 ? { opacity: 1, y: 0 } : { opacity: 0, y: 12 }); });
+      });
       C.steps.forEach(function(row, i){ row.classList.toggle('is-active', i === 0); });
       C.lastStep = 0;
       /* R6 runda 6 (F-022): detaljcellen - en figur per steg, samma dither->
@@ -1894,8 +1939,11 @@ a{color:inherit;}
       var tl = gsap.timeline({ paused: true });
       for (var k = 1; k < n; k++){
         var segStart = k / n, outDur = STEP_OUT_FRAC / n, inDur = STEP_IN_FRAC / n;
-        tl.to(C.textEls[k - 1], { opacity: 0, y: -12, duration: outDur, ease: 'power2.out' }, segStart);
-        tl.to(C.textEls[k], { opacity: 1, y: 0, duration: inDur, ease: 'power2.out' }, segStart + outDur);
+        var lagO = STEP_LAG_FRAC * outDur, lagI = STEP_LAG_FRAC * inDur;
+        tl.to(C.leadParts[k - 1], { opacity: 0, y: -12, duration: outDur - lagO, ease: 'power2.out' }, segStart);
+        tl.to(C.moreParts[k - 1], { opacity: 0, y: -12, duration: outDur - lagO, ease: 'power2.out' }, segStart + lagO);
+        tl.to(C.leadParts[k], { opacity: 1, y: 0, duration: inDur - lagI, ease: 'power2.out' }, segStart + outDur);
+        tl.to(C.moreParts[k], { opacity: 1, y: 0, duration: inDur - lagI, ease: 'power2.out' }, segStart + outDur + lagI);
         /* figuren tonas i/ur med samma position/duration som texten - "en
            mekanism", ingen separat timing för bilden. */
         if (C.figures[k - 1]) tl.to(C.figures[k - 1], { opacity: 0, duration: outDur, ease: 'power2.out' }, segStart);

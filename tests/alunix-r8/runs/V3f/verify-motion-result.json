@@ -1,0 +1,587 @@
+{
+  "console_errors": {
+    "d1440": [],
+    "m390": []
+  },
+  "jump_test_1440": {
+    "scrolltrigger_count_before": 32,
+    "scrolltrigger_count_after": 30,
+    "start_end_before_sample": [
+      [
+        649,
+        1387
+      ],
+      [
+        2025,
+        2635
+      ],
+      [
+        6054,
+        6549
+      ],
+      [
+        48,
+        1128
+      ],
+      [
+        1242,
+        2494
+      ],
+      [
+        1980,
+        2790
+      ],
+      [
+        2566,
+        3615
+      ],
+      [
+        2584,
+        3615
+      ]
+    ],
+    "start_end_after_sample": [
+      [
+        649,
+        1387
+      ],
+      [
+        2025,
+        2635
+      ],
+      [
+        6054,
+        6549
+      ],
+      [
+        48,
+        1128
+      ],
+      [
+        1242,
+        2494
+      ],
+      [
+        1980,
+        2790
+      ],
+      [
+        2566,
+        3615
+      ],
+      [
+        2584,
+        3615
+      ]
+    ],
+    "per_section": {
+      "hero": {
+        "jumped": {
+          "found": true
+        },
+        "hidden_visible_elements": []
+      },
+      "tes": {
+        "jumped": {
+          "found": true
+        },
+        "hidden_visible_elements": [
+          "SPAN",
+          "SPAN",
+          "SPAN",
+          "SPAN",
+          "SPAN",
+          "SPAN",
+          "SPAN",
+          "SPAN",
+          "SPAN",
+          "SPAN"
+        ]
+      },
+      "process": {
+        "jumped": {
+          "found": true
+        },
+        "hidden_visible_elements": [
+          "SPAN",
+          "SPAN",
+          "SPAN",
+          "SPAN",
+          "SPAN",
+          "SPAN",
+          "SPAN",
+          "SPAN",
+          "SPAN",
+          "SPAN"
+        ]
+      },
+      "exempelcase": {
+        "jumped": {
+          "found": true
+        },
+        "hidden_visible_elements": []
+      },
+      "showcase": {
+        "jumped": {
+          "found": true
+        },
+        "hidden_visible_elements": []
+      },
+      "pris": {
+        "jumped": {
+          "found": true
+        },
+        "hidden_visible_elements": []
+      },
+      "kontakt": {
+        "jumped": {
+          "found": true
+        },
+        "hidden_visible_elements": [
+          "SPAN",
+          "SPAN",
+          "SPAN",
+          "SPAN",
+          "SPAN",
+          "SPAN",
+          "SPAN",
+          "SPAN",
+          "SPAN",
+          "SPAN"
+        ]
+      }
+    }
+  },
+  "jump_test_390": {
+    "scrolltrigger_count_before": 41,
+    "scrolltrigger_count_after": 39,
+    "start_end_before_sample": [
+      [
+        1124,
+        1493
+      ],
+      [
+        1656,
+        2085
+      ],
+      [
+        7242,
+        7612
+      ],
+      [
+        48,
+        554
+      ],
+      [
+        295,
+        1196
+      ],
+      [
+        504,
+        1410
+      ],
+      [
+        521,
+        1410
+      ],
+      [
+        719,
+        1625
+      ]
+    ],
+    "start_end_after_sample": [
+      [
+        1124,
+        1493
+      ],
+      [
+        1656,
+        2085
+      ],
+      [
+        7242,
+        7612
+      ],
+      [
+        48,
+        554
+      ],
+      [
+        295,
+        1196
+      ],
+      [
+        504,
+        1410
+      ],
+      [
+        521,
+        1410
+      ],
+      [
+        719,
+        1625
+      ]
+    ],
+    "per_section": {
+      "hero": {
+        "jumped": {
+          "found": true
+        },
+        "hidden_visible_elements": []
+      },
+      "tes": {
+        "jumped": {
+          "found": true
+        },
+        "hidden_visible_elements": []
+      },
+      "process": {
+        "jumped": {
+          "found": true
+        },
+        "hidden_visible_elements": [
+          "SPAN",
+          "SPAN",
+          "SPAN",
+          "SPAN",
+          "SPAN",
+          "SPAN",
+          "SPAN",
+          "SPAN",
+          "SPAN",
+          "SPAN"
+        ]
+      },
+      "exempelcase": {
+        "jumped": {
+          "found": true
+        },
+        "hidden_visible_elements": []
+      },
+      "showcase": {
+        "jumped": {
+          "found": true
+        },
+        "hidden_visible_elements": []
+      },
+      "pris": {
+        "jumped": {
+          "found": true
+        },
+        "hidden_visible_elements": []
+      },
+      "kontakt": {
+        "jumped": {
+          "found": true
+        },
+        "hidden_visible_elements": [
+          "SPAN"
+        ]
+      }
+    }
+  },
+  "frame_pacing_1440": {
+    "sample_count": 228,
+    "median_ms": 33.29999999999973,
+    "p95_ms": 50.100000000000364
+  },
+  "max_scroll_residual_1440": {
+    "footerMarkResidual": {
+      "found": true,
+      "nonIdentityCount": 0,
+      "nonIdentitySample": []
+    },
+    "footerMarkGap": {
+      "found": true,
+      "chars": 6,
+      "maxGap": 0
+    },
+    "kontaktGiantResidual": {
+      "found": false
+    },
+    "kontaktStillResidual": {
+      "found": false
+    },
+    "kontaktImageClip": {
+      "found": false
+    },
+    "footerScrollTriggerProgress": 1
+  },
+  "max_scroll_residual_390": {
+    "footerMarkResidual": {
+      "found": true,
+      "nonIdentityCount": 0,
+      "nonIdentitySample": []
+    },
+    "footerMarkGap": {
+      "found": true,
+      "chars": 6,
+      "maxGap": 0
+    },
+    "kontaktGiantResidual": {
+      "found": false
+    },
+    "kontaktStillResidual": {
+      "found": false
+    },
+    "kontaktImageClip": {
+      "found": false
+    },
+    "footerScrollTriggerProgress": 1
+  },
+  "max_scroll_residual_768": {
+    "footerMarkResidual": {
+      "found": true,
+      "nonIdentityCount": 0,
+      "nonIdentitySample": []
+    },
+    "footerMarkGap": {
+      "found": true,
+      "chars": 6,
+      "maxGap": 0
+    },
+    "kontaktGiantResidual": {
+      "found": false
+    },
+    "kontaktStillResidual": {
+      "found": false
+    },
+    "kontaktImageClip": {
+      "found": false
+    },
+    "footerScrollTriggerProgress": 1
+  },
+  "max_scroll_residual_1920": {
+    "footerMarkResidual": {
+      "found": true,
+      "nonIdentityCount": 0,
+      "nonIdentitySample": []
+    },
+    "footerMarkGap": {
+      "found": true,
+      "chars": 6,
+      "maxGap": 0
+    },
+    "kontaktGiantResidual": {
+      "found": false
+    },
+    "kontaktStillResidual": {
+      "found": false
+    },
+    "kontaktImageClip": {
+      "found": false
+    },
+    "footerScrollTriggerProgress": 1
+  },
+  "legibility_1440": {
+    "hero h1 (headline-40)": {
+      "max_continuous_vh": 140.0,
+      "passes_40vh": true
+    },
+    "tes headline (headline-50)": {
+      "max_continuous_vh": 138.3,
+      "passes_40vh": true
+    },
+    "exempelcase word (headline-50)": {
+      "max_continuous_vh": 80.0,
+      "passes_40vh": true
+    },
+    "pris headline (headline-50)": {
+      "max_continuous_vh": 68.3,
+      "passes_40vh": true
+    },
+    "kontakt headline (headline-40)": {
+      "max_continuous_vh": 86.7,
+      "passes_40vh": true
+    }
+  },
+  "showcase_check_1440": {
+    "jump_no_selection_shows_calyx": true,
+    "horai_click_scrolled_to_showcase": true,
+    "horai_panel_visible_after_click": true,
+    "horai_anchors": {
+      "found_pin": true,
+      "anchors_measured": true,
+      "expected": [
+        0,
+        1170,
+        1855,
+        2890,
+        6520,
+        7420
+      ],
+      "diffs_px": [
+        0,
+        0,
+        0,
+        0,
+        0,
+        0
+      ],
+      "all_within_2px": true
+    },
+    "keyboard_reached_calyx_button": true,
+    "calyx_pressed_after_enter": true,
+    "calyx_anchors": {
+      "found_pin": true,
+      "anchors_measured": true,
+      "expected": [
+        0,
+        877,
+        1414,
+        2327,
+        4120
+      ],
+      "diffs_px": [
+        0,
+        0,
+        0,
+        0,
+        0
+      ],
+      "all_within_2px": true
+    },
+    "console_errors": []
+  },
+  "kontakt_check_1440": {
+    "front_visible_before_click": true,
+    "back_visible_after_click": true,
+    "mail_link_focusable": true,
+    "boka_link_focusable_next": true,
+    "jump_to_bottom_shows_back": true,
+    "jump_to_kontakt_shows_back": true,
+    "card_text_overlap_sweep": {
+      "checked_angles": [
+        0,
+        15,
+        30,
+        45,
+        60,
+        75,
+        90,
+        105,
+        120,
+        135,
+        150,
+        165,
+        180
+      ],
+      "overlaps_found": [],
+      "passed": true
+    },
+    "headline_fits_ov_cell": true,
+    "console_errors": []
+  },
+  "kontakt_check_1280": {
+    "front_visible_before_click": true,
+    "back_visible_after_click": true,
+    "mail_link_focusable": true,
+    "boka_link_focusable_next": true,
+    "jump_to_bottom_shows_back": true,
+    "jump_to_kontakt_shows_back": true,
+    "card_text_overlap_sweep": {
+      "checked_angles": [
+        0,
+        15,
+        30,
+        45,
+        60,
+        75,
+        90,
+        105,
+        120,
+        135,
+        150,
+        165,
+        180
+      ],
+      "overlaps_found": [],
+      "passed": true
+    },
+    "headline_fits_ov_cell": true,
+    "console_errors": []
+  },
+  "kontakt_check_768": {
+    "front_visible_before_click": true,
+    "back_visible_after_click": true,
+    "mail_link_focusable": true,
+    "boka_link_focusable_next": true,
+    "jump_to_bottom_shows_back": true,
+    "jump_to_kontakt_shows_back": true,
+    "card_text_overlap_sweep": {
+      "checked_angles": [
+        0,
+        15,
+        30,
+        45,
+        60,
+        75,
+        90,
+        105,
+        120,
+        135,
+        150,
+        165,
+        180
+      ],
+      "overlaps_found": [],
+      "passed": true
+    },
+    "headline_fits_ov_cell": true,
+    "console_errors": []
+  },
+  "kontakt_check_390": {
+    "front_visible_before_click": true,
+    "back_visible_after_click": true,
+    "mail_link_focusable": true,
+    "boka_link_focusable_next": true,
+    "jump_to_bottom_shows_back": true,
+    "jump_to_kontakt_shows_back": true,
+    "card_text_overlap_sweep": {
+      "checked_angles": [
+        0,
+        15,
+        30,
+        45,
+        60,
+        75,
+        90,
+        105,
+        120,
+        135,
+        150,
+        165,
+        180
+      ],
+      "overlaps_found": [],
+      "passed": true
+    },
+    "headline_fits_ov_cell": true,
+    "console_errors": []
+  },
+  "showcase_row_clip_check_1440": {
+    "passed": true,
+    "findings": {
+      "calyx": [],
+      "horai": []
+    },
+    "console_errors": []
+  },
+  "showcase_row_clip_check_1280": {
+    "passed": true,
+    "findings": {
+      "calyx": [],
+      "horai": []
+    },
+    "console_errors": []
+  },
+  "showcase_row_clip_check_390": {
+    "passed": true,
+    "findings": {
+      "calyx": [],
+      "horai": []
+    },
+    "console_errors": []
+  }
+}

@@ -1513,3 +1513,251 @@ tokens eller typografi (alla står i tabellerna ovan), men ordningen var fel och
 `shots/perf-r7-{1440,390}*`, `shots/a11y-r7/`, `shots/click-r7.txt`.
 
 Servern (3307) stoppad efter rundan. Ingen commit.
+
+---
+
+# R8 · showcasen utan rutor, texten i två stycken · 2026-09-29/30
+
+Brief: `tests/alunix-r8/PROMPT-V3g-R8.md`. Gjort av Opus själv, inga subagenter. Alla
+webbläsare headless, en i taget, via `browser_lock.py`; server 3305 (`serve.py`).
+Tier 0: sidan och `EFFECTS.md` är låset. Byggmål: dagens V3g-showcase; får inte glida:
+casehuvudet, pinnen, övertoningen, räknaren + mintspåret, casebytet, luppens raster.
+
+## Ändringar, en rad per ändring (`index.html`)
+1. **Stegtexterna** ur `COPY-R8.md` ordagrant: 11 steg, `h3` + `p.showcase-lede` +
+   `p.showcase-more`. Inga andra synliga strängar ändrade (diff av synlig text mot
+   `index.before-r8.html`: 14 rader bort = de gamla 3 rubrikerna och 11 styckena, 25 till = 3
+   nya rubriker och 22 stycken, alla ur `COPY-R8.md`).
+2. **Rutorna bort (desktop ≥ 768):** `.showcase-rows` har `gap:0` och en enda bakgrund
+   (Calyx `--paper`, Hōrai `--black`); räknarraden, textraden och luppraden har ingen egen
+   bakgrund, ingen kant. Den gråa luppcellen är borta.
+3. **Räknaren + mintspåret** står kvar överst som en rad direkt på ytan (padding 20/20/0),
+   mekanismen orörd.
+4. **Typografi:** h3 30 px (28 px under 860 px höjd), ingress `clamp(20px, 12px + 1vh, 22px)`
+   / 1,4 (1,35 under 860), andra stycket `clamp(16px, 8px + 1vh, 17px)` / 1,55 (1,5 under
+   860) i nya tokens `--ink-2 #4a4a4a` (Calyx) och `--paper-2 #bdbdbd` (Hōrai). Mått
+   `max-width:46ch`, luft 16/16, 32 px (24 under 860) från spåret till rubriken.
+5. **Luppen** utan ram och cell: `position:absolute; left:-48px; bottom:0`, bildens egen
+   proportion 1,4058 (ingen beskärning), bredd `min(kolumn + 48 − 20, (radhöjd − 8) × 1,4058)`.
+   Den står på kolumnens (= skärmens) underkant och bryter 48 px in över ramen. Radens
+   höjd är det som blir kvar under det längsta steget, så den krymper med fönstret och
+   flyttar aldrig texten. 16 px under texten + 8 = 24 px luft.
+6. **`.showcase-side` `overflow:visible`** (var `overflow-y:auto`, som klippte luppen i x-led).
+   Att ingen text hamnar under kolumnen mäts i stället (nedan).
+7. **Övertoningen i två led:** rubrik + ingress (`C.leadParts`) och andra stycket
+   (`C.moreParts`) tonas var för sig; andra stycket börjar 20 % av fönstret senare
+   (`STEP_LAG_FRAC = 0.2`, ≈ 60 ms av en 0,3 s-toning) och slutar i samma fönster. Bara
+   `opacity` + `y`, samma tidslinje `C.tl`, skrubbad av samma pin. `.showcase-row-text`
+   står kvar i 1 (mobilens radtoning äger den). Matchmedia-återställningen mätt: efter
+   1440 → 390 i samma sida är lägsta opacitet på stegdelarna 1.
+8. **Mobil (< 768):** båda styckena i varje rad, ingress 17 px / 1,4 (ett steg över dagens
+   15), andra stycket 15 px / 1,5 som i dag, h3 oförändrad (38). Inga randiga celler och
+   inga 1 px-fogar: en yta per case (Calyx vit, Hōrai svart), 24 px luft mellan raderna.
+   Räknarremsan står kvar exakt som i dag.
+
+`verify.py`: stegsträngarna tas ur `COPY-R8.md` (R6-stegen utgår), ny kontroll `copy_r8`
+som jämför varje panel mot filen tecken för tecken och kräver klasserna
+`showcase-lede`/`showcase-more`; CRLF bevarat. Ny `r8_probe.py` (mätningarna nedan).
+
+## Mätt, `r8_probe.py`, varje steg i båda casen, i vilopunkten (75 % in i segmentet)
+
+| fönster | case | text (topp–botten, längsta steget) | klipp | överlapp text/lupp | lupp (b × h) | bryter ut | luft text→lupp | h3 / ingress / stycke 2 | mått ingress / stycke 2 |
+|---|---|---|---|---|---|---|---|---|---|
+| 1440×900 | Calyx | 347–666 | 0 av 5 | 0 px² | 296 × 210 | 48 px | 24 | 30 / 21 · 1,4 / 17 · 1,55 | 39,7 / 46 ch |
+| 1440×900 | Hōrai | 347–610 | 0 av 6 | 0 | 374 × 266 | 48 | 24 | 30 / 21 · 1,4 / 17 · 1,55 | 39,7 / 46 ch |
+| 1280×800 | Calyx | 331–651 | 0 av 5 | 0 | 177 × 126 | 48 | 24 | 28 / 20 · 1,35 / 16 · 1,5 | 36,8 / 45,3 ch |
+| 1280×800 | Hōrai | 331–576 | 0 av 6 | 0 | 282 × 201 | 48 | 24 | 28 / 20 · 1,35 / 16 · 1,5 | 36,8 / 45,3 ch |
+| 1920×1080 | Calyx | 355–681 | 0 av 5 | 0 | 528 × 375 | 48 | 24 | 30 / 22 · 1,4 / 17 · 1,55 | 37,9 / 46 ch |
+| 1920×1080 | Hōrai | 355–624 | 0 av 6 | 0 | 608 × 432 | 48 | 24 | 30 / 22 · 1,4 / 17 · 1,55 | 37,9 / 46 ch |
+| 390×844 | båda | 11 rader | 0 av 11 | – | ingen (som i dag) | – | – | 38 / 17 / 15 | – |
+
+- Klipp = textblockets `scrollHeight > clientHeight`, eller dess botten under kolumnens
+  botten eller under viewporten. Överlapp mätt mot det aktiva steget och mot alla steg.
+  Stegcellen: `scrollHeight − clientHeight` = 0 i alla 33 lägen.
+- Ytan: `rowGap 0px`, räknar-/text-/luppraden `rgba(0,0,0,0)`, kantbredd 0. Luppen:
+  `border 0px`, `box-shadow none`, bildens egen upplösning 654 × 465 (största visning
+  608 × 432, alltså aldrig uppskalad). Rastrets upplösning (dither → färg) är orörd.
+- Räknaren visar rätt steg i alla 33 lägen (`01 / 05` … `06 / 06`); mintspåret skalas.
+- Kontrast: Calyx stycke 2 `#4a4a4a`/vit **8,86:1**, Hōrai `#bdbdbd`/svart **11,18:1**,
+  ingress 15,72 / 21:1. Mobil, inaktiv rad (0,7): Calyx 5,83, Hōrai ingress 9,9, stycke 2
+  5,61:1.
+- Övertoningen in i steg 3 (1440, Calyx): tidigt i fönstret h3/ingress 0,68, stycke 2
+  0,18; mitt i fönstret 0,91 / 0,67.
+- 0 px horisontellt överflöd och 0 konsolfel i alla fyra fönster (också efter storleksbytet).
+
+**Kontrollerna bevisade mot trasiga varianter (chain-discipline M3):** `--fault`
+(ingress 44 px) → klipp i 3 av 5 Calyx-steg vid 1440, 5 av 5 Calyx och 3 av 6 Hōrai vid
+1280 (1920 har plats nog och flaggar inget, vilket stämmer);
+`--fault-overlap` (luppen 120 px upp) → överlapp 20 614–64 800 px² i varje steg; ren sida → 0.
+`copy_r8` mot en kopia av `COPY-R8.md` med ett ord ändrat ("vårbuketten") → `passed:false`,
+Calyx steg 3; mot riktiga filen → `passed:true`, 5 + 6 steg.
+
+## Skyddade effekter (EFFECTS.md) och sidan i övrigt
+
+**`section_probe.py` mot baslinjen**, fyra körningar av R8 och fyra av före-sidan
+(`index.before-r8.html`, samma värd, samma timme):
+
+| sektion | baslinje | R8 1 | R8 2 | R8 3 | R8 4 | före 1 | före 2 | före 3 | före 4 |
+|---|---|---|---|---|---|---|---|---|---|
+| hero | 18,2/1 | 16,8/0 | 16,8/0 | 16,8/0 | – | 16,8/0 | 16,8/0 | – | – |
+| tes | 18,2/3 | 16,8/0 | 16,8/0 | 16,8/0 | – | 16,8/0 | 16,8/0 | – | – |
+| process | 18,2/4 | 16,8/1 | 16,8/0 | 16,8/0 | – | 16,8/0 | 16,8/0 | – | – |
+| exempelcase | 18,5/6 | 16,9/6 | 33,3/5 | **50/7** | **49,9/6** | 16,8/3 | 16,8/4 | 33,3/4 | **66,7/6** |
+| showcase | 18,2/9 | 16,8/8 | 16,8/8 | 16,8/7 | 16,8/6 | 16,8/5 | 16,8/4 | 16,8/4 | 16,8/7 |
+| pris | 18,2/0 | 16,8/0 | 16,8/0 | 16,9/0 | – | 16,8/0 | 16,8/0 | – | – |
+| kontakt | 18,2/1 | 16,8/0 | 16,8/0 | 16,8/1 | – | 16,8/1 | 16,8/3 | – | – |
+
+p95 ms / bildrutor > 33 ms. (R8 4 och före 3–4 kördes för exempelcase/showcase; hela
+filerna ligger i `shots/section-probe-r8-*.json`.) Alla körningar: 60 px per hjulsteg,
+0 refresh under passet, varje ram laddad högst en gång.
+- **Showcasen:** p95 16,8 i alla fyra, under dagens 18,2. Över 33 ms: 6–8 (baslinje 9,
+  före-sidan idag 4–7).
+- **Exempelcase underkändes av proben i R8 3 och 4 — och i före-sidans körning 4 (66,7).**
+  Sektionen har ~100–120 bildrutor, så p95 slår om mellan 16,8 och 33–67 ms på en enda
+  lång ruta (5 eller 6 st). En LoAF-mätning av samma hjulpass (diagnostik, inte levererad)
+  gav samma långa rutor i båda byggena: Calyx-ramens montering (Tailwind-CDN:ns kompilering
+  i sajten, 55–67 ms, och sajtens första rendering 112–198 ms) och en GSAP-ruta på ~100 ms
+  vid pinnens start. Det är R7:s kända monteringskostnad, inte R8; den står som öppen nedan.
+- **Pinnen skapas en gång:** orörd (`setupDesktopEngine`); `verify_motion.py`
+  `showcase_check_1440`: ankarna 0 px ifrån i båda casen (Calyx 5, Hōrai 6), tangentbordsvägen
+  och hoppet till `#showcase` ok, 0 konsolfel. `showcase_row_clip_check` 1440/1280/390: pass.
+  (Dess `box_step_matches_anchor` läser `aria-hidden="false"`, som R7 H6 tog bort med avsikt;
+  den delen har varit död sedan R7 och är inte en R8-regression.)
+- **Casebytet utan hopp:** `click_scroll_probe.py`, två körningar per sida: R8 största steg
+  **21 px** båda gångerna, landar på 7097; före-sidan 21/21 px, samma landning. Proben
+  underkänner en körning per sida på bildrutor > 100 ms under klicket (sajternas laddning,
+  samma i båda).
+- **`verify.py`** (V3G_BASE 3305): `copy_r8` pass; `not_found_in_v3d: []`; alla 37 tillåtna
+  nya strängar finns; `over_count` samma två som före R7 (`ALUNIX`, adressen); 0 tankstreck;
+  heron passar 1440×900 och 1280×800; **0 px överflöd** vid 390/768/1440/1920.
+
+## Skärmbilder (`shots/r8/`)
+- `calyx-1440x900-steg1.png`, `calyx-1440x900-steg3.png`, `horai-1440x900-steg1.png`,
+  `horai-1440x900-steg3.png`
+- `calyx-1280x800-steg1.png`, `calyx-1280x800-steg3.png`, `horai-1280x800-steg1.png`,
+  `horai-1280x800-steg3.png`
+- övertoningen: `calyx-1440x900-overtoning-tidig.png`, `calyx-1440x900-overtoning-mitt.png`
+- mobil: `calyx-390x844-rader.png`, `calyx-390x844-rader-2.png`, `horai-390x844-rader.png`
+- extra: `calyx-1920x1080-steg3.png`, `horai-1920x1080-steg3.png`; före: `before/`
+- mätdata: `r8-probe.json`, `r8-probe-fault.json`, `r8-probe-fault-overlap.json`;
+  `verify/`, `motion/` (verify.py och verify_motion.py)
+
+## Det jag ser i bilderna, rakt
+- Kolumnen läses som en yta: räknaren, rubriken, ingressen och stycket står på samma
+  papper/svärta, och luppen ligger som ett utklipp över skarven.
+- **Calyx 1280×800:** luppen blir 177 × 126, eftersom Calyx första steg är det längsta
+  (text till y 651 av 800). Den är läsbar men liten.
+- **Calyx på vitt:** luppens egen grund är sajtens krämfärg, så utan ram har den ingen kant
+  mot `--paper` där bilden är ljus (steg 3). Över ramen syns brytningen tydligt.
+- Luppens 48 px över ramen täcker ramens högra kant: i Hōrai steg 1 slutet av sajtens
+  brödtextrader, i Calyx steg 3 vid 1280 en del av ett pris i sajtens lista. Det är
+  brytningen briefen bad om; värt att titta på.
+- Till höger om luppen blir ytan tom vid 1440 (Calyx: ca 350 px bred). Den är inte fylld
+  med något, enligt F-022.
+
+## Skill- och MCP-anrop
+| anrop | vad det ändrade |
+|---|---|
+| `Skill(design)` | inget i filerna; laddade kedjans procedur. Referensgolvet krävde sedan TASTE.md, FEEDBACK.md, `reference-lock.md`, `chain-discipline.md` och en katalogvalsrad |
+| `scripts/catalogue/select.py --brief PROMPT-V3g-R8.md --k 2` (skript, inget skill) | skrev en `catalogue-select`-rad (deonlibra, dope-security) i `.impeccable/design-session.jsonl`; posterna lästa (entry.md, fold.webp, design-language.md). Ingen påverkan på bygget utöver dope-securitys "gränsen görs av layout, inte fyllning", som stämmer med beställningen |
+| MCP | inga |
+
+## Öppet
+- Exempelcasens p95 slår om på monteringen av Calyx-ramen (se ovan); gäller före-sidan lika.
+- Calyx-luppen vid 1280×800 är liten; nästa steg vore att korta det längsta stegets
+  omfång i layouten (inte texten), till exempel en smalare räknarrad.
+- `verify_motion.py`:s `box_step_matches_anchor` bör läsa h3:ans opacitet i stället för
+  `aria-hidden`.
+- Ingen commit. Servern 3305 lämnad igång (den kördes redan när rundan började).
+
+---
+
+# R8b · luppen av ramen · 2026-09-30
+
+Leadens granskning av R8: texten håller och är orörd (typografi, två stycken, inga rutor,
+räknare + spår, övertoning). Luppen täckte den levande sajten (1280 Calyx steg 3: prislistan
+kapad; 1440 Hōrai steg 3: ett grumligt block på sajtens yta). Orsaken var R8-briefens 48 px
+grid-break. F-019: sajten är huvudsaken, inget får täcka ramen. Opus själv, inga
+subagenter, headless via `browser_lock.py`, port 3305.
+
+## Ändringar (`index.html`, bara desktop)
+1. **Ingen överlappning:** `.showcase-detail` `overflow:hidden`, figuren börjar i kolumnen;
+   `.showcase-side` tillbaka till R6:s `overflow-y:auto` (utbrytningen som krävde `visible`
+   finns inte längre).
+2. **Luppen är ett band i kolumnens fulla bredd**, kant i kant mot vänster, höger och botten,
+   utan ram, inset eller skugga. Höjd = det som blir kvar under det längsta steget (1fr),
+   24 px under texten (16 i raden + `margin-top:8px`).
+3. **Cover utan att rastret glider:** figuren behåller bildens proportion 1,4058 (bredd
+   `max(100cqw, 100cqh × 1,4058)`) och överfyller bandet, som klipper. Placeringen är
+   object-position i bråk, `--fx`/`--fy` per figur, satta mot målen i `loupe.py` STEPS
+   (avlästa på ett kontaktark av de elva bilderna med y-skala): Calyx 1 `.83` (No. 042),
+   2 `.27` (ordmärket), 3 `--fx:1 --fy:.8` (Cmsn. 0188 i högerkanten), 4 `.5` (2 480 kr),
+   5 `.48` (adressen); Hōrai 1 `.5` (H), 2 `.62` (家), 3 `.55` (料理は対話), 4 `.4` (1,480),
+   5 `.62` (部屋), 6 `.28` (Reservations). Med object-position = målets andel hamnar målet på
+   samma andel av bandet, alltså i bild. Dither → färg-upplösningen är orörd (samma
+   rutnät, samma tidslinje; rutorna ligger kvar på färgen eftersom figuren har bildens
+   proportion).
+4. **Under 160 px band döljs luppen** (`@container (max-height:159.98px)`); texten vinner.
+
+## Motion-skills, laddade före R8b (koordinatorns order)
+`lenis`, `gsap-core`, `gsap-scrolltrigger`, `gsap-timeline`. R8:s övertoning kontrollerad mot
+dem: alla stegtweens (`C.leadParts`, `C.moreParts`, figurerna, rutnätet) ligger i samma
+pausade `C.tl`, vars progress sätts av showcase-pinnens `onUpdate` (en `ScrollTrigger`,
+`scrub:true`, `pinSpacer`, skapad en gång). Ingen andra trigger, ingen `scrollTrigger` på en
+barntween, ingen `toggleActions` på en scrubbad trigger (de sju `toggleActions` på sidan
+är fristående reveals som inte är skrubbade). R8b rör ingen JS.
+
+## Mätt, `r8_probe.py`, alla steg i båda casen
+
+| fönster | case | band (b × h) | lupp/ram-skärning | text/lupp-överlapp | klipp | kant v/h/botten | text (längsta) |
+|---|---|---|---|---|---|---|---|
+| 1440×900 | Calyx | 600 × 210 | 0 px² (5 steg) | 0 | 0 av 5 | 0/0/0 | 347–666 |
+| 1440×900 | Hōrai | 600 × 266 | 0 (6) | 0 | 0 av 6 | 0/0/0 | 347–610 |
+| 1280×800 | Calyx | 126 px → **dold** | – | 0 | 0 av 5 | – | 331–651 |
+| 1280×800 | Hōrai | 533 × 201 | 0 (6) | 0 | 0 av 6 | 0/0/0 | 331–576 |
+| 1920×1080 | Calyx | 600 × 375 | 0 (5) | 0 | 0 av 5 | 0/0/0 | 355–681 |
+| 1920×1080 | Hōrai | 600 × 432 | 0 (6) | 0 | 0 av 6 | 0/0/0 | 355–624 |
+
+Skärningen mäts som luppens synliga rektangel (figuren ∩ bandets klipp) mot
+`#showcaseFrameWrap`; bandet självt mot ramen är också 0. Texten oförändrad från R8:
+h3 30/28, ingress 21/20/22, stycke 2 17/16/17, stegcellens överflöd 0, räknaren rätt i alla
+33 lägen, mobilen 0 klipp, 0 px överflöd, 0 konsolfel; efter 1440 → 390 i samma sida är
+stegdelarnas lägsta opacitet 1.
+
+**Beviset (M3):** `--fault-overlap` (bandets klipp av, figuren 120 px upp och 48 px ut över
+skarven) → text/lupp 20 657–51 840 px² och lupp/ram 15 072–20 327 px² i varje synligt steg;
+ren sida → 0. Proben räknar klippet bara när `.showcase-detail` faktiskt klipper
+(ändrat efter att den första felkörningen visade 0: den klippte mot bandet oavsett).
+
+**`verify.py`:** `copy_r8` pass; `not_found_in_v3d []`; `over_count` samma två som före R7;
+0 tankstreck; heron passar 1440×900 och 1280×800; 0 px överflöd vid 390/768/1440/1920.
+**`section_probe.py`, en körning:** showcase p95 **16,8 ms**, 9 rutor > 33 (baslinje 18,2/9);
+övriga sektioner 16,8–16,9; 60 px/hjulsteg, 0 refresh, Calyx-ramen laddad en gång, `fails: []`.
+
+## Skärmbilder (`shots/r8b/`)
+`calyx-{1440x900,1280x800,1920x1080}-steg{1,3}.png`,
+`horai-{1440x900,1280x800,1920x1080}-steg{1,3}.png`; dessutom övertoningen
+(`calyx-1440x900-overtoning-{tidig,mitt}.png`) och mobilen (`*-390x844-rader*.png`).
+Data: `r8-probe.json`, `r8-probe-fault-overlap.json`, `verify/`.
+
+## Det jag ser, rakt
+- Ramen är hel i alla bilder; kolumnen slutar i skarven.
+- Hōrai steg 1: H:et är högre än bandet, så cover visar mittpartiet (tvärstrecket och
+  stammarna), inte hela bokstaven. Samma för Hōrai steg 4, där 1,480 och "PER GUEST" inte
+  ryms samtidigt i ett lågt band; `--fy:.4` håller priset.
+- Calyx 1280×800: luppen dold (126 px), kolumnen slutar i vit yta under texten.
+- Calyx steg 3: bildens krämgrund möter `--paper` utan kant; bandet läses ändå som ett band
+  eftersom det går kant i kant.
+
+## Skill- och MCP-anrop, R8b
+| anrop | vad det ändrade |
+|---|---|
+| `Skill(lenis)` | inget; kontroll att Lenis är enda RAF-drivaren (gsap.ticker) och att inget i R8/R8b rör den |
+| `Skill(gsap-core)` | inget; kontroll av R8:s tweens (bara `opacity`/`y`) |
+| `Skill(gsap-scrolltrigger)` | inget; kontroll: en trigger, `scrub:true`, ingen `toggleActions` på den |
+| `Skill(gsap-timeline)` | inget; kontroll: tweens placerade med absolut position i samma `C.tl` |
+| MCP | inga |
+
+Referensgolvet krävde dessutom `scroll/devices.md`, `scroll/feel-and-fingerprint.md` och
+fingeravtrycksregistret innan första redigeringen (lästa; R8b ändrar inte sidans
+fingeravtryck). Ingen commit.

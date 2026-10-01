@@ -12,7 +12,7 @@ from bs4 import BeautifulSoup, Comment
 from playwright.sync_api import sync_playwright
 
 ROOT = os.path.normpath(os.path.join(os.path.dirname(os.path.abspath(__file__)), "..", "..", "..", ".."))
-BASE = os.environ.get("V3G_BASE", "http://127.0.0.1:3307")  # R7: port 3307
+BASE = os.environ.get("V3G_BASE", "http://127.0.0.1:3307")  # R8: V3G_BASE=http://127.0.0.1:3305  # R7: port 3307
 URL = BASE + "/tests/alunix-r8/runs/V3g/index.html"
 V3D = os.path.join(ROOT, "tests", "alunix-r8", "runs", "V3d", "index.html")
 SHOTS_ROUND = os.environ.get("V3F_SHOTS_ROUND", "r2")
@@ -25,23 +25,7 @@ VIEWPORTS = [390, 768, 1440, 1920]
 # oförändrade rubriker finns redan i V3d och antalskontrolleras som förut).
 # R6b: omskrivna steg ersätter sina R6-versioner, 16 strängar.
 R6_ALLOWED_NEW = [
-    "Sidan öppnar som ett omslag",
-    "Vi lade rubriken direkt på fotot och utgåvans nummer i nedre hörnet, som på ett magasin. En bukett säljer på hur den ser ut, så fotot fick nästan hela första skärmen.",
-    "En serif, också i namnet",
-    "Namnet, rubrikerna och brödtexten går i samma serif, och kursiven sköter betoningen. Ett andra rubriktypsnitt hade dragit åt reklam. Bara etiketterna fick ett eget, skrivmaskinslikt typsnitt.",
-    "Varje bild har ett nummer",
-    "Fotona står parvis, och under varje bild skrev vi uppdragets nummer och adress. Då läses de som beställningar ateljén har levererat.",
-    "Veckans utbud blev en lista med löpnummer, namn och pris i högerkant. Ett rutnät med kort hade krävt nytt foto varje vecka. Med en lista räcker det att skriva om en rad.",
-    "Där ett formulär brukar stå satte vi en e-postadress. Besökaren skriver om rummet och ljuset med egna ord, och ateljén svarar med vad som finns den veckan.",
-    "Ett namn, en gång",
-    "Vi satte namnet i stora versaler över det mörka fotot och lät loggan i menyraden vänta tills fotot rullat förbi. Annars hade namnet stått två gånger på samma skärm.",
-    "Över rubriken om huset satte vi 家, tecknet för hus, i samma röda färg, som en stämpel på ett brev. Stycket bredvid tänds ord för ord medan ni scrollar, så att det läses långsamt.",
-    "Mellan huset och menyerna lade vi en enda mening på mörk grund. Ovanför står samma tanke på japanska, i rött. Meningen är skarp bara mitt på skärmen, så farten sjunker innan priserna kommer.",
-    "Vi gav varje meny en romersk siffra och satte priset i rött, större än menyns namn. Utan à la carte väljer man en hel meny och letar först efter priset.",
-    "Matsalen fick en bild över hela bredden, strax före bokningen. Rubriken och 部屋, tecknen för rum, står direkt på fotot. Den som ska boka vill se var den ska sitta.",
-    "Vi lät bokningsknappen ligga kvar i menyraden hela vägen ned. Den som bestämt sig redan vid första menyn ska inte behöva leta efter den.",
-    # R6b: Antons order via leaden, stegtexten följer närbilden
-    "Ett tecken som stämpel",
+    # R8: stegtexterna kommer ur COPY-R8.md (se r8_copy() nedan); R6/R6b-stegen är ersatta.
     # R7 (H7): länken till sajten i full storlek, nu när ramarna är inerta förhandsvisningar
     "Öppna Calyx i full storlek",
     "Öppna Hōrai i full storlek",
@@ -50,6 +34,54 @@ R6_ALLOWED_NEW = [
     # R7 (H15, grind 49): samma mening, men bara adressen är länk, så den står som två textnoder
     "Eller mejla oss direkt på",
 ]
+
+
+# R8 (Anton 2026-09-29): stegtexterna sätts in ordagrant ur COPY-R8.md,
+# rubrik -> h3, två <p> per steg. r8_copy() jämför varje panel mot filen, tecken
+# för tecken, i ordning; strängarna läggs också till de tillåtna nya ovan.
+COPY_R8 = os.path.join(os.path.dirname(os.path.abspath(__file__)), "COPY-R8.md")
+
+
+def parse_copy_r8():
+    cases, cur, step = {}, None, None
+    with open(COPY_R8, encoding="utf-8") as f:
+        for line in f.read().splitlines():
+            if line.startswith("## "):
+                cur = {"Calyx": "calyx", "Hōrai": "horai"}.get(line[3:].strip())
+                if cur:
+                    cases[cur] = []
+                step = None
+            elif cur and line.startswith("### "):
+                step = {"h3": re.sub(r"^\d+\.\s*", "", line[4:].strip()), "p": []}
+                cases[cur].append(step)
+            elif cur and step is not None and line.strip():
+                step["p"].append(line.strip())
+    return cases
+
+
+def r8_copy():
+    expected = parse_copy_r8()
+    with open(os.path.join(os.path.dirname(os.path.abspath(__file__)), "index.html"), encoding="utf-8") as f:
+        soup = BeautifulSoup(f.read(), "html.parser")
+    mismatches, counts = [], {}
+    for key, steps in expected.items():
+        rows = soup.select(f"#showcase-{key} .showcase-row")
+        counts[key] = {"expected_steps": len(steps), "found_steps": len(rows)}
+        for i, st in enumerate(steps):
+            if i >= len(rows):
+                mismatches.append({"case": key, "step": i + 1, "error": "missing row"}); continue
+            r = rows[i]
+            got = {"h3": r.find("h3").get_text(), "p": [p.get_text() for p in r.find_all("p")]}
+            classes = [p.get("class") for p in r.find_all("p")]
+            if got != st or classes != [["showcase-lede"], ["showcase-more"]]:
+                mismatches.append({"case": key, "step": i + 1, "expected": st, "got": got, "p_classes": classes})
+        if len(rows) != len(steps):
+            mismatches.append({"case": key, "error": f"{len(rows)} rows, {len(steps)} steps in COPY-R8.md"})
+    return {"counts": counts, "mismatches": mismatches, "passed": not mismatches}
+
+
+R8_STEP_STRINGS = [s for steps in parse_copy_r8().values() for st in steps for s in [st["h3"]] + st["p"]]
+R6_ALLOWED_NEW += R8_STEP_STRINGS
 
 
 def visible_text_set(html):
@@ -89,7 +121,8 @@ def copy_diff():
     allowed_new_set = set(R6_ALLOWED_NEW)
     missing_all = [l for l in v3f_counts if l not in v3d_counts]
     missing = [l for l in missing_all if l not in allowed_new_set]
-    r6_allowed_new_present = sorted(l for l in missing_all if l in allowed_new_set)
+    # R8: "present" = on the page at all (some step headings already existed in V3d)
+    r6_allowed_new_present = sorted(l for l in allowed_new_set if l in v3f_counts)
     over_count = []
     # R7 (H15): the footer sentence "Eller mejla oss direkt på kontakt@alunix.se"
     # is unchanged on screen, but only the address is a link now, so the
@@ -125,6 +158,7 @@ def emdash_check():
 def run():
     report = {"viewports": {}, "copy_diff": None, "emdash": None}
     report["copy_diff"] = copy_diff()
+    report["copy_r8"] = r8_copy()
     report["emdash"] = emdash_check()
 
     with sync_playwright() as p:

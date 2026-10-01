@@ -4,10 +4,18 @@ type: project
 status: active
 project_slug: anti-slop-design
 repo: C:\\Users\\Anton L\\anti-slop-design
-updated: 2026-09-22
+updated: 2026-10-01
 ---
 
 # Anti-Slop Design
+
+## Nulage 2026-10-01
+
+Alunix V3f "Rutverket" (cellnät, GSAP+Lenis) är byggt och bedömt av Anton som bättre och mer unikt än V3d.
+Processen, vad som bar, felen och en åttastegsplan för att föra in Inspo, UI-skills och GSAP+Lenis i designsystemet
+står i `tests/alunix-r8/HANDOFF-V3f.md` (läs först). V3g:s showcase har copy i två stycken, utan rutor, och boardens
+cell synkas efter varje bygge. Öppet: R7b-klickregressionen, Anton-besluten i `tests/alunix-r8/runs/V3g/AUDIT.md`
+och push av `design-rework-v3` (opushad).
 
 ## Nulage 2026-09-22
 
@@ -390,3 +398,10 @@ ovan); Stop-hookens sessions-scopningsfix (föreslagen, inte gjord).
 ## Related
 
 - Session logs: `session-logs/` · Plans: `plans/`
+
+## Relevanta källor
+
+- [[sources/2025-07-21-the-game-hormozi-12-persuasion-hacks]] — Hormozis 12 övertalningstrick för sälj och copy (captured: 2025-07-21)
+- [[sources/2026-05-05-the-game-hormozi-5-things-before-starting]] — fem strukturella fördelar innan man startar ett bolag (captured: 2026-05-05)
+- [[sources/2026-08-24-skit-om-ai-9-exponera-foretaget-i-tider-av-ai]] — Skit om AI #9: synlighet i AI-eran — teknisk SEO före AI-tjänster (captured: 2026-08-24)
+- [[sources/2026-09-02-startup-ideas-5-github-repos-goldmine]] — Fem repos: anti-slop, AI-CRM, Video Use, SkillSpector, Phone Harness (captured: 2026-09-02)

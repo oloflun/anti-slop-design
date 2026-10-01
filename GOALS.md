@@ -175,6 +175,12 @@ hälsokontroller, inte ett mål.
 
 ## Ändringslogg
 
+- 2026-10-01 — claude — Alunix V3f "Rutverket" byggdes över sex rundor med bara Inspo-MCP, UI-skills och GSAP+Lenis som
+  designkällor, och bedömdes av Anton som "nästan perfekt på en gång" och mer unikt än V3d. Processen och
+  integrationsplanen för designsystemet står i `tests/alunix-r8/HANDOFF-V3f.md`. V3g:s showcase fick copy i två
+  stycken i byråregistret och rutorna togs bort (R8/R8b). Fyra nya domar i FEEDBACK.md (F-023 till F-026).
+  Målbilden orörd: delmål 8 (AUDIT.md) står kvar. Se `session-logs/2026-10-01-session-log.md`.
+
 - 2026-09-22 — claude — Alunix V3d:F1–F5 åtgärdade och mätta (kapitelrubriken
   skars av arkets sticky-plan, inte av sin egen ruta — föregående sessions
   slutsats var fel; siffra→etikett överlappade på fem av sex mätpunkter;

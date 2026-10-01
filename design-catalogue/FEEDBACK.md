@@ -443,3 +443,51 @@ Ta aldrig bort en post; en regel som visar sig fel får en ny post som upphäver
   samma fråga som byggarens: skulle Anton se det här som färdigt?
 - **Status:** V3g runda 6-briefen; `references/motion.md` § Approved effects (leaden är inte
   undantagen).
+
+### F-023 · Copyn ska beskriva vägvalen och låta som en byrå, inte som AI
+- **Visades:** V3g R7, showcasens stegtexter: en mening om vad som valdes och en om varför,
+  i en ruta per steg.
+- **Antons ord:** "Testa att ta bort rutorna och låta texten ta lite mer plats, gör den mer
+  visuellt intressant och låt den bli lite längre i 2 stycken, försök även att göra copyn
+  mindre 'AI'-ig och mer beskrivande kring själva processen och vägvalen, ta inspiration från
+  webbyråerna jag nämnde som referenser från början av Alunix bygget."
+- **Dom:** för kort och för tillrättalagd. Varje steg hade samma form.
+- **Regel:** case- och processtext skrivs i två stycken: situationen och valet med orsaken
+  först (Highway), sedan det som valdes bort eller vad valet kostar, plus en detalj som syns i
+  ramen (Hoy). Bortval skrivs som alternativ som fanns, aldrig som händelser i ett projekt som
+  inte funnits. Inga värdeord (Insigns "speglar", "stilren"). Alla tre pass körs som skills:
+  copywriting, copy-editing, humanizer-svenska. Faktan kontrolleras mot sajtens källkod.
+- **Status:** `tests/alunix-r8/runs/V3g/COPY-R8.md`, byggd i V3g R8/R8b.
+
+### F-024 · En enda referens räcker inte som riktning
+- **Visades:** V3f R2, hela sidan byggd på Aspen Search ensam efter ett `compare` som gav
+  `sameRegister:false`.
+- **Antons ord:** "Det ser bra ut, designen är mycket mer unik men den baseras enbart på en
+  referens istället för att ta inspiration från flera enligt de instruktioner som ska finnas
+  för MCP:n, finns det någon anledning för detta?" Senare: "nästan perfekt på en gång och
+  redan bättre och mer unikt än v3d."
+- **Dom:** resultatet bra, processen bröt instruktionen.
+- **Regel:** `compare` är ett trianguleringsverktyg. `sameRegister:false` är ett skäl att välja
+  vilket drag som tas ur varje referens, inte att välja bort alla utom en. Låset anger en
+  dominerande referens och minst två lån (komposition, typ, rörelse) med vad som lånas.
+- **Status:** `tests/alunix-r8/HANDOFF-V3f.md` § 2 och § 6 steg 1; ska in i `inspo-mcp.md`.
+
+### F-025 · Rörelse får inte stjäla läsningen, och bilder får inte förstoras för att nå ett mått
+- **Visades:** V3f R2–R4: tesrubriken drev förbi kanten, `Exempelcase` klipptes, tumnaglar
+  uppskalade till 140 vh.
+- **Antons ord:** "De stora rubrikerna klipps, 'första intrycket' hinner man knappt se.
+  Bilderna på de båda referenssidorna är fortfarande helt statiska och suddigt inzoomade."
+- **Dom:** dåligt, generellt.
+- **Regel:** varje rubrik står helt synlig, oklippt och stilla i minst 40 vh; rörelse sker före
+  och efter. Ett ytmått (t.ex. 30 % bildyta) får aldrig uppfyllas genom att förstora samma
+  lågupplösta bild. Referensbilder tas nya, skarpa och utzoomade (2× skala).
+- **Status:** `tests/alunix-r8/runs/V3f/RUNDA5-SPEC.md` § A–B; `references/motion.md` läsregel.
+
+### F-026 · En sektion måste ha en tanke, inte bara innehåll
+- **Visades:** V3f R5, kontakten: stor rubrik, ett kort och död yta.
+- **Antons ord:** "kontaktsektionen måste göras roligare, det finns ingen tydlig tanke där."
+- **Dom:** dåligt. Löstes med greppet "kortet lämnas över": heron speglad, kortet vänds av
+  besökaren och vänder sig självt vid 70 % scroll.
+- **Regel:** varje sektion bär ett grepp som går att säga i en mening. Saknas det är det
+  kompositionsproblemet, inte en dekorationsbrist (se F-022).
+- **Status:** `tests/alunix-r8/runs/V3f/RUNDA5-SPEC.md` § C. Verifierat i pixlar.

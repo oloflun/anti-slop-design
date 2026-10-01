@@ -4,11 +4,11 @@
       "scroll_width": 390,
       "client_width": 390,
       "overflow_px": 0,
-      "page_height": 8537,
+      "page_height": 9410,
       "hero_bottom_vs_vh": 987,
       "viewport_h": 900,
-      "image_area_share": 0.14966572731668784,
-      "image_area_share_strict_no_iframe": 0.14966572731668784,
+      "image_area_share": 0.13578069225319492,
+      "image_area_share_strict_no_iframe": 0.13578069225319492,
       "distinct_cell_colours": 5,
       "colours_sample": [
         "rgb(255, 255, 255)",
@@ -20,7 +20,7 @@
       "iframes_after_scroll": [
         {
           "title": "Exempelsida: Calyx, florist i Stockholm",
-          "src": "http://127.0.0.1:3307/sites/calyx.html",
+          "src": "http://127.0.0.1:3305/sites/calyx.html",
           "hasSrc": true
         },
         {
@@ -101,7 +101,7 @@
       "iframes_after_scroll": [
         {
           "title": "Exempelsida: Calyx, florist i Stockholm",
-          "src": "http://127.0.0.1:3307/sites/calyx.html",
+          "src": "http://127.0.0.1:3305/sites/calyx.html",
           "hasSrc": true
         },
         {
@@ -182,7 +182,7 @@
       "iframes_after_scroll": [
         {
           "title": "Exempelsida: Calyx, florist i Stockholm",
-          "src": "http://127.0.0.1:3307/sites/calyx.html",
+          "src": "http://127.0.0.1:3305/sites/calyx.html",
           "hasSrc": true
         },
         {
@@ -263,7 +263,7 @@
       "iframes_after_scroll": [
         {
           "title": "Exempelsida: Calyx, florist i Stockholm",
-          "src": "http://127.0.0.1:3307/sites/calyx.html",
+          "src": "http://127.0.0.1:3305/sites/calyx.html",
           "hasSrc": true
         },
         {
@@ -326,32 +326,49 @@
     }
   },
   "copy_diff": {
-    "v3f_line_count": 76,
+    "v3f_line_count": 87,
     "v3d_line_count": 84,
     "not_found_in_v3d": [],
     "r6_allowed_new_present": [
-      "Där ett formulär brukar stå satte vi en e-postadress. Besökaren skriver om rummet och ljuset med egna ord, och ateljén svarar med vad som finns den veckan.",
+      "Ateljén svarar med vad som går att få tag på den veckan och skickar förslaget i ett mejl, utan portal och utan kalenderlänk. Det tar längre tid än en bokningsknapp, men svaret kommer från den som ska binda buketten.",
+      "Bokningsknappen ligger kvar i menyraden hela vägen ned. Den som bestämde sig redan vid fotot ska inte behöva leta.",
+      "De flesta restauranger visar rummet högst upp. Vi lade det sist, eftersom det gör mest nytta när gästen redan har läst menyn och håller på att bestämma sig.",
+      "Den som beställer blommor till ett rum vill kunna beskriva ljuset, rummet och vad som ska serveras, och det går dåligt i formulärfält. Där formuläret brukar stå satte vi en e-postadress.",
+      "Det finns ingen à la carte, bara en meny per kväll. Det är alltså priset gästen jämför, så vi satte det i rött och större än menyns namn, och gav varje meny en romersk siffra.",
+      "Dryckerna ligger i en egen grön ton under priset, så att tillägget syns utan att blandas ihop med menyn. En restaurang som sätter priset litet ser ut att gömma det.",
       "Eller mejla oss direkt på",
-      "En serif, också i namnet",
+      "En bildtext som säger \"vårbukett\" berättar inget som besökaren inte redan ser. Numret och gatan visar att buketten har stått någonstans, i ett rum man kan gå in i.",
+      "En florist säljer något man vill röra vid, och på en skärm kommer ett stort foto närmast. Vi lät fotot ta nästan hela första skärmen och lade rubriken direkt på det, med utgåvans nummer nere i hörnet som på ett magasinsomslag.",
+      "En mening som saktar in",
+      "En serif får bära allt",
+      "En vanlig startsida med meny och bokningsknapp överst hade också fungerat. Då hade knappen varit det första ögat fastnar på. Tidskriftsformen ger dessutom ateljén ett skäl att byta omslag när säsongen byter, och vårnumret står redan i menyraden.",
+      "Ett andra rubriktypsnitt hade gett mer kontrast och fått sidan att likna reklam. Bara etiketter och bildtexter fick ett eget typsnitt. Det är jämnbrett som en skrivmaskin, och texterna läses som anteckningar i marginalen.",
+      "Ett mejl räcker",
       "Ett namn, en gång",
       "Ett tecken som stämpel",
-      "Fotona står parvis, och under varje bild skrev vi uppdragets nummer och adress. Då läses de som beställningar ateljén har levererat.",
-      "Matsalen fick en bild över hela bredden, strax före bokningen. Rubriken och 部屋, tecknen för rum, står direkt på fotot. Den som ska boka vill se var den ska sitta.",
-      "Mellan huset och menyerna lade vi en enda mening på mörk grund. Ovanför står samma tanke på japanska, i rött. Meningen är skarp bara mitt på skärmen, så farten sjunker innan priserna kommer.",
-      "Namnet, rubrikerna och brödtexten går i samma serif, och kursiven sköter betoningen. Ett andra rubriktypsnitt hade dragit åt reklam. Bara etiketterna fick ett eget, skrivmaskinslikt typsnitt.",
+      "Fotona står parvis, och det högra ligger lite lägre än det vänstra, som två blad på ett bord. Under varje bild står uppdragets nummer och adressen där buketten stod, till exempel Hotel Pigalle på Drottninggatan.",
+      "Här hade en bild kunnat ligga. Vi valde en mening som bara går att läsa när man stannar, ungefär som pausen mellan två rätter, så att menyerna efteråt inte läses i samma andetag som huset.",
+      "Hōrai har ingen skylt mot gatan, så namnet måste sitta på sidan. Vi satte det i stora romerska versaler över ett mörkt foto av en tallrik, med 蓬莱 i små spärrade tecken ovanför.",
+      "Knappen fanns där hela tiden",
+      "Loggan i menyraden hade visat namnet en gång till på samma skärm. Den väntar i stället tills fotot har rullat förbi och tänds först då, så att namnet aldrig står två gånger samtidigt.",
+      "Längst ned står när veckans platser släpps, på måndagar vid lunch, och en e-postadress för sällskap som inte passar i ett formulär. Huset har tjugosex platser och två sittningar per kväll.",
+      "Mellan huset och menyerna står en enda mening på valnötsbrun grund. Den kommer in suddig, är skarp när den står mitt på skärmen och suddas ut igen när man scrollar vidare.",
       "Paketen skiljer sig i vad er sida ska kunna göra. Vi formger den lika noga i alla tre, efter era egna behov och önskemål.",
+      "Priset står större än namnet",
+      "Rubriken ligger kvar i rött medan stycket läses, med 家, tecknet för hus, ovanför som en stämpel. Rött används bara till tecknen, rubrikerna och priserna, så ögat hittar priserna längre ned utan att leta.",
+      "Rubriker, brödtext och ordmärket går i samma klassiska serif, och kursiven sköter betoningen. En ateljé som gör arrangemang för hotell och restauranger ska kännas som något tryckt man får hem.",
+      "Rummet före bokningen",
       "Sidan öppnar som ett omslag",
-      "Varje bild har ett nummer",
-      "Veckans utbud blev en lista med löpnummer, namn och pris i högerkant. Ett rutnät med kort hade krävt nytt foto varje vecka. Med en lista räcker det att skriva om en rad.",
-      "Vi gav varje meny en romersk siffra och satte priset i rött, större än menyns namn. Utan à la carte väljer man en hel meny och letar först efter priset.",
-      "Vi lade rubriken direkt på fotot och utgåvans nummer i nedre hörnet, som på ett magasin. En bukett säljer på hur den ser ut, så fotot fick nästan hela första skärmen.",
-      "Vi lät bokningsknappen ligga kvar i menyraden hela vägen ned. Den som bestämt sig redan vid första menyn ska inte behöva leta efter den.",
-      "Vi satte namnet i stora versaler över det mörka fotot och lät loggan i menyraden vänta tills fotot rullat förbi. Annars hade namnet stått två gånger på samma skärm.",
+      "Siffrorna har samma bredd, så kolumnen står rak när en rad byts ut. Ateljén behöver bara skriva om en rad, och besökaren jämför fyra buketter utan att scrolla.",
+      "Strax före bokningen kommer matsalen, som en bild över hela bredden med texten direkt på fotot och en mörk toning från vänster. Den som funderar på att boka får se var man kommer att sitta.",
+      "Stycket om huset börjar nästan osynligt och tänds ord för ord medan man scrollar. Det går inte att skumma. Man läser i den takt någon berättar.",
+      "Utbudet byts varje vecka. Ett rutnät med kort hade krävt ett nytt foto av varje bukett varje vecka, och det är ett arbete som lätt blir liggande när det är mycket att binda. Vi satte utbudet i en lista: löpnummer, namn i kursiv, en kort beskrivning och priset i högerkant.",
+      "Varje bild är ett uppdrag",
+      "Veckans utbud på en rad var",
       "Öppna Calyx i full storlek",
-      "Öppna Hōrai i full storlek",
-      "Över rubriken om huset satte vi 家, tecknet för hus, i samma röda färg, som en stämpel på ett brev. Stycket bredvid tänds ord för ord medan ni scrollar, så att det läses långsamt."
+      "Öppna Hōrai i full storlek"
     ],
-    "r6_allowed_new_expected_count": 20,
+    "r6_allowed_new_expected_count": 37,
     "r6_allowed_new_all_present": true,
     "over_count_vs_v3d": [
       {
@@ -368,6 +385,20 @@
     "passed": false
   },
   "emdash": [],
+  "copy_r8": {
+    "counts": {
+      "calyx": {
+        "expected_steps": 5,
+        "found_steps": 5
+      },
+      "horai": {
+        "expected_steps": 6,
+        "found_steps": 6
+      }
+    },
+    "mismatches": [],
+    "passed": true
+  },
   "hero_fit_1440x900_1280x800": {
     "1440x900": {
       "hero_stage_bottom": 900,
