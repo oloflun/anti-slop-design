@@ -125,6 +125,41 @@ VERB_ROUTE = {
 }
 
 
+# Motion work names its tools or its effects. Kept here, not in
+# design_hook_lib.classify(), for the same reason scroll_signal() is separate:
+# the classifier corpus must not shift.
+MOTION_RE = re.compile(
+    r"\b(?:anim\w*|gsap|lenis|scrolltrigger|splittext|smooth ?scroll|"
+    r"transition\w*|(?:ö|o)verg(?:å|a)ng\w*|r(?:ö|o)relse\w*|motion|easing|"
+    r"hover\w*|micro-?interaction\w*|reveal\w*|parallax|stagger\w*)\b",
+    re.I,
+)
+
+
+def motion_toolchain(root: Path) -> str:
+    """Link the machine's global GSAP + Lenis into the project (npm link, never
+    install) and scaffold gsap.js / smooth-scroll.js from the design skill's
+    templates. Idempotent and ~0 ms once linked; ~4 s the first time."""
+    here = Path(__file__).resolve().parent
+    candidates = [r / "scripts" / "motion" / "link_motion.py" for r in L.design_skill_roots()]
+    candidates.append(here.parent / "skills" / "design" / "scripts" / "motion" / "link_motion.py")
+    script = next((c for c in candidates if c.is_file()), None)
+    if not script:
+        return "MOTION TOOLCHAIN: link_motion.py not found in the design skill; link by hand: npm link gsap lenis"
+    import importlib.util
+    spec = importlib.util.spec_from_file_location("link_motion", script)
+    mod = importlib.util.module_from_spec(spec)
+    spec.loader.exec_module(mod)
+    st = mod.run(root)
+    L.log(root, event="motion-toolchain", detail="ok" if st.get("ok") else "; ".join(st.get("problems", []))[:200],
+          signal="+".join(st.get("actions", [])) or "already")
+    return ("MOTION TOOLCHAIN — " + mod.summary(st) + "\n"
+            "Import only from the central files (`import { gsap, ScrollTrigger, SplitText } from \"./gsap.js\"`, "
+            "`import lenis from \"./smooth-scroll.js\"`). Static HTML: the importmap in "
+            "references/scroll/toolchain.md. Never npm install gsap/lenis, never vendor a copy, never a second "
+            "Lenis instance or a plugin registered outside gsap.js.")
+
+
 def detect_verb(prompt: str) -> str:
     for name, rx in VERBS:
         if rx.search(prompt):
@@ -147,6 +182,11 @@ def main() -> None:
     root = L.project_root(event)
     level = L.classify(prompt, root)
     if level == "none":
+        # "fixa hover-animationen på knappen" carries no corpus verb/object but is
+        # exactly the animation fix that should start linked (Anton 2026-10-02).
+        if (MOTION_RE.search(prompt) and not L.NEGATIVE_GUARD.search(prompt)
+                and L._has_ui_evidence(root)):
+            L.emit("UserPromptSubmit", motion_toolchain(root))
         return
     scroll = L.scroll_signal(prompt)
     if level == "medium":
@@ -154,6 +194,8 @@ def main() -> None:
         nudge = MEDIUM_NUDGE
         if scroll:
             nudge = nudge + "\n" + SCROLL_NUDGE
+        if scroll or MOTION_RE.search(prompt):
+            nudge = nudge + "\n" + motion_toolchain(root)
         L.emit("UserPromptSubmit", nudge)
         return
 
@@ -229,6 +271,8 @@ def main() -> None:
     lines.append("</design-gate>")
     if scroll:
         lines.append(SCROLL_BLOCK)
+    # Every larger design job starts linked to the global GSAP + Lenis (Anton 2026-10-02).
+    lines.append(motion_toolchain(root))
 
     L.arm(root, "intent", verb)
     L.log(root, event="intent", tier=tier_now, signal=verb,

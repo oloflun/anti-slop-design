@@ -1,15 +1,16 @@
-# GSAP + Lenis vendor — copy, never edit
+# Motion engine — linked, not vendored
 
-`vendor/` holds byte-identical copies of the house GSAP + Lenis engine. Copy
-the whole folder into each build's `assets/vendor/`; never edit per project
-— it's the mechanism, not the design. Never a CDN at runtime.
+**New builds:** `python link_motion.py <project>` links the machine's global
+gsap 3.15.0 + lenis 1.3.26 (`npm link gsap lenis`, semver deps in package.json)
+and copies `templates/gsap.js` + `templates/smooth-scroll.js` when the project
+has no central GSAP file. The `design-intent` hook does this automatically.
+Read [`../../references/scroll/toolchain.md`](../../references/scroll/toolchain.md)
+(import map, bundlers, trimming, deploy) and `devices.md` § The engine (the
+init) before the first line of motion code.
 
-Versions: `gsap.min.js` / `ScrollTrigger.min.js` / `SplitText.min.js` —
-**3.15.0** (verify via the min file's license-comment header). GSAP 3.13+
-incl. SplitText is free. `lenis.min.js` + `lenis.css` — **1.3.26**.
-
-The init that wires them together lives in
-[`../../references/scroll/devices.md`](../../references/scroll/devices.md)
-§ The engine — read it before the first line of motion code, not this file.
-License: GreenSock standard license (see each file's header); Lenis is MIT
-(`studio-freight/lenis`).
+**Legacy:** `vendor/` holds byte-identical copies of gsap / ScrollTrigger /
+SplitText 3.15.0 and lenis 1.3.26 + `lenis.css`. Only for pages already built
+on them (Alunix V3f, V3g). Do not copy it into a new build: it reaches 4 of 25
+GSAP modules, and the architecture forbids local copies without Anton's
+explicit go-ahead. License: GSAP standard license (free incl. all plugins
+since 3.13); Lenis is MIT (`darkroomengineering/lenis`).

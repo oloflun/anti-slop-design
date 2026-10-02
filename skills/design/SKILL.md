@@ -384,19 +384,23 @@ the direction was locked, and shipped without a device table).
    plan changes, not the record.
 4. **Choose devices per act** from [`scroll/devices.md`](references/scroll/devices.md):
    ≥4 families, never the same one twice in a row, ≤2 scrub acts, the cue contract
-   (greet · hold only on the last act · ground-or-greet). The engine is vendored at
-   `scripts/scroll/`, **opt-in per grammar** (scrub, pin, pan) and never used blind:
-   never edit it or restyle its `.sc-*` classes, theme it with six tokens and two fonts,
-   drive bespoke behaviour from `--sc-p`, then read the console for `[scrollcraft]`
-   warnings and run `scroll_verify.py` before judging anything. A page that keeps the
-   chain's own signature set-piece + shared reveal needs no engine (AB06).
+   (greet · hold only on the last act · ground-or-greet). **The engine is GSAP + Lenis,
+   linked from the machine's global install, never installed or copied**
+   ([`scroll/toolchain.md`](references/scroll/toolchain.md)). The `design-intent` hook
+   has already run `scripts/motion/link_motion.py` (check: `npm list gsap lenis`).
+   Import only through the project's `gsap.js` / `smooth-scroll.js`; the init and its
+   house values are in `devices.md` § The engine. The level to reach, and the moves
+   that carry it (intro → hero handoff, section-to-section transitions, which plugin
+   does what), is [`scroll/showcase-floor.md`](references/scroll/showcase-floor.md),
+   read from the GSAP and Lenis showcases. Scrollcraft (`scripts/scroll/`) stays only
+   for pages already built on it, and never on the same page as GSAP + Lenis.
 5. **Bake-off (page scope in build/redesign — mandatory unless the user says "skip
    variants").** [`shotgun.md`](references/shotgun.md): three directions that **span three
    registers, three grammars and three worlds** (never three shades of one register), each
    with its own style preamble, checked against each other with the fingerprint gate (≤2/6
    shared) before any cell is built — the session's own siblings count, not just the vault
    registry; each a fold build by a fresh
-   Sonnet subagent that reads only its engine's files, default engines {this chain,
+   subagent of the session's own model class (never lower; CLAUDE.md § Delegering) that reads only its engine's files, default engines {this chain,
    impeccable only}; `python scripts/board.py <session>` serves the board; you read every
    cell as pixels and write the tradeoff table without a favourite; the user picks;
    `approved.json` seeds Step 4. AB07 (2026-09-03): the chain won 3–0 against impeccable
@@ -501,7 +505,7 @@ Run in this order, and **read the output of every step**:
 9. **Accessibility:** `Skill(a11y-audit)` — the three scripts (`a11y_scan.py`, `tab_walk.py`, `reflow.py`), then the eight passes; verdict Block/Approve; every HIGH fixed or waived by name. Once per project, prove the scripts on `~/anti-slop-design/tests/a11y/broken.html` first.
 10. **Visual critique on the pixels you read:** [`verbs/critique.md`](references/verbs/critique.md) — seven dimensions rated pass/minor/major, every P1 with a measured value, and the honest sentence about the references.
 11. **Motion:** `Skill(review-animations)` on anything that moves; on Persuade pages `python scripts/scroll_verify.py <url>` (dead scroll, cues that never reach full opacity, un-revealed elements, contrast under media at the brightest frame, and `blankBands`: a near-uniform band taller than 60 % of a viewport in the full-page capture, which is a pinned act with sparse content and reads as broken in every static view) in both motion modes.
-12. **Three reviewers in parallel, then reconcile:** dispatch `design-critic`, `design-a11y-reviewer` and `design-heuristics` (Sonnet subagents in `~/.claude/agents/`) with the screenshots, the lane sentence and the reference lock; verify every finding against the pixels yourself; merge by accessibility > usability > brief > personas > escalate. AB04 (2026-09-03): the trio found the seven planted defects plus nine real ones a single reviewer missed.
+12. **Three reviewers in parallel, then reconcile:** dispatch `design-critic`, `design-a11y-reviewer` and `design-heuristics` (subagents in `~/.claude/agents/`, same model class as the session or higher, never lower) with the screenshots, the lane sentence and the reference lock; verify every finding against the pixels yourself; merge by accessibility > usability > brief > personas > escalate. AB04 (2026-09-03): the trio found the seven planted defects plus nine real ones a single reviewer missed.
 
 ### When to stop
 

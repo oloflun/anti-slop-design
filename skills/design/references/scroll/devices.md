@@ -33,9 +33,14 @@ is two RAF loops fighting for the same frame. Anton's instruction: GSAP+Lenis fo
 all animations, applied wherever the motion fits the design and elements of each
 page.
 
-Vendored locally from `scripts/motion/vendor/` (gsap 3.15.0, ScrollTrigger,
-SplitText, lenis 1.3.26 + `lenis.css`) — copy the whole folder into the build's
-`assets/vendor/`; never a CDN at runtime. GSAP 3.13+ including SplitText is free.
+**Linked, never installed or copied** (from 2026-10-02): the project reaches the
+machine's global gsap 3.15.0 (all 25 modules) and lenis 1.3.26 through
+`npm link gsap lenis`, done by `scripts/motion/link_motion.py`. The `design-intent`
+hook runs it at the start of every design or animation job. It also scaffolds the
+central `gsap.js` + `smooth-scroll.js`. Import maps, bundlers, trimming and deploy:
+[`toolchain.md`](toolchain.md). `scripts/motion/vendor/` (4 files) is legacy and stays
+only for pages already built on it (V3f, V3g). Never a CDN at runtime. GSAP 3.13+
+including every plugin is free.
 
 The init, verbatim — house deviations from Lenis's own defaults, each explained
 once here so no builder reads the Lenis README and takes the default instead:
