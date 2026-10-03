@@ -395,7 +395,22 @@ the direction was locked, and shipped without a device table).
    house values are in `devices.md` § The engine. The level to reach, and the moves
    that carry it (intro → hero handoff, section-to-section transitions, which plugin
    does what), is [`scroll/showcase-floor.md`](references/scroll/showcase-floor.md),
-   read from the GSAP and Lenis showcases. Scrollcraft (`scripts/scroll/`) stays only
+   read from the GSAP and Lenis showcases. **Before the first line of motion code**
+   (the `design-gate` reference floor denies the first UI write until each is in the
+   ledger):
+   - read `showcase-floor.md` and the worked journey
+     [`scroll/journeys/era-residence.md`](references/scroll/journeys/era-residence.md);
+   - open **two `motion_floor: 2` contact sheets** (`entries/<slug>/motion/sheet.webp`,
+     as images) whose grammar fits the brief, and name in the decision ledger the
+     intro, the transition causes (≥ 3, never the same twice running, rule 2) and the
+     recurring signature object (rule 3) you take from them;
+   - load `Skill(lenis)` → `Skill(gsap-core)` → `Skill(gsap-scrolltrigger)`, plus
+     `gsap-timeline` / `gsap-plugins` (SplitText, Flip) / `gsap-performance` when the
+     page uses them.
+
+   At review the page's own sheet (`scripts/catalogue/motion_capture.py --url
+   <local page> --slug <cell>-self`) goes beside those two sheets, rule by rule (§ 2 of
+   the floor). Below the floor is not shipped. Scrollcraft (`scripts/scroll/`) stays only
    for pages already built on it, and never on the same page as GSAP + Lenis.
 5. **Bake-off (page scope in build/redesign — mandatory unless the user says "skip
    variants").** [`shotgun.md`](references/shotgun.md): three directions that **span three
@@ -546,6 +561,8 @@ Reject on sight: a competitor's or another company's UI shown as if it were the 
 ---
 
 ## Step 6 · Copy gate
+
+**Scope: new strings only (F-028, Anton 2026-10-03).** The gate runs on copy that is new — a string that did not exist — or on copy the user has asked to have improved. Approved copy already on the page is never rewritten, shortened, lengthened or "clarified" by the gate, a builder or a reviewer, even when a plan proposes it; a proposed change to approved copy is shown to the user as a proposal and only built on an explicit yes. "Ändra inget om jag inte bett om det."
 
 **Three passes, in order, every time, each one actually invoked as a skill rather than approximated from memory.** State which ran.
 

@@ -61,7 +61,7 @@ PROMPT_MD = R8 / "PROMPT.md"
 CONCEPTS_MD = R8 / "concepts.md"
 BRIEF_MD = R8 / "brief.md"
 
-PORTS = {"V3c": 3301, "V3d": 3304, "K3": 3302, "K4": 3303, "V3g": 3307}
+PORTS = {"V3c": 3301, "V3d": 3304, "K3": 3302, "K4": 3303, "V3g": 3307, "V4": 3308}
 DEFAULT_MODEL = "claude-opus-5"
 
 BOARD_PORT = 4626
@@ -160,7 +160,11 @@ def higgsfield_servers() -> list[str]:
 
 def disallowed_tools() -> list[str]:
     ops = [f"mcp__{srv}__{op}" for srv in higgsfield_servers() for op in GEN_OPS]
-    return ops + list(DROP_MCP_SERVERS)
+    # R8_NO_SUBAGENTS=1: the builder does the work itself. Anton 2026-09-27
+    # ordered an Opus-only build; the global CLAUDE.md "always Sonnet
+    # subagents" rule made the Opus builder hand R6 to Sonnet anyway.
+    solo = ["Agent", "Task"] if os.environ.get("R8_NO_SUBAGENTS") else []
+    return ops + list(DROP_MCP_SERVERS) + solo
 
 
 _r6_build_cell = r6run.build_cell

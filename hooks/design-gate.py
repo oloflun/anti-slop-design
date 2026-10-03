@@ -60,6 +60,16 @@ def blocking() -> bool:
 # locked project's contract enforcement above is unrelated and unaffected.
 # --------------------------------------------------------------------------
 
+def _motion_floor(cat_root: Path, slug: str) -> int:
+    """motion_floor from entries/<slug>/entry.md frontmatter, -1 when absent."""
+    try:
+        head = (cat_root / "entries" / slug / "entry.md").read_text(encoding="utf-8", errors="replace")[:3000]
+    except Exception:
+        return -1
+    m = re.search(r"^motion_floor:\s*(\d)", head, re.M)
+    return int(m.group(1)) if m else -1
+
+
 def _check_reference_floor(root: Path) -> None:
     if os.environ.get("DESIGN_REF_FLOOR", "").strip().lower() == "off":
         return
@@ -191,6 +201,28 @@ def _check_reference_floor(root: Path) -> None:
                 "Du har inte läst fingerprint-registret "
                 "(wiki/projects/_index/design-fingerprints.md) — fingerprint-gaten "
                 "(≥ 4/6 mot varje rad) kan inte hållas mot rader du inte sett.")
+        # The showcase floor (Anton 2026-10-03: the chain must CALL the GSAP/Lenis
+        # mechanisms, not only list them). showcase-floor.md § 1 asks for two
+        # motion_floor-2 sheets read as pixels and the Era journey before the first
+        # line of motion code; the GSAP/Lenis skills hold the API the page is built in.
+        for fname in ("showcase-floor.md", "era-residence.md"):
+            if fname not in scroll_basenames:
+                sub = "journeys/" if fname == "era-residence.md" else ""
+                p = (skill_root / "references" / "scroll" / f"{sub}{fname}").as_posix()
+                missing.append(f"Du har inte läst {p} — showcase-golvet krävs innan första UI-filen.")
+        sheets = {r.get("slug") for r in cat_reads if r.get("kind") == "motion-sheet"}
+        floor2 = sorted(s for s in sheets if s and _motion_floor(cat_root, s) == 2)
+        if len(floor2) < 2:
+            missing.append(
+                f"Du har läst {len(floor2)} rörelseark med motion_floor: 2 — golvet kräver två "
+                f"({entries_path}/<slug>/motion/sheet.webp som bild; välj med "
+                "`grep -l \"motion_floor: 2\" design-catalogue/entries/*/entry.md`). "
+                "Namnge intro, övergångar och signaturobjekt du lånar i beslutsloggen.")
+        loaded = {str(r.get("skill", "")).split()[0].split(":")[-1]
+                  for r in rows if r.get("event") in ("skill", "skill-read")}
+        for sk in ("lenis", "gsap-core", "gsap-scrolltrigger"):
+            if sk not in loaded:
+                missing.append(f"Du har inte laddat Skill({sk}) — rörelsemotorns API krävs innan första UI-filen (devices.md § Skills to load).")
 
     if not missing:
         return

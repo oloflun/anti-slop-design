@@ -47,14 +47,20 @@ MEDIUM_NUDGE = (
 
 SCROLL_NUDGE = (
     "[design] Scrollkoreografi nämnd: läs references/scroll/devices.md och "
-    "feel-and-fingerprint.md innan du bygger scrollbeteendet."
+    "feel-and-fingerprint.md innan du bygger scrollbeteendet, sedan "
+    "scroll/showcase-floor.md, journeys/era-residence.md och två rörelseark "
+    "med motion_floor: 2, och ladda Skill(lenis), Skill(gsap-core), "
+    "Skill(gsap-scrolltrigger)."
 )
 
 SCROLL_BLOCK = (
     "SCROLL — Steg 2b är obligatoriskt: läs references/scroll/README.md, "
     "grammars.md, devices.md, feel-and-fingerprint.md och house-physics.md "
-    "§ Motion innan första UI-filen; referensgolvet i design-gate spärrar "
-    "annars. En brief som låser riktningen hoppar bara över bake-offen "
+    "§ Motion, sedan showcase-golvet (scroll/showcase-floor.md, "
+    "journeys/era-residence.md, två motion/sheet.webp med motion_floor: 2 lästa "
+    "som bild) och ladda Skill(lenis) → Skill(gsap-core) → "
+    "Skill(gsap-scrolltrigger) (+ gsap-timeline, gsap-plugins vid SplitText/Flip) "
+    "innan första UI-filen; referensgolvet i design-gate spärrar annars. En brief som låser riktningen hoppar bara över bake-offen "
     "(2b punkt 5), aldrig punkt 1–4."
 )
 

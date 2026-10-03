@@ -1,6 +1,8 @@
 # Copy gate
 
-**Load whenever a user-facing string is written or changed.** Also available standalone as `design copy-audit <target>`.
+**Load whenever a user-facing string is written or changed.**
+
+**Scope: new strings only (F-028, Anton 2026-10-03).** The gate runs on copy that is new — a string that did not exist — or on copy the user has asked to have improved. Approved copy already on the page is never rewritten, shortened, lengthened or "clarified" by the gate, a builder or a reviewer, even when a plan proposes it; a proposed change to approved copy is shown to the user as a proposal and only built on an explicit yes. "Ändra inget om jag inte bett om det." Also available standalone as `design copy-audit <target>`.
 
 Two stages, in order. Stage 1 decides *what the copy has to do*; stage 2 removes the tells that mark it as machine-written.
 

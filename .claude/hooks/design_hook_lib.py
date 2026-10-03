@@ -525,6 +525,10 @@ def classify(prompt: str, root: Path) -> str:
 _DESIGN_SKILL_DIRS = (
     HOME / ".agents" / "skills" / "design",
     HOME / ".claude" / "skills" / "design",
+    # The plugin's own copy (repo checkout or installed dist/plugin): same files, kept
+    # identical by sync-from-live --check. A builder working in the repo reads these, and
+    # r37 V4 (2026-10-03) was denied for references it had read here.
+    Path(__file__).resolve().parent.parent / "skills" / "design",
 )
 
 

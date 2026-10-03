@@ -115,6 +115,19 @@ a{color:inherit;}
 .topline-mark{font-size:15px;letter-spacing:-.02em;font-weight:500;}
 .topline-mid{background:var(--paper);}
 .topline-contact{background:var(--black);color:var(--paper);font-size:14px;text-decoration:none;justify-content:flex-end;}
+/* R10 §3 (ordered): four text anchors in the white mid cell, not a hamburger. Lenis (anchors:true)
+   reads each section's scroll-margin-top, so the target lands under the topline. Below 768 the
+   words do not fit beside the address cell: the cell keeps its wordmark and the anchors go. */
+.rutverk > section{scroll-margin-top:48px;}
+.topline-nav{display:flex;align-items:stretch;gap:clamp(16px,2.4vw,36px);height:100%;}
+.topline-nav a{display:inline-flex;align-items:center;font-size:15px;letter-spacing:-.02em;text-decoration:none;color:var(--ink);}
+.topline-nav a:hover{text-decoration:underline;text-underline-offset:4px;}
+.topline-nav a:focus-visible{outline:2px solid var(--black);outline-offset:-2px;}
+.topline-mid .topline-mark{display:none;}
+@media (max-width:767px){
+  .topline-nav{display:none;}
+  .topline-mid .topline-mark{display:inline;}
+}
 
 /* ------------------------------------------------------------- hero */
 /* R3: the fixed 190svh CSS-sticky stage is gone. The pin distance is now
@@ -263,7 +276,7 @@ a{color:inherit;}
   .case-choice:hover .case-choice-frame img,
   .case-choice:focus-visible .case-choice-frame img{transform:scale(1.04);}
 }
-.case-choice:focus-visible{outline:3px solid var(--black);outline-offset:-3px;}
+.case-choice:focus-visible{outline:3px solid var(--black);outline-offset:0;box-shadow:0 0 0 6px var(--paper);}  /* a11y L2: black ring + white halo, >= 3:1 on Hōrai's dark photo too */
 .case-choice-meta{display:block;padding:16px var(--cellpad) 20px;border-bottom:4px solid transparent;}
 .case-choice[aria-pressed="true"] .case-choice-meta{border-bottom-color:var(--mint);}
 .case-choice-meta .h3{display:block;margin-bottom:4px;font-size:22px;}
@@ -275,7 +288,7 @@ a{color:inherit;}
    logged as a 0.947 layout shift (two at load, CLS 1.89) although nothing
    moved on screen; an invisible box is not counted. Toggled by an
    IntersectionObserver in both directions, never while it can be seen. */
-.showcase-stage.is-far, .showcase-stage.is-far *{visibility:hidden !important;}
+.showcase-stage.is-far{opacity:0;}  /* a11y M1: opacity, not visibility - visibility took the Calyx h2 and step h3s out of the accessibility tree */
 /* H10 (R7): the showcase pins only where its side column fits. Below 561 px of height (768x432 = 200 % zoom) it takes the stacked layout, so no step text is clipped and the wheel never scrolls an inner panel. */
 @media (min-width:768px) and (min-height:561px){ .showcase-stage{grid-template-columns:7fr 5fr;} }
 .showcase-embed-cell{padding:0;background:var(--paper);position:relative;overflow:hidden;}
@@ -463,7 +476,8 @@ a{color:inherit;}
 
 /* ------------------------------------------------------------- pris */
 .pris-statement{padding:calc(var(--cellpad)*2) var(--cellpad);}
-.pris-statement .body-30{max-width:60ch;margin-top:calc(var(--headline-50) * .5);font-weight:500;}  /* R9 §4a: .8 leading hangs the descender ~.2em below the box; .5 puts baseline-to-lede >= one x-height (99 px at 1440; .32 gave 70) */
+.pris-statement .body-30{max-width:60ch;margin-top:calc(var(--headline-50) * .5);font-weight:500;}
+.pris-statement .pris-cost{margin-top:.6em;}  /* R10 §5 (ordered): the cost line follows the lede as its second line */  /* R9 §4a: .8 leading hangs the descender ~.2em below the box; .5 puts baseline-to-lede >= one x-height (99 px at 1440; .32 gave 70) */
 /* All placement lives in these classes (not inline styles) so the media
    queries below can actually win the cascade at each breakpoint. */
 .pris-bento{grid-template-columns:repeat(12,1fr);grid-template-rows:auto auto;}
@@ -628,6 +642,12 @@ a{color:inherit;}
   </div>
   <div class="topline-cell topline-mid" style="color:#232323;justify-content:center;">
     <span class="topline-mark mono">ALUNIX</span>
+    <nav class="topline-nav" aria-label="Sektioner">
+      <a href="#process">Process</a>
+      <a href="#exempelcase">Exempel</a>
+      <a href="#pris">Paket</a>
+      <a href="#kontakt">Kontakt</a>
+    </nav>
   </div>
   <a class="topline-cell topline-contact" href="mailto:kontakt@alunix.se">kontakt@alunix.se</a>
 </header>
@@ -688,7 +708,6 @@ a{color:inherit;}
     <div class="g g12 process-row">
       <div class="c-6 cell process-left">
         <div class="process-sticky">
-          <p class="process-kicker mono">Vår process:</p>
           <h2 class="process-title headline-40">Från samtal till lanserad sida.</h2>
           <p class="process-lock body">Webbdesign, design och system. Allt på ett ställe.</p>
           <div class="process-image img-cell" data-resolve="process" style="background:var(--grey)">
@@ -779,7 +798,7 @@ a{color:inherit;}
          ScrollTrigger skapa/flytta en egen vid varje refresh() - den
          flytten omparenterade de pinnade iframarna och laddade om dem. -->
     <div class="showcase-pin-spacer">
-    <noscript><style>.showcase-stage.is-far,.showcase-stage.is-far *{visibility:visible !important;}</style></noscript>
+    <noscript><style>.showcase-stage.is-far{opacity:1 !important;}</style></noscript>
     <div class="showcase-stage is-far">
       <div class="showcase-embed-cell">
         <div class="showcase-frame-wrap" id="showcaseFrameWrap">
@@ -898,6 +917,7 @@ a{color:inherit;}
     <div class="cell pris-statement">
       <h2 class="headline-50" style="max-width:16ch;">Alla har rätt till bra design.</h2>
       <p class="body-30">Paketen skiljer sig i vad er sida ska kunna göra. Vi formger den lika noga i alla tre, efter era egna behov och önskemål.</p>
+      <p class="body-30 pris-cost">Vi lämnar pris efter första samtalet.</p>
     </div>
     <div class="g g12 pris-bento">
       <div class="cell pris-lead">
@@ -1299,29 +1319,36 @@ a{color:inherit;}
         });
         return;
       }
-      /* Pin 2.4 vh: A holds 0-.40 (~.96 vh), A sinks .40-.52, B rises .48-.60 (only the last
-         letters of A are still leaving: the two sentences never stack), B holds .60-1 (~.96 vh).
-         The mid-state is .20 of the pin (~430 px at 900): at .34 a resting reader saw fragments.
-         Both reads stay well over the 40 vh rule. Scrubbed; Lenis is the only smoothing (F-020).
-         R7 (H2/H13) kept: pinned 48 px down, pinType transform. */
-      var swap = gsap.timeline({
-        defaults: { ease: 'none' },
-        scrollTrigger: {
-          trigger: '#tes', start: 'top top+=48', end: function(){ return '+=' + (2.4 * window.innerHeight); },
-          pin: '.tes-top', pinSpacing: true, pinType: 'transform', scrub: true
-        }
-      });
+      /* R10 (Anton: "ryckig i alla versioner … mjukare och matchar hur den första texten dyker
+         upp"). The hand-over is PLAYED, not scrubbed: a scrubbed .08-long window moved B one wheel
+         notch at a time. The pin (2.4 vh, created once, R7 H2/H13 kept) only decides WHEN: past .45
+         it plays, back under .45 it reverses. B rises with A's own entrance tween (chars yPercent
+         -> 0, .8 s, power4.out, stagger .012); A leaves upward first (words, a separate element
+         from the chars its entrance owns, F-027). A holds 0-.45 (~1.1 vh), B the rest. */
+      var tesBText = tesB.querySelector('.tes-b-text');
       /* visibility on the aria-hidden span and on A's split lines, never on the <h2>/<p>:
          the h2's aria-label and B's sr-only twin stay in the accessibility tree. */
-      var tesBText = tesB.querySelector('.tes-b-text');
       gsap.set(tesBText, { autoAlpha: 0 });
-      swap
-        .to({}, { duration: 0.40 })
-        .set(tesBText, { autoAlpha: 1 }, 0.40)
-        .set(tesSplit.lines, { autoAlpha: 0 }, 0.54)
-        .to(tesSplit.words, { yPercent: 145, duration: 0.08, stagger: { each: 0.04 / tesSplit.words.length }, ease: 'power2.in' }, 0.40)
-        .to(tesBSplit.chars, { yPercent: 0, duration: 0.08, stagger: { each: 0.04 / tesBSplit.chars.length }, ease: 'power3.out' }, 0.48)
-        .to({}, { duration: 0.40 }, 0.60);
+      var handover = gsap.timeline({ paused: true })
+        .set(tesBText, { autoAlpha: 1 }, 0.001)
+        .to(tesSplit.words, { yPercent: -120, duration: 0.5, ease: 'power2.in', stagger: 0.015 }, 0)
+        .set(tesSplit.lines, { autoAlpha: 0 }, 0.62)
+        .to(tesBSplit.chars, { yPercent: 0, duration: 0.8, ease: 'power4.out', stagger: 0.012 }, 0.3);  /* B rolls in under A's last words: no blank beat (measured .35 s at .5) */
+      var tesSwapped = false;
+      ScrollTrigger.create({
+        trigger: '#tes', start: 'top top+=48', end: function(){ return '+=' + (2.4 * window.innerHeight); },
+        pin: '.tes-top', pinSpacing: true, pinType: 'transform', invalidateOnRefresh: true,
+        onUpdate: function(self){
+          var want = self.progress >= 0.45;
+          if (want === tesSwapped) return;
+          tesSwapped = want;
+          if (want) handover.timeScale(1).play(); else handover.timeScale(1.4).reverse();
+        },
+        onRefresh: function(self){
+          tesSwapped = self.progress >= 0.45;
+          handover.progress(tesSwapped ? 1 : 0).pause();
+        }
+      });
     });
     /* a11y H1, after load: a spacing bookmarklet or extension applied later grows A past the pin
        or pushes words over their line masks. Then the same plain stacked fallback as at load. */

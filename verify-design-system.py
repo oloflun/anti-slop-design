@@ -688,6 +688,26 @@ def main() -> int:
         check("skill-read closes the gap", "Route gap (strong, craft only) = 0" in summ)
 
     with tempfile.TemporaryDirectory() as td:
+        # A motion contact sheet is its own kind, so the showcase floor can count it.
+        (Path(td) / "package.json").write_text("{}", encoding="utf-8")
+        sheet = Path(td) / "design-catalogue" / "entries" / "acme" / "motion" / "sheet.webp"
+        sheet.parent.mkdir(parents=True)
+        sheet.write_bytes(b"RIFF")
+        L.arm(Path(td), "verify")
+        run_hook("design-vision-track.py",
+                 {"cwd": td, "tool_name": "Read", "tool_input": {"file_path": str(sheet)}})
+        rows = [r for r in L.all_rows(Path(td)) if r.get("event") == "ref-read"]
+        check("vision-track logs entries/<slug>/motion/sheet.webp as kind motion-sheet",
+              any(r.get("kind") == "motion-sheet" and r.get("slug") == "acme" for r in rows))
+        # r37 (2026-10-03): a builder in the repo reads the plugin's own skills/design copy.
+        repo_devices = PLUGIN_ROOT / "skills" / "design" / "references" / "scroll" / "devices.md"
+        run_hook("design-vision-track.py",
+                 {"cwd": td, "tool_name": "Read", "tool_input": {"file_path": str(repo_devices)}})
+        rows = [r for r in L.all_rows(Path(td)) if r.get("event") == "ref-read"]
+        check("a read of the plugin's own skills/design copy counts as a scroll reference",
+              any(r.get("sub") == "scroll" and r.get("file", "").endswith("devices.md") for r in rows))
+
+    with tempfile.TemporaryDirectory() as td:
         # Section 6 must render even with zero detector findings — a section
         # that only appears when it has findings is indistinguishable from
         # one that never ran.
@@ -794,8 +814,41 @@ def main() -> int:
                   and "design-fingerprints.md" in reason)
             L.log(Path(td), event="ref-read", cat="registry",
                   file="design-fingerprints.md")
+            # Showcase floor (2026-10-03): the floor doc, the Era journey, two
+            # motion_floor-2 sheets read as images, and the GSAP/Lenis skills.
             hso, _ = run_hook("design-gate.py", write_ev(td, "other.html", "<html></html>"))
-            check("reference floor allows the write once scroll refs and registry are read",
+            reason = (hso or {}).get("permissionDecisionReason", "")
+            check("scroll brief demands the showcase floor and the Era journey",
+                  (hso or {}).get("permissionDecision") == "deny"
+                  and "showcase-floor.md" in reason and "era-residence.md" in reason)
+            check("scroll brief demands two motion_floor-2 sheets", "motion_floor: 2" in reason)
+            check("scroll brief demands Skill(lenis) and Skill(gsap-core) before the first write",
+                  "Skill(lenis)" in reason and "Skill(gsap-core)" in reason
+                  and "Skill(gsap-scrolltrigger)" in reason)
+            L.log(Path(td), event="ref-read", cat="references", sub="scroll",
+                  file=str(skill_roots[0] / "references" / "scroll" / "showcase-floor.md"))
+            L.log(Path(td), event="ref-read", cat="references", sub="scroll",
+                  file=str(skill_roots[0] / "references" / "scroll" / "journeys" / "era-residence.md"))
+            for slug, floor in (("acme", 2), ("beta", 1)):
+                (cat_dir / "entries" / slug).mkdir(parents=True, exist_ok=True)
+                (cat_dir / "entries" / slug / "entry.md").write_text(
+                    f"---\nslug: {slug}\nmotion_floor: {floor}\n---\n", encoding="utf-8")
+                L.log(Path(td), event="ref-read", cat="catalogue", slug=slug, kind="motion-sheet",
+                      file=str(cat_dir / "entries" / slug / "motion" / "sheet.webp"))
+            for sk in ("lenis", "gsap-core", "gsap-scrolltrigger"):
+                L.log(Path(td), event="skill", skill=sk, tier="ungated")
+            hso, _ = run_hook("design-gate.py", write_ev(td, "other.html", "<html></html>"))
+            reason = (hso or {}).get("permissionDecisionReason", "")
+            check("a floor-1 sheet does not count as the second floor-2 sheet",
+                  (hso or {}).get("permissionDecision") == "deny" and "motion_floor: 2" in reason
+                  and "Skill(lenis)" not in reason)
+            (cat_dir / "entries" / "gamma").mkdir(parents=True, exist_ok=True)
+            (cat_dir / "entries" / "gamma" / "entry.md").write_text(
+                "---\nslug: gamma\nmotion_floor: 2\n---\n", encoding="utf-8")
+            L.log(Path(td), event="ref-read", cat="catalogue", slug="gamma", kind="motion-sheet",
+                  file=str(cat_dir / "entries" / "gamma" / "motion" / "sheet.webp"))
+            hso, _ = run_hook("design-gate.py", write_ev(td, "other.html", "<html></html>"))
+            check("reference floor allows the write once scroll refs, registry and showcase floor are read",
                   hso is None)
 
     # T5 (2026-09-08): the route corpus. 90+ writes routed to a fallback whose

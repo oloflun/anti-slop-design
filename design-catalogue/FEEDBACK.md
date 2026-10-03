@@ -514,3 +514,25 @@ Ta aldrig bort en post; en regel som visar sig fel får en ny post som upphäver
   sajtens källkod, även typsnittspåståenden (F-023).
 - **Status:** `tests/alunix-r8/runs/V3g/index.html` R9, mätt headless 1440/768/390;
   `house-physics.md` (ägarregeln, x-höjdsavståndet, optisk mitt); `SKILL.md` (namnregeln).
+
+### F-028 · Ändra inget som inte är beställt; copy-gaten skriver inte om godkänd copy
+- **Visades:** Alunix V3g R10 (2026-10-03). Byggaren förlängde två godkända rader:
+  - "Så berättar vi vad vi kan göra för er." blev "… och föreslår en tid för ett första samtal."
+  - "Boka ett möte" blev "Mejla oss för att boka ett möte".
+
+  Den byggde också fler ändringar än Anton beställt: tumnaglar för casebytet, en frimärksbild i
+  processrubriken, kantiga mintövergångar och en större hero-rubrik som klipptes under
+  topplinjen.
+- **Antons ord:** "blir för långt, det var bättre innan. … Ändra inget om jag inte bett om det,
+  copy-gaten ska inte omarbeta redan godkänd copy, endast skapa ny där det inte finns eller
+  förbättra om det beställs av användaren". Och: "R10 gjorde mer ändringar än jag beställde - Dela
+  upp dem i 2 olika flikar - en med enbart vad jag beställde och en med dina kreativa ändringar".
+- **Dom:** dåligt.
+- **Regel:**
+  1. Copy-gaten körs bara på ny text, eller på text användaren bett om att förbättra. Godkänd copy
+     ändras aldrig av gaten, en byggare eller en granskare.
+  2. En plan som föreslår ändringar i godkänd copy eller layout bygger förslagen först efter ett
+     uttryckligt ja per punkt.
+  3. Beställt och eget initiativ levereras i separata varianter (två flikar).
+- **Status:** `SKILL.md` Step 6 och `references/copy-gate.md` (Scope). Alunix: flik 7 =
+  beställt, flik 9 = kreativt.

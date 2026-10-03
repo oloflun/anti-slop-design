@@ -139,6 +139,8 @@ def _classify_ref(path: str, root) -> dict | None:
                 kind = "slice"
             elif name.startswith("shot."):
                 kind = "shot"
+            elif len(rel.parts) > 2 and rel.parts[2] == "motion" and name.startswith("sheet."):
+                kind = "motion-sheet"  # the scroll capture the showcase floor asks for (2026-10-03)
             else:
                 kind = "other"
             return {"cat": "catalogue", "slug": rel.parts[1], "kind": kind, "file": posix}

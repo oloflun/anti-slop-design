@@ -121,7 +121,7 @@ function renderTabs(){
   STATE.board.directions.slice(0,9).forEach(function(d,i){
     var b=document.createElement('button');
     b.type='button'; b.setAttribute('role','tab'); b.setAttribute('aria-selected', String(d.id===STATE.active));
-    b.textContent=(i+1)+' '+d.name; b.title=d.lane||'';
+    b.textContent=(d.n||i+1)+' '+d.name;  /* d.n: a fixed tab number, so retiring a direction never renumbers the rest */ b.title=d.lane||'';
     b.addEventListener('click', function(){STATE.active=d.id; render()});
     tabs.appendChild(b);
   });
@@ -190,7 +190,9 @@ function onKey(e){
   var t=e.target; if(/^(INPUT|TEXTAREA|SELECT)$/.test(t.tagName)) return;
   if(e.metaKey||e.ctrlKey||e.altKey) return;
   var n=parseInt(e.key,10), maxN=Math.min(9,STATE.board.directions.length);
-  if(n>=1 && n<=maxN){STATE.active=STATE.board.directions[n-1].id; render(); return}
+  var byN=STATE.board.directions.filter(function(d){return d.n===n})[0];
+  if(byN){STATE.active=byN.id; render(); return}
+  if(n>=1 && n<=maxN && !STATE.board.directions.some(function(d){return d.n})){STATE.active=STATE.board.directions[n-1].id; render(); return}
   if(e.key==='x'||e.key==='X'){toggleFullscreen(); return}
   if(e.key==='Escape'){if(STATE.fs!==null) toggleFullscreen(); return}
   if(e.key==='f'||e.key==='F'){toggleDrawer(); return}
