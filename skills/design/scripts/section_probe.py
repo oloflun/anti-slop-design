@@ -30,6 +30,28 @@ import argparse, json, os, sys, time
 from playwright.sync_api import sync_playwright
 
 LOCK = os.path.join(os.environ.get("TEMP", "/tmp"), "alunix-browser.lock")
+
+
+def owner_alive():
+    """Stale only when the lock's owner PID is dead: an mtime timeout let a 2nd run in beside a long one (2026-10-03)."""
+    try:
+        pid = int(open(LOCK).read().strip() or 0)
+    except (OSError, ValueError):
+        return False
+    if pid <= 0:
+        return False
+    if os.name != "nt":
+        try:
+            os.kill(pid, 0); return True
+        except OSError:
+            return False
+    import ctypes  # os.kill(pid, 0) terminates the process on Windows
+    k = ctypes.windll.kernel32
+    h = k.OpenProcess(0x1000, False, pid)
+    if not h:
+        return False
+    code = ctypes.c_ulong(); k.GetExitCodeProcess(h, ctypes.byref(code)); k.CloseHandle(h)
+    return code.value == 259
 INIT = """
 window.__sp = {f:[], y:[], ev:[]};
 let last = performance.now();
@@ -56,7 +78,7 @@ def lock():
             atexit.register(lambda: os.path.exists(LOCK) and os.remove(LOCK))
             return
         except FileExistsError:
-            if time.time() - os.path.getmtime(LOCK) > 900:
+            if not owner_alive():
                 os.remove(LOCK); continue
             if time.time() > deadline:
                 sys.exit("section_probe: browser lock held too long: " + LOCK)

@@ -14,6 +14,9 @@ read = set()
 rp = CAT / "showcase-readings.jsonl"
 if rp.exists():
     read = {json.loads(l)["slug"] for l in rp.read_text(encoding="utf-8").splitlines() if l.strip()}
+sp = CAT / "showcase-skipped.jsonl"  # sites that cannot be read (bot walls); never offered again
+if sp.exists():
+    read |= {json.loads(l)["slug"] for l in sp.read_text(encoding="utf-8").splitlines() if l.strip()}
 
 
 def line(s):

@@ -42,8 +42,14 @@ ROOT = Path(__file__).resolve().parent.parent.parent
 ENTRIES = ROOT / "design-catalogue" / "entries"
 LOCK = os.path.join(os.environ.get("TEMP", "/tmp"), "alunix-browser.lock")
 W, H = 1440, 900
-MAX_FRAMES = 20
+MAX_FRAMES = int(os.environ.get("MOTION_FRAMES", 20))  # finer sheets for a journey study: MOTION_FRAMES=60
 SITE_BUDGET_S = 90
+# MOTION_GPU=0: software WebGL (SwiftShader), leaves the display GPU alone while you work. On this
+# machine the display GPU is an Iris Xe iGPU; a WebGL site held 43-83 % of its 3D engine (2026-10-03).
+# Default stays on the GPU: the frame timing (smoothed / lag metrics) was calibrated against it.
+GPU = os.environ.get("MOTION_GPU", "1") != "0"
+GPU_ARGS = (["--enable-gpu", "--ignore-gpu-blocklist", "--use-angle=d3d11"] if GPU
+            else ["--use-angle=swiftshader", "--enable-unsafe-swiftshader"])
 
 DETECT = r"""
 () => {
@@ -91,6 +97,40 @@ DETECT = r"""
 """
 
 
+def pid_alive(pid: int) -> bool:
+    if pid <= 0:
+        return False
+    if os.name != "nt":
+        try:
+            os.kill(pid, 0)
+            return True
+        except OSError:
+            return False
+    import ctypes  # os.kill(pid, 0) terminates the process on Windows
+    k = ctypes.windll.kernel32
+    h = k.OpenProcess(0x1000, False, pid)  # PROCESS_QUERY_LIMITED_INFORMATION
+    if not h:
+        return False
+    code = ctypes.c_ulong()
+    k.GetExitCodeProcess(h, ctypes.byref(code))
+    k.CloseHandle(h)
+    return code.value == 259  # STILL_ACTIVE
+
+
+def free_commit_gb() -> float:
+    if os.name != "nt":
+        return 99.0
+    import ctypes
+
+    class MS(ctypes.Structure):
+        _fields_ = [("len", ctypes.c_ulong), ("load", ctypes.c_ulong)] + [(n, ctypes.c_ulonglong) for n in
+                    ("tp", "ap", "tf", "af", "tv", "av", "ae")]
+    m = MS()
+    m.len = ctypes.sizeof(MS)
+    ctypes.windll.kernel32.GlobalMemoryStatusEx(ctypes.byref(m))
+    return m.af / 2**30  # available commit (pagefile-backed): what crashed the machine 2026-09-28
+
+
 def single_flight():
     """Same lock as tests/alunix-r8/showcase_probe.py: one browser run at a time."""
     import atexit
@@ -103,7 +143,12 @@ def single_flight():
             atexit.register(lambda: os.path.exists(LOCK) and os.remove(LOCK))
             return
         except FileExistsError:
-            if time.time() - os.path.getmtime(LOCK) > 900:
+            # stale only when the owner is dead: an mtime timeout let a 2nd run in beside a long one (2026-10-03)
+            try:
+                owner = int(open(LOCK).read().strip() or 0)
+            except (OSError, ValueError):
+                owner = 0
+            if not pid_alive(owner):
                 os.remove(LOCK)
                 continue
             if time.time() > deadline:
@@ -157,12 +202,13 @@ def diff(a, b):
 UNLOCK = r"""
 () => {
   // cookie walls: decline first (privacy), only then dismiss; then experience gates
-  const order = [/^(reject|decline|deny|refuse|necessary only|only necessary|reject all|avvisa|neka)/i,
-                 /^(close|dismiss|×|x|no,? thanks?|no thank you|not now|maybe later|later|stäng)$/i,
-                 /^(enter|enter site|enter experience|start|start experience|explore|begin|discover|continue|skip|skip intro|launch|initiate|initiate system|enter system|let'?s go|without sound|no sound|sound off|enter without sound|play)\b/i];
+  const order = [/^(reject|decline|deny|refuse|necessary only|only necessary|reject all|avvisa|neka|rechazar|refuser|tout refuser|ablehnen|alle ablehnen|rifiuta|nega|weigeren|neka alla|avböj|accept necessary|accept essential|essential only|use necessary|non merci|accepter les cookies strictement|strictly necessary)/i,
+                 /^(close|dismiss|×|x|✕|no,? thanks?|no thank you|not now|maybe later|later|stäng|fermer|schließen|cerrar|chiudi|sluiten)( ?[×✕x])?$/i,
+                 /^(enter|entrer|entrar|enter site|visit website|visit gallery|enter experience|start(?!\s+(a|your)\s+project)|start experience|explore|begin|discover|continue|skip|skip intro|launch|initiate|initiate system|initialize|initialise|initialize vision|proceed|i understand|ok,? i understand|i'?m ok|continue anyway|enter system|let'?s go|without sound|no sound|sound off|enter without sound|play(?! ?(show)?reel))\b/i];  // a showreel button is not a gate
   const vis = e => { const r = e.getBoundingClientRect(); const s = getComputedStyle(e);
     return r.width > 4 && r.height > 4 && s.visibility !== 'hidden' && s.display !== 'none' && +s.opacity > 0.05 && r.bottom > 0 && r.top < innerHeight; };
-  order.splice(2, 0, /^(enter )?(without sound|no sound|sound off|mute|muted)\b/i);  // sound-off before any other enter
+  order.splice(2, 0, /^(enter )?(without (sound|audio)|no (sound|audio)|(sound|audio) off|mute|muted)\b/i);  // sound-off before any other enter
+  if (/allow sound|enable sound|turn on sound|with sound\?/i.test(document.body.innerText || '')) order.splice(2, 0, /^(no|off)$/i);  // "Allow sound? yes / no"
   const cands = new Set(document.querySelectorAll('button, a, [role=button], [data-enter], .enter, #enter'));
   for (const e of document.querySelectorAll('body div, body span, body p')) {  // gates built from divs with cursor:pointer
     if (cands.size > 400) break;
@@ -170,14 +216,17 @@ UNLOCK = r"""
   }
   const els = [...cands].filter(vis);
   const hits = [];
-  for (const rx of order) for (const e of els) {
-    const t = (e.innerText || e.getAttribute('aria-label') || '').trim().replace(/\s+/g, ' ');
+  outer: for (const [gi, rx] of order.entries()) for (const e of els) {
+    if (gi >= 2 && hits.some(h => !/^(reject|decline|deny|refuse|necessary|only|avvisa|neka|close|dismiss|no|not|maybe|later|stäng|×|x)/i.test(h))) break outer;  // one gate click, then stop
+    const t = (e.innerText || e.getAttribute('aria-label') || e.title || (/(^|[-_ ])close([-_ ]|$)/i.test(String(e.className)) ? 'close' : '')).trim().replace(/\s+/g, ' ');  // icon-only close buttons
+    if (gi === 1 && e.closest('header, nav')) continue;  // a 'close' in the header is a menu toggle, not a modal
+    if (gi === 1 && !e.closest('[role=dialog], [aria-modal], dialog, [class*=modal i], [class*=popup i], [class*=newsletter i], [class*=overlay i], [class*=banner i], [class*=geo i], [class*=locale i], [class*=region i], [class*=country i], [class~=fixed][class~=inset-0]')) continue;  // a Tailwind full-screen overlay (drinksom's region modal) carries no semantic class  // close only inside a popup, never a menu toggle
     if (t && t.length < 40 && rx.test(t) && !(e.tagName === 'A' && e.href && !e.href.includes('#') && new URL(e.href, location.href).pathname !== location.pathname)) {
       e.click(); hits.push(t); break;
     }
   }
   // "click anywhere" gates: click the body itself (never a link), only when the page asks for it
-  if (!hits.length && /click anywhere|click to (enter|start|begin)|tap anywhere|klicka var som helst/i.test(document.body.innerText || '')) {
+  if (!hits.length && /click anywhere|click to (enter|start|begin)|click on the spark|tap anywhere|klicka var som helst/i.test(document.body.innerText || '')) {
     const c = document.querySelector('canvas') || document.body;
     for (const ev of ['pointerdown', 'mousedown', 'pointerup', 'mouseup', 'click'])
       c.dispatchEvent(new MouseEvent(ev, { bubbles: true, clientX: innerWidth / 2, clientY: innerHeight / 2 }));
@@ -293,6 +342,110 @@ def capture(pg, url, outdir: Path):
     return probe
 
 
+MIN_FREE_COMMIT_GB = 4.0  # same floor as the qmd embed gate: below it, other work gets the memory first
+
+
+QUEUE = ROOT / "design-catalogue" / "motion-recapture.txt"  # one host or URL per line; drained between sites
+
+
+def drain_queue(all_jobs):
+    """Jobs added while a run is going (a recapture after a gate fix, a new reference site):
+    they cut in before the next listed site, so a second browser never has to run."""
+    if not QUEUE.exists():
+        return []
+    lines = [l.strip() for l in QUEUE.read_text(encoding="utf-8").splitlines() if l.strip() and not l.startswith("#")]
+    if not lines:
+        return []
+    QUEUE.write_text("", encoding="utf-8")
+    by_host = {j.get("host"): j for j in all_jobs}
+    out = []
+    for l in lines:
+        if "://" in l:
+            host = re.sub(r"^https?://", "", l).split("/")[0]
+            out.append({"url": l, "host": host, "slug": slugify(host), "src": "queue", "redo": True})
+        elif l in by_host:
+            out.append(dict(by_host[l], redo=True))
+        else:
+            print(f"[motion_capture] queue: {l} is not a listed host or a URL, skipped", flush=True)
+    return out
+
+
+def reap_orphans(since: float, grace_s: float = 3.0) -> list:
+    """Kill Playwright chromium left behind once its site process is gone: a process whose parent
+    is dead (or whose parent PID was reused by a younger process). Only binaries under ms-playwright
+    or chrome-headless-shell, so the user's own Chrome and a live run's browser (parent alive) are
+    never touched, and only ones created after `since` (this site's start): a detached daemon such
+    as gstack /browse, started earlier, is never ours to kill. Called between sites, after a short
+    grace for chromium's own shutdown."""
+    try:
+        import psutil
+    except ImportError:
+        return []
+    time.sleep(grace_s)
+    killed = []
+    for p in psutil.process_iter(["pid", "ppid", "name", "exe", "create_time"]):
+        try:
+            exe = (p.info["exe"] or "").lower()
+            if not (p.info["name"] == "chrome-headless-shell.exe" or "ms-playwright" in exe):
+                continue
+            if p.info["create_time"] < since:
+                continue
+            try:
+                parent = psutil.Process(p.info["ppid"])
+                orphan = parent.create_time() > p.info["create_time"]  # PID reused
+            except psutil.NoSuchProcess:
+                orphan = True
+            if not orphan:
+                continue
+            mb = p.memory_info().rss / 2**20
+            p.kill()
+            killed.append(f"{p.info['pid']}({mb:.0f}MB)")
+        except (psutil.NoSuchProcess, psutil.AccessDenied):
+            continue
+    if killed:
+        print(f"[motion_capture] reaped orphaned chromium: {', '.join(killed)}", flush=True)
+    return killed
+
+
+def supervise(jobs, a):
+    """Each site in its own process with a hard kill: a page that freezes its main thread blocks
+    pg.evaluate() forever, and one run sat hung at 2.5-10 GB for hours (2026-10-03)."""
+    import subprocess
+    pending = list(jobs)
+    n = 0
+    while pending:
+        extra = drain_queue(jobs)
+        if extra:
+            pending = extra + pending
+        j = pending.pop(0)
+        n += 1
+        redo = a.redo or j.get("redo", False)
+        if (ENTRIES / j["slug"] / "motion" / "probe.json").exists() and not redo:
+            continue
+        waited = 0
+        while free_commit_gb() < MIN_FREE_COMMIT_GB:
+            if waited % 300 == 0:
+                print(f"[motion_capture] {free_commit_gb():.1f} GB commit free < {MIN_FREE_COMMIT_GB}: waiting", flush=True)
+            time.sleep(30)
+            waited += 30
+        started = time.time()
+        cmd = [sys.executable, os.path.abspath(__file__), "--child", "--url", j["url"], "--slug", j["slug"], "--log", a.log]
+        child = subprocess.Popen(cmd + (["--redo"] if redo else []), stdout=sys.stdout, stderr=subprocess.STDOUT,
+                                 creationflags=getattr(subprocess, "CREATE_NO_WINDOW", 0))
+        try:
+            child.wait(timeout=SITE_BUDGET_S + 120)
+        except subprocess.TimeoutExpired:
+            if os.name == "nt":  # tree kill: the playwright driver and chromium are grandchildren
+                subprocess.run(["taskkill", "/T", "/F", "/PID", str(child.pid)], capture_output=True)
+            else:
+                child.kill()
+            child.wait()
+            with open(a.log, "a", encoding="utf-8") as log:
+                log.write(json.dumps({"url": j["url"], "slug": j["slug"], "ok": False, "error": "killed: site timeout"}) + "\n")
+            print(f"[{n}/{len(jobs)}] {j['slug']}: ok=False killed after {SITE_BUDGET_S + 120}s", flush=True)
+        reap_orphans(started)  # finished or killed: no chromium of this site may outlive it
+
+
 def main():
     ap = argparse.ArgumentParser()
     ap.add_argument("--list", help="sites.json from the showcase scrape (url, host, src, ...)")
@@ -300,6 +453,7 @@ def main():
     ap.add_argument("--slug")
     ap.add_argument("--only", default="")
     ap.add_argument("--redo", action="store_true")
+    ap.add_argument("--child", action="store_true", help=argparse.SUPPRESS)  # one site, lock held by the parent
     ap.add_argument("--log", default=str(ROOT / "design-catalogue" / "motion-capture.log.jsonl"))
     a = ap.parse_args()
     if a.url:
@@ -311,7 +465,10 @@ def main():
     only = {s for s in a.only.split(",") if s}
     if only:
         jobs = [j for j in jobs if j.get("host") in only or j["slug"] in only]
-    single_flight()
+    if not a.child:
+        single_flight()
+    if a.list:
+        return supervise(jobs, a)
     log = open(a.log, "a", encoding="utf-8")
     with sync_playwright() as p:
         browser = None
@@ -324,8 +481,7 @@ def main():
                 if browser:
                     browser.close()
                 browser = p.chromium.launch(headless=True, channel="chromium",
-                                            args=["--enable-gpu", "--ignore-gpu-blocklist", "--use-angle=d3d11",
-                                                  "--autoplay-policy=no-user-gesture-required"])
+                                            args=GPU_ARGS + ["--autoplay-policy=no-user-gesture-required"])
             ctx = browser.new_context(viewport={"width": W, "height": H}, device_scale_factor=1,
                                       user_agent="Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/141.0 Safari/537.36")
             pg = ctx.new_page()
@@ -335,7 +491,7 @@ def main():
                 r = {"url": j["url"], "ok": False, "error": str(e)[:300]}
             finally:
                 ctx.close()
-            r.update({"slug": j["slug"], "src": j.get("src")})
+            r.update({"slug": j["slug"], "src": j.get("src"), "gpu": GPU})  # timing metrics differ per renderer
             log.write(json.dumps(r, ensure_ascii=False) + "\n")
             log.flush()
             print(f"[{n + 1}/{len(jobs)}] {j['slug']}: ok={r.get('ok')} frames={r.get('frames')} "

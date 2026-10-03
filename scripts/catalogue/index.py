@@ -77,8 +77,19 @@ def parse_frontmatter(text: str) -> dict:
     return data, body
 
 
+def ranking() -> dict:
+    """design-catalogue/ranking.txt: one slug per line, best first (Anton's order).
+    Returns slug -> 1-based rank. Everything not listed ranks after, by motion_floor."""
+    p = CATALOG_ROOT / "ranking.txt"
+    if not p.exists():
+        return {}
+    slugs = [l.split("#")[0].strip() for l in p.read_text(encoding="utf-8").splitlines()]
+    return {s: i + 1 for i, s in enumerate(s for s in slugs if s)}
+
+
 def main():
     entries = []
+    ranks = ranking()
     if CATALOG_DIR.exists():
         for entry_dir in sorted(CATALOG_DIR.iterdir()):
             if not entry_dir.is_dir():
@@ -112,8 +123,15 @@ def main():
                 "extract": fm.get("extract", "none"),
                 "source_url": fm.get("source_url", fm.get("url", "")),
                 "has_image": (entry_dir / "fold.webp").exists() or (entry_dir / "shot.webp").exists(),
+                "showcase": fm.get("showcase", ""),
+                "motion_floor": int(fm.get("motion_floor", 0) or 0),
+                "rank": ranks.get(slug, 0),
+                "has_sheet": (entry_dir / "motion" / "sheet.webp").exists(),
             }
             entries.append(record)
+    # ranked first in Anton's order, then by motion floor, then name
+    entries.sort(key=lambda e: (e["rank"] == 0, e["rank"], -e["motion_floor"], e["title"].lower()))
+    unknown = [s for s in ranks if s not in {e["slug"] for e in entries}]
 
     index_path = CATALOG_ROOT / "index.json"
     index_path.write_text(json.dumps(entries, indent=2, ensure_ascii=False) + "\n", encoding="utf-8")
@@ -149,7 +167,8 @@ def main():
     missing_img = [e["slug"] for e in entries if not e["has_image"]]
     uncat = [e["slug"] for e in entries if e["category"] == "uncategorised"]
     dirs_without_entry = [d.name for d in sorted(CATALOG_DIR.iterdir()) if d.is_dir() and not (d / "entry.md").exists()]
-    print(f"index.py: wrote {len(entries)} entries to {index_path}")
+    print(f"index.py: wrote {len(entries)} entries to {index_path} ({len(ranks)} ranked)")
+    if unknown: print(f"index.py: RANKED BUT NO ENTRY: {', '.join(unknown)}")
     print(f"index.py: wrote {len(categories)} categories")
     if missing_img: print(f"index.py: NO IMAGE: {', '.join(missing_img)}")
     if uncat: print(f"index.py: UNCATEGORISED: {', '.join(uncat)}")

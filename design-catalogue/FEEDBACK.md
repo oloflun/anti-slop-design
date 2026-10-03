@@ -1,6 +1,7 @@
 # FEEDBACK.md — Antons domar, en regel per post
 
-Läses **alltid** i `design/SKILL.md` Step 1b, tillsammans med `TASTE.md`, innan Step 2.
+Läses **alltid** i `design/SKILL.md` Step 1b, tillsammans med `TASTE.md` och `ANTON-VISION-OCH-FEEDBACK.md`
+(repo-roten: den breda riktningen, inte domarna), innan Step 2.
 Referensgolvet i `hooks/design-gate.py` spärrar första UI-skrivningen i ett nybygge tills
 den här filen är läst. TASTE.md säger hur typ, bild, yta och rörelse ska samspela;
 den här filen säger vad Anton faktiskt sagt om det kedjan byggt, och vilken regel som
@@ -491,3 +492,25 @@ Ta aldrig bort en post; en regel som visar sig fel får en ny post som upphäver
 - **Regel:** varje sektion bär ett grepp som går att säga i en mening. Saknas det är det
   kompositionsproblemet, inte en dekorationsbrist (se F-022).
 - **Status:** `tests/alunix-r8/runs/V3f/RUNDA5-SPEC.md` § C. Verifierat i pixlar.
+
+### F-027 · Alunix V3g R9: en egenskap har en ägare, och exempelsidor bär inga riktiga namn
+- **Visades:** V3g R8 → R9, Antons nio skärmdumpar 2026-10-03. Problemen: hero-rubriken
+  fragmenterad efter scroll ned och upp, tesens stapel bredvid Hyperborea-ramen, showcase-text
+  som beskrev det ögat redan ser, rubriker som satt ihop med ingressen, och verkliga person- och
+  platsnamn på exempelsidorna.
+- **Antons ord:** "ta bort priserna och lägg istället till en beskrivning av de olika paketen";
+  "Kör sedan en design-audit på hela sidan utifrån det nya golvet".
+- **Dom:** planen (`PLAN-ALUNIX-R9.md`) godkändes och byggdes. Kritikern hittade samma tvåägarfel
+  i heron som R9 § 1 hade rättat för raderna (`.hero-nh` clipPath ägdes av både laddnings- och
+  scrolltidslinjen). Kritikern fann också `.32`-avståndet för snålt mot x-höjdsregeln, och att
+  Calyx-steg 2 påstod "ett enda typsnitt" om en sida satt i Cardo + PT Mono.
+- **Regel:** (1) Varje animerad egenskap på ett element har exakt en tidslinje som ägare. En
+  scrubbad `.to()`/`.fromTo()` på något som laddningen redan flyttat ger fel läge efter
+  tur-och-retur, så scrollrörelsen flyttas till ett annat element (masken, ett inre lager) eller
+  tas bort. Kontrollen är scroll ned och upp igen, sedan mätt läge vid scrollY 0. (2) Ingress
+  under display-rubrik: `calc(rubrikstorlek * .5)`, så att baslinje till ingress är minst en
+  x-höjd. (3) Exempel- och demosidor bär inga verkliga person- eller platsnamn (staden får stå);
+  `microtext_scan.py --names` ska ge 0 träffar. (4) Påståenden i case-text kontrolleras mot
+  sajtens källkod, även typsnittspåståenden (F-023).
+- **Status:** `tests/alunix-r8/runs/V3g/index.html` R9, mätt headless 1440/768/390;
+  `house-physics.md` (ägarregeln, x-höjdsavståndet, optisk mitt); `SKILL.md` (namnregeln).

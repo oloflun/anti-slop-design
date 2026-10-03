@@ -19,6 +19,20 @@ wrong. Tidvatten and Klova are here as the counterweight.
 - **Hierarchy through scale, not decoration.** Display clamp() with leading
   0.9–0.95; body measure capped in ch. No shadow stacks, no gradient borders.
 - **Hairlines separate; planes do not.**
+- **Text sits a little above the middle** (Anton, 2026-10-03, after a graphic
+  designer's "so it doesn't fall through the floor"). A text block that owns a
+  full-screen view puts its visual centre at **42–46 % of the viewport height**, not
+  50 %. Measured on Alunix R9: the pinned thesis cell at 1440×900 moved from .477 to
+  .437 with `justify-content:center` plus a bottom padding 18svh larger than the top.
+  In a quadrant composition (heading at the foot of the top-left cell) the block
+  already sits above the middle; leave it.
+- **A heading's descenders get room before the lede.** Display at leading 0.8 hangs
+  descenders ~0.2 em below the line box, so a fixed 16 px gap makes the g touch the
+  next line. The lede's top margin is computed from the heading's own size so that
+  baseline-to-lede is at least the heading's x-height:
+  `margin-top: calc(var(--headline-size) * .5)` (≈90 px at a 180 px heading,
+  ≈26 px on mobile). `.32` cleared the descender but left baseline-to-lede at 70 px
+  under a 99 px x-height. Verified on Alunix R9 § 4a.
 - **Stagger:** paired columns never top-align.
 - **Every open column carries weight** — a display numeral, a stat, an image, or a
   full-height rule. Otherwise close it.
@@ -59,7 +73,18 @@ wrong. Tidvatten and Klova are here as the counterweight.
   the ambition (stitch § Motion: *"Isolated Client Components for CPU-heavy
   animations"*). Measurement, budget and the smoothness criteria live in
   `performance.md` and `motion-smoothness.md`.
-- **Copy in a specific voice about a specific place**, with honest numbers.
+- **Copy in a specific voice about a specific business**, with honest numbers. On
+  example and demo pages, no real place or person names (the city may stand):
+  specificity comes from purpose, material and time, not addresses (Anton,
+  2026-10-03; `microtext_scan.py --names`).
+- **Split text that waits inside a mask is hidden past the mask's padding.**
+  `maskBreathe`-style bottom padding (0.16 em) plus ascenders and diacritics (ä, å,
+  t) let chars parked at `yPercent: 100` peek through as stray dashes. Park them at
+  145, or hide the waiting element with `autoAlpha` on an aria-hidden layer. And two
+  tweens never own the same property on the same element: a scrubbed `.to()`
+  records its start at creation, so a load tween that later moves the same lines
+  leaves the scrub restoring the hidden state on the way back up (Alunix R9 § 1:
+  16 % of each hero line visible after scroll down-up; fixed by scrubbing the masks).
 - **Density above 7 puts every number in mono.** At dense settings the figures
   are the content, and proportional digits at that density read as noise —
   tabular mono is what makes a column of them scannable (stitch

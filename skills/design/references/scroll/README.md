@@ -122,6 +122,12 @@ document.documentElement.scrollHeight   // ≈ (sum of weights + 1) * innerHeigh
 - [`feel-and-fingerprint.md`](feel-and-fingerprint.md) — curve, peak,
   tell-someone test, signature move, fingerprint gate, registry format,
   embodiment, act-page pacing.
+- [`showcase-floor.md`](showcase-floor.md) — the level the GSAP/Lenis showcases set:
+  seven rules, intro patterns, transition causes, measured stack.
+- [`journeys/era-residence.md`](journeys/era-residence.md) — the worked journey (rank #1 in
+  the catalogue): acts, mechanisms, the eight properties that make it a trip, a rebuild recipe
+  on the house toolchain, and the variation slots that keep the next page from being Era.
+- [`toolchain.md`](toolchain.md) — how GSAP + Lenis are linked, imported and verified here.
 - [`pace.md`](pace.md) — the third "not smooth" fault: uneven rate, the
   0.21–0.22 vh/s floor, worldflight's `data-sc-lerp` 0.12 / `data-sc-seam` 0.16.
 - Full upstream source for anything condensed here:

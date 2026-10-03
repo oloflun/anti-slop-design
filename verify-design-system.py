@@ -135,8 +135,15 @@ def main() -> int:
         plugins = mj.get("plugins", [])
         check("marketplace.json has exactly one plugin", len(plugins) == 1,
               f"{len(plugins)} plugins")
-        check("marketplace.json plugin source is '.'",
-              bool(plugins) and plugins[0].get("source") == ".")
+        # 2026-09-27: "." made `claude plugin update` copy the whole repo
+        # (3.4 GB per version) into the plugin cache; the slim build is ~11 MB.
+        check("marketplace.json plugin source is './dist/plugin'",
+              bool(plugins) and plugins[0].get("source") == "./dist/plugin")
+        import subprocess
+        fresh = subprocess.run([sys.executable, str(PLUGIN_ROOT / "scripts" / "build-plugin.py"), "--check"],
+                               capture_output=True, text=True)
+        check("dist/plugin is built from the current skills/hooks/agents", fresh.returncode == 0,
+              fresh.stdout.strip()[:200])
     except Exception as e:
         check("marketplace.json parses", False, str(e))
 
@@ -149,7 +156,10 @@ def main() -> int:
         # PreToolUse for the credit gate and one on PostToolUse for the ledger.
         # The count is asserted rather than bounded so a hook added by accident
         # still shows up as a failure.
-        check("plugin hooks.json has exactly 10 entries", len(entries) == 10,
+        # 11 since 2026-09-09: the Bash|PowerShell matcher on PreToolUse, after
+        # the r8 probe authored its UI file through a heredoc and bypassed
+        # every Write/Edit-keyed gate (tests/hooks/test_shell_write_gate.py).
+        check("plugin hooks.json has exactly 12 entries", len(entries) == 12,  # +1 2026-09-25: mcp__inspo__|mcp__ui-skills__ ledger matcher
               f"{len(entries)} entries")
         missing = []
         for h in entries:
@@ -217,6 +227,66 @@ def main() -> int:
     check("ui extensions loaded", len(t.get("ui_extensions", [])) >= 10)
     check("trap palettes loaded", len(t.get("trap_hexes", {})) == 3)
 
+    print("\n-- canonical DESIGN.md writer --")
+    # T11. Five skills write a file called DESIGN.md in three incompatible
+    # formats, and design-gate.py reads it to enforce the token contract. The
+    # ambiguity is only safe while exactly one writer is named canonical, so
+    # that claim gets a mechanical check rather than living in prose alone.
+    orch = (SKILLS / "design" / "references" / "skill-orchestration.md").read_text(encoding="utf-8")
+    canon = [ln for ln in orch.splitlines()
+             if ln.startswith("|") and "canonical form" in ln]
+    check("exactly one DESIGN.md writer is canonical", len(canon) == 1,
+          f"{len(canon)} rows claim it")
+    check("the canonical writer is `impeccable document`",
+          bool(canon) and "impeccable document" in canon[0])
+    check("design-md is demoted to Stitch-import", "Stitch-import" in orch)
+
+    print("\n-- reviewer contract --")
+    # T10. The quartet's five-section contract is only worth writing down if
+    # something rejects a report that breaks it. design-stop.py cannot: it reads
+    # ledger rows and a reviewer's text never lands there. The report is a file
+    # the lead reads, so the gate is a file gate (scripts/check_reviewer_report.py).
+    sys.path.insert(0, str(PLUGIN_ROOT / "scripts"))
+    from check_reviewer_report import check as _rc  # noqa: E402
+    _good = ("fix\n\n## persistence\nRead this run.\n\n## fidelity\ns1 matches.\n\n"
+             "## ceiling\n- garden-eight: slår. Silence is longer than ours.\n\n"
+             "## material_fixes\n- Plate offset 40 -> 0 px.\n\n## keep\nThe single accent.\n")
+    check("well-formed reviewer report passes", not _rc(_good))
+    check("report without a disposition word is rejected",
+          bool(_rc(_good.replace("fix\n", "Here is my review.\n", 1))))
+    check("report missing a contract section is rejected",
+          bool(_rc(_good.replace("## ceiling", "## celing"))))
+    check("report with a sixth section is rejected",
+          bool(_rc(_good + "\n## recommendations\nWarmer paper.\n")))
+    check("reviewer raising reduced motion is rejected (F-011)",
+          bool(_rc(_good + "\nAdd a prefers-reduced-motion fallback.\n")))
+
+    print("\n-- shell write gate --")
+    # r8 probe (2026-09-09): a builder wrote its UI file with `cat > x.html`
+    # and the whole Write/Edit-keyed chain saw nothing. The gate now covers
+    # Bash|PowerShell; both directions, because a gate that also fires on
+    # copying the scroll engine would block a legitimate step in every round.
+    _heredoc = "cat > runs/K3/index.html <<'EOF'\n<h1>x</h1>\nEOF"
+    check("heredoc into .html is detected as shell authoring",
+          L.shell_ui_write_targets(_heredoc) == ["runs/K3/index.html"])
+    check("cp of the engine css is not (copy, not authoring)",
+          L.shell_ui_write_targets("cp scripts/scroll/scrollcraft.css runs/K3/scroll/") == [])
+    check("redirect into a .txt is not a UI write",
+          L.shell_ui_write_targets("echo hi > NOTES.txt") == [])
+    _td = tempfile.mkdtemp(prefix="shellgate-verify-")
+    _ev = {"cwd": _td, "tool_name": "Bash", "tool_input": {"command": _heredoc}}
+    hso, _ = run_hook("design-gate.py", _ev, env={"DESIGN_HOOKS_FORCE_ARM": "1"})
+    check("armed session: shell UI write is denied",
+          bool(hso) and hso.get("permissionDecision") == "deny"
+          and "skalskrivning" in hso.get("permissionDecisionReason", ""))
+    hso, _ = run_hook("design-gate.py", _ev, env={"DESIGN_HOOKS_FORCE_ARM": ""})
+    check("unarmed session: shell UI write only warns",
+          bool(hso) and hso.get("permissionDecision") != "deny"
+          and "skalskrivning" in hso.get("additionalContext", ""))
+    check("Bash|PowerShell matcher is wired in hooks.json",
+          any(e.get("matcher") == "Bash|PowerShell"
+              for e in json.loads((HOOKS / "hooks.json").read_text(encoding="utf-8"))["hooks"]["PreToolUse"]))
+
     print("\n-- reference fidelity --")
     # Unique dir per run. A fixed path races with Windows file locks left by a
     # previous clone, which shows up as a spurious fidelity failure.
@@ -257,6 +327,21 @@ def main() -> int:
                 # shipped n1..n13 (plus n1b) for some time. Upstream says
                 # N1a-N13; the chain names its own files.
                 "macrostructures.md": "N1–N13",
+                # T6 (2026-09-09): the v4 plan's port lists, sections 2.1-2.5,
+                # moved material out of impeccable, taste-skill, emilkowalski,
+                # refero, interfaces, inclusive and designpowers into these
+                # files. Upstream Hallmark stopped being the bar for them the
+                # moment that happened, so each carries a note saying so and
+                # naming the winner wherever a port collided with a rule
+                # already there.
+                "color.md": "T6 port", "copy.md": "T6 port",
+                "interaction-and-states.md": "T6 port",
+                "layout-and-space.md": "T6 port",
+                "responsive.md": "T6 port", "typography.md": "T6 port",
+                "redesign.md": "T6 port",
+                # F-016/F-018 (2026-09-19/20): descriptive microtext and the page
+                # narrating itself, appended as owner rules.
+                "anti-patterns.md": "F-016",
             }
             unexplained = []
             for line in differ:

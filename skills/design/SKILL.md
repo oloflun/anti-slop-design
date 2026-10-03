@@ -173,10 +173,13 @@ the page is a template with different words in it, even when the anatomy is a go
 one. Vary among: label-rail beside content · full-bleed image with type over ·
 centred single column · ledger · split diptych · edge-to-edge tonal inversion.
 
-**Copy is worldbuilding.** Specific proper nouns, real street addresses,
-cross-referenced entities, values stated as facts rather than adjectives. All
-within the honest-copy rule — texture is invented, metrics and customers never
-are. Generic copy reads as template even under perfect typography. **Borrow the
+**Copy is worldbuilding.** The world is built from facts about the work: what it is
+for, materials, times, quantities, how it is done, values stated as facts rather than
+adjectives. **No real place or person names on example and demo pages** (Anton,
+2026-10-03): no street addresses, districts, regions, venues, clients or signatures;
+the city may stand. Name the purpose instead ("Hotel lobby", "Private home",
+"Restaurateur, Stockholm"). `microtext_scan.py --names` finds candidates. All within
+the honest-copy rule — texture is invented, metrics and customers never are. Generic copy reads as template even under perfect typography. **Borrow the
 reference's move, never its sentence:** "Ingen platinanivå finns" is a clone of
 Hyperborea's "No platinum" — invent your own values-move instead of translating
 one that exists.
@@ -317,7 +320,7 @@ python "$HOME/.agents/skills/design/scripts/shoot_slices.py" .shots/ref https://
    references (`Skill(design-catalog)`; `python scripts/catalogue/query.py --category …
    --register … --grammar …`). Read 2–4 entries in the category and register you are heading
    for — their `fold.webp` and slices as images, their reference-lock section as text — before
-   opening anything else. **Always** read `design-catalogue/TASTE.md` **and** `design-catalogue/FEEDBACK.md`
+   opening anything else. **Always** read `design-catalogue/TASTE.md`, `design-catalogue/FEEDBACK.md` **and** `ANTON-VISION-OCH-FEEDBACK.md` (repo root: Anton's broad direction — the journey, uniqueness, copy, composition, motion, how we work)
    before Step 2, whether or not the brief names references (r6, 2026-09-06: a brief that
    named two entries left both unread, and the builds failed on exactly the rules they hold).
    Read [`chain-discipline.md`](references/chain-discipline.md) and

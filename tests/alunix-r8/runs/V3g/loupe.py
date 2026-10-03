@@ -56,8 +56,10 @@ STEPS = {
     # Tried and rejected (shots/r6b-redo2.png, calyx-3 drafts): the full label
     # is 310 px (> 253), so it would end mid-sentence; the first photo's corner
     # is blank wall; the pair's two corners need 184 px of height (> 180).
-    "calyx-3": dict(site="calyx", center="figure:nth-of-type(2) figcaption", oy=0.8, excl=("—",),
-                    target=[("figure:nth-of-type(2) figcaption span", "Cmsn. 0188")]),
+    # R9: the caption now names the purpose ("Private home", no address), which is what the
+    # step's lede says the captions do - so the whole label is the target.
+    "calyx-3": dict(site="calyx", center="figure:nth-of-type(2) figcaption", oy=0.8,
+                    target=[("figure:nth-of-type(2) figcaption span", "Cmsn. 0188 — Private home")]),
     # paragraph above and address below leave 143 px; the frame needs >= 150.
     # They are hidden for the capture only - the address, its face, colour and
     # ground are the site's own. Stated in RAPPORT.md.

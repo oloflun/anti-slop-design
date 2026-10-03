@@ -206,10 +206,22 @@ a{color:inherit;}
    saw "intrycket är" fit on one line, so the width is now set where the
    approved breaks fall (between 4.47 em and 5.09 em), whenever the font loads. */
 @media (min-width:768px){ .tes-top .headline-50{max-width:4.75em;} }
-.tes-lower{min-height:104svh;}
-.tes-stack{display:grid;grid-template-rows:repeat(3,1fr);gap:1px;background:#000;}
-.tes-line{padding:var(--cellpad);display:flex;align-items:center;}
-.tes-image{padding:0;}
+/* R9 §2: the Hyperborea frame and its list are gone. Two statements share one pinned
+   cell: A stands, its words sink out of their line masks while B's letters rise in the
+   same place, then B stands. Desktop stacks them in one grid area at the optical centre
+   (block centre ~45 % of the viewport, Anton 2026-10-03); mobile has no pin and stacks
+   them in flow. */
+.tes-stage{display:grid;}
+.tes-b-text{display:block;}
+.tes-stage > *{grid-area:1 / 1;align-self:center;}  /* R9 §5: A is shorter than B; centred on its own it sat at .371 */
+@media (min-width:768px){
+  .tes-top{min-height:calc(100svh - 48px);display:flex;flex-direction:column;justify-content:center;padding-bottom:calc(var(--cellpad)*2 + 18svh);}  /* measured centre .437 at 1440x900 */
+}
+@media (max-width:767px){
+  .tes-stage > .tes-b{grid-area:2 / 1;margin-top:calc(var(--headline-50) * .6);}
+}
+.tes-stage.tes-flow > .tes-b{grid-area:2 / 1;margin-top:calc(var(--headline-50) * .6);}  /* a11y H1 fallback, see JS */
+.tes-stage.tes-flow > *{max-width:none;overflow-wrap:anywhere;}  /* spaced "intrycket" outgrew the 4.75em measure */
 
 /* ------------------------------------------------------------- process */
 .process-row{}
@@ -340,7 +352,6 @@ a{color:inherit;}
 .showcase-row p{max-width:52ch;font-size:15px;margin-top:8px;}
 /* R8 mobil: ingressen ett steg större än dagens 15 px, andra stycket som i dag */
 .showcase-row .showcase-lede{font-size:17px;line-height:1.4;}
-.showcase-row .showcase-more{line-height:1.5;}
 
 @media (min-width:768px) and (min-height:561px){
   /* R6 runda 6 (F-019/F-022): tre celler i sidans eget rutverk (gap:1px,
@@ -381,16 +392,12 @@ a{color:inherit;}
   .showcase-row h3{font-size:30px;line-height:1.15;font-weight:500;}
   .showcase-row p{max-width:46ch;margin-top:16px;}
   .showcase-row .showcase-lede{font-size:clamp(20px, calc(12px + 1vh), 22px);line-height:1.4;letter-spacing:-.01em;}
-  .showcase-row .showcase-more{font-size:clamp(16px, calc(8px + 1vh), 17px);line-height:1.55;letter-spacing:0;}
-  .showcase-panel--calyx .showcase-more{color:var(--ink-2);}
-  .showcase-panel--horai .showcase-more{color:var(--paper-2);}
   /* R8: under ca 860 px höjd tar texten sina nedre värden (h3 28, radavstånd
      1,35/1,5, 24 px överst) så att luppen behåller en läsbar storlek. */
   @media (max-height:860px){
     .showcase-steps{padding-top:24px;}
     .showcase-row h3{font-size:28px;}
     .showcase-row .showcase-lede{line-height:1.35;}
-    .showcase-row .showcase-more{line-height:1.5;}
   }
   /* detaljcellen: en <figure> per steg, grid-stackad (samma grid-area:1/1-
      teknik som .showcase-row ovan), färglager under och ett dither-rutnät
@@ -456,12 +463,14 @@ a{color:inherit;}
 
 /* ------------------------------------------------------------- pris */
 .pris-statement{padding:calc(var(--cellpad)*2) var(--cellpad);}
-.pris-statement .body-30{max-width:60ch;margin-top:16px;font-weight:500;}
+.pris-statement .body-30{max-width:60ch;margin-top:calc(var(--headline-50) * .5);font-weight:500;}  /* R9 §4a: .8 leading hangs the descender ~.2em below the box; .5 puts baseline-to-lede >= one x-height (99 px at 1440; .32 gave 70) */
 /* All placement lives in these classes (not inline styles) so the media
    queries below can actually win the cascade at each breakpoint. */
 .pris-bento{grid-template-columns:repeat(12,1fr);grid-template-rows:auto auto;}
-.pris-lead{grid-column:1 / span 6;grid-row:1 / span 2;background:var(--mint);display:flex;flex-direction:column;justify-content:space-between;gap:24px;}
-.pris-tier{display:flex;flex-direction:column;justify-content:space-between;gap:18px;min-height:220px;}
+/* R9 §5b: name and description read together (flex-start). space-between was the price
+   layout - label top, figure bottom - and left the lead description 330 px under its name. */
+.pris-lead{grid-column:1 / span 6;grid-row:1 / span 2;background:var(--mint);display:flex;flex-direction:column;justify-content:flex-start;gap:18px;}
+.pris-tier{display:flex;flex-direction:column;justify-content:flex-start;gap:18px;min-height:220px;}
 .pris-tier-a{grid-column:7 / span 6;grid-row:1;background:var(--paper);}
 .pris-tier-b{grid-column:7 / span 6;grid-row:2;background:var(--grey);}
 @media (max-width:1199px){
@@ -474,10 +483,12 @@ a{color:inherit;}
   .pris-bento{grid-template-columns:1fr;}
   .pris-lead,.pris-tier-a,.pris-tier-b{grid-column:1;grid-row:auto;min-height:0;}
 }
-.price-label{max-width:34ch;font-size:15px;}
-.price-value{font-size:clamp(28px,3.6vw,44px);letter-spacing:-.03em;}
-.price-value .unit{font-size:.5em;margin-left:2px;}
-.price-value--text{font-size:clamp(18px,2vw,24px);}
+/* R9 §5b: prices removed (Anton 2026-10-03); the package name keeps the figure's place and size */
+.pkg-name{font-size:clamp(28px,3.6vw,44px);line-height:1;letter-spacing:-.03em;font-weight:500;}
+.pkg-desc{max-width:38ch;font-size:17px;line-height:1.4;}
+/* R9 §5b: the lead cell is the bento's top level - the 44 px price gave it that weight */
+.pris-lead .pkg-name{font-size:var(--headline-40);letter-spacing:-.04em;}
+.pris-lead .pkg-desc{max-width:26ch;font-size:var(--body-30);line-height:1.25;font-weight:500;}
 
 /* ------------------------------------------------------------- kontakt (R5 §C: heron speglad) */
 .kontakt-quad{
@@ -486,7 +497,7 @@ a{color:inherit;}
   grid-template-areas:"ov oh" "nv nh";
 }
 .kontakt-q{position:relative;overflow:hidden;padding:var(--cellpad);}
-.kontakt-q--ov{grid-area:ov;background:var(--black);color:var(--paper);display:flex;flex-direction:column;justify-content:flex-end;gap:10px;}
+.kontakt-q--ov{grid-area:ov;background:var(--black);color:var(--paper);display:flex;flex-direction:column;justify-content:flex-end;gap:32px;}  /* R9 §4: >= the headline's x-height (10 px left the lede touching it) */
 /* R6 §4: headline-40 is tuned for a single "jätteord" (hero, case names) -
    at this cell's half-page width, a four-word sentence in it ran past the
    ÖV/ÖH seam (measured x>720 at 1440, into the card's own space). A
@@ -526,12 +537,24 @@ a{color:inherit;}
    seam = still "on the crossing") puts the card inside the NV/NH half
    entirely, with a full row-height of clearance above it before ÖV even
    starts. */
+/* R9 §4b: the card sat centred in the LOWER row (75 % down the section), so it arrived
+   long after the heading (Anton: "hamnar jättelångt ned"). It now sits where heron's card
+   sits - on the horizontal seam of the RIGHT column - which is the mirror the section is
+   built on, puts the card at the section's middle, and keeps it clear of the heading in
+   ÖV at every width >= 768 (they no longer share a column). */
 .kontakt-card-anchor{
-  grid-column:1 / 3;grid-row:2;place-self:center;z-index:5;
+  grid-column:2;grid-row:1 / 3;place-self:center;z-index:5;
   width:clamp(300px,32vw,460px);aspect-ratio:85/55;perspective:1200px;
 }
 @media (max-width:767px){
   .kontakt-card-anchor{grid-area:nh;place-self:center;width:80%;}
+  /* R9 a11y H2 (1.4.10/1.4.12): at 320 the back's content (181 px) overran the fixed 85:55
+     card (166 px) and pushed "Boka ett möte" outside it. The back keeps the card ratio as a
+     minimum and grows with its content; the front fills whatever height that gives. */
+  .kontakt-card-anchor{aspect-ratio:auto;}
+  .kontakt-card-anchor .kontakt-card-tilt,.kontakt-card-anchor .card-flip2{height:auto;}
+  .kontakt-card-anchor .face--back{position:relative;aspect-ratio:85/55;overflow:visible;}
+  .kontakt-card-anchor .card-back-content{height:auto;}
 }
 .kontakt-card-tilt{width:100%;height:100%;position:relative;transform-style:preserve-3d;}
 .card-flip2{width:100%;height:100%;position:relative;transform-style:preserve-3d;box-shadow:10px 10px 0 0 #000;}
@@ -650,24 +673,11 @@ a{color:inherit;}
   <!-- ============================================================ TES -->
   <section id="tes">
     <div class="cell tes-top">
-      <h2 class="headline-50">Det första intrycket är digitalt.</h2>
-    </div>
-    <div class="g g12 tes-lower">
-      <div class="c-4 tes-stack">
-        <div class="cell tes-line" style="background:var(--paper)">
-          <p class="headline-20">Skärmen möter besökaren före texten.</p>
-        </div>
-        <div class="cell tes-line" style="background:var(--grey)">
-          <p class="headline-20">Innan ett ord är läst bär layout och bild hela argumentet.</p>
-        </div>
-        <div class="cell tes-line" style="background:var(--paper)">
-          <p class="headline-20">Vi hjälper er att synas på rätt sätt.</p>
-        </div>
+      <!-- R9 §2: two statements, one ground, a choreographed hand-over, NOT a list beside a screenshot -->
+      <div class="tes-stage">
+        <h2 class="headline-50 tes-a">Det första intrycket är digitalt.</h2>
+        <p class="headline-50 tes-b"><span class="tes-b-text" aria-hidden="true">Vi hjälper er att synas på rätt sätt.</span><span class="sr-only">Vi hjälper er att synas på rätt sätt.</span></p>
       </div>
-      <div class="c-8 cell cell--pad0 tes-image img-cell" data-resolve="tes" style="background:var(--grey)">
-        <img class="dither-layer" src="assets/dither/demo-hyperborea-dither-grey.webp" alt="" loading="lazy">
-        <img class="color-layer" src="/tests/alunix-concepts-r3/build/assets/demo-hyperborea.webp" alt="Startsidan för Hyperborea, en konferens i Lund" loading="lazy" style="clip-path:inset(0 100% 0 0)">
-              </div>
     </div>
   </section>
 
@@ -793,11 +803,11 @@ a{color:inherit;}
             </div>
             <div class="showcase-steps">
               <!-- R8: rubrik + ingress + stycke direkt på kolumnens yta, NOT en bildtextruta i cellnätet -->
-              <div class="showcase-row is-active" data-row="0"><div class="showcase-row-text"><h3 class="h3">Sidan öppnar som ett omslag</h3><p class="showcase-lede">En florist säljer något man vill röra vid, och på en skärm kommer ett stort foto närmast. Vi lät fotot ta nästan hela första skärmen och lade rubriken direkt på det, med utgåvans nummer nere i hörnet som på ett magasinsomslag.</p><p class="showcase-more">En vanlig startsida med meny och bokningsknapp överst hade också fungerat. Då hade knappen varit det första ögat fastnar på. Tidskriftsformen ger dessutom ateljén ett skäl att byta omslag när säsongen byter, och vårnumret står redan i menyraden.</p></div></div>
-              <div class="showcase-row" data-row="1"><div class="showcase-row-text"><h3 class="h3">En serif får bära allt</h3><p class="showcase-lede">Rubriker, brödtext och ordmärket går i samma klassiska serif, och kursiven sköter betoningen. En ateljé som gör arrangemang för hotell och restauranger ska kännas som något tryckt man får hem.</p><p class="showcase-more">Ett andra rubriktypsnitt hade gett mer kontrast och fått sidan att likna reklam. Bara etiketter och bildtexter fick ett eget typsnitt. Det är jämnbrett som en skrivmaskin, och texterna läses som anteckningar i marginalen.</p></div></div>
-              <div class="showcase-row" data-row="2"><div class="showcase-row-text"><h3 class="h3">Varje bild är ett uppdrag</h3><p class="showcase-lede">Fotona står parvis, och det högra ligger lite lägre än det vänstra, som två blad på ett bord. Under varje bild står uppdragets nummer och adressen där buketten stod, till exempel Hotel Pigalle på Drottninggatan.</p><p class="showcase-more">En bildtext som säger "vårbukett" berättar inget som besökaren inte redan ser. Numret och gatan visar att buketten har stått någonstans, i ett rum man kan gå in i.</p></div></div>
-              <div class="showcase-row" data-row="3"><div class="showcase-row-text"><h3 class="h3">Veckans utbud på en rad var</h3><p class="showcase-lede">Utbudet byts varje vecka. Ett rutnät med kort hade krävt ett nytt foto av varje bukett varje vecka, och det är ett arbete som lätt blir liggande när det är mycket att binda. Vi satte utbudet i en lista: löpnummer, namn i kursiv, en kort beskrivning och priset i högerkant.</p><p class="showcase-more">Siffrorna har samma bredd, så kolumnen står rak när en rad byts ut. Ateljén behöver bara skriva om en rad, och besökaren jämför fyra buketter utan att scrolla.</p></div></div>
-              <div class="showcase-row" data-row="4"><div class="showcase-row-text"><h3 class="h3">Ett mejl räcker</h3><p class="showcase-lede">Den som beställer blommor till ett rum vill kunna beskriva ljuset, rummet och vad som ska serveras, och det går dåligt i formulärfält. Där formuläret brukar stå satte vi en e-postadress.</p><p class="showcase-more">Ateljén svarar med vad som går att få tag på den veckan och skickar förslaget i ett mejl, utan portal och utan kalenderlänk. Det tar längre tid än en bokningsknapp, men svaret kommer från den som ska binda buketten.</p></div></div>
+              <div class="showcase-row is-active" data-row="0"><div class="showcase-row-text"><h3 class="h3">Sidan öppnar som ett omslag</h3><p class="showcase-lede">Blommor väljs med ögonen innan någon läser ett pris. Därför fick fotot hela första skärmen, så att det första besökaren möter är arbetet och inte en knapp. Omslaget ger också ateljén ett skäl att byta bild varje säsong, och då känns sidan ny utan att byggas om.</p></div></div>
+              <div class="showcase-row" data-row="1"><div class="showcase-row-text"><h3 class="h3">En serif får bära allt</h3><p class="showcase-lede">Rubriker, brödtext och namn står i samma serif, bara etiketterna i skrivmaskinsstil, så sidan läses som en trycksak. Ett andra rubriktypsnitt hade gett mer kontrast, men också dragit sidan mot reklam. Ateljén levererar till hotell och restauranger som själva lägger pengar på sitt tryck, och de ser skillnaden.</p></div></div>
+              <div class="showcase-row" data-row="2"><div class="showcase-row-text"><h3 class="h3">Varje bild är ett uppdrag</h3><p class="showcase-lede">En bildtext som säger vårbukett upprepar bara bilden. Texten under varje foto säger i stället vad buketten var till för, en hotellobby eller ett hem. Då ser besökaren vilka uppdrag ateljén tar och kan föreställa sig sitt eget bland dem.</p></div></div>
+              <div class="showcase-row" data-row="3"><div class="showcase-row-text"><h3 class="h3">Veckans utbud på en rad var</h3><p class="showcase-lede">Ett utbud som byts varje vecka måste gå att ändra på en minut, annars blir det liggande. En lista i stället för ett rutnät av foton betyder att ateljén skriver om en rad, och att besökaren jämför buketter och priser utan att scrolla.</p></div></div>
+              <div class="showcase-row" data-row="4"><div class="showcase-row-text"><h3 class="h3">Ett mejl räcker</h3><p class="showcase-lede">Den som beställer till ett rum vill beskriva ljuset och tillfället, och det ryms inte i formulärfält. Ett mejl tar längre tid än en bokningsknapp, men svaret kommer från den som ska binda buketten, och det är det en kund hos en liten ateljé betalar för.</p></div></div>
             </div>
             <!-- R6b: detaljcellen - ett förstoringsglas per steg ur calyx.html självt,
                  2,5-3x det iframen visar. Utsnitten och varför: loupe.py, STEPS. -->
@@ -837,12 +847,12 @@ a{color:inherit;}
               <div class="showcase-track"><div class="showcase-track-fill"></div></div>
             </div>
             <div class="showcase-steps">
-              <div class="showcase-row is-active" data-row="0"><div class="showcase-row-text"><h3 class="h3">Ett namn, en gång</h3><p class="showcase-lede">Hōrai har ingen skylt mot gatan, så namnet måste sitta på sidan. Vi satte det i stora romerska versaler över ett mörkt foto av en tallrik, med 蓬莱 i små spärrade tecken ovanför.</p><p class="showcase-more">Loggan i menyraden hade visat namnet en gång till på samma skärm. Den väntar i stället tills fotot har rullat förbi och tänds först då, så att namnet aldrig står två gånger samtidigt.</p></div></div>
-              <div class="showcase-row" data-row="1"><div class="showcase-row-text"><h3 class="h3">Ett tecken som stämpel</h3><p class="showcase-lede">Stycket om huset börjar nästan osynligt och tänds ord för ord medan man scrollar. Det går inte att skumma. Man läser i den takt någon berättar.</p><p class="showcase-more">Rubriken ligger kvar i rött medan stycket läses, med 家, tecknet för hus, ovanför som en stämpel. Rött används bara till tecknen, rubrikerna och priserna, så ögat hittar priserna längre ned utan att leta.</p></div></div>
-              <div class="showcase-row" data-row="2"><div class="showcase-row-text"><h3 class="h3">En mening som saktar in</h3><p class="showcase-lede">Mellan huset och menyerna står en enda mening på valnötsbrun grund. Den kommer in suddig, är skarp när den står mitt på skärmen och suddas ut igen när man scrollar vidare.</p><p class="showcase-more">Här hade en bild kunnat ligga. Vi valde en mening som bara går att läsa när man stannar, ungefär som pausen mellan två rätter, så att menyerna efteråt inte läses i samma andetag som huset.</p></div></div>
-              <div class="showcase-row" data-row="3"><div class="showcase-row-text"><h3 class="h3">Priset står större än namnet</h3><p class="showcase-lede">Det finns ingen à la carte, bara en meny per kväll. Det är alltså priset gästen jämför, så vi satte det i rött och större än menyns namn, och gav varje meny en romersk siffra.</p><p class="showcase-more">Dryckerna ligger i en egen grön ton under priset, så att tillägget syns utan att blandas ihop med menyn. En restaurang som sätter priset litet ser ut att gömma det.</p></div></div>
-              <div class="showcase-row" data-row="4"><div class="showcase-row-text"><h3 class="h3">Rummet före bokningen</h3><p class="showcase-lede">Strax före bokningen kommer matsalen, som en bild över hela bredden med texten direkt på fotot och en mörk toning från vänster. Den som funderar på att boka får se var man kommer att sitta.</p><p class="showcase-more">De flesta restauranger visar rummet högst upp. Vi lade det sist, eftersom det gör mest nytta när gästen redan har läst menyn och håller på att bestämma sig.</p></div></div>
-              <div class="showcase-row" data-row="5"><div class="showcase-row-text"><h3 class="h3">Knappen fanns där hela tiden</h3><p class="showcase-lede">Bokningsknappen ligger kvar i menyraden hela vägen ned. Den som bestämde sig redan vid fotot ska inte behöva leta.</p><p class="showcase-more">Längst ned står när veckans platser släpps, på måndagar vid lunch, och en e-postadress för sällskap som inte passar i ett formulär. Huset har tjugosex platser och två sittningar per kväll.</p></div></div>
+              <div class="showcase-row is-active" data-row="0"><div class="showcase-row-text"><h3 class="h3">Ett namn, en gång</h3><p class="showcase-lede">Restaurangen har ingen skylt mot gatan, så namnet måste fastna på skärmen i stället. Det står ensamt och stort, och loggan i menyraden väntar tills det rullat förbi, så att namnet aldrig står två gånger samtidigt och tappar i tyngd.</p></div></div>
+              <div class="showcase-row" data-row="1"><div class="showcase-row-text"><h3 class="h3">Ett tecken som stämpel</h3><p class="showcase-lede">Texten om huset tänds ord för ord och går inte att skumma. Den läses i samma takt som någon berättar vid bordet. Rött är sparat till tecken, rubriker och priser, så att ögat senare hittar priserna utan att leta.</p></div></div>
+              <div class="showcase-row" data-row="2"><div class="showcase-row-text"><h3 class="h3">En mening som saktar in</h3><p class="showcase-lede">Mellan huset och menyerna behövs en paus, som mellan två rätter. En bild hade fyllt platsen. En mening som bara går att läsa när man stannar gör att menyerna inte läses i samma andetag som berättelsen.</p></div></div>
+              <div class="showcase-row" data-row="3"><div class="showcase-row-text"><h3 class="h3">Priset står större än namnet</h3><p class="showcase-lede">Med en meny per kväll är det priset gästen jämför. Ett pris som står litet ser gömt ut, och den som måste leta efter det har redan börjat tvivla. Därför står priset i rött och större än menyns namn.</p></div></div>
+              <div class="showcase-row" data-row="4"><div class="showcase-row-text"><h3 class="h3">Rummet före bokningen</h3><p class="showcase-lede">De flesta restauranger visar matsalen först. Här kommer den sist, precis före bokningen, där den svarar på gästens sista fråga: var ska vi sitta?</p></div></div>
+              <div class="showcase-row" data-row="5"><div class="showcase-row-text"><h3 class="h3">Knappen fanns där hela tiden</h3><p class="showcase-lede">Den som bestämmer sig tidigt ska inte behöva leta, så bokningen följer med hela vägen ned. Sidan säger också när veckans platser släpps, så att ingen skriver till en kväll som redan är full.</p></div></div>
             </div>
             <!-- R6 runda 6: detaljcellen - en <figure> per steg ur horai.html självt.
                  Ingen loading=lazy (Hōrai-panelen är display:none tills klick) -
@@ -891,21 +901,21 @@ a{color:inherit;}
     </div>
     <div class="g g12 pris-bento">
       <div class="cell pris-lead">
-        <span class="price-label" style="max-width:40ch;">Standardpaket. Webbplats med CMS för egna ändringar och en första SEO&#8209;optimering.</span>
-        <span class="price-value tnum">26 900 <span class="unit">kr</span></span>
+        <h3 class="pkg-name">Webbplats</h3>
+        <p class="pkg-desc">En sida som presenterar er verksamhet och som ni uppdaterar själva, texter som bilder. Den är förberedd för att hittas på Google från första dagen.</p>
       </div>
       <div class="cell pris-tier pris-tier-a">
-        <span class="price-label">Paket med bokningssystem, betalning och kunddatabas.</span>
-        <span class="price-value tnum">38 900 <span class="unit">kr</span></span>
+        <h3 class="pkg-name">Webbplats med bokning</h3>
+        <p class="pkg-desc">För verksamheter där besökaren ska kunna boka och betala direkt på sidan. Bokningar, betalningar och kunduppgifter hamnar på ett ställe, så att ni slipper föra över dem för hand.</p>
       </div>
       <div class="cell pris-tier pris-tier-b">
-        <span class="price-label">Helt skräddarsydda lösningar för produktkataloger, specialbyggda system med mera</span>
-        <span class="price-value price-value--text">Pris vid förfrågan</span>
+        <h3 class="pkg-name">Skräddarsytt</h3>
+        <p class="pkg-desc">När sidan behöver göra något som ingen färdig lösning gör, som en produktkatalog med många artiklar eller ett system byggt för just ert arbetssätt. Vi börjar med ett samtal om vad som behövs.</p>
       </div>
     </div>
   </section>
 
-  <div class="rhythm" style="background:#000"></div>
+  <!-- R9 §4b: the 110 px rhythm band before kontakt is gone (a black band over an empty cell) -->
 
   <!-- ============================================================ KONTAKT: heron speglad, kortet lämnas över -->
   <section id="kontakt">
@@ -1164,6 +1174,7 @@ a{color:inherit;}
 
   var cardAnchor = document.getElementById('cardAnchor');
   var cardFlip = document.getElementById('cardFlip');
+  var heroCta = cardAnchor && cardAnchor.querySelector('.card-cta');
   gsap.set(cardAnchor, { opacity: 0, y: -48, rotation: -3, transformOrigin: '50% 0%' });
 
   var loadTl = gsap.timeline({ defaults: { ease: 'power2.out' } });
@@ -1203,7 +1214,14 @@ a{color:inherit;}
        R7 (H5): the card-back CTA takes clicks once the back faces the reader
        (rotationY passes 90 at timeline progress 0.5, power1.inOut). */
     stCfg.onUpdate = stCfg.onRefresh = function(self){
-      if (cardAnchor) cardAnchor.classList.toggle('is-back', self.progress > 0.5);
+      if (cardAnchor){
+        var back = self.progress > 0.5;
+        cardAnchor.classList.toggle('is-back', back);
+        /* R9 a11y H3 (2.1.1/4.1.2): the CTA a pointer can click is also a Tab stop and in the
+           tree once the back faces the reader; while the front shows, the card stays hidden. */
+        if (back) cardAnchor.removeAttribute('aria-hidden'); else cardAnchor.setAttribute('aria-hidden', 'true');
+        if (heroCta) heroCta.tabIndex = back ? 0 : -1;
+      }
     };
     /* R5 §A: h1 fick förut samma yPercent-drift som kortvändningen (position
        0), vilket kunde skära cellens h1 innan besökaren hunnit läsa den.
@@ -1218,12 +1236,25 @@ a{color:inherit;}
       .to(cardFlip, { rotationY: 180, scale: 1.04, transformOrigin: '50% 50%', ease: 'power1.inOut', duration: 1 }, 0)
       .to('.hero-oh .dither-layer', { yPercent: -8, duration: 1 }, 0)
       .to('.hero-nv .dither-layer', { yPercent: 8, duration: 1 }, 0)
-      .fromTo('.hero-nh', { clipPath: 'inset(28% 0% 0% 0%)' }, { clipPath: 'inset(0% 0% 0% 0%)', ease: 'power1.out', duration: 0.32 }, 0.68)
-      .to(h1Split.lines, { yPercent: function(i){ return -16 - i * 12; }, duration: 0.25 }, 0.75);
+      /* R9 §1: the NH sweep (fromTo clipPath 28% -> 0 at .68) is gone. loadTl owns
+         .hero-nh's clipPath; the scrubbed fromTo snapped the cell to 28% on the way down
+         and left it there after scrolling back to 0 (mint seam across the black cell). */
+      /* R9 §1: the drift moves the MASKS, not the lines. loadTl owns the lines'
+         yPercent (100 -> 0); a scrubbed .to() on the same property recorded its
+         start while the lines still stood at 100 (hidden), so scrolling back above
+         0.75 restored them into the mask - the "fragmented" headline. */
+      .to(h1Split.masks, { yPercent: function(i){ return -16 - i * 12; }, duration: 0.25 }, 0.75);
   });
 
   /* ============================================================ §4 tesen */
-  var tesHeadline = document.querySelector('.tes-top .headline-50');
+  var tesHeadline = document.querySelector('.tes-top .tes-a');
+  /* R9 a11y H1 (1.4.12): with a text-spacing override A outgrew the pin (2258 px in 852) and its
+     words overran the line masks, so the hand-over hid lines nobody could reach. When A does not
+     fit, the two sentences stand as plain stacked text: no split, no masks, no pin. */
+  if (tesHeadline && (tesHeadline.offsetHeight > window.innerHeight - 48 || tesHeadline.scrollWidth > tesHeadline.clientWidth + 1)){
+    document.querySelector('.tes-stage').classList.add('tes-flow');
+    tesHeadline = null;
+  }
   if (tesHeadline){
     /* R4 fix: chars-only splitting on a multi-word sentence broke words
        mid-character (each char became its own breakable inline-block with
@@ -1236,7 +1267,7 @@ a{color:inherit;}
     gsap.set(tesSplit.words, { whiteSpace: 'nowrap', display: 'inline-block' });
     maskBreathe(tesSplit);
     gsap.set(tesSplit.chars, { yPercent: 100 });
-    gsap.to(tesSplit.chars, {
+    var tesRise = gsap.to(tesSplit.chars, {
       yPercent: 0, duration: 0.8, ease: 'power4.out', stagger: 0.012,
       scrollTrigger: { trigger: '.tes-top', start: 'top 82%', toggleActions: 'play none none reverse' }
     });
@@ -1247,42 +1278,67 @@ a{color:inherit;}
        while the char-rise above plays, then stands completely still for
        the remainder of the pinned range (>=50vh) before releasing. Mobile
        keeps no pin (spec), just the char-rise above. */
-    gsap.matchMedia().add('(min-width:768px)', function(){
-      ScrollTrigger.create({
-        /* R7 (H2): pinned 48 px down, under the topline instead of behind it;
-           the rise and the 0.9 vh hold are unchanged. */
-        trigger: '#tes', start: 'top top+=48', end: function(){ return '+=' + (0.9 * window.innerHeight); },
-        /* R7 (H13): pinType 'transform' - the headline is held by a translate
-           instead of a switch to position:fixed. Chrome counted the switch in
-           and out as two layout shifts (0.571 each) although nothing moved on
-           screen; a transform is not a layout shift. Lenis drives
-           ScrollTrigger.update in the same frame, so the hold stays still. */
-        pin: '.tes-top', pinSpacing: true, pinType: 'transform'
+    /* R9 §2: B is split like A (lines > words > chars, line masks). A's chars are owned
+       by the rise above; the hand-over moves A's WORDS, so no two tweens share a
+       property on one element (the hero bug, R9 §1). */
+    var tesB = document.querySelector('.tes-top .tes-b');
+    /* aria 'none' on an aria-hidden span: no aria-label on a <p> (R7 H8); the sr-only twin carries the sentence */
+    var tesBSplit = SplitText.create(tesB.querySelector('.tes-b-text'), { type: 'lines, words, chars', mask: 'lines', aria: 'none' });
+    gsap.set(tesBSplit.words, { whiteSpace: 'nowrap', display: 'inline-block' });
+    maskBreathe(tesBSplit);
+    /* 145, not 100: maskBreathe's 0.16em bottom padding plus ascenders and diacritics
+       (ä, å, t) reaching above the char box let the tops of hidden chars peek as stray
+       dashes - seen in both R9 walks. B is also hidden as a whole until the hand-over. */
+    gsap.set(tesBSplit.chars, { yPercent: 145 });
+    var tesMM = gsap.matchMedia();
+    tesMM.add({ isDesktop: '(min-width:768px)', isMobile: '(max-width:767px)' }, function(ctx){
+      if (ctx.conditions.isMobile){
+        gsap.to(tesBSplit.chars, {
+          yPercent: 0, duration: 0.8, ease: 'power4.out', stagger: 0.012,
+          scrollTrigger: { trigger: tesB, start: 'top 82%', toggleActions: 'play none none reverse' }
+        });
+        return;
+      }
+      /* Pin 2.4 vh: A holds 0-.40 (~.96 vh), A sinks .40-.52, B rises .48-.60 (only the last
+         letters of A are still leaving: the two sentences never stack), B holds .60-1 (~.96 vh).
+         The mid-state is .20 of the pin (~430 px at 900): at .34 a resting reader saw fragments.
+         Both reads stay well over the 40 vh rule. Scrubbed; Lenis is the only smoothing (F-020).
+         R7 (H2/H13) kept: pinned 48 px down, pinType transform. */
+      var swap = gsap.timeline({
+        defaults: { ease: 'none' },
+        scrollTrigger: {
+          trigger: '#tes', start: 'top top+=48', end: function(){ return '+=' + (2.4 * window.innerHeight); },
+          pin: '.tes-top', pinSpacing: true, pinType: 'transform', scrub: true
+        }
       });
+      /* visibility on the aria-hidden span and on A's split lines, never on the <h2>/<p>:
+         the h2's aria-label and B's sr-only twin stay in the accessibility tree. */
+      var tesBText = tesB.querySelector('.tes-b-text');
+      gsap.set(tesBText, { autoAlpha: 0 });
+      swap
+        .to({}, { duration: 0.40 })
+        .set(tesBText, { autoAlpha: 1 }, 0.40)
+        .set(tesSplit.lines, { autoAlpha: 0 }, 0.54)
+        .to(tesSplit.words, { yPercent: 145, duration: 0.08, stagger: { each: 0.04 / tesSplit.words.length }, ease: 'power2.in' }, 0.40)
+        .to(tesBSplit.chars, { yPercent: 0, duration: 0.08, stagger: { each: 0.04 / tesBSplit.chars.length }, ease: 'power3.out' }, 0.48)
+        .to({}, { duration: 0.40 }, 0.60);
     });
+    /* a11y H1, after load: a spacing bookmarklet or extension applied later grows A past the pin
+       or pushes words over their line masks. Then the same plain stacked fallback as at load. */
+    if (window.ResizeObserver){
+      var tesRO = new ResizeObserver(function(){
+        var over = tesHeadline.offsetHeight > window.innerHeight - 48 ||
+          tesSplit.masks.some(function(m){ return m.scrollWidth > m.clientWidth + 1; });
+        if (!over) return;
+        tesRO.disconnect();
+        tesMM.revert(); tesRise.scrollTrigger.kill(); tesRise.kill();
+        tesSplit.revert(); tesBSplit.revert();
+        document.querySelector('.tes-stage').classList.add('tes-flow');
+        ScrollTrigger.refresh();
+      });
+      tesRO.observe(tesHeadline);
+    }
   }
-  Array.prototype.forEach.call(document.querySelectorAll('.tes-line'), function(cell){
-    var p = cell.querySelector('p');
-    var fill = seamFill(cell, 'inset(0 100% 0 0)');
-    if (fill){
-      gsap.to(fill, {
-        clipPath: 'inset(0 0% 0 0)', duration: 0.6, ease: 'power2.out',
-        scrollTrigger: { trigger: cell, start: 'top 82%', toggleActions: 'play none none reverse' }
-      });
-    }
-    if (p){
-      /* R7 (H8): aria 'none' - no aria-label on a <p> (prohibited), and the
-         line boxes keep the sentence readable as text. */
-      var lineSplit = SplitText.create(p, { type: 'lines', mask: 'lines', aria: 'none' });
-      maskBreathe(lineSplit);
-      gsap.set(lineSplit.lines, { yPercent: 100 });
-      gsap.to(lineSplit.lines, {
-        yPercent: 0, duration: 0.55, ease: 'power3.out', stagger: 0.05,
-        scrollTrigger: { trigger: cell, start: 'top 80%', toggleActions: 'play none none reverse' }
-      });
-    }
-  });
-
   /* ============================================================ §5 processen */
   var processRow = document.querySelector('.process-row');
   if (processRow){
@@ -1916,10 +1972,8 @@ a{color:inherit;}
          fönster. Fortfarande bara opacity och transform, skrubbat av pinnen.
          .showcase-row-text själv står kvar i 1 (mobilens radtoning äger den). */
       C.leadParts = C.textEls.map(function(t){ return Array.prototype.slice.call(t.querySelectorAll('h3, .showcase-lede')); });
-      C.moreParts = C.textEls.map(function(t){ return Array.prototype.slice.call(t.querySelectorAll('.showcase-more')); });
-      [C.leadParts, C.moreParts].forEach(function(list){
-        list.forEach(function(parts, i){ gsap.set(parts, i === 0 ? { opacity: 1, y: 0 } : { opacity: 0, y: 12 }); });
-      });
+      /* R9 §3: the second paragraph (.showcase-more) is gone; the lede carries the step alone. */
+      C.leadParts.forEach(function(parts, i){ gsap.set(parts, i === 0 ? { opacity: 1, y: 0 } : { opacity: 0, y: 12 }); });
       C.steps.forEach(function(row, i){ row.classList.toggle('is-active', i === 0); });
       C.lastStep = 0;
       /* R6 runda 6 (F-022): detaljcellen - en figur per steg, samma dither->
@@ -1941,9 +1995,7 @@ a{color:inherit;}
         var segStart = k / n, outDur = STEP_OUT_FRAC / n, inDur = STEP_IN_FRAC / n;
         var lagO = STEP_LAG_FRAC * outDur, lagI = STEP_LAG_FRAC * inDur;
         tl.to(C.leadParts[k - 1], { opacity: 0, y: -12, duration: outDur - lagO, ease: 'power2.out' }, segStart);
-        tl.to(C.moreParts[k - 1], { opacity: 0, y: -12, duration: outDur - lagO, ease: 'power2.out' }, segStart + lagO);
         tl.to(C.leadParts[k], { opacity: 1, y: 0, duration: inDur - lagI, ease: 'power2.out' }, segStart + outDur);
-        tl.to(C.moreParts[k], { opacity: 1, y: 0, duration: inDur - lagI, ease: 'power2.out' }, segStart + outDur + lagI);
         /* figuren tonas i/ur med samma position/duration som texten - "en
            mekanism", ingen separat timing för bilden. */
         if (C.figures[k - 1]) tl.to(C.figures[k - 1], { opacity: 0, duration: outDur, ease: 'power2.out' }, segStart);
@@ -2316,29 +2368,11 @@ a{color:inherit;}
     defaults: { duration: 0.6, ease: 'power3.out' },
     scrollTrigger: { trigger: '.pris-bento', start: 'top 78%', toggleActions: 'play none none reverse' }
   });
-  if (prisLead) prisTl.fromTo(prisLead, { xPercent: -14, autoAlpha: 0 }, { xPercent: 0, autoAlpha: 1 }, 0);
-  if (prisA) prisTl.fromTo(prisA, { yPercent: -18, autoAlpha: 0 }, { yPercent: 0, autoAlpha: 1 }, 0.08);
-  if (prisB) prisTl.fromTo(prisB, { yPercent: 18, autoAlpha: 0 }, { yPercent: 0, autoAlpha: 1 }, 0.16);
-
-  function countUp(el, targetNumber, originalText){
-    var proxy = { v: 0 };
-    gsap.to(proxy, {
-      v: targetNumber, duration: 1.1, ease: 'power2.out',
-      scrollTrigger: { trigger: el, start: 'top 85%', once: true },
-      onUpdate: function(){
-        var whole = Math.round(proxy.v).toString();
-        var grouped = whole.replace(/\B(?=(\d{3})+(?!\d))/g, ' ');
-        el.childNodes[0].nodeValue = grouped + ' ';
-      },
-      onComplete: function(){ el.childNodes[0].nodeValue = originalText; }
-    });
-  }
-  Array.prototype.forEach.call(document.querySelectorAll('.price-value.tnum'), function(el){
-    var text = el.childNodes[0] && el.childNodes[0].nodeValue ? el.childNodes[0].nodeValue : '';
-    var digits = text.replace(/\D/g, '');
-    if (!digits) return;
-    countUp(el, parseInt(digits, 10), text);
-  });
+  /* R9 a11y M1 (1.3.1): opacity, not autoAlpha - visibility:hidden took the three package
+     h3s out of the accessibility tree until the reader had scrolled to them. */
+  if (prisLead) prisTl.fromTo(prisLead, { xPercent: -14, opacity: 0 }, { xPercent: 0, opacity: 1 }, 0);
+  if (prisA) prisTl.fromTo(prisA, { yPercent: -18, opacity: 0 }, { yPercent: 0, opacity: 1 }, 0.08);
+  if (prisB) prisTl.fromTo(prisB, { yPercent: 18, opacity: 0 }, { yPercent: 0, opacity: 1 }, 0.16);
 
   /* ============================================================ §9 R5: kontakt · kortet lämnas över (C) */
   var kontaktAnchor = document.getElementById('kontaktCardAnchor');
@@ -2410,7 +2444,9 @@ a{color:inherit;}
        scroll-in crosses 0.7 near the end of its entrance. */
     ScrollTrigger.create({
       trigger: '#kontakt', start: 'top bottom', end: 'bottom bottom',
-      onUpdate: function(self){ if (self.progress >= 0.7) setKontaktFlip(true); },
+      /* R9 a11y L1 (3.2.1): never turn the card under a keyboard user's focus - Tab onto
+         "Vänd kortet" scrolls the section in, and the self-flip then moved focus unasked. */
+      onUpdate: function(self){ if (self.progress >= 0.7 && document.activeElement !== kontaktFront) setKontaktFlip(true); },
       onRefresh: function(self){ if (self.progress >= 0.7) setKontaktFlip(true, { immediate: true }); }
     });
   }

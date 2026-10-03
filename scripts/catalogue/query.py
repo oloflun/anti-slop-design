@@ -43,9 +43,10 @@ def main():
     if not hits:
         print("no matches")
         return
-    for e in hits:
+    for e in hits:  # index.json is already in rank order (ranking.txt, then motion_floor)
         traits = ", ".join(e.get("traits", []))
-        print(f"{e['slug']:20s} | {e.get('lane', ''):40s} | {traits}")
+        tag = f"#{e['rank']}" if e.get("rank") else f"f{e.get('motion_floor', 0)}"
+        print(f"{tag:4s} {e['slug']:20s} | {e.get('lane', '')[:40]:40s} | {traits}")
 
 
 if __name__ == "__main__":

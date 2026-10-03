@@ -385,11 +385,12 @@ def run(url, outdir, width, headed, no_shots=False):
 
 
 LOCK = os.path.join(os.environ.get("TEMP", "/tmp"), "alunix-browser.lock")
+from browser_lock import owner_alive  # same dir
 
 
 def single_flight():
     """One browser run at a time across every probe/verify process: wait for
-    the lock file (stale after 15 min), then hold it until exit."""
+    the lock file (stale when its owner is dead), then hold it until exit."""
     if os.environ.get("ALUNIX_BROWSER_LOCK_HELD"):
         return  # held by browser_lock.py around us
     import atexit
@@ -401,7 +402,7 @@ def single_flight():
             atexit.register(lambda: os.path.exists(LOCK) and os.remove(LOCK))
             return
         except FileExistsError:
-            if time.time() - os.path.getmtime(LOCK) > 900:
+            if not owner_alive():
                 os.remove(LOCK); continue
             if time.time() > deadline:
                 sys.exit("[showcase_probe] browser lock held too long: " + LOCK)

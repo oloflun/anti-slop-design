@@ -19,6 +19,12 @@ main frame's DOM; iframe documents are separate and untouched by design).
     python microtext_scan.py --file some/page.html
     python microtext_scan.py --url URL --price-ledger
     python microtext_scan.py --selftest
+    python microtext_scan.py --names sites/calyx.html sites/horai.html   (no browser)
+
+--names (Anton, 2026-10-03): example and demo pages never name real places or people;
+the city may stand (Stockholm). Flags street names, districts, regions, other cities,
+"Hotel X", postcodes and "Firstname X." signatures in the visible text. Candidates,
+like the rest of this script: a reviewer judges, the scan only finds.
 """
 from __future__ import annotations
 
@@ -189,7 +195,41 @@ SELFTEST_HTML = """
 """
 
 
+ALLOWED_PLACES = {"Stockholm"}
+NAME_PATTERNS = [
+    ("street", re.compile(r"\b[A-ZÅÄÖ][a-zåäöé]+(?:gatan|vägen|torget|gränd|backen|stigen|allén|kajen|stranden)\b(?:\s+\d+\w?)?")),
+    ("street", re.compile(r"\b[A-ZÅÄÖ]+(?:GATAN|VÄGEN|TORGET|GRÄND)\b")),
+    ("hotel", re.compile(r"\bHotell?\s+[A-ZÅÄÖ][\wåäö]+")),
+    ("postcode", re.compile(r"\b\d{3}[\s ]\d{2}[\s ]+[A-ZÅÄÖ]")),
+    ("signature", re.compile(r"\b[A-ZÅÄÖ][a-zåäöé]+\s[A-ZÅÄÖ]\.(?=\s|$|,)")),
+    # R9 walk found what the first version missed: "IDUN & MARIT LINDSTRÖM", "by Bodil Sjöö"
+    ("surname", re.compile(r"\b[A-ZÅÄÖ][A-Za-zÅÄÖåäöé]+(?:ström|berg|gren|qvist|kvist|sson|son|lund|holm|dahl|STRÖM|BERG|GREN|QVIST|SSON|LUND|HOLM|DAHL)\b")),
+    ("credit", re.compile(r"\bby\s+[A-ZÅÄÖ][a-zåäöé]+\s+[A-ZÅÄÖ][a-zåäöé]+")),
+    ("place", re.compile(r"\b(?:Östermalm|Södermalm|Söder|Vasastan|Kungsholmen|Djurgården|Norrmalm|Gamla stan|Hornstull|"
+                         r"Hammarby|Lidingö|Solna|Nacka|Bromma|Söderåsen|Visby|Tyresta|Smögen|Grebbestad|Riddarfjärden|[Gg]amla [Ss]tan|Skåne|Småland|Göteborg|Malmö|Uppsala|Lund|Kyoto|Bangkok|Tokyo|Paris|London)\b")),
+]
+
+
+def scan_names(html: str) -> list[tuple[str, str]]:
+    text = re.sub(r"(?is)<(script|style)\b.*?</\1>", " ", html)
+    text = re.sub(r"<[^>]+>", " ", text).replace("&nbsp;", " ").replace("&apos;", "'")
+    text = re.sub(r"\s+", " ", text)
+    return [(kind, m.group(0)) for kind, rx in NAME_PATTERNS for m in rx.finditer(text)
+            if m.group(0).lower() not in {p.lower() for p in ALLOWED_PLACES}]
+
+
+def selftest_names() -> None:
+    bad = scan_names("<p>Cmsn. 0211 — Hotel Pigalle, Drottninggatan</p><p>Strandvägen 7B, Vasastan</p>"
+                     "<p>HORNSGATAN&nbsp;58 · 118&nbsp;49&nbsp;STOCKHOLM</p><p>Magnus K. — Aira</p>"
+                     "<p>IDUN &amp; MARIT LINDSTRÖM</p><p>hand-thrown by Bodil Sjöö</p>")
+    kinds = {k for k, _ in bad}
+    assert {"hotel", "street", "place", "postcode", "signature", "surname", "credit"} <= kinds, kinds
+    assert not scan_names("<p>Ateljé i Stockholm. Hotel lobby. Private home.</p>"), "false positive"
+    print("SELFTEST names: PASS")
+
+
 def selftest() -> None:
+    selftest_names()
     tmp = Path(__file__).parent / "_microtext_selftest.html"
     tmp.write_text(SELFTEST_HTML, encoding="utf-8")
     try:
@@ -214,7 +254,15 @@ def main() -> int:
     ap.add_argument("--file")
     ap.add_argument("--price-ledger", action="store_true")
     ap.add_argument("--selftest", action="store_true")
+    ap.add_argument("--names", nargs="+", metavar="FILE")
     args = ap.parse_args()
+
+    if args.names:
+        hits = [(f, k, t) for f in args.names for k, t in scan_names(Path(f).read_text(encoding="utf-8"))]
+        for f, k, t in hits:
+            print(f"{f}: {k}: {t}")
+        print(f"names: {len(hits)} candidate(s)")
+        return 1 if hits else 0
 
     if args.selftest:
         selftest()
