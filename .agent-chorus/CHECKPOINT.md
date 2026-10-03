@@ -23,9 +23,20 @@ audit against the showcase floor and three reviewers (heuristics, critic, a11y).
 - Plugin 1.2.1 built, `sync-from-live --check` in sync, `verify-design-system.py` 206/206 (anti-patterns.md divergence recorded).
 - FEEDBACK F-027.
 
-## Still open
-- a11y reviewer report.
-- Full walks 1440/768/390 + section_probe (running).
-- browse.html probe.
-- Recapture queue (3 sites), 60-frame Era sheet.
-- Audit report, local commit (no push).
+## Status (2026-10-03, end of session)
+All of it is done and committed locally as `0199866` (not pushed).
+
+- a11y fixes verified: H1–H3, M1 pris, L1.
+- Walks at 1440/768/390 read.
+- section_probe: 0 failures.
+- browse.html verified.
+- Recapture done:
+  - collabcapitolium and drinksom read
+  - chanel skipped, with the reason logged
+- Era 60-frame sheet read.
+- Audit: `AUDIT-ALUNIX-R9.md`.
+
+## Waiting for Anton
+- The next-round plan (`AUDIT-ALUNIX-R9.md` § 4).
+- The git decision on catalogue images.
+- Push.
