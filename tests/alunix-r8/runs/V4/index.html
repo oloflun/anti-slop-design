@@ -1,0 +1,727 @@
+<!doctype html>
+<html lang="sv">
+<head>
+<!-- design · pre-emit critique: P4 H4 E4 S5 R4 V5 -->
+<!--
+  Alunix V4 · R1 · "Markören"
+  Lane: ett dokument som skrivs. Kall papperston, bläck, markeringens blå som enda accent,
+  en grotesk på en hårlinjeaxel. Tier 1 för innehållet (PRODUCT.md), Tier 3 för formen.
+  Grammatik: typographic poster. Register: modern clean.
+
+  Referenslås (NOTES.md § 2):
+    Primary: bleibtgleich — förskjutna påståenden på en lodrät hårlinjeaxel, en enda grotesk, linjen som dras i introt.
+    Lån A: nodeck — verktyget ur varumärkets värld torkar skärmen; samma gest markerar text.
+    Lån B: example + sadumedia — arbetet i rubrikens mellanrum; listans aktiva rad tänd, resten grå.
+    Reject: dither, cellnät, kort som vänds, Geist, mint (V3f/V3g); smetade ord; deck-navigering; centrerad hero.
+
+  Beslutslogg (kort, full i NOTES.md § 3):
+    markören = återkommande objekt (dörr, axel, markeringskant, skrivhuvud, läshuvud, block, väntande markör)
+    markeringsblå = enda accent, bara som yta eller ::selection
+    T1 markering · T2 radbrott · T3 blockmarkör · T4 brytpunkt · T5 markering rad för rad
+    Minnesvärd detalj: scrollen skriver meningen och raderar den på vägen upp.
+-->
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Alunix · Webbdesign, design och system</title>
+<meta name="description" content="Alunix är en webbyrå. Vi formger och bygger skräddarsydda webbplatser, med bokning, betalning och system när verksamheten behöver det.">
+<meta name="theme-color" content="#f5f6f8">
+<meta name="color-scheme" content="light">
+<link rel="preload" href="assets/fonts/switzer-variable.woff2" as="font" type="font/woff2" crossorigin>
+<link rel="stylesheet" href="/node_modules/lenis/dist/lenis.css">
+<script type="importmap">
+{ "imports": {
+  "gsap": "/node_modules/gsap/index.js",
+  "gsap/all": "/node_modules/gsap/all.js",
+  "gsap/": "/node_modules/gsap/",
+  "lenis": "/node_modules/lenis/dist/lenis.mjs"
+} }
+</script>
+<script>
+  document.documentElement.classList.add('js');
+  // Failsafe: om init aldrig når fram visas allt efter 5 s (reveal fails toward visible).
+  setTimeout(function () {
+    if (!document.documentElement.classList.contains('ready')) document.documentElement.classList.add('reveal-all');
+  }, 5000);
+</script>
+<style>
+@font-face {
+  font-family: "Switzer";
+  src: url("assets/fonts/switzer-variable.woff2") format("woff2");
+  font-weight: 100 900;
+  font-style: normal;
+  font-display: swap;
+}
+
+/* ── Tokens (låsta; inga lösa färgvärden nedanför) ─────────────────────────── */
+:root {
+  --paper:      oklch(97.6% 0.004 250);
+  --ink:        oklch(18% 0.012 262);
+  --graphite:   oklch(46% 0.012 262);   /* sekundär text på papper, kommande steg */
+  --select:     oklch(86% 0.07 248);    /* accenten: bara markering, som yta */
+  --select-ink: oklch(30% 0.05 258);    /* sekundär text på markeringsblått */
+  --ash:        oklch(76% 0.008 262);   /* sekundär text på bläck */
+  --rule:       oklch(18% 0.012 262 / 0.14);
+  --rule-ink:   oklch(97.6% 0.004 250 / 0.18);
+
+  --font: "Switzer", ui-sans-serif, system-ui, sans-serif;
+
+  --gutter: clamp(16px, 2.4vw, 44px);
+  --axis: 44vw;                         /* markörens axel */
+  --caret: 2px;
+
+  --d-xl: clamp(46px, 7.6vw, 172px);    /* hero */
+  --d-l:  clamp(40px, 6.4vw, 144px);    /* tes, paket, namn */
+  --d-m:  clamp(34px, 4.6vw, 96px);     /* process, kontakt */
+  --t-type: clamp(26px, 3.3vw, 64px);   /* meningen scrollen skriver */
+  --h3:   clamp(21px, 1.75vw, 30px);
+  --body: clamp(16px, 1.12vw, 19px);
+  --act:  clamp(22px, 2vw, 32px);       /* handlingsstorlek för mejlet (F-017) */
+  --label: 15px;
+
+  --ease-out: cubic-bezier(.16, 1, .3, 1);
+}
+@media (max-width: 899px) {
+  :root { --axis: 16px; }
+}
+
+/* ── Bas ───────────────────────────────────────────────────────────────────── */
+*, *::before, *::after { box-sizing: border-box; }
+html, body { margin: 0; overflow-x: clip; }
+body {
+  background: var(--paper);
+  color: var(--ink);
+  font-family: var(--font);
+  font-size: var(--body);
+  font-weight: 400;
+  line-height: 1.5;
+  -webkit-font-smoothing: antialiased;
+  text-rendering: optimizeLegibility;
+}
+::selection { background: var(--select); color: var(--ink); }
+h1, h2, h3, p { margin: 0; font-weight: inherit; }
+h1, h2, h3 { overflow-wrap: anywhere; min-width: 0; }
+a { color: inherit; }
+a:focus-visible, button:focus-visible { outline: 2px solid currentColor; outline-offset: 4px; }
+.sr-only { position: absolute; width: 1px; height: 1px; overflow: hidden; clip: rect(0 0 0 0); white-space: nowrap; }
+
+.display { font-weight: 300; letter-spacing: -0.035em; line-height: 0.92; }
+.row { display: block; }
+.stage { position: relative; height: 100vh; height: 100svh; overflow: hidden; }
+
+/* SplitText-maskernas plats för underhäng (house rule: descenders survive) */
+.line-mask { padding-bottom: 0.14em; margin-bottom: -0.14em; }
+
+/* Flödets reveal: 14 px, 620 ms (scroll-profilen, house-physics). Felar mot synligt. */
+html.js .rv { opacity: 0; transform: translateY(14px); }
+html.reveal-all .rv, html.reveal-all [data-hide] { opacity: 1 !important; transform: none !important; visibility: visible !important; }
+html.js [data-hide] { visibility: hidden; }
+
+/* ── Fast mejlflik (stress-personan: handlingen går alltid att nå) ───────────── */
+.mail-wrap { position: fixed; left: var(--gutter); bottom: 16px; z-index: 50; }
+.mail-tab {
+  display: inline-flex; align-items: baseline; gap: 0.6em;
+  padding: 11px 15px 12px;
+  background: var(--ink); color: var(--paper);
+  border: 1px solid var(--rule-ink);
+  font-size: var(--label); line-height: 1.2; text-decoration: none; white-space: nowrap;
+}
+.mail-tab b { font-weight: 600; }
+.mail-tab span { color: var(--ash); }
+.mail-wrap { transition: transform 160ms var(--ease-out); transform-origin: 0 100%; } /* introt äger .mail-tab:s transform, trycket bor på omslaget */
+.mail-wrap:active { transform: scale(0.97); }
+@media (hover: hover) and (pointer: fine) { .mail-tab:hover span { color: var(--paper); } }
+.mail-tab:focus-visible { outline-offset: 3px; outline-color: var(--ink); }
+
+/* ── Akt 0–1 · Hero: markören blir axeln ─────────────────────────────────────── */
+/* HERO: rubrik förskjuten på en hårlinjeaxel, NOT en centrerad hero med knapp */
+.hero .stage { background: var(--paper); }
+.hero-sel { position: absolute; inset: 0; background: var(--select); clip-path: inset(0% 100% 0% 0%); z-index: 0; }
+.hero-axis {
+  position: absolute; top: 0; bottom: 0; left: var(--axis); width: var(--caret);
+  background: var(--ink); z-index: 3;
+}
+.hero-logo { position: absolute; top: 30px; right: calc(100% - var(--axis) + 22px); z-index: 2; display: block; width: 40px; color: var(--ink); }
+.hero-logo svg { display: block; width: 100%; height: auto; }
+.hero-lede { position: absolute; top: 32px; left: calc(var(--axis) + 22px); max-width: 27ch; z-index: 2; font-size: var(--body); line-height: 1.35; }
+.hero-h { position: absolute; left: 0; right: 0; top: 31svh; z-index: 2; font-size: var(--d-xl); }
+.hero-h .row { white-space: nowrap; }
+.hero-h .r1 { position: absolute; right: calc(100% - var(--axis) + 0.16em); top: 0; white-space: normal; text-align: right; max-width: calc(var(--axis) - var(--gutter) - 0.16em); }
+.hero-h .r2 { padding-left: calc(var(--axis) + 0.14em); }
+.hero-h .r3 { padding-left: calc(var(--axis) + 0.14em); }
+.hero-services {
+  position: absolute; left: calc(var(--axis) + 22px); right: var(--gutter); bottom: 15svh; z-index: 2;
+  display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 28px;
+  list-style: none; margin: 0; padding: 0;
+}
+.hero-services li { border-top: 1px solid var(--rule); padding-top: 12px; }
+.hero-services h2 { font-weight: 500; font-size: var(--body); display: flex; gap: 0.6em; }
+.hero-services h2 span { font-variant-numeric: tabular-nums; color: var(--graphite); font-weight: 400; }
+.hero-services p { margin-top: 6px; max-width: 30ch; line-height: 1.4; }
+
+/* ── Akt 2 · Tesen: scrollen skriver ─────────────────────────────────────────── */
+/* THESIS: meningen skrivs av scrollen, NOT en ord-för-ord-fade */
+.thesis { position: relative; z-index: 2; }
+.thesis .stage { background: transparent; }   /* springan visar processen som redan ligger bakom */
+.t-half { position: absolute; left: 0; right: 0; background: var(--select); }
+.t-top { top: 0; height: 46%; }
+.t-bot { top: 46%; bottom: 0; }
+.t-head { position: absolute; left: 0; right: 0; bottom: 3.2vh; font-size: var(--d-l); }
+.t-head .r1 { padding-left: var(--gutter); }
+.t-head .r2 { padding-left: calc(var(--axis) + 0.14em); }
+.t-type {
+  position: absolute; top: 3.6vh; left: calc(var(--axis) + 0.3em); right: var(--gutter);
+  font-size: var(--t-type); font-weight: 400; letter-spacing: -0.02em; line-height: 1.12;
+}
+.t-type .typed { display: block; max-width: 18em; }
+.type-caret {
+  position: absolute; left: 0; top: 0; width: var(--caret); height: 1.05em;
+  margin-top: 0.06em; background: var(--ink);
+  animation: blink 1.06s steps(1, end) infinite;
+}
+.type-caret.is-typing { animation: none; }
+@keyframes blink { 0% { opacity: 1; } 50% { opacity: 0; } 100% { opacity: 1; } }
+
+/* ── Akt 3 · Processen: raden glider förbi markören ──────────────────────────── */
+/* PROCESS: en lång rad förbi ett läshuvud, NOT en numrerad lista med ikoner */
+.process { position: relative; z-index: 1; margin-top: -100vh; margin-top: -100svh; }
+.process .stage { background: var(--paper); }
+.p-head { position: absolute; left: 0; right: 0; top: 11svh; font-size: var(--d-m); }
+.p-head .r1 { padding-left: var(--gutter); }
+.p-head .r2 { padding-left: calc(var(--axis) + 0.14em); }
+.p-track-wrap { position: absolute; left: 0; right: 0; top: 41svh; }
+.p-track { display: flex; gap: clamp(40px, 4.4vw, 84px); padding-left: calc(var(--axis) + 28px); width: max-content; list-style: none; margin: 0; }
+.step { width: clamp(280px, 29vw, 520px); }
+.step .n { display: inline-block; font-variant-numeric: tabular-nums; font-size: clamp(17px, 1.3vw, 22px); font-weight: 500; line-height: 1.3; }
+.step h3 { font-size: clamp(24px, 2.3vw, 42px); font-weight: 400; letter-spacing: -0.02em; margin-top: 14px; line-height: 1.1; }
+.step p { margin-top: 16px; line-height: 1.5; max-width: 38ch; font-size: clamp(16px, 1.25vw, 21px); }
+.step, .step .n { color: var(--graphite); transition: color .24s var(--ease-out); }
+.step.on, .step.on .n { color: var(--ink); }
+.p-flood { position: absolute; inset: 0; background: var(--ink); z-index: 4; clip-path: inset(100% 100% 0% 0%); }
+
+/* ── Akt 4 · Exemplen: namnet glider isär runt sajten ────────────────────────── */
+/* EXAMPLES: levande sajt i rubrikens mellanrum, NOT en case-kortgrid */
+.examples { background: var(--ink); color: var(--paper); padding: 4vh 0 10vh; }
+.scene + .scene { margin-top: 18vh; }
+.scene-row {
+  display: grid; grid-template-columns: minmax(0, 1fr) minmax(0, 56vw) minmax(0, 1fr);
+  align-items: stretch; padding: 0 var(--gutter); gap: 0;
+}
+.word { font-size: var(--d-l); font-weight: 300; letter-spacing: -0.035em; line-height: 0.92; white-space: nowrap; position: relative; z-index: 2; margin: 0; }
+.w1 { align-self: start; justify-self: end; padding-right: 0.22em; }
+.w2 { align-self: end; justify-self: start; padding-left: 0.22em; }
+.frame { position: relative; z-index: 1; aspect-ratio: 16 / 10; background: var(--ink); border: 1px solid var(--rule-ink); } /* egen stapel: luckorna stannar under orden */
+/* Två bläckluckor skalas undan (transform, GPU). Ramen själv rörs aldrig, inte ens av en klippning. */
+.cover { position: absolute; top: -2px; bottom: -2px; width: calc(50% + 2px); background: var(--ink); z-index: 3; will-change: transform; pointer-events: none; }
+.cover.l { left: -2px; transform-origin: 0 50%; }
+.cover.r { right: -2px; transform-origin: 100% 50%; }
+.frame iframe { display: block; width: 100%; height: 100%; border: 0; background: var(--ink); pointer-events: none; }
+/* Ramen släpper igenom scrollen tills besökaren väljer att använda den: ingen fälla för hjul eller tumme */
+.frame.live iframe, .lenis.lenis-smooth .frame.live iframe { pointer-events: auto; }
+.use { position: absolute; inset: 0; z-index: 2; border: 0; padding: 0; margin: 0; background: transparent; cursor: pointer; font: inherit; color: inherit; }
+.use span {
+  position: absolute; left: 14px; bottom: 14px; padding: 10px 14px 11px;
+  background: var(--ink); color: var(--paper); font-size: var(--label); font-weight: 500; line-height: 1.2;
+  opacity: 0; transform: translateY(6px); transition: opacity .2s var(--ease-out), transform .2s var(--ease-out);
+}
+@media (hover: hover) and (pointer: fine) { .use:hover span { opacity: 1; transform: none; } }
+.frame.focused { outline: 2px solid var(--paper); outline-offset: 5px; } /* tangentbordets väg in i ramen */
+.frame.focused iframe { pointer-events: auto; }
+.frame.live .use { display: none; }
+.decisions {
+  display: grid; grid-template-columns: minmax(0, 1fr) minmax(0, 1fr); gap: 0 clamp(32px, 4vw, 72px);
+  margin: 9vh 22vw 0 22vw;               /* linjerad mot ramens kanter */
+}
+.decision h3 { font-size: var(--h3); font-weight: 500; letter-spacing: -0.015em; line-height: 1.15; }
+.decision p { margin-top: 12px; max-width: 40ch; color: var(--ash); }
+.decision:nth-child(2) { margin-top: 5.5rem; }
+.open-link { display: inline-block; margin-top: 22px; font-weight: 500; text-decoration: underline; text-underline-offset: 0.22em; text-decoration-thickness: 1px; padding: 8px 0; }
+.open-link:hover { text-decoration-thickness: 2px; }
+
+/* ── Akt 5 · Paketen: ledger på axeln ────────────────────────────────────────── */
+/* PACKAGES: hårlinjeledger, namn vänster om axeln, NOT tre prisrutor */
+.pkg-head .stage { background: var(--paper); }
+.k-copy { position: absolute; left: 0; right: 0; top: 24svh; }
+.k-head { font-size: var(--d-l); }
+.k-head .r1 { padding-left: var(--gutter); }
+.k-head .r2 { padding-left: calc(var(--axis) + 0.14em); }
+.k-lede { margin: calc(var(--d-l) * .5) var(--gutter) 0 calc(var(--axis) + 22px); max-width: 40ch; }
+.k-axis { position: absolute; left: var(--axis); width: var(--caret); top: 0; bottom: 0; background: var(--ink); }
+.narrow { position: absolute; inset: 0; background: var(--ink); z-index: 4; }
+.ledger { position: relative; margin: 0; padding: 0; list-style: none; }
+.ledger::before { content: ""; position: absolute; left: var(--axis); top: 0; bottom: 0; width: var(--caret); background: var(--ink); z-index: 1; }
+.lrow { position: relative; display: grid; grid-template-columns: var(--axis) minmax(0, 1fr); border-top: 1px solid var(--rule); }
+.rsel { position: absolute; inset: 0; background: var(--select); transform: scaleX(0); transform-origin: 0 50%; z-index: 0; }
+.lrow > :not(.rsel) { position: relative; z-index: 2; }
+.lname { text-align: right; padding: 34px 0.9em 38px var(--gutter); font-size: var(--d-m); font-weight: 300; letter-spacing: -0.03em; line-height: 1; }
+.ldesc { padding: 40px var(--gutter) 40px 0.9em; max-width: calc(40ch + 2em); }
+.lrow.price-note .ldesc { font-weight: 500; font-size: var(--h3); letter-spacing: -0.01em; line-height: 1.2; padding-top: 30px; padding-bottom: 34px; }
+
+/* ── Akt 6 · Kontakt: markören väntar ────────────────────────────────────────── */
+/* CONTACT: mejl i handlingsstorlek med väntande markör, NOT ett formulär med knapp */
+.contact { background: var(--select); position: relative; min-height: 84vh; min-height: 84svh; padding: 16vh 0 0; }
+.skip a { position: fixed; left: var(--gutter); top: 12px; z-index: 60; padding: 10px 14px; background: var(--ink); color: var(--paper); font-size: var(--label); font-weight: 500; text-decoration: none; transform: translateY(-160%); }
+.skip a:focus-visible { transform: none; outline-color: var(--ink); outline-offset: 3px; }
+.c-head { font-size: var(--d-m); }
+.c-head .r1 { padding-left: var(--gutter); }
+.c-head .r2 { padding-left: calc(var(--axis) + 0.14em); }
+.c-body { margin: calc(var(--d-m) * .5) var(--gutter) 0 calc(var(--axis) + 22px); max-width: 40ch; }
+.c-mail { margin-top: 48px; }
+.c-mail .lab { display: block; font-size: var(--label); font-weight: 600; }
+.c-mail a { position: relative; display: inline-block; margin-top: 6px; font-size: var(--act); font-weight: 500; letter-spacing: -0.015em; text-decoration: none; padding: 6px 0; white-space: nowrap; }
+.c-mail a:hover { text-decoration: underline; text-decoration-thickness: 1px; text-underline-offset: 0.2em; }
+.c-mail .wait { display: inline-block; width: var(--caret); height: 1.05em; background: var(--ink); vertical-align: -0.16em; margin-left: 0.08em; animation: blink 1.06s steps(1, end) infinite; }
+.c-foot { background: var(--select); padding: 6vh var(--gutter) 30px; display: flex; align-items: center; gap: 12px; }
+.c-foot svg { width: 26px; height: auto; display: block; }
+.c-foot b { font-weight: 600; letter-spacing: 0.02em; }
+
+/* ── Mellan: ≤ 1099 px ───────────────────────────────────────────────────────── */
+@media (max-width: 1099px) {
+  .scene-row { grid-template-columns: minmax(0, 1fr); row-gap: 18px; }
+  .w1 { justify-self: start; padding: 0; }
+  .w2 { justify-self: end; padding: 0; }
+  .cover { width: auto; left: -2px; right: -2px; height: calc(50% + 2px); }
+  .cover.l { top: -2px; bottom: auto; transform-origin: 50% 0; }
+  .cover.r { bottom: -2px; top: auto; transform-origin: 50% 100%; }
+  .decisions { margin-left: var(--gutter); margin-right: var(--gutter); }
+}
+/* ── Telefon och stående surfplatta: ≤ 899 px, axeln ligger i vänsterkanten ─── */
+@media (max-width: 899px) {
+  /* Heron flödar här: inga absoluta lager som kan krocka när texten växer (WCAG 1.4.12) */
+  .hero .stage { display: flex; flex-direction: column; padding: 22px var(--gutter) calc(76px + 2svh) calc(var(--axis) + 14px); }
+  .hero-logo, .hero-lede, .hero-h, .hero-services { position: relative; inset: auto; }
+  .hero-logo { width: 34px; flex: none; }
+  .hero-h { margin-top: 12svh; font-size: clamp(40px, 12.4vw, 104px); }
+  .hero-h .r1 { position: static; max-width: none; text-align: left; padding-left: 0.06em; }
+  .hero-h .r2, .hero-h .r3 { padding-left: 0.06em; }
+  .hero-lede { margin-top: auto; padding-top: 24px; max-width: none; }
+  .hero-services { grid-template-columns: minmax(0, 1fr); gap: 12px; margin-top: 16px; }
+  .hero-services li { padding-top: 8px; }
+  .hero-services p { margin-top: 2px; font-size: 15px; }
+  .t-head .r1, .t-head .r2 { padding-left: calc(var(--axis) + 0.2em); }
+  .t-type { left: calc(var(--axis) + 0.35em); }
+  .p-head { top: 9svh; }
+  .p-head .r1, .p-head .r2 { padding-left: calc(var(--axis) + 0.2em); }
+  .p-track-wrap { top: 38svh; }
+  .p-track { padding-left: calc(var(--axis) + 22px); gap: 36px; }
+  .step { width: 76vw; }
+  .decisions { grid-template-columns: minmax(0, 1fr); gap: 40px; }
+  .decision:nth-child(2) { margin-top: 0; }
+  .frame { aspect-ratio: 4 / 5; }
+  .k-copy { top: 16svh; }
+  .k-head .r1, .k-head .r2 { padding-left: calc(var(--axis) + 0.2em); }
+  .k-lede { margin-left: calc(var(--axis) + 22px); }
+  .lrow { grid-template-columns: minmax(0, 1fr); }
+  .lname { text-align: left; padding: 26px var(--gutter) 0 calc(var(--axis) + 22px); }
+  .ldesc { padding: 12px var(--gutter) 30px calc(var(--axis) + 22px); }
+  .lrow.price-note .lname { display: none; }
+  .c-head .r1, .c-head .r2 { padding-left: calc(var(--axis) + 0.2em); }
+  .c-body { margin-left: calc(var(--axis) + 22px); }
+  .c-mail a { font-size: clamp(20px, 6.4vw, 28px); }
+}
+@media (min-width: 600px) and (max-width: 899px) {
+  .frame { aspect-ratio: 4 / 3; }
+  .step { width: 54vw; }
+  .hero-services p { font-size: var(--body); }
+  .t-head, .k-head { font-size: clamp(40px, 9vw, 96px); }
+  .t-type { font-size: clamp(26px, 5vw, 48px); }
+}
+@media (hover: none) {
+  .use span { opacity: 1; transform: none; }
+}
+</style>
+<noscript><style>html.js .rv, html.js [data-hide] { opacity: 1 !important; transform: none !important; visibility: visible !important; } .cover { display: none; } .hero-sel, .p-flood, .narrow { display: none; }</style></noscript>
+</head>
+<body>
+
+<nav class="skip" aria-label="Genväg"><a href="#kontakt">Hoppa till kontakt</a></nav>
+<header class="mail-wrap"><a class="mail-tab" href="mailto:kontakt@alunix.se" data-hide><b>Mejla oss</b><span>kontakt@alunix.se</span></a></header>
+
+<main>
+
+<!-- Akt 0–1 · Dörren och heron -->
+<section class="hero" id="top" aria-labelledby="hero-title">
+  <div class="stage">
+    <div class="hero-sel" aria-hidden="true"></div>
+    <a class="hero-logo" href="#top" aria-label="Alunix, till början" data-hide>
+      <svg viewBox="80 400 827 1139" aria-hidden="true"><path fill="currentColor" fill-rule="evenodd" d="M 430.020 513.250 C 386.700 600.458, 318.190 739.397, 297.501 782 C 289.087 799.325, 276.594 824.975, 269.739 839 C 216.342 948.248, 182.518 1018.108, 130.177 1127.250 L 122.145 1144 149.505 1144 C 176.418 1144, 176.876 1143.966, 177.531 1141.901 C 177.898 1140.746, 186.760 1121.959, 197.226 1100.151 C 207.692 1078.343, 223.776 1044.750, 232.969 1025.500 C 266.133 956.059, 277.353 933, 277.980 933 C 278.331 933, 280.408 935.587, 282.595 938.750 C 284.783 941.913, 295.822 957.775, 307.127 974 C 325.042 999.713, 381.481 1081.065, 429.737 1150.734 C 439.657 1165.055, 444.860 1173.418, 444.356 1174.233 C 443.926 1174.929, 440.820 1179.324, 437.455 1183.999 C 429.228 1195.427, 350.904 1307.144, 339.651 1323.500 C 334.732 1330.650, 327.687 1340.775, 323.996 1346 C 313.067 1361.472, 240.505 1466.210, 229.257 1482.750 L 218.886 1498 253.693 1497.961 L 288.500 1497.922 299.500 1481.744 C 324.141 1445.503, 476.381 1225.616, 478.506 1223.197 C 478.768 1222.899, 523.522 1286.863, 565.476 1347.500 C 568.140 1351.350, 588.572 1380.825, 610.880 1413 C 633.189 1445.175, 655.504 1477.439, 660.471 1484.697 L 669.500 1497.895 706.798 1497.947 L 744.096 1498 740.841 1493.250 C 727.956 1474.444, 658.474 1374.606, 602.522 1294.500 C 521.377 1178.323, 476.786 1114.238, 411.522 1020 C 389.621 988.375, 368.686 958.225, 364.999 953 C 342.882 921.650, 308 870.814, 308 869.930 C 308 868.958, 318.208 847.506, 341.512 799.500 C 346.852 788.500, 357.642 766.225, 365.489 750 C 373.336 733.775, 394.812 689.450, 413.213 651.500 C 431.614 613.550, 449.746 576.074, 453.505 568.221 C 457.265 560.367, 460.665 554.292, 461.060 554.721 C 461.456 555.149, 484.829 600.050, 513 654.500 C 595.807 814.548, 597.733 818.267, 612.712 847 C 620.597 862.125, 629.584 879.471, 632.684 885.546 L 638.319 896.592 633.336 903.546 C 630.596 907.371, 622.124 919.500, 614.511 930.500 C 606.897 941.500, 592.950 961.525, 583.517 975 C 550.282 1022.475, 513.571 1075.338, 501.745 1092.750 C 500.157 1095.088, 498.778 1097, 498.679 1097 C 498.581 1097, 498.620 1045.925, 498.767 983.500 L 499.033 870 467.529 870 L 436.024 870 435.762 948.679 L 435.500 1027.358 441.051 1035.429 C 444.105 1039.868, 458.527 1060.825, 473.101 1082 C 498.716 1119.217, 521.094 1151.905, 523.077 1155 C 523.877 1156.249, 524.411 1156.006, 526.269 1153.550 C 528.956 1149.997, 575.050 1083.626, 604.955 1040.250 C 642.615 985.626, 683.143 927.009, 694.212 911.152 L 704.927 895.804 701.347 888.652 C 699.378 884.718, 693.373 873.175, 688.003 863 C 682.632 852.825, 671.141 831, 662.466 814.500 C 653.792 798, 640.398 772.575, 632.701 758 C 609.734 714.509, 591.719 680.257, 553.278 607 C 533.220 568.775, 512.426 529.175, 507.069 519 C 501.712 508.825, 490.419 487.337, 481.975 471.250 C 473.530 455.163, 466.349 442, 466.016 442 C 465.684 442, 449.485 474.063, 430.020 513.250 M 459 748.072 C 445.481 750.334, 431.497 761.058, 425.189 774 C 411.946 801.174, 429.479 833.973, 460.052 839.216 C 482.335 843.037, 505.858 827.419, 511.586 805 C 519.739 773.095, 491.587 742.619, 459 748.072 M 583.028 1238.750 C 583.043 1239.162, 587.793 1246.250, 593.583 1254.500 C 599.373 1262.750, 608.679 1276.138, 614.264 1284.250 L 624.418 1299 745.199 1299 L 865.981 1299 847.826 1273.750 C 837.841 1259.862, 828.058 1246.155, 826.086 1243.288 L 822.500 1238.076 702.750 1238.038 C 636.888 1238.017, 583.012 1238.338, 583.028 1238.750"/></svg>
+    </a>
+    <h1 class="hero-h display" id="hero-title" data-hide>
+      <span class="row r1">Er hemsida</span>
+      <span class="row r2">är nutidens</span>
+      <span class="row r3">visitkort</span>
+    </h1>
+    <p class="hero-lede" data-hide>Webbdesign, design och system. Allt på ett ställe.</p>
+    <ul class="hero-services" data-hide>
+      <li><h2><span>01</span>Design</h2><p>Formen tar vi fram ur er verksamhet, aldrig ur en färdig mall.</p></li>
+      <li><h2><span>02</span>Utveckling</h2><p>Vi skriver koden från grunden, så att sidan laddar snabbt.</p></li>
+      <li><h2><span>03</span>System</h2><p>Bokning, betalning och kunduppgifter, kopplade till sidan.</p></li>
+    </ul>
+    <div class="hero-axis" aria-hidden="true"></div>
+  </div>
+</section>
+
+<!-- Akt 2 · Tesen -->
+<section class="thesis" id="tes" aria-labelledby="thesis-title">
+  <div class="stage">
+    <div class="t-half t-top">
+      <h2 class="t-head display" id="thesis-title">
+        <span class="row r1">Det första intrycket</span>
+        <span class="row r2">är digitalt.</span>
+      </h2>
+    </div>
+    <div class="t-half t-bot">
+      <p class="t-type"><span class="sr-only">Vi hjälper er att synas på rätt sätt.</span><span class="typed" aria-hidden="true">Vi hjälper er att synas på rätt sätt.</span><span class="type-caret" aria-hidden="true"></span></p>
+    </div>
+  </div>
+</section>
+
+<!-- Akt 3 · Processen -->
+<section class="process" id="process" aria-labelledby="process-title">
+  <div class="stage">
+    <h2 class="p-head display" id="process-title">
+      <span class="row r1">Från samtal till</span>
+      <span class="row r2">lanserad sida.</span>
+    </h2>
+    <div class="p-track-wrap">
+      <ol class="p-track" role="list">
+        <li class="step"><span class="n">01</span><h3>Uppstart</h3><p>Vi börjar med ett samtal om er verksamhet samt vad ni vill att sidan ska göra för er. Utifrån det skapar vi ett initialt underlag som ni rättar innan det går till ritbordet.</p></li>
+        <li class="step"><span class="n">02</span><h3>Planering</h3><p>Vi ritar strukturen som en skiss innan vi formger något. Där ser ni vilka sidor som behövs och vad varje sida ska få besökaren att göra, mobilen först.</p></li>
+        <li class="step"><span class="n">03</span><h3>Design</h3><p>När strukturen står formger vi sidan efter er verksamhet. Förslaget lägger vi på en testadress, där ni ser det på er egen telefon och säger till innan det går till bygge.</p></li>
+        <li class="step"><span class="n">04</span><h3>Utveckling</h3><p>Vi bygger sidan i kod från grunden, utan färdig mall, så att den laddar snabbt. Texter och bilder ändrar ni själva, och vill ni lägga till mer bygger ni vidare på det vi lämnat.</p></li>
+        <li class="step"><span class="n">05</span><h3>Innehåll</h3><p>Ni behöver inte ha något färdigt. Det ni har bearbetar vi, bygger vidare på och kompletterar där något saknas. Texten skriver vi åt er, om ni inte vill ha er egen.</p></li>
+        <li class="step"><span class="n">06</span><h3>Lansering</h3><p>Innan sidan publiceras går vi igenom varje länk, formulär och bild. Vi testar den med tangentbord och skärmläsare, på telefon och på dator, och visar er hur ni ändrar innehållet själva.</p></li>
+        <li class="step"><span class="n">07</span><h3>Förvaltning</h3><p>Vi finns kvar efter lansering. Nya sidor och ändringar går samma väg som bygget, så ni ser dem på testadressen innan era kunder gör det.</p></li>
+      </ol>
+    </div>
+    <div class="p-flood" aria-hidden="true"></div>
+  </div>
+</section>
+
+<!-- Akt 4 · Exemplen -->
+<section class="examples" id="exempel" aria-label="Exempelsidor">
+  <article class="scene" aria-labelledby="calyx-name">
+    <div class="scene-row">
+      <h2 class="word w1" id="calyx-name">Calyx</h2>
+      <div class="frame">
+        <iframe id="frame-calyx" src="/sites/calyx.html" title="Exempelsida: Calyx, florist i Stockholm" loading="lazy"></iframe>
+        <button class="use" type="button" tabindex="-1" aria-hidden="true"><span>Använd sidan här</span></button>
+        <span class="cover l" aria-hidden="true"></span><span class="cover r" aria-hidden="true"></span>
+      </div>
+      <p class="word w2" aria-hidden="true">florist</p>
+    </div>
+    <div class="decisions">
+      <div class="decision rv">
+        <h3>Fotot får första skärmen</h3>
+        <p>Blommor väljs med ögonen innan någon läser ett pris. Därför får fotot hela första skärmen och knappen får vänta. Omslaget ger också ateljén ett skäl att byta bild varje säsong, och då känns sidan ny utan att byggas om.</p>
+        <a class="open-link" href="/sites/calyx.html" target="_blank" rel="noopener">Öppna Calyx i full storlek</a>
+      </div>
+      <div class="decision rv">
+        <h3>Veckans utbud på en rad var</h3>
+        <p>Ett utbud som byts varje vecka måste gå att ändra på en minut, annars blir det liggande. En lista i stället för ett rutnät av foton betyder att ateljén skriver om en rad, och att besökaren jämför buketter och priser utan att scrolla.</p>
+      </div>
+    </div>
+  </article>
+
+  <article class="scene" aria-labelledby="horai-name">
+    <div class="scene-row">
+      <h2 class="word w1" id="horai-name">Hōrai</h2>
+      <div class="frame">
+        <iframe id="frame-horai" src="/sites/horai.html" title="Exempelsida: Hōrai, Asian fusion-koncept" loading="lazy"></iframe>
+        <button class="use" type="button" tabindex="-1" aria-hidden="true"><span>Använd sidan här</span></button>
+        <span class="cover l" aria-hidden="true"></span><span class="cover r" aria-hidden="true"></span>
+      </div>
+      <p class="word w2" aria-hidden="true">krog</p>
+    </div>
+    <div class="decisions">
+      <div class="decision rv">
+        <h3>Ett namn, en gång</h3>
+        <p>Namnet står ensamt och stort. Loggan i menyraden väntar tills det har rullat förbi, för ett namn som syns två gånger samtidigt väger mindre.</p>
+        <a class="open-link" href="/sites/horai.html" target="_blank" rel="noopener">Öppna Hōrai i full storlek</a>
+      </div>
+      <div class="decision rv">
+        <h3>Priset står större än namnet</h3>
+        <p>Med en meny per kväll är det priset gästen jämför. Ett pris som står litet ser gömt ut, och den som måste leta efter det har redan börjat tvivla. Därför står priset i rött och större än menyns namn.</p>
+      </div>
+    </div>
+  </article>
+</section>
+
+<!-- Akt 5 · Paketen -->
+<section class="pkg" id="paket" aria-labelledby="pkg-title">
+  <div class="pkg-head">
+    <div class="stage">
+      <div class="k-copy">
+        <h2 class="k-head display" id="pkg-title">
+          <span class="row r1">Alla har rätt</span>
+          <span class="row r2">till bra design.</span>
+        </h2>
+        <p class="k-lede">Paketen skiljer sig i vad er sida ska kunna göra. Vi formger den lika noga i alla tre, efter era egna behov och önskemål.</p>
+      </div>
+      <div class="k-axis" aria-hidden="true"></div>
+      <div class="narrow" aria-hidden="true"></div>
+    </div>
+  </div>
+  <ul class="ledger">
+    <li class="lrow"><span class="rsel" aria-hidden="true"></span><h3 class="lname">Webbplats</h3><p class="ldesc rv">En sida som presenterar er verksamhet och som ni uppdaterar själva, texter som bilder. Den är förberedd för att hittas på Google från första dagen.</p></li>
+    <li class="lrow"><span class="rsel" aria-hidden="true"></span><h3 class="lname">Webbplats med bokning</h3><p class="ldesc rv">För verksamheter där besökaren ska kunna boka och betala direkt på sidan. Bokningar, betalningar och kunduppgifter hamnar på ett ställe, så att ni slipper föra över dem för hand.</p></li>
+    <li class="lrow"><span class="rsel" aria-hidden="true"></span><h3 class="lname">Skräddarsytt</h3><p class="ldesc rv">När sidan behöver göra något som ingen färdig lösning gör, som en produktkatalog med många artiklar eller ett system byggt för just ert arbetssätt. Vi börjar med ett samtal om vad som behövs.</p></li>
+    <li class="lrow price-note"><span class="rsel" aria-hidden="true"></span><span class="lname" aria-hidden="true"></span><p class="ldesc rv">Vi lämnar pris efter första samtalet.</p></li>
+  </ul>
+</section>
+
+<!-- Akt 6 · Kontakt -->
+<section class="contact" id="kontakt" aria-labelledby="contact-title">
+  <h2 class="c-head display" id="contact-title">
+    <span class="row r1">Berätta om</span>
+    <span class="row r2">er verksamhet.</span>
+  </h2>
+  <div class="c-body">
+    <p class="rv">Skriv några rader om vad ni gör. Vi svarar med förslag på ett första samtal.</p>
+    <p class="c-mail rv"><span class="lab">Mejla oss</span><a href="mailto:kontakt@alunix.se">kontakt@alunix.se<span class="wait" aria-hidden="true"></span></a></p>
+  </div>
+</section>
+
+</main>
+
+  <footer class="c-foot">
+    <svg viewBox="80 400 827 1139" aria-hidden="true"><path fill="currentColor" fill-rule="evenodd" d="M 430.020 513.250 C 386.700 600.458, 318.190 739.397, 297.501 782 C 289.087 799.325, 276.594 824.975, 269.739 839 C 216.342 948.248, 182.518 1018.108, 130.177 1127.250 L 122.145 1144 149.505 1144 C 176.418 1144, 176.876 1143.966, 177.531 1141.901 C 177.898 1140.746, 186.760 1121.959, 197.226 1100.151 C 207.692 1078.343, 223.776 1044.750, 232.969 1025.500 C 266.133 956.059, 277.353 933, 277.980 933 C 278.331 933, 280.408 935.587, 282.595 938.750 C 284.783 941.913, 295.822 957.775, 307.127 974 C 325.042 999.713, 381.481 1081.065, 429.737 1150.734 C 439.657 1165.055, 444.860 1173.418, 444.356 1174.233 C 443.926 1174.929, 440.820 1179.324, 437.455 1183.999 C 429.228 1195.427, 350.904 1307.144, 339.651 1323.500 C 334.732 1330.650, 327.687 1340.775, 323.996 1346 C 313.067 1361.472, 240.505 1466.210, 229.257 1482.750 L 218.886 1498 253.693 1497.961 L 288.500 1497.922 299.500 1481.744 C 324.141 1445.503, 476.381 1225.616, 478.506 1223.197 C 478.768 1222.899, 523.522 1286.863, 565.476 1347.500 C 568.140 1351.350, 588.572 1380.825, 610.880 1413 C 633.189 1445.175, 655.504 1477.439, 660.471 1484.697 L 669.500 1497.895 706.798 1497.947 L 744.096 1498 740.841 1493.250 C 727.956 1474.444, 658.474 1374.606, 602.522 1294.500 C 521.377 1178.323, 476.786 1114.238, 411.522 1020 C 389.621 988.375, 368.686 958.225, 364.999 953 C 342.882 921.650, 308 870.814, 308 869.930 C 308 868.958, 318.208 847.506, 341.512 799.500 C 346.852 788.500, 357.642 766.225, 365.489 750 C 373.336 733.775, 394.812 689.450, 413.213 651.500 C 431.614 613.550, 449.746 576.074, 453.505 568.221 C 457.265 560.367, 460.665 554.292, 461.060 554.721 C 461.456 555.149, 484.829 600.050, 513 654.500 C 595.807 814.548, 597.733 818.267, 612.712 847 C 620.597 862.125, 629.584 879.471, 632.684 885.546 L 638.319 896.592 633.336 903.546 C 630.596 907.371, 622.124 919.500, 614.511 930.500 C 606.897 941.500, 592.950 961.525, 583.517 975 C 550.282 1022.475, 513.571 1075.338, 501.745 1092.750 C 500.157 1095.088, 498.778 1097, 498.679 1097 C 498.581 1097, 498.620 1045.925, 498.767 983.500 L 499.033 870 467.529 870 L 436.024 870 435.762 948.679 L 435.500 1027.358 441.051 1035.429 C 444.105 1039.868, 458.527 1060.825, 473.101 1082 C 498.716 1119.217, 521.094 1151.905, 523.077 1155 C 523.877 1156.249, 524.411 1156.006, 526.269 1153.550 C 528.956 1149.997, 575.050 1083.626, 604.955 1040.250 C 642.615 985.626, 683.143 927.009, 694.212 911.152 L 704.927 895.804 701.347 888.652 C 699.378 884.718, 693.373 873.175, 688.003 863 C 682.632 852.825, 671.141 831, 662.466 814.500 C 653.792 798, 640.398 772.575, 632.701 758 C 609.734 714.509, 591.719 680.257, 553.278 607 C 533.220 568.775, 512.426 529.175, 507.069 519 C 501.712 508.825, 490.419 487.337, 481.975 471.250 C 473.530 455.163, 466.349 442, 466.016 442 C 465.684 442, 449.485 474.063, 430.020 513.250 M 459 748.072 C 445.481 750.334, 431.497 761.058, 425.189 774 C 411.946 801.174, 429.479 833.973, 460.052 839.216 C 482.335 843.037, 505.858 827.419, 511.586 805 C 519.739 773.095, 491.587 742.619, 459 748.072 M 583.028 1238.750 C 583.043 1239.162, 587.793 1246.250, 593.583 1254.500 C 599.373 1262.750, 608.679 1276.138, 614.264 1284.250 L 624.418 1299 745.199 1299 L 865.981 1299 847.826 1273.750 C 837.841 1259.862, 828.058 1246.155, 826.086 1243.288 L 822.500 1238.076 702.750 1238.038 C 636.888 1238.017, 583.012 1238.338, 583.028 1238.750"/></svg>
+    <b>Alunix</b>
+  </footer>
+
+<script type="module">
+import { gsap, ScrollTrigger, SplitText } from "/gsap.js";
+import lenis from "/smooth-scroll.js";
+
+const $ = (s, r = document) => r.querySelector(s);
+const $$ = (s, r = document) => [...r.querySelectorAll(s)];
+const vh = () => window.innerHeight;
+const vw = () => document.documentElement.clientWidth;
+const isPhone = () => vw() < 900;
+const axisX = () => $('.hero-axis').offsetLeft;            // axeln, mätt i layouten (en sanning)
+const px = (t, r, b, l) => `inset(${t}px ${r}px ${b}px ${l}px)`;
+
+await document.fonts.ready;
+
+/* ── Akt 0 · Dörren: markören blinkar två gånger och sträcks till axeln ───── */
+const heroStage = $('.hero .stage');
+const axis = $('.hero-axis');
+const heroLines = SplitText.create('.hero-h .row', { type: 'lines', mask: 'lines', linesClass: 'hl', aria: 'none' });
+heroLines.masks.forEach(m => m.classList.add('line-mask'));
+const r1 = $('.hero-h .r1');
+function caretBand() {                                     // markörens ruta i heroradens höjd
+  const a = r1.getBoundingClientRect(), s = heroStage.getBoundingClientRect();
+  return { top: a.top - s.top + a.height * 0.08, bot: s.bottom - a.bottom + a.height * 0.2 };
+}
+const band = caretBand();
+gsap.set(heroLines.lines, { yPercent: 118 });
+gsap.set(axis, { clipPath: px(band.top, 0, band.bot, 0), autoAlpha: 0 });
+gsap.set(['.hero-h', '.hero-logo', '.hero-lede', '.hero-services', '.mail-tab'], { visibility: 'visible' });
+gsap.set(['.hero-logo', '.hero-lede', '.hero-services', '.mail-tab'], { autoAlpha: 0, y: 14 });
+
+// Ramarna laddas medan besökaren läser heron, inte när de avslöjas (en laddning var, aldrig om)
+const warmFrames = () => (window.requestIdleCallback || setTimeout)(() => $$('.frame iframe').forEach(f => { f.loading = 'eager'; }), { timeout: 1500 });
+const intro = gsap.timeline({ defaults: { ease: 'power3.out' }, onComplete: () => { heroLines.revert(); warmFrames(); } })
+  .set(axis, { autoAlpha: 1 }, 0.25).set(axis, { autoAlpha: 0 }, 0.78)
+  .set(axis, { autoAlpha: 1 }, 1.18).set(axis, { autoAlpha: 0 }, 1.71)
+  .set(axis, { autoAlpha: 1 }, 2.0)
+  .to(axis, { clipPath: px(0, 0, 0, 0), duration: 1.0, ease: 'power3.inOut' }, 2.0)
+  .to(heroLines.lines, { yPercent: 0, duration: 1.15, ease: 'power4.out', stagger: 0.09 }, 2.32)
+  .to(['.hero-logo', '.hero-lede', '.hero-services'], { autoAlpha: 1, y: 0, duration: 0.62, stagger: 0.06 }, 2.9)
+  .to('.mail-tab', { autoAlpha: 1, y: 0, duration: 0.62 }, 3.2);
+// Den som scrollar under introt får slutläget direkt (ingen grind, golvregel 7).
+lenis.on('scroll', () => { if (lenis.scroll > 4 && intro.progress() < 1) intro.progress(1); });
+addEventListener('keydown', () => intro.progress(1), { once: true });  // tangentbordet väntar aldrig på introt
+// Fokus utanför vyn scrollas in genom Lenis (den enda som äger scrollen)
+document.addEventListener('focusin', e => {
+  const r = e.target.getBoundingClientRect();
+  if (r.top < 0 || r.bottom > vh()) lenis.scrollTo(e.target, { offset: -Math.round(vh() * 0.2), immediate: true, force: true });
+});
+
+/* ── Akt 1 → 2 · Heron håller, markören går till radens början och drar en markering ─ */
+const heroTL = gsap.timeline({
+  scrollTrigger: {
+    id: 'hero', trigger: '.hero', pin: true, start: 'top top', scrub: true, invalidateOnRefresh: true,
+    end: () => '+=' + Math.round(vh() * (isPhone() ? 1.15 : 1.35)),
+  },
+});
+heroTL.to({}, { duration: 0.42 })
+  .to(axis, { x: () => -axisX(), duration: 0.12, ease: 'power2.inOut' })
+  .fromTo('.hero-sel', { clipPath: 'inset(0% 100% 0% 0%)' }, { clipPath: 'inset(0% 0% 0% 0%)', duration: 0.46, ease: 'none' })
+  .to(axis, { x: () => vw() - axisX() - 2, duration: 0.46, ease: 'none' }, '<')
+  .set({}, {}, 1);
+
+/* ── Akt 2 · Tesen: scrollen skriver meningen; radbrottet öppnar sidan ─────── */
+const typed = $('.typed'), caret = $('.type-caret'), tType = $('.t-type');
+const tSplit = SplitText.create(typed, { type: 'words,chars', charsClass: 'ch', aria: 'none' }); // skärmläsaren läser .sr-only-kopian
+const chars = tSplit.chars;
+let stops = [], shown = -1, typingTimer;
+function measureType() {                                   // markörens stopp efter varje tecken
+  const o = tType.getBoundingClientRect();
+  const first = chars[0].getBoundingClientRect();
+  stops = [{ x: first.left - o.left, y: first.top - o.top }];
+  chars.forEach(c => { const r = c.getBoundingClientRect(); stops.push({ x: r.right - o.left, y: r.top - o.top }); });
+}
+function typeTo(n, quiet) {
+  if (n === shown) return;
+  for (let i = 0; i < chars.length; i++) chars[i].style.visibility = i < n ? 'visible' : 'hidden';
+  shown = n;
+  const s = stops[n] || stops[0];
+  gsap.set(caret, { x: s.x, y: s.y });
+  if (quiet) return;
+  caret.classList.add('is-typing');
+  clearTimeout(typingTimer); typingTimer = setTimeout(() => caret.classList.remove('is-typing'), 420);
+}
+measureType(); typeTo(0, true);
+
+gsap.timeline({
+  scrollTrigger: {
+    id: 'thesis', trigger: '.thesis', pin: true, start: 'top top', scrub: true, invalidateOnRefresh: true,
+    end: () => '+=' + Math.round(vh() * (isPhone() ? 1.7 : 1.9)),
+    onRefresh: () => { measureType(); const n = Math.max(0, shown); shown = -1; typeTo(n, true); },
+    onUpdate: self => {
+      const t = gsap.utils.clamp(0, 1, (self.progress - 0.1) / 0.58);
+      typeTo(Math.round(t * chars.length));
+    },
+  },
+})
+  .to({}, { duration: 0.8 })
+  .to('.t-top', { yPercent: -100, duration: 0.2, ease: 'power1.inOut' })
+  .to('.t-bot', { yPercent: 100, duration: 0.2, ease: 'power1.inOut' }, '<')
+  .set({}, {}, 1);
+
+/* ── Akt 3 · Processen: raden glider förbi läshuvudet; blockmarkören fyller vyn ─ */
+const track = $('.p-track'), steps = $$('.step'), flood = $('.p-flood'), pStage = $('.process .stage');
+const panDist = () => steps[steps.length - 1].offsetLeft - steps[0].offsetLeft;
+function caretBox() {                                      // läshuvudet: en markör i stegnumrens radhöjd
+  const n = $('.step .n').getBoundingClientRect(), s = pStage.getBoundingClientRect();
+  const l = axisX();
+  return { top: n.top - s.top - 2, bot: s.bottom - n.bottom - 2, l, r: s.width - l - 2 };
+}
+const blockW = () => Math.round($('.step .n').getBoundingClientRect().height * 0.62);
+function lightSteps() {
+  const lim = axisX() + 48;
+  steps.forEach(s => s.classList.toggle('on', s.getBoundingClientRect().left <= lim));
+}
+const bandInset = () => { const c = caretBox(); return px(c.top, c.r, c.bot, c.l); };
+gsap.timeline({
+  scrollTrigger: {
+    id: 'process', trigger: '.process', pin: true, start: 'top top', scrub: true, invalidateOnRefresh: true,
+    end: () => '+=' + Math.round(panDist() * 0.72 / 0.62),
+    onUpdate: lightSteps, onRefresh: lightSteps,
+  },
+})
+  .fromTo(flood, { clipPath: bandInset }, { clipPath: bandInset, duration: 0.001 }, 0)
+  .to(track, { x: () => -panDist(), ease: 'none', duration: 0.62 }, 0)
+  .to(flood, { clipPath: () => { const c = caretBox(); return px(c.top, c.r - blockW(), c.bot, c.l); }, duration: 0.08, ease: 'power2.out' })
+  .to(flood, { clipPath: px(0, 0, 0, 0), duration: 0.18, ease: 'power2.inOut' })
+  .to({}, { duration: 0.05 })
+  .set({}, {}, 1);
+
+/* ── Akt 4 · Exemplen: namnet glider isär, ramen växer fram en gång och rörs aldrig mer ─ */
+$$('.scene').forEach(scene => {
+  const w1 = $('.w1', scene), w2 = $('.w2', scene), frame = $('.frame', scene);
+  let done = false;
+  const set = () => {                                      // orden står ihop i mitten före avslöjandet
+    if (done) return;
+    const d = vw() < 1100 ? 36 : frame.getBoundingClientRect().width / 2;
+    gsap.set(w1, { x: d }); gsap.set(w2, { x: -d });
+  };
+  set();
+  const reveal = () => {
+    if (done) return; done = true;
+    const wide = vw() >= 1100, covers = $$('.cover', scene);
+    gsap.timeline({ defaults: { duration: 1.3, ease: 'power3.inOut' },
+      onComplete: () => { gsap.set(covers, { autoAlpha: 0 }); frame.classList.add('shown'); } })
+      .to([w1, w2], { x: 0 }, 0)
+      .to(covers, wide ? { scaleX: 0 } : { scaleY: 0 }, 0.05);
+  };
+  frame._reveal = reveal;                                  // tangentbordet kan nå ramen före scrollen
+  ScrollTrigger.create({ trigger: scene, start: 'top 78%', once: true, onEnter: reveal,
+    onRefresh: self => { set(); if (self.progress > 0) reveal(); } });
+});
+
+/* Ramen blir levande vid klick och släpper när pekaren går ut eller ramen lämnar vyn */
+const io = new IntersectionObserver(es => es.forEach(e => { if (!e.isIntersecting) e.target.classList.remove('live'); }));
+$$('.frame').forEach(frame => {
+  io.observe(frame);
+  $('.use', frame).addEventListener('click', () => { frame.classList.add('live'); $('iframe', frame).focus(); });
+  frame.addEventListener('mouseleave', () => frame.classList.remove('live'));
+});
+// Fokusring när tangentbordet går in i en ram (fokus i ramens dokument når inte :focus-within här)
+const markFrameFocus = () => setTimeout(() => {
+  const a = document.activeElement;
+  $$('.frame').forEach(f => {
+    const on = !!a && a.tagName === 'IFRAME' && f.contains(a);
+    f.classList.toggle('focused', on);
+    if (!on) return;
+    if (f._reveal) f._reveal();
+    const r = f.getBoundingClientRect();
+    if (r.top < 0 || r.bottom > vh()) lenis.scrollTo(f, { offset: -Math.round(vh() * 0.12), immediate: true, force: true });
+  });
+}, 0);
+addEventListener('blur', markFrameFocus);
+addEventListener('focus', markFrameFocus);
+document.addEventListener('focusin', markFrameFocus);
+
+/* ── Akt 4 → 5 · Bläcket smalnar till en mobilbred spalt, sedan till axeln ─── */
+const kStage = $('.pkg-head .stage');
+const colInset = () => { const l = axisX(), w = kStage.clientWidth, half = Math.min(195, w / 2 - 8);
+  return px(0, Math.max(0, w - l - half), 0, Math.max(0, l - half)); };
+const lineInset = () => { const l = axisX(), w = kStage.clientWidth; return px(0, w - l - 2, 0, l); };
+gsap.timeline({
+  scrollTrigger: {
+    id: 'pkg', trigger: '.pkg-head', pin: true, start: 'top top', scrub: true, invalidateOnRefresh: true,
+    end: () => '+=' + Math.round(vh() * 1.0),
+  },
+})
+  .fromTo('.narrow', { clipPath: px(0, 0, 0, 0) }, { clipPath: colInset, duration: 0.3, ease: 'power2.inOut' })
+  .to('.narrow', { clipPath: lineInset, duration: 0.22, ease: 'power2.inOut' })
+  .to({}, { duration: 0.48 })
+  .set({}, {}, 1);
+
+/* ── Akt 5 → 6 · Markeringen tar raderna en i taget och blir kontaktens yta ── */
+gsap.timeline({
+  scrollTrigger: { id: 'ledger', trigger: '.ledger', start: 'bottom 96%', end: 'bottom 46%', scrub: true },
+}).to('.rsel', { scaleX: 1, ease: 'none', duration: 1, stagger: 1 });
+
+/* ── Mejlfliken lämnar plats när adressen själv står på skärmen ────────────── */
+ScrollTrigger.create({
+  trigger: '.c-mail', start: 'top 92%',
+  onEnter: () => gsap.to('.mail-wrap', { autoAlpha: 0, duration: 0.3, overwrite: true }),
+  onLeaveBack: () => gsap.to('.mail-wrap', { autoAlpha: 1, duration: 0.3, overwrite: true }),
+});
+
+/* ── Rubriker: SplitText-radmasker, en gång, sedan stilla ──────────────────── */
+function maskReveal(sel, trigger, start) {
+  const s = SplitText.create(sel, { type: 'lines', mask: 'lines', aria: 'none' });
+  s.masks.forEach(m => m.classList.add('line-mask'));
+  gsap.from(s.lines, { yPercent: 118, duration: 1.15, ease: 'power4.out', stagger: 0.09,
+    scrollTrigger: { trigger, start, once: true },
+    onComplete: () => s.revert() });                       // maskerna klipper aldrig efteråt (textavstånd, zoom)
+}
+maskReveal('.t-head .row', '.thesis', 'top 72%');
+maskReveal('.p-head .row', '.process', 'top 72%');
+maskReveal('.c-head .row', '.contact', 'top 72%');
+
+/* ── Flödets reveal: 14 px, 620 ms, en gång, felar mot synligt ─────────────── */
+ScrollTrigger.batch('.rv', {
+  start: 'top 88%', once: true,
+  onEnter: els => gsap.to(els, { opacity: 1, y: 0, duration: 0.62, ease: 'power2.out', stagger: 0.06, overwrite: true }),
+});
+document.documentElement.classList.add('ready');
+requestAnimationFrame(() => $$('.rv').forEach(el => {     // allt som redan passerat visas direkt
+  if (el.getBoundingClientRect().top < vh() * 0.88) gsap.to(el, { opacity: 1, y: 0, duration: 0.62, overwrite: true });
+}));
+
+/* ── ?preview=<id>:<p> landar i en akt (M2: bevisa läget innan du dömer det) ─ */
+const pv = new URLSearchParams(location.search).get('preview');
+if (pv) {
+  const [id, p] = pv.split(':');
+  intro.progress(1);
+  const st = ScrollTrigger.getById(id);
+  if (st) lenis.scrollTo(st.start + (parseFloat(p) || 0) * (st.end - st.start), { immediate: true, force: true });
+}
+window.__v4 = { intro, ScrollTrigger, lenis };
+</script>
+</body>
+</html>
