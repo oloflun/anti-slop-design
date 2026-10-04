@@ -266,6 +266,10 @@ def make_handler(session_dir: Path, fallback_root: Path | None = None, single: b
                 self._json(200, {"board": board, "cellsExist": cells_exist(session_dir, board),
                                  "single": single})
                 return
+            if self.path.split("?", 1)[0] == "/":
+                # the pane opens the origin; without this it shows a directory listing
+                self.send_response(302); self.send_header("Location", "/board.html")
+                self.send_header("Content-Length", "0"); self.end_headers(); return
             super().do_GET()
 
         def do_POST(self):  # noqa: N802 (stdlib override)
