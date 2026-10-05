@@ -412,32 +412,6 @@ a{color:inherit;}
     .showcase-row h3{font-size:28px;}
     .showcase-row .showcase-lede{line-height:1.35;}
   }
-  /* detaljcellen: en <figure> per steg, grid-stackad (samma grid-area:1/1-
-     teknik som .showcase-row ovan), färglager under och ett dither-rutnät
-     ovanpå (buildTileGrid, samma mekanism som #kontakt/tes-bilden) som
-     löses upp i den skrubbade pin-tidslinjen (C.tl, se buildStepTimelines).
-     Calyx grå grund (dither svart-på-grått), Hōrai svart grund (dither
-     vitt-på-svart) - samma två grundfärger dither.py redan producerar. */
-  /* R6b: bilden är ett förstoringsglas (2,5-3x iframen) tagen i exakt cellens
-     proportion vid 1440x900 (599,6/426,5 = 1,4058). Vid andra fönster varierar
-     cellen från 0,63 (2560x1440) till 1,59 (1280x800); figuren låses därför
-     till bildens proportion och passas in (contain) med container-enheter, så
-     att färglagret och rutnätet ovanpå alltid täcker samma yta. Med cover
-     klipptes luppen (adressen, priset) och rutorna gled ur linje mot färgen. */
-  /* R8b (F-019: sajten är huvudsaken, inget får täcka ramen): luppen är ett
-     band i kolumnens fulla bredd, kant i kant mot vänster, höger och botten,
-     utan ram, inset eller skugga, NOT ett utklipp över skarven. Bandets höjd
-     är det som blir kvar under det längsta steget (1fr), 24 px under texten
-     (16 i raden + 8 här). Utsnittet är cover: figuren behåller bildens
-     proportion (så att dither-rutnätet ligger kvar på färgen, R6b) och
-     överfyller bandet, som klipper; --fx/--fy per figur är object-position
-     som bråk, valt så att loupe.py STEPS mål står kvar i bild. Under 160 px
-     band döljs luppen: texten vinner. */
-  .showcase-detail{position:relative;overflow:hidden;min-height:0;margin-top:8px;container-type:size;}
-  .showcase-figure{--fw:max(100cqw, calc(100cqh * 1.4058));position:absolute;width:var(--fw);aspect-ratio:1.4058;left:calc((100cqw - var(--fw)) * var(--fx, .5));top:calc((100cqh - var(--fw) / 1.4058) * var(--fy, .5));margin:0;opacity:0;}
-  @container (max-height:159.98px){ .showcase-figure{display:none;} }
-  .showcase-figure:first-child{opacity:1;}
-  .showcase-figure img{position:absolute;inset:0;width:100%;height:100%;object-fit:fill;}
 }
 @media (max-width:767px), (max-height:560px){
   /* R7 runda 2, fynd 2: .showcase-embed-cell (position:sticky) satt över
@@ -462,7 +436,6 @@ a{color:inherit;}
      synlighet. .showcase-track har fortfarande ingen mobilstorlek (dess
      height/position-regler ligger kvar i 768px-blocket ovan) och kollapsar
      därför osynligt till 0px, precis som förut. */
-  .showcase-detail{display:none;}
   .showcase-steps{display:contents;}
   /* R8: raderna utan rutor - en yta per case, luften skiljer raderna åt, NOT
      randiga celler med svarta fogar. Den aktiva raden står i 1, de andra i
@@ -828,30 +801,6 @@ a{color:inherit;}
               <div class="showcase-row" data-row="3"><div class="showcase-row-text"><h3 class="h3">Veckans utbud på en rad var</h3><p class="showcase-lede">Ett utbud som byts varje vecka måste gå att ändra på en minut, annars blir det liggande. En lista i stället för ett rutnät av foton betyder att ateljén skriver om en rad, och att besökaren jämför buketter och priser utan att scrolla.</p></div></div>
               <div class="showcase-row" data-row="4"><div class="showcase-row-text"><h3 class="h3">Ett mejl räcker</h3><p class="showcase-lede">Den som beställer till ett rum vill beskriva ljuset och tillfället, och det ryms inte i formulärfält. Ett mejl tar längre tid än en bokningsknapp, men svaret kommer från den som ska binda buketten, och det är det en kund hos en liten ateljé betalar för.</p></div></div>
             </div>
-            <!-- R6b: detaljcellen - ett förstoringsglas per steg ur calyx.html självt,
-                 2,5-3x det iframen visar. Utsnitten och varför: loupe.py, STEPS. -->
-            <div class="showcase-detail" aria-hidden="true">
-              <figure class="showcase-figure is-active" data-row="0" style="--fy:.83">
-                <img class="dither-layer" src="assets/steps/calyx-1-dither.webp" alt="" loading="lazy">
-                <img class="color-layer" src="assets/steps/calyx-1.webp" alt="" loading="lazy" style="clip-path:inset(0 100% 0 0)">
-              </figure>
-              <figure class="showcase-figure" data-row="1" style="--fy:.27">
-                <img class="dither-layer" src="assets/steps/calyx-2-dither.webp" alt="" loading="lazy">
-                <img class="color-layer" src="assets/steps/calyx-2.webp" alt="" loading="lazy" style="clip-path:inset(0 100% 0 0)">
-              </figure>
-              <figure class="showcase-figure" data-row="2" style="--fx:1;--fy:.8">
-                <img class="dither-layer" src="assets/steps/calyx-3-dither.webp" alt="" loading="lazy">
-                <img class="color-layer" src="assets/steps/calyx-3.webp" alt="" loading="lazy" style="clip-path:inset(0 100% 0 0)">
-              </figure>
-              <figure class="showcase-figure" data-row="3" style="--fy:.5">
-                <img class="dither-layer" src="assets/steps/calyx-4-dither.webp" alt="" loading="lazy">
-                <img class="color-layer" src="assets/steps/calyx-4.webp" alt="" loading="lazy" style="clip-path:inset(0 100% 0 0)">
-              </figure>
-              <figure class="showcase-figure" data-row="4" style="--fy:.48">
-                <img class="dither-layer" src="assets/steps/calyx-5-dither.webp" alt="" loading="lazy">
-                <img class="color-layer" src="assets/steps/calyx-5.webp" alt="" loading="lazy" style="clip-path:inset(0 100% 0 0)">
-              </figure>
-            </div>
           </div>
         </div>
         <div class="showcase-panel showcase-panel--horai" id="showcase-horai" aria-labelledby="horai-title" style="display:none" inert>
@@ -872,36 +821,6 @@ a{color:inherit;}
               <div class="showcase-row" data-row="3"><div class="showcase-row-text"><h3 class="h3">Priset står större än namnet</h3><p class="showcase-lede">Med en meny per kväll är det priset gästen jämför. Ett pris som står litet ser gömt ut, och den som måste leta efter det har redan börjat tvivla. Därför står priset i rött och större än menyns namn.</p></div></div>
               <div class="showcase-row" data-row="4"><div class="showcase-row-text"><h3 class="h3">Rummet före bokningen</h3><p class="showcase-lede">De flesta restauranger visar matsalen först. Här kommer den sist, precis före bokningen, där den svarar på gästens sista fråga: var ska vi sitta?</p></div></div>
               <div class="showcase-row" data-row="5"><div class="showcase-row-text"><h3 class="h3">Knappen fanns där hela tiden</h3><p class="showcase-lede">Den som bestämmer sig tidigt ska inte behöva leta, så bokningen följer med hela vägen ned. Sidan säger också när veckans platser släpps, så att ingen skriver till en kväll som redan är full.</p></div></div>
-            </div>
-            <!-- R6 runda 6: detaljcellen - en <figure> per steg ur horai.html självt.
-                 Ingen loading=lazy (Hōrai-panelen är display:none tills klick) -
-                 färg+dither förvärms explicit i JS (prewarmInactiveCase), aldrig i
-                 activateCase. Utsnitten och varför: loupe.py, STEPS. -->
-            <div class="showcase-detail" aria-hidden="true">
-              <figure class="showcase-figure is-active" data-row="0" style="--fy:.5">
-                <img class="dither-layer" src="assets/steps/horai-1-dither.webp" alt="">
-                <img class="color-layer" src="assets/steps/horai-1.webp" alt="" style="clip-path:inset(0 100% 0 0)">
-              </figure>
-              <figure class="showcase-figure" data-row="1" style="--fy:.62">
-                <img class="dither-layer" src="assets/steps/horai-2-dither.webp" alt="">
-                <img class="color-layer" src="assets/steps/horai-2.webp" alt="" style="clip-path:inset(0 100% 0 0)">
-              </figure>
-              <figure class="showcase-figure" data-row="2" style="--fy:.55">
-                <img class="dither-layer" src="assets/steps/horai-3-dither.webp" alt="">
-                <img class="color-layer" src="assets/steps/horai-3.webp" alt="" style="clip-path:inset(0 100% 0 0)">
-              </figure>
-              <figure class="showcase-figure" data-row="3" style="--fy:.4">
-                <img class="dither-layer" src="assets/steps/horai-4-dither.webp" alt="">
-                <img class="color-layer" src="assets/steps/horai-4.webp" alt="" style="clip-path:inset(0 100% 0 0)">
-              </figure>
-              <figure class="showcase-figure" data-row="4" style="--fy:.62">
-                <img class="dither-layer" src="assets/steps/horai-5-dither.webp" alt="">
-                <img class="color-layer" src="assets/steps/horai-5.webp" alt="" style="clip-path:inset(0 100% 0 0)">
-              </figure>
-              <figure class="showcase-figure" data-row="5" style="--fy:.28">
-                <img class="dither-layer" src="assets/steps/horai-6-dither.webp" alt="">
-                <img class="color-layer" src="assets/steps/horai-6.webp" alt="" style="clip-path:inset(0 100% 0 0)">
-              </figure>
             </div>
           </div>
         </div>
