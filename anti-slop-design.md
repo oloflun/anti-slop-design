@@ -4,10 +4,19 @@ type: project
 status: active
 project_slug: anti-slop-design
 repo: C:\\Users\\Anton L\\anti-slop-design
-updated: 2026-10-01
+updated: 2026-10-05
 ---
 
 # Anti-Slop Design
+
+## Nulage 2026-10-05
+
+Alunix flik 7 (V3g R10, bara det Anton beställt) är live på https://alunix.se (308 till www) och https://www.alunix.se,
+från det privata repot `oloflun/alunix-v3g` till Vercel-projektet `alunix`. Showcasens stegbilder är borttagna.
+Boarden har flikarna 2, 6, 7, 8 (nytt koncept "Markören") och 9 (R10:s egna idéer). Designkedjan kräver nu
+showcase-golvet och GSAP/Lenis-skills före första UI-skrivning (plugin 1.2.2). Domänflödet är skillen
+`loopia-vercel-domain`. Öppet: Vercel-projektets Git-länk till `alunix-site`, Antons bedömning av flik 8/9,
+push av `design-rework-v3`. Läs `HANDOFF-2026-10-05-ALUNIX-LIVE.md` först.
 
 ## Nulage 2026-10-01
 

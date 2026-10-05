@@ -175,6 +175,8 @@ hälsokontroller, inte ett mål.
 
 ## Ändringslogg
 
+- 2026-10-05 — claude — första klientsidan i produktion: Alunix flik 7 live på alunix.se, byggd genom kedjan med showcase-golvet och GSAP/Lenis som krav. Målbilden har inget delmål för leverans till kund; om det ska finnas ett är Antons beslut.
+
 - 2026-10-01 — claude — Alunix V3f "Rutverket" byggdes över sex rundor med bara Inspo-MCP, UI-skills och GSAP+Lenis som
   designkällor, och bedömdes av Anton som "nästan perfekt på en gång" och mer unikt än V3d. Processen och
   integrationsplanen för designsystemet står i `tests/alunix-r8/HANDOFF-V3f.md`. V3g:s showcase fick copy i två
