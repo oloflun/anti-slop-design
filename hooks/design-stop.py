@@ -434,6 +434,16 @@ def main() -> None:
         edits = [r for r in rows if r.get("event") == "edit"]
         if not edits:
             return
+        # Once per edit count, not once per Stop: Stop fires after every reply,
+        # and re-emitting the same line re-invoked an idle agent ~8 times in a
+        # row (ai-job-search, 2026-10-19). Same idea as .stop-signature below.
+        stamp = L.session_file(root, ".unarmed-notice")
+        try:
+            if stamp.exists() and int(stamp.read_text(encoding="utf-8") or 0) >= len(edits):
+                return
+            stamp.write_text(str(len(edits)), encoding="utf-8")
+        except Exception:
+            pass
         L.emit("Stop", f"[design] {len(edits)} UI-filer ändrade utan armad "
                "designsession (ingen rapport). Var det designarbete: ladda "
                "Skill(design) nästa gång.")

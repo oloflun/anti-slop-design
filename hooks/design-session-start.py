@@ -51,7 +51,8 @@ STALE_SECONDS = 24 * 60 * 60  # a day — long enough no live session is this ol
 # Base names of files that now live per-session (see session_file()). Globbed
 # with a trailing "-*" to catch every session's copy, our own included (which
 # will not exist yet, so pruning it is a no-op for us specifically).
-PER_SESSION_BASES = (L.ARMED_NAME, ".design-verb", ".stop-blocks", ".linked-roots")
+PER_SESSION_BASES = (L.ARMED_NAME, ".design-verb", ".stop-blocks", ".linked-roots",
+                     ".unarmed-notice")
 
 
 def clear_root(root: Path) -> None:
