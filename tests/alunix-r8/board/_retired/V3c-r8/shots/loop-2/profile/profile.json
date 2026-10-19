@@ -1,0 +1,320 @@
+{
+ "geom": {
+  "stagger": 3060,
+  "process": 5637,
+  "principles": 9433,
+  "close": 9980,
+  "docH": 10880
+ },
+ "runs": [
+  {
+   "name": "hero-pin",
+   "start": 0,
+   "end": 3000,
+   "ticks": 30,
+   "delta": {
+    "TaskDuration": 3.761,
+    "ScriptDuration": 0.228,
+    "LayoutDuration": 0.031,
+    "RecalcStyleDuration": 2.436,
+    "LayoutCount": 11,
+    "RecalcStyleCount": 192
+   },
+   "frames": {
+    "n": 121,
+    "p95_ms": 88.9,
+    "over33": 57,
+    "mean_ms": 38.6
+   },
+   "frameState": [
+    "frame-wrap calyx-wrap|auto|src=true",
+    "frame-wrap horai-wrap|auto|src=false"
+   ]
+  },
+  {
+   "name": "band-r7-asleep",
+   "start": 2460,
+   "end": 5260,
+   "ticks": 28,
+   "delta": {
+    "TaskDuration": 5.802,
+    "ScriptDuration": 0.254,
+    "LayoutDuration": 0.046,
+    "RecalcStyleDuration": 4.397,
+    "LayoutCount": 13,
+    "RecalcStyleCount": 373
+   },
+   "frames": {
+    "n": 82,
+    "p95_ms": 304.1,
+    "over33": 81,
+    "mean_ms": 93.2
+   },
+   "frameState": [
+    "frame-wrap calyx-wrap is-asleep|hidden|src=true",
+    "frame-wrap horai-wrap is-asleep|hidden|src=true"
+   ]
+  },
+  {
+   "name": "band-frames-blocked",
+   "start": 2460,
+   "end": 5260,
+   "ticks": 28,
+   "delta": {
+    "TaskDuration": 5.364,
+    "ScriptDuration": 0.306,
+    "LayoutDuration": 0.037,
+    "RecalcStyleDuration": 4.076,
+    "LayoutCount": 12,
+    "RecalcStyleCount": 373
+   },
+   "frames": {
+    "n": 88,
+    "p95_ms": 143.8,
+    "over33": 82,
+    "mean_ms": 74.7
+   },
+   "frameState": [
+    "frame-wrap calyx-wrap is-asleep|hidden|src=true",
+    "frame-wrap horai-wrap is-asleep|hidden|src=true"
+   ]
+  },
+  {
+   "name": "band-frames-awake",
+   "start": 2460,
+   "end": 5260,
+   "ticks": 28,
+   "delta": {
+    "TaskDuration": 7.018,
+    "ScriptDuration": 0.331,
+    "LayoutDuration": 0.463,
+    "RecalcStyleDuration": 4.269,
+    "LayoutCount": 14,
+    "RecalcStyleCount": 507
+   },
+   "frames": {
+    "n": 84,
+    "p95_ms": 239.6,
+    "over33": 83,
+    "mean_ms": 100.1
+   },
+   "frameState": [
+    "frame-wrap calyx-wrap is-asleep|auto|src=true",
+    "frame-wrap horai-wrap|auto|src=true"
+   ]
+  },
+  {
+   "name": "band-blocked-noTone",
+   "start": 2460,
+   "end": 5260,
+   "ticks": 28,
+   "delta": {
+    "TaskDuration": 5.509,
+    "ScriptDuration": 0.284,
+    "LayoutDuration": 0.041,
+    "RecalcStyleDuration": 4.145,
+    "LayoutCount": 11,
+    "RecalcStyleCount": 380
+   },
+   "frames": {
+    "n": 87,
+    "p95_ms": 140.9,
+    "over33": 82,
+    "mean_ms": 78.0
+   },
+   "frameState": [
+    "frame-wrap calyx-wrap is-asleep|hidden|src=true",
+    "frame-wrap horai-wrap is-asleep|hidden|src=true"
+   ]
+  },
+  {
+   "name": "band-blocked-noGiantScale",
+   "start": 2460,
+   "end": 5260,
+   "ticks": 28,
+   "delta": {
+    "TaskDuration": 4.964,
+    "ScriptDuration": 0.262,
+    "LayoutDuration": 0.036,
+    "RecalcStyleDuration": 3.818,
+    "LayoutCount": 14,
+    "RecalcStyleCount": 367
+   },
+   "frames": {
+    "n": 89,
+    "p95_ms": 318.4,
+    "over33": 78,
+    "mean_ms": 79.4
+   },
+   "frameState": [
+    "frame-wrap calyx-wrap is-asleep|hidden|src=true",
+    "frame-wrap horai-wrap is-asleep|hidden|src=true"
+   ]
+  },
+  {
+   "name": "process",
+   "start": 4737,
+   "end": 9237,
+   "ticks": 45,
+   "delta": {
+    "TaskDuration": 8.854,
+    "ScriptDuration": 0.432,
+    "LayoutDuration": 0.373,
+    "RecalcStyleDuration": 6.755,
+    "LayoutCount": 40,
+    "RecalcStyleCount": 402
+   },
+   "frames": {
+    "n": 128,
+    "p95_ms": 159.5,
+    "over33": 124,
+    "mean_ms": 83.8
+   },
+   "frameState": [
+    "frame-wrap calyx-wrap|auto|src=false",
+    "frame-wrap horai-wrap is-asleep|hidden|src=true"
+   ]
+  },
+  {
+   "name": "process-noSheet",
+   "start": 4737,
+   "end": 9237,
+   "ticks": 45,
+   "delta": {
+    "TaskDuration": 5.55,
+    "ScriptDuration": 0.418,
+    "LayoutDuration": 0.043,
+    "RecalcStyleDuration": 4.004,
+    "LayoutCount": 35,
+    "RecalcStyleCount": 460
+   },
+   "frames": {
+    "n": 195,
+    "p95_ms": 106.3,
+    "over33": 66,
+    "mean_ms": 39.4
+   },
+   "frameState": [
+    "frame-wrap calyx-wrap|auto|src=false",
+    "frame-wrap horai-wrap is-asleep|hidden|src=true"
+   ]
+  },
+  {
+   "name": "process-noAct",
+   "start": 4737,
+   "end": 9237,
+   "ticks": 45,
+   "delta": {
+    "TaskDuration": 8.443,
+    "ScriptDuration": 0.368,
+    "LayoutDuration": 0.21,
+    "RecalcStyleDuration": 6.518,
+    "LayoutCount": 71,
+    "RecalcStyleCount": 421
+   },
+   "frames": {
+    "n": 132,
+    "p95_ms": 317.5,
+    "over33": 123,
+    "mean_ms": 89.9
+   },
+   "frameState": [
+    "frame-wrap calyx-wrap|auto|src=false",
+    "frame-wrap horai-wrap is-asleep|hidden|src=true"
+   ]
+  },
+  {
+   "name": "process-noGroundTone",
+   "start": 4737,
+   "end": 9237,
+   "ticks": 45,
+   "delta": {
+    "TaskDuration": 9.263,
+    "ScriptDuration": 0.47,
+    "LayoutDuration": 0.38,
+    "RecalcStyleDuration": 6.944,
+    "LayoutCount": 44,
+    "RecalcStyleCount": 408
+   },
+   "frames": {
+    "n": 136,
+    "p95_ms": 197.1,
+    "over33": 131,
+    "mean_ms": 83.7
+   },
+   "frameState": [
+    "frame-wrap calyx-wrap|auto|src=false",
+    "frame-wrap horai-wrap is-asleep|hidden|src=true"
+   ]
+  },
+  {
+   "name": "process-noGround",
+   "start": 4737,
+   "end": 9237,
+   "ticks": 45,
+   "delta": {
+    "TaskDuration": 9.085,
+    "ScriptDuration": 0.398,
+    "LayoutDuration": 0.281,
+    "RecalcStyleDuration": 6.891,
+    "LayoutCount": 39,
+    "RecalcStyleCount": 425
+   },
+   "frames": {
+    "n": 147,
+    "p95_ms": 198.1,
+    "over33": 137,
+    "mean_ms": 80.1
+   },
+   "frameState": [
+    "frame-wrap calyx-wrap|auto|src=false",
+    "frame-wrap horai-wrap is-asleep|hidden|src=true"
+   ]
+  },
+  {
+   "name": "tail",
+   "start": 8533,
+   "end": 9980,
+   "ticks": 20,
+   "delta": {
+    "TaskDuration": 4.935,
+    "ScriptDuration": 0.228,
+    "LayoutDuration": 0.151,
+    "RecalcStyleDuration": 3.959,
+    "LayoutCount": 77,
+    "RecalcStyleCount": 322
+   },
+   "frames": {
+    "n": 71,
+    "p95_ms": 176.8,
+    "over33": 53,
+    "mean_ms": 85.2
+   },
+   "frameState": [
+    "frame-wrap calyx-wrap|auto|src=false",
+    "frame-wrap horai-wrap|auto|src=false"
+   ]
+  },
+  {
+   "name": "control-smooth",
+   "start": 0,
+   "end": 1800,
+   "ticks": 30,
+   "delta": {
+    "TaskDuration": 0.819,
+    "ScriptDuration": 0.134,
+    "LayoutDuration": 0.0,
+    "RecalcStyleDuration": 0.188,
+    "LayoutCount": 0,
+    "RecalcStyleCount": 155
+   },
+   "frames": {
+    "n": 196,
+    "p95_ms": 18.4,
+    "over33": 0,
+    "mean_ms": 17.8
+   },
+   "frameState": []
+  }
+ ]
+}

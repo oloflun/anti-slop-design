@@ -1,0 +1,51 @@
+{
+  "url": "http://127.0.0.1:3305/tests/alunix-r8/runs/V3g/index.html",
+  "px_per_notch": 100,
+  "sections": {
+    "hero": {
+      "frames": 124,
+      "p95_ms": 16.9,
+      "over33": 5
+    },
+    "tes": {
+      "frames": 191,
+      "p95_ms": 50,
+      "over33": 12
+    },
+    "process": {
+      "frames": 101,
+      "p95_ms": 33.3,
+      "over33": 4
+    },
+    "exempelcase": {
+      "frames": 90,
+      "p95_ms": 50.1,
+      "over33": 6
+    },
+    "showcase": {
+      "frames": 340,
+      "p95_ms": 16.8,
+      "over33": 9
+    },
+    "pris": {
+      "frames": 98,
+      "p95_ms": 33.3,
+      "over33": 3
+    },
+    "kontakt": {
+      "frames": 173,
+      "p95_ms": 16.8,
+      "over33": 0
+    }
+  },
+  "iframe_loads": {
+    "showcaseIframeCalyx": 9,
+    "showcaseIframeHorai": 9
+  },
+  "st_refreshes_during_pass": 4,
+  "fails": [
+    "iframe showcaseIframeCalyx loaded 9x",
+    "iframe showcaseIframeHorai loaded 9x",
+    "4 ScrollTrigger refresh(es) during the scroll pass"
+  ]
+}

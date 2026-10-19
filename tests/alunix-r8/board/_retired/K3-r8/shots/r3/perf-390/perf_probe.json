@@ -1,0 +1,65 @@
+{
+  "url": "http://127.0.0.1:3302/tests/alunix-r8/runs/K3/index.html",
+  "viewport": [
+    390,
+    900
+  ],
+  "cpu": 4.0,
+  "lcp_ms": 580,
+  "cls": 0,
+  "long_tasks": 8,
+  "long_tasks_under_scroll": 4,
+  "transfer": {
+    "other": {
+      "bytes": 71012,
+      "count": 3,
+      "largest": 54774,
+      "largest_url": "http://127.0.0.1:3302/tests/alunix-r8/runs/K3/index.html"
+    },
+    "style": {
+      "bytes": 18563,
+      "count": 2,
+      "largest": 18563,
+      "largest_url": "http://127.0.0.1:3302/tests/alunix-r8/runs/K3/scroll/scrollcraft.css"
+    },
+    "script": {
+      "bytes": 64854,
+      "count": 3,
+      "largest": 58725,
+      "largest_url": "http://127.0.0.1:3302/tests/alunix-r8/runs/K3/scroll/scrollcraft.js"
+    },
+    "font": {
+      "bytes": 85460,
+      "count": 4,
+      "largest": 27436,
+      "largest_url": "https://fonts.gstatic.com/s/ptmono/v14/9oRONYoBnWILk-9AnC8zMw.woff2"
+    },
+    "image": {
+      "bytes": 1436737,
+      "count": 4,
+      "largest": 1122865,
+      "largest_url": "ps://images.unsplash.com/photo-1487530811176-3780de880c2d?auto=format&fit=crop&w=2400&q=80"
+    }
+  },
+  "total_bytes": 1676626,
+  "dom_nodes": 92,
+  "findings": [
+    {
+      "rule": "long-task-under-scroll",
+      "detail": "4 tasks > 50 ms under scroll"
+    },
+    {
+      "rule": "hero-image",
+      "detail": "1122865 B > 250000 (ps://images.unsplash.com/photo-1487530811176-3780de880c2d?auto=format&fit=crop&w=2400&q=80)"
+    },
+    {
+      "rule": "font-files",
+      "detail": "4 > 3"
+    },
+    {
+      "rule": "no-font-preload",
+      "detail": "en @font-face finns men ingen <link rel=preload as=font>"
+    }
+  ],
+  "pass": false
+}

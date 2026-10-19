@@ -1,0 +1,142 @@
+{
+  "cell": "K4",
+  "round": "r8",
+  "written_by": "architect",
+  "written": "2026-09-09",
+  "generated_material": {
+    "present": false,
+    "statement": "Noll genererat material i K4, och ingen generate-prompt ar forfattad. Tva sammanfallande skal, i den har ordningen. (1) Principiellt, och det ar det barande: cellens hela argument ar att allt som visas ar verkligt och matbart. Vansterhalvan ar en riktig fil i repot, hogerhalvan ar en riktig kundsajt live, och varje tal i skillnadsliggaren ar matt ur de tva filerna med kommandot utskrivet i concepts-K4.md SS Matning. En genererad bild pa den har sidan vore ett pahittat objekt i en sida vars tes ar att den inte hittar pa nagot. Material som letar efter en anvandning ar inte tillatet. (2) Praktiskt: Higgsfield ar ute, matt av lead 2026-09-09 - balance ger {\"credits\":0,\"subscription_plan_type\":\"free\"} och list_workspaces visar en enda privat workspace pa free plan, sa steg 1 och 2 i planens SS 10.6 faller. Skal (2) andrade ingenting i K4, eftersom skal (1) redan uteslot generering innan krediterna raknades. Se assets/ASSETS.md SS 1 och NOTES.md.",
+    "higgsfield_jobs": [],
+    "codex_image_gen_jobs": [],
+    "total_credits_spent": 0
+  },
+  "live_frames": [
+    {
+      "path": "/sites/before-ai-slop.html",
+      "role": "\"Fore\"-lagret i folden, anti-referensen som innehall",
+      "bytes": 9016,
+      "confirmed_on_disk": "2026-09-09, ls -la och curl -> 200 mot http://localhost:3399",
+      "origin": "Kedjans egen fil, incheckad i detta repo sedan 2026-06-11. Ingen tredjepartskalla, noll externa bilder, noll <img>, noll srcset. Enda url() i filen ar url(#g), en intern SVG-referens.",
+      "label_required": "En typisk mallsida",
+      "post_processed": "ingen; filen redigeras aldrig av K4"
+    },
+    {
+      "path": "/sites/calyx.html",
+      "role": "\"Efter\"-lagret i folden och sidans upplosta yta",
+      "bytes": 16238,
+      "confirmed_on_disk": "2026-09-09, ls -la och curl -> 200 mot http://localhost:3399",
+      "origin": "Alunix egen exempelsajt, incheckad i detta repo. Filen hamtar sjalv fyra externa fotografier fran images.unsplash.com (w=1600, w=1600, w=2000, w=2400) plus en data:image/svg+xml-grain. De bildernas ursprung och licens tillhor calyx.html, inte K4, och K4 redigerar aldrig filen.",
+      "label_required": "Exempelsida: Calyx, florist i Stockholm",
+      "post_processed": "ingen; ingen transform, ingen scale, ingen opacity, inget filter pa ramen"
+    }
+  ],
+  "screenshots_to_shoot": [
+    {
+      "file": "demo-horai-1440.webp",
+      "role": "Horai som full-bleed objekt, a3 objekt 1, skrivbord",
+      "source": "/sites/horai.html vid 1440x900",
+      "command": "assets/ASSETS.md SS 3, shoot.py",
+      "status": "[needs: shot]",
+      "origin": "Egen skarmbild av en fil i detta repo. Ingen tredjepartskalla.",
+      "post_processed": "PNG -> WEBP quality 82, inga andra steg"
+    },
+    {
+      "file": "demo-horai-390.webp",
+      "role": "Horai som full-bleed objekt, a3 objekt 1, mobil",
+      "source": "/sites/horai.html vid 390x844, device_scale_factor 2",
+      "command": "assets/ASSETS.md SS 3, inline Playwright (shoot.py har WIDTH=1440 hardkodat)",
+      "status": "[needs: shot]",
+      "origin": "Egen skarmbild av en fil i detta repo. Ingen tredjepartskalla.",
+      "post_processed": "PNG -> WEBP quality 82, inga andra steg"
+    },
+    {
+      "file": "demo-hyperborea-1440.webp",
+      "role": "Hyperborea som full-bleed objekt, a3 objekt 2, skrivbord",
+      "source": "/sites/hyperborea.html vid 1440x900",
+      "command": "assets/ASSETS.md SS 3, shoot.py",
+      "status": "[needs: shot]",
+      "origin": "Egen skarmbild av en fil i detta repo. Ingen tredjepartskalla.",
+      "post_processed": "PNG -> WEBP quality 82, inga andra steg"
+    },
+    {
+      "file": "demo-hyperborea-390.webp",
+      "role": "Hyperborea som full-bleed objekt, a3 objekt 2, mobil",
+      "source": "/sites/hyperborea.html vid 390x844, device_scale_factor 2",
+      "command": "assets/ASSETS.md SS 3, inline Playwright",
+      "status": "[needs: shot]",
+      "origin": "Egen skarmbild av en fil i detta repo. Ingen tredjepartskalla.",
+      "post_processed": "PNG -> WEBP quality 82, inga andra steg"
+    },
+    {
+      "file": "demo-calyx-1440.webp",
+      "role": "Reserv om Calyx-iframen inte kan monteras, eller om perf_probe visar over 2,5 MB",
+      "source": "/sites/calyx.html vid 1440x900",
+      "command": "assets/ASSETS.md SS 3, shoot.py",
+      "status": "[needs: shot]",
+      "origin": "Egen skarmbild av en fil i detta repo. Ingen tredjepartskalla.",
+      "post_processed": "PNG -> WEBP quality 82, inga andra steg"
+    },
+    {
+      "file": "demo-calyx-390.webp",
+      "role": "Reserv, mobil",
+      "source": "/sites/calyx.html vid 390x844, device_scale_factor 2",
+      "command": "assets/ASSETS.md SS 3, inline Playwright",
+      "status": "[needs: shot]",
+      "origin": "Egen skarmbild av en fil i detta repo. Ingen tredjepartskalla.",
+      "post_processed": "PNG -> WEBP quality 82, inga andra steg"
+    }
+  ],
+  "inherited": [],
+  "not_inherited": [
+    {
+      "file": "tests/alunix-concepts-r3/build/assets/demo-horai.webp",
+      "size": [1200, 750],
+      "bytes": 74334,
+      "reason": "Daterad 2026-09-04. sites/horai.html andrades 2026-09-09 01:47 (F-011: prefers-reduced-motion-blocket borttaget, verifierat med git diff HEAD). shoot.py skjuter med reduced_motion=\"reduce\", alltsa exakt det lage andringen traffar, sa den arvda bilden kan visa ett tillstand sidan inte langre har. Skjuts om. Se Q13."
+    },
+    {
+      "file": "tests/alunix-concepts-r3/build/assets/demo-hyperborea.webp",
+      "size": [1200, 750],
+      "bytes": 46952,
+      "reason": "Samma skal som demo-horai.webp."
+    },
+    {
+      "file": "tests/alunix-concepts-r3/build/assets/demo-calyx.webp",
+      "size": [1200, 750],
+      "bytes": 133942,
+      "reason": "Samma skal, och behovs dessutom inte som medieplats eftersom Calyx kors live. Skjuts om enbart som reserv."
+    },
+    {
+      "file": "tests/alunix-concepts-r3/build/assets/k4-cabin-desk.webp",
+      "reason": "Fotografisk stillbild. K4 har noll fotografier i sitt eget lager och ingen plats for den. En bild som letar efter en plats ar precis vad F-009 finns for att stoppa."
+    },
+    {
+      "file": "tests/alunix-concepts-r3/build/assets/k1-stage-pool.webp",
+      "reason": "Samma skal."
+    },
+    {
+      "file": "tests/alunix-concepts-r3/build/assets/k1-stage-beams.webp",
+      "reason": "Samma skal."
+    },
+    {
+      "file": "tests/alunix-concepts-r3/build/assets/hero-console.webp",
+      "reason": "Samma skal."
+    },
+    {
+      "file": "tests/alunix-concepts-r3/build/assets/k4-desk-overhead.webp",
+      "reason": "Samma skal."
+    },
+    {
+      "file": "tests/alunix-concepts-r3/build/assets/logo-white.svg",
+      "reason": "K4 har inget ordmarke nagonstans. Navigationen ar delaren och folden innehaller exakt fem element i K4:s eget lager."
+    },
+    {
+      "file": "tests/alunix-concepts-r3/build/assets/logo-black.svg",
+      "reason": "Samma skal."
+    }
+  ],
+  "open": [
+    "Q13: de sex skarmbilderna star som [needs: shot]. Nasta konkreta steg: lead kor de tva kommandona i assets/ASSETS.md SS 3 fran repo-roten med servern igang pa 3399, kontrollerar matten och filstorlekarna mot tabellen i samma paragraf, och andrar status till filens faktiska byte-tal har.",
+    "Q12: PRODUCT.md SS Operating Context sager att en visad ram aldrig far transformeras eller tonas. K4 later mallsidans wrapper tappa mattnad via filter: saturate(). Antagande tills svar: regeln galler de tre Alunix-exempelsajterna, inte antagonisten, och ingen ram skalas eller transformeras nagonsin. Nasta konkreta steg om Anton sager nej: degraderingen begransas till rubrikens fore-halva (wght och tracking), som ligger i K4:s eget lager, och mallsidans mattnad lamnas orord - en rad i decision ledger racker, ingen omskjutning och ingen ny asset."
+  ]
+}

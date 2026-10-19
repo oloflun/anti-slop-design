@@ -1,0 +1,1020 @@
+<!doctype html>
+<html lang="sv" class="no-js">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>Alunix · webbyrå i Sverige</title>
+<meta name="description" content="Alunix är en webbbyrå i Sverige. Vi skapar skräddarsydda webbplatser.">
+<meta name="color-scheme" content="light">
+<meta name="theme-color" content="#f3f4f6">
+<link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'><rect width='32' height='32' fill='%23f3f4f6'/><rect x='6' y='6' width='20' height='20' fill='%23252a33'/></svg>">
+
+<!-- Typsnitten ligger i assets/fonts/ och är tre filer, en per roll.
+     Rubrikerna sätts lätta: schweizisk typografi sätter rubriker i lätt vikt,
+     och en tung rubrik i displaystorlek är ett annat register. Kroppen bär
+     alltså rubrikerna, monon bär katalogens apparat (nummer, etiketter,
+     mått), och den tunga Geist-vikten är reserverad för ett enda bruk: de
+     små provnamnen, där vikten blir en etikett mot den lätta rubriken.
+     Fallback-familjerna är metriskt justerade mot originalet så att
+     radbrytningen står still medan filen laddas och en sen anländande font
+     inte flyttar sidan.
+     Preload bara på de två snitt som syns i första vyn: rubriken och
+     apparaten. Den tunga vikten används först nere vid proven och får komma
+     när den behövs.
+     U+014D (o med makron) står i unicode-range för alla tre, och det är
+     mätt, inte gissat: filerna är latin-snitt och bär ingen färdig ō, men de
+     bär både basbokstaven och det kombinerande makronet U+0304, och
+     formgivaren sätter ihop de två. Det är intervallet som avgör om snittet
+     får användas för tecknet över huvud taget - utan U+014D i listan
+     skickas bokstaven vidare till fallback-familjen, och Hōrai i prov 02
+     stod i Arial mitt i en Geist-rubrik. Kontrollmätt: med tecknet i
+     intervallet är ō i provnamnet pixelidentisk med o+U+0304 ur samma fil
+     (61,72 px vid 100 px em, mot Arial-fallbackens 61,19). -->
+<link rel="preload" href="assets/fonts/public-sans-300-latin.woff2" as="font" type="font/woff2" crossorigin>
+<link rel="preload" href="assets/fonts/geist-mono-400-latin.woff2" as="font" type="font/woff2" crossorigin>
+
+<!-- Motorn lånas som mekanik: den mäter varje akt och publicerar en
+     framdrift 0-1 som CSS kan läsa. Den får aldrig äga utseendet. -->
+<link rel="stylesheet" href="scroll/scrollcraft.css">
+<script>document.documentElement.classList.replace('no-js','js');</script>
+
+<style>
+/* ============================================================== PROVARKET
+   Ett tryckt provark: en numrerad, linjerad katalog på papper. Varje verk
+   står som sig självt, med sin egen identitet i behåll, etiketterat och
+   katalogiserat. Studions röst är typografisk och tyst. Färgen kommer från
+   verken, inte från ramen.
+
+   Därför: noll radie överallt (ett ark har inga rundade hörn), en enda
+   mättad accent som bär katalognumren och den regel som markerar aktuellt
+   prov - och ingenting annat. Ingen accent som fyllning på knappar eller
+   ytor, och ingen accent i display-skala: en tryckfärg som ligger på ett
+   enskilt ord i rubriken läser som en länk, inte som en färg.
+   ========================================================================= */
+
+@font-face{font-family:'Public Sans';font-style:normal;font-weight:300;
+  font-display:swap;src:url('assets/fonts/public-sans-300-latin.woff2') format('woff2');
+  unicode-range:U+0000-00FF,U+0131,U+014D,U+0152-0153,U+02BB-02BC,U+02C6,U+02DA,U+02DC,
+    U+0304,U+0308,U+0329,U+2000-206F,U+2074,U+20AC,U+2122,U+2191,U+2193,U+2212,
+    U+2215,U+FEFF,U+FFFD;}
+@font-face{font-family:'Public Sans Fallback';font-display:swap;src:local('Arial'),local('Helvetica'),
+  local('Liberation Sans');size-adjust:96.4%;ascent-override:98.5%;
+  descent-override:25.9%;line-gap-override:0%;}
+
+@font-face{font-family:'Geist';font-style:normal;font-weight:700;
+  font-display:swap;src:url('assets/fonts/geist-700-latin.woff2') format('woff2');
+  unicode-range:U+0000-00FF,U+0131,U+014D,U+0152-0153,U+02BB-02BC,U+02C6,U+02DA,U+02DC,
+    U+0304,U+0308,U+0329,U+2000-206F,U+2074,U+20AC,U+2122,U+2191,U+2193,U+2212,
+    U+2215,U+FEFF,U+FFFD;}
+@font-face{font-family:'Geist Fallback';font-display:swap;src:local('Arial Bold'),local('Arial'),
+  local('Liberation Sans');size-adjust:100.3%;ascent-override:100.2%;
+  descent-override:29.4%;line-gap-override:0%;}
+
+@font-face{font-family:'Geist Mono';font-style:normal;font-weight:400;
+  font-display:swap;src:url('assets/fonts/geist-mono-400-latin.woff2') format('woff2');
+  unicode-range:U+0000-00FF,U+0131,U+014D,U+0152-0153,U+02BB-02BC,U+02C6,U+02DA,U+02DC,
+    U+0304,U+0308,U+0329,U+2000-206F,U+2074,U+20AC,U+2122,U+2191,U+2193,U+2212,
+    U+2215,U+FEFF,U+FFFD;}
+@font-face{font-family:'Geist Mono Fallback';font-display:swap;src:local('Consolas'),
+  local('DejaVu Sans Mono'),local('Menlo');size-adjust:101%;ascent-override:100.2%;
+  descent-override:29.4%;line-gap-override:0%;}
+
+:root{
+  /* ------------------------------------------------------------- registret */
+  --paper:      oklch(0.968 0.003 260);   /* svalt, nästan vitt - inte cream */
+  --ink:        oklch(0.17 0.012 265);
+  --ink-mute:   oklch(0.46 0.010 265);
+  --line:       color-mix(in oklab, var(--ink) 22%, var(--paper));
+  --accent:     oklch(0.45 0.13 158);     /* djup tryckfärgsgrön */
+  --dark:       oklch(0.19 0.012 265);    /* plattan, för den enda inversionen */
+  --dark-ink:   oklch(0.955 0.004 260);
+  --dark-mute:  oklch(0.70 0.008 260);
+  --dark-line:  color-mix(in oklab, var(--dark-ink) 24%, var(--dark));
+
+  /* -------------------------------------------------------------- ramen */
+  --maxw:    1560px;
+  --gutter:  clamp(20px, 5vw, 88px);
+  --colgap:  clamp(14px, 1.5vw, 26px);
+
+  /* Den vertikala rytmen är en 8 px-enhet och ingenting annat. Ett tryckt
+     ark har en fast grad: skarvarna ligger på 96 px, den generösa kapitel-
+     skarven på 128 px, och inget ställe i filen hittar på ett eget avstånd
+     mellan dem. Sätts en gång, bär varje skarv. */
+  --ry:       96px;
+  --ry-lg:   128px;
+  --u:         8px;
+
+  /* ----------------------------------------------------------- typografin */
+  --f-disp: "Geist", "Geist Fallback", system-ui, sans-serif;
+  --f-body: "Public Sans", "Public Sans Fallback", system-ui, sans-serif;
+  --f-mono: "Geist Mono", "Geist Mono Fallback", ui-monospace, monospace;
+  --disp:   clamp(3.2rem, 11vw, 11rem);   /* monumentet */
+  --disp-s: clamp(1.5rem, 2.5vw, 2.4rem); /* katalogens egen, klart lägre displaygrad */
+  --body:   1.0625rem;
+  --mono:   0.75rem;
+  --track:  0.14em;
+  /* Brödtextens mått. Ingen löpande rad går över detta - en rad som löper
+     förbi 60 tecken tappar läsaren tillbaka till vänsterkanten. */
+  --measure: 60ch;
+
+  --ease: cubic-bezier(.22,.61,.36,1);
+  /* Öppningsradens höjd är fast och delbar med 8. Den är fast därför att
+     hero-rutan mäter första vyn mot den, och en rad som ändrar höjd med sin
+     textstorlek hade flyttat den mätningen med sig. */
+  --topline-h: 72px;
+}
+
+*,*::before,*::after{box-sizing:border-box;border-radius:0}
+
+html{background:var(--paper)}
+body{
+  margin:0;
+  background:var(--paper);
+  color:var(--ink);
+  font-family:var(--f-body);
+  font-weight:300;
+  font-size:var(--body);
+  line-height:1.55;
+  -webkit-font-smoothing:antialiased;
+}
+
+/* Rubrikerna sätts i kroppens typsnitt och i lätt vikt. Den tunga vikten
+   ägs av provnamnen (se .prov-name) och blir där en etikett, inte en
+   tonhöjd. Radbrytningen balanseras i rubriker och finjusteras i stycken:
+   en rubrik ska inte lämna ett ensamt ord på sista raden, och ett stycke
+   ska inte sluta på ett hängande "och". */
+h1,h2,h3,h4{font-family:var(--f-body);font-weight:300;
+  line-height:.92;letter-spacing:-.03em;margin:0;text-wrap:balance}
+p{margin:0;text-wrap:pretty}
+ol,ul{margin:0;padding:0;list-style:none}
+/* figure bär 1em 40px i webbläsarens eget ark och drar då in varje ram 40 px
+   från sin kolumn. På ett ark står bilden i sin ruta eller inte alls. */
+figure,figcaption{margin:0}
+img{display:block;max-width:100%;height:auto}
+a{color:inherit}
+hr{border:0;margin:0}
+
+/* Markeringen följer bläcket, inte tryckfärgen. */
+::selection{background:var(--ink);color:var(--paper)}
+
+/* Fokusringen är en rektangel, som allt annat på arket, och den finns kvar
+   överallt: ingen regel i filen släcker en outline utan att sätta en
+   synlig ersättning i dess ställe. */
+:focus-visible{outline:2px solid var(--ink);outline-offset:3px}
+
+.sr-only{position:absolute;width:1px;height:1px;padding:0;margin:-1px;
+  overflow:hidden;clip-path:inset(50%);white-space:nowrap;border:0}
+
+/* ------------------------------------------------------------ rutnätet */
+.shell{max-width:var(--maxw);margin-inline:auto;padding-inline:var(--gutter);width:100%}
+.grid{display:grid;grid-template-columns:repeat(12,minmax(0,1fr));column-gap:var(--colgap)}
+.sec{padding-block-start:var(--ry)}
+
+/* --------------------------------------------------------- apparaten */
+.lab{font-family:var(--f-mono);font-size:var(--mono);letter-spacing:var(--track);
+  text-transform:uppercase;font-weight:400;line-height:1.2}
+.mono{font-family:var(--f-mono);font-size:var(--mono);letter-spacing:var(--track);
+  font-weight:400;line-height:1.35}
+/* Katalognumret. Accentens första av två roller. */
+.num{font-family:var(--f-mono);font-size:var(--mono);letter-spacing:.1em;
+  color:var(--accent);font-variant-numeric:tabular-nums;line-height:1.2}
+
+/* Siffror som står i kolumn ska stå i kolumn: tabellsiffror överallt där två
+   tal kan hamna under varandra, så att en rad inte hoppar när talet växer.
+   Ärvs ned i raderna, alltså bär den även prisrader och liggarrader. */
+.num,.lab,.mono,.tes-row,.reg-row,.led-row,.price-reg,.prov-strip{
+  font-variant-numeric:tabular-nums}
+
+.h2{font-size:clamp(2.1rem,4.4vw,4.4rem)}
+.lead{font-size:var(--body);line-height:1.6;color:var(--ink-mute);max-width:var(--measure)}
+
+/* Blandade länkar och knappar får en träffyta som går att träffa med
+   tummen. 48 px är valt framför 44 för att det ligger på 8 px-enheten och
+   med marginal klarar kravet. */
+.tap{display:inline-flex;align-items:center;min-height:48px;min-width:48px}
+
+/* ==================================================================== 4.1
+   Öppningsraden. Ingen bakgrund, ingen sticky: ett provark har sin rubrik
+   tryckt där den står, den följer inte med läsaren. */
+.topline{border-bottom:1px solid var(--line);height:var(--topline-h)}
+.topline-in{display:flex;align-items:center;justify-content:space-between;
+  gap:24px;height:100%}
+.topline-mark{color:var(--ink)}
+.topline-mail{text-decoration:none;color:var(--ink-mute);
+  transition:color .35s var(--ease)}
+.topline-mail:hover{color:var(--ink)}
+
+/* ==================================================================== 4.2
+   Monumentet. Rubriken står överst, satt så stor att den äger öppningen,
+   och under den ligger provarket självt: bevisbilden till vänster, den
+   tryckta etiketten till höger. Hela heron ryms i första vyn - rubrik,
+   bevisbild och etikett - eftersom sidans tes är att första intrycket är
+   digitalt, och en hero vars bild och etikett ligger under vikningen
+   motbevisar sin egen tes. Bilden tar den höjd som blir över, så att
+   vyn fylls utan ett tomrum mellan rubriken och provet.
+   Ingen CTA-knapp - etiketten är ingången. */
+.hero-clip{min-height:calc(100svh - var(--topline-h));
+  display:flex;flex-direction:column}
+.hero-h1{font-size:var(--disp);letter-spacing:-.03em;line-height:.92}
+.hero-line{display:block}
+.hero-line--2{padding-left:.02em}
+
+.hero-row{flex:1 1 auto;min-height:0;margin-block-start:48px;align-items:stretch}
+.hero-fig{grid-column:1/-1;display:flex;flex-direction:column;
+  justify-content:flex-end;min-height:0}
+.hero-label{grid-column:1/-1;align-self:end}
+
+/* Ramen runt ett verk är en ritad linje, inte ett kort. */
+.frame{border:1px solid var(--line);background:var(--paper)}
+.hero-fig .frame{flex:1 1 auto;min-height:180px;max-height:480px;overflow:hidden}
+.hero-fig img{width:100%;height:100%;object-fit:cover;
+  filter:grayscale(1) contrast(1.04)}
+.hero-fig figcaption{margin-block-start:16px;color:var(--ink-mute)}
+
+/* Provetiketten: visitkortets baksida omgjord till en tryckbar etikett.
+   Fyra rader, linjerade, ingen rotation - ett ark vänder sig inte. */
+.hero-label{border-top:1px solid var(--line);max-width:26rem}
+.hero-label > *{display:flex;align-items:center;min-height:48px;
+  border-bottom:1px solid var(--line);padding-block:16px}
+.pl-mark{font-family:var(--f-mono);font-size:.875rem;letter-spacing:.16em;
+  text-transform:uppercase}
+.pl-kicker{color:var(--ink-mute)}
+.pl-svc{display:flex;gap:1.15em;color:var(--ink-mute)}
+.pl-cta{justify-content:space-between;text-decoration:none;color:var(--ink);
+  transition:color .35s var(--ease)}
+.pl-cta::after{content:"";display:block;width:1.6em;height:1px;
+  background:var(--ink);transform-origin:100% 50%;
+  transition:transform .5s var(--ease)}
+.pl-cta:hover::after{transform:scaleX(1.5)}
+
+/* ==================================================================== 4.3
+   Tesen som numrerad utsaga. Fyra meningar staplade i vänsterkolumnen, en
+   per rad, med hårlinjen som enda struktur; till höger om dem står
+   Hyperborea-plåten, samma bild som V3d lägger vid sin tes. Ingen mörk
+   platta. Raden tänds när den passerar mitten av vyn och stannar tänd -
+   innehåll som släcks igen när man scrollar uppåt är ett fel, inte en
+   effekt. Har V3d ingen bildtext till plåten har V3e ingen heller: namnet
+   står i img[alt], och en hittad bildtext vore en påhittad sträng. */
+.tes-list{border-top:1px solid var(--line);grid-column:1/-1}
+.tes-row{display:grid;grid-template-columns:2.4rem minmax(0,1fr);
+  column-gap:var(--colgap);align-items:baseline;
+  padding-block:40px;border-bottom:1px solid var(--line);
+  transition:color .6s var(--ease)}
+html.js .tes-row{color:var(--ink-mute)}
+html.js .tes-row.is-in{color:var(--ink)}
+.tes-row .num{color:var(--ink-mute);transition:color .6s var(--ease)}
+html.js .tes-row.is-in .num{color:var(--accent)}
+.tes-line{font-family:var(--f-body);font-weight:300;line-height:1.02;
+  letter-spacing:-.025em;font-size:clamp(1.5rem,3.3vw,3.2rem);max-width:34ch}
+
+.tes-fig{grid-column:1/-1;align-self:end;margin-block-start:var(--ry)}
+.tes-fig .frame{aspect-ratio:16/10;overflow:hidden}
+.tes-fig img{width:100%;height:100%;object-fit:cover;object-position:top center}
+
+/* ==================================================================== 4.4
+   Registret. Processen är en linjerad förteckning, inte en ritning: numret
+   i apparatgrad till vänster, stegets namn i display i mitten,
+   beskrivningen i brödtext till höger. Raden vidgar sig mjukt och linjen
+   under den drar ut från vänster när raden är den läsaren står på. */
+.proc-head{display:grid;grid-template-columns:2.4rem minmax(0,1fr);
+  column-gap:var(--colgap);margin-bottom:32px}
+.proc-head > *{grid-column:2}
+.proc-head .h2{margin-bottom:16px}
+
+.reg{border-top:1px solid var(--line)}
+/* Registrets rad är tre kolumner: numret, steget, beskrivningen. En
+   förteckning läses vågrätt, och en rad som staplar sin beskrivning under
+   namnet är en textmassa, inte en förteckning. */
+.reg-row{position:relative;display:grid;grid-template-columns:repeat(12,minmax(0,1fr));
+  column-gap:var(--colgap);row-gap:8px;
+  padding-block:24px;
+  border-bottom:1px solid var(--line);
+  align-items:baseline;
+  transition:padding-inline-start .55s var(--ease)}
+.reg-row .num{grid-column:1/2;color:var(--ink-mute);
+  transition:color .55s var(--ease)}
+.reg-name{grid-column:3/7;font-size:var(--disp-s);letter-spacing:-.028em}
+.reg-desc{grid-column:7/13;color:var(--ink-mute);max-width:var(--measure)}
+/* Den utdragna linjen ligger under radens egen hårlinje och får bara bära
+   bläck - accenten är reserverad för katalognumren och provets markering. */
+.reg-row::after{content:"";position:absolute;left:0;bottom:-1px;height:1px;
+  width:100%;background:var(--ink);transform:scaleX(0);transform-origin:0 50%;
+  transition:transform .7s var(--ease)}
+.reg-row.is-in .num,
+.reg-row:hover .num,
+.reg-row:focus-within .num{color:var(--accent)}
+.reg-row.is-in,
+.reg-row:hover,
+.reg-row:focus-within{padding-inline-start:clamp(8px,1.2vw,22px)}
+.reg-row.is-in::after,
+.reg-row:hover::after,
+.reg-row:focus-within::after{transform:scaleX(1)}
+
+/* ==================================================================== 4.5
+   Provarket. Kapitelstämpeln står över en helbreddsregel med tyngd nog att
+   öppna ett kapitel: stämpeln är satt ett steg större än apparatgraden i
+   övrigt och spärrad hårdare, och regeln under den är dragen i bläck och i
+   dubbel vikt. Den är fortfarande en stämpel, inte en rubrik - den säger
+   vad som följer, den påstår ingenting.
+   Sedan två ark. Varje ark är en etikettremsa över hela bredden och
+   därunder, på rutnätet, det levande verket till vänster och dess liggare
+   till höger. Ark 02 är spegelvänt - den enda variation katalogen tillåter. */
+.chapter{margin-bottom:16px}
+.chapter .lab{font-size:1rem;letter-spacing:.26em;color:var(--ink)}
+.chapter-rule{height:2px;background:var(--ink);transform-origin:0 50%}
+
+/* Arkets ram klipper vågrätt. Set-piecen glider in i sin ruta från varsitt
+   håll, och på en smal skärm är rutans sidmarginal mindre än svepets längd -
+   alltså stack arket ut utanför vyn och sidan gick att skrolla i sidled på
+   telefon. Klippningen ligger på arkets egen kant: svepet får röra sig i
+   marginalen och skärs först vid papperskanten. Vid stillastående läge
+   (k = 1) är förskjutningen noll, så ingenting syns av klippningen. */
+.prov{padding-block-start:var(--ry-lg);overflow-x:clip}
+.prov-strip{display:grid;grid-template-columns:2.4rem minmax(0,1fr);
+  column-gap:var(--colgap);align-items:baseline;position:relative;
+  padding-bottom:24px}
+/* Provets namn är den enda tunga vikten på arket. Den står därför i en
+   etikettgrad, inte i rubrikgrad: ett tungt namn i full displaystorlek hade
+   blivit sidans tyngsta rubrik och motsagt att rubrikerna sätts lätta. Den
+   ligger strax över liggarens egna radnamn så att arket har en ordning,
+   och långt under sektionsrubriken. */
+.prov-name{grid-column:2;font-family:var(--f-disp);font-weight:700;
+  font-size:clamp(1.7rem,3vw,2.8rem)}
+.prov-biz{grid-column:2;color:var(--ink-mute);margin-top:8px}
+.prov-rule{position:absolute;left:0;bottom:0;width:100%;height:1px;
+  background:var(--line);transform-origin:0 50%;
+  transition:background .5s var(--ease),height .5s var(--ease)}
+/* Den andra av accentens två roller: markeringen av aktuellt prov. */
+.prov.is-current .prov-rule{background:var(--accent);height:2px}
+
+.prov-body{margin-block-start:40px;row-gap:40px}
+.prov-embed{grid-column:1/-1}
+.prov-embed .frame{aspect-ratio:16/10;overflow:hidden;position:relative}
+.prov-embed iframe{display:block;width:100%;height:100%;border:0;background:var(--paper)}
+.prov-ledger{grid-column:1/-1;border-top:1px solid var(--line)}
+.led-row{display:grid;grid-template-columns:2.4rem minmax(0,1fr);
+  column-gap:var(--colgap);row-gap:8px;
+  padding-block:24px;border-bottom:1px solid var(--line)}
+.led-row > *{grid-column:2}
+.led-row .num{grid-column:1;grid-row:1;padding-top:8px}
+.led-name{font-size:var(--disp-s);letter-spacing:-.028em;line-height:1.02}
+.led-text{color:var(--ink-mute);max-width:var(--measure)}
+
+/* ------------------------------------------------- set-piece: två lager
+   När ett ark öppnar sig rätar rutnätets linjer ut sig samtidigt som
+   verket sätter sig i sin ruta. Lagret ovan (reglerna) drar ut från
+   vänster; lagret under (ramen och liggaren) glider in i sina rutor från
+   var sitt håll. Båda läser samma dämpade framdrift, alltså är det en
+   rörelse och inte två.
+   Framdriften är --sc-ps, aldrig rå --sc-p: den råa stegar i mushjulets
+   takt, och en linje som ritar sig i steg ser billig ut.
+   Faller variabeln bort (ingen JS) blir varje deklaration ogiltig och
+   elementet står kvar i sitt normala läge - linjen i full bredd, ramen på
+   plats. Ingen tom sida. */
+.wipe{
+  --o:0; --rate:7;
+  --k:clamp(0, calc((var(--sc-ps) - var(--o)) * var(--rate)), 1);
+  transform:scaleX(var(--k));
+}
+.settle{
+  --o:0; --rate:7;
+  --k:clamp(0, calc((var(--sc-ps) - var(--o)) * var(--rate)), 1);
+  opacity:var(--k);
+}
+.settle--l{transform:translate3d(calc((1 - var(--k)) * -2.4rem),0,0)}
+.settle--r{transform:translate3d(calc((1 - var(--k)) *  2.4rem),0,0)}
+.settle--up{transform:translate3d(0, calc((1 - var(--k)) * 1.4rem), 0)}
+.chapter-rule{--o:.26; --rate:5}
+.prov-strip{--o:.05}
+.prov-rule{--o:.09}
+.prov-embed{--o:.12}
+.prov-ledger{--o:.15}
+
+/* ==================================================================== 4.6
+   Inversionen. Sidans enda tonala platta, satt innanför pappersarket så
+   att arket syns runt om: ett känsloutrop i en katalog av linjerade rader,
+   och därför mörkt. Priset är radens största tal, satt i apparatgradens
+   typsnitt men i rubrikens storlek. */
+.plate-dark{background:var(--dark);color:var(--dark-ink);
+  padding:96px 72px}
+.plate-dark .h2{color:var(--dark-ink);max-width:24ch}
+.plate-ingress{color:var(--dark-mute);max-width:var(--measure);margin-block-start:16px}
+.price-reg{border-top:1px solid var(--dark-line);
+  margin-block-start:48px}
+.price-row{display:grid;grid-template-columns:minmax(0,1fr) auto;
+  column-gap:56px;align-items:baseline;
+  padding-block:24px;border-bottom:1px solid var(--dark-line)}
+.price-label{color:var(--dark-mute);max-width:var(--measure)}
+.price-value{font-family:var(--f-mono);font-weight:400;letter-spacing:-.01em;
+  font-size:clamp(1.4rem,2.7vw,2.6rem);color:var(--dark-ink);white-space:nowrap;
+  font-variant-numeric:tabular-nums}
+.price-value .unit{font-size:.5em;letter-spacing:var(--track);color:var(--dark-mute)}
+.price-value--text{font-size:clamp(.95rem,1.35vw,1.2rem);letter-spacing:.02em;
+  color:var(--dark-mute)}
+
+/* ==================================================================== 4.7
+   Tillbaka på papper. Formuläret är linjerade fält - underlinjen är hela
+   rutan - och knappen är en skarp rektangel med en 1 px bläckkant, ingen
+   fyllning. Ett tryckt ark har inga fyllda ytor. */
+.contact-head{grid-column:1/-1}
+.contact-lead{color:var(--ink-mute);margin-block-start:16px;max-width:var(--measure)}
+.contact-form{grid-column:1/-1;display:grid;grid-template-columns:1fr;
+  gap:32px}
+.field{display:flex;flex-direction:column;gap:8px}
+.field label{color:var(--ink-mute)}
+.field input,.field textarea{
+  font-family:var(--f-body);font-weight:300;font-size:var(--body);
+  color:var(--ink);background:transparent;
+  border:0;border-bottom:1px solid var(--line);
+  padding:8px 0;width:100%;
+  transition:border-color .4s var(--ease),box-shadow .4s var(--ease)}
+.field textarea{resize:vertical;min-height:104px}
+/* Underlinjen är fältets egen markering: den går från hårlinje till full
+   bläcklinje när fältet får fokus, och till en dubbel linje när fältet
+   underkänns. Ingen regel i filen rör outline här - fokusringen kommer
+   från :focus-visible längre upp och ligger kvar orörd ovanpå underlinjen,
+   så att tangentbordsfokus alltid har en ring och fältet alltid har en
+   underlinje. */
+.field input:focus,.field textarea:focus{border-bottom-color:var(--ink)}
+.field input[aria-invalid="true"],.field textarea[aria-invalid="true"]{
+  border-bottom-color:var(--ink);box-shadow:0 1px 0 0 var(--ink)}
+.contact-actions{display:flex;align-items:center}
+.contact-send{
+  font-family:var(--f-mono);font-size:var(--mono);letter-spacing:var(--track);
+  text-transform:uppercase;color:var(--ink);background:transparent;
+  border:1px solid var(--ink);padding:0 32px;min-height:48px;min-width:48px;
+  cursor:pointer;
+  transition:background .4s var(--ease),color .4s var(--ease)}
+.contact-send:hover{background:var(--ink);color:var(--paper)}
+.contact-send:disabled{opacity:.5;cursor:not-allowed}
+html:not(.js) .contact-send{display:none}
+.contact-status{color:var(--ink);max-width:var(--measure)}
+.contact-status:empty{display:none}
+
+/* Etiketten från heron, upprepad som ett litet linjerat block. Den är
+   dold för skärmläsaren eftersom dess ordagranna innehåll står i den
+   läsbara kopian alldeles intill - två gånger i läsordningen vore ett fel,
+   ingen gång vore ett hål. */
+.contact-label{border-top:1px solid var(--line);margin-block-start:64px;max-width:26rem}
+.contact-label > *{display:flex;align-items:center;min-height:48px;
+  border-bottom:1px solid var(--line);padding-block:16px}
+.contact-label .pl-mark{font-family:var(--f-mono);font-size:.875rem;
+  letter-spacing:.16em;text-transform:uppercase}
+
+/* ==================================================================== 4.8
+   Avslutet. En helbreddsregel, en rad, ingenting mer. <footer> ligger
+   utanför <main> med avsikt: ett footer-element inuti main mappas inte
+   till contentinfo av HTML-AAM. */
+.close{border-top:1px solid var(--line);margin-top:var(--ry)}
+.close-in{padding-block:40px}
+.close-mailto{text-decoration:none;color:var(--ink-mute);
+  border-bottom:1px solid transparent;
+  transition:color .35s var(--ease),border-color .35s var(--ease)}
+.close-mailto:hover{color:var(--ink);border-bottom-color:var(--ink)}
+
+/* --------------------------------------------------- den delade tändningen
+   Rader och ark tonar in när de passerar mitten av vyn. Scopad till
+   html.js: utan JS finns ingen observatör, och då ska arket stå läsbart
+   från första stunden i stället för att stå tomt. */
+html.js [data-reveal]{opacity:0;transform:translate3d(0,.9rem,0);
+  transition:opacity .75s var(--ease),transform .75s var(--ease);
+  transition-delay:calc(var(--i,0) * 55ms)}
+html.js [data-reveal].is-in{opacity:1;transform:none}
+
+/* ------------------------------------------------------------- anpassning
+   Arket är ett ark även på telefon: en spalt, samma linjer, samma
+   språng. Katalognumret flyttar upp över sin rad så att raden får hela
+   bredden till texten. Rytmen går ned ett steg men stannar på 8 px. */
+@media (max-width:900px){
+  :root{--disp:clamp(3.2rem,13.5vw,5rem);--disp-s:clamp(1.35rem,5.4vw,1.9rem);
+    --ry:64px;--ry-lg:80px;--topline-h:56px}
+  /* En spalt: numret flyttar upp över sin rad, och varje barn måste tillbaka
+     till kolumn ett. Utan det pekar barnen fortfarande på en kolumn som
+     inte finns, och rutnätet hittar på en andra kolumn åt dem. */
+  .tes-row,.reg-row,.led-row,.prov-strip{grid-template-columns:minmax(0,1fr)}
+  .tes-row > *,.reg-row > *,.led-row > *,.prov-strip > *{grid-column:1}
+  .tes-line{max-width:100%}
+  .price-row{grid-template-columns:minmax(0,1fr)}
+  .price-value{margin-top:8px}
+  .plate-dark{padding:48px 24px}
+  .price-row{column-gap:24px}
+  /* Telefonen har ingen höjd att fördela: heron står i sin naturliga höjd
+     och bilden i sin egen proportion i stället för att tömmas på form. */
+  .hero-row{flex:none;margin-block-start:32px;row-gap:32px}
+  .hero-fig .frame{flex:none;aspect-ratio:16/9;min-height:0;max-height:none}
+  .tes-fig{margin-block-start:40px}
+  /* Ett smalt fönster in i en levande sajt visar sajtens egen smala
+     layout; ramen får då vara högre, annars ser besökaren bara dess
+     överkant. */
+  .prov-embed .frame{aspect-ratio:4/5}
+}
+@media (min-width:901px){
+  .hero-fig{grid-column:1/7}
+  .hero-label{grid-column:8/13}
+  .tes-list{grid-column:1/7}
+  .tes-fig{grid-column:8/13;margin-block-start:0}
+  .contact-head{grid-column:1/6}
+  .contact-form{grid-column:7/13;grid-template-columns:1fr 1fr;
+    column-gap:32px}
+  .field--wide,.contact-actions,.contact-status{grid-column:1/-1}
+  /* Båda barnen får sin rad uttalad. Rutnätets sparsamma automatplacering
+     flyttar ett objekt som pekar bakåt i kolumnerna till nästa rad, och den
+     spegelvända liggaren (kolumn 1) står efter inbäddningen (kolumn 6) i
+     källordningen - alltså hamnade den under ramen i stället för bredvid,
+     med en tom vänsterkolumn som följd. Raden skrivs därför ut, och bara
+     kolumnerna speglas. */
+  .prov-embed{grid-column:1/8;grid-row:1}
+  .prov-ledger{grid-column:8/13;grid-row:1}
+  .prov--mirror .prov-embed{grid-column:6/13}
+  .prov--mirror .prov-ledger{grid-column:1/6}
+  /* Verket står still medan liggaren går förbi. Raden sträcker båda barnen
+     till samma höjd, men ramen är 467 px och sin ruta är 996 respektive
+     1196 px: utan klibbandet ligger en halv till tre fjärdedels ruta tom
+     under inbäddningen, i sidans huvudsektion. Läsaren ska kunna läsa
+     "Utbudet som prislista" med den faktiska prislistan framför sig, så
+     ramen följer med i stället för att lämna sin kolumn.
+     Fästet ligger på 32 px, alltså på 8 px-enheten och under varje överkant:
+     topline rullar bort och lägger ingenting över vyn. Ramen ber inte om
+     ett eget lager i vila: sticky är layout, inte animation, och husets
+     budget förbjuder förhandsanmäld promovering.
+     Klippningen på .prov (overflow-x: clip) behöver inte röras: clip
+     skapar ingen rullåda och alltså ingen egen scrollport, så fästet mäter
+     mot vyn. Det är kontrollerat i webbläsaren, inte antaget.
+     Regeln bor i den här brytpunkten därför att den bara har något att
+     mäta mot i tvåkolumnsläget: på en spalt är rutan och ramen samma höjd,
+     och då är klibbandet ett no-op. */
+  .prov-embed .frame{position:sticky;top:32px}
+  .contact-label{grid-column:1/6}
+}
+</style>
+</head>
+<body>
+
+<header class="topline">
+  <div class="shell topline-in">
+    <span class="topline-mark lab">ALUNIX</span>
+    <a class="topline-mail mono tap" href="mailto:kontakt@alunix.se">kontakt@alunix.se</a>
+  </div>
+</header>
+
+<main id="page">
+
+  <!-- ============================================================ 4.2 heron
+       Rubriken är arkets titel, satt så stor att den äger öppningen. Under
+       den står provet självt: bevisbilden till vänster och den tryckta
+       etiketten till höger, båda innanför första vyn. Ingen knapp:
+       etiketten är ingången. -->
+  <section class="hero" id="hero" aria-labelledby="hero-title">
+    <div class="hero-clip">
+      <div class="shell">
+        <h1 class="hero-h1" id="hero-title">
+          <span class="hero-line">Er hemsida är</span>
+          <span class="hero-line hero-line--2">nutidens visitkort</span>
+        </h1>
+      </div>
+
+      <div class="shell grid hero-row">
+        <figure class="hero-fig">
+          <div class="frame">
+            <img src="/tests/alunix-concepts-r3/build/assets/k1-stage-pool.webp"
+                 width="1600" height="1067" decoding="async" fetchpriority="high"
+                 alt="En ljuspöl faller diagonalt över ett mörkt scentyg">
+          </div>
+          <figcaption class="mono">En ljuspöl faller diagonalt över ett mörkt scentyg</figcaption>
+        </figure>
+
+        <!-- Visitkortets baksida, omgjord till en tryckt etikett: fyra
+             linjerade rader, ingen rotation. Etiketten är läsbar text och
+             behöver därför ingen separat skärmläsarkopia här. -->
+        <div class="hero-label mono">
+          <p class="pl-mark">Alunix</p>
+          <p class="pl-kicker">Digital byrå</p>
+          <p class="pl-svc"><span>Design</span><span>Utveckling</span><span>System</span></p>
+          <a class="pl-cta" href="#kontakt">Boka ett möte</a>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ============================================================ 4.3 tesen
+       Fyra meningar som en numrerad utsaga, en per rad, med plåten till
+       höger. Ingen mörk platta: på ett provark bär raderna sig själva. -->
+  <section class="sec" id="tes" aria-labelledby="tes-1">
+    <div class="shell grid">
+      <ol class="tes-list">
+        <li class="tes-row" data-reveal style="--i:0">
+          <span class="num" aria-hidden="true">01</span>
+          <h2 class="tes-line" id="tes-1">Det första intrycket är digitalt.</h2>
+        </li>
+        <li class="tes-row" data-reveal style="--i:1">
+          <span class="num" aria-hidden="true">02</span>
+          <p class="tes-line">Skärmen möter besökaren före texten.</p>
+        </li>
+        <li class="tes-row" data-reveal style="--i:2">
+          <span class="num" aria-hidden="true">03</span>
+          <p class="tes-line">Innan ett ord är läst bär layout och bild hela argumentet.</p>
+        </li>
+        <li class="tes-row" data-reveal style="--i:3">
+          <span class="num" aria-hidden="true">04</span>
+          <p class="tes-line">Vi hjälper er att synas på rätt sätt.</p>
+        </li>
+      </ol>
+
+      <!-- Plåten: en tunn ram runt ett verk, inte en fond. Ingen bildtext -
+           V3d har ingen, och en hittad sådan vore en påhittad sträng. -->
+      <figure class="tes-fig">
+        <div class="frame">
+          <img src="/tests/alunix-concepts-r3/build/assets/demo-hyperborea.webp"
+               width="1440" height="900" decoding="async" loading="lazy"
+               alt="Startsidan för Hyperborea, en konferens i Lund">
+        </div>
+      </figure>
+    </div>
+  </section>
+
+  <!-- ========================================================== 4.4 processen
+       Registret över de sju stegen. Ritningen hör till en annan cell och
+       upprepas inte här; processen är en förteckning, och en förteckning är
+       linjer, nummer och rader. -->
+  <section class="sec" id="process" aria-labelledby="process-title">
+    <div class="shell">
+      <div class="proc-head">
+        <p class="mono">Vår process:</p>
+        <h2 class="h2" id="process-title">Från samtal till lanserad sida.</h2>
+        <p class="lead">Webbdesign, design och system. Allt på ett ställe.</p>
+      </div>
+
+      <ol class="reg">
+        <li class="reg-row" data-reveal style="--i:0">
+          <span class="num" aria-hidden="true">01</span>
+          <h3 class="reg-name">Uppstart</h3>
+          <p class="reg-desc">Vi börjar med ett samtal om er verksamhet samt vad ni vill att sidan ska göra för er. Utifrån det skapar vi ett initialt underlag som ni rättar innan det går till ritbordet.</p>
+        </li>
+        <li class="reg-row" data-reveal style="--i:1">
+          <span class="num" aria-hidden="true">02</span>
+          <h3 class="reg-name">Planering</h3>
+          <p class="reg-desc">Vi ritar strukturen som en skiss innan vi formger något. Där ser ni vilka sidor som behövs och vad varje sida ska få besökaren att göra, mobilen först.</p>
+        </li>
+        <li class="reg-row" data-reveal style="--i:2">
+          <span class="num" aria-hidden="true">03</span>
+          <h3 class="reg-name">Design</h3>
+          <p class="reg-desc">När strukturen står formger vi sidan efter er verksamhet. Förslaget lägger vi på en testadress, där ni ser det på er egen telefon och säger till innan det går till bygge.</p>
+        </li>
+        <li class="reg-row" data-reveal style="--i:3">
+          <span class="num" aria-hidden="true">04</span>
+          <h3 class="reg-name">Utveckling</h3>
+          <p class="reg-desc">Vi bygger sidan i kod från grunden, utan färdig mall, så att den laddar snabbt. Texter och bilder ändrar ni själva, och vill ni lägga till mer bygger ni vidare på det vi lämnat.</p>
+        </li>
+        <li class="reg-row" data-reveal style="--i:4">
+          <span class="num" aria-hidden="true">05</span>
+          <h3 class="reg-name">Innehåll</h3>
+          <p class="reg-desc">Ni behöver inte ha något färdigt. Det ni har bearbetar vi, bygger vidare på och kompletterar där något saknas. Texten skriver vi åt er, om ni inte vill ha er egen.</p>
+        </li>
+        <li class="reg-row" data-reveal style="--i:5">
+          <span class="num" aria-hidden="true">06</span>
+          <h3 class="reg-name">Lansering</h3>
+          <p class="reg-desc">Innan sidan publiceras går vi igenom varje länk, formulär och bild. Vi testar den med tangentbord och skärmläsare, på telefon och på dator, och visar er hur ni ändrar innehållet själva.</p>
+        </li>
+        <li class="reg-row" data-reveal style="--i:6">
+          <span class="num" aria-hidden="true">07</span>
+          <h3 class="reg-name">Förvaltning</h3>
+          <p class="reg-desc">Vi finns kvar efter lansering. Nya sidor och ändringar går samma väg som bygget, så ni ser dem på testadressen innan era kunder gör det. Har ni en fråga mejlar ni oss på kontakt@alunix.se.</p>
+        </li>
+      </ol>
+    </div>
+  </section>
+
+  <!-- ========================================================== 4.5 provarket
+       Sidans hjärta: två ark, ett per verk. Varje ark är sin egen akt, så
+       att arkets rörelse följer arkets egen väg genom vyn i stället för en
+       gemensam sektions. Det är därför linjerna kan rita sig precis när
+       arket anländer och inte någon gång under en lång sektion. -->
+  <section class="sec" id="case" aria-labelledby="case-title">
+    <!-- Kapitelstämpeln och regeln är samma akt: regeln ritar sig ur
+         stämpelns egen väg genom vyn, alltså ligger den innanför akten. -->
+    <div class="shell" data-sc-act="flow">
+      <div class="chapter">
+        <h2 class="lab" id="case-title">Exempelcase</h2>
+      </div>
+      <div class="chapter-rule wipe"></div>
+    </div>
+
+    <!-- ------------------------------------------------------ prov 01 Calyx -->
+    <article class="prov shell" id="case-calyx" data-sc-act="flow" aria-labelledby="calyx-title">
+      <div class="prov-strip settle settle--up">
+        <span class="num" aria-hidden="true">01</span>
+        <h3 class="prov-name" id="calyx-title">Calyx</h3>
+        <p class="prov-biz mono">Florist, Stockholm</p>
+        <span class="prov-rule wipe" aria-hidden="true"></span>
+      </div>
+
+      <div class="grid prov-body">
+        <figure class="prov-embed settle settle--l">
+          <div class="frame">
+            <iframe data-src="/sites/calyx.html" loading="lazy" inert scrolling="no"
+                    title="Exempelsida: Calyx, florist i Stockholm"></iframe>
+          </div>
+        </figure>
+
+        <ol class="prov-ledger settle settle--r">
+          <li class="led-row" data-reveal style="--i:0">
+            <span class="num" aria-hidden="true">01</span>
+            <h4 class="led-name">Fotot bär rubriken</h4>
+            <p class="led-text">Vi byggde Calyx som ett tidskriftsnummer, med utgåvan i hörnet och rubriken direkt på fotot. En bukett vill man röra vid, och på en skärm kommer ett stort foto närmast.</p>
+          </li>
+          <li class="led-row" data-reveal style="--i:1">
+            <span class="num" aria-hidden="true">02</span>
+            <h4 class="led-name">En serif för allt man läser</h4>
+            <p class="led-text">Rubriker och brödtext står i samma klassiska serif, och kursiven sköter betoningen. Ett andra rubriktypsnitt hade dragit åt reklam. Det enda andra typsnittet är skrivmaskinslikt och används till etiketter och bildtexter, som anteckningar i marginalen.</p>
+          </li>
+          <li class="led-row" data-reveal style="--i:2">
+            <span class="num" aria-hidden="true">03</span>
+            <h4 class="led-name">Färgen finns redan i bilderna</h4>
+            <p class="led-text">Fotona står parvis med en liten märkning under varje, som i en katalog. Grunden är varmt, nästan vitt papper med ett svagt korn. Sidan har en enda egen färg, en rostton, och den dyker upp först längre ned.</p>
+          </li>
+          <li class="led-row" data-reveal style="--i:3">
+            <span class="num" aria-hidden="true">04</span>
+            <h4 class="led-name">Utbudet som prislista</h4>
+            <p class="led-text">Veckans utbud står i en lista med löpnummer, namn, en kort beskrivning och priset till höger. Kort i ett rutnät hade krävt ett nytt foto av varje bukett varje vecka. Med en lista räcker det att skriva om en rad.</p>
+          </li>
+          <li class="led-row" data-reveal style="--i:4">
+            <span class="num" aria-hidden="true">05</span>
+            <h4 class="led-name">Ett mejl räcker</h4>
+            <p class="led-text">Sidan slutar med hur en beställning går till. Besökaren skriver om rummet och ljuset, och ateljén svarar med vad som finns den veckan. Sådant passar dåligt i formulärfält, så vi satte en e-postadress där formuläret annars hade stått.</p>
+          </li>
+        </ol>
+      </div>
+    </article>
+
+    <!-- ------------------------------------------------------ prov 02 Hōrai
+         Spegelvänt: liggaren till vänster, verket till höger. Det är den
+         enda variation katalogen tillåter - allt annat hålls lika. -->
+    <article class="prov prov--mirror shell" id="case-horai" data-sc-act="flow" aria-labelledby="horai-title">
+      <div class="prov-strip settle settle--up">
+        <span class="num" aria-hidden="true">02</span>
+        <h3 class="prov-name" id="horai-title">Hōrai</h3>
+        <p class="prov-biz mono">Restaurang, Asian Fusion</p>
+        <span class="prov-rule wipe" aria-hidden="true"></span>
+      </div>
+
+      <div class="grid prov-body">
+        <figure class="prov-embed settle settle--l">
+          <div class="frame">
+            <iframe data-src="/sites/horai.html" loading="lazy" inert scrolling="no"
+                    title="Exempelsida: Hōrai, Asian fusion-koncept"></iframe>
+          </div>
+        </figure>
+
+        <ol class="prov-ledger settle settle--r">
+          <li class="led-row" data-reveal style="--i:0">
+            <span class="num" aria-hidden="true">01</span>
+            <h4 class="led-name">Namnet står en gång</h4>
+            <p class="led-text">Första skärmen är ett mörkt foto med namnet i stora versaler och öppettiderna i hörnet. Loggan i menyraden tänds när bilden rullat förbi, så namnet står bara en gång på första skärmen.</p>
+          </li>
+          <li class="led-row" data-reveal style="--i:1">
+            <span class="num" aria-hidden="true">02</span>
+            <h4 class="led-name">Stycket tänds i er takt</h4>
+            <p class="led-text">Stycket om huset börjar nästan osynligt och tänds ord för ord medan ni scrollar. Vi ville att det skulle läsas långsamt, som när någon berättar. Rubriken står kvar i rött, med ett japanskt tecken ovanför som en stämpel.</p>
+          </li>
+          <li class="led-row" data-reveal style="--i:2">
+            <span class="num" aria-hidden="true">03</span>
+            <h4 class="led-name">En mening som saktar in</h4>
+            <p class="led-text">Mellan huset och menyerna står en enda mening på mörk grund. Den är suddig tills den når mitten av skärmen och suddas ut igen när ni scrollar vidare. Den står där för att bromsa läsningen före menyer och priser.</p>
+          </li>
+          <li class="led-row" data-reveal style="--i:3">
+            <span class="num" aria-hidden="true">04</span>
+            <h4 class="led-name">Priset står större än namnet</h4>
+            <p class="led-text">Varje meny har en romersk siffra, ett namn och ett pris per gäst. Priset står i rött, större än namnet. Utan à la carte väljer man en hel meny och letar först efter priset. Dryckerna har en egen grön ton.</p>
+          </li>
+          <li class="led-row" data-reveal style="--i:4">
+            <span class="num" aria-hidden="true">05</span>
+            <h4 class="led-name">Rummet före bokningen</h4>
+            <p class="led-text">Precis före bokningen kommer matsalen, i en bild över hela bredden. Texten står direkt på fotot, med en mörk toning från vänster så att den går att läsa. Den som ska boka vill se var den ska sitta.</p>
+          </li>
+          <li class="led-row" data-reveal style="--i:5">
+            <span class="num" aria-hidden="true">06</span>
+            <h4 class="led-name">Knappen fanns där hela tiden</h4>
+            <p class="led-text">Sist står hur man bokar och när veckans platser släpps. Det som inte passar i ett formulär får en egen e-postadress. Den som inte orkar läsa klart har haft bokningsknappen i menyraden hela vägen ned.</p>
+          </li>
+        </ol>
+      </div>
+    </article>
+  </section>
+
+  <!-- ============================================================ 4.6 priset
+       Sidans enda tonala inversion. Plattan ligger innanför pappersarket så
+       att arket syns runt om, och den är mörk av ett skäl: den är sidans
+       enda utrop i en katalog av linjerade rader. -->
+  <section class="sec" id="pris" aria-labelledby="pris-title">
+    <div class="shell">
+      <div class="plate-dark" data-reveal>
+        <h2 class="h2" id="pris-title">Alla har rätt till bra design.</h2>
+        <p class="plate-ingress">Med bra design menar vi det ni just har sett. Den nivån får ni på varje rad nedan, och sidan ritar vi efter era egna behov och önskemål.</p>
+
+        <ol class="price-reg">
+          <li class="price-row">
+            <span class="price-label">Standardpaket. Webbplats med CMS för egna ändringar och en första SEO&#8209;optimering.</span>
+            <span class="price-value">26 900 <span class="unit">kr</span></span>
+          </li>
+          <li class="price-row">
+            <span class="price-label">Paket med bokningssystem, betalning och kunddatabas.</span>
+            <span class="price-value">38 900 <span class="unit">kr</span></span>
+          </li>
+          <li class="price-row">
+            <span class="price-label">Helt skräddarsydda lösningar för produktkataloger, specialbyggda system med mera</span>
+            <span class="price-value price-value--text">Pris vid förfrågan</span>
+          </li>
+        </ol>
+      </div>
+    </div>
+  </section>
+
+  <!-- =========================================================== 4.7 kontakten
+       Tillbaka på papper. Fälten är underlinjer och knappen är en skarp
+       rektangel, för ett tryckt ark har inga fyllda ytor och inga rundade
+       hörn. Statusraden finns i markup och är tom - den fylls först när
+       formuläret faktiskt gör något. -->
+  <section class="sec" id="kontakt" aria-labelledby="kontakt-title">
+    <div class="shell grid">
+      <div class="contact-head" data-reveal>
+        <h2 class="h2" id="kontakt-title">Berätta om er verksamhet.</h2>
+        <p class="contact-lead">Så berättar vi vad vi kan göra för er.</p>
+      </div>
+
+      <form class="contact-form" data-reveal>
+        <p class="field"><label for="k-namn">Namn</label>
+          <input id="k-namn" name="namn" type="text" autocomplete="name" placeholder=" " required></p>
+        <p class="field"><label for="k-verk">Verksamhet</label>
+          <input id="k-verk" name="verksamhet" type="text" autocomplete="organization" placeholder=" "></p>
+        <p class="field field--wide"><label for="k-text">Vad ni behöver</label>
+          <textarea id="k-text" name="text" rows="5" placeholder=" " required></textarea></p>
+        <div class="contact-actions">
+          <button class="contact-send" type="submit">Skicka</button>
+        </div>
+        <p class="contact-status" role="status" aria-live="polite"></p>
+      </form>
+
+      <!-- Etiketten från heron, upprepad som ett litet linjerat block. Den
+           sista raden är inte en länk här: blocket är dolt för skärmläsaren,
+           och en fokusmöjlig länk inuti ett dolt block vore en fälla. Texten
+           är oförändrad, det är bara länkningen som hör till heron. -->
+      <div class="contact-label mono" aria-hidden="true">
+        <p class="pl-mark">Alunix</p>
+        <p class="pl-kicker">Digital byrå</p>
+        <p class="pl-svc"><span>Design</span><span>Utveckling</span><span>System</span></p>
+        <p>Boka ett möte</p>
+      </div>
+      <!-- Samma fyra rader och adressen, ordagrant, som skärmläsarens väg
+           in i det blocket. -->
+      <p class="sr-only">Alunix. Digital byrå. Design, utveckling, system. Boka ett möte: kontakt@alunix.se.</p>
+    </div>
+  </section>
+
+</main>
+
+<footer class="close">
+  <div class="shell close-in">
+    <a class="close-mailto mono tap" href="mailto:kontakt@alunix.se">Eller mejla oss direkt på kontakt@alunix.se</a>
+  </div>
+</footer>
+
+<script src="scroll/scrollcraft.js"></script>
+<script src="scroll/sc-smooth.js"></script>
+<script>
+(function(){
+  'use strict';
+
+  /* Motorn monteras för sin mätning, inte för sin rekvisita: varje akt får
+     en framdrift 0-1 som CSS läser. Ingenting på det här arket pinnas - ett
+     provark står still och låter läsaren gå. */
+  if (window.ScrollCraft) ScrollCraft.mount(document.body);
+
+  /* Bandet i mitten av vyn. En rad tänds när den passerar läsarens blick,
+     inte när den råkar nudda en kant. */
+  var LINE = 0.55;
+  /* Hur långt före vyn en inbäddning monteras, räknat i vyhöjder ovanför
+     vyns överkant. En ram får kosta en dryg skärm i förväg - då hinner den
+     bli klar innan den når veket - men inte mer: tre levande sajter vid
+     load är det tyngsta en sida kan göra mot sig själv. */
+  var AHEAD = 2;
+
+  /* Tändningen mäts mot en linje i vyn i stället för mot en observatör.
+     En observatör rapporterar bara element som faktiskt korsar bandet, och
+     den som hoppar - klickar på en ankarlänk, trycker Page Down eller
+     laddar om mitt i sidan - hoppar förbi bandet utan att något element
+     någonsin har varit i det. Då står raderna kvar osynliga för alltid.
+     En linje som läses av vid varje scroll klarar båda vägarna, och
+     listan krymper när raderna tänts så att arbetet går mot noll. */
+  var pending = Array.prototype.slice.call(document.querySelectorAll('[data-reveal]'));
+  var provs = Array.prototype.slice.call(document.querySelectorAll('.prov'));
+  /* Inbäddningarna går genom samma linje och av samma skäl. En ram som
+     lämnas åt en observatör monteras aldrig om läsaren hoppar förbi den:
+     observatören ser bara element som korsar bandet, och ett hopp korsar
+     ingenting. Lazy-avsikten ligger kvar i AHEAD - ramen hämtas först när
+     den är nära, aldrig vid load - men garantin ligger i linjen: en ram som
+     är i eller strax under vyn monteras, hur läsaren än kom dit. */
+  var frames = Array.prototype.slice.call(document.querySelectorAll('iframe[data-src]'));
+  var queued = false;
+
+  var mountFrame = function(f){
+    var src = f.getAttribute('data-src');
+    if (!src) return;
+    f.src = src;
+    f.removeAttribute('data-src');
+  };
+  /* Skrivningen läggs i en ledig lucka så att den inte hamnar mitt i en
+     bildruta som läsaren tittar på. Fönstret bakas in i anropet: en
+     stängning över slingvariabeln hade låtit två ramar i samma svep peka på
+     den sista av dem, och då hade den första aldrig monterats. */
+  var defer = window.requestIdleCallback
+    ? function(fn){ requestIdleCallback(fn, { timeout: 600 }); }
+    : function(fn){ setTimeout(fn, 1); };
+  function mountDue(){
+    if (!frames.length) return;
+    var edge = window.innerHeight * AHEAD;
+    for (var i = frames.length - 1; i >= 0; i--){
+      if (frames[i].getBoundingClientRect().top < edge){
+        (function(f){ defer(function(){ mountFrame(f); }); })(frames[i]);
+        frames.splice(i, 1);
+      }
+    }
+  }
+
+  function update(){
+    queued = false;
+    var line = window.innerHeight * LINE;
+    for (var i = pending.length - 1; i >= 0; i--){
+      if (pending[i].getBoundingClientRect().top < line){
+        pending[i].classList.add('is-in');
+        pending.splice(i, 1);
+      }
+    }
+    /* Markeringen av aktuellt prov växlar, den låser sig inte: regeln visar
+       var läsaren står just nu, och måste därför kunna lämna ett ark när
+       nästa tar vid. */
+    for (var j = 0; j < provs.length; j++){
+      var r = provs[j].getBoundingClientRect();
+      provs[j].classList.toggle('is-current', r.top <= line && r.bottom > line);
+    }
+    mountDue();
+  }
+  function kick(){ if (!queued){ queued = true; requestAnimationFrame(update); } }
+
+  addEventListener('scroll', kick, { passive: true });
+  addEventListener('resize', kick, { passive: true });
+  /* Sidan växer medan den läses: en monterad inbäddning och en anländande
+     bild ändrar höjden, och därmed vilka rader som ligger över linjen,
+     utan att någon scroll-händelse någonsin inträffar. Storleksändringen
+     är den händelse som saknades. */
+  if ('ResizeObserver' in window) new ResizeObserver(kick).observe(document.body);
+  /* En sent anländande typsnittsfil ändrar radhöjderna och därmed vilka
+     rader som ligger över linjen. */
+  if (document.fonts && document.fonts.ready) document.fonts.ready.then(kick).catch(function(){});
+  /* Utan JS står ramarna tomma. Med JS finns ingen väg runt linjen: samma
+     svep som tänder raderna monterar ramarna. */
+  if (!('IntersectionObserver' in window) && frames.length){
+    while (frames.length) mountFrame(frames.pop());
+  }
+  kick();
+
+  /* Kontaktformuläret. Ingen backend: webbläsarens egen validering, och
+     mejlet förbereds i användarens egen klient. Fälten töms aldrig och det
+     finns ingen tack-vy - formuläret är en väg in, inte ett ärende.
+     aria-invalid sätts och rensas per fält, oberoende av webbläsarens stöd
+     för :user-invalid, så att skärmläsaren alltid får felkanalen. */
+  var kf = document.querySelector('.contact-form');
+  if (kf){
+    Array.prototype.forEach.call(kf.querySelectorAll('input,textarea'), function(el){
+      el.addEventListener('input', function(){
+        if (el.validity.valid) el.removeAttribute('aria-invalid');
+      });
+    });
+    kf.addEventListener('submit', function(e){
+      e.preventDefault();
+      if (!kf.reportValidity()){
+        Array.prototype.forEach.call(kf.querySelectorAll('input,textarea'), function(el){
+          if (!el.validity.valid) el.setAttribute('aria-invalid', 'true');
+        });
+        return;
+      }
+      var v = function(n){ return (kf.elements[n].value || '').trim(); };
+      var SUBJECT = 'Kontakt från alunix.se';
+      var STATUS = 'Mejlet är förberett och skickas när ni bekräftar det i er e-postklient. Öppnades ingen klient, mejla direkt till kontakt@alunix.se.';
+      var body = [v('namn'), v('verksamhet'), '', v('text')].join('\n');
+      /* Knappen stängs av under den korta överlämningen och etiketten blir
+         en verbform, så att ett dubbelklick inte öppnar två fönster. */
+      var btn = kf.querySelector('.contact-send');
+      var label = btn.textContent;
+      btn.disabled = true;
+      btn.textContent = 'Öppnar…';
+      location.href = 'mailto:kontakt@alunix.se'
+        + '?subject=' + encodeURIComponent(SUBJECT)
+        + '&body=' + encodeURIComponent(body);
+      kf.querySelector('.contact-status').textContent = STATUS;
+      setTimeout(function(){ btn.disabled = false; btn.textContent = label; }, 900);
+    });
+  }
+})();
+</script>
+</body>
+</html>

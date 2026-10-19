@@ -1,0 +1,2 @@
+C:\Users\Anton L\.claude\skills\a11y-audit\scripts\tab_walk.py:39: SyntaxWarning: "\s" is an invalid escape sequence. Such sequences will not work in the future. Did you mean "\\s"? A raw string is also an option.
+  const byIds = (el.getAttribute('aria-labelledby') || '').split(/\s+/).filter(Boolean).map(id => (document.getElementById(id) || {}).innerText || '').join(' ').trim();

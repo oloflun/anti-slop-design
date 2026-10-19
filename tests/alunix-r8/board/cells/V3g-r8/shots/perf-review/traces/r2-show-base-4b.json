@@ -1,0 +1,148 @@
+{
+ "mode": "",
+ "per_frame_ms": {
+  "ProxyMain::BeginMainFrame": 57.9,
+  "LocalFrameView::RunPaintLifecyclePhase": 24.1,
+  "Paint": 4.3,
+  "PrePaint": 1.7,
+  "Commit": 18.8,
+  "Layerize": 19.2,
+  "FireAnimationFrame": 7.1,
+  "UpdateLayoutTree": 1.4,
+  "Layout": 0.1,
+  "Document::UpdateStyleAndLayout": 3.4,
+  "LocalFrameView::RunStyleAndLayoutLifecyclePhases": 0.6
+ },
+ "gpu": "ANGLE (Intel, Intel(R) Iris(R) Xe Graphics (0x00009A49) Direct3D11 vs_5_0 ps_5_0, D3D11)",
+ "cpu": 4.0,
+ "window": [
+  "#showcase",
+  60,
+  100,
+  60
+ ],
+ "scroll": [
+  7097,
+  10697
+ ],
+ "frames": 225,
+ "p95_ms": 116.7,
+ "over33": 198,
+ "over20": 214,
+ "median": 66.8,
+ "layers": 254,
+ "heap_MB": 13.0,
+ "nodes": 2721,
+ "main_ms": {
+  "RunTask": 16330,
+  "ProxyMain::BeginMainFrame": 13148,
+  "WebFrameWidgetImpl::UpdateLifecycle": 5956,
+  "LocalFrameView::RunPaintLifecyclePhase": 5479,
+  "LocalFrameView::pushPaintArtifactToCompositor": 4363,
+  "Blink.CompositingCommit.UpdateTime": 4356,
+  "Layerize": 4349,
+  "PaintArtifactCompositor::Update": 4331,
+  "Commit": 4258,
+  "WebFrameWidgetImpl::BeginMainFrame": 2589,
+  "Blink.Animate.UpdateTime": 2063,
+  "PageAnimator::serviceScriptedAnimations": 2047,
+  "AsyncTask Run": 1910,
+  "FunctionCall": 1700,
+  "FrameRequestCallbackCollection::ExecuteFrameCallbacks": 1626,
+  "FireAnimationFrame": 1605,
+  "Blink.Paint.UpdateTime": 1035,
+  "Paint": 965,
+  "Document::UpdateStyleAndLayout": 764,
+  "Blink.ForcedStyleAndLayout.UpdateTime": 698,
+  "LayoutView::HitTest": 524,
+  "EventHandler::handleMouseMoveEvent": 500
+ },
+ "counts": {
+  "RunTask": 2106,
+  "ProxyMain::BeginMainFrame": 227,
+  "WebFrameWidgetImpl::UpdateLifecycle": 228,
+  "LocalFrameView::RunPaintLifecyclePhase": 228,
+  "LocalFrameView::pushPaintArtifactToCompositor": 228,
+  "Blink.CompositingCommit.UpdateTime": 228,
+  "Layerize": 228,
+  "PaintArtifactCompositor::Update": 224,
+  "Commit": 227,
+  "WebFrameWidgetImpl::BeginMainFrame": 228,
+  "Blink.Animate.UpdateTime": 228,
+  "PageAnimator::serviceScriptedAnimations": 228,
+  "AsyncTask Run": 1918,
+  "FunctionCall": 2181,
+  "FrameRequestCallbackCollection::ExecuteFrameCallbacks": 684,
+  "FireAnimationFrame": 1203,
+  "Blink.Paint.UpdateTime": 228,
+  "Paint": 214,
+  "Document::UpdateStyleAndLayout": 2254,
+  "Blink.ForcedStyleAndLayout.UpdateTime": 2254,
+  "LayoutView::HitTest": 283,
+  "EventHandler::handleMouseMoveEvent": 223
+ },
+ "top_runtasks_ms": [
+  182,
+  168,
+  149,
+  139,
+  126,
+  121,
+  118,
+  114,
+  113,
+  113
+ ],
+ "top_fn_ms": [
+  [
+   "FireAnimationFrame",
+   ":: ",
+   1605
+  ],
+  [
+   "FunctionCall",
+   "ix-r8/runs/V3g/assets/vendor/gsap.min.js:zl:10 ",
+   738
+  ],
+  [
+   "FunctionCall",
+   ":L:2 ",
+   616
+  ],
+  [
+   "EventDispatch",
+   ":: scroll",
+   222
+  ],
+  [
+   "FunctionCall",
+   "s/V3g/assets/vendor/ScrollTrigger.min.js:Kb:10 ",
+   149
+  ],
+  [
+   "EventDispatch",
+   ":: wheel",
+   121
+  ],
+  [
+   "FunctionCall",
+   "s/V3g/assets/vendor/ScrollTrigger.min.js:_rafBugFix:10 ",
+   54
+  ],
+  [
+   "EventDispatch",
+   ":: scrollend",
+   51
+  ],
+  [
+   "TimerFire",
+   ":: ",
+   50
+  ],
+  [
+   "FunctionCall",
+   "x-r8/runs/V3g/assets/vendor/lenis.min.js:onWheel:1 ",
+   42
+  ]
+ ]
+}

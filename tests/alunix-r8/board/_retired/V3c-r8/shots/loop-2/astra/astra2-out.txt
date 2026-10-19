@@ -1,0 +1,92 @@
+fix
+
+## persistence
+
+R7’s column offset, desktop spacing, mobile order, graphite price material, back-face glyph and standalone footer survive. The iframe mounting guard also survives; K1 is a separate lifecycle failure.
+
+Three new findings: unstable process measurement, an unintended process-text reveal, and additional performance cuts for K4. Confidence is high in the code findings; performance savings require profiling. Full HTML read, MD5 matches `d30355da`. No files changed or new runtime measurements taken.
+
+## fidelity
+
+The page is more coherent, but the process previews do not reliably represent completed states. I agree with K1–K4. NOTES’ preview check establishes absence of later groups, not completeness and persistence of earlier groups.
+
+**Cohesion, rhythm and balance**
+
+- Images 1–3 and 14–16: the physical card remains the clear authority. Images 73–75 show a clean mobile landing without clipping. The spare ground below the mobile introduction remains greater than H-13 permits.
+- Image 4, middle and lower band: the offset establishes hierarchy better than R6. The thesis and giant headline still compete, particularly with K3’s broken word. This remains a two-column composition; no restack proposed.
+- Images 5–6: K1 removes the visual evidence that should balance the copy. The empty Calyx and Hōrai plates make their columns disproportionately heavy in area and weak in content. Balance cannot receive a final pass until those plates render.
+- Images 18 and 20, between panels: the mobile raw-ground gaps remain approximately 84 px. The mobile `clamp(64px,10vh,96px)` does not meet H-05’s literal 160 px continuous-ground interval. Desktop spacing has improved.
+- Images 76–77, process entrance: the material change is clear, but image 77 has an empty right side and nearly invisible “Uppstart” at lower left. This is not the authored empty *sheet*: the sheet has not yet established its frame, and the prose itself is faded.
+- Images 78–84: the framed drawing gives the right column sufficient authority, including the intentionally empty first sheet. Images 90–96 establish the same hierarchy vertically on mobile.
+- Images 85–86 and 97–98: the transition into the principles reads as continued paper. The narrow principles measure is intentional, not an abandoned right column.
+- Images 12–13 and 27: the final address owns the last viewport. Image 87 is an intermediate entrance and need not already exclude the preceding section.
+
+**Motion and previews**
+
+The forced flip sequences, images 52–75, show continuous geometry and a clean landing. They demonstrate shape, not runtime frame pacing.
+
+Process previews fail the cumulative-state contract: images 33–34 show unfinished early states; images 35–39 lose the outer contour and glyph retained in real-scroll images 80–85. Mobile previews 47–51 likewise differ from images 92–97. Later-step leakage appears resolved, but “no N+1” alone is insufficient: preview N must retain completed states 1 through N.
+
+Image 89’s isolated line and blank lower field still make the process entrance feel late. Image 77 additionally exposes the prose-reveal conflict described below.
+
+The footer rule reads as restrained motion in the entrance/final captures, supported by R7’s matrix measurements. Its reported DEAD result is not sufficient evidence of failure. The giant headline’s small scale change does **not** read convincingly as a distinct motion event in the supplied slices; these captures cannot establish its twelve-step visibility. The broken word is much more noticeable.
+
+| H-row | Round-2 judgment |
+|---|---|
+| H-01 | Met on the supplied page extent; no apparent return to hero dominance. |
+| H-02 | Open: the retained band does not supply four independently owned viewports. Q30 remains separate. |
+| H-03 | Partial: paper and footer transitions are full width; thesis and price remain column materials. |
+| H-04 | Met: R7’s 96–140 px band offset establishes the required separation. |
+| H-05 | Partial: desktop repaired; mobile gaps remain below the stated floor, images 18/20. |
+| H-06 | Met: distinct card, thesis, plate, ledger, drawing and closing anatomies remain. |
+| H-07 | Numeric threshold met at 96 px; composition fails through K3. An 88 px remedy requires reconciling this floor. |
+| H-08 | Not met: image 4 competes; images 5–6 cannot balance with missing iframe content. |
+| H-09 | Met visually: the glyph occupies the previously unused back-face region without crowding the text. |
+| H-10 | Met: the midpoint retains substantial projected height, images 57–58/69–70. |
+| H-11 | Met: graphite reads independently; R7 reports L-delta 12.16 and contrast 14.54:1. |
+| H-12 | Met: final viewport belongs to the footer; R7 reports the required sizing and hit area. |
+| H-13 | Not met: mobile fold still leaves roughly 17% below the introduction, image 14. |
+| H-14 | Met visually: thesis, Calyx, ledger/Hōrai, price, process, close. |
+| H-15 | Partial: drawing carries its column once framed; process entrance remains weak, image 77. |
+| H-16 | Accepted R7 evidence with documented capture exceptions; no independent new probe. |
+| H-17 | Met: accepted approximately 393 px static tail remains applicable. |
+| H-18 | Met within accepted tolerance: approximately 1,602 px. |
+| H-19 | Numeric threshold met; aesthetic result fails through K2’s blue wash. |
+| H-20 | Retained: R7’s capped bleed and wider gutter address the previous collision. |
+| H-21 | Not met: R7 CPU4 hero p95 100–166.7 ms; process 150 ms. |
+| H-22 | Not met: CPU1 still reports missed frames; upward hero p95 33.4 ms. |
+| H-23 | Not met: upward hero progress reaches 4.54% at CPU1; footer reaches 4.32% at CPU4. |
+| H-24 | Unverified as a complete device inventory; footer DEAD is contradicted by matrix evidence. |
+| H-25 | Partial: footer now has a device; price remains static, and giant-scale visibility is unproven. |
+| H-26 | Met: the specified motion invariant is retained. |
+| H-27 | Partial: iframe surfaces are not transformed; the previously accepted wrapper-latch issue remains open. |
+| H-28 | Met structurally and for drawing inputs; prose-reveal and measurement defects are separate findings below. |
+| H-29 | Met under the accepted draw/wipe distinction; no new content-shaped drawing introduced. |
+| H-30 | Not met: previews lose completed earlier geometry; late measurement changes step-one timing. |
+| H-31 | Retained: seven locked prose steps and established numeric vocabulary; no copy changes proposed. |
+| H-32 | Not met: process CPU4 p95 150 ms, with staircase on dashoffset tracks. NOTES’ blanket staircase-pass sentence contradicts its table. |
+| H-33 | Met: accent remains attached to actual dimensions and its documented role. |
+| H-34 | Partial verification only: sampled surfaces pass; full-page brightest-background coverage is not established. |
+| H-35 | Supported by R7’s reflow and hit-area checks, including intermediate widths and short viewports. K3 remains a separate wrapping defect. |
+
+## ceiling
+
+- insign: more dependable immediate readability; image 77’s faded process text falls below that baseline.
+- highwaymedia: the process skeleton communicates progression before reading; V3c’s entrance still delays that recognition.
+- hoy: clearer authority within each chapter; the retained band needs its live evidence restored before its balance can be judged fairly.
+- K3: a stable cumulative drawing; V3c’s preview states currently lose already established geometry.
+
+## material_fixes
+
+1. **Make process anchors independent of sticky position.** `tests/alunix-r8/runs/V3c/index.html:1547` measures the *currently positioned* sticky box as its natural origin. The load/resize callbacks at `:1566` can therefore move `--s1` after scrolling, potentially past `--e1`, reversing the denominator at `:892`. Preview scrolling at `:1780` makes this especially exposed. Images 35–39 and 47–51 lose the outer contour/glyph that remain in real-scroll images 80–85 and 92–97. Target: unchanged anchors at identical layout dimensions regardless of scroll position; every end strictly after its start; preview N completes and retains steps 1…N after load, font completion and resize, without N+1.
+
+2. **Add bounded page-level cuts to K4.** `tests/alunix-r8/runs/V3c/index.html:1445` loads a shim whose `tick()` alternates `getComputedStyle()` and custom-property writes across acts. Batch all target reads before any writes to avoid repeatedly flushing preceding invalidations. At `:888`, seven derived `--kN` expressions inherit through the whole process section, including static prose; scope their derivation to the drawing subtree. At `:770`, every split word consumes the changing scrub expression and computes a colour mix; profile this separately from the thread transform before considering frontier-only word updates. Target: preserve smoothed motion and identical endpoints, demonstrate reduced RecalcStyle in the existing attribution fixture, then rerun H-21/H-22/H-32. These are concrete candidates, not claimed measured savings; the engine stays untouched.
+
+3. **Remove the process prose’s unintended reveal participation.** `tests/alunix-r8/runs/V3c/index.html:1230` opts both the entire list and its children into opacity/translation reveals, contradicting the always-visible text contract at `:784`. Image 77, lower-left “Uppstart,” shows the consequence. Those translations also contaminate the rectangle measurements at `:1550`. Target: process paragraphs and their measurement anchors remain fully opaque and untransformed at every scroll offset; the sheet supplies the animation. Keep the seven paragraphs unchanged.
+
+## keep
+
+Keep the physical card and its landing, the improved back-face balance, the offset two-column composition pending Q30, mobile narrative order, graphite price plane, restrained captions, cumulative drawing language, paper continuity and isolated footer.
+
+No new elements or colours are needed for these fixes. Preserve existing tokens and the smoothed-progress contract.
+ASTRA-EXIT 0

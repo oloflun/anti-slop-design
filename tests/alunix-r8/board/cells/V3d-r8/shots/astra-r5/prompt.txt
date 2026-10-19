@@ -1,0 +1,42 @@
+You are an independent reviewer in REFERENCE PARITY mode plus whole-page (helhet). Target: tests/alunix-r8/runs/V3d/index.html (read-only; you may read the file). Parity table: tests/alunix-r8/runs/V3d/PARITET.md (read it). Goal plan: tests/alunix-r8/runs/V3d/plans/048-inverterad-variant.md.
+
+The order (Anton): an inverted variant. The process act (steps 01-07) is a long DARK drafting-table act by necessity; the PARITET limit "max four dark slices in a row" is STRUCK by the lead, do not raise it. The chapter screen "Från samtal till lanserad sida." is deliberately dark. sites/horai.html (the Hōrai demo inside an iframe) is never edited; its overflow at 390 is known, only note it.
+The reference shows LEVEL not FORM: judge scale, staging, what owns the viewport, how much each screen commits. Never propose a different palette, typeface or copy.
+
+Invariants (verbatim):
+- Motion always plays (F-011). prefers-reduced-motion is deliberately not honoured on this project, a considered accessibility trade-off confirmed by the owner. Suggesting a reduced-motion fallback, a static alternative, or a @media (prefers-reduced-motion) block is out of scope.
+- The scroll engine is never edited. scroll/scrollcraft.js and scrollcraft.css are vendored; findings about them are reported, never fixed; a page-level shim (sc-smooth.js) is the sanctioned way around them.
+- --sc-p is the raw scroll position; --sc-ps is the smoothed one. Anything that physically moves must read --sc-ps. "use --sc-p for consistency" is backwards.
+- No em-dashes in visible text (gate 75).
+- Review only, no patches.
+
+Attached images, in order. Each "Pxx-W" image is a PAIR: LEFT = our page (V3d), RIGHT = the reference screen, same height. Positions reached by real mouse wheel.
+1 P01-1440 fold
+2 P02-1440 card back (?preview=back)
+3 P03-1440 thesis band
+4 P04-1440 giant section inverted (?preview=ledger position)
+5 P05-1440 Hōrai band
+6 P06-1440 process chapter screen (#process top)
+7 P07-1440 step 01
+8 P08-1440 step 02
+9 P09-1440 step 03
+10 P10-1440 step 04
+11 P11-1440 step 05
+12 P12-1440 step 06
+13 P13-1440 step 07
+14 P14-1440 "Hur vi tänker"
+15 P15a-1440 last viewport (price + contact)
+16 sheet-ours-1440: our 16 screens at 1440 in a contact sheet (P16 whole-page rhythm; no reference in this image, the reference rhythm is hoy: purple, cream, red grounds)
+17 P02-390
+18 P03-390
+19 P05-390
+20 P06-390
+21 P10-390
+22 P12-390
+23 P13-390
+24 zoom-P13-390-sheet: 2x crop of the top 260 px of P13-390 (the sticky sheet at step 07, mobile)
+
+Answer:
+A) One line per PARITET row P01-P16: "holds the level" or "does not hold, gap: <measurable gap>, move: <concrete move: sizes, proportions, what owns the viewport>". A row that holds at 1440 but not at 390 does not hold (390 pairs attached: P02, P03, P05, P06, P10, P12, P13). Do not invent gaps; if a screen holds, say so.
+B) Code/logic errors visible in the pixels or in the file (file:line on every code finding, image + region on every pixel finding): overlaps of the drawing over the product, clipped glyphs, elements outside their container, mobile SVG coordinates that no longer match the mobile viewBox 320x200 (see the @media block around index.html:1437-1470 and MOBILE_TEXT / plansch() around :2600-2650).
+Be concise.

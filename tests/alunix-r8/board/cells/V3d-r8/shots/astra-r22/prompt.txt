@@ -1,0 +1,50 @@
+Read-only code review, tightly scoped. Target file (absolute path):
+C:\Users\Anton L\anti-slop-design\tests\alunix-r8\runs\V3d\index.html
+
+This is a confirmation round. TWO code sites changed since the last review and
+ONLY those two are in scope:
+
+  A. index.html around lines 1180-1201: the CSS rule `.tes-plane` (clip-path with
+     inset(calc(var(--tx) * var(--pl-t)) ...)), the new custom property
+     `--p-edge` and the new `.tes-plane::after` rule that draws the sheet
+     contour with `border:2px solid color-mix(...)` and `inset:` values that
+     must interpolate with the SAME --tx/--pl-* numbers as the clip-path.
+  B. index.html around lines 2540-2560 inside function measureAct(): the new
+     read of `.tes-plane`s own getBoundingClientRect() used to compute
+     `--pl-l` and `--pl-r` (previously computed against window.innerWidth).
+
+Question I need answered: is there any way these two changes are WRONG as code?
+Specifically: does the ::after box coincide with the clip-path rectangle in every
+tx state and at every viewport width; is `clamp(0,calc((var(--tx) - .6) / .3),1)`
+valid where it is substituted; can the ::after add overflow, a new paint/compositing
+cost, or a stacking/hit-testing change (it is inside a pointer-events:none element);
+is the getBoundingClientRect() read placed so that it cannot read a stale or
+mid-layout box (note the same function writes --pl-h and --pl-t before the read);
+is there any division by a measured zero, NaN, or unclamped value; is the
+querySelector inside measureAct on a hot path.
+
+IN SCOPE for you: logic, lifecycle, resource loading, arithmetic, state, DOM
+contracts. Listeners added and never removed, observers/rAF loops running
+off-screen, non-monotonic or wrongly clamped scroll maths, division by a measured
+zero, will-change left on permanently, dead or duplicated CSS/JS, hard-coded values
+contradicting a token defined nearby, <img> without width/height, iframes without
+loading="lazy", aria-*/role on elements that cannot carry them, anything that would
+throw in the console on a real load.
+
+OUT OF SCOPE, do not report: palette, typography, spacing, composition, whether it
+looks good, or any alternative aesthetic direction.
+
+Project invariants you MUST respect (you have not read this project's rules):
+- Motion always plays (F-011). prefers-reduced-motion is deliberately NOT honoured
+  on this project; it is a considered accessibility trade-off the owner confirmed,
+  not an oversight. Do NOT suggest a reduced-motion fallback, a static alternative,
+  or a @media (prefers-reduced-motion) block.
+- The scroll engine is never edited. scroll/scrollcraft.js and scrollcraft.css are
+  vendored; findings about them are reported, never fixed.
+- `--sc-p` is the RAW scroll position; `--sc-ps` is the SMOOTHED one. Anything that
+  physically moves must read `--sc-ps`. Do not suggest using --sc-p "for consistency".
+- No em-dashes in visible text (zero tolerance) - worth a scan while you are in there.
+- Review only, no patches. Return findings, not a rewritten file.
+
+Every finding must carry file:line and a concrete expected behaviour. If a site is
+correct, say so in one line rather than inventing a finding. Keep it short.

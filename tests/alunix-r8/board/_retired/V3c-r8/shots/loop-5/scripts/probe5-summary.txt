@@ -1,0 +1,117 @@
+run                        cpu wheel     track                              p95ms  >33  step%  stair dead
+ctrl-c4a-1                   4 100:60    #act:--sc-ps                          16.8    0   1.37     0 False
+ctrl-c4a-1                   4 100:60    #card:transform                       16.8    0   1.37     0 False
+hero-down-100                4 100:60    section.hero:--sc-ps                 485.0  125   1.72     0 False
+hero-down-100                4 100:60    .plate-card:transform                485.0  125   2.62     0 False
+hero-up-100                  4 -100:60   section.hero:--sc-ps                  49.9   53   1.54     0 False
+hero-up-100                  4 -100:60   .plate-card:transform                 49.9   53   2.55     0 False
+ctrl-c4b-1                   4 100:60    #act:--sc-ps                          16.8    0   1.36     0 False
+ctrl-c4b-1                   4 100:60    #card:transform                       16.8    0   1.36     0 False
+hero-down-20                 4 20:120    section.hero:--sc-ps                  33.4  168   0.27     0 False
+hero-down-20                 4 20:120    .plate-card:transform                 33.4  168   0.37     0 False
+hero-up-20                   4 -20:120   section.hero:--sc-ps                  33.3  126   0.26     0 False
+hero-up-20                   4 -20:120   .plate-card:transform                 33.3  126   0.36     0 False
+ctrl-c4c-1                   4 100:60    #act:--sc-ps                          16.8    0   1.37     0 False
+ctrl-c4c-1                   4 100:60    #card:transform                       16.8    0   1.37     0 False
+proc-down-100                4 100:60    #process:--sc-ps                      83.2  140   1.04     0 False
+proc-up-100                  4 -100:60   #process:--sc-ps                      50.1   85   0.91     0 False
+ctrl-c4d-1                   4 100:60    #act:--sc-ps                          16.8    0   1.37     0 False
+ctrl-c4d-1                   4 100:60    #card:transform                       16.8    0   1.37     0 False
+proc-down-20                 4 20:120    #process:--sc-ps                      50.0  693   0.16     0 False
+proc-up-20                   4 -20:120   #process:--sc-ps                      50.0  598   0.20     0 False
+giant-down-100               4 100:60    #giant-section:--sc-ps               250.0   81   3.31     0 False
+price-down-100               4 100:60    .price:--sc-ps                       238.2   64   2.67     0 False
+ctrl-c1a-1                   1 100:60    #act:--sc-ps                          16.8    1   1.36     0 False
+ctrl-c1a-1                   1 100:60    #card:transform                       16.8    1   1.36     0 False
+hero-down-100-cpu1           1 100:60    section.hero:--sc-ps                  33.4   20   1.25     0 False
+hero-down-100-cpu1           1 100:60    .plate-card:transform                 33.4   20   2.10     0 False
+hero-down-100-cpu1-b         1 100:60    section.hero:--sc-ps                  83.4   41   1.37     0 False
+hero-down-100-cpu1-b         1 100:60    .plate-card:transform                 83.4   41   2.10     0 False
+hero-down-100-cpu1-c         1 100:60    section.hero:--sc-ps                  33.6   39   1.31     0 False
+hero-down-100-cpu1-c         1 100:60    .plate-card:transform                 33.6   39   2.03     0 False
+hero-up-100-cpu1             1 -100:60   section.hero:--sc-ps                  16.8    1   1.48     0 False
+hero-up-100-cpu1             1 -100:60   .plate-card:transform                 16.8    1   2.18     0 False
+proc-down-100-cpu1           1 100:60    #process:--sc-ps                      17.1   14   0.67     0 False
+proc-up-100-cpu1             1 -100:60   #process:--sc-ps                      17.0   13   0.76     0 False
+giant-down-100-cpu1          1 100:60    #giant-section:--sc-ps                50.2   45   2.65     0 False
+price-down-100-cpu1          1 100:60    .price:--sc-ps                        46.7   16   2.33     0 False
+thesis-down-100-cpu1         1 100:60    .panel-thesis:--sc-ps                221.6   39   2.70     0 False
+footer-down-100-cpu1         1 100:60    footer.close:--sc-ps                  16.8    0   3.51     0 False
+calyx-rv-cpu1                1 100:60    .calyx-wrap:--rv                      66.7   41  17.09     1 False
+calyx-rv-cpu1                1 100:60    .calyx-wrap .rv:transform             66.7   41  17.09     1 False
+horai-rv-cpu1                1 100:60    .horai-wrap:--rv                      41.7   17   6.34     1 False
+horai-rv-cpu1                1 100:60    .horai-wrap .rv:transform             41.7   17   0.00     0 True
+ctrl-c1b-2                   1 100:60    #act:--sc-ps                          16.8    0   1.34     0 False
+ctrl-c1b-2                   1 100:60    #card:transform                       16.8    0   1.34     0 False
+ctrl-b-c4-1                  4 100:60    #act:--sc-ps                          32.9   11   1.52     0 False
+ctrl-b-c4-1                  4 100:60    #card:transform                       32.9   11   1.52     0 False
+b-hero-down-100-1            4 100:60    section.hero:--sc-ps                 280.1  124   1.62     0 False
+b-hero-down-100-1            4 100:60    .plate-card:transform                280.1  124   2.82     0 False
+ctrl-b-c4-2                  4 100:60    #act:--sc-ps                          17.2    9   1.54     0 False
+ctrl-b-c4-2                  4 100:60    #card:transform                       17.2    9   1.54     0 False
+b-hero-down-100-2            4 100:60    section.hero:--sc-ps                 139.9  106   1.80     0 False
+b-hero-down-100-2            4 100:60    .plate-card:transform                139.9  106   2.03     0 False
+ctrl-b-c4-3                  4 100:60    #act:--sc-ps                          16.8    1   1.37     0 False
+ctrl-b-c4-3                  4 100:60    #card:transform                       16.8    1   1.37     0 False
+b-hero-down-100-3            4 100:60    section.hero:--sc-ps                 324.2  100   1.67     0 False
+b-hero-down-100-3            4 100:60    .plate-card:transform                324.2  100   2.30     0 False
+b-thesis-cpu1-1              1 100:60    .panel-thesis:--sc-ps                210.0   27   2.45     0 False
+b-thesis-cpu1-2              1 100:60    .panel-thesis:--sc-ps                220.4   34   2.90     0 False
+b-thesis-cpu1-3              1 100:60    .panel-thesis:--sc-ps                261.6   38   2.71     0 False
+ctrl-b-c1                    1 100:60    #act:--sc-ps                          16.8    0   1.36     0 False
+ctrl-b-c1                    1 100:60    #card:transform                       16.8    0   1.36     0 False
+b-footer-cpu1-travel         1 100:60    footer.close:--sc-ps                  16.9    2   2.66     0 False
+b-calyx-rv-cpu1              1 100:60    .calyx-wrap:--rv                     100.0   36  10.67     1 False
+b-horai-rv-cpu1              1 100:60    .horai-wrap:--rv                      50.0   26   4.98     0 False
+b-hero-up-100-1              4 -100:60   section.hero:--sc-ps                  65.2   84   1.59     0 False
+b-hero-up-100-1              4 -100:60   .plate-card:transform                 65.2   84   2.42     0 False
+ctrl-c-1                     1 100:60    #act:--sc-ps                          16.9    0   1.34     0 False
+ab/thesis-r10-1              1 100:60    .panel-thesis:--sc-ps                142.4   39   2.75     0 False
+ab/thesis-r9-1               1 100:60    .panel-thesis:--sc-ps                200.9   25   2.42     0 False
+ctrl-c-2                     1 100:60    #act:--sc-ps                          16.9    0   1.37     0 False
+ab/thesis-r10-2              1 100:60    .panel-thesis:--sc-ps                216.7   26   2.57     0 False
+ab/thesis-r9-2               1 100:60    .panel-thesis:--sc-ps                 83.5   23   2.20     0 False
+ctrl-c-3                     1 100:60    #act:--sc-ps                          16.8    0   1.34     0 False
+ab/thesis-r10-3              1 100:60    .panel-thesis:--sc-ps                124.9   27   2.31     0 False
+ab/thesis-r9-3               1 100:60    .panel-thesis:--sc-ps                108.4   25   2.44     0 False
+c-calyx-rv-2600              1 100:60    .calyx-wrap:--rv                      66.7   23   7.42     0 False
+c-calyx-rv-2600b             1 100:60    .calyx-wrap:--rv                      98.7   24   7.42     0 False
+
+Comparison with loop 4's declared architectural floor (cpu 1 and cpu 4, p95 ms):
+window                  loop 4        loop 5              verdict
+hero cpu4 down          333.8         280.1 (med of 3)    within floor
+hero cpu4 up             79.7          49.9               better
+#process cpu4 down      326.9          83.2               much better
+#process cpu4 up        474.6          50.1               much better
+#giant cpu4             462.0         250.0               better
+.price cpu4             875.9         238.2               much better
+hero cpu1 down (med 3)   78.2          33.6               better
+hero cpu1 up             35.4          16.8               better
+#process cpu1 down       18.2          17.1               equal
+#process cpu1 up         18.2          17.0               equal
+#giant cpu1             101.6          50.2               better
+.price cpu1              40.4          46.7               equal within noise
+.panel-thesis cpu1      142.4         142.4 (med of 3 A/B) equal; A/B against R9's
+                                                          declarations: 108.4, spreads overlap
+footer.close cpu1        18.3          16.9               better (same 1482 px travel)
+
+--sc-ps max_step at cpu 1, H-23's own bar (<= 3 %):
+hero 1.25 to 1.37 . #process 0.67 down / 0.76 up . #giant 2.65 (loop 4: 3.12)
+.panel-thesis 2.31 to 2.90 (loop 4: 3.52) . .price 2.33 . footer.close 2.66
+cpu 4: hero 1.62 to 1.80, .plate-card 2.03 to 2.82, #process 1.04 / 0.91, #giant 3.31.
+
+scroll_verify.py, 1440x900: deadScroll bands 0-300 (0.0094, the authored silence ps 0 to
+0.10), 1500-1800 (0.0102), 1800-2100 (0.0003, the landed card back plus its dwell),
+6300-6600 (0.0143), 6600-6900 (0.0148), 8100-8400 (0.0114). cuesNeverFull, unrevealed and
+contrastUnderMedia all empty. blankBands: one, 900-3222, the hero's own pin.
+390x844: deadScroll 0-281 (0.0101), 1405-1686 (0.0143), 1686-1967 (0.0, landed back).
+Same three lists empty. blankBands 756-2896 (hero pin), 3330-4031 (Calyx), 4803-5473
+(Hoerai), 6403-6919 (price and paper), 10398-10910 (the closing photo); the slices show
+all five whole, so they are the tool's 64x36 downscale, not empty screens.
+
+Geometry at load, 1440 / 390: docH 10 582 / 11 326 px = 11.76 / 13.42 vh, constant in the
+band. hero 0-3060 / 0-2870. Seams at 1440 all 162 px (3060 to 3222, 3600 to 3762, 4150 to
+4312, 4611 to 4773); at 390 101 to 102 px. .panel-thesis top 3222 against .panel-giant
+3330 = 108 px offset. .giant 88 px, tracking -3.52 px, the locked word one rect, 3 lines.
+mailto 86.4 px at 1440, 44 px tall at 390. Dead ground under the sub-line at the 390 fold:
+84 px = 10.0 per cent. scrollWidth equals the viewport at both widths.

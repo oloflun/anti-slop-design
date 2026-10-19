@@ -1,0 +1,151 @@
+{
+  "url": "http://127.0.0.1:3308/tests/a11y/broken.html",
+  "violations": [
+    {
+      "id": "color-contrast",
+      "impact": "serious",
+      "wcag": [
+        "cat.color",
+        "wcag2aa",
+        "wcag143",
+        "TTv5",
+        "TT13.c",
+        "EN-301-549",
+        "EN-9.1.4.3",
+        "ACT",
+        "RGAAv4",
+        "RGAA-3.2.1"
+      ],
+      "help": "Elements must meet minimum color contrast ratio thresholds",
+      "nodes": [
+        {
+          "target": ".low-contrast",
+          "html": "<p class=\"low-contrast\">This text is #999 on #fff and fails contrast.</p>"
+        }
+      ],
+      "viewports": [
+        "1440x900",
+        "390x844"
+      ]
+    },
+    {
+      "id": "image-alt",
+      "impact": "critical",
+      "wcag": [
+        "cat.text-alternatives",
+        "wcag2a",
+        "wcag111",
+        "section508",
+        "section508.22.a",
+        "TTv5",
+        "TT7.a",
+        "TT7.b",
+        "EN-301-549",
+        "EN-9.1.1.1",
+        "ACT",
+        "RGAAv4",
+        "RGAA-1.1.1"
+      ],
+      "help": "Images must have alternative text",
+      "nodes": [
+        {
+          "target": "img",
+          "html": "<img src=\"data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBTAA7\" width=\"40\" height=\"40\">"
+        }
+      ],
+      "viewports": [
+        "1440x900",
+        "390x844"
+      ]
+    },
+    {
+      "id": "landmark-one-main",
+      "impact": "moderate",
+      "wcag": [
+        "cat.semantics",
+        "best-practice"
+      ],
+      "help": "Document should have one main landmark",
+      "nodes": [
+        {
+          "target": "html",
+          "html": "<html lang=\"en\">"
+        }
+      ],
+      "viewports": [
+        "1440x900",
+        "390x844"
+      ]
+    },
+    {
+      "id": "region",
+      "impact": "moderate",
+      "wcag": [
+        "cat.keyboard",
+        "best-practice",
+        "RGAAv4",
+        "RGAA-9.2.1"
+      ],
+      "help": "All page content should be contained by landmarks",
+      "nodes": [
+        {
+          "target": "h1",
+          "html": "<h1>Broken page</h1>"
+        },
+        {
+          "target": "img",
+          "html": "<img src=\"data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBTAA7\" width=\"40\" height=\"40\">"
+        },
+        {
+          "target": "div[onclick=\"alert('clicked')\"]",
+          "html": "<div onclick=\"alert('clicked')\" style=\"display:inline-block;padding:8px 16px;background:#eee;cursor:pointer;\">\n    Fake button (div onclick, no role)\n  </div>"
+        },
+        {
+          "target": ".low-contrast",
+          "html": "<p class=\"low-contrast\">This text is #999 on #fff and fails contrast.</p>"
+        },
+        {
+          "target": "p:nth-child(5)",
+          "html": "<p><a href=\"#nowhere\" class=\"no-outline\">Link with no focus indicator</a></p>"
+        },
+        {
+          "target": "table",
+          "html": "<table class=\"fixed-width\">\n    <thead><tr><th>Col A</th><th>Col B</th><th>Col C</th></tr></thead>\n    <tbody>\n      <tr><td>1</td><td>2</td><td>3</td></tr>\n   "
+        },
+        {
+          "target": "#reveal-section",
+          "html": "<section id=\"reveal-section\" class=\"reveal\">\n    <h2>This section never reveals</h2>\n    <p>Gated behind an IntersectionObserver with threshold 0.5 that this te"
+        },
+        {
+          "target": "#reveal-always",
+          "html": "<section id=\"reveal-always\" class=\"reveal\" style=\"min-height: 120vh;\">\n    <h2>This section never reveals either</h2>\n    <p>Observer threshold 0.99 on an eleme"
+        }
+      ],
+      "viewports": [
+        "1440x900",
+        "390x844"
+      ]
+    },
+    {
+      "id": "tabindex",
+      "impact": "serious",
+      "wcag": [
+        "cat.keyboard",
+        "best-practice"
+      ],
+      "help": "Elements should not have tabindex greater than zero",
+      "nodes": [
+        {
+          "target": "button",
+          "html": "<button tabindex=\"3\">Out-of-order tab stop (tabindex=3)</button>"
+        }
+      ],
+      "viewports": [
+        "1440x900",
+        "390x844"
+      ]
+    }
+  ],
+  "passes": 20,
+  "incomplete": 0
+}

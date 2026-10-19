@@ -1,0 +1,42 @@
+{
+  "url": "http://localhost:3090/tests/motion/smooth.html",
+  "wheel": "20:120",
+  "cpu": 4.0,
+  "tracks": [
+    {
+      "track": "#act:--sc-ps",
+      "dead": false,
+      "frames": 424,
+      "frame_p95_ms": 18.5,
+      "frames_over_20ms": 2,
+      "frames_over_33ms": 2,
+      "value_range": [
+        0,
+        0.4444
+      ],
+      "max_step_pct": 0.5,
+      "staircase": 0,
+      "reversals": 0
+    },
+    {
+      "track": "#card:transform",
+      "dead": false,
+      "frames": 424,
+      "frame_p95_ms": 18.5,
+      "frames_over_20ms": 2,
+      "frames_over_33ms": 2,
+      "value_range": [
+        0,
+        79.992
+      ],
+      "max_step_pct": 0.5,
+      "staircase": 0,
+      "reversals": 0
+    }
+  ],
+  "pass": false,
+  "failures": [
+    "#act:--sc-ps: 2 frames > 33 ms",
+    "#card:transform: 2 frames > 33 ms"
+  ]
+}

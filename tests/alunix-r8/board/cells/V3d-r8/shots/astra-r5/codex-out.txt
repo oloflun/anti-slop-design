@@ -1,0 +1,28 @@
+A) Parity. Measurements are approximate, derived from the supplied images.
+
+P01: holds the level.
+P02: holds the level.
+P03: holds the level.
+P04: does not hold, gap: the headline occupies roughly 8% of viewport height versus the reference’s 44%; the ledger owns most of the plate. Move: wrap the existing headline into 2–3 lines at approximately 110–120px, reserving 35–40% of viewport height for typography.
+P05: holds the level. Known Hōrai overflow at 390 noted below.
+P06: holds the level.
+P07: holds the level.
+P08: holds the level.
+P09: holds the level.
+P10: holds the level.
+P11: holds the level.
+P12: does not hold, gap: at 390 the drafting mark remains over the finished product, occupying approximately 30×40px of its upper-left corner. Move: withdraw the mark as Calyx arrives, preserving the current product size.
+P13: does not hold, gap: at 390 the roughly 107×40px revision block overlaps the product’s navigation and photograph; the drafting mark also remains. Move: fit a single revision cell within the approximately 14px upper margin and withdraw the mark.
+P14: holds the level.
+P15: holds the level.
+P16: holds the level. The photographic, blue, black, drafting, paper and photographic passages remain distinguishable; the long dark act is accepted.
+
+B) Code and pixel findings. File references below are relative to `tests/alunix-r8/runs/V3d/`.
+
+- **Revision letter detached on desktop.** `index.html:2625` supplies desktop coordinates `(54,451)`; `index.html:2641` applies them, overriding `(861,13)` at `index.html:1931`. The revision cell remains at `(846,2)`, size `30×16`. **P14-1440, upper-left of the departing Calyx image:** stray “A” near the product’s bottom-left. Restore the desktop text coordinates to the cell.
+- **Mobile revision block crosses the product.** `index.html:1461` retains the three-row block at `(208,16)…(304,52)` while the opening starts at `y=20` (`index.html:1454`). **P13-390 and zoom-P13-390-sheet, upper-right:** lines and hatching cross navigation and flowers. Reposition and reduce the block to the free upper margin.
+- **Mobile drafting mark never withdraws.** `index.html:1858` retains its `(24,24)` placement; `index.html:1262` gives it drawing progress but no product-arrival fade. **P12-390/P13-390, product upper-left:** the mark overlays the navigation/photo. Apply the existing camera withdrawal logic to this mark.
+- **Mobile zoom exceeds the sheet width.** `index.html:1463` scales the `304px` opening by `1.08` about `x=160`, producing bounds `−4.16…324.16` inside the `320px` viewBox set at `index.html:2636`. **P12-390/P13-390, both product edges:** the image is clipped flush to the sheet. Cap mobile scaling at approximately `1.0526` to retain the entire image.
+- **Known Hōrai overflow, note only.** **P05-390, right edge of the left panel:** the restaurant subtitle is cut mid-word. No edit proposed to `sites/horai.html`.
+
+No clipped process-title glyphs are evident in the supplied captures.

@@ -1,0 +1,66 @@
+You are an independent AESTHETIC critic (read-only, no patches, no file edits) of a
+built one-page site for a Swedish web studio. This is NOT a specification review and
+NOT a code review. Judge the images as a designer with taste would.
+
+The 13 attached images are pairs, in the order listed below. In each pair:
+LEFT = our page, captured in Chromium by real mouse-wheel scrolling.
+RIGHT = a reference (or, where the caption says BADA AR VARA / BOTH ARE OURS, a second
+screen of our own page for scale comparison). A caption strip at the bottom names each pair.
+The reference shows the LEVEL - what owns the viewport, how much a screen commits, how
+dense a composition is, how a section is entered. Never borrow the reference's palette,
+fonts, buttons or copy. Do not propose a different art direction.
+
+  Q01  our transition "blue thesis band -> drafting sheet", scrollY 6720 of 1920x930   ref highway
+  Q02  same transition, scrollY 6800 (the plate now owns 51% of the viewport)          ref insign
+  Q03  same transition, scrollY 7061 (the sheet has "landed")                          ref hoy
+  Q04  same transition, scrollY 7440 (the empty sheet sits above the chapter title)    ref highway
+  Q05  the chapter screen itself, scrollY 7700                                         ref hoy
+  Q06  mobile 390x844, scrollY 5960: ZERO text rectangles anywhere on the screen       ref highway 390
+  Q07  mobile, scrollY 6080                                                            ref insign 390
+  Q08  mobile, scrollY 6408: two empty outlined boxes stacked                          ref hoy 390
+  Q09  BOTH OURS: left = the chapter heading "Exempelcase" (136px), right = the case it
+       introduces, "Calyx" (171px), one screen later
+  Q10  our "Exempelcase" screen                                                        ref highway "Case"
+  Q11  BOTH OURS, mobile: left "Exempelcase" 40px, right "Calyx" 36px
+  Q12  our price section at 1920, figures set in Young Serif 64px                      ref hoy
+  Q13  our price section at 390, figures Young Serif 32px                              ref insign 390
+
+THREE QUESTIONS, answer each separately and concretely.
+
+1. THE TRANSITION (Q01-Q08). The client says this passage "became horrible". Measured
+   facts you may rely on: the drawing move costs 594px of scroll at 1920 and 539px at 390;
+   at 390 there are at least 160 consecutive scroll pixels with literally zero text
+   rectangles on screen and roughly 260px with nothing readable; at 1920 the plate owns
+   48-55% of the viewport for 240px of scroll while carrying four hairlines.
+   Tell me: what makes it UGLY to an eye, not to a spec? Where is it empty, flat,
+   unformed, or too long? Rank the worst frame. Say precisely what the three references
+   do on entering a section that we do not do. Then say what would make it beautiful,
+   concretely enough to build: durations, what should be on screen at each moment, what
+   the sheet should contain, where the chapter title should be.
+
+2. THE CASE CHAPTER (Q09-Q11). The client says the heading "sits too alone and takes far
+   too much room"; it should only be an introduction to the case display, should be
+   VISIBLY SMALLER than the Calyx heading, the air should shrink on both sides, and the
+   case section should be pulled up toward it. Measured: the section is exactly one
+   viewport tall; 333px of empty ground above the heading and 333px below the lead at
+   1920 (324/325 at 390); the word "Exempelcase" covers 859x115px of ink while "Calyx"
+   covers 479x110px. Judge the rhythm and give target sizes and target air.
+
+3. THE PRICE TYPOGRAPHY (Q12-Q13). The decision is already made and is NOT up for review:
+   Young Serif leaves the figures and the heading; everything goes to the body face
+   (Public Sans), and bold is used ONLY on the heading. Do not argue the decision.
+   Your job: say what should carry the hierarchy once the serif is gone - figure size,
+   weight, line-height, column position, baseline alignment, the hairlines, the currency
+   suffix, and how the mobile stack should behave. Say what currently looks unsettled in
+   the ledger and why.
+
+RULES
+- Aesthetic judgement only. No code, no CSS, no selectors, no file paths.
+- No accessibility findings, no prefers-reduced-motion: motion always plays on this
+  project by an explicit, confirmed owner decision. Do not mention it.
+- Do not propose a new palette, a new typeface family, or a different art direction.
+- Swedish text may contain the characters a-with-ring and o/a-with-umlaut; do not comment
+  on language or copy.
+- Be specific and physical: pixels, proportions, what the eye lands on first, what is
+  missing from the frame. Opinions with reasons, not hedges. Rank things.
+- Never use an em dash in your answer.

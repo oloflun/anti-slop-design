@@ -1,0 +1,25 @@
+Du granskar sidan tests/alunix-r8/runs/V3d/index.html (repo-roten är arbetskatalogen) i läget REFERENCE PARITY + helhet, slutkontroll efter rundorna R9 och R10. Läs tests/alunix-r8/runs/V3d/PARITET.md (tabellen du dömer mot), tests/alunix-r8/runs/V3d/plans/054-tesband-och-case.md (beställningen), tests/alunix-r8/runs/V3d/reviews/r8-astra.md (förra granskningen, 3 fixar, alla vid 390), tests/alunix-r8/runs/V3d/plans/056-astra-r8-mobil.md (R9) och NOTES.md § "V3d R9" och "V3d R10".
+
+Bifogade bilder, i ordning. Bild 1-23 är PAR: vänster V3d (vår skärm), höger referensen (hoy/insign), samma höjd; radens id står i bildens underkant. Bild 24 är en ensam V3d-skärm (ingen referens). Alla togs med mouse.wheel från toppen, ramarna laddade, en skärmbild per sida:
+1. P03-1-390  2. P03-3-390  3. P03-5-390  4. P04-curtain-390  5. P17-1-390  6. P17-3-390  7. P17-5-390  8. P19-1-390  9. P19-3-390  10. P19-6-390  11. P20-390  12. P15b-390  13. P01-390  14. P07-390  15. P01-1440  16. P03-1-1440  17. P03-3-1440  18. P08-1440  19. P12-1440  20. P14-1440  21. P17-3-1440  22. P19-3-1440  23. P20-1440
+24. J-390-down-4450: tesbandet vid 390, den bildruta (20 px hjulsteg) där mening 3 går in.
+
+Uppmätt av mig (lita på detta, mät inte om):
+- Alla 1440-skärmar är pixelidentiska med r8 (där höll varje PARITET-rad).
+- Tesbandet 390: strecken till bildens överkant 16 px, bilden 449 px hög i mening 1-2 och 483 px i mening 3-5, bildens överkant y=309 i mening 1-2 och y=274 i mening 3-5 (375: 302 / 268). Hjulsvep i 20 px-steg: fotot hoppar 35 px i ETT hjulsteg (scrollY 4430 -> 4450) när mening 3 går in, och tillbaka på vägen upp. Orsak jag hittat: .thesis-lines är ett grid där alla .ts staplas i samma cell; .js .ts animerar letter-spacing (+.06em när --in=0), mening 3 radbryts då till 5 rader (174 px) i stället för 4 (139 px), så radens höjd krymper när mening 3 blir aktiv. Med letter-spacing låst till -.02em under 768 (injicerat bara för mätning) står fotot på y=274 i alla fem meningar och hoppet försvinner.
+- Hōrai -03 vid 390: ramens ih 568, #quote-text y=162..273 (nav täcker 0..117), opacitet .974, blur .31 px, samma i preview och med hjul; #quote-jp y=80 (bakom naven). 375: ih 545, citat 151..262, .973 / .32 px.
+- Calyx -03 vid 390: ih 517, första figuren y=-28..455 i ramen, märkningen 424..455 (helt inne). 375: ih 496, samma.
+- Tesbyten och casebyten, 20 px hjulsteg ner och upp vid 390 (tes även 375): 0 bildrutor med två synliga meningar/steg, 0 px överlapp. Ramarnas scroll monoton.
+- Hela sidan 1440 och 390, hjul 150 px: 0 rubrikkollisioner. Horisontell scroll 0 vid 320/375/390/414/768/1024/1280/1440/1920.
+
+Leadens beslut (döm dem inte som fynd): sites/* rörs aldrig och ramarna transformeras aldrig. Att Hōrais text klipps i högerkanten vid 390 (bild 8, 9, 10, 11) beror på att sites/horai.html renderas 675 px bred; det är känt och ligger hos Anton. Gränsen "högst fyra mörka skivor i rad" är struken.
+
+Invarianter (ordagrant, bryt dem aldrig):
+- Motion always plays (F-011). prefers-reduced-motion is deliberately not honoured on this project. Suggesting a reduced-motion fallback, a static alternative, or a @media (prefers-reduced-motion) block is out of scope.
+- The scroll engine is never edited. scroll/scrollcraft.js and scrollcraft.css are vendored; sc-smooth.js is the sanctioned shim.
+- --sc-p is the raw scroll position; --sc-ps is the smoothed one. Anything that physically moves must read --sc-ps.
+- No em-dashes in visible text (gate 75).
+- Copyn är låst (copy-gaten körd), döm inte ordval. Palett och typsnitt väljs inte om.
+- Review only, no patches.
+
+Uppgift: för VARJE par, svara på en rad: håller vår skärm referensens nivå (skala, iscensättning, vad som äger viewporten, hur mycket skärmen tar ställning)? Om inte: vilket konkret drag (mått, andel, vad som ska äga viewporten) stänger gapet. En korrekt men tydligt svagare skärm är ett fynd. Bedöm också om r8:s tre fixar är stängda mot sina Expected i r8-astra.md. Varje pixelfynd: bildnummer + region. Varje kodfynd: index.html:rad. Ge sedan högst 8 fynd, mest materiella först, och en disposition (ship/fix). Uppfinn inga fynd; säg "håller" när det håller.

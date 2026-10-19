@@ -1,0 +1,676 @@
+{
+  "console_errors": {
+    "d1440": [],
+    "m390": []
+  },
+  "jump_test_1440": {
+    "scrolltrigger_count_before": 32,
+    "scrolltrigger_count_after": 30,
+    "start_end_before_sample": [
+      [
+        649,
+        1387
+      ],
+      [
+        2025,
+        2635
+      ],
+      [
+        6006,
+        6501
+      ],
+      [
+        -0.001,
+        1980
+      ],
+      [
+        2142,
+        3394
+      ],
+      [
+        2832,
+        3642
+      ],
+      [
+        3466,
+        4515
+      ],
+      [
+        3484,
+        4515
+      ]
+    ],
+    "start_end_after_sample": [
+      [
+        649,
+        1387
+      ],
+      [
+        2025,
+        2635
+      ],
+      [
+        6006,
+        6501
+      ],
+      [
+        -0.001,
+        1980
+      ],
+      [
+        2142,
+        3394
+      ],
+      [
+        2832,
+        3642
+      ],
+      [
+        3466,
+        4515
+      ],
+      [
+        3484,
+        4515
+      ]
+    ],
+    "per_section": {
+      "hero": {
+        "jumped": {
+          "found": true
+        },
+        "hidden_visible_elements": []
+      },
+      "tes": {
+        "jumped": {
+          "found": true
+        },
+        "hidden_visible_elements": [
+          "SPAN",
+          "SPAN",
+          "SPAN",
+          "SPAN",
+          "SPAN",
+          "SPAN",
+          "SPAN",
+          "SPAN",
+          "SPAN",
+          "SPAN"
+        ]
+      },
+      "process": {
+        "jumped": {
+          "found": true
+        },
+        "hidden_visible_elements": [
+          "SPAN",
+          "SPAN",
+          "SPAN",
+          "SPAN",
+          "SPAN",
+          "SPAN",
+          "SPAN",
+          "SPAN",
+          "SPAN",
+          "SPAN"
+        ]
+      },
+      "exempelcase": {
+        "jumped": {
+          "found": true
+        },
+        "hidden_visible_elements": []
+      },
+      "showcase": {
+        "jumped": {
+          "found": true
+        },
+        "hidden_visible_elements": [
+          "IFRAME",
+          "h3",
+          "showcase-lede",
+          "showcase-more",
+          "h3",
+          "showcase-lede",
+          "showcase-more",
+          "h3",
+          "showcase-lede",
+          "showcase-more"
+        ]
+      },
+      "pris": {
+        "jumped": {
+          "found": true
+        },
+        "hidden_visible_elements": []
+      },
+      "kontakt": {
+        "jumped": {
+          "found": true
+        },
+        "hidden_visible_elements": [
+          "SPAN",
+          "SPAN",
+          "SPAN",
+          "SPAN",
+          "SPAN",
+          "SPAN",
+          "SPAN",
+          "SPAN",
+          "SPAN",
+          "SPAN"
+        ]
+      }
+    }
+  },
+  "jump_test_390": {
+    "scrolltrigger_count_before": 35,
+    "scrolltrigger_count_after": 33,
+    "start_end_before_sample": [
+      [
+        1124,
+        1493
+      ],
+      [
+        1656,
+        2085
+      ],
+      [
+        8097,
+        8467
+      ],
+      [
+        48,
+        554
+      ],
+      [
+        295,
+        1196
+      ],
+      [
+        504,
+        1410
+      ],
+      [
+        521,
+        1410
+      ],
+      [
+        719,
+        1625
+      ]
+    ],
+    "start_end_after_sample": [
+      [
+        1124,
+        1493
+      ],
+      [
+        1656,
+        2085
+      ],
+      [
+        8097,
+        8467
+      ],
+      [
+        48,
+        554
+      ],
+      [
+        295,
+        1196
+      ],
+      [
+        504,
+        1410
+      ],
+      [
+        521,
+        1410
+      ],
+      [
+        719,
+        1625
+      ]
+    ],
+    "per_section": {
+      "hero": {
+        "jumped": {
+          "found": true
+        },
+        "hidden_visible_elements": []
+      },
+      "tes": {
+        "jumped": {
+          "found": true
+        },
+        "hidden_visible_elements": []
+      },
+      "process": {
+        "jumped": {
+          "found": true
+        },
+        "hidden_visible_elements": [
+          "SPAN",
+          "SPAN",
+          "SPAN",
+          "SPAN",
+          "SPAN",
+          "SPAN",
+          "SPAN",
+          "SPAN",
+          "SPAN",
+          "SPAN"
+        ]
+      },
+      "exempelcase": {
+        "jumped": {
+          "found": true
+        },
+        "hidden_visible_elements": []
+      },
+      "showcase": {
+        "jumped": {
+          "found": true
+        },
+        "hidden_visible_elements": [
+          "IFRAME"
+        ]
+      },
+      "pris": {
+        "jumped": {
+          "found": true
+        },
+        "hidden_visible_elements": []
+      },
+      "kontakt": {
+        "jumped": {
+          "found": true
+        },
+        "hidden_visible_elements": [
+          "SPAN"
+        ]
+      }
+    }
+  },
+  "frame_pacing_1440": {
+    "sample_count": 264,
+    "median_ms": 16.699999999999818,
+    "p95_ms": 16.800000000000182
+  },
+  "max_scroll_residual_1440": {
+    "footerMarkResidual": {
+      "found": true,
+      "nonIdentityCount": 0,
+      "nonIdentitySample": []
+    },
+    "footerMarkGap": {
+      "found": true,
+      "chars": 6,
+      "maxGap": 0
+    },
+    "kontaktGiantResidual": {
+      "found": false
+    },
+    "kontaktStillResidual": {
+      "found": false
+    },
+    "kontaktImageClip": {
+      "found": false
+    },
+    "footerScrollTriggerProgress": 1
+  },
+  "max_scroll_residual_390": {
+    "footerMarkResidual": {
+      "found": true,
+      "nonIdentityCount": 0,
+      "nonIdentitySample": []
+    },
+    "footerMarkGap": {
+      "found": true,
+      "chars": 6,
+      "maxGap": 0
+    },
+    "kontaktGiantResidual": {
+      "found": false
+    },
+    "kontaktStillResidual": {
+      "found": false
+    },
+    "kontaktImageClip": {
+      "found": false
+    },
+    "footerScrollTriggerProgress": 1
+  },
+  "max_scroll_residual_768": {
+    "footerMarkResidual": {
+      "found": true,
+      "nonIdentityCount": 0,
+      "nonIdentitySample": []
+    },
+    "footerMarkGap": {
+      "found": true,
+      "chars": 6,
+      "maxGap": 0
+    },
+    "kontaktGiantResidual": {
+      "found": false
+    },
+    "kontaktStillResidual": {
+      "found": false
+    },
+    "kontaktImageClip": {
+      "found": false
+    },
+    "footerScrollTriggerProgress": 1
+  },
+  "max_scroll_residual_1920": {
+    "footerMarkResidual": {
+      "found": true,
+      "nonIdentityCount": 0,
+      "nonIdentitySample": []
+    },
+    "footerMarkGap": {
+      "found": true,
+      "chars": 6,
+      "maxGap": 0
+    },
+    "kontaktGiantResidual": {
+      "found": false
+    },
+    "kontaktStillResidual": {
+      "found": false
+    },
+    "kontaktImageClip": {
+      "found": false
+    },
+    "footerScrollTriggerProgress": 1
+  },
+  "legibility_1440": {
+    "hero h1 (headline-40)": {
+      "max_continuous_vh": 240.0,
+      "passes_40vh": true
+    },
+    "tes headline (headline-50)": {
+      "max_continuous_vh": 140.0,
+      "passes_40vh": true
+    },
+    "exempelcase word (headline-50)": {
+      "max_continuous_vh": 80.0,
+      "passes_40vh": true
+    },
+    "pris headline (headline-50)": {
+      "max_continuous_vh": 68.0,
+      "passes_40vh": true
+    },
+    "kontakt headline (headline-40)": {
+      "max_continuous_vh": 88.0,
+      "passes_40vh": true
+    }
+  },
+  "showcase_check_1440": {
+    "jump_no_selection_shows_calyx": true,
+    "horai_click_scrolled_to_showcase": true,
+    "horai_panel_visible_after_click": true,
+    "horai_anchors": {
+      "found_pin": true,
+      "anchors_measured": true,
+      "expected": [
+        0,
+        1459,
+        2060,
+        3740,
+        6919,
+        7966
+      ],
+      "expected_at_snapshot": [
+        0,
+        1459,
+        2060,
+        3740,
+        6956,
+        8032
+      ],
+      "diffs_px": [
+        0,
+        0,
+        0,
+        0,
+        0,
+        0
+      ],
+      "all_within_2px": true,
+      "box_step_matches_anchor": [
+        {
+          "anchor": 0,
+          "visible_step": null,
+          "matches": false
+        },
+        {
+          "anchor": 1,
+          "visible_step": null,
+          "matches": false
+        },
+        {
+          "anchor": 2,
+          "visible_step": null,
+          "matches": false
+        },
+        {
+          "anchor": 3,
+          "visible_step": null,
+          "matches": false
+        },
+        {
+          "anchor": 4,
+          "visible_step": null,
+          "matches": false
+        },
+        {
+          "anchor": 5,
+          "visible_step": null,
+          "matches": false
+        }
+      ],
+      "box_step_all_match": false
+    },
+    "keyboard_reached_calyx_button": true,
+    "calyx_pressed_after_enter": true,
+    "calyx_anchors": {
+      "found_pin": true,
+      "anchors_measured": true,
+      "expected": [
+        0,
+        1372,
+        1908,
+        2821,
+        4032
+      ],
+      "expected_at_snapshot": [
+        0,
+        1372,
+        1908,
+        2821,
+        4032
+      ],
+      "diffs_px": [
+        0,
+        0,
+        0,
+        0,
+        0
+      ],
+      "all_within_2px": true,
+      "box_step_matches_anchor": [
+        {
+          "anchor": 0,
+          "visible_step": null,
+          "matches": false
+        },
+        {
+          "anchor": 1,
+          "visible_step": null,
+          "matches": false
+        },
+        {
+          "anchor": 2,
+          "visible_step": null,
+          "matches": false
+        },
+        {
+          "anchor": 3,
+          "visible_step": null,
+          "matches": false
+        },
+        {
+          "anchor": 4,
+          "visible_step": null,
+          "matches": false
+        }
+      ],
+      "box_step_all_match": false
+    },
+    "console_errors": []
+  },
+  "kontakt_check_1440": {
+    "front_visible_before_click": true,
+    "back_visible_after_click": true,
+    "mail_link_focusable": true,
+    "boka_link_focusable_next": true,
+    "jump_to_bottom_shows_back": true,
+    "jump_to_kontakt_shows_back": true,
+    "card_text_overlap_sweep": {
+      "checked_angles": [
+        0,
+        15,
+        30,
+        45,
+        60,
+        75,
+        90,
+        105,
+        120,
+        135,
+        150,
+        165,
+        180
+      ],
+      "overlaps_found": [],
+      "passed": true
+    },
+    "headline_fits_ov_cell": true,
+    "console_errors": []
+  },
+  "kontakt_check_1280": {
+    "front_visible_before_click": true,
+    "back_visible_after_click": true,
+    "mail_link_focusable": true,
+    "boka_link_focusable_next": true,
+    "jump_to_bottom_shows_back": true,
+    "jump_to_kontakt_shows_back": true,
+    "card_text_overlap_sweep": {
+      "checked_angles": [
+        0,
+        15,
+        30,
+        45,
+        60,
+        75,
+        90,
+        105,
+        120,
+        135,
+        150,
+        165,
+        180
+      ],
+      "overlaps_found": [],
+      "passed": true
+    },
+    "headline_fits_ov_cell": true,
+    "console_errors": []
+  },
+  "kontakt_check_768": {
+    "front_visible_before_click": true,
+    "back_visible_after_click": true,
+    "mail_link_focusable": true,
+    "boka_link_focusable_next": true,
+    "jump_to_bottom_shows_back": true,
+    "jump_to_kontakt_shows_back": true,
+    "card_text_overlap_sweep": {
+      "checked_angles": [
+        0,
+        15,
+        30,
+        45,
+        60,
+        75,
+        90,
+        105,
+        120,
+        135,
+        150,
+        165,
+        180
+      ],
+      "overlaps_found": [],
+      "passed": true
+    },
+    "headline_fits_ov_cell": true,
+    "console_errors": []
+  },
+  "kontakt_check_390": {
+    "front_visible_before_click": true,
+    "back_visible_after_click": true,
+    "mail_link_focusable": true,
+    "boka_link_focusable_next": true,
+    "jump_to_bottom_shows_back": true,
+    "jump_to_kontakt_shows_back": true,
+    "card_text_overlap_sweep": {
+      "checked_angles": [
+        0,
+        15,
+        30,
+        45,
+        60,
+        75,
+        90,
+        105,
+        120,
+        135,
+        150,
+        165,
+        180
+      ],
+      "overlaps_found": [],
+      "passed": true
+    },
+    "headline_fits_ov_cell": true,
+    "console_errors": []
+  },
+  "showcase_row_clip_check_1440": {
+    "passed": true,
+    "findings": {
+      "calyx": [],
+      "horai": []
+    },
+    "console_errors": []
+  },
+  "showcase_row_clip_check_1280": {
+    "passed": true,
+    "findings": {
+      "calyx": [],
+      "horai": []
+    },
+    "console_errors": []
+  },
+  "showcase_row_clip_check_390": {
+    "passed": true,
+    "findings": {
+      "calyx": [],
+      "horai": []
+    },
+    "console_errors": []
+  }
+}

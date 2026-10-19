@@ -1,0 +1,446 @@
+{
+  "url": "http://127.0.0.1:3317/tests/alunix-r8/runs/V3g/index.html",
+  "viewport": [
+    1440,
+    900
+  ],
+  "cpu": 4.0,
+  "lcp_ms": 8140,
+  "cls": 2.8509,
+  "long_tasks": 15,
+  "long_tasks_under_scroll": 3,
+  "transfer": {
+    "other": {
+      "bytes": 121990,
+      "count": 1,
+      "largest": 121990,
+      "largest_url": "http://127.0.0.1:3317/tests/alunix-r8/runs/V3g/index.html"
+    },
+    "style": {
+      "bytes": 513,
+      "count": 1,
+      "largest": 513,
+      "largest_url": "http://127.0.0.1:3317/tests/alunix-r8/runs/V3g/assets/vendor/lenis.css"
+    },
+    "image": {
+      "bytes": 1063476,
+      "count": 25,
+      "largest": 515202,
+      "largest_url": "http://127.0.0.1:3317/tests/alunix-r8/runs/V3g/assets/cases/calyx-1440.webp"
+    },
+    "script": {
+      "bytes": 143956,
+      "count": 4,
+      "largest": 72927,
+      "largest_url": "http://127.0.0.1:3317/tests/alunix-r8/runs/V3g/assets/vendor/gsap.min.js"
+    },
+    "font": {
+      "bytes": 44580,
+      "count": 2,
+      "largest": 34716,
+      "largest_url": "http://127.0.0.1:3317/tests/alunix-r8/runs/V3g/assets/fonts/geist-500-latin.woff2"
+    }
+  },
+  "total_bytes": 1374515,
+  "dom_nodes": 1136,
+  "embedded": {
+    "other": {
+      "bytes": 16238,
+      "count": 2,
+      "largest": 16238,
+      "largest_url": "http://127.0.0.1:3317/sites/calyx.html"
+    },
+    "style": {
+      "bytes": 0,
+      "count": 1,
+      "largest": 0,
+      "largest_url": ""
+    },
+    "script": {
+      "bytes": 0,
+      "count": 1,
+      "largest": 0,
+      "largest_url": ""
+    },
+    "font": {
+      "bytes": 61904,
+      "count": 3,
+      "largest": 27436,
+      "largest_url": "https://fonts.gstatic.com/s/ptmono/v14/9oRONYoBnWILk-9AnC8zMw.woff2"
+    },
+    "image": {
+      "bytes": 1436898,
+      "count": 4,
+      "largest": 1122865,
+      "largest_url": "ps://images.unsplash.com/photo-1487530811176-3780de880c2d?auto=format&fit=crop&w=2400&q=80"
+    }
+  },
+  "embedded_bytes": 1515040,
+  "findings": [
+    {
+      "rule": "lcp",
+      "detail": "8140 ms > 1800"
+    },
+    {
+      "rule": "cls",
+      "detail": "2.851 > 0.050"
+    },
+    {
+      "rule": "long-task-under-scroll",
+      "detail": "3 tasks > 50 ms under scroll"
+    },
+    {
+      "rule": "hero-image",
+      "detail": "515202 B > 250000 (http://127.0.0.1:3317/tests/alunix-r8/runs/V3g/assets/cases/calyx-1440.webp)"
+    },
+    {
+      "rule": "img-without-decoding",
+      "detail": "img.topline-logo"
+    },
+    {
+      "rule": "img-without-dimensions",
+      "detail": "img.dither-layer  0.0.1:3317/tests/alunix-r8/runs/V3g/assets/dither/k1-stage-pool-dither-grey.webp"
+    },
+    {
+      "rule": "lcp-image-without-fetchpriority",
+      "detail": "img.dither-layer"
+    },
+    {
+      "rule": "img-without-decoding",
+      "detail": "img.dither-layer"
+    },
+    {
+      "rule": "img-without-dimensions",
+      "detail": "img.dither-layer  0.0.1:3317/tests/alunix-r8/runs/V3g/assets/dither/k4-cabin-desk-dither-grey.webp"
+    },
+    {
+      "rule": "lcp-image-without-fetchpriority",
+      "detail": "img.dither-layer"
+    },
+    {
+      "rule": "img-without-decoding",
+      "detail": "img.dither-layer"
+    },
+    {
+      "rule": "img-without-decoding",
+      "detail": "img"
+    },
+    {
+      "rule": "img-without-dimensions",
+      "detail": "img.dither-layer  0.1:3317/tests/alunix-r8/runs/V3g/assets/dither/demo-hyperborea-dither-grey.webp"
+    },
+    {
+      "rule": "img-without-decoding",
+      "detail": "img.dither-layer"
+    },
+    {
+      "rule": "img-without-dimensions",
+      "detail": "img.color-layer  http://127.0.0.1:3317/tests/alunix-concepts-r3/build/assets/demo-hyperborea.webp"
+    },
+    {
+      "rule": "img-without-decoding",
+      "detail": "img.color-layer"
+    },
+    {
+      "rule": "img-without-dimensions",
+      "detail": "img.dither-layer  0.0.1:3317/tests/alunix-r8/runs/V3g/assets/dither/k4-cabin-desk-dither-grey.webp"
+    },
+    {
+      "rule": "img-without-decoding",
+      "detail": "img.dither-layer"
+    },
+    {
+      "rule": "img-without-dimensions",
+      "detail": "img.color-layer  http://127.0.0.1:3317/tests/alunix-concepts-r3/build/assets/k4-cabin-desk.webp"
+    },
+    {
+      "rule": "img-without-decoding",
+      "detail": "img.color-layer"
+    },
+    {
+      "rule": "img-without-decoding",
+      "detail": "img"
+    },
+    {
+      "rule": "img-without-decoding",
+      "detail": "img"
+    },
+    {
+      "rule": "below-fold-image-not-lazy",
+      "detail": "#showcasePosterCalyx"
+    },
+    {
+      "rule": "img-without-decoding",
+      "detail": "#showcasePosterCalyx"
+    },
+    {
+      "rule": "below-fold-image-not-lazy",
+      "detail": "#showcasePosterHorai"
+    },
+    {
+      "rule": "img-without-decoding",
+      "detail": "#showcasePosterHorai"
+    },
+    {
+      "rule": "img-without-dimensions",
+      "detail": "img.dither-layer  http://127.0.0.1:3317/tests/alunix-r8/runs/V3g/assets/steps/calyx-1-dither.webp"
+    },
+    {
+      "rule": "img-without-decoding",
+      "detail": "img.dither-layer"
+    },
+    {
+      "rule": "img-without-dimensions",
+      "detail": "img.color-layer  http://127.0.0.1:3317/tests/alunix-r8/runs/V3g/assets/steps/calyx-1.webp"
+    },
+    {
+      "rule": "img-without-decoding",
+      "detail": "img.color-layer"
+    },
+    {
+      "rule": "img-without-dimensions",
+      "detail": "img.dither-layer  http://127.0.0.1:3317/tests/alunix-r8/runs/V3g/assets/steps/calyx-2-dither.webp"
+    },
+    {
+      "rule": "img-without-decoding",
+      "detail": "img.dither-layer"
+    },
+    {
+      "rule": "img-without-dimensions",
+      "detail": "img.color-layer  http://127.0.0.1:3317/tests/alunix-r8/runs/V3g/assets/steps/calyx-2.webp"
+    },
+    {
+      "rule": "img-without-decoding",
+      "detail": "img.color-layer"
+    },
+    {
+      "rule": "img-without-dimensions",
+      "detail": "img.dither-layer  http://127.0.0.1:3317/tests/alunix-r8/runs/V3g/assets/steps/calyx-3-dither.webp"
+    },
+    {
+      "rule": "img-without-decoding",
+      "detail": "img.dither-layer"
+    },
+    {
+      "rule": "img-without-dimensions",
+      "detail": "img.color-layer  http://127.0.0.1:3317/tests/alunix-r8/runs/V3g/assets/steps/calyx-3.webp"
+    },
+    {
+      "rule": "img-without-decoding",
+      "detail": "img.color-layer"
+    },
+    {
+      "rule": "img-without-dimensions",
+      "detail": "img.dither-layer  http://127.0.0.1:3317/tests/alunix-r8/runs/V3g/assets/steps/calyx-4-dither.webp"
+    },
+    {
+      "rule": "img-without-decoding",
+      "detail": "img.dither-layer"
+    },
+    {
+      "rule": "img-without-dimensions",
+      "detail": "img.color-layer  http://127.0.0.1:3317/tests/alunix-r8/runs/V3g/assets/steps/calyx-4.webp"
+    },
+    {
+      "rule": "img-without-decoding",
+      "detail": "img.color-layer"
+    },
+    {
+      "rule": "img-without-dimensions",
+      "detail": "img.dither-layer  http://127.0.0.1:3317/tests/alunix-r8/runs/V3g/assets/steps/calyx-5-dither.webp"
+    },
+    {
+      "rule": "img-without-decoding",
+      "detail": "img.dither-layer"
+    },
+    {
+      "rule": "img-without-dimensions",
+      "detail": "img.color-layer  http://127.0.0.1:3317/tests/alunix-r8/runs/V3g/assets/steps/calyx-5.webp"
+    },
+    {
+      "rule": "img-without-decoding",
+      "detail": "img.color-layer"
+    },
+    {
+      "rule": "img-without-dimensions",
+      "detail": "img.dither-layer  http://127.0.0.1:3317/tests/alunix-r8/runs/V3g/assets/steps/horai-1-dither.webp"
+    },
+    {
+      "rule": "below-fold-image-not-lazy",
+      "detail": "img.dither-layer"
+    },
+    {
+      "rule": "img-without-decoding",
+      "detail": "img.dither-layer"
+    },
+    {
+      "rule": "img-without-dimensions",
+      "detail": "img.color-layer  http://127.0.0.1:3317/tests/alunix-r8/runs/V3g/assets/steps/horai-1.webp"
+    },
+    {
+      "rule": "below-fold-image-not-lazy",
+      "detail": "img.color-layer"
+    },
+    {
+      "rule": "img-without-decoding",
+      "detail": "img.color-layer"
+    },
+    {
+      "rule": "img-without-dimensions",
+      "detail": "img.dither-layer  http://127.0.0.1:3317/tests/alunix-r8/runs/V3g/assets/steps/horai-2-dither.webp"
+    },
+    {
+      "rule": "below-fold-image-not-lazy",
+      "detail": "img.dither-layer"
+    },
+    {
+      "rule": "img-without-decoding",
+      "detail": "img.dither-layer"
+    },
+    {
+      "rule": "img-without-dimensions",
+      "detail": "img.color-layer  http://127.0.0.1:3317/tests/alunix-r8/runs/V3g/assets/steps/horai-2.webp"
+    },
+    {
+      "rule": "below-fold-image-not-lazy",
+      "detail": "img.color-layer"
+    },
+    {
+      "rule": "img-without-decoding",
+      "detail": "img.color-layer"
+    },
+    {
+      "rule": "img-without-dimensions",
+      "detail": "img.dither-layer  http://127.0.0.1:3317/tests/alunix-r8/runs/V3g/assets/steps/horai-3-dither.webp"
+    },
+    {
+      "rule": "below-fold-image-not-lazy",
+      "detail": "img.dither-layer"
+    },
+    {
+      "rule": "img-without-decoding",
+      "detail": "img.dither-layer"
+    },
+    {
+      "rule": "img-without-dimensions",
+      "detail": "img.color-layer  http://127.0.0.1:3317/tests/alunix-r8/runs/V3g/assets/steps/horai-3.webp"
+    },
+    {
+      "rule": "below-fold-image-not-lazy",
+      "detail": "img.color-layer"
+    },
+    {
+      "rule": "img-without-decoding",
+      "detail": "img.color-layer"
+    },
+    {
+      "rule": "img-without-dimensions",
+      "detail": "img.dither-layer  http://127.0.0.1:3317/tests/alunix-r8/runs/V3g/assets/steps/horai-4-dither.webp"
+    },
+    {
+      "rule": "below-fold-image-not-lazy",
+      "detail": "img.dither-layer"
+    },
+    {
+      "rule": "img-without-decoding",
+      "detail": "img.dither-layer"
+    },
+    {
+      "rule": "img-without-dimensions",
+      "detail": "img.color-layer  http://127.0.0.1:3317/tests/alunix-r8/runs/V3g/assets/steps/horai-4.webp"
+    },
+    {
+      "rule": "below-fold-image-not-lazy",
+      "detail": "img.color-layer"
+    },
+    {
+      "rule": "img-without-decoding",
+      "detail": "img.color-layer"
+    },
+    {
+      "rule": "img-without-dimensions",
+      "detail": "img.dither-layer  http://127.0.0.1:3317/tests/alunix-r8/runs/V3g/assets/steps/horai-5-dither.webp"
+    },
+    {
+      "rule": "below-fold-image-not-lazy",
+      "detail": "img.dither-layer"
+    },
+    {
+      "rule": "img-without-decoding",
+      "detail": "img.dither-layer"
+    },
+    {
+      "rule": "img-without-dimensions",
+      "detail": "img.color-layer  http://127.0.0.1:3317/tests/alunix-r8/runs/V3g/assets/steps/horai-5.webp"
+    },
+    {
+      "rule": "below-fold-image-not-lazy",
+      "detail": "img.color-layer"
+    },
+    {
+      "rule": "img-without-decoding",
+      "detail": "img.color-layer"
+    },
+    {
+      "rule": "img-without-dimensions",
+      "detail": "img.dither-layer  http://127.0.0.1:3317/tests/alunix-r8/runs/V3g/assets/steps/horai-6-dither.webp"
+    },
+    {
+      "rule": "below-fold-image-not-lazy",
+      "detail": "img.dither-layer"
+    },
+    {
+      "rule": "img-without-decoding",
+      "detail": "img.dither-layer"
+    },
+    {
+      "rule": "img-without-dimensions",
+      "detail": "img.color-layer  http://127.0.0.1:3317/tests/alunix-r8/runs/V3g/assets/steps/horai-6.webp"
+    },
+    {
+      "rule": "below-fold-image-not-lazy",
+      "detail": "img.color-layer"
+    },
+    {
+      "rule": "img-without-decoding",
+      "detail": "img.color-layer"
+    },
+    {
+      "rule": "img-without-dimensions",
+      "detail": "img.dither-layer  0.0.1:3317/tests/alunix-r8/runs/V3g/assets/dither/k1-stage-pool-dither-grey.webp"
+    },
+    {
+      "rule": "img-without-decoding",
+      "detail": "img.dither-layer"
+    },
+    {
+      "rule": "img-without-dimensions",
+      "detail": "img.color-layer  http://127.0.0.1:3317/tests/alunix-concepts-r3/build/assets/k1-stage-pool.webp"
+    },
+    {
+      "rule": "img-without-decoding",
+      "detail": "img.color-layer"
+    },
+    {
+      "rule": "img-without-decoding",
+      "detail": "img"
+    },
+    {
+      "rule": "iframe-not-lazy",
+      "detail": "#showcaseIframeCalyx  /sites/calyx.html"
+    },
+    {
+      "rule": "iframe-not-lazy",
+      "detail": "#showcaseIframeHorai  "
+    },
+    {
+      "rule": "no-font-preload",
+      "detail": "en @font-face finns men ingen <link rel=preload as=font>"
+    },
+    {
+      "rule": "resting-will-change",
+      "detail": "span, span, span, span, span, span"
+    }
+  ],
+  "pass": false
+}

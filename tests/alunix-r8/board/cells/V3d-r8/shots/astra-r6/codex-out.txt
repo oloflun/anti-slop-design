@@ -1,0 +1,45 @@
+fix
+
+**persistence:** Read-only review of the requested documents, source, supplied images and saved exit sequence. No patches or fresh browser captures.
+
+**fidelity · A**
+
+P01: holds the level.
+P02: holds the level.
+P03: holds the level.
+P04: holds the level. P04-1440, upper plate: the 116 px, two-line heading now dominates.
+P05: holds the level; known Hōrai mobile overflow noted, exempt from fixes.
+P06: holds the level.
+P07: holds the level.
+P08: holds the level.
+P09: holds the level.
+P10: holds the level.
+P11: holds the level.
+P12: holds the level.
+P13: does not hold, gap: mobile revision field overlaps the image by approximately 2.24 rendered px; move: fit the field above the **transformed** image boundary, with ≥1 SVG unit clearance. Evidence: `zoom-390-07-rev.png`, lower edge of revision box over cream navigation.
+P14: holds the level.
+P15: holds the level.
+P16: holds the level. Both contact sheets preserve the ordered material changes; the long dark drafting act is intentional.
+
+These row judgments cover the parity columns, 1440 and 390. The additional 768 capture exposes a separate blocking defect.
+
+**B · r5’s four material_fixes**
+
+1. **Open, partially closed.** P12-390, top sheet: the glyph has disappeared and the image fits. P13-390 and the revision zoom, top-right corner: the revision box still crosses `.p-live`; see fix below.
+2. **Closed.** `index.html:2689` now supplies desktop `[861,13]`, matching the field. P13-1440, sheet’s top-right corner: “A” occupies the revision field.
+3. **Closed in the saved sequence.** `strip-exit-1440.png`, upper band across successive frames: text leaves through the viewport’s top, without the sheet slicing through it. Saved measurements report no intersections. The changed padding is at `index.html:1107`.
+4. **Closed.** `index.html:942` produces 116 px at 1440. P04-1440, upper plate: two complete lines, stronger than the process chapter heading; the ledger remains readable. Saved width checks report no split words.
+
+**ceiling:** Two local geometry defects prevent ship. Neither requires changing palette, typeface, copy, motion policy or scroll engine.
+
+**material_fixes · C**
+
+1. **Tablet grid overlaps its children.** `index.html:1135` changes the paragraph’s column but retains `grid-row:1 / span 2` from `index.html:1122`. It therefore shares cells with the number and note; the auto-placed heading drops below them. Evidence: `steg-768-process-07.png`, upper 0–235 px: paragraph crosses “07” and the note.
+
+   **Target:** at 768–1023 px, explicitly place heading in row 1, note in row 2, paragraph in row 3 spanning both columns; number spans rows 1–2. Zero intersecting text rectangles across all seven steps, with the existing 16 px row gap.
+
+2. **Mobile revision placement ignores camera scale.** `index.html:1502` and `index.html:1503` end the fixed field at y=18. With `index.html:1519` scaling the image by 1.05 around y=100, its top becomes `100 + (20−100)×1.05 = 16`. Thus the field overlaps by 2 SVG units, approximately 2.24 px at 390. Evidence: `zoom-390-07-rev.png`, box’s bottom edge.
+
+   **Target:** revision field bottom ≤15 SVG units, letter fully inside it, ≥1 unit clearance from `.p-live` throughout step 07. Adjust letter coordinates at `index.html:2689` if needed; retain the corrected image scale.
+
+**keep:** Enlarged giant heading; clean, uncropped mobile Calyx; desktop exit behavior; deliberate dark chapter and drafting act; existing whole-page material rhythm.

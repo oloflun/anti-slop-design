@@ -1,0 +1,2483 @@
+<!doctype html>
+<html lang="sv">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Alunix · Digital byrå för design, utveckling och system</title>
+<link rel="preload" href="assets/fonts/geist-500-latin.woff2" as="font" type="font/woff2" crossorigin>
+<link rel="stylesheet" href="assets/vendor/lenis.css">
+
+<style>
+@font-face{
+  font-family:"Geist";
+  src:url("assets/fonts/geist-500-latin.woff2") format("woff2");
+  font-weight:500; font-style:normal; font-display:swap;
+}
+@font-face{
+  font-family:"Geist Mono";
+  src:url("assets/fonts/geist-mono-400-latin.woff2") format("woff2");
+  font-weight:400; font-style:normal; font-display:swap;
+}
+
+:root{
+  --paper:#ffffff;
+  --ink:#232323;
+  --black:#000000;
+  --grey:#d9d9d9;
+  --mint:#0af474;
+  --mint-soft:#a3fbcb;
+  --rust:#9c5a3a;
+  --lacquer:#b23524;
+  /* R8: sekundär brödtext, ett värde per grund (8,9:1 på --paper, 11,8:1 på --black) */
+  --ink-2:#4a4a4a;
+  --paper-2:#bdbdbd;
+  --seam:1px solid #000;
+
+  --headline-50:clamp(3.25rem, 0.418rem + 12.082vw, 12.5rem);
+  --headline-40:clamp(2.5rem, 1.352rem + 4.9vw, 6.25rem);
+  --headline-20:clamp(2rem, 1.694rem + 1.306vw, 3rem);
+  --h3:38px;
+  --body:16px;
+  --body-30:clamp(1.5rem, 1.347rem + 0.653vw, 2rem);
+  --caption:13px;
+  --cellpad:20px;
+}
+
+*{box-sizing:border-box;}
+html{color-scheme:light;}
+body{
+  margin:0;
+  background:#000;
+  color:var(--ink);
+  font-family:"Geist","Arial",system-ui,sans-serif;
+  font-weight:500;
+  line-height:1.3;
+  -webkit-font-smoothing:antialiased;
+  overflow-x:hidden;
+}
+img{display:block;max-width:100%;}
+.mono{font-family:"Geist Mono","Consolas",monospace;font-weight:400;}
+h1,h2,h3,p,ol,ul,figure{margin:0;padding:0;}
+a{color:inherit;}
+.sr-only{position:absolute;width:1px;height:1px;padding:0;margin:-1px;overflow:hidden;clip:rect(0,0,0,0);white-space:nowrap;border:0;}
+
+/* ---------------------------------------------------------- rutverket shell */
+.rutverk{max-width:1440px;margin:0 auto;background:#000;}
+.rutverk > section{scroll-margin-top:48px;}
+
+.g{display:grid;gap:1px;background:#000;}
+.cell{background:var(--paper);padding:var(--cellpad);position:relative;overflow:hidden;}
+.cell--pad0{padding:0;}
+.cell--ink{background:var(--ink);color:var(--paper);}
+.cell--black{background:var(--black);color:var(--paper);}
+.cell--grey{background:var(--grey);color:var(--ink);}
+.cell--mint{background:var(--mint);color:var(--black);}
+.cell--rust{background:var(--rust);color:var(--paper);}
+.cell--lacquer{background:var(--lacquer);color:var(--paper);}
+
+.g12{grid-template-columns:repeat(12,1fr);}
+@media (max-width:1199px){
+  .g12{grid-template-columns:repeat(6,1fr);}
+}
+@media (max-width:767px){
+  .g12{grid-template-columns:1fr;}
+  .g12 > *{grid-column:1 / -1 !important;}
+}
+
+.c-2{grid-column:span 2;}
+.c-3{grid-column:span 3;}
+.c-4{grid-column:span 4;}
+.c-5{grid-column:span 5;}
+.c-6{grid-column:span 6;}
+.c-7{grid-column:span 7;}
+.c-8{grid-column:span 8;}
+.c-12{grid-column:span 12;}
+@media (max-width:1199px){
+  .c-7,.c-5,.c-8,.c-4{grid-column:span 6;}
+}
+
+.headline-50{font-size:var(--headline-50);line-height:.8;letter-spacing:-.04em;font-weight:500;}
+.headline-40{font-size:var(--headline-40);line-height:1;letter-spacing:-.04em;font-weight:500;}
+.headline-20{font-size:var(--headline-20);line-height:1;letter-spacing:-.04em;font-weight:500;}
+.h3{font-size:var(--h3);line-height:1.1;letter-spacing:-.02em;font-weight:500;}
+.body{font-size:var(--body);line-height:1.3;letter-spacing:-.02em;}
+.body-30{font-size:var(--body-30);line-height:1.1;letter-spacing:-.02em;}
+.caption{font-size:var(--caption);letter-spacing:0;}
+.tnum{font-variant-numeric:tabular-nums;}
+
+/* ------------------------------------------------------------- topline */
+.topline{
+  position:sticky;top:0;z-index:40;height:48px;max-width:1440px;margin:0 auto;
+  display:grid;grid-template-columns:auto 1fr auto;gap:1px;background:#000;
+}
+.topline-cell{background:var(--black);color:var(--paper);display:flex;align-items:center;padding:0 20px;}
+.topline-logo{width:auto;height:22px;}
+.topline-mark{font-size:15px;letter-spacing:-.02em;font-weight:500;}
+.topline-mid{background:var(--paper);}
+.topline-contact{background:var(--black);color:var(--paper);font-size:14px;text-decoration:none;justify-content:flex-end;}
+
+/* ------------------------------------------------------------- hero */
+/* R3: the fixed 190svh CSS-sticky stage is gone. The pin distance is now
+   owned by ScrollTrigger's own pinSpacing (desktop matchMedia branch,
+   RORELSE-SPEC.md §2); hero-wrap just needs to size to its content so a
+   no-JS/pre-JS view still shows one full stage, not a dead 90svh gap. */
+.hero-wrap{position:relative;max-width:1440px;margin:0 auto;}
+.hero-stage{
+  position:relative;height:calc(100svh - 48px);
+  display:grid;grid-template-columns:1fr 1fr;grid-template-rows:1fr 1fr;
+  gap:1px;background:#000;
+}
+@media (max-width:767px){
+  /* Mobile drops the pin: no extra scroll-span, no sticky stage. The four
+     cells stack in normal flow (each already min-height:60vw, so the
+     stack is naturally taller than one screen) and the card flips against
+     that natural scroll distance instead of a dedicated dead-space span. */
+  .hero-wrap{height:auto;}
+  .hero-stage{grid-template-columns:1fr;grid-template-rows:repeat(4,minmax(60vw,auto));height:auto;position:relative;top:0;}
+}
+.hero-cell{position:relative;overflow:hidden;}
+.hero-ov{background:var(--paper);display:flex;align-items:flex-end;padding:var(--cellpad);}
+.hero-oh{background:var(--grey);}
+.hero-nv{background:var(--grey);}
+.hero-nh{background:var(--mint);}
+.hero-h1{max-width:14ch;}
+
+.dither-layer{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;}
+.color-layer{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;}
+
+/* card: a physical object (light stock, ink edge, hard offset shadow) so
+   it reads against a black cell instead of disappearing into it. ~1.6x
+   the R1 size at 1440 (was ~340px wide, now ~520px), 85:55 kept. */
+.card-anchor{
+  position:absolute;left:75%;top:50%;
+  width:min(36vw,520px);
+  aspect-ratio:85/55;
+  transform:translate(-50%,-50%);
+  perspective:1600px;
+  z-index:5;
+  pointer-events:none;
+}
+@media (max-width:767px){ .card-anchor{left:50%;top:120vw;width:min(74vw,380px);} }
+.card-flip{
+  width:100%;height:100%;position:relative;
+  transform-style:preserve-3d;
+  box-shadow:10px 10px 0 0 #000;
+}
+.face{
+  position:absolute;inset:0;
+  background:#fff;
+  backface-visibility:hidden;
+  border:1px solid #000;
+  overflow:hidden;
+}
+/* A visible white mat around the photo, not a full-bleed image: a card
+   that is a photo edge-to-edge reads as "the photo", not as "a light
+   stock object sitting on the cell" - the mat is what makes the white
+   stock actually visible against a black ÖH ground. */
+.face--front{background:#fff;padding:6%;}
+/* R6 bugfix: kontakt's front is a <button> wrapping <span>s (spans, unlike
+   hero's <div>s, default to display:inline) - an inline, merely
+   position:relative .photo never gets a real box (width/height are ignored
+   on non-replaced inline elements), so it collapsed to a ~2px sliver and
+   the absolutely-positioned img inside inherited that zero-size containing
+   block. display:block here makes both tags behave identically. */
+.face--front .photo{display:block;position:relative;width:100%;height:100%;overflow:hidden;border:1px solid rgba(0,0,0,.5);}
+.face--back{
+  transform:rotateY(180deg);
+  background:#fff;color:var(--ink);
+  display:flex;flex-direction:column;justify-content:center;gap:10px;padding:6% 8%;
+}
+.face--front img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;}
+.mark-dock{position:absolute;top:9%;left:9%;width:14%;z-index:2;}
+.mark-dock svg{width:100%;height:auto;fill:#fff;filter:drop-shadow(0 0 3px rgba(0,0,0,.7));}
+.card-mark{font-size:clamp(20px,2.6vw,32px);letter-spacing:-.02em;margin:0;}
+.card-kicker{font-family:"Geist Mono";font-weight:400;font-size:clamp(11px,1.1vw,14px);opacity:.65;margin:2px 0 0;}
+.card-rule{border:0;border-top:1px solid rgba(0,0,0,.25);margin:6px 0;width:100%;}
+.card-services{display:flex;gap:10px;font-family:"Geist Mono";font-weight:400;font-size:clamp(10px,1.1vw,13px);}
+.card-cta{font-size:clamp(13px,1.5vw,18px);text-decoration:underline;margin-top:4px;align-self:flex-start;}
+/* H5: the hero CTA takes a click only once the back faces the reader */
+.card-anchor.is-back .card-cta{pointer-events:auto;cursor:pointer;}
+
+/* ------------------------------------------------------------- tes */
+.tes-top{background:var(--black);color:var(--paper);padding:calc(var(--cellpad)*2) var(--cellpad);}
+.tes-top .headline-50{max-width:22ch;}
+/* R7: the approved breaks "Det första / intrycket / är digitalt." came from
+   splitting with the fallback font's metrics. With Geist preloaded the split
+   saw "intrycket är" fit on one line, so the width is now set where the
+   approved breaks fall (between 4.47 em and 5.09 em), whenever the font loads. */
+@media (min-width:768px){ .tes-top .headline-50{max-width:4.75em;} }
+/* R9 §2: the Hyperborea frame and its list are gone. Two statements share one pinned
+   cell: A stands, its words sink out of their line masks while B's letters rise in the
+   same place, then B stands. Desktop stacks them in one grid area at the optical centre
+   (block centre ~45 % of the viewport, Anton 2026-10-03); mobile has no pin and stacks
+   them in flow. */
+.tes-stage{display:grid;}
+.tes-b-text{display:block;}
+.tes-stage > *{grid-area:1 / 1;align-self:center;}  /* R9 §5: A is shorter than B; centred on its own it sat at .371 */
+@media (min-width:768px){
+  .tes-top{min-height:calc(100svh - 48px);display:flex;flex-direction:column;justify-content:center;padding-bottom:calc(var(--cellpad)*2 + 18svh);}  /* measured centre .437 at 1440x900 */
+}
+@media (max-width:767px){
+  .tes-stage > .tes-b{grid-area:2 / 1;margin-top:calc(var(--headline-50) * .6);}
+}
+.tes-stage.tes-flow > .tes-b{grid-area:2 / 1;margin-top:calc(var(--headline-50) * .6);}  /* a11y H1 fallback, see JS */
+.tes-stage.tes-flow > *{max-width:none;overflow-wrap:anywhere;}  /* spaced "intrycket" outgrew the 4.75em measure */
+
+/* ------------------------------------------------------------- process */
+.process-row{}
+.process-left{background:var(--grey);}
+.process-sticky{position:sticky;top:calc(48px + var(--cellpad));}
+.process-kicker{margin-bottom:14px;}
+.process-title{margin:0 0 18px;max-width:11ch;}
+.process-lock{max-width:32ch;opacity:.8;}
+.process-image{position:relative;margin-top:32px;aspect-ratio:1/1;width:100%;max-width:680px;border:1px solid #000;overflow:hidden;}
+.process-right{background:var(--black);color:var(--paper);padding:0;}
+.process-steps{list-style:none;}
+.process-row-item{display:grid;grid-template-columns:56px 1fr;gap:14px;padding:22px var(--cellpad);border-top:1px solid #000;}
+.process-row-item:first-child{border-top:none;}
+.process-num{font-family:"Geist Mono";font-weight:400;font-size:13px;padding-top:4px;}
+.process-step-title{margin:0 0 6px;}
+.process-p{color:#bdbdbd;max-width:56ch;font-size:15px;}
+
+/* ------------------------------------------------------------- exempelcase */
+/* R5 §A bugfix: 0.6x bottom padding (12px) was less than the SplitText
+   mask-breathe allowance (0.16em, ~16-20px at this clamp size) needs to
+   clear the word's own descenders before the cell's overflow:hidden edge
+   - verify_motion.py's legibility scan caught the word's rendered box
+   (with its mask wrapper's padding-bottom) genuinely sitting a few px
+   below the cell's clip boundary at every scroll position (0vh visible,
+   not >=40vh). Matching the top padding removes the clip entirely. */
+.case-word-cell{padding:calc(var(--cellpad)*1.4) var(--cellpad) calc(var(--cellpad)*1.4 + 4px);overflow:hidden;}
+.case-word-cell .headline-50{max-width:100%;}
+
+/* R5 §B1: väljaren - två knappar, skarpa 1440x900-vyer, ingen beskärande zoom */
+.case-picker-cell{padding:0 var(--cellpad) calc(var(--cellpad)*1.2);background:#000;}
+.case-picker{display:grid;gap:1px;background:#000;}
+.case-choice{
+  display:block;width:100%;margin:0;padding:0;border:0;background:var(--paper);color:inherit;
+  font:inherit;text-align:left;cursor:pointer;-webkit-appearance:none;appearance:none;
+}
+.case-choice-frame{position:relative;display:block;aspect-ratio:16/10;overflow:hidden;background:var(--grey);}
+.case-choice-frame img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;transform:scale(1);transition:transform .7s cubic-bezier(.23,1,.32,1);}
+@media (hover:hover){
+  .case-choice:hover .case-choice-frame img,
+  .case-choice:focus-visible .case-choice-frame img{transform:scale(1.04);}
+}
+.case-choice:focus-visible{outline:3px solid var(--black);outline-offset:-3px;}
+.case-choice-meta{display:block;padding:16px var(--cellpad) 20px;border-bottom:4px solid transparent;}
+.case-choice[aria-pressed="true"] .case-choice-meta{border-bottom-color:var(--mint);}
+.case-choice-meta .h3{display:block;margin-bottom:4px;font-size:22px;}
+
+/* ------------------------------------------------------------- showcase (B2/C) */
+.showcase-stage{display:grid;grid-template-columns:1fr;gap:1px;background:#000;}
+/* R7 (H13): while the stage is more than 1.5 viewports away it is not drawn.
+   Every ScrollTrigger refresh measured the pinned stage in a state Chrome
+   logged as a 0.947 layout shift (two at load, CLS 1.89) although nothing
+   moved on screen; an invisible box is not counted. Toggled by an
+   IntersectionObserver in both directions, never while it can be seen. */
+.showcase-stage.is-far, .showcase-stage.is-far *{visibility:hidden !important;}
+/* H10 (R7): the showcase pins only where its side column fits. Below 561 px of height (768x432 = 200 % zoom) it takes the stacked layout, so no step text is clipped and the wheel never scrolls an inner panel. */
+@media (min-width:768px) and (min-height:561px){ .showcase-stage{grid-template-columns:7fr 5fr;} }
+.showcase-embed-cell{padding:0;background:var(--paper);position:relative;overflow:hidden;}
+.showcase-embed-cell .showcase-frame-wrap{position:relative;width:100%;height:100%;overflow:hidden;background:var(--paper);}
+.showcase-embed-cell .showcase-poster{position:absolute;inset:0;width:100%;height:100%;object-fit:contain;object-position:top center;}
+.showcase-embed-cell iframe{
+  position:absolute;top:0;left:0;width:1440px;height:900px;border:0;background:var(--paper);
+  transform-origin:top left;pointer-events:none;opacity:0;
+}
+@media (max-width:767px), (max-height:560px){
+  .showcase-embed-cell{position:sticky;top:48px;height:56svh;z-index:2;}
+}
+@media (min-width:768px) and (max-height:560px){ .showcase-embed-cell{height:45svh;} }
+@media (min-width:768px) and (min-height:561px){
+  /* R6 §3, two stacked causes, both fixed here:
+     1) .showcase-side's natural content (all 5/6 rows, R5's rise-mask kept
+        every body visible at once) was taller than the embed cell's
+        explicit height. A CSS grid item with an explicit height does not
+        stretch to match a taller sibling's row track - the TRACK grows to
+        fit the tall side instead, leaving the embed cell short of the
+        row's actual height by the difference (measured ~110px), exposing
+        the stage's own black gap background below the frame. Pinning both
+        columns to the SAME explicit height (with the side's own
+        overflow-y:auto as a never-clip safety net) makes them structurally
+        impossible to mismatch, regardless of how much text a future edit
+        adds.
+     2) That explicit height was `100svh - 48px`, sized to sit BELOW the
+        48px sticky topline - but the pin (`start:'top top'`) puts the
+        section's rendered top at the viewport's own y:0, with the topline
+        merely painted on top of (not offsetting) its first 48px. The
+        result: content correctly avoids the topline visually, but then
+        runs 48px short of the viewport's bottom edge, showing the stage's
+        black background as a trailing band under both columns (measured:
+        embed/side bottom at 852 of a 900-tall viewport). Hero's own pin
+        has this identical 48px arithmetic and gap - invisible there only
+        because it lands on the page's own black background either side.
+        Showcase's is visible because there's real content flush above it.
+        Fixed the same way hero's is invisible: fill the FULL viewport
+        (100svh) - the topline still visually covers the top 48px (it's
+        position:sticky, z-index:40, opaque), but the bottom now lands
+        exactly on the viewport edge, so no gap is left to expose.
+
+     R7 runda 2, fynd 1: that "topline merely painted on top" claim was
+     wrong for `.showcase-head`'s own rubrik - the topline IS opaque and
+     DOES cover whatever renders in its first 48px; it just happened not to
+     matter for hero (dark ground either side). Here `.showcase-head`'s
+     headline-40 sits flush at the pinned section's very top edge, so its
+     cap-height rendered UNDER the topline and got visually sheared (lead's
+     through-05..through-12, 2026-09-25). Fix: pin the section 48px lower
+     instead of hiding 48px under an opaque bar - `start:'top top+=48'` on
+     the ScrollTrigger (setupDesktopEngine) puts the section's rendered top
+     at y:48, exactly below the topline, and both cell heights shrink by
+     the same 48px so the bottom still lands flush on the viewport edge -
+     the R6 §3 gap this block fixed doesn't reopen, because now BOTH the
+     offset and the height account for the topline, not just the height. */
+  .showcase-embed-cell{height:calc(100svh - 48px);}
+  .showcase-side{height:calc(100svh - 48px);overflow-y:auto;}
+}
+.showcase-side{display:grid;grid-template-rows:auto 1fr;gap:1px;background:#000;}
+.showcase-panel{display:contents;}
+.showcase-head{padding:calc(var(--cellpad)*1.4) var(--cellpad);color:var(--paper);}
+/* H7: the frames are inert previews; the site itself opens from here */
+.showcase-open{display:inline-flex;align-items:center;min-height:32px;margin-top:10px;font-size:16px;letter-spacing:-.01em;text-decoration:underline;text-underline-offset:3px;}
+.showcase-open:focus-visible{outline:2px solid var(--paper);outline-offset:2px;}
+.showcase-head .headline-40{margin-bottom:8px;}
+
+/* R7 §C: the accordion ledger (R6 §1/§2) is replaced on desktop by a single
+   crossfading box - one background for the whole "ruta", every step
+   grid-stacked in one cell and GSAP-scrubbed by the showcase pin's onUpdate
+   (never a class-toggle). Mobile keeps R6's stacked-rows layout unchanged;
+   only its opacity mechanism changes (measured contrast fix, see below). */
+.showcase-row{padding:var(--cellpad);display:flex;flex-direction:column;justify-content:center;}
+.showcase-row h3{margin-bottom:0;}
+.showcase-row p{max-width:52ch;font-size:15px;margin-top:8px;}
+/* R8 mobil: ingressen ett steg större än dagens 15 px, andra stycket som i dag */
+.showcase-row .showcase-lede{font-size:17px;line-height:1.4;}
+
+@media (min-width:768px) and (min-height:561px){
+  /* R6 runda 6 (F-019/F-022): tre celler i sidans eget rutverk (gap:1px,
+     background:#000 skiner igenom som fog, varje cell sin egen bakgrund) -
+     räknarcellen (auto), textcellen (auto, satt av det längsta stegets
+     höjd via samma grid-area:1/1-stapling som förut) och en ny detaljcell
+     (1fr, fyller resten) som visar en bild ur den valda sajten per steg.
+     Den lodräta stegskalan (R3-R4) är borttagen helt - Anton (F-022):
+     "Det ser ut som något ofärdigt". Tom yta löses nu med riktigt innehåll
+     (en bild ur arbetet), inte med ett dekorativt streck. */
+  /* R8 (Anton 2026-09-29, "ta bort rutorna"): EN yta under casehuvudet, NOT
+     tre celler med fogar. Samma tre rader i gridden (räknare, text, lupp), men
+     gap 0 och en enda bakgrund på behållaren: inga cellkanter, ingen
+     bakgrundsväxling, inga skarvar mellan räknaren, texten och luppen. */
+  .showcase-rows{display:grid;grid-template-rows:auto auto 1fr;gap:0;height:100%;position:relative;}
+  .showcase-panel--calyx .showcase-rows{background:var(--paper);color:var(--ink);}
+  .showcase-panel--horai .showcase-rows{background:var(--black);color:var(--paper);}
+  /* räknaren och mintspåret: en rad direkt på ytan, utan box (skyddad effekt) */
+  .showcase-box-head{padding:var(--cellpad) var(--cellpad) 0;}
+  .showcase-counter{display:block;font-size:13px;margin-bottom:10px;}
+  .showcase-track{position:relative;height:4px;}
+  .showcase-track::before{content:'';position:absolute;top:50%;left:0;right:0;height:1px;background:#000;transform:translateY(-50%);}
+  .showcase-panel--horai .showcase-track::before{background:var(--paper);opacity:.3;}
+  .showcase-track-fill{position:absolute;top:0;left:0;width:100%;height:4px;background:var(--mint);transform-origin:0 50%;transform:scaleX(0);}
+  .showcase-steps{display:grid;}
+  /* R3 §4 (F-019): rubriken får aldrig ta över - sajten är huvudsaken,
+     rutan är bildtexten. h3 tillbaka i rubrikskala (30px), inte
+     headline-40-tokenet R2 lånade; jättesiffran är borttagen. */
+  /* R6b: toppjusterad. Centrerad (basregeln) satte stegrubriken 14 px lägre i
+     steg med tre rader än i steg med fyra, så rubriken hoppade vid varje byte. */
+  /* R8: texten tar mer plats - rubrik i h3-skala (30 px, F-019), ingress
+     20-22 px i full textfärg, andra stycket 16-17 px i sekundärfärg (mätt
+     >= 4,5:1 per grund). Båda följer fönsterhöjden så att det längsta steget
+     ryms vid 1280x800. Mått högst 46ch, luft på 8-skalan (16/16). */
+  .showcase-steps{padding-top:32px;}
+  /* 16 px under texten: de osynliga stegens y:12 (övertoningen) ryms i raden */
+  .showcase-row{grid-area:1/1;padding:0 var(--cellpad) 16px;justify-content:flex-start;}
+  .showcase-row h3{font-size:30px;line-height:1.15;font-weight:500;}
+  .showcase-row p{max-width:46ch;margin-top:16px;}
+  .showcase-row .showcase-lede{font-size:clamp(20px, calc(12px + 1vh), 22px);line-height:1.4;letter-spacing:-.01em;}
+  /* R8: under ca 860 px höjd tar texten sina nedre värden (h3 28, radavstånd
+     1,35/1,5, 24 px överst) så att luppen behåller en läsbar storlek. */
+  @media (max-height:860px){
+    .showcase-steps{padding-top:24px;}
+    .showcase-row h3{font-size:28px;}
+    .showcase-row .showcase-lede{line-height:1.35;}
+  }
+  /* detaljcellen: en <figure> per steg, grid-stackad (samma grid-area:1/1-
+     teknik som .showcase-row ovan), färglager under och ett dither-rutnät
+     ovanpå (buildTileGrid, samma mekanism som #kontakt/tes-bilden) som
+     löses upp i den skrubbade pin-tidslinjen (C.tl, se buildStepTimelines).
+     Calyx grå grund (dither svart-på-grått), Hōrai svart grund (dither
+     vitt-på-svart) - samma två grundfärger dither.py redan producerar. */
+  /* R6b: bilden är ett förstoringsglas (2,5-3x iframen) tagen i exakt cellens
+     proportion vid 1440x900 (599,6/426,5 = 1,4058). Vid andra fönster varierar
+     cellen från 0,63 (2560x1440) till 1,59 (1280x800); figuren låses därför
+     till bildens proportion och passas in (contain) med container-enheter, så
+     att färglagret och rutnätet ovanpå alltid täcker samma yta. Med cover
+     klipptes luppen (adressen, priset) och rutorna gled ur linje mot färgen. */
+  /* R8b (F-019: sajten är huvudsaken, inget får täcka ramen): luppen är ett
+     band i kolumnens fulla bredd, kant i kant mot vänster, höger och botten,
+     utan ram, inset eller skugga, NOT ett utklipp över skarven. Bandets höjd
+     är det som blir kvar under det längsta steget (1fr), 24 px under texten
+     (16 i raden + 8 här). Utsnittet är cover: figuren behåller bildens
+     proportion (så att dither-rutnätet ligger kvar på färgen, R6b) och
+     överfyller bandet, som klipper; --fx/--fy per figur är object-position
+     som bråk, valt så att loupe.py STEPS mål står kvar i bild. Under 160 px
+     band döljs luppen: texten vinner. */
+  .showcase-detail{position:relative;overflow:hidden;min-height:0;margin-top:8px;container-type:size;}
+  .showcase-figure{--fw:max(100cqw, calc(100cqh * 1.4058));position:absolute;width:var(--fw);aspect-ratio:1.4058;left:calc((100cqw - var(--fw)) * var(--fx, .5));top:calc((100cqh - var(--fw) / 1.4058) * var(--fy, .5));margin:0;opacity:0;}
+  @container (max-height:159.98px){ .showcase-figure{display:none;} }
+  .showcase-figure:first-child{opacity:1;}
+  .showcase-figure img{position:absolute;inset:0;width:100%;height:100%;object-fit:fill;}
+}
+@media (max-width:767px), (max-height:560px){
+  /* R7 runda 2, fynd 2: .showcase-embed-cell (position:sticky) satt över
+     .showcase-side (head + rader) i normalt dokumentflöde, så när huvudet
+     ("Hōrai") rullade upp genom den redan-klistrade ramen (z-index:2) klipptes
+     det mot ramens underkant (lead: through-02/03). Huvudet ska stå helt
+     synligt INNAN raderna - och innan ramen - börjar klistra, så .showcase-side
+     görs display:contents här (bara mobil) för att lyfta .showcase-head och
+     .showcase-rows till .showcase-stage's egna grid-items, och ordnas om med
+     `order`: huvud (1) -> ram (2, där klistringen börjar) -> rader (3). */
+  .showcase-side{display:contents;}
+  .showcase-head{order:1;}
+  .showcase-embed-cell{order:2;}
+  .showcase-rows{display:flex;flex-direction:column;gap:0;background:#000;order:3;}
+  /* R6 runda 6: .showcase-box-head hålls INTE display:none längre. Mätt
+     (shots/r6-mobile-before, före denna runda): den borttagna stegskalan
+     (.showcase-scale) hade ALDRIG en egen mobilregel, så dess räknartext
+     redan föll igenom osynligt formaterad, som en enkel textrad i
+     .showcase-rows egen svarta gap-bakgrund, ovanpå .showcase-embed-cell.
+     Räknaren (nu flyttad hit) måste fortsätta synas EXAKT så - briefen
+     ("mobil oförändrad") gäller även denna oavsiktliga men redan existerande
+     synlighet. .showcase-track har fortfarande ingen mobilstorlek (dess
+     height/position-regler ligger kvar i 768px-blocket ovan) och kollapsar
+     därför osynligt till 0px, precis som förut. */
+  .showcase-detail{display:none;}
+  .showcase-steps{display:contents;}
+  /* R8: raderna utan rutor - en yta per case, luften skiljer raderna åt, NOT
+     randiga celler med svarta fogar. Den aktiva raden står i 1, de andra i
+     MOBILE_INACTIVE_OPACITY (mätt >= 4,5:1 på båda styckena). */
+  .showcase-panel--calyx .showcase-row{background:var(--paper);}
+  .showcase-panel--horai .showcase-row{background:var(--black);color:var(--paper);}
+  .showcase-panel--horai .showcase-row p{color:var(--paper-2);}
+  .showcase-panel--horai .showcase-row .showcase-lede{color:var(--paper);}
+  .showcase-rows .showcase-row{padding:24px var(--cellpad);}
+}
+
+/* ------------------------------------------------------------- pris */
+.pris-statement{padding:calc(var(--cellpad)*2) var(--cellpad);}
+.pris-statement .body-30{max-width:60ch;margin-top:calc(var(--headline-50) * .5);font-weight:500;}  /* R9 §4a: .8 leading hangs the descender ~.2em below the box; .5 puts baseline-to-lede >= one x-height (99 px at 1440; .32 gave 70) */
+/* All placement lives in these classes (not inline styles) so the media
+   queries below can actually win the cascade at each breakpoint. */
+.pris-bento{grid-template-columns:repeat(12,1fr);grid-template-rows:auto auto;}
+/* R9 §5b: name and description read together (flex-start). space-between was the price
+   layout - label top, figure bottom - and left the lead description 330 px under its name. */
+.pris-lead{grid-column:1 / span 6;grid-row:1 / span 2;background:var(--mint);display:flex;flex-direction:column;justify-content:flex-start;gap:18px;}
+.pris-tier{display:flex;flex-direction:column;justify-content:flex-start;gap:18px;min-height:220px;}
+.pris-tier-a{grid-column:7 / span 6;grid-row:1;background:var(--paper);}
+.pris-tier-b{grid-column:7 / span 6;grid-row:2;background:var(--grey);}
+@media (max-width:1199px){
+  .pris-bento{grid-template-columns:1fr 1fr;}
+  .pris-lead{grid-column:1 / span 2;grid-row:1;}
+  .pris-tier-a{grid-column:1;grid-row:2;}
+  .pris-tier-b{grid-column:2;grid-row:2;}
+}
+@media (max-width:767px){
+  .pris-bento{grid-template-columns:1fr;}
+  .pris-lead,.pris-tier-a,.pris-tier-b{grid-column:1;grid-row:auto;min-height:0;}
+}
+/* R9 §5b: prices removed (Anton 2026-10-03); the package name keeps the figure's place and size */
+.pkg-name{font-size:clamp(28px,3.6vw,44px);line-height:1;letter-spacing:-.03em;font-weight:500;}
+.pkg-desc{max-width:38ch;font-size:17px;line-height:1.4;}
+/* R9 §5b: the lead cell is the bento's top level - the 44 px price gave it that weight */
+.pris-lead .pkg-name{font-size:var(--headline-40);letter-spacing:-.04em;}
+.pris-lead .pkg-desc{max-width:26ch;font-size:var(--body-30);line-height:1.25;font-weight:500;}
+
+/* ------------------------------------------------------------- kontakt (R5 §C: heron speglad) */
+.kontakt-quad{
+  position:relative;display:grid;gap:1px;background:#000;min-height:100svh;
+  grid-template-columns:1fr 1fr;grid-template-rows:1fr 1fr;
+  grid-template-areas:"ov oh" "nv nh";
+}
+.kontakt-q{position:relative;overflow:hidden;padding:var(--cellpad);}
+.kontakt-q--ov{grid-area:ov;background:var(--black);color:var(--paper);display:flex;flex-direction:column;justify-content:flex-end;gap:32px;}  /* R9 §4: >= the headline's x-height (10 px left the lede touching it) */
+/* R6 §4: headline-40 is tuned for a single "jätteord" (hero, case names) -
+   at this cell's half-page width, a four-word sentence in it ran past the
+   ÖV/ÖH seam (measured x>720 at 1440, into the card's own space). A
+   smaller, dedicated clamp - same family as the old kontakt-giant's - fits
+   three lines comfortably inside the cell at 1440/1280/768, verified with
+   getBoundingClientRect against the cell box, not eyeballed. */
+.kontakt-q--ov h2{
+  font-size:clamp(1.75rem, 1.1rem + 2.6vw, 3.4rem);line-height:1.05;
+  letter-spacing:-.03em;font-weight:500;max-width:12ch;
+}
+.kontakt-q--ov p{max-width:32ch;font-size:15px;}
+.kontakt-q--oh{grid-area:oh;background:var(--paper);}
+.kontakt-q--nv{grid-area:nv;background:var(--grey);padding:0;}
+.kontakt-q--nh{grid-area:nh;background:var(--mint);}
+@media (max-width:767px){
+  /* R6 §7: nh gets more room than ov/nv (was the same minmax(60vw) as
+     both) - a 3D Y-axis rotation's perspective projection genuinely bulges
+     a flat card's rendered bounding box taller at the near edge as it
+     turns (measured: +/-28px top/bottom at 1200px perspective, still
+     +/-24px at 3000px - foreshortening a rotated rectangle really does
+     grow its axis-aligned bbox, not a rounding artefact), and centring an
+     88%-wide card in a 60vw-tall row left only ~27px clearance to the
+     subline above - not enough to survive that bulge at any angle in the
+     0-180deg sweep. */
+  .kontakt-quad{grid-template-columns:1fr;grid-template-rows:minmax(60vw,auto) minmax(76vw,auto) minmax(60vw,auto);grid-template-areas:"ov" "nh" "nv";min-height:auto;}
+  .kontakt-q--oh{display:none;}
+}
+
+/* the card sits on the crossing of all four quadrants (a grid item that
+   spans the full 2x2 and centres itself), mirroring heron's own card. On
+   mobile it drops into the mint cell's own grid area instead, 88% wide. */
+/* R6 §4/§7: centred on the FULL 2x2 crossing put the card's top edge only
+   ~15-50px below the headline row at rest, with zero margin for the flip's
+   lift or the hover-tilt's foreshortening - both could (and did, measured)
+   bring the card within single-digit px of "verksamhet.". Spanning only
+   the LOWER row (grid-row:2, still centred horizontally on the vertical
+   seam = still "on the crossing") puts the card inside the NV/NH half
+   entirely, with a full row-height of clearance above it before ÖV even
+   starts. */
+/* R9 §4b: the card sat centred in the LOWER row (75 % down the section), so it arrived
+   long after the heading (Anton: "hamnar jättelångt ned"). It now sits where heron's card
+   sits - on the horizontal seam of the RIGHT column - which is the mirror the section is
+   built on, puts the card at the section's middle, and keeps it clear of the heading in
+   ÖV at every width >= 768 (they no longer share a column). */
+.kontakt-card-anchor{
+  grid-column:2;grid-row:1 / 3;place-self:center;z-index:5;
+  width:clamp(300px,32vw,460px);aspect-ratio:85/55;perspective:1200px;
+}
+@media (max-width:767px){
+  .kontakt-card-anchor{grid-area:nh;place-self:center;width:80%;}
+  /* R9 a11y H2 (1.4.10/1.4.12): at 320 the back's content (181 px) overran the fixed 85:55
+     card (166 px) and pushed "Boka ett möte" outside it. The back keeps the card ratio as a
+     minimum and grows with its content; the front fills whatever height that gives. */
+  .kontakt-card-anchor{aspect-ratio:auto;}
+  .kontakt-card-anchor .kontakt-card-tilt,.kontakt-card-anchor .card-flip2{height:auto;}
+  .kontakt-card-anchor .face--back{position:relative;aspect-ratio:85/55;overflow:visible;}
+  .kontakt-card-anchor .card-back-content{height:auto;}
+}
+.kontakt-card-tilt{width:100%;height:100%;position:relative;transform-style:preserve-3d;}
+.card-flip2{width:100%;height:100%;position:relative;transform-style:preserve-3d;box-shadow:10px 10px 0 0 #000;}
+.card-flip2 button.face{margin:0;padding:6%;font:inherit;text-align:left;cursor:pointer;display:block;width:100%;height:100%;}
+/* R7 (H9, 1.4.11): black ring, 3:1+ on mint, grey and the white stock alike.
+   The back has no full-face flip button any more: a tap beside a link does
+   nothing, and the links sit inside the face so their ring is never clipped. */
+.card-flip2 button.face:focus-visible{outline:3px solid var(--black);outline-offset:3px;}
+.card-back-content{position:relative;z-index:1;height:100%;display:flex;flex-direction:column;justify-content:center;gap:10px;}
+.card-back-links{display:flex;flex-wrap:wrap;column-gap:clamp(12px,1.6vw,22px);}
+.card-back-links a{display:inline-flex;align-items:center;min-height:44px;font-size:clamp(13px,1.5vw,18px);text-decoration:underline;text-underline-offset:3px;}
+.card-back-links a:focus-visible{outline:2px solid var(--black);outline-offset:2px;}
+
+/* ------------------------------------------------------------- footer */
+.footer-cell{background:var(--black);color:var(--paper);padding:0 0 0 var(--cellpad);height:34vw;max-height:340px;min-height:200px;display:flex;align-items:flex-end;overflow:hidden;}
+.footer-mark{font-size:clamp(80px,16vw,220px);line-height:.8;letter-spacing:-.04em;white-space:nowrap;padding-bottom:.06em;}
+.footer-strip{padding:18px var(--cellpad);background:var(--black);color:var(--paper);}
+.footer-strip p{font-size:14px;}
+.footer-strip a{text-decoration:underline;white-space:nowrap;}
+
+/* ------------------------------------------------------------- resolve (dither -> color) */
+.img-cell{position:relative;}
+/* R3: §3 dither -> colour grid-stagger. The tile grid sits over the
+   already-visible colour layer; each tile shows one slice of the dither
+   image and fades on its own random-order schedule, so the resolve reads
+   as pixels dissolving away rather than a wipe. Built once at init from
+   the existing .dither-layer <img> (see buildTileGrid in the script). */
+.tile-grid{position:absolute;inset:0;display:grid;pointer-events:none;}
+.tile-grid > span{display:block;background-repeat:no-repeat;}
+.is-resolving > .tile-grid > span{will-change:opacity;}
+.color-layer{clip-path:none;}
+
+/* R3: seam-anchored decorations, all created/positioned by the script. */
+.seam-line{position:absolute;background:var(--mint);pointer-events:none;z-index:3;}
+/* the crosshair seam-draw is a 2x2-grid flourish; hero-stage stacks to one
+   column under 768px (see .hero-stage media query above), so the same
+   absolute-positioned lines would otherwise bisect the whole stacked
+   column top to bottom - hide them there. */
+@media (max-width:767px){ .seam-line{display:none;} }
+.process-row{position:relative;}
+.process-progress{position:absolute;top:0;bottom:0;width:2px;background:var(--mint);transform:scaleY(0);transform-origin:top center;pointer-events:none;z-index:6;}
+/* process-left/process-right only sit side by side at the 1200px+ 12-col
+   grid (BYGGSPEC .g12 breakpoints); below that they stack, so the seam
+   the progress line marks no longer exists - hide it rather than let a
+   stale left-offset poke 2px past the right edge (390/768 overflow). */
+@media (max-width:1199px){ .process-progress{display:none;} }
+
+/* R3: SplitText's own mask:'lines'/'words'/'chars' option wraps each split
+   unit in its own clipping span, and every heading that gets split already
+   sits inside a .cell (overflow:hidden) or .footer-cell (overflow:hidden)
+   — so no extra clip rule is needed on the headings themselves (adding one
+   risked cutting descenders that round 2's static layout already relies
+   on fitting without it). */
+
+/* spacing rhythm between section groups */
+.rhythm{height:110px;}
+@media (max-width:767px){ .rhythm{height:72px;} }
+</style>
+</head>
+<body>
+
+<svg width="0" height="0" style="position:absolute" aria-hidden="true">
+  <defs>
+    <path id="alunix-mark-path" fill-rule="evenodd" d="M 430.020 513.250 C 386.700 600.458, 318.190 739.397, 297.501 782 C 289.087 799.325, 276.594 824.975, 269.739 839 C 216.342 948.248, 182.518 1018.108, 130.177 1127.250 L 122.145 1144 149.505 1144 C 176.418 1144, 176.876 1143.966, 177.531 1141.901 C 177.898 1140.746, 186.760 1121.959, 197.226 1100.151 C 207.692 1078.343, 223.776 1044.750, 232.969 1025.500 C 266.133 956.059, 277.353 933, 277.980 933 C 278.331 933, 280.408 935.587, 282.595 938.750 C 284.783 941.913, 295.822 957.775, 307.127 974 C 325.042 999.713, 381.481 1081.065, 429.737 1150.734 C 439.657 1165.055, 444.860 1173.418, 444.356 1174.233 C 443.926 1174.929, 440.820 1179.324, 437.455 1183.999 C 429.228 1195.427, 350.904 1307.144, 339.651 1323.500 C 334.732 1330.650, 327.687 1340.775, 323.996 1346 C 313.067 1361.472, 240.505 1466.210, 229.257 1482.750 L 218.886 1498 253.693 1497.961 L 288.500 1497.922 299.500 1481.744 C 324.141 1445.503, 476.381 1225.616, 478.506 1223.197 C 478.768 1222.899, 523.522 1286.863, 565.476 1347.500 C 568.140 1351.350, 588.572 1380.825, 610.880 1413 C 633.189 1445.175, 655.504 1477.439, 660.471 1484.697 L 669.500 1497.895 706.798 1497.947 L 744.096 1498 740.841 1493.250 C 727.956 1474.444, 658.474 1374.606, 602.522 1294.500 C 521.377 1178.323, 476.786 1114.238, 411.522 1020 C 389.621 988.375, 368.686 958.225, 364.999 953 C 342.882 921.650, 308 870.814, 308 869.930 C 308 868.958, 318.208 847.506, 341.512 799.500 C 346.852 788.500, 357.642 766.225, 365.489 750 C 373.336 733.775, 394.812 689.450, 413.213 651.500 C 431.614 613.550, 449.746 576.074, 453.505 568.221 C 457.265 560.367, 460.665 554.292, 461.060 554.721 C 461.456 555.149, 484.829 600.050, 513 654.500 C 595.807 814.548, 597.733 818.267, 612.712 847 C 620.597 862.125, 629.584 879.471, 632.684 885.546 L 638.319 896.592 633.336 903.546 C 630.596 907.371, 622.124 919.500, 614.511 930.500 C 606.897 941.500, 592.950 961.525, 583.517 975 C 550.282 1022.475, 513.571 1075.338, 501.745 1092.750 C 500.157 1095.088, 498.778 1097, 498.679 1097 C 498.581 1097, 498.620 1045.925, 498.767 983.500 L 499.033 870 467.529 870 L 436.024 870 435.762 948.679 L 435.500 1027.358 441.051 1035.429 C 444.105 1039.868, 458.527 1060.825, 473.101 1082 C 498.716 1119.217, 521.094 1151.905, 523.077 1155 C 523.877 1156.249, 524.411 1156.006, 526.269 1153.550 C 528.956 1149.997, 575.050 1083.626, 604.955 1040.250 C 642.615 985.626, 683.143 927.009, 694.212 911.152 L 704.927 895.804 701.347 888.652 C 699.378 884.718, 693.373 873.175, 688.003 863 C 682.632 852.825, 671.141 831, 662.466 814.500 C 653.792 798, 640.398 772.575, 632.701 758 C 609.734 714.509, 591.719 680.257, 553.278 607 C 533.220 568.775, 512.426 529.175, 507.069 519 C 501.712 508.825, 490.419 487.337, 481.975 471.250 C 473.530 455.163, 466.349 442, 466.016 442 C 465.684 442, 449.485 474.063, 430.020 513.250 M 459 748.072 C 445.481 750.334, 431.497 761.058, 425.189 774 C 411.946 801.174, 429.479 833.973, 460.052 839.216 C 482.335 843.037, 505.858 827.419, 511.586 805 C 519.739 773.095, 491.587 742.619, 459 748.072 M 583.028 1238.750 C 583.043 1239.162, 587.793 1246.250, 593.583 1254.500 C 599.373 1262.750, 608.679 1276.138, 614.264 1284.250 L 624.418 1299 745.199 1299 L 865.981 1299 847.826 1273.750 C 837.841 1259.862, 828.058 1246.155, 826.086 1243.288 L 822.500 1238.076 702.750 1238.038 C 636.888 1238.017, 583.012 1238.338, 583.028 1238.750"/>
+  </defs>
+</svg>
+
+<header class="topline">
+  <div class="topline-cell">
+    <img class="topline-logo" src="/tests/alunix-concepts-r3/build/assets/logo-white.svg" alt="" width="90" height="22">
+  </div>
+  <div class="topline-cell topline-mid" style="color:#232323;justify-content:center;">
+    <span class="topline-mark mono">ALUNIX</span>
+  </div>
+  <a class="topline-cell topline-contact" href="mailto:kontakt@alunix.se">kontakt@alunix.se</a>
+</header>
+
+<main class="rutverk">
+
+  <!-- ============================================================ HERO -->
+  <section class="hero-wrap" id="hero">
+    <div class="hero-stage">
+      <div class="hero-cell hero-ov">
+        <h1 class="hero-h1 headline-40">Er hemsida är nutidens visitkort</h1>
+      </div>
+      <div class="hero-cell hero-oh img-cell" data-resolve="stay">
+        <img class="dither-layer" src="assets/dither/k1-stage-pool-dither-grey.webp" alt="En ljuspöl faller diagonalt över ett mörkt scentyg, rastrerad" loading="eager" fetchpriority="high">
+      </div>
+      <div class="hero-cell hero-nv img-cell" data-resolve="stay">
+        <img class="dither-layer" src="assets/dither/k4-cabin-desk-dither-grey.webp" alt="Ett skrivbord i en stuga, rastrerat" loading="lazy">
+      </div>
+      <div class="hero-cell hero-nh">
+        <p class="sr-only">Alunix. Digital byrå. Design, utveckling, system. Boka ett möte: kontakt@alunix.se.</p>
+      </div>
+
+      <div class="card-anchor" id="cardAnchor" aria-hidden="true">
+        <div class="card-flip" id="cardFlip">
+          <div class="face face--front">
+            <div class="photo">
+              <div class="mark-dock"><svg viewBox="80 400 827 1139" role="presentation" focusable="false"><use href="#alunix-mark-path"></use></svg></div>
+              <img src="/tests/alunix-concepts-r3/build/assets/k1-stage-pool.webp" width="1600" height="1067" alt="" loading="eager">
+            </div>
+          </div>
+          <div class="face face--back">
+            <p class="card-mark">Alunix</p>
+            <p class="card-kicker">Digital byrå</p>
+            <hr class="card-rule">
+            <p class="card-services"><span>Design</span><span>Utveckling</span><span>System</span></p>
+            <a class="card-cta" href="mailto:kontakt@alunix.se?subject=Boka%20ett%20m%C3%B6te" tabindex="-1">Boka ett möte</a>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ============================================================ TES -->
+  <section id="tes">
+    <div class="cell tes-top">
+      <!-- R9 §2: two statements, one ground, a choreographed hand-over, NOT a list beside a screenshot -->
+      <div class="tes-stage">
+        <h2 class="headline-50 tes-a">Det första intrycket är digitalt.</h2>
+        <p class="headline-50 tes-b"><span class="tes-b-text" aria-hidden="true">Vi hjälper er att synas på rätt sätt.</span><span class="sr-only">Vi hjälper er att synas på rätt sätt.</span></p>
+      </div>
+    </div>
+  </section>
+
+  <div class="rhythm" style="background:#000"></div>
+
+  <!-- ============================================================ PROCESS -->
+  <section id="process">
+    <div class="g g12 process-row">
+      <div class="c-6 cell process-left">
+        <div class="process-sticky">
+          <p class="process-kicker mono">Vår process:</p>
+          <h2 class="process-title headline-40">Från samtal till lanserad sida.</h2>
+          <p class="process-lock body">Webbdesign, design och system. Allt på ett ställe.</p>
+          <div class="process-image img-cell" data-resolve="process" style="background:var(--grey)">
+            <img class="dither-layer" src="assets/dither/k4-cabin-desk-dither-grey.webp" alt="" loading="lazy">
+            <img class="color-layer" src="/tests/alunix-concepts-r3/build/assets/k4-cabin-desk.webp" alt="Ett skrivbord i en stuga" loading="lazy" style="clip-path:inset(0 100% 0 0)">
+          </div>
+        </div>
+      </div>
+      <div class="c-6 cell cell--pad0 process-right">
+        <ol class="process-steps">
+          <li class="process-row-item">
+            <span class="process-num mono" aria-hidden="true">01</span>
+            <div><h3 class="process-step-title h3">Uppstart</h3>
+              <p class="process-p">Vi börjar med ett samtal om er verksamhet samt vad ni vill att sidan ska göra för er. Utifrån det skapar vi ett initialt underlag som ni rättar innan det går till ritbordet.</p></div>
+          </li>
+          <li class="process-row-item">
+            <span class="process-num mono" aria-hidden="true">02</span>
+            <div><h3 class="process-step-title h3">Planering</h3>
+              <p class="process-p">Vi ritar strukturen som en skiss innan vi formger något. Där ser ni vilka sidor som behövs och vad varje sida ska få besökaren att göra, mobilen först.</p></div>
+          </li>
+          <li class="process-row-item">
+            <span class="process-num mono" aria-hidden="true">03</span>
+            <div><h3 class="process-step-title h3">Design</h3>
+              <p class="process-p">När strukturen står formger vi sidan efter er verksamhet. Förslaget lägger vi på en testadress, där ni ser det på er egen telefon och säger till innan det går till bygge.</p></div>
+          </li>
+          <li class="process-row-item">
+            <span class="process-num mono" aria-hidden="true">04</span>
+            <div><h3 class="process-step-title h3">Utveckling</h3>
+              <p class="process-p">Vi bygger sidan i kod från grunden, utan färdig mall, så att den laddar snabbt. Texter och bilder ändrar ni själva, och vill ni lägga till mer bygger ni vidare på det vi lämnat.</p></div>
+          </li>
+          <li class="process-row-item">
+            <span class="process-num mono" aria-hidden="true">05</span>
+            <div><h3 class="process-step-title h3">Innehåll</h3>
+              <p class="process-p">Ni behöver inte ha något färdigt. Det ni har bearbetar vi, bygger vidare på och kompletterar där något saknas. Texten skriver vi åt er, om ni inte vill ha er egen.</p></div>
+          </li>
+          <li class="process-row-item">
+            <span class="process-num mono" aria-hidden="true">06</span>
+            <div><h3 class="process-step-title h3">Lansering</h3>
+              <p class="process-p">Innan sidan publiceras går vi igenom varje länk, formulär och bild. Vi testar den med tangentbord och skärmläsare, på telefon och på dator, och visar er hur ni ändrar innehållet själva.</p></div>
+          </li>
+          <li class="process-row-item">
+            <span class="process-num mono" aria-hidden="true">07</span>
+            <div><h3 class="process-step-title h3">Förvaltning</h3>
+              <p class="process-p">Vi finns kvar efter lansering. Nya sidor och ändringar går samma väg som bygget, så ni ser dem på testadressen innan era kunder gör det. Har ni en fråga mejlar ni oss på kontakt@alunix.se.</p></div>
+          </li>
+        </ol>
+      </div>
+    </div>
+  </section>
+
+  <div class="rhythm" style="background:#000"></div>
+
+  <!-- ============================================================ EXEMPELCASE: väljare -->
+  <section id="exempelcase">
+    <div class="cell case-word-cell">
+      <h2 class="headline-50">Exempelcase</h2>
+    </div>
+    <div class="case-picker-cell">
+      <div class="g g12 case-picker">
+        <button class="c-6 case-choice" type="button" data-case="calyx" aria-pressed="true" aria-controls="showcase-calyx" aria-labelledby="choice-calyx-name choice-calyx-sub">
+          <span class="case-choice-frame"><img src="assets/cases/calyx-1680.webp" alt="Startsidan för Calyx, en florist i Stockholm" width="1680" height="1050" loading="lazy"></span>
+          <!-- R5 copy-diff: the name/subtitle are already the ONE counted
+               instance on the showcase head below (spec B1's "samma
+               strängar som V3d") - repeating them visibly here would double
+               every one of these four strings against V3d's single count.
+               The img alt above already carries the same identification
+               accessibly, so this badge is aria-hidden: a redundant visual
+               echo, not new information. -->
+          <span class="case-choice-meta" aria-hidden="true">
+            <span class="h3" id="choice-calyx-name">Calyx</span>
+            <span class="mono caption" id="choice-calyx-sub">Florist, Stockholm</span>
+          </span>
+        </button>
+        <button class="c-6 case-choice" type="button" data-case="horai" aria-pressed="false" aria-controls="showcase-horai" aria-labelledby="choice-horai-name choice-horai-sub">
+          <span class="case-choice-frame"><img src="assets/cases/horai-1680.webp" alt="Startsidan för Hōrai, ett Asian fusion-koncept" width="1680" height="1050" loading="lazy"></span>
+          <span class="case-choice-meta" aria-hidden="true">
+            <span class="h3" id="choice-horai-name">Hōrai</span>
+            <span class="mono caption" id="choice-horai-sub">Restaurang, Asian Fusion</span>
+          </span>
+        </button>
+      </div>
+    </div>
+  </section>
+
+  <!-- ============================================================ SHOWCASE (B2): den valda casen, pinnad -->
+  <section id="showcase">
+    <!-- R3 §1 (F-021): egen pin-spacer i markupen i stället för att låta
+         ScrollTrigger skapa/flytta en egen vid varje refresh() - den
+         flytten omparenterade de pinnade iframarna och laddade om dem. -->
+    <div class="showcase-pin-spacer">
+    <noscript><style>.showcase-stage.is-far,.showcase-stage.is-far *{visibility:visible !important;}</style></noscript>
+    <div class="showcase-stage is-far">
+      <div class="showcase-embed-cell">
+        <div class="showcase-frame-wrap" id="showcaseFrameWrap">
+          <img class="showcase-poster" id="showcasePosterCalyx" src="assets/cases/calyx-1680.webp" alt="" aria-hidden="true" width="1680" height="1050" loading="lazy">
+          <iframe id="showcaseIframeCalyx" data-lazy-src="/sites/calyx.html" scrolling="no" tabindex="-1" inert title="Exempelsida: Calyx, florist i Stockholm"></iframe>
+          <img class="showcase-poster" id="showcasePosterHorai" src="assets/cases/horai-1680.webp" alt="" aria-hidden="true" width="1680" height="1050" loading="lazy" style="display:none">
+          <iframe id="showcaseIframeHorai" data-lazy-src="/sites/horai.html" scrolling="no" tabindex="-1" inert aria-hidden="true" title="Exempelsida: Hōrai, Asian fusion-koncept" style="visibility:hidden"></iframe>
+        </div>
+      </div>
+      <div class="showcase-side">
+        <div class="showcase-panel showcase-panel--calyx" id="showcase-calyx" aria-labelledby="calyx-title">
+          <div class="cell showcase-head cell--rust">
+            <h2 id="calyx-title" class="headline-40">Calyx</h2>
+            <p class="mono caption" style="margin-top:8px;">Florist, Stockholm</p>
+            <a class="showcase-open" href="/sites/calyx.html">Öppna Calyx i full storlek</a>
+          </div>
+          <div class="showcase-rows">
+            <div class="showcase-box-head" aria-hidden="true">
+              <span class="showcase-counter mono">01 / 05</span>
+              <div class="showcase-track"><div class="showcase-track-fill"></div></div>
+            </div>
+            <div class="showcase-steps">
+              <!-- R8: rubrik + ingress + stycke direkt på kolumnens yta, NOT en bildtextruta i cellnätet -->
+              <div class="showcase-row is-active" data-row="0"><div class="showcase-row-text"><h3 class="h3">Sidan öppnar som ett omslag</h3><p class="showcase-lede">Blommor väljs med ögonen innan någon läser ett pris. Därför fick fotot hela första skärmen, så att det första besökaren möter är arbetet och inte en knapp. Omslaget ger också ateljén ett skäl att byta bild varje säsong, och då känns sidan ny utan att byggas om.</p></div></div>
+              <div class="showcase-row" data-row="1"><div class="showcase-row-text"><h3 class="h3">En serif får bära allt</h3><p class="showcase-lede">Rubriker, brödtext och namn står i samma serif, bara etiketterna i skrivmaskinsstil, så sidan läses som en trycksak. Ett andra rubriktypsnitt hade gett mer kontrast, men också dragit sidan mot reklam. Ateljén levererar till hotell och restauranger som själva lägger pengar på sitt tryck, och de ser skillnaden.</p></div></div>
+              <div class="showcase-row" data-row="2"><div class="showcase-row-text"><h3 class="h3">Varje bild är ett uppdrag</h3><p class="showcase-lede">En bildtext som säger vårbukett upprepar bara bilden. Texten under varje foto säger i stället vad buketten var till för, en hotellobby eller ett hem. Då ser besökaren vilka uppdrag ateljén tar och kan föreställa sig sitt eget bland dem.</p></div></div>
+              <div class="showcase-row" data-row="3"><div class="showcase-row-text"><h3 class="h3">Veckans utbud på en rad var</h3><p class="showcase-lede">Ett utbud som byts varje vecka måste gå att ändra på en minut, annars blir det liggande. En lista i stället för ett rutnät av foton betyder att ateljén skriver om en rad, och att besökaren jämför buketter och priser utan att scrolla.</p></div></div>
+              <div class="showcase-row" data-row="4"><div class="showcase-row-text"><h3 class="h3">Ett mejl räcker</h3><p class="showcase-lede">Den som beställer till ett rum vill beskriva ljuset och tillfället, och det ryms inte i formulärfält. Ett mejl tar längre tid än en bokningsknapp, men svaret kommer från den som ska binda buketten, och det är det en kund hos en liten ateljé betalar för.</p></div></div>
+            </div>
+            <!-- R6b: detaljcellen - ett förstoringsglas per steg ur calyx.html självt,
+                 2,5-3x det iframen visar. Utsnitten och varför: loupe.py, STEPS. -->
+            <div class="showcase-detail" aria-hidden="true">
+              <figure class="showcase-figure is-active" data-row="0" style="--fy:.83">
+                <img class="dither-layer" src="assets/steps/calyx-1-dither.webp" alt="" loading="lazy">
+                <img class="color-layer" src="assets/steps/calyx-1.webp" alt="" loading="lazy" style="clip-path:inset(0 100% 0 0)">
+              </figure>
+              <figure class="showcase-figure" data-row="1" style="--fy:.27">
+                <img class="dither-layer" src="assets/steps/calyx-2-dither.webp" alt="" loading="lazy">
+                <img class="color-layer" src="assets/steps/calyx-2.webp" alt="" loading="lazy" style="clip-path:inset(0 100% 0 0)">
+              </figure>
+              <figure class="showcase-figure" data-row="2" style="--fx:1;--fy:.8">
+                <img class="dither-layer" src="assets/steps/calyx-3-dither.webp" alt="" loading="lazy">
+                <img class="color-layer" src="assets/steps/calyx-3.webp" alt="" loading="lazy" style="clip-path:inset(0 100% 0 0)">
+              </figure>
+              <figure class="showcase-figure" data-row="3" style="--fy:.5">
+                <img class="dither-layer" src="assets/steps/calyx-4-dither.webp" alt="" loading="lazy">
+                <img class="color-layer" src="assets/steps/calyx-4.webp" alt="" loading="lazy" style="clip-path:inset(0 100% 0 0)">
+              </figure>
+              <figure class="showcase-figure" data-row="4" style="--fy:.48">
+                <img class="dither-layer" src="assets/steps/calyx-5-dither.webp" alt="" loading="lazy">
+                <img class="color-layer" src="assets/steps/calyx-5.webp" alt="" loading="lazy" style="clip-path:inset(0 100% 0 0)">
+              </figure>
+            </div>
+          </div>
+        </div>
+        <div class="showcase-panel showcase-panel--horai" id="showcase-horai" aria-labelledby="horai-title" style="display:none" inert>
+          <div class="cell showcase-head cell--lacquer">
+            <h2 id="horai-title" class="headline-40">Hōrai</h2>
+            <p class="mono caption" style="margin-top:8px;">Restaurang, Asian Fusion</p>
+            <a class="showcase-open" href="/sites/horai.html">Öppna Hōrai i full storlek</a>
+          </div>
+          <div class="showcase-rows">
+            <div class="showcase-box-head" aria-hidden="true">
+              <span class="showcase-counter mono">01 / 06</span>
+              <div class="showcase-track"><div class="showcase-track-fill"></div></div>
+            </div>
+            <div class="showcase-steps">
+              <div class="showcase-row is-active" data-row="0"><div class="showcase-row-text"><h3 class="h3">Ett namn, en gång</h3><p class="showcase-lede">Restaurangen har ingen skylt mot gatan, så namnet måste fastna på skärmen i stället. Det står ensamt och stort, och loggan i menyraden väntar tills det rullat förbi, så att namnet aldrig står två gånger samtidigt och tappar i tyngd.</p></div></div>
+              <div class="showcase-row" data-row="1"><div class="showcase-row-text"><h3 class="h3">Ett tecken som stämpel</h3><p class="showcase-lede">Texten om huset tänds ord för ord och går inte att skumma. Den läses i samma takt som någon berättar vid bordet. Rött är sparat till tecken, rubriker och priser, så att ögat senare hittar priserna utan att leta.</p></div></div>
+              <div class="showcase-row" data-row="2"><div class="showcase-row-text"><h3 class="h3">En mening som saktar in</h3><p class="showcase-lede">Mellan huset och menyerna behövs en paus, som mellan två rätter. En bild hade fyllt platsen. En mening som bara går att läsa när man stannar gör att menyerna inte läses i samma andetag som berättelsen.</p></div></div>
+              <div class="showcase-row" data-row="3"><div class="showcase-row-text"><h3 class="h3">Priset står större än namnet</h3><p class="showcase-lede">Med en meny per kväll är det priset gästen jämför. Ett pris som står litet ser gömt ut, och den som måste leta efter det har redan börjat tvivla. Därför står priset i rött och större än menyns namn.</p></div></div>
+              <div class="showcase-row" data-row="4"><div class="showcase-row-text"><h3 class="h3">Rummet före bokningen</h3><p class="showcase-lede">De flesta restauranger visar matsalen först. Här kommer den sist, precis före bokningen, där den svarar på gästens sista fråga: var ska vi sitta?</p></div></div>
+              <div class="showcase-row" data-row="5"><div class="showcase-row-text"><h3 class="h3">Knappen fanns där hela tiden</h3><p class="showcase-lede">Den som bestämmer sig tidigt ska inte behöva leta, så bokningen följer med hela vägen ned. Sidan säger också när veckans platser släpps, så att ingen skriver till en kväll som redan är full.</p></div></div>
+            </div>
+            <!-- R6 runda 6: detaljcellen - en <figure> per steg ur horai.html självt.
+                 Ingen loading=lazy (Hōrai-panelen är display:none tills klick) -
+                 färg+dither förvärms explicit i JS (prewarmInactiveCase), aldrig i
+                 activateCase. Utsnitten och varför: loupe.py, STEPS. -->
+            <div class="showcase-detail" aria-hidden="true">
+              <figure class="showcase-figure is-active" data-row="0" style="--fy:.5">
+                <img class="dither-layer" src="assets/steps/horai-1-dither.webp" alt="">
+                <img class="color-layer" src="assets/steps/horai-1.webp" alt="" style="clip-path:inset(0 100% 0 0)">
+              </figure>
+              <figure class="showcase-figure" data-row="1" style="--fy:.62">
+                <img class="dither-layer" src="assets/steps/horai-2-dither.webp" alt="">
+                <img class="color-layer" src="assets/steps/horai-2.webp" alt="" style="clip-path:inset(0 100% 0 0)">
+              </figure>
+              <figure class="showcase-figure" data-row="2" style="--fy:.55">
+                <img class="dither-layer" src="assets/steps/horai-3-dither.webp" alt="">
+                <img class="color-layer" src="assets/steps/horai-3.webp" alt="" style="clip-path:inset(0 100% 0 0)">
+              </figure>
+              <figure class="showcase-figure" data-row="3" style="--fy:.4">
+                <img class="dither-layer" src="assets/steps/horai-4-dither.webp" alt="">
+                <img class="color-layer" src="assets/steps/horai-4.webp" alt="" style="clip-path:inset(0 100% 0 0)">
+              </figure>
+              <figure class="showcase-figure" data-row="4" style="--fy:.62">
+                <img class="dither-layer" src="assets/steps/horai-5-dither.webp" alt="">
+                <img class="color-layer" src="assets/steps/horai-5.webp" alt="" style="clip-path:inset(0 100% 0 0)">
+              </figure>
+              <figure class="showcase-figure" data-row="5" style="--fy:.28">
+                <img class="dither-layer" src="assets/steps/horai-6-dither.webp" alt="">
+                <img class="color-layer" src="assets/steps/horai-6.webp" alt="" style="clip-path:inset(0 100% 0 0)">
+              </figure>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+    </div>
+  </section>
+
+  <div class="rhythm" style="background:#000"></div>
+
+  <!-- ============================================================ PRIS -->
+  <section id="pris">
+    <div class="cell pris-statement">
+      <h2 class="headline-50" style="max-width:16ch;">Alla har rätt till bra design.</h2>
+      <p class="body-30">Paketen skiljer sig i vad er sida ska kunna göra. Vi formger den lika noga i alla tre, efter era egna behov och önskemål.</p>
+    </div>
+    <div class="g g12 pris-bento">
+      <div class="cell pris-lead">
+        <h3 class="pkg-name">Webbplats</h3>
+        <p class="pkg-desc">En sida som presenterar er verksamhet och som ni uppdaterar själva, texter som bilder. Den är förberedd för att hittas på Google från första dagen.</p>
+      </div>
+      <div class="cell pris-tier pris-tier-a">
+        <h3 class="pkg-name">Webbplats med bokning</h3>
+        <p class="pkg-desc">För verksamheter där besökaren ska kunna boka och betala direkt på sidan. Bokningar, betalningar och kunduppgifter hamnar på ett ställe, så att ni slipper föra över dem för hand.</p>
+      </div>
+      <div class="cell pris-tier pris-tier-b">
+        <h3 class="pkg-name">Skräddarsytt</h3>
+        <p class="pkg-desc">När sidan behöver göra något som ingen färdig lösning gör, som en produktkatalog med många artiklar eller ett system byggt för just ert arbetssätt. Vi börjar med ett samtal om vad som behövs.</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- R9 §4b: the 110 px rhythm band before kontakt is gone (a black band over an empty cell) -->
+
+  <!-- ============================================================ KONTAKT: heron speglad, kortet lämnas över -->
+  <section id="kontakt">
+    <div class="kontakt-quad">
+      <div class="kontakt-q kontakt-q--ov">
+        <h2 class="headline-40" id="kontakt-title">Berätta om er verksamhet.</h2>
+        <p>Så berättar vi vad vi kan göra för er.</p>
+      </div>
+      <div class="kontakt-q kontakt-q--oh"></div>
+      <div class="kontakt-q kontakt-q--nv img-cell" data-resolve="kontakt">
+        <img class="dither-layer" src="assets/dither/k1-stage-pool-dither-grey.webp" alt="" loading="lazy">
+        <img class="color-layer" src="/tests/alunix-concepts-r3/build/assets/k1-stage-pool.webp" alt="En ljuspöl faller diagonalt över ett mörkt scentyg, nu i färg" loading="lazy" style="clip-path:inset(0 100% 0 0)">
+      </div>
+      <div class="kontakt-q kontakt-q--nh"></div>
+
+      <div class="kontakt-card-anchor" id="kontaktCardAnchor">
+        <div class="kontakt-card-tilt" id="kontaktCardTilt">
+          <div class="card-flip2" id="kontaktCardFlip">
+            <button class="face face--front" id="kontaktCardFront" type="button" aria-label="Vänd kortet" aria-pressed="false">
+              <span class="photo">
+                <span class="mark-dock"><svg viewBox="80 400 827 1139" role="presentation" focusable="false"><use href="#alunix-mark-path"></use></svg></span>
+                <img src="/tests/alunix-concepts-r3/build/assets/k1-stage-pool.webp" width="1600" height="1067" alt="" loading="lazy">
+              </span>
+            </button>
+            <div class="face face--back" id="kontaktCardBack" inert>
+              <div class="card-back-content">
+                <p class="card-mark">Alunix</p>
+                <p class="card-kicker">Digital byrå</p>
+                <hr class="card-rule">
+                <p class="card-services"><span>Design</span><span>Utveckling</span><span>System</span></p>
+                <span class="card-back-links">
+                  <a href="mailto:kontakt@alunix.se">kontakt@alunix.se</a>
+                  <a href="mailto:kontakt@alunix.se?subject=Boka%20ett%20m%C3%B6te">Boka ett möte</a>
+                </span>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- R6 §6: the ~110px rhythm spacer here read as a dead black band under
+       the mint cell (measured: section+quad both exactly 100svh with no
+       internal gap - this spacer was the whole defect). Kontakt's own NH
+       mint cell now runs straight into the footer's black, matching
+       heron's own hard-seam composition at the top of the page. -->
+</main>
+
+<footer>
+  <div class="cell footer-cell">
+    <span class="footer-mark">ALUNIX</span>
+  </div>
+  <div class="footer-strip">
+    <p class="mono">Eller mejla oss direkt på <a href="mailto:kontakt@alunix.se">kontakt@alunix.se</a></p>
+  </div>
+</footer>
+
+<script src="assets/vendor/gsap.min.js"></script>
+<script src="assets/vendor/ScrollTrigger.min.js"></script>
+<script src="assets/vendor/SplitText.min.js"></script>
+<script src="assets/vendor/lenis.min.js"></script>
+<script>
+(function(){
+  'use strict';
+  gsap.registerPlugin(ScrollTrigger, SplitText);
+
+  /* ============================================================ §0 motorn
+     Lenis <-> GSAP wiring per lenis-skillen, ordagrant: autoRaf:false,
+     gsap.ticker som enda RAF-drivare, lagSmoothing(500,33), scroll -> ST.update.
+     respectReducedMotion:false: rörelse spelar alltid (F-011, spec §0). ----- */
+  /* R3 §2 (F-020): husets tempo - lerp:0.075, wheelMultiplier:0.6, det
+     enda utjämningslagret (scroll/devices.md § Load-bearing rules). */
+  var lenis = new Lenis({ autoRaf: false, anchors: true, respectReducedMotion: false, lerp: 0.075, wheelMultiplier: 0.6 });
+  window.__lenis = lenis; /* dev hook: lets §10's jump-test drive lenis.scrollTo(...,{immediate:true}) */
+  gsap.ticker.add(function(time){ lenis.raf(time * 1000); });
+  gsap.ticker.lagSmoothing(500, 33); /* a stalled frame (>500 ms) counts as 33 ms: the scroll pauses and resumes instead of jumping to catch up (lead 2026-09-25) */
+  lenis.on('scroll', ScrollTrigger.update);
+
+  /* R5 fix: a ScrollTrigger.refresh() that lands WHILE the calyx showcase
+     iframe is still navigating (its 'load' hasn't fired yet - a live
+     same-origin document loading INSIDE an already-pinned element) reliably
+     threw "insertBefore ... no longer a child" from ScrollTrigger's own
+     pin-revert step, reproduced by bisecting away pin/scrub/onRefresh/the
+     iframe itself one at a time until only "pin + a loading iframe inside
+     it" remained. fonts.ready and the two setTimeout sweeps below can land
+     in that same early window (R3: the per-image load listener that used to
+     sit here is gone, see the note by §0's img-refresh removal), so every
+     refresh() in the file is routed through this one gate: it
+     queues (never drops) until no showcase frame is mid-navigation (R7: framesSettled), then
+     also coalesces same-frame calls into one trailing refresh(). */
+  var __refreshTimer = null;
+  function framesSettled(){
+    /* R7 (H12): both frames mount lazily now, so "settled" means no frame is
+       between src and load (3 s cap, so a failed load never blocks refresh). */
+    var C = window.__CASES;
+    if (!C) return true;
+    return Object.keys(C).every(function(k){
+      var f = C[k].iframe;
+      return !f || !f.getAttribute('src') || C[k].loaded || (performance.now() - (C[k].mountedAt || 0) > 3000);
+    });
+  }
+  function safeRefresh(){
+    if (!framesSettled()){
+      if (__refreshTimer) clearTimeout(__refreshTimer);
+      __refreshTimer = setTimeout(safeRefresh, 60);
+      return;
+    }
+    if (__refreshTimer) clearTimeout(__refreshTimer);
+    __refreshTimer = setTimeout(function(){ __refreshTimer = null; ScrollTrigger.refresh(); }, 200);
+  }
+
+  /* R7: the old data-src sweep matched no element and was removed; the two
+     showcase frames mount through an IntersectionObserver in §7. */
+  var defer = window.requestIdleCallback
+    ? function(fn){ requestIdleCallback(fn, { timeout: 1500 }); }
+    : function(fn){ setTimeout(fn, 1); };
+
+  /* ----- refresh trigger: fonts only. R3 §1 (F-021): every <img> on this
+     page is either position:absolute;inset:0 (a fill layer inside an
+     already-sized cell) or carries explicit width/height, so a load event
+     can never change page geometry - the per-image refresh-on-load listener
+     this used to have only fired ScrollTrigger.refresh() calls during the
+     scroll pass as lazy images entered view (measured: 4 refreshes/pass),
+     with nothing to actually remeasure. Removed; fonts.ready still refreshes
+     once, since a webfont swap DOES change measured line/text geometry. ----- */
+  if (document.fonts && document.fonts.ready){
+    document.fonts.ready.then(function(){ safeRefresh(); }).catch(function(){});
+  }
+
+  var isNarrow = window.innerWidth < 768;
+  /* R7 (H10): the same two media queries as the CSS. The showcase pins only
+     where its side column fits; short viewports get the stacked layout. */
+  var PIN_MQ = '(min-width:768px) and (min-height:561px)';
+  var STACK_MQ = '(max-width:767px), (max-height:560px)';
+  function isPinLayout(){ return window.matchMedia(PIN_MQ).matches; }
+
+  /* ============================================================ §3 dither -> färg
+     GSAP grid-stagger (cyphr-studio lån, byggspec §1): each image cell
+     gets a tile grid of <span>s cut from the dither image, layered over
+     the now fully-visible colour layer. Tiles fade out on a random-order
+     schedule scrubbed to the cell's own scroll range, so the resolve reads
+     as pixels dissolving away, reversible on scroll-back. Hero cells
+     (data-resolve="stay") keep their flat dither look and are excluded,
+     per spec §3 ("alla bildceller utom heron"). ----- */
+  function buildTileGrid(cell, rows, cols){
+    var dither = cell.querySelector('.dither-layer');
+    var color = cell.querySelector('.color-layer');
+    if (!dither || !color) return null;
+    gsap.set(color, { clipPath: 'inset(0px 0px 0px 0px)' });
+    var src = dither.getAttribute('src');
+    var grid = document.createElement('div');
+    grid.className = 'tile-grid';
+    grid.setAttribute('aria-hidden', 'true');
+    grid.style.gridTemplateColumns = 'repeat(' + cols + ',1fr)';
+    grid.style.gridTemplateRows = 'repeat(' + rows + ',1fr)';
+    var frag = document.createDocumentFragment();
+    var tiles = [];
+    for (var r = 0; r < rows; r++){
+      for (var c = 0; c < cols; c++){
+        var t = document.createElement('span');
+        t.style.backgroundImage = 'url(' + src + ')';
+        t.style.backgroundSize = (cols * 100) + '% ' + (rows * 100) + '%';
+        t.style.backgroundPosition = (cols < 2 ? 0 : (c / (cols - 1) * 100)) + '% ' + (rows < 2 ? 0 : (r / (rows - 1) * 100)) + '%';
+        frag.appendChild(t);
+        tiles.push(t);
+      }
+    }
+    grid.appendChild(frag);
+    cell.appendChild(grid);
+    dither.style.visibility = 'hidden';
+    return tiles;
+  }
+
+  var resolveCells = Array.prototype.slice.call(document.querySelectorAll('.img-cell[data-resolve]'));
+  var tileDims = isNarrow ? [6, 6] : [12, 8];
+  resolveCells.forEach(function(cell){
+    if (cell.getAttribute('data-resolve') === 'stay') return;
+    var tiles = buildTileGrid(cell, tileDims[0], tileDims[1]);
+    if (!tiles) return;
+    gsap.to(tiles, {
+      opacity: 0,
+      stagger: { grid: tileDims, from: 'random', amount: 0.9 },
+      scrollTrigger: {
+        trigger: cell, start: 'top 85%', end: 'center 55%',
+        scrub: true, invalidateOnRefresh: true,
+        /* R7 (H11): will-change only inside the resolve range, never at rest */
+        onToggle: function(self){ cell.classList.toggle('is-resolving', self.isActive); }
+      }
+    });
+  });
+
+  /* ============================================================ small helper:
+     a colour-matched fill that reveals from an element's left seam via
+     clip-path, standing in for "cellens bakgrund fylls från sin skarv"
+     wherever the spec asks for it (§4 tes-lines, §7 case heads). Keeps the
+     original text above it (z-index) so nothing is ever covered. ----- */
+  function seamFill(cell, fromClip){
+    var cs = getComputedStyle(cell);
+    var bg = cs.backgroundColor;
+    if (!bg || bg === 'rgba(0, 0, 0, 0)') return null;
+    var fill = document.createElement('div');
+    fill.setAttribute('aria-hidden', 'true');
+    fill.style.cssText = 'position:absolute;inset:0;z-index:0;pointer-events:none;background:' + bg + ';clip-path:' + (fromClip || 'inset(0 100% 0 0)') + ';';
+    if (getComputedStyle(cell).position === 'static') cell.style.position = 'relative';
+    cell.insertBefore(fill, cell.firstChild);
+    Array.prototype.forEach.call(cell.children, function(child){
+      if (child === fill) return;
+      if (getComputedStyle(child).position === 'static') child.style.position = 'relative';
+      child.style.zIndex = child.style.zIndex || '1';
+    });
+    cell.style.background = 'transparent';
+    return fill;
+  }
+
+  /* R4 fix: SplitText's mask:'…' wrapper clips to a tight box, and the
+     headlines here run at line-height:.8-1 - tight enough that a
+     descender (g, y, p) gets sliced by that box's own bottom edge. Give
+     every mask wrapper a hair of bottom breathing room via padding+
+     matching negative margin, so the box grows without shifting layout
+     (the negative margin cancels the padding's added height). ----- */
+  function maskBreathe(instance){
+    if (!instance || !instance.masks) return;
+    instance.masks.forEach(function(m){
+      m.style.paddingBottom = '0.16em';
+      m.style.marginBottom = '-0.16em';
+    });
+  }
+
+  /* ============================================================ §1 laddning
+     · heron sätts ihop (once, <=1.4s). Cellerna öppnas med clip-path FRÅN
+     sin skarv (det inre hörnet mot korsningen), inte från kanten: fjärde
+     cellen (NH) sist, i diagonal ordning ÖV -> ÖH+NV -> NH. ----- */
+  var heroStageEl = document.querySelector('.hero-stage');
+  var HERO_SEAMS = [
+    { el: document.querySelector('.hero-ov'), from: 'inset(100% 0% 0% 100%)' },
+    { el: document.querySelector('.hero-oh'), from: 'inset(100% 100% 0% 0%)' },
+    { el: document.querySelector('.hero-nv'), from: 'inset(0% 0% 100% 100%)' },
+    { el: document.querySelector('.hero-nh'), from: 'inset(0% 100% 100% 0%)' }
+  ];
+  HERO_SEAMS.forEach(function(s){ if (s.el) gsap.set(s.el, { clipPath: s.from }); });
+
+  var seamV = document.createElement('div');
+  seamV.className = 'seam-line';
+  seamV.setAttribute('aria-hidden', 'true');
+  seamV.style.cssText = 'left:50%;top:0;bottom:0;width:1px;transform:scaleY(0);transform-origin:50% 0%;';
+  var seamH = document.createElement('div');
+  seamH.className = 'seam-line';
+  seamH.setAttribute('aria-hidden', 'true');
+  seamH.style.cssText = 'top:50%;left:0;right:0;height:1px;transform:scaleX(0);transform-origin:0% 50%;';
+  if (heroStageEl){ heroStageEl.appendChild(seamV); heroStageEl.appendChild(seamH); }
+
+  var h1Split = SplitText.create('.hero-h1', { type: 'lines', mask: 'lines', aria: 'auto' });
+  gsap.set(h1Split.lines, { yPercent: 100 });
+  maskBreathe(h1Split);
+
+  var cardAnchor = document.getElementById('cardAnchor');
+  var cardFlip = document.getElementById('cardFlip');
+  var heroCta = cardAnchor && cardAnchor.querySelector('.card-cta');
+  gsap.set(cardAnchor, { opacity: 0, y: -48, rotation: -3, transformOrigin: '50% 0%' });
+
+  var loadTl = gsap.timeline({ defaults: { ease: 'power2.out' } });
+  loadTl
+    .to([seamV, seamH], { scaleX: 1, scaleY: 1, duration: 0.26, ease: 'power1.out' }, 0)
+    .to(HERO_SEAMS[0].el, { clipPath: 'inset(0% 0% 0% 0%)', duration: 0.48 }, 0.14)
+    .to([HERO_SEAMS[1].el, HERO_SEAMS[2].el], { clipPath: 'inset(0% 0% 0% 0%)', duration: 0.48 }, 0.36)
+    .to(HERO_SEAMS[3].el, { clipPath: 'inset(0% 0% 0% 0%)', duration: 0.42 }, 0.58)
+    .to(h1Split.lines, { yPercent: 0, duration: 0.7, ease: 'power4.out', stagger: 0.08 }, 0.4)
+    .to(cardAnchor, { opacity: 1, y: 0, rotation: 0, duration: 0.55, ease: 'back.out(1.4)' }, 0.75);
+
+  /* ============================================================ §2 heron
+     under scroll: pin på desktop (~220% viewport, R3 §2), scrub:true. Ingen
+     pin på mobil - kortare, ren scrub-koreografi över hero-wrap:s naturliga
+     höjd. */
+  /* give the ÖH/NV dither layers overscan headroom before parallaxing them:
+     an object-fit:cover image translated by a %-of-own-height can expose
+     the cell's own grey fallback background at the opposite edge once it
+     moves - scaling up first keeps the cover intact through the full
+     +/-8% yPercent range used below. */
+  gsap.set('.hero-oh .dither-layer, .hero-nv .dither-layer', { scale: 1.18 });
+
+  var mm = gsap.matchMedia();
+  mm.add({ isDesktop: '(min-width:768px)', isMobile: '(max-width:767px)' }, function(context){
+    var isDesktop = context.conditions.isDesktop;
+    /* R3 §2 (F-020): +=220% (var 120%) så kortvändningen syns hända, inte
+       är klar efter första hjulsteget - heroTl:s egna positioner (0..1)
+       sprids automatiskt över den längre sträckan. scrub:true överallt
+       (var 0.6): Lenis är det enda utjämningslagret. */
+    var stCfg = isDesktop
+      ? { trigger: '#hero', start: 'top top+=48', end: '+=220%', scrub: true, pin: '.hero-stage', pinSpacing: true }
+      : { trigger: '#hero', start: 'top top', end: '+=60%', scrub: true };
+    /* R7 (H2): 'top top+=48' pins the stage directly under the 48 px topline,
+       so its calc(100svh - 48px) height ends on the viewport edge (the black
+       band under it was 48 px). anticipatePin is gone: with Lenis it only
+       moved the pin early and counted as layout shift.
+       R7 (H5): the card-back CTA takes clicks once the back faces the reader
+       (rotationY passes 90 at timeline progress 0.5, power1.inOut). */
+    stCfg.onUpdate = stCfg.onRefresh = function(self){
+      if (cardAnchor){
+        var back = self.progress > 0.5;
+        cardAnchor.classList.toggle('is-back', back);
+        /* R9 a11y H3 (2.1.1/4.1.2): the CTA a pointer can click is also a Tab stop and in the
+           tree once the back faces the reader; while the front shows, the card stays hidden. */
+        if (back) cardAnchor.removeAttribute('aria-hidden'); else cardAnchor.setAttribute('aria-hidden', 'true');
+        if (heroCta) heroCta.tabIndex = back ? 0 : -1;
+      }
+    };
+    /* R5 §A: h1 fick förut samma yPercent-drift som kortvändningen (position
+       0), vilket kunde skära cellens h1 innan besökaren hunnit läsa den.
+       Timeline-positioner nedan är TIDER i en 1-enhets skala (varje .to
+       ovan har fått en explicit duration som summerar till 1), så en
+       position på 0.75 = sista fjärdedelen av pinnen, exakt när
+       kortvändningen (som pågår hela 0..1) är i sitt sista skede. h1 rör
+       sig därför bara i den sista fjärdedelen - resten av pinnen (90 av
+       120 vh) står den helt stilla och läsbar. */
+    var heroTl = gsap.timeline({ scrollTrigger: stCfg, defaults: { ease: 'none' } });
+    heroTl
+      .to(cardFlip, { rotationY: 180, scale: 1.04, transformOrigin: '50% 50%', ease: 'power1.inOut', duration: 1 }, 0)
+      .to('.hero-oh .dither-layer', { yPercent: -8, duration: 1 }, 0)
+      .to('.hero-nv .dither-layer', { yPercent: 8, duration: 1 }, 0)
+      /* R9 §1: the NH sweep (fromTo clipPath 28% -> 0 at .68) is gone. loadTl owns
+         .hero-nh's clipPath; the scrubbed fromTo snapped the cell to 28% on the way down
+         and left it there after scrolling back to 0 (mint seam across the black cell). */
+      /* R9 §1: the drift moves the MASKS, not the lines. loadTl owns the lines'
+         yPercent (100 -> 0); a scrubbed .to() on the same property recorded its
+         start while the lines still stood at 100 (hidden), so scrolling back above
+         0.75 restored them into the mask - the "fragmented" headline. */
+      .to(h1Split.masks, { yPercent: function(i){ return -16 - i * 12; }, duration: 0.25 }, 0.75);
+  });
+
+  /* ============================================================ §4 tesen */
+  var tesHeadline = document.querySelector('.tes-top .tes-a');
+  /* R9 a11y H1 (1.4.12): with a text-spacing override A outgrew the pin (2258 px in 852) and its
+     words overran the line masks, so the hand-over hid lines nobody could reach. When A does not
+     fit, the two sentences stand as plain stacked text: no split, no masks, no pin. */
+  if (tesHeadline && (tesHeadline.offsetHeight > window.innerHeight - 48 || tesHeadline.scrollWidth > tesHeadline.clientWidth + 1)){
+    document.querySelector('.tes-stage').classList.add('tes-flow');
+    tesHeadline = null;
+  }
+  if (tesHeadline){
+    /* R4 fix: chars-only splitting on a multi-word sentence broke words
+       mid-character (each char became its own breakable inline-block with
+       no word memory). Split lines > words > chars instead, mask at the
+       LINE level (so line 2 can never visually overlap line 1 - each line
+       is its own normal-flow box, only its own chars animate inside it),
+       and force every word to stay a single non-breaking unit so the
+       browser only ever wraps between words, never inside one. */
+    var tesSplit = SplitText.create(tesHeadline, { type: 'lines, words, chars', mask: 'lines', aria: 'auto' });
+    gsap.set(tesSplit.words, { whiteSpace: 'nowrap', display: 'inline-block' });
+    maskBreathe(tesSplit);
+    gsap.set(tesSplit.chars, { yPercent: 100 });
+    var tesRise = gsap.to(tesSplit.chars, {
+      yPercent: 0, duration: 0.8, ease: 'power4.out', stagger: 0.012,
+      scrollTrigger: { trigger: '.tes-top', start: 'top 82%', toggleActions: 'play none none reverse' }
+    });
+    /* R5 §A: the horizontal xPercent drift risked shearing the last word
+       off the right edge before it had been read, and never satisfied the
+       >=40vh fully-on-screen window. Replaced with a pin (desktop only,
+       spec: "pinna tesens övre cell ... i ~90 vh"): the cell holds fixed
+       while the char-rise above plays, then stands completely still for
+       the remainder of the pinned range (>=50vh) before releasing. Mobile
+       keeps no pin (spec), just the char-rise above. */
+    /* R9 §2: B is split like A (lines > words > chars, line masks). A's chars are owned
+       by the rise above; the hand-over moves A's WORDS, so no two tweens share a
+       property on one element (the hero bug, R9 §1). */
+    var tesB = document.querySelector('.tes-top .tes-b');
+    /* aria 'none' on an aria-hidden span: no aria-label on a <p> (R7 H8); the sr-only twin carries the sentence */
+    var tesBSplit = SplitText.create(tesB.querySelector('.tes-b-text'), { type: 'lines, words, chars', mask: 'lines', aria: 'none' });
+    gsap.set(tesBSplit.words, { whiteSpace: 'nowrap', display: 'inline-block' });
+    maskBreathe(tesBSplit);
+    /* 145, not 100: maskBreathe's 0.16em bottom padding plus ascenders and diacritics
+       (ä, å, t) reaching above the char box let the tops of hidden chars peek as stray
+       dashes - seen in both R9 walks. B is also hidden as a whole until the hand-over. */
+    gsap.set(tesBSplit.chars, { yPercent: 145 });
+    var tesMM = gsap.matchMedia();
+    tesMM.add({ isDesktop: '(min-width:768px)', isMobile: '(max-width:767px)' }, function(ctx){
+      if (ctx.conditions.isMobile){
+        gsap.to(tesBSplit.chars, {
+          yPercent: 0, duration: 0.8, ease: 'power4.out', stagger: 0.012,
+          scrollTrigger: { trigger: tesB, start: 'top 82%', toggleActions: 'play none none reverse' }
+        });
+        return;
+      }
+      /* Pin 2.4 vh: A holds 0-.40 (~.96 vh), A sinks .40-.52, B rises .48-.60 (only the last
+         letters of A are still leaving: the two sentences never stack), B holds .60-1 (~.96 vh).
+         The mid-state is .20 of the pin (~430 px at 900): at .34 a resting reader saw fragments.
+         Both reads stay well over the 40 vh rule. Scrubbed; Lenis is the only smoothing (F-020).
+         R7 (H2/H13) kept: pinned 48 px down, pinType transform. */
+      var swap = gsap.timeline({
+        defaults: { ease: 'none' },
+        scrollTrigger: {
+          trigger: '#tes', start: 'top top+=48', end: function(){ return '+=' + (2.4 * window.innerHeight); },
+          pin: '.tes-top', pinSpacing: true, pinType: 'transform', scrub: true
+        }
+      });
+      /* visibility on the aria-hidden span and on A's split lines, never on the <h2>/<p>:
+         the h2's aria-label and B's sr-only twin stay in the accessibility tree. */
+      var tesBText = tesB.querySelector('.tes-b-text');
+      gsap.set(tesBText, { autoAlpha: 0 });
+      swap
+        .to({}, { duration: 0.40 })
+        .set(tesBText, { autoAlpha: 1 }, 0.40)
+        .set(tesSplit.lines, { autoAlpha: 0 }, 0.54)
+        .to(tesSplit.words, { yPercent: 145, duration: 0.08, stagger: { each: 0.04 / tesSplit.words.length }, ease: 'power2.in' }, 0.40)
+        .to(tesBSplit.chars, { yPercent: 0, duration: 0.08, stagger: { each: 0.04 / tesBSplit.chars.length }, ease: 'power3.out' }, 0.48)
+        .to({}, { duration: 0.40 }, 0.60);
+    });
+    /* a11y H1, after load: a spacing bookmarklet or extension applied later grows A past the pin
+       or pushes words over their line masks. Then the same plain stacked fallback as at load. */
+    if (window.ResizeObserver){
+      var tesRO = new ResizeObserver(function(){
+        var over = tesHeadline.offsetHeight > window.innerHeight - 48 ||
+          tesSplit.masks.some(function(m){ return m.scrollWidth > m.clientWidth + 1; });
+        if (!over) return;
+        tesRO.disconnect();
+        tesMM.revert(); tesRise.scrollTrigger.kill(); tesRise.kill();
+        tesSplit.revert(); tesBSplit.revert();
+        document.querySelector('.tes-stage').classList.add('tes-flow');
+        ScrollTrigger.refresh();
+      });
+      tesRO.observe(tesHeadline);
+    }
+  }
+  /* ============================================================ §5 processen */
+  var processRow = document.querySelector('.process-row');
+  if (processRow){
+    var progress = document.createElement('div');
+    progress.className = 'process-progress';
+    progress.setAttribute('aria-hidden', 'true');
+    processRow.appendChild(progress);
+    ScrollTrigger.create({
+      trigger: processRow, start: 'top top', end: 'bottom bottom',
+      onRefresh: function(self){
+        var r = processRow.getBoundingClientRect();
+        var leftCol = processRow.querySelector('.process-left');
+        var lr = leftCol ? leftCol.getBoundingClientRect() : r;
+        progress.style.left = (lr.right - r.left) + 'px';
+      }
+    });
+    gsap.to(progress, {
+      scaleY: 1, ease: 'none',
+      scrollTrigger: { trigger: processRow, start: 'top top', end: 'bottom bottom', scrub: true }
+    });
+  }
+  /* R4 fix: dimming the whole <li> via autoAlpha:0.55 dragged process-p
+     (already #bdbdbd, a deliberately quieter grey) down to ~3.8:1 against
+     black - below AA (measured ~3.9:1 by the lead, confirms the same
+     defect). autoAlpha/opacity is a paint-blend against the black cell,
+     not a fixed colour, so its contrast isn't controllable independently
+     of the colour under it. Fix: never dim process-p at all (it stays a
+     constant #bdbdbd, 11.2:1, always AA-safe); only the title + index
+     toggle, and they toggle an explicit colour (not opacity) so the
+     inactive value is a guaranteed, measurable 6.5:1 - not a computed
+     blend. This is a discrete state toggle on ScrollTrigger's onToggle
+     (fires once per crossing, not per scroll frame), not a continuous
+     scrub, so animating `color` here doesn't reintroduce the perf cost
+     the transform/opacity/clip-path-only rule guards against. */
+  var STEP_DIM = '#8f8f8f';
+  var STEP_LIT = '#ffffff';
+  var processSteps = Array.prototype.slice.call(document.querySelectorAll('.process-row-item'));
+  processSteps.forEach(function(step){
+    var num = step.querySelector('.process-num');
+    var title = step.querySelector('.process-step-title');
+    if (title) gsap.set(title, { color: STEP_DIM });
+    if (num) gsap.set(num, { color: STEP_DIM });
+    ScrollTrigger.create({
+      trigger: step, start: 'top center', end: 'bottom center',
+      onToggle: function(self){
+        var lit = self.isActive ? STEP_LIT : STEP_DIM;
+        if (title) gsap.to(title, { color: lit, duration: 0.3, overwrite: 'auto' });
+        if (num){
+          gsap.to(num, { color: lit, duration: 0.3, overwrite: 'auto' });
+          gsap.fromTo(num, { yPercent: self.isActive ? -100 : 100 }, { yPercent: 0, duration: 0.3, overwrite: 'auto' });
+        }
+      }
+    });
+  });
+
+  /* ============================================================ §6 exempelcase */
+  /* R5 §A: "Exempelcase" must never be sheared by either edge - the old
+     xPercent drift (20 -> -6, scrub) risked exactly that, and the spec
+     explicitly asks for a yPercent reveal out of a mask instead. The word
+     already fits its cell at rest (case-word-cell has overflow hidden), so
+     this is now a one-time rise, not a scroll-scrubbed horizontal pan. */
+  var caseWord = document.querySelector('.case-word-cell .headline-50');
+  if (caseWord){
+    var caseWordSplit = SplitText.create(caseWord, { type: 'lines', mask: 'lines', aria: 'auto' });
+    maskBreathe(caseWordSplit);
+    gsap.set(caseWordSplit.lines, { yPercent: 100 });
+    gsap.to(caseWordSplit.lines, {
+      yPercent: 0, duration: 0.75, ease: 'power4.out',
+      scrollTrigger: { trigger: '#exempelcase', start: 'top 75%', toggleActions: 'play none none reverse' }
+    });
+  }
+
+  /* ============================================================ §6b R5 väljaren (B1) */
+  var caseChoices = Array.prototype.slice.call(document.querySelectorAll('.case-choice'));
+  var hoverCapable = window.matchMedia('(hover: hover)').matches;
+  if (hoverCapable){
+    caseChoices.forEach(function(btn){
+      btn.addEventListener('mouseenter', function(){
+        caseChoices.forEach(function(o){ if (o !== btn) gsap.to(o, { opacity: 0.85, duration: 0.3, overwrite: 'auto' }); });
+      });
+      btn.addEventListener('mouseleave', function(){
+        caseChoices.forEach(function(o){ gsap.to(o, { opacity: 1, duration: 0.3, overwrite: 'auto' }); });
+      });
+    });
+  }
+
+  /* ============================================================ §7 R7 showcasen (B2/C)
+     Rättar V3f:s sex grundorsaker (SHOWCASE-SPEC.md tabell): pinnen skapas
+     EN gång (aldrig döds/återskapas vid klick), båda iframes laddas vid
+     requestIdleCallback i stället för på klick, scrub:true är det enda
+     utjämningslagret (Lenis), caseY glider med sine.inOut i stället för att
+     rycka, dragspelet ersätts av en skrubbad crossfade-ruta (§C), och
+     pinlängden är fast (6 segment) så ett casebyte aldrig kräver refresh(). */
+  var SHOWCASE_DEFS = {
+    calyx: { anchors: [ ['top', 0], ['#studio', 0], ['#studio + section', 0, 48, 700], ['#index', 0], ['#commission', 0] ] },
+    horai: { anchors: [ ['top', 0], ['#hero-section + section', 0.30], ['#quote-section', 'center', -100, 700], ['#quote-section + section', 0], ['#reservations', -1], ['#reservations', 0] ] }
+  };
+  var CASES = {
+    calyx: { key: 'calyx', el: document.getElementById('showcase-calyx'), iframe: document.getElementById('showcaseIframeCalyx'), poster: document.getElementById('showcasePosterCalyx'), anchors: SHOWCASE_DEFS.calyx.anchors, y: null, w: null, last: -1, lastStep: -1, loaded: false, pendingRow: 0, mountedAt: 0 },
+    horai: { key: 'horai', el: document.getElementById('showcase-horai'), iframe: document.getElementById('showcaseIframeHorai'), poster: document.getElementById('showcasePosterHorai'), anchors: SHOWCASE_DEFS.horai.anchors, y: null, w: null, last: -1, lastStep: -1, loaded: false, pendingRow: 0, mountedAt: 0 }
+  };
+  var activeCaseKey = 'calyx';
+  var MOBILE_INACTIVE_OPACITY = 0.7; /* measured (SHOWCASE-SPEC §C): 0.45 gave
+    ~2.7:1 (calyx ink #232323 on paper #fff) and ~4.26:1 (ink on grey #d9d9d9)
+    against the 4.5:1 body-text floor - both fail. 0.7 clears every row-text/
+    ground combo (calyx paper/grey, hōrai black/grey) with margin (>=4.5:1). */
+  window.__CASES = CASES; /* dev hook for the verification suite */
+
+  var showcaseFrameWrap = document.getElementById('showcaseFrameWrap');
+  var showcaseST = null;
+
+  /* R7 (H12): neither frame loads with the page. The active case becomes due
+     when #exempelcase comes within two viewports (IntersectionObserver, bottom
+     margin 100 %, so no layout read per scroll frame). Loading a site costs
+     ~0.5 s of main-thread script (Tailwind's in-browser compile, measured:
+     tasks of 160 + 330 ms for Calyx, 560 ms for Hōrai), so a due frame is
+     mounted at the reader's first scroll pause (Lenis at rest for 180 ms),
+     and at the latest when #showcase is 0.6 viewport away; its fallback image
+     covers until it has loaded. The other case mounts at the next pause
+     after that, or on intent (pointer or focus on its button), or on click
+     (activateCase). No refresh from here. */
+  /* R7b: a mount costs 0.36-0.63 s of main thread in one piece (parse +
+     Tailwind's in-browser compile + first layout, CDP-traced), after ~0.45 s
+     of network (each site's render-blocking Google Fonts CSS). A click that
+     lands inside that task waits for all of it, so mounts are serialized: the
+     next one starts only when no mounted frame is still being parsed, which
+     keeps the parse window as short as the two sites allow. Still mounted at
+     the reader's first pause, never during a click glide (mountCase), and a
+     click cancels a mount whose parse has not begun (cancelUnparsedMounts). */
+  var MOUNT_QUIET_MS = 180;
+  var lastScrollAt = 0, pendingMounts = [], pausePoll = null;
+  lenis.on('scroll', function(){ lastScrollAt = performance.now(); });
+  function isMounted(C){ return !C.iframe.getAttribute('data-lazy-src'); }
+  function isParsing(C){
+    if (!isMounted(C) || C.loaded) return false;
+    var d = null;
+    try { d = C.iframe.contentDocument; } catch (e) { return false; }
+    return !d || d.URL === 'about:blank' || d.readyState === 'loading';
+  }
+  function mountWhenPaused(C){
+    if (!C || isMounted(C) || pendingMounts.indexOf(C) > -1) return;
+    pendingMounts.push(C);
+    if (pausePoll) return;
+    (function poll(){
+      if (!glideTick && !lenis.isScrolling && performance.now() - lastScrollAt > MOUNT_QUIET_MS &&
+          !Object.keys(CASES).some(function(k){ return isParsing(CASES[k]); })){
+        var next = pendingMounts.shift();
+        if (next) mountCase(next);
+        pausePoll = pendingMounts.length ? setTimeout(poll, 120) : null;
+        return;
+      }
+      pausePoll = setTimeout(poll, 120);
+    })();
+  }
+  /* R7b: a site whose document has not been parsed yet would parse inside
+     the glide (0.24-0.42 s tasks). The click takes it back to about:blank and
+     queues it again for after the landing. A parse already running cannot be
+     interrupted; the click waits for it (the one case left, see RAPPORT R7b). */
+  function cancelUnparsedMounts(){
+    Object.keys(CASES).forEach(function(k){
+      var C = CASES[k], f = C.iframe;
+      if (!isParsing(C)) return;
+      f.setAttribute('data-lazy-src', f.getAttribute('src'));
+      f.setAttribute('src', 'about:blank');
+      C.mountedAt = 0;
+      afterGlide(function(){ mountWhenPaused(C); });
+    });
+  }
+  var exempelcaseEl = document.getElementById('exempelcase');
+  /* R7b: both fallback images are fetched and decoded as soon as the picker
+     is due, mounted or not, so a click before any mount still shows one
+     without a decode inside the glide */
+  function warmPosters(){
+    Object.keys(CASES).forEach(function(k){
+      var p = CASES[k].poster;
+      if (!p || p.__warm) return;
+      p.__warm = new Image();
+      p.__warm.src = p.getAttribute('src');
+      if (p.__warm.decode) p.__warm.decode().catch(function(){});
+    });
+  }
+  /* R7b: a frame outside the viewport is render-throttled, so its CSS
+     background photos (all of both sites' photos) were not even requested
+     until the click glide pulled it on screen; its 'load', and the layout and
+     decode after it, then landed inside the glide (traced: load at +0.1 to
+     +0.4 s after the click, 8.7 s after the mount). One forced layout once
+     the frame's document is parsed starts those requests while it is still
+     off screen. Runs in requestIdleCallback, never in a scroll callback. */
+  function kickFrameLayout(C){
+    defer(function kick(){
+      var d = null;
+      try { d = C.iframe.contentDocument; } catch (e) { return; }
+      if (!d || d.URL === 'about:blank' || d.readyState === 'loading'){
+        if (!C.loaded && performance.now() - C.mountedAt < 8000) defer(kick);
+        return;
+      }
+      void d.documentElement.scrollHeight;
+    });
+  }
+  function mountCase(C){
+    var f = C && C.iframe;
+    if (!f) return;
+    var src = f.getAttribute('data-lazy-src');
+    if (!src) return;
+    /* R7b: nothing loads while a click glide runs; it waits for the landing */
+    if (glideTick){ afterGlide(function(){ mountCase(C); }); return; }
+    scaleShowcaseFrame();
+    C.mountedAt = performance.now();
+    warmPosters();
+    f.setAttribute('src', src);
+    f.removeAttribute('data-lazy-src');
+    kickFrameLayout(C);
+    /* the other case queues right away (not on this one's load, which the
+       sites' hotlinked photos delay by seconds), so it too loads while the
+       reader is still, before a click on it */
+    mountWhenPaused(otherCase(C.key));
+  }
+  function otherCase(key){ return key === 'calyx' ? CASES.horai : CASES.calyx; }
+  var showcaseEl = document.getElementById('showcase');
+  /* R7 (H13): the stage is drawn only within 1.5 viewports of the screen */
+  (function(){
+    var spacer = document.querySelector('.showcase-pin-spacer');
+    var stage = document.querySelector('.showcase-stage');
+    if (!spacer || !stage) return;
+    if (!('IntersectionObserver' in window)){ stage.classList.remove('is-far'); return; }
+    new IntersectionObserver(function(entries){
+      entries.forEach(function(e){ stage.classList.toggle('is-far', !e.isIntersecting); });
+    }, { rootMargin: '150% 0px 150% 0px' }).observe(spacer);
+  })();
+  if ('IntersectionObserver' in window && exempelcaseEl && showcaseEl){
+    var dueIO = new IntersectionObserver(function(entries){
+      entries.forEach(function(e){
+        if (e.isIntersecting || e.boundingClientRect.top < 0){
+          warmPosters();
+          /* R7b: the inactive case first. A click on the picker always
+             switches to it, while the active case's frame sits below the
+             picker and is also mounted by latestIO before it is reached. */
+          mountWhenPaused(otherCase(activeCaseKey));
+          mountWhenPaused(CASES[activeCaseKey]);
+          dueIO.disconnect();
+        }
+      });
+    }, { rootMargin: '0px 0px 200% 0px' }); /* R7b: due within two viewports (was one) */
+    dueIO.observe(exempelcaseEl);
+    var latestIO = new IntersectionObserver(function(entries){
+      entries.forEach(function(e){
+        if (e.isIntersecting || e.boundingClientRect.top < 0){
+          mountCase(CASES[activeCaseKey]);
+          latestIO.disconnect();
+        }
+      });
+    }, { rootMargin: '0px 0px -40% 0px' });
+    latestIO.observe(showcaseEl);
+  } else {
+    mountCase(CASES[activeCaseKey]);
+  }
+  /* intent: a pointer over, or focus on, a case button queues its load (R7b:
+     through the stillness gate, so the click that follows never waits on it) */
+  Array.prototype.forEach.call(document.querySelectorAll('.case-choice'), function(btn){
+    function intent(){ mountWhenPaused(CASES[btn.getAttribute('data-case')]); }
+    btn.addEventListener('pointerenter', intent, { once: true });
+    btn.addEventListener('focus', intent, { once: true });
+  });
+
+  /* R5 bugfix (kept): pinning an ancestor of a live iframe makes GSAP's own
+     pin-spacer wrap (on creation) and unwrap/rewrap (on every later
+     revert-and-remeasure inside ScrollTrigger.refresh()) move that
+     ancestor in the DOM - and moving an iframe element's ancestor makes
+     the browser reload it. Confirmed by instrumenting the calyx iframe's
+     own 'load' event: it fired twice on a single page load, a frame apart,
+     matching two refresh() passes. A one-shot {once:true} listener caught
+     only the first reload and kept a stale, detached contentWindow after
+     the second - every anchor then clamped to 0 (writeCaseScroll() no-ops
+     forever against a dead window). This listener is never removed, so
+     every reload - however many happen - re-measures against the CURRENT
+     contentWindow.
+     A#3: once loaded, the iframe fades in over 0.3s from behind its poster
+     (SHOWCASE-SPEC §A) - the same duration whether this is the first real
+     load or a later reload. */
+  /* R5: förvärm en INAKTIV case's iframe en gång vid load. Mätt (CDP-
+     tracing, se RAPPORT.md R5): varken display:none, visibility:hidden,
+     eller CSS-opacitet (exakt 0 eller ett hårnålsvärde på 0.01) fick
+     webbläsaren att avkoda bilderna i förväg - Decode/ImageDecodeTask
+     (~190-250 ms) sköts alltid upp till klicket oavsett CSS-tillstånd,
+     eftersom avkodning tycks styras av när innehållet faktiskt blir
+     "viktigt" att visa, inte av att det ligger i renderträdet med en
+     nästan-noll opacitet. Fixen: hoppa över CSS-lagret för avkodningen
+     helt - anropa `<img>.decode()` direkt på Hōrais egna bildelement
+     (samma ursprung, `contentDocument` nåbart), den dokumenterade
+     webbläsar-API:n för att tvinga fram och cacha avkodningen oavsett
+     målningsstatus. visibility stannar 'visible' (mätt: measureCase
+     behöver layout, inte målning - se separat fynd), opacity 0 tills
+     klick. */
+  /* R7 (MED): the inactive case's photos are decoded ahead of a click from a
+     static list (the background-image URLs in sites/calyx.html and
+     sites/horai.html). The old version read getComputedStyle x3 on every
+     element of the frame's document, mid-scroll. */
+  var PREWARM_URLS = {
+    calyx: [
+      'https://images.unsplash.com/photo-1469371670807-013ccf25f16a?auto=format&fit=crop&w=2000&q=80',
+      'https://images.unsplash.com/photo-1487530811176-3780de880c2d?auto=format&fit=crop&w=2400&q=80',
+      'https://images.unsplash.com/photo-1561181286-d3fee7d55364?auto=format&fit=crop&w=1600&q=80',
+      'https://images.unsplash.com/photo-1574684891174-df6b02ab38d7?auto=format&fit=crop&w=1600&q=80'
+    ],
+    horai: [
+      'https://images.unsplash.com/photo-1414235077428-338989a2e8c0?auto=format&fit=crop&w=2600&q=88',
+      'https://images.unsplash.com/photo-1517248135467-4c7edcad34c4?auto=format&fit=crop&w=2400&q=88',
+      'https://images.unsplash.com/photo-1546069901-ba9599a7e63c?auto=format&fit=crop&w=1800&q=88',
+      'https://images.unsplash.com/photo-1551183053-bf91a1d81141?auto=format&fit=crop&w=2400&q=88',
+      'https://images.unsplash.com/photo-1580554530778-ca36943938b2?auto=format&fit=crop&w=1800&q=88'
+    ]
+  };
+  function prewarmInactiveCase(C){
+    C.iframe.style.visibility = 'visible';
+    var seen = {};
+    function prewarmUrl(bg){
+      var m = bg && /url\(["']?([^"')]+)["']?\)/.exec(bg);
+      var url = m && m[1];
+      if (url && !seen[url] && url.indexOf('data:') !== 0){
+        seen[url] = true;
+        var img = new Image();
+        img.src = url;
+        if (img.decode) img.decode().catch(function(){});
+      }
+    }
+    (PREWARM_URLS[C.key] || []).forEach(function(u){ prewarmUrl('url(' + u + ')'); });
+    /* R6 runda 6: samma förvärmning för den här casens EGNA stegbilder i den
+       nya detaljcellen (färg + dither, båda vanliga <img>, inte background-
+       image) - Hōrai-panelen är display:none tills klick, och samma R5-fynd
+       gäller oavsett hur bilden refereras: avkodningen skjuts upp tills
+       webbläsaren tror elementet är viktigt, aldrig av CSS-tillstånd allena.
+       Fristående Image()-objekt igen, aldrig activateCase. */
+    if (C.figures && C.figures.length){
+      C.figures.forEach(function(fig){
+        Array.prototype.slice.call(fig.querySelectorAll('img')).forEach(function(img){
+          prewarmUrl('url(' + img.getAttribute('src') + ')');
+        });
+      });
+    }
+  }
+
+  Object.keys(CASES).forEach(function(key){
+    var C = CASES[key];
+    if (!C.iframe) return;
+    C.iframe.addEventListener('load', function(){
+      if (isMounted(C)) afterGlide(onFrameLoad); /* not the about:blank of a cancelled mount */
+    });
+    /* R7b: a load that lands during a click glide (its measure is a forced
+       layout of the site, 50-120 ms traced) runs once the glide has landed */
+    function onFrameLoad(){
+      measureCaseSettled(C);
+      C.loaded = true;
+      /* R7 (H1): the frame's size follows its cell, so the site re-lays out on
+         resize (its own vh sections, its own triggers). Measure the anchors
+         again once it has settled. */
+      try {
+        var t = null;
+        C.iframe.contentWindow.addEventListener('resize', function(){
+          clearTimeout(t);
+          t = setTimeout(function(){
+            measureCaseSettled(C);
+            if (isPinLayout() && showcaseST && activeCaseKey === C.key) updateShowcase(C, showcaseST.progress);
+          }, 350);
+        });
+      } catch (e) {}
+      if (activeCaseKey === C.key){
+        /* A#3: once loaded, the iframe fades in over 0.3s from behind its
+           poster (SHOWCASE-SPEC §A) - the same duration whether this is the
+           first real load or a later reload. */
+        revealCase(C);
+        if (isPinLayout()){
+          if (showcaseST) updateShowcase(C, showcaseST.progress);
+        } else {
+          tweenCaseTo(C, C.pendingRow || 0);
+        }
+      } else {
+        prewarmInactiveCase(C);
+      }
+    }
+  });
+  /* R7b: the first time a site is drawn, the GPU process compiles its shader
+     programs: 90-500 ms per program for Hōrai (its backdrop-filter and filter
+     blurs), traced as Program::MainLinkLoadEvent::wait in viz, and the whole
+     page stands still meanwhile. A site that has never been drawn therefore
+     never appears during a click glide: its fallback image (the same first
+     screen) stands in, and the site fades in over it once the glide has
+     landed (afterGlide). C.drawn marks a site that has been on screen once,
+     revealed: a fade-in that completes below the fold does not count (the
+     glide-only control, 4 s at the picker, stalled 485-570 ms on exactly
+     that first draw; 0.3 s at the picker, before any load, 20-30 ms). */
+  function markDrawn(C){ if (C.revealed && C.onScreen) C.drawn = true; }
+  function revealCase(C){
+    if (!C.loaded || activeCaseKey !== C.key) return;
+    C.iframe.style.visibility = 'visible';
+    /* back from the glide's display:none: a 0-high frame measured nothing */
+    if (C.iframe.style.display === 'none'){
+      C.iframe.style.display = '';
+      measureCaseSettled(C);
+      if (isPinLayout() && showcaseST) updateShowcase(C, showcaseST.progress);
+    }
+    gsap.to(C.iframe, {
+      opacity: 1, duration: 0.3, ease: 'power2.out', overwrite: 'auto',
+      onComplete: function(){ C.revealed = true; markDrawn(C); if (C.poster) C.poster.style.display = 'none'; }
+    });
+  }
+  if ('IntersectionObserver' in window){
+    Object.keys(CASES).forEach(function(k){
+      var C = CASES[k];
+      /* half the frame, not its top strip: at the picker 97 of its 852 px
+         show, and the rest was still a first draw inside the glide */
+      new IntersectionObserver(function(es){
+        C.onScreen = es[es.length - 1].intersectionRatio >= 0.5;
+        markDrawn(C);
+      }, { threshold: [0, 0.5] }).observe(C.iframe);
+    });
+  }
+
+
+  /* R7 (H1): the frame shows the site's whole width. Scale = cell width /
+     site width, and the frame's own height = cell height / scale, so the
+     site renders in a taller viewport instead of being cropped at the right
+     edge (cover scaling showed 61.6 % of the width at 1440 and 27 % at 390).
+     Cells narrower than 560 px render the site's own mobile layout at 390.
+     A site whose own layout is wider than that (Hōrai's 12-column grid needs
+     675 px at 390) is rendered at its narrowest width without overflow
+     (C.minW, measured after load) and scaled to the cell, so its quotes
+     and prices are never cut at the frame's right edge. */
+  function frameBaseWidth(w){ return w >= 560 ? 1440 : 390; }
+  function scaleShowcaseFrame(){
+    if (!showcaseFrameWrap) return;
+    var r = showcaseFrameWrap.getBoundingClientRect();
+    if (!r.width || !r.height) return;
+    Object.keys(CASES).forEach(function(k){
+      var f = CASES[k].iframe;
+      if (!f) return;
+      var base = Math.max(frameBaseWidth(r.width), CASES[k].minW || 0);
+      var scale = r.width / base, h = Math.ceil(r.height / scale);
+      if (f.__bw !== base || f.__bh !== h){
+        f.style.width = base + 'px'; f.style.height = h + 'px';
+        f.__bw = base; f.__bh = h;
+      }
+      gsap.set(f, { scale: scale, transformOrigin: 'top left' });
+    });
+  }
+  scaleShowcaseFrame();
+
+  function measureCase(C){
+    var f = C.iframe, w = f && f.contentWindow, d = null;
+    try { d = f && f.contentDocument; } catch (e) { d = null; }
+    if (!w || !d || !d.documentElement) return false;
+    /* R5 bugfix: measureCase briefly succeeded against the iframe's OWN
+       still-about:blank document from the instant a new `src` is assigned
+       (navigation hasn't swapped contentDocument yet) - a blank document's
+       scrollHeight equals its own clientHeight, so max === 0 exactly
+       (not negative), which slipped past a `max < 0` guard and produced
+       every anchor's clamp collapsing to 0 (all six caseY() reads stuck
+       at 0px). Require readyState:'complete' AND max > 0 (a real page's
+       content should always exceed the frame height) so the caller's
+       `if (!C.y) attach onLoad` fallback actually engages instead of
+       "succeeding" against garbage. */
+    if (d.readyState !== 'complete') return false;
+    var ih = w.innerHeight;
+    /* R7 runda 2, fynd 4 (den verkliga orsaken, mätt): `scrollHeight - ih`
+       är en BERÄKNING av hur långt sidan borde gå att scrolla, men mätt
+       direkt (page.evaluate, fyra separata sidladdningar av samma calyx.html)
+       visade att webbläsarens EGEN scrollTo-klamning konsekvent landar
+       9-14px LÄGRE än den beräkningen - en generell webbläsarkvirk
+       (subpixel-avrundning mellan layoutets rapporterade scrollHeight och
+       vad scrollTo faktiskt tillåter), inte typsnittsladdning (den
+       hypotesen testad och motbevisad separat: #commission.offsetTop är
+       bevisligen stilla från 150ms efter load).
+
+       Två dyrare fixar försökta och förkastade, båda mätta: (1) fråga
+       webbläsaren varje gång (scrolla till ett stort värde, läs, återställ)
+       gjorde siffrorna VÄRRE (7/3/28/11px), eftersom measureCase också körs
+       medan en pågående tween SKRIVER till samma C.w - "återställ" kolliderade
+       med den skrivningen. (2) samma sond men cachead en gång per `ih` slog
+       fortfarande fel när cachen råkade sättas mitt i en pågående skrivning.
+       Fixen som faktiskt håller, utan sidoeffekter: en fast säkerhetsmarginal
+       under den beräknade `max`, ordentligt större än den uppmätta kvirken
+       (9-14px) så skrivningen ALDRIG är i närheten av webbläsarens verkliga
+       tak - ren aritmetik, rör aldrig C.w. */
+    var max = d.documentElement.scrollHeight - ih - 20;
+    if (!ih || max <= 0) return false;
+    C.w = w;
+    C.y = C.anchors.map(function(a){
+      var el = a[0] === 'top' ? null : d.querySelector(a[0]);
+      var t = el ? el.offsetTop : 0;
+      var off = a[1] === 'center' ? (el ? (el.offsetHeight - ih) / 2 : 0) : a[1] * ih;
+      if (a[2] && ih < (a[3] || Infinity)) off += a[2];
+      return Math.max(0, Math.min(max, Math.round(t + off)));
+    });
+    return true;
+  }
+  /* R7 runda 2, fynd 4: den verkliga orsaken satt i measureCase() ovan (den
+     beräknade `max` mot webbläsarens egen scrollTo-klamning), inte här -
+     se den kommentaren. Kvar här: en ren defensiv ommätning när iframens
+     egna webbtypsnitt (om sidan har några) hunnit byta in, billig och
+     harmlös oavsett om den råkar sakna ett verkligt fel att fånga. */
+  /* R7 (H1): widen the frame to the site's own content width if its layout
+     overflows (at most three passes; the site re-lays out after each). */
+  function fitSiteWidth(C){
+    var f = C.iframe, d = null;
+    try { d = f && f.contentDocument; } catch (e) { d = null; }
+    if (!d || !d.documentElement) return;
+    var sw = d.documentElement.scrollWidth, fw = f.offsetWidth;
+    if (sw > fw + 1 && sw < 2 * fw && (C.fitPasses || 0) < 3){
+      C.fitPasses = (C.fitPasses || 0) + 1;
+      C.minW = sw;
+      scaleShowcaseFrame();
+    }
+  }
+  function measureCaseSettled(C){
+    fitSiteWidth(C);
+    var ok = measureCase(C);
+    var d = null;
+    try { d = C.iframe && C.iframe.contentDocument; } catch (e) { d = null; }
+    if (d && d.fonts && d.fonts.ready){
+      d.fonts.ready.then(function(){ measureCase(C); });
+    }
+    return ok;
+  }
+  /* B: segment k (1..n-1) owns progress [k/n,(k+1)/n) - first half glides
+     anchor k-1 -> k with sine.inOut (zero velocity both ends, no jerk),
+     second half dwells on anchor k in the reading window. Segment 0 is rest
+     on anchor 0. n = C.y.length (each case's own anchor count) - the PIN's
+     total pixel length is fixed regardless of n (see setupDesktopEngine),
+     this only divides that fixed [0,1] progress range into the case's own
+     stops. */
+  /* R3 §3 (F-020): sajten glider under de FÖRSTA 70% av segmentet (var 50%)
+     och står still resten - mjukare, längre glid innan läsfönstret. */
+  var SITE_GLIDE_FRAC = 0.7;
+  function caseY(C, p){
+    var n = C.y.length, pp = Math.max(0, Math.min(1, p)), kf = pp * n;
+    var k = Math.min(n - 1, Math.floor(kf)), t = kf - k;
+    if (k === 0) return C.y[0];
+    var half = Math.min(1, t / SITE_GLIDE_FRAC);
+    var u = 0.5 - 0.5 * Math.cos(Math.PI * half); /* sine.inOut */
+    return C.y[k - 1] + (C.y[k] - C.y[k - 1]) * u;
+  }
+  function writeCaseScroll(C, p){
+    if (!C.y || !C.w) return;
+    var y = caseY(C, p);
+    if (Math.abs(y - C.last) >= 0.5){
+      C.w.scrollTo({ top: y, left: 0, behavior: 'instant' });
+      C.last = y;
+    }
+  }
+
+  /* C: the active step index, from the SAME progress caseY reads, gated to
+     the crossfade's own 25%/25% timing so the outgoing step is still
+     flagged active while it fades and the incoming one only takes over
+     once its own fade-in starts (SHOWCASE-SPEC §C: "tonas ut i första 25%",
+     "tonas in i nästa 25%"). */
+  /* R3 §3 (F-020): texten tonas över under de FÖRSTA 30% av segmentet
+     (ut 0-15%, in 15-30%), var 50% (25%/25%) - kortare övertoning, längre
+     still-stående läsfönster. */
+  var STEP_OUT_FRAC = 0.15, STEP_IN_FRAC = 0.15;
+  var STEP_LAG_FRAC = 0.2; /* R8: andra stycket följer första med 20 % av fönstret */
+  var RES_START = 0.30, RES_DUR = 0.20; /* figure resolve window, per segment (R6b) */
+  function activeStepIndexFor(n, p){
+    var pp = Math.max(0, Math.min(1, p)), kf = pp * n;
+    var k = Math.min(n - 1, Math.floor(kf));
+    if (k === 0) return 0;
+    var t = kf - k;
+    return t < STEP_OUT_FRAC ? k - 1 : k;
+  }
+  function pad2(n){ return (n < 10 ? '0' : '') + n; }
+
+  /* desktop only: toggles aria-hidden/visibility once per step change (not
+     per frame, per spec) and updates the mono counter. The crossfade itself
+     is C.tl (built in buildStepTimelines), scrubbed by the same pin. */
+  function setStepState(C, p){
+    var n = C.anchors.length;
+    var idx = activeStepIndexFor(n, p);
+    if (C.lastStep === idx) return;
+    C.lastStep = idx;
+    /* R7 (H6): opacity alone hides the inactive steps (C.tl), so a screen
+       reader reaches all of them; no aria-hidden, no visibility:hidden. */
+    C.steps.forEach(function(row, i){ row.classList.toggle('is-active', i === idx); });
+    if (C.counter) C.counter.textContent = pad2(idx + 1) + ' / ' + pad2(n);
+  }
+
+  function writeTrackFill(p){
+    var pp = Math.max(0, Math.min(1, p));
+    Object.keys(CASES).forEach(function(k){
+      var fill = CASES[k].trackFill;
+      if (fill) fill.style.transform = 'scaleX(' + pp + ')';
+    });
+  }
+
+  /* R7 (H11): a figure's 40 tiles are promoted only around its own resolve
+     window; the class flips once per crossing, not per frame. */
+  function setFigureResolving(C, p){
+    if (!C.figures || !C.figures.length) return;
+    var n = C.anchors.length, pad = 0.04 / n;
+    C.figures.forEach(function(fig, i){
+      var s = (i + (i === 0 ? 0.05 : RES_START)) / n, e = s + RES_DUR / n;
+      var on = p >= s - pad && p <= e + pad;
+      if (fig.__res !== on){ fig.__res = on; fig.classList.toggle('is-resolving', on); }
+    });
+  }
+  function updateShowcase(C, p){
+    writeCaseScroll(C, p);
+    if (C.tl) C.tl.progress(Math.max(0, Math.min(1, p)));
+    setStepState(C, p);
+    setFigureResolving(C, p);
+  }
+
+  /* C: one GSAP timeline per case, paused, progress-driven (never played) -
+     0..1 on the timeline maps 1:1 to the pin's own progress. Each step k
+     (1..n-1) fades out step k-1 (opacity 1->0, y 0->-12px) over the
+     segment's first 25%, then fades in step k (opacity 0->1, y 12->0) over
+     the next 25%; the remaining 50% (the segment's dwell half, matching B)
+     is untouched, so the step reads fully still for >=40vh. Only opacity
+     and transform animate. */
+  function buildStepTimelines(){
+    Object.keys(CASES).forEach(function(key){
+      var C = CASES[key];
+      var box = C.el.querySelector('.showcase-rows');
+      C.head = C.el.querySelector('.showcase-head');
+      C.box = box;
+      C.counter = box.querySelector('.showcase-counter');
+      C.trackFill = box.querySelector('.showcase-track-fill');
+      C.steps = Array.prototype.slice.call(box.querySelectorAll('.showcase-row'));
+      C.textEls = C.steps.map(function(row){ return row.querySelector('.showcase-row-text'); });
+      var n = C.anchors.length;
+      /* R8: övertoningen gäller hela steget, i två led - rubrik + ingress
+         (C.leadParts) och andra stycket (C.moreParts), som följer 20 % av
+         fönstret efter (ca 60 ms av en 0,3 s-toning) och slutar i samma
+         fönster. Fortfarande bara opacity och transform, skrubbat av pinnen.
+         .showcase-row-text själv står kvar i 1 (mobilens radtoning äger den). */
+      C.leadParts = C.textEls.map(function(t){ return Array.prototype.slice.call(t.querySelectorAll('h3, .showcase-lede')); });
+      /* R9 §3: the second paragraph (.showcase-more) is gone; the lede carries the step alone. */
+      C.leadParts.forEach(function(parts, i){ gsap.set(parts, i === 0 ? { opacity: 1, y: 0 } : { opacity: 0, y: 12 }); });
+      C.steps.forEach(function(row, i){ row.classList.toggle('is-active', i === 0); });
+      C.lastStep = 0;
+      /* R6 runda 6 (F-022): detaljcellen - en figur per steg, samma dither->
+         färg-rutnät som #kontakt/tes-bilden (buildTileGrid, ingen ny variant).
+         Rutnätet byggs en gång här (aldrig i klickvägen) och dess tiles
+         tonas i den här casens egen C.tl nedan, i samma skrubbade tidslinje
+         som texten - aldrig en egen scrollTrigger (det vore resolveCells
+         generiska mekanism, avsedd för fristående bildceller, inte för
+         steg som redan drivs av pinnens progress). 8x5 - ungefär kvadratiska
+         rutor mot detaljcellens liggande proportion. */
+      var TILE_COLS = 8, TILE_ROWS = 5;
+      C.detail = box.querySelector('.showcase-detail');
+      C.figures = C.detail ? Array.prototype.slice.call(C.detail.querySelectorAll('.showcase-figure')) : [];
+      C.figureTiles = C.figures.map(function(fig){ return buildTileGrid(fig, TILE_ROWS, TILE_COLS); });
+      gsap.set(C.figures, { opacity: 0 });
+      if (C.figures[0]) gsap.set(C.figures[0], { opacity: 1 });
+      var tl = gsap.timeline({ paused: true });
+      for (var k = 1; k < n; k++){
+        var segStart = k / n, outDur = STEP_OUT_FRAC / n, inDur = STEP_IN_FRAC / n;
+        var lagO = STEP_LAG_FRAC * outDur, lagI = STEP_LAG_FRAC * inDur;
+        tl.to(C.leadParts[k - 1], { opacity: 0, y: -12, duration: outDur - lagO, ease: 'power2.out' }, segStart);
+        tl.to(C.leadParts[k], { opacity: 1, y: 0, duration: inDur - lagI, ease: 'power2.out' }, segStart + outDur);
+        /* figuren tonas i/ur med samma position/duration som texten - "en
+           mekanism", ingen separat timing för bilden. */
+        if (C.figures[k - 1]) tl.to(C.figures[k - 1], { opacity: 0, duration: outDur, ease: 'power2.out' }, segStart);
+        if (C.figures[k]) tl.to(C.figures[k], { opacity: 1, duration: inDur, ease: 'power2.out' }, segStart + outDur);
+      }
+      /* R6b (leadens fel 3): dither->färg tar 20 % av segmentet och börjar
+         när intoningen är klar (0.30/n), så vilotillståndet 0.50-1.0 plus nästa
+         stegs uttoning är ren färg. R6 löste upp rutorna i slumpvis ordning
+         över halva segmentet, och varje stillbild mitt i var ett schackbräde
+         av raster och färg. Nu går upplösningen som en diagonal våg från
+         övre vänstra hörnet: varje ruta tonar på 35 % av fönstret och vågen
+         sprids över resten, så en stillbild visar en trappstegskant med färg
+         bakom och raster framför, aldrig lösa rutor. Steg 0 har ingen intoning
+         att vänta in och löses upp direkt när pinnen börjar. */
+      C.figures.forEach(function(fig, i){
+        var tiles = C.figureTiles[i];
+        if (!tiles || !tiles.length) return;
+        var win = RES_DUR / n;
+        tl.to(tiles, {
+          opacity: 0,
+          ease: 'none',
+          duration: win * 0.35,
+          stagger: { grid: [TILE_ROWS, TILE_COLS], from: 'start', amount: win * 0.65 }
+        }, (i + (i === 0 ? 0.05 : RES_START)) / n);
+      });
+      /* lead 2026-09-25: pad to exactly 1. The tweens sit at absolute
+         positions on a 0-1 scale, but the last one ends near 0.86, so the
+         timeline was shorter than 1 and tl.progress(p) ran the text out of
+         step with the counter and the site - late steps never faded in, and
+         scrolling back left the active step at opacity 0. */
+      tl.set({}, {}, 1);
+      C.tl = tl;
+    });
+  }
+
+  /* A: the pin is created ONCE here, at init, and never killed/recreated -
+     a click only swaps which C activeCaseKey points at (grundorsak 1).
+     The pin's own length is FIXED (6 segments x 75vh) regardless of which
+     case is active or how many anchors it has, so a casebyte never needs a
+     geometry-changing refresh() (grundorsak 6); Calyx's 5 anchors simply
+     divide that same fixed length into 5 stops instead of 6 (see caseY). */
+  function setupDesktopEngine(){
+    measureCaseSettled(CASES.calyx);
+    measureCaseSettled(CASES.horai);
+    scaleShowcaseFrame();
+    buildStepTimelines();
+    showcaseST = ScrollTrigger.create({
+      /* R7 runda 2, fynd 1: 'top top+=48' pins the section 48px below the
+         viewport's own top, exactly under the sticky topline, instead of
+         at y:0 under it - see the CSS comment above .showcase-embed-cell
+         for why 100svh alone (matching hero's own pin) let the topline
+         cover .showcase-head's rubrik. */
+      trigger: '#showcase', start: 'top top+=48',
+      /* R3 §3 (F-020): 6 segment x 110vh (var 75vh) - showcasen glider
+         långsammare mellan texterna. */
+      end: function(){ return '+=' + Math.round(6 * 1.1 * window.innerHeight); },
+      invalidateOnRefresh: true,
+      /* R3 §1 (F-021): pinSpacer pekar på markupens egen '.showcase-pin-
+         spacer' i stället för att ScrollTrigger skapar/flyttar en egen vid
+         varje refresh() - den flytten omparenterade de pinnade iframarna
+         och laddade om dem. */
+      pin: '.showcase-stage', pinSpacer: '.showcase-pin-spacer', pinSpacing: true, scrub: true,
+      onUpdate: function(self){ updateShowcase(CASES[activeCaseKey], self.progress); writeTrackFill(self.progress); },
+      onRefresh: function(self){ updateShowcase(CASES[activeCaseKey], self.progress); writeTrackFill(self.progress); }
+    });
+    updateShowcase(CASES[activeCaseKey], 0);
+  }
+
+  function setMobileRowOpacity(textEls, activeIndex){
+    textEls.forEach(function(el, i){
+      if (!el) return;
+      gsap.to(el, { opacity: i === activeIndex ? 1 : MOBILE_INACTIVE_OPACITY, duration: 0.35, ease: 'power2.out', overwrite: 'auto' });
+    });
+  }
+
+  /* declared here (not next to buildMobileRowTriggers below) so it exists
+     before gsap.matchMedia().add() runs its mobile branch synchronously on
+     registration - a `var` later in the file is hoisted as a declaration
+     but stays undefined until its own assignment line actually executes,
+     and that line ran too late, throwing on the very first page load. */
+  var mobileTriggers = [];
+
+  /* R4 §1: ease-in-out-cubic (var 1-2^(-10t), som la nästan hela rörelsen i
+     de första bildrutorna) - t.ex. den mätta 629px-toppen. Samma kurva,
+     duration 1.8 (var 1.4). */
+  function easeInOutCubic(t){ return t < 0.5 ? 4 * t * t * t : 1 - Math.pow(-2 * t + 2, 3) / 2; }
+
+  /* R7: the click glide, same curve and 1.8 s as before, but it advances at
+     most 33 ms of its own time per frame. The frames load while the reader is
+     near the picker, and a site's late script or first raster can hold one
+     frame for 200-460 ms (traced); a time-based scrollTo turned that frame
+     into a 90-220 px step, below the 500 ms clamp of lagSmoothing(500,33).
+     Here a stall pauses the glide and it resumes, the same principle, for
+     this tween only. A wheel or touch from the reader cancels it. */
+  var glideTick = null;
+  /* R7b: work that must not run while the glide moves the page (a frame's
+     mount, its load handling, a site's first appearance) queues here and runs
+     300 ms after the glide lands or the reader takes over the scroll */
+  var afterGlideQ = [], afterGlideTimer = null;
+  function afterGlide(fn){ if (glideTick) afterGlideQ.push(fn); else fn(); }
+  function stopGlide(){
+    if (glideTick){ gsap.ticker.remove(glideTick); glideTick = null; }
+    if (!afterGlideQ.length || afterGlideTimer) return;
+    afterGlideTimer = setTimeout(function(){
+      afterGlideTimer = null;
+      if (glideTick) return;
+      var q = afterGlideQ; afterGlideQ = [];
+      q.forEach(function(fn){ fn(); });
+    }, 300);
+  }
+  lenis.on('virtual-scroll', stopGlide);
+  function glideTo(el){
+    stopGlide();
+    if (!el) return;
+    var margin = parseFloat(getComputedStyle(el).scrollMarginTop) || 0; /* 48 px: lands on the pin start, as lenis.scrollTo did */
+    var from = lenis.scroll, to = el.getBoundingClientRect().top + from - margin, t = 0, D = 1.8;
+    glideTick = function(time, deltaTime){
+      t = Math.min(D, t + Math.min(deltaTime, 33) / 1000);
+      lenis.scrollTo(from + (to - from) * easeInOutCubic(t / D), { immediate: true, force: true });
+      if (t >= D) stopGlide();
+    };
+    gsap.ticker.add(glideTick);
+  }
+
+  function activateCase(key, opts){
+    opts = opts || {};
+    var isNewSelection = key !== activeCaseKey;
+    var prevKey = activeCaseKey;
+    activeCaseKey = key;
+    caseChoices.forEach(function(btn){ btn.setAttribute('aria-pressed', btn.getAttribute('data-case') === key ? 'true' : 'false'); });
+
+    /* R5: klicket skriver bara opacity/visibility och byter activeCaseKey -
+       inga layoutläsningar. CDP-tracing runt klicket (RAPPORT.md R5) mätte
+       de tre största posterna i den gamla 470-536 ms-bildrutan: Layout
+       ~154-164 ms (Hōrais dokument, tvingat av measureCase), Script ~226 ms
+       (gsap.min.js, värdet för den tvingade layoutläsningen), Decode
+       ~213-216 ms (Hōrais egna foton, avkodade första gången). Grundorsaken
+       var att Hōrais iframe stod display:none och blev utlagd, målad OCH
+       avkodad första gången mitt i klicket. R4:s fix (skriv/läs i olika
+       bildrutor) höll inte - en hel sidas foton hinner inte avkodas på en
+       enda bildrutas marginal. R5:s fix: förladdningen (se load-lyssnaren
+       nedan) lägger ut, målar OCH mäter BÅDA iframes i bakgrunden, långt
+       innan något klick - klicket har därför inget kvar att tvinga fram. */
+    if (opts.scroll !== false && lenis && lenis.scrollTo){
+      glideTo(document.getElementById('showcase'));
+      cancelUnparsedMounts();
+    }
+
+    requestAnimationFrame(function(){
+      var C = CASES[key], prevC = CASES[prevKey];
+
+      if (isNewSelection){
+        /* A#2 crossfade, unchanged: old out 0.3 s, new in 0.35 s, power2.out.
+           R7 (H7): the frame at opacity 0 is aria-hidden as well as inert.
+           R7 (H14): a case that has not loaded shows its fallback image until
+           it has, instead of an empty white frame. */
+        /* R7b: the click never loads a site; a case not yet mounted queues
+           behind the glide, and one never drawn waits for the landing */
+        mountWhenPaused(C);
+        var live = C.loaded && C.drawn;
+        if (!live) afterGlide(function(){ revealCase(C); });
+        C.el.style.display = '';
+        C.el.toggleAttribute('inert', false);
+        /* R7b: an undrawn site stays unrendered until revealCase: a visible
+           frame entering the viewport mid-glide was laid out there (70-138 ms) */
+        C.iframe.style.visibility = live ? 'visible' : 'hidden';
+        /* display:none as well: a hidden frame was still laid out when its
+           web fonts arrived mid-glide (403 objects, 55-87 ms, traced) */
+        if (!live){ C.revealed = false; C.iframe.style.display = 'none'; }
+        /* an outgoing site that was never on screen has nothing to fade */
+        if (!prevC.drawn) prevC.iframe.style.visibility = 'hidden';
+        C.iframe.removeAttribute('aria-hidden');
+        prevC.iframe.setAttribute('aria-hidden', 'true');
+        var showPoster = !live && C.poster;
+        if (showPoster){ C.poster.style.display = ''; gsap.set(C.poster, { opacity: 0 }); }
+        /* R7b: the fallback images cross-fade on their own compositor layer
+           for the fade only (never at rest, F-013). Painted with a fading
+           opacity, each frame re-rastered an 839 x 524 image at a new alpha,
+           and the first such draw stalled the GPU 470-560 ms (traced: TextureOp
+           in the raster worker and in viz; gone with the layer, A/B 5 runs). */
+        var fadingPosters = [C.poster, prevC.poster].filter(function(p){ return p && p.style.display !== 'none'; });
+        fadingPosters.forEach(function(p){ p.style.willChange = 'opacity'; });
+        if (C.head && C.box) gsap.set([C.head, C.box], { opacity: 0 });
+        var tl = gsap.timeline({ overwrite: 'auto' });
+        tl.to(prevC.iframe, { opacity: 0, duration: 0.3, ease: 'power2.out' }, 0);
+        if (prevC.poster && prevC.poster.style.display !== 'none') tl.to(prevC.poster, { opacity: 0, duration: 0.3, ease: 'power2.out' }, 0);
+        if (prevC.head && prevC.box) tl.to([prevC.head, prevC.box], { opacity: 0, duration: 0.3, ease: 'power2.out' }, 0);
+        tl.to(C.iframe, { opacity: live ? 1 : 0, duration: 0.35, ease: 'power2.out' }, 0);
+        if (showPoster) tl.to(C.poster, { opacity: 1, duration: 0.35, ease: 'power2.out' }, 0);
+        if (C.head && C.box) tl.to([C.head, C.box], { opacity: 1, duration: 0.35, ease: 'power2.out' }, 0);
+        /* kept until the glide lands: dropped mid-glide, the image was
+           painted back into the cell's tiles while they scrolled in */
+        tl.add(function(){ afterGlide(function(){ fadingPosters.forEach(function(p){ p.style.willChange = ''; }); }); }, 0.35);
+        tl.add(function(){
+          prevC.el.style.display = 'none';
+          prevC.el.toggleAttribute('inert', true);
+          if (prevC.poster){ prevC.poster.style.display = 'none'; gsap.set(prevC.poster, { opacity: 1 }); }
+          /* R7 (H14): the stacked layout's row triggers are built only now,
+             after the previous case's rows have left the flow, so they start
+             where the rows really are (they were 1 155 px late). Triggers
+             below the showcase are re-measured one by one; no global refresh. */
+          if (!isPinLayout()){
+            buildMobileRowTriggers(C);
+            if (C.mobileTextEls) setMobileRowOpacity(C.mobileTextEls, 0);
+            refreshTriggersBelowShowcase();
+          }
+        }, 0.3);
+      } else if (glideTick && !(C.loaded && C.drawn)){
+        /* R7b: the active case, clicked again, has not been on screen yet:
+           the same rule, its fallback image through the glide, the site
+           after the landing (instant swap: the frame is below the fold) */
+        C.iframe.style.visibility = 'hidden';
+        C.iframe.style.display = 'none';
+        C.revealed = false;
+        gsap.set(C.iframe, { opacity: 0 });
+        if (C.poster){ C.poster.style.display = ''; gsap.set(C.poster, { opacity: 1 }); }
+        afterGlide(function(){ revealCase(C); });
+      }
+
+      /* A#5: no ScrollTrigger.refresh() from the click. C changes and
+         updateShowcase reads the pin's CURRENT progress, never resets to 0. */
+      if (isPinLayout() && isNewSelection && showcaseST) updateShowcase(C, showcaseST.progress);
+    });
+  }
+
+  function refreshTriggersBelowShowcase(){
+    var sc = document.getElementById('showcase');
+    if (!sc) return;
+    ScrollTrigger.getAll().forEach(function(st){
+      var t = st.trigger;
+      if (!t || mobileTriggers.indexOf(st) > -1) return;
+      if (sc.compareDocumentPosition(t) & Node.DOCUMENT_POSITION_FOLLOWING) st.refresh();
+    });
+  }
+
+  caseChoices.forEach(function(btn){
+    btn.addEventListener('click', function(){ activateCase(btn.getAttribute('data-case')); });
+  });
+
+  gsap.matchMedia().add({ isDesktop: PIN_MQ, isMobile: STACK_MQ }, function(context){
+    if (context.conditions.isDesktop){
+      setupDesktopEngine();
+      return function(){
+        if (showcaseST){ showcaseST.kill(); showcaseST = null; }
+        Object.keys(CASES).forEach(function(k){ if (CASES[k].tl) CASES[k].tl.kill(); });
+      };
+    }
+    /* mobile (§C): no pin - the frame sits position:sticky (CSS) while
+       rows scroll under it; each row's onEnter/onEnterBack tweens the
+       site's own inner scroll to that row's anchor over 0.6s, and
+       crossfades the active row's text to opacity 1 / the rest to
+       MOBILE_INACTIVE_OPACITY over 0.35s (measured contrast fix, see the
+       constant's own comment). R5 bugfix (kept): scaleShowcaseFrame() was
+       only ever called from setupDesktopEngine() (the isDesktop branch) -
+       on mobile the iframe kept its native 1440x900 box with no scale
+       transform at all, so the sticky cell showed an unscaled, cropped
+       sliver of the top-left corner instead of the whole page shrunk to fit.
+
+       R7 runda 2, fynd 2 (tredje bugfixen): building triggers for BOTH
+       cases' rows here, unconditionally, used to fire onEnter for the
+       inactive case's rows immediately at creation - its panel is
+       display:none at that point, so getBoundingClientRect() on every one
+       of its rows reads {top:0, bottom:0}, which already satisfies
+       `start:'top 70%'` the instant ScrollTrigger checks it. Measured
+       (page.evaluate, straight after page load, no click/scroll yet):
+       CASES.horai.pendingRow was already 5 (the LAST row) before a single
+       real scroll happened - all six onEnter calls had already misfired.
+       ScrollTrigger then treats that forward crossing as spent and never
+       re-fires it on a real scroll in the same direction, so the case
+       stayed frozen at whatever that init-time misfire last touched.
+       Building only the CURRENTLY VISIBLE case's row triggers - and
+       rebuilding them in activateCase() the moment a case becomes visible,
+       when its rows have real, live positions - is what actually fixes it. */
+    buildMobileRowTriggers(CASES[activeCaseKey]);
+    return function(){ mobileTriggers.forEach(function(t){ t.kill(); }); mobileTriggers = []; };
+  });
+
+  /* R7 (MED, H14): a row becomes active when its top reaches the frame's
+     bottom edge + 16 px + the height of the row above it, and stays active
+     until the next row does the same. The active row's heading therefore
+     stays below the sticky frame while it is active (at 'top 70%' it slid
+     under the frame). onToggle with an endTrigger behaves the same in both
+     scroll directions. */
+  function buildMobileRowTriggers(C){
+    mobileTriggers.forEach(function(t){ t.kill(); });
+    mobileTriggers = [];
+    var rows = Array.prototype.slice.call(C.el.querySelectorAll('.showcase-row'));
+    var textEls = rows.map(function(row){ return row.querySelector('.showcase-row-text'); });
+    C.mobileTextEls = textEls;
+    gsap.set(textEls, { opacity: MOBILE_INACTIVE_OPACITY });
+    gsap.set(textEls[0], { opacity: 1 });
+    var cell = document.querySelector('.showcase-embed-cell');
+    function line(i){
+      var fb = 48 + (cell ? cell.offsetHeight : 0);
+      return Math.round(Math.min(window.innerHeight - 130, fb + 16 + rows[Math.max(0, i - 1)].offsetHeight));
+    }
+    rows.forEach(function(row, i){
+      var cfg = {
+        trigger: row, invalidateOnRefresh: true,
+        start: function(){ return 'top ' + line(i) + 'px'; },
+        onToggle: function(self){ if (self.isActive){ tweenCaseTo(C, i); setMobileRowOpacity(textEls, i); } }
+      };
+      if (i < rows.length - 1){ cfg.endTrigger = rows[i + 1]; cfg.end = function(){ return 'top ' + line(i + 1) + 'px'; }; }
+      else cfg.end = 'bottom top';
+      mobileTriggers.push(ScrollTrigger.create(cfg));
+    });
+  }
+
+  function tweenCaseTo(C, i){
+    /* R7 runda 2, fynd 2: remember which row was actually wanted even when
+       the measurement below fails (iframe not yet loaded) - the 'load'
+       listener reads this to catch the embedded site up to the right row
+       the instant it finally can, instead of leaving it frozen at row 0. */
+    C.pendingRow = i;
+    if (!C.y && !measureCaseSettled(C)) return;
+    var target = C.y[i];
+    /* R7 runda 2, fynd 2 (andra bugfixen): startade tidigare från C.last,
+       som börjar på sentinelvärdet -1. Första någonsin-anropet för en case
+       fick då proxy.v = target redan vid skapandet (C.last<0) - en tween
+       FRÅN target TILL target. Uppmätt (page.evaluate, en isolerad körning):
+       C.last stod kvar på -1 genom alla sex radbyten, vilket bevisar att
+       onUpdate aldrig hann skriva ett enda värde innan nästa rad already
+       återskapade samma självrefererande nollrörelse - självförstärkande,
+       aldrig läkt av sig själv. Att läsa iframens EGEN levande scrollY i
+       stället för den cachade C.last är alltid sant (0 vid första anropet,
+       vad den faktiskt står i därefter) och kan aldrig fastna i samma fälla. */
+    var proxy = { v: C.w ? C.w.scrollY : target };
+    gsap.to(proxy, {
+      v: target, duration: 0.6, ease: 'power2.out',
+      onUpdate: function(){
+        if (C.w && Math.abs(proxy.v - C.last) >= 0.5){ C.w.scrollTo({ top: proxy.v, left: 0, behavior: 'instant' }); C.last = proxy.v; }
+      }
+    });
+  }
+
+  addEventListener('resize', function(){
+    scaleShowcaseFrame();
+    Object.keys(CASES).forEach(function(k){
+      var C = CASES[k];
+      if (C.w) measureCase(C);
+    });
+  }, { passive: true });
+
+  /* ============================================================ §7b calyx / hōrai showcase copy (was §7) */
+  Array.prototype.forEach.call(document.querySelectorAll('.showcase-head'), function(head){
+    var h2 = head.querySelector('h2');
+    var fill = seamFill(head, 'inset(0 100% 0 0)');
+    if (fill){
+      gsap.to(fill, {
+        clipPath: 'inset(0 0% 0 0)', duration: 0.7, ease: 'power2.out',
+        scrollTrigger: { trigger: head, start: 'top 75%', toggleActions: 'play none none reverse' }
+      });
+    }
+    if (h2){
+      var nameSplit = SplitText.create(h2, { type: 'chars', mask: 'chars', aria: 'auto' });
+      maskBreathe(nameSplit);
+      gsap.set(nameSplit.chars, { yPercent: 100 });
+      gsap.to(nameSplit.chars, {
+        yPercent: 0, duration: 0.6, ease: 'power4.out', stagger: 0.03,
+        scrollTrigger: { trigger: head, start: 'top 75%', toggleActions: 'play none none reverse' }
+      });
+    }
+  });
+
+  /* ============================================================ §8 priset */
+  var prisLead = document.querySelector('.pris-lead');
+  var prisA = document.querySelector('.pris-tier-a');
+  var prisB = document.querySelector('.pris-tier-b');
+  var prisTl = gsap.timeline({
+    defaults: { duration: 0.6, ease: 'power3.out' },
+    scrollTrigger: { trigger: '.pris-bento', start: 'top 78%', toggleActions: 'play none none reverse' }
+  });
+  /* R9 a11y M1 (1.3.1): opacity, not autoAlpha - visibility:hidden took the three package
+     h3s out of the accessibility tree until the reader had scrolled to them. */
+  if (prisLead) prisTl.fromTo(prisLead, { xPercent: -14, opacity: 0 }, { xPercent: 0, opacity: 1 }, 0);
+  if (prisA) prisTl.fromTo(prisA, { yPercent: -18, opacity: 0 }, { yPercent: 0, opacity: 1 }, 0.08);
+  if (prisB) prisTl.fromTo(prisB, { yPercent: 18, opacity: 0 }, { yPercent: 0, opacity: 1 }, 0.16);
+
+  /* ============================================================ §9 R5: kontakt · kortet lämnas över (C) */
+  var kontaktAnchor = document.getElementById('kontaktCardAnchor');
+  var kontaktTilt = document.getElementById('kontaktCardTilt');
+  var kontaktFlip = document.getElementById('kontaktCardFlip');
+  var kontaktFront = document.getElementById('kontaktCardFront');
+  var kontaktBack = document.getElementById('kontaktCardBack');
+  var kontaktFlipped = false;
+
+  if (kontaktFlip){
+    gsap.set(kontaktFlip, { rotationY: 0, transformPerspective: 1200 });
+    gsap.set(kontaktTilt, { transformStyle: 'preserve-3d' });
+
+    function setKontaktFlip(flipped, opts){
+      opts = opts || {};
+      if (flipped === kontaktFlipped) return;
+      kontaktFlipped = flipped;
+      /* R7 (H9): focus on the side that turns away moves to the side that
+         turns in, instead of falling to <body> when the front goes inert. */
+      var hadFocus = kontaktFront === document.activeElement || kontaktFront.contains(document.activeElement);
+      kontaktFront.toggleAttribute('inert', flipped);
+      kontaktFront.setAttribute('aria-pressed', String(flipped));
+      kontaktBack.toggleAttribute('inert', !flipped);
+      if (flipped && hadFocus){
+        var firstLink = kontaktBack.querySelector('a');
+        if (firstLink) firstLink.focus({ preventScroll: true });
+      }
+      var dur = opts.immediate ? 0 : 0.7;
+      var tl = gsap.timeline();
+      tl.to(kontaktFlip, { rotationY: flipped ? 180 : 0, duration: dur, ease: 'power2.inOut' }, 0);
+      if (!opts.immediate){
+        /* "en kort lyftning" - the card lifts slightly mid-turn, an echo of
+           the hero card's own scale-up at the midpoint of its flip. R6 §7:
+           desktop only - on a narrow mobile stack the card's own row is
+           shallower, and even a small upward lift measurably narrowed the
+           gap to the heading above during the sweep test. Rotation alone
+           already reads as a flip; the lift is a nice-to-have, not load
+           bearing, so it is simplest to drop where the margin is tight. */
+        var liftPx = window.innerWidth >= 768 ? -14 : 0;
+        if (liftPx) tl.to(kontaktFlip, { y: liftPx, duration: dur * 0.45, ease: 'power2.out', yoyo: true, repeat: 1 }, 0);
+      }
+    }
+    window.__kontaktCardFlip = setKontaktFlip; /* dev hook for the jump-test */
+
+    kontaktFront.addEventListener('click', function(){ setKontaktFlip(true); });
+
+    /* hover tilt (desktop only): the card leans toward the pointer in 3D,
+       +/-8 deg on each axis, via gsap.quickTo so it eases toward the
+       target instead of snapping straight to the raw mouse delta. */
+    if (window.matchMedia('(hover: hover)').matches && kontaktAnchor){
+      var qTiltY = gsap.quickTo(kontaktTilt, 'rotationY', { duration: 0.4, ease: 'power3.out' });
+      var qTiltX = gsap.quickTo(kontaktTilt, 'rotationX', { duration: 0.4, ease: 'power3.out' });
+      kontaktAnchor.addEventListener('mousemove', function(e){
+        var r = kontaktAnchor.getBoundingClientRect();
+        var px = (e.clientX - r.left) / r.width - 0.5;
+        var py = (e.clientY - r.top) / r.height - 0.5;
+        qTiltY(px * 16);
+        qTiltX(py * -16);
+      });
+      kontaktAnchor.addEventListener('mouseleave', function(){ qTiltY(0); qTiltX(0); });
+    }
+
+    /* fail toward visible (husregel 10): self-flips at 70% through the
+       section's own scroll range. The section is a single 100svh
+       quadrant, so this range's math (start:'top bottom', end:'bottom
+       bottom') puts progress at ~1 as soon as the section is fully in
+       view - a straight jump to #kontakt, or to the page bottom, already
+       lands past 0.7 on refresh and shows the back immediately; a normal
+       scroll-in crosses 0.7 near the end of its entrance. */
+    ScrollTrigger.create({
+      trigger: '#kontakt', start: 'top bottom', end: 'bottom bottom',
+      /* R9 a11y L1 (3.2.1): never turn the card under a keyboard user's focus - Tab onto
+         "Vänd kortet" scrolls the section in, and the self-flip then moved focus unasked. */
+      onUpdate: function(self){ if (self.progress >= 0.7 && document.activeElement !== kontaktFront) setKontaktFlip(true); },
+      onRefresh: function(self){ if (self.progress >= 0.7) setKontaktFlip(true, { immediate: true }); }
+    });
+  }
+
+  var footerMark = document.querySelector('.footer-mark');
+  if (footerMark){
+    var footerSplit = SplitText.create(footerMark, { type: 'chars', aria: 'hidden' }); /* R7 (H8): decorative wordmark, no aria-label on a <span> */ // lead R4: .footer-cell overflow clips the rise; a per-char mask sliced the X overhang
+
+    gsap.set(footerSplit.chars, { yPercent: 120 });
+    /* R4 fix: end:'top 60%' assumed the footer's top could still travel up
+       to 60% of the viewport after it appears, but the footer is the last
+       element on the page - at 390/768 there isn't enough scroll room
+       left for the footer's top to reach that far, so progress stalled
+       below 1 at max scroll (chars stuck mid-rise: "AI UNIv"). end:'bottom
+       bottom' instead ties progress:1 to the footer's bottom reaching the
+       viewport's bottom, which is exactly true max-scroll at every
+       breakpoint (the footer is the final element; the page cannot
+       scroll further once its bottom is in view). */
+    gsap.to(footerSplit.chars, {
+      yPercent: 0, ease: 'none', stagger: { each: 0.05, from: 'start' },
+      scrollTrigger: { trigger: 'footer', start: 'top bottom', end: 'bottom bottom', scrub: true }
+    });
+  }
+
+  /* ============================================================ refresh housekeeping
+     R7 (H13): the explicit refresh() and the 400 ms sweep are gone. ScrollTrigger
+     refreshes itself on DOMContentLoaded and load, and fonts.ready (above) asks
+     for one more through safeRefresh; each extra pass re-laid the pins and was
+     logged as layout shift. */
+})();
+</script>
+
+</body>
+</html>

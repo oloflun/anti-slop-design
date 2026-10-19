@@ -1,0 +1,58 @@
+{
+  "url": "http://127.0.0.1:3321/tests/alunix-r8/runs/V3c/index.html",
+  "wheel": "100:60",
+  "cpu": 4.0,
+  "tracks": [
+    {
+      "track": ".thesis-figure:transform",
+      "dead": true,
+      "frames": 350,
+      "frame_p95_ms": 100.0,
+      "frames_over_20ms": 85,
+      "frames_over_33ms": 85,
+      "value_range": [
+        0,
+        0
+      ],
+      "max_step_pct": 0.0,
+      "staircase": 0,
+      "reversals": 0
+    },
+    {
+      "track": ".giant:transform",
+      "dead": true,
+      "frames": 350,
+      "frame_p95_ms": 100.0,
+      "frames_over_20ms": 85,
+      "frames_over_33ms": 85,
+      "value_range": [
+        0,
+        0
+      ],
+      "max_step_pct": 0.0,
+      "staircase": 0,
+      "reversals": 0
+    },
+    {
+      "track": "#threadFill:transform",
+      "dead": true,
+      "frames": 350,
+      "frame_p95_ms": 100.0,
+      "frames_over_20ms": 85,
+      "frames_over_33ms": 85,
+      "value_range": [
+        0,
+        0
+      ],
+      "max_step_pct": 0.0,
+      "staircase": 0,
+      "reversals": 0
+    }
+  ],
+  "pass": false,
+  "failures": [
+    ".thesis-figure:transform: DEAD - vardet rorde sig inte alls medan sidan scrollades (kontrollera att elementet arver egenskapen och att akten faktiskt driver den)",
+    ".giant:transform: DEAD - vardet rorde sig inte alls medan sidan scrollades (kontrollera att elementet arver egenskapen och att akten faktiskt driver den)",
+    "#threadFill:transform: DEAD - vardet rorde sig inte alls medan sidan scrollades (kontrollera att elementet arver egenskapen och att akten faktiskt driver den)"
+  ]
+}

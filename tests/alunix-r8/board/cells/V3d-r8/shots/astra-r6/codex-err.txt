@@ -1,0 +1,3248 @@
+Reading prompt from stdin...
+2026-09-19T01:06:00.865105Z ERROR codex_core::session::session: failed to load skill C:\Users\Anton L\OneDrive\Dokument\Obsidian\Knowledge Base\.agents\skills\conclude\SKILL.md: missing YAML frontmatter delimited by ---
+OpenAI Codex v0.154.0
+--------
+workdir: C:\Users\Anton L\anti-slop-design
+model: gpt-6-astra
+provider: openai
+approval: never
+sandbox: read-only
+reasoning effort: medium
+reasoning summaries: none
+session id: 01a0b732-bf4f-7f72-9722-fa1c4b96073e
+--------
+user
+You are an independent reviewer in REFERENCE PARITY mode plus whole-page (helhet). Fourth review round. Target: tests/alunix-r8/runs/V3d/index.html (read-only; you may read the file). Parity table: tests/alunix-r8/runs/V3d/PARITET.md (read it). Goal plan: tests/alunix-r8/runs/V3d/plans/048-inverterad-variant.md. Previous review: tests/alunix-r8/runs/V3d/reviews/r5-astra.md (four material_fixes; the builder's round R6 is plans/053-astra-r5.md).
+
+The order (Anton): an inverted variant. The process act (steps 01-07) is a long DARK drafting-table act by necessity; the PARITET limit "max four dark slices in a row" is STRUCK by the lead, do not raise it. The chapter screen "Från samtal till lanserad sida." is deliberately dark. sites/horai.html (the Hōrai demo inside an iframe) is never edited; its overflow at 390 is known, only note it.
+The reference shows LEVEL not FORM: judge scale, staging, what owns the viewport, how much each screen commits. Never propose a different palette, typeface or copy.
+
+Invariants (verbatim):
+- Motion always plays (F-011). prefers-reduced-motion is deliberately not honoured on this project, a considered accessibility trade-off confirmed by the owner. Suggesting a reduced-motion fallback, a static alternative, or a @media (prefers-reduced-motion) block is out of scope.
+- The scroll engine is never edited. scroll/scrollcraft.js and scrollcraft.css are vendored; findings about them are reported, never fixed; a page-level shim (sc-smooth.js) is the sanctioned way around them.
+- --sc-p is the raw scroll position; --sc-ps is the smoothed one. Anything that physically moves must read --sc-ps. "use --sc-p for consistency" is backwards.
+- No em-dashes in visible text (gate 75).
+- Review only, no patches.
+
+Output contract the final report uses (for your awareness): disposition word (recapture/rebuild/fix/ship), then persistence, fidelity, ceiling, material_fixes (max 8, each with file:line and a target value), keep. "ship" requires every row to hold the reference's level.
+
+Attached images, in order. Each "Pxx-W" image is a PAIR: LEFT = our page (V3d), RIGHT = the reference screen, same height. Positions reached by real mouse wheel from the top.
+1 P01-1440 fold
+2 P02-1440 card back (?preview=back)
+3 P03-1440 thesis band
+4 P04-1440 giant section inverted (?preview=ledger position; h2 now 116px, 2 lines)
+5 P05-1440 Hōrai band
+6 P06-1440 process chapter screen (#process top)
+7 P07-1440 step 01
+8 P08-1440 step 02
+9 P09-1440 step 03
+10 P10-1440 step 04
+11 P11-1440 step 05
+12 P12-1440 step 06
+13 P13-1440 step 07
+14 P14-1440 "Hur vi tänker"
+15 P15a-1440 last viewport (price + contact)
+16 sheet-ours-1440: our 16 screens at 1440 in a contact sheet (P16 whole-page rhythm; the reference rhythm is hoy: purple, cream, red grounds)
+17 P03-390
+18 P04-390
+19 P12-390
+20 P13-390
+21 P15a-390
+22 sheet-ours-390: our 16 screens at 390 in a contact sheet
+23 zoom-390-07-rev: 5x crop of the top-right corner of the mobile sticky sheet at step 07 (revision field box with "A" above the Calyx screenshot)
+24 steg-768-process-07: full viewport 768x1024 at step 07 (not a PARITET column, attached for the step band)
+
+Answer:
+A) One line per PARITET row P01-P16: "holds the level" or "does not hold, gap: <measurable gap>, move: <concrete move>". A row that holds at 1440 but not at 390 does not hold. Do not invent gaps; if a screen holds, say so.
+B) For each of r5's four material_fixes: closed or open, with the evidence.
+C) Code/logic errors visible in the pixels or in the file (file:line on every code finding, image + region on every pixel finding). Look specifically at the step band grid between 768 and 1023 px (index.html around :1113-1136) and at the mobile revision field (#p-title/#p-rev around :1500-1520, #p-cam scale) against .p-live.
+Be concise.
+
+warning: Exceeded skills context budget. All skill descriptions were removed and 40 additional skills were not included in the model-visible skills list.
+ERROR: Reconnecting... 2/5
+ERROR: Reconnecting... 3/5
+ERROR: Reconnecting... 4/5
+ERROR: Reconnecting... 5/5
+warning: Falling back from WebSockets to HTTPS transport. stream disconnected before completion: websocket closed by server before response.completed
+codex
+I’ll read the parity table, plans and previous review, then check the screenshots against the code, focusing on the tablet step grid and mobile revision field.
+exec
+"C:\\WINDOWS\\System32\\WindowsPowerShell\\v1.0\\powershell.exe" -Command 'Get-Content tests/alunix-r8/runs/V3d/PARITET.md; Get-Content tests/alunix-r8/runs/V3d/plans/048-inverterad-variant.md; Get-Content tests/alunix-r8/runs/V3d/reviews/r5-astra.md; Get-Content tests/alunix-r8/runs/V3d/plans/053-astra-r5.md' in C:\Users\Anton L\anti-slop-design
+ succeeded in 424ms:
+# V3d Â· PARITET
+
+Tabellen granskaren (Astra) och lead dÃ¶mer mot. En rad per skÃ¤rm i V3d. Varje rad har en
+referensbild ur `runs/V3c/shots/fasA/` (alla sÃ¶kvÃ¤gar nedan Ã¤r relativa till den mappen) och
+ett uttalat drag som V3d ska matcha. **Referensen visar nivÃ¥n, inte formen**: vi lÃ¥nar hur den
+iscensÃ¤tter skÃ¤rmen (skala, vad som Ã¤ger viewporten, hur mycket luft), aldrig dess palett,
+typsnitt, knappar eller copy.
+
+## Hur en rad dÃ¶ms
+
+1. Byggaren skjuter vÃ¥r skÃ¤rm vid 1440x900 (och 390x844 dÃ¤r kolumnen 390 Ã¤r ifylld) i det lÃ¤ge
+   raden anger, och lÃ¤gger den **bredvid** referensbilden i samma hÃ¶jd med PIL:
+   `shots/r1/par/<rad-id>-<bredd>.png` (vÃ¤nster V3d, hÃ¶ger referensen, 24 px mellanrum,
+   radens id och referensens filnamn i bildens underkant i 14 px).
+2. Den som dÃ¶mer lÃ¤ser par-bilden som bild och skriver en rad: **hÃ¥ller nivÃ¥n** eller
+   **hÃ¥ller inte, fÃ¶r att â€¦** med det mÃ¤tbara skÃ¤let (en storlek, en andel av viewporten, ett
+   element som saknas).
+3. **Slutvillkor:** varje rad i tabellen kan lÃ¤sas "hÃ¥ller nivÃ¥n" i sin par-bild. En rad som
+   hÃ¥ller i 1440 men inte i 390 hÃ¥ller inte.
+
+## Tabellen
+
+| Id | SkÃ¤rm i V3d (lÃ¤ge) | Referens 1440 | Referens 390 | Vad referensen gÃ¶r som vi ska matcha |
+|---|---|---|---|---|
+| **P01** fold | `?preview=front`, scrollY 0 | `hoy-1440/hoy-webb-1440--s00.png` | `hoy-390/hoy-home-390--s00.png` | Ett displayelement och en bild delar skÃ¤rmen och inget annat; rubriken i affischskala utan konkurrerande text. VÃ¥r fold (rubrik ~120 px, kortet 62 % vw) ska lÃ¤sas lika ensam och lika stor. |
+| **P02** kortets baksida | `?preview=back` | `hoy-1440/hoy-home-1440--s00.png` | `hoy-390/hoy-home-390--s00.png` | Objektet Ã¤ger mitten av skÃ¤rmen, ett ord i displaystorlek ovanpÃ¥ eller bredvid, tom grund runt om. |
+| **P03** tesbandet | scrollY dÃ¤r `.panel-thesis` stÃ¥r i viewportens Ã¶vre tredjedel | `hoy-1440/hoy-home-1440--s01.png` | `hoy-390/hoy-home-390--s01.png` | Displayrubrik vÃ¤nster, produktbild ~44 % vw hÃ¶ger, mÃ¤ttad grund i full bredd; bilden Ã¤r lika tung som rubriken. VÃ¥r blÃ¥ tes + Hyperborea-bleeden ska hÃ¥lla samma vikt; den svarta jÃ¤tten fÃ¥r inte trycka tesen till en marginalnot. |
+| **P04** jÃ¤ttesektionen inverterad | `?preview=ledger` | `hoy-1440/hoy-webb-1440--s03.png` | `hoy-390/hoy-webb-390--s02.png` | Ljust blÃ¤ck i displaystorlek Ã¤ger en mÃ¶rk yta, fem rader versaler, inget annat konkurrerar. "VI BYGGER ERT VARUMÃ„RKE." pÃ¥ svart plÃ¥t ska lÃ¤sas som sidans starkaste typografiska Ã¶gonblick efter heron, och liggaren 01 till 03 under den ska vara lÃ¤sbar i bÃ¥da scrubbÃ¤ndarna. |
+| **P05** HÅrai-bandet | scrollY dÃ¤r `.horai-fig` stÃ¥r centrerad (Calyx sticky till vÃ¤nster) | `insign-1440/insign-1440--s04.png` | `insign-390/insign-390--s07.png` | TvÃ¥ arbeten sida vid sida som tillsammans fyller ~94 % av bredden, inget annat pÃ¥ skÃ¤rmen. Ingen ruta med bara grund dÃ¤r priset lÃ¥g (`blankBands` 0 i `.stagger`). |
+| **P06** processens kapitelskÃ¤rm | scrollY = `#process` topp | `hoy-1440/hoy-home-1440--s03.png` | `hoy-390/hoy-home-390--s03.png` | En rubrik i displaystorlek Ã¤ger hela skÃ¤rmen pÃ¥ ren grund med en hÃ¥rlinje; kapitlet presenteras innan det bÃ¶rjar. VÃ¥r "FrÃ¥n samtal till lanserad sida." â‰¥ 100 px vid 1440. |
+| **P07** steg 01 | `?preview=process-01` | `hoy-1440/hoy-home-1440--s03.png` | `hoy-390/hoy-webb-390--s00.png` | Ett stort element pÃ¥ tom grund. Siffran 01 (â‰¥ 150 px) och rubriken i bandet, det tomma arket â‰¥ 76 % vw under; skÃ¤rmen Ã¤r ett steg, inte ett stycke bredvid en ruta. |
+| **P08** steg 02 | `?preview=process-02` | `hoy-1440/hoy-webb-1440--s08.png` | `hoy-390/hoy-webb-390--s08.png` | Displaytypografi och en stor bild delar skÃ¤rmen jÃ¤mnt; bilden Ã¤r minst 44 % vw. MÃ¥ttkedjan 320/768/1440 i 44 px accent ska lÃ¤sas pÃ¥ avstÃ¥nd. |
+| **P09** steg 03 | `?preview=process-03` | `hoy-1440/hoy-home-1440--s06.png` | `hoy-390/hoy-home-390--s05.png` | Ett kapitel per skÃ¤rm: rubrik, text, bild, allt inom en viewport, ingen del av nÃ¤sta kapitel synlig. |
+| **P10** steg 04 | `?preview=process-04` | `hoy-1440/hoy-home-1440--s07.png` | `hoy-390/hoy-home-390--s06.png` | Samma kapitelform med ett byte i materialet mellan kapitlen; skiftet mellan steg 03 och 04 ska synas som ett scenbyte (bandet byts), inte som att texten rullar vidare. |
+| **P11** steg 05 | `?preview=process-05` | `hoy-1440/hoy-webb-1440--s07.png` | `hoy-390/hoy-webb-390--s05.png` | Produktytan i full bredd, ~78 % vw, Ã¤r skÃ¤rmens auktoritet. Calyx â‰¥ 50 % av arket och arket â‰¥ 76 % vw. |
+| **P12** steg 06 | `?preview=process-06` | `hoy-1440/hoy-webb-1440--s01.png` | `hoy-390/hoy-webb-390--s01.png` | Bilden Ã¤ger skÃ¤rmen nÃ¤stan kant i kant. Calyx i fÃ¤rg â‰¥ 80 % av arket, â‰¥ 960x540 px vid 1440; ritningen har dragit sig tillbaka; fÃ¥r inte lÃ¤sas som en lampa i ett mÃ¶rkt rum. |
+| **P13** steg 07 | `?preview=process-07` | `hoy-1440/hoy-webb-1440--s10.png` | `hoy-390/hoy-webb-390--s09.png` | Bild och avslutande text i balans, bilden stÃ¶rst; revisionsfÃ¤ltet och siffran 07 Ã¤r detaljer, inte konkurrenter. |
+| **P14** Hur vi tÃ¤nker | scrollY dÃ¤r `#principer` stÃ¥r centrerad | `hoy-1440/hoy-webb-1440--s04.png` | `hoy-390/hoy-webb-390--s02.png` | Ljus grund i full bredd, rubrik vÃ¤nster och text hÃ¶ger, brÃ¶dtext i ~20 px; bÃ¥da halvorna av skÃ¤rmen bÃ¤r nÃ¥got. Ingen tom hÃ¶gerhalva. |
+| **P15** pris + kontakt | dokumentets slut (sista viewporten) och en viewport fÃ¶re | `hoy-1440/hoy-home-1440--s08.png` och `hoy-1440/hoy-home-1440--s09.png` | `insign-390/insign-390--s10.png` | Avslutet Ã¤r ett kapitel pÃ¥ en egen grund: en rubrik, text i lÃ¤sbar storlek, en tydlig kontaktvÃ¤g i brÃ¶dtextens eller kapitelrubrikens storlek, inte i displaystorlek. VÃ¥r `Alla har rÃ¤tt till bra design.` bÃ¤r displayskalan, priserna stÃ¥r i display-siffror, adressen i 46 / 28 px. Priset och adressen lÃ¤ses som samma avslutning pÃ¥ samma fotografi. |
+
+## Sammanhanget, en rad till
+
+| Id | SkÃ¤rm | Referens | Vad som ska hÃ¥lla |
+|---|---|---|---|
+| **P16** hela sidan | helsidesskivor 1440 i ett kontaktark (`shots/r1/sheet-1440.png`) | `hoy-1440/hoy-home-1440--s00.png` till `--s10.png` i ett kontaktark bredvid | Grunden byter material i en lÃ¤sbar rytm (hoy: lila, grÃ¤ddvit, rÃ¶d). V3d: foto, blÃ¥tt, svart plÃ¥t, ritbordet, papper, foto. Ingen fÃ¶ljd av fler Ã¤n fyra skivor som lÃ¤ses som samma mÃ¶rka massa. |
+# 048 Â· V3d: den inverterade varianten. Processakten blir sju scener, avslutet fÃ¥r priset
+
+- **Status**: TODO (V3d R1, en runda)
+- **Commit**: `runs/V3d/index.html` md5 `864c38aa8dd4e81472d45ab2ad224529` (= V3c R13). V3c rÃ¶rs aldrig.
+- **BestÃ¤llning**: Anton 2026-09-18, punkterna A till H. Detta Ã¤r golvet, inte ett fÃ¶rslag.
+- **Ordning**: visuellt fÃ¶rst. Planens Steps fÃ¶ljer A till H; tekniska fÃ¶ljdfel lagas i samma
+  runda och **ett djÃ¤rvt drag backas aldrig fÃ¶r att laga ett fel** (`RAPPORT-LOOPEN.md` fel 5).
+- **Estimated scope**: 1 fil. ~220 rader CSS (varav ~60 ersÃ¤tter befintliga), 7 markup-omslag
+  i `<li>`, ett `<g>`-omslag i arket, en flyttad `<section>`, ~40 rader JS i `measureAct`,
+  `aimOnce` och `plansch`. **Ingen ny synlig strÃ¤ng.** Ingen ny iframe, ingen ny asset.
+- **MÃ¤tunderlag**: `NOTES.md` Â§ Arkitekten (Playwright-mÃ¤tning av nulÃ¤get vid sex bredder och
+  lÃ¤sningen av 12 + 45 + 55 skÃ¤rmbilder). JÃ¤mfÃ¶relsetabellen Ã¤r `PARITET.md`.
+
+## Problem
+
+Sidan i V3d ser ut som V3c: processakten Ã¤r en rullande paragraf (steg 0,44 till 0,54 viewport
+hÃ¶ga, rubrik 31,7 px, nummer 12 px, brÃ¶dtext 16 px bredvid ett ark pÃ¥ 826 px dÃ¤r Calyx fyller
+37 % av ytan), priset stÃ¥r pÃ¥ ett grafitplan bredvid HÅrai, och adressen i avslutet Ã¤r 86 px
+utan referens. Loopen efter R6 lagade fel utan att Ã¤ndra kompositionen. Den hÃ¤r planen Ã¤ndrar
+kompositionen och mÃ¤ter mÃ¥len i skÃ¤rmbilder.
+
+## Target, en rad per bestÃ¤llningspunkt
+
+Alla mÃ¥l mÃ¤ts i skÃ¤rmbild eller `getBoundingClientRect` pÃ¥ den byggda sidan. Inget mÃ¥l Ã¤r en
+tidsgrÃ¤ns; prestanda Ã¤r en grind (Â§ Verification C).
+
+| | Synligt mÃ¥l | 1440 | 390 |
+|---|---|---|---|
+| **A** | `section#pris` ligger direkt fÃ¶re `footer.close`, bÃ¥da pÃ¥ det fasta skrivbordsfotot (`.ground`), noll px mellan dem; priset Ã¤r avslutets rubrik | pris + adress i sidans tvÃ¥ sista viewports | samma |
+| **A** | kontrast Ã¶ver fotot (`contrast_over_media --url`, ljusaste 5 %) | brÃ¶dtext â‰¥ 4,5:1, statement och priser â‰¥ 3:1 | samma |
+| **B** | adressens font-size / glyfhÃ¶jd pÃ¥ `k` (stapelns topp till baslinjen, skÃ¤rmbild) | **46 px / 32 till 35 px** (i dag 86,4 / ~62) | **28 px / 19 till 21 px** (i dag 32) |
+| **C** | `#process` bakgrund utan parameter | `--c-drafting` = oklch(0,21 0,022 250) â‰ˆ `#111922` | samma |
+| **D** | `#giant-section` bakgrund / blÃ¤ck | `--c-black` / `--c-paper`, kant `--frame-line` | samma |
+| **E** | arkets renderade bredd | **â‰¥ 1 100 px = 76 % vw**, fÃ¶rvÃ¤ntat 1 120 till 1 180 (i dag 826 = 57 %) | **â‰¥ 358 px = 92 % vw** |
+| **E** | Calyx-bildens synliga rektangel Ã· arkets rektangel | `?preview=process-05` â‰¥ 50 %, `-06`/`-07` **â‰¥ 80 %** (i dag 37 %) | `-05` â‰¥ 50 %, `-06`/`-07` â‰¥ 55 % (i dag 36 %) |
+| **E** | Calyx i pixlar vid `?preview=process-07` | â‰¥ 960x540 (i dag 505x284) | â‰¥ 330 px bred |
+| **F** | varje steg Ã¤ger â‰¥ 1 viewport: scroll mellan tvÃ¥ bands landning | â‰¥ 900 px (band + 90svh â‰ˆ 1 026) | steg + ark â‰¥ 844 |
+| **F** | stegnummer (displaysiffra) font-size | **â‰¥ 150 px** (clamp â†’ 168) | **â‰¥ 80 px** (86) |
+| **F** | stegrubrik font-size | **â‰¥ 48 px** (52) | **â‰¥ 32 px** |
+| **F** | brÃ¶dtext i akten | 17 px, radavstÃ¥nd 1,6, 78 % papper (9,95:1) | 16 px |
+| **F** | rÃ¶relse, minst tvÃ¥ lager, scrubbat i bÃ¥da riktningarna | band-ticker + arkets ritning + siffra/rubrik-ljus + kamera (05 till 07) | ark + siffra/rubrik-ljus + kamera |
+| **G** | inget hÃ¥l dÃ¤r priset lÃ¥g | vÃ¤nster spalt vid HÅrai visar Calyx sticky, `blankBands` 0 i `.stagger` | staplat, inget glapp > 120 px |
+| **G** | ljuset finns kvar | "Hur vi tÃ¤nker" helbredd papper, Calyx live, bildtexterna, Calyx i fÃ¤rg i 05 till 07 | samma |
+| **H** | varje rad i `PARITET.md` | "hÃ¥ller nivÃ¥n" i en par-bild | samma |
+
+## Tokens (gate 48: allt nytt i `:root`, aldrig inline-hex)
+
+LÃ¤gg bredvid `--c-accent-on-dark` (rad 139):
+
+```css
+/* PLAN 048 C. Processaktens grund i V3d: ritbordet i mÃ¶rker. Kall
+   blÃ¥svart, chroma 0,022 (grafiten har 0,012) - lÃ¤ser som ett eget
+   material mot bÃ¥de fotot och jÃ¤ttens svarta plÃ¥t, blir aldrig en
+   andra accent. RÃ¤knat: --c-paper 15,8:1, --c-accent-on-dark 4,67:1
+   (44 px fet siffra, stor text, golv 3:1), 62 % papper 6,7:1,
+   78 % papper 9,95:1. MÃ¤t om pÃ¥ pixel. */
+--c-drafting:oklch(0.21 0.022 250);
+/* PLAN 048 A. Scrimmen under pris och adress pÃ¥ skrivbordsfotot. */
+--scrim-close:color-mix(in srgb, var(--c-black) 64%, transparent);
+```
+
+## Steps
+
+### A Â· Priset flyttas ned till avslutets fotografiska grund
+
+1. **Flytta markup.** Klipp hela `<section class="price panel-pad" id="pris" data-sc-act="flow">`
+   (rad 1285 till 1303, inklusive kommentaren `<!-- s6 vÃ¤nster. Priset ... -->`) ur
+   `.col-left` och klistra in den **sist i `<main>`**, efter `</section>` fÃ¶r `#principer` (rad
+   1573) och fÃ¶re `</main>` (rad 1589). `footer.close` ligger kvar utanfÃ¶r `<main>`
+   (contentinfo-landmÃ¤rket, se kommentaren rad 1576 till 1586). InnehÃ¥llet i sektionen rÃ¶rs
+   inte ett tecken.
+2. **Ta bort** `.price{order:5;}` i `@media (max-width:900px)` (rad 582): priset Ã¤r inte lÃ¤ngre
+   ett flexbarn i `.stagger`.
+3. **ErsÃ¤tt** `.price{background:var(--c-graphite);...}` (rad 740 till 741) och
+   `.price .statement{...}` (746 till 748):
+
+```css
+/* PLAN 048 A: priset Ã¤r avslutets rubrik och stÃ¥r pÃ¥ samma fotografiska
+   grund som adressen. Ingen egen yta: .ground syns igenom, scrimmen
+   bÃ¤r kontrasten (gate "type over media only on a plate or scrim"). */
+.price{position:relative;isolation:isolate;background:none;color:var(--invert-ink);
+  padding:clamp(120px,18svh,200px) var(--rail-x) 0;}
+.price::before,.close::before{content:"";position:absolute;inset:0;z-index:-1;
+  pointer-events:none;
+  background:linear-gradient(90deg,var(--scrim-close) 0,var(--scrim-close) 58%,transparent 92%);}
+.price .statement{font-family:var(--font);font-weight:300;
+  font-size:clamp(2.75rem,6vw,6rem);line-height:1;letter-spacing:-.02em;
+  max-width:14ch;text-wrap:balance;}
+.price-ledger{margin-top:clamp(40px,6svh,64px);max-width:min(100%,1040px);}
+.price-row .value{font-family:var(--font);font-weight:300;
+  font-size:clamp(1.5rem,2.6vw,2.5rem);letter-spacing:-.01em;}
+```
+
+   `.price-row .value` ersÃ¤tter befintlig deklaration (rad 767 till 768); `.price-ledger` fÃ¥r
+   bara `margin-top` och `max-width` bytta (rad 754), resten stÃ¥r. `.price-row .label` blir
+   `font-size:1.0625rem` (17 px). Vid `max-width:767px` blir scrimmen heltÃ¤ckande:
+   `.price::before,.close::before{background:var(--scrim-close);}`.
+4. **Avslutet blir kortare** (rad 1135 till 1138): `min-height:100svh` bort; `padding:
+   clamp(56px,8svh,96px) var(--rail-x) clamp(96px,16svh,180px)`; `justify-content:flex-start`;
+   lÃ¤gg `isolation:isolate`. Priset och adressen lÃ¤ses som en sammanhÃ¤ngande avslutning:
+   statement, liggare, hÃ¥rlinje, adress.
+
+### B Â· Adressen till en motiverad storlek
+
+5. `.close-mailto` (rad 1142 till 1147): `font-size:clamp(1.75rem,3.2vw,3rem)` ger 46,1 px vid
+   1440, 41 vid 1280, 32,8 vid 1024, 28 vid 768/390/320. **Motivering mot referenserna:** hoy
+   sÃ¤tter kapitelrubriker i ~46 px vid 1440 (hoy-home s06 "DIGITALA LÃ–SNINGAR") och sin kontakt
+   i brÃ¶dstorlek; insign-390 s10 avslutar med sin frÃ¥ga i ~28 px. Adressen Ã¤r en handling, inte
+   en rubrik: den tar kapitelrubrikens storlek och lÃ¤mnar displayskalan Ã¥t `Alla har rÃ¤tt till
+   bra design.` (86 px vid 1440, kvot 1,9). Understrykningen och `min-height:44px` stÃ¥r kvar.
+   Vid 320 mÃ¤ter strÃ¤ngen ~240 px: ryms utan brytning (gate 49).
+
+### C Â· Processakten inverterad som standardlÃ¤ge
+
+6. Skriv om 045:s block (rad 1047 till 1083) sÃ¥ att det gÃ¤ller utan parameter och **bara**
+   `#process`. `.principles` tas ur blocket och stÃ¥r kvar pÃ¥ papper (beslut G2):
+
+```css
+#process{
+  --bg:var(--c-drafting); --ink:var(--c-paper);
+  --c-line-on-paper:var(--hairline-dark);
+  --c-accent:var(--c-accent-on-dark);
+  --hair-ink:color-mix(in srgb, var(--c-paper) 62%, var(--c-drafting));}
+#process .process-lead,#process .process-p{
+  color:color-mix(in srgb, var(--c-paper) 78%, var(--c-drafting));}
+#process .process-sheet .p-live{
+  filter:grayscale(calc(1 - var(--k6))) contrast(1.05) brightness(0.6);}
+```
+
+   Ta bort JS-raden `if (proc === 'invert') ...` och `var proc = ...` (rad 2056 till 2060)
+   med kommentar: `?process=` lÃ¤ses inte lÃ¤ngre. `brightness(0.6)` Ã¤r 046:s mÃ¤tta vÃ¤rde mot
+   svart; mÃ¤t om mot `--c-drafting` med den stÃ¶rre bilden (steg E) och skriv talet i NOTES.
+   Lead dÃ¶mer lampeffekten pÃ¥ par-bilden, inte pÃ¥ talet.
+
+### D Â· JÃ¤ttesektionen inverterad
+
+7. `#giant-section` blir kortets baksida, samma material som `.face--back`:
+
+```css
+/* PLAN 048 D. JÃ¤tten pÃ¥ kortets material: svart plÃ¥t, papperets blÃ¤ck,
+   samma hÃ¥rlinjekant som plÃ¥ten i heron. Tokenbyte som i C. */
+#giant-section{
+  --bg:var(--c-black); --ink:var(--c-paper);
+  --c-line-on-paper:var(--hairline-dark);
+  border:1px solid var(--frame-line);}
+#giant-section .giant-sub,#giant-section .ledger-body p{
+  color:color-mix(in srgb, var(--c-paper) 72%, var(--c-black));}
+#giant-section .ledger-num{
+  color:color-mix(in srgb, var(--c-paper) 62%, var(--c-black));}
+```
+
+   `.panel-giant` lÃ¤ser redan `background:var(--bg);color:var(--ink)`; `.thread`,
+   `.thread-fill`, `.ledger`, `.ledger-row` och ordscrubbens gradient lÃ¤ser `--ink`/`--bg`/
+   `--c-line-on-paper` och vÃ¤nder med tokens. JÃ¤tterubriken stÃ¥r kvar pÃ¥ `clamp(2.1rem,7.4vw -
+   18px,5.5rem)` (plan 030); ingen storlek backas.
+
+### E Â· Arket kraftigt stÃ¶rre, Calyx fyller rutan
+
+8. **Arkets storlek** (layout i F): vid â‰¥ 768 Ã¤r arket sidans scen, `width:min(100%,
+   calc((100svh - var(--band-h) - clamp(18px,3svh,32px)) * 880 / 495))`. FÃ¶rvÃ¤ntat: 1440x900
+   med `--band-h` 210 till 240 â†’ 1 120 till 1 180 px (78 till 82 % vw), 1280x800 â†’ ~980 (77 %),
+   1024x768 â†’ ~810 (79 %, bandet ~290), 768x1024 â†’ 676 (88 %). Bandets hÃ¶jd styrs av det lÃ¤ngsta stycket
+   (steg 03, ~430 tecken): 66 ch i 17 px ger 6 till 7 rader. **Krymp aldrig texten fÃ¶r att
+   vinna arkyta**; vinn den pÃ¥ bandets spaltbredd.
+9. **Kameran.** Omslut allt ritat utom `#p-outline` i en ny `<g id="p-cam">` direkt efter
+   `</defs>`. `#p-outline` flyttas ut ur `g[data-step="01"]` till en egen
+   `<g data-step="01" id="p-frame">` FÃ–RE `#p-cam` (den ramen skalas aldrig, "rutan" stÃ¥r);
+   `#p-glyph` stannar i `#p-cam` i en `g` utan `data-step` (den dÃ¶ljs redan av sin
+   snÃ¤ppopacitet tills `--k1` â‰¥ 0,30). `sheetGroups` indexeras per `data-step`: lÃ¤s **alla**
+   grupper per steg (`querySelectorAll('g[data-step="01"]')`) och vÃ¤xla `data-on` pÃ¥ varje,
+   annars tappas den ena gruppen. Paint-ordningen inne i `#p-cam` Ã¤r ofÃ¶rÃ¤ndrad (05 fÃ¶rst).
+
+```css
+/* PLAN 048 E. Kameran: ritningen skjuts in mot Ã¶ppningen nÃ¤r materialet
+   kommer (05) och nÃ¤r ritningen blir sida (06). Ramen #p-frame stÃ¥r
+   still; bara innehÃ¥llet rÃ¶r sig. LÃ¤ser --k5/--k6 (F-014 via --sc-ps). */
+#process{--cam:clamp(0, 0.35 * var(--k5) + 0.65 * var(--k6), 1);}
+#p-cam{transform-box:view-box;transform-origin:533px 247.5px;
+  transform:translate(calc(-93px * var(--cam)),0) scale(calc(1 + 0.5 * var(--cam)));}
+```
+
+   533 / 247,5 Ã¤r Ã¶ppningens mitt ((264+802)/2, (96+399)/2); âˆ’93 flyttar den till arkets mitt
+   (440). Vid `--cam` = 1 Ã¤r Ã¶ppningen 807x455 av 880x495 = **84 %** av arkets yta; vid
+   `?preview=process-05` (`--cam` 0,35) 632x356 = **52 %**. Allt utanfÃ¶r Ã¶ppningen skjuts ut ur
+   arket och klipps av `<svg>`:s egen overflow; det Ã¤r avsikten (06:s not: "Ritningen och
+   sidan Ã¤r samma sak").
+10. **Mobilens plansch blir 320x300** (i dag 320x360), sÃ¥ att Ã¶ppningen tar mer av ytan.
+    I `@media (max-width:767px)` (ersÃ¤tter `max-width:1279px`, rad 1088):
+
+```css
+#p-outline{d:path("M0.5 0.5 H319.5 V299.5 H0.5 Z");}
+#p-opening{d:path("M16 68 H304 V230 H16 Z");}
+#p-open-rect,#p-live-img{x:16px;y:68px;width:288px;height:162px;}
+#p-dim-width{d:path("M0 286 H320");}
+#p-lead-169{d:path("M304 68 L296 60 H200");}
+#p-dot-169{cx:304px;cy:68px;}
+#p-title{d:path("M208 16 H304 V52 H208 Z M208 28 H304 M208 40 H304");}
+#p-rev{x:208px;y:16px;width:96px;height:12px;}
+#p-cam{transform-origin:160px 149px;transform:scale(calc(1 + 0.08 * var(--cam)));}
+.process-sheet{aspect-ratio:320/300;}
+```
+
+    Och i JS (`plansch`, rad 2178 till 2189): `matchMedia('(max-width: 767px)')`, viewBox
+    `'0 0 320 300'`, `MOBILE_TEXT` mobilvÃ¤rden: `p-m320` [71, 276], `p-m768` [171, 276],
+    `p-m1440` [304, 276], `p-c-169` [196, 64], `p-c-rev` [256, 26]. SkrivbordsvÃ¤rdena i
+    `MOBILE_TEXT` rÃ¶rs inte. Ã–ppningen 288x162 av 320x300 = 48,6 %, med kameran 1,08 = 56,7 %.
+    **Kontroll:** inga tvÃ¥ av `#p-glyph`, `#p-title`, `#p-c-169`, `#p-m320`, `#p-m768`,
+    `#p-m1440`, `#p-opening` fÃ¥r ha Ã¶verlappande `getBBox()` vid 390 (skriv ut dem).
+
+### F Â· Varje fas en scen
+
+Formen, i en mening: **arket Ã¤r en sticky scen i nederkanten av skÃ¤rmen, stegtexten stÃ¥r i ett
+sticky band ovanfÃ¶r, och varje nytt band stiger upp bakom arkets Ã¶verkant och skjuter det fÃ¶rra
+ut ur bild.** Texten ligger kvar i flÃ¶det i `<ol>`-ordning (PageDown, skÃ¤rmlÃ¤sare, plan 019:s
+a11y-skÃ¤l), men varje steg Ã¤ger sin skÃ¤rm.
+
+11. **Markup, sju `Edit`.** I varje `<li data-step="0N">`: omslut barnen med
+    `<div class="step-band">â€¦</div>`, och ge `<span class="ledger-num">` attributet
+    `aria-hidden="true"` (`<ol>` bÃ¤r ordningen fÃ¶r skÃ¤rmlÃ¤saren). Ingen text Ã¤ndras.
+12. **KapitelskÃ¤rmen** (hoy-home s03): `.process{padding-block:clamp(120px,22svh,240px) 0}`,
+    `.process-title{font-size:clamp(2.75rem,7.2vw,7.5rem);line-height:.95;max-width:14ch;
+    letter-spacing:-.03em}` (104 px vid 1440), `.process-lead{font-size:1.0625rem;
+    margin-bottom:clamp(96px,16svh,180px)}`, och `.process-grid{margin-top:0}`.
+13. **Scenen, â‰¥ 768** (ersÃ¤tter `.process-grid`, `.process-steps`, `.process-steps li`,
+    `.process-step-title`, `.process-p`, `.process-note`, `.process-stick`, `.process-sheet` pÃ¥
+    rad 887 till 908):
+
+```css
+/* PLAN 048 F. INTE en rullande paragraf bredvid ett litet ark: en scen
+   per steg. --band-h skrivs av measureAct (hÃ¶gsta .step-band), fallback
+   nedan. */
+#process{--band-h:clamp(200px,24svh,240px);}
+.process-grid{display:grid;grid-template-columns:minmax(0,1fr);}
+.process-stick{grid-area:1/1;align-self:start;position:sticky;
+  top:var(--band-h);margin-top:var(--band-h);height:calc(100svh - var(--band-h));
+  z-index:2;background:var(--bg);display:flex;align-items:center;justify-content:center;
+  padding:clamp(6px,1svh,12px) var(--rail-x) clamp(12px,2svh,20px);}
+.process-sheet{display:block;height:auto;max-width:none;aspect-ratio:880/495;
+  width:min(100%,calc((100svh - var(--band-h) - clamp(18px,3svh,32px)) * 880 / 495));}
+.process-steps{grid-area:1/1;z-index:1;list-style:none;margin:0;padding:0;}
+/* Kodan: arket stÃ¥r kvar fÃ¤rdigt i en skÃ¤rm efter att band 07 lÃ¤mnat. */
+.process-steps::after{content:"";display:block;height:calc(100svh - var(--band-h));}
+.process-steps li{min-height:calc(var(--band-h) + 90svh);padding:0;}
+.step-band{position:sticky;top:0;height:var(--band-h);background:var(--bg);
+  display:grid;grid-template-columns:auto max-content minmax(0,42rem);
+  column-gap:clamp(24px,3vw,56px);align-items:start;
+  padding:clamp(20px,3svh,32px) var(--rail-x) clamp(12px,2svh,20px);
+  border-bottom:1px solid var(--c-line-on-paper);}
+#process .ledger-num{font-family:var(--f-display);font-weight:700;
+  font-size:clamp(5rem,11.7vw,10.5rem);line-height:.8;letter-spacing:-.04em;
+  font-variant-numeric:tabular-nums;padding:0;}
+.process-step-title{font-family:var(--f-display);font-weight:700;
+  font-size:clamp(2rem,3.6vw,3.25rem);line-height:.95;letter-spacing:-.02em;
+  text-transform:uppercase;color:var(--ink);}
+.process-p{font-family:var(--font);font-weight:300;font-size:1.0625rem;
+  line-height:1.6;max-width:66ch;}
+.process-note{font-weight:600;font-size:13px;color:var(--hair-ink);
+  max-width:28ch;margin-top:.8rem;}
+@media (max-width:1023px) and (min-width:768px){
+  .step-band{grid-template-columns:auto minmax(0,1fr);row-gap:16px;}
+  .step-band .process-p{grid-column:1 / -1;}
+}
+```
+
+    `.process-note` stÃ¥r i andra spalten under rubriken: flytta den i markup? **Nej.** Placera
+    med grid: `.step-band > .process-step-title{grid-column:2}`, `.step-band >
+    .process-note{grid-column:2;grid-row:2}`, `.step-band > .process-p{grid-column:3;
+    grid-row:1 / span 2}`, siffran `grid-row:1 / span 2`. DOM-ordningen (nummer, rubrik,
+    stycke, not) Ã¤r ofÃ¶rÃ¤ndrad.
+
+    VarfÃ¶r ticker-effekten uppstÃ¥r av sig sjÃ¤lv: bandet fÃ¶r steg N Ã¤r sticky i sitt eget `<li>`.
+    NÃ¤r `<li>` N+1 nÃ¥r bandets underkant ligger dess band direkt under band N och under arkets
+    ogenomskinliga scen (z-index 2); de tvÃ¥ banden rÃ¶r sig upp tillsammans, N ut ur bild, N+1
+    fram ur arkets Ã¶verkant. Det Ã¤r ren scroll, pixelbundet, i bÃ¥da riktningarna, utan en
+    enda skrivning per bildruta. Sticky-intervallet per steg Ã¤r 90svh (810 px vid 900) och
+    alltsÃ¥ lÃ¤ngre Ã¤n Chromes PageDown (787 px vid 900): PageDown kan inte hoppa Ã¶ver ett steg.
+
+14. **Siffran och rubriken tÃ¤nds med steget** (lager 2, lÃ¤ser `--kN` alltsÃ¥ `--sc-ps`):
+
+```css
+.process-steps li[data-step="01"]{--k:var(--k1);}
+/* ... 02 till 07 likadant ... */
+#process .step-band .ledger-num{
+  color:color-mix(in srgb, var(--ink) calc(62% + 38% * var(--k)), var(--bg));
+  letter-spacing:calc(0.04em - 0.08em * var(--k));
+  transform:translateY(calc((1 - var(--k)) * 0.08em));}
+#process .step-band .process-step-title{
+  --edge:calc(var(--k) * 130%);
+  background-image:linear-gradient(100deg,var(--ink) 0 calc(var(--edge) - 12%),
+    color-mix(in srgb,var(--ink) 62%,var(--bg)) calc(var(--edge) + 12%) 100%);
+  -webkit-background-clip:text;background-clip:text;color:transparent;}
+```
+
+    BÃ¥da Ã¤ndarna Ã¤r lÃ¤sbara (62 % papper mot `--c-drafting` = 6,7:1). Ingen `opacity` pÃ¥ text.
+15. **Mobilen, < 768.** Arket sticky Ã¶verst som i dag (`.process-stick{order:-1;position:
+    sticky;top:0;z-index:2;background:var(--bg);padding-block:12px;width:min(100% - 2 *
+    var(--rail-x),560px);justify-self:center}`), stegen i flÃ¶det under det, `.step-band`
+    **inte** sticky (`position:static;height:auto;display:block;border:0`), `.process-steps
+    li{min-height:calc(100svh - var(--sheet-h));padding-block:clamp(24px,4svh,40px)}` med
+    `--sheet-h` skrivet av `measureAct` (arkets `getBoundingClientRect().height`),
+    `.process-steps::after{display:none}`, `.process-steps` behÃ¥ller sin bottenpadding
+    `clamp(160px,22vh,220px)`. Siffran `font-size:clamp(4.5rem,22vw,6rem)` (86 px vid 390),
+    rubriken `2rem`. `.process-steps{width:min(100%,560px)}` och `justify-self:center`.
+16. **JS, `measureAct`** (rad 1827 till 1881):
+    - brytpunkten `(max-width:1279px)` â†’ `(max-width:767px)`, pÃ¥ alla tre stÃ¤llen (rad 1844,
+      2097, 2180);
+    - **fÃ¶rst** (â‰¥ 768): `bandH = max(.step-band.scrollHeight)` Ã¶ver de sju, avrundat uppÃ¥t,
+      skrivet som `--band-h` pÃ¥ `#process` (skrivs bara om det Ã¤ndrats); vid < 768 skrivs
+      `--sheet-h` i stÃ¤llet;
+    - **sedan** li-rektanglarna (de beror pÃ¥ `--band-h`);
+    - ankare vid â‰¥ 768: `s1 = (y0 + 0.5 * vh) / life`, `sN = (y0 + vh) / life` fÃ¶r N â‰¥ 2,
+      `eN = (y0 + 1.6 * vh) / life`. AlltsÃ¥: steget ritar under de fÃ¶rsta 60 % av sitt
+      sticky-intervall och stÃ¥r fÃ¤rdigt de sista 30 %. Mobilformlerna stÃ¥r kvar som de Ã¤r.
+    - `aimOnce` (rad 2103 till 2105): vid â‰¥ 768 `target = stepAnchors[pi].y0 + 0.6 * vh`
+      (ger `--sc-ps` = `eN` per konstruktion); mobil ofÃ¶rÃ¤ndrad.
+
+### G Â· Balansen efter flytten
+
+17. **Bandet dÃ¤r priset lÃ¥g.** VÃ¤nsterspalten tappar 729 px vid 1440 (priset 567 + gap 162).
+    I stÃ¤llet fÃ¶r ett hÃ¥l hÃ¥lls **Calyx sticky** i vÃ¤nsterspalten medan jÃ¤tten och HÅrai
+    passerar till hÃ¶ger: `.calyx-fig{flex:none;position:sticky;top:clamp(24px,5svh,48px);}`
+    (ersÃ¤tter `.calyx-fig{flex:1;}`, rad 654). `.calyx-wrap` behÃ¥ller `min-height:90dvh`. Ramen
+    transformeras eller tonas inte av detta (sticky Ã¤r ingen transform; PRODUCT.md hÃ¥ller). Vid
+    `max-width:900px`: `.calyx-fig{position:static}`. Resultat vid HÅrai-skÃ¤rmen: tvÃ¥ levande
+    sajter sida vid sida, som insign-1440 s04 (tvÃ¥ arbeten, 94 % vw tillsammans).
+18. **Var ljuset finns kvar** (beslutet, motiverat i Â§ Beslut G nedan): "Hur vi tÃ¤nker" stÃ¥r
+    kvar pÃ¥ papper, helbredd, som sidans enda helbredds tonala inversion; bildtexterna under
+    ramarna stÃ¥r kvar pÃ¥ papper; Calyx live bÃ¤r ljus i stagger-bandet; Calyx fÃ¥r fÃ¤rg i
+    05 till 07. "Hur vi tÃ¤nker" vÃ¤ger upp sin hÃ¶gra halva: `.principles` blir en tvÃ¥spaltig
+    grid â‰¥ 900 (`grid-template-columns:minmax(0,5fr) minmax(0,7fr)`), kickern "Hur vi tÃ¤nker"
+    sÃ¤tts i displaystorlek i vÃ¤nsterspalten (`font-family:var(--f-display);font-weight:700;
+    font-size:clamp(2.25rem,4.4vw,4.25rem);letter-spacing:-.02em;text-transform:none`, samma
+    text, samma element), liggaren i hÃ¶gerspalten med `h3` i `clamp(1.25rem,1.8vw,1.6rem)` och
+    brÃ¶dtext 17 px. Det Ã¤r hoy-webb s04:s form: rubrik vÃ¤nster, text hÃ¶ger, papper i full bredd.
+
+### H Â· JÃ¤mfÃ¶relsen
+
+19. Skjut skivor och par-bilder enligt `PARITET.md` och laga det som inte hÃ¥ller nivÃ¥n i samma
+    runda (se `PROMPT-V3d-R1.md` Â§ 3).
+
+## Device-tabell
+
+| Bredd | Stagger-bandet | Processakten | Arket (fÃ¶rvÃ¤ntat) | Avslutet |
+|---|---|---|---|---|
+| **1440x900** | tvÃ¥ spalter; Calyx sticky vÃ¤nster, jÃ¤tten svart + HÅrai hÃ¶ger | band 210 till 240 px sticky Ã¶verst, scen under; kod en skÃ¤rm | 1 120 till 1 180 bred (78 till 82 %) | statement 86 px, priser 37 px, adress 46 px |
+| **1280x800** | som 1440 | band ~210 | ~980 (77 %) | 77 / 33 / 41 |
+| **1024x768** | tvÃ¥ spalter (brytpunkten Ã¤r 900) | band 3 spalter, stycket ~445 px brett, band ~290 | ~810 (79 %) | 61 / 27 / 33 |
+| **768x1024** | staplat (â‰¤ 900): tes, Calyx, jÃ¤tten, HÅrai | band 2 rader (siffra + rubrik / stycke), ~320 | 676x380 (88 %) | 46 / 24 / 28 |
+| **390x844** | staplat | mobil: plansch 320x300 sticky Ã¶verst, stegen under | 358x336 (92 %) | 44 / 24 / 28 |
+| **320x568** | staplat | mobil | 288x270 (90 %) | 44 / 24 / 28 |
+
+200 % zoom vid 1440 = 720 css-px: mobilvÃ¤gen. Noll horisontell scroll 320 till 1440, mÃ¤tt pÃ¥
+elementens rektanglar (gate 34), inte pÃ¥ `scrollWidth`.
+
+## `?preview=`
+
+- `process-01` till `-07`: siktar pÃ¥ `eN` enligt steg 16. Vid â‰¥ 768 visar bilden band N Ã¶verst
+  med siffran full ton och rubriken tÃ¤nd, och arket i steg N:s formade lÃ¤ge; `-05` visar
+  kameran pÃ¥ 0,35, `-06` och `-07` pÃ¥ 1. Mobil: som i dag. `--sc-ps` = `--eN` Â± 0,0001 vid 1440
+  och 390, tre laddningar per lÃ¤ge vid 390.
+- `front`, `mid`, `back`, `ledger`, `bleed`: ofÃ¶rÃ¤ndrade. `ledger` visar nu den svarta jÃ¤tten.
+- `?process=invert` lÃ¤ses inte lÃ¤ngre (akten Ã¤r inverterad utan parameter).
+
+## Beslut G, med skÃ¤l i pixlar
+
+1. **Priset lÃ¤mnar ett hÃ¥l pÃ¥ 729 px vid 1440; det fylls med en hÃ¥llning, inte med en ny
+   yta.** Tre kandidater prÃ¶vades mot mÃ¤tningen: (a) Calyx `flex:1` som i dag skulle strÃ¤cka
+   ramen till 1 578 px hÃ¶jd pÃ¥ 651 bredd (kvot 2,4, en portrÃ¤ttremsa av en liggande sajt);
+   (b) att flytta HÅrai till vÃ¤nster lÃ¤mnar samma hÃ¥l till hÃ¶ger; (c) Calyx sticky: ramen
+   behÃ¥ller sina 849 px och stÃ¥r i bild genom hela hÃ¶gerspaltens passage. (c) valt: noll ny
+   yta, noll ny text, och bandet blir tvÃ¥ levande sajter bredvid varandra.
+2. **"Hur vi tÃ¤nker" fÃ¶rblir papper.** Med processen pÃ¥ `--c-drafting` (â‰ˆ 7 till 8 viewports
+   vid 1440) och jÃ¤tten pÃ¥ svart Ã¤r det enda helbredda ljusa fÃ¤ltet mellan heron och avslutet
+   annars borta, och sidan lÃ¤ses som en massa. Papperet stÃ¥r direkt efter aktens kod och fÃ¶re
+   avslutets foto: mÃ¶rk ritning, papper, fotografi, alltsÃ¥ tre material i fÃ¶ljd (H-03, H-06).
+   045 inverterade principerna tillsammans med akten; bestÃ¤llningen C gÃ¤ller processakten,
+   inte principerna.
+3. **Tre mÃ¶rka material, inte ett.** Fotot (neutralt grÃ¥tt, L ~0,15 till 0,35 efter
+   `brightness(.5)`), jÃ¤ttens svarta plÃ¥t (`#0b0c0e`, med `--frame-line` som heronkortet) och
+   ritbordet (`--c-drafting`, kall blÃ¥svart). De ligger aldrig kant i kant utan en ram eller ett
+   foto emellan, och de lÃ¤ser som tre ytor, inte en.
+4. **Ljusbudget, mÃ¤tt av byggaren:** helsidesbilden vid 1440 i skivor om 900 px; per skiva
+   andelen pixlar med relativ luminans > 0,5. FÃ¶rvÃ¤ntat: ingen fÃ¶ljd av fler Ã¤n fyra skivor
+   under 3 %, och "Hur vi tÃ¤nker" > 50 %. Lead dÃ¶mer pÃ¥ strippen och par-bilderna, inte pÃ¥
+   talet.
+
+## Repo conventions
+
+- Motorn `scroll/scrollcraft.js`, `scrollcraft.css`, `scroll/sc-smooth.js` och `sites/*` orÃ¶rda.
+  `@property`-registreringen av `--sc-ps` (i shimen) orÃ¶rd; inga nya `@property`.
+- F-011: ingen `prefers-reduced-motion`, ingen statisk fallback. F-014: allt som rÃ¶r sig lÃ¤ser
+  `--sc-ps` via `--kN`/`--cam`; rÃ¥ `--sc-p` driver ingenting.
+- LÃ¥st copy ordagrant (PRODUCT.md Â§ Brand Commitments), de sju processtyckena och noterna
+  ordagrant. Ingen ny synlig strÃ¤ng. Gate 75: noll tankstreck.
+- Gate 47/79: Calyx i arket Ã¤r en riktig produktyta. Ingen tredje iframe.
+- Radie 0. Inga skuggor. Accenten `#1e5e9c` fortfarande exakt tvÃ¥ fÃ¶rekomster (tesen, "Boka ett
+  mÃ¶te"); `--c-accent-on-dark` pÃ¥ mÃ¥ttsiffrorna Ã¤r samma roll mot en annan grund (045).
+
+## Boundaries (STOPPA och skriv i NOTES)
+
+- En Ã¤ndring skulle krÃ¤va att en lÃ¥st strÃ¤ng Ã¤ndras eller flyttas ut ur sin sektion.
+- Kameran eller bandet krÃ¤ver JS per bildruta fÃ¶r att fungera.
+- `sheetGroups`-Ã¤ndringen gÃ¶r att en grupp aldrig fÃ¥r `data-on` (kontrollera alla sju steg
+  vid 1440 och 390 med `?preview=`).
+
+## Verification
+
+**A. Synligt, det som avgÃ¶r.** `PARITET.md`: skivor vid 1440 och 390, par-bild per rad, och
+varje rad bedÃ¶md "hÃ¥ller nivÃ¥n" eller lagad. Plus tabellen ovan, rad fÃ¶r rad, med uppmÃ¤tt vÃ¤rde.
+
+**B. MÃ¤tt.**
+- E: `getBoundingClientRect` pÃ¥ `#processSheet` och pÃ¥ `#p-live-img` (klippt mot
+  `#p-open-rect`, alltsÃ¥ skÃ¤rningen av de tvÃ¥ rektanglarna) vid `?preview=process-05/06/07`,
+  1440 och 390. Kvoten skriven.
+- F: `getComputedStyle` font-size pÃ¥ `#process .ledger-num`, `.process-step-title`,
+  `.process-p`; li-hÃ¶jder; tolvstegs ramsekvens genom steg 03 till 04 vid 1440, **ned och upp**,
+  med siffrans `color` och bandens `top` utskrivna per ram (monotont i bÃ¥da riktningarna).
+- B: glyfhÃ¶jden pÃ¥ `k` i `kontakt@alunix.se` ur skÃ¤rmbilden (kolumnskanning av den fÃ¶rsta
+  glyfens blÃ¤ck), 1440 och 390.
+- A/C/D: `contrast_over_media.py --url` pÃ¥ prisets och adressens strÃ¤ngar (scroll till
+  `#pris` och till dokumentets slut), pÃ¥ akten (`?preview=process-02` och `-06`) och pÃ¥ jÃ¤tten
+  (`?preview=ledger`), 1440 och 390. BrÃ¶dtext â‰¥ 4,5:1, stor text â‰¥ 3:1.
+- G: ljusbudgeten per skiva (Â§ Beslut G punkt 4); `scroll_verify` `blankBands` i `.stagger`
+  = 0. `blankBands` inne i `#process` i helsidesfÃ¥ngsten Ã¤r en artefakt av den sticky scenen
+  (fÃ¥ngsten visar scenen en gÃ¥ng); de redovisas och dÃ¶ms pÃ¥ skivorna.
+
+**C. Grinden (inte mÃ¥let).** `scroll_verify` 1440 och 390; `motion_probe` med
+kontrollprotokollet (`tests/motion/smooth.html` ren fÃ¶rst), `#process:--sc-ps` ned och upp,
+cpu 1 och 4, staircase 0, `max_step` â‰¤ 3 % pÃ¥ `--sc-ps`; `a11y_scan` + `reflow` vid 390 och
+768; `tab_walk`; noll horisontell scroll 320 till 1440; grep: `prefers-reduced-motion` 0,
+U+2012 till U+2015 0 i synlig text, inline-hex utanfÃ¶r `:root` inte fler Ã¤n fÃ¶re (arkitektens rÃ¤kning: 16 i CSS utan kommentarer, 8 i markup/JS).
+
+**Done when:** varje mÃ¥lrad ovan har ett uppmÃ¤tt vÃ¤rde som nÃ¥r mÃ¥let, varje rad i `PARITET.md`
+hÃ¥ller nivÃ¥n i sin par-bild, och grinden Ã¤r ren eller varje avvikelse namngiven med skÃ¤l.
+fix
+
+## persistence
+Egna fÃ¤rska par-bilder i `shots/astra-r5/`: 16 rader vid 1440 och 390, en skÃ¤rmbild per sida (`ours/`). Varje lÃ¤ge nÃ¥ddes med `mouse.wheel` (120 px per 45 ms) frÃ¥n toppen i en ren sida, dÃ¤refter 2,5 s och vÃ¤ntan pÃ¥ synliga bilder. MÃ¥lpositionen fÃ¶r preview-raderna lÃ¤stes ur preview-lÃ¤gets egen scrollY i en separat sida. Positioner: `capture.py`. Parbilderna Ã¤r `P01-1440.png` till `P15a-390.png`, kontaktark `sheet-ours-1440.png` och `sheet-ours-390.png`. Kompletterande underlag:
+- DOM-mÃ¥tt i sju lÃ¤gen per bredd: `measure.py`, utdata i `measure.json`.
+- Hjulsekvenser genom aktens utgÃ¥ng: `strip-d-exit.png` (13500 till 14220 i steg om 80) och `strip-m-0607.png` (9300 till 10740 i steg om 160). Klippsonden i `exitprobe.py` gÃ¥r i steg om 20 px.
+- Zoomer: `zoom-P12-390-sheet.png`, `zoom-P13-390-sheet.png`, `zoom-exit-14140-14220.png`, `zoom-P13-1440-revfield.png`, `zoom-P14-1440-top.png`.
+
+Codex kÃ¶rde en gÃ¥ng (`gpt-6-astra`, reasoning medium, read-only, 24 bilder: P01 till P15a och kontaktarket vid 1440, P02/P03/P05/P06/P10/P12/P13 vid 390 och `zoom-P13-390-sheet`). Prompt och svar finns i `prompt.txt` och `codex-out.txt`. Svaret gav 16 paritetsrader och 5 kod-/pixelfynd.
+- **Paritetsrader: 13 Ã¶verens med min lÃ¤sning, 3 underkÃ¤nda (P04, P12, P13). Alla tre verifierade.**
+  - P04 mÃ¤tt: `.giant` 88 px, en rad 81 px hÃ¶g, alltsÃ¥ 9 % av viewportens hÃ¶jd, mot kapitelrubriken 103,68 px.
+  - P12 och P13 sedda i zoom och mÃ¤tta, se material_fixes 1.
+- **Kodfynd: 4 av 5 Ã¶verlevde som egna fynd, 1 slogs ihop.**
+  - Revisionsbokstaven pÃ¥ skrivbordet: `:2625` mot `:1931`. MÃ¤tt: `#p-c-rev` har x/y 54/451 och rect 191,807 vid `process-07`. Synlig i `zoom-P14-1440-top.png`. FÃ¤ltet Ã¤r tomt i `zoom-P13-1440-revfield.png`.
+  - Mobilens revisionsblock: `:1461-1462` mot Ã¶ppningen pÃ¥ `:1454`. Syns i zoomen.
+  - Mobilens ritmÃ¤rke: `:1858`, `translate(24,24)`. Syns i bÃ¥da zoomerna.
+  - Mobilzoomen bredare Ã¤n arket (`:1463`, 304 Ã— 1,08 = 328 > 320). MÃ¤tt: `.p-live` 367 px mot arket 358 px vid `process-06/07`. Kanterna kapas ~5 px per sida. Det Ã¤r fÃ¶r litet fÃ¶r en egen punkt, sÃ¥ jag slog ihop det med fynd 1.
+  - HÅrai vid 390: bara noterat, enligt lead.
+- **Codex pÃ¥stod "inga kapade processglyfer", och jag behÃ¥ller mitt fynd mot det.** Codex fick inte utgÃ¥ngssekvensen. I min hjulsekvens stÃ¥r "07" och tredje brÃ¶dtextraden halvt tÃ¤ckta vid scrollY 14040 till 14160 (se material_fixes 3).
+- **SlÃ¤ppt: 0.**
+
+## fidelity
+**PARITET, en rad per skÃ¤rm:**
+- **P01 fold: hÃ¥ller nivÃ¥n.** Heron och kortet Ã¤ger folden vid bÃ¥da bredderna.
+- **P02 kortets baksida: hÃ¥ller nivÃ¥n.** ALUNIX tar ~41 % av kortets bredd (367 av 896 px, 103 px enligt NOTES). Kortet stÃ¥r som objekt med tom grund runt.
+- **P03 tesbandet: hÃ¥ller nivÃ¥n.** Rubriken Ã¤r 64,8 px, panelen 720 av 900 px (80 %) och bilden 587 px (40,8 % vw). Rubrik och bild vÃ¤ger lika. Panelen Ã¤r 45 % vw och inte full bredd, men det motsvarar r3:s Expected (hÃ¶jdÃ¤gande) och Ã¤r inget nytt gap.
+- **P04 jÃ¤tten inverterad: hÃ¥ller inte.**
+  - Bredden Ã¤r lÃ¶st: plÃ¥ten Ã¤r 1285 px vid top 100, och hela rubriken syns.
+  - Gapet: rubriken Ã¤r 88 px (`:916`), en rad 81 px hÃ¶g, alltsÃ¥ 9 % av viewportens hÃ¶jd. Det Ã¤r mindre Ã¤n kapitelrubriken (103,68 px).
+  - Liggarens tre rader tar resten av plÃ¥ten och konkurrerar med rubriken.
+  - PARITET krÃ¤ver sidans starkaste typografiska Ã¶gonblick efter heron. Referensens rubrik tar ~44 % av hÃ¶jden.
+- **P05 HÅrai-bandet: hÃ¥ller nivÃ¥n vid 1440.** Vid 390 kapas undertiteln ("RESTAURANT, STOCKHO"). Det Ã¤r r3-fix 7 i `sites/horai.html`, som enligt lead aldrig rÃ¶rs. Noterat, inte rÃ¤knat.
+- **P06 kapitelskÃ¤rmen: hÃ¥ller nivÃ¥n.**
+  - MÃ¶rk grund `oklch(0.21 0.022 250)`, rubriken 103,68 px vid 1440 och 56 px vid 390.
+  - Kapitlet stÃ¥r ensamt (`.process-chapter` 900 respektive 844 px hÃ¶g) och Ã¤r vertikalt centrerat vid 390.
+- **P07 steg 01: hÃ¥ller nivÃ¥n.** Arket 1168 px (81 % vw). Vid 390 ligger arket Ã¶verst och texten under, utan Ã¶verlapp.
+- **P08 steg 02: hÃ¥ller nivÃ¥n.** MÃ¥ttkedjan lÃ¤ses pÃ¥ avstÃ¥nd vid bÃ¥da bredderna.
+- **P09 steg 03: hÃ¥ller nivÃ¥n.** Ett kapitel per skÃ¤rm.
+- **P10 steg 04: hÃ¥ller nivÃ¥n.** Hatchen och "96 PX" syns vid 390 (`#p-c-row` 61,131 inom arket 16..374 Ã— 12..236).
+- **P11 steg 05: hÃ¥ller nivÃ¥n.** Calyx 839Ã—473 i ett ark pÃ¥ 1168Ã—657. Inga fÃ¶rÃ¤ldralÃ¶sa linjer: `#p-ledgers`/`#p-hatch` har opacitet 0.
+- **P12 steg 06: hÃ¥ller inte.**
+  - 1440 hÃ¥ller: Calyx 1071Ã—603 i fÃ¤rg.
+  - Vid 390 ligger ritmÃ¤rket `#p-glyph` (~26Ã—36 enheter) kvar i full ton Ã¶ver Calyx Ã¶vre vÃ¤nstra hÃ¶rn och korsar dess header "VOL. IX" (`zoom-P12-390-sheet.png`). PARITET: "ritningen har dragit sig tillbaka".
+- **P13 steg 07: hÃ¥ller inte.**
+  - 1440 hÃ¥ller i komposition: revisionsfÃ¤ltet 41Ã—22 px ligger utanfÃ¶r `.p-live`.
+  - Bokstaven "A" hamnar inte i fÃ¤ltet pÃ¥ 1440. Den stÃ¥r pÃ¥ 191,807, Ã¶ver Calyx nedre vÃ¤nstra hÃ¶rn (`zoom-P14-1440-top.png`), och fÃ¤ltet Ã¤r en tom hatch (`zoom-P13-1440-revfield.png`).
+  - Vid 390 korsar revisionsblocket (`#p-title` 208..304 Ã— 16..52, `#p-rev`) Calyx navigation och foto (`zoom-P13-390-sheet.png`, Ã¶vre hÃ¶gra delen), och ritmÃ¤rket ligger kvar.
+- **P14 Hur vi tÃ¤nker: hÃ¥ller nivÃ¥n.** Papper i full bredd, och bÃ¥da halvorna bÃ¤r.
+- **P15 pris + kontakt: hÃ¥ller nivÃ¥n.** Samma som r3: rubriken kapas i sista viewporten, men allt ryms i ett tidigare lÃ¤ge.
+- **P16 hela sidan: hÃ¥ller nivÃ¥n.** Foto, blÃ¥tt, svart plÃ¥t, ritbordet, papper, foto. Den lÃ¥nga mÃ¶rka akten Ã¤r bestÃ¤lld, och fyra-skivor-grÃ¤nsen Ã¤r struken av lead.
+
+**r3-fixarna:**
+1. **Steg 07 stÃ¥ende scen: stÃ¤ngd vid 1440, Ã¶ppen vid 390.** Vid 1440 stÃ¥r 07 fÃ¤rdigritat i hjulsekvensen frÃ¥n 13500 till 13980, och revisionsfÃ¤ltet ligger utanfÃ¶r `.p-live` och innanfÃ¶r arket. Vid 390 ligger revisionsfÃ¤ltet inuti `.p-live` (rect 249,30,107,13 mot live 11,27,367,207). Det Ã¤r en R5-regression: Ã¶ppningen flyttades till y 20, men `#p-title`/`#p-rev` stod kvar.
+2. **JÃ¤ttens bredd medan rubriken syns: stÃ¤ngd.** PlÃ¥ten Ã¤r 1285 px vid top 100, h2 syns helt, och `?preview=ledger` visar samma scrollY som organisk hjulscroll (4050).
+3. **KapitelskÃ¤rmen ensam: stÃ¤ngd.** Inget frÃ¥n band 01 syns, kapitlet Ã¤r mÃ¶rkt enligt lead, och rubriken Ã¤r 56 px vid 390, centrerad.
+4. **Steg 04/06 vid 390: stÃ¤ngd i mÃ¥tt, Ã¶ppen i renhet.** "96 px" stÃ¥r inom arket. Calyx Ã¤r hel i 16:9 och tar 95 % av arkets yta. RitmÃ¤rket och den kapade kanten (1,08-zoom) gÃ¶r Ã¤ndÃ¥ att P12-390 inte hÃ¥ller.
+5. **Tesrubriken i displayskala: stÃ¤ngd.** 64,8 px, 80 % av hÃ¶jden, bilden 40,8 % vw.
+6. **ALUNIX pÃ¥ baksidan: stÃ¤ngd.** ~103 px, 41 % av kortets bredd.
+8. **Glyffragment och fÃ¶rÃ¤ldralÃ¶sa linjer: linjerna stÃ¤ngda, glyffragmentet Ã¶ppet med ny mekanism.** Vid 1440 slÃ¤pper `.process-stick` vid ~14000 och glider upp Ã¶ver band 07, som stÃ¥r sticky pÃ¥ top 0 till ~14160. DÃ¤rfÃ¶r Ã¤r "07" och tredje brÃ¶dtextraden avskurna vid 14040 till 14160 (`zoom-exit-14140-14220.png`, rad 1). Detta Ã¤r inget `--slit-p`-klipp, eftersom `clip-path` Ã¤r `inset(0%)` hela vÃ¤gen (`exitprobe.py`). Vid 390 rullar texten normalt in under det sticky arket.
+- **Fix 7 (HÅrai-overflow):** inte tagen enligt lead, noterad under P05.
+
+## ceiling
+- **Motor och shim:** n/a. Allt som rÃ¶r sig lÃ¤ser `--sc-ps`, och motorn Ã¤r orÃ¶rd. F-011 respected.
+- **Referenserna:** hoy ger varje kapitel en viewport och ett dominerande element. Det nÃ¥r vi nu i P01 till P03, P05 (1440), P06 till P11, P14 och P15, och P12/P13 vid 1440.
+- **Kvar under referensen:**
+  - JÃ¤ttens typografiska Ã¶gonblick (P04).
+  - Renheten i mobilarket i steg 06/07.
+  - Aktens utgÃ¥ng vid 1440.
+
+## material_fixes
+1. **Mobilarket i steg 06/07: ritningen ska dra sig tillbaka frÃ¥n produkten (P12-390, P13-390).** `#p-glyph` (`index.html:1858`, `translate(24,24)`) fÃ¥r vid â‰¤767 samma `--cam-fade`-tillbakadragning som `#p-guides`, eller flyttas ut ur Ã¶ppningen (y 20..191). `#p-title`/`#p-rev` (`:1461-1462`, y 16..52) flyttas till den fria remsan ovanfÃ¶r Ã¶ppningen (y 0..20) eller under den (191..200), inom 320 enheter. Mobilzoomen (`:1463`, `1 + 0.08*--cam`) sÃ¤nks till â‰¤ 1,05 sÃ¥ att 304 Ã— skala â‰¤ 320. Expected, `?preview=process-06` och `process-07` vid 390: inga streck ovanpÃ¥ `.p-live`s rect, `#p-rev`s rect utanfÃ¶r `.p-live` och innanfÃ¶r arket, och `.p-live`s bredd â‰¤ arkets (358 px).
+2. **Revisionsbokstaven hamnar fel pÃ¥ skrivbordet (P13-1440, P14-1440).** `MOBILE_TEXT['p-c-rev']` (`:2625`) har kvar skrivbordsvÃ¤rdet [54,451] sedan fÃ¶re R4, och `plansch()` (`:2641`) skriver Ã¶ver markupens 861/13 (`:1931`). SÃ¤tt skrivbordsvÃ¤rdet till [861,13]. MobilvÃ¤rdet ska ligga i centrum av det flyttade mobilfÃ¤ltet enligt fix 1. Expected, `?preview=process-07` vid 1440: `#p-c-rev`s rect ligger inuti `#p-rev`s rect (1270,215,41,22), och inget "A" syns Ã¶ver Calyx i hjulbilderna 13500 till 14800.
+3. **Aktens utgÃ¥ng vid 1440: arket glider Ã¶ver ett stillastÃ¥ende band 07.** `.process-stick` (`:1059`) slÃ¤pper vid scrollY ~14000, men band 07 (`.step-band`, `:1081`, sticky top 0) stÃ¥r kvar till ~14160. LÃ¥t bandet och arket slÃ¤ppa samtidigt. Ett sÃ¤tt Ã¤r att lÃ¥ta li 07 sluta dÃ¤r `.process-steps` padding-bottom (`:1074`) slutar, sÃ¥ att bandets sticky-behÃ¥llare tar slut samtidigt med arkets. Ett annat Ã¤r att fÃ¶lja `.process-stick`s slÃ¤pp med samma offset. Expected: i en hjulsekvens var 20:e px frÃ¥n 13980 till 14240 vid 1440 Ã¤r "07", "FÃ–RVALTNING" och brÃ¶dtexten antingen hela eller rullar ut i Ã¶verkant, och skÃ¤rs aldrig av arkets Ã¶verkant.
+4. **JÃ¤ttens rubrik i displayskala (P04).** `.giant` (`:916`, `clamp(2.1rem,7.4vw - 18px,5.5rem)`) ska vara â‰¥ 110 px vid 1440 i ledger-lÃ¤get, alltsÃ¥ stÃ¶rre Ã¤n kapitelrubrikens 103,68. TvÃ¥ rader inom plÃ¥ten pÃ¥ 1285 px Ã¤r tillÃ¥tet. Skalan kan bindas till `--scrub`, sÃ¥ att det smala startlÃ¤get (555 px spalt, PLAN 030:s ordbrytning) inte bryter ord. Expected, `?preview=ledger` vid 1440: h2 â‰¥ 110 px, rubrikblocket â‰¥ 25 % av viewportens hÃ¶jd, hela h2 inom viewporten och 0 delade ord vid 1024/1280/1440/1920. Liggaren 01 till 03 ska vara lÃ¤sbar i scrubbens slutlÃ¤ge.
+
+## keep
+- KapitelskÃ¤rmen som egen mÃ¶rk skÃ¤rm i full hÃ¶jd, 104/56 px, ensam.
+- JÃ¤ttens plÃ¥t pÃ¥ 1285 px vid top 100, dÃ¤r `?preview=ledger` och organisk scroll ger samma lÃ¤ge.
+- Tesen: 64,8 px, panel 80 % av hÃ¶jden, bild 40,8 % vw, noll delade ord.
+- Mobilarket pÃ¥ 320Ã—200 med Ã¶ppningen exakt 16:9 (304Ã—171): Calyx hel, "Botanical architecture, from Stockholm." obeskuren. Bara det som ritas ovanpÃ¥ och zoomfaktorn ska Ã¤ndras.
+- Steg 07 vid 1440: stÃ¥ende scen frÃ¥n 13500 till 13980, med revisionsfÃ¤ltet utanfÃ¶r `.p-live`.
+- `#p-ledgers`/`#p-hatch` Ã— `--cam-fade`: inga fÃ¶rÃ¤ldralÃ¶sa linjer i 05.
+- Allt som rÃ¶r sig lÃ¤ser `--sc-ps`. Motorn och shimen Ã¤r orÃ¶rda. F-011 respected.
+# 053 â€” Astras tredje granskning (r5-astra.md), fyra material_fixes
+
+V3d runda 6. Astras tredje pass, paritetslÃ¤get: `reviews/r5-astra.md` lÃ¤st i sin helhet.
+13/16 paritetsrader hÃ¥ller. Lead tar alla fyra `material_fixes`. Bevis:
+`shots/astra-r5/measure.json`, strip- och zoombilderna. Fyra fix, inget annat rÃ¶rs.
+
+## Fix 1 (HIGH) â€” mobilarket, steg 06/07: ritningen ligger ovanpÃ¥ Calyx
+
+`zoom-P12-390-sheet.png`: `#p-glyph` (ordmÃ¤rket, `translate(24,24)`, ark-fast viewBox-
+koordinat) ligger i full ton Ã¶ver fotots Ã¶vre vÃ¤nstra hÃ¶rn. `zoom-P13-390-sheet.png`:
+`#p-title`/`#p-rev` (revisionsfÃ¤ltet, mobil-CSS `y16..52`, en tre-radig ISO 7200-stapel
+Ã¤rvd frÃ¥n FÃ–RE R5) korsar Calyx nav i Ã¶vre hÃ¶gra hÃ¶rnet. Rotorsak: R5 flyttade Ã¶ppningen
+(`#p-opening` y20..191) men rÃ¶rde varken glyfens fasta koordinat eller revisionsfÃ¤ltets
+egna. Samtidigt: mobilzoomen (`#p-cam`, `1+0,08*--cam`) gÃ¶r Ã¶ppningen 304Ã—1,08=328
+breddenheter > arkets 320 vid `--cam`=1 â€” uppmÃ¤tt 367px liveyta i ett 358px ark.
+
+**Fix:**
+- `#p-glyph{opacity:var(--cam-fade)}` (mobilt scope). Samma tillbakadragningsmÃ¶nster som
+  `#p-hatch`/`#p-ledgers` redan har (R4 fix 8, rad ~1218) â€” glyfen tonar ut i takt med att
+  kameran zoomar in 05â†’07, i stÃ¤llet fÃ¶r att stÃ¥ kvar permanent.
+- `#p-title`/`#p-rev` flyttade till den fria remsan OVANFÃ–R Ã¶ppningen (y0..20, tom yta)
+  och krympta till samma enradiga 32Ã—16-box som skrivbordets (846..876,2..18) redan
+  anvÃ¤nder: `M280 2 H312 V18 H280 Z` / `x280 y2 w32 h16`.
+- `#p-cam` mobilzoom `0,08`â†’`0,05`: 304Ã—1,05=319,2 â‰¤ 320, ingen beskÃ¤rning mot arkets
+  egen kant.
+
+**MÃ¥l:** inga ritelement ovanpÃ¥ bilden i steg 06/07 vid 390 eller 768 (768 anvÃ¤nder redan
+skrivbordskoordinater, obeskurna, ingen kodÃ¤ndring dÃ¤r); bildens alla fyra kanter inom
+arket.
+
+## Fix 2 (HIGH) â€” revisionsbokstaven "A" vid 1440
+
+`MOBILE_TEXT['p-c-rev']` hade kvar `[54,451]` som SKRIVBORDS-koordinat (dÃ¶tt vÃ¤rde sedan
+fÃ¶re R4 â€” `plansch()` skriver alltid markupens egna `x="861" y="13"` pÃ¥ â‰¥768, listans
+index 0/1 pÃ¥verkar bara <768, men vÃ¤rdet motsade DOM:en och riskerade framtida fel).
+
+**Fix:** `MOBILE_TEXT['p-c-rev']` satt till `[861, 13, 296, 13]` â€” skrivbordsindex rÃ¤ttat
+till markupens verkliga tal, mobilindex flyttat till centrum av fix 1:s nya 32Ã—16-fÃ¤lt
+(280..312 â†’ mitten x=296; samma 11px-offset frÃ¥n fÃ¤ltets topp som skrivbordets 861/13 har
+i sitt eget 846..876,2..18-fÃ¤lt â†’ y=13).
+
+**MÃ¥l:** "A" i revisionsfÃ¤ltet, aldrig Ã¶ver bilden, vid 1440 och 390.
+
+## Fix 3 (HIGH) â€” aktens utgÃ¥ng vid 1440
+
+UppmÃ¤tt (binÃ¤rsÃ¶kning, `getBoundingClientRect` var 10:e px 13000â€“15500): `.process-stick`
+slÃ¤pper vid scrollYâ‰ˆ14020, `.step-band` fÃ¶r steg 07 vid â‰ˆ14160 â€” en 140px lucka dÃ¤r arket
+(z-index 2, solid `--bg`) redan glider uppÃ¥t medan "07"/FÃ–RVALTNING fortfarande stÃ¥r
+fastnaglad pÃ¥ `top:0`, och skÃ¤r av texten.
+
+Orsak: `.process-stick`s sticky-behÃ¥llare Ã¤r `.process-grid`, som Ã¤rver
+`.process-steps`s totalhÃ¶jd (inklusive `padding-bottom`) â€” den paddingen styr alltsÃ¥
+STICKENS EGEN slÃ¤pppunkt. Band 07:s slÃ¤pp Ã¤r oberoende av den (bara li07:s egen hÃ¶jd mot
+`--band-h`). R4:s 60svh rÃ¤ckte inte.
+
+**Fix (uppmÃ¤tt, inte gissat â€” samma binÃ¤rsÃ¶kning kÃ¶rd mot flera paddingvÃ¤rden):**
+`.process-steps{padding-bottom:60svhâ†’80svh}`. Vid 80svh slÃ¤pper stick vid â‰ˆ14200, 40px
+EFTER band 07:s eget slÃ¤pp (â‰ˆ14160) â€” bandet hinner alltid lÃ¤mna scenen innan arket
+glider Ã¶ver det.
+
+**MÃ¥l:** i en hjulsekvens var 20:e px 13980â€“14240 vid 1440 Ã¤r "07"/FÃ–RVALTNING/brÃ¶dtexten
+antingen hela eller rullar ut i Ã¶verkant, aldrig avskurna av arkets Ã¶verkant.
+
+## Fix 4 (HIGH) â€” jÃ¤tterubrikens typografiska Ã¶gonblick (P04)
+
+`.giant` clampar till 5,5rem (88px) vid 1440 â€” mindre Ã¤n kapitelrubrikens 103,68px.
+JÃ¤tten ska vara sidans starkaste Ã¶gonblick efter heron.
+
+**Fix:** `transform:scale()`-mekanismen (som bara Ã¤ndrar det MÃ…LADE, aldrig layouten â€”
+ordbrytningen fÃ¶rblir lÃ¥st vid basclampens 88px oavsett skalvÃ¤rde) ersatt med en riktig
+`font-size`-hÃ¶jning bunden till `--scrub` (samma variabel som redan styr plÃ¥tens
+breddÃ¶kning, `margin-left`/`width`, rad ~951) i stÃ¤llet fÃ¶r det tidigare `--sc-ps`:
+
+```
+@media (min-width:901px){
+  .js .giant{font-size:calc(clamp(2.1rem,7.4vw - 18px,5.5rem) + var(--scrub,0) * 1.75rem);}
+}
+```
+
+Vid `--scrub`=0 (plÃ¥tens smala 555px-startlÃ¤ge, PLAN 030:s ordbrytningsspalt): 88px,
+ofÃ¶rÃ¤ndrad, kÃ¤nd sÃ¤ker marginal (VARUMÃ„RKE mÃ¤ter 542px, 13px marginal). Vid `--scrub`=1
+(den utskrivna plÃ¥ten, â‰¥1189px bred): 88+28=116px, 12px marginal Ã¶ver 110px-golvet.
+Skopat till â‰¥901px (samma brytpunkt som `.panel-giant`s bleed) â€” under den rÃ¶rs
+basclampen inte, redan verifierad ordbrytningsfri vid 768.
+
+**MÃ¥l:** `?preview=ledger` vid 1440: h2 â‰¥110px, 0 delade ord vid 1024/1280/1440/1920,
+VARUMÃ„RKE helt pÃ¥ en rad.
+
+## GÃ¶r
+
+1. Kirurgiska `Edit` fÃ¶r de fyra fixarna ovan.
+2. Hjulsekvenser genom processaktens slut vid 1440 (40px-steg), steg 06/07 vid 390 och
+   768, jÃ¤ttesektionen vid 768/1024/1280/1440/1920 â†’ `shots/r6/`, lÃ¤s dem.
+3. Kort grind: noll horisontell scroll 320-1920, `a11y_scan` (390, 1440), rubrikskript
+   (noll delade ord), lÃ¥st copy 15/15, grep tankstreck/`prefers-reduced-motion`,
+   `motion_probe` fÃ¶r `#process` vid 1440.
+4. `NOTES.md` Â§ V3d R6, sista raden `V3d R6 klar` eller `[PAUSED â€” steg X]`.
+
+exec
+"C:\\WINDOWS\\System32\\WindowsPowerShell\\v1.0\\powershell.exe" -Command '$p='"'tests/alunix-r8/runs/V3d/index.html'; "'$t=Get-Content -Encoding UTF8 $p; $ranges=@(@(1030,1150),@(1190,1240),@(1440,1535),@(2650,2710)); foreach($r in $ranges){for($i=$r[0];$i -le $r[1];$i++){ '"'{0}: {1}' -f "'$i,$t[$i-1] }}' in C:\Users\Anton L\anti-slop-design
+ succeeded in 308ms:
+1030:   .horai-wrap{min-height:80dvh;background:var(--invert);
+1031:     content-visibility:auto;}
+1032: 
+1033:   /* ---------------------------------------------------------- process
+1034:      PLAN 019, R6. PROCESS: sju stycken i flödet med ett ritat ark sticky
+1035:      bredvid, INTE sju kort, INTE en tidslinje med punkter, INTE korsfadade
+1036:      rubriker. Anton 2026-09-16: stegen är riktiga beskrivningar, inte
+1037:      fråga och svar. Formbeslutet, tre rader: (1) texten är alltid synlig
+1038:      och ligger i flödet, ingen opacitet, ingen korsfadning; (2) arket är
+1039:      sticky bredvid texten (>=1280) eller ovanför den (<=1279) och ritas i
+1040:      takt med att stegen passerar viewportens mitt; sektionens höjd är
+1041:      textens egen, inget 300svh, inget manuellt steg 07 utanför
+1042:      sticky-hållet; (3) varje stegs fönster ankras i stegets egen position
+1043:      i flödet, mätt en gång i measureAct (14 tal, --s1..--e7). */
+1044:   .process{background:var(--bg);color:var(--ink);position:relative;}
+1045:   /* PLAN 052 fix 1 (R5), river R4 fix 3. Leadens R4-prompt strök
+1046:      4-mörka-skärmar-gränsen som motiverade den ljusa grunden - Antons
+1047:      order (processakten inverterad, kapitelskärmen hör till akten) väger
+1048:      tyngre. Ingen lokal --bg/--ink-flipp längre: kapitelskärmen ärver
+1049:      #process (rad ~1358) egna mörka --bg/--ink rakt av. Full skärm
+1050:      (min-height:100svh) + centrering står kvar oförändrad - den delen är
+1051:      färgoberoende och löser fortfarande både 1440 (ensam skärm) och 390
+1052:      (vertikalt centrerad rubrik) i en regel. */
+1053:   .process-chapter{
+1054:     min-height:100svh; display:flex; flex-direction:column;
+1055:     justify-content:center; padding-block:clamp(120px,22svh,240px);}
+1056:   .process-title{font-family:var(--f-display);font-weight:700;
+1057:     /* PLAN 051 fix 4 (R4, Astra material_fixes #4): golvet höjt 2,75rem
+1058:        (44px, uppmätt under Astras 56px-mål vid 390) -> 3.5rem (56px). */
+1059:     font-size:clamp(3.5rem,7.2vw,7.5rem);line-height:.95;letter-spacing:-.03em;
+1060:     color:var(--ink);max-width:14ch;
+1061:     padding:.6rem var(--rail-x) 0;}
+1062:   .process-lead{max-width:40ch;font-size:1.0625rem;
+1063:     color:rgba(22,20,15,.78);margin-top:.8rem;margin-bottom:0;
+1064:     padding:0 var(--rail-x);}
+1065:   /* PLAN 025 A: kickern saknade --rail-x helt (bara title/lead hade den).
+1066:      AVVIKELSE, PLAN 051 fix 3 (R4): kickern flyttad in i .process-chapter
+1067:      (barn, inte längre direkt barn till .process) - selektorn följer med.
+1068:      margin-bottom på .process-lead nollad: .process-chapter (rad ~1005)
+1069:      reserverar hela skärmen via min-height:100svh + centrering, den fasta
+1070:      clampen som förut gjorde jobbet är nu överflödig (skulle bara lägga
+1071:      onödigt utrymme INUTI den redan centrerade kolumnen). */
+1072:   .process-chapter > .kicker-sans{padding-inline:var(--rail-x);}
+1073: 
+1074:   /* PLAN 048 F. INTE en rullande paragraf bredvid ett litet ark: en scen
+1075:      per steg. --band-h skrivs av measureAct (högsta .step-band), fallback
+1076:      nedan. */
+1077:   #process{--band-h:clamp(200px,24svh,240px);}
+1078:   .process-grid{display:grid;grid-template-columns:minmax(0,1fr);margin-top:0;}
+1079:   .process-stick{grid-area:1/1;align-self:start;position:sticky;
+1080:     top:var(--band-h);margin-top:var(--band-h);height:calc(100svh - var(--band-h));
+1081:     z-index:2;background:var(--bg);display:flex;align-items:center;justify-content:center;
+1082:     padding:clamp(6px,1svh,12px) var(--rail-x) clamp(12px,2svh,20px);}
+1083:   .process-sheet{display:block;height:auto;max-width:none;aspect-ratio:880/495;
+1084:     width:min(100%,calc((100svh - var(--band-h) - clamp(18px,3svh,32px)) * 880 / 495));}
+1085:   .process-steps{grid-area:1/1;z-index:1;list-style:none;margin:0;padding:0;}
+1086:   /* PLAN 051 fix 1 (R4, Astra material_fixes #1). Gridets totalhöjd (7×
+1087:      (band-h+90svh)) satte .process-steks bottenkant, alltså stickens
+1088:      släpppunkt, vid ps≈0,8826 - matchar --s7 (steg 07:s EGEN start), inte
+1089:      --e7 (0,9444, där k7 når 1). Steg 07 fick aldrig stå färdigt: arket
+1090:      släppte innan bandet ens hunnit tona in helt. 60svh extra scrollrum
+1091:      EFTER sista li (ingen ny scen, samma färdiga bild, bara mer tid att
+1092:      stå still i den) flyttar släppet förbi e7 med marginal - uppmätt,
+1093:      inte gissat (se NOTES § V3d R4). */
+1094:   /* PLAN 053 fix 3 (R6, Astra material_fixes #3). 60svh räckte inte:
+1095:      .process-stick släppte (scrollY ~14020 vid 1440) FÖRE band 07s eget
+1096:      sticky-släpp (~14160, när li07s återstående höjd blir mindre än
+1097:      --band-h) - en 140px lucka där arket (z-index 2, solid --bg) redan
+1098:      glider uppåt i normalt flöde MEDAN "07"/FÖRVALTNING fortfarande
+1099:      står fastnaglad på top:0 undertill, och skär av text. Uppmätt live
+1100:      (binärsökning, inte gissat): .process-steps padding-bottom styr
+1101:      .process-stick:s EGEN släpppunkt (dess sticky-behållare är
+1102:      .process-grid, som ärver process-steps höjd), medan band 07s släpp
+1103:      är oberoende av den paddingen (bara li07s egen höjd mot --band-h).
+1104:      80svh flyttar stickens släpp till ~14200, 40px EFTER band 07s eget -
+1105:      bandet hinner alltid lämna scenen (eller stå kvar orört) innan arket
+1106:      böjar glida över det. */
+1107:   .process-steps{padding-bottom:80svh;}
+1108:   /* PLAN 049 fix 7 (Astra material_fixes #7): kodan togs bort. Den höll
+1109:      kvar arket, FÄRDIGT och OFÖRÄNDRAT, en extra hel skärm efter att band
+1110:      07 lämnat - tre visningar av samma bild i rad (06, 07, kodan), och
+1111:      fix 1 gör 07 till en riktig, skild scen nu (revisionsfältet syns).
+1112:      Ingen ersättande scen behövs. */
+1113:   .process-steps li{min-height:calc(var(--band-h) + 90svh);padding:0;}
+1114:   .step-band{position:sticky;top:0;height:var(--band-h);background:var(--bg);
+1115:     display:grid;grid-template-columns:auto max-content minmax(0,42rem);
+1116:     column-gap:clamp(24px,3vw,56px);align-items:start;
+1117:     padding:clamp(20px,3svh,32px) var(--rail-x) clamp(12px,2svh,20px);
+1118:     border-bottom:1px solid var(--c-line-on-paper);}
+1119:   .step-band > .ledger-num{grid-column:1;grid-row:1 / span 2;}
+1120:   .step-band > .process-step-title{grid-column:2;}
+1121:   .step-band > .process-note{grid-column:2;grid-row:2;}
+1122:   .step-band > .process-p{grid-column:3;grid-row:1 / span 2;}
+1123:   #process .ledger-num{font-family:var(--f-display);font-weight:700;
+1124:     font-size:clamp(5rem,11.7vw,10.5rem);line-height:.8;letter-spacing:-.04em;
+1125:     font-variant-numeric:tabular-nums;padding:0;}
+1126:   .process-step-title{font-family:var(--f-display);font-weight:700;
+1127:     font-size:clamp(2rem,3.6vw,3.25rem);line-height:.95;letter-spacing:-.02em;
+1128:     text-transform:uppercase;color:var(--ink);}
+1129:   .process-p{font-family:var(--font);font-weight:300;font-size:1.0625rem;
+1130:     line-height:1.6;max-width:66ch;}
+1131:   .process-note{font-weight:600;font-size:13px;color:var(--hair-ink);
+1132:     max-width:28ch;margin-top:.8rem;}
+1133:   @media (max-width:1023px) and (min-width:768px){
+1134:     .step-band{grid-template-columns:auto minmax(0,1fr);row-gap:16px;}
+1135:     .step-band .process-p{grid-column:1 / -1;}
+1136:   }
+1137: 
+1138:   /* PLAN 048 F step 14. Siffran och rubriken tänds med steget, läser
+1139:      --kN alltså --sc-ps (F-014). Ingen opacity på text: färgen vandrar
+1140:      62% -> 100% bläck, samma additiva grepp som liggarens ordscrub. */
+1141:   .process-steps li[data-step="01"]{--k:var(--k1);--s:var(--s1);}
+1142:   .process-steps li[data-step="02"]{--k:var(--k2);--s:var(--s2);}
+1143:   .process-steps li[data-step="03"]{--k:var(--k3);--s:var(--s3);}
+1144:   .process-steps li[data-step="04"]{--k:var(--k4);--s:var(--s4);}
+1145:   .process-steps li[data-step="05"]{--k:var(--k5);--s:var(--s5);}
+1146:   .process-steps li[data-step="06"]{--k:var(--k6);--s:var(--s6);}
+1147:   .process-steps li[data-step="07"]{--k:var(--k7);--s:var(--s7);}
+1148:   /* PLAN 049 fix 5 (Astra material_fixes #5), uppmätt live (scrollY
+1149:      11700, 1440): sticky-mekaniken skjuter band N uppåt förbi top:0 i
+1150:      takt med att dess <li> tar slut (spec, inte en bugg) - band 06
+1190:   .process-sheet #p-hatch-pattern line{stroke:var(--hair-ink);}
+1191:   .process-sheet path,.process-sheet rect{stroke-linecap:butt;stroke-linejoin:miter;}
+1192: 
+1193:   /* --- ritmekaniken. pathLength="1" normaliserar varje bana; enheten
+1194:      *1px på stroke-dashoffset är obligatorisk (K3-r8/index.html:263-268).
+1195:      En streckad hjälplinje kan inte dash-ritas (dasharray gör redan ett
+1196:      jobb), så guide/stations/ledgers/hatch avslöjas med clip-path. */
+1197:   .process-sheet .draw{stroke-dasharray:1px;stroke-dashoffset:calc((1 - var(--p-l)) * 1px);
+1198:     /* Markörer (pilspetsar) positioneras på banans vertex, inte på den
+1199:        synliga stroken - stroke-dashoffset klipper dem inte (R5-fyndet).
+1200:        Snäpp-opacitet döljer dem tills banan faktiskt börjat rita. */
+1201:     opacity:clamp(0,calc(var(--p-l) * 9999),1);}
+1202:   .process-sheet .wipe{clip-path:inset(0 calc((1 - var(--p-l)) * 100%) 0 0);}
+1203: 
+1204:   .process-sheet .callout{font-family:var(--font);font-weight:600;font-size:12px;
+1205:     letter-spacing:.16em;text-transform:uppercase;fill:var(--hair-ink);
+1206:     opacity:var(--p-t);}
+1207:   .process-sheet .measure{font-family:var(--f-display);font-weight:700;
+1208:     font-size:44px;font-variant-numeric:tabular-nums;
+1209:     /* PLAN 020 Target D. Tonbytet: vid --k6 = 1 (steg 06 i mitten) är
+1210:        kedjan --hair-ink, inte längre blå - H-33, ett blått moment per
+1211:        skärm, inte ett kvarglömt (R5-fyndet: siffrorna förblev accent
+1212:        efter fallet). Skärm 05: siffrorna viker till 0,7 opacitet när
+1213:        Calyx-bilden landar (TASTE § 4.8: bilden är skärmens auktoritet)
+1214:        utan att försvinna helt - multiplicerat med fade-in-tonen --p-t,
+1215:        inte i stället för den. */
+1216:     fill:color-mix(in srgb, var(--c-accent), var(--hair-ink) calc(100% * var(--k6)));
+1217:     /* PLAN 049 fix 4 (Astra material_fixes #4): * var(--cam-fade) tonar
+1218:        måttsiffrorna bort innan kameran skjuter in dem mot arkets kant
+1219:        (annars kapas "1440" mot högerkanten, uppmätt). Multiplikativt
+1220:        tillägg till den befintliga formeln, inte en ersättning. */
+1221:     opacity:calc(var(--p-t) * (1 - 0.3 * var(--k5)) * var(--cam-fade));transform-box:fill-box;
+1222:     /* 44 -> 12px = faktor 1 - 0.7273. transform-box:fill-box: annars
+1223:        skalar siffran mot SVG:ns user-space-nollpunkt (K3-fällan). */
+1224:     transform:scale(calc(1 - 0.7273 * var(--k6)));}
+1225:   #p-m320,#p-m768{transform-origin:50% 100%;}
+1226:   #p-m1440{transform-origin:100% 100%;}
+1227: 
+1228:   .process-sheet .p-live{
+1229:     clip-path:inset(0 0 calc((1 - var(--k5)) * 100%) 0);
+1230:     /* PLAN 046: gråskalan är ritningens material; färgen kommer när ritningen
+1231:        blir sida. Samma fönster som resten av steg 06:s tillbakadragning
+1232:        (.measure tonbyte och skala, #p-guides/#p-ledgers/#p-hatch opacitet,
+1233:        .contour viktfall) - en gest i fyra egenskaper, inte fyra gester. */
+1234:     filter:grayscale(calc(1 - var(--k6))) contrast(1.05);}
+1235: 
+1236:   /* s-process-06: konturernas viktfall och hjälplinjer/skraffering som
+1237:      tonar till 0,35 opacitet (bara hjälplinjer och skraffering, inte
+1238:      måttlinjer eller ledare - R5-fyndet om selektorns bredd). */
+1239:   .process-sheet .contour{stroke-width:calc(var(--contour-line) - 0.75px * var(--k6));}
+1240:   /* PLAN 020 Target E. AVVIKELSE (R5): klasselektorn .guide,.hatch
+1440:        i .process-grid, som redan är grid-template-columns:1fr här. */
+1441:     .process-stick{order:-1;position:sticky;top:0;z-index:2;height:auto;
+1442:       margin-top:0;grid-area:auto;
+1443:       background:var(--bg);padding:12px 0;justify-self:center;
+1444:       width:min(100% - 32px,560px);}
+1445:     .step-band{position:static;height:auto;display:block;border:0;}
+1446:     .process-steps{grid-area:auto;width:min(100%,560px);justify-self:center;
+1447:       padding-bottom:clamp(160px,22vh,220px);}
+1448:     .process-steps::after{display:none;}
+1449:     .process-steps li{min-height:calc(100svh - var(--sheet-h));
+1450:       padding-block:clamp(24px,4svh,40px);}
+1451:     #process .ledger-num{font-size:clamp(4.5rem,22vw,6rem);}
+1452:     .process-step-title{font-size:2rem;}
+1453: 
+1454:     #p-guides,#p-ledgers,#p-dim-gutter,#p-stations,
+1455:     #p-c-gutter{display:none;}
+1456:     /* PLAN 049 fix 7 (Astra material_fixes #7): steg 04 ritade ingenting
+1457:        på mobil - hela dess grupp (#p-hatch/#p-dim-row/#p-c-row) dolds.
+1458:        Egna mobilkoordinater i stället, i den smala remsan mellan
+1459:        öppningens underkant (230) och måttlinjen (286): en liten
+1460:        skrafferad ruta plus dess måttledare, samma roll som
+1461:        raddelningen på skrivbordet (96 px), bara flyttad dit ytan finns
+1462:        på en 320 bred plansch. */
+1463:     /* AVVIKELSE, PLAN 051 fix 4 (R4, Astra material_fixes #4): 16x16px
+1464:        lästes inte som en synlig ändring, och #p-c-rows CSS x/y gjorde
+1465:        ingenting (en <text> läser bara SVG-attribut, inte CSS x/y) - "96 px"
+1466:        stod kvar på skrivbordskoordinaten 102/333, utanför 320x300-
+1467:        viewBoxen. #p-c-row flyttat till MOBILE_TEXT (samma mönster som
+1468:        p-m320/p-c-169/p-c-rev redan använder, rad ~2586) i stället, med
+1469:        riktiga mobilkoordinater. Hatchen höjd 16->80px, väl över 48px-golvet. */
+1470:     #p-hatch{x:8px;y:75px;width:16px;height:80px;}
+1471:     #p-dim-row{d:path("M32 75 V155")}
+1472: 
+1473:     #p-outline{d:path("M0.5 0.5 H319.5 V199.5 H0.5 Z");}
+1474:     /* PLAN 052 fix 2 (R5), river R4 fix 4. R4:s 304x260-ruta (1,169:1) var
+1475:        fortfarande inte 16:9 (1,778:1) - #p-live-img:s preserveAspectRatio
+1476:        "xMidYMin slice" fyllde rutan genom att BESKÄRA sidled, rubriken
+1477:        klipptes till "mical/tecture/kholm" (leadens R5-fynd). En 16:9-ruta
+1478:        som håller sig inom 320 bred kan aldrig nå 80% av en 320x300-yta
+1479:        (max ~54%) - 80%, 16:9 och bredd<=320 utesluter varandra i den
+1480:        formen. Löst genom att sänka ARKETS EGEN höjd (300->200, bredden
+1481:        320 oförändrad - alla x-koordinater för titelblock/16:9-callout/
+1482:        hatch/måttlinjer förblir giltiga), inte genom mer zoom: 304x171 =
+1483:        exakt 16:9, och 304x171 / 320x200 = 81,2% av ytan, över 80%-målet.
+1484:        Noll beskärning: när rutans egen proportion matchar bildens blir
+1485:        "slice" identiskt med fit. */
+1486:     #p-opening{d:path("M8 20 H312 V191 H8 Z");}
+1487:     #p-open-rect,#p-live-img{x:8px;y:20px;width:304px;height:171px;}
+1488:     /* Måttlinjen och siffrorna (nedan, MOBILE_TEXT) följer samma +6/-4 px-
+1489:        offset mot öppningens nya underkant (191) som de hade mot den gamla
+1490:        (280) - själva mönstret rörs inte, bara talen räknas om. */
+1491:     #p-dim-width{d:path("M0 197 H320");}
+1492:     #p-lead-169{d:path("M304 68 L296 60 H200");}
+1493:     #p-dot-169{cx:304px;cy:68px;}
+1494:     /* PLAN 053 fix 1 (R6, Astra material_fixes #1). Revisionsfältet stod
+1495:        kvar på sin FÖR-R5-position (y16..52, en tre-radig ISO 7200-stapel
+1496:        ärvd från innan mobilen fick ett eget enradigt fält) - efter R5:s
+1497:        nya öppning (y20..191) hamnade hela stapeln INUTI fotot och korsade
+1498:        Calyx navigation. Flyttat till den fria remsan OVANFÖR öppningen
+1499:        (y0..20, tom på både R5:s och denna sidans geometri) och krympt
+1500:        till samma enradiga 32x16-box som skrivbordets (846..876,2..18,
+1501:        rad ~1929) redan använder - samma mönster, mobilens egna mått. */
+1502:     #p-title{d:path("M280 2 H312 V18 H280 Z");}
+1503:     #p-rev{x:280px;y:2px;width:32px;height:16px;}
+1504:     /* #p-glyph (steg 01:s ordmärke, :1857) är ark-fast i viewBox-enheter
+1505:        (translate(24,24), ingen mobil CSS-override tidigare) - på
+1506:        skrivbordet (880 bred) ligger 24,24 utanför öppningens 264..802,
+1507:        men i mobilens 320 breda viewBox ligger den mitt i öppningens
+1508:        8..312 och stod kvar i full ton över Calyx övre vänstra hörn hela
+1509:        vägen till steg 07 (ingen cam-fade, till skillnad från #p-hatch/
+1510:        #p-ledgers som redan har den, rad ~1218). Samma tillbakadragning
+1511:        här: tonar ut i takt med att kameran zoomar in (05->07), precis
+1512:        som allt annat som annars skulle ligga ovanpå fotot. */
+1513:     #p-glyph{opacity:var(--cam-fade);}
+1514:     /* PLAN 053 fix 1: 304 * 1,08 = 328 > 320 - öppningen (och klippytan
+1515:        som delar #p-cam:s transform, se PLAN 052-kommentaren vid
+1516:        #p-opening) växte utanför det fasta 320 breda arket vid --cam=1,
+1517:        uppmätt 367px liveyta i ett 358px ark. 0,05 i stället för 0,08:
+1518:        304 * 1,05 = 319,2 <= 320, ingen beskärning mot arkets egen kant. */
+1519:     #p-cam{transform-origin:160px 100px;transform:scale(calc(1 + 0.05 * var(--cam)));}
+1520:     /* width:100% ersätter skrivbordsformelns calc(), som annars gav arket
+1521:        296px (mindre än sin egen sticky-behållares 343px) - samma fel som
+1522:        .process-stick:s height ovan, samma fix: fyll behållaren. */
+1523:     .process-sheet{aspect-ratio:320/200;width:100%;max-width:none;}
+1524:     #p-m320,#p-m768,#p-m1440{font-size:34px;}
+1525:   }
+1526: 
+1527:   /* ---------------------------------------------------------- s7, avslutet
+1528:      En rad, en adress, ingenting mer. Ligger på den kontinuerliga grunden,
+1529:      full bredd under båda spalterna, och stänger sidan i stället för att
+1530:      tona ut den. */
+1531:   /* Plan 007: .close delade sista viewporten med prisblocket/Hōrai (108px
+1532:      toppadding, 274px total höjd av 900). min-height:62svh ger mailto-raden
+1533:      en egen skärm vid 1440 och 390, staplat lugnt i mitten. */
+1534:   /* PLAN 015: 62svh delade viewporten med liggaren (Astra loop 1 fix 6);
+1535:      100svh ger avslutet hela sin skärm, ensamt. Footern är sidans sista
+2650:      fast en SÄMRE position som sedan aldrig rättades, eftersom nästa
+2651:      scrollY råkade stämma med det den just satt. 200ms utan ny drift innan
+2652:      omsikte. */
+2653:   var aimDriftT = null;
+2654:   addEventListener('scroll', function(){
+2655:     if (!(mode && /^process-0[1-7]$/.test(mode) && process)) return;
+2656:     if (aimLastY === null || Math.abs(scrollY - aimLastY) <= 1) return;
+2657:     if (aimDriftT) clearTimeout(aimDriftT);
+2658:     aimDriftT = setTimeout(aimPreview, 200);
+2659:   }, { passive:true });
+2660:   addEventListener('load', aimPreview);
+2661:   if (document.fonts && document.fonts.ready) document.fonts.ready.then(aimPreview);
+2662: 
+2663:   /* PLAN 019, R6, Step 8 / PLAN 048 E step 10. <=767: arket byts till den
+2664:      reducerade planschen (320x200, PLAN 052/R5, var 320x300, ursprungligen
+2665:      320x360): egen viewBox (attribut,
+2666:      inte CSS-egenskap) och måttsiffror/de två kvarvarande utropens x/y
+2667:      (presentationsattribut på <text>, en CSS-regel mot dem ignoreras tyst,
+2668:      K3-r8/index.html rad 413-417). Samma teknik som K3:s egen
+2669:      plansch()-funktion, rad 1101-1124. Skrivbordsvärdena i MOBILE_TEXT
+2670:      rörs inte. */
+2671:   var sheet = document.getElementById('processSheet');
+2672:   /* PLAN 052 fix 2 (R5): p-m320/768/1440 mobil-y 276->187, samma -4px-
+2673:      offset mot öppningens nya underkant (191, var 280) - se CSS-kommentaren
+2674:      vid #p-dim-width. p-c-169/p-c-row rörs inte, de ligger redan
+2675:      inom öppningens oförändrade övre ~155px. */
+2676:   /* PLAN 053 fix 2 (R6, Astra material_fixes #2). Skrivbordsvärdet [54,451]
+2677:      var kvar sedan före R4 (ett dött värde - plansch() skriver alltid
+2678:      skrivbordets EGNA x/y (861/13, markupen rad ~1931) på >=768 ändå,
+2679:      MOBILE_TEXT:s [0]/[1] påverkar bara <768). Rättat till markupens tal
+2680:      så listan inte längre motsäger DOM:en. Mobilvärdet (index 2/3) flyttat
+2681:      till centrum av fix 1:s nya 32x16-fält (280..312, 2..18): x=296
+2682:      (mitten), y=13 (samma 11px-offset från fältets topp som skrivbordets
+2683:      861/13 har mot sitt eget 846..876,2..18-fält). */
+2684:   var MOBILE_TEXT = {
+2685:     'p-m320':  [195.6, 455, 71,  187],
+2686:     'p-m768':  [469.3, 455, 171, 187],
+2687:     'p-m1440': [856,   455, 304, 187],
+2688:     'p-c-169': [858,   104, 196, 64],
+2689:     'p-c-rev': [861,   13,  296, 13],
+2690:     /* PLAN 051 fix 4 (R4, Astra material_fixes #4): saknades helt här,
+2691:        så mobilens CSS-satta x/y (borttagna, :1362-1379-området) hade
+2692:        ingen effekt - en <text> läser bara SVG-attribut. Mobilkoordinat
+2693:        vald mot den nya, högre hatchen (8,75,16,80) - höger om måttlinjen
+2694:        (x32), lodrätt centrerad i dess spann (75-155). */
+2695:     'p-c-row':  [102,   333, 40,  118]
+2696:   };
+2697:   function plansch(){
+2698:     if (!sheet) return;
+2699:     var small = matchMedia('(max-width: 767px)').matches;
+2700:     sheet.setAttribute('viewBox', small ? '0 0 320 200' : '0 0 880 495');
+2701:     Object.keys(MOBILE_TEXT).forEach(function(id){
+2702:       var el = document.getElementById(id);
+2703:       if (!el) return;
+2704:       var v = MOBILE_TEXT[id];
+2705:       el.setAttribute('x', small ? v[2] : v[0]);
+2706:       el.setAttribute('y', small ? v[3] : v[1]);
+2707:     });
+2708:   }
+2709:   plansch();
+2710:   addEventListener('resize', plansch, { passive:true });
+
+exec
+"C:\\WINDOWS\\System32\\WindowsPowerShell\\v1.0\\powershell.exe" -Command "rg -n 'p-title|p-rev|p-cam|p-live|p-c-rev|measureAct|bandH|band-h|scrub,0' tests/alunix-r8/runs/V3d/index.html; Get-ChildItem tests/alunix-r8/runs/V3d/shots/astra-r6 -Name" in C:\Users\Anton L\anti-slop-design
+ succeeded in 265ms:
+813:     --band-h 216 -> 1849px) - en bakgrundsbild målas, skapar ingen box,
+942:    .js .giant{font-size:calc(clamp(2.1rem,7.4vw - 18px,5.5rem) + var(--scrub,0) * 1.75rem);}
+1043:     i flödet, mätt en gång i measureAct (14 tal, --s1..--e7). */
+1075:     per steg. --band-h skrivs av measureAct (högsta .step-band), fallback
+1077:  #process{--band-h:clamp(200px,24svh,240px);}
+1080:    top:var(--band-h);margin-top:var(--band-h);height:calc(100svh - var(--band-h));
+1084:    width:min(100%,calc((100svh - var(--band-h) - clamp(18px,3svh,32px)) * 880 / 495));}
+1087:     (band-h+90svh)) satte .process-steks bottenkant, alltså stickens
+1097:     --band-h) - en 140px lucka där arket (z-index 2, solid --bg) redan
+1103:     är oberoende av den paddingen (bara li07s egen höjd mot --band-h).
+1113:  .process-steps li{min-height:calc(var(--band-h) + 90svh);padding:0;}
+1114:  .step-band{position:sticky;top:0;height:var(--band-h);background:var(--bg);
+1120:  .step-band > .process-step-title{grid-column:2;}
+1126:  .process-step-title{font-family:var(--f-display);font-weight:700;
+1159:     egen höjd i liv-enheter (--band-h/--life), växer sedan linjärt till
+1162:     skrivs av measureAct (samma mönster som --band-h, en gång per
+1167:      --slit-start:calc(var(--s) - var(--band-h) / var(--life, 9999px));
+1176:  #process .step-band .process-step-title{
+1228:  .process-sheet .p-live{
+1241:     träffade även #p-rev (revisionsfältets skraffering bär class="hatch
+1244:     bara de tre element som faktiskt ska tona; #p-rev står i full ton. */
+1257:     först i #p-cam), så den behöver tona mot BÅDA --k5 (ritfasen, då
+1268:     fallback här (no-JS-golvet); JS (measureAct) skriver de uppmätta. */
+1315:  #p-title{--p-l:clamp(0,calc((var(--k7) - 0) / 0.5),1);}
+1316:  #p-rev{--p-l:clamp(0,calc((var(--k7) - 0.4) / 0.5),1);}
+1317:  #p-c-rev{--p-t:clamp(0,calc((var(--k7) - 0.85) / 0.15),1);}
+1327:     #p-frame står still; bara innehållet i #p-cam rör sig. Läser
+1330:  #p-cam{transform-box:view-box;transform-origin:533px 247.5px;
+1414:  .process-sheet .p-live{
+1427:    /* height:auto åsidosätter skrivbordsregelns calc(100svh - var(--band-h)):
+1428:       --band-h har ett CSS-fallback (rad ~915) som annars gav .process-stick
+1436:       margin-top:var(--band-h) (202,56px vid 390, aldrig satt av JS på
+1452:    .process-step-title{font-size:2rem;}
+1468:       p-m320/p-c-169/p-c-rev redan använder, rad ~2586) i stället, med
+1475:       fortfarande inte 16:9 (1,778:1) - #p-live-img:s preserveAspectRatio
+1487:    #p-open-rect,#p-live-img{x:8px;y:20px;width:304px;height:171px;}
+1502:    #p-title{d:path("M280 2 H312 V18 H280 Z");}
+1503:    #p-rev{x:280px;y:2px;width:32px;height:16px;}
+1515:       som delar #p-cam:s transform, se PLAN 052-kommentaren vid
+1519:    #p-cam{transform-origin:160px 100px;transform:scale(calc(1 + 0.05 * var(--cam)));}
+1786:          <h3 class="process-step-title">Uppstart</h3>
+1795:          <h3 class="process-step-title">Planering</h3>
+1804:          <h3 class="process-step-title">Design</h3>
+1813:          <h3 class="process-step-title">Utveckling</h3>
+1822:          <h3 class="process-step-title">Innehåll</h3>
+1831:          <h3 class="process-step-title">Lansering</h3>
+1840:          <h3 class="process-step-title">Förvaltning</h3>
+1878:               steg 01) står FÖRE #p-cam och skalas aldrig - "rutan" står
+1879:               still, bara innehållet i #p-cam rör sig när --cam ökar
+1886:          <g id="p-cam">
+1894:            <g clip-path="url(#p-open)" class="p-live">
+1895:              <image id="p-live-img" href="assets/demo-calyx-1440-color.webp" x="264" y="96" width="538" height="303"
+1902:               #p-frame) till en egen grupp UTAN data-step inne i #p-cam -
+1959:          </g><!-- /#p-cam -->
+1962:               Flyttat ut ur #p-cam (Astra r1-astra.md material_fixes #1):
+1964:               vilket landade #p-title på x -323,5..-233,5 - helt utanför
+1971:               `.p-live`s kamerazoomade rect - vid --cam=1 (samma zoom som
+1984:            <path id="p-title" class="dimline draw" pathLength="1"
+1986:            <rect id="p-rev" class="hatch wipe" x="846" y="2" width="30" height="16"/>
+1987:            <text id="p-c-rev" class="callout" x="861" y="13" text-anchor="middle">A</text>
+2301:  function measureAct(){
+2320:      /* PLAN 048 F step 16. --band-h (desktop) eller --sheet-h (mobil)
+2322:         på talet (.process-steps li{min-height:calc(var(--band-h) + 90svh)}
+2327:        var bandH = 0;
+2328:        for (var b = 0; b < bands.length; b++){ bandH = Math.max(bandH, bands[b].scrollHeight); }
+2329:        bandH = Math.ceil(bandH);
+2330:        if (bandH && bandH !== lastBandH){
+2331:          lastBandH = bandH;
+2332:          process.style.setProperty('--band-h', bandH + 'px');
+2344:         som --band-h/--sheet-h ovan - inte en per-bildruta-skrivning.
+2361:      /* PLAN 048 E step 9. Indexerad per data-step som en LISTA: #p-cam
+2373:  measureAct();
+2374:  addEventListener('resize', measureAct, { passive:true });
+2375:  addEventListener('load', measureAct);
+2380:     mäts i stället en gång här (samma utlösare som measureAct: mount,
+2583:     innan load/fonts.ready hunnit dispatcha resize -> measureAct() med de
+2588:     EFTER relayout (rad 1605-1607) så measureAct redan kört (dispatchEvent
+2592:    measureAct();
+2689:    'p-c-rev': [861,   13,  296, 13],
+ours
+band768.py
+capture.log
+capture.py
+codex-err.txt
+codex-out.txt
+exit-13760.png
+exit-13800.png
+exit-13840.png
+exit-13880.png
+exit-13920.png
+exit-13960.png
+exit-14000.png
+exit-14040.png
+exit-14080.png
+exit-14120.png
+exit-14160.png
+exit-14200.png
+exit-14240.png
+exit-14280.png
+exit-14320.png
+exit-14360.png
+exit-14400.png
+exit-14440.png
+giant-1024.png
+giant-1280.png
+giant-1440.png
+giant-1920.png
+giant-768.png
+P01-1440.png
+P01-390.png
+P02-1440.png
+P02-390.png
+P03-1440.png
+P03-390.png
+P04-1440.png
+P04-390.png
+P05-1440.png
+P05-390.png
+P06-1440.png
+P06-390.png
+P07-1440.png
+P07-390.png
+P08-1440.png
+P08-390.png
+P09-1440.png
+P09-390.png
+P10-1440.png
+P10-390.png
+P11-1440.png
+P11-390.png
+P12-1440.png
+P12-390.png
+P13-1440.png
+P13-390.png
+P14-1440.png
+P14-390.png
+P15a-1440.png
+P15a-390.png
+P15b-1440.png
+P15b-390.png
+positions.json
+prompt.txt
+sheet-ours-1440.png
+sheet-ours-390.png
+steg-390-process-05.png
+steg-390-process-06.png
+steg-390-process-07.png
+steg-768-process-05.png
+steg-768-process-06.png
+steg-768-process-07.png
+strip-exit-1440.png
+verify.json
+verify.log
+verify.py
+zoom-390-06-sheet.png
+zoom-390-07-rev.png
+
+codex
+The larger heading and mobile image crop appear fixed. Two defects remain: the tablet paragraph retains a grid row that overlaps the number and note, and the mobile revision box extends into the image after camera scaling. I’ll check the exit sequence before closing the previous review’s third fix.
+exec
+"C:\\WINDOWS\\System32\\WindowsPowerShell\\v1.0\\powershell.exe" -Command 'Get-Content -Encoding UTF8 tests/alunix-r8/runs/V3d/shots/astra-r6/verify.json' in C:\Users\Anton L\anti-slop-design
+ succeeded in 544ms:
+{
+ "exit": [
+  {
+   "y": 13760,
+   "band": [
+    0,
+    216
+   ],
+   "stickTop": 216,
+   "stickBottom": 900,
+   "cut": [],
+   "kids": [
+    [
+     "07",
+     30,
+     165
+    ],
+    [
+     "F\u00f6rvaltning",
+     27,
+     76
+    ],
+    [
+     "Vi finns kvar ",
+     27,
+     109
+    ],
+    [
+     "Revisionsf\u00e4lte",
+     124,
+     163
+    ]
+   ]
+  },
+  {
+   "y": 13800,
+   "band": [
+    0,
+    216
+   ],
+   "stickTop": 216,
+   "stickBottom": 900,
+   "cut": [],
+   "kids": [
+    [
+     "07",
+     29,
+     164
+    ],
+    [
+     "F\u00f6rvaltning",
+     27,
+     76
+    ],
+    [
+     "Vi finns kvar ",
+     27,
+     109
+    ],
+    [
+     "Revisionsf\u00e4lte",
+     124,
+     163
+    ]
+   ]
+  },
+  {
+   "y": 13840,
+   "band": [
+    0,
+    216
+   ],
+   "stickTop": 216,
+   "stickBottom": 900,
+   "cut": [],
+   "kids": [
+    [
+     "07",
+     28,
+     163
+    ],
+    [
+     "F\u00f6rvaltning",
+     27,
+     76
+    ],
+    [
+     "Vi finns kvar ",
+     27,
+     109
+    ],
+    [
+     "Revisionsf\u00e4lte",
+     124,
+     163
+    ]
+   ]
+  },
+  {
+   "y": 13880,
+   "band": [
+    0,
+    216
+   ],
+   "stickTop": 216,
+   "stickBottom": 900,
+   "cut": [],
+   "kids": [
+    [
+     "07",
+     27,
+     162
+    ],
+    [
+     "F\u00f6rvaltning",
+     27,
+     76
+    ],
+    [
+     "Vi finns kvar ",
+     27,
+     109
+    ],
+    [
+     "Revisionsf\u00e4lte",
+     124,
+     163
+    ]
+   ]
+  },
+  {
+   "y": 13920,
+   "band": [
+    0,
+    216
+   ],
+   "stickTop": 216,
+   "stickBottom": 900,
+   "cut": [],
+   "kids": [
+    [
+     "07",
+     27,
+     161
+    ],
+    [
+     "F\u00f6rvaltning",
+     27,
+     76
+    ],
+    [
+     "Vi finns kvar ",
+     27,
+     109
+    ],
+    [
+     "Revisionsf\u00e4lte",
+     124,
+     163
+    ]
+   ]
+  },
+  {
+   "y": 13960,
+   "band": [
+    0,
+    216
+   ],
+   "stickTop": 216,
+   "stickBottom": 900,
+   "cut": [],
+   "kids": [
+    [
+     "07",
+     27,
+     161
+    ],
+    [
+     "F\u00f6rvaltning",
+     27,
+     76
+    ],
+    [
+     "Vi finns kvar ",
+     27,
+     109
+    ],
+    [
+     "Revisionsf\u00e4lte",
+     124,
+     163
+    ]
+   ]
+  },
+  {
+   "y": 14000,
+   "band": [
+    0,
+    216
+   ],
+   "stickTop": 216,
+   "stickBottom": 900,
+   "cut": [],
+   "kids": [
+    [
+     "07",
+     27,
+     161
+    ],
+    [
+     "F\u00f6rvaltning",
+     27,
+     76
+    ],
+    [
+     "Vi finns kvar ",
+     27,
+     109
+    ],
+    [
+     "Revisionsf\u00e4lte",
+     124,
+     163
+    ]
+   ]
+  },
+  {
+   "y": 14040,
+   "band": [
+    0,
+    216
+   ],
+   "stickTop": 216,
+   "stickBottom": 900,
+   "cut": [],
+   "kids": [
+    [
+     "07",
+     27,
+     161
+    ],
+    [
+     "F\u00f6rvaltning",
+     27,
+     76
+    ],
+    [
+     "Vi finns kvar ",
+     27,
+     109
+    ],
+    [
+     "Revisionsf\u00e4lte",
+     124,
+     163
+    ]
+   ]
+  },
+  {
+   "y": 14080,
+   "band": [
+    0,
+    216
+   ],
+   "stickTop": 216,
+   "stickBottom": 900,
+   "cut": [],
+   "kids": [
+    [
+     "07",
+     27,
+     161
+    ],
+    [
+     "F\u00f6rvaltning",
+     27,
+     76
+    ],
+    [
+     "Vi finns kvar ",
+     27,
+     109
+    ],
+    [
+     "Revisionsf\u00e4lte",
+     124,
+     163
+    ]
+   ]
+  },
+  {
+   "y": 14120,
+   "band": [
+    0,
+    216
+   ],
+   "stickTop": 216,
+   "stickBottom": 900,
+   "cut": [],
+   "kids": [
+    [
+     "07",
+     27,
+     161
+    ],
+    [
+     "F\u00f6rvaltning",
+     27,
+     76
+    ],
+    [
+     "Vi finns kvar ",
+     27,
+     109
+    ],
+    [
+     "Revisionsf\u00e4lte",
+     124,
+     163
+    ]
+   ]
+  },
+  {
+   "y": 14160,
+   "band": [
+    -3,
+    213
+   ],
+   "stickTop": 216,
+   "stickBottom": 900,
+   "cut": [],
+   "kids": [
+    [
+     "07",
+     24,
+     158
+    ],
+    [
+     "F\u00f6rvaltning",
+     24,
+     73
+    ],
+    [
+     "Vi finns kvar ",
+     24,
+     106
+    ],
+    [
+     "Revisionsf\u00e4lte",
+     121,
+     160
+    ]
+   ]
+  },
+  {
+   "y": 14200,
+   "band": [
+    -43,
+    173
+   ],
+   "stickTop": 209,
+   "stickBottom": 893,
+   "cut": [],
+   "kids": [
+    [
+     "07",
+     -16,
+     118
+    ],
+    [
+     "F\u00f6rvaltning",
+     -16,
+     33
+    ],
+    [
+     "Vi finns kvar ",
+     -16,
+     66
+    ],
+    [
+     "Revisionsf\u00e4lte",
+     81,
+     120
+    ]
+   ]
+  },
+  {
+   "y": 14240,
+   "band": [
+    -83,
+    133
+   ],
+   "stickTop": 169,
+   "stickBottom": 853,
+   "cut": [],
+   "kids": [
+    [
+     "07",
+     -56,
+     78
+    ],
+    [
+     "F\u00f6rvaltning",
+     -56,
+     -7
+    ],
+    [
+     "Vi finns kvar ",
+     -56,
+     26
+    ],
+    [
+     "Revisionsf\u00e4lte",
+     41,
+     80
+    ]
+   ]
+  },
+  {
+   "y": 14280,
+   "band": [
+    -123,
+    93
+   ],
+   "stickTop": 129,
+   "stickBottom": 813,
+   "cut": [],
+   "kids": [
+    [
+     "07",
+     -96,
+     38
+    ],
+    [
+     "F\u00f6rvaltning",
+     -96,
+     -47
+    ],
+    [
+     "Vi finns kvar ",
+     -96,
+     -14
+    ],
+    [
+     "Revisionsf\u00e4lte",
+     1,
+     40
+    ]
+   ]
+  },
+  {
+   "y": 14320,
+   "band": [
+    -163,
+    53
+   ],
+   "stickTop": 89,
+   "stickBottom": 773,
+   "cut": [],
+   "kids": [
+    [
+     "07",
+     -136,
+     -2
+    ],
+    [
+     "F\u00f6rvaltning",
+     -136,
+     -87
+    ],
+    [
+     "Vi finns kvar ",
+     -136,
+     -54
+    ],
+    [
+     "Revisionsf\u00e4lte",
+     -39,
+     -0.0
+    ]
+   ]
+  },
+  {
+   "y": 14360,
+   "band": [
+    -203,
+    13
+   ],
+   "stickTop": 49,
+   "stickBottom": 733,
+   "cut": [],
+   "kids": [
+    [
+     "07",
+     -176,
+     -42
+    ],
+    [
+     "F\u00f6rvaltning",
+     -176,
+     -127
+    ],
+    [
+     "Vi finns kvar ",
+     -176,
+     -94
+    ],
+    [
+     "Revisionsf\u00e4lte",
+     -79,
+     -40
+    ]
+   ]
+  },
+  {
+   "y": 14400,
+   "band": [
+    -243,
+    -27
+   ],
+   "stickTop": 9,
+   "stickBottom": 693,
+   "cut": [],
+   "kids": [
+    [
+     "07",
+     -216,
+     -82
+    ],
+    [
+     "F\u00f6rvaltning",
+     -216,
+     -167
+    ],
+    [
+     "Vi finns kvar ",
+     -216,
+     -134
+    ],
+    [
+     "Revisionsf\u00e4lte",
+     -119,
+     -80
+    ]
+   ]
+  },
+  {
+   "y": 14440,
+   "band": [
+    -283,
+    -67
+   ],
+   "stickTop": -31,
+   "stickBottom": 653,
+   "cut": [],
+   "kids": [
+    [
+     "07",
+     -256,
+     -122
+    ],
+    [
+     "F\u00f6rvaltning",
+     -256,
+     -207
+    ],
+    [
+     "Vi finns kvar ",
+     -256,
+     -174
+    ],
+    [
+     "Revisionsf\u00e4lte",
+     -159,
+     -120
+    ]
+   ]
+  }
+ ],
+ "sheet": {
+  "390-process-05-preview": {
+   "y": 8938,
+   "sheet": [
+    16,
+    12,
+    374,
+    236
+   ],
+   "live": [
+    22,
+    33,
+    368,
+    227
+   ],
+   "glyph": [
+    42,
+    39,
+    68,
+    77
+   ],
+   "glyphOp": "0",
+   "rev": [
+    0,
+    0,
+    0,
+    0
+   ],
+   "revOp": "1",
+   "title": [
+    0,
+    0,
+    0,
+    0
+   ],
+   "crev": [
+    0,
+    0,
+    0,
+    0
+   ],
+   "crevOp": "0",
+   "camfade": "calc(1 - clamp(0, clamp(0, 0.35 * clamp(0,calc((0.6471 - 0.5992) / (0.6470 - 0.5992)),1) + 0.65 * clamp(0,calc((0.6471 - 0.6939) / (0.7417 - 0.6939)),1), 1) * 4, 1))"
+  },
+  "390-process-05-wheel": {
+   "y": 8938,
+   "sheet": [
+    16,
+    12,
+    374,
+    236
+   ],
+   "live": [
+    22,
+    33,
+    368,
+    227
+   ],
+   "glyph": [
+    42,
+    39,
+    68,
+    77
+   ],
+   "glyphOp": "0",
+   "rev": [
+    0,
+    0,
+    0,
+    0
+   ],
+   "revOp": "1",
+   "title": [
+    0,
+    0,
+    0,
+    0
+   ],
+   "crev": [
+    0,
+    0,
+    0,
+    0
+   ],
+   "crevOp": "0",
+   "camfade": "calc(1 - clamp(0, clamp(0, 0.35 * clamp(0,calc((0.6471 - 0.5992) / (0.6470 - 0.5992)),1) + 0.65 * clamp(0,calc((0.6471 - 0.6939) / (0.7417 - 0.6939)),1), 1) * 4, 1))"
+  },
+  "390-process-06-preview": {
+   "y": 9534,
+   "sheet": [
+    16,
+    12,
+    374,
+    236
+   ],
+   "live": [
+    16,
+    30,
+    374,
+    231
+   ],
+   "glyph": [
+    37,
+    36,
+    64,
+    75
+   ],
+   "glyphOp": "0",
+   "rev": [
+    0,
+    0,
+    0,
+    0
+   ],
+   "revOp": "1",
+   "title": [
+    0,
+    0,
+    0,
+    0
+   ],
+   "crev": [
+    0,
+    0,
+    0,
+    0
+   ],
+   "crevOp": "0",
+   "camfade": "calc(1 - clamp(0, clamp(0, 0.35 * clamp(0,calc((0.7418 - 0.5992) / (0.6470 - 0.5992)),1) + 0.65 * clamp(0,calc((0.7418 - 0.6939) / (0.7417 - 0.6939)),1), 1) * 4, 1))"
+  },
+  "390-process-06-wheel": {
+   "y": 9534,
+   "sheet": [
+    16,
+    12,
+    374,
+    236
+   ],
+   "live": [
+    16,
+    30,
+    374,
+    231
+   ],
+   "glyph": [
+    37,
+    36,
+    64,
+    75
+   ],
+   "glyphOp": "0",
+   "rev": [
+    0,
+    0,
+    0,
+    0
+   ],
+   "revOp": "1",
+   "title": [
+    0,
+    0,
+    0,
+    0
+   ],
+   "crev": [
+    0,
+    0,
+    0,
+    0
+   ],
+   "crevOp": "0",
+   "camfade": "calc(1 - clamp(0, clamp(0, 0.35 * clamp(0,calc((0.7418 - 0.5992) / (0.6470 - 0.5992)),1) + 0.65 * clamp(0,calc((0.7418 - 0.6939) / (0.7417 - 0.6939)),1), 1) * 4, 1))"
+  },
+  "390-process-07-preview": {
+   "y": 10130,
+   "sheet": [
+    16,
+    12,
+    374,
+    236
+   ],
+   "live": [
+    16,
+    30,
+    374,
+    231
+   ],
+   "glyph": [
+    37,
+    36,
+    64,
+    75
+   ],
+   "glyphOp": "0",
+   "rev": [
+    329,
+    14,
+    365,
+    32
+   ],
+   "revOp": "1",
+   "title": [
+    329,
+    14,
+    365,
+    32
+   ],
+   "crev": [
+    341,
+    14,
+    353,
+    30
+   ],
+   "crevOp": "1",
+   "camfade": "calc(1 - clamp(0, clamp(0, 0.35 * clamp(0,calc((0.8364 - 0.5992) / (0.6470 - 0.5992)),1) + 0.65 * clamp(0,calc((0.8364 - 0.6939) / (0.7417 - 0.6939)),1), 1) * 4, 1))"
+  },
+  "390-process-07-wheel": {
+   "y": 10130,
+   "sheet": [
+    16,
+    12,
+    374,
+    236
+   ],
+   "live": [
+    16,
+    30,
+    374,
+    231
+   ],
+   "glyph": [
+    37,
+    36,
+    64,
+    75
+   ],
+   "glyphOp": "0",
+   "rev": [
+    329,
+    14,
+    365,
+    32
+   ],
+   "revOp": "1",
+   "title": [
+    329,
+    14,
+    365,
+    32
+   ],
+   "crev": [
+    341,
+    14,
+    353,
+    30
+   ],
+   "crevOp": "1",
+   "camfade": "calc(1 - clamp(0, clamp(0, 0.35 * clamp(0,calc((0.8364 - 0.5992) / (0.6470 - 0.5992)),1) + 0.65 * clamp(0,calc((0.8364 - 0.6939) / (0.7417 - 0.6939)),1), 1) * 4, 1))"
+  },
+  "768-process-05-preview": {
+   "y": 12917,
+   "sheet": [
+    46,
+    426,
+    722,
+    806
+   ],
+   "live": [
+    195,
+    482,
+    672,
+    750
+   ],
+   "glyph": [
+    -17,
+    419,
+    4,
+    449
+   ],
+   "glyphOp": "1",
+   "rev": [
+    0,
+    0,
+    0,
+    0
+   ],
+   "revOp": "1",
+   "title": [
+    0,
+    0,
+    0,
+    0
+   ],
+   "crev": [
+    0,
+    0,
+    0,
+    0
+   ],
+   "crevOp": "0",
+   "camfade": "calc(1 - clamp(0, clamp(0, 0.35 * clamp(0,calc((0.6594 - 0.6092) / (0.6659 - 0.6092)),1) + 0.65 * clamp(0,calc((0.6594 - 0.7143) / (0.7709 - 0.7143)),1), 1) * 4, 1))"
+  },
+  "768-process-05-wheel": {
+   "y": 12917,
+   "sheet": [
+    46,
+    435,
+    722,
+    815
+   ],
+   "live": [
+    195,
+    491,
+    672,
+    759
+   ],
+   "glyph": [
+    -16,
+    428,
+    5,
+    458
+   ],
+   "glyphOp": "1",
+   "rev": [
+    0,
+    0,
+    0,
+    0
+   ],
+   "revOp": "1",
+   "title": [
+    0,
+    0,
+    0,
+    0
+   ],
+   "crev": [
+    0,
+    0,
+    0,
+    0
+   ],
+   "crevOp": "0",
+   "camfade": "calc(1 - clamp(0, clamp(0, 0.35 * clamp(0,calc((0.6578 - 0.6088) / (0.6648 - 0.6088)),1) + 0.65 * clamp(0,calc((0.6578 - 0.7143) / (0.7703 - 0.7143)),1), 1) * 4, 1))"
+  },
+  "768-process-06-preview": {
+   "y": 14057,
+   "sheet": [
+    46,
+    426,
+    722,
+    806
+   ],
+   "live": [
+    89,
+    446,
+    691,
+    786
+   ],
+   "glyph": [
+    -178,
+    367,
+    -152,
+    405
+   ],
+   "glyphOp": "1",
+   "rev": [
+    0,
+    0,
+    0,
+    0
+   ],
+   "revOp": "1",
+   "title": [
+    0,
+    0,
+    0,
+    0
+   ],
+   "crev": [
+    0,
+    0,
+    0,
+    0
+   ],
+   "crevOp": "0",
+   "camfade": "calc(1 - clamp(0, clamp(0, 0.35 * clamp(0,calc((0.7636 - 0.6092) / (0.6659 - 0.6092)),1) + 0.65 * clamp(0,calc((0.7636 - 0.7143) / (0.7709 - 0.7143)),1), 1) * 4, 1))"
+  },
+  "768-process-06-wheel": {
+   "y": 14057,
+   "sheet": [
+    46,
+    435,
+    722,
+    815
+   ],
+   "live": [
+    94,
+    457,
+    690,
+    793
+   ],
+   "glyph": [
+    -171,
+    379,
+    -145,
+    416
+   ],
+   "glyphOp": "1",
+   "rev": [
+    0,
+    0,
+    0,
+    0
+   ],
+   "revOp": "1",
+   "title": [
+    0,
+    0,
+    0,
+    0
+   ],
+   "crev": [
+    0,
+    0,
+    0,
+    0
+   ],
+   "crevOp": "0",
+   "camfade": "calc(1 - clamp(0, clamp(0, 0.35 * clamp(0,calc((0.7606 - 0.6088) / (0.6648 - 0.6088)),1) + 0.65 * clamp(0,calc((0.7606 - 0.7143) / (0.7703 - 0.7143)),1), 1) * 4, 1))"
+  },
+  "768-process-07-preview": {
+   "y": 15197,
+   "sheet": [
+    46,
+    426,
+    722,
+    806
+   ],
+   "live": [
+    74,
+    442,
+    694,
+    791
+   ],
+   "glyph": [
+    -201,
+    360,
+    -174,
+    399
+   ],
+   "glyphOp": "1",
+   "rev": [
+    696,
+    428,
+    719,
+    440
+   ],
+   "revOp": "1",
+   "title": [
+    696,
+    428,
+    719,
+    440
+   ],
+   "crev": [
+    703,
+    427,
+    711,
+    438
+   ],
+   "crevOp": "0.0223793",
+   "camfade": "calc(1 - clamp(0, clamp(0, 0.35 * clamp(0,calc((0.8677 - 0.6092) / (0.6659 - 0.6092)),1) + 0.65 * clamp(0,calc((0.8677 - 0.7143) / (0.7709 - 0.7143)),1), 1) * 4, 1))"
+  },
+  "768-process-07-wheel": {
+   "y": 15197,
+   "sheet": [
+    46,
+    435,
+    722,
+    815
+   ],
+   "live": [
+    74,
+    451,
+    694,
+    800
+   ],
+   "glyph": [
+    -201,
+    369,
+    -174,
+    408
+   ],
+   "glyphOp": "1",
+   "rev": [
+    696,
+    437,
+    719,
+    449
+   ],
+   "revOp": "1",
+   "title": [
+    696,
+    437,
+    719,
+    449
+   ],
+   "crev": [
+    703,
+    436,
+    711,
+    447
+   ],
+   "crevOp": "0",
+   "camfade": "calc(1 - clamp(0, clamp(0, 0.35 * clamp(0,calc((0.8644 - 0.6088) / (0.6648 - 0.6088)),1) + 0.65 * clamp(0,calc((0.8644 - 0.7143) / (0.7703 - 0.7143)),1), 1) * 4, 1))"
+  }
+ },
+ "giant": {
+  "768-preview": {
+   "y": 4529,
+   "fs": "38.832px",
+   "h2": [
+    39,
+    136,
+    729,
+    174
+   ],
+   "lines": 1,
+   "split": [],
+   "headH": 78,
+   "headPct": 8.6,
+   "plate": [
+    0,
+    100,
+    768
+   ],
+   "inVp": true,
+   "scrub": "1"
+  },
+  "768-top-scrub0": {
+   "y": 0,
+   "fs": "38.832px",
+   "h2": [
+    39,
+    4665,
+    729,
+    4703
+   ],
+   "lines": 1,
+   "split": [],
+   "headH": 78,
+   "headPct": 8.6,
+   "plate": [
+    0,
+    4629,
+    768
+   ],
+   "inVp": false,
+   "scrub": "clamp(0,calc((0 - 0.364) / 0.086),1)"
+  },
+  "768-wheel": {
+   "y": 4529,
+   "fs": "38.832px",
+   "h2": [
+    39,
+    136,
+    729,
+    174
+   ],
+   "lines": 1,
+   "split": [],
+   "headH": 78,
+   "headPct": 8.6,
+   "plate": [
+    0,
+    100,
+    768
+   ],
+   "inVp": true,
+   "scrub": "clamp(0,calc((0.5092 - 0.364) / 0.086),1)"
+  },
+  "1024-preview": {
+   "y": 4050,
+   "fs": "85.776px",
+   "h2": [
+    131,
+    148,
+    944,
+    313
+   ],
+   "lines": 2,
+   "split": [],
+   "headH": 205,
+   "headPct": 22.8,
+   "plate": [
+    82,
+    100,
+    911
+   ],
+   "inVp": true,
+   "scrub": "1"
+  },
+  "1024-top-scrub0": {
+   "y": 0,
+   "fs": "57.776px",
+   "h2": [
+    581,
+    4198,
+    944,
+    4365
+   ],
+   "lines": 3,
+   "split": [],
+   "headH": 207,
+   "headPct": 23,
+   "plate": [
+    532,
+    4150,
+    461
+   ],
+   "inVp": false,
+   "scrub": "clamp(0,calc((0 - 0.364) / 0.086),1)"
+  },
+  "1024-wheel": {
+   "y": 4050,
+   "fs": "85.776px",
+   "h2": [
+    131,
+    148,
+    944,
+    313
+   ],
+   "lines": 2,
+   "split": [],
+   "headH": 205,
+   "headPct": 22.8,
+   "plate": [
+    82,
+    100,
+    911
+   ],
+   "inVp": true,
+   "scrub": "clamp(0,calc((0.4735 - 0.364) / 0.086),1)"
+  },
+  "1280-preview": {
+   "y": 4050,
+   "fs": "104.72px",
+   "h2": [
+    151,
+    153,
+    1193,
+    354
+   ],
+   "lines": 2,
+   "split": [],
+   "headH": 241,
+   "headPct": 26.8,
+   "plate": [
+    102,
+    100,
+    1139
+   ],
+   "inVp": true,
+   "scrub": "1"
+  },
+  "1280-top-scrub0": {
+   "y": 0,
+   "fs": "76.72px",
+   "h2": [
+    715,
+    4203,
+    1193,
+    4424
+   ],
+   "lines": 3,
+   "split": [],
+   "headH": 261,
+   "headPct": 29,
+   "plate": [
+    666,
+    4150,
+    576
+   ],
+   "inVp": false,
+   "scrub": "clamp(0,calc((0 - 0.364) / 0.086),1)"
+  },
+  "1280-wheel": {
+   "y": 4050,
+   "fs": "104.72px",
+   "h2": [
+    151,
+    153,
+    1193,
+    354
+   ],
+   "lines": 2,
+   "split": [],
+   "headH": 241,
+   "headPct": 26.8,
+   "plate": [
+    102,
+    100,
+    1139
+   ],
+   "inVp": true,
+   "scrub": "clamp(0,calc((0.4709 - 0.364) / 0.086),1)"
+  },
+  "1440-preview": {
+   "y": 4050,
+   "fs": "116px",
+   "h2": [
+    164,
+    153,
+    1351,
+    376
+   ],
+   "lines": 2,
+   "split": [],
+   "headH": 263,
+   "headPct": 29.2,
+   "plate": [
+    115,
+    100,
+    1285
+   ],
+   "inVp": true,
+   "scrub": "1"
+  },
+  "1440-top-scrub0": {
+   "y": 0,
+   "fs": "88px",
+   "h2": [
+    798,
+    4203,
+    1351,
+    4456
+   ],
+   "lines": 3,
+   "split": [],
+   "headH": 294,
+   "headPct": 32.6,
+   "plate": [
+    749,
+    4150,
+    651
+   ],
+   "inVp": false,
+   "scrub": "clamp(0,calc((0 - 0.364) / 0.086),1)"
+  },
+  "1440-wheel": {
+   "y": 4050,
+   "fs": "116px",
+   "h2": [
+    164,
+    153,
+    1351,
+    376
+   ],
+   "lines": 2,
+   "split": [],
+   "headH": 263,
+   "headPct": 29.2,
+   "plate": [
+    115,
+    100,
+    1285
+   ],
+   "inVp": true,
+   "scrub": "clamp(0,calc((0.4645 - 0.364) / 0.086),1)"
+  },
+  "1920-preview": {
+   "y": 4050,
+   "fs": "116px",
+   "h2": [
+    193,
+    153,
+    1831,
+    264
+   ],
+   "lines": 1,
+   "split": [],
+   "headH": 152,
+   "headPct": 16.9,
+   "plate": [
+    144,
+    100,
+    1736
+   ],
+   "inVp": true,
+   "scrub": "1"
+  },
+  "1920-top-scrub0": {
+   "y": 0,
+   "fs": "88px",
+   "h2": [
+    1038,
+    4203,
+    1831,
+    4372
+   ],
+   "lines": 2,
+   "split": [],
+   "headH": 209,
+   "headPct": 23.3,
+   "plate": [
+    989,
+    4150,
+    891
+   ],
+   "inVp": false,
+   "scrub": "clamp(0,calc((0 - 0.364) / 0.086),1)"
+  },
+  "1920-wheel": {
+   "y": 4050,
+   "fs": "116px",
+   "h2": [
+    193,
+    153,
+    1831,
+    264
+   ],
+   "lines": 1,
+   "split": [],
+   "headH": 152,
+   "headPct": 16.9,
+   "plate": [
+    144,
+    100,
+    1736
+   ],
+   "inVp": true,
+   "scrub": "clamp(0,calc((0.476 - 0.364) / 0.086),1)"
+  }
+ }
+}
+
+exec
+"C:\\WINDOWS\\System32\\WindowsPowerShell\\v1.0\\powershell.exe" -Command '$v=Get-Content -Raw -Encoding UTF8 tests/alunix-r8/runs/V3d/shots/astra-r6/verify.json | ConvertFrom-Json; $v.PSObject.Properties.Name; $v.mobile | ConvertTo-Json -Depth 8; $v.sheet | ConvertTo-Json -Depth 8; $t=Get-Content -Encoding UTF8 tests/alunix-r8/runs/V3d/index.html; 1959..1988 | ForEach-Object {'"'{0}: {1}' -f "'$_,$t[$_-1]}' in C:\Users\Anton L\anti-slop-design
+ succeeded in 545ms:
+exit
+sheet
+giant
+{
+    "390-process-05-preview":  {
+                                   "y":  8938,
+                                   "sheet":  [
+                                                 16,
+                                                 12,
+                                                 374,
+                                                 236
+                                             ],
+                                   "live":  [
+                                                22,
+                                                33,
+                                                368,
+                                                227
+                                            ],
+                                   "glyph":  [
+                                                 42,
+                                                 39,
+                                                 68,
+                                                 77
+                                             ],
+                                   "glyphOp":  "0",
+                                   "rev":  [
+                                               0,
+                                               0,
+                                               0,
+                                               0
+                                           ],
+                                   "revOp":  "1",
+                                   "title":  [
+                                                 0,
+                                                 0,
+                                                 0,
+                                                 0
+                                             ],
+                                   "crev":  [
+                                                0,
+                                                0,
+                                                0,
+                                                0
+                                            ],
+                                   "crevOp":  "0",
+                                   "camfade":  "calc(1 - clamp(0, clamp(0, 0.35 * clamp(0,calc((0.6471 - 0.5992) / (0.6470 - 0.5992)),1) + 0.65 * clamp(0,calc((0.6471 - 0.6939) / (0.7417 - 0.6939)),1), 1) * 4, 1))"
+                               },
+    "390-process-05-wheel":  {
+                                 "y":  8938,
+                                 "sheet":  [
+                                               16,
+                                               12,
+                                               374,
+                                               236
+                                           ],
+                                 "live":  [
+                                              22,
+                                              33,
+                                              368,
+                                              227
+                                          ],
+                                 "glyph":  [
+                                               42,
+                                               39,
+                                               68,
+                                               77
+                                           ],
+                                 "glyphOp":  "0",
+                                 "rev":  [
+                                             0,
+                                             0,
+                                             0,
+                                             0
+                                         ],
+                                 "revOp":  "1",
+                                 "title":  [
+                                               0,
+                                               0,
+                                               0,
+                                               0
+                                           ],
+                                 "crev":  [
+                                              0,
+                                              0,
+                                              0,
+                                              0
+                                          ],
+                                 "crevOp":  "0",
+                                 "camfade":  "calc(1 - clamp(0, clamp(0, 0.35 * clamp(0,calc((0.6471 - 0.5992) / (0.6470 - 0.5992)),1) + 0.65 * clamp(0,calc((0.6471 - 0.6939) / (0.7417 - 0.6939)),1), 1) * 4, 1))"
+                             },
+    "390-process-06-preview":  {
+                                   "y":  9534,
+                                   "sheet":  [
+                                                 16,
+                                                 12,
+                                                 374,
+                                                 236
+                                             ],
+                                   "live":  [
+                                                16,
+                                                30,
+                                                374,
+                                                231
+                                            ],
+                                   "glyph":  [
+                                                 37,
+                                                 36,
+                                                 64,
+                                                 75
+                                             ],
+                                   "glyphOp":  "0",
+                                   "rev":  [
+                                               0,
+                                               0,
+                                               0,
+                                               0
+                                           ],
+                                   "revOp":  "1",
+                                   "title":  [
+                                                 0,
+                                                 0,
+                                                 0,
+                                                 0
+                                             ],
+                                   "crev":  [
+                                                0,
+                                                0,
+                                                0,
+                                                0
+                                            ],
+                                   "crevOp":  "0",
+                                   "camfade":  "calc(1 - clamp(0, clamp(0, 0.35 * clamp(0,calc((0.7418 - 0.5992) / (0.6470 - 0.5992)),1) + 0.65 * clamp(0,calc((0.7418 - 0.6939) / (0.7417 - 0.6939)),1), 1) * 4, 1))"
+                               },
+    "390-process-06-wheel":  {
+                                 "y":  9534,
+                                 "sheet":  [
+                                               16,
+                                               12,
+                                               374,
+                                               236
+                                           ],
+                                 "live":  [
+                                              16,
+                                              30,
+                                              374,
+                                              231
+                                          ],
+                                 "glyph":  [
+                                               37,
+                                               36,
+                                               64,
+                                               75
+                                           ],
+                                 "glyphOp":  "0",
+                                 "rev":  [
+                                             0,
+                                             0,
+                                             0,
+                                             0
+                                         ],
+                                 "revOp":  "1",
+                                 "title":  [
+                                               0,
+                                               0,
+                                               0,
+                                               0
+                                           ],
+                                 "crev":  [
+                                              0,
+                                              0,
+                                              0,
+                                              0
+                                          ],
+                                 "crevOp":  "0",
+                                 "camfade":  "calc(1 - clamp(0, clamp(0, 0.35 * clamp(0,calc((0.7418 - 0.5992) / (0.6470 - 0.5992)),1) + 0.65 * clamp(0,calc((0.7418 - 0.6939) / (0.7417 - 0.6939)),1), 1) * 4, 1))"
+                             },
+    "390-process-07-preview":  {
+                                   "y":  10130,
+                                   "sheet":  [
+                                                 16,
+                                                 12,
+                                                 374,
+                                                 236
+                                             ],
+                                   "live":  [
+                                                16,
+                                                30,
+                                                374,
+                                                231
+                                            ],
+                                   "glyph":  [
+                                                 37,
+                                                 36,
+                                                 64,
+                                                 75
+                                             ],
+                                   "glyphOp":  "0",
+                                   "rev":  [
+                                               329,
+                                               14,
+                                               365,
+                                               32
+                                           ],
+                                   "revOp":  "1",
+                                   "title":  [
+                                                 329,
+                                                 14,
+                                                 365,
+                                                 32
+                                             ],
+                                   "crev":  [
+                                                341,
+                                                14,
+                                                353,
+                                                30
+                                            ],
+                                   "crevOp":  "1",
+                                   "camfade":  "calc(1 - clamp(0, clamp(0, 0.35 * clamp(0,calc((0.8364 - 0.5992) / (0.6470 - 0.5992)),1) + 0.65 * clamp(0,calc((0.8364 - 0.6939) / (0.7417 - 0.6939)),1), 1) * 4, 1))"
+                               },
+    "390-process-07-wheel":  {
+                                 "y":  10130,
+                                 "sheet":  [
+                                               16,
+                                               12,
+                                               374,
+                                               236
+                                           ],
+                                 "live":  [
+                                              16,
+                                              30,
+                                              374,
+                                              231
+                                          ],
+                                 "glyph":  [
+                                               37,
+                                               36,
+                                               64,
+                                               75
+                                           ],
+                                 "glyphOp":  "0",
+                                 "rev":  [
+                                             329,
+                                             14,
+                                             365,
+                                             32
+                                         ],
+                                 "revOp":  "1",
+                                 "title":  [
+                                               329,
+                                               14,
+                                               365,
+                                               32
+                                           ],
+                                 "crev":  [
+                                              341,
+                                              14,
+                                              353,
+                                              30
+                                          ],
+                                 "crevOp":  "1",
+                                 "camfade":  "calc(1 - clamp(0, clamp(0, 0.35 * clamp(0,calc((0.8364 - 0.5992) / (0.6470 - 0.5992)),1) + 0.65 * clamp(0,calc((0.8364 - 0.6939) / (0.7417 - 0.6939)),1), 1) * 4, 1))"
+                             },
+    "768-process-05-preview":  {
+                                   "y":  12917,
+                                   "sheet":  [
+                                                 46,
+                                                 426,
+                                                 722,
+                                                 806
+                                             ],
+                                   "live":  [
+                                                195,
+                                                482,
+                                                672,
+                                                750
+                                            ],
+                                   "glyph":  [
+                                                 -17,
+                                                 419,
+                                                 4,
+                                                 449
+                                             ],
+                                   "glyphOp":  "1",
+                                   "rev":  [
+                                               0,
+                                               0,
+                                               0,
+                                               0
+                                           ],
+                                   "revOp":  "1",
+                                   "title":  [
+                                                 0,
+                                                 0,
+                                                 0,
+                                                 0
+                                             ],
+                                   "crev":  [
+                                                0,
+                                                0,
+                                                0,
+                                                0
+                                            ],
+                                   "crevOp":  "0",
+                                   "camfade":  "calc(1 - clamp(0, clamp(0, 0.35 * clamp(0,calc((0.6594 - 0.6092) / (0.6659 - 0.6092)),1) + 0.65 * clamp(0,calc((0.6594 - 0.7143) / (0.7709 - 0.7143)),1), 1) * 4, 1))"
+                               },
+    "768-process-05-wheel":  {
+                                 "y":  12917,
+                                 "sheet":  [
+                                               46,
+                                               435,
+                                               722,
+                                               815
+                                           ],
+                                 "live":  [
+                                              195,
+                                              491,
+                                              672,
+                                              759
+                                          ],
+                                 "glyph":  [
+                                               -16,
+                                               428,
+                                               5,
+                                               458
+                                           ],
+                                 "glyphOp":  "1",
+                                 "rev":  [
+                                             0,
+                                             0,
+                                             0,
+                                             0
+                                         ],
+                                 "revOp":  "1",
+                                 "title":  [
+                                               0,
+                                               0,
+                                               0,
+                                               0
+                                           ],
+                                 "crev":  [
+                                              0,
+                                              0,
+                                              0,
+                                              0
+                                          ],
+                                 "crevOp":  "0",
+                                 "camfade":  "calc(1 - clamp(0, clamp(0, 0.35 * clamp(0,calc((0.6578 - 0.6088) / (0.6648 - 0.6088)),1) + 0.65 * clamp(0,calc((0.6578 - 0.7143) / (0.7703 - 0.7143)),1), 1) * 4, 1))"
+                             },
+    "768-process-06-preview":  {
+                                   "y":  14057,
+                                   "sheet":  [
+                                                 46,
+                                                 426,
+                                                 722,
+                                                 806
+                                             ],
+                                   "live":  [
+                                                89,
+                                                446,
+                                                691,
+                                                786
+                                            ],
+                                   "glyph":  [
+                                                 -178,
+                                                 367,
+                                                 -152,
+                                                 405
+                                             ],
+                                   "glyphOp":  "1",
+                                   "rev":  [
+                                               0,
+                                               0,
+                                               0,
+                                               0
+                                           ],
+                                   "revOp":  "1",
+                                   "title":  [
+                                                 0,
+                                                 0,
+                                                 0,
+                                                 0
+                                             ],
+                                   "crev":  [
+                                                0,
+                                                0,
+                                                0,
+                                                0
+                                            ],
+                                   "crevOp":  "0",
+                                   "camfade":  "calc(1 - clamp(0, clamp(0, 0.35 * clamp(0,calc((0.7636 - 0.6092) / (0.6659 - 0.6092)),1) + 0.65 * clamp(0,calc((0.7636 - 0.7143) / (0.7709 - 0.7143)),1), 1) * 4, 1))"
+                               },
+    "768-process-06-wheel":  {
+                                 "y":  14057,
+                                 "sheet":  [
+                                               46,
+                                               435,
+                                               722,
+                                               815
+                                           ],
+                                 "live":  [
+                                              94,
+                                              457,
+                                              690,
+                                              793
+                                          ],
+                                 "glyph":  [
+                                               -171,
+                                               379,
+                                               -145,
+                                               416
+                                           ],
+                                 "glyphOp":  "1",
+                                 "rev":  [
+                                             0,
+                                             0,
+                                             0,
+                                             0
+                                         ],
+                                 "revOp":  "1",
+                                 "title":  [
+                                               0,
+                                               0,
+                                               0,
+                                               0
+                                           ],
+                                 "crev":  [
+                                              0,
+                                              0,
+                                              0,
+                                              0
+                                          ],
+                                 "crevOp":  "0",
+                                 "camfade":  "calc(1 - clamp(0, clamp(0, 0.35 * clamp(0,calc((0.7606 - 0.6088) / (0.6648 - 0.6088)),1) + 0.65 * clamp(0,calc((0.7606 - 0.7143) / (0.7703 - 0.7143)),1), 1) * 4, 1))"
+                             },
+    "768-process-07-preview":  {
+                                   "y":  15197,
+                                   "sheet":  [
+                                                 46,
+                                                 426,
+                                                 722,
+                                                 806
+                                             ],
+                                   "live":  [
+                                                74,
+                                                442,
+                                                694,
+                                                791
+                                            ],
+                                   "glyph":  [
+                                                 -201,
+                                                 360,
+                                                 -174,
+                                                 399
+                                             ],
+                                   "glyphOp":  "1",
+                                   "rev":  [
+                                               696,
+                                               428,
+                                               719,
+                                               440
+                                           ],
+                                   "revOp":  "1",
+                                   "title":  [
+                                                 696,
+                                                 428,
+                                                 719,
+                                                 440
+                                             ],
+                                   "crev":  [
+                                                703,
+                                                427,
+                                                711,
+                                                438
+                                            ],
+                                   "crevOp":  "0.0223793",
+                                   "camfade":  "calc(1 - clamp(0, clamp(0, 0.35 * clamp(0,calc((0.8677 - 0.6092) / (0.6659 - 0.6092)),1) + 0.65 * clamp(0,calc((0.8677 - 0.7143) / (0.7709 - 0.7143)),1), 1) * 4, 1))"
+                               },
+    "768-process-07-wheel":  {
+                                 "y":  15197,
+                                 "sheet":  [
+                                               46,
+                                               435,
+                                               722,
+                                               815
+                                           ],
+                                 "live":  [
+                                              74,
+                                              451,
+                                              694,
+                                              800
+                                          ],
+                                 "glyph":  [
+                                               -201,
+                                               369,
+                                               -174,
+                                               408
+                                           ],
+                                 "glyphOp":  "1",
+                                 "rev":  [
+                                             696,
+                                             437,
+                                             719,
+                                             449
+                                         ],
+                                 "revOp":  "1",
+                                 "title":  [
+                                               696,
+                                               437,
+                                               719,
+                                               449
+                                           ],
+                                 "crev":  [
+                                              703,
+                                              436,
+                                              711,
+                                              447
+                                          ],
+                                 "crevOp":  "0",
+                                 "camfade":  "calc(1 - clamp(0, clamp(0, 0.35 * clamp(0,calc((0.8644 - 0.6088) / (0.6648 - 0.6088)),1) + 0.65 * clamp(0,calc((0.8644 - 0.7143) / (0.7703 - 0.7143)),1), 1) * 4, 1))"
+                             }
+}
+1959:           </g><!-- /#p-cam -->
+1960: 
+1961:           <!-- PLAN 049 fix 1. s-process-07: titelblockets revisionsfält.
+1962:                Flyttat ut ur #p-cam (Astra r1-astra.md material_fixes #1):
+1963:                vid --cam 1 gav kamerans transform x' = 533+1,5(x-533)-93,
+1964:                vilket landade #p-title på x -323,5..-233,5 - helt utanför
+1965:                viewBox 0..880. Samma behandling som #p-frame (steg 01): ett
+1966:                ark-fast element, aldrig kameraskalat, så 07 faktiskt syns
+1967:                och skiljer sig från 06.
+1968:                AVVIKELSE, PLAN 051 fix 1 (R4, Astra material_fixes #1):
+1969:                bottenvänster-placeringen (24,439, en 60x54 tre-radig
+1970:                ISO 7200-stapel) låg INNANFÖR arket men INTE innanför
+1971:                `.p-live`s kamerazoomade rect - vid --cam=1 (samma zoom som
+1972:                det redan godkända steg 06, får inte sänkas: Calyx
+1973:                1071x603 är en uttalad "keep") täcker bilden x 36,5..843,5
+1974:                / y 20,25..474,75 av arkets 880x495, och lämnar bara fyra
+1975:                tunna hörnremsor (~36,5x20 units). Mobilen löste samma typ
+1976:                av krock redan (`:1388`, 96x12 i stället för skrivbordets
+1977:                60x18) - samma princip här: ETT hörnfält, inte en tre-radig
+1978:                stapel (som aldrig får plats i en 20 units hög remsa).
+1979:                Flyttad till det övre högra hörnet (x 846..876, y 2..18),
+1980:                uppmätt fritt vid samtliga scrollY i steg 07:s ståendefönster
+1981:                (13450-13600, se NOTES § V3d R4). Ark, siffror, rubriker och
+1982:                Calyx orörda - bara denna lilla metadatabox krymper. -->
+1983:           <g data-step="07">
+1984:             <path id="p-title" class="dimline draw" pathLength="1"
+1985:                   d="M846 2 H876 V18 H846 Z"/>
+1986:             <rect id="p-rev" class="hatch wipe" x="846" y="2" width="30" height="16"/>
+1987:             <text id="p-c-rev" class="callout" x="861" y="13" text-anchor="middle">A</text>
+1988:           </g>
+
+codex
+fix
+
+**persistence:** Read-only review of the requested documents, source, supplied images and saved exit sequence. No patches or fresh browser captures.
+
+**fidelity · A**
+
+P01: holds the level.
+P02: holds the level.
+P03: holds the level.
+P04: holds the level. P04-1440, upper plate: the 116 px, two-line heading now dominates.
+P05: holds the level; known Hōrai mobile overflow noted, exempt from fixes.
+P06: holds the level.
+P07: holds the level.
+P08: holds the level.
+P09: holds the level.
+P10: holds the level.
+P11: holds the level.
+P12: holds the level.
+P13: does not hold, gap: mobile revision field overlaps the image by approximately 2.24 rendered px; move: fit the field above the **transformed** image boundary, with ≥1 SVG unit clearance. Evidence: `zoom-390-07-rev.png`, lower edge of revision box over cream navigation.
+P14: holds the level.
+P15: holds the level.
+P16: holds the level. Both contact sheets preserve the ordered material changes; the long dark drafting act is intentional.
+
+These row judgments cover the parity columns, 1440 and 390. The additional 768 capture exposes a separate blocking defect.
+
+**B · r5’s four material_fixes**
+
+1. **Open, partially closed.** P12-390, top sheet: the glyph has disappeared and the image fits. P13-390 and the revision zoom, top-right corner: the revision box still crosses `.p-live`; see fix below.
+2. **Closed.** `index.html:2689` now supplies desktop `[861,13]`, matching the field. P13-1440, sheet’s top-right corner: “A” occupies the revision field.
+3. **Closed in the saved sequence.** `strip-exit-1440.png`, upper band across successive frames: text leaves through the viewport’s top, without the sheet slicing through it. Saved measurements report no intersections. The changed padding is at `index.html:1107`.
+4. **Closed.** `index.html:942` produces 116 px at 1440. P04-1440, upper plate: two complete lines, stronger than the process chapter heading; the ledger remains readable. Saved width checks report no split words.
+
+**ceiling:** Two local geometry defects prevent ship. Neither requires changing palette, typeface, copy, motion policy or scroll engine.
+
+**material_fixes · C**
+
+1. **Tablet grid overlaps its children.** `index.html:1135` changes the paragraph’s column but retains `grid-row:1 / span 2` from `index.html:1122`. It therefore shares cells with the number and note; the auto-placed heading drops below them. Evidence: `steg-768-process-07.png`, upper 0–235 px: paragraph crosses “07” and the note.
+
+   **Target:** at 768–1023 px, explicitly place heading in row 1, note in row 2, paragraph in row 3 spanning both columns; number spans rows 1–2. Zero intersecting text rectangles across all seven steps, with the existing 16 px row gap.
+
+2. **Mobile revision placement ignores camera scale.** `index.html:1502` and `index.html:1503` end the fixed field at y=18. With `index.html:1519` scaling the image by 1.05 around y=100, its top becomes `100 + (20−100)×1.05 = 16`. Thus the field overlaps by 2 SVG units, approximately 2.24 px at 390. Evidence: `zoom-390-07-rev.png`, box’s bottom edge.
+
+   **Target:** revision field bottom ≤15 SVG units, letter fully inside it, ≥1 unit clearance from `.p-live` throughout step 07. Adjust letter coordinates at `index.html:2689` if needed; retain the corrected image scale.
+
+**keep:** Enlarged giant heading; clean, uncropped mobile Calyx; desktop exit behavior; deliberate dark chapter and drafting act; existing whole-page material rhythm.
+tokens used
+81 652

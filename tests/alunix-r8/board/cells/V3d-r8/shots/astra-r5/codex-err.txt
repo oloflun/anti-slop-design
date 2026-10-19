@@ -1,0 +1,1398 @@
+Reading prompt from stdin...
+2026-09-19T00:25:31.133241Z ERROR codex_core::session::session: failed to load skill C:\Users\Anton L\OneDrive\Dokument\Obsidian\Knowledge Base\.agents\skills\conclude\SKILL.md: missing YAML frontmatter delimited by ---
+OpenAI Codex v0.154.0
+--------
+workdir: C:\Users\Anton L\anti-slop-design
+model: gpt-6-astra
+provider: openai
+approval: never
+sandbox: read-only
+reasoning effort: medium
+reasoning summaries: none
+session id: 01a0b70d-a5f5-7e92-a8d4-59b4b7537932
+--------
+user
+You are an independent reviewer in REFERENCE PARITY mode plus whole-page (helhet). Target: tests/alunix-r8/runs/V3d/index.html (read-only; you may read the file). Parity table: tests/alunix-r8/runs/V3d/PARITET.md (read it). Goal plan: tests/alunix-r8/runs/V3d/plans/048-inverterad-variant.md.
+
+The order (Anton): an inverted variant. The process act (steps 01-07) is a long DARK drafting-table act by necessity; the PARITET limit "max four dark slices in a row" is STRUCK by the lead, do not raise it. The chapter screen "Från samtal till lanserad sida." is deliberately dark. sites/horai.html (the Hōrai demo inside an iframe) is never edited; its overflow at 390 is known, only note it.
+The reference shows LEVEL not FORM: judge scale, staging, what owns the viewport, how much each screen commits. Never propose a different palette, typeface or copy.
+
+Invariants (verbatim):
+- Motion always plays (F-011). prefers-reduced-motion is deliberately not honoured on this project, a considered accessibility trade-off confirmed by the owner. Suggesting a reduced-motion fallback, a static alternative, or a @media (prefers-reduced-motion) block is out of scope.
+- The scroll engine is never edited. scroll/scrollcraft.js and scrollcraft.css are vendored; findings about them are reported, never fixed; a page-level shim (sc-smooth.js) is the sanctioned way around them.
+- --sc-p is the raw scroll position; --sc-ps is the smoothed one. Anything that physically moves must read --sc-ps. "use --sc-p for consistency" is backwards.
+- No em-dashes in visible text (gate 75).
+- Review only, no patches.
+
+Attached images, in order. Each "Pxx-W" image is a PAIR: LEFT = our page (V3d), RIGHT = the reference screen, same height. Positions reached by real mouse wheel.
+1 P01-1440 fold
+2 P02-1440 card back (?preview=back)
+3 P03-1440 thesis band
+4 P04-1440 giant section inverted (?preview=ledger position)
+5 P05-1440 Hōrai band
+6 P06-1440 process chapter screen (#process top)
+7 P07-1440 step 01
+8 P08-1440 step 02
+9 P09-1440 step 03
+10 P10-1440 step 04
+11 P11-1440 step 05
+12 P12-1440 step 06
+13 P13-1440 step 07
+14 P14-1440 "Hur vi tänker"
+15 P15a-1440 last viewport (price + contact)
+16 sheet-ours-1440: our 16 screens at 1440 in a contact sheet (P16 whole-page rhythm; no reference in this image, the reference rhythm is hoy: purple, cream, red grounds)
+17 P02-390
+18 P03-390
+19 P05-390
+20 P06-390
+21 P10-390
+22 P12-390
+23 P13-390
+24 zoom-P13-390-sheet: 2x crop of the top 260 px of P13-390 (the sticky sheet at step 07, mobile)
+
+Answer:
+A) One line per PARITET row P01-P16: "holds the level" or "does not hold, gap: <measurable gap>, move: <concrete move: sizes, proportions, what owns the viewport>". A row that holds at 1440 but not at 390 does not hold (390 pairs attached: P02, P03, P05, P06, P10, P12, P13). Do not invent gaps; if a screen holds, say so.
+B) Code/logic errors visible in the pixels or in the file (file:line on every code finding, image + region on every pixel finding): overlaps of the drawing over the product, clipped glyphs, elements outside their container, mobile SVG coordinates that no longer match the mobile viewBox 320x200 (see the @media block around index.html:1437-1470 and MOBILE_TEXT / plansch() around :2600-2650).
+Be concise.
+
+warning: Exceeded skills context budget. All skill descriptions were removed and 40 additional skills were not included in the model-visible skills list.
+ERROR: Reconnecting... 2/5
+ERROR: Reconnecting... 3/5
+ERROR: Reconnecting... 4/5
+ERROR: Reconnecting... 5/5
+warning: Falling back from WebSockets to HTTPS transport. stream disconnected before completion: websocket closed by server before response.completed
+codex
+I’ll read the parity table, goal plan, and relevant code, then assess each screen against the references and the stated invariants.
+exec
+"C:\\WINDOWS\\System32\\WindowsPowerShell\\v1.0\\powershell.exe" -Command 'Get-Content tests/alunix-r8/runs/V3d/PARITET.md; Get-Content tests/alunix-r8/runs/V3d/plans/048-inverterad-variant.md' in C:\Users\Anton L\anti-slop-design
+ succeeded in 448ms:
+# V3d Â· PARITETreferensbild ur `runs/V3c/shots/fasA/` (alla sÃ¶kvÃ¤gar nedan Ã¤r relativa till den mappen) ochett uttalat drag som V3d ska matcha. **Referensen visar nivÃ¥n, inte formen**: vi lÃ¥nar hur den
+iscensÃ¤tter skÃ¤rmen (skala, vad som Ã¤ger viewporten, hur mycket luft), aldrig dess palett,
+typsnitt, knappar eller copy.
+
+## Hur en rad dÃ¶ms
+
+1. Byggaren skjuter vÃ¥r skÃ¤rm vid 1440x900 (och 390x844 dÃ¤r kolumnen 390 Ã¤r ifylld) i det lÃ¤ge
+   raden anger, och lÃ¤gger den **bredvid** referensbilden i samma hÃ¶jd med PIL:
+   `shots/r1/par/<rad-id>-<bredd>.png` (vÃ¤nster V3d, hÃ¶ger referensen, 24 px mellanrum,
+   radens id och referensens filnamn i bildens underkant i 14 px).
+2. Den som dÃ¶mer lÃ¤ser par-bilden som bild och skriver en rad: **hÃ¥ller nivÃ¥n** eller
+   **hÃ¥ller inte, fÃ¶r att â€¦** med det mÃ¤tbara skÃ¤let (en storlek, en andel av viewporten, ett
+   element som saknas).
+3. **Slutvillkor:** varje rad i tabellen kan lÃ¤sas "hÃ¥ller nivÃ¥n" i sin par-bild. En rad som
+   hÃ¥ller i 1440 men inte i 390 hÃ¥ller inte.
+
+## Tabellen
+
+| Id | SkÃ¤rm i V3d (lÃ¤ge) | Referens 1440 | Referens 390 | Vad referensen gÃ¶r som vi ska matcha |
+|---|---|---|---|---|
+| **P01** fold | `?preview=front`, scrollY 0 | `hoy-1440/hoy-webb-1440--s00.png` | `hoy-390/hoy-home-390--s00.png` | Ett displayelement och en bild delar skÃ¤rmen och inget annat; rubriken i affischskala utan konkurrerande text. VÃ¥r fold (rubrik ~120 px, kortet 62 % vw) ska lÃ¤sas lika ensam och lika stor. |
+| **P02** kortets baksida | `?preview=back` | `hoy-1440/hoy-home-1440--s00.png` | `hoy-390/hoy-home-390--s00.png` | Objektet Ã¤ger mitten av skÃ¤rmen, ett ord i displaystorlek ovanpÃ¥ eller bredvid, tom grund runt om. |
+| **P03** tesbandet | scrollY dÃ¤r `.panel-thesis` stÃ¥r i viewportens Ã¶vre tredjedel | `hoy-1440/hoy-home-1440--s01.png` | `hoy-390/hoy-home-390--s01.png` | Displayrubrik vÃ¤nster, produktbild ~44 % vw hÃ¶ger, mÃ¤ttad grund i full bredd; bilden Ã¤r lika tung som rubriken. VÃ¥r blÃ¥ tes + Hyperborea-bleeden ska hÃ¥lla samma vikt; den svarta jÃ¤tten fÃ¥r inte trycka tesen till en marginalnot. |
+| **P04** jÃ¤ttesektionen inverterad | `?preview=ledger` | `hoy-1440/hoy-webb-1440--s03.png` | `hoy-390/hoy-webb-390--s02.png` | Ljust blÃ¤ck i displaystorlek Ã¤ger en mÃ¶rk yta, fem rader versaler, inget annat konkurrerar. "VI BYGGER ERT VARUMÃ„RKE." pÃ¥ svart plÃ¥t ska lÃ¤sas som sidans starkaste typografiska Ã¶gonblick efter heron, och liggaren 01 till 03 under den ska vara lÃ¤sbar i bÃ¥da scrubbÃ¤ndarna. |
+| **P05** HÅrai-bandet | scrollY dÃ¤r `.horai-fig` stÃ¥r centrerad (Calyx sticky till vÃ¤nster) | `insign-1440/insign-1440--s04.png` | `insign-390/insign-390--s07.png` | TvÃ¥ arbeten sida vid sida som tillsammans fyller ~94 % av bredden, inget annat pÃ¥ skÃ¤rmen. Ingen ruta med bara grund dÃ¤r priset lÃ¥g (`blankBands` 0 i `.stagger`). |
+| **P06** processens kapitelskÃ¤rm | scrollY = `#process` topp | `hoy-1440/hoy-home-1440--s03.png` | `hoy-390/hoy-home-390--s03.png` | En rubrik i displaystorlek Ã¤ger hela skÃ¤rmen pÃ¥ ren grund med en hÃ¥rlinje; kapitlet presenteras innan det bÃ¶rjar. VÃ¥r "FrÃ¥n samtal till lanserad sida." â‰¥ 100 px vid 1440. |
+| **P07** steg 01 | `?preview=process-01` | `hoy-1440/hoy-home-1440--s03.png` | `hoy-390/hoy-webb-390--s00.png` | Ett stort element pÃ¥ tom grund. Siffran 01 (â‰¥ 150 px) och rubriken i bandet, det tomma arket â‰¥ 76 % vw under; skÃ¤rmen Ã¤r ett steg, inte ett stycke bredvid en ruta. |
+| **P08** steg 02 | `?preview=process-02` | `hoy-1440/hoy-webb-1440--s08.png` | `hoy-390/hoy-webb-390--s08.png` | Displaytypografi och en stor bild delar skÃ¤rmen jÃ¤mnt; bilden Ã¤r minst 44 % vw. MÃ¥ttkedjan 320/768/1440 i 44 px accent ska lÃ¤sas pÃ¥ avstÃ¥nd. |
+| **P09** steg 03 | `?preview=process-03` | `hoy-1440/hoy-home-1440--s06.png` | `hoy-390/hoy-home-390--s05.png` | Ett kapitel per skÃ¤rm: rubrik, text, bild, allt inom en viewport, ingen del av nÃ¤sta kapitel synlig. |
+| **P10** steg 04 | `?preview=process-04` | `hoy-1440/hoy-home-1440--s07.png` | `hoy-390/hoy-home-390--s06.png` | Samma kapitelform med ett byte i materialet mellan kapitlen; skiftet mellan steg 03 och 04 ska synas som ett scenbyte (bandet byts), inte som att texten rullar vidare. |
+| **P11** steg 05 | `?preview=process-05` | `hoy-1440/hoy-webb-1440--s07.png` | `hoy-390/hoy-webb-390--s05.png` | Produktytan i full bredd, ~78 % vw, Ã¤r skÃ¤rmens auktoritet. Calyx â‰¥ 50 % av arket och arket â‰¥ 76 % vw. |
+| **P12** steg 06 | `?preview=process-06` | `hoy-1440/hoy-webb-1440--s01.png` | `hoy-390/hoy-webb-390--s01.png` | Bilden Ã¤ger skÃ¤rmen nÃ¤stan kant i kant. Calyx i fÃ¤rg â‰¥ 80 % av arket, â‰¥ 960x540 px vid 1440; ritningen har dragit sig tillbaka; fÃ¥r inte lÃ¤sas som en lampa i ett mÃ¶rkt rum. |
+| **P13** steg 07 | `?preview=process-07` | `hoy-1440/hoy-webb-1440--s10.png` | `hoy-390/hoy-webb-390--s09.png` | Bild och avslutande text i balans, bilden stÃ¶rst; revisionsfÃ¤ltet och siffran 07 Ã¤r detaljer, inte konkurrenter. |
+| **P14** Hur vi tÃ¤nker | scrollY dÃ¤r `#principer` stÃ¥r centrerad | `hoy-1440/hoy-webb-1440--s04.png` | `hoy-390/hoy-webb-390--s02.png` | Ljus grund i full bredd, rubrik vÃ¤nster och text hÃ¶ger, brÃ¶dtext i ~20 px; bÃ¥da halvorna av skÃ¤rmen bÃ¤r nÃ¥got. Ingen tom hÃ¶gerhalva. |
+| **P15** pris + kontakt | dokumentets slut (sista viewporten) och en viewport fÃ¶re | `hoy-1440/hoy-home-1440--s08.png` och `hoy-1440/hoy-home-1440--s09.png` | `insign-390/insign-390--s10.png` | Avslutet Ã¤r ett kapitel pÃ¥ en egen grund: en rubrik, text i lÃ¤sbar storlek, en tydlig kontaktvÃ¤g i brÃ¶dtextens eller kapitelrubrikens storlek, inte i displaystorlek. VÃ¥r `Alla har rÃ¤tt till bra design.` bÃ¤r displayskalan, priserna stÃ¥r i display-siffror, adressen i 46 / 28 px. Priset och adressen lÃ¤ses som samma avslutning pÃ¥ samma fotografi. |
+
+## Sammanhanget, en rad till
+
+| Id | SkÃ¤rm | Referens | Vad som ska hÃ¥lla |
+|---|---|---|---|
+| **P16** hela sidan | helsidesskivor 1440 i ett kontaktark (`shots/r1/sheet-1440.png`) | `hoy-1440/hoy-home-1440--s00.png` till `--s10.png` i ett kontaktark bredvid | Grunden byter material i en lÃ¤sbar rytm (hoy: lila, grÃ¤ddvit, rÃ¶d). V3d: foto, blÃ¥tt, svart plÃ¥t, ritbordet, papper, foto. Ingen fÃ¶ljd av fler Ã¤n fyra skivor som lÃ¤ses som samma mÃ¶rka massa. |
+# 048 Â· V3d: den inverterade varianten. Processakten blir sju scener, avslutet fÃ¥r priset
+
+- **Status**: TODO (V3d R1, en runda)
+- **Commit**: `runs/V3d/index.html` md5 `864c38aa8dd4e81472d45ab2ad224529` (= V3c R13). V3c rÃ¶rs aldrig.
+- **BestÃ¤llning**: Anton 2026-09-18, punkterna A till H. Detta Ã¤r golvet, inte ett fÃ¶rslag.
+- **Ordning**: visuellt fÃ¶rst. Planens Steps fÃ¶ljer A till H; tekniska fÃ¶ljdfel lagas i samma
+  runda och **ett djÃ¤rvt drag backas aldrig fÃ¶r att laga ett fel** (`RAPPORT-LOOPEN.md` fel 5).
+- **Estimated scope**: 1 fil. ~220 rader CSS (varav ~60 ersÃ¤tter befintliga), 7 markup-omslag
+  i `<li>`, ett `<g>`-omslag i arket, en flyttad `<section>`, ~40 rader JS i `measureAct`,
+  `aimOnce` och `plansch`. **Ingen ny synlig strÃ¤ng.** Ingen ny iframe, ingen ny asset.
+- **MÃ¤tunderlag**: `NOTES.md` Â§ Arkitekten (Playwright-mÃ¤tning av nulÃ¤get vid sex bredder och
+  lÃ¤sningen av 12 + 45 + 55 skÃ¤rmbilder). JÃ¤mfÃ¶relsetabellen Ã¤r `PARITET.md`.
+
+## Problem
+
+Sidan i V3d ser ut som V3c: processakten Ã¤r en rullande paragraf (steg 0,44 till 0,54 viewport
+hÃ¶ga, rubrik 31,7 px, nummer 12 px, brÃ¶dtext 16 px bredvid ett ark pÃ¥ 826 px dÃ¤r Calyx fyller
+37 % av ytan), priset stÃ¥r pÃ¥ ett grafitplan bredvid HÅrai, och adressen i avslutet Ã¤r 86 px
+utan referens. Loopen efter R6 lagade fel utan att Ã¤ndra kompositionen. Den hÃ¤r planen Ã¤ndrar
+kompositionen och mÃ¤ter mÃ¥len i skÃ¤rmbilder.
+
+## Target, en rad per bestÃ¤llningspunkt
+
+Alla mÃ¥l mÃ¤ts i skÃ¤rmbild eller `getBoundingClientRect` pÃ¥ den byggda sidan. Inget mÃ¥l Ã¤r en
+tidsgrÃ¤ns; prestanda Ã¤r en grind (Â§ Verification C).
+
+| | Synligt mÃ¥l | 1440 | 390 |
+|---|---|---|---|
+| **A** | `section#pris` ligger direkt fÃ¶re `footer.close`, bÃ¥da pÃ¥ det fasta skrivbordsfotot (`.ground`), noll px mellan dem; priset Ã¤r avslutets rubrik | pris + adress i sidans tvÃ¥ sista viewports | samma |
+| **A** | kontrast Ã¶ver fotot (`contrast_over_media --url`, ljusaste 5 %) | brÃ¶dtext â‰¥ 4,5:1, statement och priser â‰¥ 3:1 | samma |
+| **B** | adressens font-size / glyfhÃ¶jd pÃ¥ `k` (stapelns topp till baslinjen, skÃ¤rmbild) | **46 px / 32 till 35 px** (i dag 86,4 / ~62) | **28 px / 19 till 21 px** (i dag 32) |
+| **C** | `#process` bakgrund utan parameter | `--c-drafting` = oklch(0,21 0,022 250) â‰ˆ `#111922` | samma |
+| **D** | `#giant-section` bakgrund / blÃ¤ck | `--c-black` / `--c-paper`, kant `--frame-line` | samma |
+| **E** | arkets renderade bredd | **â‰¥ 1 100 px = 76 % vw**, fÃ¶rvÃ¤ntat 1 120 till 1 180 (i dag 826 = 57 %) | **â‰¥ 358 px = 92 % vw** |
+| **E** | Calyx-bildens synliga rektangel Ã· arkets rektangel | `?preview=process-05` â‰¥ 50 %, `-06`/`-07` **â‰¥ 80 %** (i dag 37 %) | `-05` â‰¥ 50 %, `-06`/`-07` â‰¥ 55 % (i dag 36 %) |
+| **E** | Calyx i pixlar vid `?preview=process-07` | â‰¥ 960x540 (i dag 505x284) | â‰¥ 330 px bred |
+| **F** | varje steg Ã¤ger â‰¥ 1 viewport: scroll mellan tvÃ¥ bands landning | â‰¥ 900 px (band + 90svh â‰ˆ 1 026) | steg + ark â‰¥ 844 |
+| **F** | stegnummer (displaysiffra) font-size | **â‰¥ 150 px** (clamp â†’ 168) | **â‰¥ 80 px** (86) |
+| **F** | stegrubrik font-size | **â‰¥ 48 px** (52) | **â‰¥ 32 px** |
+| **F** | brÃ¶dtext i akten | 17 px, radavstÃ¥nd 1,6, 78 % papper (9,95:1) | 16 px |
+| **F** | rÃ¶relse, minst tvÃ¥ lager, scrubbat i bÃ¥da riktningarna | band-ticker + arkets ritning + siffra/rubrik-ljus + kamera (05 till 07) | ark + siffra/rubrik-ljus + kamera |
+| **G** | inget hÃ¥l dÃ¤r priset lÃ¥g | vÃ¤nster spalt vid HÅrai visar Calyx sticky, `blankBands` 0 i `.stagger` | staplat, inget glapp > 120 px |
+| **G** | ljuset finns kvar | "Hur vi tÃ¤nker" helbredd papper, Calyx live, bildtexterna, Calyx i fÃ¤rg i 05 till 07 | samma |
+| **H** | varje rad i `PARITET.md` | "hÃ¥ller nivÃ¥n" i en par-bild | samma |
+
+## Tokens (gate 48: allt nytt i `:root`, aldrig inline-hex)
+
+LÃ¤gg bredvid `--c-accent-on-dark` (rad 139):
+
+```css
+/* PLAN 048 C. Processaktens grund i V3d: ritbordet i mÃ¶rker. Kall
+   blÃ¥svart, chroma 0,022 (grafiten har 0,012) - lÃ¤ser som ett eget
+   material mot bÃ¥de fotot och jÃ¤ttens svarta plÃ¥t, blir aldrig en
+   andra accent. RÃ¤knat: --c-paper 15,8:1, --c-accent-on-dark 4,67:1
+   (44 px fet siffra, stor text, golv 3:1), 62 % papper 6,7:1,
+   78 % papper 9,95:1. MÃ¤t om pÃ¥ pixel. */
+--c-drafting:oklch(0.21 0.022 250);
+/* PLAN 048 A. Scrimmen under pris och adress pÃ¥ skrivbordsfotot. */
+--scrim-close:color-mix(in srgb, var(--c-black) 64%, transparent);
+```
+
+## Steps
+
+### A Â· Priset flyttas ned till avslutets fotografiska grund
+
+1. **Flytta markup.** Klipp hela `<section class="price panel-pad" id="pris" data-sc-act="flow">`
+   (rad 1285 till 1303, inklusive kommentaren `<!-- s6 vÃ¤nster. Priset ... -->`) ur
+   `.col-left` och klistra in den **sist i `<main>`**, efter `</section>` fÃ¶r `#principer` (rad
+   1573) och fÃ¶re `</main>` (rad 1589). `footer.close` ligger kvar utanfÃ¶r `<main>`
+   (contentinfo-landmÃ¤rket, se kommentaren rad 1576 till 1586). InnehÃ¥llet i sektionen rÃ¶rs
+   inte ett tecken.
+2. **Ta bort** `.price{order:5;}` i `@media (max-width:900px)` (rad 582): priset Ã¤r inte lÃ¤ngre
+   ett flexbarn i `.stagger`.
+3. **ErsÃ¤tt** `.price{background:var(--c-graphite);...}` (rad 740 till 741) och
+   `.price .statement{...}` (746 till 748):
+
+```css
+/* PLAN 048 A: priset Ã¤r avslutets rubrik och stÃ¥r pÃ¥ samma fotografiska
+   grund som adressen. Ingen egen yta: .ground syns igenom, scrimmen
+   bÃ¤r kontrasten (gate "type over media only on a plate or scrim"). */
+.price{position:relative;isolation:isolate;background:none;color:var(--invert-ink);
+  padding:clamp(120px,18svh,200px) var(--rail-x) 0;}
+.price::before,.close::before{content:"";position:absolute;inset:0;z-index:-1;
+  pointer-events:none;
+  background:linear-gradient(90deg,var(--scrim-close) 0,var(--scrim-close) 58%,transparent 92%);}
+.price .statement{font-family:var(--font);font-weight:300;
+  font-size:clamp(2.75rem,6vw,6rem);line-height:1;letter-spacing:-.02em;
+  max-width:14ch;text-wrap:balance;}
+.price-ledger{margin-top:clamp(40px,6svh,64px);max-width:min(100%,1040px);}
+.price-row .value{font-family:var(--font);font-weight:300;
+  font-size:clamp(1.5rem,2.6vw,2.5rem);letter-spacing:-.01em;}
+```
+
+   `.price-row .value` ersÃ¤tter befintlig deklaration (rad 767 till 768); `.price-ledger` fÃ¥r
+   bara `margin-top` och `max-width` bytta (rad 754), resten stÃ¥r. `.price-row .label` blir
+   `font-size:1.0625rem` (17 px). Vid `max-width:767px` blir scrimmen heltÃ¤ckande:
+   `.price::before,.close::before{background:var(--scrim-close);}`.
+4. **Avslutet blir kortare** (rad 1135 till 1138): `min-height:100svh` bort; `padding:
+   clamp(56px,8svh,96px) var(--rail-x) clamp(96px,16svh,180px)`; `justify-content:flex-start`;
+   lÃ¤gg `isolation:isolate`. Priset och adressen lÃ¤ses som en sammanhÃ¤ngande avslutning:
+   statement, liggare, hÃ¥rlinje, adress.
+
+### B Â· Adressen till en motiverad storlek
+
+5. `.close-mailto` (rad 1142 till 1147): `font-size:clamp(1.75rem,3.2vw,3rem)` ger 46,1 px vid
+   1440, 41 vid 1280, 32,8 vid 1024, 28 vid 768/390/320. **Motivering mot referenserna:** hoy
+   sÃ¤tter kapitelrubriker i ~46 px vid 1440 (hoy-home s06 "DIGITALA LÃ–SNINGAR") och sin kontakt
+   i brÃ¶dstorlek; insign-390 s10 avslutar med sin frÃ¥ga i ~28 px. Adressen Ã¤r en handling, inte
+   en rubrik: den tar kapitelrubrikens storlek och lÃ¤mnar displayskalan Ã¥t `Alla har rÃ¤tt till
+   bra design.` (86 px vid 1440, kvot 1,9). Understrykningen och `min-height:44px` stÃ¥r kvar.
+   Vid 320 mÃ¤ter strÃ¤ngen ~240 px: ryms utan brytning (gate 49).
+
+### C Â· Processakten inverterad som standardlÃ¤ge
+
+6. Skriv om 045:s block (rad 1047 till 1083) sÃ¥ att det gÃ¤ller utan parameter och **bara**
+   `#process`. `.principles` tas ur blocket och stÃ¥r kvar pÃ¥ papper (beslut G2):
+
+```css
+#process{
+  --bg:var(--c-drafting); --ink:var(--c-paper);
+  --c-line-on-paper:var(--hairline-dark);
+  --c-accent:var(--c-accent-on-dark);
+  --hair-ink:color-mix(in srgb, var(--c-paper) 62%, var(--c-drafting));}
+#process .process-lead,#process .process-p{
+  color:color-mix(in srgb, var(--c-paper) 78%, var(--c-drafting));}
+#process .process-sheet .p-live{
+  filter:grayscale(calc(1 - var(--k6))) contrast(1.05) brightness(0.6);}
+```
+
+   Ta bort JS-raden `if (proc === 'invert') ...` och `var proc = ...` (rad 2056 till 2060)
+   med kommentar: `?process=` lÃ¤ses inte lÃ¤ngre. `brightness(0.6)` Ã¤r 046:s mÃ¤tta vÃ¤rde mot
+   svart; mÃ¤t om mot `--c-drafting` med den stÃ¶rre bilden (steg E) och skriv talet i NOTES.
+   Lead dÃ¶mer lampeffekten pÃ¥ par-bilden, inte pÃ¥ talet.
+
+### D Â· JÃ¤ttesektionen inverterad
+
+7. `#giant-section` blir kortets baksida, samma material som `.face--back`:
+
+```css
+/* PLAN 048 D. JÃ¤tten pÃ¥ kortets material: svart plÃ¥t, papperets blÃ¤ck,
+   samma hÃ¥rlinjekant som plÃ¥ten i heron. Tokenbyte som i C. */
+#giant-section{
+  --bg:var(--c-black); --ink:var(--c-paper);
+  --c-line-on-paper:var(--hairline-dark);
+  border:1px solid var(--frame-line);}
+#giant-section .giant-sub,#giant-section .ledger-body p{
+  color:color-mix(in srgb, var(--c-paper) 72%, var(--c-black));}
+#giant-section .ledger-num{
+  color:color-mix(in srgb, var(--c-paper) 62%, var(--c-black));}
+```
+
+   `.panel-giant` lÃ¤ser redan `background:var(--bg);color:var(--ink)`; `.thread`,
+   `.thread-fill`, `.ledger`, `.ledger-row` och ordscrubbens gradient lÃ¤ser `--ink`/`--bg`/
+   `--c-line-on-paper` och vÃ¤nder med tokens. JÃ¤tterubriken stÃ¥r kvar pÃ¥ `clamp(2.1rem,7.4vw -
+   18px,5.5rem)` (plan 030); ingen storlek backas.
+
+### E Â· Arket kraftigt stÃ¶rre, Calyx fyller rutan
+
+8. **Arkets storlek** (layout i F): vid â‰¥ 768 Ã¤r arket sidans scen, `width:min(100%,
+   calc((100svh - var(--band-h) - clamp(18px,3svh,32px)) * 880 / 495))`. FÃ¶rvÃ¤ntat: 1440x900
+   med `--band-h` 210 till 240 â†’ 1 120 till 1 180 px (78 till 82 % vw), 1280x800 â†’ ~980 (77 %),
+   1024x768 â†’ ~810 (79 %, bandet ~290), 768x1024 â†’ 676 (88 %). Bandets hÃ¶jd styrs av det lÃ¤ngsta stycket
+   (steg 03, ~430 tecken): 66 ch i 17 px ger 6 till 7 rader. **Krymp aldrig texten fÃ¶r att
+   vinna arkyta**; vinn den pÃ¥ bandets spaltbredd.
+9. **Kameran.** Omslut allt ritat utom `#p-outline` i en ny `<g id="p-cam">` direkt efter
+   `</defs>`. `#p-outline` flyttas ut ur `g[data-step="01"]` till en egen
+   `<g data-step="01" id="p-frame">` FÃ–RE `#p-cam` (den ramen skalas aldrig, "rutan" stÃ¥r);
+   `#p-glyph` stannar i `#p-cam` i en `g` utan `data-step` (den dÃ¶ljs redan av sin
+   snÃ¤ppopacitet tills `--k1` â‰¥ 0,30). `sheetGroups` indexeras per `data-step`: lÃ¤s **alla**
+   grupper per steg (`querySelectorAll('g[data-step="01"]')`) och vÃ¤xla `data-on` pÃ¥ varje,
+   annars tappas den ena gruppen. Paint-ordningen inne i `#p-cam` Ã¤r ofÃ¶rÃ¤ndrad (05 fÃ¶rst).
+
+```css
+/* PLAN 048 E. Kameran: ritningen skjuts in mot Ã¶ppningen nÃ¤r materialet
+   kommer (05) och nÃ¤r ritningen blir sida (06). Ramen #p-frame stÃ¥r
+   still; bara innehÃ¥llet rÃ¶r sig. LÃ¤ser --k5/--k6 (F-014 via --sc-ps). */
+#process{--cam:clamp(0, 0.35 * var(--k5) + 0.65 * var(--k6), 1);}
+#p-cam{transform-box:view-box;transform-origin:533px 247.5px;
+  transform:translate(calc(-93px * var(--cam)),0) scale(calc(1 + 0.5 * var(--cam)));}
+```
+
+   533 / 247,5 Ã¤r Ã¶ppningens mitt ((264+802)/2, (96+399)/2); âˆ’93 flyttar den till arkets mitt
+   (440). Vid `--cam` = 1 Ã¤r Ã¶ppningen 807x455 av 880x495 = **84 %** av arkets yta; vid
+   `?preview=process-05` (`--cam` 0,35) 632x356 = **52 %**. Allt utanfÃ¶r Ã¶ppningen skjuts ut ur
+   arket och klipps av `<svg>`:s egen overflow; det Ã¤r avsikten (06:s not: "Ritningen och
+   sidan Ã¤r samma sak").
+10. **Mobilens plansch blir 320x300** (i dag 320x360), sÃ¥ att Ã¶ppningen tar mer av ytan.
+    I `@media (max-width:767px)` (ersÃ¤tter `max-width:1279px`, rad 1088):
+
+```css
+#p-outline{d:path("M0.5 0.5 H319.5 V299.5 H0.5 Z");}
+#p-opening{d:path("M16 68 H304 V230 H16 Z");}
+#p-open-rect,#p-live-img{x:16px;y:68px;width:288px;height:162px;}
+#p-dim-width{d:path("M0 286 H320");}
+#p-lead-169{d:path("M304 68 L296 60 H200");}
+#p-dot-169{cx:304px;cy:68px;}
+#p-title{d:path("M208 16 H304 V52 H208 Z M208 28 H304 M208 40 H304");}
+#p-rev{x:208px;y:16px;width:96px;height:12px;}
+#p-cam{transform-origin:160px 149px;transform:scale(calc(1 + 0.08 * var(--cam)));}
+.process-sheet{aspect-ratio:320/300;}
+```
+
+    Och i JS (`plansch`, rad 2178 till 2189): `matchMedia('(max-width: 767px)')`, viewBox
+    `'0 0 320 300'`, `MOBILE_TEXT` mobilvÃ¤rden: `p-m320` [71, 276], `p-m768` [171, 276],
+    `p-m1440` [304, 276], `p-c-169` [196, 64], `p-c-rev` [256, 26]. SkrivbordsvÃ¤rdena i
+    `MOBILE_TEXT` rÃ¶rs inte. Ã–ppningen 288x162 av 320x300 = 48,6 %, med kameran 1,08 = 56,7 %.
+    **Kontroll:** inga tvÃ¥ av `#p-glyph`, `#p-title`, `#p-c-169`, `#p-m320`, `#p-m768`,
+    `#p-m1440`, `#p-opening` fÃ¥r ha Ã¶verlappande `getBBox()` vid 390 (skriv ut dem).
+
+### F Â· Varje fas en scen
+
+Formen, i en mening: **arket Ã¤r en sticky scen i nederkanten av skÃ¤rmen, stegtexten stÃ¥r i ett
+sticky band ovanfÃ¶r, och varje nytt band stiger upp bakom arkets Ã¶verkant och skjuter det fÃ¶rra
+ut ur bild.** Texten ligger kvar i flÃ¶det i `<ol>`-ordning (PageDown, skÃ¤rmlÃ¤sare, plan 019:s
+a11y-skÃ¤l), men varje steg Ã¤ger sin skÃ¤rm.
+
+11. **Markup, sju `Edit`.** I varje `<li data-step="0N">`: omslut barnen med
+    `<div class="step-band">â€¦</div>`, och ge `<span class="ledger-num">` attributet
+    `aria-hidden="true"` (`<ol>` bÃ¤r ordningen fÃ¶r skÃ¤rmlÃ¤saren). Ingen text Ã¤ndras.
+12. **KapitelskÃ¤rmen** (hoy-home s03): `.process{padding-block:clamp(120px,22svh,240px) 0}`,
+    `.process-title{font-size:clamp(2.75rem,7.2vw,7.5rem);line-height:.95;max-width:14ch;
+    letter-spacing:-.03em}` (104 px vid 1440), `.process-lead{font-size:1.0625rem;
+    margin-bottom:clamp(96px,16svh,180px)}`, och `.process-grid{margin-top:0}`.
+13. **Scenen, â‰¥ 768** (ersÃ¤tter `.process-grid`, `.process-steps`, `.process-steps li`,
+    `.process-step-title`, `.process-p`, `.process-note`, `.process-stick`, `.process-sheet` pÃ¥
+    rad 887 till 908):
+
+```css
+/* PLAN 048 F. INTE en rullande paragraf bredvid ett litet ark: en scen
+   per steg. --band-h skrivs av measureAct (hÃ¶gsta .step-band), fallback
+   nedan. */
+#process{--band-h:clamp(200px,24svh,240px);}
+.process-grid{display:grid;grid-template-columns:minmax(0,1fr);}
+.process-stick{grid-area:1/1;align-self:start;position:sticky;
+  top:var(--band-h);margin-top:var(--band-h);height:calc(100svh - var(--band-h));
+  z-index:2;background:var(--bg);display:flex;align-items:center;justify-content:center;
+  padding:clamp(6px,1svh,12px) var(--rail-x) clamp(12px,2svh,20px);}
+.process-sheet{display:block;height:auto;max-width:none;aspect-ratio:880/495;
+  width:min(100%,calc((100svh - var(--band-h) - clamp(18px,3svh,32px)) * 880 / 495));}
+.process-steps{grid-area:1/1;z-index:1;list-style:none;margin:0;padding:0;}
+/* Kodan: arket stÃ¥r kvar fÃ¤rdigt i en skÃ¤rm efter att band 07 lÃ¤mnat. */
+.process-steps::after{content:"";display:block;height:calc(100svh - var(--band-h));}
+.process-steps li{min-height:calc(var(--band-h) + 90svh);padding:0;}
+.step-band{position:sticky;top:0;height:var(--band-h);background:var(--bg);
+  display:grid;grid-template-columns:auto max-content minmax(0,42rem);
+  column-gap:clamp(24px,3vw,56px);align-items:start;
+  padding:clamp(20px,3svh,32px) var(--rail-x) clamp(12px,2svh,20px);
+  border-bottom:1px solid var(--c-line-on-paper);}
+#process .ledger-num{font-family:var(--f-display);font-weight:700;
+  font-size:clamp(5rem,11.7vw,10.5rem);line-height:.8;letter-spacing:-.04em;
+  font-variant-numeric:tabular-nums;padding:0;}
+.process-step-title{font-family:var(--f-display);font-weight:700;
+  font-size:clamp(2rem,3.6vw,3.25rem);line-height:.95;letter-spacing:-.02em;
+  text-transform:uppercase;color:var(--ink);}
+.process-p{font-family:var(--font);font-weight:300;font-size:1.0625rem;
+  line-height:1.6;max-width:66ch;}
+.process-note{font-weight:600;font-size:13px;color:var(--hair-ink);
+  max-width:28ch;margin-top:.8rem;}
+@media (max-width:1023px) and (min-width:768px){
+  .step-band{grid-template-columns:auto minmax(0,1fr);row-gap:16px;}
+  .step-band .process-p{grid-column:1 / -1;}
+}
+```
+
+    `.process-note` stÃ¥r i andra spalten under rubriken: flytta den i markup? **Nej.** Placera
+    med grid: `.step-band > .process-step-title{grid-column:2}`, `.step-band >
+    .process-note{grid-column:2;grid-row:2}`, `.step-band > .process-p{grid-column:3;
+    grid-row:1 / span 2}`, siffran `grid-row:1 / span 2`. DOM-ordningen (nummer, rubrik,
+    stycke, not) Ã¤r ofÃ¶rÃ¤ndrad.
+
+    VarfÃ¶r ticker-effekten uppstÃ¥r av sig sjÃ¤lv: bandet fÃ¶r steg N Ã¤r sticky i sitt eget `<li>`.
+    NÃ¤r `<li>` N+1 nÃ¥r bandets underkant ligger dess band direkt under band N och under arkets
+    ogenomskinliga scen (z-index 2); de tvÃ¥ banden rÃ¶r sig upp tillsammans, N ut ur bild, N+1
+    fram ur arkets Ã¶verkant. Det Ã¤r ren scroll, pixelbundet, i bÃ¥da riktningarna, utan en
+    enda skrivning per bildruta. Sticky-intervallet per steg Ã¤r 90svh (810 px vid 900) och
+    alltsÃ¥ lÃ¤ngre Ã¤n Chromes PageDown (787 px vid 900): PageDown kan inte hoppa Ã¶ver ett steg.
+
+14. **Siffran och rubriken tÃ¤nds med steget** (lager 2, lÃ¤ser `--kN` alltsÃ¥ `--sc-ps`):
+
+```css
+.process-steps li[data-step="01"]{--k:var(--k1);}
+/* ... 02 till 07 likadant ... */
+#process .step-band .ledger-num{
+  color:color-mix(in srgb, var(--ink) calc(62% + 38% * var(--k)), var(--bg));
+  letter-spacing:calc(0.04em - 0.08em * var(--k));
+  transform:translateY(calc((1 - var(--k)) * 0.08em));}
+#process .step-band .process-step-title{
+  --edge:calc(var(--k) * 130%);
+  background-image:linear-gradient(100deg,var(--ink) 0 calc(var(--edge) - 12%),
+    color-mix(in srgb,var(--ink) 62%,var(--bg)) calc(var(--edge) + 12%) 100%);
+  -webkit-background-clip:text;background-clip:text;color:transparent;}
+```
+
+    BÃ¥da Ã¤ndarna Ã¤r lÃ¤sbara (62 % papper mot `--c-drafting` = 6,7:1). Ingen `opacity` pÃ¥ text.
+15. **Mobilen, < 768.** Arket sticky Ã¶verst som i dag (`.process-stick{order:-1;position:
+    sticky;top:0;z-index:2;background:var(--bg);padding-block:12px;width:min(100% - 2 *
+    var(--rail-x),560px);justify-self:center}`), stegen i flÃ¶det under det, `.step-band`
+    **inte** sticky (`position:static;height:auto;display:block;border:0`), `.process-steps
+    li{min-height:calc(100svh - var(--sheet-h));padding-block:clamp(24px,4svh,40px)}` med
+    `--sheet-h` skrivet av `measureAct` (arkets `getBoundingClientRect().height`),
+    `.process-steps::after{display:none}`, `.process-steps` behÃ¥ller sin bottenpadding
+    `clamp(160px,22vh,220px)`. Siffran `font-size:clamp(4.5rem,22vw,6rem)` (86 px vid 390),
+    rubriken `2rem`. `.process-steps{width:min(100%,560px)}` och `justify-self:center`.
+16. **JS, `measureAct`** (rad 1827 till 1881):
+    - brytpunkten `(max-width:1279px)` â†’ `(max-width:767px)`, pÃ¥ alla tre stÃ¤llen (rad 1844,
+      2097, 2180);
+    - **fÃ¶rst** (â‰¥ 768): `bandH = max(.step-band.scrollHeight)` Ã¶ver de sju, avrundat uppÃ¥t,
+      skrivet som `--band-h` pÃ¥ `#process` (skrivs bara om det Ã¤ndrats); vid < 768 skrivs
+      `--sheet-h` i stÃ¤llet;
+    - **sedan** li-rektanglarna (de beror pÃ¥ `--band-h`);
+    - ankare vid â‰¥ 768: `s1 = (y0 + 0.5 * vh) / life`, `sN = (y0 + vh) / life` fÃ¶r N â‰¥ 2,
+      `eN = (y0 + 1.6 * vh) / life`. AlltsÃ¥: steget ritar under de fÃ¶rsta 60 % av sitt
+      sticky-intervall och stÃ¥r fÃ¤rdigt de sista 30 %. Mobilformlerna stÃ¥r kvar som de Ã¤r.
+    - `aimOnce` (rad 2103 till 2105): vid â‰¥ 768 `target = stepAnchors[pi].y0 + 0.6 * vh`
+      (ger `--sc-ps` = `eN` per konstruktion); mobil ofÃ¶rÃ¤ndrad.
+
+### G Â· Balansen efter flytten
+
+17. **Bandet dÃ¤r priset lÃ¥g.** VÃ¤nsterspalten tappar 729 px vid 1440 (priset 567 + gap 162).
+    I stÃ¤llet fÃ¶r ett hÃ¥l hÃ¥lls **Calyx sticky** i vÃ¤nsterspalten medan jÃ¤tten och HÅrai
+    passerar till hÃ¶ger: `.calyx-fig{flex:none;position:sticky;top:clamp(24px,5svh,48px);}`
+    (ersÃ¤tter `.calyx-fig{flex:1;}`, rad 654). `.calyx-wrap` behÃ¥ller `min-height:90dvh`. Ramen
+    transformeras eller tonas inte av detta (sticky Ã¤r ingen transform; PRODUCT.md hÃ¥ller). Vid
+    `max-width:900px`: `.calyx-fig{position:static}`. Resultat vid HÅrai-skÃ¤rmen: tvÃ¥ levande
+    sajter sida vid sida, som insign-1440 s04 (tvÃ¥ arbeten, 94 % vw tillsammans).
+18. **Var ljuset finns kvar** (beslutet, motiverat i Â§ Beslut G nedan): "Hur vi tÃ¤nker" stÃ¥r
+    kvar pÃ¥ papper, helbredd, som sidans enda helbredds tonala inversion; bildtexterna under
+    ramarna stÃ¥r kvar pÃ¥ papper; Calyx live bÃ¤r ljus i stagger-bandet; Calyx fÃ¥r fÃ¤rg i
+    05 till 07. "Hur vi tÃ¤nker" vÃ¤ger upp sin hÃ¶gra halva: `.principles` blir en tvÃ¥spaltig
+    grid â‰¥ 900 (`grid-template-columns:minmax(0,5fr) minmax(0,7fr)`), kickern "Hur vi tÃ¤nker"
+    sÃ¤tts i displaystorlek i vÃ¤nsterspalten (`font-family:var(--f-display);font-weight:700;
+    font-size:clamp(2.25rem,4.4vw,4.25rem);letter-spacing:-.02em;text-transform:none`, samma
+    text, samma element), liggaren i hÃ¶gerspalten med `h3` i `clamp(1.25rem,1.8vw,1.6rem)` och
+    brÃ¶dtext 17 px. Det Ã¤r hoy-webb s04:s form: rubrik vÃ¤nster, text hÃ¶ger, papper i full bredd.
+
+### H Â· JÃ¤mfÃ¶relsen
+
+19. Skjut skivor och par-bilder enligt `PARITET.md` och laga det som inte hÃ¥ller nivÃ¥n i samma
+    runda (se `PROMPT-V3d-R1.md` Â§ 3).
+
+## Device-tabell
+
+| Bredd | Stagger-bandet | Processakten | Arket (fÃ¶rvÃ¤ntat) | Avslutet |
+|---|---|---|---|---|
+| **1440x900** | tvÃ¥ spalter; Calyx sticky vÃ¤nster, jÃ¤tten svart + HÅrai hÃ¶ger | band 210 till 240 px sticky Ã¶verst, scen under; kod en skÃ¤rm | 1 120 till 1 180 bred (78 till 82 %) | statement 86 px, priser 37 px, adress 46 px |
+| **1280x800** | som 1440 | band ~210 | ~980 (77 %) | 77 / 33 / 41 |
+| **1024x768** | tvÃ¥ spalter (brytpunkten Ã¤r 900) | band 3 spalter, stycket ~445 px brett, band ~290 | ~810 (79 %) | 61 / 27 / 33 |
+| **768x1024** | staplat (â‰¤ 900): tes, Calyx, jÃ¤tten, HÅrai | band 2 rader (siffra + rubrik / stycke), ~320 | 676x380 (88 %) | 46 / 24 / 28 |
+| **390x844** | staplat | mobil: plansch 320x300 sticky Ã¶verst, stegen under | 358x336 (92 %) | 44 / 24 / 28 |
+| **320x568** | staplat | mobil | 288x270 (90 %) | 44 / 24 / 28 |
+
+200 % zoom vid 1440 = 720 css-px: mobilvÃ¤gen. Noll horisontell scroll 320 till 1440, mÃ¤tt pÃ¥
+elementens rektanglar (gate 34), inte pÃ¥ `scrollWidth`.
+
+## `?preview=`
+
+- `process-01` till `-07`: siktar pÃ¥ `eN` enligt steg 16. Vid â‰¥ 768 visar bilden band N Ã¶verst
+  med siffran full ton och rubriken tÃ¤nd, och arket i steg N:s formade lÃ¤ge; `-05` visar
+  kameran pÃ¥ 0,35, `-06` och `-07` pÃ¥ 1. Mobil: som i dag. `--sc-ps` = `--eN` Â± 0,0001 vid 1440
+  och 390, tre laddningar per lÃ¤ge vid 390.
+- `front`, `mid`, `back`, `ledger`, `bleed`: ofÃ¶rÃ¤ndrade. `ledger` visar nu den svarta jÃ¤tten.
+- `?process=invert` lÃ¤ses inte lÃ¤ngre (akten Ã¤r inverterad utan parameter).
+
+## Beslut G, med skÃ¤l i pixlar
+
+1. **Priset lÃ¤mnar ett hÃ¥l pÃ¥ 729 px vid 1440; det fylls med en hÃ¥llning, inte med en ny
+   yta.** Tre kandidater prÃ¶vades mot mÃ¤tningen: (a) Calyx `flex:1` som i dag skulle strÃ¤cka
+   ramen till 1 578 px hÃ¶jd pÃ¥ 651 bredd (kvot 2,4, en portrÃ¤ttremsa av en liggande sajt);
+   (b) att flytta HÅrai till vÃ¤nster lÃ¤mnar samma hÃ¥l till hÃ¶ger; (c) Calyx sticky: ramen
+   behÃ¥ller sina 849 px och stÃ¥r i bild genom hela hÃ¶gerspaltens passage. (c) valt: noll ny
+   yta, noll ny text, och bandet blir tvÃ¥ levande sajter bredvid varandra.
+2. **"Hur vi tÃ¤nker" fÃ¶rblir papper.** Med processen pÃ¥ `--c-drafting` (â‰ˆ 7 till 8 viewports
+   vid 1440) och jÃ¤tten pÃ¥ svart Ã¤r det enda helbredda ljusa fÃ¤ltet mellan heron och avslutet
+   annars borta, och sidan lÃ¤ses som en massa. Papperet stÃ¥r direkt efter aktens kod och fÃ¶re
+   avslutets foto: mÃ¶rk ritning, papper, fotografi, alltsÃ¥ tre material i fÃ¶ljd (H-03, H-06).
+   045 inverterade principerna tillsammans med akten; bestÃ¤llningen C gÃ¤ller processakten,
+   inte principerna.
+3. **Tre mÃ¶rka material, inte ett.** Fotot (neutralt grÃ¥tt, L ~0,15 till 0,35 efter
+   `brightness(.5)`), jÃ¤ttens svarta plÃ¥t (`#0b0c0e`, med `--frame-line` som heronkortet) och
+   ritbordet (`--c-drafting`, kall blÃ¥svart). De ligger aldrig kant i kant utan en ram eller ett
+   foto emellan, och de lÃ¤ser som tre ytor, inte en.
+4. **Ljusbudget, mÃ¤tt av byggaren:** helsidesbilden vid 1440 i skivor om 900 px; per skiva
+   andelen pixlar med relativ luminans > 0,5. FÃ¶rvÃ¤ntat: ingen fÃ¶ljd av fler Ã¤n fyra skivor
+   under 3 %, och "Hur vi tÃ¤nker" > 50 %. Lead dÃ¶mer pÃ¥ strippen och par-bilderna, inte pÃ¥
+   talet.
+
+## Repo conventions
+
+- Motorn `scroll/scrollcraft.js`, `scrollcraft.css`, `scroll/sc-smooth.js` och `sites/*` orÃ¶rda.
+  `@property`-registreringen av `--sc-ps` (i shimen) orÃ¶rd; inga nya `@property`.
+- F-011: ingen `prefers-reduced-motion`, ingen statisk fallback. F-014: allt som rÃ¶r sig lÃ¤ser
+  `--sc-ps` via `--kN`/`--cam`; rÃ¥ `--sc-p` driver ingenting.
+- LÃ¥st copy ordagrant (PRODUCT.md Â§ Brand Commitments), de sju processtyckena och noterna
+  ordagrant. Ingen ny synlig strÃ¤ng. Gate 75: noll tankstreck.
+- Gate 47/79: Calyx i arket Ã¤r en riktig produktyta. Ingen tredje iframe.
+- Radie 0. Inga skuggor. Accenten `#1e5e9c` fortfarande exakt tvÃ¥ fÃ¶rekomster (tesen, "Boka ett
+  mÃ¶te"); `--c-accent-on-dark` pÃ¥ mÃ¥ttsiffrorna Ã¤r samma roll mot en annan grund (045).
+
+## Boundaries (STOPPA och skriv i NOTES)
+
+- En Ã¤ndring skulle krÃ¤va att en lÃ¥st strÃ¤ng Ã¤ndras eller flyttas ut ur sin sektion.
+- Kameran eller bandet krÃ¤ver JS per bildruta fÃ¶r att fungera.
+- `sheetGroups`-Ã¤ndringen gÃ¶r att en grupp aldrig fÃ¥r `data-on` (kontrollera alla sju steg
+  vid 1440 och 390 med `?preview=`).
+
+## Verification
+
+**A. Synligt, det som avgÃ¶r.** `PARITET.md`: skivor vid 1440 och 390, par-bild per rad, och
+varje rad bedÃ¶md "hÃ¥ller nivÃ¥n" eller lagad. Plus tabellen ovan, rad fÃ¶r rad, med uppmÃ¤tt vÃ¤rde.
+
+**B. MÃ¤tt.**
+- E: `getBoundingClientRect` pÃ¥ `#processSheet` och pÃ¥ `#p-live-img` (klippt mot
+  `#p-open-rect`, alltsÃ¥ skÃ¤rningen av de tvÃ¥ rektanglarna) vid `?preview=process-05/06/07`,
+  1440 och 390. Kvoten skriven.
+- F: `getComputedStyle` font-size pÃ¥ `#process .ledger-num`, `.process-step-title`,
+  `.process-p`; li-hÃ¶jder; tolvstegs ramsekvens genom steg 03 till 04 vid 1440, **ned och upp**,
+  med siffrans `color` och bandens `top` utskrivna per ram (monotont i bÃ¥da riktningarna).
+- B: glyfhÃ¶jden pÃ¥ `k` i `kontakt@alunix.se` ur skÃ¤rmbilden (kolumnskanning av den fÃ¶rsta
+  glyfens blÃ¤ck), 1440 och 390.
+- A/C/D: `contrast_over_media.py --url` pÃ¥ prisets och adressens strÃ¤ngar (scroll till
+  `#pris` och till dokumentets slut), pÃ¥ akten (`?preview=process-02` och `-06`) och pÃ¥ jÃ¤tten
+  (`?preview=ledger`), 1440 och 390. BrÃ¶dtext â‰¥ 4,5:1, stor text â‰¥ 3:1.
+- G: ljusbudgeten per skiva (Â§ Beslut G punkt 4); `scroll_verify` `blankBands` i `.stagger`
+  = 0. `blankBands` inne i `#process` i helsidesfÃ¥ngsten Ã¤r en artefakt av den sticky scenen
+  (fÃ¥ngsten visar scenen en gÃ¥ng); de redovisas och dÃ¶ms pÃ¥ skivorna.
+
+**C. Grinden (inte mÃ¥let).** `scroll_verify` 1440 och 390; `motion_probe` med
+kontrollprotokollet (`tests/motion/smooth.html` ren fÃ¶rst), `#process:--sc-ps` ned och upp,
+cpu 1 och 4, staircase 0, `max_step` â‰¤ 3 % pÃ¥ `--sc-ps`; `a11y_scan` + `reflow` vid 390 och
+768; `tab_walk`; noll horisontell scroll 320 till 1440; grep: `prefers-reduced-motion` 0,
+U+2012 till U+2015 0 i synlig text, inline-hex utanfÃ¶r `:root` inte fler Ã¤n fÃ¶re (arkitektens rÃ¤kning: 16 i CSS utan kommentarer, 8 i markup/JS).
+
+**Done when:** varje mÃ¥lrad ovan har ett uppmÃ¤tt vÃ¤rde som nÃ¥r mÃ¥let, varje rad i `PARITET.md`
+hÃ¥ller nivÃ¥n i sin par-bild, och grinden Ã¤r ren eller varje avvikelse namngiven med skÃ¤l.
+
+exec
+"C:\\WINDOWS\\System32\\WindowsPowerShell\\v1.0\\powershell.exe" -Command '$p='"'tests/alunix-r8/runs/V3d/index.html'; "'$s=Get-Content $p; for($i=1400;$i -le 1490;$i++){ '"'{0}: {1}' -f ("'$i+1),$s[$i] }; for($i=2570;$i -le 2680;$i++){ '"'{0}: {1}' -f ("'$i+1),$s[$i] }' in C:\Users\Anton L\anti-slop-design
+ succeeded in 416ms:
+1401:     /* PLAN 049 fix 2 (Astra material_fixes #2). margin-top:0 och
+1402:        grid-area:auto nollar TVÃ… skrivbordsegenskaper R1 missade:
+1403:        margin-top:var(--band-h) (202,56px vid 390, aldrig satt av JS pÃ¥
+1404:        mobil sÃ¥ CSS-fallbacken vann) och grid-area:1/1 (bÃ¥da elementen
+1405:        delade samma cell). UppmÃ¤tt: sticken landade 202,56px fÃ¶r lÃ¥gt,
+1406:        Ã¶ver .process-p (548 Ã¶ver 506..724). auto ger tvÃ¥ separata rader
+1407:        i .process-grid, som redan Ã¤r grid-template-columns:1fr hÃ¤r. */
+1408:     .process-stick{order:-1;position:sticky;top:0;z-index:2;height:auto;
+1409:       margin-top:0;grid-area:auto;
+1410:       background:var(--bg);padding:12px 0;justify-self:center;
+1411:       width:min(100% - 32px,560px);}
+1412:     .step-band{position:static;height:auto;display:block;border:0;}
+1413:     .process-steps{grid-area:auto;width:min(100%,560px);justify-self:center;
+1414:       padding-bottom:clamp(160px,22vh,220px);}
+1415:     .process-steps::after{display:none;}
+1416:     .process-steps li{min-height:calc(100svh - var(--sheet-h));
+1417:       padding-block:clamp(24px,4svh,40px);}
+1418:     #process .ledger-num{font-size:clamp(4.5rem,22vw,6rem);}
+1419:     .process-step-title{font-size:2rem;}
+1420: 
+1421:     #p-guides,#p-ledgers,#p-dim-gutter,#p-stations,
+1422:     #p-c-gutter{display:none;}
+1423:     /* PLAN 049 fix 7 (Astra material_fixes #7): steg 04 ritade ingenting
+1424:        pÃ¥ mobil - hela dess grupp (#p-hatch/#p-dim-row/#p-c-row) dolds.
+1425:        Egna mobilkoordinater i stÃ¤llet, i den smala remsan mellan
+1426:        Ã¶ppningens underkant (230) och mÃ¥ttlinjen (286): en liten
+1427:        skrafferad ruta plus dess mÃ¥ttledare, samma roll som
+1428:        raddelningen pÃ¥ skrivbordet (96 px), bara flyttad dit ytan finns
+1429:        pÃ¥ en 320 bred plansch. */
+1430:     /* AVVIKELSE, PLAN 051 fix 4 (R4, Astra material_fixes #4): 16x16px
+1431:        lÃ¤stes inte som en synlig Ã¤ndring, och #p-c-rows CSS x/y gjorde
+1432:        ingenting (en <text> lÃ¤ser bara SVG-attribut, inte CSS x/y) - "96 px"
+1433:        stod kvar pÃ¥ skrivbordskoordinaten 102/333, utanfÃ¶r 320x300-
+1434:        viewBoxen. #p-c-row flyttat till MOBILE_TEXT (samma mÃ¶nster som
+1435:        p-m320/p-c-169/p-c-rev redan anvÃ¤nder, rad ~2586) i stÃ¤llet, med
+1436:        riktiga mobilkoordinater. Hatchen hÃ¶jd 16->80px, vÃ¤l Ã¶ver 48px-golvet. */
+1437:     #p-hatch{x:8px;y:75px;width:16px;height:80px;}
+1438:     #p-dim-row{d:path("M32 75 V155")}
+1439: 
+1440:     #p-outline{d:path("M0.5 0.5 H319.5 V199.5 H0.5 Z");}
+1441:     /* PLAN 052 fix 2 (R5), river R4 fix 4. R4:s 304x260-ruta (1,169:1) var
+1442:        fortfarande inte 16:9 (1,778:1) - #p-live-img:s preserveAspectRatio
+1443:        "xMidYMin slice" fyllde rutan genom att BESKÃ„RA sidled, rubriken
+1444:        klipptes till "mical/tecture/kholm" (leadens R5-fynd). En 16:9-ruta
+1445:        som hÃ¥ller sig inom 320 bred kan aldrig nÃ¥ 80% av en 320x300-yta
+1446:        (max ~54%) - 80%, 16:9 och bredd<=320 utesluter varandra i den
+1447:        formen. LÃ¶st genom att sÃ¤nka ARKETS EGEN hÃ¶jd (300->200, bredden
+1448:        320 ofÃ¶rÃ¤ndrad - alla x-koordinater fÃ¶r titelblock/16:9-callout/
+1449:        hatch/mÃ¥ttlinjer fÃ¶rblir giltiga), inte genom mer zoom: 304x171 =
+1450:        exakt 16:9, och 304x171 / 320x200 = 81,2% av ytan, Ã¶ver 80%-mÃ¥let.
+1451:        Noll beskÃ¤rning: nÃ¤r rutans egen proportion matchar bildens blir
+1452:        "slice" identiskt med fit. */
+1453:     #p-opening{d:path("M8 20 H312 V191 H8 Z");}
+1454:     #p-open-rect,#p-live-img{x:8px;y:20px;width:304px;height:171px;}
+1455:     /* MÃ¥ttlinjen och siffrorna (nedan, MOBILE_TEXT) fÃ¶ljer samma +6/-4 px-
+1456:        offset mot Ã¶ppningens nya underkant (191) som de hade mot den gamla
+1457:        (280) - sjÃ¤lva mÃ¶nstret rÃ¶rs inte, bara talen rÃ¤knas om. */
+1458:     #p-dim-width{d:path("M0 197 H320");}
+1459:     #p-lead-169{d:path("M304 68 L296 60 H200");}
+1460:     #p-dot-169{cx:304px;cy:68px;}
+1461:     #p-title{d:path("M208 16 H304 V52 H208 Z M208 28 H304 M208 40 H304");}
+1462:     #p-rev{x:208px;y:16px;width:96px;height:12px;}
+1463:     #p-cam{transform-origin:160px 100px;transform:scale(calc(1 + 0.08 * var(--cam)));}
+1464:     /* width:100% ersÃ¤tter skrivbordsformelns calc(), som annars gav arket
+1465:        296px (mindre Ã¤n sin egen sticky-behÃ¥llares 343px) - samma fel som
+1466:        .process-stick:s height ovan, samma fix: fyll behÃ¥llaren. */
+1467:     .process-sheet{aspect-ratio:320/200;width:100%;max-width:none;}
+1468:     #p-m320,#p-m768,#p-m1440{font-size:34px;}
+1469:   }
+1470: 
+1471:   /* ---------------------------------------------------------- s7, avslutet
+1472:      En rad, en adress, ingenting mer. Ligger pÃ¥ den kontinuerliga grunden,
+1473:      full bredd under bÃ¥da spalterna, och stÃ¤nger sidan i stÃ¤llet fÃ¶r att
+1474:      tona ut den. */
+1475:   /* Plan 007: .close delade sista viewporten med prisblocket/HÅrai (108px
+1476:      toppadding, 274px total hÃ¶jd av 900). min-height:62svh ger mailto-raden
+1477:      en egen skÃ¤rm vid 1440 och 390, staplat lugnt i mitten. */
+1478:   /* PLAN 015: 62svh delade viewporten med liggaren (Astra loop 1 fix 6);
+1479:      100svh ger avslutet hela sin skÃ¤rm, ensamt. Footern Ã¤r sidans sista
+1480:      akt och kan aldrig nÃ¥ --sc-ps=1 (dokumentet slutar nÃ¤r dess underkant
+1481:      mÃ¶ter viewportens): max ps = vh/(vh+vh) = 0,50 vid bÃ¥da bredderna. */
+1482:   .close{position:relative;isolation:isolate;z-index:1;
+1483:     display:flex;flex-direction:column;justify-content:flex-start;align-items:flex-start;
+1484:     gap:clamp(20px,3vh,32px);
+1485:     padding:clamp(56px,8svh,96px) var(--rail-x) clamp(96px,16svh,180px);}
+1486:   /* HÃ¥rlinjen ritas ur --sc-ps (F-014), ingen transition, ingen JS. */
+1487:   .close-rule{width:100%;height:1px;background:var(--hairline-dark);transform-origin:left center;
+1488:     transform:scaleX(clamp(0,calc(var(--sc-ps,0) / 0.46),1));}
+1489:   .close-mailto{display:inline-flex;align-items:center;min-height:44px;
+1490:     font-family:var(--font);font-weight:300;
+1491:     font-size:clamp(1.75rem,3.2vw,3rem);line-height:1;letter-spacing:-.02em;
+2571:       aimOnce(pi);
+2572:       dispatchEvent(new Event('resize'));
+2573:       var cs = getComputedStyle(process);
+2574:       var ps = parseFloat(cs.getPropertyValue('--sc-ps'));
+2575:       var eN = parseFloat(cs.getPropertyValue('--e' + (pi + 1)));
+2576:       tries++;
+2577:       if (tries < 10 && (isNaN(ps) || isNaN(eN) || ps < eN)){
+2578:         /* MÃ„TT: rAF ensamt (~16ms/fÃ¶rsÃ¶k) rÃ¤ckte inte i ett fall (390
+2579:            steg 02, motorns cache 262px fel Ã¤ven efter flera rAF) - en
+2580:            bildruta Ã¤r inte alltid tillrÃ¤ckligt med RIKTIG tid fÃ¶r en
+2581:            lÃ¥ngsam asynkron reflow (typsnittsrastrering) att hinna klart.
+2582:            setTimeout ger mer riktig tid per fÃ¶rsÃ¶k i den andra halvan. */
+2583:         if (tries < 5) requestAnimationFrame(settle);
+2584:         else setTimeout(settle, 80);
+2585:       }
+2586:     }
+2587:     settle();
+2588:   }
+2589:   aimPreview();
+2590:   /* Debounce: en drift som upptÃ¤cks MITT I en fortfarande pÃ¥gÃ¥ende
+2591:      ommÃ¤tning (t.ex. ett sent typsnittsbyte fÃ¶r just det steget) kan annars
+2592:      fÃ¥nga ett Ã¶vergÃ¥ngslÃ¤ge och sikta om mot det i stÃ¤llet fÃ¶r att vÃ¤nta in
+2593:      det riktigt bosatta - mÃ¤tt (390 steg 02): en odebouncad omkÃ¶rning lÃ¥ste
+2594:      fast en SÃ„MRE position som sedan aldrig rÃ¤ttades, eftersom nÃ¤sta
+2595:      scrollY rÃ¥kade stÃ¤mma med det den just satt. 200ms utan ny drift innan
+2596:      omsikte. */
+2597:   var aimDriftT = null;
+2598:   addEventListener('scroll', function(){
+2599:     if (!(mode && /^process-0[1-7]$/.test(mode) && process)) return;
+2600:     if (aimLastY === null || Math.abs(scrollY - aimLastY) <= 1) return;
+2601:     if (aimDriftT) clearTimeout(aimDriftT);
+2602:     aimDriftT = setTimeout(aimPreview, 200);
+2603:   }, { passive:true });
+2604:   addEventListener('load', aimPreview);
+2605:   if (document.fonts && document.fonts.ready) document.fonts.ready.then(aimPreview);
+2606: 
+2607:   /* PLAN 019, R6, Step 8 / PLAN 048 E step 10. <=767: arket byts till den
+2608:      reducerade planschen (320x200, PLAN 052/R5, var 320x300, ursprungligen
+2609:      320x360): egen viewBox (attribut,
+2610:      inte CSS-egenskap) och mÃ¥ttsiffror/de tvÃ¥ kvarvarande utropens x/y
+2611:      (presentationsattribut pÃ¥ <text>, en CSS-regel mot dem ignoreras tyst,
+2612:      K3-r8/index.html rad 413-417). Samma teknik som K3:s egen
+2613:      plansch()-funktion, rad 1101-1124. SkrivbordsvÃ¤rdena i MOBILE_TEXT
+2614:      rÃ¶rs inte. */
+2615:   var sheet = document.getElementById('processSheet');
+2616:   /* PLAN 052 fix 2 (R5): p-m320/768/1440 mobil-y 276->187, samma -4px-
+2617:      offset mot Ã¶ppningens nya underkant (191, var 280) - se CSS-kommentaren
+2618:      vid #p-dim-width. p-c-169/p-c-rev/p-c-row rÃ¶rs inte, de ligger redan
+2619:      inom Ã¶ppningens ofÃ¶rÃ¤ndrade Ã¶vre ~155px. */
+2620:   var MOBILE_TEXT = {
+2621:     'p-m320':  [195.6, 455, 71,  187],
+2622:     'p-m768':  [469.3, 455, 171, 187],
+2623:     'p-m1440': [856,   455, 304, 187],
+2624:     'p-c-169': [858,   104, 196, 64],
+2625:     'p-c-rev': [54,    451, 256, 26],
+2626:     /* PLAN 051 fix 4 (R4, Astra material_fixes #4): saknades helt hÃ¤r,
+2627:        sÃ¥ mobilens CSS-satta x/y (borttagna, :1362-1379-omrÃ¥det) hade
+2628:        ingen effekt - en <text> lÃ¤ser bara SVG-attribut. Mobilkoordinat
+2629:        vald mot den nya, hÃ¶gre hatchen (8,75,16,80) - hÃ¶ger om mÃ¥ttlinjen
+2630:        (x32), lodrÃ¤tt centrerad i dess spann (75-155). */
+2631:     'p-c-row':  [102,   333, 40,  118]
+2632:   };
+2633:   function plansch(){
+2634:     if (!sheet) return;
+2635:     var small = matchMedia('(max-width: 767px)').matches;
+2636:     sheet.setAttribute('viewBox', small ? '0 0 320 200' : '0 0 880 495');
+2637:     Object.keys(MOBILE_TEXT).forEach(function(id){
+2638:       var el = document.getElementById(id);
+2639:       if (!el) return;
+2640:       var v = MOBILE_TEXT[id];
+2641:       el.setAttribute('x', small ? v[2] : v[0]);
+2642:       el.setAttribute('y', small ? v[3] : v[1]);
+2643:     });
+2644:   }
+2645:   plansch();
+2646:   addEventListener('resize', plansch, { passive:true });
+2647: })();
+2648: </script>
+2649: </body>
+2650: </html>
+2651: 
+2652: 
+2653: 
+2654: 
+2655: 
+2656: 
+2657: 
+2658: 
+2659: 
+2660: 
+2661: 
+2662: 
+2663: 
+2664: 
+2665: 
+2666: 
+2667: 
+2668: 
+2669: 
+2670: 
+2671: 
+2672: 
+2673: 
+2674: 
+2675: 
+2676: 
+2677: 
+2678: 
+2679: 
+2680: 
+2681: 
+
+exec
+"C:\\WINDOWS\\System32\\WindowsPowerShell\\v1.0\\powershell.exe" -Command "rg -n 'p-glyph|p-title|p-rev|p-c-rev|p-cam|p-live|p-ink|p-dim|p-m320|p-stations|p-opening|process-chapter|process-intro|giant-title|giant-head|--k7|--k6' tests/alunix-r8/runs/V3d/index.html" in C:\Users\Anton L\anti-slop-design
+ succeeded in 310ms:
+943:     .giant-head-omslaget som även räknar in undertexten) rullar ur
+1033:  .process-chapter{
+1046:     AVVIKELSE, PLAN 051 fix 3 (R4): kickern flyttad in i .process-chapter
+1048:     margin-bottom på .process-lead nollad: .process-chapter (rad ~1005)
+1052:  .process-chapter > .kicker-sans{padding-inline:var(--rail-x);}
+1087:  .step-band > .process-step-title{grid-column:2;}
+1093:  .process-step-title{font-family:var(--f-display);font-weight:700;
+1113:  .process-steps li[data-step="06"]{--k:var(--k6);--s:var(--s6);}
+1114:  .process-steps li[data-step="07"]{--k:var(--k7);--s:var(--s7);}
+1143:  #process .step-band .process-step-title{
+1176:    /* PLAN 020 Target D. Tonbytet: vid --k6 = 1 (steg 06 i mitten) är
+1183:    fill:color-mix(in srgb, var(--c-accent), var(--hair-ink) calc(100% * var(--k6)));
+1191:    transform:scale(calc(1 - 0.7273 * var(--k6)));}
+1192:  #p-m320,#p-m768{transform-origin:50% 100%;}
+1195:  .process-sheet .p-live{
+1201:    filter:grayscale(calc(1 - var(--k6))) contrast(1.05);}
+1206:  .process-sheet .contour{stroke-width:calc(var(--contour-line) - 0.75px * var(--k6));}
+1208:     träffade även #p-rev (revisionsfältets skraffering bär class="hatch
+1210:     den ritas EFTER --k6:s fönster har passerat. Id-selektorn träffar
+1211:     bara de tre element som faktiskt ska tona; #p-rev står i full ton. */
+1218:  #p-ledgers,#p-hatch{opacity:calc((1 - 0.65 * var(--k6)) * var(--cam-fade));}
+1224:     först i #p-cam), så den behöver tona mot BÅDA --k5 (ritfasen, då
+1225:     bilden anländer) och --k6 (färdig sida) - annars stod en streckad
+1228:  #p-guides{opacity:calc((1 - var(--k5)) * (1 - 0.65 * var(--k6)));}
+1230:  /* PLAN 019 Step 3. --k1..--k7 är EN andel (0 till 1) av respektive
+1245:    --k6:clamp(0,calc((var(--sc-ps,0) - var(--s6)) / (var(--e6) - var(--s6))),1);
+1246:    --k7:clamp(0,calc((var(--sc-ps,0) - var(--s7)) / (var(--e7) - var(--s7))),1);
+1257:  /* PLAN 020 Target C: #p-glyph är en egen <path> (kopia av
+1262:  .process-sheet #p-glyph{fill:none;stroke:var(--hair-ink);stroke-width:23.7;
+1266:  #p-dim-width{--p-l:clamp(0,calc((var(--k2) - 0.3) / 0.45),1);}
+1267:  #p-stations{--p-l:clamp(0,calc((var(--k2) - 0.6) / 0.3),1);}
+1268:  #p-m320,#p-m768,#p-m1440{--p-t:clamp(0,calc((var(--k2) - 0.75) / 0.15),1);}
+1270:  #p-opening{--p-l:clamp(0,calc((var(--k3) - 0) / 0.45),1);}
+1271:  #p-dim-gutter{--p-l:clamp(0,calc((var(--k3) - 0.3) / 0.4),1);}
+1279:  #p-dim-row{--p-l:clamp(0,calc((var(--k4) - 0.6) / 0.35),1);}
+1282:  #p-title{--p-l:clamp(0,calc((var(--k7) - 0) / 0.5),1);}
+1283:  #p-rev{--p-l:clamp(0,calc((var(--k7) - 0.4) / 0.5),1);}
+1284:  #p-c-rev{--p-t:clamp(0,calc((var(--k7) - 0.85) / 0.15),1);}
+1294:     #p-frame står still; bara innehållet i #p-cam rör sig. Läser
+1295:     --k5/--k6 (F-014 via --sc-ps). */
+1296:  #process{--cam:clamp(0, 0.35 * var(--k5) + 0.65 * var(--k6), 1);}
+1297:  #p-cam{transform-box:view-box;transform-origin:533px 247.5px;
+1307:  #p-dim-gutter,#p-dim-row,#p-lead-169,#p-dim-width{
+1370:       ~1358) respektive .process-chapter (rad ~1031) råkar sätta - kräver
+1378:     0.4 * var(--k6))): oförändrat 0,6 vid k6=0 (steg 05, ritningens eget
+1381:  .process-sheet .p-live{
+1382:    filter:grayscale(calc(1 - var(--k6))) contrast(1.05) brightness(calc(0.6 + 0.4 * var(--k6)));}
+1419:    .process-step-title{font-size:2rem;}
+1421:    #p-guides,#p-ledgers,#p-dim-gutter,#p-stations,
+1424:       på mobil - hela dess grupp (#p-hatch/#p-dim-row/#p-c-row) dolds.
+1435:       p-m320/p-c-169/p-c-rev redan använder, rad ~2586) i stället, med
+1438:    #p-dim-row{d:path("M32 75 V155")}
+1442:       fortfarande inte 16:9 (1,778:1) - #p-live-img:s preserveAspectRatio
+1453:    #p-opening{d:path("M8 20 H312 V191 H8 Z");}
+1454:    #p-open-rect,#p-live-img{x:8px;y:20px;width:304px;height:171px;}
+1458:    #p-dim-width{d:path("M0 197 H320");}
+1461:    #p-title{d:path("M208 16 H304 V52 H208 Z M208 28 H304 M208 40 H304");}
+1462:    #p-rev{x:208px;y:16px;width:96px;height:12px;}
+1463:    #p-cam{transform-origin:160px 100px;transform:scale(calc(1 + 0.08 * var(--cam)));}
+1468:    #p-m320,#p-m768,#p-m1440{font-size:34px;}
+1646:        <div class="giant-head">
+1713:    <div class="process-chapter">
+1730:          <h3 class="process-step-title">Uppstart</h3>
+1739:          <h3 class="process-step-title">Planering</h3>
+1748:          <h3 class="process-step-title">Design</h3>
+1757:          <h3 class="process-step-title">Utveckling</h3>
+1766:          <h3 class="process-step-title">Innehåll</h3>
+1775:          <h3 class="process-step-title">Lansering</h3>
+1784:          <h3 class="process-step-title">Förvaltning</h3>
+1822:               steg 01) står FÖRE #p-cam och skalas aldrig - "rutan" står
+1823:               still, bara innehållet i #p-cam rör sig när --cam ökar
+1830:          <g id="p-cam">
+1833:               #p-opening:s kontur (samma skäl som K3-r8/index.html rad
+1838:            <g clip-path="url(#p-open)" class="p-live">
+1839:              <image id="p-live-img" href="assets/demo-calyx-1440-color.webp" x="264" y="96" width="538" height="303"
+1846:               #p-frame) till en egen grupp UTAN data-step inne i #p-cam -
+1857:            <path id="p-glyph" class="draw" pathLength="1"
+1869:            <path id="p-dim-width" class="dimline draw" pathLength="1" d="M0 470 H880"
+1871:            <g id="p-stations" class="dimline wipe">
+1874:            <text id="p-m320" class="measure" x="195.6" y="455" text-anchor="middle">320</text>
+1882:            <path id="p-opening" class="contour draw" pathLength="1"
+1884:            <path id="p-dim-gutter" class="dimline draw" pathLength="1" d="M195.6 80 H264"
+1898:            <path id="p-dim-row" class="dimline draw" pathLength="1" d="M90 300 V358.7"
+1903:          </g><!-- /#p-cam -->
+1906:               Flyttat ut ur #p-cam (Astra r1-astra.md material_fixes #1):
+1908:               vilket landade #p-title på x -323,5..-233,5 - helt utanför
+1915:               `.p-live`s kamerazoomade rect - vid --cam=1 (samma zoom som
+1928:            <path id="p-title" class="dimline draw" pathLength="1"
+1930:            <rect id="p-rev" class="hatch wipe" x="846" y="2" width="30" height="16"/>
+1931:            <text id="p-c-rev" class="callout" x="861" y="13" text-anchor="middle">A</text>
+2305:      /* PLAN 048 E step 9. Indexerad per data-step som en LISTA: #p-cam
+2616:  /* PLAN 052 fix 2 (R5): p-m320/768/1440 mobil-y 276->187, samma -4px-
+2618:     vid #p-dim-width. p-c-169/p-c-rev/p-c-row rörs inte, de ligger redan
+2621:    'p-m320':  [195.6, 455, 71,  187],
+2625:    'p-c-rev': [54,    451, 256, 26],
+
+exec
+"C:\\WINDOWS\\System32\\WindowsPowerShell\\v1.0\\powershell.exe" -Command 'Get-Content -Encoding utf8 tests/alunix-r8/runs/V3d/plans/048-inverterad-variant.md | Select-Object -Skip 150 -First 95; $s=Get-Content -Encoding utf8 tests/alunix-r8/runs/V3d/index.html; for($i=1120;$i -le 1399;$i++){ '"'{0}: {1}' -f ("'$i+1),$s[$i] }' in C:\Users\Anton L\anti-slop-design
+ succeeded in 1689ms:
+
+   `.panel-giant` läser redan `background:var(--bg);color:var(--ink)`; `.thread`,
+   `.thread-fill`, `.ledger`, `.ledger-row` och ordscrubbens gradient läser `--ink`/`--bg`/
+   `--c-line-on-paper` och vänder med tokens. Jätterubriken står kvar på `clamp(2.1rem,7.4vw -
+   18px,5.5rem)` (plan 030); ingen storlek backas.
+
+### E · Arket kraftigt större, Calyx fyller rutan
+
+8. **Arkets storlek** (layout i F): vid ≥ 768 är arket sidans scen, `width:min(100%,
+   calc((100svh - var(--band-h) - clamp(18px,3svh,32px)) * 880 / 495))`. Förväntat: 1440x900
+   med `--band-h` 210 till 240 → 1 120 till 1 180 px (78 till 82 % vw), 1280x800 → ~980 (77 %),
+   1024x768 → ~810 (79 %, bandet ~290), 768x1024 → 676 (88 %). Bandets höjd styrs av det längsta stycket
+   (steg 03, ~430 tecken): 66 ch i 17 px ger 6 till 7 rader. **Krymp aldrig texten för att
+   vinna arkyta**; vinn den på bandets spaltbredd.
+9. **Kameran.** Omslut allt ritat utom `#p-outline` i en ny `<g id="p-cam">` direkt efter
+   `</defs>`. `#p-outline` flyttas ut ur `g[data-step="01"]` till en egen
+   `<g data-step="01" id="p-frame">` FÖRE `#p-cam` (den ramen skalas aldrig, "rutan" står);
+   `#p-glyph` stannar i `#p-cam` i en `g` utan `data-step` (den döljs redan av sin
+   snäppopacitet tills `--k1` ≥ 0,30). `sheetGroups` indexeras per `data-step`: läs **alla**
+   grupper per steg (`querySelectorAll('g[data-step="01"]')`) och växla `data-on` på varje,
+   annars tappas den ena gruppen. Paint-ordningen inne i `#p-cam` är oförändrad (05 först).
+
+```css
+/* PLAN 048 E. Kameran: ritningen skjuts in mot öppningen när materialet
+   kommer (05) och när ritningen blir sida (06). Ramen #p-frame står
+   still; bara innehållet rör sig. Läser --k5/--k6 (F-014 via --sc-ps). */
+#process{--cam:clamp(0, 0.35 * var(--k5) + 0.65 * var(--k6), 1);}
+#p-cam{transform-box:view-box;transform-origin:533px 247.5px;
+  transform:translate(calc(-93px * var(--cam)),0) scale(calc(1 + 0.5 * var(--cam)));}
+```
+
+   533 / 247,5 är öppningens mitt ((264+802)/2, (96+399)/2); −93 flyttar den till arkets mitt
+   (440). Vid `--cam` = 1 är öppningen 807x455 av 880x495 = **84 %** av arkets yta; vid
+   `?preview=process-05` (`--cam` 0,35) 632x356 = **52 %**. Allt utanför öppningen skjuts ut ur
+   arket och klipps av `<svg>`:s egen overflow; det är avsikten (06:s not: "Ritningen och
+   sidan är samma sak").
+10. **Mobilens plansch blir 320x300** (i dag 320x360), så att öppningen tar mer av ytan.
+    I `@media (max-width:767px)` (ersätter `max-width:1279px`, rad 1088):
+
+```css
+#p-outline{d:path("M0.5 0.5 H319.5 V299.5 H0.5 Z");}
+#p-opening{d:path("M16 68 H304 V230 H16 Z");}
+#p-open-rect,#p-live-img{x:16px;y:68px;width:288px;height:162px;}
+#p-dim-width{d:path("M0 286 H320");}
+#p-lead-169{d:path("M304 68 L296 60 H200");}
+#p-dot-169{cx:304px;cy:68px;}
+#p-title{d:path("M208 16 H304 V52 H208 Z M208 28 H304 M208 40 H304");}
+#p-rev{x:208px;y:16px;width:96px;height:12px;}
+#p-cam{transform-origin:160px 149px;transform:scale(calc(1 + 0.08 * var(--cam)));}
+.process-sheet{aspect-ratio:320/300;}
+```
+
+    Och i JS (`plansch`, rad 2178 till 2189): `matchMedia('(max-width: 767px)')`, viewBox
+    `'0 0 320 300'`, `MOBILE_TEXT` mobilvärden: `p-m320` [71, 276], `p-m768` [171, 276],
+    `p-m1440` [304, 276], `p-c-169` [196, 64], `p-c-rev` [256, 26]. Skrivbordsvärdena i
+    `MOBILE_TEXT` rörs inte. Öppningen 288x162 av 320x300 = 48,6 %, med kameran 1,08 = 56,7 %.
+    **Kontroll:** inga två av `#p-glyph`, `#p-title`, `#p-c-169`, `#p-m320`, `#p-m768`,
+    `#p-m1440`, `#p-opening` får ha överlappande `getBBox()` vid 390 (skriv ut dem).
+
+### F · Varje fas en scen
+
+Formen, i en mening: **arket är en sticky scen i nederkanten av skärmen, stegtexten står i ett
+sticky band ovanför, och varje nytt band stiger upp bakom arkets överkant och skjuter det förra
+ut ur bild.** Texten ligger kvar i flödet i `<ol>`-ordning (PageDown, skärmläsare, plan 019:s
+a11y-skäl), men varje steg äger sin skärm.
+
+11. **Markup, sju `Edit`.** I varje `<li data-step="0N">`: omslut barnen med
+    `<div class="step-band">…</div>`, och ge `<span class="ledger-num">` attributet
+    `aria-hidden="true"` (`<ol>` bär ordningen för skärmläsaren). Ingen text ändras.
+12. **Kapitelskärmen** (hoy-home s03): `.process{padding-block:clamp(120px,22svh,240px) 0}`,
+    `.process-title{font-size:clamp(2.75rem,7.2vw,7.5rem);line-height:.95;max-width:14ch;
+    letter-spacing:-.03em}` (104 px vid 1440), `.process-lead{font-size:1.0625rem;
+    margin-bottom:clamp(96px,16svh,180px)}`, och `.process-grid{margin-top:0}`.
+13. **Scenen, ≥ 768** (ersätter `.process-grid`, `.process-steps`, `.process-steps li`,
+    `.process-step-title`, `.process-p`, `.process-note`, `.process-stick`, `.process-sheet` på
+    rad 887 till 908):
+
+```css
+/* PLAN 048 F. INTE en rullande paragraf bredvid ett litet ark: en scen
+   per steg. --band-h skrivs av measureAct (högsta .step-band), fallback
+   nedan. */
+#process{--band-h:clamp(200px,24svh,240px);}
+.process-grid{display:grid;grid-template-columns:minmax(0,1fr);}
+.process-stick{grid-area:1/1;align-self:start;position:sticky;
+  top:var(--band-h);margin-top:var(--band-h);height:calc(100svh - var(--band-h));
+  z-index:2;background:var(--bg);display:flex;align-items:center;justify-content:center;
+  padding:clamp(6px,1svh,12px) var(--rail-x) clamp(12px,2svh,20px);}
+.process-sheet{display:block;height:auto;max-width:none;aspect-ratio:880/495;
+  width:min(100%,calc((100svh - var(--band-h) - clamp(18px,3svh,32px)) * 880 / 495));}
+.process-steps{grid-area:1/1;z-index:1;list-style:none;margin:0;padding:0;}
+/* Kodan: arket står kvar färdigt i en skärm efter att band 07 lämnat. */
+.process-steps::after{content:"";display:block;height:calc(100svh - var(--band-h));}
+.process-steps li{min-height:calc(var(--band-h) + 90svh);padding:0;}
+.step-band{position:sticky;top:0;height:var(--band-h);background:var(--bg);
+  display:grid;grid-template-columns:auto max-content minmax(0,42rem);
+1121:      av innan arket (top:216) hunnit täcka det - en 32,5px spalt av
+1122:      "FÖRVALTNING"s redan monterade, dämpade text (bara Ö-prickarna
+1123:      syntes). --s (nyss tillagd ovan) är per konstruktion exakt det
+1124:      --sc-ps där li:s TOPP korsar 0 (samma formel som sN=(y0+vh)/life
+1125:      för N>=2) - band N är osynligt tills --sc-ps når --s minus arkets
+1126:      egen höjd i liv-enheter (--band-h/--life), växer sedan linjärt till
+1127:      fullt synligt precis vid --s, där det blir riktigt sticky. Ren
+1128:      funktion av --sc-ps, reversibel i båda scrollriktningar. --life
+1129:      skrivs av measureAct (samma mönster som --band-h, en gång per
+1130:      mätning). Skopat >=768: mobilens .step-band är position:static,
+1131:      ingen sticky-krock att laga där. */
+1132:   @media (min-width:768px){
+1133:     .process-steps li:not([data-step="01"]) .step-band{
+1134:       --slit-start:calc(var(--s) - var(--band-h) / var(--life, 9999px));
+1135:       --slit-p:clamp(0, calc((var(--sc-ps,0) - var(--slit-start)) / (var(--s) - var(--slit-start))), 1);
+1136:       clip-path:inset(calc((1 - var(--slit-p)) * 100%) 0 0 0);
+1137:     }
+1138:   }
+1139:   #process .step-band .ledger-num{
+1140:     color:color-mix(in srgb, var(--ink) calc(62% + 38% * var(--k)), var(--bg));
+1141:     letter-spacing:calc(0.04em - 0.08em * var(--k));
+1142:     transform:translateY(calc((1 - var(--k)) * 0.08em));}
+1143:   #process .step-band .process-step-title{
+1144:     --edge:calc(var(--k) * 130%);
+1145:     background-image:linear-gradient(100deg,var(--ink) 0 calc(var(--edge) - 12%),
+1146:       color-mix(in srgb,var(--ink) 62%,var(--bg)) calc(var(--edge) + 12%) 100%);
+1147:     -webkit-background-clip:text;background-clip:text;color:transparent;}
+1148: 
+1149:   /* --- linjehierarkin, K3:s klasser, V3c:s egna tokens (index.html:143-149) */
+1150:   .process-sheet .contour{fill:none;stroke:var(--ink);stroke-width:var(--contour-line);}
+1151:   .process-sheet .dimline{fill:none;stroke:var(--hair-ink);stroke-width:var(--contour-hair);}
+1152:   .process-sheet .guide{fill:none;stroke:var(--hair-ink);stroke-width:var(--contour-hair);
+1153:     stroke-dasharray:var(--contour-dash);}
+1154:   .process-sheet .leader{fill:none;stroke:var(--hair-ink);stroke-width:var(--contour-hair);}
+1155:   .process-sheet .hatch{fill:url(#p-hatch-pattern);stroke:none;}
+1156:   .process-sheet .leaddot{fill:var(--hair-ink);stroke:none;}
+1157:   .process-sheet #p-hatch-pattern line{stroke:var(--hair-ink);}
+1158:   .process-sheet path,.process-sheet rect{stroke-linecap:butt;stroke-linejoin:miter;}
+1159: 
+1160:   /* --- ritmekaniken. pathLength="1" normaliserar varje bana; enheten
+1161:      *1px på stroke-dashoffset är obligatorisk (K3-r8/index.html:263-268).
+1162:      En streckad hjälplinje kan inte dash-ritas (dasharray gör redan ett
+1163:      jobb), så guide/stations/ledgers/hatch avslöjas med clip-path. */
+1164:   .process-sheet .draw{stroke-dasharray:1px;stroke-dashoffset:calc((1 - var(--p-l)) * 1px);
+1165:     /* Markörer (pilspetsar) positioneras på banans vertex, inte på den
+1166:        synliga stroken - stroke-dashoffset klipper dem inte (R5-fyndet).
+1167:        Snäpp-opacitet döljer dem tills banan faktiskt börjat rita. */
+1168:     opacity:clamp(0,calc(var(--p-l) * 9999),1);}
+1169:   .process-sheet .wipe{clip-path:inset(0 calc((1 - var(--p-l)) * 100%) 0 0);}
+1170: 
+1171:   .process-sheet .callout{font-family:var(--font);font-weight:600;font-size:12px;
+1172:     letter-spacing:.16em;text-transform:uppercase;fill:var(--hair-ink);
+1173:     opacity:var(--p-t);}
+1174:   .process-sheet .measure{font-family:var(--f-display);font-weight:700;
+1175:     font-size:44px;font-variant-numeric:tabular-nums;
+1176:     /* PLAN 020 Target D. Tonbytet: vid --k6 = 1 (steg 06 i mitten) är
+1177:        kedjan --hair-ink, inte längre blå - H-33, ett blått moment per
+1178:        skärm, inte ett kvarglömt (R5-fyndet: siffrorna förblev accent
+1179:        efter fallet). Skärm 05: siffrorna viker till 0,7 opacitet när
+1180:        Calyx-bilden landar (TASTE § 4.8: bilden är skärmens auktoritet)
+1181:        utan att försvinna helt - multiplicerat med fade-in-tonen --p-t,
+1182:        inte i stället för den. */
+1183:     fill:color-mix(in srgb, var(--c-accent), var(--hair-ink) calc(100% * var(--k6)));
+1184:     /* PLAN 049 fix 4 (Astra material_fixes #4): * var(--cam-fade) tonar
+1185:        måttsiffrorna bort innan kameran skjuter in dem mot arkets kant
+1186:        (annars kapas "1440" mot högerkanten, uppmätt). Multiplikativt
+1187:        tillägg till den befintliga formeln, inte en ersättning. */
+1188:     opacity:calc(var(--p-t) * (1 - 0.3 * var(--k5)) * var(--cam-fade));transform-box:fill-box;
+1189:     /* 44 -> 12px = faktor 1 - 0.7273. transform-box:fill-box: annars
+1190:        skalar siffran mot SVG:ns user-space-nollpunkt (K3-fällan). */
+1191:     transform:scale(calc(1 - 0.7273 * var(--k6)));}
+1192:   #p-m320,#p-m768{transform-origin:50% 100%;}
+1193:   #p-m1440{transform-origin:100% 100%;}
+1194: 
+1195:   .process-sheet .p-live{
+1196:     clip-path:inset(0 0 calc((1 - var(--k5)) * 100%) 0);
+1197:     /* PLAN 046: gråskalan är ritningens material; färgen kommer när ritningen
+1198:        blir sida. Samma fönster som resten av steg 06:s tillbakadragning
+1199:        (.measure tonbyte och skala, #p-guides/#p-ledgers/#p-hatch opacitet,
+1200:        .contour viktfall) - en gest i fyra egenskaper, inte fyra gester. */
+1201:     filter:grayscale(calc(1 - var(--k6))) contrast(1.05);}
+1202: 
+1203:   /* s-process-06: konturernas viktfall och hjälplinjer/skraffering som
+1204:      tonar till 0,35 opacitet (bara hjälplinjer och skraffering, inte
+1205:      måttlinjer eller ledare - R5-fyndet om selektorns bredd). */
+1206:   .process-sheet .contour{stroke-width:calc(var(--contour-line) - 0.75px * var(--k6));}
+1207:   /* PLAN 020 Target E. AVVIKELSE (R5): klasselektorn .guide,.hatch
+1208:      träffade även #p-rev (revisionsfältets skraffering bär class="hatch
+1209:      wipe"), så 07:s revisionscell tonades permanent till 0,35 trots att
+1210:      den ritas EFTER --k6:s fönster har passerat. Id-selektorn träffar
+1211:      bara de tre element som faktiskt ska tona; #p-rev står i full ton. */
+1212:   /* PLAN 051 fix 8 (R4, Astra material_fixes #8): saknade --cam-fade (som
+1213:      #p-c-gutter m.fl. redan har, rad ~1260) - de tre #p-ledgers-linjerna
+1214:      (steg 04:s materialgräns) stod kvar i full ton genom hela steg 05
+1215:      (k6=0 där), medan kamerans egen zoom/pan drev iväg dem från sina
+1216:      ursprungskoordinater, "föräldralösa" i Calyx-bildens kant. Samma
+1217:      multiplikativa mönster som #p-guides (raden nedan) redan använder. */
+1218:   #p-ledgers,#p-hatch{opacity:calc((1 - 0.65 * var(--k6)) * var(--cam-fade));}
+1219:   /* PLAN 049 fix 4 (Astra material_fixes #4): #p-guides fick samma
+1220:      formel som #p-ledgers/#p-hatch, men bara #p-guides korsar öppningen
+1221:      (x 195,6/469,3/24 genom y 20..410, rakt över x 264..802) - #p-ledgers
+1222:      och #p-hatch ligger i marginalzonen (x 24..226) och korsar aldrig
+1223:      produkten. #p-guides paintar EFTER bilden (g[data-step="05"] står
+1224:      först i #p-cam), så den behöver tona mot BÅDA --k5 (ritfasen, då
+1225:      bilden anländer) och --k6 (färdig sida) - annars stod en streckad
+1226:      linje kvar rakt över Calyx genom hela steg 05 (uppmätt, "768-linjen
+1227:      korsar Calyx"). */
+1228:   #p-guides{opacity:calc((1 - var(--k5)) * (1 - 0.65 * var(--k6)));}
+1229: 
+1230:   /* PLAN 019 Step 3. --k1..--k7 är EN andel (0 till 1) av respektive
+1231:      stegs eget fönster [--sN,--eN], normalt deklarerade (inherits:true
+1232:      per spec), så arkets alla barn ärver dem - till skillnad från
+1233:      --p-l/--p-t/--p-thin/--p-fill/--p-fall som är inherits:false
+1234:      (R5-fyndet) och måste sättas per konsument. --s1..--e7 har CSS-
+1235:      fallback här (no-JS-golvet); JS (measureAct) skriver de uppmätta. */
+1236:   #process{
+1237:     --s1:.09; --e1:.16; --s2:.19; --e2:.26; --s3:.29; --e3:.36;
+1238:     --s4:.39; --e4:.46; --s5:.49; --e5:.56; --s6:.59; --e6:.66;
+1239:     --s7:.69; --e7:.76;
+1240:     --k1:clamp(0,calc((var(--sc-ps,0) - var(--s1)) / (var(--e1) - var(--s1))),1);
+1241:     --k2:clamp(0,calc((var(--sc-ps,0) - var(--s2)) / (var(--e2) - var(--s2))),1);
+1242:     --k3:clamp(0,calc((var(--sc-ps,0) - var(--s3)) / (var(--e3) - var(--s3))),1);
+1243:     --k4:clamp(0,calc((var(--sc-ps,0) - var(--s4)) / (var(--e4) - var(--s4))),1);
+1244:     --k5:clamp(0,calc((var(--sc-ps,0) - var(--s5)) / (var(--e5) - var(--s5))),1);
+1245:     --k6:clamp(0,calc((var(--sc-ps,0) - var(--s6)) / (var(--e6) - var(--s6))),1);
+1246:     --k7:clamp(0,calc((var(--sc-ps,0) - var(--s7)) / (var(--e7) - var(--s7))),1);
+1247:   }
+1248: 
+1249:   /* --- per-bana andelar [a,b] av stegets EGNA --kN (0 till 1), inte av
+1250:      rå --sc-ps. Ordningen inom steget som tidigare; två banor i samma
+1251:      steg överlappar med högst halva sitt fönster (perf 4). Utropen
+1252:      (rad 3 i device-tabellen) läser en fast bredd 0,15 av --kN. */
+1253:   /* PLAN 040 (loop 3): konturen är hel medan steg 01 läses; entréskärmens
+1254:      högerspalt bär en ram, inte ett streck (H-15). Glyfen följer efter.
+1255:      Ingen överlappning (0-0,30 / 0,30-0,70): perf 4:s halva-fönstret-tak. */
+1256:   #p-outline{--p-l:clamp(0,calc((var(--k1) - 0) / 0.30),1);}
+1257:   /* PLAN 020 Target C: #p-glyph är en egen <path> (kopia av
+1258:      #alunix-mark-path), inte ett <use> - se markupkommentaren. Dash-draw
+1259:      fungerar på en <path> (pathLength stöds), så glyfen ritas som
+1260:      konturen: samma .draw-mekanik och samma snäpp-opacitet mot
+1261:      markörer som alla andra banor, ingen egen opacitetston. */
+1262:   .process-sheet #p-glyph{fill:none;stroke:var(--hair-ink);stroke-width:23.7;
+1263:     stroke-linejoin:miter;--p-l:clamp(0,calc((var(--k1) - 0.30) / 0.40),1);}
+1264: 
+1265:   #p-guides{--p-l:clamp(0,calc((var(--k2) - 0) / 0.45),1);}
+1266:   #p-dim-width{--p-l:clamp(0,calc((var(--k2) - 0.3) / 0.45),1);}
+1267:   #p-stations{--p-l:clamp(0,calc((var(--k2) - 0.6) / 0.3),1);}
+1268:   #p-m320,#p-m768,#p-m1440{--p-t:clamp(0,calc((var(--k2) - 0.75) / 0.15),1);}
+1269: 
+1270:   #p-opening{--p-l:clamp(0,calc((var(--k3) - 0) / 0.45),1);}
+1271:   #p-dim-gutter{--p-l:clamp(0,calc((var(--k3) - 0.3) / 0.4),1);}
+1272:   #p-lead-169{--p-l:clamp(0,calc((var(--k3) - 0.6) / 0.35),1);}
+1273:   #p-c-gutter{--p-t:clamp(0,calc((var(--k3) - 0.55) / 0.15),1);}
+1274:   #p-c-169{--p-t:clamp(0,calc((var(--k3) - 0.85) / 0.15),1);}
+1275:   #p-dot-169{--p-t:clamp(0,calc((var(--k3) - 0.85) / 0.15),1);opacity:var(--p-t);}
+1276: 
+1277:   #p-hatch{--p-l:clamp(0,calc((var(--k4) - 0) / 0.45),1);}
+1278:   #p-ledgers{--p-l:clamp(0,calc((var(--k4) - 0.3) / 0.45),1);}
+1279:   #p-dim-row{--p-l:clamp(0,calc((var(--k4) - 0.6) / 0.35),1);}
+1280:   #p-c-row{--p-t:clamp(0,calc((var(--k4) - 0.8) / 0.15),1);}
+1281: 
+1282:   #p-title{--p-l:clamp(0,calc((var(--k7) - 0) / 0.5),1);}
+1283:   #p-rev{--p-l:clamp(0,calc((var(--k7) - 0.4) / 0.5),1);}
+1284:   #p-c-rev{--p-t:clamp(0,calc((var(--k7) - 0.85) / 0.15),1);}
+1285: 
+1286:   /* PLAN 019, device-tabellens rad 8 (perf 3): banor för ett steg som
+1287:      ännu inte öppnat sitt fönster ligger utanför stilträdet. content-
+1288:      visibility gäller inte SVG-barn, så display:none i stället, satt av
+1289:      readState via data-on (Step 6), aldrig av --sc-ps direkt. */
+1290:   .process-sheet g[data-step]:not([data-on]){display:none;}
+1291: 
+1292:   /* PLAN 048 E step 9. Kameran: ritningen skjuts in mot öppningen när
+1293:      materialet kommer (05) och när ritningen blir sida (06). Ramen
+1294:      #p-frame står still; bara innehållet i #p-cam rör sig. Läser
+1295:      --k5/--k6 (F-014 via --sc-ps). */
+1296:   #process{--cam:clamp(0, 0.35 * var(--k5) + 0.65 * var(--k6), 1);}
+1297:   #p-cam{transform-box:view-box;transform-origin:533px 247.5px;
+1298:     transform:translate(calc(-93px * var(--cam)),0) scale(calc(1 + 0.5 * var(--cam)));}
+1299:   /* PLAN 049 fix 4 (Astra material_fixes #4). Delad tonfaktor: full (1)
+1300:      tills kameran rört sig 25% mot sitt slutläge, sedan lugnt mot 0 -
+1301:      mätt så att ingen etikett hinner nå arkets kant innan den är borta.
+1302:      Multipliceras in i varje berörd elements EGNA opacitetsformel
+1303:      (aldrig en ersättande regel, annars vinner den sist skrivna
+1304:      godtyckligt och den befintliga snäpp-/fade-in-logiken går förlorad). */
+1305:   #process{--cam-fade:calc(1 - clamp(0, var(--cam) * 4, 1));}
+1306:   #p-c-gutter,#p-c-169,#p-c-row{opacity:calc(var(--p-t) * var(--cam-fade));}
+1307:   #p-dim-gutter,#p-dim-row,#p-lead-169,#p-dim-width{
+1308:     opacity:calc(clamp(0,calc(var(--p-l) * 9999),1) * var(--cam-fade));}
+1309: 
+1310:   /* PLAN 019 Step 9. "Hur vi tänker": hairline-liggare utan nummer,
+1311:      H-06:s femte anatomi mellan det ritade arket och den typsatta
+1312:      adressen. */
+1313:   /* PLAN 025 A: --panel-pad-y var bara deklarerad på .panel-pad, aldrig på
+1314:      .principles, så var() mot en icke-existerande egenskap ogiltigförklarade
+1315:      HELA padding-deklarationen (både lodrät och vågrät föll till 0). */
+1316:   .principles{background:var(--bg);color:var(--ink);
+1317:     --panel-pad-y:clamp(28px,4.6vw,52px);
+1318:     padding:var(--panel-pad-y) var(--rail-x) clamp(64px,10vh,120px);}
+1319:   .principles .ledger{max-width:64ch;}
+1320:   .ledger--plain .ledger-row{grid-template-columns:1fr;}
+1321:   .ledger--plain .ledger-body p{max-width:60ch;}
+1322:   .ledger--plain .ledger-body h3{font-size:1.15rem;}
+1323:   /* PLAN 048 G step 18. "Hur vi tänker" väger upp jättens och Hōrais
+1324:      spalt: rubrik vänster i displaystorlek, liggare höger, papper i full
+1325:      bredd (hoy-webb s04:s form). Samma text, samma element - bara
+1326:      omplacerad och skalad. */
+1327:   /* PLAN 049 fix 8 (Astra material_fixes #8): kickern föll till 11px
+1328:      under 900 (bara displayversionen i mediet nedan sattes; ingen
+1329:      basregel fanns). 2rem (32px) golv utanför mediet; 900+-blockets
+1330:      egen clamp (samma specificitet, men medievillkoret gör dem
+1331:      ömsesidigt uteslutande) vinner ändå på desktop. */
+1332:   .principles > .kicker-sans{font-size:2rem;}
+1333:   .principles .ledger--plain .ledger-body h3{font-size:clamp(1.25rem,1.8vw,1.6rem);}
+1334:   /* PLAN 049 fix 8: basregeln (17px, <900) MÅSTE stå FÖRE 900+-blocket -
+1335:      två regler med samma specificitet, den SENARE i källordningen vinner
+1336:      oavsett @media, så en 1.0625rem-bas efter blocket hade tyst slagit
+1337:      ut 900+-blockets 1.25rem-höjning på desktop. */
+1338:   .principles .ledger--plain .ledger-body p{font-size:1.0625rem;}
+1339:   @media (min-width:900px){
+1340:     .principles{display:grid;grid-template-columns:minmax(0,5fr) minmax(0,7fr);
+1341:       column-gap:clamp(32px,4vw,64px);align-items:start;}
+1342:     .principles > .kicker-sans{grid-column:1;margin:0;
+1343:       font-family:var(--f-display);font-weight:700;
+1344:       font-size:clamp(2.25rem,4.4vw,4.25rem);line-height:1;
+1345:       letter-spacing:-.02em;text-transform:none;}
+1346:     .principles .ledger{grid-column:2;max-width:none;}
+1347:     /* PLAN 049 fix 8: 17px -> 20px vid >=900 (Astras referens läser
+1348:        brödtext ~20px där). Basregeln (17px, ovan) står kvar under 900. */
+1349:     .principles .ledger--plain .ledger-body p{font-size:1.25rem;}
+1350:   }
+1351: 
+1352:   /* PLAN 048 C: processakten inverterad som STANDARDLÄGE (045:s
+1353:      ?process=invert-parameter läses inte längre, JS-raden borttagen).
+1354:      Skopat till #process ENSAM: .principles (beslut G2, § Beslut G punkt 2)
+1355:      står kvar på papper som sidans enda helbredda ljusa fält mellan akten
+1356:      och avslutet. --c-drafting (kall blåsvart, chroma 0,022) i stället för
+1357:      --c-black: ett eget material, aldrig grafitens eller jättens svarta. */
+1358:   #process{
+1359:     --bg: var(--c-drafting);
+1360:     --ink: var(--c-paper);
+1361:     --c-line-on-paper: var(--hairline-dark);
+1362:     --c-accent: var(--c-accent-on-dark);
+1363:     --hair-ink: color-mix(in srgb, var(--c-paper) 62%, var(--c-drafting));
+1364:   }
+1365:   #process .process-lead,
+1366:   #process .process-p{
+1367:     /* PLAN 051 fix 3 (R4), står kvar oförändrad i PLAN 052 (R5): uttryckt i
+1368:        var(--ink)/var(--bg) i stället för fasta --c-paper/--c-drafting-
+1369:        literaler, så formeln är korrekt oavsett vilka tokens #process (rad
+1370:        ~1358) respektive .process-chapter (rad ~1031) råkar sätta - kräver
+1371:        ingen egen ändring när kapitelskärmens lokala token-flipp revs i R5. */
+1372:     color: color-mix(in srgb, var(--ink) 78%, var(--bg));
+1373:   }
+1374:   /* PLAN 049 fix 3 (Astra material_fixes #3). brightness(0.6) tog taket
+1375:      för VARJE vitt genom hela 05-07, inte bara ritfasen - pappershuvudet
+1376:      och den ljusa bottengradienten grånade permanent (uppmätt: p95 146
+1377:      mot assetets 238, medelkroma 13,2 mot 21,0). brightness(calc(0.6 +
+1378:      0.4 * var(--k6))): oförändrat 0,6 vid k6=0 (steg 05, ritningens eget
+1379:      material), full ton 1,0 vid k6=1 (steg 06 färdigritat) - dämpningen
+1380:      hör bara till ritfasen, som plan 046 alltid avsåg. */
+1381:   .process-sheet .p-live{
+1382:     filter:grayscale(calc(1 - var(--k6))) contrast(1.05) brightness(calc(0.6 + 0.4 * var(--k6)));}
+1383: 
+1384:   /* PLAN 019 Step 8. <=1279: arket sticky OVANFÖR texten (order:-1 i
+1385:      DOM-ordningen orörd), reducerad plansch 320x360 (K3:s regel: en
+1386:      station visas bara på en bredd den beskriver). */
+1387:   /* PLAN 048 F step 15 + E step 10. Under 768: arket sticky överst som i
+1388:      dag, stegen i flödet under det, .step-band INTE sticky - varje steg är
+1389:      en vanlig textblock, arket ensamt bär scenen. Mobilens plansch krymps
+1390:      320x200 (PLAN 052/R5, var 320x300, ursprungligen 320x360) så öppningen
+1391:      tar mer av ytan (E step 10) OCH håller sin egen 16:9 utan beskärning. */
+1392:   @media (max-width:767px){
+1393:     .process-grid{grid-template-columns:1fr;row-gap:0;}
+1394:     /* height:auto åsidosätter skrivbordsregelns calc(100svh - var(--band-h)):
+1395:        --band-h har ett CSS-fallback (rad ~915) som annars gav .process-stick
+1396:        641px på en 322px hög SVG - ett dött tomrum mätt live (motion_probe/
+1397:        diagnos, V3d R1). */
+1398:     /* padding:12px 0 (inte bara padding-block) nollar skrivbordsregelns
+1399:        padding-inline:var(--rail-x) - annars äter den in i den redan
+1400:        breddbegränsade behållaren och arket blev 296px, inte 343px. */
+
+codex
+The main defects are in the mobile sheet: the revision box and Alunix mark overlap Calyx. I also found that `plansch()` resets the desktop revision letter to an old coordinate. The long dark process act is not a finding; its sheet scale and chapter separation largely hold.
+exec
+"C:\\WINDOWS\\System32\\WindowsPowerShell\\v1.0\\powershell.exe" -Command '$s=Get-Content -Encoding utf8 tests/alunix-r8/runs/V3d/index.html; foreach($r in @(@(1830,1864),@(1904,1934),@(1030,1060),@(930,965))){for($i=$r[0]-1;$i -lt $r[1];$i++){ '"'{0}: {1}' -f ("'$i+1),$s[$i] }}' in C:\Users\Anton L\anti-slop-design
+ succeeded in 762ms:
+1830:           <g id="p-cam">
+1831:           <!-- g[data-step="05"] ligger FÖRST i dokumentordning (paint-
+1832:                ordning), inte i stegordning: bilden måste måla UNDER
+1833:                #p-opening:s kontur (samma skäl som K3-r8/index.html rad
+1834:                719-725), och grupperingen efter steg (perf 3, device-rad 8)
+1835:                skulle annars lägga g[data-step="05"] EFTER g[data-step="03"]
+1836:                i DOM och rita bilden ovanpå konturen. -->
+1837:           <g data-step="05">
+1838:             <g clip-path="url(#p-open)" class="p-live">
+1839:               <image id="p-live-img" href="assets/demo-calyx-1440-color.webp" x="264" y="96" width="538" height="303"
+1840:                      preserveAspectRatio="xMidYMin slice"/>
+1841:             </g>
+1842:           </g>
+1843: 
+1844:           <!-- s-process-01: ordmärkets A-glyf, hairline-kontur, 36 units
+1845:                hög. PLAN 048 E step 9: flyttad ut ur g[data-step="01"] (nu
+1846:                #p-frame) till en egen grupp UTAN data-step inne i #p-cam -
+1847:                den döljs redan av sin snäppopacitet (--p-l) tills --k1 nått
+1848:                0,30, och rör sig med kameran. PLAN 020 Target C: egen
+1849:                <path> i stället för <use> mot #alunix-mark-path (R5). Den
+1850:                refererade pathens egna fill="#ffffff" (presentationsattribut)
+1851:                slog den ärvda fill:none, och stroke-width 0,75 skalades av
+1852:                scale(0.031607) till ~0,024 px - osynlig. d kopierad
+1853:                ordagrant från #alunix-mark-path (rad ~1265); stroke-width
+1854:                23,7 i pathens EGNA units x 0,031607 = 0,75 px på skärmen
+1855:                (--contour-hair). -->
+1856:           <g>
+1857:             <path id="p-glyph" class="draw" pathLength="1"
+1858:                   transform="translate(24,24) scale(0.031607) translate(-80,-400)"
+1859:                   fill-rule="evenodd"
+1860:                   d="M 430.020 513.250 C 386.700 600.458, 318.190 739.397, 297.501 782 C 289.087 799.325, 276.594 824.975, 269.739 839 C 216.342 948.248, 182.518 1018.108, 130.177 1127.250 L 122.145 1144 149.505 1144 C 176.418 1144, 176.876 1143.966, 177.531 1141.901 C 177.898 1140.746, 186.760 1121.959, 197.226 1100.151 C 207.692 1078.343, 223.776 1044.750, 232.969 1025.500 C 266.133 956.059, 277.353 933, 277.980 933 C 278.331 933, 280.408 935.587, 282.595 938.750 C 284.783 941.913, 295.822 957.775, 307.127 974 C 325.042 999.713, 381.481 1081.065, 429.737 1150.734 C 439.657 1165.055, 444.860 1173.418, 444.356 1174.233 C 443.926 1174.929, 440.820 1179.324, 437.455 1183.999 C 429.228 1195.427, 350.904 1307.144, 339.651 1323.500 C 334.732 1330.650, 327.687 1340.775, 323.996 1346 C 313.067 1361.472, 240.505 1466.210, 229.257 1482.750 L 218.886 1498 253.693 1497.961 L 288.500 1497.922 299.500 1481.744 C 324.141 1445.503, 476.381 1225.616, 478.506 1223.197 C 478.768 1222.899, 523.522 1286.863, 565.476 1347.500 C 568.140 1351.350, 588.572 1380.825, 610.880 1413 C 633.189 1445.175, 655.504 1477.439, 660.471 1484.697 L 669.500 1497.895 706.798 1497.947 L 744.096 1498 740.841 1493.250 C 727.956 1474.444, 658.474 1374.606, 602.522 1294.500 C 521.377 1178.323, 476.786 1114.238, 411.522 1020 C 389.621 988.375, 368.686 958.225, 364.999 953 C 342.882 921.650, 308 870.814, 308 869.930 C 308 868.958, 318.208 847.506, 341.512 799.500 C 346.852 788.500, 357.642 766.225, 365.489 750 C 373.336 733.775, 394.812 689.450, 413.213 651.500 C 431.614 613.550, 449.746 576.074, 453.505 568.221 C 457.265 560.367, 460.665 554.292, 461.060 554.721 C 461.456 555.149, 484.829 600.050, 513 654.500 C 595.807 814.548, 597.733 818.267, 612.712 847 C 620.597 862.125, 629.584 879.471, 632.684 885.546 L 638.319 896.592 633.336 903.546 C 630.596 907.371, 622.124 919.500, 614.511 930.500 C 606.897 941.500, 592.950 961.525, 583.517 975 C 550.282 1022.475, 513.571 1075.338, 501.745 1092.750 C 500.157 1095.088, 498.778 1097, 498.679 1097 C 498.581 1097, 498.620 1045.925, 498.767 983.500 L 499.033 870 467.529 870 L 436.024 870 435.762 948.679 L 435.500 1027.358 441.051 1035.429 C 444.105 1039.868, 458.527 1060.825, 473.101 1082 C 498.716 1119.217, 521.094 1151.905, 523.077 1155 C 523.877 1156.249, 524.411 1156.006, 526.269 1153.550 C 528.956 1149.997, 575.050 1083.626, 604.955 1040.250 C 642.615 985.626, 683.143 927.009, 694.212 911.152 L 704.927 895.804 701.347 888.652 C 699.378 884.718, 693.373 873.175, 688.003 863 C 682.632 852.825, 671.141 831, 662.466 814.500 C 653.792 798, 640.398 772.575, 632.701 758 C 609.734 714.509, 591.719 680.257, 553.278 607 C 533.220 568.775, 512.426 529.175, 507.069 519 C 501.712 508.825, 490.419 487.337, 481.975 471.250 C 473.530 455.163, 466.349 442, 466.016 442 C 465.684 442, 449.485 474.063, 430.020 513.250 M 459 748.072 C 445.481 750.334, 431.497 761.058, 425.189 774 C 411.946 801.174, 429.479 833.973, 460.052 839.216 C 482.335 843.037, 505.858 827.419, 511.586 805 C 519.739 773.095, 491.587 742.619, 459 748.072 M 583.028 1238.750 C 583.043 1239.162, 587.793 1246.250, 593.583 1254.500 C 599.373 1262.750, 608.679 1276.138, 614.264 1284.250 L 624.418 1299 745.199 1299 L 865.981 1299 847.826 1273.750 C 837.841 1259.862, 828.058 1246.155, 826.086 1243.288 L 822.500 1238.076 702.750 1238.038 C 636.888 1238.017, 583.012 1238.338, 583.028 1238.750"/>
+1861:           </g>
+1862: 
+1863:           <!-- s-process-02: måttkedjan under arket. 195.6 och 469.3 = 320/1440
+1864:                och 768/1440 av arkets egen 880-breda rymd. -->
+1904: 
+1905:           <!-- PLAN 049 fix 1. s-process-07: titelblockets revisionsfält.
+1906:                Flyttat ut ur #p-cam (Astra r1-astra.md material_fixes #1):
+1907:                vid --cam 1 gav kamerans transform x' = 533+1,5(x-533)-93,
+1908:                vilket landade #p-title på x -323,5..-233,5 - helt utanför
+1909:                viewBox 0..880. Samma behandling som #p-frame (steg 01): ett
+1910:                ark-fast element, aldrig kameraskalat, så 07 faktiskt syns
+1911:                och skiljer sig från 06.
+1912:                AVVIKELSE, PLAN 051 fix 1 (R4, Astra material_fixes #1):
+1913:                bottenvänster-placeringen (24,439, en 60x54 tre-radig
+1914:                ISO 7200-stapel) låg INNANFÖR arket men INTE innanför
+1915:                `.p-live`s kamerazoomade rect - vid --cam=1 (samma zoom som
+1916:                det redan godkända steg 06, får inte sänkas: Calyx
+1917:                1071x603 är en uttalad "keep") täcker bilden x 36,5..843,5
+1918:                / y 20,25..474,75 av arkets 880x495, och lämnar bara fyra
+1919:                tunna hörnremsor (~36,5x20 units). Mobilen löste samma typ
+1920:                av krock redan (`:1388`, 96x12 i stället för skrivbordets
+1921:                60x18) - samma princip här: ETT hörnfält, inte en tre-radig
+1922:                stapel (som aldrig får plats i en 20 units hög remsa).
+1923:                Flyttad till det övre högra hörnet (x 846..876, y 2..18),
+1924:                uppmätt fritt vid samtliga scrollY i steg 07:s ståendefönster
+1925:                (13450-13600, se NOTES § V3d R4). Ark, siffror, rubriker och
+1926:                Calyx orörda - bara denna lilla metadatabox krymper. -->
+1927:           <g data-step="07">
+1928:             <path id="p-title" class="dimline draw" pathLength="1"
+1929:                   d="M846 2 H876 V18 H846 Z"/>
+1930:             <rect id="p-rev" class="hatch wipe" x="846" y="2" width="30" height="16"/>
+1931:             <text id="p-c-rev" class="callout" x="861" y="13" text-anchor="middle">A</text>
+1932:           </g>
+1933:         </svg>
+1934:       </div>
+1030:      (min-height:100svh) + centrering står kvar oförändrad - den delen är
+1031:      färgoberoende och löser fortfarande både 1440 (ensam skärm) och 390
+1032:      (vertikalt centrerad rubrik) i en regel. */
+1033:   .process-chapter{
+1034:     min-height:100svh; display:flex; flex-direction:column;
+1035:     justify-content:center; padding-block:clamp(120px,22svh,240px);}
+1036:   .process-title{font-family:var(--f-display);font-weight:700;
+1037:     /* PLAN 051 fix 4 (R4, Astra material_fixes #4): golvet höjt 2,75rem
+1038:        (44px, uppmätt under Astras 56px-mål vid 390) -> 3.5rem (56px). */
+1039:     font-size:clamp(3.5rem,7.2vw,7.5rem);line-height:.95;letter-spacing:-.03em;
+1040:     color:var(--ink);max-width:14ch;
+1041:     padding:.6rem var(--rail-x) 0;}
+1042:   .process-lead{max-width:40ch;font-size:1.0625rem;
+1043:     color:rgba(22,20,15,.78);margin-top:.8rem;margin-bottom:0;
+1044:     padding:0 var(--rail-x);}
+1045:   /* PLAN 025 A: kickern saknade --rail-x helt (bara title/lead hade den).
+1046:      AVVIKELSE, PLAN 051 fix 3 (R4): kickern flyttad in i .process-chapter
+1047:      (barn, inte längre direkt barn till .process) - selektorn följer med.
+1048:      margin-bottom på .process-lead nollad: .process-chapter (rad ~1005)
+1049:      reserverar hela skärmen via min-height:100svh + centrering, den fasta
+1050:      clampen som förut gjorde jobbet är nu överflödig (skulle bara lägga
+1051:      onödigt utrymme INUTI den redan centrerade kolumnen). */
+1052:   .process-chapter > .kicker-sans{padding-inline:var(--rail-x);}
+1053: 
+1054:   /* PLAN 048 F. INTE en rullande paragraf bredvid ett litet ark: en scen
+1055:      per steg. --band-h skrivs av measureAct (högsta .step-band), fallback
+1056:      nedan. */
+1057:   #process{--band-h:clamp(200px,24svh,240px);}
+1058:   .process-grid{display:grid;grid-template-columns:minmax(0,1fr);margin-top:0;}
+1059:   .process-stick{grid-area:1/1;align-self:start;position:sticky;
+1060:     top:var(--band-h);margin-top:var(--band-h);height:calc(100svh - var(--band-h));
+930:     --bg: var(--c-black); --ink: var(--c-paper);
+931:     --c-line-on-paper: var(--hairline-dark);
+932:     border:1px solid var(--frame-line);}
+933:   /* PLAN 049 fix 6 (Astra material_fixes #6, P04). Ett bleed vänsterut,
+934:      samma teknik som .thesis-figure redan använder (negativ margin +
+935:      motsvarande breddökning), läsande jättens EGEN --scrub (redan
+936:      beräknad två rader ovan ur samma akts --sc-ps, ingen ny variabel).
+937:      margin-top höjt (270->820) efter P03: en obledad tes (bredare i
+938:      denna runda, se .thesis-figure) och en obledad jätte delade skärm
+939:      medan tesens svans fortfarande syntes - rubriken skar rakt genom
+940:      tesbildens kant (skärmbild, scrollY 3600). 820px håller jätten
+941:      osynlig tills tesen rullat bort helt (scrollY ~3900). 44vw (höjt
+942:      från 38) så bredden hinner över 80%vw INNAN rubriken (h1.giant, inte
+943:      .giant-head-omslaget som även räknar in undertexten) rullar ur
+944:      synfältet - uppmätt scrollY 4330: rubrik fortfarande synlig
+945:      (h1Bottom +39px), bredd 82%vw. Ingen kollision tes/rubrik i hela
+946:      övergångsspannet 3200-4300 (uppmätt, rect-overlap X och Y). */
+947:   @media (min-width:901px){
+948:     .panel-giant{
+949:       margin-top:820px;
+950:       margin-left:calc(-1 * var(--scrub) * 44vw);
+951:       width:calc(100% + var(--scrub) * 44vw);}
+952:   }
+953:   #giant-section .giant-sub,#giant-section .ledger-body p{
+954:     color:color-mix(in srgb, var(--c-paper) 72%, var(--c-black));}
+955:   #giant-section .ledger-num{
+956:     color:color-mix(in srgb, var(--c-paper) 62%, var(--c-black));}
+957: 
+958:   /* Liggaren. Ordscrubben och den självritande tråden läser --sc-ps.
+959:      Tråden ritas i bläck, aldrig i accenten: låset förbjuder accenten här. */
+960:   .ledger-wrap{position:relative;margin-top:clamp(28px,4vw,48px);
+961:     padding-left:clamp(22px,3.2vw,40px);}
+962:   .thread{position:absolute;left:0;top:.35em;bottom:6px;width:2px;
+963:     background:var(--c-line-on-paper);}
+964:   /* Vilotillståndet är det FÄRDIGA tillståndet: utan JS, före montering och i
+965:      varje läge där scrubben inte armerats står tråden fylld och orden i full
+
+codex
+A) Parity. Measurements are approximate, derived from the supplied images.
+
+P01: holds the level.
+P02: holds the level.
+P03: holds the level.
+P04: does not hold, gap: the headline occupies roughly 8% of viewport height versus the reference’s 44%; the ledger owns most of the plate. Move: wrap the existing headline into 2–3 lines at approximately 110–120px, reserving 35–40% of viewport height for typography.
+P05: holds the level. Known Hōrai overflow at 390 noted below.
+P06: holds the level.
+P07: holds the level.
+P08: holds the level.
+P09: holds the level.
+P10: holds the level.
+P11: holds the level.
+P12: does not hold, gap: at 390 the drafting mark remains over the finished product, occupying approximately 30×40px of its upper-left corner. Move: withdraw the mark as Calyx arrives, preserving the current product size.
+P13: does not hold, gap: at 390 the roughly 107×40px revision block overlaps the product’s navigation and photograph; the drafting mark also remains. Move: fit a single revision cell within the approximately 14px upper margin and withdraw the mark.
+P14: holds the level.
+P15: holds the level.
+P16: holds the level. The photographic, blue, black, drafting, paper and photographic passages remain distinguishable; the long dark act is accepted.
+
+B) Code and pixel findings. File references below are relative to `tests/alunix-r8/runs/V3d/`.
+
+- **Revision letter detached on desktop.** `index.html:2625` supplies desktop coordinates `(54,451)`; `index.html:2641` applies them, overriding `(861,13)` at `index.html:1931`. The revision cell remains at `(846,2)`, size `30×16`. **P14-1440, upper-left of the departing Calyx image:** stray “A” near the product’s bottom-left. Restore the desktop text coordinates to the cell.
+- **Mobile revision block crosses the product.** `index.html:1461` retains the three-row block at `(208,16)…(304,52)` while the opening starts at `y=20` (`index.html:1454`). **P13-390 and zoom-P13-390-sheet, upper-right:** lines and hatching cross navigation and flowers. Reposition and reduce the block to the free upper margin.
+- **Mobile drafting mark never withdraws.** `index.html:1858` retains its `(24,24)` placement; `index.html:1262` gives it drawing progress but no product-arrival fade. **P12-390/P13-390, product upper-left:** the mark overlays the navigation/photo. Apply the existing camera withdrawal logic to this mark.
+- **Mobile zoom exceeds the sheet width.** `index.html:1463` scales the `304px` opening by `1.08` about `x=160`, producing bounds `−4.16…324.16` inside the `320px` viewBox set at `index.html:2636`. **P12-390/P13-390, both product edges:** the image is clipped flush to the sheet. Cap mobile scaling at approximately `1.0526` to retain the entire image.
+- **Known Hōrai overflow, note only.** **P05-390, right edge of the left panel:** the restaurant subtitle is cut mid-word. No edit proposed to `sites/horai.html`.
+
+No clipped process-title glyphs are evident in the supplied captures.
+tokens used
+78 686

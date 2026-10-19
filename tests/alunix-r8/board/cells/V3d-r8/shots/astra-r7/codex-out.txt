@@ -1,0 +1,50 @@
+**Disposition: fix.** R7 has the right page structure, but the sentence collisions, transparent Calyx stage, and unfinished Hōrai quote prevent shipping.
+
+**Persistence:** The supplied wheel sweeps establish repeatable transition failures across widths, not isolated capture artefacts. Calyx’s background failure persists at rest and has a direct CSS cause. Review only; no files changed. Measurements below are supplied measurements unless described as image estimates.
+
+**Fidelity:** “Holds” applies to the supplied views. Missing views remain verification gaps, not proven visual failures.
+
+| Row | Verdict |
+|---|---|
+| P01 | **Holds the level** at 1440. Image 1, left: the headline and substantial physical card command the viewport. |
+| P02 | **Holds the level** at 1440. Image 2, left: the card and ALUNIX display retain clear hierarchy and sufficient scale. |
+| P03 | **Does not hold, gap:** overlapping sentences destroy the single-heading composition; the image is below its specified width. Images 4 and 20, heading region; image 3, lower-right image; image 19, empty middle band. Fixes 1, 4, 5. |
+| P04 | **Holds the level** visually. Image 5, horizontal material boundary, and image 23, upper strip: the curtain reveals a distinct chapter without an intervening blank material. The supplied notes report zero heading drift. |
+| P05 | Retired; excluded from the ship gate. |
+| P06 | **Does not hold, gap:** the supplied chapter view already exposes step 01 along its bottom edge. Image 6, bottom-left. Fix 8. |
+| P07 | **Holds the level** at 1440. Image 7, left: the large numeral and broad empty sheet make the intentional blankness legible. |
+| P08 | **Does not hold, gap:** no supplied step-02 capture establishes the image/display balance or dimension-label legibility. Evidence gap. |
+| P09 | **Does not hold, gap:** no supplied step-03 capture establishes that one complete chapter occupies the viewport. Evidence gap. |
+| P10 | **Does not hold, gap:** no supplied step-04 capture establishes the material change from step 03. Evidence gap. |
+| P11 | **Holds the level** at 1440. Image 8, left: the product occupies approximately 72% of the sheet’s width, within a dominant sheet. |
+| P12 | **Holds the level** at 1440. Image 9, left: the finished color image dominates the drawing, approximately 1,070 × 600 px in original viewport coordinates. |
+| P13 | **Holds the level** at 1440. Image 10, left: the product remains largest; the revision mark stays subordinate. |
+| P14 | **Holds the level.** Image 11, left, and image 23, lower strip: the paper chapter creates a decisive reset with a display-scale heading. |
+| P15 | **Holds the level** at 1440. Images 16–17, left: pricing and contact form one photographic closing chapter with a clear hierarchy. |
+| P16 | **Does not hold, gap:** the intended continuous paper chapter/Calyx passage reverts to the hero photograph. Image 18, first two rows; image 23, lower-right sequence. Fix 3. |
+| P17 | **Does not hold, gap:** wrong stage material, undersized frame, and colliding step text. Images 12–13, left text/background; image 21, lower half. Fixes 2, 3, 6. |
+| P18 | **Holds the level** at 1440. Image 14, left: the bridge commits to a single display statement on a clean dark screen. |
+| P19 | **Does not hold, gap:** the mirrored composition works, but its promised quote is blurred or outside the visible frame; step transitions collide. Images 15 and 22, embedded quote; image 24, right paragraph. Fixes 2, 6, 7. |
+| P20 | **Holds the level** in the supplied desktop sequence. Image 16, left material boundary, followed by image 17: the photograph and closing heading arrive without a separate blank band. |
+
+**Ceiling:** The strongest resting screens already reach the reference’s level of commitment. The ceiling is currently motion legibility and continuity of materials. A rebuild would discard successful staging; the necessary work is local. Full ship approval also needs the missing process pairs and required mobile views.
+
+**Material_fixes**, in priority order:
+
+1. **Make thesis changes exclusive.** [index.html:602](C:/Users/Anton%20L/anti-slop-design/tests/alunix-r8/runs/V3d/index.html:602). Incoming and outgoing clips operate simultaneously on separate text boxes, with only `.55em` translation. **Measured:** overlapping visible windows reach 130 px at 1440, 62 px at 768, and 41 px at 390 in all four transitions. Images 4 and 20, heading area. **Expected:** outgoing glyphs fully leave before incoming glyphs become visible, in both directions; zero simultaneous sentences. Preserve the display size and smoothed progress.
+
+2. **Apply exclusive sequencing to case steps.** [index.html:823](C:/Users/Anton%20L/anti-slop-design/tests/alunix-r8/runs/V3d/index.html:823). The same clip mechanism repeats here. **Measured:** 9 px overlap in every transition. Image 24, paragraph beneath “MENYERNA SOM TAVLOR”: remnants of the preceding paragraph occupy the new paragraph’s space. **Expected:** one readable step at a time, zero overlapping glyphs, while the iframe continues its scroll.
+
+3. **Restore Calyx’s paper stage.** [index.html:797](C:/Users/Anton%20L/anti-slop-design/tests/alunix-r8/runs/V3d/index.html:797). `--bg:var(--bg)` and `--ink:var(--ink)` are cyclic declarations, not inheritance. **Measured:** empty `--bg`; stage background `rgba(0,0,0,0)`. Images 12–13, left background, and image 21, text background. **Expected:** valid inherited paper/ink tokens, opaque paper throughout Calyx, no background photograph showing through. This also repairs the whole-page material rhythm.
+
+4. **Give Hyperborea its specified share.** [index.html:590](C:/Users/Anton%20L/anti-slop-design/tests/alunix-r8/runs/V3d/index.html:590). **Measured:** 496 × 310 px, 34.4% viewport width. Image 3, lower-right of our screen. **Expected:** at least 518.4 px wide at 1440, flush right, with enough presence to share the screen with the thesis.
+
+5. **Rebalance the mobile thesis’s vertical staging.** [index.html:627](C:/Users/Anton%20L/anti-slop-design/tests/alunix-r8/runs/V3d/index.html:627). **Measured:** approximately 220 px of empty blue between the short sentence and the ticks. Image 19, middle-left. **Expected:** a stable heading slot sized for the longest actual sentence, with ticks grouped beneath it; recover the surplus for the image. Keep sentence sizes equal and prevent image movement between sentences.
+
+6. **Size the actual case viewport, excluding its caption.** [index.html:799](C:/Users/Anton%20L/anti-slop-design/tests/alunix-r8/runs/V3d/index.html:799), mobile [index.html:838](C:/Users/Anton%20L/anti-slop-design/tests/alunix-r8/runs/V3d/index.html:838). **Measured:** Calyx 806 × 789 px at 1440, versus minimum 835.2 × 792; mobile frame 400 px high versus minimum 422. Images 12–13, right frame; image 21, upper frame. **Expected:** actual iframe meets ≥58% vw × ≥88% vh on desktop and ≥50% vh on mobile, with captions budgeted separately. Preserve mirrored edge alignment.
+
+7. **Land Hōrai on the formed quote.** [index.html:2129](C:/Users/Anton%20L/anti-slop-design/tests/alunix-r8/runs/V3d/index.html:2129). **Measured:** the anchor uses `−0.40 × iframe height`; supplied return-path discrepancy is 68–98 px at one Hōrai point. Image 15, lower embedded frame: quote remains blurred; image 22, upper frame: the complete formed quote is absent. **Expected:** step 03 rests on the complete, sharp quote at both widths, consistently from either direction. Calibrate the parent-page anchor against the embedded viewport. Any remaining demo-internal defect is report-only; do not edit `sites/*`.
+
+8. **Provide a genuinely isolated process chapter.** [index.html:870](C:/Users/Anton%20L/anti-slop-design/tests/alunix-r8/runs/V3d/index.html:870). **Observed:** approximately 60 px of step 01 intrudes at the bottom of image 6 in original viewport coordinates. **Expected:** a reachable settled chapter viewport with zero step-01 pixels. Verify the chapter hold and capture position first; preserve the successful stationary curtain reveal.
+
+**Keep:** the full-screen blue thesis, equal sentence scale, curtain concept, large process sheet, paper chapter, mirrored live cases, restrained bridge, and unified pricing/contact ending. Keep the current palette, typefaces, copy, motion policy, and vendored engine unchanged.

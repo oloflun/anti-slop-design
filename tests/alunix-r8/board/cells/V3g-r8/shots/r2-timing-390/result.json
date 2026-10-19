@@ -1,0 +1,43 @@
+{
+  "url": "http://127.0.0.1:3307/tests/alunix-r8/runs/V3g/index.html",
+  "width": 390,
+  "height": 844,
+  "headed": "headless-gpu",
+  "click_window": {
+    "nominal_duration_ms": 1500,
+    "actual_duration_ms": 1526.4,
+    "frame_stats": {
+      "count": 79,
+      "median_ms": 16.7,
+      "p95_ms": 66.7,
+      "p99_ms": 233.3,
+      "max_ms": 233.3,
+      "over_33ms_count": 8
+    },
+    "biggest_window_scrollY_jump_px": 691,
+    "iframe_scroll": {
+      "max_single_frame_delta_px": 0.0,
+      "stall_then_lurch_events": 0,
+      "total_frames": 79
+    }
+  },
+  "pin_active_after_click": false,
+  "through_scroll_target_px": 2822,
+  "through_scroll": {
+    "frame_stats": {
+      "count": 118,
+      "median_ms": 16.7,
+      "p95_ms": 17.1,
+      "p99_ms": 316.6,
+      "max_ms": 350,
+      "over_33ms_count": 5
+    },
+    "iframe_scroll": {
+      "max_single_frame_delta_px": 631,
+      "stall_then_lurch_events": 1,
+      "total_frames": 118
+    }
+  },
+  "console_errors": [],
+  "no_shots": true
+}

@@ -1,0 +1,46 @@
+{
+  "url": "http://127.0.0.1:3301/tests/alunix-r8/runs/V3c/index.html",
+  "wheel": "100:60",
+  "cpu": 1.0,
+  "tracks": [
+    {
+      "track": ".calyx-wrap:--rv",
+      "dead": false,
+      "frames": 165,
+      "frame_p95_ms": 66.67,
+      "frames_over_20ms": 41,
+      "frames_over_33ms": 41,
+      "value_range": [
+        0.674,
+        1
+      ],
+      "max_step_pct": 17.09,
+      "staircase": 1,
+      "reversals": 0
+    },
+    {
+      "track": ".calyx-wrap .rv:transform",
+      "dead": false,
+      "frames": 165,
+      "frame_p95_ms": 66.67,
+      "frames_over_20ms": 41,
+      "frames_over_33ms": 41,
+      "value_range": [
+        -264.06,
+        0
+      ],
+      "max_step_pct": 17.09,
+      "staircase": 1,
+      "reversals": 0
+    }
+  ],
+  "pass": false,
+  "failures": [
+    ".calyx-wrap:--rv: frame_p95 66.67 ms > 20",
+    ".calyx-wrap:--rv: 41 frames > 33 ms",
+    ".calyx-wrap:--rv: staircase 1",
+    ".calyx-wrap .rv:transform: frame_p95 66.67 ms > 20",
+    ".calyx-wrap .rv:transform: 41 frames > 33 ms",
+    ".calyx-wrap .rv:transform: staircase 1"
+  ]
+}

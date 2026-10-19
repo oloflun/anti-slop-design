@@ -1,0 +1,55 @@
+{
+  "url": "http://127.0.0.1:3301/tests/alunix-r8/runs/V3c/index.html",
+  "viewport": [
+    390,
+    844
+  ],
+  "cpu": 4.0,
+  "lcp_ms": 680,
+  "cls": 0.7535,
+  "long_tasks": 4,
+  "long_tasks_under_scroll": 0,
+  "transfer": {
+    "other": {
+      "bytes": 62560,
+      "count": 1,
+      "largest": 62560,
+      "largest_url": "http://127.0.0.1:3301/tests/alunix-r8/runs/V3c/index.html"
+    },
+    "style": {
+      "bytes": 18563,
+      "count": 1,
+      "largest": 18563,
+      "largest_url": "http://127.0.0.1:3301/tests/alunix-r8/runs/V3c/scroll/scrollcraft.css"
+    },
+    "image": {
+      "bytes": 154190,
+      "count": 3,
+      "largest": 64998,
+      "largest_url": "http://127.0.0.1:3301/tests/alunix-concepts-r3/build/assets/k1-stage-pool.webp"
+    },
+    "font": {
+      "bytes": 37792,
+      "count": 3,
+      "largest": 14564,
+      "largest_url": "http://127.0.0.1:3301/tests/alunix-r8/runs/V3c/assets/fonts/public-sans-300-latin.woff2"
+    },
+    "script": {
+      "bytes": 64854,
+      "count": 2,
+      "largest": 58725,
+      "largest_url": "http://127.0.0.1:3301/tests/alunix-r8/runs/V3c/scroll/scrollcraft.js"
+    }
+  },
+  "total_bytes": 337959,
+  "dom_nodes": 141,
+  "embedded": {},
+  "embedded_bytes": 0,
+  "findings": [
+    {
+      "rule": "cls",
+      "detail": "0.753 > 0.050"
+    }
+  ],
+  "pass": false
+}

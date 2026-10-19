@@ -1,0 +1,38 @@
+**Disposition: FIX.** Tre konkreta fynd återstår. Hyperborea, övergången till processkapitlet och prisavslutets övergripande iscensättning håller. Bedömningen gäller de 24 bifogade paren; hela P16 kan inte slutgodkännas från dessa utsnitt.
+
+Jag dömer P21 mot den sammanslagna `#pris`-enheten och respekterar de låsta besluten.
+
+1. **P01-1920: håller.** Affischrubrik och kort dominerar; bakgrund och liten stödtext konkurrerar inte om huvudrollen.
+2. **P03-1-1920: håller.** Hyperborea upptar cirka 47 % av bredden, ligger i rubrikens överkant och fungerar som jämbördig motpart.
+3. **P03-4-1920: håller.** Slutmeningen äger vänsterspalten; färgbilden balanserar den utan att tränga undan texten.
+4. **P04-curtain-1920: håller.** Bild 4, nedre vänster: rubriken kommer in genom viewportens underkant, inte bakom den blå ytan.
+5. **P04-chapter-1920: håller.** Displayrubriken äger en egen, ren kapitelskärm; inget blått eller processband konkurrerar.
+6. **P17-1-1920: håller.** Calyx-namnet bär textspalten och den stora produktytan äger högerdelen; hela steget ryms.
+7. **P17-3-1920: håller.** Bildparet ger tydligt scenbyte och behåller bildens dominans; stegrubriken är hel.
+8. **P19-1-1920: håller inte.** Bild 8, höger textspalt: stegrubriken är kapad upptill; hela h3 måste synas i det etablerade stegläget.
+9. **P19-3-1920: håller inte.** Bild 9, höger textspalt: samma kapning av stegrubriken; i övrigt håller citatets och textspaltens fördelning.
+10. **P21-bro-1920: håller.** Rubrik, ingress och första priserna bildar ett sammanhängande avslut; fotot bär den avsiktliga högerytan.
+11. **P21-skarv-1920: håller.** Nästa rubrik når övre halvan medan Hōrai lämnar; inget fristående tomt mellanband eller hård fotoskarv.
+12. **P15a-1920: håller.** Prisliggare och kontaktadress avslutar på samma fotografi, med tydlig hierarki och tillräcklig skala.
+13. **P03-1-1440: håller.** Bilden upptar cirka 46 % av bredden, med jämn ytterluft och gemensam överkant.
+14. **P17-1-1440: håller.** Namn, rubrikmening och steg bär vänsterspalten; blomsterbilden äger huvuddelen av skärmen.
+15. **P19-1-1440: håller inte.** Bild 15, höger mellan rubrikmeningen och brödtexten: stegrubriken har försvunnit helt; återställ hela h3 i visningsläget.
+16. **P21-bro-1440: håller.** Rubrik och säljtext har tillräcklig tyngd, med första prisraden synlig i samma skärm.
+17. **P03-1-390: håller.** Stor tes över en dominerande bildyta; bilden tar ställning och bildtexten ryms.
+18. **P04-curtain-390: håller.** Bild 18, nederkant: kapitelrubriken klipps bara av viewporten, vilket P04 uttryckligen tillåter.
+19. **P17-1-390: håller.** Bilden äger drygt halva höjden; namn, rubrikmening, stegrubrik och brödtext ryms nedanför.
+20. **P17-3-390: håller.** Tydlig bilddominans och komplett stegtext med luft nedtill; den borttagna rubrikmeningen är enligt beslut.
+21. **P19-1-390: håller inte.** Bild 21, nedre textdelen: stegrubriken saknas och brödtextens slut kapas; hela steget måste rymmas med minst 8 px bottenmarginal.
+22. **P19-3-390: håller inte.** Bild 22, mellan HŌRAI och brödtexten: stegrubriken saknas och lämnar ett omotiverat hål; återställ den utan att pressa texten längre ned.
+23. **P21-bro-390: håller inte fullt ut.** Iscensättningen håller, men bild 23, ingressens mitt: beloppet bryts som ”26 / 900 kr”; håll `26 900 kr` samman.
+24. **P15a-390: håller.** Läsbara prisrader och tydlig kontaktadress ger ett samlat avslut; inget behöver förstoras för att nå referensens nivå.
+
+**Fynd, mest materiella först:**
+
+1. **Hōrais stegrubriker klipps i de avsedda visningslägena.** Bilder **8, 9**, höger textspalt: partiell kapning; **15**, höger textspalt, samt **21, 22**, nedre textdelen: hela h3 försvinner. Orsaken finns i [index.html:965](</C:/Users/Anton L/anti-slop-design/tests/alunix-r8/runs/V3d/index.html:965>) och målet i [index.html:2672](</C:/Users/Anton L/anti-slop-design/tests/alunix-r8/runs/V3d/index.html:2672>). Med sex steg ligger `0.8/6` redan i utfasningen. Lägg det etablerade visningsmålet inom intervallet där `--in=1` och `--out=0`, exempelvis lokal stegfas `0.65`, och verifiera att ramens ankare samtidigt är färdigt. Att bara ta en annan bild räcker inte som verifiering av läsfasen.
+
+2. **Hōrai steg 1 överskrider mobilens höjdbudget efter R15.** Bild **21**, vänstersidans nederkant: brödtextens avslut ryms inte. Ramraden tar `72svh`, varefter bildtext, padding, namn och den återinförda rubrikmeningen förbrukar textutrymmet. Berör [index.html:995](</C:/Users/Anton L/anti-slop-design/tests/alunix-r8/runs/V3d/index.html:995>), [index.html:997](</C:/Users/Anton L/anti-slop-design/tests/alunix-r8/runs/V3d/index.html:997>) och [index.html:1020](</C:/Users/Anton L/anti-slop-design/tests/alunix-r8/runs/V3d/index.html:1020>). Omfördela steg 1:s höjd och mellanrum tills **hela h3 och sista brödtextglyfen ryms ovanför y=836 vid 390×844**. Behåll låst text och verifiera efter att fynd 1 är löst.
+
+3. **Prisbeloppet delas över två rader i ingressen.** Bild **23**, ingressen: ”26” står sist på en rad och ”900 kr.” först på nästa. Vanliga mellanslag i [index.html:1995](</C:/Users/Anton L/anti-slop-design/tests/alunix-r8/runs/V3d/index.html:1995>) tillåter brytningen. Håll hela beloppet samman typografiskt, utan ändrat ordval.
+
+Inga överlagrade meningar eller steg syns i dessa bilder. Ramarnas egna mobilbeskärningar och Calyx-navens kollision är noterade enligt beslut, inte fynd. Inga filer ändrade.

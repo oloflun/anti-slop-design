@@ -1,0 +1,364 @@
+motion_probe PASS  http://127.0.0.1:3301/tests/motion/smooth.html
+  #act:--sc-ps                       p95  16.8 ms | >33ms  0 | max_step  1.37% | staircase   0 | rev  0
+  #card:transform                    p95  16.8 ms | >33ms  0 | max_step  1.37% | staircase   0 | rev  0
+control c4a clean (attempt 1)
+=== hero-down-100
+motion_probe FAIL  http://127.0.0.1:3301/tests/alunix-r8/runs/V3c/index.html
+  section.hero:--sc-ps               p95 485.0 ms | >33ms 125 | max_step  1.72% | staircase   0 | rev  0
+  .plate-card:transform              p95 485.0 ms | >33ms 125 | max_step  2.62% | staircase   0 | rev  0
+  FAIL section.hero:--sc-ps: frame_p95 484.97 ms > 20
+  FAIL section.hero:--sc-ps: 125 frames > 33 ms
+  FAIL .plate-card:transform: frame_p95 484.97 ms > 20
+  FAIL .plate-card:transform: 125 frames > 33 ms
+=== hero-up-100
+motion_probe FAIL  http://127.0.0.1:3301/tests/alunix-r8/runs/V3c/index.html
+  section.hero:--sc-ps               p95  49.9 ms | >33ms 53 | max_step  1.54% | staircase   0 | rev  0
+  .plate-card:transform              p95  49.9 ms | >33ms 53 | max_step  2.55% | staircase   0 | rev  0
+  FAIL section.hero:--sc-ps: frame_p95 49.93 ms > 20
+  FAIL section.hero:--sc-ps: 53 frames > 33 ms
+  FAIL .plate-card:transform: frame_p95 49.93 ms > 20
+  FAIL .plate-card:transform: 53 frames > 33 ms
+motion_probe PASS  http://127.0.0.1:3301/tests/motion/smooth.html
+  #act:--sc-ps                       p95  16.8 ms | >33ms  0 | max_step  1.36% | staircase   0 | rev  0
+  #card:transform                    p95  16.8 ms | >33ms  0 | max_step  1.36% | staircase   0 | rev  0
+control c4b clean (attempt 1)
+=== hero-down-20
+motion_probe FAIL  http://127.0.0.1:3301/tests/alunix-r8/runs/V3c/index.html
+  section.hero:--sc-ps               p95  33.4 ms | >33ms 168 | max_step  0.27% | staircase   0 | rev  0
+  .plate-card:transform              p95  33.4 ms | >33ms 168 | max_step  0.37% | staircase   0 | rev  0
+  FAIL section.hero:--sc-ps: frame_p95 33.4 ms > 20
+  FAIL section.hero:--sc-ps: 168 frames > 33 ms
+  FAIL .plate-card:transform: frame_p95 33.4 ms > 20
+  FAIL .plate-card:transform: 168 frames > 33 ms
+=== hero-up-20
+motion_probe FAIL  http://127.0.0.1:3301/tests/alunix-r8/runs/V3c/index.html
+  section.hero:--sc-ps               p95  33.3 ms | >33ms 126 | max_step  0.26% | staircase   0 | rev  0
+  .plate-card:transform              p95  33.3 ms | >33ms 126 | max_step  0.36% | staircase   0 | rev  0
+  FAIL section.hero:--sc-ps: frame_p95 33.3 ms > 20
+  FAIL section.hero:--sc-ps: 126 frames > 33 ms
+  FAIL .plate-card:transform: frame_p95 33.3 ms > 20
+  FAIL .plate-card:transform: 126 frames > 33 ms
+motion_probe PASS  http://127.0.0.1:3301/tests/motion/smooth.html
+  #act:--sc-ps                       p95  16.8 ms | >33ms  0 | max_step  1.37% | staircase   0 | rev  0
+  #card:transform                    p95  16.8 ms | >33ms  0 | max_step  1.37% | staircase   0 | rev  0
+control c4c clean (attempt 1)
+=== proc-down-100
+motion_probe FAIL  http://127.0.0.1:3301/tests/alunix-r8/runs/V3c/index.html
+  #process:--sc-ps                   p95  83.2 ms | >33ms 140 | max_step  1.04% | staircase   0 | rev  0
+  FAIL #process:--sc-ps: frame_p95 83.2 ms > 20
+  FAIL #process:--sc-ps: 140 frames > 33 ms
+=== proc-up-100
+motion_probe FAIL  http://127.0.0.1:3301/tests/alunix-r8/runs/V3c/index.html
+  #process:--sc-ps                   p95  50.1 ms | >33ms 85 | max_step  0.91% | staircase   0 | rev  0
+  FAIL #process:--sc-ps: frame_p95 50.1 ms > 20
+  FAIL #process:--sc-ps: 85 frames > 33 ms
+motion_probe PASS  http://127.0.0.1:3301/tests/motion/smooth.html
+  #act:--sc-ps                       p95  16.8 ms | >33ms  0 | max_step  1.37% | staircase   0 | rev  0
+  #card:transform                    p95  16.8 ms | >33ms  0 | max_step  1.37% | staircase   0 | rev  0
+control c4d clean (attempt 1)
+=== proc-down-20
+motion_probe FAIL  http://127.0.0.1:3301/tests/alunix-r8/runs/V3c/index.html
+  #process:--sc-ps                   p95  50.0 ms | >33ms 693 | max_step  0.16% | staircase   0 | rev  0
+  FAIL #process:--sc-ps: frame_p95 50.0 ms > 20
+  FAIL #process:--sc-ps: 693 frames > 33 ms
+=== proc-up-20
+motion_probe FAIL  http://127.0.0.1:3301/tests/alunix-r8/runs/V3c/index.html
+  #process:--sc-ps                   p95  50.0 ms | >33ms 598 | max_step  0.20% | staircase   0 | rev  0
+  FAIL #process:--sc-ps: frame_p95 50.0 ms > 20
+  FAIL #process:--sc-ps: 598 frames > 33 ms
+=== giant-down-100
+motion_probe FAIL  http://127.0.0.1:3301/tests/alunix-r8/runs/V3c/index.html
+  #giant-section:--sc-ps             p95 250.0 ms | >33ms 81 | max_step  3.31% | staircase   0 | rev  0
+  FAIL #giant-section:--sc-ps: frame_p95 250.04 ms > 20
+  FAIL #giant-section:--sc-ps: 81 frames > 33 ms
+  FAIL #giant-section:--sc-ps: max_step 3.31 % > 3 (spelhuvud)
+=== price-down-100
+motion_probe FAIL  http://127.0.0.1:3301/tests/alunix-r8/runs/V3c/index.html
+  .price:--sc-ps                     p95 238.2 ms | >33ms 64 | max_step  2.67% | staircase   0 | rev  0
+  FAIL .price:--sc-ps: frame_p95 238.2 ms > 20
+  FAIL .price:--sc-ps: 64 frames > 33 ms
+motion_probe FAIL  http://127.0.0.1:3301/tests/motion/smooth.html
+  #act:--sc-ps                       p95  16.8 ms | >33ms  1 | max_step  1.36% | staircase   0 | rev  0
+  #card:transform                    p95  16.8 ms | >33ms  1 | max_step  1.36% | staircase   0 | rev  0
+  FAIL #act:--sc-ps: 1 frames > 33 ms
+  FAIL #card:transform: 1 frames > 33 ms
+control c1a noisy (attempt 1), waiting 60 s
+motion_probe FAIL  http://127.0.0.1:3301/tests/motion/smooth.html
+  #act:--sc-ps                       p95  16.8 ms | >33ms  1 | max_step  1.36% | staircase   0 | rev  0
+  #card:transform                    p95  16.8 ms | >33ms  1 | max_step  1.36% | staircase   0 | rev  0
+  FAIL #act:--sc-ps: 1 frames > 33 ms
+  FAIL #card:transform: 1 frames > 33 ms
+control c1a noisy (attempt 2), waiting 60 s
+control c1a STILL NOISY after 2 attempts, measuring anyway (reported)
+=== hero-down-100-cpu1
+motion_probe FAIL  http://127.0.0.1:3301/tests/alunix-r8/runs/V3c/index.html
+  section.hero:--sc-ps               p95  33.4 ms | >33ms 20 | max_step  1.25% | staircase   0 | rev  0
+  .plate-card:transform              p95  33.4 ms | >33ms 20 | max_step  2.10% | staircase   0 | rev  0
+  FAIL section.hero:--sc-ps: frame_p95 33.4 ms > 20
+  FAIL section.hero:--sc-ps: 20 frames > 33 ms
+  FAIL .plate-card:transform: frame_p95 33.4 ms > 20
+  FAIL .plate-card:transform: 20 frames > 33 ms
+=== hero-up-100-cpu1
+motion_probe FAIL  http://127.0.0.1:3301/tests/alunix-r8/runs/V3c/index.html
+  section.hero:--sc-ps               p95  16.8 ms | >33ms  1 | max_step  1.48% | staircase   0 | rev  0
+  .plate-card:transform              p95  16.8 ms | >33ms  1 | max_step  2.18% | staircase   0 | rev  0
+  FAIL section.hero:--sc-ps: 1 frames > 33 ms
+  FAIL .plate-card:transform: 1 frames > 33 ms
+=== proc-down-100-cpu1
+motion_probe FAIL  http://127.0.0.1:3301/tests/alunix-r8/runs/V3c/index.html
+  #process:--sc-ps                   p95  17.1 ms | >33ms 14 | max_step  0.67% | staircase   0 | rev  0
+  FAIL #process:--sc-ps: 14 frames > 33 ms
+=== proc-up-100-cpu1
+motion_probe FAIL  http://127.0.0.1:3301/tests/alunix-r8/runs/V3c/index.html
+  #process:--sc-ps                   p95  17.0 ms | >33ms 13 | max_step  0.76% | staircase   0 | rev  0
+  FAIL #process:--sc-ps: 13 frames > 33 ms
+=== giant-down-100-cpu1
+motion_probe FAIL  http://127.0.0.1:3301/tests/alunix-r8/runs/V3c/index.html
+  #giant-section:--sc-ps             p95  50.2 ms | >33ms 45 | max_step  2.65% | staircase   0 | rev  0
+  FAIL #giant-section:--sc-ps: frame_p95 50.18 ms > 20
+  FAIL #giant-section:--sc-ps: 45 frames > 33 ms
+=== price-down-100-cpu1
+motion_probe FAIL  http://127.0.0.1:3301/tests/alunix-r8/runs/V3c/index.html
+  .price:--sc-ps                     p95  46.7 ms | >33ms 16 | max_step  2.33% | staircase   0 | rev  0
+  FAIL .price:--sc-ps: frame_p95 46.66 ms > 20
+  FAIL .price:--sc-ps: 16 frames > 33 ms
+=== thesis-down-100-cpu1
+motion_probe FAIL  http://127.0.0.1:3301/tests/alunix-r8/runs/V3c/index.html
+  .panel-thesis:--sc-ps              p95 221.6 ms | >33ms 39 | max_step  2.70% | staircase   0 | rev  0
+  FAIL .panel-thesis:--sc-ps: frame_p95 221.6 ms > 20
+  FAIL .panel-thesis:--sc-ps: 39 frames > 33 ms
+=== footer-down-100-cpu1
+motion_probe FAIL  http://127.0.0.1:3301/tests/alunix-r8/runs/V3c/index.html
+  footer.close:--sc-ps               p95  16.8 ms | >33ms  0 | max_step  3.51% | staircase   0 | rev  0
+  FAIL footer.close:--sc-ps: max_step 3.51 % > 3 (spelhuvud)
+=== calyx-rv-cpu1
+motion_probe FAIL  http://127.0.0.1:3301/tests/alunix-r8/runs/V3c/index.html
+  .calyx-wrap:--rv                   p95  66.7 ms | >33ms 41 | max_step 17.09% | staircase   1 | rev  0
+  .calyx-wrap .rv:transform          p95  66.7 ms | >33ms 41 | max_step 17.09% | staircase   1 | rev  0
+  FAIL .calyx-wrap:--rv: frame_p95 66.67 ms > 20
+  FAIL .calyx-wrap:--rv: 41 frames > 33 ms
+  FAIL .calyx-wrap:--rv: staircase 1
+  FAIL .calyx-wrap .rv:transform: frame_p95 66.67 ms > 20
+  FAIL .calyx-wrap .rv:transform: 41 frames > 33 ms
+  FAIL .calyx-wrap .rv:transform: staircase 1
+=== horai-rv-cpu1
+motion_probe FAIL  http://127.0.0.1:3301/tests/alunix-r8/runs/V3c/index.html
+  .horai-wrap:--rv                   p95  41.7 ms | >33ms 17 | max_step  6.34% | staircase   1 | rev  0
+  .horai-wrap .rv:transform          p95  41.7 ms | >33ms 17 | max_step  0.00% | staircase   0 | rev  0  DEAD
+  FAIL .horai-wrap:--rv: frame_p95 41.7 ms > 20
+  FAIL .horai-wrap:--rv: 17 frames > 33 ms
+  FAIL .horai-wrap:--rv: staircase 1
+  FAIL .horai-wrap .rv:transform: DEAD - vardet rorde sig inte alls medan sidan scrollades (kontrollera att elementet arver egenskapen och att akten faktiskt driver den)
+=== hero-down-100-cpu1-b
+motion_probe FAIL  http://127.0.0.1:3301/tests/alunix-r8/runs/V3c/index.html
+  section.hero:--sc-ps               p95  83.4 ms | >33ms 41 | max_step  1.37% | staircase   0 | rev  0
+  .plate-card:transform              p95  83.4 ms | >33ms 41 | max_step  2.10% | staircase   0 | rev  0
+  FAIL section.hero:--sc-ps: frame_p95 83.4 ms > 20
+  FAIL section.hero:--sc-ps: 41 frames > 33 ms
+  FAIL .plate-card:transform: frame_p95 83.4 ms > 20
+  FAIL .plate-card:transform: 41 frames > 33 ms
+=== hero-down-100-cpu1-c
+motion_probe FAIL  http://127.0.0.1:3301/tests/alunix-r8/runs/V3c/index.html
+  section.hero:--sc-ps               p95  33.6 ms | >33ms 39 | max_step  1.31% | staircase   0 | rev  0
+  .plate-card:transform              p95  33.6 ms | >33ms 39 | max_step  2.03% | staircase   0 | rev  0
+  FAIL section.hero:--sc-ps: frame_p95 33.64 ms > 20
+  FAIL section.hero:--sc-ps: 39 frames > 33 ms
+  FAIL .plate-card:transform: frame_p95 33.64 ms > 20
+  FAIL .plate-card:transform: 39 frames > 33 ms
+motion_probe FAIL  http://127.0.0.1:3301/tests/motion/smooth.html
+  #act:--sc-ps                       p95  16.8 ms | >33ms  1 | max_step  1.32% | staircase   0 | rev  0
+  #card:transform                    p95  16.8 ms | >33ms  1 | max_step  1.32% | staircase   0 | rev  0
+  FAIL #act:--sc-ps: 1 frames > 33 ms
+  FAIL #card:transform: 1 frames > 33 ms
+control c1b noisy (attempt 1), waiting 60 s
+motion_probe PASS  http://127.0.0.1:3301/tests/motion/smooth.html
+  #act:--sc-ps                       p95  16.8 ms | >33ms  0 | max_step  1.34% | staircase   0 | rev  0
+  #card:transform                    p95  16.8 ms | >33ms  0 | max_step  1.34% | staircase   0 | rev  0
+control c1b clean (attempt 2)
+=== scroll_verify 1440
+C:\Users\Anton L\.claude\skills\design\scripts\scroll_verify.py:43: DeprecationWarning: Image.Image.getdata is deprecated and will be removed in Pillow 14 (2027-10-15). Use get_flattened_data instead.
+  return list(Image.open(io.BytesIO(png_bytes)).convert("L").resize((w, h)).getdata())
+C:\Users\Anton L\.claude\skills\design\scripts\scroll_verify.py:139: DeprecationWarning: Image.Image.getdata is deprecated and will be removed in Pillow 14 (2027-10-15). Use get_flattened_data instead.
+  px = list(plate.crop((x0, y0, min(x1, plate.width), min(y1, plate.height))).getdata())
+{
+  "url": "http://127.0.0.1:3301/tests/alunix-r8/runs/V3c/index.html",
+  "positions": [
+    0,
+    300,
+    600,
+    900,
+    1200,
+    1500,
+    1800,
+    2100,
+    2400,
+    2700,
+    3000,
+    3300,
+    3600,
+    3900,
+    4200,
+    4500,
+    4800,
+    5100,
+    5400,
+    5700,
+    6000,
+    6300,
+    6600,
+    6900,
+    7200,
+    7500,
+    7800,
+    8100,
+    8400,
+    8700,
+    9000,
+    9300,
+    9600,
+    9682
+  ],
+  "deadScroll": [
+    {
+      "from": 0,
+      "to": 300,
+      "diff": 0.0094
+    },
+    {
+      "from": 1500,
+      "to": 1800,
+      "diff": 0.0102
+    },
+    {
+      "from": 1800,
+      "to": 2100,
+      "diff": 0.0003
+    },
+    {
+      "from": 6300,
+      "to": 6600,
+      "diff": 0.0143
+    },
+    {
+      "from": 6600,
+      "to": 6900,
+      "diff": 0.0148
+    },
+    {
+      "from": 8100,
+      "to": 8400,
+      "diff": 0.0114
+    }
+  ],
+  "cuesNeverFull": [],
+  "unrevealed": [],
+  "contrastUnderMedia": [],
+  "contactSheet": "tests\\alunix-r8\\runs\\V3c\\shots\\loop-5\\probe\\sv-1440\\sheet.png",
+  "notes": [],
+  "blankBands": [
+    {
+      "from": 900,
+      "to": 3222,
+      "px": 2322
+    }
+  ]
+}
+=== scroll_verify 390
+C:\Users\Anton L\.claude\skills\design\scripts\scroll_verify.py:43: DeprecationWarning: Image.Image.getdata is deprecated and will be removed in Pillow 14 (2027-10-15). Use get_flattened_data instead.
+  return list(Image.open(io.BytesIO(png_bytes)).convert("L").resize((w, h)).getdata())
+C:\Users\Anton L\.claude\skills\design\scripts\scroll_verify.py:139: DeprecationWarning: Image.Image.getdata is deprecated and will be removed in Pillow 14 (2027-10-15). Use get_flattened_data instead.
+  px = list(plate.crop((x0, y0, min(x1, plate.width), min(y1, plate.height))).getdata())
+{
+  "url": "http://127.0.0.1:3301/tests/alunix-r8/runs/V3c/index.html",
+  "positions": [
+    0,
+    281,
+    562,
+    843,
+    1124,
+    1405,
+    1686,
+    1967,
+    2248,
+    2529,
+    2810,
+    3091,
+    3372,
+    3653,
+    3934,
+    4215,
+    4496,
+    4777,
+    5058,
+    5339,
+    5620,
+    5901,
+    6182,
+    6463,
+    6744,
+    7025,
+    7306,
+    7587,
+    7868,
+    8149,
+    8430,
+    8711,
+    8992,
+    9273,
+    9554,
+    9835,
+    10116,
+    10397,
+    10482
+  ],
+  "deadScroll": [
+    {
+      "from": 0,
+      "to": 281,
+      "diff": 0.0101
+    },
+    {
+      "from": 1405,
+      "to": 1686,
+      "diff": 0.0143
+    },
+    {
+      "from": 1686,
+      "to": 1967,
+      "diff": 0.0
+    }
+  ],
+  "cuesNeverFull": [],
+  "unrevealed": [],
+  "contrastUnderMedia": [],
+  "contactSheet": "tests\\alunix-r8\\runs\\V3c\\shots\\loop-5\\probe\\sv-390\\sheet.png",
+  "notes": [],
+  "blankBands": [
+    {
+      "from": 756,
+      "to": 2896,
+      "px": 2140
+    },
+    {
+      "from": 3330,
+      "to": 4031,
+      "px": 701
+    },
+    {
+      "from": 4803,
+      "to": 5473,
+      "px": 670
+    },
+    {
+      "from": 6403,
+      "to": 6919,
+      "px": 516
+    },
+    {
+      "from": 10398,
+      "to": 10910,
+      "px": 512
+    }
+  ]
+}
+PROBES-DONE

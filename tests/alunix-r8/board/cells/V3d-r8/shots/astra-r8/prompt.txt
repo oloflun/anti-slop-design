@@ -1,0 +1,44 @@
+Du granskar sidan tests/alunix-r8/runs/V3d/index.html (repo-roten är arbetskatalogen) i läget REFERENCE PARITY + helhet, efter runda R8. Läs tests/alunix-r8/runs/V3d/PARITET.md (tabellen du dömer mot), tests/alunix-r8/runs/V3d/plans/054-tesband-och-case.md (beställningen) och tests/alunix-r8/runs/V3d/reviews/r7-astra.md (förra granskningen, 8 fixar).
+
+Bifogade bilder, i ordning. Varje bild är ett PAR: vänster V3d (vår skärm), höger referensen (hoy/insign), samma höjd. Radens id står i bildens underkant. Bilderna togs med mouse.wheel från toppen, ramarna laddade:
+1. P01-1440.png
+2. P02-1440.png
+3. P03-1-1440.png
+4. P03-3-1440.png
+5. P04-curtain-1440.png
+6. P04-chapter-1440.png
+7. P07-1440.png
+8. P08-1440.png
+9. P10-1440.png
+10. P11-1440.png
+11. P12-1440.png
+12. P13-1440.png
+13. P14-1440.png
+14. P15a-1440.png
+15. P17-1-1440.png
+16. P17-3-1440.png
+17. P18-1440.png
+18. P19-3-1440.png
+19. P19-6-1440.png
+20. P20-1440.png
+21. P03-3-390.png
+22. P17-3-390.png
+23. P19-3-390.png
+24. P15a-390.png
+
+Uppmätt av mig (lita på detta, du behöver inte mäta om):
+- Tes- och casebyten, hjul i 20 px-steg ner och upp vid 1440/768/390: 0 bildrutor med två synliga meningar/steg, 0 px överlapp (r7-fix 1 och 3).
+- Calyx-stagens bakgrund rgb(253,251,244), ink rgb(22,20,15) (fix 2). Calyx-ram 922x807 vid 1440 (64 % vw, 89,7 % vh), 451 px vid 390 (53 % vh) (fix 5). Hyperborea 534x334 vid 1440 (37,1 % vw) (fix 6). ?preview=chapter: band 01 börjar 180 px under viewporten (fix 8).
+- 390 tesbandet: strecken slutar y=258, bilden börjar y=543 (fix 7 mål var inget tomt band).
+- 390 Hōrai -03: #quote-jp har opacitet 1 men ligger y=-139..-114 i ramen och #quote-text y=-58..53, ramens nav täcker 0..117: citatet syns inte i ramen.
+- Hela sidan 1440 och 390, hjul 150 px: 0 rubrikkollisioner, 0 horisontell scroll.
+
+Invarianter (ordagrant, bryt dem aldrig):
+- Motion always plays (F-011). prefers-reduced-motion is deliberately not honoured on this project. Suggesting a reduced-motion fallback, a static alternative, or a @media (prefers-reduced-motion) block is out of scope.
+- The scroll engine is never edited. scroll/scrollcraft.js and scrollcraft.css are vendored; sc-smooth.js is the sanctioned shim.
+- --sc-p is the raw scroll position; --sc-ps is the smoothed one. Anything that physically moves must read --sc-ps.
+- No em-dashes in visible text (gate 75).
+- sites/* rörs aldrig (Hōrai, Calyx, Hyperborea är ramade exempelsajter). Copyn är låst (copy-gaten körd), döm inte ordval. Palett och typsnitt väljs inte om.
+- Review only, no patches.
+
+Uppgift: för VARJE par, svara på en rad: håller vår skärm referensens nivå (skala, iscensättning, vad som äger viewporten, hur mycket skärmen tar ställning)? Om inte: vilket konkret drag (mått, andel, vad som ska äga viewporten) stänger gapet. En korrekt men tydligt svagare skärm är ett fynd. Varje pixelfynd: bildnummer + region. Varje kodfynd: index.html:rad. Ge sedan högst 8 fynd, mest materiella först, och en disposition (ship/fix). Uppfinn inga fynd; säg "håller" när det håller.

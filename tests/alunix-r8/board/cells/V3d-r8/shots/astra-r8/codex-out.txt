@@ -1,0 +1,42 @@
+**Disposition: fix.** R8 stänger sex av R7:s åtta fixar. Fix 4 fungerar på desktop men inte visuellt på mobil; fix 7 lämnar fortfarande ett stort tomrum. Dessutom visar mobilens Calyx-steg inte bildparet som steget beskriver.
+
+Bedömningen gäller de bifogade bilderna och dina mätningar. Mått för föreslagna ändringar är mål, inte nya mätresultat.
+
+| Bild | Par | Bedömning |
+|---|---|---|
+| 1 | P01-1440 | **Håller.** Affischrubriken och kortet äger skärmen; bakgrund och stödtext förblir underordnade. |
+| 2 | P02-1440 | **Håller.** Kortets stora svarta yta och ALUNIX i displaystorlek ger objektet tillräcklig auktoritet. |
+| 3 | P03-1-1440 | **Håller.** Den ensamma rubriken och Hyperborea på 37,1 % vw bildar en tydlig diagonal på obruten blå grund. |
+| 4 | P03-3-1440 | **Håller.** Den längre meningen äger vänstersidan utan att tränga undan bilden; båda elementen bär kompositionen. |
+| 5 | P04-curtain-1440 | **Håller.** Vänster skärms mitt: materialkanten är ren och kapitlet avtäcks direkt under ridån. Den delvis täckta rubriken hör till övergången. |
+| 6 | P04-chapter-1440 | **Håller.** Kapitelrubriken står ensam i displaystorlek, med tydligt underordnad text och inget processband i underkant. |
+| 7 | P07-1440 | **Håller.** Det stora tomma arket är ett avsiktligt huvudmotiv; 01 och uppstartsbandet etablerar steget. |
+| 8 | P08-1440 | **Håller.** Arket dominerar och måttkedjan är tillräckligt stor för att läsas som skärmens grafiska innehåll. |
+| 9 | P10-1440 | **Håller.** Utvecklingsbandet och den tillkomna geometrin ger steget en egen tydlig skärm. |
+| 10 | P11-1440 | **Håller.** Calyx är nu arkets huvudmotiv; den omgivande ritningen fungerar som ram. |
+| 11 | P12-1440 | **Håller.** Färgbilden tar över nästan hela arket och blir skärmens självklara tyngdpunkt. |
+| 12 | P13-1440 | **Håller.** Bilden förblir störst; revisionsfältet är en detalj och avslutstexten har en tydlig egen plats. |
+| 13 | P14-1440 | **Håller.** Pappersgrunden och den stora rubriken etablerar ett nytt kapitel med samma bestämdhet som referensen. |
+| 14 | P15a-1440 | **Håller.** Prisrader och kontaktadress bildar ett sammanhållet avslut på fotografiet; adressen konkurrerar inte med kapitelrubriken. |
+| 15 | P17-1-1440 | **Håller.** Calyx upptar 64 % vw och nästan hela höjden; textspalten bär utan att konkurrera med sajten. |
+| 16 | P17-3-1440 | **Håller.** Högra ramen visar båda fotografierna och deras märkningar; bildparet är konkret och dominerande. |
+| 17 | P18-1440 | **Håller.** En ensam displaymening äger den svarta skärmen; stycket under är tydligt sekundärt. |
+| 18 | P19-3-1440 | **Håller.** Vänstra ramen visar det formade citatet tydligt; spegelkompositionen har tillräcklig skala. |
+| 19 | P19-6-1440 | **Håller.** Bokningsytan äger vänstersidan och casetexten förklarar samma synliga steg. |
+| 20 | P20-1440 | **Håller inte i den visade bilden.** Vänster nedre del: nästa rubrik börjar omkring 69 % av skärmhöjden, medan P20 kräver övre halvan. Flytta prisrubrikens inträde cirka 20 vh tidigare. |
+| 21 | P03-3-390 | **Håller inte.** Vänster mitt, y=258–543: 285 px tomt blått skiljer strecken från bilden. Låt bilden börja cirka 24–32 px under strecken och ta den frigjorda höjden. |
+| 22 | P17-3-390 | **Håller inte fullt ut.** Vänster övre ram, y=0–451: bara tulpanfotot syns, utan bildparet och märkningarna. Visa båda fotografierna med märkningar inom ramen, med bibehållen läsbar text under. |
+| 23 | P19-3-390 | **Håller inte.** Vänster övre ram: citatet saknas visuellt och en nästan tom mörk yta äger skärmen. Placera hela citatgruppen synligt nedanför ramens 117 px höga navigation. |
+| 24 | P15a-390 | **Håller.** Läsbara prisrader och en tydlig kontaktadress ger avslutet stadga. Rubrikens beskärning är rimlig i dokumentets sista viewport. |
+
+**Fyra fynd, mest materiella först:**
+
+1. **Hōrais mobila huvudmotiv ligger utanför ramen.** Bild 23, vänster övre ram. Opacitet 1 stänger inte fyndet när japanskan ligger vid y=−139…−114 och huvudcitatet vid y=−58…53 bakom navigationen. [index.html:2199](</C:/Users/Anton L/anti-slop-design/tests/alunix-r8/runs/V3d/index.html:2199>) centrerar sektionen, vilket inte säkrar citatets synliga placering. Justera värdsidans inramning och ankare så att **hela den formade citatgruppen ryms mellan navigationens underkant och ramens nederkant**. Behåll desktopläget och lämna `sites/*` orört.
+
+2. **Mobiltesens frigjorda yta blir fortfarande tomrum.** Bild 21, vänster y=258–543, cirka 34 % av viewporten. `.thesis-figure` behåller `align-self:end` från [index.html:628](</C:/Users/Anton L/anti-slop-design/tests/alunix-r8/runs/V3d/index.html:628>); mobilregeln på [index.html:649](</C:/Users/Anton L/anti-slop-design/tests/alunix-r8/runs/V3d/index.html:649>) ändrar inte detta. Låt figuren fylla tredje gridraden och bilden ta höjden, med **24–32 px mellan streck och bild** och oförändrad bildposition mellan meningarna.
+
+3. **Calyx visar inte det visuella argumentet på mobil.** Bild 22, vänster övre ram, jämfört med bild 16:s högra del av vår skärm. Ramstorleken håller, men ett ensamt beskuret fotografi visar inte parets komposition eller katalogmärkningar. Anpassa värdsidans ramvisning för detta steg så att **två fotografier och deras märkningar syns samtidigt inom minst 50 % vh**. Det är ett utsnittsfynd, inte ett copyfynd.
+
+4. **Prisrubriken kommer för sent i P20-paret.** Bild 20, vänster nedre del. Materialbytet håller, men rubriken når inte tabellens övre halva. Minska avståndet mellan fotots överkant och rubriken så att rubrikens topp ligger **senast vid 50 % vh i detta övergångsläge**, utan att lägga in ett nytt mellanrum.
+
+Helhetens materialrytm håller nu: foto, blått, ritbord, papper, svart och foto. **Fix före ship**, främst för att mobilens tes och två casebilder fortfarande tappar det innehåll som ska bära skärmen. Inga ändringar gjorda.

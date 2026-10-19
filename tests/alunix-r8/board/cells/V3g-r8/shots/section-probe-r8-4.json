@@ -1,0 +1,48 @@
+{
+  "url": "http://127.0.0.1:3305/tests/alunix-r8/runs/V3g/index.html",
+  "px_per_notch": 60,
+  "sections": {
+    "hero": {
+      "frames": 198,
+      "p95_ms": 16.8,
+      "over33": 0
+    },
+    "tes": {
+      "frames": 204,
+      "p95_ms": 16.8,
+      "over33": 0
+    },
+    "process": {
+      "frames": 122,
+      "p95_ms": 16.8,
+      "over33": 0
+    },
+    "exempelcase": {
+      "frames": 120,
+      "p95_ms": 49.9,
+      "over33": 6
+    },
+    "showcase": {
+      "frames": 981,
+      "p95_ms": 16.8,
+      "over33": 6
+    },
+    "pris": {
+      "frames": 239,
+      "p95_ms": 16.8,
+      "over33": 0
+    },
+    "kontakt": {
+      "frames": 270,
+      "p95_ms": 16.8,
+      "over33": 1
+    }
+  },
+  "iframe_loads": {
+    "showcaseIframeCalyx": 1
+  },
+  "st_refreshes_during_pass": 0,
+  "fails": [
+    "#exempelcase p95 49.9 ms vs baseline 18.5 ms"
+  ]
+}

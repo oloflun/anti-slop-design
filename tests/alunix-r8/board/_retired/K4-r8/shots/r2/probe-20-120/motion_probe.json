@@ -1,0 +1,63 @@
+{
+  "url": "http://127.0.0.1:3303/tests/alunix-r8/runs/K4/index.html",
+  "wheel": "20:120",
+  "cpu": 4.0,
+  "tracks": [
+    {
+      "track": "section.split:--sc-p",
+      "dead": false,
+      "frames": 203,
+      "frame_p95_ms": 66.7,
+      "frames_over_20ms": 191,
+      "frames_over_33ms": 191,
+      "value_range": [
+        0,
+        0.6074
+      ],
+      "max_step_pct": 3.7,
+      "staircase": 8,
+      "reversals": 0
+    },
+    {
+      "track": "section.split:--sc-ps",
+      "dead": false,
+      "frames": 203,
+      "frame_p95_ms": 66.7,
+      "frames_over_20ms": 191,
+      "frames_over_33ms": 191,
+      "value_range": [
+        0,
+        0.6074
+      ],
+      "max_step_pct": 1.19,
+      "staircase": 0,
+      "reversals": 0
+    },
+    {
+      "track": "section.split:--split",
+      "dead": false,
+      "frames": 203,
+      "frame_p95_ms": 66.7,
+      "frames_over_20ms": 191,
+      "frames_over_33ms": 191,
+      "value_range": [
+        0.2185,
+        0.5
+      ],
+      "max_step_pct": 1.42,
+      "staircase": 0,
+      "reversals": 0
+    }
+  ],
+  "pass": false,
+  "failures": [
+    "section.split:--sc-p: frame_p95 66.7 ms > 20",
+    "section.split:--sc-p: 191 frames > 33 ms",
+    "section.split:--sc-p: staircase 8",
+    "section.split:--sc-p: max_step 3.7 % > 3",
+    "section.split:--sc-ps: frame_p95 66.7 ms > 20",
+    "section.split:--sc-ps: 191 frames > 33 ms",
+    "section.split:--split: frame_p95 66.7 ms > 20",
+    "section.split:--split: 191 frames > 33 ms"
+  ]
+}

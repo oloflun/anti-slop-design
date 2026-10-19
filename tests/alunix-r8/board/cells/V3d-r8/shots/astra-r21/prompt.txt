@@ -1,0 +1,58 @@
+You are an independent reviewer (read-only, review only, no patches) of a built one-page site:
+tests/alunix-r8/runs/V3d/index.html (repo root = cwd). Mode: REFERENCE PARITY plus whole-page cohesion.
+
+The 24 attached images are paired images, in this order. In each: LEFT = our page (V3d) captured in Chromium by real mouse-wheel scrolling (not scrollTo), RIGHT = the reference screen, scaled to the same height; a caption strip at the bottom names the pair. The reference shows the LEVEL (scale, staging, what owns the viewport, how much each screen commits), never the form: do not propose borrowing its palette, fonts, buttons or copy.
+
+1  P04-t0-1920  transition blue thesis band -> "drawing" chapter, stage 0 (tx 0)   ref highway s03 (a scroll-drawn line with a head leads into "Så arbetar vi")
+2  P04-t1-1920  same, stage 1
+3  P04-t2-1920  same, stage 2 (the blue plate has begun to shrink toward the sheet rectangle)
+4  P04-t3-1920  same, stage 3 (contour fading in, landing line drawing left to right)
+5  P04-t4-1920  same, stage 4 (formed: sheet rectangle, landing line complete, chapter title fully inked)
+6  P06-chapter-1920  process chapter title screen   ref hoy s03
+7  P07-1920  process step 01 band + empty sheet     ref hoy s03
+8  P09-1920  process step 03 band + sheet           ref hoy s06
+9  P14-1920  case chapter "Exempelcase"             ref hoy webb s04
+10 P15-1920  price + contact, end of document       ref hoy s09
+11 P17-1-1920  case Calyx step 1 (live iframe right) ref hoy webb s02
+12 P19-6-1920  case Hōrai step 6, booking inside the frame  ref hoy s02
+13 P22-seam-1920  Calyx -> Hōrai black breathing gap ref hoy s02
+14 P20-in-1920  Hōrai -> price: black veil developing into photo, title sharpening from blur  ref hoy s08
+15 P04-t3-1440  transition stage 3 at 1440
+16 P09-1440  step 03 at 1440
+17 P12-1440  step 06 at 1440 (Calyx in colour on the sheet)  ref hoy webb s01
+18 P15-1440  price + contact at 1440
+19 P22-text-1440  Calyx text column leaving upward, paper about to turn black
+20 P04-t2-390  transition stage 2 at 390   ref highway 390 s05
+21 P04-t4-390  transition stage 4 at 390
+22 P09-390  step 03 at 390
+23 P15-390  price + contact at 390   ref insign 390 s10
+24 P17-1-390  Calyx step 1 at 390
+
+What Anton (the client) ordered, and what the three rounds since the last review (R19, R20, R21) did:
+- Anton called the earlier blue -> drawing transition "extremely flat" and asked for "a fine transition with a scroll effect". The previous review (r18) judged it "too restrained": 1px lines at 2.86:1 contrast on the blue, and the horizontal landing line was never drawn (a CSS specificity bug rendered it 1x1px).
+- R19 ("Blåkopian arket", plan 062): the blue plate no longer just lifts — it SHRINKS, scrubbed on scroll, from a full screen down to exactly the drawing sheet's rectangle (clip-path on --tx), its fill cross-fading toward the drafting-table tone, and a 2px white contour fading in late (tx 0.6-0.9) so the sheet reads as if it SOLIDIFIES. The construction lines (sheet edges + the two stations) are a second, coordinated layer on the same --tx clock. The landing-line specificity bug was fixed (.seam .seam-h), sheet edges and the landing line are now 2px, the stations stay 1px, and --seam-on-blue was corrected to pure white. Hōrai's iframe now mounts earlier, so the Calyx -> Hōrai effect no longer freezes. "SEO-optimering" got a non-breaking hyphen.
+- R20 and R21: an attempt to make the landed contour sheet re-land as position:fixed and take step 01's place was tried and then REMOVED again. The accepted behaviour now is: the contour sheet lands, and then simply scrolls out of the viewport with the chapter, and step 01's own sticky sheet arrives later. TWO SEPARATE SHEETS, with a gap of empty ground between them, is the lead's accepted decision. Do NOT propose re-introducing a freeze, a position:fixed hand-over, or a morph between the two sheets; if the gap costs the page something, say what it costs and name a move that does not reintroduce a hand-over.
+
+Open items already with the client — measure them if you like but do NOT report them as findings:
+- The sheet is ~63% vw at 1920 (it is >=76% vw at 1440); this is a known open question with Anton.
+- Four font files against a budget of three.
+- Hōrai's own 390 overflow inside sites/horai.html.
+- One long main-thread task (400-600ms) at Calyx scroll progress 0.94-0.98, located but deliberately not chased further.
+
+PARITET targets (condensed): P04 as above, and NO frame in which a heading is partly hidden by another surface or crossed by a line; a heading may only be clipped by the viewport's bottom edge. P06: display title owns the screen on clean ground, >=100px at 1440. P07-P13: one step per screen, numeral >=150px (not at 390), sheet >=76% vw at 1440, step text 28-32px at 1440/1920 and >=20px at 390, full ink, heading the same size above, the text the band's largest readable mass, band height <=240px. P14: Exempelcase in Young Serif ~136px at 1920 and 40px at 390, one word one line, three-sentence lead ~20px under, no kicker. P15/P21: everything in ONE screen at 1920x930 and 1440x900 (title >=48px from the top, contact >=24px from the bottom); title and numerals in Young Serif (96/64 at 1920); ingress 20-22px; the numerals form a rhythm at the right, the texts in the same column clearly smaller and on the row's baseline; contact ~21px underlined. P17/P19: frame >=58% vw x 88% vh flush to the edge, no scrollbar, no border line; 390: frame on top >=50% vh. P20: no hard edge black -> veil, the photo develops, the title is sharp before it reaches the viewport's top 60%. P22: two works with air between them, no bridging text, no visible paper/black edge, frame to frame 200-260px at 1920x930. P23: the booking is fully inside the frame. P16 (whole page): the ground changes material in a readable rhythm, no slice where two materials meet in a hard edge, and at 1920 no empty band taller than 60% vh.
+From R17 onward and at every width: NO kicker, caption, step rail or small descriptive line may be visible (F-016), and the frames have no border line at any width or zoom.
+
+Invariants (verbatim, do not violate):
+- Motion always plays (F-011). prefers-reduced-motion is deliberately not honoured on this project — a considered accessibility trade-off Anton confirmed after it was put to him, not an oversight. Suggesting a reduced-motion fallback, a static alternative, or a @media (prefers-reduced-motion) block is out of scope.
+- The scroll engine is never edited. scroll/scrollcraft.js and scrollcraft.css are vendored; findings about them are reported, never fixed.
+- --sc-p is the raw scroll position; --sc-ps is the smoothed one. Anything that physically moves must read --sc-ps. A finding that says "use --sc-p for consistency" is backwards.
+- No em-dashes in visible text (gate 75).
+- sites/* (the iframe sites) are never touched except Hōrai's booking section; the frames are never transformed. Do not judge copy wording (it went through a copy gate).
+- Do not re-direct the aesthetic or re-choose palette/type. Review only, no patches.
+
+Deliver:
+A) One line per pair (1-24): "holds the reference's level" or "does not hold, because <measurable reason: a size, a share of the viewport, a missing element>" + the one concrete move that closes the gap.
+B) Findings, max 8, most material first. Code findings need file:line in index.html (read the file). Pixel findings need image number + region.
+C) Your explicit verdict on the transition thesis -> drawing (images 1-5, 15, 20, 21) after R19-R21: is it now FINE enough — at the reference's level for "a fine transition with a scroll effect" — or still too restrained? Give reasons in measurable terms (stroke weight, contrast, how much of the viewport the effect owns, how many frames it lives across), and if it is still short, the single move that closes it.
+D) State whether the accepted two-sheet solution (contour sheet scrolls out, step 01's sheet arrives later, empty ground between) reads as a deliberate chapter break or as a dead gap, and at which width it is worse.
+Be concise.

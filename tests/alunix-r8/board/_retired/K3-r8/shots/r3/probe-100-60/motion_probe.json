@@ -1,0 +1,63 @@
+{
+  "url": "http://127.0.0.1:3302/tests/alunix-r8/runs/K3/index.html",
+  "wheel": "100:60",
+  "cpu": 4.0,
+  "tracks": [
+    {
+      "track": "section.act-drawing:--sc-ps",
+      "dead": false,
+      "frames": 168,
+      "frame_p95_ms": 66.7,
+      "frames_over_20ms": 123,
+      "frames_over_33ms": 123,
+      "value_range": [
+        0,
+        0.9398
+      ],
+      "max_step_pct": 2.02,
+      "staircase": 0,
+      "reversals": 0
+    },
+    {
+      "track": "#page-outline:stroke-dashoffset",
+      "dead": false,
+      "frames": 168,
+      "frame_p95_ms": 66.7,
+      "frames_over_20ms": 123,
+      "frames_over_33ms": 123,
+      "value_range": [
+        0,
+        1
+      ],
+      "max_step_pct": 15.5,
+      "staircase": 1,
+      "reversals": 0
+    },
+    {
+      "track": "#opening:stroke-dashoffset",
+      "dead": false,
+      "frames": 168,
+      "frame_p95_ms": 66.7,
+      "frames_over_20ms": 123,
+      "frames_over_33ms": 123,
+      "value_range": [
+        0,
+        1
+      ],
+      "max_step_pct": 12.0,
+      "staircase": 1,
+      "reversals": 0
+    }
+  ],
+  "pass": false,
+  "failures": [
+    "section.act-drawing:--sc-ps: frame_p95 66.7 ms > 20",
+    "section.act-drawing:--sc-ps: 123 frames > 33 ms",
+    "#page-outline:stroke-dashoffset: frame_p95 66.7 ms > 20",
+    "#page-outline:stroke-dashoffset: 123 frames > 33 ms",
+    "#page-outline:stroke-dashoffset: staircase 1",
+    "#opening:stroke-dashoffset: frame_p95 66.7 ms > 20",
+    "#opening:stroke-dashoffset: 123 frames > 33 ms",
+    "#opening:stroke-dashoffset: staircase 1"
+  ]
+}

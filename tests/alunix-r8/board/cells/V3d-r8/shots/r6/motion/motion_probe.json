@@ -1,0 +1,27 @@
+{
+  "url": "http://127.0.0.1:8795/tests/alunix-r8/runs/V3d/index.html?preview=process-04",
+  "wheel": "20:120",
+  "cpu": 1.0,
+  "tracks": [
+    {
+      "track": "#process:--sc-ps",
+      "dead": false,
+      "frames": 582,
+      "frame_p95_ms": 16.79,
+      "frames_over_20ms": 0,
+      "frames_over_33ms": 0,
+      "value_range": [
+        0.5584,
+        0.678
+      ],
+      "max_step_pct": 100.0,
+      "staircase": 2,
+      "reversals": 0
+    }
+  ],
+  "pass": false,
+  "failures": [
+    "#process:--sc-ps: staircase 2",
+    "#process:--sc-ps: max_step 100.0 % > 3 (spelhuvud)"
+  ]
+}

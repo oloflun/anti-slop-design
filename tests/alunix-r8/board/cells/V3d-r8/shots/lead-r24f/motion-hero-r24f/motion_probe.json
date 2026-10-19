@@ -1,0 +1,27 @@
+{
+  "url": "http://localhost:3090/tests/alunix-r8/runs/V3d/index.html",
+  "wheel": "100:60",
+  "cpu": 4.0,
+  "tracks": [
+    {
+      "track": "section.hero:--sc-ps",
+      "dead": false,
+      "frames": 763,
+      "frame_p95_ms": 100.1,
+      "frames_over_20ms": 495,
+      "frames_over_33ms": 495,
+      "value_range": [
+        0,
+        1
+      ],
+      "max_step_pct": 1.54,
+      "staircase": 0,
+      "reversals": 0
+    }
+  ],
+  "pass": false,
+  "failures": [
+    "section.hero:--sc-ps: frame_p95 100.1 ms > 20",
+    "section.hero:--sc-ps: 495 frames > 33 ms"
+  ]
+}
