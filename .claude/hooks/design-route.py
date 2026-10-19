@@ -12,6 +12,7 @@ ignored by turn three of a long build.
 """
 
 import sys
+import tempfile
 from pathlib import Path
 
 sys.path.insert(0, str(Path(__file__).parent))
@@ -25,6 +26,17 @@ except Exception:
 WRITE_TOOLS = {"Write", "Edit", "MultiEdit", "NotebookEdit", "apply_patch"}
 
 
+def in_claude_scratchpad(path: str) -> bool:
+    """Claude Code's session scratchpad (<tempdir>/claude/...). Artifact sources
+    live there precisely to stay out of the design chain; logging them as edits
+    made every later Stop nag an unarmed session (2026-10-19)."""
+    try:
+        scratch = Path(tempfile.gettempdir(), "claude").resolve()
+        return Path(path).resolve().is_relative_to(scratch)
+    except Exception:
+        return False
+
+
 def main() -> None:
     if L.disabled():
         return
@@ -33,7 +45,7 @@ def main() -> None:
         return
 
     path = L.target_file(event)
-    if not path or not L.is_ui_file(path):
+    if not path or not L.is_ui_file(path) or in_claude_scratchpad(path):
         return
 
     content = L.written_content(event)
