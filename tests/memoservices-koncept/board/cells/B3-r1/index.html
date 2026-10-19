@@ -1,0 +1,569 @@
+<!doctype html>
+<html lang="sv">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>MemoServices AB — Skala smart. Väx lönsamt.</title>
+<meta name="description" content="Redovisning, skatt, HR, juridik, finans och operativ effektivisering, samlat hos oss. Rätt kompetens när du behöver den.">
+<meta name="robots" content="noindex, nofollow">
+<meta name="color-scheme" content="light">
+<meta name="theme-color" content="#faf8f5">
+<link rel="icon" href="/tests/memoservices-koncept/assets/original/favicon-32.png">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Onest:wght@400;500;600;700&family=Schibsted+Grotesk:wght@800&display=swap">
+<link rel="stylesheet" href="/node_modules/lenis/dist/lenis.css">
+<script type="importmap">
+{ "imports": {
+  "gsap": "/node_modules/gsap/index.js",
+  "gsap/all": "/node_modules/gsap/all.js",
+  "gsap/": "/node_modules/gsap/",
+  "lenis": "/node_modules/lenis/dist/lenis.mjs"
+} }
+</script>
+<script type="module" src="./main.js"></script>
+<style>
+:root{
+  --bakgrund:#faf8f5; --ink:#161616; --brand-rod:#e72835; --grafit:#4b4b4b;
+  --sand:#dfded3; --lime:#c5eb43; --sten:#b1b0aa;
+  --t-redovisning:#2c546d;   --a-redovisning:#c5eb43;
+  --t-hr:#6dabbf;            --a-hr:#c5eb43;
+  --t-skatt:#8b5e3c;         --a-skatt:#f3aaaf;
+  --t-juridik:#4b4b4b;       --a-juridik:#e72835;
+  --t-finans:#9db377;        --a-finans:#2c546d;
+  --t-grc:#294b3f;           --a-grc:#c5eb43;
+  --t-opex:#b1b0aa;          --a-opex:#ee646e;
+  --font-display:"Schibsted Grotesk", Arial, sans-serif;
+  --font-body:Onest, Arial, sans-serif;
+  --radie:10px;
+
+  --hair:color-mix(in srgb, var(--ink) 14%, transparent);
+  --hair-ljus:color-mix(in srgb, var(--bakgrund) 22%, transparent);
+  --g:clamp(16px, 2.8vw, 40px);
+  --chrome:92px;
+  --tlh:64vh;
+  --fg:var(--ink);
+  --d1:clamp(3rem, 8vw, 7rem);
+  --d2:clamp(2.25rem, 6vw, 6rem);
+  --bs:clamp(24px, 3.06vw, 44px);
+  --bgap:calc(var(--bs) * 8 / 51);
+  --mh:calc(var(--bs) * 5 + var(--bgap) * 4);
+}
+html[data-tone="dark"]{ --fg:var(--bakgrund); }
+@media (max-width:767px){ :root{ --tlh:calc(100vh - var(--chrome) - 128px); } }
+html, body{ overflow-x:clip; }
+html{ background:var(--bakgrund); }
+body{ margin:0; color:var(--ink); font-family:var(--font-body); font-size:17px; line-height:1.5; -webkit-font-smoothing:antialiased; }
+@media (min-width:1024px){ body{ font-size:18px; } }
+*,*::before,*::after{ box-sizing:border-box; }
+img, svg, video{ display:block; max-width:100%; }
+a{ color:inherit; }
+p, h1, h2, h3, ul, ol{ margin:0; }
+ul, ol{ padding:0; list-style:none; }
+.sr{ position:absolute; width:1px; height:1px; overflow:hidden; clip-path:inset(50%); white-space:nowrap; }
+:focus-visible{ outline:3px solid var(--brand-rod); outline-offset:3px; }
+
+/* display: Schibsted Grotesk 800 bara i rubriker */
+.h1, .h2, .band-h{ font-family:var(--font-display); font-weight:800; letter-spacing:.01em; line-height:.92; overflow-wrap:anywhere; min-width:0; }
+.h1{ font-size:var(--d1); }
+.h2{ font-size:var(--d2); }
+.sl-mask{ padding-bottom:.14em; margin-bottom:-.14em; }
+.kicker{ font-weight:600; font-size:14px; letter-spacing:.08em; line-height:1.3; }
+
+/* knappar och länkar */
+.btn{ display:inline-flex; align-items:center; min-height:52px; padding:0 24px; border-radius:var(--radie); font-weight:700; font-size:19px; line-height:1; text-decoration:none; white-space:nowrap; border:2px solid transparent; }
+.btn-red{ background:var(--brand-rod); color:var(--bakgrund); }
+.btn-line{ border-color:var(--ink); color:var(--ink); }
+.tlink{ font-weight:600; text-decoration:underline; text-underline-offset:.22em; text-decoration-thickness:1px; white-space:nowrap; }
+
+/* 2x2-mosaiken i HTML (undermeny, sidfot, fallback) */
+[data-n="01"]{ --m:var(--t-redovisning); --a:var(--a-redovisning); }
+[data-n="02"]{ --m:var(--t-hr); --a:var(--a-hr); }
+[data-n="03"]{ --m:var(--t-skatt); --a:var(--a-skatt); }
+[data-n="04"]{ --m:var(--t-juridik); --a:var(--a-juridik); }
+[data-n="05"]{ --m:var(--t-finans); --a:var(--a-finans); }
+[data-n="06"]{ --m:var(--t-grc); --a:var(--a-grc); }
+[data-n="07"]{ --m:var(--t-opex); --a:var(--a-opex); }
+.m2{ --s:28px; display:inline-grid; flex:none; width:var(--s); height:var(--s); grid-template-columns:1fr 1fr; gap:calc(var(--s) * 4 / 51); }
+.m2 i{ background:var(--m); border-radius:calc(var(--s) * 5 / 51); }
+.m2 i:nth-child(4){ background:var(--a); }
+
+/* ---------- huvudet: banner + full bar som tar bandets färg ---------- */
+.skip{ position:fixed; left:12px; top:12px; z-index:40; background:var(--ink); color:var(--bakgrund); padding:10px 16px; border-radius:var(--radie); translate:0 -200%; }
+.skip:focus{ translate:0 0; }
+.chrome{ position:fixed; inset:0 0 auto 0; z-index:20; color:var(--fg); transition:color .35s; }
+.banner{ background:var(--sand); color:var(--ink); font-size:13px; line-height:1.35; padding:6px var(--g); text-align:center; }
+.bar{ height:64px; display:flex; align-items:center; gap:28px; padding:0 var(--g); background:var(--bakgrund); }
+.logo{ display:block; flex:none; color:inherit; }
+.logo svg{ height:30px; width:auto; }
+.nav{ margin-left:auto; }
+.nav > ul{ display:flex; gap:26px; align-items:center; }
+.nav a{ font-weight:500; font-size:16px; text-decoration:none; white-space:nowrap; }
+.nav > ul > li > a:hover{ text-decoration:underline; text-underline-offset:.3em; }
+.bar .btn{ min-height:44px; padding:0 18px; }
+.panel{ display:none; position:absolute; left:0; right:0; top:100%; background:var(--bakgrund); color:var(--ink); border-bottom:1px solid var(--hair); padding:28px var(--g) 32px; }
+.has-panel.open .panel{ display:block; }
+.panel ul{ display:grid; grid-template-columns:repeat(7, minmax(0,1fr)); gap:20px; }
+.panel a{ display:flex; flex-direction:column; gap:12px; font-size:15px; white-space:normal; line-height:1.3; }
+.panel a:hover span:last-child{ text-decoration:underline; }
+.panel .m2{ --s:40px; }
+.menu-btn{ display:none; margin-left:auto; font:inherit; font-weight:600; font-size:16px; color:inherit; background:none; border:2px solid currentColor; border-radius:var(--radie); min-height:44px; padding:0 16px; cursor:pointer; }
+.menu-btn .close-l{ display:none; }
+.menu-btn[aria-expanded="true"] .open-l{ display:none; }
+.menu-btn[aria-expanded="true"] .close-l{ display:inline; }
+.mob{ position:fixed; inset:var(--chrome) 0 0 0; z-index:19; background:var(--bakgrund); color:var(--ink); overflow:auto; padding:24px var(--g) 40px; }
+.mob ul{ display:grid; gap:2px; }
+.mob li a{ display:flex; align-items:center; gap:14px; min-height:48px; font-size:18px; font-weight:500; text-decoration:none; border-bottom:1px solid var(--hair); }
+.mob .mob-tj{ margin-bottom:24px; }
+.mob .btn{ margin-top:24px; }
+@media (max-width:1079px){
+  .nav, .bar > .btn{ display:none; }
+  .menu-btn{ display:inline-flex; align-items:center; }
+}
+
+/* ---------- lagret ---------- */
+main{ position:relative; z-index:1; }
+#lager{ position:fixed; inset:0; z-index:0; pointer-events:none; contain:strict; overflow:hidden; }
+#lager .g{ position:absolute; left:0; top:0; width:0; height:0; }
+#lager .b{ position:absolute; left:0; top:0; width:44px; height:44px; }
+#lager .bi{ position:absolute; inset:0; translate:var(--dx, 0px) var(--dy, 0px); border-radius:8px; }
+#lager .bw{ position:absolute; inset:0; border-radius:inherit; overflow:hidden; visibility:hidden; }
+#lager .wc{ position:absolute; top:0; background:currentColor; will-change:transform; }
+#lager.moving .b, #lager.moving .vid{ will-change:transform; }
+#lager .vid{ position:absolute; left:0; top:0; overflow:hidden; }
+#lager .vid video{ width:100%; height:100%; object-fit:cover; }
+.fx{ position:fixed; inset:0; visibility:hidden; pointer-events:none; z-index:-2; }
+/* rummets 2x2: övre vänstra fältet är 64 vh, nedre raden en remsa */
+.fx-fields{ position:fixed; left:8px; right:8px; top:calc(var(--chrome) + 8px); bottom:8px; display:grid; grid-template-columns:3fr 1fr; grid-template-rows:var(--tlh) minmax(0,1fr); gap:8px; }
+.fx-fields > i{ position:relative; container-type:size; }
+.fx-raster{ position:absolute; inset:0; display:grid; place-content:center; --rb:min(calc((100cqw - 32px) / 7.94), calc((100cqh - 24px) / 4.47)); grid-template-columns:repeat(7, var(--rb)); grid-template-rows:repeat(4, var(--rb)); gap:calc(var(--rb) * 8 / 51); }
+.fx-edges{ position:fixed; left:8px; right:8px; top:calc(var(--chrome) + 8px); bottom:8px; }
+.fx-edges i{ position:absolute; width:12px; height:12px; left:calc(var(--x) * (100% - 12px)); top:calc(var(--y) * (100% - 12px)); }
+@media (max-width:767px){
+  /* mobil: accentfältet blir en remsa nederst i full bredd, brickorna i en rad */
+  .fx-fields{ grid-template-columns:minmax(0,1fr) 32px; grid-template-rows:var(--tlh) 40px 56px; }
+  .fx-fields > i:nth-child(3){ grid-column:1 / 3; }
+  .fx-fields > i:nth-child(4){ grid-column:1 / 3; }
+  .fx-raster{ --rb:min(calc((100cqw - 16px) / 32.2), calc(100cqh - 16px)); grid-template-columns:repeat(28, var(--rb)); grid-template-rows:var(--rb); }
+}
+
+/* ---------- hero ---------- */
+.hero{ padding:calc(var(--chrome) + 5vh) var(--g) 32px; }
+.hero .kicker{ margin-bottom:22px; }
+.hero-cols{ display:grid; grid-template-columns:minmax(0,1fr) minmax(0,1fr); column-gap:var(--g); margin-top:36px; }
+.lead{ grid-column:1; grid-row:1; margin-top:6vh; font-weight:600; font-size:clamp(20px, 1.7vw, 24px); line-height:1.3; max-width:30ch; }
+.ingress{ grid-column:2; grid-row:1; max-width:44ch; }
+.hero-btns{ grid-column:1; grid-row:2; display:flex; flex-wrap:wrap; gap:12px; margin-top:28px; }
+.fullbleed{ position:relative; height:calc(100vh - var(--chrome)); }
+.fb-band{ margin:16px var(--g) 0; height:48vh; border-radius:24px; overflow:hidden; background:var(--t-redovisning); }
+.fb-band video{ width:100%; height:100%; object-fit:cover; }
+html.lager .fb-band{ background:none; }
+.hero-mosaic{ position:absolute; right:var(--g); top:16px; translate:0 -50%; display:grid; grid-template-columns:repeat(7, var(--bs)); grid-template-rows:repeat(5, var(--bs)); gap:var(--bgap); }
+.hero-mosaic i{ background:var(--c); border-radius:calc(var(--bs) * 10 / 51); }
+@media (max-width:899px){
+  .hero{ padding-bottom:calc(var(--mh) / 2 + 24px); }
+  .hero-cols{ grid-template-columns:minmax(0,1fr); }
+  .lead{ margin-top:0; }
+  .ingress{ grid-column:1; grid-row:2; margin-top:16px; }
+  .hero-btns{ grid-row:3; }
+}
+
+/* ---------- tjänster: en sticky scen i övre vänstra fältet; banden flödar som spacers ---------- */
+.tj{ position:relative; }
+.tj-stage{ display:grid; grid-template-columns:minmax(0,3.4fr) minmax(0,6.6fr); }
+.tj-rail-col{ display:flex; flex-direction:column; gap:28px; padding:28px 24px 24px; color:var(--fg); transition:color .35s; }
+.tj-head .h2{ font-size:clamp(1.6rem, 2.2vw, 2.4rem); margin:12px 0 14px; }
+.rail{ display:grid; gap:2px; }
+.rail a{ display:flex; align-items:center; gap:12px; font-weight:400; font-size:clamp(14px, 1.15vw, 17px); line-height:1.25; min-height:32px; text-decoration:none; white-space:nowrap; }
+.rail a .m2{ --s:18px; transform:scale(0); transition:transform .45s cubic-bezier(.16,1,.3,1); }
+.rail a[aria-current="true"]{ font-weight:600; }
+.rail a[aria-current="true"] .m2{ transform:scale(1); }
+.rail a:hover{ text-decoration:underline; text-underline-offset:.25em; }
+.tj-blocks{ position:relative; min-width:0; }
+.band{ padding:12vh var(--g); }
+.num{ display:block; font-weight:600; font-size:15px; letter-spacing:.06em; margin-bottom:18px; }
+.band-m2{ --s:44px; display:none; }
+.band-h{ font-size:clamp(2rem, 4.2vw, 4rem); margin-bottom:24px; }
+.band-p{ max-width:44ch; margin-bottom:20px; }
+.flera h3{ font-weight:600; font-size:clamp(22px, 2vw, 30px); line-height:1.25; margin-bottom:14px; max-width:22ch; }
+.flera p{ margin-bottom:20px; max-width:40ch; }
+.tj-sp{ display:none; }
+/* med lagret: scenen står i övre vänstra fältet, varje band är 60 vh scroll */
+html.lager .tj-wrap{ position:absolute; inset:0; }
+html.lager .tj-stage{ position:sticky; top:calc(var(--chrome) + 8px); height:var(--tlh); margin-left:8px; width:calc((100% - 24px) * .75); }
+html.lager .band{ position:absolute; inset:0; display:flex; flex-direction:column; justify-content:center; padding:0 var(--g) 4%; }
+html.lager .tj-sp{ display:block; }
+html.lager .tj-sp i{ display:block; height:60vh; }
+html.lager .tj-sp i:first-child{ height:calc(100vh - var(--chrome) - 8px + 3vh); }
+html.lager .tj.live .band{ color:var(--bakgrund); }
+html.lager .tj.live .band:is([data-n="02"],[data-n="05"],[data-n="07"]){ color:var(--ink); }
+/* utan JS: banden bär sin färg själva */
+html:not(.lager) .tj{ color:var(--bakgrund); background:var(--t-redovisning); }
+html:not(.lager) .tj-rail-col{ color:inherit; }
+html:not(.lager) .band{ background:var(--m); color:var(--bakgrund); }
+html:not(.lager) .band:is([data-n="02"],[data-n="05"],[data-n="07"]){ color:var(--ink); }
+html:not(.lager) .band-m2{ display:inline-grid; margin-bottom:20px; }
+@media (max-width:1199px){
+  .tj-stage{ grid-template-columns:minmax(0,1fr); grid-template-rows:auto minmax(0,1fr); }
+  .rail{ display:none; }
+  .tj-rail-col{ padding-bottom:0; }
+}
+@media (max-width:767px){
+  html.lager .tj-stage{ width:calc(100% - 56px); }
+  .band-h{ font-size:7.3vw; margin-bottom:16px; }
+  .band-p{ font-size:16px; margin-bottom:14px; }
+  .num{ margin-bottom:10px; }
+  .tj-rail-col{ padding-top:20px; }
+  .tj-head .h2{ font-size:1.5rem; margin:8px 0 10px; }
+  .h2{ font-size:8.4vw; }
+}
+@media (max-width:399px){ .h1{ font-size:12.6vw; } }
+
+/* ---------- kartläggning: ett block i övre vänstra fältet, accentfältet ink ---------- */
+.kl{ padding:12vh 8px 0; }
+.kl-grid{ display:grid; grid-template-columns:minmax(0,2fr) minmax(0,1fr); grid-template-rows:minmax(72vh, auto) minmax(28vh, auto); gap:8px; }
+.kl-f{ visibility:hidden; }
+.kl-f:nth-of-type(1){ grid-area:1 / 1; } .kl-f:nth-of-type(2){ grid-area:1 / 2; } .kl-f:nth-of-type(3){ grid-area:2 / 1; } .kl-f:nth-of-type(4){ grid-area:2 / 2; }
+.kl-block{ grid-area:1 / 1; display:flex; flex-direction:column; justify-content:center; align-items:flex-start; padding:5vh var(--g) 14vh; }
+.kl-block .h2{ margin:16px 0 26px; max-width:15ch; }
+.kl-block p{ max-width:44ch; margin-bottom:28px; }
+.kl-act{ grid-area:2 / 2; display:flex; align-items:center; justify-content:center; padding:var(--g); }
+.kl-rows{ display:grid; grid-template-columns:repeat(12, minmax(0,1fr)); gap:5px; width:100%; max-width:360px; }
+.kl-rows i{ aspect-ratio:1; visibility:hidden; }
+html:not(.lager) .kl-grid{ background:var(--lime); }
+@media (max-width:899px){
+  .kl-grid{ grid-template-columns:minmax(0,1fr) 40px; grid-template-rows:auto 120px; }
+  .kl-block{ padding:6vh var(--g) 8vh; }
+  .kl-act{ grid-area:2 / 1; }
+}
+
+/* ---------- om ---------- */
+.om{ display:grid; grid-template-columns:minmax(0,7fr) minmax(0,5fr); column-gap:calc(var(--g) * 2); padding:22vh var(--g) 16vh; min-height:100vh; }
+.om .h2{ margin:18px 0 0; font-size:clamp(2.25rem, 5vw, 5rem); }
+.row{ display:grid; gap:calc(100% / 160); margin:36px 0 40px; max-width:760px; }
+.row i{ aspect-ratio:1; visibility:hidden; }
+.row20{ grid-template-columns:repeat(20, minmax(0,1fr)); }
+.row21{ grid-template-columns:repeat(21, minmax(0,1fr)); }
+.om-text{ max-width:38ch; margin-bottom:18px; }
+.koncern{ max-width:38ch; color:var(--grafit); }
+.koncern a{ text-decoration:underline; text-underline-offset:.2em; color:var(--ink); }
+.ledger{ border-top:1px solid var(--hair); }
+.ledger li{ display:grid; grid-template-columns:22px minmax(0,1fr); column-gap:20px; padding:22px 0 24px; border-bottom:1px solid var(--hair); }
+.mk{ width:18px; height:18px; margin-top:4px; background:var(--c); border-radius:calc(18px * 10 / 51); }
+.om-ledger{ align-self:end; margin-top:12vh; }
+.om-ledger li:nth-child(-n+3) .mk{ --c:var(--brand-rod); }
+.om-ledger li:nth-child(4) .mk{ --c:var(--lime); }
+.om-ledger strong{ font-weight:600; }
+@media (max-width:899px){
+  .om{ grid-template-columns:minmax(0,1fr); padding-top:16vh; }
+  .om .h2{ font-size:8.4vw; }
+  .om-ledger{ margin-top:48px; }
+}
+
+/* ---------- insikter ---------- */
+.ins{ padding:18vh var(--g) 18vh; min-height:100vh; }
+.ins-head{ display:flex; flex-wrap:wrap; justify-content:space-between; align-items:end; gap:16px 40px; }
+.ins-ledger li{ grid-template-columns:22px minmax(0,3fr) minmax(0,5fr) minmax(0,5fr); align-items:start; }
+.ins-ledger .meta{ color:var(--grafit); font-size:15px; }
+.ins-ledger h3{ font-weight:600; font-size:clamp(19px, 1.5vw, 22px); line-height:1.3; }
+.ins-ledger h3 a{ text-decoration:none; }
+.ins-ledger h3 a:hover{ text-decoration:underline; text-underline-offset:.2em; }
+.ins-ledger p:last-child{ color:var(--grafit); }
+.ins-ledger .mk[data-k="0"]{ --c:var(--t-redovisning); }
+.ins-ledger .mk[data-k="1"]{ --c:var(--t-skatt); }
+.ins-ledger .mk[data-k="2"]{ --c:var(--brand-rod); }
+@media (max-width:899px){
+  .ins-ledger li{ grid-template-columns:22px minmax(0,1fr); row-gap:8px; }
+  .ins-ledger li > :not(.mk){ grid-column:2; }
+}
+
+/* ---------- sidfot (ink, under lagret) ---------- */
+.foot{ position:relative; z-index:-1; background:var(--ink); color:var(--bakgrund); padding:72px var(--g) 40px; font-size:16px; }
+.foot-top{ display:grid; grid-template-columns:minmax(0,4fr) minmax(0,3fr) minmax(0,3fr) minmax(0,2fr); gap:40px var(--g); }
+.foot-brand{ display:flex; align-items:center; gap:28px; margin-bottom:28px; }
+.foot .logo svg{ height:34px; }
+.icon2{ display:grid; width:128px; height:128px; flex:none; grid-template-columns:1fr 1fr; gap:calc(128px * 8 / 110); }
+.icon2 i{ background:var(--bakgrund); border-radius:calc(128px * 10 / 110 / 2); }
+.icon2 i:nth-child(4){ background:var(--lime); }
+.adr a{ text-decoration:underline; text-underline-offset:.2em; }
+.fh{ font-weight:600; font-size:14px; letter-spacing:.08em; color:var(--sten); margin-bottom:16px; }
+.fcol li a{ display:flex; align-items:center; gap:12px; min-height:34px; text-decoration:none; }
+.fcol li a:hover{ text-decoration:underline; text-underline-offset:.2em; }
+.fcol .m2{ --s:18px; }
+.foot-bot{ display:flex; flex-wrap:wrap; justify-content:space-between; gap:12px 40px; margin-top:64px; padding-top:22px; border-top:1px solid var(--hair-ljus); color:var(--sten); font-size:15px; }
+.foot-bot a{ color:var(--bakgrund); text-decoration:underline; text-underline-offset:.2em; }
+@media (max-width:1023px){ .foot-top{ grid-template-columns:minmax(0,1fr) minmax(0,1fr); } }
+@media (max-width:599px){ .foot-top{ grid-template-columns:minmax(0,1fr); } .foot-brand{ flex-wrap:wrap; } }
+</style>
+</head>
+<body>
+<svg width="0" height="0" style="position:absolute" aria-hidden="true">
+  <symbol id="logo" viewBox="0 0 3162.31 905.87"><g transform="scale(8.115671641791046) translate(10, 10)"><g transform="matrix(1.1137842653203527,0,0,1.1137842653203527,-25.51679734853929,-9.879266305929034)" style="fill:var(--brand-rod)"><polygon points="22.91 91.13 50 67.84 77.09 91.13 77.09 8.87 22.91 8.87 22.91 91.13"></polygon></g><g transform="matrix(2.0571988396133722,0,0,2.0571988396133722,77.4485167307889,20.251959275293824)" fill="currentColor"><path d="M17.998 20 l-2.9199 0 l-0.92773 -10.635 l-3.5742 10.635 l-1.8945 0 l-3.5742 -10.635 l-0.9375 10.635 l-2.9297 0 l1.1816 -14.111 l4.1797 0 l3.0078 8.8574 l3.0469 -8.8574 l4.1797 0 z M30.13628125 14.834 l-0.029297 0.67383 l-7.4414 0 c0.11719 1.6699 1.2305 2.4707 2.5684 2.4707 c1.0059 0 1.7871 -0.46875 2.168 -1.3574 l2.5781 0.38086 c-0.66406 2.0313 -2.4707 3.1934 -4.7266 3.1934 c-3.2422 0 -5.3613 -1.9141 -5.3613 -5.2148 s2.1777 -5.2344 5.2734 -5.2344 c2.8418 0 4.9609 1.5723 4.9707 5.0879 z M25.18558125 11.7383 c-1.2793 0 -2.168 0.5957 -2.4414 1.9336 l4.6094 0 c-0.14648 -1.2793 -1.0156 -1.9336 -2.168 -1.9336 z M44.1703125 9.766 c2.1484 0 3.5352 1.0938 3.5352 3.1543 l0 7.0801 l-2.8125 0 l0 -6.2793 c0 -1.1816 -0.74219 -1.6992 -1.582 -1.6992 c-1.0059 0 -1.8945 0.57617 -1.8945 2.3145 l0 5.6641 l-2.8418 0 l0 -6.25 c0 -1.2012 -0.72266 -1.7285 -1.6113 -1.7285 c-0.97656 0 -1.8848 0.57617 -1.8848 2.4609 l0 5.5176 l-2.8027 0 l0 -10.039 l2.8027 0 l0 1.1816 c0.66406 -0.88867 1.6797 -1.377 2.9102 -1.377 c1.4551 0 2.5488 0.52734 3.0762 1.5039 c0.70313 -1.0059 1.7773 -1.5039 3.1055 -1.5039 z M55.117175 20.19531 c-3.1934 0 -5.498 -1.9434 -5.498 -5.2246 c0 -3.2617 2.2852 -5.2051 5.498 -5.2051 c3.2324 0 5.5078 1.9434 5.5078 5.2051 c0 3.2813 -2.2852 5.2246 -5.5078 5.2246 z M55.087875 17.959 c1.6309 0 2.7441 -1.1914 2.7441 -2.9883 s-1.1133 -2.9883 -2.7441 -2.9883 c-1.5723 0 -2.6758 1.1914 -2.6758 2.9883 s1.1035 2.9883 2.6758 2.9883 z M67.773465625 20.19531 c-3.0273 0 -5.3906 -1.4551 -5.8203 -4.1016 l3.0273 -0.69336 c0.19531 1.582 1.3574 2.4023 2.9102 2.4023 c1.1914 0 2.1387 -0.52734 2.1289 -1.7188 c-0.0097656 -1.3281 -1.5723 -1.748 -3.291 -2.2754 c-2.0703 -0.64453 -4.2871 -1.4063 -4.2871 -4.0039 c0 -2.627 2.1484 -4.1113 4.9805 -4.1113 c2.4805 0 4.9805 1.0059 5.5469 3.7109 l-2.832 0.70313 c-0.26367 -1.4063 -1.2109 -2.0215 -2.5391 -2.0215 c-1.1816 0 -2.1875 0.48828 -2.1875 1.6504 c0 1.084 1.3867 1.4453 2.9883 1.9238 c2.1289 0.64453 4.6484 1.4648 4.6484 4.2773 c0 2.998 -2.5098 4.2578 -5.2734 4.2578 z M84.82378125 14.834 l-0.029297 0.67383 l-7.4414 0 c0.11719 1.6699 1.2305 2.4707 2.5684 2.4707 c1.0059 0 1.7871 -0.46875 2.168 -1.3574 l2.5781 0.38086 c-0.66406 2.0313 -2.4707 3.1934 -4.7266 3.1934 c-3.2422 0 -5.3613 -1.9141 -5.3613 -5.2148 s2.1777 -5.2344 5.2734 -5.2344 c2.8418 0 4.9609 1.5723 4.9707 5.0879 z M79.87308125 11.7383 c-1.2793 0 -2.168 0.5957 -2.4414 1.9336 l4.6094 0 c-0.14648 -1.2793 -1.0156 -1.9336 -2.168 -1.9336 z M89.6582125 11.5527 c0.50781 -0.88867 1.8262 -1.709 3.2813 -1.709 l0 2.5098 c-2.1289 0 -3.1445 0.625 -3.1445 2.7539 l0 4.8926 l-2.832 0 l0 -10.039 l2.6953 0 l0 1.5918 z M101.123065625 9.961 l2.9785 0 l-4.2773 10.039 l-2.4414 0 l-4.2285 -10.039 l2.959 0 l2.5 6.8652 z M107.01169375 8.457 c-0.88867 0 -1.6309 -0.72266 -1.6309 -1.6211 c0 -0.88867 0.74219 -1.6113 1.6309 -1.6113 c0.86914 0 1.6113 0.72266 1.6113 1.6113 c0 0.89844 -0.74219 1.6211 -1.6113 1.6211 z M105.57619375 20 l0 -10.039 l2.832 0 l0 10.039 l-2.832 0 z M115.85938125 20.18555 c-3.1543 0 -5.3809 -2.0996 -5.3809 -5.2148 c0 -3.125 2.2266 -5.2051 5.3809 -5.2051 c2.5391 0 4.4434 1.3184 4.9316 3.6914 l-2.5977 0.2832 c-0.3125 -1.2012 -1.1816 -1.7578 -2.3633 -1.7578 c-1.5137 0 -2.5391 1.1914 -2.5391 2.9883 c0 1.7871 1.0254 2.9883 2.5391 2.9883 c1.1816 0 2.0508 -0.56641 2.3633 -1.7578 l2.5977 0.2832 c-0.48828 2.373 -2.4414 3.7012 -4.9316 3.7012 z M132.235890625 14.834 l-0.029297 0.67383 l-7.4414 0 c0.11719 1.6699 1.2305 2.4707 2.5684 2.4707 c1.0059 0 1.7871 -0.46875 2.168 -1.3574 l2.5781 0.38086 c-0.66406 2.0313 -2.4707 3.1934 -4.7266 3.1934 c-3.2422 0 -5.3613 -1.9141 -5.3613 -5.2148 s2.1777 -5.2344 5.2734 -5.2344 c2.8418 0 4.9609 1.5723 4.9707 5.0879 z M127.285190625 11.7383 c-1.2793 0 -2.168 0.5957 -2.4414 1.9336 l4.6094 0 c-0.14648 -1.2793 -1.0156 -1.9336 -2.168 -1.9336 z M137.910121875 20.19531 c-2.2559 0 -4.0039 -0.88867 -4.3652 -2.793 l2.3535 -0.66406 c0.30273 1.0742 1.0645 1.4941 2.0117 1.4941 c0.69336 0 1.4453 -0.21484 1.4258 -1.0059 c-0.0097656 -1.0449 -1.5918 -1.1328 -3.1836 -1.6992 c-1.2012 -0.41992 -2.3535 -1.0645 -2.3535 -2.7539 c0 -2.0605 1.709 -3.0078 3.9355 -3.0078 c1.9531 0 3.584 0.74219 3.9746 2.6563 l-2.1777 0.48828 c-0.30273 -0.9375 -0.9668 -1.2695 -1.7871 -1.2695 c-0.74219 0 -1.377 0.26367 -1.377 0.88867 c0 0.79102 1.1621 0.94727 2.4219 1.2891 c1.5527 0.41992 3.252 1.0938 3.252 3.2422 c0 2.3047 -1.9629 3.1348 -4.1309 3.1348 z"></path></g></g></symbol>
+</svg>
+<a class="skip" href="#innehall">Hoppa till innehållet</a>
+
+<header class="chrome" id="chrome">
+  <p class="banner">Konceptskiss av Anton Lundin. Inte MemoServices officiella webbplats.</p>
+  <div class="bar">
+    <a class="logo" href="/"><svg viewBox="0 0 3162.31 905.87" aria-hidden="true"><use href="#logo"></use></svg><span class="sr">MemoServices AB — Skala smart. Väx lönsamt.</span></a>
+    <nav class="nav">
+      <ul>
+        <li class="has-panel">
+          <a href="/tjanster" aria-expanded="false" aria-controls="tj-panel">Tjänster</a>
+          <div class="panel" id="tj-panel">
+            <ul>
+              <li><a href="/tjanster/redovisning"><span class="m2" data-n="01" aria-hidden="true"><i></i><i></i><i></i><i></i></span><span>Redovisning</span></a></li>
+              <li><a href="/tjanster/hr-och-rekrytering"><span class="m2" data-n="02" aria-hidden="true"><i></i><i></i><i></i><i></i></span><span>HR och rekrytering</span></a></li>
+              <li><a href="/tjanster/skatt"><span class="m2" data-n="03" aria-hidden="true"><i></i><i></i><i></i><i></i></span><span>Skatt</span></a></li>
+              <li><a href="/tjanster/juridik"><span class="m2" data-n="04" aria-hidden="true"><i></i><i></i><i></i><i></i></span><span>Juridik</span></a></li>
+              <li><a href="/tjanster/finans-och-ma"><span class="m2" data-n="05" aria-hidden="true"><i></i><i></i><i></i><i></i></span><span>Finans och M&A</span></a></li>
+              <li><a href="/tjanster/governance-risk-och-compliance"><span class="m2" data-n="06" aria-hidden="true"><i></i><i></i><i></i><i></i></span><span>Governance, risk & compliance</span></a></li>
+              <li><a href="/tjanster/operativ-effektivisering"><span class="m2" data-n="07" aria-hidden="true"><i></i><i></i><i></i><i></i></span><span>Operativ effektivisering</span></a></li>
+            </ul>
+          </div>
+        </li>
+        <li><a href="https://memoservices.se/insikter" target="_blank" rel="noopener">Insikter</a></li>
+        <li><a href="/#om">Om oss</a></li>
+        <li><a href="https://memoservices.se/karriar" target="_blank" rel="noopener">Karriär</a></li>
+        <li><a href="https://memoservices.se/kontakt" target="_blank" rel="noopener">Kontakt</a></li>
+        <li><a href="https://assess.memoservices.no" target="_blank" rel="noopener">Gör en kartläggning ↗</a></li>
+      </ul>
+    </nav>
+    <a class="btn btn-red" href="https://memoservices.se/kontakt" target="_blank" rel="noopener">Kontakta oss</a>
+    <button class="menu-btn" type="button" aria-expanded="false" aria-controls="mobilmeny"><span class="open-l">Meny</span><span class="close-l">Stäng menyn</span></button>
+  </div>
+</header>
+
+<div class="mob" id="mobilmeny" hidden>
+  <ul class="mob-tj">
+    <li><a href="/tjanster/redovisning"><span class="m2" data-n="01" aria-hidden="true"><i></i><i></i><i></i><i></i></span>Redovisning</a></li>
+    <li><a href="/tjanster/hr-och-rekrytering"><span class="m2" data-n="02" aria-hidden="true"><i></i><i></i><i></i><i></i></span>HR och rekrytering</a></li>
+    <li><a href="/tjanster/skatt"><span class="m2" data-n="03" aria-hidden="true"><i></i><i></i><i></i><i></i></span>Skatt</a></li>
+    <li><a href="/tjanster/juridik"><span class="m2" data-n="04" aria-hidden="true"><i></i><i></i><i></i><i></i></span>Juridik</a></li>
+    <li><a href="/tjanster/finans-och-ma"><span class="m2" data-n="05" aria-hidden="true"><i></i><i></i><i></i><i></i></span>Finans och M&A</a></li>
+    <li><a href="/tjanster/governance-risk-och-compliance"><span class="m2" data-n="06" aria-hidden="true"><i></i><i></i><i></i><i></i></span>Governance, risk & compliance</a></li>
+    <li><a href="/tjanster/operativ-effektivisering"><span class="m2" data-n="07" aria-hidden="true"><i></i><i></i><i></i><i></i></span>Operativ effektivisering</a></li>
+  </ul>
+  <ul>
+    <li><a href="/tjanster">Tjänster</a></li>
+    <li><a href="https://memoservices.se/insikter" target="_blank" rel="noopener">Insikter</a></li>
+    <li><a href="/#om">Om oss</a></li>
+    <li><a href="https://memoservices.se/karriar" target="_blank" rel="noopener">Karriär</a></li>
+    <li><a href="https://memoservices.se/kontakt" target="_blank" rel="noopener">Kontakt</a></li>
+    <li><a href="https://assess.memoservices.no" target="_blank" rel="noopener">Gör en kartläggning ↗</a></li>
+  </ul>
+  <a class="btn btn-red" href="https://memoservices.se/kontakt" target="_blank" rel="noopener">Kontakta oss</a>
+</div>
+
+<div id="lager" aria-hidden="true"></div>
+
+<main id="innehall">
+  <section class="hero" id="hero">
+    <p class="kicker" data-r>MEMOSERVICES AB · SKALA SMART. VÄX LÖNSAMT.</p>
+    <h1 class="h1" data-split>RÄTT KOMPETENS.<br>NÄR NI BEHÖVER DEN.</h1>
+    <div class="hero-cols">
+      <p class="lead" data-r>Allt ditt bolag behöver, på ett ställe.</p>
+      <p class="ingress" data-r>Redovisning, skatt, HR, juridik, finans, styrning och drift. Du får en fast kontaktperson och ett team som förstår växande bolag.</p>
+      <div class="hero-btns" data-r>
+        <a class="btn btn-red" href="/tjanster">Se tjänsterna</a>
+        <a class="btn btn-line" href="https://assess.memoservices.no" target="_blank" rel="noopener">Gör kartläggningen ↗</a>
+      </div>
+    </div>
+  </section>
+
+  <section class="fullbleed" id="fullbleed">
+    <div class="fb-band" data-slot="hero-video">
+      <video autoplay muted loop playsinline preload="metadata" poster="/tests/memoservices-koncept/assets/video/piren-poster.webp" aria-hidden="true"><source src="/tests/memoservices-koncept/assets/video/piren-hero.mp4" type="video/mp4"></video>
+    </div>
+    <div class="hero-mosaic" data-slot="hero-mosaic" aria-hidden="true">
+      <i style="grid-area:1/6;--c:var(--t-redovisning)"></i><i style="grid-area:1/7;--c:var(--t-redovisning)"></i><i style="grid-area:2/6;--c:var(--t-redovisning)"></i><i style="grid-area:2/7;--c:var(--a-redovisning)"></i>
+      <i style="grid-area:1/1;--c:var(--t-juridik)"></i><i style="grid-area:1/2;--c:var(--t-juridik)"></i><i style="grid-area:1/3;--c:var(--t-juridik)"></i><i style="grid-area:1/4;--c:var(--t-hr)"></i>
+      <i style="grid-area:2/1;--c:var(--a-juridik)"></i><i style="grid-area:2/3;--c:var(--t-hr)"></i><i style="grid-area:2/4;--c:var(--a-hr)"></i><i style="grid-area:2/5;--c:var(--t-hr)"></i>
+      <i style="grid-area:3/1;--c:var(--t-grc)"></i><i style="grid-area:3/2;--c:var(--t-grc)"></i><i style="grid-area:3/3;--c:var(--t-grc)"></i><i style="grid-area:3/4;--c:var(--a-grc)"></i><i style="grid-area:3/6;--c:var(--a-skatt)"></i><i style="grid-area:3/7;--c:var(--a-opex)"></i>
+      <i style="grid-area:4/2;--c:var(--t-finans)"></i><i style="grid-area:4/3;--c:var(--t-finans)"></i><i style="grid-area:4/4;--c:var(--t-finans)"></i><i style="grid-area:4/5;--c:var(--t-skatt)"></i><i style="grid-area:4/6;--c:var(--t-skatt)"></i><i style="grid-area:4/7;--c:var(--t-skatt)"></i>
+      <i style="grid-area:5/3;--c:var(--t-opex)"></i><i style="grid-area:5/4;--c:var(--t-opex)"></i><i style="grid-area:5/5;--c:var(--a-finans)"></i><i style="grid-area:5/6;--c:var(--t-opex)"></i>
+    </div>
+  </section>
+
+  <section class="tj" id="tjanster">
+    <div class="tj-wrap">
+      <div class="tj-stage">
+        <div class="tj-rail-col">
+          <div class="tj-head">
+            <p class="kicker">TJÄNSTEOMRÅDEN</p>
+            <h2 class="h2" data-split>DET DU BEHÖVER FÖR ATT VÄXA</h2>
+            <a class="tlink" href="/tjanster">Läs mer om tjänsterna →</a>
+          </div>
+          <ol class="rail">
+            <li><a href="#tj-redovisning" data-i="0"><span class="m2" data-n="01" aria-hidden="true"><i></i><i></i><i></i><i></i></span>Redovisning</a></li>
+            <li><a href="#tj-hr-och-rekrytering" data-i="1"><span class="m2" data-n="02" aria-hidden="true"><i></i><i></i><i></i><i></i></span>HR och rekrytering</a></li>
+            <li><a href="#tj-skatt" data-i="2"><span class="m2" data-n="03" aria-hidden="true"><i></i><i></i><i></i><i></i></span>Skatt</a></li>
+            <li><a href="#tj-juridik" data-i="3"><span class="m2" data-n="04" aria-hidden="true"><i></i><i></i><i></i><i></i></span>Juridik</a></li>
+            <li><a href="#tj-finans-och-ma" data-i="4"><span class="m2" data-n="05" aria-hidden="true"><i></i><i></i><i></i><i></i></span>Finans och M&A</a></li>
+            <li><a href="#tj-governance-risk-och-compliance" data-i="5"><span class="m2" data-n="06" aria-hidden="true"><i></i><i></i><i></i><i></i></span>Governance, risk & compliance</a></li>
+            <li><a href="#tj-operativ-effektivisering" data-i="6"><span class="m2" data-n="07" aria-hidden="true"><i></i><i></i><i></i><i></i></span>Operativ effektivisering</a></li>
+          </ol>
+        </div>
+        <div class="tj-blocks">
+          <article class="band" id="tj-redovisning" data-n="01">
+            <span class="num">01</span>
+            <span class="m2 band-m2" data-n="01" aria-hidden="true"><i></i><i></i><i></i><i></i></span>
+            <h3 class="band-h">REDOVISNING</h3>
+            <p class="band-p">Löpande redovisning, lön och bokslut, levererat av ett team som kan växande bolag.</p>
+            <a class="tlink" href="/tjanster/redovisning">Läs mer →</a>
+          </article>
+          <article class="band" id="tj-hr-och-rekrytering" data-n="02">
+            <span class="num">02</span>
+            <span class="m2 band-m2" data-n="02" aria-hidden="true"><i></i><i></i><i></i><i></i></span>
+            <h3 class="band-h">HR OCH REKRYTERING</h3>
+            <p class="band-p">Växer ni? Vi hjälper till med rekrytering, HR-drift och ledarstöd hela vägen.</p>
+            <a class="tlink" href="/tjanster/hr-och-rekrytering">Läs mer →</a>
+          </article>
+          <article class="band" id="tj-skatt" data-n="03">
+            <span class="num">03</span>
+            <span class="m2 band-m2" data-n="03" aria-hidden="true"><i></i><i></i><i></i><i></i></span>
+            <h3 class="band-h">SKATT</h3>
+            <p class="band-p">Kvalificerad skatterådgivning, från löpande bolagsskatt till internationella regelverk som Pillar 2. Vi bevakar förändringarna så att du kan fokusera på affären.</p>
+            <a class="tlink" href="/tjanster/skatt">Läs mer →</a>
+          </article>
+          <article class="band" id="tj-juridik" data-n="04">
+            <span class="num">04</span>
+            <span class="m2 band-m2" data-n="04" aria-hidden="true"><i></i><i></i><i></i><i></i></span>
+            <h3 class="band-h">JURIDIK</h3>
+            <p class="band-p">Bolagsrätt, avtal och arbetsrätt. Praktiskt och kommersiellt. Vi gör det enkelt att förstå.</p>
+            <a class="tlink" href="/tjanster/juridik">Läs mer →</a>
+          </article>
+          <article class="band" id="tj-finans-och-ma" data-n="05">
+            <span class="num">05</span>
+            <span class="m2 band-m2" data-n="05" aria-hidden="true"><i></i><i></i><i></i><i></i></span>
+            <h3 class="band-h">FINANS OCH M&A</h3>
+            <p class="band-p">CFO-kapacitet, budget, finansiering och stöd vid köp och försäljning.</p>
+            <a class="tlink" href="/tjanster/finans-och-ma">Läs mer →</a>
+          </article>
+          <article class="band" id="tj-governance-risk-och-compliance" data-n="06">
+            <span class="num">06</span>
+            <span class="m2 band-m2" data-n="06" aria-hidden="true"><i></i><i></i><i></i><i></i></span>
+            <h3 class="band-h">GOVERNANCE, RISK & COMPLIANCE</h3>
+            <p class="band-p">Styrning, internkontroll och efterlevnad i rätt omfattning. Robust där det krävs, och enkelt att följa i vardagen.</p>
+            <a class="tlink" href="/tjanster/governance-risk-och-compliance">Läs mer →</a>
+          </article>
+          <article class="band" id="tj-operativ-effektivisering" data-n="07">
+            <span class="num">07</span>
+            <span class="m2 band-m2" data-n="07" aria-hidden="true"><i></i><i></i><i></i><i></i></span>
+            <h3 class="band-h">OPERATIV EFFEKTIVISERING</h3>
+            <p class="band-p">Processer, systemval och automatisering av det som tar onödig tid. Enklare, snabbare och mer kostnadseffektivt.</p>
+            <a class="tlink" href="/tjanster/operativ-effektivisering">Läs mer →</a>
+          </article>
+          <div class="band flera" data-n="07">
+            <h3>Behöver du hjälp inom flera områden?</h3>
+            <p>Det gör de flesta. Vi samlar allt du behöver i ett och samma avtal.</p>
+            <a class="tlink" href="https://memoservices.se/kontakt" target="_blank" rel="noopener">Kontakta oss →</a>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="tj-sp" aria-hidden="true"><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i></div>
+  </section>
+
+  <section class="kl" id="kartlaggning">
+    <div class="kl-grid">
+      <i class="kl-f" data-slot="kl"></i><i class="kl-f" data-slot="kl"></i><i class="kl-f" data-slot="kl"></i><i class="kl-f" data-slot="kl"></i>
+      <div class="kl-block">
+        <p class="kicker" data-r>KARTLÄGGNING</p>
+        <h2 class="h2" data-split>HUR REDO ÄR DITT BOLAG FÖR NÄSTA TILLVÄXTFAS?</h2>
+        <p data-r>Gör vår kartläggning och få en tydlig bild av var ni står inom redovisning, HR, styrning och drift, och var det lönar sig mest att börja.</p>
+        <div data-r><a class="btn btn-red" href="https://assess.memoservices.no" target="_blank" rel="noopener">Starta kartläggningen ↗</a></div>
+      </div>
+      <div class="kl-act">
+        <div class="kl-rows" data-slot="kl-rows" aria-hidden="true"><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i></div>
+      </div>
+    </div>
+  </section>
+
+  <section class="om" id="om">
+    <div class="om-l">
+      <p class="kicker" data-r>OM MEMOSERVICES AB</p>
+      <h2 class="h2" data-split>ETT AVTAL.<br>EN KONTAKTPERSON.</h2>
+      <div class="row row20" data-slot="om-row" aria-hidden="true"><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i></div>
+      <p class="om-text" data-r>Du slipper samordna fem olika leverantörer. Vi är en sparringpartner som tar ansvar för helheten. Alla våra medarbetare kan dessutom bli delägare i bolaget de arbetar i.</p>
+      <p class="koncern" data-r>MemoServices AB är en del av MemoServices-koncernen, med verksamhet i Norge och Sverige. <a href="https://www.memoservices.no" target="_blank" rel="noopener">www.memoservices.no ↗</a></p>
+    </div>
+    <ul class="ledger om-ledger">
+      <li><i class="mk" data-slot="om-mk"></i><p data-r><strong>En fast kontaktperson</strong> som känner ditt bolag</p></li>
+      <li><i class="mk" data-slot="om-mk"></i><p data-r><strong>Sju tjänsteområden</strong>. Ett avtal.</p></li>
+      <li><i class="mk" data-slot="om-mk"></i><p data-r><strong>På plats i Göteborg</strong>. Med nordisk styrka i ryggen.</p></li>
+      <li><i class="mk" data-slot="om-mk"></i><p data-r><strong>Alla kan bli delägare</strong>. Det märks.</p></li>
+    </ul>
+  </section>
+
+  <section class="ins" id="insikter">
+    <div class="ins-head">
+      <h2 class="h2" data-split>INSIKTER</h2>
+      <a class="tlink" href="https://memoservices.se/insikter" target="_blank" rel="noopener" data-r>Alla artiklar och nyheter →</a>
+    </div>
+    <div class="row row21" data-slot="ins-row" aria-hidden="true"><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i></div>
+    <ol class="ledger ins-ledger">
+      <li><i class="mk" data-k="0" data-slot="ins-mk"></i><p class="meta" data-r>Redovisning · September 7, 2026</p><h3 data-r><a href="https://memoservices.se/insikter/3-ekonomiska-blind-spots-och-hur-ai-hjalper-dig-upptacka-dem-i-tid" target="_blank" rel="noopener">3 ekonomiska blind spots – och hur AI hjälper dig upptäcka dem i tid</a></h3><p data-r>Tillväxt, god lönsamhet och korrekta rapporter garanterar inte att ledningen ser riskerna i tid. Artikeln visar tre ekonomiska blind spots och hur AI kan göra dem synliga tidigare.</p></li>
+      <li><i class="mk" data-k="1" data-slot="ins-mk"></i><p class="meta" data-r>Skatt · September 2, 2026</p><h3 data-r><a href="https://memoservices.se/insikter/gir-2025-narmar-sig-gor-rapporteringen-enklare" target="_blank" rel="noopener">GIR 2025 närmar sig – gör rapporteringen enklare!</a></h3><p data-r>Svenska koncerner kan återanvända struktur och data från tidigare rapportering när de förbereder GIR för 2025. MemoTax beskriver hur samma webbaserade lösning också kan stödja arbetet med EU Public CbCR.</p></li>
+      <li><i class="mk" data-k="2" data-slot="ins-mk"></i><p class="meta" data-r>Nyhet · September 2, 2026</p><h3 data-r><a href="https://memoservices.se/insikter/ny-kartlaggning-se-var-ditt-bolag-star" target="_blank" rel="noopener">Ny kartläggning: se var ditt bolag står</a></h3><p data-r>På assess.memoservices.no kan du göra en första kartläggning av bolagets mognad inom redovisning, HR, styrning och operativa arbetssätt.</p></li>
+    </ol>
+  </section>
+</main>
+
+<footer class="foot" id="sidfot">
+  <div class="foot-top">
+    <div>
+      <div class="foot-brand">
+        <a class="logo" href="/"><svg viewBox="0 0 3162.31 905.87" aria-hidden="true"><use href="#logo"></use></svg><span class="sr">MemoServices AB — Skala smart. Väx lönsamt.</span></a>
+        <span class="icon2" data-slot="icon" aria-hidden="true"><i></i><i></i><i></i><i></i></span>
+      </div>
+      <p class="adr">Lindholmspiren 7, 417 56 Göteborg<br><a href="mailto:hej@memoservices.se">hej@memoservices.se</a></p>
+    </div>
+    <div class="fcol">
+      <h2 class="fh">TJÄNSTER</h2>
+      <ul>
+        <li><a href="/tjanster/redovisning"><span class="m2 fm2" data-n="01" aria-hidden="true"><i></i><i></i><i></i><i></i></span>Redovisning</a></li>
+        <li><a href="/tjanster/hr-och-rekrytering"><span class="m2 fm2" data-n="02" aria-hidden="true"><i></i><i></i><i></i><i></i></span>HR och rekrytering</a></li>
+        <li><a href="/tjanster/skatt"><span class="m2 fm2" data-n="03" aria-hidden="true"><i></i><i></i><i></i><i></i></span>Skatt</a></li>
+        <li><a href="/tjanster/juridik"><span class="m2 fm2" data-n="04" aria-hidden="true"><i></i><i></i><i></i><i></i></span>Juridik</a></li>
+        <li><a href="/tjanster/finans-och-ma"><span class="m2 fm2" data-n="05" aria-hidden="true"><i></i><i></i><i></i><i></i></span>Finans och M&A</a></li>
+        <li><a href="/tjanster/governance-risk-och-compliance"><span class="m2 fm2" data-n="06" aria-hidden="true"><i></i><i></i><i></i><i></i></span>Governance, risk & compliance</a></li>
+        <li><a href="/tjanster/operativ-effektivisering"><span class="m2 fm2" data-n="07" aria-hidden="true"><i></i><i></i><i></i><i></i></span>Operativ effektivisering</a></li>
+      </ul>
+    </div>
+    <div class="fcol">
+      <h2 class="fh">FÖRETAGET</h2>
+      <ul>
+        <li><a href="https://memoservices.se/insikter" target="_blank" rel="noopener">Insikter</a></li>
+        <li><a href="/#om">Om oss</a></li>
+        <li><a href="https://memoservices.se/karriar" target="_blank" rel="noopener">Karriär</a></li>
+        <li><a href="https://memoservices.se/kontakt" target="_blank" rel="noopener">Kontakt</a></li>
+        <li><a href="https://assess.memoservices.no" target="_blank" rel="noopener">Gör en kartläggning ↗</a></li>
+      </ul>
+    </div>
+    <div class="fcol">
+      <h2 class="fh">JURIDISKT</h2>
+      <ul>
+        <li><a href="https://memoservices.se/integritetspolicy" target="_blank" rel="noopener">Integritetspolicy</a></li>
+        <li><a href="https://memoservices.se/cookies" target="_blank" rel="noopener">Cookies</a></li>
+        <li><a href="https://memoservices.se/ai-forordningen" target="_blank" rel="noopener">AI Act</a></li>
+      </ul>
+    </div>
+  </div>
+  <div class="foot-bot">
+    <p>© 2026 MemoServices AB</p>
+    <p>MemoServices AB är en del av MemoServices-koncernen <a href="https://www.memoservices.no" target="_blank" rel="noopener">www.memoservices.no ↗</a></p>
+  </div>
+</footer>
+
+<div class="fx" aria-hidden="true">
+  <div class="fx-fields"><i></i><i></i><i></i><i><span class="fx-raster"><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i></span></i></div>
+  <div class="fx-edges">
+    <i style="--x:0;--y:0"></i><i style="--x:.1667;--y:0"></i><i style="--x:.3333;--y:0"></i><i style="--x:.5;--y:0"></i><i style="--x:.6667;--y:0"></i><i style="--x:.8333;--y:0"></i><i style="--x:1;--y:0"></i>
+    <i style="--x:1;--y:.1667"></i><i style="--x:1;--y:.3333"></i><i style="--x:1;--y:.5"></i><i style="--x:1;--y:.6667"></i><i style="--x:1;--y:.8333"></i>
+    <i style="--x:1;--y:1"></i><i style="--x:.8333;--y:1"></i><i style="--x:.6667;--y:1"></i><i style="--x:.5;--y:1"></i><i style="--x:.3333;--y:1"></i><i style="--x:.1667;--y:1"></i><i style="--x:0;--y:1"></i>
+    <i style="--x:0;--y:.8333"></i><i style="--x:0;--y:.6667"></i><i style="--x:0;--y:.5"></i><i style="--x:0;--y:.3333"></i><i style="--x:0;--y:.1667"></i>
+  </div>
+</div>
+</body>
+</html>

@@ -1,0 +1,493 @@
+<!doctype html>
+<html lang="sv">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>{{meta.title}}</title>
+<meta name="description" content="{{meta.description}}">
+<meta name="robots" content="noindex, nofollow">
+<meta name="color-scheme" content="light">
+<meta name="theme-color" content="#faf8f5">
+<link rel="icon" href="/tests/memoservices-koncept/assets/original/favicon-32.png">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Archivo+Black&family=Arimo:wght@400;500;700&display=swap">
+<link rel="stylesheet" href="/node_modules/lenis/dist/lenis.css">
+<script type="importmap">
+{ "imports": {
+  "gsap": "/node_modules/gsap/index.js",
+  "gsap/all": "/node_modules/gsap/all.js",
+  "gsap/": "/node_modules/gsap/",
+  "lenis": "/node_modules/lenis/dist/lenis.mjs"
+} }
+</script>
+<script type="module" src="./main.js"></script>
+<style>
+:root{
+  --bakgrund:#faf8f5; --ink:#161616; --brand-rod:#e72835; --grafit:#4b4b4b;
+  --sand:#dfded3; --lime:#c5eb43; --sten:#b1b0aa;
+  --t-redovisning:#2c546d;   --a-redovisning:#c5eb43;
+  --t-hr:#6dabbf;            --a-hr:#c5eb43;
+  --t-skatt:#8b5e3c;         --a-skatt:#f3aaaf;
+  --t-juridik:#4b4b4b;       --a-juridik:#e72835;
+  --t-finans:#9db377;        --a-finans:#2c546d;
+  --t-grc:#294b3f;           --a-grc:#c5eb43;
+  --t-opex:#b1b0aa;          --a-opex:#ee646e;
+  --font-display:"Archivo Black", Impact, sans-serif;
+  --font-body:Arimo, Arial, sans-serif;
+  --radie:10px;
+
+  --bar:64px;
+  --gut:clamp(16px, 3.4vw, 48px);
+  --u:clamp(20px, 3.2vw, 46px);
+  --line:color-mix(in srgb, var(--ink) 16%, transparent);
+  --acc:min(20svh, 18vw);
+}
+*,*::before,*::after{box-sizing:border-box}
+html,body{overflow-x:clip}
+html{background:var(--bakgrund);color-scheme:light}
+body{margin:0;background:var(--bakgrund);color:var(--ink);font-family:var(--font-body);font-size:1.0625rem;line-height:1.55;-webkit-font-smoothing:antialiased;text-rendering:optimizeLegibility}
+h1,h2,h3,p,ul,ol{margin:0}
+ul,ol{padding:0;list-style:none}
+a{color:inherit}
+img,video,svg{display:block;max-width:100%}
+:focus-visible{outline:2px solid currentColor;outline-offset:3px}
+.disp{font-family:var(--font-display);font-weight:400;line-height:.92;letter-spacing:-.005em;overflow-wrap:anywhere;min-width:0}
+.ln-mask{padding:.16em 0 .12em;margin:-.16em 0 -.12em}
+.kicker{font-family:var(--font-body);font-weight:700;font-size:.875rem;line-height:1.3;letter-spacing:.12em}
+.arrow-link{font-family:var(--font-body);font-weight:700;font-size:1rem;text-decoration:underline;text-decoration-thickness:2px;text-underline-offset:.3em;white-space:nowrap}
+.arrow-link:hover{text-decoration-thickness:3px}
+
+/* 2x2-mosaiken: tre i huvudfärg, accent nere till höger */
+[data-i="0"]{--c:var(--t-redovisning);--a:var(--a-redovisning)}
+[data-i="1"]{--c:var(--t-hr);--a:var(--a-hr)}
+[data-i="2"]{--c:var(--t-skatt);--a:var(--a-skatt)}
+[data-i="3"]{--c:var(--t-juridik);--a:var(--a-juridik)}
+[data-i="4"]{--c:var(--t-finans);--a:var(--a-finans)}
+[data-i="5"]{--c:var(--t-grc);--a:var(--a-grc)}
+[data-i="6"]{--c:var(--t-opex);--a:var(--a-opex)}
+.mk{--s:14px;display:inline-grid;grid-template-columns:repeat(2,var(--s));gap:calc(var(--s)*8/51);flex:none}
+.mk>span{display:block;width:var(--s);height:var(--s);border-radius:calc(var(--s)*10/51);background:var(--c)}
+.mk>span:last-child{background:var(--a)}
+
+/* knappar */
+.btn{display:inline-flex;align-items:center;justify-content:center;height:52px;padding:0 22px;border-radius:var(--radie);font-family:var(--font-body);font-weight:700;font-size:1.1875rem;line-height:1;white-space:nowrap;text-decoration:none;border:2px solid transparent}
+.btn-red{background:var(--brand-rod);color:var(--bakgrund)}
+.btn-line{border-color:var(--ink);color:var(--ink);background:var(--bakgrund)}
+.btn-ink{background:var(--ink);color:var(--bakgrund)}
+.btn:focus-visible{outline-color:var(--ink)}
+
+.skip{position:fixed;left:16px;top:-120px;z-index:300;background:var(--ink);color:var(--bakgrund);padding:12px 16px;border-radius:var(--radie);font-weight:700;text-decoration:none}
+.skip:focus{top:12px}
+
+/* ---------- nav: en hel bar som tar bandets färg ---------- */
+.bar{position:fixed;top:0;left:0;right:0;height:var(--bar);z-index:100;display:flex;align-items:center;gap:clamp(14px,2vw,30px);padding:0 var(--gut);background:var(--bakgrund);color:var(--ink);transition:color .35s ease;border-bottom:1px solid color-mix(in srgb, currentColor 14%, transparent)}
+.bar.is-dark{color:var(--bakgrund)}
+.logo{display:flex;align-items:center;gap:10px;color:inherit;text-decoration:none;flex:none}
+.logo-svg{height:24px;width:auto;aspect-ratio:3162/906}
+.navmk{--s:9px}
+.navmk>span{background:var(--brand-rod)}
+.navmk>span:last-child{background:var(--lime)}
+.nav{margin-left:auto}
+.nav>ul{display:flex;align-items:center;gap:clamp(16px,1.9vw,28px)}
+.nav a{font-size:.9375rem;font-weight:500;text-decoration:none;white-space:nowrap}
+.nav a:hover{text-decoration:underline;text-underline-offset:.3em}
+.has-panel{display:flex;align-items:center;gap:2px}
+.chev{display:inline-grid;place-items:center;width:28px;height:28px;padding:0;border:0;border-radius:var(--radie);background:none;color:inherit;cursor:pointer}
+.chev svg{transition:transform .3s ease}
+.chev[aria-expanded="true"] svg{transform:rotate(180deg)}
+.nav-kart{font-size:.9375rem;font-weight:700;text-decoration:none;white-space:nowrap}
+.nav-kart:hover{text-decoration:underline;text-underline-offset:.3em}
+.nav-cta{height:44px;padding:0 18px;flex:none}
+.bar.is-dark .nav-cta{background:var(--bakgrund);color:var(--ink)}
+.menu-btn{display:none;align-items:center;gap:10px;height:44px;padding:0 14px;border:2px solid currentColor;border-radius:var(--radie);background:none;color:inherit;font:700 1rem/1 var(--font-body);cursor:pointer;flex:none}
+.menu-btn .mk{--s:7px}
+.menu-btn .mk>span,.menu-btn .mk>span:last-child{background:currentColor}
+
+/* nedfällningen i bandform */
+.tj-panel{position:fixed;top:var(--bar);left:0;right:0;z-index:90;background:var(--bakgrund);color:var(--ink);padding:16px var(--gut) 40px;
+  clip-path:polygon(0 0,100% 0,100% calc(100% - 24px),85.71% calc(100% - 24px),85.71% calc(100% - 12px),71.43% calc(100% - 12px),71.43% 100%,57.14% 100%,57.14% calc(100% - 24px),42.86% calc(100% - 24px),42.86% calc(100% - 12px),28.57% calc(100% - 12px),28.57% 100%,14.29% 100%,14.29% calc(100% - 12px),0 calc(100% - 12px))}
+.tj-panel ul{display:grid;grid-template-columns:repeat(7,minmax(0,1fr));gap:8px}
+.tp-item{display:flex;flex-direction:column;gap:16px;min-height:128px;padding:16px;border-radius:var(--radie);text-decoration:none;color:var(--ink);transition:background-color .25s ease,color .25s ease}
+.tp-name{font-weight:700;font-size:.9375rem;line-height:1.25}
+.tp-item:hover,.tp-item:focus-visible{background:var(--c);color:var(--bakgrund);outline-offset:-4px}
+.tp-item:is([data-i="1"],[data-i="4"],[data-i="6"]):is(:hover,:focus-visible){color:var(--ink)}
+.tp-item:is(:hover,:focus-visible) .mk>span:not(:last-child){background:currentColor}
+
+/* mobilmeny */
+.mmenu{position:fixed;inset:0;z-index:150;background:var(--bakgrund);color:var(--ink);overflow:auto;overscroll-behavior:contain;padding:0 var(--gut) 40px}
+.mm-top{display:flex;align-items:center;justify-content:space-between;height:var(--bar)}
+.mm-close{height:44px;padding:0 14px;border:2px solid var(--ink);border-radius:var(--radie);background:none;color:var(--ink);font:700 1rem/1 var(--font-body);cursor:pointer}
+.mm-nav{padding-top:24px}
+.mm-tj>a{font-family:var(--font-display);font-size:2rem;line-height:1;text-decoration:none}
+.mm-list{margin:16px 0 8px;border-top:1px solid var(--line)}
+.mm-list a{display:flex;align-items:center;gap:14px;padding:12px 0;border-bottom:1px solid var(--line);text-decoration:none;font-weight:700}
+.mm-links{margin-top:20px}
+.mm-links a{display:block;padding:10px 0;font-family:var(--font-display);font-size:clamp(1.125rem,5.6vw,2rem);line-height:1;text-decoration:none;white-space:nowrap}
+.mm-cta{margin-top:24px}
+
+/* ---------- hero ---------- */
+.hero{position:relative;z-index:1;min-height:100svh;padding:calc(var(--bar) + 3svh) var(--gut) 18svh;display:grid;grid-template-columns:minmax(0,48fr) minmax(0,52fr);gap:24px;align-items:center;background:var(--bakgrund)}
+.hero-plate{position:relative;z-index:2;background:var(--bakgrund);padding:32px;margin-left:-32px;align-self:center}
+.hero-kicker{color:var(--brand-rod);font-size:1.1875rem;letter-spacing:.08em}
+.hero h1{margin-top:22px;font-size:clamp(2.2rem,5vw,9rem)}
+.hero h1 .row{display:block}
+.hero-lead{margin-top:28px;font-weight:700;font-size:1.375rem;line-height:1.35}
+.hero-ingress{margin-top:8px;color:var(--grafit);max-width:52ch}
+.hero-ctas{margin-top:32px;display:flex;flex-wrap:wrap;gap:12px}
+.hero-right{display:flex;flex-direction:column;align-items:flex-end;gap:20px;min-width:0}
+.hero-mosaic{--b:clamp(20px,2.4vw,40px);position:relative;z-index:2;display:grid;grid-template-columns:repeat(7,var(--b));grid-auto-rows:var(--b);gap:calc(var(--b)*8/51)}
+.hb{border-radius:calc(var(--b)*10/51)}
+.c-r{background:var(--brand-rod)} .c-lb{background:var(--t-hr)} .c-m{background:var(--t-redovisning)} .c-l{background:var(--lime)}
+.c-g{background:var(--t-grc)} .c-p{background:var(--a-skatt)} .c-k{background:var(--a-opex)} .c-o{background:var(--t-finans)}
+.c-b{background:var(--t-skatt)} .c-s{background:var(--t-opex)} .c-gr{background:var(--t-juridik)}
+.frame-slot{width:100%;aspect-ratio:16/9;margin-right:0}
+.hero-frame{width:100%;height:100%;border-radius:var(--radie);overflow:hidden;background:var(--lime);pointer-events:none}
+.hero-frame video{width:100%;height:100%;object-fit:cover;transform-origin:50% 50%}
+.hero.is-staged .hero-frame{position:absolute;left:0;right:0;bottom:0;width:auto;height:100svh;border-radius:0;z-index:1}
+.hero-run{height:0}
+
+/* ---------- sju band ---------- */
+.bands{position:relative;z-index:2;background:var(--t-redovisning);color:var(--bakgrund)}
+.bands-head{padding:12vh var(--gut) 6vh;max-width:40rem}
+.bands-head h2{margin-top:18px;font-size:clamp(2rem,4vw,4.5rem)}
+.bands-head .arrow-link{display:inline-block;margin-top:28px}
+.band-body{padding:8vh var(--gut);background:var(--c);color:var(--bakgrund)}
+.band-body:is([data-i="1"],[data-i="4"],[data-i="6"]){color:var(--ink)}
+.bm{--s:min(14svh,16vw)}
+.bm>span:not(:last-child){background:var(--bakgrund)}
+.num{margin-top:24px;font-weight:500;font-size:1rem;letter-spacing:.08em;min-height:1.55em}
+.num::before{content:attr(data-n)} /* verify_text.py godtar inte "01"–"07" som textnod, se NOTES */
+.bname{margin-top:8px;font-size:clamp(1.9rem,3vw,3.25rem);line-height:.98}
+.bname a{text-decoration:none}
+.btext{margin-top:16px;max-width:44ch;font-size:1.0625rem}
+.band-body .arrow-link{display:inline-block;margin-top:16px}
+.bands:not(.is-staged) .bands-grounds{display:none}
+
+.bands.is-staged{height:100svh;overflow:hidden;display:grid;grid-template-columns:minmax(0,44fr) minmax(0,56fr);align-items:center;column-gap:clamp(24px,4vw,64px);padding:var(--bar) calc(var(--acc)*1.6 + 32px) 18svh var(--gut);background:var(--bakgrund);color:var(--bakgrund);transition:color .35s ease}
+.bands.is-staged.on-light{color:var(--ink)}
+.bands.is-staged .bands-head{position:relative;z-index:2;padding:0;max-width:none}
+.bands.is-staged .bands-stack{position:relative;z-index:2;display:grid;min-width:0}
+.bands.is-staged .band-body{grid-area:1/1;padding:0;background:none}
+.bands-grounds{position:absolute;inset:0;z-index:0;overflow:hidden;contain:strict}
+.bg-band{position:absolute;inset:0;visibility:hidden}
+.bg-band>span{position:absolute;left:0;top:0;width:0;height:0}
+.bg-base{background:var(--bakgrund)}
+.bg-t{background:var(--c)}
+.bg-a{background:var(--a)}
+.bg-lime>span{background:var(--lime)}
+
+/* ---------- lime: flera områden + kartläggning ---------- */
+.lime{position:relative;z-index:3;background:var(--lime);color:var(--ink);padding:10vh var(--gut) 14vh}
+/* med JS ligger limesektionen 75 vh in över bandscenens slut; den delen är genomskinlig (scenens lime-2x2 är grunden) */
+.lime.is-staged{margin-top:-75vh;padding-top:4vh;background:none;pointer-events:none}
+.lime.is-staged::before{content:"";position:absolute;left:0;right:0;top:75vh;bottom:0;z-index:-1;background:var(--lime)}
+.lime.is-staged .lime-in{pointer-events:auto}
+.lime.is-staged .kart{margin-top:7vh}
+.flera{display:grid;grid-template-columns:minmax(0,1fr) minmax(0,1.25fr) auto;gap:16px 40px;align-items:baseline;padding-bottom:28px;border-bottom:2px solid var(--ink)}
+.flera-h{font-weight:700;font-size:1.5rem;line-height:1.25}
+.kart{margin-top:14vh;display:grid;grid-template-columns:minmax(0,7fr) minmax(0,5fr);gap:32px 6vw;align-items:end}
+.kart h2{margin-top:18px;font-size:clamp(2rem,5.2vw,7.5rem)}
+.kart-text{max-width:42ch}
+.kart .btn{margin-top:28px}
+
+/* ---------- om: ett ark läggs över limen ---------- */
+.om{position:relative;z-index:4;min-height:100svh;background:var(--bakgrund);border-top:2px solid var(--ink);padding:10vh var(--gut) 18vh;display:grid;grid-template-columns:minmax(0,58fr) minmax(0,42fr);gap:48px 5vw;align-items:start;align-content:center}
+.om .kicker,.ins .kicker{color:var(--grafit)}
+.om h2{margin-top:20px;font-size:clamp(1.75rem,4vw,5.5rem)}
+.om h2 .row{display:block}
+.om-text{margin-top:32px;max-width:46ch;font-size:1.25rem;line-height:1.5}
+.om-koncern{margin-top:24px;max-width:52ch;color:var(--grafit)}
+.om-koncern a{font-weight:700;color:var(--ink)}
+.om-list{margin-top:10vh;border-top:1px solid var(--line)}
+.om-list li{display:grid;grid-template-columns:auto minmax(0,1fr);gap:18px;align-items:baseline;padding:22px 0;border-bottom:1px solid var(--line);font-size:1.125rem}
+.om-list .mk{--s:9px;transform:translateY(2px)}
+.om-list .mk>span{background:var(--brand-rod)}
+.om-list li:last-child .mk>span{background:var(--lime)}
+
+/* ---------- insikter: ledger ---------- */
+.ins{position:relative;z-index:4;background:var(--bakgrund);padding:10vh var(--gut) 16vh}
+.ins-head{display:flex;align-items:flex-end;justify-content:space-between;gap:16px 32px;flex-wrap:wrap;padding-bottom:24px;border-bottom:2px solid var(--ink)}
+.ins-head h2{font-size:clamp(2.5rem,7vw,8rem)}
+.ins-row{display:grid;grid-template-columns:28px minmax(0,15rem) minmax(0,1fr);grid-template-areas:"b m h" ". . x";gap:10px 32px;align-items:baseline;padding:30px 0;border-bottom:1px solid var(--line);text-decoration:none}
+.ins-brick{grid-area:b;width:28px;height:28px;border-radius:calc(28px*10/51);transform:translateY(6px);background:var(--brand-rod)}
+.ins-list li:nth-child(1) .ins-brick{background:var(--t-redovisning)}
+.ins-list li:nth-child(2) .ins-brick{background:var(--t-skatt)}
+.ins-meta{grid-area:m;color:var(--grafit);font-size:.9375rem}
+.ins-row h3{grid-area:h;font-weight:700;font-size:1.5rem;line-height:1.25}
+.ins-row:hover h3{text-decoration:underline;text-decoration-thickness:2px;text-underline-offset:.2em}
+.ins-ex{grid-area:x;max-width:52ch;color:var(--grafit)}
+
+/* ---------- slut: sidfot på ink ---------- */
+.slut{position:relative;z-index:4;min-height:100svh;display:flex;flex-direction:column;background:var(--ink);color:var(--bakgrund)}
+.slut-in{flex:1;display:flex;flex-direction:column;justify-content:space-between;gap:8vh;padding:10vh var(--gut) 6vh}
+.f-top{display:flex;align-items:center;flex-wrap:wrap;gap:16px 20px}
+.f-top .logo-svg{height:40px}
+.f-slot{--fb:128px;width:var(--fb);height:var(--fb);flex:none}
+.slut-media{width:100%;height:100%;border-radius:var(--radie);overflow:hidden;background:var(--grafit);pointer-events:none}
+.slut-media img{width:100%;height:100%;object-fit:cover}
+.slut.is-staged .slut-media{position:absolute;left:0;top:0;z-index:1}
+.f-contact{margin-left:auto;text-align:right;font-size:1.125rem}
+.f-contact a{font-weight:700}
+.f-cols{display:grid;grid-template-columns:minmax(0,1.4fr) minmax(0,1fr) minmax(0,1fr);gap:40px}
+.f-h{font-family:var(--font-body);font-weight:700;font-size:.875rem;letter-spacing:.12em;color:var(--sten);margin-bottom:18px}
+.f-cols li a{display:inline-flex;align-items:center;gap:12px;padding:6px 0;text-decoration:none}
+.f-cols li a:hover{text-decoration:underline;text-underline-offset:.3em}
+.f-cols .mk{--s:8px}
+.f-bottom{display:flex;flex-wrap:wrap;justify-content:space-between;gap:12px 32px;padding-top:20px;border-top:1px solid color-mix(in srgb, var(--bakgrund) 18%, transparent);color:var(--sten);font-size:.9375rem}
+.f-bottom a{color:var(--bakgrund);font-weight:700}
+.banner{margin:0;padding:12px var(--gut);background:var(--sand);color:var(--ink);font-weight:500;font-size:.9375rem;line-height:1.4}
+
+/* ---------- responsivt ---------- */
+@media (max-width:1119px){
+  .nav,.nav-kart,.tj-panel{display:none}
+  .menu-btn{display:inline-flex;margin-left:auto}
+}
+@media (min-width:561px) and (max-width:1119px){ .nav-cta{margin-left:auto} .nav-cta+.menu-btn{margin-left:0} }
+@media (max-width:560px){ .nav-cta{display:none} }
+@media (max-width:1023px){
+  .hero{grid-template-columns:minmax(0,1fr);align-items:start;padding-bottom:6svh;gap:20px}
+  .hero-plate{padding:16px;margin-left:-16px;margin-right:-16px}
+  .hero h1{font-size:clamp(2.1rem,10.6vw,5.5rem)}
+  .hero-kicker{font-size:1.1875rem}
+  .hero-mosaic{--b:clamp(16px,4.6vw,30px)}
+  .hero-right{align-items:stretch}
+  .hero-mosaic{align-self:flex-end}
+  .bands.is-staged{grid-template-columns:minmax(0,1fr);grid-template-rows:auto 1fr;align-items:start;row-gap:4svh;padding:calc(var(--bar) + 4svh) var(--gut) calc(min(11svh,100px)*1.2 + 24px)}
+  .bands.is-staged .bands-stack{align-self:end}
+  .bands-head h2{font-size:clamp(1.75rem,7.4vw,3rem)}
+  .bands.is-staged .bands-head .arrow-link{margin-top:14px}
+  .bm{--s:min(9svh,15vw)}
+  .num{margin-top:14px}
+  .bname{font-size:clamp(1.5rem,6.6vw,2.6rem)}
+  .btext{margin-top:10px;font-size:1rem}
+  .flera{grid-template-columns:minmax(0,1fr);gap:12px}
+  .kart{grid-template-columns:minmax(0,1fr);margin-top:9vh}
+  .kart h2{font-size:clamp(1.9rem,9.6vw,5rem)}
+  .om{grid-template-columns:minmax(0,1fr);padding-top:10vh;gap:0}
+  .om h2{font-size:clamp(1.6rem,8.2vw,4rem)}
+  .om-list{margin-top:6vh}
+  .ins-row{grid-template-columns:28px minmax(0,1fr);grid-template-areas:"b m" "h h" "x x";gap:12px 16px}
+  .f-cols{grid-template-columns:minmax(0,1fr);gap:32px}
+  .f-contact{margin-left:0;text-align:left;flex-basis:100%}
+}
+@media (max-width:1119px) and (min-width:1024px){ .hero h1{font-size:4.6vw} }
+@media (max-width:1023px){ .bands.is-staged{padding-right:calc(var(--acc)*1.6 + 12px)} }
+@media (max-width:767px){ :root{--acc:min(20svh,13vw)} }
+</style>
+</head>
+<body>
+<a class="skip" href="#innehall">{{ny.hopp_till_innehall}}</a>
+
+<svg width="0" height="0" style="position:absolute" aria-hidden="true" focusable="false">
+  <symbol id="logo-sym" viewBox="0 0 3162.3134 905.8704">
+    <g transform="scale(8.115671641791046) translate(10, 10)">
+      <g transform="matrix(1.1137842653203527,0,0,1.1137842653203527,-25.51679734853929,-9.879266305929034)" style="fill:var(--brand-rod)"><polygon points="22.91 91.13 50 67.84 77.09 91.13 77.09 8.87 22.91 8.87 22.91 91.13"></polygon></g>
+      <g transform="matrix(2.0571988396133722,0,0,2.0571988396133722,77.4485167307889,20.251959275293824)" style="fill:currentColor"><path d="M17.998 20 l-2.9199 0 l-0.92773 -10.635 l-3.5742 10.635 l-1.8945 0 l-3.5742 -10.635 l-0.9375 10.635 l-2.9297 0 l1.1816 -14.111 l4.1797 0 l3.0078 8.8574 l3.0469 -8.8574 l4.1797 0 z M30.13628125 14.834 l-0.029297 0.67383 l-7.4414 0 c0.11719 1.6699 1.2305 2.4707 2.5684 2.4707 c1.0059 0 1.7871 -0.46875 2.168 -1.3574 l2.5781 0.38086 c-0.66406 2.0313 -2.4707 3.1934 -4.7266 3.1934 c-3.2422 0 -5.3613 -1.9141 -5.3613 -5.2148 s2.1777 -5.2344 5.2734 -5.2344 c2.8418 0 4.9609 1.5723 4.9707 5.0879 z M25.18558125 11.7383 c-1.2793 0 -2.168 0.5957 -2.4414 1.9336 l4.6094 0 c-0.14648 -1.2793 -1.0156 -1.9336 -2.168 -1.9336 z M44.1703125 9.766 c2.1484 0 3.5352 1.0938 3.5352 3.1543 l0 7.0801 l-2.8125 0 l0 -6.2793 c0 -1.1816 -0.74219 -1.6992 -1.582 -1.6992 c-1.0059 0 -1.8945 0.57617 -1.8945 2.3145 l0 5.6641 l-2.8418 0 l0 -6.25 c0 -1.2012 -0.72266 -1.7285 -1.6113 -1.7285 c-0.97656 0 -1.8848 0.57617 -1.8848 2.4609 l0 5.5176 l-2.8027 0 l0 -10.039 l2.8027 0 l0 1.1816 c0.66406 -0.88867 1.6797 -1.377 2.9102 -1.377 c1.4551 0 2.5488 0.52734 3.0762 1.5039 c0.70313 -1.0059 1.7773 -1.5039 3.1055 -1.5039 z M55.117175 20.19531 c-3.1934 0 -5.498 -1.9434 -5.498 -5.2246 c0 -3.2617 2.2852 -5.2051 5.498 -5.2051 c3.2324 0 5.5078 1.9434 5.5078 5.2051 c0 3.2813 -2.2852 5.2246 -5.5078 5.2246 z M55.087875 17.959 c1.6309 0 2.7441 -1.1914 2.7441 -2.9883 s-1.1133 -2.9883 -2.7441 -2.9883 c-1.5723 0 -2.6758 1.1914 -2.6758 2.9883 s1.1035 2.9883 2.6758 2.9883 z M67.773465625 20.19531 c-3.0273 0 -5.3906 -1.4551 -5.8203 -4.1016 l3.0273 -0.69336 c0.19531 1.582 1.3574 2.4023 2.9102 2.4023 c1.1914 0 2.1387 -0.52734 2.1289 -1.7188 c-0.0097656 -1.3281 -1.5723 -1.748 -3.291 -2.2754 c-2.0703 -0.64453 -4.2871 -1.4063 -4.2871 -4.0039 c0 -2.627 2.1484 -4.1113 4.9805 -4.1113 c2.4805 0 4.9805 1.0059 5.5469 3.7109 l-2.832 0.70313 c-0.26367 -1.4063 -1.2109 -2.0215 -2.5391 -2.0215 c-1.1816 0 -2.1875 0.48828 -2.1875 1.6504 c0 1.084 1.3867 1.4453 2.9883 1.9238 c2.1289 0.64453 4.6484 1.4648 4.6484 4.2773 c0 2.998 -2.5098 4.2578 -5.2734 4.2578 z M84.82378125 14.834 l-0.029297 0.67383 l-7.4414 0 c0.11719 1.6699 1.2305 2.4707 2.5684 2.4707 c1.0059 0 1.7871 -0.46875 2.168 -1.3574 l2.5781 0.38086 c-0.66406 2.0313 -2.4707 3.1934 -4.7266 3.1934 c-3.2422 0 -5.3613 -1.9141 -5.3613 -5.2148 s2.1777 -5.2344 5.2734 -5.2344 c2.8418 0 4.9609 1.5723 4.9707 5.0879 z M79.87308125 11.7383 c-1.2793 0 -2.168 0.5957 -2.4414 1.9336 l4.6094 0 c-0.14648 -1.2793 -1.0156 -1.9336 -2.168 -1.9336 z M89.6582125 11.5527 c0.50781 -0.88867 1.8262 -1.709 3.2813 -1.709 l0 2.5098 c-2.1289 0 -3.1445 0.625 -3.1445 2.7539 l0 4.8926 l-2.832 0 l0 -10.039 l2.6953 0 l0 1.5918 z M101.123065625 9.961 l2.9785 0 l-4.2773 10.039 l-2.4414 0 l-4.2285 -10.039 l2.959 0 l2.5 6.8652 z M107.01169375 8.457 c-0.88867 0 -1.6309 -0.72266 -1.6309 -1.6211 c0 -0.88867 0.74219 -1.6113 1.6309 -1.6113 c0.86914 0 1.6113 0.72266 1.6113 1.6113 c0 0.89844 -0.74219 1.6211 -1.6113 1.6211 z M105.57619375 20 l0 -10.039 l2.832 0 l0 10.039 l-2.832 0 z M115.85938125 20.18555 c-3.1543 0 -5.3809 -2.0996 -5.3809 -5.2148 c0 -3.125 2.2266 -5.2051 5.3809 -5.2051 c2.5391 0 4.4434 1.3184 4.9316 3.6914 l-2.5977 0.2832 c-0.3125 -1.2012 -1.1816 -1.7578 -2.3633 -1.7578 c-1.5137 0 -2.5391 1.1914 -2.5391 2.9883 c0 1.7871 1.0254 2.9883 2.5391 2.9883 c1.1816 0 2.0508 -0.56641 2.3633 -1.7578 l2.5977 0.2832 c-0.48828 2.373 -2.4414 3.7012 -4.9316 3.7012 z M132.235890625 14.834 l-0.029297 0.67383 l-7.4414 0 c0.11719 1.6699 1.2305 2.4707 2.5684 2.4707 c1.0059 0 1.7871 -0.46875 2.168 -1.3574 l2.5781 0.38086 c-0.66406 2.0313 -2.4707 3.1934 -4.7266 3.1934 c-3.2422 0 -5.3613 -1.9141 -5.3613 -5.2148 s2.1777 -5.2344 5.2734 -5.2344 c2.8418 0 4.9609 1.5723 4.9707 5.0879 z M127.285190625 11.7383 c-1.2793 0 -2.168 0.5957 -2.4414 1.9336 l4.6094 0 c-0.14648 -1.2793 -1.0156 -1.9336 -2.168 -1.9336 z M137.910121875 20.19531 c-2.2559 0 -4.0039 -0.88867 -4.3652 -2.793 l2.3535 -0.66406 c0.30273 1.0742 1.0645 1.4941 2.0117 1.4941 c0.69336 0 1.4453 -0.21484 1.4258 -1.0059 c-0.0097656 -1.0449 -1.5918 -1.1328 -3.1836 -1.6992 c-1.2012 -0.41992 -2.3535 -1.0645 -2.3535 -2.7539 c0 -2.0605 1.709 -3.0078 3.9355 -3.0078 c1.9531 0 3.584 0.74219 3.9746 2.6563 l-2.1777 0.48828 c-0.30273 -0.9375 -0.9668 -1.2695 -1.7871 -1.2695 c-0.74219 0 -1.377 0.26367 -1.377 0.88867 c0 0.79102 1.1621 0.94727 2.4219 1.2891 c1.5527 0.41992 3.252 1.0938 3.252 3.2422 c0 2.3047 -1.9629 3.1348 -4.1309 3.1348 z"></path></g>
+    </g>
+  </symbol>
+</svg>
+
+<header class="bar" id="bar">
+  <a class="logo" href="/" aria-label="{{meta.title}}">
+    <span class="mk navmk" aria-hidden="true"><span></span><span></span><span></span><span></span></span>
+    <svg class="logo-svg" viewBox="0 0 3162.3134 905.8704" aria-hidden="true" focusable="false"><use href="#logo-sym"></use></svg>
+  </a>
+  <nav class="nav">
+    <ul>
+      <li class="has-panel"><a href="{{delat.nav.0.1}}">{{delat.nav.0.0}}</a><button class="chev" type="button" aria-expanded="false" aria-controls="tj-panel" aria-label="{{delat.nav.0.0}}"><svg width="12" height="8" viewBox="0 0 12 8" aria-hidden="true" focusable="false"><path d="M1 1.5l5 5 5-5" fill="none" stroke="currentColor" stroke-width="1.8"></path></svg></button></li>
+      <li><a href="{{delat.nav.1.1}}" target="_blank" rel="noopener">{{delat.nav.1.0}}</a></li>
+      <li><a href="{{delat.nav.2.1}}">{{delat.nav.2.0}}</a></li>
+      <li><a href="{{delat.nav.3.1}}" target="_blank" rel="noopener">{{delat.nav.3.0}}</a></li>
+      <li><a href="{{delat.nav.4.1}}" target="_blank" rel="noopener">{{delat.nav.4.0}}</a></li>
+    </ul>
+  </nav>
+  <a class="nav-kart" href="{{delat.nav.5.1}}" target="_blank" rel="noopener">{{delat.nav.5.0}}</a>
+  <a class="btn btn-red nav-cta" href="{{delat.nav_knapp.1}}" target="_blank" rel="noopener">{{delat.nav_knapp.0}}</a>
+  <button class="menu-btn" type="button" aria-expanded="false" aria-controls="mmenu"><span class="mk" aria-hidden="true"><span></span><span></span><span></span><span></span></span>{{ny.meny}}</button>
+</header>
+
+<div class="tj-panel" id="tj-panel" hidden>
+  <ul>
+    {{#tjanster}}<li><a class="tp-item" data-i="{{@index}}" href="/tjanster/{{.slug}}"><span class="mk" aria-hidden="true"><span></span><span></span><span></span><span></span></span><span class="tp-name">{{.namn}}</span></a></li>
+    {{/tjanster}}
+  </ul>
+</div>
+
+<div class="mmenu" id="mmenu" role="dialog" aria-modal="true" aria-label="{{ny.meny}}" data-lenis-prevent hidden>
+  <div class="mm-top">
+    <a class="logo" href="/" aria-label="{{meta.title}}"><svg class="logo-svg" viewBox="0 0 3162.3134 905.8704" aria-hidden="true" focusable="false"><use href="#logo-sym"></use></svg></a>
+    <button class="mm-close" type="button">{{ny.stang_menyn}}</button>
+  </div>
+  <nav class="mm-nav">
+    <div class="mm-tj"><a href="{{delat.nav.0.1}}">{{delat.nav.0.0}}</a></div>
+    <ul class="mm-list">
+      {{#tjanster}}<li><a data-i="{{@index}}" href="/tjanster/{{.slug}}"><span class="mk" aria-hidden="true"><span></span><span></span><span></span><span></span></span>{{.namn}}</a></li>
+      {{/tjanster}}
+    </ul>
+    <ul class="mm-links">
+      <li><a href="{{delat.nav.1.1}}" target="_blank" rel="noopener">{{delat.nav.1.0}}</a></li>
+      <li><a href="{{delat.nav.2.1}}">{{delat.nav.2.0}}</a></li>
+      <li><a href="{{delat.nav.3.1}}" target="_blank" rel="noopener">{{delat.nav.3.0}}</a></li>
+      <li><a href="{{delat.nav.4.1}}" target="_blank" rel="noopener">{{delat.nav.4.0}}</a></li>
+      <li><a href="{{delat.nav.5.1}}" target="_blank" rel="noopener">{{delat.nav.5.0}}</a></li>
+    </ul>
+    <a class="btn btn-red mm-cta" href="{{delat.nav_knapp.1}}" target="_blank" rel="noopener">{{delat.nav_knapp.0}}</a>
+  </nav>
+</div>
+
+<main id="innehall">
+
+<section class="hero" id="hero" aria-labelledby="hero-h">
+  <div class="hero-plate">
+    <p class="kicker hero-kicker">{{hero.kicker}}</p>
+    <h1 class="disp" id="hero-h"><span class="row">{{hero.rubrik_rader.0}}</span> <span class="row">{{hero.rubrik_rader.1}}</span></h1>
+    <p class="hero-lead">{{hero.lead}}</p>
+    <p class="hero-ingress">{{hero.ingress}}</p>
+    <div class="hero-ctas">
+      <a class="btn btn-red magnet" href="{{hero.knappar.0.till}}">{{hero.knappar.0.text}}</a>
+      <a class="btn btn-line" href="{{hero.knappar.1.till}}" target="_blank" rel="noopener">{{hero.knappar.1.text}}</a>
+    </div>
+  </div>
+  <div class="hero-right">
+    <div class="hero-mosaic" aria-hidden="true">
+      <span class="hb c-r" style="grid-area:1/1"></span><span class="hb c-r" style="grid-area:1/2"></span><span class="hb c-r" style="grid-area:1/3"></span><span class="hb c-lb" style="grid-area:1/4"></span><span class="hb c-m" style="grid-area:1/6"></span><span class="hb c-m" style="grid-area:1/7"></span>
+      <span class="hb c-r" style="grid-area:2/1"></span><span class="hb c-lb" style="grid-area:2/3"></span><span class="hb c-l" style="grid-area:2/4"></span><span class="hb c-lb" style="grid-area:2/5"></span><span class="hb c-m" style="grid-area:2/6"></span><span class="hb c-m" style="grid-area:2/7"></span>
+      <span class="hb c-g" style="grid-area:3/1"></span><span class="hb c-g" style="grid-area:3/2"></span><span class="hb c-g" style="grid-area:3/3"></span><span class="hb c-lb" style="grid-area:3/4"></span><span class="hb c-b" style="grid-area:3/5"></span><span class="hb c-p" style="grid-area:3/6"></span><span class="hb c-k" style="grid-area:3/7"></span>
+      <span class="hb c-o" style="grid-area:4/2"></span><span class="hb c-o" style="grid-area:4/3"></span><span class="hb c-o" style="grid-area:4/4"></span><span class="hb c-p" style="grid-area:4/5"></span><span class="hb c-p" style="grid-area:4/6"></span><span class="hb c-s" style="grid-area:4/7"></span>
+      <span class="hb c-o" style="grid-area:5/4"></span><span class="hb c-m" style="grid-area:5/5"></span><span class="hb c-gr" style="grid-area:5/6"></span>
+    </div>
+    <div class="frame-slot">
+      <div class="hero-frame">
+        <video class="hero-video" src="/tests/memoservices-koncept/assets/video/piren-hero.mp4" data-small="/tests/memoservices-koncept/assets/video/piren-hero-540.mp4" poster="/tests/memoservices-koncept/assets/video/piren-poster.webp" autoplay muted loop playsinline preload="metadata" aria-hidden="true"></video>
+      </div>
+    </div>
+  </div>
+</section>
+<div class="hero-run" aria-hidden="true"></div>
+
+<section class="bands" id="tjanster" aria-labelledby="tj-h">
+  <div class="bands-grounds" aria-hidden="true">
+    {{#tjanster}}<div class="bg-band" data-i="{{@index}}"><span class="bg-base"></span><span class="bg-t"></span><span class="bg-t"></span><span class="bg-t"></span><span class="bg-t bg-a"></span></div>
+    {{/tjanster}}<div class="bg-band bg-lime" data-i="7"><span class="bg-base"></span><span class="bg-t"></span><span class="bg-t"></span><span class="bg-t"></span><span class="bg-t bg-a"></span></div>
+  </div>
+  <div class="bands-head">
+    <p class="kicker">{{tjansteomraden.kicker}}</p>
+    <h2 class="disp" id="tj-h">{{tjansteomraden.rubrik}}</h2>
+    <a class="arrow-link" href="{{tjansteomraden.lank.till}}">{{tjansteomraden.lank.text}}</a>
+  </div>
+  <div class="bands-stack">
+    {{#tjanster}}<article class="band-body" data-i="{{@index}}">
+      <div class="bm-wrap"><span class="mk bm" aria-hidden="true"><span></span><span></span><span></span><span></span></span></div>
+      <p class="num" aria-hidden="true" data-n="{{@n}}"></p>
+      <h3 class="disp bname" id="bn-{{.slug}}"><a href="/tjanster/{{.slug}}">{{.namn}}</a></h3>
+      <p class="btext">{{.kort_pa_startsidan}}</p>
+      <a class="arrow-link" href="/tjanster/{{.slug}}" aria-describedby="bn-{{.slug}}">{{tjansteomraden.kortlank_text}}</a>
+    </article>
+    {{/tjanster}}
+  </div>
+</section>
+
+<section class="lime" id="kartlaggning" aria-labelledby="kart-h">
+  <div class="lime-in">
+    <div class="flera">
+      <h3 class="flera-h">{{tjansteomraden.flera_omraden.rubrik}}</h3>
+      <p>{{tjansteomraden.flera_omraden.text}}</p>
+      <a class="arrow-link" href="{{delat.nav_knapp.1}}" target="_blank" rel="noopener">{{tjansteomraden.flera_omraden.lank.text}}</a>
+    </div>
+    <div class="kart">
+      <div>
+        <p class="kicker">{{kartlaggning.kicker}}</p>
+        <h2 class="disp" id="kart-h">{{kartlaggning.rubrik}}</h2>
+      </div>
+      <div>
+        <p class="kart-text">{{kartlaggning.text}}</p>
+        <a class="btn btn-ink" href="{{kartlaggning.knapp.till}}" target="_blank" rel="noopener">{{kartlaggning.knapp.text}}</a>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="om" id="om" aria-labelledby="om-h">
+  <div class="om-left">
+    <p class="kicker">{{om.kicker}}</p>
+    <h2 class="disp" id="om-h"><span class="row">{{om.rubrik_rader.0}}</span> <span class="row">{{om.rubrik_rader.1}}</span></h2>
+    <p class="om-text">{{om.text}}</p>
+    <p class="om-koncern" data-link="{{delat.footer.koncernlank.0}}" data-href="{{om.koncern_lank}}">{{om.koncern}}</p>
+  </div>
+  <ul class="om-list">
+    {{#om.punkter}}<li><span class="mk" aria-hidden="true"><span></span><span></span><span></span><span></span></span><p class="pt" data-b="{{^om.punkter_fetstil}}">{{.}}</p></li>
+    {{/om.punkter}}
+  </ul>
+</section>
+
+<section class="ins" id="insikter" aria-labelledby="ins-h">
+  <div class="ins-head">
+    <h2 class="disp" id="ins-h">{{insikter.rubrik}}</h2>
+    <a class="arrow-link" href="{{insikter.lank.till}}" target="_blank" rel="noopener">{{insikter.lank.text}}</a>
+  </div>
+  <ol class="ins-list">
+    {{#insikter.artiklar}}<li><a class="ins-row" href="{{^insikter.artikel_lankar}}" target="_blank" rel="noopener"><span class="ins-brick" aria-hidden="true"></span><p class="ins-meta">{{.kategori_datum}}</p><h3>{{.rubrik}}</h3><p class="ins-ex">{{.utdrag}}</p></a></li>
+    {{/insikter.artiklar}}
+  </ol>
+</section>
+
+</main>
+
+<footer class="slut" id="slut">
+  <div class="slut-in">
+    <div class="f-top">
+      <a class="logo" href="/" aria-label="{{meta.title}}"><svg class="logo-svg" viewBox="0 0 3162.3134 905.8704" aria-hidden="true" focusable="false"><use href="#logo-sym"></use></svg></a>
+      <span class="f-slot"><span class="slut-media" aria-hidden="true"><img src="/tests/memoservices-koncept/assets/video/piren-last.webp" alt="" width="1280" height="720" loading="lazy" decoding="async"></span></span>
+      <div class="f-contact">
+        <p>{{delat.footer.adress}}</p>
+        <a href="mailto:{{delat.footer.epost}}">{{delat.footer.epost}}</a>
+      </div>
+    </div>
+    <div class="f-cols">
+      <div>
+        <h2 class="f-h">{{oversikt.kicker}}</h2>
+        <ul>
+          {{#tjanster}}<li><a href="/tjanster/{{.slug}}" data-i="{{@index}}"><span class="mk" aria-hidden="true"><span></span><span></span><span></span><span></span></span>{{.namn}}</a></li>
+          {{/tjanster}}
+        </ul>
+      </div>
+      <div>
+        <h2 class="f-h">FÖRETAGET</h2>
+        <ul>
+          <li><a href="{{delat.footer.kolumner.FÖRETAGET.0.1}}" target="_blank" rel="noopener">{{delat.footer.kolumner.FÖRETAGET.0.0}}</a></li>
+          <li><a href="{{delat.footer.kolumner.FÖRETAGET.1.1}}">{{delat.footer.kolumner.FÖRETAGET.1.0}}</a></li>
+          <li><a href="{{delat.footer.kolumner.FÖRETAGET.2.1}}" target="_blank" rel="noopener">{{delat.footer.kolumner.FÖRETAGET.2.0}}</a></li>
+          <li><a href="{{delat.footer.kolumner.FÖRETAGET.3.1}}" target="_blank" rel="noopener">{{delat.footer.kolumner.FÖRETAGET.3.0}}</a></li>
+          <li><a href="{{delat.footer.kolumner.FÖRETAGET.4.1}}" target="_blank" rel="noopener">{{delat.footer.kolumner.FÖRETAGET.4.0}}</a></li>
+        </ul>
+      </div>
+      <div>
+        <h2 class="f-h">JURIDISKT</h2>
+        <ul>
+          {{#delat.footer.kolumner.JURIDISKT}}<li><a href="{{.1}}" target="_blank" rel="noopener">{{.0}}</a></li>
+          {{/delat.footer.kolumner.JURIDISKT}}
+        </ul>
+      </div>
+    </div>
+    <div class="f-bottom">
+      <p>{{delat.footer.copyright}}</p>
+      <p>{{delat.footer.koncernrad}} <a href="{{delat.footer.koncernlank.1}}" target="_blank" rel="noopener">{{delat.footer.koncernlank.0}}</a></p>
+    </div>
+  </div>
+  <p class="banner">{{ny.banner}}</p>
+</footer>
+
+<script>
+/* Förmålning, före första bilden: introts starttillstånd sätts i JS, aldrig i CSS.
+   Går main.js inte igång återställs allt efter 4 s (fail toward visible). */
+(function(){
+  try { history.scrollRestoration = 'manual'; } catch (e) {}
+  if (/[?&]preview=/.test(location.search) || window.scrollY > 4) return;
+  var els = document.querySelectorAll('#bar, .hero-plate, .hero-right');
+  for (var i = 0; i < els.length; i++) els[i].style.opacity = '0';
+  window.__introGuard = setTimeout(function(){ for (var i = 0; i < els.length; i++) els[i].style.opacity = ''; }, 4000);
+})();
+</script>
+</body>
+</html>
