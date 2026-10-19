@@ -1,0 +1,847 @@
+<!doctype html>
+<html lang="sv" class="no-js">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>Alunix · webbyrå i Sverige</title>
+<meta name="description" content="Alunix är en webbyrå i Sverige. Vi skapar skräddarsydda webbplatser.">
+<meta name="color-scheme" content="light">
+<meta name="theme-color" content="#eef0f3">
+<link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'><rect width='32' height='32' fill='%23eef0f3'/><rect x='6' y='6' width='20' height='20' fill='%231d2026'/></svg>">
+
+<!-- Typsnitten ligger i assets/fonts/ och är tre filer, en per roll.
+     Rollerna är satta efter sidans idé: rubrikerna är monumentala och tunga
+     (Geist 700), apparaten (nummer, etiketter, mätskalan, konturordmärket)
+     är Geist Mono, och brödtexten är Public Sans i lätt vikt.
+     Fallback-familjerna är metriskt justerade så att radbrytningen står
+     still medan filen laddas.
+     U+014D (o med makron) står i unicode-range för alla tre: filerna är
+     latin-snitt och bär ingen färdig ō, men de bär basbokstaven o och det
+     kombinerande makronet U+0304, och formgivaren sätter ihop de två.
+     Utan tecknet i intervallet skickas ō vidare till fallback-familjen och
+     Hōrai står i Arial mitt i en Geist-rubrik. -->
+<link rel="preload" href="assets/fonts/geist-700-latin.woff2" as="font" type="font/woff2" crossorigin>
+<link rel="preload" href="assets/fonts/geist-mono-400-latin.woff2" as="font" type="font/woff2" crossorigin>
+
+<!-- Motorn lånas som mekanik: den mäter varje akt och publicerar en
+     framdrift 0-1 som CSS kan läsa. Den äger aldrig utseendet. -->
+<link rel="stylesheet" href="scroll/scrollcraft.css">
+<script>document.documentElement.classList.replace('no-js','js');</script>
+
+<style>
+/* ============================================================== MÄTBORDET
+   Ett kallt, monokromt instrument vars enda uppgift är att ställa ut två
+   levande sajter. Ramen bär ingen egen färg: nummer, regler, markeringar
+   och fokus är bläck. De två verkens egna färger (Calyxs rost, Hōrais rött)
+   är sidans enda kromatik, och varje färg är låst till sitt verks platta.
+   Så behåller verken sin identitet medan sidan behåller sin: monokrom
+   precision, aldrig en färg lånad ur ett verk in i ramen.
+   Därför: noll radie överallt (en monteringsskiva har inga rundade hörn),
+   en monumental rubrik och ett gigantiskt konturordmärke som skärs av
+   viewportkanten, och verken och priset som helbredds mörka plattor.
+   ========================================================================= */
+
+@font-face{font-family:'Public Sans';font-style:normal;font-weight:300;
+  font-display:swap;src:url('assets/fonts/public-sans-300-latin.woff2') format('woff2');
+  unicode-range:U+0000-00FF,U+0131,U+014D,U+0152-0153,U+02BB-02BC,U+02C6,U+02DA,U+02DC,
+    U+0304,U+0308,U+0329,U+2000-206F,U+2074,U+20AC,U+2122,U+2191,U+2193,U+2212,
+    U+2215,U+FEFF,U+FFFD;}
+@font-face{font-family:'Public Sans Fallback';font-display:swap;src:local('Arial'),local('Helvetica'),
+  local('Liberation Sans');size-adjust:96.4%;ascent-override:98.5%;
+  descent-override:25.9%;line-gap-override:0%;}
+
+@font-face{font-family:'Geist';font-style:normal;font-weight:700;
+  font-display:swap;src:url('assets/fonts/geist-700-latin.woff2') format('woff2');
+  unicode-range:U+0000-00FF,U+0131,U+014D,U+0152-0153,U+02BB-02BC,U+02C6,U+02DA,U+02DC,
+    U+0304,U+0308,U+0329,U+2000-206F,U+2074,U+20AC,U+2122,U+2191,U+2193,U+2212,
+    U+2215,U+FEFF,U+FFFD;}
+@font-face{font-family:'Geist Fallback';font-display:swap;src:local('Arial Bold'),local('Arial'),
+  local('Liberation Sans');size-adjust:100.3%;ascent-override:100.2%;
+  descent-override:29.4%;line-gap-override:0%;}
+
+@font-face{font-family:'Geist Mono';font-style:normal;font-weight:400;
+  font-display:swap;src:url('assets/fonts/geist-mono-400-latin.woff2') format('woff2');
+  unicode-range:U+0000-00FF,U+0131,U+014D,U+0152-0153,U+02BB-02BC,U+02C6,U+02DA,U+02DC,
+    U+0304,U+0308,U+0329,U+2000-206F,U+2074,U+20AC,U+2122,U+2191,U+2193,U+2212,
+    U+2215,U+FEFF,U+FFFD;}
+@font-face{font-family:'Geist Mono Fallback';font-display:swap;src:local('Consolas'),
+  local('DejaVu Sans Mono'),local('Menlo');size-adjust:101%;ascent-override:100.2%;
+  descent-override:29.4%;line-gap-override:0%;}
+
+:root{
+  /* ------------------------------------------------------------- registret */
+  --ground:      oklch(0.955 0.004 250);   /* instrumentvitt, kallt - inte cream */
+  --ink:         oklch(0.16 0.012 255);    /* bläck, och plattans färg */
+  --ink-mute:    oklch(0.45 0.008 255);
+  --hair:        color-mix(in oklab, var(--ink) 16%, var(--ground));
+  --plate-ink:   oklch(0.955 0.004 250);
+  --plate-mute:  oklch(0.70 0.008 255);
+  --plate-hair:  color-mix(in oklab, var(--plate-ink) 20%, var(--ink));
+  /* Verkens egna färger - de enda hue på sidan, var och en låst till sitt verk. */
+  --calyx:       oklch(0.52 0.11 42);
+  --calyx-lit:   oklch(0.72 0.12 45);
+  --horai:       oklch(0.53 0.16 28);
+  --horai-lit:   oklch(0.68 0.16 30);
+
+  /* -------------------------------------------------------------- ramen */
+  --maxw:    1560px;
+  --gutter:  clamp(20px, 5vw, 88px);
+  --colgap:  clamp(14px, 1.5vw, 26px);
+
+  /* Den vertikala rytmen är en 8 px-enhet och ingenting annat. Sätts en
+     gång, bär varje skarv. */
+  --ry:       96px;
+  --ry-lg:   128px;
+  --u:         8px;
+
+  /* ----------------------------------------------------------- typografin */
+  --f-disp: "Geist", "Geist Fallback", system-ui, sans-serif;
+  --f-body: "Public Sans", "Public Sans Fallback", system-ui, sans-serif;
+  --f-mono: "Geist Mono", "Geist Mono Fallback", ui-monospace, monospace;
+  --disp:   clamp(2.6rem, 11vw, 11rem);    /* monumentet */
+  --disp-s: clamp(1.5rem, 2.5vw, 2.4rem);  /* verkens namn, ett steg under */
+  --body:   1.0625rem;
+  --mono:   0.75rem;
+  --track:  0.14em;
+  /* Brödtextens mått: ingen löpande rad går över 60 tecken. */
+  --measure: 60ch;
+
+  --ease: cubic-bezier(.22,.61,.36,1);
+  /* Öppningsradens höjd är fast och delbar med 8. Den är fast därför att
+     heron mäter första vyn mot den. */
+  --topline-h: 72px;
+}
+
+*,*::before,*::after{box-sizing:border-box;border-radius:0}
+
+html{background:var(--ground)}
+body{
+  margin:0;
+  background:var(--ground);
+  color:var(--ink);
+  font-family:var(--f-body);
+  font-weight:300;
+  font-size:var(--body);
+  line-height:1.55;
+  -webkit-font-smoothing:antialiased;
+}
+
+/* Rubrikerna är tunga: sidans idé är en monumental, säker röst, inte en
+   viskande. Den lätta vikten hör till brödtexten. */
+h1,h2,h3,h4{font-family:var(--f-disp);font-weight:700;
+  line-height:.92;letter-spacing:-.03em;margin:0;text-wrap:balance}
+p{margin:0;text-wrap:pretty}
+ol,ul{margin:0;padding:0;list-style:none}
+figure,figcaption{margin:0}
+img{display:block;max-width:100%;height:auto}
+a{color:inherit}
+hr{border:0;margin:0}
+
+::selection{background:var(--ink);color:var(--ground)}
+:focus-visible{outline:2px solid var(--ink);outline-offset:3px}
+
+.sr-only{position:absolute;width:1px;height:1px;padding:0;margin:-1px;
+  overflow:hidden;clip-path:inset(50%);white-space:nowrap;border:0}
+
+/* ------------------------------------------------------------ rutnätet */
+.shell{max-width:var(--maxw);margin-inline:auto;padding-inline:var(--gutter);width:100%}
+.grid{display:grid;grid-template-columns:repeat(12,minmax(0,1fr));column-gap:var(--colgap)}
+.sec{padding-block-start:var(--ry)}
+
+/* --------------------------------------------------------- apparaten */
+.lab{font-family:var(--f-mono);font-size:var(--mono);letter-spacing:var(--track);
+  text-transform:uppercase;font-weight:400;line-height:1.2}
+.mono{font-family:var(--f-mono);font-size:var(--mono);letter-spacing:var(--track);
+  font-weight:400;line-height:1.35}
+/* Numret bär bläck, aldrig en färg: färgen på sidan är verkens, inte
+   apparatens. */
+.num{font-family:var(--f-mono);font-size:var(--mono);letter-spacing:.1em;
+  color:var(--ink-mute);font-variant-numeric:tabular-nums;line-height:1.2}
+.num,.lab,.mono,.tes-row,.reg-row,.led-row,.price-reg,.work-strip{
+  font-variant-numeric:tabular-nums}
+
+.h2{font-size:clamp(2.1rem,4.4vw,4.4rem)}
+.lead{font-size:var(--body);line-height:1.6;color:var(--ink-mute);max-width:var(--measure)}
+.tap{display:inline-flex;align-items:center;min-height:48px;min-width:48px}
+
+/* ==================================================================== 5.1
+   Öppningsraden. Ingen bakgrund, ingen sticky. */
+.topline{border-bottom:1px solid var(--hair);height:var(--topline-h)}
+.topline-in{display:flex;align-items:center;justify-content:space-between;
+  gap:24px;height:100%}
+.topline-mark{color:var(--ink)}
+.topline-mail{text-decoration:none;color:var(--ink-mute);
+  transition:color .35s var(--ease)}
+.topline-mail:hover{color:var(--ink)}
+
+/* ==================================================================== 5.2
+   Monumentet. Sidan öppnar på sin egen namn som en gigantisk kontur -
+   stroke-only, blödande ur viewportkanten - med rubriken satt över den i
+   massiv vikt. Konturen är stommen, rubriken är rösten. Provetiketten
+   (visitkortets baksida, utan rotation) står nere till vänster som den
+   tryckta etiketten. Ingen CTA-knapp: etiketten är ingången. */
+.hero{min-height:calc(100svh - var(--topline-h));
+  overflow:hidden;position:relative;display:flex;flex-direction:column}
+.hero-wordmark{
+  position:absolute;top:0;right:0;z-index:0;
+  font-family:var(--f-disp);font-weight:700;
+  font-size:clamp(6rem, 21vw, 21rem);
+  line-height:.82;letter-spacing:-.045em;
+  color:transparent;
+  -webkit-text-stroke:1.5px color-mix(in oklab, var(--ink) 38%, var(--ground));
+  transform:translateY(-9%);
+  user-select:none;pointer-events:none}
+.hero-in{position:relative;z-index:1;display:flex;flex-direction:column;
+  flex:1 1 auto}
+.hero-h1{font-size:var(--disp);letter-spacing:-.03em;line-height:.88;
+  padding-block-start:calc(var(--ry) * .75)}
+.hero-label{max-width:26rem;margin-block-start:auto;padding-block-end:48px}
+
+/* Provetiketten: fyra rader, linjerade, ingen rotation. */
+.hero-label > *{display:flex;align-items:center;min-height:48px;
+  border-bottom:1px solid var(--hair);padding-block:16px}
+.hero-label > :first-child{border-top:1px solid var(--hair)}
+.pl-mark{font-family:var(--f-mono);font-size:.875rem;letter-spacing:.16em;
+  text-transform:uppercase}
+.pl-kicker{color:var(--ink-mute)}
+.pl-svc{display:flex;gap:1.15em;color:var(--ink-mute)}
+.pl-cta{justify-content:space-between;text-decoration:none;color:var(--ink);
+  transition:color .35s var(--ease)}
+.pl-cta::after{content:"";display:block;width:1.6em;height:1px;
+  background:var(--ink);transform-origin:100% 50%;
+  transition:transform .5s var(--ease)}
+.pl-cta:hover::after{transform:scaleX(1.5)}
+
+/* ==================================================================== 5.3
+   Tesen som numrerad utsaga. Fyra meningar, en per rad, hårlinje emellan,
+   monokrom. Till höger Hyperborea-plåten i tunn ram - samma bild som V3d,
+   ingen bildtext. */
+.tes-list{border-top:1px solid var(--hair);grid-column:1/-1}
+.tes-row{display:grid;grid-template-columns:2.4rem minmax(0,1fr);
+  column-gap:var(--colgap);align-items:baseline;
+  padding-block:40px;border-bottom:1px solid var(--hair);
+  transition:color .6s var(--ease)}
+html.js .tes-row{color:var(--ink-mute)}
+html.js .tes-row.is-in{color:var(--ink)}
+html.js .tes-row.is-in .num{color:var(--ink)}
+.tes-line{font-family:var(--f-body);font-weight:300;line-height:1.02;
+  letter-spacing:-.025em;font-size:clamp(1.5rem,3.3vw,3.2rem);max-width:34ch}
+.tes-fig{grid-column:1/-1;align-self:end;margin-block-start:var(--ry)}
+.tes-fig .frame{border:1px solid var(--hair);aspect-ratio:16/10;overflow:hidden}
+.tes-fig img{width:100%;height:100%;object-fit:cover;object-position:top center}
+
+/* ==================================================================== 5.4
+   Registret. Processen är en linjerad förteckning: numret till vänster,
+   steget i display, beskrivningen till höger. Ritningen hör till en annan
+   cell och upprepas inte. Numret bär bläck, linjen under drar ut i bläck. */
+.proc-head{display:grid;grid-template-columns:2.4rem minmax(0,1fr);
+  column-gap:var(--colgap);margin-bottom:32px}
+.proc-head > *{grid-column:2}
+.proc-head .h2{margin-bottom:16px}
+.reg{border-top:1px solid var(--hair)}
+.reg-row{position:relative;display:grid;grid-template-columns:repeat(12,minmax(0,1fr));
+  column-gap:var(--colgap);row-gap:8px;
+  padding-block:24px;border-bottom:1px solid var(--hair);
+  align-items:baseline;transition:padding-inline-start .55s var(--ease)}
+.reg-row .num{grid-column:1/2;transition:color .55s var(--ease)}
+.reg-name{grid-column:3/7;font-size:var(--disp-s);letter-spacing:-.028em}
+.reg-desc{grid-column:7/13;color:var(--ink-mute);max-width:var(--measure)}
+.reg-row::after{content:"";position:absolute;left:0;bottom:-1px;height:1px;
+  width:100%;background:var(--ink);transform:scaleX(0);transform-origin:0 50%;
+  transition:transform .7s var(--ease)}
+.reg-row.is-in .num,
+.reg-row:hover .num,
+.reg-row:focus-within .num{color:var(--ink)}
+.reg-row.is-in,
+.reg-row:hover,
+.reg-row:focus-within{padding-inline-start:clamp(8px,1.2vw,22px)}
+.reg-row.is-in::after,
+.reg-row:hover::after,
+.reg-row:focus-within::after{transform:scaleX(1)}
+
+/* ==================================================================== 5.5
+   Ljuslådorna. Sidans hjärta: två verk, var och en en helbredds mörk platta
+   som bryter ut ur ramen till 100vw. Plattan är en monteringsskiva: en
+   topplist i apparatgrad med verkets egen färg på numret och på regeln, det
+   levande verket i ett fönster som lyser inuti mattan, och liggaren bredvid
+   i ljus text. Fönstret klibbar medan liggaren går förbi, så att läsaren
+   läser varje punkt med den levande sajten framför sig. */
+.chapter{margin-bottom:16px}
+.chapter .lab{font-size:1rem;letter-spacing:.26em;color:var(--ink)}
+.chapter-rule{height:2px;background:var(--ink);transform-origin:0 50%}
+
+.work{background:var(--ink);color:var(--plate-ink);
+  margin-block-start:var(--ry-lg);overflow-x:clip}
+.work + .work{margin-block-start:var(--ry)}
+.work-in{max-width:var(--maxw);margin-inline:auto;padding-inline:var(--gutter)}
+
+.work-strip{position:relative;display:flex;align-items:baseline;gap:16px;
+  padding-block:40px 28px}
+.work-strip .num{color:var(--w);font-family:var(--f-mono);font-size:var(--mono);
+  letter-spacing:.1em;font-variant-numeric:tabular-nums}
+.work-name{font-family:var(--f-disp);font-weight:700;
+  font-size:clamp(1.9rem,3.4vw,3.2rem);line-height:1;letter-spacing:-.02em}
+.work-biz{color:var(--plate-mute);font-family:var(--f-mono);font-size:var(--mono);
+  letter-spacing:var(--track);text-transform:uppercase;margin-left:auto}
+.work-rule{position:absolute;left:0;bottom:0;width:100%;height:1px;
+  background:var(--w);transform-origin:0 50%}
+
+.work-body{display:grid;grid-template-columns:1fr 1fr;column-gap:var(--colgap);
+  padding-block:var(--ry)}
+/* Fönstret är en ljus ruta i den mörka mattan. Registreringsmärkena i två
+   hörn säger att detta är ett uppmätt föremål, inte en ritad webbläsare. */
+.work-frame{position:sticky;top:32px;border:1px solid var(--plate-hair);
+  aspect-ratio:16/10;overflow:hidden;background:var(--ground)}
+.work-frame iframe{display:block;width:100%;height:100%;border:0;background:var(--ground)}
+.work-frame::before,.work-frame::after{content:"";position:absolute;
+  width:14px;height:14px;border:1px solid var(--plate-hair)}
+.work-frame::before{top:6px;left:6px;border-right:0;border-bottom:0}
+.work-frame::after{bottom:6px;right:6px;border-left:0;border-top:0}
+
+.work-ledger{border-top:1px solid var(--plate-hair)}
+.led-row{display:grid;grid-template-columns:2.4rem minmax(0,1fr);
+  column-gap:var(--colgap);row-gap:8px;
+  padding-block:24px;border-bottom:1px solid var(--plate-hair)}
+.led-row > *{grid-column:2}
+.led-row .num{grid-column:1;grid-row:1;padding-top:8px;color:var(--plate-mute)}
+.led-name{font-family:var(--f-disp);font-weight:700;font-size:var(--disp-s);
+  letter-spacing:-.02em;line-height:1.02}
+.led-text{color:var(--plate-mute);max-width:var(--measure)}
+
+/* Verkets egen färg, låst till plattan. */
+.work--calyx{--w:var(--calyx-lit)}
+.work--horai{--w:var(--horai-lit)}
+
+/* ------------------------------------------------- set-piece: tre lager
+   När en platta öppnar sig (1) ritar registreringsregeln ut sig från vänster,
+   (2) sätter sig topplisten med ett litet lyft, (3) glider fönstret och
+   liggaren in i sina rutor från var sitt håll. Alla läser samma dämpade
+   framdrift - en rörelse, inte tre. Framdriften är --sc-ps, aldrig rå
+   --sc-p. Faller variabeln bort (ingen JS) blir varje deklaration ogiltig
+   och plattan står kvar i sitt normala läge. */
+.wipe{
+  --o:0; --rate:7;
+  --k:clamp(0, calc((var(--sc-ps) - var(--o)) * var(--rate)), 1);
+  transform:scaleX(var(--k));
+}
+.settle{
+  --o:0; --rate:7;
+  --k:clamp(0, calc((var(--sc-ps) - var(--o)) * var(--rate)), 1);
+  opacity:var(--k);
+}
+.settle--l{transform:translate3d(calc((1 - var(--k)) * -2.4rem),0,0)}
+.settle--r{transform:translate3d(calc((1 - var(--k)) *  2.4rem),0,0)}
+.settle--up{transform:translate3d(0, calc((1 - var(--k)) * 1.4rem), 0)}
+.chapter-rule{--o:.26; --rate:5}
+.work-strip{--o:.05}
+.work-rule{--o:.09}
+.work-window{--o:.12}
+.work-ledger{--o:.15}
+
+/* ==================================================================== 5.6
+   Priset. Samma mörka platta som verken - tredje förekomsten av samma enhet,
+   så att priset hör ihop med föremålen och inte med ramen - men satt innanför
+   arket så att instrumentvitt syns runt om. Priset är radens största tal. */
+.plate-dark{background:var(--ink);color:var(--plate-ink);padding:96px 72px}
+.plate-dark .h2{color:var(--plate-ink);max-width:24ch}
+.plate-ingress{color:var(--plate-mute);max-width:var(--measure);margin-block-start:16px}
+.price-reg{border-top:1px solid var(--plate-hair);margin-block-start:48px}
+.price-row{display:grid;grid-template-columns:minmax(0,1fr) auto;
+  column-gap:56px;align-items:baseline;
+  padding-block:24px;border-bottom:1px solid var(--plate-hair)}
+.price-label{color:var(--plate-mute);max-width:var(--measure)}
+.price-value{font-family:var(--f-mono);font-weight:400;letter-spacing:-.01em;
+  font-size:clamp(1.4rem,2.7vw,2.6rem);color:var(--plate-ink);white-space:nowrap;
+  font-variant-numeric:tabular-nums}
+.price-value .unit{font-size:.5em;letter-spacing:var(--track);color:var(--plate-mute)}
+.price-value--text{font-size:clamp(.95rem,1.35vw,1.2rem);letter-spacing:.02em;
+  color:var(--plate-mute)}
+
+/* ==================================================================== 5.7
+   Kontakten. Tillbaka på instrumentvitt. Linjerade fält, skarp rektangel. */
+.contact-head{grid-column:1/-1}
+.contact-lead{color:var(--ink-mute);margin-block-start:16px;max-width:var(--measure)}
+.contact-form{grid-column:1/-1;display:grid;grid-template-columns:1fr;gap:32px}
+.field{display:flex;flex-direction:column;gap:8px}
+.field label{color:var(--ink-mute)}
+.field input,.field textarea{
+  font-family:var(--f-body);font-weight:300;font-size:var(--body);
+  color:var(--ink);background:transparent;
+  border:0;border-bottom:1px solid var(--hair);
+  padding:8px 0;width:100%;
+  transition:border-color .4s var(--ease),box-shadow .4s var(--ease)}
+.field textarea{resize:vertical;min-height:104px}
+.field input:focus,.field textarea:focus{border-bottom-color:var(--ink)}
+.field input[aria-invalid="true"],.field textarea[aria-invalid="true"]{
+  border-bottom-color:var(--ink);box-shadow:0 1px 0 0 var(--ink)}
+.contact-actions{display:flex;align-items:center}
+.contact-send{
+  font-family:var(--f-mono);font-size:var(--mono);letter-spacing:var(--track);
+  text-transform:uppercase;color:var(--ink);background:transparent;
+  border:1px solid var(--ink);padding:0 32px;min-height:48px;min-width:48px;
+  cursor:pointer;transition:background .4s var(--ease),color .4s var(--ease)}
+.contact-send:hover{background:var(--ink);color:var(--ground)}
+.contact-send:disabled{opacity:.5;cursor:not-allowed}
+html:not(.js) .contact-send{display:none}
+.contact-status{color:var(--ink);max-width:var(--measure)}
+.contact-status:empty{display:none}
+.contact-label{border-top:1px solid var(--hair);margin-block-start:64px;max-width:26rem}
+.contact-label > *{display:flex;align-items:center;min-height:48px;
+  border-bottom:1px solid var(--hair);padding-block:16px}
+.contact-label .pl-mark{font-family:var(--f-mono);font-size:.875rem;
+  letter-spacing:.16em;text-transform:uppercase}
+
+/* ==================================================================== 5.8
+   Avslutet. En helbreddsregel, en rad. <footer> ligger utanför <main> så att
+   den mappas till contentinfo av HTML-AAM. */
+.close{border-top:1px solid var(--hair);margin-top:var(--ry)}
+.close-in{padding-block:40px}
+.close-mailto{text-decoration:none;color:var(--ink-mute);
+  border-bottom:1px solid transparent;
+  transition:color .35s var(--ease),border-color .35s var(--ease)}
+.close-mailto:hover{color:var(--ink);border-bottom-color:var(--ink)}
+
+/* --------------------------------------------------- den delade tändningen
+   Rader och plattor tonar in när de passerar mitten av vyn. Scopad till
+   html.js: utan JS ska arket stå läsbart från första stunden. */
+html.js [data-reveal]{opacity:0;transform:translate3d(0,.9rem,0);
+  transition:opacity .75s var(--ease),transform .75s var(--ease);
+  transition-delay:calc(var(--i,0) * 55ms)}
+html.js [data-reveal].is-in{opacity:1;transform:none}
+
+/* ------------------------------------------------------------- anpassning
+   Samma idé på telefon: en spalt, samma linjer, samma språng. Plattorna
+   är fortfarande helbredda; fönstret och liggaren staplas. */
+@media (max-width:900px){
+  :root{--disp:clamp(2.6rem,13.5vw,5rem);--disp-s:clamp(1.35rem,5.4vw,1.9rem);
+    --ry:64px;--ry-lg:80px;--topline-h:56px}
+  .tes-row,.reg-row,.led-row{grid-template-columns:minmax(0,1fr)}
+  .tes-row > *,.reg-row > *,.led-row > *{grid-column:1}
+  .tes-line{max-width:100%}
+  .price-row{grid-template-columns:minmax(0,1fr);column-gap:24px}
+  .price-value{margin-top:8px}
+  .plate-dark{padding:48px 24px}
+  .tes-fig{margin-block-start:40px}
+  .hero-h1{padding-block-start:40px}
+  .hero-label{padding-block-end:40px}
+  /* Fönstret och liggaren staplas; klibbandet är ett no-op på en spalt. */
+  .work-body{grid-template-columns:minmax(0,1fr);row-gap:40px;padding-block:40px}
+  .work-window{grid-column:1;grid-row:auto}
+  .work-ledger{grid-column:1;grid-row:auto}
+  .work-frame{position:relative;top:0;aspect-ratio:4/5}
+}
+@media (min-width:901px){
+  .tes-list{grid-column:1/7}
+  .tes-fig{grid-column:8/13;margin-block-start:0}
+  .contact-head{grid-column:1/6}
+  .contact-form{grid-column:7/13;grid-template-columns:1fr 1fr;column-gap:32px}
+  .field--wide,.contact-actions,.contact-status{grid-column:1/-1}
+  .contact-label{grid-column:1/6}
+  /* Båda barnen får sin rad uttalad; bara kolumnerna speglas i det
+     spegelvända verket. Fästet bor här där det har något att mäta mot. */
+  .work-window{grid-column:1;grid-row:1}
+  .work-ledger{grid-column:2;grid-row:1}
+  .work--mirror .work-window{grid-column:2;grid-row:1}
+  .work--mirror .work-ledger{grid-column:1;grid-row:1}
+}
+</style>
+</head>
+<body>
+
+<header class="topline">
+  <div class="shell topline-in">
+    <span class="topline-mark lab">ALUNIX</span>
+    <a class="topline-mail mono tap" href="mailto:kontakt@alunix.se">kontakt@alunix.se</a>
+  </div>
+</header>
+
+<main id="page">
+
+  <!-- ============================================================ 5.2 heron
+       Sidans eget namn som kontur, blödande ur vyn, och rubriken satt över
+       den i massiv vikt. Ingen knapp: etiketten är ingången. -->
+  <section class="hero" id="hero" aria-labelledby="hero-title">
+    <div class="hero-wordmark" aria-hidden="true">ALUNIX</div>
+    <div class="shell hero-in">
+      <h1 class="hero-h1" id="hero-title">Er hemsida är nutidens visitkort</h1>
+      <div class="hero-label mono">
+        <p class="pl-mark">Alunix</p>
+        <p class="pl-kicker">Digital byrå</p>
+        <p class="pl-svc"><span>Design</span><span>Utveckling</span><span>System</span></p>
+        <a class="pl-cta" href="#kontakt">Boka ett möte</a>
+      </div>
+    </div>
+  </section>
+
+  <!-- ============================================================ 5.3 tesen
+       Fyra meningar som en numrerad utsaga, plåten till höger. -->
+  <section class="sec" id="tes" aria-labelledby="tes-1">
+    <div class="shell grid">
+      <ol class="tes-list">
+        <li class="tes-row" data-reveal style="--i:0">
+          <span class="num" aria-hidden="true">01</span>
+          <h2 class="tes-line" id="tes-1">Det första intrycket är digitalt.</h2>
+        </li>
+        <li class="tes-row" data-reveal style="--i:1">
+          <span class="num" aria-hidden="true">02</span>
+          <p class="tes-line">Skärmen möter besökaren före texten.</p>
+        </li>
+        <li class="tes-row" data-reveal style="--i:2">
+          <span class="num" aria-hidden="true">03</span>
+          <p class="tes-line">Innan ett ord är läst bär layout och bild hela argumentet.</p>
+        </li>
+        <li class="tes-row" data-reveal style="--i:3">
+          <span class="num" aria-hidden="true">04</span>
+          <p class="tes-line">Vi hjälper er att synas på rätt sätt.</p>
+        </li>
+      </ol>
+
+      <figure class="tes-fig">
+        <div class="frame">
+          <img src="/tests/alunix-concepts-r3/build/assets/demo-hyperborea.webp"
+               width="1440" height="900" decoding="async" loading="lazy"
+               alt="Startsidan för Hyperborea, en konferens i Lund">
+        </div>
+      </figure>
+    </div>
+  </section>
+
+  <!-- ========================================================== 5.4 processen
+       Registret över de sju stegen. Ritningen hör till en annan cell. -->
+  <section class="sec" id="process" aria-labelledby="process-title">
+    <div class="shell">
+      <div class="proc-head">
+        <p class="mono">Vår process:</p>
+        <h2 class="h2" id="process-title">Från samtal till lanserad sida.</h2>
+        <p class="lead">Webbdesign, design och system. Allt på ett ställe.</p>
+      </div>
+
+      <ol class="reg">
+        <li class="reg-row" data-reveal style="--i:0">
+          <span class="num" aria-hidden="true">01</span>
+          <h3 class="reg-name">Uppstart</h3>
+          <p class="reg-desc">Vi börjar med ett samtal om er verksamhet samt vad ni vill att sidan ska göra för er. Utifrån det skapar vi ett initialt underlag som ni rättar innan det går till ritbordet.</p>
+        </li>
+        <li class="reg-row" data-reveal style="--i:1">
+          <span class="num" aria-hidden="true">02</span>
+          <h3 class="reg-name">Planering</h3>
+          <p class="reg-desc">Vi ritar strukturen som en skiss innan vi formger något. Där ser ni vilka sidor som behövs och vad varje sida ska få besökaren att göra, mobilen först.</p>
+        </li>
+        <li class="reg-row" data-reveal style="--i:2">
+          <span class="num" aria-hidden="true">03</span>
+          <h3 class="reg-name">Design</h3>
+          <p class="reg-desc">När strukturen står formger vi sidan efter er verksamhet. Förslaget lägger vi på en testadress, där ni ser det på er egen telefon och säger till innan det går till bygge.</p>
+        </li>
+        <li class="reg-row" data-reveal style="--i:3">
+          <span class="num" aria-hidden="true">04</span>
+          <h3 class="reg-name">Utveckling</h3>
+          <p class="reg-desc">Vi bygger sidan i kod från grunden, utan färdig mall, så att den laddar snabbt. Texter och bilder ändrar ni själva, och vill ni lägga till mer bygger ni vidare på det vi lämnat.</p>
+        </li>
+        <li class="reg-row" data-reveal style="--i:4">
+          <span class="num" aria-hidden="true">05</span>
+          <h3 class="reg-name">Innehåll</h3>
+          <p class="reg-desc">Ni behöver inte ha något färdigt. Det ni har bearbetar vi, bygger vidare på och kompletterar där något saknas. Texten skriver vi åt er, om ni inte vill ha er egen.</p>
+        </li>
+        <li class="reg-row" data-reveal style="--i:5">
+          <span class="num" aria-hidden="true">06</span>
+          <h3 class="reg-name">Lansering</h3>
+          <p class="reg-desc">Innan sidan publiceras går vi igenom varje länk, formulär och bild. Vi testar den med tangentbord och skärmläsare, på telefon och på dator, och visar er hur ni ändrar innehållet själva.</p>
+        </li>
+        <li class="reg-row" data-reveal style="--i:6">
+          <span class="num" aria-hidden="true">07</span>
+          <h3 class="reg-name">Förvaltning</h3>
+          <p class="reg-desc">Vi finns kvar efter lansering. Nya sidor och ändringar går samma väg som bygget, så ni ser dem på testadressen innan era kunder gör det. Har ni en fråga mejlar ni oss på kontakt@alunix.se.</p>
+        </li>
+      </ol>
+    </div>
+  </section>
+
+  <!-- ========================================================== 5.5 ljuslådorna
+       Två helbredds mörka plattor, en per verk. Plattan är en monteringsskiva:
+       topplisten bär verkets egen färg, fönstret visar den levande sajten,
+       liggaren står bredvid i ljus text. Hōrai är spegelvänt. -->
+  <section class="sec" id="case" aria-labelledby="case-title">
+    <div class="shell" data-sc-act="flow">
+      <div class="chapter">
+        <h2 class="lab" id="case-title">Exempelcase</h2>
+      </div>
+      <div class="chapter-rule wipe"></div>
+    </div>
+
+    <!-- ------------------------------------------------------ prov 01 Calyx -->
+    <article class="work work--calyx" id="case-calyx" data-sc-act="flow" aria-labelledby="calyx-title">
+      <div class="work-in">
+        <header class="work-strip settle settle--up">
+          <span class="num" aria-hidden="true">01</span>
+          <h3 class="work-name" id="calyx-title">Calyx</h3>
+          <span class="work-biz">Florist, Stockholm</span>
+          <span class="work-rule wipe" aria-hidden="true"></span>
+        </header>
+
+        <div class="work-body">
+          <figure class="work-window settle settle--l">
+            <div class="work-frame">
+              <iframe data-src="/sites/calyx.html" loading="lazy" inert scrolling="no"
+                      title="Exempelsida: Calyx, florist i Stockholm"></iframe>
+            </div>
+          </figure>
+
+          <ol class="work-ledger settle settle--r">
+            <li class="led-row" data-reveal style="--i:0">
+              <span class="num" aria-hidden="true">01</span>
+              <h4 class="led-name">Fotot bär rubriken</h4>
+              <p class="led-text">Vi byggde Calyx som ett tidskriftsnummer, med utgåvan i hörnet och rubriken direkt på fotot. En bukett vill man röra vid, och på en skärm kommer ett stort foto närmast.</p>
+            </li>
+            <li class="led-row" data-reveal style="--i:1">
+              <span class="num" aria-hidden="true">02</span>
+              <h4 class="led-name">En serif för allt man läser</h4>
+              <p class="led-text">Rubriker och brödtext står i samma klassiska serif, och kursiven sköter betoningen. Ett andra rubriktypsnitt hade dragit åt reklam. Det enda andra typsnittet är skrivmaskinslikt och används till etiketter och bildtexter, som anteckningar i marginalen.</p>
+            </li>
+            <li class="led-row" data-reveal style="--i:2">
+              <span class="num" aria-hidden="true">03</span>
+              <h4 class="led-name">Färgen finns redan i bilderna</h4>
+              <p class="led-text">Fotona står parvis med en liten märkning under varje, som i en katalog. Grunden är varmt, nästan vitt papper med ett svagt korn. Sidan har en enda egen färg, en rostton, och den dyker upp först längre ned.</p>
+            </li>
+            <li class="led-row" data-reveal style="--i:3">
+              <span class="num" aria-hidden="true">04</span>
+              <h4 class="led-name">Utbudet som prislista</h4>
+              <p class="led-text">Veckans utbud står i en lista med löpnummer, namn, en kort beskrivning och priset till höger. Kort i ett rutnät hade krävt ett nytt foto av varje bukett varje vecka. Med en lista räcker det att skriva om en rad.</p>
+            </li>
+            <li class="led-row" data-reveal style="--i:4">
+              <span class="num" aria-hidden="true">05</span>
+              <h4 class="led-name">Ett mejl räcker</h4>
+              <p class="led-text">Sidan slutar med hur en beställning går till. Besökaren skriver om rummet och ljuset, och ateljén svarar med vad som finns den veckan. Sådant passar dåligt i formulärfält, så vi satte en e-postadress där formuläret annars hade stått.</p>
+            </li>
+          </ol>
+        </div>
+      </div>
+    </article>
+
+    <!-- ------------------------------------------------------ prov 02 Hōrai
+         Spegelvänt: liggaren till vänster, fönstret till höger. -->
+    <article class="work work--horai work--mirror" id="case-horai" data-sc-act="flow" aria-labelledby="horai-title">
+      <div class="work-in">
+        <header class="work-strip settle settle--up">
+          <span class="num" aria-hidden="true">02</span>
+          <h3 class="work-name" id="horai-title">Hōrai</h3>
+          <span class="work-biz">Restaurang, Asian Fusion</span>
+          <span class="work-rule wipe" aria-hidden="true"></span>
+        </header>
+
+        <div class="work-body">
+          <figure class="work-window settle settle--l">
+            <div class="work-frame">
+              <iframe data-src="/sites/horai.html" loading="lazy" inert scrolling="no"
+                      title="Exempelsida: Hōrai, Asian fusion-koncept"></iframe>
+            </div>
+          </figure>
+
+          <ol class="work-ledger settle settle--r">
+            <li class="led-row" data-reveal style="--i:0">
+              <span class="num" aria-hidden="true">01</span>
+              <h4 class="led-name">Namnet står en gång</h4>
+              <p class="led-text">Första skärmen är ett mörkt foto med namnet i stora versaler och öppettiderna i hörnet. Loggan i menyraden tänds när bilden rullat förbi, så namnet står bara en gång på första skärmen.</p>
+            </li>
+            <li class="led-row" data-reveal style="--i:1">
+              <span class="num" aria-hidden="true">02</span>
+              <h4 class="led-name">Stycket tänds i er takt</h4>
+              <p class="led-text">Stycket om huset börjar nästan osynligt och tänds ord för ord medan ni scrollar. Vi ville att det skulle läsas långsamt, som när någon berättar. Rubriken står kvar i rött, med ett japanskt tecken ovanför som en stämpel.</p>
+            </li>
+            <li class="led-row" data-reveal style="--i:2">
+              <span class="num" aria-hidden="true">03</span>
+              <h4 class="led-name">En mening som saktar in</h4>
+              <p class="led-text">Mellan huset och menyerna står en enda mening på mörk grund. Den är suddig tills den når mitten av skärmen och suddas ut igen när ni scrollar vidare. Den står där för att bromsa läsningen före menyer och priser.</p>
+            </li>
+            <li class="led-row" data-reveal style="--i:3">
+              <span class="num" aria-hidden="true">04</span>
+              <h4 class="led-name">Priset står större än namnet</h4>
+              <p class="led-text">Varje meny har en romersk siffra, ett namn och ett pris per gäst. Priset står i rött, större än namnet. Utan à la carte väljer man en hel meny och letar först efter priset. Dryckerna har en egen grön ton.</p>
+            </li>
+            <li class="led-row" data-reveal style="--i:4">
+              <span class="num" aria-hidden="true">05</span>
+              <h4 class="led-name">Rummet före bokningen</h4>
+              <p class="led-text">Precis före bokningen kommer matsalen, i en bild över hela bredden. Texten står direkt på fotot, med en mörk toning från vänster så att den går att läsa. Den som ska boka vill se var den ska sitta.</p>
+            </li>
+            <li class="led-row" data-reveal style="--i:5">
+              <span class="num" aria-hidden="true">06</span>
+              <h4 class="led-name">Knappen fanns där hela tiden</h4>
+              <p class="led-text">Sist står hur man bokar och när veckans platser släpps. Det som inte passar i ett formulär får en egen e-postadress. Den som inte orkar läsa klart har haft bokningsknappen i menyraden hela vägen ned.</p>
+            </li>
+          </ol>
+        </div>
+      </div>
+    </article>
+  </section>
+
+  <!-- ============================================================ 5.6 priset
+       Samma mörka platta, satt innanför arket. Priset är radens största tal. -->
+  <section class="sec" id="pris" aria-labelledby="pris-title">
+    <div class="shell">
+      <div class="plate-dark" data-reveal>
+        <h2 class="h2" id="pris-title">Alla har rätt till bra design.</h2>
+        <p class="plate-ingress">Med bra design menar vi det ni just har sett. Den nivån får ni på varje rad nedan, och sidan ritar vi efter era egna behov och önskemål.</p>
+
+        <ol class="price-reg">
+          <li class="price-row">
+            <span class="price-label">Standardpaket. Webbplats med CMS för egna ändringar och en första SEO&#8209;optimering.</span>
+            <span class="price-value">26 900 <span class="unit">kr</span></span>
+          </li>
+          <li class="price-row">
+            <span class="price-label">Paket med bokningssystem, betalning och kunddatabas.</span>
+            <span class="price-value">38 900 <span class="unit">kr</span></span>
+          </li>
+          <li class="price-row">
+            <span class="price-label">Helt skräddarsydda lösningar för produktkataloger, specialbyggda system med mera</span>
+            <span class="price-value price-value--text">Pris vid förfrågan</span>
+          </li>
+        </ol>
+      </div>
+    </div>
+  </section>
+
+  <!-- =========================================================== 5.7 kontakten
+       Tillbaka på instrumentvitt. Fälten är underlinjer och knappen en skarp
+       rektangel. Statusraden finns i markup och är tom. -->
+  <section class="sec" id="kontakt" aria-labelledby="kontakt-title">
+    <div class="shell grid">
+      <div class="contact-head" data-reveal>
+        <h2 class="h2" id="kontakt-title">Berätta om er verksamhet.</h2>
+        <p class="contact-lead">Så berättar vi vad vi kan göra för er.</p>
+      </div>
+
+      <form class="contact-form" data-reveal>
+        <p class="field"><label for="k-namn">Namn</label>
+          <input id="k-namn" name="namn" type="text" autocomplete="name" placeholder=" " required></p>
+        <p class="field"><label for="k-verk">Verksamhet</label>
+          <input id="k-verk" name="verksamhet" type="text" autocomplete="organization" placeholder=" "></p>
+        <p class="field field--wide"><label for="k-text">Vad ni behöver</label>
+          <textarea id="k-text" name="text" rows="5" placeholder=" " required></textarea></p>
+        <div class="contact-actions">
+          <button class="contact-send" type="submit">Skicka</button>
+        </div>
+        <p class="contact-status" role="status" aria-live="polite"></p>
+      </form>
+
+      <!-- Etiketten från heron, upprepad som ett litet block, dolt för
+           skärmläsaren eftersom dess ordagranna innehåll står i den läsbara
+           kopian alldeles intill. Sista raden är inte en länk här. -->
+      <div class="contact-label mono" aria-hidden="true">
+        <p class="pl-mark">Alunix</p>
+        <p class="pl-kicker">Digital byrå</p>
+        <p class="pl-svc"><span>Design</span><span>Utveckling</span><span>System</span></p>
+        <p>Boka ett möte</p>
+      </div>
+      <p class="sr-only">Alunix. Digital byrå. Design, utveckling, system. Boka ett möte: kontakt@alunix.se.</p>
+    </div>
+  </section>
+
+</main>
+
+<footer class="close">
+  <div class="shell close-in">
+    <a class="close-mailto mono tap" href="mailto:kontakt@alunix.se">Eller mejla oss direkt på kontakt@alunix.se</a>
+  </div>
+</footer>
+
+<script src="scroll/scrollcraft.js"></script>
+<script src="scroll/sc-smooth.js"></script>
+<script>
+(function(){
+  'use strict';
+
+  /* Motorn monteras för sin mätning, inte för sin rekvisita: varje akt får
+     en framdrift 0-1 som CSS läser. Ingenting pinnas här - plattorna står
+     still och låter läsaren gå; fästet är CSS-sticky, inte motor-pin. */
+  if (window.ScrollCraft) ScrollCraft.mount(document.body);
+
+  var LINE = 0.55;
+  var AHEAD = 2;
+
+  /* Tändningen mäts mot en linje i vyn i stället för mot en observatör.
+     En observatör rapporterar bara element som faktiskt korsar bandet, och
+     den som hoppar - klickar på en ankarlänk, trycker Page Down eller
+     laddar om mitt i sidan - hoppar förbi bandet utan att något element
+     någonsin varit i det. Då står raderna kvar osynliga för alltid. En linje
+     som läses av vid varje scroll klarar båda vägarna. */
+  var pending = Array.prototype.slice.call(document.querySelectorAll('[data-reveal]'));
+  var frames = Array.prototype.slice.call(document.querySelectorAll('iframe[data-src]'));
+  var queued = false;
+
+  var mountFrame = function(f){
+    var src = f.getAttribute('data-src');
+    if (!src) return;
+    f.src = src;
+    f.removeAttribute('data-src');
+  };
+  var defer = window.requestIdleCallback
+    ? function(fn){ requestIdleCallback(fn, { timeout: 600 }); }
+    : function(fn){ setTimeout(fn, 1); };
+  function mountDue(){
+    if (!frames.length) return;
+    var edge = window.innerHeight * AHEAD;
+    for (var i = frames.length - 1; i >= 0; i--){
+      if (frames[i].getBoundingClientRect().top < edge){
+        (function(f){ defer(function(){ mountFrame(f); }); })(frames[i]);
+        frames.splice(i, 1);
+      }
+    }
+  }
+
+  function update(){
+    queued = false;
+    var line = window.innerHeight * LINE;
+    for (var i = pending.length - 1; i >= 0; i--){
+      if (pending[i].getBoundingClientRect().top < line){
+        pending[i].classList.add('is-in');
+        pending.splice(i, 1);
+      }
+    }
+    mountDue();
+  }
+  function kick(){ if (!queued){ queued = true; requestAnimationFrame(update); } }
+
+  addEventListener('scroll', kick, { passive: true });
+  addEventListener('resize', kick, { passive: true });
+  if ('ResizeObserver' in window) new ResizeObserver(kick).observe(document.body);
+  if (document.fonts && document.fonts.ready) document.fonts.ready.then(kick).catch(function(){});
+  if (!('IntersectionObserver' in window) && frames.length){
+    while (frames.length) mountFrame(frames.pop());
+  }
+  kick();
+
+  /* Kontaktformuläret. Ingen backend: webbläsarens egen validering, och
+     mejlet förbereds i användarens egen klient. */
+  var kf = document.querySelector('.contact-form');
+  if (kf){
+    Array.prototype.forEach.call(kf.querySelectorAll('input,textarea'), function(el){
+      el.addEventListener('input', function(){
+        if (el.validity.valid) el.removeAttribute('aria-invalid');
+      });
+    });
+    kf.addEventListener('submit', function(e){
+      e.preventDefault();
+      if (!kf.reportValidity()){
+        Array.prototype.forEach.call(kf.querySelectorAll('input,textarea'), function(el){
+          if (!el.validity.valid) el.setAttribute('aria-invalid', 'true');
+        });
+        return;
+      }
+      var v = function(n){ return (kf.elements[n].value || '').trim(); };
+      var SUBJECT = 'Kontakt från alunix.se';
+      var STATUS = 'Mejlet är förberett och skickas när ni bekräftar det i er e-postklient. Öppnades ingen klient, mejla direkt till kontakt@alunix.se.';
+      var body = [v('namn'), v('verksamhet'), '', v('text')].join('\n');
+      var btn = kf.querySelector('.contact-send');
+      var label = btn.textContent;
+      btn.disabled = true;
+      btn.textContent = 'Öppnar…';
+      location.href = 'mailto:kontakt@alunix.se'
+        + '?subject=' + encodeURIComponent(SUBJECT)
+        + '&body=' + encodeURIComponent(body);
+      kf.querySelector('.contact-status').textContent = STATUS;
+      setTimeout(function(){ btn.disabled = false; btn.textContent = label; }, 900);
+    });
+  }
+})();
+</script>
+</body>
+</html>

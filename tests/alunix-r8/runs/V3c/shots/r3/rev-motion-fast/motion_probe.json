@@ -1,0 +1,62 @@
+{
+  "url": "http://127.0.0.1:3321/tests/alunix-r8/runs/V3c/index.html",
+  "wheel": "100:60",
+  "cpu": 4.0,
+  "tracks": [
+    {
+      "track": "section.hero:--sc-ps",
+      "dead": false,
+      "frames": 177,
+      "frame_p95_ms": 144.21,
+      "frames_over_20ms": 109,
+      "frames_over_33ms": 109,
+      "value_range": [
+        0,
+        1
+      ],
+      "max_step_pct": 3.51,
+      "staircase": 0,
+      "reversals": 0
+    },
+    {
+      "track": "#plateCard:transform",
+      "dead": false,
+      "frames": 177,
+      "frame_p95_ms": 144.21,
+      "frames_over_20ms": 109,
+      "frames_over_33ms": 109,
+      "value_range": [
+        0,
+        180.0
+      ],
+      "max_step_pct": 4.52,
+      "staircase": 0,
+      "reversals": 0
+    },
+    {
+      "track": "#heroPoolImg:transform",
+      "dead": false,
+      "frames": 177,
+      "frame_p95_ms": 144.21,
+      "frames_over_20ms": 109,
+      "frames_over_33ms": 109,
+      "value_range": [
+        -16.867,
+        16.867
+      ],
+      "max_step_pct": 3.51,
+      "staircase": 0,
+      "reversals": 0
+    }
+  ],
+  "pass": false,
+  "failures": [
+    "section.hero:--sc-ps: frame_p95 144.21 ms > 20",
+    "section.hero:--sc-ps: 109 frames > 33 ms",
+    "section.hero:--sc-ps: max_step 3.51 % > 3 (spelhuvud)",
+    "#plateCard:transform: frame_p95 144.21 ms > 20",
+    "#plateCard:transform: 109 frames > 33 ms",
+    "#heroPoolImg:transform: frame_p95 144.21 ms > 20",
+    "#heroPoolImg:transform: 109 frames > 33 ms"
+  ]
+}

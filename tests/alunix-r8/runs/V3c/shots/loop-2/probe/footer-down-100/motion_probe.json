@@ -1,0 +1,46 @@
+{
+  "url": "http://localhost:3090/tests/alunix-r8/runs/V3c/index.html",
+  "wheel": "100:60",
+  "cpu": 4.0,
+  "tracks": [
+    {
+      "track": "footer.close:--sc-ps",
+      "dead": false,
+      "frames": 99,
+      "frame_p95_ms": 199.06,
+      "frames_over_20ms": 33,
+      "frames_over_33ms": 33,
+      "value_range": [
+        0.0113,
+        0.5002
+      ],
+      "max_step_pct": 5.79,
+      "staircase": 0,
+      "reversals": 0
+    },
+    {
+      "track": ".price:--sc-ps",
+      "dead": false,
+      "frames": 99,
+      "frame_p95_ms": 199.06,
+      "frames_over_20ms": 33,
+      "frames_over_33ms": 33,
+      "value_range": [
+        0.9872,
+        1
+      ],
+      "max_step_pct": 16.41,
+      "staircase": 0,
+      "reversals": 0
+    }
+  ],
+  "pass": false,
+  "failures": [
+    "footer.close:--sc-ps: frame_p95 199.06 ms > 20",
+    "footer.close:--sc-ps: 33 frames > 33 ms",
+    "footer.close:--sc-ps: max_step 5.79 % > 3 (spelhuvud)",
+    ".price:--sc-ps: frame_p95 199.06 ms > 20",
+    ".price:--sc-ps: 33 frames > 33 ms",
+    ".price:--sc-ps: max_step 16.41 % > 3 (spelhuvud)"
+  ]
+}

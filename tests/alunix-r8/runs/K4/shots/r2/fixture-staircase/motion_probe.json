@@ -1,0 +1,27 @@
+{
+  "url": "http://127.0.0.1:3303/tests/motion/staircase.html",
+  "wheel": "100:60",
+  "cpu": 4.0,
+  "tracks": [
+    {
+      "track": "#card:transform",
+      "dead": false,
+      "frames": 253,
+      "frame_p95_ms": 16.8,
+      "frames_over_20ms": 0,
+      "frames_over_33ms": 0,
+      "value_range": [
+        0,
+        180.0
+      ],
+      "max_step_pct": 5.56,
+      "staircase": 18,
+      "reversals": 0
+    }
+  ],
+  "pass": false,
+  "failures": [
+    "#card:transform: staircase 18",
+    "#card:transform: max_step 5.56 % > 3"
+  ]
+}

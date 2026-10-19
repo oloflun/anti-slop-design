@@ -1,0 +1,44 @@
+{
+  "url": "http://localhost:3090/tests/alunix-r8/board/cells/V3c-r8/index.html",
+  "wheel": "100:60",
+  "cpu": 4.0,
+  "tracks": [
+    {
+      "track": "section.hero:--sc-ps",
+      "dead": false,
+      "frames": 179,
+      "frame_p95_ms": 290.55,
+      "frames_over_20ms": 111,
+      "frames_over_33ms": 111,
+      "value_range": [
+        0,
+        0.9994
+      ],
+      "max_step_pct": 1.4,
+      "staircase": 0,
+      "reversals": 0
+    },
+    {
+      "track": ".plate-card:transform",
+      "dead": false,
+      "frames": 179,
+      "frame_p95_ms": 290.55,
+      "frames_over_20ms": 111,
+      "frames_over_33ms": 111,
+      "value_range": [
+        0,
+        180.0
+      ],
+      "max_step_pct": 2.0,
+      "staircase": 0,
+      "reversals": 0
+    }
+  ],
+  "pass": false,
+  "failures": [
+    "section.hero:--sc-ps: frame_p95 290.55 ms > 20",
+    "section.hero:--sc-ps: 111 frames > 33 ms",
+    ".plate-card:transform: frame_p95 290.55 ms > 20",
+    ".plate-card:transform: 111 frames > 33 ms"
+  ]
+}

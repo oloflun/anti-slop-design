@@ -1,0 +1,143 @@
+{
+  "stops": [
+    {
+      "walkId": "1",
+      "tag": "a",
+      "name": "Hoppa till kontakt",
+      "hasFocusIndicator": true,
+      "rect": {
+        "top": 12,
+        "left": 35,
+        "width": 145,
+        "height": 43
+      },
+      "inViewport": true,
+      "tabIndex": 0
+    },
+    {
+      "walkId": "2",
+      "tag": "a",
+      "name": "Mejla oss\nkontakt@alunix.se",
+      "hasFocusIndicator": true,
+      "rect": {
+        "top": 841,
+        "left": 35,
+        "width": 231,
+        "height": 43
+      },
+      "inViewport": true,
+      "tabIndex": 0
+    },
+    {
+      "walkId": "3",
+      "tag": "a",
+      "name": "Alunix, till början",
+      "hasFocusIndicator": true,
+      "rect": {
+        "top": 30,
+        "left": 572,
+        "width": 40,
+        "height": 55
+      },
+      "inViewport": true,
+      "tabIndex": 0
+    },
+    {
+      "walkId": "4",
+      "tag": "iframe",
+      "name": "Exempelsida: Calyx, florist i Stockholm",
+      "hasFocusIndicator": false,
+      "rect": {
+        "top": 180,
+        "left": 318,
+        "width": 804,
+        "height": 502
+      },
+      "inViewport": true,
+      "tabIndex": 0
+    },
+    {
+      "walkId": "5",
+      "tag": "a",
+      "name": "Öppna Calyx i full storlek",
+      "hasFocusIndicator": true,
+      "rect": {
+        "top": 429,
+        "left": 317,
+        "width": 180,
+        "height": 40
+      },
+      "inViewport": true,
+      "tabIndex": 0
+    },
+    {
+      "walkId": "6",
+      "tag": "iframe",
+      "name": "Exempelsida: Hōrai, Asian fusion-koncept",
+      "hasFocusIndicator": false,
+      "rect": {
+        "top": 109,
+        "left": 318,
+        "width": 804,
+        "height": 502
+      },
+      "inViewport": true,
+      "tabIndex": 0
+    },
+    {
+      "walkId": "7",
+      "tag": "a",
+      "name": "Öppna Hōrai i full storlek",
+      "hasFocusIndicator": true,
+      "rect": {
+        "top": 841,
+        "left": 317,
+        "width": 178,
+        "height": 40
+      },
+      "inViewport": true,
+      "tabIndex": 0
+    },
+    {
+      "walkId": "8",
+      "tag": "a",
+      "name": "kontakt@alunix.se",
+      "hasFocusIndicator": true,
+      "rect": {
+        "top": 462,
+        "left": 656,
+        "width": 240,
+        "height": 55
+      },
+      "inViewport": true,
+      "tabIndex": 0
+    }
+  ],
+  "issues": [
+    {
+      "kind": "order_mismatch",
+      "index": 2,
+      "detail": "stop 2 top=30 is >200px above previous stop's top=841"
+    },
+    {
+      "kind": "no_focus_indicator",
+      "index": 3,
+      "detail": "<iframe> 'Exempelsida: Calyx, florist i Stockholm' has no visible focus indicator"
+    },
+    {
+      "kind": "order_mismatch",
+      "index": 5,
+      "detail": "stop 5 top=109 is >200px above previous stop's top=429"
+    },
+    {
+      "kind": "no_focus_indicator",
+      "index": 5,
+      "detail": "<iframe> 'Exempelsida: Hōrai, Asian fusion-koncept' has no visible focus indicator"
+    },
+    {
+      "kind": "order_mismatch",
+      "index": 7,
+      "detail": "stop 7 top=462 is >200px above previous stop's top=841"
+    }
+  ]
+}

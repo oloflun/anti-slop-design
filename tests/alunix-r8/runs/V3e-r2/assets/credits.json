@@ -1,0 +1,84 @@
+{
+  "cell": "V3c",
+  "round": "r8",
+  "written_by": "architect",
+  "written": "2026-09-09",
+  "generated_material": {
+    "present": false,
+    "statement": "Inget genererat material ingar i V3c eller i r8 for denna cell. Higgsfield har 0 krediter (free plan, matt av lead 2026-09-09), sa steg 1 och 2 i planens SS 10.6 faller. Ingen omtagning av hero-plattan bestalldes, och ingen asset-lock for en omtagning skrevs. Se assets/ASSETS.md SS 3.",
+    "higgsfield_jobs": [],
+    "codex_image_gen_jobs": [],
+    "total_credits_spent": 0
+  },
+  "inherited": [
+    {
+      "file": "k4-cabin-desk.webp",
+      "role": "page ground, continuous grayscale world",
+      "bytes": 42240,
+      "inherited_from": "tests/alunix-concepts-r3/build/assets/k4-cabin-desk.webp",
+      "first_used": "tests/alunix-concepts-r3 (K4), then r4 M1-chain, then r5 V3/V3b",
+      "origin": "[needs: credits] - ingen credits.json finns i tests/alunix-concepts-r3/ eller r4/r5 att arva. Filen ar en gralskale-stillbild av en stuga med skrivbord; ursprunget ar sannolikt Unsplash via r3:s egen pipeline men det ar INTE verifierat och far inte pastas.",
+      "post_processed": "gralskala, beskuren; steg ej dokumenterade i r3"
+    },
+    {
+      "file": "k1-stage-pool.webp",
+      "role": "hero plate front face, the travelling light pool",
+      "bytes": 64998,
+      "inherited_from": "tests/alunix-concepts-r3/build/assets/k1-stage-pool.webp",
+      "first_used": "tests/alunix-concepts-r5 cells/V3-chain, carried into V3b-chain",
+      "origin": "[needs: credits] - samma lucka som ovan. 1600x1067, gralskala, en ljuspol pa tyg.",
+      "post_processed": "[needs: credits]"
+    },
+    {
+      "file": "k1-stage-beams.webp",
+      "role": "reserv for vag (a) i ASSETS.md SS 3; anvands inte om lead valjer vag (d)",
+      "bytes": 16576,
+      "inherited_from": "tests/alunix-concepts-r3/build/assets/k1-stage-beams.webp",
+      "origin": "[needs: credits]",
+      "post_processed": "[needs: credits]"
+    },
+    {
+      "file": "demo-calyx.webp",
+      "role": "reserv om Calyx-iframen inte kan monteras",
+      "bytes": 133942,
+      "inherited_from": "tests/alunix-concepts-r3/build/assets/demo-calyx.webp",
+      "origin": "Egen skarmbild av sites/calyx.html i detta repo. Ingen tredjepartskalla.",
+      "post_processed": "ingen"
+    },
+    {
+      "file": "demo-horai.webp",
+      "role": "reserv om Horai-iframen inte kan monteras",
+      "bytes": 74334,
+      "inherited_from": "tests/alunix-concepts-r3/build/assets/demo-horai.webp",
+      "origin": "Egen skarmbild av sites/horai.html i detta repo. Ingen tredjepartskalla.",
+      "post_processed": "ingen"
+    },
+    {
+      "file": "demo-hyperborea.webp",
+      "role": "Hyperborea-platen som bleeder forbi den bla tesplatens hogerkant",
+      "bytes": 46952,
+      "inherited_from": "tests/alunix-concepts-r3/build/assets/demo-hyperborea.webp",
+      "origin": "Egen skarmbild av sites/hyperborea.html i detta repo. Ingen tredjepartskalla.",
+      "post_processed": "ingen"
+    },
+    {
+      "file": "logo-white.svg",
+      "role": "logo dock pa kortets framsida",
+      "bytes": 3522,
+      "inherited_from": "tests/alunix-concepts-r3/build/assets/logo-white.svg",
+      "origin": "Alunix eget ordmarke, levererat av Anton i r3.",
+      "post_processed": "ingen"
+    },
+    {
+      "file": "logo-black.svg",
+      "role": "reserv for pappersspalten",
+      "bytes": 3522,
+      "inherited_from": "tests/alunix-concepts-r3/build/assets/logo-black.svg",
+      "origin": "Alunix eget ordmarke, levererat av Anton i r3.",
+      "post_processed": "ingen"
+    }
+  ],
+  "open": [
+    "De tre [needs: credits]-raderna galler r3:s egna fotografiska stillbilder. Nasta konkreta steg: lead soker ursprunget i tests/alunix-concepts-r3/build/NOTES.md och i r3:s sessionslogg och fyller i raderna, eller markerar dem som okant ursprung. Ingen rad far gissas."
+  ]
+}

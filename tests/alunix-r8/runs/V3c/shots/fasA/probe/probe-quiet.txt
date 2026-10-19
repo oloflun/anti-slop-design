@@ -1,0 +1,65 @@
+== QUIET RUN 19:01:22
+== control 100:60
+motion_probe FAIL  http://localhost:3090/tests/motion/smooth.html
+  #act:--sc-ps                       p95  18.3 ms | >33ms  2 | max_step  1.37% | staircase   0 | rev  0
+  #card:transform                    p95  18.3 ms | >33ms  2 | max_step  1.37% | staircase   0 | rev  0
+  FAIL #act:--sc-ps: 2 frames > 33 ms
+  FAIL #card:transform: 2 frames > 33 ms
+== page down 100:60 (hero+card)
+motion_probe FAIL  http://localhost:3090/tests/alunix-r8/board/cells/V3c-r8/index.html
+  section.hero:--sc-ps               p95 290.6 ms | >33ms 111 | max_step  1.40% | staircase   0 | rev  0
+  .plate-card:transform              p95 290.6 ms | >33ms 111 | max_step  2.00% | staircase   0 | rev  0
+  FAIL section.hero:--sc-ps: frame_p95 290.55 ms > 20
+  FAIL section.hero:--sc-ps: 111 frames > 33 ms
+  FAIL .plate-card:transform: frame_p95 290.55 ms > 20
+  FAIL .plate-card:transform: 111 frames > 33 ms
+== page down 100:60 (whole page, 70 ticks, giant+thesis)
+motion_probe FAIL  http://localhost:3090/tests/alunix-r8/board/cells/V3c-r8/index.html
+  #giant-section:--sc-ps             p95 159.5 ms | >33ms 149 | max_step  3.28% | staircase   0 | rev  0
+  .panel-thesis:--sc-ps              p95 159.5 ms | >33ms 149 | max_step  4.01% | staircase   0 | rev  0
+  .thesis-figure:transform           p95 159.5 ms | >33ms 149 | max_step  0.00% | staircase   0 | rev  0  DEAD
+  FAIL #giant-section:--sc-ps: frame_p95 159.52 ms > 20
+  FAIL #giant-section:--sc-ps: 149 frames > 33 ms
+  FAIL #giant-section:--sc-ps: max_step 3.28 % > 3 (spelhuvud)
+  FAIL .panel-thesis:--sc-ps: frame_p95 159.52 ms > 20
+  FAIL .panel-thesis:--sc-ps: 149 frames > 33 ms
+  FAIL .panel-thesis:--sc-ps: max_step 4.01 % > 3 (spelhuvud)
+  FAIL .thesis-figure:transform: DEAD - vardet rorde sig inte alls medan sidan scrollades (kontrollera att elementet arver egenskapen och att akten faktiskt driver den)
+== control 20:120
+motion_probe FAIL  http://localhost:3090/tests/motion/smooth.html
+  #act:--sc-ps                       p95  18.4 ms | >33ms  1 | max_step  0.52% | staircase   0 | rev  0
+  #card:transform                    p95  18.4 ms | >33ms  1 | max_step  0.52% | staircase   0 | rev  0
+  FAIL #act:--sc-ps: 1 frames > 33 ms
+  FAIL #card:transform: 1 frames > 33 ms
+== page down 20:120
+motion_probe FAIL  http://localhost:3090/tests/alunix-r8/board/cells/V3c-r8/index.html
+  section.hero:--sc-ps               p95  35.9 ms | >33ms 266 | max_step  0.36% | staircase   0 | rev  0
+  .plate-card:transform              p95  35.9 ms | >33ms 266 | max_step  0.32% | staircase   0 | rev  0
+  FAIL section.hero:--sc-ps: frame_p95 35.89 ms > 20
+  FAIL section.hero:--sc-ps: 266 frames > 33 ms
+  FAIL .plate-card:transform: frame_p95 35.89 ms > 20
+  FAIL .plate-card:transform: 266 frames > 33 ms
+== page up 100:60 from 3400 (inside hero)
+motion_probe FAIL  http://localhost:3090/tests/alunix-r8/board/cells/V3c-r8/index.html
+  section.hero:--sc-ps               p95  53.7 ms | >33ms 82 | max_step  1.44% | staircase   0 | rev  0
+  .plate-card:transform              p95  53.7 ms | >33ms 82 | max_step  2.04% | staircase   0 | rev  0
+  FAIL section.hero:--sc-ps: frame_p95 53.67 ms > 20
+  FAIL section.hero:--sc-ps: 82 frames > 33 ms
+  FAIL .plate-card:transform: frame_p95 53.67 ms > 20
+  FAIL .plate-card:transform: 82 frames > 33 ms
+== page up 20:120 from 2600
+motion_probe FAIL  http://localhost:3090/tests/alunix-r8/board/cells/V3c-r8/index.html
+  section.hero:--sc-ps               p95  36.0 ms | >33ms 170 | max_step  0.31% | staircase   0 | rev  0
+  .plate-card:transform              p95  36.0 ms | >33ms 170 | max_step  0.32% | staircase   0 | rev  0
+  FAIL section.hero:--sc-ps: frame_p95 36.0 ms > 20
+  FAIL section.hero:--sc-ps: 170 frames > 33 ms
+  FAIL .plate-card:transform: frame_p95 36.0 ms > 20
+  FAIL .plate-card:transform: 170 frames > 33 ms
+== cpu 1 down 100:60
+motion_probe FAIL  http://localhost:3090/tests/alunix-r8/board/cells/V3c-r8/index.html
+  section.hero:--sc-ps               p95  71.5 ms | >33ms 25 | max_step  1.19% | staircase   0 | rev  0
+  .plate-card:transform              p95  71.5 ms | >33ms 25 | max_step  1.55% | staircase   0 | rev  0
+  FAIL section.hero:--sc-ps: frame_p95 71.5 ms > 20
+  FAIL section.hero:--sc-ps: 25 frames > 33 ms
+  FAIL .plate-card:transform: frame_p95 71.5 ms > 20
+  FAIL .plate-card:transform: 25 frames > 33 ms

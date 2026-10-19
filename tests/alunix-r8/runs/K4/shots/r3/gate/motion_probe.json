@@ -1,0 +1,44 @@
+{
+  "url": "http://127.0.0.1:3303/tests/alunix-r8/runs/K4/index.html",
+  "wheel": "20:120",
+  "cpu": 4.0,
+  "tracks": [
+    {
+      "track": "section.split:--sc-ps",
+      "dead": false,
+      "frames": 214,
+      "frame_p95_ms": 66.7,
+      "frames_over_20ms": 165,
+      "frames_over_33ms": 165,
+      "value_range": [
+        0,
+        0.6057
+      ],
+      "max_step_pct": 0.86,
+      "staircase": 0,
+      "reversals": 0
+    },
+    {
+      "track": "section.split:--split",
+      "dead": false,
+      "frames": 214,
+      "frame_p95_ms": 66.7,
+      "frames_over_20ms": 165,
+      "frames_over_33ms": 165,
+      "value_range": [
+        0.5418,
+        0.585
+      ],
+      "max_step_pct": 1.62,
+      "staircase": 0,
+      "reversals": 0
+    }
+  ],
+  "pass": false,
+  "failures": [
+    "section.split:--sc-ps: frame_p95 66.7 ms > 20",
+    "section.split:--sc-ps: 165 frames > 33 ms",
+    "section.split:--split: frame_p95 66.7 ms > 20",
+    "section.split:--split: 165 frames > 33 ms"
+  ]
+}

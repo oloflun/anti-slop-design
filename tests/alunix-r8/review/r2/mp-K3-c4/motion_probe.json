@@ -1,0 +1,26 @@
+{
+  "url": "http://127.0.0.1:3311/tests/alunix-r8/runs/K3/index.html",
+  "wheel": "100:60",
+  "cpu": 4.0,
+  "tracks": [
+    {
+      "track": "#drawing:opacity",
+      "dead": true,
+      "frames": 183,
+      "frame_p95_ms": 66.6,
+      "frames_over_20ms": 107,
+      "frames_over_33ms": 107,
+      "value_range": [
+        1,
+        1
+      ],
+      "max_step_pct": 0.0,
+      "staircase": 0,
+      "reversals": 0
+    }
+  ],
+  "pass": false,
+  "failures": [
+    "#drawing:opacity: DEAD - vardet rorde sig inte alls medan sidan scrollades (kontrollera att elementet arver egenskapen och att akten faktiskt driver den)"
+  ]
+}

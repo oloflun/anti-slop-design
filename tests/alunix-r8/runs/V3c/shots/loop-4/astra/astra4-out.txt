@@ -1,0 +1,95 @@
+fix
+
+## persistence
+
+Three material fixes, high confidence. Reviewed the complete HTML and shim against R9’s records; file hash matches `909916d1`. Performance conclusions use the supplied probes, not new measurements.
+
+R9 preserves the path-independent latch, corrected act lookup after resize, smoothed face switching and reverse drawing, wrapper sleep, circular Hōrai geometry, and restrained ground tint. The loop cannot close: downstream geometry remains unstable, Calyx’s reveal lacks its moving clip, and the drift handoff is discontinuous. The smoothness gate also remains red.
+
+## fidelity
+
+**1. Cohesion.** The photographic ground, card glyph, drawing and restrained typography now connect the page. Images 78–85, right-hand drawing, carry that connection into the process; images 87/99 return naturally to the photographic close. Image 4’s thesis/headline pairing remains the clearest competing composition, already held for Q30.
+
+**2. Rhythm.** The measured 162 px desktop and 101–102 px mobile seams meet the floor. The reproducible break is image 77: step 01 is readable at lower left while its entire right-hand drawing column is empty. Image 78 subsequently supplies the outline. Image 89’s partial mobile outline appears before step-01 prose, so that capture alone is not another defect.
+
+**3. Balance.** Desktop images 1–3 retain the card as authority. Image 4 remains the owner-held exception. In image 5, Calyx outweighs the ledger; in image 6, Hōrai outweighs the price block. Those two screens work within the authorized two-column arrangement. Images 7–10 give the drawing increasing authority; image 11 gives it back to the principles; images 12–13 resolve into contact. Image 77 is the material exception: the empty right column does not carry its allocated width. Mobile images 88–99 retain a single-column reading order.
+
+**4. Motion and arrival.**
+
+- Flip images 52–75 support continuous geometry and adequate projected height. Forced flip samples cannot establish real-time smoothness; the probes establish dropped frames.
+- Desktop previews 33–39 form steps 01 through N without N+1. Mobile image 46’s drawing lacks the completed width dimension. The repeat-load probes also expose intermittent failures in 01 and 03. This contradicts K12’s engine-bound diagnosis: the price placeholder creates the stale geometry.
+- Image 7 supports plan 040 at that settled position, but image 77 disproves “outline whole whenever step 01 is being read.” Correct the geometry before independently retuning the drawing window.
+- Intermediate drawing in images 79–82 and 94 is expected during the real-scroll sequence, not preview leakage.
+- The price rule changes between image 6’s lower price region and the later process-entry captures. The footer rule changes between images 26 and 27 above the email. Their existence is supported; a complete twelve-frame sweep of both devices remains unprovided.
+- Calyx’s transform pair cannot reveal anything without a clip on the moving inner box. The drift function also contains a deterministic colour jump. Both are detailed below.
+
+**Code and performance.** `latchTick` does not reschedule merely because any unrelated act is lerping. Its continuation conditions concern the hero, process and unfinished reveals. Its hot path reads cached state and inline properties, not computed styles or bounding rectangles. Finished reveals still incur unnecessary lookup/arithmetic at `index.html:1685`, but the pin-only result of 18.4 ms supplies no basis for calling that a material performance fix.
+
+`aimPreview` has generation cancellation and bounded settling; its listeners are preview-scoped. I found no demonstrated permanent loop. Hōrai’s square has radius approximately 0.552 times the wrapper diagonal, exceeding the 0.5 needed to cover its corners; the reciprocal scales cancel.
+
+For H-21/H-22, the price placeholder is a measured cut remaining in this file. Beyond that, the engine/shim style work and live iframe rendering are **architectural floor, accounted for**, not evidence of compliance. The giant scale remains an unmeasured suspect. For H-32, no additional material process-local cut is established; CPU-1 p95 reaches the control floor, while CPU-4 still fails.
+
+| H-row | R9 assessment |
+|---|---|
+| H-01 | Met: 11.76–12.09 desktop viewports; hero below 45%. |
+| H-02 | Waiting for owner: Q30, image 4. |
+| H-03 | Waiting for owner: Q30; full-width material sequence unchanged. |
+| H-04 | Met: 108 px column offset, image 4. |
+| H-05 | Met: measured seams meet both width-specific floors. |
+| H-06 | Met: distinct thesis, live-site, ledger, drawing and closing anatomies. |
+| H-07 | Met: 88 px headline; locked word intact, image 31. |
+| H-08 | Waiting for owner only for image 4; images 5–6 have clear authorities. |
+| H-09 | Met: rear glyph occupies the formerly empty half, images 30/42. |
+| H-10 | Met: edge-on card retains height, images 57–58 and 69–70. |
+| H-11 | Met: graphite price material remains distinct, images 6/88. |
+| H-12 | Met: dedicated final viewport and measured desktop email size, images 12–13/27. |
+| H-13 | Met: mobile fold dead ground is 10%, image 14 and geometry probe. |
+| H-14 | Met: mobile thesis precedes Calyx and price, images 17–21. |
+| H-15 | Not met: image 77, empty right column alongside readable step 01. |
+| H-16 | Met on supplied probe: remaining sub-threshold bands are accounted for. |
+| H-17 | Met: unchanged approximately 393 px landed tail. |
+| H-18 | Met within accepted tolerance: approximately 1,602 px turn. |
+| H-19 | Met at specified samples: wood chroma 21; fold 0. Handoff continuity still fails. |
+| H-20 | Supported: retained bleed clears the headline, image 32. |
+| H-21 | Not met: CPU-4 frame times substantially exceed the control; staircase remains 0. |
+| H-22 | Not met: CPU-1 hero median 78.2 ms, giant 101.6 ms, price 40.4 ms. |
+| H-23 | Not met numerically: giant 3.12% and thesis 3.52% at CPU-1; timing-related. |
+| H-24 | Unverified: pure-scale probe blindness and incomplete device tracking remain. |
+| H-25 | Partial: price/footer changes present; Calyx’s intended reveal is ineffective. |
+| H-26 | Met: project motion contract retained. |
+| H-27 | Partial: latch and identity after completion pass; Calyx lacks an effective wrapper reveal. |
+| H-28 | Met: process placement, flow mode and smoothed drawing inputs preserved. |
+| H-29 | Met: drawing remains geometric form with normalized drawing paths. |
+| H-30 | Not met: mobile previews intermittently fail to form their requested state. |
+| H-31 | Met: preserved process prose remains visible without hover, images 78–85/90–96. |
+| H-32 | Not met: CPU-1 p95 is at control, but CPU-4 process fails in both directions. |
+| H-33 | Met: blue remains confined to the dimension chain, images 80–83/92–95. |
+| H-34 | Unverified against the complete floor: seven tested strings do not establish every surface. |
+| H-35 | Supported by reported R9 reflow checks and captures; not independently rerun here. |
+
+**6. New elements or colours:** none.
+
+## ceiling
+
+Insign: dependable readability at every offset remains the stronger baseline.
+
+Highway Media: its process skeleton announces the sequence earlier than image 77 does.
+
+Hoy: clearer single-authority chapters remain the Q30 comparison, not a new restacking request.
+
+K3: its cumulative drawing remains the reference for reliably formed process previews.
+
+## material_fixes
+
+- **Stabilize layout before act measurement.** `tests/alunix-r8/runs/V3c/index.html:731` reserves an incorrect price height with `contain-intrinsic-size:auto 760px`. First paint removes approximately 297 px at desktop and 263 px at mobile, leaving downstream act coordinates stale. Reproduction: fresh mobile loads of `?preview=process-01/02`; the supplied A/B restores all six loads when the placeholder is neutralized. Image 46, upper drawing, shows the incomplete requested state; image 77, lower-right column, shows a related arrival failure whose timing must be rechecked afterward. **Expected:** stable downstream geometry from initial measurement through first paint, cached tops matching actual tops, all fourteen process previews formed, and the outline present while step 01 is read. This is a page defect, not an unavoidable engine limitation.
+
+- **Restore Calyx’s moving reveal aperture.** `tests/alunix-r8/runs/V3c/index.html:677` translates `.rv`, while line 678 applies the opposite translation to its iframe. `.rv` has no overflow clip; only the stationary outer wrapper clips. Consequently, the composed iframe position and visible outer clipping region are unchanged for `--rv=0`, `0.5` and `1`. **Expected:** the moving inner aperture reveals zero, partial and full content respectively, while the content remains pixel-still and both transforms become identity at completion. Preserve wrapper sleep and the prohibition on post-reveal iframe motion.
+
+- **Make the drift handoff continuous.** `tests/alunix-r8/runs/V3c/index.html:1598` switches from the completed black-to-blue blend to an already-completed blue-to-paper blend. With measured desktop geometry, at scrollY 3600 the thesis reaches `t=1`, while giant progress is approximately `1170/1720=0.680`; therefore `smooth(g/0.35)=1`. Crossing that boundary changes the assigned colour directly from `rgb(18,63,104)` to `rgb(244,242,238)`, reversing on upward crossing. **Expected:** identical limiting colour on both sides of the handoff, followed by a continuous transition in either direction. Preserve the named stops, 24% tint and measured thesis chroma.
+
+## keep
+
+Keep the current two-column scope pending Q30, the 88 px headline, generous seams, mobile order, card geometry and rear glyph, exact terminal latch, smoothed reverse drawing, Hōrai’s circular counter-scaled reveal, iframe sleep, ground-local colour writes, restrained blue dimensions, readable process prose and full-screen contact ending.
+
+Preserve the distinction between a functional correction and a passed performance gate: R9 delivers substantial improvements, but neither the remaining code defects nor the measured smoothness failures justify `ship`.
+ASTRA-EXIT 0

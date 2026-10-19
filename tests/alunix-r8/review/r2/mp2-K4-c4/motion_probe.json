@@ -1,0 +1,28 @@
+{
+  "url": "http://127.0.0.1:3311/tests/alunix-r8/runs/K4/index.html",
+  "wheel": "100:60",
+  "cpu": 4.0,
+  "tracks": [
+    {
+      "track": "section.split:--sc-ps",
+      "dead": false,
+      "frames": 219,
+      "frame_p95_ms": 50.0,
+      "frames_over_20ms": 49,
+      "frames_over_33ms": 49,
+      "value_range": [
+        0,
+        1
+      ],
+      "max_step_pct": 3.32,
+      "staircase": 0,
+      "reversals": 0
+    }
+  ],
+  "pass": false,
+  "failures": [
+    "section.split:--sc-ps: frame_p95 50.0 ms > 20",
+    "section.split:--sc-ps: 49 frames > 33 ms",
+    "section.split:--sc-ps: max_step 3.32 % > 3"
+  ]
+}

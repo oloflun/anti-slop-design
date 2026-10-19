@@ -1,0 +1,28 @@
+{
+  "url": "http://127.0.0.1:3311/tests/alunix-r8/runs/V3c/index.html",
+  "wheel": "100:60",
+  "cpu": 4.0,
+  "tracks": [
+    {
+      "track": ".plate-card:transform",
+      "dead": false,
+      "frames": 259,
+      "frame_p95_ms": 33.3,
+      "frames_over_20ms": 16,
+      "frames_over_33ms": 16,
+      "value_range": [
+        0,
+        180.0
+      ],
+      "max_step_pct": 4.45,
+      "staircase": 0,
+      "reversals": 0
+    }
+  ],
+  "pass": false,
+  "failures": [
+    ".plate-card:transform: frame_p95 33.3 ms > 20",
+    ".plate-card:transform: 16 frames > 33 ms",
+    ".plate-card:transform: max_step 4.45 % > 3"
+  ]
+}

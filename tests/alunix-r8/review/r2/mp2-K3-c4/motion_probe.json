@@ -1,0 +1,27 @@
+{
+  "url": "http://127.0.0.1:3311/tests/alunix-r8/runs/K3/index.html",
+  "wheel": "100:60",
+  "cpu": 4.0,
+  "tracks": [
+    {
+      "track": "section.act-drawing:--sc-ps",
+      "dead": false,
+      "frames": 174,
+      "frame_p95_ms": 83.3,
+      "frames_over_20ms": 108,
+      "frames_over_33ms": 108,
+      "value_range": [
+        0,
+        0.9398
+      ],
+      "max_step_pct": 1.94,
+      "staircase": 0,
+      "reversals": 0
+    }
+  ],
+  "pass": false,
+  "failures": [
+    "section.act-drawing:--sc-ps: frame_p95 83.3 ms > 20",
+    "section.act-drawing:--sc-ps: 108 frames > 33 ms"
+  ]
+}

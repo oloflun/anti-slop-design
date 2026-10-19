@@ -1,0 +1,304 @@
+{
+ "geom": {
+  "stagger": 3060,
+  "process": 5637,
+  "principles": 9433
+ },
+ "runs": [
+  {
+   "name": "hero-count",
+   "start": 0,
+   "ticks": 30,
+   "delta": {
+    "TaskDuration": 4.078,
+    "ScriptDuration": 0.306,
+    "LayoutDuration": 0.052,
+    "RecalcStyleDuration": 2.731,
+    "LayoutCount": 10,
+    "RecalcStyleCount": 190
+   },
+   "frames": {
+    "n": 116,
+    "p95_ms": 107.9,
+    "over33": 68,
+    "mean_ms": 39.7
+   },
+   "writes": {
+    "--sc-p @ ?": 270,
+    "--sc-ps @ ?": 151,
+    "--sc-canvas @ ?": 7
+   }
+  },
+  {
+   "name": "hero-noSvgPaths",
+   "start": 0,
+   "ticks": 30,
+   "delta": {
+    "TaskDuration": 3.887,
+    "ScriptDuration": 0.267,
+    "LayoutDuration": 0.059,
+    "RecalcStyleDuration": 2.627,
+    "LayoutCount": 10,
+    "RecalcStyleCount": 192
+   },
+   "frames": {
+    "n": 117,
+    "p95_ms": 106.6,
+    "over33": 65,
+    "mean_ms": 41.9
+   },
+   "writes": {}
+  },
+  {
+   "name": "hero-noGround",
+   "start": 0,
+   "ticks": 30,
+   "delta": {
+    "TaskDuration": 4.062,
+    "ScriptDuration": 0.264,
+    "LayoutDuration": 0.049,
+    "RecalcStyleDuration": 2.59,
+    "LayoutCount": 11,
+    "RecalcStyleCount": 197
+   },
+   "frames": {
+    "n": 120,
+    "p95_ms": 105.9,
+    "over33": 64,
+    "mean_ms": 38.8
+   },
+   "writes": {}
+  },
+  {
+   "name": "hero-noSvg-noGround",
+   "start": 0,
+   "ticks": 30,
+   "delta": {
+    "TaskDuration": 4.34,
+    "ScriptDuration": 0.268,
+    "LayoutDuration": 0.032,
+    "RecalcStyleDuration": 2.8,
+    "LayoutCount": 15,
+    "RecalcStyleCount": 204
+   },
+   "frames": {
+    "n": 126,
+    "p95_ms": 106.2,
+    "over33": 63,
+    "mean_ms": 39.0
+   },
+   "writes": {}
+  },
+  {
+   "name": "band-count",
+   "start": 2460,
+   "ticks": 28,
+   "delta": {
+    "TaskDuration": 5.466,
+    "ScriptDuration": 0.304,
+    "LayoutDuration": 0.044,
+    "RecalcStyleDuration": 4.018,
+    "LayoutCount": 11,
+    "RecalcStyleCount": 355
+   },
+   "frames": {
+    "n": 85,
+    "p95_ms": 405.8,
+    "over33": 83,
+    "mean_ms": 91.9
+   },
+   "writes": {
+    "--sc-ps @ ?": 338,
+    "--sc-p @ ?": 252,
+    "--sc-canvas @ ?": 28
+   }
+  },
+  {
+   "name": "band-noHeroSvg",
+   "start": 2460,
+   "ticks": 28,
+   "delta": {
+    "TaskDuration": 5.845,
+    "ScriptDuration": 0.303,
+    "LayoutDuration": 0.058,
+    "RecalcStyleDuration": 4.39,
+    "LayoutCount": 12,
+    "RecalcStyleCount": 385
+   },
+   "frames": {
+    "n": 87,
+    "p95_ms": 141.6,
+    "over33": 87,
+    "mean_ms": 82.0
+   },
+   "writes": {}
+  },
+  {
+   "name": "band-noHeroSvg-noPGlyph",
+   "start": 2460,
+   "ticks": 28,
+   "delta": {
+    "TaskDuration": 5.331,
+    "ScriptDuration": 0.258,
+    "LayoutDuration": 0.034,
+    "RecalcStyleDuration": 4.006,
+    "LayoutCount": 12,
+    "RecalcStyleCount": 384
+   },
+   "frames": {
+    "n": 88,
+    "p95_ms": 159.9,
+    "over33": 83,
+    "mean_ms": 70.4
+   },
+   "writes": {}
+  },
+  {
+   "name": "process-count",
+   "start": 4737,
+   "ticks": 45,
+   "delta": {
+    "TaskDuration": 9.207,
+    "ScriptDuration": 0.461,
+    "LayoutDuration": 0.295,
+    "RecalcStyleDuration": 6.989,
+    "LayoutCount": 68,
+    "RecalcStyleCount": 403
+   },
+   "frames": {
+    "n": 134,
+    "p95_ms": 179.4,
+    "over33": 130,
+    "mean_ms": 88.8
+   },
+   "writes": {
+    "--sc-p @ ?": 405,
+    "--sc-ps @ ?": 382,
+    "--sc-canvas @ ?": 45
+   }
+  },
+  {
+   "name": "process-noPGlyph",
+   "start": 4737,
+   "ticks": 45,
+   "delta": {
+    "TaskDuration": 8.457,
+    "ScriptDuration": 0.378,
+    "LayoutDuration": 0.221,
+    "RecalcStyleDuration": 6.357,
+    "LayoutCount": 38,
+    "RecalcStyleCount": 396
+   },
+   "frames": {
+    "n": 130,
+    "p95_ms": 299.5,
+    "over33": 122,
+    "mean_ms": 84.7
+   },
+   "writes": {}
+  },
+  {
+   "name": "process-noLiveImg",
+   "start": 4737,
+   "ticks": 45,
+   "delta": {
+    "TaskDuration": 8.57,
+    "ScriptDuration": 0.425,
+    "LayoutDuration": 0.286,
+    "RecalcStyleDuration": 6.452,
+    "LayoutCount": 40,
+    "RecalcStyleCount": 410
+   },
+   "frames": {
+    "n": 144,
+    "p95_ms": 319.6,
+    "over33": 129,
+    "mean_ms": 80.0
+   },
+   "writes": {}
+  },
+  {
+   "name": "process-noSteps",
+   "start": 4737,
+   "ticks": 45,
+   "delta": {
+    "TaskDuration": 8.174,
+    "ScriptDuration": 0.348,
+    "LayoutDuration": 0.333,
+    "RecalcStyleDuration": 6.13,
+    "LayoutCount": 75,
+    "RecalcStyleCount": 428
+   },
+   "frames": {
+    "n": 136,
+    "p95_ms": 319.3,
+    "over33": 126,
+    "mean_ms": 82.0
+   },
+   "writes": {}
+  },
+  {
+   "name": "process-noPGlyph-noHeroSvg",
+   "start": 4737,
+   "ticks": 45,
+   "delta": {
+    "TaskDuration": 8.943,
+    "ScriptDuration": 0.393,
+    "LayoutDuration": 0.27,
+    "RecalcStyleDuration": 6.907,
+    "LayoutCount": 40,
+    "RecalcStyleCount": 419
+   },
+   "frames": {
+    "n": 141,
+    "p95_ms": 230.9,
+    "over33": 130,
+    "mean_ms": 81.2
+   },
+   "writes": {}
+  },
+  {
+   "name": "process-allPathsOff",
+   "start": 4737,
+   "ticks": 45,
+   "delta": {
+    "TaskDuration": 5.908,
+    "ScriptDuration": 0.403,
+    "LayoutDuration": 0.062,
+    "RecalcStyleDuration": 4.377,
+    "LayoutCount": 43,
+    "RecalcStyleCount": 503
+   },
+   "frames": {
+    "n": 206,
+    "p95_ms": 104.9,
+    "over33": 68,
+    "mean_ms": 37.7
+   },
+   "writes": {}
+  },
+  {
+   "name": "control-smooth",
+   "start": 0,
+   "ticks": 30,
+   "delta": {
+    "TaskDuration": 0.855,
+    "ScriptDuration": 0.151,
+    "LayoutDuration": 0.0,
+    "RecalcStyleDuration": 0.189,
+    "LayoutCount": 0,
+    "RecalcStyleCount": 147
+   },
+   "frames": {
+    "n": 188,
+    "p95_ms": 18.4,
+    "over33": 1,
+    "mean_ms": 19.8
+   },
+   "writes": {
+    "--sc-ps @ ?": 129,
+    "--sc-p @ ?": 18
+   }
+  }
+ ]
+}

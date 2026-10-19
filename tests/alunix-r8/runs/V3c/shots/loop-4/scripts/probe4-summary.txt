@@ -1,0 +1,86 @@
+motion_probe.py on the R9 state (md5 909916d1), port 3090, control protocol
+(tests/motion/smooth.html before every group: p95 18.2 to 18.4 ms, 0 to 2 frames > 33 ms in
+every control run, machine never fully quiet). Wheel 100 px / 60 ms unless stated. Tracks:
+hero = section.hero:--sc-ps + .plate-card:transform.
+
+| run | cpu | dir | window | p95 ms | frames > 33 | max_step --sc-ps | staircase |
+|---|---|---|---|---|---|---|---|
+| hero-down-100 | 4 | down | 0 to 4000 (40 ticks) | 333.8 | 96 | 1.72 % | 0 |
+| hero-up-100 | 4 | up | 3200 to 0 | 79.7 | 91 | 1.86 % | 0 |
+| hero-down-20 (20 px / 120 ms) | 4 | down | 0 to 3200 | 53.0 | 459 of ~1000 | 0.36 % | 0 |
+| hero-up-20 | 4 | up | 3200 to 0 | 52.7 | 438 | 0.58 % | 0 |
+| proc-down-100 | 4 | down | 4700 + 45 ticks | 326.9 | 138 | 1.10 % | 0 |
+| proc-up-100 | 4 | up | 9400 − 45 ticks | 474.6 | 131 | 1.06 % | 0 |
+| proc-down-20 | 4 | down | 4700 + 200 ticks | 86.0 | 837 | 0.20 % | 0 |
+| proc-up-20 | 4 | up | 9000 − 200 ticks | 215.7 | 793 | 0.24 % | 0 |
+| giant-down-100 | 4 | down | 2700 + 28 | 462.0 | 88 | 3.36 % | 0 |
+| price-down-100 | 4 | down | 3873 + 18 | 875.9 | 62 | 2.84 % | 0 |
+| hero-down-100-cpu1 (3 runs) | 1 | down | 0 to 4000 | 53.6 / 78.2 / 82.2 (median 78.2) | 35 / 38 / 41 | 1.38 to 1.55 % | 0 |
+| hero-up-100-cpu1 | 1 | up | 3200 to 0 | 35.4 | 19 | 1.37 % | 0 |
+| proc-down-100-cpu1 | 1 | down | 4700 + 45 | 18.2 | 7 | 0.70 % | 0 |
+| proc-up-100-cpu1 | 1 | up | 9400 − 45 | 18.2 | 3 | 0.70 % | 0 |
+| giant-down-100-cpu1 | 1 | down | 2700 + 28 | 101.6 | 28 | 3.12 % | 0 |
+| price-down-100-cpu1 | 1 | down | 3873 + 18 | 40.4 | 12 | 1.78 % | 0 |
+| thesis-down-100-cpu1 | 1 | down | 2322 + 18 (frames mount at the window start: scrollTo 2322 puts hero cur at 1, 036 B fires) | 142.4 | 33 | 3.52 % | 0 |
+| footer-down-100-cpu1 | 1 | down | 8500 + 18 | 18.3 | 1 | 2.70 % | 0 |
+| horai-rv-cpu1 (.horai-wrap:--rv, .rv:transform) | 1 | down | 3873 + 24 | 35.5 | 13 | --rv 5.41 % (derived, reported not gated); .rv:transform reads DEAD because the probe decomposes transform to translate/rotate and a pure scale() is invisible to it (known tool blindness, same as .giant) | 0 |
+
+Loop 3 (R8 state) for comparison, cpu 1: hero down 36.1 (19), up 18.4 (5); process down 32.1
+(14), up 18.5 (4); giant 128 (22); price 143.7 (16). cpu 4: hero down 89.5 / up 54.0; process
+285 / 461.
+
+Decomposition of the hero window at cpu 1 (motion_probe_ab.py, 3 runs each, median):
+| variant | p95 ms |
+|---|---|
+| as built, 40 ticks (0 to 4000) | 78.2 |
+| pin only, 18 ticks (0 to 1800, before the frames mount at hero cur 0.80 ≈ scrollY 1920) | 18.4 / 18.4 / 18.4, 2 to 4 frames > 33 |
+| frames pre-mounted 5 s before the wheel (MOUNT), 40 ticks | 89.4 |
+| MOUNT + .price content-visibility placeholder neutralised | 102.6 |
+| placeholder neutralised only | 64.7 |
+Reading: latchTick per frame costs nothing measurable in the pin (18.4 = the control); the
+hero window's cost is entirely scrollY 1800 to 4000, i.e. the two live iframes mounting,
+loading and painting their own pages, and the band entering. Pre-mounting 5 s earlier does
+not remove it (the sites keep rendering).
+
+.price placeholder A/B (loop 4 finding, plan 042; content-visibility:auto +
+contain-intrinsic-size:auto 760px on .price reserves 297 px more than the block's real height;
+the page shrinks 297 px the first time the block paints, and the engine's cached act tops for
+#process, #principer and footer.close stay 297 px wrong until a real resize):
+| window, cpu 1, 3 runs | as built | placeholder neutralised |
+|---|---|---|
+| price 3873 + 18 | 35.7 / 53.0 / 53.4 (median 53.0) | 35.2 / 35.3 / 35.6 (median 35.3) |
+| giant 2700 + 28 | 98.4 / 94.1 / 88.5 (median 94.1) | 81.7 / 70.9 / 106.6 (median 81.7) |
+
+scroll_verify.py, 1440x900: deadScroll 0 to 300 (0.0052, authored silence), 600 to 900
+(0.0088, card on edge against dark ground, tool blindness), 1500 to 1800 (0.0124), 1800 to
+2100 (0.0005, landed back + dwell, authored), 5700 to 6000 (0.0146), 6600 to 6900 (0.0147),
+6900 to 7200 (0.0133), 8100 to 8400 (0.0115); cuesNeverFull [], unrevealed [],
+contrastUnderMedia []; blankBands 900 to 3222 (the hero pin, known). 390x844: deadScroll 0 to
+281 (0.0055), 1124 to 1405 (0.008), 1686 to 1967 (0.0, landed back); the three lists empty;
+blankBands 756 to 2896 (pin), 3330 to 4031 (Calyx), 4803 to 5473 (Horai), 5484 to 6221
+(price), 6403 to 6919 (process entry), 10398 to 10910 (close photo). The Calyx/Horai/price
+bands at 390 are the tool's 64x36 downscale reading a frame or a flat plane as uniform (the
+slices show both frames whole at those positions, slices-390 s04 and s06), not sleeping frames.
+
+Latch (latch4.json, 1440x900, scrollY 4703 = Horai act --sc-ps 0.58): wheel, PageDown,
+scrollTo, smooth scrollTo all give --rv 1 / 1 on both wrappers; resize 1440 to 1280 before the
+band then wheel: 1 / 1; zero --rv writes in the 3 s after landing. is-turning false at rest
+(true only in the smooth-scrollTo run, read while the shim was still lerping).
+
+Previews (preview_check4.json, load + 2 s): 1440 process-01..07 formed 7/7 (--sc-ps = --eN
+± 0.0001, data-on 01..N, never N+1). 390: 01 and 02 NOT formed in this capture (ps 0.1894 vs
+--e1 0.2450; 0.2753 vs --e2 0.3311); three further loads each (preview390.json): 01 formed 1
+of 3, 02 formed 1 of 3, 03 formed 2 of 3. Root cause measured (preview390b.json,
+mountshift.json, pricefix_ab.json): the engine's cached top for #process is 6415 while the
+real top after the price block first paints is 6152 (263 px); with the .price placeholder
+neutralised, engTop = realTop = 6152 and all six loads of 01/02 form. So this is the page's
+own placeholder, not the engine's isMobile resize guard (which only explains why a synthetic
+resize cannot repair it at 390).
+
+Geometry (geom4.json): 1440 docH 10880 at load (12.09 vh), 10582 once the price block has
+painted (11.76 vh); 390 11588 / 11326. Hero 3060 px = 28 %. Seams 162 px at 1440, 101 to 102
+px at 390. Giant 88 px, one rect, three lines. Mailto 98 px tall (86.4 px). Fold at 390: 84 px
+= 10.0 % dead ground. Drift on the wood (720,180) at the thesis centred: (119,130,140) chroma
+21; fold ground chroma 0; --sc-canvas rgb(18,63,104) at the thesis. Locked copy 15/15 byte for
+byte; prefers-reduced-motion 0; U+2012 to U+2015 in visible text 0; clip-path on the frame
+wrappers 0.

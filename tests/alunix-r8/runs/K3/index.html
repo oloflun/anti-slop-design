@@ -1,0 +1,1018 @@
+<!doctype html>
+<!-- design · pre-emit critique: P5 H4 E5 S5 R5 V4 -->
+<html lang="sv">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>Alunix · Er hemsida är nutidens visitkort</title>
+<meta name="description" content="Alunix är en webbyrå i Sverige. Vi skapar skräddarsydda webbplatser som hjälper er att exponera verksamheten.">
+<meta name="color-scheme" content="light">
+<meta name="theme-color" content="#e6ebf2">
+<!-- Favicon: en ritad kontur med en måttlinje under. Ingen bokstav, ingen yta. -->
+<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'%3E%3Crect width='32' height='32' fill='%23e6ebf2'/%3E%3Crect x='6.5' y='5.5' width='19' height='14' fill='none' stroke='%23253a52' stroke-width='1.5'/%3E%3Cpath d='M6.5 25.5 H25.5' stroke='%236b7f96' stroke-width='0.75'/%3E%3C/svg%3E">
+
+<!-- Motorn, oförändrad. sc-smooth.js laddas efter den, längst ned. -->
+<link rel="stylesheet" href="scroll/scrollcraft.css">
+
+<!-- Preload BARA på Martian Mono: titelblocket är det enda som står i folden
+     vid --sc-ps = 0 och det är satt i mono. Chivo preloadas inte, eftersom en
+     preload för en vikt som inte finns i folden är slöseri (performance.md § 2).
+     Skrevs in i R3 när lead hade vendorat filerna; i R2 fanns de inte. -->
+<link rel="preload" as="font" type="font/woff2" crossorigin
+      href="assets/martian-mono-var.woff2">
+
+<!--
+  [needs asset: assets/chivo-var.woff2]        Chivo, variabel 300 till 700, self-hostad
+  [needs asset: assets/martian-mono-var.woff2] Martian Mono, variabel vikt och bredd
+
+  Båda står som [needs: vendor] i assets/ASSETS.md § C och vendoras av lead (F-009).
+  @font-face-reglerna nedan pekar redan på de slutliga filnamnen, så sidan blir rätt
+  i samma ögonblick filerna landar. Tills dess renderar sidan i fallback-stacken.
+  <link rel="preload"> för Martian Mono skrivs in när filen finns; en preload mot en
+  fil som inte existerar är en garanterad konsolvarning utan motprestation.
+-->
+
+<style>
+/* ==========================================================================
+   0 · TOKENS. Allt härleds ur locken i BRIEF.md § Reference lock.
+   Varje färg och varje font-family på sidan refererar en token härifrån.
+   ========================================================================== */
+:root {
+  /* --- ytan och bläcket ------------------------------------------------- */
+  --paper:      oklch(0.95 0.012 230);   /* arket, hela sidan. Kallt, inte cream */
+  --paper-fold: oklch(0.925 0.018 230);  /* andra arket: a3:s plate-marginaler, a6:s ram */
+  --ink:        oklch(0.30 0.055 245);   /* all typ, alla bärande konturer */
+  --ink-hair:   oklch(0.52 0.035 240);   /* hjälplinjer, måttlinjer, skraffering, ledare */
+  --blue:       oklch(0.47 0.13 252);    /* = #1E5E9C. Enda accenten, bara måttsiffror */
+
+  /* --- linjehierarki. Tre bredder, en dash-form, inget annat ------------- */
+  --hair:    0.75px;   /* den ENDA hårlinjebredden, i SVG och i HTML */
+  --contour: 1.5px;
+  --cut:     2.5px;
+  --dash:    4 3;      /* den enda streckformen på arket */
+
+  /* --- typ. Två familjer, roller som aldrig korsar ----------------------- */
+  --font-voice:    "Chivo", "Segoe UI", system-ui, sans-serif;
+  --font-register: "Martian Mono", "Cascadia Mono", "Consolas", ui-monospace, monospace;
+
+  /* --- öppningens mått. En sanning, fyra tal (ASSETS.md § A.7 punkt 1) ---- */
+  --op-x: 480; --op-y: 240; --op-w: 880; --op-h: 495;   /* 880 x 495 = 16:9 exakt */
+
+  /* --- motorns sex tokens plus två fonter. Motorn temas bara härifrån. --- */
+  --sc-canvas:       var(--paper);
+  --sc-surface:      var(--paper-fold);
+  --sc-ink:          var(--ink);
+  --sc-ink-soft:     var(--ink-hair);
+  --sc-accent:       var(--blue);
+  --sc-accent-ink:   var(--paper);
+  --sc-font-display: var(--font-voice);
+  --sc-font-text:    var(--font-voice);
+}
+
+/* --------------------------------------------------------------------------
+   1 · TYPSNITT. Fallback-stackarna är valda för att ligga nära i x-höjd och
+   bredd; size-adjust skärps i R3 mot den vendorade filen, inte gissat nu.
+   -------------------------------------------------------------------------- */
+@font-face {
+  font-family: "Chivo";
+  src: url("assets/chivo-var.woff2") format("woff2-variations");
+  font-weight: 300 700;
+  font-display: swap;
+}
+@font-face {
+  font-family: "Martian Mono";
+  src: url("assets/martian-mono-var.woff2") format("woff2-variations");
+  font-weight: 400 500;
+  font-stretch: 75% 112.5%;
+  font-display: swap;
+}
+
+/* --------------------------------------------------------------------------
+   2 · REGISTRERADE LOKALER.
+   syntax: "<number>" är obligatoriskt och inte kosmetik: en oregistrerad
+   custom property är en sträng för CSS, clamp() returnerar då inget
+   interpolerbart, och ritningen stegar bana för bana (F-013, F-014).
+   inherits: false gör varje element oberoende av sitt syskon, vilket är hela
+   poängen: en bana i taget.
+   Fem namn i stället för en per bana: varje bana sätter sitt EGET fönster i
+   samma namn, så mekaniken är en rad CSS och ?preview=drawn är en regel.
+   -------------------------------------------------------------------------- */
+@property --l    { syntax: "<number>"; inherits: false; initial-value: 0; }  /* ritprogress per bana */
+@property --t    { syntax: "<number>"; inherits: false; initial-value: 0; }  /* utropens opacitet */
+@property --thin { syntax: "<number>"; inherits: false; initial-value: 0; }  /* konturens viktfall */
+@property --fill { syntax: "<number>"; inherits: false; initial-value: 0; }  /* öppningens svep */
+@property --fall { syntax: "<number>"; inherits: false; initial-value: 0; }  /* siffrornas nedskalning */
+
+/* ==========================================================================
+   3 · ARKET
+   ========================================================================== */
+html { background: var(--paper); overflow-x: clip; }
+body {
+  margin: 0;
+  background: var(--paper);
+  color: var(--ink);
+  font-family: var(--font-voice);
+  font-weight: 300;
+  font-size: 15px;
+  line-height: 1.55;
+  -webkit-font-smoothing: antialiased;
+  overflow-x: clip;
+}
+
+/* Papperstexturen. feTurbulence i en data:-URI-BILD, aldrig som filter: på ett
+   element: en filter-egenskap över halva viewporten kostar en GPU-ompaint per
+   frame (performance.md § 1). Webbläsaren rastrerar bilden en gång till sin
+   bildcache och kaklar sedan bitmappen. background-attachment är scroll,
+   aldrig fixed. Lagret har ingen transform, ingen will-change, ingen animation. */
+.paper-texture {
+  position: fixed; inset: 0; z-index: -1; pointer-events: none;
+  background-color: var(--paper);
+  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='256' height='256' viewBox='0 0 256 256'%3E%3Cfilter id='p' x='0' y='0' width='100%25' height='100%25' filterUnits='userSpaceOnUse' color-interpolation-filters='sRGB'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='3' seed='7' stitchTiles='stitch' result='n'/%3E%3CfeColorMatrix in='n' type='saturate' values='0' result='g'/%3E%3CfeComponentTransfer in='g' result='t'%3E%3CfeFuncA type='table' tableValues='0 0.055'/%3E%3C/feComponentTransfer%3E%3C/filter%3E%3Crect width='256' height='256' filter='url(%23p)'/%3E%3C/svg%3E");
+  background-repeat: repeat;
+  background-size: 256px 256px;
+  background-attachment: scroll;
+}
+
+/* ==========================================================================
+   4 · TECKENFÖRKLARINGEN. Sidans enda nav. Ingen topprad finns.
+   Fem rader: ett symbolprov plus ett kapitelnamn. Symbolen på varje rad är den
+   linjeroll kapitlets eget ritarbete är gjort av, inte en godtycklig markör.
+   ========================================================================== */
+.legend {
+  position: fixed; left: 0; top: 0; bottom: 0; width: 120px;
+  z-index: 40;
+  display: flex; flex-direction: column; justify-content: center; gap: 1.35rem;
+  padding-inline: 10px;
+  /* FIRST VIEWPORT är låst till exakt två saker: papperet och titelblocket.
+     Indexet finns inte förrän det finns kapitel att indexera, så legenden
+     tonar in när ritningsakten släpper. Ingen travel, bara närvaro. */
+  opacity: 0;
+  transition: opacity 420ms cubic-bezier(0.23, 1, 0.32, 1);
+}
+.legend.is-live { opacity: 1; }
+.legend__row {
+  display: block;
+  text-decoration: none;
+  color: var(--ink-hair);
+  /* Papperskulör bakom raden. Ett utrop som ligger på en skraffering bryter
+     skrafferingen i en riktig ritning; det är ritpraxis, inte ett kort:
+     ingen radie, ingen kant, ingen skugga, ingen elevation. */
+  background: var(--paper);
+  padding: 2px 4px 2px 0;
+  font-family: var(--font-register);
+  font-weight: 400;
+  font-size: 12px;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  line-height: 1.1;
+  transition: color 240ms cubic-bezier(0.23, 1, 0.32, 1);
+}
+.legend__row[aria-current="true"] { color: var(--ink); }
+.legend__row:focus-visible { outline: var(--hair) solid var(--ink); outline-offset: 4px; }
+.legend__sym { display: block; width: 20px; height: 10px; margin-bottom: 6px; overflow: visible; background: var(--paper); }
+/* Ledarlinjen: dras från den aktiva raden ut mot kapitlets egen kontur.
+   Navigationens kvittens, hover-oberoende, ingen färg som statusmarkör. */
+.legend__lead {
+  position: fixed; left: 108px; height: var(--hair); background: var(--ink-hair);
+  width: 26px;
+  /* Ledaren dras med scaleX, aldrig med width: en width-transition kostar
+     layout per frame och detect.mjs flaggar den som layout-transition.
+     transform komponeras i stället. will-change sätts aldrig här: linjen står
+     stilla i 99 % av sidans liv och en vilande promovering är noll (gate 93). */
+  transform: scaleX(0); transform-origin: left center;
+  transition: transform 240ms cubic-bezier(0.23, 1, 0.32, 1);
+  pointer-events: none;
+}
+/* Ett tillstånd som redan gäller när sidan landar ska INTE animeras fram.
+   Djuplänkas sidan till ett kapitel (#liggaren) är ledaren redan utdragen, och
+   att låta den glida ut vid ankomst animerar något som aldrig ändrades.
+   Lånat ur animated-navigation § The Standard Underline, den enda regeln därifrån
+   som överlever: "Active state: scale-x-100 transition-none, always visible,
+   no animation needed". */
+.legend__lead.is-instant { transition: none; }
+.legend__lead::after {
+  content: ""; position: absolute; right: 0; top: -0.75px;
+  width: 2px; height: 2px; background: var(--ink-hair);
+}
+
+/* Under 768: ritningen byter till den reducerade planschen (ASSETS.md § A.8)
+   och legenden byter form med den. Fem hårlinjeticks plus det aktiva
+   kapitelnamnet, på papperet, utan yta, utan radie, utan pill. */
+@media (max-width: 767px) {
+  :root { --hair: 1px; }   /* cellens enda breddundantag: 0.75 skalar under en enhetspixel vid 390 */
+  .legend {
+    inset: auto 0 0 0; width: auto; height: auto;
+    flex-direction: row; align-items: flex-end; justify-content: flex-start;
+    gap: 10px; padding: 10px 16px 12px;
+    background: var(--paper);
+    border-top: var(--hair) solid var(--ink-hair);
+  }
+  .legend__sym { display: none; }
+  /* Träffytan är 44 px hög även när märket är 18 x 17. Ett litet ritat märke
+     ska gå att träffa; padding plus negativ marginal växer ytan utan att flytta
+     märket. Mätt i R3: raderna var 18 x 17 innan. */
+  .legend__row {
+    font-size: 11px; letter-spacing: 0.1em; color: transparent;
+    width: 18px; overflow: hidden;
+    padding-block: 14px; margin-block: -14px;
+  }
+  .legend__row::before {
+    content: ""; display: block; width: 18px; height: var(--hair); background: var(--ink-hair);
+  }
+  .legend__row[aria-current="true"] { color: var(--ink); width: auto; overflow: visible; }
+  .legend__row[aria-current="true"]::before { background: var(--ink); margin-bottom: 5px; }
+  .legend__lead { display: none; }
+}
+
+/* ==========================================================================
+   5 · SIGNATURAKTEN. Ritningen ritar sig, och blir sedan sidan.
+   ========================================================================== */
+.sheet { display: grid; place-items: center; }
+#drawing {
+  width: 100%; height: 100%;
+  display: block;
+  font-family: var(--font-register);
+  text-rendering: geometricPrecision;
+}
+
+/* --- linjehierarkin, som klasser med namngivna roller --------------------
+   Varje ritad bana bär exakt en av dessa sex klasser. Kan en bana inte
+   namnges som kontur, snittmarkering, måttlinje, hjälplinje, ledare eller
+   skraffering ska den bort (gate 79). Kontrollen är körbar. */
+.contour { fill: none; stroke: var(--ink);      stroke-width: var(--contour); }
+.cutmark { fill: none; stroke: var(--ink);      stroke-width: var(--cut); }
+.dimline { fill: none; stroke: var(--ink-hair); stroke-width: var(--hair); }
+.guide   { fill: none; stroke: var(--ink-hair); stroke-width: var(--hair); stroke-dasharray: var(--dash); }
+.leader  { fill: none; stroke: var(--ink-hair); stroke-width: var(--hair); }
+.hatch   { fill: url(#hatch); stroke: none; }
+/* Utrop, rutat: titelblockets ram och dess två cellavdelare. Samma hårlinje
+   som ledare och måttlinjer, solid, ingen fyllning, ingen radie, ingen skugga.
+   Ingen fjärde linjebredd och ingen andra dash-form (plan 005). */
+.calloutframe { fill: none; stroke: var(--ink-hair); stroke-width: var(--hair); display: none; }
+/* Mönstrets linje måste färgas via CSS. currentColor inuti ett <pattern>
+   resolveras mot mönstrets EGEN ärvda color, alltså mot <svg>-roten, inte mot
+   den refererande rektangeln: mätt i R2 ritades skrafferingen i --ink och läste
+   dubbelt så tung som hjälplinjerna bredvid. En hårlinje är en hårlinje. */
+#hatch line { stroke: var(--ink-hair); }
+#drawing path, #drawing rect { stroke-linecap: butt; stroke-linejoin: miter; }
+
+/* --- ritmekaniken. En bana, ett uttryck, drivet av --sc-ps.
+   pathLength="1" normaliserar varje bana så att samma uttryck fungerar oavsett
+   verklig längd, och så att rithastigheten blir jämn per bana i stället för
+   per pixel. */
+/* Längden skrivs med explicit enhet. Utan * 1px serialiserar Chromium det
+   beräknade värdet som "calc(1px)" respektive "0%", alltså två olika typer,
+   och motion_probe.py kan inte parsa någon av dem: proben rapporterade DEAD
+   på en bana som ritade sig korrekt på skärmen. En rörelse som inte går att
+   mäta är inte verifierad, hur rätt stillbilden än ser ut. */
+.draw { stroke-dasharray: 1px; stroke-dashoffset: calc((1 - var(--l)) * 1px); }
+/* En streckad hjälplinje kan inte ritas med dashoffset: dasharray kan inte
+   göra två jobb på samma bana. Gruppen avslöjas med en clip i stället, vilket
+   ger samma "en åt gången"-ordning eftersom subbanorna ligger i ritordning. */
+.wipe { clip-path: inset(0 calc((1 - var(--l)) * 100%) 0 0); }
+
+/* --- utropens opacitet. Läser --sc-ps och inte rå --sc-p: en opacitet som
+   stegar vid varje hjulhack läser som flimrande text. Avvikelsen från
+   BRIEF.md § Motion-tes har en rad i decision ledger. */
+.callout    { fill: var(--ink-hair); font-size: 12px; letter-spacing: 0.14em; font-weight: 400; opacity: var(--t); }
+.titlefield { fill: var(--ink);      font-size: 12px; letter-spacing: 0.14em; font-weight: 400; }
+
+/* --- måttsiffrorna. Den enda kromatiska saken på hela arket, och den gör
+   exakt en sak: ett blått moment per viewport, och momentet är alltid ett
+   verkligt uppmätt tal. */
+.measure {
+  font-size: 72px; font-weight: 500; font-stretch: 112.5%;
+  letter-spacing: 0.02em;
+  font-variant-numeric: tabular-nums;
+  opacity: var(--t);
+  /* Nedskalningen är en transform på samma siffra, aldrig en tredje typgrad:
+     font-size hade kostat layout per frame. 72 -> 12 px är faktor 1/6.
+     transform-box: fill-box är inte valfritt: utan den ligger origo i SVG:ns
+     user-space-nollpunkt, så siffran skalar mot arkets övre vänstra hörn och
+     flyger iväg från sin egen måttlinje i stället för att krympa på plats.
+     Mätt: utan raden landade alla tre siffrorna under titelblocket. */
+  transform-box: fill-box;
+  transform: scale(calc(1 - 0.8333 * var(--fall)));
+  /* Blandningen sker i srgb och inte i oklch. Tokens ar fortfarande oklch;
+     det ar bara interpolationsrummet som byts. En oklch-blandning rakans om
+     per frame med fargrymdskonvertering, och detta ar en av tva blandningar
+     som loper under hela akten. Skillnaden i resultat ar omatbar pa en siffra
+     som slutar pa 12 px; skillnaden i arbete per frame ar det inte. */
+  fill: color-mix(in srgb, var(--blue), var(--ink-hair) calc(var(--fall) * 100%));
+}
+/* Origo per siffra = dess egen ankarpunkt, så nedskalningen håller siffran
+   kvar över sin egen station i måttkedjan. */
+#m-320, #m-768 { transform-origin: 50% 100%; }
+#m-1440        { transform-origin: 100% 100%; }
+
+/* --- pilspetsarna. Markörer renderas oberoende av dash, så en pilspets skulle
+   annars synas vid ps = 0 medan sin egen linje är osynlig. Den tänds därför
+   över banans sista 15 %: pennan når fram och sätter spetsen.
+   fill="context-stroke" i markern gör att spetsen ärver den refererande
+   banans stroke, så en enda <marker> räcker för båda linjefärgerna. */
+.dimline.draw { stroke: color-mix(in srgb, var(--ink-hair) calc(clamp(0, (var(--l) - 0.85) / 0.15, 1) * 100%), transparent); }
+.cutmark.draw { stroke: color-mix(in srgb, var(--ink)      calc(clamp(0, (var(--l) - 0.85) / 0.15, 1) * 100%), transparent); }
+/* Ledarens punkt i måländen. En ledare får aldrig en pilspets; det är vad som
+   skiljer den från en måttlinje (ASSETS.md § A.3). */
+.leaddot { fill: var(--ink-hair); opacity: var(--t); }
+
+/* --- ritordningens fönster. En rad per bana, ingen överlappar en annan.
+   Hela ordningen står utskriven i BRIEF.md § Ritningens ordning. --------- */
+#page-outline   { --l: clamp(0, calc((var(--sc-ps) - 0.12) / 0.10), 1);
+                  --thin: clamp(0, calc((var(--sc-ps) - 0.55) / 0.05), 1);
+                  stroke-width: calc(var(--contour) - 0.75px * var(--thin)); }
+#cut-AA         { --l: clamp(0, calc((var(--sc-ps) - 0.22) / 0.06), 1); }
+#guides         { --l: clamp(0, calc((var(--sc-ps) - 0.28) / 0.08), 1); }
+#opening        { --l: clamp(0, calc((var(--sc-ps) - 0.36) / 0.08), 1); }
+#hatch-marginal { --l: clamp(0, calc((var(--sc-ps) - 0.44) / 0.04), 1);
+                  clip-path: inset(0 calc((1 - var(--l)) * 100%) 0 0); }
+#ledgers        { --l: clamp(0, calc((var(--sc-ps) - 0.48) / 0.07), 1); }
+#dim-width      { --l: clamp(0, calc((var(--sc-ps) - 0.55) / 0.05), 1); }
+#exts           { --l: clamp(0, calc((var(--sc-ps) - 0.60) / 0.02), 1); }
+#stations       { --l: clamp(0, calc((var(--sc-ps) - 0.62) / 0.02), 1); }
+#dim-gutter     { --l: clamp(0, calc((var(--sc-ps) - 0.64) / 0.04), 1); }
+#dim-row        { --l: clamp(0, calc((var(--sc-ps) - 0.68) / 0.04), 1); }
+#lead-16-9      { --l: clamp(0, calc((var(--sc-ps) - 0.72) / 0.03), 1); }
+#lead-marginal  { --l: clamp(0, calc((var(--sc-ps) - 0.75) / 0.03), 1); }
+
+/* utropen, i samma ordning som de hör till sin egen bana */
+#cut-a-l, #cut-a-r { --t: clamp(0, calc((var(--sc-ps) - 0.27) / 0.02), 1); }
+#dot-16-9          { --t: clamp(0, calc((var(--sc-ps) - 0.72) / 0.02), 1); }
+#dot-marginal      { --t: clamp(0, calc((var(--sc-ps) - 0.75) / 0.02), 1); }
+#m-320  { --t: clamp(0, calc((var(--sc-ps) - 0.56) / 0.02), 1);
+          --fall: clamp(0, calc((var(--sc-ps) - 0.88) / 0.12), 1); }
+#m-768  { --t: clamp(0, calc((var(--sc-ps) - 0.62) / 0.02), 1);
+          --fall: clamp(0, calc((var(--sc-ps) - 0.88) / 0.12), 1); }
+#m-1440 { --t: clamp(0, calc((var(--sc-ps) - 0.68) / 0.02), 1);
+          --fall: clamp(0, calc((var(--sc-ps) - 0.88) / 0.12), 1); }
+#c-gutter   { --t: clamp(0, calc((var(--sc-ps) - 0.67) / 0.02), 1); }
+#c-row      { --t: clamp(0, calc((var(--sc-ps) - 0.71) / 0.02), 1); }
+#c-169      { --t: clamp(0, calc((var(--sc-ps) - 0.74) / 0.02), 1); }
+#c-marginal { --t: clamp(0, calc((var(--sc-ps) - 0.76) / 0.02), 1); }
+#c-spalt    { --t: clamp(0, calc((var(--sc-ps) - 0.76) / 0.02), 1); }
+#c-fold     { --t: clamp(0, calc((var(--sc-ps) - 0.77) / 0.02), 1); }
+#c-calyx    { --t: clamp(0, calc((var(--sc-ps) - 0.86) / 0.04), 1); }
+
+/* --- öppningen fylls. Samma rektangel som konturen just ritade, positionerad
+   ur samma fyra --op-*-tal via <foreignObject>, så att den ligger i ritningens
+   koordinatrum och aldrig kan drifta ifrån sin egen kontur (F-010).
+   Bläcket ligger bokstavligt talat ovanpå: <svg> ritar #opening efter
+   foreignObject i dokumentordning. */
+.opening-live {
+  width: 100%; height: 100%;
+  overflow: hidden;
+  background: var(--paper-fold);
+  --fill: clamp(0, calc((var(--sc-ps) - 0.78) / 0.10), 1);
+  clip-path: inset(0 0 calc((1 - var(--fill)) * 100%) 0);
+}
+.opening-live iframe {
+  width: 100%; height: 100%;
+  border: 0; display: block;
+  /* Före ps 0.88 går det inte att klicka på en halvavslöjad sida. Efter att
+     ramen visats transformeras, tonas eller rivs den aldrig ner
+     (PRODUCT.md § Operating Context). */
+  pointer-events: none;
+}
+.opening-live.is-open iframe { pointer-events: auto; }
+
+/* ==========================================================================
+   5b · DEN REDUCERADE PLANSCHEN UNDER 768 (ASSETS.md § A.8)
+   vector-effect används inte, så hårlinjen skalar med arket: vid 390 bred
+   viewport blir 0.75 user units 0.20 CSS-px, alltså under en enhetspixel, och
+   halva ritningen aliasar bort. Mätt i R2: hela planschen lästes som en
+   utsmetad remsa. Svaret är inte en sallad ritning utan EN ANNAN PLANSCH.
+   Regeln bakom urvalet: en station visas bara på en sida vars bredd den
+   faktiskt beskriver, vilket gör reduktionen sann och inte bara enklare.
+   `viewBox` är ett attribut och kan inte sättas i CSS; JS sätter det, allt
+   annat är geometri-egenskaper som Chromium exponerar i CSS.
+   ========================================================================== */
+@media (max-width: 767px) {
+  /* Kvar: ytterkontur, öppning, totalbredden med sin enda sanna station, och
+     bildförhållandet. Bort: allt som mäter en spalt som inte finns här. */
+  #cut-AA, #cut-a-l, #cut-a-r,
+  #guides, #ledgers, #exts, #hatch-marginal,
+  #dim-gutter, #c-gutter, #c-spalt,
+  #dim-row, #c-row,
+  #lead-marginal, #dot-marginal, #c-marginal { display: none; }
+
+  /* Plan 004. Stationsstrecken hör till 1440-planschen. På den reducerade är
+     kedjan ett UTROP och inte en stationskedja, så inget streck och ingen
+     förlängningslinje får peka från arkets bredd upp till ett tal som inte
+     mäter den bredden. */
+  #stations { display: none; }
+
+  #page-outline { d: path("M0.5 0.5 H319.5 V639.5 H0.5 Z"); }
+  #opening      { d: path("M24 150 H296 V303 H24 Z"); }   /* 272 x 153 = 16:9 */
+  /* y 505 och inte 560: måttlinjen löper hela arkets bredd och gick därför rakt
+     genom plan 005:s titelblocksruta (530 till 596) och genom dess mittfält.
+     Att korta linjen vore att göra måttet osant, så det är linjens höjd som
+     flyttar. 505 ger 24 units till kedjans underkant och 25 till rutans
+     överkant. Mätt i R3. */
+  #dim-width    { d: path("M0 505 H320"); }
+
+  /* foreignObject tar x/y/width/height som CSS-geometri. <text> gör det INTE:
+     x och y är presentationsattribut där, och en CSS-regel mot dem ignoreras
+     tyst. Mätt i R2: alla utrop försvann ur den reducerade planschen därför att
+     de satt kvar på sina 1440-koordinater, utanför den nya viewBoxen. Texterna
+     flyttas därför med attribut i JS, i samma funktion som byter viewBox. */
+  /* Den reducerade planschens öppning. Talen står på ETT ställe, precis som
+     --op-* gör för 1440-planschen, så att sajten inte kan hamna utanför sin
+     egen kontur (F-010). #opening ritas ur samma tal. */
+  :root { --op-x-m: 24; --op-y-m: 150; --op-w-m: 272; --op-h-m: 153; }  /* 272 x 153 = 16:9 */
+
+  foreignObject {
+    x: calc(var(--op-x-m) * 1px); y: calc(var(--op-y-m) * 1px);
+    width: calc(var(--op-w-m) * 1px); height: calc(var(--op-h-m) * 1px);
+  }
+
+  /* Plan 001. Ramen layoutar mot 320 px, alltså Calyx eget golv, och skalas ner
+     till öppningens 272 med en STATISK skala. Mätt i R2: vid en 272 px
+     layoutvyport kollapsade Calyx kolumntitel med sig själv och fotografiet
+     syntes inte alls, så signaturaktens utbetalning uteblev vid 390.
+     Skalan är statisk och deklarativ: den sätts före första målning, ändras
+     aldrig, läser varken --sc-ps eller --sc-p, och interpoleras aldrig per
+     bildruta. Det är ramens fasta presentation, inte en transformering av en
+     ram som redan visats (PRODUCT.md § Operating Context).
+     EN regel på .opening-live, inte fyra: samma regel bär a3:s tre plates i R3. */
+  .opening-live > iframe {
+    width: 320px;                                             /* Calyx layoutgolv */
+    height: calc(320px * var(--op-h-m) / var(--op-w-m));      /* = 180px, samma 16:9 */
+    transform: scale(calc(var(--op-w-m) / 320));              /* = 0.85 */
+    transform-origin: 0 0;
+  }
+
+  /* Plan 005. Titelblocket blir det ett titelblock är på en riktig ritning
+     (ISO 7200): en rutad ruta i arkets nedre högra hörn, tre celler à 22 units,
+     184 x 66, ytterkant x 296 och underkant y 596, alltså 24 units till arkets
+     högerkant och 44 till underkanten. Vid 1440 är tre lösa rader i ett hörn
+     rätt, därför att proportionen mellan ett litet block och ett stort fält ÄR
+     ritpappersgrammatiken; vid 390 finns ingen andra axel som gör hörnet till
+     ett hörn, och samma tre rader läste som en sida som inte laddat sitt
+     innehåll. Rutan ger blocket sin egen kant tillbaka. */
+  #title-frame {
+    display: block;
+    d: path("M112 530 H296 V596 H112 Z M112 552 H296 M112 574 H296");
+  }
+
+  #dot-16-9  { cx: 296px; cy: 150px; }
+  #lead-16-9 { d: path("M296 150 L306 132 H312"); }
+
+  /* Plan 004. Måttkedjan är s3:s displayelement (concepts-K3.md § (3) s3) och
+     får finnas på båda planscherna. 320, 768 och 1440 är inte tre stationer på
+     DEN HÄR sidans bredd, de är de tre brytpunkter Alunix bygger mot, alltså
+     ritningens ämne, och de är sanna på varje skärm precis som 7 rem är.
+     På den reducerade planschen sitter de därför som en kedja under arket och
+     inte som stationer på arkets egen bredd, så att inget tal påstår sig mäta
+     något det inte mäter.
+     Grad 34 px och inte planens 40: mätt vid 40 i Martian Mono hängde 320 ut
+     3.2 units utanför arkets vänsterkant och 768 och 1440 överlappade varandra
+     med 30.4 units, eftersom de tre talen då kräver 288 units glyf plus två
+     mellanrum på 320 units ark. Planen anger 34 som tillåtet golv och det är
+     mätt att räcka. Under 34 hade kedjan fallit ur displaygrad. */
+  #m-320, #m-768, #m-1440 { font-size: 34px; }
+
+  /* Foldens underkant ligger ovanför den mobila legenden. */
+  .sheet { padding-bottom: 44px; }
+}
+
+/* ==========================================================================
+   6 · PLATSHÅLLARE FÖR R3. Rätt grund, rätt höjd, inga låtsaselement.
+   ========================================================================== */
+.ph { min-height: 50vh; background: var(--paper); }
+
+/* Skip-länk: sidans enda synliga interaktiva element före a6:s mailto. */
+.skip {
+  position: absolute; left: -9999px;
+  font-family: var(--font-register); font-size: 12px; letter-spacing: 0.14em;
+  color: var(--ink); background: var(--paper);
+  padding: 10px 14px; border: var(--hair) solid var(--ink);
+}
+.skip:focus { left: 12px; top: 12px; z-index: 90; }
+
+/* ==========================================================================
+   7 · ?preview=. Alla lägen fryser shimen så att skärmbilden visar det formade
+   läget och inte en lerp i flykten. Specificiteten ligger på body-attributet,
+   så ingen regel behöver !important.
+   ========================================================================== */
+body[data-preview] #drawing [id]  { --l: 1; --t: 1; --thin: 1; --fall: 1; }
+body[data-preview] .opening-live  { --fill: 1; }
+
+body[data-preview="sheet"] #drawing [id] { --l: 0; --t: 0; --thin: 0; --fall: 0; }
+body[data-preview="sheet"] .opening-live { --fill: 0; }
+
+body[data-preview="drawn"] #drawing [id] { --l: 1; --t: 1; --thin: 1; --fall: 0; }
+body[data-preview="drawn"] .opening-live { --fill: 0; }
+
+body[data-preview="mid"]   #drawing [id] { --fall: 0.5; }
+</style>
+</head>
+<body>
+
+<div class="paper-texture" aria-hidden="true"></div>
+
+<a class="skip" href="#top">Till ritningen</a>
+
+<!-- TECKENFÖRKLARINGEN. Sidans index och sidans enda nav. Ingen topprad. -->
+<nav class="legend" aria-label="Ritningens kapitel">
+  <span class="legend__lead" aria-hidden="true"></span>
+
+  <a class="legend__row" href="#tesen" data-chapter="tesen">
+    <svg class="legend__sym" viewBox="0 0 20 10" aria-hidden="true" focusable="false">
+      <path d="M0 5 H20" fill="none" stroke="currentColor" stroke-width="0.75"/>
+    </svg>TESEN</a>
+
+  <a class="legend__row" href="#detaljer" data-chapter="detaljer">
+    <svg class="legend__sym" viewBox="0 0 20 10" aria-hidden="true" focusable="false">
+      <rect x="0.75" y="1.5" width="18.5" height="7" fill="none" stroke="currentColor" stroke-width="1.5"/>
+    </svg>DETALJER</a>
+
+  <a class="legend__row" href="#liggaren" data-chapter="liggaren">
+    <svg class="legend__sym" viewBox="0 0 20 10" aria-hidden="true" focusable="false">
+      <path d="M1 5 H19" fill="none" stroke="currentColor" stroke-width="0.75"/>
+      <path d="M19 5 L15 3 L15 7 Z" fill="currentColor"/>
+      <path d="M1 5 L5 3 L5 7 Z" fill="currentColor"/>
+    </svg>LIGGAREN</a>
+
+  <a class="legend__row" href="#stycklista" data-chapter="stycklista">
+    <svg class="legend__sym" viewBox="0 0 20 10" aria-hidden="true" focusable="false">
+      <path d="M0 8 L6 8 L12 2 H20" fill="none" stroke="currentColor" stroke-width="0.75"/>
+      <circle cx="0.9" cy="8" r="1" fill="currentColor"/>
+    </svg>STYCKLISTA</a>
+
+  <a class="legend__row" href="#titelblock" data-chapter="titelblock">
+    <svg class="legend__sym" viewBox="0 0 20 10" aria-hidden="true" focusable="false">
+      <path d="M0 8 L8 0 M4 10 L14 0 M10 10 L20 0 M16 10 L20 6"
+            fill="none" stroke="currentColor" stroke-width="0.75"/>
+    </svg>TITELBLOCK</a>
+</nav>
+
+<main id="top">
+
+  <!-- ======================================================================
+       a1 · RITNINGEN. Toppen och signaturen i samma akt.
+       De första 0,12 av akten är författad tystnad: ett nästan tomt ark med
+       bara titelblocket. Det är tystnaden före toppen, inte död scroll, och
+       det står i BRIEF.md så att scroll_verify.py:s blankBands inte larmar
+       falskt. Ta aldrig bort den för att tysta en varning.
+       cue "0 1 0 0" = greet och håll. Titelblocket är stagens ground och är
+       synligt från ps = 0, så ingen scroll-cue-text behövs (gate 88).
+       ====================================================================== -->
+  <!-- span 4.0 och inte målbildens 2.4. Motorn sätter akthöjden till span * vh
+       och den PINNADE resan blir (span - 1) * vh, så 2.4 ger bara 1.4 vh:
+       1260 px för fjorton ritsteg, alltså 90 px per steg, mindre än ett
+       hjulhack. Mätt vid 2.4: --sc-ps max_step 3.44 % mot barens 3 %.
+       Baren i motion-smoothness.md § The bar är en hård grind och spannet ett
+       riktvärde, så grinden vinner. 4.0 ger 2700 px resa: 1782 px över de elva
+       linjestegen, alltså 162 px per linje, och --sc-ps max_step 1.7 %.
+       Akten har sidans största spann med bred marginal (feel-and-fingerprint.md
+       § The peak). Hela avvikelsen har en rad i BRIEF.md § decision ledger. -->
+  <section class="act-drawing" data-sc-act="pin" data-sc-span="4.0" data-sc-dwell="0.35"
+           aria-labelledby="sheet-title">
+    <div data-sc-stage class="sheet">
+
+      <svg id="drawing" viewBox="0 0 1440 900" preserveAspectRatio="xMidYMid meet"
+           role="img" aria-labelledby="sheet-title sheet-desc">
+        <title id="sheet-title">Sektionsritning av en webbsida</title>
+        <desc id="sheet-desc">En måttsatt sektionsritning som ritar sig själv när sidan
+          scrollas, och vars öppning sedan fylls av exempelsidan Calyx, live.</desc>
+
+        <defs>
+          <!-- Den enda pilspetsen på hela arket. ISO 129 closed filled, 9 x 3.
+               markerUnits="userSpaceOnUse" gör att den INTE skalar med
+               stroke-width: samma fysiska spets sitter på en måttlinje (0.75)
+               och på snittmarkeringen (2.5), vilket är vad en ritning gör.
+               orient="auto-start-reverse" låter samma marker sitta i båda ändar.
+               fill="context-stroke" ärver den refererande banans stroke. -->
+          <marker id="arrow" markerUnits="userSpaceOnUse" markerWidth="9" markerHeight="6"
+                  refX="9" refY="3" orient="auto-start-reverse">
+            <path d="M0 0 L9 3 L0 6 Z" fill="context-stroke" stroke="none"/>
+          </marker>
+
+          <!-- Skraffering: 45 grader, delning 8. En yta, inte en form. -->
+          <pattern id="hatch" patternUnits="userSpaceOnUse" width="8" height="8"
+                   patternTransform="rotate(45)">
+            <line x1="0" y1="0" x2="0" y2="8" stroke="currentColor" stroke-width="0.75"/>
+          </pattern>
+        </defs>
+
+        <!-- ---- STATISKT. Finns vid ps = 0. Ritas aldrig. ----------------- -->
+        <!-- TITELBLOCK: tre fält. SEKTION A-A med bindestreck, aldrig tankstreck. -->
+        <g id="title-block">
+          <!-- Plan 005. Rutningen finns bara under 768 och är en del av
+               titelblocket, inte ett nytt element: FIRST VIEWPORT står kvar på
+               exakt två saker, papperet och titelblocket. Ritade linjer på
+               papperet, ingen fyllning, ingen radie, ingen skugga, ingen yta.
+               Statisk: den ritas aldrig, precis som fälten. -->
+          <path id="title-frame" class="calloutframe"/>
+          <text id="t1" class="titlefield" x="48" y="68">ALUNIX</text>
+          <text id="t2" class="titlefield" x="48" y="98">SEKTION A-A</text>
+          <text id="t3" class="titlefield" x="48" y="128">SKALA 1:1</text>
+        </g>
+
+        <!-- ---- DEN LEVANDE ÖPPNINGEN ------------------------------------
+             Ligger FÖRE #opening i dokumentordning, så konturen ritas ovanpå
+             den. Positionerad ur de fyra --op-*-talen i ritningens eget
+             koordinatrum: talen finns aldrig på två ställen, så sajten kan
+             inte hamna utanför sin egen kontur (F-010).
+             Ingen ritad enhetsram: inget webbläsarfält, ingen flikrad, ingen
+             adressrad, ingen trafikljusprick, ingen telefonbezel (gate 47). -->
+        <foreignObject x="480" y="240" width="880" height="495">
+          <div xmlns="http://www.w3.org/1999/xhtml" class="opening-live" data-live="calyx">
+            <!-- <iframe> monteras av IntersectionObserver, serialiserat. -->
+          </div>
+        </foreignObject>
+
+        <!-- ---- KONTURER (1.5, --ink) ------------------------------------- -->
+        <!-- 1 · Den ritade sidans ytterkontur. Medurs från övre vänstra hörnet:
+             handen börjar där ögat redan står. Rektangeln är exakt 1440 bred,
+             vilket är vad 1440-utropet mäter. -->
+        <path id="page-outline" class="contour draw" pathLength="1"
+              d="M 0.75 0.75 H 1439.25 V 899.25 H 0.75 Z"/>
+
+        <!-- ---- SNITTMARKERING (2.5, --ink, pil i båda benens ändar) ------ -->
+        <!-- 2 · Snittet A-A som titelblocket refererar. En enda obruten bana:
+             upp för vänsterbenet, tvärs över, ner för högerbenet, så att båda
+             pilspetsarna pekar nedåt och båda är samma <marker>. -->
+        <path id="cut-AA" class="cutmark draw" pathLength="1"
+              d="M 48 220 V 180 H 1392 V 220"
+              marker-start="url(#arrow)" marker-end="url(#arrow)"/>
+        <text id="cut-a-l" class="callout" x="48" y="168" text-anchor="start">A</text>
+        <text id="cut-a-r" class="callout" x="1392" y="168" text-anchor="end">A</text>
+
+        <!-- ---- HJÄLPLINJER (0.75, --ink-hair, dash 4 3) ------------------ -->
+        <!-- 3 · Spalt A vänster och höger, samt spaltavståndets högerkant.
+             368 -> 480 = 112 = 7 rem vid rotgrad 16 px, vilket #dim-gutter mäter. -->
+        <g id="guides" class="wipe">
+          <path class="guide" d="M120 176 V812 M368 176 V812 M480 176 V812"/>
+        </g>
+
+        <!-- 6 · Liggarens tre rader. Delningen 96 är vad #dim-row mäter, och
+             samma 96 px utropas igen i a4:s marginal. -->
+        <g id="ledgers" class="wipe">
+          <path class="guide" d="M120 560 H368 M120 656 H368 M120 752 H368"/>
+        </g>
+
+        <!-- 7b · Förlängningslinjer. Vid x = 0 och x = 1440 tjänar
+             #page-outline självt som förlängningslinje, vilket är korrekt
+             ritpraxis och sparar två banor. -->
+        <g id="exts" class="wipe">
+          <path class="guide" d="M320 760 V802 M768 760 V802"/>
+        </g>
+
+        <!-- ---- SKRAFFERING (0.75, --ink-hair, 45 grader, delning 8) ------ -->
+        <!-- 5 · Marginalzonen. UNDANTAGET: ett <pattern> kan inte dash-ritas,
+             så skrafferingen avslöjas med clip-path vänster till höger. Det är
+             den enda banan på arket som avslöjas med clip i stället för dash,
+             och skälet står här så att det inte kan spridas. -->
+        <rect id="hatch-marginal" class="hatch" x="0.75" y="176" width="119.25" height="636"
+              color="var(--ink-hair)"/>
+
+        <!-- ---- ÖPPNINGEN (1.5, --ink) ------------------------------------ -->
+        <!-- 4 · Den måttsatta öppningen. 880 x 495 = 16:9 exakt. Ritad medurs
+             från sitt övre vänstra hörn. Efter a1 står den kvar som ram. -->
+        <path id="opening" class="contour draw" pathLength="1"
+              d="M 480 240 H 1360 V 735 H 480 Z"/>
+
+        <!-- ---- MÅTTLINJER (0.75, --ink-hair, pil i båda ändar) ----------- -->
+        <!-- 7a · Totalbredden. Detta är en STATIONSKEDJA: varje siffra anger
+             avståndet från vänsterkanten, inte segmentets längd. Det är den
+             enda kedjeform vars samtliga etiketter är sanna värden; en vanlig
+             kedja hade gett 320, 448 och 672, varav två är påhittade tal. -->
+        <path id="dim-width" class="dimline draw" pathLength="1" d="M0 790 H1440"
+              marker-start="url(#arrow)" marker-end="url(#arrow)"/>
+        <g id="stations" class="wipe">
+          <path class="dimline" d="M320 782 V798 M768 782 V798"/>
+        </g>
+
+        <!-- 8 · Spaltavståndet. -->
+        <path id="dim-gutter" class="dimline draw" pathLength="1" d="M368 200 H480"
+              marker-start="url(#arrow)" marker-end="url(#arrow)"/>
+        <text id="c-gutter" class="callout" x="424" y="192" text-anchor="middle">7 rem</text>
+
+        <!-- 9 · Liggarens raddelning. Siffran sätts vågrätt till höger om sin
+             lodräta måttlinje. Ingen text på arket roteras någonsin. -->
+        <path id="dim-row" class="dimline draw" pathLength="1" d="M140 560 V656"
+              marker-start="url(#arrow)" marker-end="url(#arrow)"/>
+        <text id="c-row" class="callout" x="152" y="612" text-anchor="start">96 px</text>
+
+        <!-- ---- LEDARE (0.75, --ink-hair, punkt i måländen, ALDRIG pilspets) -->
+        <!-- 10 · En ledare ritas alltid från målet mot etiketten: det är
+             riktningen ögat läser den i. Punkten sätts först. -->
+        <circle id="dot-16-9" class="leaddot" cx="1360" cy="240" r="1"/>
+        <!-- Plan 003. Utropet låg vid y 206 och snittbenets pilspets slutar vid
+             (1392, 220), så spetsen sköt upp genom sexan och raden lästes "1 :9".
+             #cut-AA kortas ALDRIG: den är en obruten bana just för att båda
+             spetsarna ska få sin markör ur orient="auto-start-reverse", och ett
+             kortare ben skulle flytta snittets ände från arkets kant och göra
+             snittmarkeringen osann. Det är etiketten som flyttar sig.
+             AVVIKELSE från planens y 186: mätt gav den 23 units luft till
+             pilspetsen men lade utropets ram (y 174 till 188) rakt över
+             snittlinjens vågräta löp vid y 180, som med bredd 2.5 upptar
+             178.75 till 181.25. Ett utrop som en linje korsar är lika oläsligt
+             som ett en pil täcker. Hela övre högra hörnet är trångt: snittlöp,
+             snittben, pilspets, bokstaven A och arkets kant möts där.
+             Utropet flyttas i stället ut i den fria spalten till höger om
+             öppningen (x 1360 till 1439), där inget annat ligger. Ledaren
+             behåller sin punkt i måländen, sin knäckvinkelfamilj och sin
+             riktning från målet mot etiketten. -->
+        <path id="lead-16-9" class="leader draw" pathLength="1" d="M1360 240 L1396 262 H1420"/>
+        <text id="c-169" class="callout" x="1420" y="256" text-anchor="end">16:9</text>
+
+        <!-- 11 · Zonnamnen, sist av utropen. Ett zonnamn som sitter INUTI sin
+             egen zon behöver ingen ledare; ett som sitter utanför får en.
+             marginal-utropet flyttat från y 396 till y 268: legenden är fixerad
+             och vertikalt centrerad, och på 1440 x 900 låg den gamla punkten
+             rakt under raden DETALJER. Ett utrop som ett annat element täcker
+             är ett utrop utan roll. -->
+        <circle id="dot-marginal" class="leaddot" cx="60" cy="268" r="1"/>
+        <path id="lead-marginal" class="leader draw" pathLength="1" d="M60 268 V258"/>
+        <text id="c-marginal" class="callout" x="60" y="252" text-anchor="middle">marginal</text>
+        <text id="c-spalt" class="callout" x="424" y="224" text-anchor="middle">spalt</text>
+        <!-- Foldens läge ÄR arkets underkant, så ingen egen foldlinje ritas:
+             en linje som duplicerar en kontur är en linje utan roll. -->
+        <text id="c-fold" class="callout" x="48" y="884" text-anchor="start">fold</text>
+
+        <!-- ---- MÅTTSIFFRORNA (display 72, --blue) ------------------------
+             12 · Räknaren. Motorns egen count, en station i taget. Siffran
+             landar på ett heltal och glider aldrig. Endast sanna tal får en
+             count (devices.md § 7), och de tre här är de enda tal ritningen
+             påstår. -->
+        <text id="m-320"  class="measure" x="320"  y="880" text-anchor="middle"
+              data-sc-count="0 320"  data-sc-count-at="0.58 0.66">0</text>
+        <text id="m-768"  class="measure" x="768"  y="880" text-anchor="middle"
+              data-sc-count="0 768"  data-sc-count-at="0.64 0.72">0</text>
+        <!-- x 1416 och inte ASSETS.md:s 1430: letter-spacing 0.02em lägger ett
+             spatium EFTER sista glyfen, så ett end-anchor vid 1430 sköt sista
+             nollan förbi arkets kant. Mätt i R2, avvikelsen har en ledgerrad. -->
+        <text id="m-1440" class="measure" x="1416" y="880" text-anchor="end"
+              data-sc-count="0 1440" data-sc-count-at="0.70 0.77">0</text>
+
+        <!-- 13 · Öppningens bildtext, den ordagranna raden ur PRODUCT.md.
+             Tonar in först när ramen är fylld. -->
+        <text id="c-calyx" class="callout" x="480" y="759" text-anchor="start">Exempelsida: Calyx, florist i Stockholm</text>
+      </svg>
+
+    </div>
+  </section>
+
+  <!-- ======================================================================
+       a2 till a6 byggs i R3. Markerade platshållare med rätt grund och rätt
+       höjd. Inga låtsaselement, ingen lorem, inga tomma ramar som ska bli
+       något sedan. scroll_verify.py rapporterar blankBands för dem, och det
+       är väntat i R2, inte ett fel att tysta.
+       ====================================================================== -->
+
+  <section id="tesen" class="ph" aria-label="Tesen">
+    <!-- R3 · a2 kinetic lines: VI BYGGER ERT VARUMÄRKE. under en linjal som dras -->
+  </section>
+
+  <section id="detaljer" class="ph" aria-label="Detaljer">
+    <!-- R3 · a3 reveal x3: en plate per exempelsajt, konturen ritas, sajten wipeas fram -->
+  </section>
+
+  <section id="liggaren" class="ph" aria-label="Liggaren">
+    <!-- R3 · a4 flow + in: tjänsterna 01 till 03 som hårlinjerader, radhöjd 96 px utropad -->
+  </section>
+
+  <section id="stycklista" class="ph" aria-label="Stycklistan">
+    <!-- R3 · a5 count + parallax: paketen som stycklista med ledarpunkter och sanna priser -->
+  </section>
+
+  <section id="titelblock" class="ph" aria-label="Titelblocket">
+    <!-- R3 · a6 reveal: specifikationsbladets ram dras in, manifestraden och mailto -->
+  </section>
+
+</main>
+
+<script src="scroll/scrollcraft.js"></script>
+<script src="scroll/sc-smooth.js"></script>
+<script>
+(function () {
+  'use strict';
+
+  /* ---- ?preview= ------------------------------------------------------
+     Alla lägen fryser shimen så att den spårar det råa värdet exakt och
+     skärmbilden visar det formade läget, inte en lerp i flykten. */
+  var MODES = ['sheet', 'drawn', 'filled', 'mid', 'spec', 'legend', 'plates'];
+  var q = new URLSearchParams(location.search);
+  var raw = q.get('preview');
+  var mode = raw ? String(raw).split(':')[0] : null;
+  var arg  = raw ? String(raw).split(':')[1] : null;
+  if (mode && MODES.indexOf(mode) !== -1) {
+    document.body.dataset.preview = mode;
+    window.__scFreezeMotion = true;
+  }
+
+  ScrollCraft.mount(document.body);
+
+  /* ---- Måttsiffrorna i ?preview=.
+     Motorns count skriver bara textContent medan akten faktiskt är live och
+     progressen ligger i countfönstret. Ett fruset previewläge sätter CSS-
+     lokalerna men aldrig talet, så siffrorna stod kvar på "0" i den bild
+     F-007-kontrollen läser. Previewlägena skriver därför måltalet direkt.
+     Endast sanna tal: målet läses ur elementets eget data-sc-count. */
+  if (mode) {
+    var blank = (mode === 'sheet');
+    Array.prototype.forEach.call(document.querySelectorAll('[data-sc-count]'), function (c) {
+      var spec = (c.getAttribute('data-sc-count') || '').trim().split(/\s+/);
+      c.textContent = blank ? '' : (spec[1] || '');
+    });
+  }
+
+  /* ---- Spacern mäts en gång, vid mount. Rapporterar innerHeight 0 i det
+     ögonblicket blir spacern 0 px, sidan får ingen scrolltrack och akten
+     avancerar aldrig: det failar tyst och ser ut som framgång. En resize
+     får motorn att mäta om. Fixas i SIDAN, aldrig i motorn. */
+  function relayout() { dispatchEvent(new Event('resize')); }
+  addEventListener('load', relayout);
+  if (document.fonts && document.fonts.ready) document.fonts.ready.then(relayout);
+
+  /* ---- Den reducerade planschen. Geometrin ligger i CSS; bara viewBox
+     behöver JS, eftersom det är ett attribut och inte en CSS-egenskap.
+     Två planscher i R2: hela inventariet vid 768 och uppåt, och den
+     reducerade vid 320 till 767. Mellanplanschen 768 till 1023 som
+     ASSETS.md § A.8 specificerar är R3-arbete och står som öppen i NOTES.md. */
+  var svg = document.getElementById('drawing');
+  /* id: [stor x, stor y, liten x, liten y]. Utropens plats per plansch.
+     Anchor byts där planschen kräver det (måttsiffran centreras över hela
+     arket i stället för över en station). */
+  var TEXTPOS = {
+    /* Plan 005: under 768 sitter fälten i titelblockets celler, vänsterställda
+       med 8 units indrag, baslinje 7 units över varje cellunderkant. */
+    't1':      [48, 68,  120, 545],
+    't2':      [48, 98,  120, 567],
+    't3':      [48, 128, 120, 589],
+    'c-169':   [1420, 256, 312, 126],   /* plan 003: ut i fria spalten höger om öppningen */
+    /* Plan 002. Femte och sjätte fältet är textLength och lengthAdjust, satta
+       BARA för den reducerade planschen: den låsta raden behöver ~290 units i
+       monon och planschen har 302 mellan x 12 och arkets kant, så den klipptes.
+       textLength passar in utropet i sitt utrymme, vilket är ritpraxis; ingen
+       bokstav tas bort, ingen förkortning införs, ingen radbrytning läggs till,
+       och graden rörs inte. Attributen tas bort när planschen växlar tillbaka. */
+    'c-calyx': [480, 759, 12, 324, 296, 'spacingAndGlyphs'],
+    'c-fold':  [48, 884, 16, 628],
+    /* Plan 004: kedjan finns på båda planscherna. Ankare på den reducerade:
+       middle, middle, end, så att ytterkanterna håller sig innanför arket. */
+    /* Kedjan flyttad från y 600 till 480: plan 005:s titelblocksruta upptar
+       y 530 till 596 i nedre högra hörnet, och kedjans ram (560 till 601) låg
+       rakt över den. Mellanbandet är tomt och gör kedjan till vyns tydliga
+       displayelement utan att röra vare sig rutan eller bildtexten. */
+    'm-320':   [320, 880, 48, 480],
+    'm-768':   [768, 880, 145, 480],
+    'm-1440':  [1416, 880, 304, 480]
+  };
+  function plansch() {
+    if (!svg) return;
+    var small = matchMedia('(max-width: 767px)').matches;
+    svg.setAttribute('viewBox', small ? '0 0 320 640' : '0 0 1440 900');
+    Object.keys(TEXTPOS).forEach(function (id) {
+      var el = document.getElementById(id);
+      if (!el) return;
+      var v = TEXTPOS[id];
+      el.setAttribute('x', small ? v[2] : v[0]);
+      el.setAttribute('y', small ? v[3] : v[1]);
+      /* textLength och lengthAdjust hör till samma familj som x och y: de är
+         presentationsattribut på <text> och kan inte sättas i CSS. De gäller
+         bara den reducerade planschen och tas bort när den växlar tillbaka. */
+      if (small && v.length > 4) {
+        el.setAttribute('textLength', v[4]);
+        el.setAttribute('lengthAdjust', v[5]);
+      } else {
+        el.removeAttribute('textLength');
+        el.removeAttribute('lengthAdjust');
+      }
+    });
+  }
+  plansch();
+  addEventListener('resize', plansch, { passive: true });
+
+  /* ---- Levande ramar. Monteras av en IntersectionObserver ungefär en
+     viewport i förväg, med loading="lazy" som andra spärr. Monteringen är
+     serialiserad: nästa ram sätter sin src först när den föregående har
+     fyrat load, så högst en ram laddar åt gången. En monterad ram rivs
+     aldrig ner, transformeras aldrig och tonas aldrig
+     (PRODUCT.md § Operating Context). */
+  var SITES = {
+    calyx: '/sites/calyx.html',
+    horai: '/sites/horai.html',
+    hyperborea: '/sites/hyperborea.html'
+  };
+  var queue = [], loading = false;
+
+  function pump() {
+    if (loading || !queue.length) return;
+    var host = queue.shift();
+    var key = host.getAttribute('data-live');
+    if (!key || !SITES[key] || host.getAttribute('data-mounted')) { pump(); return; }
+    host.setAttribute('data-mounted', '1');
+    loading = true;
+    var f = document.createElement('iframe');
+    f.setAttribute('loading', 'lazy');
+    f.setAttribute('width', '880');
+    f.setAttribute('height', '495');
+    f.setAttribute('title', 'Exempelsida: ' + key);
+    f.addEventListener('load', function () {
+      loading = false;
+      host.classList.add('is-open');
+      pump();
+    }, { once: true });
+    f.src = SITES[key];
+    host.appendChild(f);
+  }
+
+  var hosts = Array.prototype.slice.call(document.querySelectorAll('[data-live]'));
+  if ('IntersectionObserver' in window) {
+    var io = new IntersectionObserver(function (entries) {
+      entries.forEach(function (e) {
+        if (!e.isIntersecting) return;
+        io.unobserve(e.target);
+        queue.push(e.target);
+        pump();
+      });
+    }, { rootMargin: '100% 0px' });
+    hosts.forEach(function (h) { io.observe(h); });
+  } else {
+    hosts.forEach(function (h) { queue.push(h); });
+    pump();
+  }
+
+  /* ---- Legendens ledarlinje. Sidans enda hover-oberoende statuskvittens.
+     Den dras när ett kapitel blir aktivt. Ingen färg används som
+     statusmarkör och ingen hover krävs. */
+  var rows = Array.prototype.slice.call(document.querySelectorAll('.legend__row'));
+  var lead = document.querySelector('.legend__lead');
+  var chapters = rows.map(function (r) {
+    return { row: r, el: document.getElementById(r.getAttribute('data-chapter')) };
+  }).filter(function (c) { return c.el; });
+
+  function drawLead(c) {
+    if (!lead) return;
+    var b = c.row.getBoundingClientRect();
+    lead.style.top = Math.round(b.bottom - 6) + 'px';
+    lead.style.transform = 'scaleX(1)';
+  }
+
+  var nav = document.querySelector('.legend');
+  var first = chapters.length ? chapters[0].el : null;
+
+  function markActive() {
+    /* Indexet finns när det finns kapitel att indexera: legenden tänds när
+       ritningsakten släpper och det första kapitlet närmar sig. Det är vad
+       som håller FIRST VIEWPORT vid exakt två saker. */
+    if (nav && first) {
+      /* Previewlägena äger legendens närvaro: sheet och drawn är de två lägen
+         där arket ännu inte har några kapitel. Utan den här grenen slog
+         relayout()s resize av legenden igen direkt efter att previewläget satt
+         den, och ?preview=legend kunde inte skärmbilda navet alls. */
+      nav.classList.toggle('is-live', mode
+        ? (mode !== 'sheet' && mode !== 'drawn')
+        : first.getBoundingClientRect().top < innerHeight * 0.9);
+    }
+    var mid = innerHeight * 0.5, best = null;
+    chapters.forEach(function (c) {
+      var b = c.el.getBoundingClientRect();
+      if (b.top <= mid && b.bottom >= mid) best = c;
+    });
+    chapters.forEach(function (c) {
+      c.row.setAttribute('aria-current', c === best ? 'true' : 'false');
+    });
+    if (best) drawLead(best);
+    else if (lead) lead.style.transform = 'scaleX(0)';
+  }
+
+  var pending = false;
+  addEventListener('scroll', function () {
+    if (pending) return;
+    pending = true;
+    requestAnimationFrame(function () { pending = false; markActive(); });
+  }, { passive: true });
+  addEventListener('resize', markActive, { passive: true });
+  /* Första körningen sätter tillståndet utan övergång: det som redan gäller vid
+     ankomst har inte ändrats och ska inte animeras. */
+  if (lead) lead.classList.add('is-instant');
+  markActive();
+  requestAnimationFrame(function () {
+    requestAnimationFrame(function () { if (lead) lead.classList.remove('is-instant'); });
+  });
+
+  /* Previewlägena styr legendens närvaro explicit: sheet och drawn är de två
+     lägen där arket ännu inte har några kapitel, och FIRST VIEWPORT är låst. */
+  if (mode && nav) {
+    nav.classList.toggle('is-live', mode !== 'sheet' && mode !== 'drawn');
+  }
+
+  /* ?preview=legend:<kapitel> tvingar en namngiven rad aktiv med sin
+     ledarlinje fullt utdragen, så att navets enda kvittens kan skärmbildas. */
+  if (mode === 'legend' && chapters.length) {
+    var want = arg || 'liggaren';
+    var target = chapters.filter(function (c) {
+      return c.row.getAttribute('data-chapter') === want;
+    })[0] || chapters[2] || chapters[0];
+    chapters.forEach(function (c) { c.row.setAttribute('aria-current', 'false'); });
+    target.row.setAttribute('aria-current', 'true');
+    drawLead(target);
+  }
+})();
+</script>
+</body>
+</html>

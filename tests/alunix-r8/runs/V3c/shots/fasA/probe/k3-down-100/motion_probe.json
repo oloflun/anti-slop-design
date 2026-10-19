@@ -1,0 +1,45 @@
+{
+  "url": "http://localhost:3090/tests/alunix-r8/board/cells/K3-r8/index.html",
+  "wheel": "100:60",
+  "cpu": 4.0,
+  "tracks": [
+    {
+      "track": ".act-drawing:--sc-ps",
+      "dead": false,
+      "frames": 178,
+      "frame_p95_ms": 218.03,
+      "frames_over_20ms": 119,
+      "frames_over_33ms": 119,
+      "value_range": [
+        0,
+        1
+      ],
+      "max_step_pct": 2.31,
+      "staircase": 0,
+      "reversals": 0
+    },
+    {
+      "track": "#page-outline:stroke-dashoffset",
+      "dead": false,
+      "frames": 178,
+      "frame_p95_ms": 218.03,
+      "frames_over_20ms": 119,
+      "frames_over_33ms": 119,
+      "value_range": [
+        0,
+        1
+      ],
+      "max_step_pct": 17.3,
+      "staircase": 1,
+      "reversals": 0
+    }
+  ],
+  "pass": false,
+  "failures": [
+    ".act-drawing:--sc-ps: frame_p95 218.03 ms > 20",
+    ".act-drawing:--sc-ps: 119 frames > 33 ms",
+    "#page-outline:stroke-dashoffset: frame_p95 218.03 ms > 20",
+    "#page-outline:stroke-dashoffset: 119 frames > 33 ms",
+    "#page-outline:stroke-dashoffset: staircase 1"
+  ]
+}

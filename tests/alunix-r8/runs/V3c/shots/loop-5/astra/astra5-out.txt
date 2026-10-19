@@ -1,0 +1,106 @@
+ship
+
+## persistence
+
+Zero material fixes. High confidence in the three R10 mechanisms after reading the complete HTML and shim, checking the sequences, and reconciling the architect’s measurements.
+
+R9’s composition, cumulative process drawing, reveal latch, frame sleeping, and smoothed motion contract survive. All three loop-4 findings are resolved.
+
+This is a reviewer ship verdict. It does not turn the remaining performance thresholds or unrun checks into measured passes.
+
+## fidelity
+
+**R10 code checks**
+
+- **042:** `.price` has no intrinsic placeholder at `tests/alunix-r8/runs/V3c/index.html:735`. The remaining sleeping wrappers at lines 651 and 857 have allocated geometry and absolutely positioned iframe contents. I found no second content-dependent reserved height reproducing the price defect.
+- **043:** At `tests/alunix-r8/runs/V3c/index.html:681`, Calyx’s equal-height translations cancel for every reveal value. The moving clip exposes the interval from the wrapper’s top to `rv × height`; at 1 it exposes the full wrapper and both transforms are identity. This works at both widths. Hōrai’s separate reciprocal-scale iris remains intact at line 689; its final circle covers the wrapper’s corners.
+- **044:** `driftHand` at `tests/alunix-r8/runs/V3c/index.html:1781` is calculated from geometry, not captured by waiting for a crossing. A reader cannot skip its measurement by jumping into the band. Resize, load and font completion remeasure geometry. Both branches meet at the blue endpoint; reversing scroll retraces the same continuous curve. I found no remaining R10 layout change that invalidates those cached positions.
+- **Lifecycle:** Frame mounting remains idempotent. The persistent wrapper observer is necessary for sleeping and waking. The shim and latch stop scheduling after settling; preview retries are bounded and generation-guarded. No new throwing path, accumulating listener, or perpetually running animation loop found.
+
+**1. Cohesion**
+
+The page coheres: photographic ground, the recurring A-glyph, paper drawing, graphite prices and restrained blue measurements form a consistent sequence. Images **79–84**, across the right-hand drawing and left-hand prose, show one object developing through the process.
+
+The remaining competing chapter treatment is **image 4, lower band**, where the thesis and giant headline share authority. That is Q30, not a new finding.
+
+**2. Rhythm**
+
+No additional seam, narrow ground slit or unauthored empty screen found. The supplied seam measurements satisfy the desktop and mobile floors. Images **87–89**, from the price block through the process heading and drawing entrance, show a deliberate material transition. Images **85–86** and **97–98**, around the principles and closing photograph, preserve the intended release from the drawing.
+
+**3. Balance**
+
+In the desktop band, **image 5’s Calyx frame** dominates the adjacent ledger; **image 6’s Hōrai photograph** dominates the price block. These screens have a clear authority. **Image 4** retains the owner-dependent exception.
+
+Images **79–84** give the process drawing sufficient weight against the prose. **Images 85–86, left-hand principles rail**, use a deliberately bounded text measure; the remaining paper is not an abandoned second column.
+
+**4. Motion and previews**
+
+The flip sequences **51–62** and **63–74** retain readable projected height through the edge-on frames. No clipping or discontinuity identified.
+
+At the process entrance, **image 76’s lower edge** precedes the readable first paragraph; **image 77’s right-hand frame** is whole alongside step 01. **Image 7** supports the same corrected entry.
+
+Previews **32–38** and **44–50** show the cumulative states without visible N+1 leakage. Intermediate drawing in **79–82** and **91–94** is consistent with real scroll positions rather than preview endpoints.
+
+Price-rule growth is visible between **75–76** and **87–88**, especially the lower rules. The closing rule progresses between **25–26**. The 1440 preview walk in both directions remains unrun; still previews do not establish that check.
+
+| H-row | Assessment |
+|---|---|
+| H-01 | Met: 11.76 desktop viewports; hero approximately 29% of document height. |
+| H-02 | Waiting for owner: Q30, image 4’s band. |
+| H-03 | Waiting for owner: Q30; thesis and price remain column-width materials. |
+| H-04 | Met: supplied first-element offset is 108 px. |
+| H-05 | Met: 162 px desktop seams; 101–102 px mobile seams; whole material transitions. |
+| H-06 | Met: distinct thesis, live frame, ledger, drawing and closing anatomies. |
+| H-07 | Met: 88 px desktop headline; locked word remains whole. |
+| H-08 | Waiting for owner only for image 4; images 5 and 6 have clear frame dominance. |
+| H-09 | Met: back-face glyph supplies the previously empty area, images 29 and 41. |
+| H-10 | Met: edge-on height retained, images 56–57 and 68–69. |
+| H-11 | Met: graphite price plane separates from the photographic ground, image 87. |
+| H-12 | Met: independent closing viewport; supplied desktop type and mobile target dimensions hold. |
+| H-13 | Met: supplied mobile dead ground is 10%, below 12%. |
+| H-14 | Met: mobile thesis precedes Calyx and price, images 16–20. |
+| H-15 | Met: full drawing contour accompanies readable step 01, images 7 and 77. |
+| H-16 | Met on supplied verification: remaining low-difference bands are authored hero silence and landing. |
+| H-17 | Met: unchanged 393 px static tail. |
+| H-18 | Met within recorded tolerance: unchanged 1,602 px turn. |
+| H-19 | Met: continuous handoff; supplied mid-tone chroma remains within the cold-light floor. |
+| H-20 | Met: retained bleed and clearance, image 31’s thesis/headline boundary. |
+| H-21 | Numerical frame-time bar unmet; architectural floor, accounted for. Staircase is zero; no substantiated additional cut found in this file. |
+| H-22 | Numerical frame-time bar unmet; architectural floor, accounted for. CPU-1 results improve or hold the declared floor. |
+| H-23 | Met at CPU 1: all supplied act steps ≤3%. CPU-4 giant remains 3.31%, alongside the accounted frame-time limitation. |
+| H-24 | No verified dead device found. Complete device-track proof remains incomplete; a settled Hōrai `.rv` transform is not its live iris track. |
+| H-25 | Met: drawing, scrub, reveals, price rules and closing rule provide visible change; image pairs cited above. |
+| H-26 | Met: unconditional motion contract preserved. |
+| H-27 | Met: Calyx opening restored, content stationary, latch one-way; Hōrai unchanged. |
+| H-28 | Met: full-width flow process, correct position in document, physical drawing reads smoothed progress. |
+| H-29 | Met: normalized animated paths describe drawing form; comfortably within the path budget. |
+| H-30 | Formed states supported by previews and repeat measurements; 1440 bidirectional preview walk still unrun. |
+| H-31 | Met within review scope: retained process paragraphs, visible answers and permitted notation; no prohibited visible dash found. |
+| H-32 | Numerical frame-time bar unmet; architectural floor, accounted for. Process CPU-1 p95 is 17.1/17.0 ms, but isolated long frames remain. |
+| H-33 | Met: blue remains measurement emphasis, then recedes, images 79–84 and 91–96. |
+| H-34 | Met on supplied whole-page measurements; the back-face sampling artefact is correctly separated from painted contrast. |
+| H-35 | Supported by supplied reflow checks and current geometry; no R10 breakpoint regression found in the code or supplied widths. |
+
+## ceiling
+
+- **Insign:** No remaining demonstrated advantage in explicit customer promises.
+- **Highway Media:** No remaining demonstrated process-sequence deficiency; the seven-step drawing now provides beginning, development and completion.
+- **Hoy:** Stronger full-width chapter ownership remains the relevant difference at image 4, pending Q30.
+- **K3:** No remaining material drawing advantage established by this round’s evidence.
+
+## material_fixes
+
+none
+
+## keep
+
+- Constant document geometry from first load.
+- Calyx’s top-opening clip and cancelling transforms.
+- Geometry-derived, reversible drift handoff.
+- LERP 0.16, DEAD 0.0005, inherited `--sc-ps`, and settle-to-idle behavior.
+- One-time reveals, wrapper observation and sleeping iframe contents.
+- Complete process-entry contour, cumulative drawing and restrained measurement accent.
+- Existing seam spacing, column offset, graphite price material and independent closing viewport.
+
+New elements or colours: none.
+ASTRA-EXIT 0

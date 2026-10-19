@@ -1,0 +1,27 @@
+{
+  "url": "http://localhost:3090/tests/alunix-r8/runs/V3c/index.html",
+  "wheel": "20:120",
+  "cpu": 4.0,
+  "tracks": [
+    {
+      "track": "#process:--sc-ps",
+      "dead": false,
+      "frames": 902,
+      "frame_p95_ms": 246.68,
+      "frames_over_20ms": 715,
+      "frames_over_33ms": 714,
+      "value_range": [
+        0.0341,
+        0.885
+      ],
+      "max_step_pct": 0.22,
+      "staircase": 0,
+      "reversals": 0
+    }
+  ],
+  "pass": false,
+  "failures": [
+    "#process:--sc-ps: frame_p95 246.68 ms > 20",
+    "#process:--sc-ps: 714 frames > 33 ms"
+  ]
+}

@@ -1,0 +1,87 @@
+C:\Users\Anton L\.claude\skills\design\scripts\scroll_verify.py:43: DeprecationWarning: Image.Image.getdata is deprecated and will be removed in Pillow 14 (2027-10-15). Use get_flattened_data instead.
+  return list(Image.open(io.BytesIO(png_bytes)).convert("L").resize((w, h)).getdata())
+C:\Users\Anton L\.claude\skills\design\scripts\scroll_verify.py:139: DeprecationWarning: Image.Image.getdata is deprecated and will be removed in Pillow 14 (2027-10-15). Use get_flattened_data instead.
+  px = list(plate.crop((x0, y0, min(x1, plate.width), min(y1, plate.height))).getdata())
+{
+  "url": "http://127.0.0.1:3301/tests/alunix-r8/runs/V3c/index.html",
+  "positions": [
+    0,
+    300,
+    600,
+    900,
+    1200,
+    1500,
+    1800,
+    2100,
+    2400,
+    2700,
+    3000,
+    3300,
+    3600,
+    3900,
+    4200,
+    4500,
+    4800,
+    5100,
+    5400,
+    5700,
+    6000,
+    6300,
+    6600,
+    6900,
+    7200,
+    7500,
+    7800,
+    8100,
+    8400,
+    8700,
+    9000,
+    9300,
+    9600,
+    9682
+  ],
+  "deadScroll": [
+    {
+      "from": 0,
+      "to": 300,
+      "diff": 0.0094
+    },
+    {
+      "from": 1500,
+      "to": 1800,
+      "diff": 0.0102
+    },
+    {
+      "from": 1800,
+      "to": 2100,
+      "diff": 0.0003
+    },
+    {
+      "from": 6300,
+      "to": 6600,
+      "diff": 0.0143
+    },
+    {
+      "from": 6600,
+      "to": 6900,
+      "diff": 0.0148
+    },
+    {
+      "from": 8100,
+      "to": 8400,
+      "diff": 0.0114
+    }
+  ],
+  "cuesNeverFull": [],
+  "unrevealed": [],
+  "contrastUnderMedia": [],
+  "contactSheet": "tests\\alunix-r8\\runs\\V3c\\shots\\loop-5\\probe\\sv-1440\\sheet.png",
+  "notes": [],
+  "blankBands": [
+    {
+      "from": 900,
+      "to": 3222,
+      "px": 2322
+    }
+  ]
+}

@@ -1,0 +1,28 @@
+{
+  "url": "http://127.0.0.1:3301/tests/alunix-r8/runs/V3c/index.html",
+  "wheel": "100:60",
+  "cpu": 1.0,
+  "tracks": [
+    {
+      "track": ".calyx-wrap:--rv",
+      "dead": false,
+      "frames": 163,
+      "frame_p95_ms": 100.0,
+      "frames_over_20ms": 36,
+      "frames_over_33ms": 36,
+      "value_range": [
+        0.1123,
+        1
+      ],
+      "max_step_pct": 10.67,
+      "staircase": 1,
+      "reversals": 0
+    }
+  ],
+  "pass": false,
+  "failures": [
+    ".calyx-wrap:--rv: frame_p95 100.0 ms > 20",
+    ".calyx-wrap:--rv: 36 frames > 33 ms",
+    ".calyx-wrap:--rv: staircase 1"
+  ]
+}

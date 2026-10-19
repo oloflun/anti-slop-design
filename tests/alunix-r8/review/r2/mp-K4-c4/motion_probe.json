@@ -1,0 +1,26 @@
+{
+  "url": "http://127.0.0.1:3311/tests/alunix-r8/runs/K4/index.html",
+  "wheel": "100:60",
+  "cpu": 4.0,
+  "tracks": [
+    {
+      "track": ".divider:transform",
+      "dead": true,
+      "frames": 220,
+      "frame_p95_ms": 50.0,
+      "frames_over_20ms": 61,
+      "frames_over_33ms": 61,
+      "value_range": [
+        0,
+        0
+      ],
+      "max_step_pct": 0.0,
+      "staircase": 0,
+      "reversals": 0
+    }
+  ],
+  "pass": false,
+  "failures": [
+    ".divider:transform: DEAD - vardet rorde sig inte alls medan sidan scrollades (kontrollera att elementet arver egenskapen och att akten faktiskt driver den)"
+  ]
+}

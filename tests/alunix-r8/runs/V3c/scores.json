@@ -1,0 +1,162 @@
+{
+  "target": "tests/alunix-r8/runs/V3c/index.html",
+  "cell": "V3c",
+  "round": 3,
+  "baseline": true,
+  "date": "2026-09-10",
+  "reviewer": "design-critic",
+  "method": "verbs/critique.md seven dimensions on read pixels + verbs/review.md section 6 ten weighted categories",
+  "design_score": {
+    "grade": "B",
+    "weighted": 3.2
+  },
+  "ai_slop_score": {
+    "grade": "A-",
+    "verdict": "Gates 66-88 and 97-98 are clean apart from one residual tell: the card back kicker is a noun-plus-place label, the exact category form the brief bans. Zero em dashes, zero arrows, zero scroll cues, zero fabricated product UI, zero shadows, one radius family and it is 0."
+  },
+  "categories": [
+    {
+      "name": "Visual hierarchy",
+      "weight": 0.15,
+      "grade": "B+",
+      "value": 3.5,
+      "key_issue": "s6 display element renders 30.4 px = 1.9x body; the Horai iframe out-displays the host column on its own screen"
+    },
+    {
+      "name": "Typography",
+      "weight": 0.15,
+      "grade": "B+",
+      "value": 3.5,
+      "key_issue": "Two headings in the 30-40 px band TASTE 4.6 forbids: .price .statement 30.4 px, .thesis-headline 38.4 px"
+    },
+    {
+      "name": "Spacing and layout",
+      "weight": 0.15,
+      "grade": "D+",
+      "value": 1.5,
+      "key_issue": "Document is 4019 px = 4.5 vh against the concept's own 9-11 vh; s7 never gets its own screen; paired columns top-align"
+    },
+    {
+      "name": "Colour and contrast",
+      "weight": 0.1,
+      "grade": "B+",
+      "value": 3.5,
+      "key_issue": "Accent count exactly two and verified, measured contrasts pass; card back and price block are mathematically flat planes (stdev 0.00) with no grain"
+    },
+    {
+      "name": "Interaction states",
+      "weight": 0.1,
+      "grade": "B+",
+      "value": 3.5,
+      "key_issue": "Focus ring has a value per ground and passes; .card-cta ~19 px and .topline-contact ~14 px are under gate 62's 44 px at 390"
+    },
+    {
+      "name": "Responsive",
+      "weight": 0.1,
+      "grade": "A",
+      "value": 4.0,
+      "key_issue": "320, 375, 390, 414, 768 and 1440 all read correctly; card turns to 4:5 under 640 px and still flips; no overflow observed"
+    },
+    {
+      "name": "Content quality",
+      "weight": 0.1,
+      "grade": "B",
+      "value": 3.0,
+      "key_issue": "15/15 locked strings verbatim and no invented numbers, but the card kicker drifted from the target image to the banned noun-plus-place form with no ledger row"
+    },
+    {
+      "name": "AI slop",
+      "weight": 0.05,
+      "grade": "B+",
+      "value": 3.5,
+      "key_issue": "One residual tell, the noun-plus-place kicker; everything else in 66-88 and 97-98 is clean"
+    },
+    {
+      "name": "Motion",
+      "weight": 0.05,
+      "grade": "A",
+      "value": 4.0,
+      "key_issue": "Flip verified in pixels at flip 0, 0.5 and 1; at 90 degrees only the hairline remains; headline and subline carry zero transform through the act"
+    },
+    {
+      "name": "Performance feel",
+      "weight": 0.05,
+      "grade": "B",
+      "value": 3.0,
+      "key_issue": "Not measured by this reviewer; graded from source declarations only (lazy iframes with IO mounting, content-visibility with intrinsic size, no resting will-change). perf_probe belongs to the perf reviewer"
+    }
+  ],
+  "findings": [
+    {
+      "id": "V3c-r3-C1",
+      "title": "Seven-screen story built into 4.5 viewports",
+      "impact": "HIGH",
+      "category": "Spacing and layout",
+      "target": "document height >= 8.0 vh (7200 px at 900)"
+    },
+    {
+      "id": "V3c-r3-C2",
+      "title": "Card back kicker drifted to Webbyra i Sverige, the banned noun-plus-place form",
+      "impact": "HIGH",
+      "category": "Content quality",
+      "target": "kicker = Webbyra, or restore Digital byra"
+    },
+    {
+      "id": "V3c-r3-C3",
+      "title": "s7 never exists as its own screen",
+      "impact": "HIGH",
+      "category": "Spacing and layout",
+      "target": ".close min-height 82svh (738 px at 900)"
+    },
+    {
+      "id": "V3c-r3-C4",
+      "title": "Card front carries material on 22 percent of its face (77.6 percent below L=12)",
+      "impact": "MEDIUM",
+      "category": "Visual hierarchy",
+      "target": "at most 55 percent of the face below L=12"
+    },
+    {
+      "id": "V3c-r3-C5",
+      "title": "Paired columns top-align",
+      "impact": "MEDIUM",
+      "category": "Spacing and layout",
+      "target": "56-96 px vertical offset on one column"
+    },
+    {
+      "id": "V3c-r3-C6",
+      "title": "s6 display element at 30.4 px, thesis headline at 38.4 px, both in the forbidden mid band",
+      "impact": "MEDIUM",
+      "category": "Typography",
+      "target": ">= 80 px (5x the 16 px body) or kicker grade"
+    },
+    {
+      "id": "V3c-r3-C7",
+      "title": "Card back and price block are flat planes with no grain",
+      "impact": "MEDIUM",
+      "category": "Colour and contrast",
+      "target": "grain at 4-5 percent opacity, pointer-events none"
+    },
+    {
+      "id": "V3c-r3-C8",
+      "title": "Two links below the mobile hit target",
+      "impact": "MEDIUM",
+      "category": "Interaction states",
+      "target": "44 x 44 px at widths <= 640 px"
+    },
+    {
+      "id": "V3c-r3-C9",
+      "title": "Hyperborea bleed dies inside the 46 px gutter at 33 px",
+      "impact": "LOW",
+      "category": "Spacing and layout",
+      "target": ">= 56 px past the blue edge at 1440"
+    }
+  ],
+  "ceiling": {
+    "oryzo-ai": "forlorar",
+    "mattis-studio": "slar",
+    "dope-security": "slar",
+    "monologue": "slar",
+    "planhat": "slar"
+  },
+  "disposition": "fix"
+}

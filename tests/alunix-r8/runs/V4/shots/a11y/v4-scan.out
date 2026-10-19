@@ -1,0 +1,69 @@
+{
+  "url": "http://127.0.0.1:3308/tests/alunix-r8/runs/V4/index.html",
+  "violations": [
+    {
+      "id": "color-contrast",
+      "impact": "serious",
+      "wcag": [
+        "cat.color",
+        "wcag2aa",
+        "wcag143",
+        "TTv5",
+        "TT13.c",
+        "EN-301-549",
+        "EN-9.1.4.3",
+        "ACT",
+        "RGAAv4",
+        "RGAA-3.2.1"
+      ],
+      "help": "Elements must meet minimum color contrast ratio thresholds",
+      "nodes": [
+        {
+          "target": ".hero-lede",
+          "html": "<p class=\"hero-lede\" data-hide=\"\" style=\"visibility: inherit; translate: none; rotate: none; scale: none; transform: translate3d(0px, 6.2603px, 0px); opacity: 0"
+        },
+        {
+          "target": "li:nth-child(1) > h2",
+          "html": "<h2><span>01</span>Design</h2>"
+        },
+        {
+          "target": "li:nth-child(1) > h2 > span",
+          "html": "<span>01</span>"
+        },
+        {
+          "target": ".hero-services > li:nth-child(1) > p",
+          "html": "<p>Formen tar vi fram ur er verksamhet, aldrig ur en färdig mall.</p>"
+        },
+        {
+          "target": "li:nth-child(2) > h2",
+          "html": "<h2><span>02</span>Utveckling</h2>"
+        },
+        {
+          "target": "li:nth-child(2) > h2 > span",
+          "html": "<span>02</span>"
+        },
+        {
+          "target": ".hero-services > li:nth-child(2) > p",
+          "html": "<p>Vi skriver koden från grunden, så att sidan laddar snabbt.</p>"
+        },
+        {
+          "target": "li:nth-child(3) > h2",
+          "html": "<h2><span>03</span>System</h2>"
+        },
+        {
+          "target": "li:nth-child(3) > h2 > span",
+          "html": "<span>03</span>"
+        },
+        {
+          "target": ".hero-services > li:nth-child(3) > p",
+          "html": "<p>Bokning, betalning och kunduppgifter, kopplade till sidan.</p>"
+        }
+      ],
+      "viewports": [
+        "390x844"
+      ]
+    }
+  ],
+  "passes": 40,
+  "incomplete": 2
+}

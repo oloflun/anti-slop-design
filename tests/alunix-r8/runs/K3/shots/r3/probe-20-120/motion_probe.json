@@ -1,0 +1,60 @@
+{
+  "url": "http://127.0.0.1:3302/tests/alunix-r8/runs/K3/index.html",
+  "wheel": "20:120",
+  "cpu": 4.0,
+  "tracks": [
+    {
+      "track": "section.act-drawing:--sc-ps",
+      "dead": false,
+      "frames": 259,
+      "frame_p95_ms": 50.1,
+      "frames_over_20ms": 174,
+      "frames_over_33ms": 174,
+      "value_range": [
+        0,
+        0.3558
+      ],
+      "max_step_pct": 0.98,
+      "staircase": 0,
+      "reversals": 0
+    },
+    {
+      "track": "#page-outline:stroke-dashoffset",
+      "dead": false,
+      "frames": 259,
+      "frame_p95_ms": 50.1,
+      "frames_over_20ms": 174,
+      "frames_over_33ms": 174,
+      "value_range": [
+        0,
+        1
+      ],
+      "max_step_pct": 2.6,
+      "staircase": 0,
+      "reversals": 0
+    },
+    {
+      "track": "#opening:stroke-dashoffset",
+      "dead": true,
+      "frames": 259,
+      "frame_p95_ms": 50.1,
+      "frames_over_20ms": 174,
+      "frames_over_33ms": 174,
+      "value_range": [
+        1,
+        1
+      ],
+      "max_step_pct": 0.0,
+      "staircase": 0,
+      "reversals": 0
+    }
+  ],
+  "pass": false,
+  "failures": [
+    "section.act-drawing:--sc-ps: frame_p95 50.1 ms > 20",
+    "section.act-drawing:--sc-ps: 174 frames > 33 ms",
+    "#page-outline:stroke-dashoffset: frame_p95 50.1 ms > 20",
+    "#page-outline:stroke-dashoffset: 174 frames > 33 ms",
+    "#opening:stroke-dashoffset: DEAD - vardet rorde sig inte alls medan sidan scrollades (kontrollera att elementet arver egenskapen och att akten faktiskt driver den)"
+  ]
+}

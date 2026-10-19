@@ -1,0 +1,369 @@
+{
+ "geom": {
+  "stagger": 3060,
+  "process": 5637,
+  "principles": 9433
+ },
+ "runs": [
+  {
+   "name": "hero",
+   "start": 0,
+   "ticks": 30,
+   "delta": {
+    "TaskDuration": 4.064,
+    "ScriptDuration": 0.256,
+    "LayoutDuration": 0.037,
+    "RecalcStyleDuration": 2.773,
+    "LayoutCount": 10,
+    "RecalcStyleCount": 223
+   },
+   "frames": {
+    "n": 132,
+    "p95_ms": 71.9,
+    "over33": 67,
+    "mean_ms": 36.7
+   },
+   "skipped": 0
+  },
+  {
+   "name": "hero-noCQ",
+   "start": 0,
+   "ticks": 30,
+   "delta": {
+    "TaskDuration": 3.748,
+    "ScriptDuration": 0.228,
+    "LayoutDuration": 0.035,
+    "RecalcStyleDuration": 2.415,
+    "LayoutCount": 13,
+    "RecalcStyleCount": 196
+   },
+   "frames": {
+    "n": 116,
+    "p95_ms": 107.1,
+    "over33": 61,
+    "mean_ms": 44.2
+   },
+   "skipped": 0
+  },
+  {
+   "name": "hero-dedup",
+   "start": 0,
+   "ticks": 30,
+   "delta": {
+    "TaskDuration": 4.274,
+    "ScriptDuration": 0.271,
+    "LayoutDuration": 0.039,
+    "RecalcStyleDuration": 2.903,
+    "LayoutCount": 10,
+    "RecalcStyleCount": 208
+   },
+   "frames": {
+    "n": 122,
+    "p95_ms": 104.4,
+    "over33": 75,
+    "mean_ms": 44.1
+   },
+   "skipped": 266
+  },
+  {
+   "name": "hero-cvProcess",
+   "start": 0,
+   "ticks": 30,
+   "delta": {
+    "TaskDuration": 3.912,
+    "ScriptDuration": 0.243,
+    "LayoutDuration": 0.044,
+    "RecalcStyleDuration": 2.666,
+    "LayoutCount": 10,
+    "RecalcStyleCount": 186
+   },
+   "frames": {
+    "n": 118,
+    "p95_ms": 88.7,
+    "over33": 61,
+    "mean_ms": 38.1
+   },
+   "skipped": 0
+  },
+  {
+   "name": "hero-cvAll",
+   "start": 0,
+   "ticks": 30,
+   "delta": {
+    "TaskDuration": 4.31,
+    "ScriptDuration": 0.26,
+    "LayoutDuration": 0.04,
+    "RecalcStyleDuration": 2.803,
+    "LayoutCount": 15,
+    "RecalcStyleCount": 217
+   },
+   "frames": {
+    "n": 129,
+    "p95_ms": 89,
+    "over33": 72,
+    "mean_ms": 36.9
+   },
+   "skipped": 0
+  },
+  {
+   "name": "hero-cvAll-dedup-noCQ",
+   "start": 0,
+   "ticks": 30,
+   "delta": {
+    "TaskDuration": 4.049,
+    "ScriptDuration": 0.261,
+    "LayoutDuration": 0.04,
+    "RecalcStyleDuration": 2.728,
+    "LayoutCount": 13,
+    "RecalcStyleCount": 224
+   },
+   "frames": {
+    "n": 129,
+    "p95_ms": 88,
+    "over33": 74,
+    "mean_ms": 34.2
+   },
+   "skipped": 266
+  },
+  {
+   "name": "band",
+   "start": 2460,
+   "ticks": 28,
+   "delta": {
+    "TaskDuration": 5.156,
+    "ScriptDuration": 0.275,
+    "LayoutDuration": 0.037,
+    "RecalcStyleDuration": 3.752,
+    "LayoutCount": 13,
+    "RecalcStyleCount": 358
+   },
+   "frames": {
+    "n": 86,
+    "p95_ms": 320.8,
+    "over33": 83,
+    "mean_ms": 85.7
+   },
+   "skipped": 0
+  },
+  {
+   "name": "band-noCQ",
+   "start": 2460,
+   "ticks": 28,
+   "delta": {
+    "TaskDuration": 5.858,
+    "ScriptDuration": 0.276,
+    "LayoutDuration": 0.041,
+    "RecalcStyleDuration": 4.55,
+    "LayoutCount": 13,
+    "RecalcStyleCount": 346
+   },
+   "frames": {
+    "n": 86,
+    "p95_ms": 142.7,
+    "over33": 84,
+    "mean_ms": 78.6
+   },
+   "skipped": 0
+  },
+  {
+   "name": "band-dedup",
+   "start": 2460,
+   "ticks": 28,
+   "delta": {
+    "TaskDuration": 5.93,
+    "ScriptDuration": 0.305,
+    "LayoutDuration": 0.034,
+    "RecalcStyleDuration": 4.629,
+    "LayoutCount": 13,
+    "RecalcStyleCount": 384
+   },
+   "frames": {
+    "n": 86,
+    "p95_ms": 160.1,
+    "over33": 84,
+    "mean_ms": 80.6
+   },
+   "skipped": 225
+  },
+  {
+   "name": "band-cvProcess",
+   "start": 2460,
+   "ticks": 28,
+   "delta": {
+    "TaskDuration": 5.752,
+    "ScriptDuration": 0.334,
+    "LayoutDuration": 0.059,
+    "RecalcStyleDuration": 4.367,
+    "LayoutCount": 13,
+    "RecalcStyleCount": 357
+   },
+   "frames": {
+    "n": 85,
+    "p95_ms": 463.6,
+    "over33": 82,
+    "mean_ms": 96.8
+   },
+   "skipped": 0
+  },
+  {
+   "name": "band-cvProcess-dedup",
+   "start": 2460,
+   "ticks": 28,
+   "delta": {
+    "TaskDuration": 5.28,
+    "ScriptDuration": 0.277,
+    "LayoutDuration": 0.053,
+    "RecalcStyleDuration": 3.981,
+    "LayoutCount": 15,
+    "RecalcStyleCount": 377
+   },
+   "frames": {
+    "n": 89,
+    "p95_ms": 405.6,
+    "over33": 86,
+    "mean_ms": 86.6
+   },
+   "skipped": 225
+  },
+  {
+   "name": "band-cvProcess-dedup-noCQ",
+   "start": 2460,
+   "ticks": 28,
+   "delta": {
+    "TaskDuration": 5.689,
+    "ScriptDuration": 0.264,
+    "LayoutDuration": 0.058,
+    "RecalcStyleDuration": 4.407,
+    "LayoutCount": 13,
+    "RecalcStyleCount": 344
+   },
+   "frames": {
+    "n": 83,
+    "p95_ms": 160.3,
+    "over33": 81,
+    "mean_ms": 88.6
+   },
+   "skipped": 225
+  },
+  {
+   "name": "process",
+   "start": 4737,
+   "ticks": 45,
+   "delta": {
+    "TaskDuration": 8.802,
+    "ScriptDuration": 0.405,
+    "LayoutDuration": 0.341,
+    "RecalcStyleDuration": 6.609,
+    "LayoutCount": 43,
+    "RecalcStyleCount": 422
+   },
+   "frames": {
+    "n": 149,
+    "p95_ms": 230.1,
+    "over33": 135,
+    "mean_ms": 74.9
+   },
+   "skipped": 0
+  },
+  {
+   "name": "process-dedup",
+   "start": 4737,
+   "ticks": 45,
+   "delta": {
+    "TaskDuration": 8.917,
+    "ScriptDuration": 0.395,
+    "LayoutDuration": 0.327,
+    "RecalcStyleDuration": 6.643,
+    "LayoutCount": 42,
+    "RecalcStyleCount": 393
+   },
+   "frames": {
+    "n": 128,
+    "p95_ms": 373.2,
+    "over33": 122,
+    "mean_ms": 92.3
+   },
+   "skipped": 405
+  },
+  {
+   "name": "process-cvBand",
+   "start": 4737,
+   "ticks": 45,
+   "delta": {
+    "TaskDuration": 8.507,
+    "ScriptDuration": 0.434,
+    "LayoutDuration": 0.341,
+    "RecalcStyleDuration": 6.251,
+    "LayoutCount": 44,
+    "RecalcStyleCount": 433
+   },
+   "frames": {
+    "n": 139,
+    "p95_ms": 143.4,
+    "over33": 125,
+    "mean_ms": 76.0
+   },
+   "skipped": 0
+  },
+  {
+   "name": "process-cvBand-dedup",
+   "start": 4737,
+   "ticks": 45,
+   "delta": {
+    "TaskDuration": 8.771,
+    "ScriptDuration": 0.448,
+    "LayoutDuration": 0.375,
+    "RecalcStyleDuration": 6.422,
+    "LayoutCount": 47,
+    "RecalcStyleCount": 437
+   },
+   "frames": {
+    "n": 141,
+    "p95_ms": 370.6,
+    "over33": 133,
+    "mean_ms": 85.9
+   },
+   "skipped": 408
+  },
+  {
+   "name": "process-cvBand-dedup-noCQ",
+   "start": 4737,
+   "ticks": 45,
+   "delta": {
+    "TaskDuration": 8.721,
+    "ScriptDuration": 0.426,
+    "LayoutDuration": 0.265,
+    "RecalcStyleDuration": 6.357,
+    "LayoutCount": 43,
+    "RecalcStyleCount": 425
+   },
+   "frames": {
+    "n": 149,
+    "p95_ms": 340.5,
+    "over33": 130,
+    "mean_ms": 78.2
+   },
+   "skipped": 408
+  },
+  {
+   "name": "control-smooth",
+   "start": 0,
+   "ticks": 30,
+   "delta": {
+    "TaskDuration": 0.764,
+    "ScriptDuration": 0.113,
+    "LayoutDuration": 0.0,
+    "RecalcStyleDuration": 0.178,
+    "LayoutCount": 0,
+    "RecalcStyleCount": 152
+   },
+   "frames": {
+    "n": 194,
+    "p95_ms": 18.2,
+    "over33": 0,
+    "mean_ms": 17.7
+   },
+   "skipped": 0
+  }
+ ]
+}

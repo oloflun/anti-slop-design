@@ -1,0 +1,18 @@
+# Skill-kedjan per agent, V3c runda 5
+
+Källa: `.impeccable\design-session.jsonl`, `logs/round-5/*.meta.json`, `~/.claude/projects/<slug>/<lead>/subagents/`. Genererad 2026-09-15T22:29:47+00:00.
+
+| Agent | Form | Skill-anrop i ordning | ref-read per kategori | skill-read | route: emitterade / starka / gap | gate-deny | vision | fönster |
+|---|---|---|---|---|---|---|---|---|
+| byggare (claude-sonnet-5) | headless, session `1d136b3f` | design → animate → emil-design-eng → find-animation-opportunities | taste 1 · feedback 1 · catalogue 63 · references 8 · scroll 0 | design 9 | 159 emitterade, 4 starka, gap 0 | 0 | 140 | 2026-09-15T20:52+00:00 – 2026-09-15T21:36+00:00 |
+| Design process-act plan for V3c | Agent `Plan` / sonnet `0a3551` | (inga) | taste 0 · feedback 0 · catalogue 0 · references 1 · scroll 0 | design 1 | 0 emitterade, 0 starka, gap 0 | 0 | 0 | 2026-09-15T14:54+00:00 – 2026-09-15T15:02+00:00 |
+| design-perf-reviewer R5 V3c | Agent `design-perf-reviewer` / None `989090` | (inga) | taste 0 · feedback 0 · catalogue 8 · references 2 · scroll 0 | design 2, impeccable 1 | 0 emitterade, 0 starka, gap 0 | 0 | 67 | 2026-09-15T21:39+00:00 – 2026-09-15T22:27+00:00 (överlappar 5 agenter: ledgerraderna delas) |
+| design-a11y-reviewer R5 V3c | Agent `design-a11y-reviewer` / None `f2774b` | (inga) | taste 0 · feedback 0 · catalogue 8 · references 2 · scroll 0 | a11y-audit 3, design 2, impeccable 1 | 0 emitterade, 0 starka, gap 0 | 0 | 61 | 2026-09-15T21:39+00:00 – 2026-09-15T22:06+00:00 (överlappar 5 agenter: ledgerraderna delas) |
+| design-critic R5 V3c | Agent `design-critic` / None `1a5fc1` | (inga) | taste 0 · feedback 0 · catalogue 3 · references 5 · scroll 0 | design 5, a11y-audit 3, impeccable 1 | 0 emitterade, 0 starka, gap 0 | 0 | 45 | 2026-09-15T21:39+00:00 – 2026-09-15T21:47+00:00 (överlappar 5 agenter: ledgerraderna delas) |
+| design-heuristics R5 V3c | Agent `design-heuristics` / None `2fc877` | (inga) | taste 0 · feedback 0 · catalogue 3 · references 2 · scroll 0 | a11y-audit 3, design 2, impeccable 1 | 0 emitterade, 0 starka, gap 0 | 0 | 52 | 2026-09-15T21:39+00:00 – 2026-09-15T21:50+00:00 (överlappar 5 agenter: ledgerraderna delas) |
+| Look up agent teams docs | Agent `claude-code-guide` / None `0e9929` | (inga) | taste 0 · feedback 0 · catalogue 0 · references 0 · scroll 0 | 0 | 0 emitterade, 0 starka, gap 0 | 0 | 0 | 2026-09-15T15:35+00:00 – 2026-09-15T15:36+00:00 |
+| Explore skill-chain ledger mechanics | Agent `Explore` / sonnet `db8b7a` | (inga) | taste 1 · feedback 1 · catalogue 0 · references 0 · scroll 0 | 0 | 0 emitterade, 0 starka, gap 0 | 0 | 0 | 2026-09-15T14:48+00:00 – 2026-09-15T14:51+00:00 |
+| Fable-arkitekt fas A + plan 010 | Agent `general-purpose` / fable `cf348e` | design → design-catalog → improve-animations | taste 1 · feedback 1 · catalogue 10 · references 15 · scroll 0 | design 15, a11y-audit 3, impeccable 1 | 0 emitterade, 0 starka, gap 0 | 0 | 319 | 2026-09-15T16:42+00:00 – 2026-09-15T22:29+00:00 (överlappar 5 agenter: ledgerraderna delas) |
+| codex-review Astra R5 V3c | Agent `codex-review` / None `2d2bd1` | (inga) | taste 0 · feedback 0 · catalogue 8 · references 0 · scroll 0 | 0 | 0 emitterade, 0 starka, gap 0 | 0 | 53 | 2026-09-15T21:40+00:00 – 2026-09-15T22:03+00:00 (överlappar 5 agenter: ledgerraderna delas) |
+
+Gap-definitionen är design-stop.py § 2: en route som matchade på kod till en hantverksskill som aldrig laddades i samma agents fönster. Subagenter delar leadens ledger (F-014); rader i överlappande fönster räknas på varje agent som var igång, så talen där är tak, inte exakta.

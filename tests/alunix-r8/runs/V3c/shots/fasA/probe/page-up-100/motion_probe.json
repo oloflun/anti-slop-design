@@ -1,0 +1,62 @@
+{
+  "url": "http://localhost:3090/tests/alunix-r8/board/cells/V3c-r8/index.html",
+  "wheel": "-100:60",
+  "cpu": 4.0,
+  "tracks": [
+    {
+      "track": "section.hero:--sc-ps",
+      "dead": false,
+      "frames": 332,
+      "frame_p95_ms": 167.34,
+      "frames_over_20ms": 128,
+      "frames_over_33ms": 128,
+      "value_range": [
+        0,
+        1
+      ],
+      "max_step_pct": 1.41,
+      "staircase": 0,
+      "reversals": 0
+    },
+    {
+      "track": ".plate-card:transform",
+      "dead": false,
+      "frames": 332,
+      "frame_p95_ms": 167.34,
+      "frames_over_20ms": 128,
+      "frames_over_33ms": 128,
+      "value_range": [
+        -360.0,
+        -180
+      ],
+      "max_step_pct": 1.92,
+      "staircase": 0,
+      "reversals": 0
+    },
+    {
+      "track": "#giant-section:--sc-ps",
+      "dead": false,
+      "frames": 332,
+      "frame_p95_ms": 167.34,
+      "frames_over_20ms": 128,
+      "frames_over_33ms": 128,
+      "value_range": [
+        0,
+        0.9989
+      ],
+      "max_step_pct": 3.07,
+      "staircase": 0,
+      "reversals": 0
+    }
+  ],
+  "pass": false,
+  "failures": [
+    "section.hero:--sc-ps: frame_p95 167.34 ms > 20",
+    "section.hero:--sc-ps: 128 frames > 33 ms",
+    ".plate-card:transform: frame_p95 167.34 ms > 20",
+    ".plate-card:transform: 128 frames > 33 ms",
+    "#giant-section:--sc-ps: frame_p95 167.34 ms > 20",
+    "#giant-section:--sc-ps: 128 frames > 33 ms",
+    "#giant-section:--sc-ps: max_step 3.07 % > 3 (spelhuvud)"
+  ]
+}

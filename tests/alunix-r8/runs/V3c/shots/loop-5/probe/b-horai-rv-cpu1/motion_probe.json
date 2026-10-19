@@ -1,0 +1,27 @@
+{
+  "url": "http://127.0.0.1:3301/tests/alunix-r8/runs/V3c/index.html",
+  "wheel": "100:60",
+  "cpu": 1.0,
+  "tracks": [
+    {
+      "track": ".horai-wrap:--rv",
+      "dead": false,
+      "frames": 175,
+      "frame_p95_ms": 50.0,
+      "frames_over_20ms": 27,
+      "frames_over_33ms": 26,
+      "value_range": [
+        0,
+        1
+      ],
+      "max_step_pct": 4.98,
+      "staircase": 0,
+      "reversals": 0
+    }
+  ],
+  "pass": false,
+  "failures": [
+    ".horai-wrap:--rv: frame_p95 50.0 ms > 20",
+    ".horai-wrap:--rv: 26 frames > 33 ms"
+  ]
+}

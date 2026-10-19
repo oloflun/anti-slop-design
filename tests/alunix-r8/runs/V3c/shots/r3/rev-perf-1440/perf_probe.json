@@ -1,0 +1,69 @@
+{
+  "url": "http://127.0.0.1:3321/tests/alunix-r8/runs/V3c/index.html",
+  "viewport": [
+    1440,
+    900
+  ],
+  "cpu": 4.0,
+  "lcp_ms": 208,
+  "cls": 0.0033,
+  "long_tasks": 29,
+  "long_tasks_under_scroll": 25,
+  "transfer": {
+    "other": {
+      "bytes": 106170,
+      "count": 5,
+      "largest": 58437,
+      "largest_url": "http://127.0.0.1:3321/tests/alunix-r8/runs/V3c/index.html"
+    },
+    "style": {
+      "bytes": 18563,
+      "count": 3,
+      "largest": 18563,
+      "largest_url": "http://127.0.0.1:3321/tests/alunix-r8/runs/V3c/scroll/scrollcraft.css"
+    },
+    "image": {
+      "bytes": 4013111,
+      "count": 12,
+      "largest": 1122865,
+      "largest_url": "ps://images.unsplash.com/photo-1487530811176-3780de880c2d?auto=format&fit=crop&w=2400&q=80"
+    },
+    "font": {
+      "bytes": 690560,
+      "count": 19,
+      "largest": 120524,
+      "largest_url": "ic.com/s/notoserifjp/v33/xn7mYHs72GKoTvER4Gn3b5eMXNvMckQlPa61uNKcCqOfbtLXoH3502Rk.19.woff2"
+    },
+    "script": {
+      "bytes": 64854,
+      "count": 4,
+      "largest": 58725,
+      "largest_url": "http://127.0.0.1:3321/tests/alunix-r8/runs/V3c/scroll/scrollcraft.js"
+    }
+  },
+  "total_bytes": 4893258,
+  "dom_nodes": 141,
+  "findings": [
+    {
+      "rule": "long-task-under-scroll",
+      "detail": "25 tasks > 50 ms under scroll"
+    },
+    {
+      "rule": "transfer",
+      "detail": "4893258 B > 2500000"
+    },
+    {
+      "rule": "hero-image",
+      "detail": "1122865 B > 250000 (ps://images.unsplash.com/photo-1487530811176-3780de880c2d?auto=format&fit=crop&w=2400&q=80)"
+    },
+    {
+      "rule": "font-files",
+      "detail": "19 > 3"
+    },
+    {
+      "rule": "font-bytes",
+      "detail": "690560 B > 300000"
+    }
+  ],
+  "pass": false
+}

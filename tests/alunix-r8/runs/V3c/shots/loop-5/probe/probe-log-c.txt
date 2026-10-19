@@ -1,0 +1,49 @@
+=== ctrl-1
+motion_probe PASS  http://127.0.0.1:3301/tests/motion/smooth.html
+  #act:--sc-ps                       p95  16.9 ms | >33ms  0 | max_step  1.34% | staircase   0 | rev  0
+=== ab-thesis-r10-1
+motion_probe FAIL  http://127.0.0.1:3301/tests/alunix-r8/runs/V3c/index.html
+  .panel-thesis:--sc-ps              p95 142.4 ms | >33ms 39 | max_step  2.75% | staircase   0 | rev  0
+  FAIL .panel-thesis:--sc-ps: frame_p95 142.44 ms > 20
+  FAIL .panel-thesis:--sc-ps: 39 frames > 33 ms
+=== ab-thesis-r9-1
+motion_probe FAIL  http://127.0.0.1:3301/tests/alunix-r8/runs/V3c/index.html
+  .panel-thesis:--sc-ps              p95 200.9 ms | >33ms 25 | max_step  2.42% | staircase   0 | rev  0
+  FAIL .panel-thesis:--sc-ps: frame_p95 200.9 ms > 20
+  FAIL .panel-thesis:--sc-ps: 25 frames > 33 ms
+=== ctrl-2
+motion_probe PASS  http://127.0.0.1:3301/tests/motion/smooth.html
+  #act:--sc-ps                       p95  16.9 ms | >33ms  0 | max_step  1.37% | staircase   0 | rev  0
+=== ab-thesis-r10-2
+motion_probe FAIL  http://127.0.0.1:3301/tests/alunix-r8/runs/V3c/index.html
+  .panel-thesis:--sc-ps              p95 216.7 ms | >33ms 26 | max_step  2.57% | staircase   0 | rev  0
+  FAIL .panel-thesis:--sc-ps: frame_p95 216.7 ms > 20
+  FAIL .panel-thesis:--sc-ps: 26 frames > 33 ms
+=== ab-thesis-r9-2
+motion_probe FAIL  http://127.0.0.1:3301/tests/alunix-r8/runs/V3c/index.html
+  .panel-thesis:--sc-ps              p95  83.5 ms | >33ms 23 | max_step  2.20% | staircase   0 | rev  0
+  FAIL .panel-thesis:--sc-ps: frame_p95 83.45 ms > 20
+  FAIL .panel-thesis:--sc-ps: 23 frames > 33 ms
+=== ctrl-3
+motion_probe PASS  http://127.0.0.1:3301/tests/motion/smooth.html
+  #act:--sc-ps                       p95  16.8 ms | >33ms  0 | max_step  1.34% | staircase   0 | rev  0
+=== ab-thesis-r10-3
+motion_probe FAIL  http://127.0.0.1:3301/tests/alunix-r8/runs/V3c/index.html
+  .panel-thesis:--sc-ps              p95 124.9 ms | >33ms 27 | max_step  2.31% | staircase   0 | rev  0
+  FAIL .panel-thesis:--sc-ps: frame_p95 124.9 ms > 20
+  FAIL .panel-thesis:--sc-ps: 27 frames > 33 ms
+=== ab-thesis-r9-3
+motion_probe FAIL  http://127.0.0.1:3301/tests/alunix-r8/runs/V3c/index.html
+  .panel-thesis:--sc-ps              p95 108.4 ms | >33ms 25 | max_step  2.44% | staircase   0 | rev  0
+  FAIL .panel-thesis:--sc-ps: frame_p95 108.4 ms > 20
+  FAIL .panel-thesis:--sc-ps: 25 frames > 33 ms
+=== calyx from before trigger
+motion_probe FAIL  http://127.0.0.1:3301/tests/alunix-r8/runs/V3c/index.html
+  .calyx-wrap:--rv                   p95  66.7 ms | >33ms 23 | max_step  7.42% | staircase   0 | rev  0
+  FAIL .calyx-wrap:--rv: frame_p95 66.7 ms > 20
+  FAIL .calyx-wrap:--rv: 23 frames > 33 ms
+motion_probe FAIL  http://127.0.0.1:3301/tests/alunix-r8/runs/V3c/index.html
+  .calyx-wrap:--rv                   p95  98.7 ms | >33ms 24 | max_step  7.42% | staircase   0 | rev  0
+  FAIL .calyx-wrap:--rv: frame_p95 98.69 ms > 20
+  FAIL .calyx-wrap:--rv: 24 frames > 33 ms
+PROBES-C-DONE

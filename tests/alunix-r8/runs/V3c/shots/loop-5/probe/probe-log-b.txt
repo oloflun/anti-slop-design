@@ -1,0 +1,87 @@
+=== ctrl c4-1
+motion_probe FAIL  http://127.0.0.1:3301/tests/motion/smooth.html
+  #act:--sc-ps                       p95  32.9 ms | >33ms 11 | max_step  1.52% | staircase   0 | rev  0
+  #card:transform                    p95  32.9 ms | >33ms 11 | max_step  1.52% | staircase   0 | rev  0
+  FAIL #act:--sc-ps: frame_p95 32.86 ms > 20
+  FAIL #act:--sc-ps: 11 frames > 33 ms
+  FAIL #card:transform: frame_p95 32.86 ms > 20
+  FAIL #card:transform: 11 frames > 33 ms
+=== b-hero-down-100-1
+motion_probe FAIL  http://127.0.0.1:3301/tests/alunix-r8/runs/V3c/index.html
+  section.hero:--sc-ps               p95 280.1 ms | >33ms 124 | max_step  1.62% | staircase   0 | rev  0
+  .plate-card:transform              p95 280.1 ms | >33ms 124 | max_step  2.82% | staircase   0 | rev  0
+  FAIL section.hero:--sc-ps: frame_p95 280.06 ms > 20
+  FAIL section.hero:--sc-ps: 124 frames > 33 ms
+  FAIL .plate-card:transform: frame_p95 280.06 ms > 20
+  FAIL .plate-card:transform: 124 frames > 33 ms
+=== b-thesis-cpu1-1
+motion_probe FAIL  http://127.0.0.1:3301/tests/alunix-r8/runs/V3c/index.html
+  .panel-thesis:--sc-ps              p95 210.0 ms | >33ms 27 | max_step  2.45% | staircase   0 | rev  0
+  FAIL .panel-thesis:--sc-ps: frame_p95 210.04 ms > 20
+  FAIL .panel-thesis:--sc-ps: 27 frames > 33 ms
+=== ctrl c4-2
+motion_probe FAIL  http://127.0.0.1:3301/tests/motion/smooth.html
+  #act:--sc-ps                       p95  17.2 ms | >33ms  9 | max_step  1.54% | staircase   0 | rev  0
+  #card:transform                    p95  17.2 ms | >33ms  9 | max_step  1.54% | staircase   0 | rev  0
+  FAIL #act:--sc-ps: 9 frames > 33 ms
+  FAIL #card:transform: 9 frames > 33 ms
+=== b-hero-down-100-2
+motion_probe FAIL  http://127.0.0.1:3301/tests/alunix-r8/runs/V3c/index.html
+  section.hero:--sc-ps               p95 139.9 ms | >33ms 106 | max_step  1.80% | staircase   0 | rev  0
+  .plate-card:transform              p95 139.9 ms | >33ms 106 | max_step  2.03% | staircase   0 | rev  0
+  FAIL section.hero:--sc-ps: frame_p95 139.9 ms > 20
+  FAIL section.hero:--sc-ps: 106 frames > 33 ms
+  FAIL .plate-card:transform: frame_p95 139.9 ms > 20
+  FAIL .plate-card:transform: 106 frames > 33 ms
+=== b-thesis-cpu1-2
+motion_probe FAIL  http://127.0.0.1:3301/tests/alunix-r8/runs/V3c/index.html
+  .panel-thesis:--sc-ps              p95 220.4 ms | >33ms 34 | max_step  2.90% | staircase   0 | rev  0
+  FAIL .panel-thesis:--sc-ps: frame_p95 220.42 ms > 20
+  FAIL .panel-thesis:--sc-ps: 34 frames > 33 ms
+=== ctrl c4-3
+motion_probe FAIL  http://127.0.0.1:3301/tests/motion/smooth.html
+  #act:--sc-ps                       p95  16.8 ms | >33ms  1 | max_step  1.37% | staircase   0 | rev  0
+  #card:transform                    p95  16.8 ms | >33ms  1 | max_step  1.37% | staircase   0 | rev  0
+  FAIL #act:--sc-ps: 1 frames > 33 ms
+  FAIL #card:transform: 1 frames > 33 ms
+=== b-hero-down-100-3
+motion_probe FAIL  http://127.0.0.1:3301/tests/alunix-r8/runs/V3c/index.html
+  section.hero:--sc-ps               p95 324.2 ms | >33ms 100 | max_step  1.67% | staircase   0 | rev  0
+  .plate-card:transform              p95 324.2 ms | >33ms 100 | max_step  2.30% | staircase   0 | rev  0
+  FAIL section.hero:--sc-ps: frame_p95 324.2 ms > 20
+  FAIL section.hero:--sc-ps: 100 frames > 33 ms
+  FAIL .plate-card:transform: frame_p95 324.2 ms > 20
+  FAIL .plate-card:transform: 100 frames > 33 ms
+=== b-thesis-cpu1-3
+motion_probe FAIL  http://127.0.0.1:3301/tests/alunix-r8/runs/V3c/index.html
+  .panel-thesis:--sc-ps              p95 261.6 ms | >33ms 38 | max_step  2.71% | staircase   0 | rev  0
+  FAIL .panel-thesis:--sc-ps: frame_p95 261.61 ms > 20
+  FAIL .panel-thesis:--sc-ps: 38 frames > 33 ms
+=== ctrl c1
+motion_probe PASS  http://127.0.0.1:3301/tests/motion/smooth.html
+  #act:--sc-ps                       p95  16.8 ms | >33ms  0 | max_step  1.36% | staircase   0 | rev  0
+  #card:transform                    p95  16.8 ms | >33ms  0 | max_step  1.36% | staircase   0 | rev  0
+=== b-footer-cpu1-travel
+motion_probe FAIL  http://127.0.0.1:3301/tests/alunix-r8/runs/V3c/index.html
+  footer.close:--sc-ps               p95  16.9 ms | >33ms  2 | max_step  2.66% | staircase   0 | rev  0
+  FAIL footer.close:--sc-ps: 2 frames > 33 ms
+=== b-calyx-rv-cpu1
+motion_probe FAIL  http://127.0.0.1:3301/tests/alunix-r8/runs/V3c/index.html
+  .calyx-wrap:--rv                   p95 100.0 ms | >33ms 36 | max_step 10.67% | staircase   1 | rev  0
+  FAIL .calyx-wrap:--rv: frame_p95 100.0 ms > 20
+  FAIL .calyx-wrap:--rv: 36 frames > 33 ms
+  FAIL .calyx-wrap:--rv: staircase 1
+=== b-horai-rv-cpu1
+motion_probe FAIL  http://127.0.0.1:3301/tests/alunix-r8/runs/V3c/index.html
+  .horai-wrap:--rv                   p95  50.0 ms | >33ms 26 | max_step  4.98% | staircase   0 | rev  0
+  FAIL .horai-wrap:--rv: frame_p95 50.0 ms > 20
+  FAIL .horai-wrap:--rv: 26 frames > 33 ms
+=== b-hero-up-100-1
+motion_probe FAIL  http://127.0.0.1:3301/tests/alunix-r8/runs/V3c/index.html
+  section.hero:--sc-ps               p95  65.2 ms | >33ms 84 | max_step  1.59% | staircase   0 | rev  0
+  .plate-card:transform              p95  65.2 ms | >33ms 84 | max_step  2.42% | staircase   0 | rev  0
+  FAIL section.hero:--sc-ps: frame_p95 65.17 ms > 20
+  FAIL section.hero:--sc-ps: 84 frames > 33 ms
+  FAIL .plate-card:transform: frame_p95 65.17 ms > 20
+  FAIL .plate-card:transform: 84 frames > 33 ms
+PROBES-B-DONE

@@ -1,0 +1,42 @@
+{
+  "url": "http://127.0.0.1:3308/tests/alunix-r8/runs/V4/index.html",
+  "px_per_notch": 60,
+  "sections": {
+    "top": {
+      "frames": 86,
+      "p95_ms": 18.3,
+      "over33": 0
+    },
+    "tes": {
+      "frames": 145,
+      "p95_ms": 18.2,
+      "over33": 0
+    },
+    "process": {
+      "frames": 141,
+      "p95_ms": 18.4,
+      "over33": 1
+    },
+    "exempel": {
+      "frames": 297,
+      "p95_ms": 35.3,
+      "over33": 18
+    },
+    "paket": {
+      "frames": 475,
+      "p95_ms": 18.5,
+      "over33": 6
+    },
+    "kontakt": {
+      "frames": 200,
+      "p95_ms": 18.5,
+      "over33": 3
+    }
+  },
+  "iframe_loads": {
+    "frame-calyx": 1,
+    "frame-horai": 1
+  },
+  "st_refreshes_during_pass": 0,
+  "fails": []
+}

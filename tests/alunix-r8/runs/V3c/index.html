@@ -1,0 +1,2195 @@
+<!--
+  design · pre-emit critique: P5 H4 E5 S5 R5 V4
+
+  Alunix r8 · cell V3c · "Plåt i grunden · kortet vänds" · RUNDA 5
+  Hela sidan. Åtta skärmar: heron som pinnad akt (s1-s3, span 3,4 dwell 0,2,
+  PLAN 011), den blå tesen med Hyperborea-bleeden (s4), Calyx live med
+  liggaren bredvid (s5), priset med Hōrai (s6), processakten "Ritningen"
+  (#process, PLAN 010: ett ritat ark i sju tillstånd, sticky 300svh, formen
+  lånad ur board/cells/K3-r8/index.html som teknik, aldrig som sida), och
+  avslutet med adressen (s7). Noll platshållare.
+  Typsnitten är vendorade och self-hostade; sidan hämtar ingenting över nätet.
+
+  REFERENCE LOCK, Tier 0 (locked). Full block + decision ledger: BRIEF.md.
+    Primary reference/direction: tests/alunix-concepts-r5/cells/V3b-chain/index.html.
+      reference-lock.md Tier 0: "Primary = the locked system itself." V3c är en
+      iteration av V3b, inte ett nytt bygge.
+    Borrow only (2): oryzo-ai, ett fysiskt objekt vars material och kant under
+      ett snedljus är det som gör rotationen läsbar (slices/02, 08);
+      mattis-studio, konsolkortet, lånat som AVVISNING: V3c:s kort är ett
+      fysiskt kort med två sidor och en tjocklek, inte en ritad ram med
+      hörnmarkeringar, versionstagg och klocka.
+    Låsta katalogposter ur select.py (byggarens egen körning, R1):
+      oryzo-ai, dope-security, mattis-studio, monologue, planhat.
+    Media strategy: product surface (Calyx/Hōrai/Hyperborea, live eller
+      skärmbild) + vendored grayscale still. INTE photo:unsplash, INTE generated.
+    Reject: glaskort och konsol-chrome (F-006); ritad webbläsar- eller
+      telefonram (gate 47); fabricerad produkt-UI (gate 79); scroll-cue-text
+      (gate 88); tidsstämpel eller "2026 · SVERIGE"; en andra lede i folden;
+      tre lika tjänstekort; logotypvägg, omdömen, betyg, kundantal; en andra
+      accent; skugga.
+    Token commitments: canvas #0b0c0e; paper #fdfbf4; accent #1e5e9c (ETT bruk,
+      TVÅ förekomster: tesplåtens grund inkl. drift-målet #123f68, och
+      understrykningen i "Boka ett möte"); hairline --frame-line; radie 0
+      överallt; display Geist 700 på kortbaksidan, Public Sans 300 i heron;
+      register Geist Mono 10,5 px / .22 em, max fyra monoetiketter på sidan.
+
+  SIGNATURAKTEN: kortet vänds.
+    section.hero är data-sc-act="pin" span 3.4 dwell 0.2 (PLAN 011, R5: span
+    4.8 lade 958 px stilla baksida + 315 px dwell, 1 273 px dead scroll).
+    Rubriken, plåten och underraden är stagens ground, synliga från p = 0
+    ("ground or greet" uppfyllt via ground, alltså ingen cue-text, gate 88).
+    --flip = smoothstep(0.10, 0.78, --sc-ps), räknad i REN CSS (se .plate-card).
+    Det är F-014 punkt 1 och F-013:s "17 långa tasks" tagna i samma drag:
+    ingenting i vändningen kostar en JS-bildruta. Rå --sc-p driver ingenting
+    som ögat ser förflytta sig, någonstans på sidan.
+    Vid --flip 0.5 står kortet 90° från betraktaren: båda ytorna är
+    kantställda och det enda som återstår är .plate-edge, kortets egen
+    tjocklek, ritad som ett 2 px element i planet vinkelrätt mot ytorna.
+
+  MOTORN: kopierad oförändrad till scroll/ (sha256 verifierad mot källan).
+    Aldrig redigerad. .sc-* restylas aldrig (AB06). Stagen är markerad med
+    ATTRIBUTET data-sc-stage och inte med klassen .sc-stage, så att sidan utan
+    JS faller tillbaka till ett vanligt staplat hero i stället för ett
+    stickande tomrum.
+
+  F-011: rörelsen spelar alltid. Sidan läser ingen rörelsepreferens från
+    webbläsaren eller systemet, varken i CSS eller i JS, och har ingen
+    reservlägesväg och inget reducerat läge. En sökning på den preferensens
+    namn i den här filen ska ge noll träffar.
+
+  AVVIKELSER FRÅN MÅLBILDEN: BRIEF.md § decision ledger och NOTES.md § R2.
+-->
+<!doctype html>
+<html lang="sv" class="no-js">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>Alunix · webbyrå i Sverige</title>
+<meta name="description" content="Alunix är en webbyrå i Sverige. Vi skapar skräddarsydda webbplatser.">
+<meta name="color-scheme" content="dark">
+<meta name="theme-color" content="#0b0c0e">
+<link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'><rect width='32' height='32' fill='%230b0c0e'/></svg>">
+
+<!-- Typsnitten är vendorade av bevakaren 2026-09-10 och ligger i assets/fonts/.
+     Exakt tre filer, en per roll, 37,8 kB totalt: taket i performance.md § 1 är
+     tre filer och 300 kB. Google Fonts-länken och båda preconnect-raderna är
+     borta; sidan hämtar ingenting över nätet längre.
+     preload bara på de två snitt som faktiskt syns i folden. Geist Mono
+     preloadas INTE: dess enda bruk i folden är kortbaksidans kicker, som är
+     bortvänd vid p = 0, och en preload för en vikt som inte ligger i folden
+     står på performance.md:s Never-lista. -->
+<link rel="preload" href="assets/fonts/public-sans-300-latin.woff2" as="font" type="font/woff2" crossorigin>
+<link rel="preload" href="assets/fonts/geist-700-latin.woff2" as="font" type="font/woff2" crossorigin>
+
+<link rel="stylesheet" href="scroll/scrollcraft.css">
+<script>document.documentElement.classList.replace('no-js','js');</script>
+<style>
+  /* ============================================================ typsnitten
+     Tre filer, tre roller, rollerna korsar aldrig. unicode-range håller varje
+     fil till latin, font-display:swap gör att texten aldrig är osynlig.
+     Varje familj har en metrikmatchad fallback så att bytet inte kostar layout:
+     size-adjust jämkar x-höjden mot Arials, och ascent/descent-override sätter
+     radboxen till samma höjd som det riktiga snittet. Talen är härledda ur
+     familjernas egna metrik (upm 1000) mot Arial (upm 2048, x-höjd 1062) och
+     kontrollerade genom att mäta CLS med perf_probe, inte genom att antas. */
+  @font-face{font-family:'Public Sans';font-style:normal;font-weight:300;
+    font-display:swap;src:url('assets/fonts/public-sans-300-latin.woff2') format('woff2');
+    unicode-range:U+0000-00FF,U+0131,U+0152-0153,U+02BB-02BC,U+02C6,U+02DA,U+02DC,
+      U+0304,U+0308,U+0329,U+2000-206F,U+2074,U+20AC,U+2122,U+2191,U+2193,U+2212,
+      U+2215,U+FEFF,U+FFFD;}
+  @font-face{font-family:'Public Sans Fallback';font-display:swap;src:local('Arial'),local('Helvetica'),
+    local('Liberation Sans');size-adjust:96.4%;ascent-override:98.5%;
+    descent-override:25.9%;line-gap-override:0%;}
+
+  @font-face{font-family:'Geist';font-style:normal;font-weight:700;
+    font-display:swap;src:url('assets/fonts/geist-700-latin.woff2') format('woff2');
+    unicode-range:U+0000-00FF,U+0131,U+0152-0153,U+02BB-02BC,U+02C6,U+02DA,U+02DC,
+      U+0304,U+0308,U+0329,U+2000-206F,U+2074,U+20AC,U+2122,U+2191,U+2193,U+2212,
+      U+2215,U+FEFF,U+FFFD;}
+  @font-face{font-family:'Geist Fallback';font-display:swap;src:local('Arial Bold'),local('Arial'),
+    local('Liberation Sans');size-adjust:100.3%;ascent-override:100.2%;
+    descent-override:29.4%;line-gap-override:0%;}
+
+  @font-face{font-family:'Geist Mono';font-style:normal;font-weight:400;
+    font-display:swap;src:url('assets/fonts/geist-mono-400-latin.woff2') format('woff2');
+    unicode-range:U+0000-00FF,U+0131,U+0152-0153,U+02BB-02BC,U+02C6,U+02DA,U+02DC,
+      U+0304,U+0308,U+0329,U+2000-206F,U+2074,U+20AC,U+2122,U+2191,U+2193,U+2212,
+      U+2215,U+FEFF,U+FFFD;}
+  @font-face{font-family:'Geist Mono Fallback';font-display:swap;src:local('Consolas'),
+    local('DejaVu Sans Mono'),local('Menlo');size-adjust:101%;ascent-override:100.2%;
+    descent-override:29.4%;line-gap-override:0%;}
+
+  :root{
+    /* ---- R5-världen (mörk/blå), ärvd oförändrad från V3b ---- */
+    --c-black:#0b0c0e; --c-white:#ffffff; --c-paper:#f4f2ee; --c-ink:#14171a;
+    --c-accent:#1e5e9c; --c-accent-deep:#123f68;
+    --c-mute-on-dark:rgba(255,255,255,.62);
+
+    /* ---- R6-världen (papper/invert), ärvd oförändrad från V3b ---- */
+    --bg:#fdfbf4; --ink:#16140f; --invert:#0c0b08; --invert-ink:#fdfbf4;
+    /* PLAN 013, T-3: prisblockets eget kalla plan, valör (L~27) mot
+       grundens L~8, inte kulör (chroma 0,012) - skiljer sig som material,
+       blir aldrig en andra accent. */
+    --c-graphite:oklch(0.27 0.012 250);
+    /* PLAN 045 (R11, loop 5): --c-accent (#1e5e9c) mäter 2,93:1 mot
+       --c-black (#0b0c0e) - underkänt. Samma hue/mättnad, ljushet höjd
+       (HSL L 0,365 -> 0,52) tills kontrasten mätt gav 5,16:1 mot golvet
+       4,5:1. Bara för ?process=invert; --c-accent på papper rörs inte. */
+    --c-accent-on-dark:#3286d8;
+
+    /* ---- hårlinjer: ett värde per grund (house-physics, "value per ground") ---- */
+    --hairline-dark:rgba(255,255,255,.18);
+    --hairline-light:rgba(20,23,26,.14);
+    --c-line-on-dark:var(--hairline-dark);
+    --c-line-on-paper:var(--hairline-light);
+    --frame-line:rgba(255,255,255,.32);
+
+    /* ---- typ: tre filer, tre roller, rollerna korsar aldrig ---- */
+    --f-display:'Geist','Geist Fallback',system-ui,sans-serif;         /* kortbaksidan, tesen, liggarrubriker, länkar */
+    --f-mono:'Geist Mono','Geist Mono Fallback',ui-monospace,monospace; /* ENBART register, exakt 4 etiketter */
+    --font:'Public Sans','Public Sans Fallback',system-ui,sans-serif;   /* display i heron + all brödtext */
+
+    --ease:cubic-bezier(.16,1,.3,1);
+    --rail-x:clamp(16px,6vw,96px);
+    --body-r5:0.95rem;
+
+    /* PLAN 010, R5. Processarkets ritregister, lånat som teknik ur
+       board/cells/K3-r8/index.html (aldrig som sida). --hair-ink är sidans
+       dämpade bläck (62%, samma tal som index.html:572s tona). De tre
+       --contour-*-talen är arkets enda linjebredder/streckform. */
+    --hair-ink:color-mix(in srgb, var(--ink) 62%, var(--bg));
+    --contour-hair:.75px;
+    --contour-line:1.5px;
+    --contour-dash:4 3;
+
+    /* PLAN 001, R4. Rubrikens höjdklämma har en normal rate och en brant rate
+       under en hård höjdbrytpunkt (max-height:700px), i stället för EN linjär
+       svh-rate för alla höjder. Skälet är uppmätt, inte antaget: underraden
+       (`.hero-sub`, ordagrann copy, 36ch) radbryter till en fast höjd på
+       68,4 px oavsett viewporthöjd, eftersom bredden styr radbrytningen, inte
+       höjden. Den höjden räknas in i budgeten vid VARJE höjd, så en enda rate
+       som är rätt vid 900 (12,8svh, håller kvoten <=0,70 mot kortbaksidan,
+       BRIEF.md rättelse 3) sprängde foldens summa med 46,6 px vid 1440x450.
+       En rate som i stället är rätt vid 450 (7,2svh) skulle ha krympt
+       rubriken vid 900 till under kvotgolvet. Två rates, en hård gräns
+       mellan dem, löser båda utan att kompromissa någotdera. */
+    --h1-hrate:12.8svh;
+
+    /* Ljuspölens vandring och kortets vändning läser BÅDA --sc-ps.
+       Deklarationen här är no-JS-golvet: utan skriptet är --sc-ps 0, --flip 0,
+       och folden renderar som ett stilla kort med framsidan uppåt. */
+    --sc-ps:0;
+
+    /* ---- motorns sex tokens + två snitt (scroll/NOTE.md). Motorn temas ENBART
+           härifrån; ingen .sc-*-regel finns i den här filen. ---- */
+    --sc-canvas:#0b0c0e; --sc-surface:#101217; --sc-ink:#f4f2ef; --sc-ink-soft:#9a9ba1;
+    --sc-accent:#1e5e9c; --sc-accent-ink:#ffffff;
+    --sc-font-display:var(--f-display);
+    --sc-font-text:var(--font);
+  }
+
+  /* PLAN 010, R5. Registrerade lokaler för processarket, samma namnrymd som
+     K3 fast prefixet --p-. Utan registrering är värdet en sträng och
+     ritningen stegar (F-013). --sc-ps registreras redan av sc-smooth.js med
+     inherits:true, så dessa barn ärver den. */
+  @property --p-l    { syntax: "<number>"; inherits: false; initial-value: 0; }
+  @property --p-t    { syntax: "<number>"; inherits: false; initial-value: 0; }
+  @property --p-thin { syntax: "<number>"; inherits: false; initial-value: 0; }
+  @property --p-fill { syntax: "<number>"; inherits: false; initial-value: 0; }
+  @property --p-fall { syntax: "<number>"; inherits: false; initial-value: 0; }
+
+  *{box-sizing:border-box;}
+  /* PLAN 037, R9 loop 3: hela sidans scrollposition räknas av motorn/
+     sidans egen JS, inte av läsarens "håll kvar min plats"-vana - webb-
+     läsarens egen scroll anchoring (som flyttade scrollY 262px i ?preview=
+     process-01 vid 390, preview_check.json) är byggd för organisk läsning
+     och stör precisionen ett frusat previewläge kräver. */
+  html,body{margin:0;overflow-x:clip;overflow-anchor:none;}
+  body{position:relative;background:var(--c-black);color:#f4f2ef;
+    font-family:var(--font);font-weight:300;font-size:16px;line-height:1.5;
+    -webkit-font-smoothing:antialiased;}
+  img{max-width:100%;display:block;}
+  a{color:inherit;}
+  h1,h2,h3,p,figure{margin:0;}
+
+  /* Fokusringen har ETT VÄRDE PER GRUND. Mätt: #1e5e9c mot #0b0c0e ger 2,93:1
+     och underkänns mot WCAG 1.4.11:s 3:1. #f4f2ef mot #0b0c0e ger 17,5:1.
+     Accenten är därmed också befriad från sin tredje förekomst. */
+  :focus-visible{outline:2px solid #f4f2ef;outline-offset:2px;}
+  .on-paper :focus-visible{outline-color:var(--ink);}
+
+  /* ============================================================ grunden
+     Ett enda fotografi bär hela sidan. Fixed, gråskala, tonad av motorns
+     --sc-canvas-drift i tre stopp. Ingen andra bakgrundsbild finns.
+     background-attachment:fixed är BORTTAGET mot V3b: elementet är redan
+     position:fixed, så attachmentet var en ren repaint-kostnad utan effekt. */
+  /* Tonen ligger som ett eget bakgrundslager PÅ grunden och blandas med
+     `background-blend-mode`, som bara blandar elementets egna lager, i stället
+     för V3b:s `::after` i `mix-blend-mode: color`, som läser sidans backdrop.
+     `transition: background 1.1s` är borttagen: motorn interpolerar redan
+     --sc-canvas kontinuerligt, så transitionen målade om ett helskärmslager i
+     1,1 s efter varje drift-steg utan att synas.
+
+     contain:strict är MÄTT FRAM, inte gissad. Attribution vid 4x CPU,
+     `motion_probe --wheel 100:60`, p95 i ms:
+       som byggd .............................. 33,4
+       utan filter ............................ 33,3   filtret var inte felet
+       utan background-blend-mode ............. 33,4   blandningen var inte felet
+       utan filter OCH blend .................. 33,3   inte heller tillsammans
+       .ground display:none ................... 16,8   grunden ÄR felet
+       .ground + will-change:transform ........ 33,4   promovering gör det VÄRRE
+       .ground + contain:strict ............... 16,8   rätt verktyg
+     Kostnaden var att ett helskärmsstort fast raster målades om per hjulhack,
+     inte att det var filtrerat eller blandat. `contain: strict` är sant om det
+     här elementet: storleken kommer ur inset:0 och inte ur innehållet, det har
+     inga barn, och det målar bara i sin egen ruta. Raden är samtidigt belägget
+     för performance.md:s förbud mot vilande `will-change`: promoveringen
+     fördubblade antalet tappade bildrutor i stället för att ta bort dem. */
+  /* PLAN 017 A: filter:grayscale(1) låg EFTER background-blend-mode:color,
+     så tonen blandades in och togs sedan bort av gråskalan innan den nådde
+     skärmen (driften var död av konstruktion, mätt 25,25,25 = 25,25,25 vid
+     folden mot tesen). Gråskalan flyttas till fotolagret (::before), tonen
+     läggs ovanpå (::after) inne i .ground:s egen contain:strict-kontext. */
+  .ground{position:fixed;inset:0;z-index:0;pointer-events:none;contain:strict;
+    background:var(--c-black);}
+  .ground::before{content:"";position:absolute;inset:0;
+    background:var(--ground-img) center 40% / cover no-repeat;
+    filter:grayscale(1) contrast(1.08) brightness(.5);}
+  /* PLAN 029: 62 % färgade hela fotografiet blått (rännan bakom jätten
+     mätte (58,86,111) mot gråskalans (80,80,80), leadens R7-fynd). Planens
+     40 % (loop 2:s tal, delta 13) mätte här bara delta 10 (fold (19,20,21)
+     mot tesen (12,22,31)) - under H-19:s 12-stegsgolv, sannolikt en annan
+     färgprofil/Chrome-version än loop 2:s mätning. Planens egen fallback
+     (steg 2: "faller det, höj till 44 %") tillämpad. */
+  /* PLAN 038 (loop 3): H-19 mätt på mellantonen. 44% gav chroma 38 på
+     träpanelen (blå tvätt); 24% ger chroma 21: kallt ljus, träet förblir
+     trä. Golvet 12 steg på den nästan svarta marginalen var fel mätpunkt
+     (color-blending skalar med luminansen) och är omskrivet i HELHET H-19. */
+  .ground::after{content:"";position:absolute;inset:0;
+    background:color-mix(in srgb,var(--sc-canvas) 24%,transparent);
+    mix-blend-mode:color;}
+
+  /* ============================================================ toppraden
+     Låst nav: tunn topprad med ordmärke och kontakt som scrollar bort.
+     position:absolute i stället för i flödet, så att den pinnade stagen börjar
+     på y = 0 och folden inte tappar sina understa 50 px. */
+  .topline{position:absolute;top:0;left:0;right:0;z-index:5;
+    display:flex;align-items:center;justify-content:space-between;
+    padding:16px var(--rail-x);}
+  .topline::before{content:"";position:absolute;inset:0;z-index:-1;
+    background:linear-gradient(180deg,rgba(6,7,9,.62) 0%,rgba(6,7,9,.34) 78%,rgba(6,7,9,0) 100%);}
+  .topline-mark{font-weight:300;font-size:clamp(13px,1.6vw,17px);letter-spacing:.02em;color:#f4f2ef;}
+  /* PLAN 022 Step 4, R6. Träffyta >= 24x24 golv och 44px höjd utan att
+     flytta baslinjen: negativ marginal äter den extra höjden.
+     a11y-rapportens fix 6 mätte 109x19 px. */
+  .topline-contact{font-weight:300;font-size:12px;letter-spacing:.04em;color:rgba(244,242,239,.84);
+    text-decoration:none;border-bottom:1px solid transparent;
+    display:inline-flex;align-items:center;min-height:44px;padding-inline:4px;margin-inline:-4px;
+    transition:border-color .25s var(--ease),color .25s var(--ease);}
+  .topline-contact:hover{color:#f4f2ef;border-color:currentColor;}
+
+  /* PLAN 022 Step 3, R6. Standardregeln: innehållet finns för AT, osynligt
+     för seende ögon. */
+  .sr-only{position:absolute;width:1px;height:1px;padding:0;margin:-1px;
+    overflow:hidden;clip:rect(0 0 0 0);white-space:nowrap;border:0;}
+
+  main{position:relative;z-index:1;}
+
+  /* ============================================================ HERO / stagen
+     .sc-stage får sin position:sticky och sin höjd ur motorns egen CSS.
+     Ingenting nedan sätter position, height eller overflow på stagen.
+
+     PLAN 003, R4. Den regeln höll inte helt: stagens HÖJD kom bara från
+     `.sc-stage`, en klass motorn lägger på asynkront i `mount()`. Mätt med
+     ett tidsspår vid 4x CPU: vid t=300 ms saknade `[data-sc-stage]` fortfarande
+     `.sc-stage` och rymdes på sin naturliga innehållshöjd, 606 px vid 390.
+     Vid t=500 ms hade `mount()` lagt till klassen och tvingat höjden till
+     100svh, 844 px. Den centrerade flex-kolumnen (`justify-content:center`)
+     skiftade då sitt innehåll neråt med hälften av mellanskillnaden, 119 px,
+     exakt CLS-rapportens `figure.hero-plate`-hopp. Källan var alltså varken
+     typsnitt (blockerade, CLS oförändrad) eller bilder, utan tajmingen
+     mellan första målning och motorns eget klasstillägg.
+     Fixen är att sätta SAMMA höjd på attributselektorn `[data-sc-stage]`,
+     inte på klassen `.sc-stage` (AB06: motorns klasser restylas aldrig).
+     Attributet finns i DOM:en från parse-tid, så höjden är 100svh redan vid
+     första målningen, och `mount()`s klasstillägg ändrar ingenting som redan
+     inte stod där. */
+  [data-sc-stage]{height:100vh;height:100svh;}
+  /* Innehållet centreras i stagen på ALLA bredder. Mätt i pixlar: vid
+     1440x900 fyller folden stagen så när som på en pixel och centreringen
+     ändrar ingenting, men vid 768x1024 låg 364 px död yta under underraden när
+     innehållet var toppställt. Felet följer viewportens HÖJD, inte dess bredd,
+     så regeln hör inte hemma i en breddbrytpunkt. */
+  .hero-stage{display:flex;flex-direction:column;justify-content:center;
+    padding:clamp(44px,5.6vh,64px) 0 clamp(6px,2.2vh,26px);}
+
+  .hero-head{padding:0 var(--rail-x);}
+  /* Rubriken ligger på den mörka GRUNDEN, aldrig över plåtens ljuspöl
+     (planhat: vikt 300 i stor grad ligger i fotots mörka parti). Scrimmen är
+     bunden till rubrikens eget block och är ett syskonlager, aldrig ett
+     ::before på ett element shoot.mjs döljer. */
+  .hero-head::before{content:"";position:absolute;left:0;right:0;top:0;height:52vh;z-index:-1;
+    background:linear-gradient(180deg,rgba(5,6,7,.58) 0%,rgba(5,6,7,.38) 62%,rgba(5,6,7,0) 100%);
+    pointer-events:none;}
+  /* Taket höjt 7rem -> 7.5rem, se BRIEF.md § decision ledger rättelse 3:
+     vid 1440 band 7rem vid 112 px och kvoten mot kortbaksidans 80,6 px blev
+     0,72, över målet 0,70. 7.5rem = 120 px ger 0,67 och baksidan 5,04x
+     brödtexten. Golvet sänkt 2.6rem -> 2.2rem för 320 px, se NOTES.md § R2. */
+  /* PLAN 001, R4: bredd-klämman ensam gav ett tak som INTE följde
+     viewporthöjden, bara viewportbredden (cqw). Vid breda men LÅGA viewports
+     (1024-1440 x 450-640) blev rubriken 81-114 px oavsett hur lite höjd som
+     fanns, och summan av padding + rubrik + plåt + underrad sprängde folden:
+     mätt kollision mellan ordmärke och rubrik -85,9 px vid 1440x450, och
+     underraden klippt 74,4 px under vecket.
+     Fixen är en ANDRA klämma bunden till `--h1-hrate` (svh) och `min()` av de
+     två: den som är strängast vinner. Se `--h1-hrate`-deklarationen i :root
+     och brytpunkten nedan för varför raten själv byter värde vid 700 px. */
+  .hero-headline{font-family:var(--font);font-weight:300;
+    font-size:min(clamp(2.2rem,9cqw,7.5rem), clamp(1.5rem,var(--h1-hrate),7.5rem));
+    line-height:.96;letter-spacing:-.01em;
+    color:#f7f5f0;max-width:15ch;text-wrap:balance;overflow-wrap:anywhere;min-width:0;}
+  /* Den branta raten. Löst mot UPPMÄTTA element-höjder (fold_debug.py, se
+     NOTES.md § R4), inte mot antagna: vid 1440x450 är underraden 68,4 px,
+     plåten 252 px (0,56*450), ordmärkets nederkant 41,5 px, och toppradens
+     padding-golv 44 px oförändrat (44 > 41,5, så det räcker för att fria
+     ordmärket så snart summan inte längre svämmar över och tvingar
+     centreringen att skjuta upp innehållet). 7,2svh ger rubriken 62,2 px
+     (två rader) vid 450, vilket lämnar foldens summa 1,8 px under 450 i
+     stället för 46,6 över. */
+  @media (max-height:700px){ :root{ --h1-hrate:7.2svh; } }
+
+  /* ---------------------------------------------------------- kortet
+     Storleken är LÅST och oförändrad från V3b: 16:9, vänsteranknuten vid
+     --rail-x, bredden härledd ur en höjdbudget så att rubrik + kort + underrad
+     ryms i en fold. container-type gör att kortbaksidans 9cqw mäter mot
+     PLÅTEN (896 px vid 1440) och inte mot sidan (1440 px). */
+  /* INGEN bakgrund här. Mätt i R2: med background:#08090a låg en statisk svart
+     rektangel kvar i plåtens fulla bredd medan kortet vändes inuti den, och det
+     läste som ett litet kort i ett svart fönster i stället för som ett kort som
+     vänds. Plåten är en osynlig ram; det enda som syns är kortet.
+     overflow:clip står kvar: vid 63° sticker kortets närmaste kant 84 px utanför
+     rutan i perspektiv, och utan klippning korsar den rubriken 12,6 px ovanför. */
+  /* PLAN 022 Step 1, R6. Fokusen som parkeras hit (setFace) ska inte
+     rita en egen ring: den är osynlig (tabindex=-1 tar bort den ur
+     tabbordningen), bara ett programmatiskt stopp. Länkens egen ring
+     räcker. */
+  .hero-plate:focus{outline:none;}
+  .hero-plate{position:relative;margin:clamp(4px,1.4vh,18px) var(--rail-x) 0;
+    width:min(calc(100% - 2 * var(--rail-x)),calc(56vh * 16 / 9));
+    aspect-ratio:16 / 9;
+    container-type:inline-size;
+    /* perspective höjd 1600 -> 2600: flackare projektion, mindre hörnutskjutning i
+       vändningen. overflow:clip står kvar som skydd — folden är för tät (13 px till
+       rubriken ovan, 11 px till underraden nedan) för att kortet ska få spilla ut.
+       I stället KRYMPER kortet transient mitt i vändningen (se .plate-card scale),
+       så dess perspektivprojektion aldrig når klippkanten och inget kapas. */
+    perspective:2600px;
+    overflow:clip;}
+
+  /* Kortet självt. Rotationen räknas i ren CSS ur --sc-ps:
+       t    = clamp(0, (ps - 0.10) / 0.68, 1)
+       flip = t*t*(3 - 2t)                         (smoothstep 0.10 -> 0.78)
+     ps 0 till 0,10: flip 0, kortet stilla medan ljuspölen vandrar.
+     ps 0,10 till 0,78: vändningen.
+     ps 0,78 till 1: flip 1, baksidan i vila, dwell låter den landa.
+     Båda riktningarna, eftersom hela uttrycket är en funktion av ps.
+     PLAN 011, R5: span 4,8 -> 3,4, dwell 0,35 -> 0,2, fönstret 0,12-0,72 ->
+     0,10-0,78. Vändningen tar 1 469 px vid 1440x900 (0,68 x 2 160), svansen
+     (baksidans vila + dwell) 655 px, mot tidigare 2 052 px + 1 273 px
+     stillastående (scroll_verify: band 2700-3300 diff 0,0). */
+  .plate-card{position:absolute;inset:0;
+    --t:clamp(0,calc((var(--sc-ps,0) - 0.10) / 0.68),1);
+    --flip:calc(var(--t) * var(--t) * (3 - 2 * var(--t)));
+    transform-style:preserve-3d;
+    /* Vändningen plus en transient nedskalning: parabeln 0.72*flip*(1-flip) är 0 vid
+       flip 0 och 1 (kortet står i full, LÅST storlek fram och bak) och toppar på 0.18
+       vid 90°, så kortet drar sig ~15-18% mindre mitt i vändningen. Mätt vid 1440x900:
+       kortets projicerade hörn håller sig 7-11 px innanför plåten i hela spannet, så
+       overflow:clip aldrig kapar en synlig yta. Ett kort som vänds drar sig naturligt
+       undan; nedskalningen läser som djup, inte som en krympning. */
+    transform:rotateY(calc(var(--flip,0) * -180deg))
+              scale(calc(1 - 0.72 * var(--flip,0) * (1 - var(--flip,0))));}
+  /* will-change bara medan akten rör sig. Klassen sätts och tas bort vid
+     gränsövergång, inte per bildruta. */
+  .hero.is-turning .plate-card{will-change:transform;}
+
+  .face{position:absolute;inset:0;backface-visibility:hidden;
+    border:1px solid var(--frame-line);overflow:clip;}
+  .face--front{background:#08090a;}
+  /* Väg (d) 1 ur ASSETS.md § 3: framsidan mörknar när planet vrider sig bort
+     från ljuset, så fram- och baksida får olika värdekurva och mötet vid 90°
+     blir en övergång i stället för ett klipp. Ren opacity, ingen filter. */
+  .face--front::after{content:"";position:absolute;inset:0;background:var(--c-black);
+    opacity:min(.65,calc(1.3 * var(--flip,0)));pointer-events:none;}
+  .face--back{transform:rotateY(180deg);background:var(--c-black);}
+
+  /* Ljuspölen vandrar vidare, på --sc-ps och i ren CSS.
+     MÄTT I R2: den första versionen körde vandringen på `object-position`, som
+     V3b gör. object-position är inte kompositerbar: varje bildruta ritade om en
+     896x504 stor bild, och `motion_probe` gav p95 50 ms och 63 bildrutor över
+     33 ms vid 4x CPU. Rörelsen är nu en `translate3d` på en bild som är 112 %
+     av ytans höjd, med 6 % av sin egen höjd att vandra i. Samma vandring, samma
+     motiv, samma riktning, men på kompositorn i stället för på målaren.
+     object-fit:cover sköter passformen, så konstruktionen håller även när ytan
+     blir 4:5 på telefonen. */
+  .face--front img{position:absolute;left:0;top:-6%;width:100%;height:112%;
+    object-fit:cover;object-position:50% 52%;
+    transform:translate3d(0,calc(-3% + 6% * var(--sc-ps,0)),0);}
+
+  /* Kortets egen tjocklek, hängd på den LEDANDE kanten. Mätt i R2: med
+     left:50% satt tjockleken mitt på kortet och läste som ett veck rakt genom
+     en plan yta, inte som en kant. Ett kort är tjockt vid sin kant.
+     transform-origin:100% 50% + rotateY(90deg) gör elementet till en 2 px rim
+     som är gångjärnad i kortets högerkant och sträcker sig i djupled: kantställd
+     och osynlig när kortet ligger platt, rakt mot betraktaren vid 90°.
+     Opaciteten är parabeln upphöjd till tre, så rimmen tonar in sent och
+     försvinner igen när kortet planar ut. Väg (d) 2 ur ASSETS.md § 3, och
+     mattis-ribbans mätpunkt. */
+  .plate-edge{position:absolute;right:0;top:0;bottom:0;width:2px;
+    transform-origin:100% 50%;transform:rotateY(90deg);pointer-events:none;
+    opacity:calc(64 * var(--flip,0) * var(--flip,0) * var(--flip,0)
+                    * (1 - var(--flip,0)) * (1 - var(--flip,0)) * (1 - var(--flip,0)));
+    background:linear-gradient(180deg,
+      rgba(255,255,255,.10) 0%,
+      rgba(255,255,255,.62) 46%,
+      rgba(255,255,255,.12) 100%);}
+
+  .logo-dock{position:absolute;left:clamp(20px,2.8cqw,36px);top:clamp(20px,2.8cqw,36px);z-index:2;
+    height:clamp(48px,5.6cqw,96px);width:auto;pointer-events:none;}
+  .logo-dock svg{height:100%;width:auto;display:block;}
+
+  /* ---------------------------------------------------------- kortbaksidan
+     ALUNIX i Geist 700 på 9cqw av plåten = 80,6 px vid 1440, line-height .9,
+     versal. Under: kickern i monoregister, en hårlinje, tjänsteraden i samma
+     register, och den typsatta länken. Ingen tidsstämpel, ingen 2026 · SVERIGE,
+     ingen lede: underraden under plåten bär redan leden. */
+  /* PLAN 016, T-4: ordmärkets A-glyf som kontur på baksidan - samma path
+     som logo-docken (rad 1054), stroke i stället för fill. Framsidan bär
+     glyfen fylld, baksidan kontur: samma objekt, två sidor (gate 47/79,
+     ritad form, aldrig innehåll). 60% av korthöjden vid 16:9; under 640
+     (4:5) 34% i nedre högra hörnet så den aldrig korsar textkolumnen. */
+  .card-glyph{position:absolute;right:clamp(20px,5cqw,56px);top:20%;height:60%;width:auto;
+    z-index:0;pointer-events:none;}
+  .card-glyph path{fill:none;stroke:var(--frame-line);stroke-width:6;stroke-linejoin:miter;}
+  .card-back{position:absolute;inset:0;display:flex;flex-direction:column;
+    align-items:flex-start;justify-content:center;gap:0;z-index:1;
+    padding:clamp(20px,5cqw,56px);}
+  @media (max-width:640px){
+    /* AVVIKELSE: 34% (planens tal) skar in i .card-services vid 320x568
+       (uppmätt överlapp 1459 kvadrat-px); planens fallback (steg 4) till
+       28% lämnade fortfarande en 5,6 px-flisa (308 kvadrat-px, korten är
+       bara 272,6 px höga vid denna extremt korta viewport). Sänkt
+       ytterligare till 24%: mätt 0 överlapp. */
+    .card-glyph{top:auto;bottom:clamp(16px,5cqw,24px);height:24%;}
+  }
+  .card-mark{font-family:var(--f-display);font-weight:700;
+    font-size:clamp(3.2rem,9cqw,7.5rem);line-height:.9;letter-spacing:-.02em;
+    text-transform:uppercase;color:#f4f2ef;}
+  .card-kicker{font-family:var(--f-mono);font-weight:400;font-size:10.5px;
+    letter-spacing:.22em;text-transform:uppercase;color:var(--c-mute-on-dark);
+    margin-top:clamp(10px,1.6cqw,16px);}
+  .card-rule{width:100%;height:1px;border:0;background:var(--c-line-on-dark);
+    margin:clamp(14px,2.2cqw,22px) 0;}
+  .card-services{font-family:var(--f-mono);font-weight:400;font-size:10.5px;
+    letter-spacing:.22em;text-transform:uppercase;color:rgba(244,242,239,.86);
+    display:flex;flex-wrap:wrap;gap:0 clamp(14px,2.4cqw,26px);}
+  /* PLAN 021 Target B, R6. Understrykningen bar --c-accent, 2,92:1 mot
+     kortets grund #0b0c0e - under WCAG 1.4.11:s 3:1-krav för icke-text
+     (a11y-rapportens HIGH fix 2). currentColor (17,5:1, samma valör som
+     kortets övriga text) tar över, och accenten lämnar kortet: dess
+     frekvens på sidan sjunker från tre roller till två (tesplåtens
+     grund, arkets sanna mått - plan 020). Hover/active byter därför till
+     tjocklek i stället för färg, eftersom färgen redan är full. */
+  /* PLAN 022 Step 4, R6. Träffyta >= 44px höjd utan att flytta
+     baslinjen: negativ marginal äter den extra höjden uppåt (mätt
+     104x23 px vid 390/320, a11y-rapportens fix 6). */
+  .card-cta{font-family:var(--f-display);font-weight:700;
+    font-size:clamp(.95rem,1.9cqw,1.2rem);color:#f4f2ef;text-decoration:underline;
+    text-underline-offset:5px;text-decoration-color:currentColor;
+    text-decoration-thickness:2px;margin-top:clamp(16px,2.8cqw,28px);
+    display:inline-flex;align-items:center;min-height:44px;margin-block:-10px 0;
+    transition:text-decoration-thickness .16s var(--ease);}
+  .card-cta:hover{text-decoration-thickness:3px;}
+  /* Tryckåterkoppling. Registret har typsatta länkar och inga knappar, så
+     `scale(0.97)` vore fel form här: det skulle göra länken till en knapp.
+     Understrykningen går i stället tjockare direkt vid tryck, vilket är
+     samma återkoppling i det här registrets eget språk. 0,16 s ligger i
+     knapptryckets band 100-160 ms. Samma tjocklek som hover (planens
+     rad 447-449 ger ETT värde, 3px, för båda tillstånden), eftersom
+     färgen som tidigare skilde hover/active redan är full. */
+  .card-cta:active{text-decoration-thickness:3px;}
+  .topline-contact:active{color:#ffffff;border-color:#ffffff;}
+
+  /* ---------------------------------------------------------- underraden */
+  .hero-sub{margin:clamp(3px,1.2vh,14px) var(--rail-x) 0;margin-left:auto;
+    max-width:36ch;text-align:right;padding-right:var(--rail-x);
+    font-weight:300;font-size:var(--body-r5);color:rgba(244,242,239,.88);}
+
+  @media (max-width:640px){
+    /* Kortet blir 4:5 som i dag och vänds fortfarande. Bredden härleds ur en
+       HÖJDBUDGET även här: en 4:5-ruta i full spaltbredd spränger en 568 px hög
+       skärm på 320. Mätt i NOTES.md § R2.
+       Stagen centrerar sitt innehåll under 640 px: telefonen har mer höjd än
+       folden behöver, och toppställt innehåll lämnade 284 px död yta under
+       underraden på 390x844. Centrerat blir samma yta luft i båda ändar. */
+    /* PLAN 032, H-13: centreringen la 137px (16%) död grund under
+       underraden vid 390x844 (diag2). Bottenställt med 10svh botten
+       flyttar luften upp under toppraden, där den bär, utan att röra
+       kortets höjdbudget (48svh, satt för 320x568 i R2). */
+    .hero-stage{justify-content:flex-end;padding-bottom:10svh;}
+    .hero-plate{aspect-ratio:4 / 5;
+      width:min(calc(100% - 2 * var(--rail-x)),calc(48svh * 4 / 5));}
+    .hero-sub{text-align:left;margin-left:var(--rail-x);margin-right:var(--rail-x);
+      padding-right:0;}
+  }
+
+  /* ============================================================ under heron
+     Kolumnfördelningen är målbildens: vänster = blå tes -> Calyx -> pris,
+     höger = jätterubrik + liggare -> Hōrai. Grunddriften går i tre stopp,
+     eftersom grunden ÄR sidan och inte en dekoration. */
+  .stagger{position:relative;display:flex;align-items:stretch;
+    gap:clamp(20px,4vw,58px);
+    /* PLAN 017 C: seamen mot pinnen var en slits (padding-top 0, ärvt
+       från "flow direkt efter pin"), inte ett författat mellanrum. H-05
+       (a): kontinuerlig grund kräver >=160px luft. */
+    padding:clamp(160px,18vh,200px) clamp(16px,3vw,40px) 0;}
+  .col{min-width:0;flex:1 1 50%;display:flex;flex-direction:column;}
+  /* PLAN 017 B: paired columns never top-align (house physics); spalterna
+     stod båda vid samma y innan denna rad. */
+  .col-right{padding-top:clamp(96px,12vh,140px);}
+  /* PLAN 017 C: H-05 (a), samma 160-200px golv mellan paneler i en spalt. */
+  .col > * + *{margin-top:clamp(160px,18vh,200px);}
+  /* PLAN 012 + 017 (samma block, 017 körs först): berättelsens ordning
+     s4->s7 (tes->Calyx->jätterubrik/liggare->Hōrai->pris) upplöst med
+     display:contents så panelerna blir direkta flexbarn till .stagger och
+     kan sorteras med order. .col > * + * MATCHAR fortfarande under 900
+     (selektorn läser DOM, inte layout; Astra loop 1 fix 1) - nollas här,
+     gap (höjt till H-05:s 64-96px mobilgolv) bär avståndet ensamt.
+     .col-right:s padding-top (017 B) nollas: den är en desktop-only
+     spaltförskjutning, fel som ett flexbarn-attribut här. */
+  @media (max-width:900px){
+    /* PLAN 032 B, H-05: 84px rå grund mellan panelerna vid 390x844 (10vh av
+       844), under 96px-golvet. */
+    .stagger{flex-direction:column;gap:clamp(96px,12vh,120px);padding:0 0 0;}
+    .col{display:contents;}
+    .col > * + *{margin-top:0;}
+    .col-right{padding-top:0;}
+    .panel-thesis{order:1;}
+    .calyx-fig{order:2;}
+    .panel-giant{order:3;}
+    .horai-fig{order:4;}
+    .price{order:5;}
+  }
+  /* Ett paddingmått för varje panels egen inre höjd, ärvt från V3b, så att
+     ingen panel klampar mot sitt eget tak. */
+  .panel-pad{--panel-pad-y:clamp(28px,4.6vw,52px);}
+
+  /* Alla kickers som INTE är monoregister. Monobudgeten är fyra etiketter på
+     hela sidan och de är: kortbaksidans kicker, kortbaksidans tjänsterad,
+     Exempelsida-kickern i tesen, och liggarens siffror. Allt annat som ser ut
+     som en etikett sätts i Public Sans 600. */
+  .kicker-sans{font-family:var(--font);font-weight:600;font-size:11px;
+    letter-spacing:.16em;text-transform:uppercase;}
+
+  /* ---------------------------------------------------------- s4, blå tes
+     Sidans enda mättade färgblock, och accentens FÖRSTA av två förekomster.
+     data-sc-drift tar grunden mot #123f68 medan akten är på skärmen: samma
+     roll, mörkare stopp, inte en andra accent. */
+  .panel-thesis{--pad-i:clamp(24px,4vw,48px);
+    background:var(--c-accent);color:var(--c-white);
+    padding:var(--panel-pad-y) var(--pad-i);overflow:visible;}
+  .thesis-grid{position:relative;z-index:2;display:grid;
+    grid-template-columns:minmax(28ch,.6fr) 1.5fr;
+    gap:clamp(20px,3vw,36px);align-items:stretch;}
+  .thesis-text{min-width:0;display:flex;flex-direction:column;}
+  .thesis-headline{font-family:var(--f-display);font-weight:700;
+    font-size:clamp(1.4rem,2.7vw,2.4rem);line-height:1;letter-spacing:-.02em;
+    text-transform:uppercase;text-wrap:balance;overflow-wrap:anywhere;min-width:0;}
+  .thesis-support{max-width:38ch;font-size:var(--body-r5);
+    color:rgba(255,255,255,.92);margin-top:1.1rem;}
+  /* Bildtextbandet till VÄNSTER om bilden, bottenställt så att det landar på
+     samma linje som den bleedande plåtens underkant. */
+  .thesis-caption{margin-top:auto;padding-top:clamp(16px,2.2vw,24px);
+    border-top:1px solid rgba(255,255,255,.28);}
+  .thesis-caption .cap-line{font-family:var(--f-mono);font-weight:400;
+    font-size:10.5px;letter-spacing:.22em;text-transform:uppercase;
+    color:rgba(255,255,255,.92);}
+  /* Mattis-greppet: plåten ligger flush mot spårets högerkant och rider sedan
+     vidare ut, förbi blockets kant, över bara grund. PLAN 008, R4: spåret var
+     dött (konstant matrix(1,0,0,1,33.3111,0) vid varje scrolloffset, mätt med
+     motion_probe) och överhänget bara 33px, 696 -> 728 vid 1440 mot arkitektens
+     mål 96px. Läser nu --sc-ps (F-014) i stället för ett fast tal: 10% vid
+     ps=0 (~30px, samma viloläge som förut) väx­ande till 34% vid ps=1
+     (~103px vid 1440), väl inom .stagger:s ~46px spaltränna, så den når
+     aldrig dokumentöverflöd. */
+  /* PLAN 017 D: 34% bleed + 46px spaltränna (var 24%/gap 56px) satte
+     plåtens högerkant 9px in i "VI BYGGER" när B lade spalterna i samma
+     höjdspann (loop 1, diag2: högerkant 799,9 mot rubrikkant 791). Rännan
+     vidgad (gap 56->58px ovan) och taket sänkt 34%->33% håller H-20:s
+     96px-golv (100px överhäng) med 5px marginal kvar till rubriken. */
+  .thesis-figure{position:relative;min-width:0;align-self:end;
+    margin-right:calc(-1 * var(--pad-i));
+    transform:translateX(calc(10% + 23% * var(--sc-ps,0)));}
+  .thesis-photo-box{position:relative;aspect-ratio:16/10;overflow:clip;
+    border:1px solid var(--frame-line);}
+  .thesis-photo-box img{width:100%;height:100%;object-fit:cover;
+    filter:grayscale(1) contrast(1.05);}
+
+  /* ---------------------------------------------------------- s5, Calyx
+     Ljus iframe. flex:1 så att vänsterspalten möter högerspaltens avslut.
+     Ramen transformeras eller tonas ALDRIG efter att den visats: den ska gå
+     att använda. Reveal sker på wrappern, inte på ramen. */
+  /* Ram och bildtext är EN figur, inte två syskon i spalten: en fristående
+     bildtext efter en flex:1-ram hamnar visuellt ovanför nästa panel och läses
+     som dess rubrik i stället för som ramens text. */
+  /* PERF-FYND R3, `resting-will-change`: motorns egen reveal-regel promoverar
+     `[data-sc-reveal]`-elementen permanent, och de två figurerna är sidans
+     största. En vilande promovering på två helskärmsstora block är precis den
+     post F-013 mätte upp, och performance.md sätter taket till noll.
+     Regeln ligger på MIN egen klass, inte på en `.sc-*`-klass (AB06), och
+     kostar en engångs-reveal sin GPU-promovering. Den bytet är rätt väg:
+     ett svep mot en vilande promovering hela sidans livstid. */
+  .frame-fig{display:flex;flex-direction:column;min-width:0;will-change:auto;}
+  .calyx-fig{flex:1;}
+  .frame-wrap{position:relative;line-height:0;overflow:clip;flex:1;will-change:auto;}
+  .calyx-wrap{min-height:90dvh;background:#e9e5da;
+    content-visibility:auto;}
+  /* PLAN 018, R6. En ram mer än en viewport bort sövs: content-visibility
+     hindrar dess dokument från att layouta och måla, utan att röra ramen
+     (ingen transform, ingen opacity, ingen src-ändring). Mätt av
+     perf-granskaren R5: task 13 164 -> 4 516 ms, layout 2 374 -> 117 ms.
+     min-height på wrapparna står kvar (rad 558, 673) så en sovande ram
+     inte ändrar höjd (CLS 0). */
+  .frame-wrap.is-asleep{content-visibility:hidden;}
+  /* PLAN 031. Revealen ägs av sidan: --rv skrivs av readState ur shimens
+     lerpade aktvärde och bara uppåt (latch), så klippningen är mjuk
+     (gate 94) och aldrig baklänges (house physics: en reveal som gömmer
+     sig igen är en defekt). initial-value:1 är no-JS-golvet: utan skript
+     står ramarna oklippta (gate "reveal fails toward visible").
+     PLAN 036 (loop 3): en clip-path eller mask på en wrapper med en
+     LEVANDE iframe kostar 70 till 300 ms p95 per ändrad bildruta
+     (probe/ab/), oavsett form; en transform på en inre box med ramen
+     kontratransformerad kostar inget utöver det omonterade fallet.
+     --rv byter till inherits:true så både .rv och ramen läser den (bara
+     de två; wrappern har inga andra barn). Under revealen står ramens
+     innehåll pixelstilla (transform × kontratransform = identitet); efter
+     revealen (--rv=1) är båda transformerna identitet - ramen rörs aldrig
+     efter att den visats (PRODUCT.md). Wrappern behåller sitt overflow:clip
+     (rad 641) och klipps ALDRIG med clip-path/mask. */
+  @property --rv { syntax: "<number>"; inherits: true; initial-value: 1; }
+  /* PLAN 043 (loop 4): .rv är öppningen och klipper; den kommer uppifrån
+     (samma bild som R8:s inset(0 0 (1-rv)*100% 0)) med ramen kontra-
+     translaterad så innehållet står stilla. Utan overflow:clip på .rv
+     (R9) visade wrappern hela ramen vid varje --rv (astra-verify/). */
+  .frame-wrap .rv{position:absolute;inset:0;}
+  .calyx-wrap .rv{overflow:clip;transform:translateY(calc((var(--rv) - 1) * 100%));}
+  .calyx-wrap .rv iframe{transform:translateY(calc((1 - var(--rv)) * 100%));}
+  /* Hōrais iris var en cirkel (R8 clip-path:circle(78%)); en ellips ur en
+     skalad rektangulär box vore fel form. .rv är i stället en KVADRAT,
+     mätt av measureFrames() (--rv-s, --rv-w, --rv-h satta en gång vid
+     mount/load/resize - se JS) så kvadratens sida ger exakt R8:s radie
+     vid --rv 1 (CSS har inget sqrt(w²+h²) att uttrycka det med i calc()).
+     rvs golvas vid 0,02 mot en degenererad skala nära --rv 0. */
+  .horai-wrap{--rvs:max(var(--rv), 0.02);}
+  .horai-wrap .rv{inset:auto;position:absolute;left:50%;top:50%;
+    width:var(--rv-s,150%);height:var(--rv-s,150%);
+    margin-left:calc(var(--rv-s,150%) * -0.5);margin-top:calc(var(--rv-s,150%) * -0.5);
+    border-radius:50%;overflow:clip;transform:scale(var(--rvs));}
+  .horai-wrap .rv iframe{position:absolute;left:50%;top:50%;
+    width:var(--rv-w,100%);height:var(--rv-h,100%);
+    margin-left:calc(var(--rv-w,100%) * -0.5);margin-top:calc(var(--rv-h,100%) * -0.5);
+    transform:scale(calc(1 / var(--rvs)));transform-origin:50% 50%;}
+  /* PLAN 002, R4: sidans enda navigationsmedel läts genom till främmande
+     dokument. Mätt: att svepa hjulet över Calyx' mitt ändrade sidans egen
+     scrollY med 0, hela rörelsen gick in i den inbäddade sajten i stället.
+     `pointer-events:none` på RAMEN (inte på wrappern) tar bort ramen som mål
+     för hjul, tumme och klick, samtidigt som ramen fortsätter rendera och
+     animera internt (den är fortfarande en levande sida, bara overopererad).
+     `inert` läggs på samma element så att den inte heller är ett
+     tabbstopp, varken monterad eller omonterad, vilket är plan 002:s andra
+     krav. PRODUCT.md kräver att en visad ram aldrig transformeras eller
+     tonas: pointer-events och inert rör ingetdera, ramen ser och beter sig
+     likadant, den tar bara inte längre emot indata. */
+  .frame-wrap iframe{position:absolute;inset:0;width:100%;height:100%;border:0;display:block;
+    pointer-events:none;}
+  /* A11Y-FYND R3, tab_walk `no_focus_indicator`: en ram tog emot fokus men
+     ritade ingen ring. PLAN 002 gör frågan moot på ett annat sätt: ramen är
+     nu `inert` och kan aldrig ta emot fokus. Regeln står kvar som en andra
+     försvarslinje ifall `inert` någonsin tas bort av misstag. */
+  .frame-wrap:focus-within{outline:2px solid #f4f2ef;outline-offset:2px;}
+  /* Bildtexten står som en typsatt rad på grunden under ramen, inte som en
+     svart etikettruta ovanpå den: de rutorna togs bort i V3b på klientorder.
+     PLAN 021 Target A, R6. Bildtexten stod på den fotografiska grunden,
+     som driftar mot papper under s5/s6; mätt sämsta lapp 3,06:1
+     (a11y-rapportens HIGH fix 1). Flyttad in på papperets EGNA valör i
+     stället för att jaga en färg som klarar alla grunddriftens stopp
+     (house physics: ett värde per grund) - ett typsatt band i samma
+     bredd som ramen, ton på ton, inte en etikettruta ovanpå bilden.
+     --ink mot --bg = 17,9:1 oavsett grunddrift. */
+  .frame-cap{line-height:1.5;padding:10px 12px;font-size:12px;
+    letter-spacing:.02em;background:var(--bg);color:var(--ink);
+    border-top:1px solid var(--c-line-on-paper);}
+
+  /* ---------------------------------------------------------- s6, priset
+     Mörkt block i vänsterspalten. */
+  /* PLAN 042 (loop 4): ingen content-visibility på prisblocket. Platshållaren
+     (760px) var 297px högre än blocket (463px vid 1440), så sidan krympte
+     297px första gången blocket målades och motorns akttoppar under bandet
+     stod kvar 297px fel tills ett riktigt resize (mountshift.json). */
+  .price{background:var(--c-graphite);color:var(--invert-ink);
+    padding:var(--panel-pad-y) clamp(20px,4vw,44px);}
+  /* Plan 007: 30,4px läste som sidans minsta displaymoment i en spalt som
+     delar skärm med ett fullblödande fotografi. 3,2rem = 51,2px vid 1440 är
+     både >= 48px och >= 0,6 x jätterubrikens 76,8px, utan att röra priserna
+     eller brödgraden. */
+  .price .statement{font-family:var(--font);font-weight:300;
+    font-size:clamp(1.6rem,3.6vw,3.2rem);line-height:1.05;letter-spacing:-.02em;
+    max-width:16ch;text-wrap:balance;}
+  .price-ingress{font-size:var(--body-r5);color:rgba(253,251,244,.84);
+    max-width:52ch;margin-top:1.1rem;}
+  /* PLAN 033, H-25: prisliggarens linjer dras in på --sc-ps (F-014), i följd
+     uppifrån, i fönstret 0,18 till 0,50 av aktens liv (blocket i viewportens
+     mitt vid 1440: --sc-ps ~0,35). Samma grepp som .close-rule (plan 015). */
+  .price-ledger{margin-top:2rem;max-width:64ch;position:relative;}
+  .price-ledger::before,.price-row::after{content:"";display:block;height:1px;
+    background:var(--hairline-dark);transform-origin:left center;
+    transform:scaleX(clamp(0,calc((var(--sc-ps,0) - var(--d,0.18)) / 0.14),1));}
+  .price-ledger::before{--d:0.18;}
+  .price-row{display:flex;flex-wrap:wrap;justify-content:space-between;
+    align-items:baseline;gap:6px 24px;padding:.9rem 0 0;position:relative;}
+  .price-row::after{width:100%;margin-top:.9rem;}
+  .price-row:nth-child(1)::after{--d:0.24;}
+  .price-row:nth-child(2)::after{--d:0.30;}
+  .price-row:nth-child(3)::after{--d:0.36;}
+  .price-row .label{font-size:var(--body-r5);font-weight:600;
+    color:var(--invert-ink);max-width:42ch;}
+  .price-row .value{font-family:var(--font);font-weight:600;
+    font-size:clamp(14px,1.6vw,19px);color:var(--invert-ink);white-space:nowrap;}
+
+  /* ---------------------------------------------------------- s5, jätten
+     Papperssidan. Skalan 0,92 -> 1 läser --sc-ps, inte rått --sc-p: det var
+     ett av felen V3c rättar (F-014 punkt 1). Ingen permanent will-change. */
+  .panel-giant{background:var(--bg);color:var(--ink);
+    padding:var(--panel-pad-y) clamp(24px,5cqw,48px) clamp(28px,8cqw,84px);
+    container-type:inline-size;
+    /* PLAN 023, R6. Fönstret ankrat i liggarens EGET läge i stället för
+       aktens: perf-rapporten mätte tråden scaleY 0->1 löpa medan
+       liggaren fortfarande stod djupt under viewportens överkant -
+       tråden var färdigritad innan liggaren var läsbar (H-25).
+       AVVIKELSE från planens 0,62/0,95 (steg 2 kräver ommätning och
+       justering om talen skiljer mer än 0,05, vilket de gjorde här):
+       egen bisektionssökning i R6-läget gav ps 0,364 vid liggarens
+       överkant +600px (scrollY 2748) och ps 0,679 vid +90px
+       (scrollY 3258) - start 0,364, bredd 0,315. */
+    --scrub:clamp(0,calc((var(--sc-ps,0) - 0.364) / 0.315),1);}
+  .giant{font-family:var(--f-display);font-weight:700;
+    /* PLAN 030: 6rem (96px, plan 014/T-5) kräver en spalt >= 606px; den
+       faktiska är 555px (651 - 2*48), så ordet VARUMÄRKE. (601px) kapades
+       mitt i (R7, lead). R7:s hyphens:auto-avvikelse gav en riktig
+       stavelsedelning i just DEN körningen ("VARU-MÄRKE", 3 rader,
+       bekräftat R7), men planen (arkitekten, loop 2) mätte att Chrome på
+       Windows saknar en svensk ordlista och inte kan garantera en
+       hyphens:auto-brytning över webbläsare/plattform. Ett låst ord får
+       aldrig delas, så hyphens:manual (ingen brytning alls, ingen &shy;)
+       tar bort beroendet av en ordlista som inte kan garanteras; 88px vid
+       -0,04em mäter 542px och håller ordet helt utan att någon delning
+       behövs (loop 2, synth3: 1 rect, 3 rader, mätt här på nytt: 88px, 3
+       rader). */
+    font-size:clamp(2.1rem,7.4vw - 18px,5.5rem);line-height:.96;letter-spacing:-.04em;
+    text-transform:uppercase;text-wrap:balance;overflow-wrap:anywhere;min-width:0;
+    hyphens:manual;
+    transform-origin:left center;}
+  /* Skalan körs bara när JS finns. Utan JS är --sc-ps 0 och en ogated regel
+     hade låst rubriken på 0,92 för alltid. Ingen permanent will-change: den
+     raden var en av F-013:s fyra vilande promoveringar. */
+  .js .giant{transform:scale(calc(0.92 + 0.08 * var(--sc-ps,0)));}
+  .giant-sub{max-width:46ch;font-size:var(--body-r5);
+    color:rgba(22,20,15,.68);margin-top:1.1rem;}
+
+  /* Liggaren. Ordscrubben och den självritande tråden läser --sc-ps.
+     Tråden ritas i bläck, aldrig i accenten: låset förbjuder accenten här. */
+  .ledger-wrap{position:relative;margin-top:clamp(28px,4vw,48px);
+    padding-left:clamp(22px,3.2vw,40px);}
+  .thread{position:absolute;left:0;top:.35em;bottom:6px;width:2px;
+    background:var(--c-line-on-paper);}
+  /* Vilotillståndet är det FÄRDIGA tillståndet: utan JS, före montering och i
+     varje läge där scrubben inte armerats står tråden fylld och orden i full
+     opacitet. Först .is-scrubbed kopplar in progressen. */
+  .thread-fill{position:absolute;left:0;top:0;width:2px;height:100%;
+    background:var(--ink);transform-origin:top center;transform:scaleY(1);}
+  .is-scrubbed .thread-fill{transform:scaleY(var(--scrub));}
+  .ledger{border-top:1px solid var(--c-line-on-paper);}
+  .ledger-row{display:grid;grid-template-columns:36px 1fr;gap:12px 22px;
+    padding:clamp(.8rem,3cqw,1.75rem) 0;
+    border-bottom:1px solid var(--c-line-on-paper);}
+  .ledger-num{font-family:var(--f-mono);font-weight:400;font-size:12px;
+    letter-spacing:0;color:rgba(22,20,15,.62);padding-top:.2em;}
+  .ledger-body h3{font-family:var(--f-display);font-weight:700;font-size:1.15rem;
+    letter-spacing:-.01em;text-transform:uppercase;}
+  .ledger-body p{max-width:56ch;font-size:var(--body-r5);
+    color:rgba(22,20,15,.68);margin-top:.4rem;}
+  /* Ordscrubben utan en enda skrivning per bildruta. Varje ord får sitt index
+     --i och radens ordantal --n EN gång vid montering; opaciteten är sedan en
+     ren CSS-funktion av --scrub, som ärvs från akten. Fronten --scrub * --n
+     vandrar genom orden och varje ord tänds när fronten passerar det.
+     Alternativet, att skriva opacity på varje ord varje bildruta, är exakt den
+     kostnad F-013 mätte upp som långa tasks. */
+  /* A11Y-FYND R3, axe `color-contrast`, 35 noder: den första versionen scrubbade
+     OPACITET från .14 till 1. Vid varje viloläge under scrubben låg då en del av
+     orden på 14 % och var oläsliga, och axe hade rätt. Räknat: golvet måste upp
+     till ungefär 0,88 opacitet för att nå 4,5:1 mot papperet, och då finns ingen
+     effekt kvar. En opacitetsscrubb på brödtext KAN alltså inte klara AA.
+     Devicen är därför additiv i stället för subtraktiv: orden går från sidans
+     egen dämpade bläckton till full bläckton. Båda ändarna är läsbara,
+     6,3:1 respektive 18:1, och ögat läser fortfarande att fronten tänder dem. */
+  /* PLAN 028 C (loop 2 profiling): 60 <span class="w"> med egna --i/--n och
+     color-mix per ord kostade 2,10ms per --sc-ps-skrivning på jätten (synth3).
+     Samma två valörer (62% -> 100% bläck), samma --scrub, som EN gradient per
+     textblock i stället: 0,84ms, sex element i stället för 60. 100deg låter
+     fronten löpa i läsriktning genom ett flerradigt stycke. */
+  .is-scrubbed .scrub-text h3,.is-scrubbed .scrub-text p{
+    --edge:calc(var(--scrub) * 130%);
+    background-image:linear-gradient(100deg,
+      var(--ink) 0 calc(var(--edge) - 12%),
+      color-mix(in srgb,var(--ink) 62%,var(--bg)) calc(var(--edge) + 12%) 100%);
+    -webkit-background-clip:text;background-clip:text;color:transparent;}
+  @container (max-width:360px){ .ledger-row{grid-template-columns:1fr;} }
+  @media (max-width:900px){ .ledger-row{grid-template-columns:1fr;} }
+
+  /* ---------------------------------------------------------- s6, Hōrai */
+  .horai-fig{flex:1;}
+  .horai-wrap{min-height:80dvh;background:var(--invert);
+    content-visibility:auto;}
+
+  /* ---------------------------------------------------------- process
+     PLAN 019, R6. PROCESS: sju stycken i flödet med ett ritat ark sticky
+     bredvid, INTE sju kort, INTE en tidslinje med punkter, INTE korsfadade
+     rubriker. Anton 2026-09-16: stegen är riktiga beskrivningar, inte
+     fråga och svar. Formbeslutet, tre rader: (1) texten är alltid synlig
+     och ligger i flödet, ingen opacitet, ingen korsfadning; (2) arket är
+     sticky bredvid texten (>=1280) eller ovanför den (<=1279) och ritas i
+     takt med att stegen passerar viewportens mitt; sektionens höjd är
+     textens egen, inget 300svh, inget manuellt steg 07 utanför
+     sticky-hållet; (3) varje stegs fönster ankras i stegets egen position
+     i flödet, mätt en gång i measureAct (14 tal, --s1..--e7). */
+  .process{background:var(--bg);color:var(--ink);position:relative;
+    padding-block:clamp(48px,8vh,88px) clamp(40px,6vh,64px);}
+  .process-title{font-family:var(--f-display);font-weight:700;
+    font-size:clamp(2.2rem,3.4vw,3rem);letter-spacing:-.01em;
+    color:var(--ink);max-width:20ch;
+    padding:.6rem var(--rail-x) 0;}
+  .process-lead{max-width:40ch;font-size:var(--body-r5);
+    color:rgba(22,20,15,.78);margin-top:.8rem;padding:0 var(--rail-x);}
+  /* PLAN 025 A: kickern saknade --rail-x helt (bara title/lead hade den). */
+  .process > .kicker-sans{padding-inline:var(--rail-x);}
+
+  .process-grid{display:grid;grid-template-columns:minmax(300px,384px) minmax(0,880px);
+    column-gap:clamp(48px,4vw,80px);align-items:start;
+    padding-inline:var(--rail-x);margin-top:clamp(40px,6vh,64px);}
+
+  /* PLAN 025 C: listans egen bottenpadding (inte .process:s) håller
+     <ol>:s underkant förbi arkets sticky-underkant så steg 07 läses med
+     arket helt synligt (räknat: arket 666px, <ol>:s underkant 772px). */
+  .process-steps{list-style:none;margin:0;padding:0 0 clamp(160px,22vh,220px);}
+  .process-steps li{padding-block:clamp(40px,6vh,64px);
+    display:flex;flex-direction:column;gap:.6rem;}
+  .process-step-title{font-family:var(--f-display);font-weight:700;
+    font-size:clamp(1.4rem,2.2vw,2rem);letter-spacing:-.01em;
+    text-transform:uppercase;color:var(--ink);}
+  .process-p{font-family:var(--font);font-weight:300;font-size:16px;
+    color:rgba(22,20,15,.78);max-width:34ch;}
+  .process-note{font-family:var(--font);font-weight:600;font-size:13px;
+    color:var(--hair-ink);max-width:34ch;margin-top:.4rem;}
+
+  .process-stick{position:sticky;top:max(24px,calc((100svh - 495px) / 2));
+    align-self:start;}
+  .process-sheet{display:block;width:100%;max-width:880px;height:auto;
+    aspect-ratio:880/495;}
+
+  /* --- linjehierarkin, K3:s klasser, V3c:s egna tokens (index.html:143-149) */
+  .process-sheet .contour{fill:none;stroke:var(--ink);stroke-width:var(--contour-line);}
+  .process-sheet .dimline{fill:none;stroke:var(--hair-ink);stroke-width:var(--contour-hair);}
+  .process-sheet .guide{fill:none;stroke:var(--hair-ink);stroke-width:var(--contour-hair);
+    stroke-dasharray:var(--contour-dash);}
+  .process-sheet .leader{fill:none;stroke:var(--hair-ink);stroke-width:var(--contour-hair);}
+  .process-sheet .hatch{fill:url(#p-hatch-pattern);stroke:none;}
+  .process-sheet .leaddot{fill:var(--hair-ink);stroke:none;}
+  .process-sheet #p-hatch-pattern line{stroke:var(--hair-ink);}
+  .process-sheet path,.process-sheet rect{stroke-linecap:butt;stroke-linejoin:miter;}
+
+  /* --- ritmekaniken. pathLength="1" normaliserar varje bana; enheten
+     *1px på stroke-dashoffset är obligatorisk (K3-r8/index.html:263-268).
+     En streckad hjälplinje kan inte dash-ritas (dasharray gör redan ett
+     jobb), så guide/stations/ledgers/hatch avslöjas med clip-path. */
+  .process-sheet .draw{stroke-dasharray:1px;stroke-dashoffset:calc((1 - var(--p-l)) * 1px);
+    /* Markörer (pilspetsar) positioneras på banans vertex, inte på den
+       synliga stroken - stroke-dashoffset klipper dem inte (R5-fyndet).
+       Snäpp-opacitet döljer dem tills banan faktiskt börjat rita. */
+    opacity:clamp(0,calc(var(--p-l) * 9999),1);}
+  .process-sheet .wipe{clip-path:inset(0 calc((1 - var(--p-l)) * 100%) 0 0);}
+
+  .process-sheet .callout{font-family:var(--font);font-weight:600;font-size:12px;
+    letter-spacing:.16em;text-transform:uppercase;fill:var(--hair-ink);
+    opacity:var(--p-t);}
+  .process-sheet .measure{font-family:var(--f-display);font-weight:700;
+    font-size:44px;font-variant-numeric:tabular-nums;
+    /* PLAN 020 Target D. Tonbytet: vid --k6 = 1 (steg 06 i mitten) är
+       kedjan --hair-ink, inte längre blå - H-33, ett blått moment per
+       skärm, inte ett kvarglömt (R5-fyndet: siffrorna förblev accent
+       efter fallet). Skärm 05: siffrorna viker till 0,7 opacitet när
+       Calyx-bilden landar (TASTE § 4.8: bilden är skärmens auktoritet)
+       utan att försvinna helt - multiplicerat med fade-in-tonen --p-t,
+       inte i stället för den. */
+    fill:color-mix(in srgb, var(--c-accent), var(--hair-ink) calc(100% * var(--k6)));
+    opacity:calc(var(--p-t) * (1 - 0.3 * var(--k5)));transform-box:fill-box;
+    /* 44 -> 12px = faktor 1 - 0.7273. transform-box:fill-box: annars
+       skalar siffran mot SVG:ns user-space-nollpunkt (K3-fällan). */
+    transform:scale(calc(1 - 0.7273 * var(--k6)));}
+  #p-m320,#p-m768{transform-origin:50% 100%;}
+  #p-m1440{transform-origin:100% 100%;}
+
+  .process-sheet .p-live{
+    clip-path:inset(0 0 calc((1 - var(--k5)) * 100%) 0);
+    /* PLAN 046: gråskalan är ritningens material; färgen kommer när ritningen
+       blir sida. Samma fönster som resten av steg 06:s tillbakadragning
+       (.measure tonbyte och skala, #p-guides/#p-ledgers/#p-hatch opacitet,
+       .contour viktfall) - en gest i fyra egenskaper, inte fyra gester. */
+    filter:grayscale(calc(1 - var(--k6))) contrast(1.05);}
+
+  /* s-process-06: konturernas viktfall och hjälplinjer/skraffering som
+     tonar till 0,35 opacitet (bara hjälplinjer och skraffering, inte
+     måttlinjer eller ledare - R5-fyndet om selektorns bredd). */
+  .process-sheet .contour{stroke-width:calc(var(--contour-line) - 0.75px * var(--k6));}
+  /* PLAN 020 Target E. AVVIKELSE (R5): klasselektorn .guide,.hatch
+     träffade även #p-rev (revisionsfältets skraffering bär class="hatch
+     wipe"), så 07:s revisionscell tonades permanent till 0,35 trots att
+     den ritas EFTER --k6:s fönster har passerat. Id-selektorn träffar
+     bara de tre element som faktiskt ska tona; #p-rev står i full ton. */
+  #p-guides,#p-ledgers,#p-hatch{opacity:calc(1 - 0.65 * var(--k6));}
+
+  /* PLAN 019 Step 3. --k1..--k7 är EN andel (0 till 1) av respektive
+     stegs eget fönster [--sN,--eN], normalt deklarerade (inherits:true
+     per spec), så arkets alla barn ärver dem - till skillnad från
+     --p-l/--p-t/--p-thin/--p-fill/--p-fall som är inherits:false
+     (R5-fyndet) och måste sättas per konsument. --s1..--e7 har CSS-
+     fallback här (no-JS-golvet); JS (measureAct) skriver de uppmätta. */
+  #process{
+    --s1:.09; --e1:.16; --s2:.19; --e2:.26; --s3:.29; --e3:.36;
+    --s4:.39; --e4:.46; --s5:.49; --e5:.56; --s6:.59; --e6:.66;
+    --s7:.69; --e7:.76;
+    --k1:clamp(0,calc((var(--sc-ps,0) - var(--s1)) / (var(--e1) - var(--s1))),1);
+    --k2:clamp(0,calc((var(--sc-ps,0) - var(--s2)) / (var(--e2) - var(--s2))),1);
+    --k3:clamp(0,calc((var(--sc-ps,0) - var(--s3)) / (var(--e3) - var(--s3))),1);
+    --k4:clamp(0,calc((var(--sc-ps,0) - var(--s4)) / (var(--e4) - var(--s4))),1);
+    --k5:clamp(0,calc((var(--sc-ps,0) - var(--s5)) / (var(--e5) - var(--s5))),1);
+    --k6:clamp(0,calc((var(--sc-ps,0) - var(--s6)) / (var(--e6) - var(--s6))),1);
+    --k7:clamp(0,calc((var(--sc-ps,0) - var(--s7)) / (var(--e7) - var(--s7))),1);
+  }
+
+  /* --- per-bana andelar [a,b] av stegets EGNA --kN (0 till 1), inte av
+     rå --sc-ps. Ordningen inom steget som tidigare; två banor i samma
+     steg överlappar med högst halva sitt fönster (perf 4). Utropen
+     (rad 3 i device-tabellen) läser en fast bredd 0,15 av --kN. */
+  /* PLAN 040 (loop 3): konturen är hel medan steg 01 läses; entréskärmens
+     högerspalt bär en ram, inte ett streck (H-15). Glyfen följer efter.
+     Ingen överlappning (0-0,30 / 0,30-0,70): perf 4:s halva-fönstret-tak. */
+  #p-outline{--p-l:clamp(0,calc((var(--k1) - 0) / 0.30),1);}
+  /* PLAN 020 Target C: #p-glyph är en egen <path> (kopia av
+     #alunix-mark-path), inte ett <use> - se markupkommentaren. Dash-draw
+     fungerar på en <path> (pathLength stöds), så glyfen ritas som
+     konturen: samma .draw-mekanik och samma snäpp-opacitet mot
+     markörer som alla andra banor, ingen egen opacitetston. */
+  .process-sheet #p-glyph{fill:none;stroke:var(--hair-ink);stroke-width:23.7;
+    stroke-linejoin:miter;--p-l:clamp(0,calc((var(--k1) - 0.30) / 0.40),1);}
+
+  #p-guides{--p-l:clamp(0,calc((var(--k2) - 0) / 0.45),1);}
+  #p-dim-width{--p-l:clamp(0,calc((var(--k2) - 0.3) / 0.45),1);}
+  #p-stations{--p-l:clamp(0,calc((var(--k2) - 0.6) / 0.3),1);}
+  #p-m320,#p-m768,#p-m1440{--p-t:clamp(0,calc((var(--k2) - 0.75) / 0.15),1);}
+
+  #p-opening{--p-l:clamp(0,calc((var(--k3) - 0) / 0.45),1);}
+  #p-dim-gutter{--p-l:clamp(0,calc((var(--k3) - 0.3) / 0.4),1);}
+  #p-lead-169{--p-l:clamp(0,calc((var(--k3) - 0.6) / 0.35),1);}
+  #p-c-gutter{--p-t:clamp(0,calc((var(--k3) - 0.55) / 0.15),1);}
+  #p-c-169{--p-t:clamp(0,calc((var(--k3) - 0.85) / 0.15),1);}
+  #p-dot-169{--p-t:clamp(0,calc((var(--k3) - 0.85) / 0.15),1);opacity:var(--p-t);}
+
+  #p-hatch{--p-l:clamp(0,calc((var(--k4) - 0) / 0.45),1);}
+  #p-ledgers{--p-l:clamp(0,calc((var(--k4) - 0.3) / 0.45),1);}
+  #p-dim-row{--p-l:clamp(0,calc((var(--k4) - 0.6) / 0.35),1);}
+  #p-c-row{--p-t:clamp(0,calc((var(--k4) - 0.8) / 0.15),1);}
+
+  #p-title{--p-l:clamp(0,calc((var(--k7) - 0) / 0.5),1);}
+  #p-rev{--p-l:clamp(0,calc((var(--k7) - 0.4) / 0.5),1);}
+  #p-c-rev{--p-t:clamp(0,calc((var(--k7) - 0.85) / 0.15),1);}
+
+  /* PLAN 019, device-tabellens rad 8 (perf 3): banor för ett steg som
+     ännu inte öppnat sitt fönster ligger utanför stilträdet. content-
+     visibility gäller inte SVG-barn, så display:none i stället, satt av
+     readState via data-on (Step 6), aldrig av --sc-ps direkt. */
+  .process-sheet g[data-step]:not([data-on]){display:none;}
+
+  /* PLAN 019 Step 9. "Hur vi tänker": hairline-liggare utan nummer,
+     H-06:s femte anatomi mellan det ritade arket och den typsatta
+     adressen. */
+  /* PLAN 025 A: --panel-pad-y var bara deklarerad på .panel-pad, aldrig på
+     .principles, så var() mot en icke-existerande egenskap ogiltigförklarade
+     HELA padding-deklarationen (både lodrät och vågrät föll till 0). */
+  .principles{background:var(--bg);color:var(--ink);
+    --panel-pad-y:clamp(28px,4.6vw,52px);
+    padding:var(--panel-pad-y) var(--rail-x) clamp(64px,10vh,120px);}
+  .principles .ledger{max-width:64ch;}
+  .ledger--plain .ledger-row{grid-template-columns:1fr;}
+  .ledger--plain .ledger-body p{max-width:60ch;}
+  .ledger--plain .ledger-body h3{font-size:1.15rem;}
+
+  /* PLAN 045 (R11, loop 5): processakten inverterad, ett läge av samma
+     sida (?process=invert), inte en andra sida. Additivt block, ingen
+     befintlig rad ovan rörd. Fyra tokens vänder hela aktens ritregister
+     (.contour/.dimline/.guide/.leader läser --ink/--hair-ink,
+     .measure läser --c-accent, .ledger/.ledger-row läser
+     --c-line-on-paper, .process/.principles sätter bg/color ur --bg/
+     --ink) - se planens eget "Varför tokens och inte en omskrivning
+     per regel". --hair-ink substituerar vid DEKLARATIONSTILLFÄLLET
+     (color-mix(in srgb, var(--ink) 62%, var(--bg)), rad 156) och ärver
+     därför INTE de omskrivna --ink/--bg härifrån; skriven om separat. */
+  :root[data-process="invert"] #process,
+  :root[data-process="invert"] .principles{
+    --bg: var(--c-black);
+    --ink: var(--c-paper);
+    --c-line-on-paper: var(--hairline-dark);
+    --c-accent: var(--c-accent-on-dark);
+    --hair-ink: color-mix(in srgb, var(--c-paper) 62%, var(--c-black));
+  }
+  /* De fyra hårdkodade bläcktonerna (rgba(), ingen token) blir nära
+     svarta mot mörkt om de lämnas - de enda undantagen från tokenvägen. */
+  :root[data-process="invert"] #process .process-lead,
+  :root[data-process="invert"] #process .process-p,
+  :root[data-process="invert"] .principles .ledger-body p{
+    color: color-mix(in srgb, var(--c-paper) 78%, var(--c-black));
+  }
+  :root[data-process="invert"] #process .ledger-num,
+  :root[data-process="invert"] .principles .ledger-num{
+    color: color-mix(in srgb, var(--c-paper) 62%, var(--c-black));
+  }
+  /* PLAN 046. Färgfilens odämpade luminans (mean 0,54) läser som en lampa
+     mot --c-black (mätt: 11:1). brightness(0.6) är minsta värde som förde
+     bildrektangelns mean under 0,34 och p95 under 0,80 vid BÅDA breddema
+     (0,62 klarade 1440 men landade på 0,3403 vid 390, över gränsen);
+     saturate() behövdes inte, bilden läste inte skrikig vid den nivån.
+     Pappersläget dämpas aldrig - denna regel är invert-scopead. */
+  :root[data-process="invert"] .process-sheet .p-live{
+    filter:grayscale(calc(1 - var(--k6))) contrast(1.05) brightness(0.6);}
+
+  /* PLAN 019 Step 8. <=1279: arket sticky OVANFÖR texten (order:-1 i
+     DOM-ordningen orörd), reducerad plansch 320x360 (K3:s regel: en
+     station visas bara på en bredd den beskriver). */
+  @media (max-width:1279px){
+    .process-grid{grid-template-columns:1fr;row-gap:0;}
+    /* PLAN 025 D: 480px bredd -> 564px hög ark (aspect-ratio 320/360 + 24px
+       padding), vilket vid låga viewports (720x450) täcker hela skärmen.
+       Tredje termen håller >=200px text synlig under arket alltid.
+       AVVIKELSE: planens formel (100svh - 200px) räknar inte med sin EGEN
+       padding-block (24px): uppmätt lämnade den bara 176px, inte >=200px,
+       vid 640/600/450px höjd (samma 24px-underskott vid alla tre). Rättad
+       till (100svh - 224px) så att bredden krymper 24px extra och
+       padding-block:12px+12px räknas in i budgeten. */
+    .process-stick{order:-1;position:sticky;top:0;z-index:2;
+      background:var(--bg);padding-block:12px;justify-self:center;
+      width:min(100%,480px,calc((100svh - 224px) * 320 / 360));}
+    /* PLAN 047: arket är centrerat och smalare än den enkolumns-grid det
+       delar med .process-steps (H-08/H-30, lead 2026-09-17). Samma
+       width-uttryck och justify-self, ordagrant - annars sticker texten ut
+       på båda sidor om arkets ogenomskinliga bakgrund och klipps mitt i
+       ordet mellan 640 och 1279px. */
+    .process-steps{width:min(100%,480px,calc((100svh - 224px) * 320 / 360));
+      justify-self:center;}
+    .process-sheet{aspect-ratio:320/360;}
+    .process-steps li{padding-block:clamp(32px,5vh,48px);}
+
+    #p-guides,#p-hatch,#p-ledgers,#p-dim-row,#p-dim-gutter,#p-stations,
+    #p-c-gutter,#p-c-row{display:none;}
+
+    #p-outline{d:path("M0.5 0.5 H319.5 V359.5 H0.5 Z");}
+    #p-opening{d:path("M24 56 H296 V209 H24 Z");}
+    #p-open-rect,#p-live-img{x:24px;y:56px;width:272px;height:153px;}
+    #p-dim-width{d:path("M0 250 H320");}
+    #p-lead-169{d:path("M296 56 L306 40 H312");}
+    #p-title{d:path("M112 292 H296 V346 H112 Z M112 310 H296 M112 328 H296");}
+    #p-rev{x:112px;y:292px;width:184px;height:18px;}
+    #p-m320,#p-m768,#p-m1440{font-size:34px;}
+  }
+
+  /* ---------------------------------------------------------- s7, avslutet
+     En rad, en adress, ingenting mer. Ligger på den kontinuerliga grunden,
+     full bredd under båda spalterna, och stänger sidan i stället för att
+     tona ut den. */
+  /* Plan 007: .close delade sista viewporten med prisblocket/Hōrai (108px
+     toppadding, 274px total höjd av 900). min-height:62svh ger mailto-raden
+     en egen skärm vid 1440 och 390, staplat lugnt i mitten. */
+  /* PLAN 015: 62svh delade viewporten med liggaren (Astra loop 1 fix 6);
+     100svh ger avslutet hela sin skärm, ensamt. Footern är sidans sista
+     akt och kan aldrig nå --sc-ps=1 (dokumentet slutar när dess underkant
+     möter viewportens): max ps = vh/(vh+vh) = 0,50 vid båda bredderna. */
+  .close{position:relative;z-index:1;min-height:100svh;
+    display:flex;flex-direction:column;justify-content:center;align-items:flex-start;
+    gap:clamp(20px,3vh,32px);
+    padding:clamp(64px,12vh,140px) var(--rail-x) clamp(56px,10vh,120px);}
+  /* Hårlinjen ritas ur --sc-ps (F-014), ingen transition, ingen JS. */
+  .close-rule{width:100%;height:1px;background:var(--hairline-dark);transform-origin:left center;
+    transform:scaleX(clamp(0,calc(var(--sc-ps,0) / 0.46),1));}
+  .close-mailto{display:inline-flex;align-items:center;min-height:44px;
+    font-family:var(--font);font-weight:300;
+    font-size:clamp(2rem,6vw,6rem);line-height:1;letter-spacing:-.02em;
+    color:#f7f5f0;text-decoration:none;
+    border-bottom:1px solid rgba(247,245,240,.42);padding-bottom:.12em;
+    transition:border-color .16s var(--ease),color .16s var(--ease);}
+  .close-mailto:hover{border-color:#f7f5f0;}
+  .close-mailto:active{color:#ffffff;border-color:#ffffff;}
+
+  @media (max-width:900px){
+    .calyx-fig,.horai-fig{flex:none;}
+    .calyx-wrap{min-height:66dvh;}
+    .horai-wrap{min-height:62dvh;}
+    .thesis-grid{grid-template-columns:1fr;}
+    /* Bleeden tas bort helt så snart spalterna staplar. Under 900 px finns
+       ingen andra spalt att bleeda mot, och en nedskalad bleed på 6 % stack
+       fortfarande ut ur viewporten vid 200 % zoom, mätt med reflow.py. */
+    .thesis-figure{align-self:start;margin-right:0;transform:none;}
+    .thesis-caption{margin-top:1.6rem;}
+  }
+  @media (max-width:768px){
+    .price-row{flex-direction:column;align-items:flex-start;}
+  }
+  /* A11Y-FYND R3, reflow.py: `figure.thesis-figure` stack ut ur viewporten vid
+     320 px OCH vid 200 % zoom. Orsaken är Mattis-bleeden, en negativ marginal
+     plus translateX, som är en KOMPOSITIONSRÖRELSE i en tvåspaltig layout.
+     Under 640 px finns ingen andra spalt att bleeda mot, så greppet har inget
+     att göra där och tas bort helt i stället för att skalas ned.
+     `html,body{overflow-x:clip}` dolde det för en scrollWidth-mätning; det är
+     just därför överflödning mäts på ELEMENTETS box och inte på dokumentet. */
+  @media (max-width:640px){
+    .thesis-figure{margin-right:0;transform:none;}
+  }
+</style>
+</head>
+<body>
+
+<div class="ground" aria-hidden="true"></div>
+
+<header class="topline">
+  <span class="topline-mark">ALUNIX</span>
+  <a class="topline-contact" href="mailto:kontakt@alunix.se">kontakt@alunix.se</a>
+</header>
+
+<main id="page">
+
+  <!-- ============================================================ SIGNATURAKTEN
+       En pinnad akt, sidans enda, och sidans största spann. Stagens ground är
+       rubrik + kort + underrad, alla tre synliga från p = 0, vilket uppfyller
+       "ground or greet" utan en enda cue. Ingen scroll-cue-text (gate 88). -->
+  <section class="hero" id="hero-section" data-sc-act="pin" data-sc-span="3.4" data-sc-dwell="0.2">
+    <div data-sc-stage class="hero-stage">
+
+      <div class="hero-head">
+        <h1 class="hero-headline">Er hemsida är nutidens visitkort</h1>
+      </div>
+
+      <!-- PLAN 022 Step 1, R6. tabindex="-1": programmatisk fokusparkering
+           (setFace flyttar hit när den ytan som håller fokus inerteras),
+           aldrig ett eget tabbstopp - ringen på länken inuti räcker. -->
+      <figure class="hero-plate" tabindex="-1">
+        <div class="plate-card" id="plateCard">
+
+          <div class="face face--front" id="faceFront">
+            <div class="logo-dock" aria-hidden="true">
+              <svg viewBox="80 400 827 1139" role="presentation" focusable="false"><path id="alunix-mark-path" fill="#ffffff" fill-rule="evenodd" d="M 430.020 513.250 C 386.700 600.458, 318.190 739.397, 297.501 782 C 289.087 799.325, 276.594 824.975, 269.739 839 C 216.342 948.248, 182.518 1018.108, 130.177 1127.250 L 122.145 1144 149.505 1144 C 176.418 1144, 176.876 1143.966, 177.531 1141.901 C 177.898 1140.746, 186.760 1121.959, 197.226 1100.151 C 207.692 1078.343, 223.776 1044.750, 232.969 1025.500 C 266.133 956.059, 277.353 933, 277.980 933 C 278.331 933, 280.408 935.587, 282.595 938.750 C 284.783 941.913, 295.822 957.775, 307.127 974 C 325.042 999.713, 381.481 1081.065, 429.737 1150.734 C 439.657 1165.055, 444.860 1173.418, 444.356 1174.233 C 443.926 1174.929, 440.820 1179.324, 437.455 1183.999 C 429.228 1195.427, 350.904 1307.144, 339.651 1323.500 C 334.732 1330.650, 327.687 1340.775, 323.996 1346 C 313.067 1361.472, 240.505 1466.210, 229.257 1482.750 L 218.886 1498 253.693 1497.961 L 288.500 1497.922 299.500 1481.744 C 324.141 1445.503, 476.381 1225.616, 478.506 1223.197 C 478.768 1222.899, 523.522 1286.863, 565.476 1347.500 C 568.140 1351.350, 588.572 1380.825, 610.880 1413 C 633.189 1445.175, 655.504 1477.439, 660.471 1484.697 L 669.500 1497.895 706.798 1497.947 L 744.096 1498 740.841 1493.250 C 727.956 1474.444, 658.474 1374.606, 602.522 1294.500 C 521.377 1178.323, 476.786 1114.238, 411.522 1020 C 389.621 988.375, 368.686 958.225, 364.999 953 C 342.882 921.650, 308 870.814, 308 869.930 C 308 868.958, 318.208 847.506, 341.512 799.500 C 346.852 788.500, 357.642 766.225, 365.489 750 C 373.336 733.775, 394.812 689.450, 413.213 651.500 C 431.614 613.550, 449.746 576.074, 453.505 568.221 C 457.265 560.367, 460.665 554.292, 461.060 554.721 C 461.456 555.149, 484.829 600.050, 513 654.500 C 595.807 814.548, 597.733 818.267, 612.712 847 C 620.597 862.125, 629.584 879.471, 632.684 885.546 L 638.319 896.592 633.336 903.546 C 630.596 907.371, 622.124 919.500, 614.511 930.500 C 606.897 941.500, 592.950 961.525, 583.517 975 C 550.282 1022.475, 513.571 1075.338, 501.745 1092.750 C 500.157 1095.088, 498.778 1097, 498.679 1097 C 498.581 1097, 498.620 1045.925, 498.767 983.500 L 499.033 870 467.529 870 L 436.024 870 435.762 948.679 L 435.500 1027.358 441.051 1035.429 C 444.105 1039.868, 458.527 1060.825, 473.101 1082 C 498.716 1119.217, 521.094 1151.905, 523.077 1155 C 523.877 1156.249, 524.411 1156.006, 526.269 1153.550 C 528.956 1149.997, 575.050 1083.626, 604.955 1040.250 C 642.615 985.626, 683.143 927.009, 694.212 911.152 L 704.927 895.804 701.347 888.652 C 699.378 884.718, 693.373 873.175, 688.003 863 C 682.632 852.825, 671.141 831, 662.466 814.500 C 653.792 798, 640.398 772.575, 632.701 758 C 609.734 714.509, 591.719 680.257, 553.278 607 C 533.220 568.775, 512.426 529.175, 507.069 519 C 501.712 508.825, 490.419 487.337, 481.975 471.250 C 473.530 455.163, 466.349 442, 466.016 442 C 465.684 442, 449.485 474.063, 430.020 513.250 M 459 748.072 C 445.481 750.334, 431.497 761.058, 425.189 774 C 411.946 801.174, 429.479 833.973, 460.052 839.216 C 482.335 843.037, 505.858 827.419, 511.586 805 C 519.739 773.095, 491.587 742.619, 459 748.072 M 583.028 1238.750 C 583.043 1239.162, 587.793 1246.250, 593.583 1254.500 C 599.373 1262.750, 608.679 1276.138, 614.264 1284.250 L 624.418 1299 745.199 1299 L 865.981 1299 847.826 1273.750 C 837.841 1259.862, 828.058 1246.155, 826.086 1243.288 L 822.500 1238.076 702.750 1238.038 C 636.888 1238.017, 583.012 1238.338, 583.028 1238.750"/></svg>
+            </div>
+            <img id="heroPoolImg"
+                 src="/tests/alunix-concepts-r3/build/assets/k1-stage-pool.webp"
+                 width="1600" height="1067"
+                 decoding="async" fetchpriority="high"
+                 alt="En ljuspöl faller diagonalt över ett mörkt scentyg">
+          </div>
+
+          <div class="face face--back" id="faceBack">
+            <svg class="card-glyph" viewBox="80 400 827 1139" aria-hidden="true" focusable="false"><path d="M 430.020 513.250 C 386.700 600.458, 318.190 739.397, 297.501 782 C 289.087 799.325, 276.594 824.975, 269.739 839 C 216.342 948.248, 182.518 1018.108, 130.177 1127.250 L 122.145 1144 149.505 1144 C 176.418 1144, 176.876 1143.966, 177.531 1141.901 C 177.898 1140.746, 186.760 1121.959, 197.226 1100.151 C 207.692 1078.343, 223.776 1044.750, 232.969 1025.500 C 266.133 956.059, 277.353 933, 277.980 933 C 278.331 933, 280.408 935.587, 282.595 938.750 C 284.783 941.913, 295.822 957.775, 307.127 974 C 325.042 999.713, 381.481 1081.065, 429.737 1150.734 C 439.657 1165.055, 444.860 1173.418, 444.356 1174.233 C 443.926 1174.929, 440.820 1179.324, 437.455 1183.999 C 429.228 1195.427, 350.904 1307.144, 339.651 1323.500 C 334.732 1330.650, 327.687 1340.775, 323.996 1346 C 313.067 1361.472, 240.505 1466.210, 229.257 1482.750 L 218.886 1498 253.693 1497.961 L 288.500 1497.922 299.500 1481.744 C 324.141 1445.503, 476.381 1225.616, 478.506 1223.197 C 478.768 1222.899, 523.522 1286.863, 565.476 1347.500 C 568.140 1351.350, 588.572 1380.825, 610.880 1413 C 633.189 1445.175, 655.504 1477.439, 660.471 1484.697 L 669.500 1497.895 706.798 1497.947 L 744.096 1498 740.841 1493.250 C 727.956 1474.444, 658.474 1374.606, 602.522 1294.500 C 521.377 1178.323, 476.786 1114.238, 411.522 1020 C 389.621 988.375, 368.686 958.225, 364.999 953 C 342.882 921.650, 308 870.814, 308 869.930 C 308 868.958, 318.208 847.506, 341.512 799.500 C 346.852 788.500, 357.642 766.225, 365.489 750 C 373.336 733.775, 394.812 689.450, 413.213 651.500 C 431.614 613.550, 449.746 576.074, 453.505 568.221 C 457.265 560.367, 460.665 554.292, 461.060 554.721 C 461.456 555.149, 484.829 600.050, 513 654.500 C 595.807 814.548, 597.733 818.267, 612.712 847 C 620.597 862.125, 629.584 879.471, 632.684 885.546 L 638.319 896.592 633.336 903.546 C 630.596 907.371, 622.124 919.500, 614.511 930.500 C 606.897 941.500, 592.950 961.525, 583.517 975 C 550.282 1022.475, 513.571 1075.338, 501.745 1092.750 C 500.157 1095.088, 498.778 1097, 498.679 1097 C 498.581 1097, 498.620 1045.925, 498.767 983.500 L 499.033 870 467.529 870 L 436.024 870 435.762 948.679 L 435.500 1027.358 441.051 1035.429 C 444.105 1039.868, 458.527 1060.825, 473.101 1082 C 498.716 1119.217, 521.094 1151.905, 523.077 1155 C 523.877 1156.249, 524.411 1156.006, 526.269 1153.550 C 528.956 1149.997, 575.050 1083.626, 604.955 1040.250 C 642.615 985.626, 683.143 927.009, 694.212 911.152 L 704.927 895.804 701.347 888.652 C 699.378 884.718, 693.373 873.175, 688.003 863 C 682.632 852.825, 671.141 831, 662.466 814.500 C 653.792 798, 640.398 772.575, 632.701 758 C 609.734 714.509, 591.719 680.257, 553.278 607 C 533.220 568.775, 512.426 529.175, 507.069 519 C 501.712 508.825, 490.419 487.337, 481.975 471.250 C 473.530 455.163, 466.349 442, 466.016 442 C 465.684 442, 449.485 474.063, 430.020 513.250 M 459 748.072 C 445.481 750.334, 431.497 761.058, 425.189 774 C 411.946 801.174, 429.479 833.973, 460.052 839.216 C 482.335 843.037, 505.858 827.419, 511.586 805 C 519.739 773.095, 491.587 742.619, 459 748.072 M 583.028 1238.750 C 583.043 1239.162, 587.793 1246.250, 593.583 1254.500 C 599.373 1262.750, 608.679 1276.138, 614.264 1284.250 L 624.418 1299 745.199 1299 L 865.981 1299 847.826 1273.750 C 837.841 1259.862, 828.058 1246.155, 826.086 1243.288 L 822.500 1238.076 702.750 1238.038 C 636.888 1238.017, 583.012 1238.338, 583.028 1238.750"/></svg>
+            <div class="card-back">
+              <p class="card-mark">Alunix</p>
+              <p class="card-kicker">Digital byrå</p>
+              <hr class="card-rule">
+              <p class="card-services"><span>Design</span><span>Utveckling</span><span>System</span></p>
+              <a class="card-cta" href="mailto:kontakt@alunix.se">Boka ett möte</a>
+            </div>
+          </div>
+
+          <div class="plate-edge" aria-hidden="true"></div>
+        </div>
+      </figure>
+      <!-- PLAN 022 Step 3, R6. inert gör subträdet otillgängligt för AT
+         (Chromium, per spec) även om aria-hidden inte längre sätts, så
+         kortbaksidans fyra strängar behöver en egen kopia som ALDRIG är
+         inert eller aria-hidden - a11y-rapportens fix 7. -->
+      <p class="sr-only">Alunix. Digital byrå. Design, utveckling, system. Boka ett möte: kontakt@alunix.se.</p>
+
+      <p class="hero-sub">Vi skapar skräddarsydda webbplatser som hjälper er att exponera verksamheten.</p>
+
+    </div>
+  </section>
+
+  <!-- ============================================================ s4 till s6
+       Två spalter som byter material mot varandra. Vänster bär den blå tesen,
+       Calyx och priset; höger bär jätterubriken med liggaren och Hōrai.
+       Grunddriften går i tre stopp: #0b0c0e (heron) -> #123f68 (tesen)
+       -> #f4f2ee (papperssidan). -->
+  <div class="stagger">
+
+    <div class="col col-left">
+
+      <!-- s4. Sidans enda mättade färgblock. Materialbytet ÄR sektionen. -->
+      <section class="panel panel-thesis panel-pad" data-sc-act="flow">
+        <div class="thesis-grid">
+          <div class="thesis-text" data-sc-in>
+            <h2 class="thesis-headline">Det första intrycket är digitalt.</h2>
+            <p class="thesis-support">Skärmen möter besökaren före texten. Innan ett ord är läst bär layout och bild hela argumentet.</p>
+            <p class="thesis-caption"><span class="cap-line">Exempelsida: Hyperborea, konferens i Lund</span></p>
+          </div>
+          <figure class="thesis-figure">
+            <div class="thesis-photo-box">
+              <img src="/tests/alunix-concepts-r3/build/assets/demo-hyperborea.webp"
+                   width="1440" height="900" decoding="async" loading="lazy"
+                   alt="Startsidan för Hyperborea, en konferens i Lund, i svartvitt">
+            </div>
+          </figure>
+        </div>
+      </section>
+
+      <!-- s5 vänster. Calyx live. Ramen monteras av en IntersectionObserver en
+           dryg skärm i förväg och transformeras aldrig efteråt. -->
+      <figure class="frame-fig calyx-fig" data-sc-act="flow">
+        <!-- PLAN 031: data-sc-reveal/-at togs bort. Motorn skrev clip-path ur
+             sitt eget råa aktvärde i BÅDA riktningarna (scrollcraft.js
+             rad 947-957): scrollade läsaren upp igen stängdes irisen/inset
+             (H-27), och vid ett snabbt hjul stegade klippningen (gate 94).
+             Sidan äger nu revealen: --rv, en latch ur shimens lerpade
+             värde som aldrig minskar (JS efter mount, se readState). -->
+        <div class="frame-wrap calyx-wrap"><div class="rv">
+          <iframe data-src="/sites/calyx.html" loading="lazy" inert
+                  title="Exempelsida: Calyx, florist i Stockholm"></iframe>
+        </div></div>
+        <figcaption class="frame-cap">Exempelsida: Calyx, florist i Stockholm</figcaption>
+      </figure>
+
+      <!-- s6 vänster. Priset, mörkt. Tre sanna rader, inga andra tal. -->
+      <section class="price panel-pad" id="pris" data-sc-act="flow">
+        <h2 class="statement">Alla har rätt till bra design.</h2>
+        <p class="price-ingress">Två av tre paket har ett pris utskrivet här. Det tredje beror på omfattningen.</p>
+
+        <div class="price-ledger">
+          <div class="price-row">
+            <span class="label">Standardpaket. Webbplats med CMS för egna ändringar och en första SEO-optimering.</span>
+            <span class="value">26 900 kr</span>
+          </div>
+          <div class="price-row">
+            <span class="label">Paket med bokningssystem, betalning och kunddatabas.</span>
+            <span class="value">38 900 kr</span>
+          </div>
+          <div class="price-row">
+            <span class="label">Helt skräddarsydda lösningar för produktkataloger, specialbyggda system med mera</span>
+            <span class="value">Pris vid förfrågan</span>
+          </div>
+        </div>
+      </section>
+    </div>
+
+    <div class="col col-right on-paper">
+
+      <!-- s5 höger. Jätterubriken och liggaren, på papper. Den låsta raden
+           "Webbdesign, design och system. Allt på ett ställe." bor här sedan
+           panel-services togs bort, se BRIEF.md § decision ledger rättelse 4. -->
+      <section class="panel panel-giant panel-pad" id="giant-section"
+               data-sc-act="flow">
+        <div class="giant-head">
+          <h2 class="giant">VI BYGGER ERT VARUMÄRKE.</h2>
+          <p class="giant-sub">Webbdesign, design och system. Allt på ett ställe.</p>
+        </div>
+
+        <div class="ledger-wrap">
+          <div class="thread" aria-hidden="true"><div class="thread-fill" id="threadFill"></div></div>
+          <div class="ledger" id="ledgerScrub">
+            <div class="ledger-row">
+              <span class="ledger-num">01</span>
+              <div class="ledger-body scrub-text">
+                <h3>Design</h3>
+                <!-- copy v0, copy-gate i R6 -->
+                <p>Identitet och formspråk hämtade ur er verksamhet. Ni ser förslaget på en testadress och godkänner innan vi bygger.</p>
+              </div>
+            </div>
+            <div class="ledger-row">
+              <span class="ledger-num">02</span>
+              <div class="ledger-body scrub-text">
+                <h3>Utveckling</h3>
+                <!-- copy v0, copy-gate i R6 -->
+                <p>Byggt i kod från grunden för telefon, surfplatta och dator. Snabbt, tillgängligt och ert att bygga vidare på.</p>
+              </div>
+            </div>
+            <div class="ledger-row">
+              <span class="ledger-num">03</span>
+              <div class="ledger-body scrub-text">
+                <h3>System</h3>
+                <!-- copy v0, copy-gate i R6 -->
+                <p>Bokningar, betalning och kunddatabas byggda i samma steg som sidan och skötta efter lansering.</p>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- s6 höger. Hōrai live. Iris öppnar ramen en gång, sedan orörd. -->
+      <figure class="frame-fig horai-fig" id="projekt" data-sc-act="flow">
+        <div class="frame-wrap horai-wrap"><div class="rv">
+          <iframe data-src="/sites/horai.html" loading="lazy" inert
+                  title="Exempelsida: Hōrai, Asian fusion-koncept"></iframe>
+        </div></div>
+        <figcaption class="frame-cap">Exempelsida: Hōrai, Asian fusion-koncept</figcaption>
+      </figure>
+    </div>
+
+  </div>
+
+  <!-- PROCESS: sju stycken i flödet med ett ritat ark sticky bredvid,
+       INTE sju kort, INTE en tidslinje med punkter, INTE korsfadade
+       rubriker. PLAN 019, R6. Formen lånad ur board/cells/K3-r8/index.html
+       som TEKNIK, aldrig som sida: Calyx maskas in som bild i en
+       <clipPath>, inte som en tredje live-ram. -->
+  <section id="process" class="process on-paper" data-sc-act="flow" aria-labelledby="process-title">
+    <p class="kicker-sans">Så går det till</p>
+    <!-- copy v1, copy-gate i R7 -->
+    <h2 id="process-title" class="process-title">Från samtal till lanserad sida.</h2>
+    <p class="process-lead">Sju steg, samma ordning i varje projekt, så att ni alltid vet var vi är.</p>
+
+    <div class="process-grid">
+      <!-- PLAN 034 B: data-sc-in/data-sc-stagger togs bort - prosan deltog i
+           motorns flödesreveal (opacity:0, translateY(14px) tills .sc-in),
+           vilket bryter formbeslutet (plan 019): "texten är alltid synlig
+           och ligger i flödet, ingen opacitet". Förskjöt dessutom alla
+           uppmätta li-rektanglar 28px innan revealen hunnit spela. -->
+      <ol class="process-steps">
+        <li data-step="01">
+          <span class="ledger-num">01</span>
+          <h3 class="process-step-title">Uppstart</h3>
+          <!-- copy v1, copy-gate i R7 -->
+          <p class="process-p">Vi börjar med ett samtal om er verksamhet: vad ni gör, vilka ni vill nå och vad sidan ska göra för er. Ni behöver inte ha texter eller bilder klara, det räcker att ni kan berätta. Efter samtalet skriver vi ner vad vi hört och vad vi föreslår, så att ni kan läsa och rätta innan något ritas. Det ni får är grunden för allt som följer.</p>
+          <p class="process-note">Ett tomt ark. Inget ritas innan vi vet vad sidan ska säga.</p>
+        </li>
+        <li data-step="02">
+          <span class="ledger-num">02</span>
+          <h3 class="process-step-title">Planering</h3>
+          <!-- copy v1, copy-gate i R7 -->
+          <p class="process-p">Vi ritar strukturen innan vi formger sidan: vilka sidor som finns, vad varje sida ska få besökaren att göra och i vilken ordning innehållet kommer. Vi planerar för tre skärmbredder från början, telefon, surfplatta och dator. Mobilen lägger vi inte till sist. Ni ser strukturen som en enkel skiss och godkänner den innan vi går vidare till design.</p>
+          <p class="process-note">320, 768 och 1440. Varje sida verifieras vid alla tre.</p>
+        </li>
+        <li data-step="03">
+          <span class="ledger-num">03</span>
+          <h3 class="process-step-title">Design</h3>
+          <!-- copy v1, copy-gate i R7 -->
+          <p class="process-p">När strukturen är klar formger vi sidan: typografi, färg, bild och rytm hämtar vi ur er verksamhet, inte ur en mall. Förslaget lägger vi på en testadress. Ni öppnar den i er egen webbläsare, på er telefon, och ser sidan som era kunder kommer att se den. Ni lämnar synpunkter, vi justerar och ni godkänner innan vi bygger. Inget går i produktion som ni inte sett.</p>
+          <p class="process-note">16:9, öppningen där ert innehåll ska sitta. Proportionen bestäms innan bilden finns.</p>
+        </li>
+        <li data-step="04">
+          <span class="ledger-num">04</span>
+          <h3 class="process-step-title">Utveckling</h3>
+          <!-- copy v1, copy-gate i R7 -->
+          <p class="process-p">Vi bygger sidan i kod från grunden, för de tre bredderna från planeringen. Sidan ska ladda snabbt och fungera med tangentbord och skärmläsare. Texter och bilder ändrar ni själva i ett innehållssystem. Vi visar hur. Sidan är ert att bygga vidare på. Behöver ni bokningar, betalning eller kunddatabas bygger vi det i samma steg, på samma tekniska nivå som resten av sidan.</p>
+          <p class="process-note">96 px, radavståndet i liggaren. All rytm räknas ur det.</p>
+        </li>
+        <li data-step="05">
+          <span class="ledger-num">05</span>
+          <h3 class="process-step-title">Innehåll</h3>
+          <!-- copy v1, copy-gate i R7 -->
+          <p class="process-p">Ni kan er verksamhet, vi kan sätta den på plats. Ni levererar texter och bilder i den takt ni har dem. Texten bearbetar vi så att den blir kort och läsbar, bilderna beskär och optimerar vi för webben. Saknas något säger vi till i tid. Vi fyller sidan på testadressen så att ni ser hur den växer.</p>
+          <p class="process-note">Strukturen får sitt material. Ritningen blir er sida.</p>
+        </li>
+        <li data-step="06">
+          <span class="ledger-num">06</span>
+          <h3 class="process-step-title">Lansering</h3>
+          <!-- copy v1, copy-gate i R7 -->
+          <p class="process-p">Innan sidan går live granskar vi den tillsammans på testadressen: varje länk, varje formulär, varje koppling till bokning, betalning och kunddatabas, på telefon och på dator. Vi testar med tangentbord och skärmläsare, i tre bredder och i riktiga webbläsare. Vi flyttar sedan sidan till er adress och kontrollerar att allt fungerar på plats. Ni får en genomgång av sidan och av hur ni ändrar innehåll själva.</p>
+          <p class="process-note">Bläcket står kvar som ram. Ritningen och sidan är samma sak.</p>
+        </li>
+        <li data-step="07">
+          <span class="ledger-num">07</span>
+          <h3 class="process-step-title">Förvaltning</h3>
+          <!-- copy v1, copy-gate i R7 -->
+          <p class="process-p">Vi finns kvar efter lansering. En sida är aldrig färdig: ändringar, nya sidor och nya funktioner går samma väg som bygget, testadress först, godkännande, sedan live. Har ni en fråga mejlar ni oss på kontakt@alunix.se.</p>
+          <p class="process-note">Revisionsfältet fylls. En bokstav, aldrig ett datum.</p>
+        </li>
+      </ol>
+
+      <div class="process-stick">
+        <svg class="process-sheet" id="processSheet" viewBox="0 0 880 495"
+             role="img" aria-labelledby="process-svg-title process-svg-desc">
+          <title id="process-svg-title">Sektionsritning av processen</title>
+          <desc id="process-svg-desc">En måttsatt ritning som visar sidans byggprocess i sju
+            steg och ritar sig själv när sidan scrollas.</desc>
+
+          <defs>
+            <!-- Samma pilspets-teknik som K3-r8/index.html rad 693-696:
+                 markerUnits="userSpaceOnUse" så spetsen inte skalar med
+                 stroke-width, fill="context-stroke" ärver den refererande
+                 banans stroke. -->
+            <marker id="p-arrow" markerUnits="userSpaceOnUse" markerWidth="9" markerHeight="6"
+                    refX="9" refY="3" orient="auto-start-reverse">
+              <path d="M0 0 L9 3 L0 6 Z" fill="context-stroke" stroke="none"/>
+            </marker>
+            <pattern id="p-hatch-pattern" patternUnits="userSpaceOnUse" width="8" height="8"
+                     patternTransform="rotate(45)">
+              <line x1="0" y1="0" x2="0" y2="8" stroke-width="0.75"/>
+            </pattern>
+            <clipPath id="p-open">
+              <!-- PLAN 020 Target A. Flyttad från x=270 (R5): avståndet
+                   320-stationens hjälplinje (x 195,6) till öppningens
+                   vänsterkant var då 74,4 units = 121,8 px, inte 7 rem.
+                   264 ger 68,4 units = 111,9 px ~ 7 rem (Astra fynd 5). -->
+              <rect id="p-open-rect" x="264" y="96" width="538" height="303"/>
+            </clipPath>
+          </defs>
+
+          <!-- g[data-step="05"] ligger FÖRST i dokumentordning (paint-
+               ordning), inte i stegordning: bilden måste måla UNDER
+               #p-opening:s kontur (samma skäl som K3-r8/index.html rad
+               719-725), och grupperingen efter steg (perf 3, device-rad 8)
+               skulle annars lägga g[data-step="05"] EFTER g[data-step="03"]
+               i DOM och rita bilden ovanpå konturen. -->
+          <g data-step="05">
+            <g clip-path="url(#p-open)" class="p-live">
+              <image id="p-live-img" href="assets/demo-calyx-1440-color.webp" x="264" y="96" width="538" height="303"
+                     preserveAspectRatio="xMidYMin slice"/>
+            </g>
+          </g>
+
+          <!-- s-process-01: arkets kontur, medurs från övre vänstra hörnet. -->
+          <g data-step="01">
+            <path id="p-outline" class="contour draw" pathLength="1"
+                  d="M 0.75 0.75 H 879.25 V 494.25 H 0.75 Z"/>
+            <!-- s-process-01: ordmärkets A-glyf, hairline-kontur, 36 units
+                 hög. PLAN 020 Target C: egen <path> i stället för <use>
+                 mot #alunix-mark-path (R5). Den refererade pathens egna
+                 fill="#ffffff" (presentationsattribut) slog den ärvda
+                 fill:none, och stroke-width 0,75 skalades av
+                 scale(0.031607) till ~0,024 px - osynlig. d kopierad
+                 ordagrant från #alunix-mark-path (rad ~1265);
+                 stroke-width 23,7 i pathens EGNA units x 0,031607 = 0,75
+                 px på skärmen (--contour-hair). -->
+            <path id="p-glyph" class="draw" pathLength="1"
+                  transform="translate(24,24) scale(0.031607) translate(-80,-400)"
+                  fill-rule="evenodd"
+                  d="M 430.020 513.250 C 386.700 600.458, 318.190 739.397, 297.501 782 C 289.087 799.325, 276.594 824.975, 269.739 839 C 216.342 948.248, 182.518 1018.108, 130.177 1127.250 L 122.145 1144 149.505 1144 C 176.418 1144, 176.876 1143.966, 177.531 1141.901 C 177.898 1140.746, 186.760 1121.959, 197.226 1100.151 C 207.692 1078.343, 223.776 1044.750, 232.969 1025.500 C 266.133 956.059, 277.353 933, 277.980 933 C 278.331 933, 280.408 935.587, 282.595 938.750 C 284.783 941.913, 295.822 957.775, 307.127 974 C 325.042 999.713, 381.481 1081.065, 429.737 1150.734 C 439.657 1165.055, 444.860 1173.418, 444.356 1174.233 C 443.926 1174.929, 440.820 1179.324, 437.455 1183.999 C 429.228 1195.427, 350.904 1307.144, 339.651 1323.500 C 334.732 1330.650, 327.687 1340.775, 323.996 1346 C 313.067 1361.472, 240.505 1466.210, 229.257 1482.750 L 218.886 1498 253.693 1497.961 L 288.500 1497.922 299.500 1481.744 C 324.141 1445.503, 476.381 1225.616, 478.506 1223.197 C 478.768 1222.899, 523.522 1286.863, 565.476 1347.500 C 568.140 1351.350, 588.572 1380.825, 610.880 1413 C 633.189 1445.175, 655.504 1477.439, 660.471 1484.697 L 669.500 1497.895 706.798 1497.947 L 744.096 1498 740.841 1493.250 C 727.956 1474.444, 658.474 1374.606, 602.522 1294.500 C 521.377 1178.323, 476.786 1114.238, 411.522 1020 C 389.621 988.375, 368.686 958.225, 364.999 953 C 342.882 921.650, 308 870.814, 308 869.930 C 308 868.958, 318.208 847.506, 341.512 799.500 C 346.852 788.500, 357.642 766.225, 365.489 750 C 373.336 733.775, 394.812 689.450, 413.213 651.500 C 431.614 613.550, 449.746 576.074, 453.505 568.221 C 457.265 560.367, 460.665 554.292, 461.060 554.721 C 461.456 555.149, 484.829 600.050, 513 654.500 C 595.807 814.548, 597.733 818.267, 612.712 847 C 620.597 862.125, 629.584 879.471, 632.684 885.546 L 638.319 896.592 633.336 903.546 C 630.596 907.371, 622.124 919.500, 614.511 930.500 C 606.897 941.500, 592.950 961.525, 583.517 975 C 550.282 1022.475, 513.571 1075.338, 501.745 1092.750 C 500.157 1095.088, 498.778 1097, 498.679 1097 C 498.581 1097, 498.620 1045.925, 498.767 983.500 L 499.033 870 467.529 870 L 436.024 870 435.762 948.679 L 435.500 1027.358 441.051 1035.429 C 444.105 1039.868, 458.527 1060.825, 473.101 1082 C 498.716 1119.217, 521.094 1151.905, 523.077 1155 C 523.877 1156.249, 524.411 1156.006, 526.269 1153.550 C 528.956 1149.997, 575.050 1083.626, 604.955 1040.250 C 642.615 985.626, 683.143 927.009, 694.212 911.152 L 704.927 895.804 701.347 888.652 C 699.378 884.718, 693.373 873.175, 688.003 863 C 682.632 852.825, 671.141 831, 662.466 814.500 C 653.792 798, 640.398 772.575, 632.701 758 C 609.734 714.509, 591.719 680.257, 553.278 607 C 533.220 568.775, 512.426 529.175, 507.069 519 C 501.712 508.825, 490.419 487.337, 481.975 471.250 C 473.530 455.163, 466.349 442, 466.016 442 C 465.684 442, 449.485 474.063, 430.020 513.250 M 459 748.072 C 445.481 750.334, 431.497 761.058, 425.189 774 C 411.946 801.174, 429.479 833.973, 460.052 839.216 C 482.335 843.037, 505.858 827.419, 511.586 805 C 519.739 773.095, 491.587 742.619, 459 748.072 M 583.028 1238.750 C 583.043 1239.162, 587.793 1246.250, 593.583 1254.500 C 599.373 1262.750, 608.679 1276.138, 614.264 1284.250 L 624.418 1299 745.199 1299 L 865.981 1299 847.826 1273.750 C 837.841 1259.862, 828.058 1246.155, 826.086 1243.288 L 822.500 1238.076 702.750 1238.038 C 636.888 1238.017, 583.012 1238.338, 583.028 1238.750"/>
+          </g>
+
+          <!-- s-process-02: måttkedjan under arket. 195.6 och 469.3 = 320/1440
+               och 768/1440 av arkets egen 880-breda rymd. -->
+          <g data-step="02">
+            <g id="p-guides" class="guide wipe">
+              <path d="M195.6 20 V410 M469.3 20 V410 M24 20 V410"/>
+            </g>
+            <path id="p-dim-width" class="dimline draw" pathLength="1" d="M0 470 H880"
+                  marker-start="url(#p-arrow)" marker-end="url(#p-arrow)"/>
+            <g id="p-stations" class="dimline wipe">
+              <path d="M195.6 464 V476 M469.3 464 V476"/>
+            </g>
+            <text id="p-m320" class="measure" x="195.6" y="455" text-anchor="middle">320</text>
+            <text id="p-m768" class="measure" x="469.3" y="455" text-anchor="middle">768</text>
+            <text id="p-m1440" class="measure" x="856" y="455" text-anchor="end">1440</text>
+          </g>
+
+          <!-- s-process-03: öppningens kontur, 538 x 303 = 16:9 exakt.
+               PLAN 020 Target A: flyttad 270->264 (7 rem-rättelsen). -->
+          <g data-step="03">
+            <path id="p-opening" class="contour draw" pathLength="1"
+                  d="M 264 96 H 802 V 399 H 264 Z"/>
+            <path id="p-dim-gutter" class="dimline draw" pathLength="1" d="M195.6 80 H264"
+                  marker-start="url(#p-arrow)" marker-end="url(#p-arrow)"/>
+            <text id="p-c-gutter" class="callout" x="229.8" y="72" text-anchor="middle">7 rem</text>
+            <circle id="p-dot-169" class="leaddot" cx="802" cy="96" r="1"/>
+            <path id="p-lead-169" class="leader draw" pathLength="1" d="M802 96 L829 110 H852"/>
+            <text id="p-c-169" class="callout" x="852" y="104" text-anchor="end">16:9</text>
+          </g>
+
+          <!-- s-process-04: raddelningen i marginalzonen. -->
+          <g data-step="04">
+            <rect id="p-hatch" class="hatch wipe" x="24" y="96" width="54" height="324"/>
+            <g id="p-ledgers" class="guide wipe">
+              <path d="M78 300 H226 M78 358.7 H226 M78 417.3 H226"/>
+            </g>
+            <path id="p-dim-row" class="dimline draw" pathLength="1" d="M90 300 V358.7"
+                  marker-start="url(#p-arrow)" marker-end="url(#p-arrow)"/>
+            <text id="p-c-row" class="callout" x="102" y="333" text-anchor="start">96 px</text>
+          </g>
+
+          <!-- s-process-07: titelblockets revisionsfält. AVVIKELSE (R5):
+               en 3-radig 60x18-stapel (54 hög) från y 447 slutar vid 501,
+               6 units förbi arkets egen 495-höga viewBox. Flyttad till
+               y 439 (slutar 493, 2 units marginal), samma tre-rads-
+               konvention som K3:s eget titelblock (ISO 7200). -->
+          <g data-step="07">
+            <path id="p-title" class="dimline draw" pathLength="1"
+                  d="M24 439 H84 V493 H24 Z M24 457 H84 M24 475 H84"/>
+            <rect id="p-rev" class="hatch wipe" x="24" y="439" width="60" height="18"/>
+            <text id="p-c-rev" class="callout" x="54" y="451" text-anchor="middle">A</text>
+          </g>
+        </svg>
+      </div>
+    </div>
+  </section>
+
+  <!-- PLAN 019 Step 9. "Hur vi tänker": H-06:s femte anatomi, en
+       hairline-liggare utan nummer (gate 69), mellan det ritade arket
+       och den typsatta adressen. Inte inne i akten: arket ritar steg,
+       principerna är inte steg. -->
+  <section id="principer" class="principles on-paper" data-sc-act="flow">
+    <p class="kicker-sans">Hur vi tänker</p>
+    <div class="ledger ledger--plain" data-sc-in data-sc-stagger="70">
+      <div class="ledger-row">
+        <div class="ledger-body">
+          <h3>Vi visar innan vi påstår</h3>
+          <p>De tre exempelsajterna här på sidan är riktiga och går att använda. Det är hela vårt bevis, och det räcker.</p>
+        </div>
+      </div>
+      <div class="ledger-row">
+        <div class="ledger-body">
+          <h3>Sidan ska fungera för alla</h3>
+          <p>Tre skärmbredder, tangentbord, skärmläsare, kontrast som går att läsa i solljus. Det är inte ett tillägg, det är hur vi bygger.</p>
+        </div>
+      </div>
+      <div class="ledger-row">
+        <div class="ledger-body">
+          <h3>Ni ska kunna ändra själva</h3>
+          <p>En sida ni inte kan uppdatera åldras från dag ett.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ============================================================ s7
+       Avslutet. En rad, en adress, ingenting mer. Ingen upprepad CTA, inget
+       formulär, ingen sticky knapp, ingen kolofon.
+       Elementet är ett <footer> och inte en <section>: sidan behöver ett
+       contentinfo-landmärke, och att lägga det HÄR i stället för att bygga en
+       kolofon under det är enda sättet att få landmärket utan att bryta
+       målbildens "ingenting mer". Landmärket kostar noll synligt innehåll.
+       Det ligger UTANFÖR <main>: ett <footer> som är ättling till main, section
+       eller article mappas inte till contentinfo, utan blir ett generiskt
+       element (HTML-AAM). Placeringen är alltså inte kosmetisk. -->
+</main>
+
+<footer class="close" data-sc-act="flow">
+  <div class="close-rule" aria-hidden="true"></div>
+  <a class="close-mailto" href="mailto:kontakt@alunix.se">kontakt@alunix.se</a>
+</footer>
+
+<script src="scroll/scrollcraft.js"></script>
+<script src="scroll/sc-smooth.js"></script>
+<script>
+(function(){
+  'use strict';
+
+  var hero      = document.getElementById('hero-section');
+  var plateCard = document.getElementById('plateCard');
+  var faceFront = document.getElementById('faceFront');
+  var faceBack  = document.getElementById('faceBack');
+  var heroPlate = document.querySelector('.hero-plate');
+
+  /* ---- grundbilden som token, så att sökvägen står på ETT ställe -------- */
+  document.documentElement.style.setProperty(
+    '--ground-img', "url('/tests/alunix-concepts-r3/build/assets/k4-cabin-desk.webp')");
+
+  ScrollCraft.mount(document.body);
+
+  /* PLAN 031/035. Wrapparnas reveal-lista: en gång vid mount. R.fig är
+     aktens element (satt en gång, jämförs med === varje tick i stället
+     för R.act cachat för alltid - en resize skapar nya aktobjekt i
+     sc-smooth.js:s collect(), och ett cachat R.act blir dött; loop 3
+     Astra fix 1). */
+  var reveals = [
+    { el: document.querySelector('.calyx-wrap'), fig: document.querySelector('.calyx-fig'), from: 0.02, to: 0.30, v: 0 },
+    { el: document.querySelector('.horai-wrap'), fig: document.querySelector('.horai-fig'), from: 0.10, to: 0.55, v: 0 }
+  ].filter(function(R){ return R.el && R.fig; });
+  reveals.forEach(function(R){ R.el.style.setProperty('--rv', '0'); });
+
+  /* PLAN 041, R9 loop 3. Grunddriften: motorns egen kurva (raw flow-
+     progress, smooth() över 0,35 av aktens liv), räknad av sidan i stället
+     för av motorn (data-sc-drift skrev --sc-canvas på :root varje ändring -
+     9,13 ms per skrivning vid cpu 1, ogiltigförklarar hela dokumentet).
+     Stoppen läses ur :root en gång vid mount (gate 48: inga hårdkodade
+     hex) - --c-paper (#f4f2ee), inte --bg (#fdfbf4, en annan färg): samma
+     hex som stod hårdkodad i data-sc-drift="#f4f2ee" på #giant-section. */
+  function hexToRgb(hex){
+    hex = hex.trim().replace('#', '');
+    var n = parseInt(hex, 16);
+    return [(n >> 16) & 255, (n >> 8) & 255, n & 255];
+  }
+  var rootCs = getComputedStyle(document.documentElement);
+  var DRIFT_STOPS = [
+    hexToRgb(rootCs.getPropertyValue('--c-black')),
+    hexToRgb(rootCs.getPropertyValue('--c-accent-deep')),
+    hexToRgb(rootCs.getPropertyValue('--c-paper'))
+  ];
+  function driftSmooth(x){ x = x < 0 ? 0 : x > 1 ? 1 : x; return x * x * (3 - 2 * x); }
+  function driftRaw(top, h){
+    if (!h) return 0;
+    var raw = (window.scrollY + window.innerHeight - top) / (h + window.innerHeight);
+    return raw < 0 ? 0 : raw > 1 ? 1 : raw;
+  }
+  var lastDriftCol = null;
+  function driftColor(){
+    /* MÄTT: "g > 0" som egen växel bytte till pappersblandningen nästan
+       direkt (giant-section börjar 108px efter tesen, så dess råa
+       progress blir positiv långt innan tesens egen övergång hunnit
+       någonstans) - tesen visade aldrig sin blå ton, bara papper.
+       Motorns egen loop (read(), "background drift") prioriterar i
+       stället den FÖRSTA akten som fortfarande är mitt i (0 < raw < 1)
+       och växlar bara till nästa när den föregående är KLAR (raw >= 1). */
+    var t = driftRaw(thesisTop, thesisH), g = driftRaw(giantTop, giantH);
+    var a, b, k;
+    if (t < 1){ a = DRIFT_STOPS[0]; b = DRIFT_STOPS[1]; k = driftSmooth(t / 0.35); }
+    else { a = DRIFT_STOPS[1]; b = DRIFT_STOPS[2]; k = driftSmooth((g - driftHand) / 0.35); }
+    var c = [0, 1, 2].map(function(i){ return Math.round(a[i] + (b[i] - a[i]) * k); });
+    return 'rgb(' + c.join(',') + ')';
+  }
+  function applyDrift(){
+    if (!ground) return;
+    var col = driftColor();
+    if (col !== lastDriftCol){ lastDriftCol = col; ground.style.setProperty('--sc-canvas', col); }
+  }
+
+  /* PLAN 035. Latchen samplar shimens lerp varje bildruta tills den
+     landat, inte bara vid scroll-händelser: sc-smooth.js:s tick()
+     fortsätter lerpa cur mot målet i ~30 bildrutor efter sista
+     scroll-händelsen, men readState kördes bara ur schedule() (scroll/
+     resize) - scrollTo, PageDown och en programmatisk reload lämnade
+     --rv fruset under 1 (latch_diag.json, loop 3). latchTick
+     schemalägger sig själv med rAF så länge en reveal ligger under 1
+     och dess akt fortfarande lerpar; readState kickar den igång. */
+  var latchRaf = null;
+  var framesMounted = false;
+  /* Sökes med en vanlig for-loop, inte acts.filter(fn) - ett litet men
+     ÅTERKOMMANDE anrop i en bildruteloop: filter() allokerar en ny array
+     OCH en ny stängning varje tick, fyra gånger per bildruta (hero, akten,
+     två revealer). MÄTT (motion_probe genom heron, cpu 1): p95 36 -> 70 ms
+     med filter(); en enkel for-loop utan allokering återställde det. */
+  function findAct(acts, el){
+    for (var i = 0; i < acts.length; i++){ if (acts[i].el === el) return acts[i]; }
+    return null;
+  }
+  function latchTick(){
+    latchRaf = null;
+    var again = false;
+    var acts = (window.__scSmooth && window.__scSmooth.acts) || [];
+    /* PLAN 036 B. Ramarna monteras när heron står i sin landade svans
+       (--sc-ps >= 0,80, scroll_verify:s döda band 1800-2100) i stället för
+       vid wrapperns egen rootMargin 100% (Calyx cirka scrollY 2860, mitt i
+       bandets entré) - mätt vinst ~40-60 ms p95 i jättefönstret. frames/
+       mountFrame (nedan i filen) är redan tilldelade när denna första gång
+       körs (schedule() kör kickLatch via rAF, alltid efter att skriptet
+       kört klart synkront); mountFrame tar bort data-src så anropet är
+       idempotent (plan 026), och sömnen (is-asleep) rör monteringen inte. */
+    var heroAct = findAct(acts, hero);
+    if (!heroAct || isNaN(heroAct.cur)){
+      again = true; /* akten inte hittad än (collect() väntar på DOMContentLoaded) */
+    } else {
+      if (!framesMounted && heroAct.cur >= 0.80){
+        framesMounted = true;
+        if (typeof frames !== 'undefined' && typeof mountFrame === 'function') frames.forEach(mountFrame);
+      }
+      /* PLAN 039 (Astra loop 3 fix 2). Kortsidan och is-turning läste förut
+         RÅ ps i readState: under en snabb vändning (hjulet ger många
+         händelser före lerpen hunnit ikapp) eller ett PageDown-hopp kunde
+         den inerta sidan vara den synliga i flera bildrutor. --flip räknas
+         ur smoothstep(0.10, 0.78, --sc-ps), som korsar 0,5 vid --sc-ps
+         0,44 - samma värde ögat faktiskt ser, läst ur shimens cur. */
+      if (previewFace === null) setFace(heroAct.cur >= 0.44);
+      /* will-change bara medan kortet FAKTISKT rör sig (akten lerpar
+         fortfarande), inte hela tiden läsaren står stilla inne i pinnen. */
+      var heroTarget = parseFloat(heroAct.el.style.getPropertyValue('--sc-p'));
+      var heroMoving = !isNaN(heroTarget) && Math.abs(heroTarget - heroAct.cur) > 0.0005;
+      if (heroMoving !== turning){ turning = heroMoving; hero.classList.toggle('is-turning', heroMoving); }
+      if (heroMoving) again = true;
+    }
+    if (process){
+      var procAct = findAct(acts, process);
+      if (!procAct || isNaN(procAct.cur)){
+        again = true;
+      } else {
+        /* PLAN 039 (Astra loop 3 fix 3). "på" ur rå processPs() som förut
+           (banan får börja rita utan att vänta in lerpen); "av" först när
+           det LERPADE värdet (cur) har passerat s - dvs när ritningen
+           faktiskt dragit sig tillbaka - i stället för rå pps med en fast
+           0,03-hysteres, som ett stort hopp uppåt (PageUp, 800px > 135px)
+           kunde hoppa förbi och klippa gruppen till display:none mitt i en
+           baklängesritning. */
+        var pps = processPs();
+        for (var i = 0; i < stepAnchors.length; i++){
+          var stepNum = (i + 1 < 10 ? '0' : '') + (i + 1);
+          var g = sheetGroups[stepNum];
+          if (!g) continue;
+          var on = groupsOn[stepNum] ? procAct.cur >= stepAnchors[i].s - 0.005 : pps >= stepAnchors[i].s;
+          if (groupsOn[stepNum] !== on){ groupsOn[stepNum] = on; g.toggleAttribute('data-on', on); }
+        }
+        var procTarget = parseFloat(procAct.el.style.getPropertyValue('--sc-p'));
+        if (!isNaN(procTarget) && Math.abs(procTarget - procAct.cur) > 0.0005) again = true;
+      }
+    }
+    for (var r = 0; r < reveals.length; r++){
+      var R = reveals[r];
+      var act = findAct(acts, R.fig);
+      if (!act || isNaN(act.cur)){ again = true; continue; }
+      var t = Math.min(1, Math.max(0, (act.cur - R.from) / (R.to - R.from)));
+      t = t * t * (3 - 2 * t);
+      if (t >= 1 && R.v < 1){ R.v = 1; R.el.style.setProperty('--rv', '1'); }
+      else if (t > R.v + 0.002){ R.v = t; R.el.style.setProperty('--rv', t.toFixed(4)); }
+      var target = parseFloat(act.el.style.getPropertyValue('--sc-p'));
+      if (R.v < 1 && !isNaN(target) && Math.abs(target - act.cur) > 0.0005) again = true;
+    }
+    if (again) latchRaf = requestAnimationFrame(latchTick);
+  }
+  function kickLatch(){ if (!latchRaf) latchRaf = requestAnimationFrame(latchTick); }
+
+  /* ---- spacern mäts en gång, vid mount (scroll/README.md) ---------------
+     Rapporterar innerHeight 0 i det ögonblicket blir spann-höjden 0 px, sidan
+     får ingen scrolltrack och akten avancerar aldrig. En resize får motorn att
+     mäta om. Skickas när fönstret och typsnitten har landat. */
+  function relayout(){ dispatchEvent(new Event('resize')); }
+  addEventListener('load', relayout);
+  if (document.fonts && document.fonts.ready) document.fonts.ready.then(relayout);
+
+  /* ---- vilken sida av kortet som är nåbar -------------------------------
+     Baksidans länk finns i DOM:en från början men är osynlig tills kortet
+     vänts. En fokusbar länk som inte syns är ett a11y-fel, så den sidan som
+     är bortvänd hålls inert. Utan JS är framsidan uppe och baksidan inert.
+     PLAN 022 Step 2, R6. Fokus flyttas till figure.hero-plate (tabindex=-1,
+     programmatisk parkering) INNAN ytan som håller fokus inerteras: en
+     scroll som vände kortet medan `.card-cta` hade fokus gjorde
+     document.activeElement till body (Chromium nollar fokus när dess
+     värd blir inert), och nästa Tab startade om från toppen av sidan
+     (a11y-rapportens fix 4). aria-hidden sätts inte längre: inert gör
+     redan subträdet otillgängligt för AT (Chromium, per spec), och en
+     permanent aria-hidden="true" på baksidan gömde dess fyra strängar
+     för en skärmläsare som läser linjärt vid p=0, även innan kortet
+     någonsin vänts (fix 7) - se .sr-only-kopian i markupen i stället. */
+  var backLive = null;
+  /* PLAN 022 Step 5, R6. previewFace: när ett preview-läge tvingar en
+     sida (front/mid/back) ska den sidan vara AUKTORITATIV - readState
+     (scrollY 0 i ett preview-anrop) fick annars köra setFace(false) i
+     nästa bildruta och göra Astra-fynd 2b:s "Boka ett möte" osynlig/
+     inert trots att skärmbilden visade den. null = inget preview-läge,
+     readState räknar som vanligt ur scrollY. */
+  var previewFace = null;
+  function setFace(showBack){
+    if (backLive === showBack) return;
+    backLive = showBack;
+    var hiding = showBack ? faceFront : faceBack;
+    if (heroPlate && hiding.contains(document.activeElement)) heroPlate.focus({ preventScroll:true });
+    faceBack.inert = !showBack;
+    faceFront.inert = showBack;
+  }
+  setFace(false);
+
+  /* ---- will-change bara medan akten rör sig ----------------------------
+     Ingen per-bildruta-JS driver vändningen: --flip räknas i CSS ur --sc-ps.
+     Det här är enbart en gränsövergång, rAF-skyddad, med deadband. PLAN 039:
+     gränsen (is-turning, setFace) läses numera ur shimens lerpade cur i
+     latchTick, inte ur en egen rå-scrollY-approximation här (Astra loop 3
+     fix 2: en snabb vändning kunde göra fel kortsida nåbar). */
+  var process = document.getElementById('process');
+  var processTop = 0, processH = 0;
+  var stepAnchors = [];
+  /* PLAN 041, R9 loop 3. Driften (grundens kalla ljus) räknades förut av
+     motorn (data-sc-drift), som skrev --sc-canvas på :root varje bildruta
+     värdet ändras - en custom property på ROTEN invaliderar hela
+     dokumentet (9,13 ms per ändring vid cpu 1, loop 2). Sidan räknar nu
+     samma tre stopp med motorns egen kurva (raw flow-progress, smooth())
+     och skriver bara på .ground. Geometrin cachas här (samma mönster som
+     processTop) i stället för getBoundingClientRect per bildruta i
+     latchTick. */
+  var thesisEl = document.querySelector('.panel-thesis');
+  var giantEl = document.getElementById('giant-section');
+  var ground = document.querySelector('.ground');
+  var thesisTop = 0, thesisH = 0, giantTop = 0, giantH = 0, driftHand = 0;
+  /* PLAN 019, R6, Step 5. Varje stegs fönster ankras i stegets egen
+     position i flödet i stället för en tabell: --sN när li N:s överkant
+     når 85% (mobil 95%) av viewporthöjden, --eN när li N:s mitt står i
+     viewportens mitt (mobil: mitten av den synliga texten under det
+     sticky arket). CSS-fallbacken på #process (--s1..--e7) täcker no-JS;
+     de här skrivningarna vinner alltid över den (inline slår stylesheet). */
+  var sheetGroups = {};
+  function measureAct(){
+    if (thesisEl){ var tr = thesisEl.getBoundingClientRect(); thesisTop = tr.top + window.scrollY; thesisH = tr.height; }
+    if (giantEl){ var gr = giantEl.getBoundingClientRect(); giantTop = gr.top + window.scrollY; giantH = gr.height; }
+    /* PLAN 044 (loop 4): jättens råa progress i det ögonblick tesen når 1 -
+       leg 2 (blå -> papper) räknas från HÄR, inte från jättens egen start,
+       annars står smooth(g/0,35) redan på 1 när tesen är klar (jätten
+       börjar bara 108px efter tesen) och färgen hoppar i ett scrollsteg
+       (astra-verify/verify_astra4.json, scrollY 3600 -> 3620). */
+    driftHand = giantH ? Math.min(1, Math.max(0, (thesisTop + thesisH + window.innerHeight - giantTop) / (giantH + window.innerHeight))) : 0;
+    if (process){
+      var pr = process.getBoundingClientRect();
+      processTop = pr.top + window.scrollY;
+      processH = pr.height;
+
+      var lis = process.querySelectorAll('.process-steps li');
+      var vh = window.innerHeight, life = processH + vh;
+      var top = processTop, stick = process.querySelector('.process-stick');
+      var mobile = window.matchMedia('(max-width:1279px)').matches;
+      var sheetH = mobile && stick ? stick.getBoundingClientRect().height : 0;
+      /* PLAN 025 B: tre ankare i stället för två. (1) --s1 ankras i arkets
+         EGEN ankomst (stickY0), inte li 01:s överkant: konturen ritas när
+         arket kommer in, inte tomt medan arket väntar. (2) --sN, N>=2 vid
+         1440: 65% av viewporthöjden (var 85%): 85% lät steg N+1 börja
+         rita innan steg N var klart (--s2 0,2158 < --e1 0,2365, uppmätt
+         loop 1). (3) --eN vid 390: li N:s ÖVERKANT når arkets underkant
+         (var: li N:s mitt UNDER arket, fel tecken - satte målet på
+         viewport-y 217px, under det sticky arket självt, så ritningen
+         blev klar innan rubriken ens synts). */
+      /* PLAN 034 A: gridets överkant, inte det (eventuellt fastnade)
+         sticky-elementets rect. getBoundingClientRect på ett fastnat
+         sticky-element ger sticky-offseten (202px vid 1440, 0 vid 390), inte
+         arkets naturliga läge, och den offseten VÄXER med scrollY - så en
+         ommätning medan sidan står inne i akten (t.ex. en resize, eller
+         ?preview= som scrollar innan load hunnit fira) fick --s1 att hamna
+         över --e1 (0,4847 mot 0,2292 vid 1440, Astra loop 2, verifierat).
+         Gridets rad rör sig aldrig med sticky, bara dess barn gör. */
+      var grid = process.querySelector('.process-grid');
+      var stickY0 = grid ? grid.getBoundingClientRect().top + window.scrollY - top : 0;
+      stepAnchors = [];
+      for (var i = 0; i < lis.length; i++){
+        var lr = lis[i].getBoundingClientRect(), y0 = lr.top + window.scrollY - top, yc = y0 + lr.height / 2;
+        var sTop = (i === 0) ? stickY0 : y0;
+        var s = (sTop + vh * ((mobile || i === 0) ? 0.05 : 0.35)) / life;
+        var e = (mobile ? (y0 + (vh - sheetH)) : (yc + 0.5 * vh)) / life;
+        process.style.setProperty('--s' + (i + 1), s.toFixed(4));
+        process.style.setProperty('--e' + (i + 1), e.toFixed(4));
+        stepAnchors.push({ s: s, yc: yc, y0: y0 });
+      }
+      if (!Object.keys(sheetGroups).length){
+        process.querySelectorAll('.process-sheet g[data-step]').forEach(function(g){
+          sheetGroups[g.getAttribute('data-step')] = g;
+        });
+      }
+    }
+  }
+  measureAct();
+  addEventListener('resize', measureAct, { passive:true });
+  addEventListener('load', measureAct);
+
+  /* PLAN 036. Hōrais iris var en cirkel (R8 clip-path:circle(78%)), vars
+     procent löste sig mot sqrt((w²+h²)/2) (CSS Shapes-specen) - en formel
+     calc() inte kan uttrycka utan container query-enheter. .rv:s kvadrat
+     mäts i stället en gång här (samma utlösare som measureAct: mount,
+     load, resize), inte per bildruta: --rv-s är kvadratens sida (ger
+     samma radie som R8 vid --rv 1), --rv-w/--rv-h är wrapperns egen
+     riktiga storlek så ramen aldrig distorderas när den kontraskalas. */
+  function measureFrames(){
+    var hw = document.querySelector('.horai-wrap');
+    if (!hw) return;
+    var r = hw.getBoundingClientRect();
+    if (!r.width || !r.height) return;
+    var ref = Math.sqrt((r.width * r.width + r.height * r.height) / 2);
+    hw.style.setProperty('--rv-s', (2 * 0.78 * ref).toFixed(1) + 'px');
+    hw.style.setProperty('--rv-w', r.width.toFixed(1) + 'px');
+    hw.style.setProperty('--rv-h', r.height.toFixed(1) + 'px');
+  }
+  measureFrames();
+  addEventListener('resize', measureFrames, { passive:true });
+  addEventListener('load', measureFrames);
+
+  /* PLAN 019, R6, device-tabellens rad 9. --sc-ps som DRIVER ritningen
+     kommer från motorn (#process har data-sc-act="flow"); den här läsaren
+     räknar en EGEN, billig approximation ur rå scrollY (F-013, ingen
+     getComputedStyle per bildruta). */
+  function processPs(){
+    var travel = processH + window.innerHeight;
+    if (travel <= 0) return 0;
+    var ps = (window.scrollY + window.innerHeight - processTop) / travel;
+    if (ps < 0) ps = 0; else if (ps > 1) ps = 1;
+    return ps;
+  }
+
+  var turning = null, pending = false;
+  var groupsOn = {};
+  /* PLAN 039, R9 loop 3 (Astra fix 2, 3). is-turning/setFace och stegens
+     data-on läste förut RÅ ps/pps här - ögat ser det LERPADE värdet, så en
+     snabb vändning eller ett PageUp-hopp kunde göra fel sida nåbar eller
+     klippa en grupp i stället för att rita den baklänges. Båda besluten
+     flyttade till latchTick (rad ~1519), som läser shimens cur; readState
+     kickar bara igång samplern. previewFace vinner alltid (022 Step 5) -
+     satt en gång vid mount i preview-blocket, rörs inte här. */
+  function readState(){
+    pending = false;
+    /* PLAN 041: driften är en ren funktion av rå scrollY (motorns egna
+       drift-legs läste rått, inte lerpat, per read()) - ingen egen lerp
+       att vänta in, så den uppdateras här per scroll-händelse i stället
+       för varje bildruta i latchTick medan andra akter fortfarande lerpar. */
+    applyDrift();
+    kickLatch();
+  }
+  function schedule(){ if (!pending){ pending = true; requestAnimationFrame(readState); } }
+  addEventListener('scroll', schedule, { passive:true });
+  addEventListener('resize', schedule, { passive:true });
+  schedule();
+
+  /* ---- ramarna monteras en dryg skärm i förväg ---------------------------
+     `loading="lazy"` ensamt lämnar tidpunkten åt webbläsaren. En
+     IntersectionObserver med rootMargin 100 % sätter src när ramen är ungefär
+     en skärm bort, så den är laddad när den når vecket men aldrig vid load.
+     Tre live-ramar monterade vid load är det tyngsta en marknadssida kan göra
+     mot sig själv (performance.md § 2). Observern kopplar bort sig per ram, så
+     ingen ram monteras två gånger, och SJÄLVA ramen rörs aldrig efteråt. */
+  var frames = Array.prototype.slice.call(document.querySelectorAll('iframe[data-src]'));
+  if (frames.length){
+    if ('IntersectionObserver' in window){
+      /* Själva src-skrivningen läggs i en IDLE-lucka, inte i den bildruta där
+         observern råkar utlösa. MÄTT I R3: att skriva src direkt i callbacken
+         lade tre enorma toppar mitt i den pinnade akten, tydligt synliga som
+         isolerade spikar i `frame-times.png` medan resten av kurvan låg platt.
+         Det är precis "a long task under the thumb IS the jank"
+         (performance.md § 1). Observern får fortfarande utlösa en dryg skärm i
+         förväg, så ramen hinner bli klar; det är TIDPUNKTEN för det dyra
+         arbetet som flyttas, inte förvarningen. Timeouten gör att en sida som
+         aldrig blir idle ändå monterar ramen. */
+      /* PLAN 026: två hål i 018:s idle-lucka (upp till 600ms). (1) Varje
+         isIntersecting-post som kommer medan data-src ännu sitter kvar köar
+         ett nytt mountFrame-anrop; det andra läser data-src=null och
+         skriver f.src=null (navigerar till /null). (2) En ram som lämnar
+         40%-zonen innan luckan hunnit montera den monteras ändå (callbacken
+         ligger redan i kön) och står vaken utanför skärmen. */
+      var mountFrame = function(f){
+        var s = f.getAttribute('data-src');
+        if (!s) return;
+        f.src = s;
+        f.removeAttribute('data-src');
+        f.__pending = false;
+        /* PLAN 036: f.parentNode är sedan planen .rv, inte wrappern (.rv
+           ligger nu mellan ramen och .frame-wrap) - closest hittar rätt
+           element oavsett hur många lager som ligger emellan. */
+        if (!f.__visible){ var w = f.closest('.frame-wrap'); if (w) w.classList.add('is-asleep'); }
+      };
+      var defer = window.requestIdleCallback
+        ? function(fn){ requestIdleCallback(fn, { timeout: 600 }); }
+        : function(fn){ setTimeout(fn, 1); };
+      /* PLAN 018, R6. Två separata fel mätta av perf-granskaren:
+         (a) rootMargin 100% monterade Calyx-ramen 500 px INNE i
+         kortvändningen (scrollY ~2560, heron p95 435,9ms med ramarna mot
+         66,7ms utan) - 40% monterar först vid heronts --sc-ps >= 1,0.
+         (b) `obs.unobserve` kopplade bort observern permanent efter
+         montering, så en monterad ram som scrollar ur syn aldrig sövdes
+         igen; Calyx/Hōrai kör sina egna scrollmotorer på huvudtråden
+         resten av sidan. Observern kopplas nu ALDRIG bort: en ram utanför
+         40% får .is-asleep (content-visibility:hidden) på sin wrapper,
+         en ram innanför vaknar och monteras (om den inte redan har src). */
+      /* PLAN 027: observern satt på RAMEN, men sömnen sätts på WRAPPERN
+         (.is-asleep). Ett element inne i ett content-visibility:hidden-
+         subträd har ingen box, så nästa gång observern rapporterar den
+         (t.ex. en tidigare post i samma batch redan sövt wrappern) läses
+         ramen som 0x0/inte-korsande för alltid - ramen somnade permanent
+         första gången wrappern sövdes, oavsett var den faktiskt stod.
+         Observern observerar nu wrappern (alltid en box, min-height står)
+         och läser ramen ur den. */
+      var io = new IntersectionObserver(function(entries){
+        for (var i = 0; i < entries.length; i++){
+          var wrap = entries[i].target, f = wrap.querySelector('iframe');
+          if (!f) continue;
+          f.__visible = entries[i].isIntersecting;
+          if (f.__visible){
+            wrap.classList.remove('is-asleep');
+            if (f.hasAttribute('data-src') && !f.__pending){ f.__pending = true; defer(mountFrame.bind(null, f)); }
+          } else if (!f.hasAttribute('data-src')){
+            wrap.classList.add('is-asleep');
+          }
+        }
+      }, { rootMargin: '40% 0px' });
+      /* PLAN 036: f.parentNode är .rv sedan planen (inte längre wrappern
+         direkt); observera wrappern via closest så entries[i].target är
+         .frame-wrap som 027 förutsätter. */
+      frames.forEach(function(f){ io.observe(f.closest('.frame-wrap') || f.parentNode); });
+
+      /* En förvärmning i vilan efter `load` provades och FÖRSÄMRADE mätningen
+         (p95 209 -> 388 ms vid 100:60): proben börjar scrolla direkt efter
+         load, så förvärmningen krockade med scrollens början i stället för att
+         hamna i den tysta luckan vid folden. Den skulle troligen hjälpa en
+         verklig läsare, som står stilla vid folden i flera sekunder, men det
+         är ett påstående jag inte kan mäta med instrumentet jag har, och då
+         skeppas det inte. Konfigurationen nedan är den mätt bästa. */
+    } else {
+      /* Ingen observer: montera direkt hellre än att lämna tomma ramar. */
+      frames.forEach(function(f){ f.src = f.getAttribute('data-src'); });
+    }
+  }
+
+  /* ---- ordscrubben i liggaren -------------------------------------------
+     Orden delas EN gång vid montering och får sitt index --i och radens
+     ordantal --n som inline-variabler. Därefter räknar CSS opaciteten ur
+     --scrub, som i sin tur är en funktion av --sc-ps. Noll skrivningar per
+     bildruta, och rått --sc-p rörs inte (F-014 punkt 1).
+     Vilotillståndet före den här funktionen är det färdiga tillståndet, så en
+     sida utan JS visar liggaren fullt läsbar. */
+  /* PLAN 028 C: ordindelningen (60 <span class="w"> med egen --i/--n) tas
+     bort; fronten är nu en CSS-gradient som läser --scrub direkt (rad
+     769-775). Textnoden förblir en textnod, låst copy byte för byte. */
+  var giant = document.getElementById('giant-section');
+  if (giant){
+    giant.classList.add('is-scrubbed');
+  }
+
+  /* ---- ?preview= --------------------------------------------------------
+     Varje läge sätter window.__scFreezeMotion = true. sc-smooth.js läser
+     flaggan som ett VÄRDE och spårar då det råa värdet exakt, så en skärmbild
+     visar det formade läget och inte en lerp i flykten. V3b exponerade
+     __scFreezeMotion som ett funktionspar, vilket shimen inte kan läsa. */
+  var MODES = { front:0, mid:0.5, back:1 };
+  var mode = new URLSearchParams(location.search).get('preview');
+  if (mode){
+    window.__scFreezeMotion = true;
+    document.documentElement.setAttribute('data-preview', mode);
+  }
+  /* PLAN 045 (R11): fristående från preview, så ?process=invert,
+     ?preview=process-04 och ?process=invert&preview=process-04
+     fungerar var för sig och tillsammans. */
+  var proc = new URLSearchParams(location.search).get('process');
+  if (proc === 'invert') document.documentElement.setAttribute('data-process', 'invert');
+  if (mode && Object.prototype.hasOwnProperty.call(MODES, mode)){
+    previewFace = MODES[mode] >= 0.5;
+    plateCard.style.setProperty('--flip', String(MODES[mode]));
+    setFace(previewFace);
+    hero.classList.remove('is-turning');
+  }
+  /* Två lägen till, utlovade i BRIEF.md § ?preview=-plan och möjliga först nu
+     när deras mål finns byggda. De tvingar det FORMADE läget så att en
+     stillbild visar slutläget och inte en lerp i flykten. */
+  if (mode === 'ledger' && giant){
+    giant.style.setProperty('--scrub', '1');
+    giant.scrollIntoView({ block:'center' });
+  }
+  if (mode === 'bleed'){
+    var fig = document.querySelector('.thesis-figure');
+    if (fig){ fig.scrollIntoView({ block:'center' }); }
+  }
+
+  /* PLAN 019, R6, Step 7 / PLAN 037, R9 loop 3. Sju lägen: process-01..07,
+     ett per steg. Sedan stegens fönster ankras i li:arnas egen position
+     (inte en tabell) är målpunkten li N:s mitt (stepAnchors[i].yc), inte
+     längre ett mittvärde ur en fast tabell. __scFreezeMotion sätts redan
+     ovan (rad ~1533-1536); frysningen gör att motorns rå-progress vid den
+     scrollposition PER KONSTRUKTION motsvarar --eN (li:s mitt = stegets
+     --eN per definition i Step 5), så ingen forcePs-slinga behövs.
+     AVVIKELSE FRÅN R8: målscrollen räknades förut EN gång vid skripttid,
+     innan load/fonts.ready hunnit dispatcha resize -> measureAct() med de
+     riktiga typsnittens radbrytning - prosan i steg 01 väximde/krympte och
+     li 02-07 flyttade sig medan scrollpositionen stod kvar där den var
+     (H-30, preview_check.json). aimPreview() räknar om varje gång layouten
+     kan ha ändrats: vid skripttid OCH efter load/fonts.ready, registrerat
+     EFTER relayout (rad 1605-1607) så measureAct redan kört (dispatchEvent
+     är synkron) när aimPreview läser stepAnchors. */
+  var aimLastY = null;
+  function aimOnce(pi){
+    measureAct();
+    var mobilePrev = window.matchMedia('(max-width:1279px)').matches;
+    var stickEl = process.querySelector('.process-stick');
+    var sheetHPrev = mobilePrev && stickEl ? stickEl.getBoundingClientRect().height : 0;
+    /* PLAN 025 B: --eN vid mobil är nu y0 + (vh - sheetH) (li:s överkant
+       vid arkets underkant), inte yc + 0.5*(vh+sheetH); målscrollen följer
+       samma formel. */
+    var target = mobilePrev
+      ? stepAnchors[pi].y0 - sheetHPrev
+      : stepAnchors[pi].yc - window.innerHeight / 2;
+    aimLastY = processTop + target;
+    window.scrollTo(0, aimLastY);
+  }
+  /* MÄTT (preview_check.py, R9 loop 3): motorns EGNA layout()-cache för
+     #process (a.top) släpar bildrutor efter aimOnce, så en enda scrollTo
+     kan landa långt före --eN (0,1601 mot 0,2232). Men även EFTER att
+     --sc-ps korsat --eN kan webbläsarens EGNA scroll anchoring flytta
+     scrollY på egen hand när innehåll ovanför viewporten lägger om
+     (samma orsak plan 037:s Problem-tabell nämner om 390-läget: "262 px
+     ... webbläsarens scroll anchoring") - en fast bildrutebudget kan
+     alltså både vara för kort (motorn inte hunnit ikapp) OCH i onödan
+     lång (racet mellan de tre triggerna). Lösningen är att INTE lita på
+     att en gång uppnådd konvergens består: en 'scroll'-lyssnare (aktiv
+     bara i preview-läge) upptäcker när scrollY driver bort från det
+     aimOnce SENAST satte - vare sig det beror på motorns egen släpande
+     ommätning eller på scroll anchoring - och kör om hela kedjan. */
+  var aimGen = 0;
+  function aimPreview(){
+    if (!(mode && /^process-0[1-7]$/.test(mode) && process)) return;
+    var pi = parseInt(mode.slice(-2), 10) - 1;
+    var gen = ++aimGen, tries = 0;
+    function settle(){
+      if (gen !== aimGen) return;
+      aimOnce(pi);
+      dispatchEvent(new Event('resize'));
+      var cs = getComputedStyle(process);
+      var ps = parseFloat(cs.getPropertyValue('--sc-ps'));
+      var eN = parseFloat(cs.getPropertyValue('--e' + (pi + 1)));
+      tries++;
+      if (tries < 10 && (isNaN(ps) || isNaN(eN) || ps < eN)){
+        /* MÄTT: rAF ensamt (~16ms/försök) räckte inte i ett fall (390
+           steg 02, motorns cache 262px fel även efter flera rAF) - en
+           bildruta är inte alltid tillräckligt med RIKTIG tid för en
+           långsam asynkron reflow (typsnittsrastrering) att hinna klart.
+           setTimeout ger mer riktig tid per försök i den andra halvan. */
+        if (tries < 5) requestAnimationFrame(settle);
+        else setTimeout(settle, 80);
+      }
+    }
+    settle();
+  }
+  aimPreview();
+  /* Debounce: en drift som upptäcks MITT I en fortfarande pågående
+     ommätning (t.ex. ett sent typsnittsbyte för just det steget) kan annars
+     fånga ett övergångsläge och sikta om mot det i stället för att vänta in
+     det riktigt bosatta - mätt (390 steg 02): en odebouncad omkörning låste
+     fast en SÄMRE position som sedan aldrig rättades, eftersom nästa
+     scrollY råkade stämma med det den just satt. 200ms utan ny drift innan
+     omsikte. */
+  var aimDriftT = null;
+  addEventListener('scroll', function(){
+    if (!(mode && /^process-0[1-7]$/.test(mode) && process)) return;
+    if (aimLastY === null || Math.abs(scrollY - aimLastY) <= 1) return;
+    if (aimDriftT) clearTimeout(aimDriftT);
+    aimDriftT = setTimeout(aimPreview, 200);
+  }, { passive:true });
+  addEventListener('load', aimPreview);
+  if (document.fonts && document.fonts.ready) document.fonts.ready.then(aimPreview);
+
+  /* PLAN 019, R6, Step 8. <=1279: arket byts till den reducerade
+     planschen: egen viewBox (attribut, inte CSS-egenskap) och måttsiffror/
+     de två kvarvarande utropens x/y (presentationsattribut på <text>, en
+     CSS-regel mot dem ignoreras tyst, K3-r8/index.html rad 413-417). Samma
+     teknik som K3:s egen plansch()-funktion, rad 1101-1124. */
+  var sheet = document.getElementById('processSheet');
+  var MOBILE_TEXT = {
+    'p-m320':  [195.6, 455, 48,  236],
+    'p-m768':  [469.3, 455, 145, 236],
+    'p-m1440': [856,   455, 304, 236],
+    'p-c-169': [858,   104, 312, 44],
+    'p-c-rev': [54,    451, 204, 306]
+  };
+  function plansch(){
+    if (!sheet) return;
+    var small = matchMedia('(max-width: 1279px)').matches;
+    sheet.setAttribute('viewBox', small ? '0 0 320 360' : '0 0 880 495');
+    Object.keys(MOBILE_TEXT).forEach(function(id){
+      var el = document.getElementById(id);
+      if (!el) return;
+      var v = MOBILE_TEXT[id];
+      el.setAttribute('x', small ? v[2] : v[0]);
+      el.setAttribute('y', small ? v[3] : v[1]);
+    });
+  }
+  plansch();
+  addEventListener('resize', plansch, { passive:true });
+})();
+</script>
+</body>
+</html>

@@ -1,0 +1,346 @@
+motion_probe FAIL  http://localhost:3090/tests/motion/smooth.html
+  #act:--sc-ps                       p95  18.4 ms | >33ms  1 | max_step  1.35% | staircase   0 | rev  0
+  #card:transform                    p95  18.4 ms | >33ms  1 | max_step  1.35% | staircase   0 | rev  0
+  FAIL #act:--sc-ps: 1 frames > 33 ms
+  FAIL #card:transform: 1 frames > 33 ms
+control c4a noisy (attempt 1), waiting 60 s
+motion_probe FAIL  http://localhost:3090/tests/motion/smooth.html
+  #act:--sc-ps                       p95  18.4 ms | >33ms  1 | max_step  1.51% | staircase   0 | rev  0
+  #card:transform                    p95  18.4 ms | >33ms  1 | max_step  1.51% | staircase   0 | rev  0
+  FAIL #act:--sc-ps: 1 frames > 33 ms
+  FAIL #card:transform: 1 frames > 33 ms
+control c4a noisy (attempt 2), waiting 60 s
+control c4a STILL NOISY after 2 attempts, measuring anyway (reported)
+=== hero-down-100
+motion_probe FAIL  http://localhost:3090/tests/alunix-r8/runs/V3c/index.html
+  section.hero:--sc-ps               p95  89.5 ms | >33ms 88 | max_step  1.65% | staircase   0 | rev  0
+  .plate-card:transform              p95  89.5 ms | >33ms 88 | max_step  2.48% | staircase   0 | rev  0
+  FAIL section.hero:--sc-ps: frame_p95 89.48 ms > 20
+  FAIL section.hero:--sc-ps: 88 frames > 33 ms
+  FAIL .plate-card:transform: frame_p95 89.48 ms > 20
+  FAIL .plate-card:transform: 88 frames > 33 ms
+=== hero-up-100
+motion_probe FAIL  http://localhost:3090/tests/alunix-r8/runs/V3c/index.html
+  section.hero:--sc-ps               p95  54.0 ms | >33ms 81 | max_step  1.85% | staircase   0 | rev  0
+  .plate-card:transform              p95  54.0 ms | >33ms 81 | max_step  2.72% | staircase   0 | rev  0
+  FAIL section.hero:--sc-ps: frame_p95 54.02 ms > 20
+  FAIL section.hero:--sc-ps: 81 frames > 33 ms
+  FAIL .plate-card:transform: frame_p95 54.02 ms > 20
+  FAIL .plate-card:transform: 81 frames > 33 ms
+motion_probe FAIL  http://localhost:3090/tests/motion/smooth.html
+  #act:--sc-ps                       p95  18.4 ms | >33ms  2 | max_step  1.36% | staircase   0 | rev  0
+  #card:transform                    p95  18.4 ms | >33ms  2 | max_step  1.36% | staircase   0 | rev  0
+  FAIL #act:--sc-ps: 2 frames > 33 ms
+  FAIL #card:transform: 2 frames > 33 ms
+control c4b noisy (attempt 1), waiting 60 s
+motion_probe FAIL  http://localhost:3090/tests/motion/smooth.html
+  #act:--sc-ps                       p95  18.5 ms | >33ms  1 | max_step  1.42% | staircase   0 | rev  0
+  #card:transform                    p95  18.5 ms | >33ms  1 | max_step  1.42% | staircase   0 | rev  0
+  FAIL #act:--sc-ps: 1 frames > 33 ms
+  FAIL #card:transform: 1 frames > 33 ms
+control c4b noisy (attempt 2), waiting 60 s
+control c4b STILL NOISY after 2 attempts, measuring anyway (reported)
+=== hero-down-20
+motion_probe FAIL  http://localhost:3090/tests/alunix-r8/runs/V3c/index.html
+  section.hero:--sc-ps               p95  53.2 ms | >33ms 418 | max_step  0.36% | staircase   0 | rev  0
+  .plate-card:transform              p95  53.2 ms | >33ms 418 | max_step  0.41% | staircase   0 | rev  0
+  FAIL section.hero:--sc-ps: frame_p95 53.2 ms > 20
+  FAIL section.hero:--sc-ps: 418 frames > 33 ms
+  FAIL .plate-card:transform: frame_p95 53.2 ms > 20
+  FAIL .plate-card:transform: 418 frames > 33 ms
+=== hero-up-20
+motion_probe FAIL  http://localhost:3090/tests/alunix-r8/runs/V3c/index.html
+  section.hero:--sc-ps               p95  36.5 ms | >33ms 289 | max_step  0.34% | staircase   0 | rev  0
+  .plate-card:transform              p95  36.5 ms | >33ms 289 | max_step  0.41% | staircase   0 | rev  0
+  FAIL section.hero:--sc-ps: frame_p95 36.5 ms > 20
+  FAIL section.hero:--sc-ps: 289 frames > 33 ms
+  FAIL .plate-card:transform: frame_p95 36.5 ms > 20
+  FAIL .plate-card:transform: 289 frames > 33 ms
+motion_probe FAIL  http://localhost:3090/tests/motion/smooth.html
+  #act:--sc-ps                       p95  18.4 ms | >33ms  1 | max_step  1.51% | staircase   0 | rev  0
+  #card:transform                    p95  18.4 ms | >33ms  1 | max_step  1.51% | staircase   0 | rev  0
+  FAIL #act:--sc-ps: 1 frames > 33 ms
+  FAIL #card:transform: 1 frames > 33 ms
+control c4c noisy (attempt 1), waiting 60 s
+motion_probe FAIL  http://localhost:3090/tests/motion/smooth.html
+  #act:--sc-ps                       p95  18.4 ms | >33ms  2 | max_step  1.37% | staircase   0 | rev  0
+  #card:transform                    p95  18.4 ms | >33ms  2 | max_step  1.37% | staircase   0 | rev  0
+  FAIL #act:--sc-ps: 2 frames > 33 ms
+  FAIL #card:transform: 2 frames > 33 ms
+control c4c noisy (attempt 2), waiting 60 s
+control c4c STILL NOISY after 2 attempts, measuring anyway (reported)
+=== proc-down-100
+motion_probe FAIL  http://localhost:3090/tests/alunix-r8/runs/V3c/index.html
+  #process:--sc-ps                   p95 285.1 ms | >33ms 143 | max_step  0.99% | staircase   0 | rev  0
+  FAIL #process:--sc-ps: frame_p95 285.05 ms > 20
+  FAIL #process:--sc-ps: 143 frames > 33 ms
+=== proc-up-100
+motion_probe FAIL  http://localhost:3090/tests/alunix-r8/runs/V3c/index.html
+  #process:--sc-ps                   p95 460.7 ms | >33ms 117 | max_step  1.71% | staircase   0 | rev  0
+  FAIL #process:--sc-ps: frame_p95 460.73 ms > 20
+  FAIL #process:--sc-ps: 117 frames > 33 ms
+motion_probe FAIL  http://localhost:3090/tests/motion/smooth.html
+  #act:--sc-ps                       p95  18.4 ms | >33ms  1 | max_step  1.37% | staircase   0 | rev  0
+  #card:transform                    p95  18.4 ms | >33ms  1 | max_step  1.37% | staircase   0 | rev  0
+  FAIL #act:--sc-ps: 1 frames > 33 ms
+  FAIL #card:transform: 1 frames > 33 ms
+control c4d noisy (attempt 1), waiting 60 s
+motion_probe PASS  http://localhost:3090/tests/motion/smooth.html
+  #act:--sc-ps                       p95  18.2 ms | >33ms  0 | max_step  1.37% | staircase   0 | rev  0
+  #card:transform                    p95  18.2 ms | >33ms  0 | max_step  1.37% | staircase   0 | rev  0
+control c4d clean (attempt 2)
+=== proc-down-20
+motion_probe FAIL  http://localhost:3090/tests/alunix-r8/runs/V3c/index.html
+  #process:--sc-ps                   p95  88.5 ms | >33ms 747 | max_step  0.23% | staircase   0 | rev  0
+  FAIL #process:--sc-ps: frame_p95 88.45 ms > 20
+  FAIL #process:--sc-ps: 747 frames > 33 ms
+=== proc-up-20
+motion_probe FAIL  http://localhost:3090/tests/alunix-r8/runs/V3c/index.html
+  #process:--sc-ps                   p95  88.4 ms | >33ms 701 | max_step  1.20% | staircase   0 | rev  0
+  FAIL #process:--sc-ps: frame_p95 88.4 ms > 20
+  FAIL #process:--sc-ps: 701 frames > 33 ms
+motion_probe FAIL  http://localhost:3090/tests/motion/smooth.html
+  #act:--sc-ps                       p95  18.5 ms | >33ms  1 | max_step  1.43% | staircase   0 | rev  0
+  #card:transform                    p95  18.5 ms | >33ms  1 | max_step  1.43% | staircase   0 | rev  0
+  FAIL #act:--sc-ps: 1 frames > 33 ms
+  FAIL #card:transform: 1 frames > 33 ms
+control c1a noisy (attempt 1), waiting 60 s
+motion_probe FAIL  http://localhost:3090/tests/motion/smooth.html
+  #act:--sc-ps                       p95  18.4 ms | >33ms  1 | max_step  1.51% | staircase   0 | rev  0
+  #card:transform                    p95  18.4 ms | >33ms  1 | max_step  1.51% | staircase   0 | rev  0
+  FAIL #act:--sc-ps: 1 frames > 33 ms
+  FAIL #card:transform: 1 frames > 33 ms
+control c1a noisy (attempt 2), waiting 60 s
+control c1a STILL NOISY after 2 attempts, measuring anyway (reported)
+=== hero-down-100-cpu1
+motion_probe FAIL  http://localhost:3090/tests/alunix-r8/runs/V3c/index.html
+  section.hero:--sc-ps               p95  36.1 ms | >33ms 19 | max_step  1.41% | staircase   0 | rev  0
+  .plate-card:transform              p95  36.1 ms | >33ms 19 | max_step  2.01% | staircase   0 | rev  0
+  FAIL section.hero:--sc-ps: frame_p95 36.1 ms > 20
+  FAIL section.hero:--sc-ps: 19 frames > 33 ms
+  FAIL .plate-card:transform: frame_p95 36.1 ms > 20
+  FAIL .plate-card:transform: 19 frames > 33 ms
+=== hero-up-100-cpu1
+motion_probe FAIL  http://localhost:3090/tests/alunix-r8/runs/V3c/index.html
+  section.hero:--sc-ps               p95  18.4 ms | >33ms  5 | max_step  1.38% | staircase   0 | rev  0
+  .plate-card:transform              p95  18.4 ms | >33ms  5 | max_step  2.20% | staircase   0 | rev  0
+  FAIL section.hero:--sc-ps: 5 frames > 33 ms
+  FAIL .plate-card:transform: 5 frames > 33 ms
+=== proc-down-100-cpu1
+motion_probe FAIL  http://localhost:3090/tests/alunix-r8/runs/V3c/index.html
+  #process:--sc-ps                   p95  32.1 ms | >33ms 14 | max_step  0.78% | staircase   0 | rev  0
+  FAIL #process:--sc-ps: frame_p95 32.06 ms > 20
+  FAIL #process:--sc-ps: 14 frames > 33 ms
+=== proc-up-100-cpu1
+motion_probe FAIL  http://localhost:3090/tests/alunix-r8/runs/V3c/index.html
+  #process:--sc-ps                   p95  18.5 ms | >33ms  4 | max_step  1.42% | staircase   0 | rev  0
+  FAIL #process:--sc-ps: 4 frames > 33 ms
+=== footer-down-100-cpu1
+motion_probe FAIL  http://localhost:3090/tests/alunix-r8/runs/V3c/index.html
+  footer.close:--sc-ps               p95  18.4 ms | >33ms  5 | max_step  2.74% | staircase   0 | rev  0
+  .price:--sc-ps                     p95  18.4 ms | >33ms  5 | max_step 16.00% | staircase   1 | rev  0
+  FAIL footer.close:--sc-ps: 5 frames > 33 ms
+  FAIL .price:--sc-ps: 5 frames > 33 ms
+  FAIL .price:--sc-ps: staircase 1
+  FAIL .price:--sc-ps: max_step 16.0 % > 3 (spelhuvud)
+=== giant-down-100-cpu1
+motion_probe FAIL  http://localhost:3090/tests/alunix-r8/runs/V3c/index.html
+  #giant-section:--sc-ps             p95 128.1 ms | >33ms 22 | max_step  2.82% | staircase   0 | rev  0
+  FAIL #giant-section:--sc-ps: frame_p95 128.14 ms > 20
+  FAIL #giant-section:--sc-ps: 22 frames > 33 ms
+=== scroll_verify 1440
+{
+  "url": "http://localhost:3090/tests/alunix-r8/runs/V3c/index.html",
+  "positions": [
+    0,
+    300,
+    600,
+    900,
+    1200,
+    1500,
+    1800,
+    2100,
+    2400,
+    2700,
+    3000,
+    3300,
+    3600,
+    3900,
+    4200,
+    4500,
+    4800,
+    5100,
+    5400,
+    5700,
+    6000,
+    6300,
+    6600,
+    6900,
+    7200,
+    7500,
+    7800,
+    8100,
+    8400,
+    8700,
+    9000,
+    9300,
+    9600,
+    9900,
+    9980
+  ],
+  "deadScroll": [
+    {
+      "from": 0,
+      "to": 300,
+      "diff": 0.0046
+    },
+    {
+      "from": 900,
+      "to": 1200,
+      "diff": 0.0107
+    },
+    {
+      "from": 1500,
+      "to": 1800,
+      "diff": 0.008
+    },
+    {
+      "from": 1800,
+      "to": 2100,
+      "diff": 0.0028
+    },
+    {
+      "from": 5700,
+      "to": 6000,
+      "diff": 0.0146
+    },
+    {
+      "from": 6300,
+      "to": 6600,
+      "diff": 0.0141
+    },
+    {
+      "from": 6900,
+      "to": 7200,
+      "diff": 0.0136
+    },
+    {
+      "from": 8100,
+      "to": 8400,
+      "diff": 0.0115
+    }
+  ],
+  "cuesNeverFull": [],
+  "unrevealed": [],
+  "contrastUnderMedia": [],
+  "contactSheet": "tests\\alunix-r8\\runs\\V3c\\shots\\loop-3\\probe\\sv-1440\\sheet.png",
+  "notes": [],
+  "blankBands": [
+    {
+      "from": 900,
+      "to": 3222,
+      "px": 2322
+    }
+  ]
+}
+=== scroll_verify 390
+{
+  "url": "http://localhost:3090/tests/alunix-r8/runs/V3c/index.html",
+  "positions": [
+    0,
+    281,
+    562,
+    843,
+    1124,
+    1405,
+    1686,
+    1967,
+    2248,
+    2529,
+    2810,
+    3091,
+    3372,
+    3653,
+    3934,
+    4215,
+    4496,
+    4777,
+    5058,
+    5339,
+    5620,
+    5901,
+    6182,
+    6463,
+    6744,
+    7025,
+    7306,
+    7587,
+    7868,
+    8149,
+    8430,
+    8711,
+    8992,
+    9273,
+    9554,
+    9835,
+    10116,
+    10397,
+    10678,
+    10744
+  ],
+  "deadScroll": [
+    {
+      "from": 0,
+      "to": 281,
+      "diff": 0.0093
+    },
+    {
+      "from": 1405,
+      "to": 1686,
+      "diff": 0.0148
+    },
+    {
+      "from": 1686,
+      "to": 1967,
+      "diff": 0.0
+    }
+  ],
+  "cuesNeverFull": [],
+  "unrevealed": [],
+  "contrastUnderMedia": [],
+  "contactSheet": "tests\\alunix-r8\\runs\\V3c\\shots\\loop-3\\probe\\sv-390\\sheet.png",
+  "notes": [],
+  "blankBands": [
+    {
+      "from": 756,
+      "to": 2896,
+      "px": 2140
+    },
+    {
+      "from": 3330,
+      "to": 4031,
+      "px": 701
+    },
+    {
+      "from": 4803,
+      "to": 5473,
+      "px": 670
+    },
+    {
+      "from": 5484,
+      "to": 6221,
+      "px": 737
+    },
+    {
+      "from": 6403,
+      "to": 6919,
+      "px": 516
+    },
+    {
+      "from": 10398,
+      "to": 10910,
+      "px": 512
+    }
+  ]
+}
+PROBES-DONE

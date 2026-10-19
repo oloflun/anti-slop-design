@@ -1,0 +1,974 @@
+<!doctype html>
+<html lang="sv">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>Alunix · Er hemsida är nutidens visitkort</title>
+<meta name="description" content="Alunix är en webbyrå i Sverige. Vi skapar skräddarsydda webbplatser som hjälper er att exponera verksamheten.">
+<meta name="color-scheme" content="light">
+<meta name="theme-color" content="#f7f2e6">
+<link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'><rect width='32' height='32' fill='%23f7f2e6'/><rect x='15' width='2' height='32' fill='%231E5E9C'/></svg>">
+
+<!-- [needs asset: assets/switzer-variable.woff2] and [needs asset: assets/reddit-mono-variable.woff2].
+     Neither file is vendored yet (F-009: lead vendors, the builder never fetches). The page is
+     built to render correctly without them via the metric-matched fallbacks below, and to
+     upgrade the moment they land at these exact paths. Until then both requests 404 once,
+     which is expected and recorded in NOTES.md § R2. -->
+<link rel="preload" href="assets/switzer-variable.woff2" as="font" type="font/woff2" crossorigin>
+
+<link rel="stylesheet" href="scroll/scrollcraft.css">
+<style>
+/* design · pre-emit critique: P5 H4 E4 S5 R5 V4 */
+
+/* ─────────────────────────────────────────────────────────────────────────
+   TOKENS. Six colours, two faces. Everything else derives.
+   Palette source: BRIEF.md § decision ledger row "Palett" (lead-lås 2026-09-09).
+   Warm paper hue 85, 145° from K3's cold hue 230. Radius 0 everywhere.
+   ───────────────────────────────────────────────────────────────────────── */
+:root {
+  --paper:   oklch(0.957 0.013 85);
+  --paper-2: oklch(0.928 0.018 78);
+  --ink:     oklch(0.26 0.021 62);
+  --ink-2:   oklch(0.62 0.014 70);   /* DISPLAY SCALE ONLY. 3.21:1 on paper, which is AA for text ≥24px and nothing else. */
+  --ink-3:   oklch(0.50 0.016 68);   /* The 11px register tone. Measured 4.71:1 — the labels are the honesty of this page and cannot be a whisper. */
+  --hair:    oklch(0.80 0.010 78);
+  --blue:    oklch(0.47 0.13 252);   /* = #1E5E9C. ONE object: the divider. Never text, never a link, never a surface. */
+
+  --font-voice:    "Switzer", "Switzer Fallback", system-ui, sans-serif;
+  --font-register: "Reddit Mono", ui-monospace, "Consolas", monospace;
+
+  --gutter: clamp(20px, 4.4vw, 64px);
+  --rule:   1px;
+
+  /* Where the seam stands at ps = 0. Measured, not chosen: at 0.5 the seam fell
+     on x = 720, which is inside Calyx's centred wordmark (glyphs end x ≈ 757)
+     and inside the template page's nav row, so the fold opened with `lyx` and
+     `Custo` as its two most legible marks.
+
+     Measured glyph edges at 1440, both sites at their own layout width:
+       Calyx wordmark ends            x = 757
+       template nav: Customers 682–754 · Pricing 782–828 · Docs 856–890
+     The plan's suggested 0.57 (x = 821) lands inside `Pricing`. The only gap in
+     the allowed 0.54–0.60 window that clears every glyph on both sides is
+     828–856, whose centre is x = 842.4:
+       clearance to Calyx's wordmark   85.4 px
+       clearance to `Pricing`          14.4 px
+       clearance to `Docs`             13.6 px
+     One value, read by the four places that need it, so a start value cannot
+     drift into four values. */
+  --split-start: 0.585;
+
+  /* Engine theme: six tokens and two faces, per scroll/NOTE.md. The engine's own
+     classes are never restyled (AB06) — only these variables are set. */
+  --sc-canvas:       var(--paper);
+  --sc-surface:      var(--paper-2);
+  --sc-ink:          var(--ink);
+  --sc-ink-soft:     var(--ink-2);
+  --sc-accent:       var(--blue);
+  --sc-accent-ink:   var(--paper);
+  --sc-font-display: var(--font-voice);
+  --sc-font-text:    var(--font-voice);
+}
+
+/* --split is the divider's position as a fraction of the stage width, measured
+   from the LEFT edge. 0.5 = the fold, 0 = resolved (Calyx fills), 1 = the
+   template page fills. Registered as a real <number> so calc() in clip-path and
+   transform interpolates instead of stepping (F-014). inherits MUST be true:
+   four descendants read it, and `inherits: false` would hand every one of them
+   the initial value while the console stayed clean (F-013 efterspel). */
+/* initial-value must equal --split-start above. @property cannot read another
+   custom property, so this is the one place the number is repeated; JS writes
+   the real value on its first paint, so this only governs the pre-script frame. */
+@property --split {
+  syntax: "<number>";
+  inherits: true;
+  initial-value: 0.585;
+}
+
+/* The degradation amount, derived from --split: 0 at the fold, 1 when the seam
+   reaches the left edge. Registered for the same reason --split is: unregistered
+   it substitutes as a token stream, and `calc(var(--d) * 0.06em)` then computes
+   to `normal` instead of a length. Measured, not assumed — the first build of
+   this page shipped it unregistered and the letter-spacing half of the
+   degradation silently did nothing. */
+@property --d {
+  syntax: "<number>";
+  inherits: true;
+  initial-value: 0;
+}
+
+/* Narrow-view frame sizing. Both are written ONCE at mount and on resize, never
+   in the act and never per frame — a static scale set at mount is not the same
+   thing as transforming a frame after it has been shown (runs/K3/NOTES.md
+   § Öppet efter R2). Below 640 px each half of the stage is under 200 px wide,
+   so a frame laid out against the stage renders half a phone page instead of
+   half a page: the visitor cannot judge two sites because neither is whole. */
+@property --frame-scale {
+  syntax: "<number>";
+  inherits: true;
+  initial-value: 1;
+}
+@property --band-h {
+  syntax: "<length>";
+  inherits: true;
+  initial-value: 0px;
+}
+
+/* [needs asset] — real files. Until they exist the browser falls through to the
+   next family in the stack, which is why the fallback is named in font-family
+   and not only declared here. */
+@font-face {
+  font-family: "Switzer";
+  src: url("assets/switzer-variable.woff2") format("woff2-variations");
+  font-weight: 100 900;
+  font-style: normal;
+  font-display: swap;
+}
+@font-face {
+  font-family: "Reddit Mono";
+  src: url("assets/reddit-mono-variable.woff2") format("woff2-variations");
+  font-weight: 200 900;
+  font-style: normal;
+  font-display: swap;
+}
+/* One metric-matched fallback, for the display face only — it is the fold and
+   the LCP element, so it is the one where a swap would cost a shift. The mono
+   register runs on a plain system stack: it is 11 px, and three font-face
+   declarations is the budget (performance.md § 1). */
+@font-face {
+  font-family: "Switzer Fallback";
+  src: local("Arial"), local("Helvetica Neue"), local("Liberation Sans");
+  font-display: swap;
+  size-adjust: 97%;
+  ascent-override: 96%;
+  descent-override: 24%;
+  line-gap-override: 0%;
+}
+
+*, *::before, *::after { box-sizing: border-box; }
+
+html { -webkit-font-smoothing: antialiased; }
+
+body {
+  margin: 0;
+  background: var(--paper);
+  color: var(--ink);
+  font-family: var(--font-voice);
+  font-size: 15px;
+  line-height: 1.55;
+  overflow-x: clip;
+}
+html { overflow-x: clip; }
+
+a { color: inherit; }
+
+:where(a, [tabindex]):focus-visible {
+  outline: 2px solid var(--ink);
+  outline-offset: 3px;
+}
+
+/* ─────────────────────────────────────────────────────────────────────────
+   TYPE ROLES. They never cross (TASTE § 4.2).
+   Switzer = voice: headline, body, prices. Reddit Mono = register: the two
+   kickers, ledger row labels, row numbers, captions. Never the other way.
+   ───────────────────────────────────────────────────────────────────────── */
+.register {
+  font-family: var(--font-register);
+  font-size: 11px;
+  line-height: 1.45;
+  letter-spacing: 0.18em;
+  font-weight: 400;
+  /* Not --ink-2. At 11px that tone measures 3.21:1 on paper, which is below the
+     4.5:1 floor for text under 24px — and `En typisk mallsida` is the label that
+     makes running an anti-reference as content honest, so it is the last string
+     on the page allowed to be hard to read. Measured with the page's own
+     rendered colours, not assumed from the token. */
+  color: var(--ink-3);
+  margin: 0;
+}
+
+/* ─────────────────────────────────────────────────────────────────────────
+   a1 · THE DIVIDER TIPS. The signature act.
+   pin, span 2.4, dwell 0.22, cue "0 1 0 0" (greet and hold — the ground is two
+   live sites, present from ps = 0).
+   ───────────────────────────────────────────────────────────────────────── */
+
+/* The engine owns .sc-stage (sticky, 100svh, overflow:clip). It is never
+   restyled. The paper ground lives on our own child instead. */
+.split__ground {
+  position: absolute;
+  inset: 0;
+  background: var(--paper);
+  overflow: clip;
+}
+
+/* The two printouts lie edge to edge under the headline, in the lower part of
+   the sheet. Målbilden: "två levande sajter i 50/50 split UNDER en enradig
+   tvåtons-rubrik." The paper margin above them is what makes the type legible
+   without a scrim, which PRODUCT.md § Operating Context forbids on a frame. */
+/* --head-h lives on the act, not on .frames: the head, the labels in .seam and
+   the band are three siblings that all measure against it, and a custom
+   property declared on one sibling does not reach the others. */
+.split { --head-h: 232px; }
+.frames {
+  position: absolute;
+  inset: var(--head-h) 0 0 0;
+}
+
+.layer {
+  position: absolute;
+  inset: 0;
+  overflow: clip;
+}
+
+/* Calyx sits UNDERNEATH, full size, unclipped and completely static. It is
+   never scaled, moved, faded or repainted by the act — the surface that fills
+   the frame at ps = 1 is the same frame that stood on the right at ps = 0
+   (F-010), and now that is true of its pixels as well as its identity.
+   Measured: clipping both layers cost 66.7 ms p95 at 4x CPU. The template page
+   on top, clipped to its own shrinking half, is the same picture with half the
+   per-frame clip work — and it moves the animation off the heavy frame (Calyx
+   carries four photographs) onto the light one (9 016 B, no images). */
+.layer--after { z-index: 0; }
+
+/* On top: the template page, clipped to everything LEFT of the seam, so both
+   the clipped area and the filtered area shrink as --split falls. */
+.layer--before {
+  z-index: 1;
+  clip-path: inset(0 calc(100% - var(--split) * 100%) 0 0);
+  /* The only filter on the page. It sits on the WRAPPER, never on the frame
+     itself: a shown frame is never transformed or faded (PRODUCT.md). */
+  filter: saturate(calc(1 - 0.75 * var(--d)));
+}
+
+.layer > iframe {
+  display: block;
+  width: 100%;
+  height: 100%;
+  border: 0;
+  background: var(--paper);
+}
+
+/* Normalised against --split-start, not against 0.5: the degradation has to read
+   exactly 0 at the fold, whatever the seam's start value is. Clamped so
+   ?preview=before (--split: 1) reads 0 and not a negative. */
+.split { --d: clamp(0, calc((var(--split-start) - var(--split)) / var(--split-start)), 1); }
+
+/* K4's own layer. Five element types and nothing else: headline, mono label,
+   hairline, divider — plus the mailto. If a new element cannot be named as one
+   of those, it does not ship (F-006 control). */
+.chrome {
+  position: absolute;
+  inset: 0;
+  pointer-events: none;
+}
+.chrome a { pointer-events: auto; }
+
+.head {
+  position: absolute;
+  inset: 0 0 auto 0;
+  height: 232px;
+  padding: 40px var(--gutter) 0;
+}
+
+.mailto {
+  position: absolute;
+  top: 38px;
+  right: var(--gutter);
+  font-size: 15px;
+  color: var(--ink);
+  text-decoration: none;
+  border-bottom: var(--rule) solid var(--hair);
+  padding-bottom: 2px;
+}
+.mailto:hover { border-bottom-color: var(--ink); }
+
+/* The two-tone headline. Two copies of one line, identical metrics, stacked in
+   the same box and each clipped to its own side of the seam so they can never
+   overlap. paper.design's device: the effect comes from colour alone.
+   Then the divider destroys it — the muted half thins and opens as the seam
+   passes, which is the claim demonstrated in the type itself. */
+/* The line box spans the full ground width so that `100%` inside inset() is the
+   ground, and `calc(var(--split) * 100%)` therefore lands exactly on the seam.
+   The gutter is padding on the type, never inset on the box: with the box
+   inset, the clip resolved against the box width instead and the tone boundary
+   sat one gutter left of the divider. */
+.head__line {
+  position: absolute;
+  left: 0;
+  right: 0;
+  top: 92px;
+  height: 60px;
+}
+.h1 {
+  position: absolute;
+  left: 0;
+  top: 0;
+  width: 100%;
+  margin: 0;
+  padding: 0 var(--gutter);
+  font-family: var(--font-voice);
+  /* Sized so the seam falls INSIDE the line at the fold. At 44px the line ended
+     at x≈659 against a seam at 720, so the ink half was empty on the first
+     screen and the two-tone device — the whole reason paper is the primary
+     reference — was invisible exactly where it matters most. At 56px the line
+     runs to x≈821 and the seam cuts the last word. Read off fold-1440.png. */
+  font-size: clamp(26px, 3.9vw, 56px);
+  line-height: 1.18;
+  font-weight: 500;
+  letter-spacing: 0;
+  white-space: nowrap;
+}
+/* Ink half: right of the seam. Metrics never move — it is the reference the
+   other half is read against. */
+.h1--after {
+  color: var(--ink);
+  clip-path: inset(-20% 0 -20% calc(var(--split) * 100%));
+}
+/* Muted half: left of the seam, and the half that degrades. Weight is written
+   as font-weight and not font-variation-settings (performance.md § 2). */
+.h1--before {
+  color: var(--ink-2);
+  clip-path: inset(-20% calc(100% - var(--split) * 100%) -20% 0);
+  font-weight: calc(500 - 300 * var(--d));
+  /* 0.012em, not the 0.06em the target picture names. Measured off
+     act-mid-1440.png: tracking accumulates left to right and is therefore
+     largest exactly AT the seam, where the two copies meet. At 0.06em and 56px
+     that is 3.36px per gap and ~77px by the 23rd character, which slid a whole
+     glyph out from under the ink half — "nutidens" rendered as "nu|idens". That
+     reads as a deleted letter, not as decay. At 0.012em the drift is ~15px,
+     under one glyph width, so the halves still overlap and the line reads as
+     coming apart rather than as broken. Recorded in BRIEF.md § decision ledger. */
+  letter-spacing: calc(var(--d) * 0.012em);
+}
+
+/* The two mono labels, and there are exactly two on the fold. Each names its
+   half and its content in one block: gocanopy's bracketing device rotated 90°,
+   so the metadata names the two halves instead of flanking a claim.
+   `En typisk mallsida` is verbatim and mandatory — it is the only reason an
+   anti-reference may run as content on an Alunix page. */
+/* ── THE SEAM ──────────────────────────────────────────────────────────────
+   One element carries the divider, its grab strip and both mono labels, so all
+   four sit on ONE width basis and can never drift apart. The wrapper spans the
+   ground and is translated by the seam fraction, which makes its own x = 0 the
+   seam line; everything inside is positioned relative to that.
+   The first build gave the divider `100%` (its own box) and the labels and grab
+   strip `100vw` (the viewport, scrollbar included). At 1440 with no scrollbar
+   they agreed, which is exactly why that class of bug survives a desktop check. */
+.seam {
+  position: absolute;
+  inset: 0;
+  transform: translate3d(calc(var(--split) * 100%), 0, 0);
+  pointer-events: none;
+}
+
+.tag {
+  position: absolute;
+  top: 176px;
+  width: 42%;
+}
+/* right: 100% is the wrapper's left edge, which after the translate IS the seam. */
+.tag--before { right: calc(100% + 20px); text-align: right; }
+.tag--after  { left: 20px; }
+.tag b {
+  display: block;
+  font-weight: 400;
+  color: var(--ink);
+}
+
+/* The divider. One vertical hairline over the full stage height, in ink with
+   #1E5E9C as its only chromatic value. It is the page's nav, its chrome and its
+   signature at once, and the accent exists on this object and nowhere else.
+   Two layers, no blur: the blue rule sits on an ink rule so it stays a line
+   against both a white template page and a dark botanical photograph. */
+.divider {
+  position: absolute;
+  top: 0;
+  bottom: 0;
+  left: -1px;
+  width: 3px;
+}
+.divider::before,
+.divider::after {
+  content: "";
+  position: absolute;
+  top: 0;
+  bottom: 0;
+}
+/* One ink hairline so the line survives against a white template page AND a
+   dark botanical photograph without a shadow or a glow. */
+.divider::before { left: 0; width: var(--rule); background: var(--ink); opacity: 0.35; }
+/* The accent. Two pixels, not one: house-physics deploys the single accent at
+   display scale, and at 1px this read as a grey rule in the fold capture rather
+   than as the one chromatic event on the page. Two pixels running the full
+   viewport height is display scale in the dimension the object actually has. */
+.divider::after  { left: 1px; width: 2px; background: var(--blue); }
+
+/* 44px invisible grab strip. cursor: col-resize is the whole affordance —
+   no knob, no icon, no double arrow, no "drag" text (gate 88). Fine pointers
+   only: on touch a horizontal grab would fight the page's own scroll, and the
+   target picture scopes the drag to a fine pointer. */
+.hit {
+  position: absolute;
+  top: 0;
+  bottom: 0;
+  left: -22px;
+  width: 44px;
+  pointer-events: none;
+  background: transparent;
+}
+@media (pointer: fine) {
+  .hit { pointer-events: auto; cursor: col-resize; touch-action: none; }
+}
+.hit:focus-visible { outline: 2px solid var(--ink); outline-offset: -2px; }
+
+/* Shield: only while the pointer is actually dragging, so a drag started on the
+   divider is never swallowed by an iframe. Removed on pointerup — the frames
+   are interactive and stay interactive (PRODUCT.md princip 1). */
+.shield {
+  position: absolute;
+  inset: 0;
+  display: none;
+  cursor: col-resize;
+}
+.is-dragging .shield { display: block; }
+.is-dragging { user-select: none; }
+
+/* Promotion only while the act is in flight, never at rest (performance.md). */
+.is-live .seam { will-change: transform; }
+.is-live .layer--before { will-change: filter, clip-path; }
+
+/* preview=drag makes the invisible grab strip visible for measurement only.
+   It is the one preview mode that shows something the page does not have, and
+   it is never reachable without the query string. */
+[data-preview="drag"] .hit { background: color-mix(in oklab, var(--blue) 30%, transparent); }
+
+/* ─────────────────────────────────────────────────────────────────────────
+   R3 PLACEHOLDERS. Correct ground and correct height, no invented elements,
+   no lorem, no empty frames waiting to become something.
+   ───────────────────────────────────────────────────────────────────────── */
+.r3 {
+  min-height: 100dvh;
+  content-visibility: auto;
+  contain-intrinsic-size: auto 100dvh;
+}
+.r3--tall { min-height: 200dvh; contain-intrinsic-size: auto 200dvh; }
+.r3--paper2 { background: var(--paper-2); }
+
+@media (max-width: 640px) {
+  /* The two printouts become a landing band lying on the sheet rather than a
+     full-height surface, and the band is optically centred in the sheet.
+     The head is DERIVED from the band rather than fixed, because the band's
+     height scales with the viewport while a fixed head does not: at a fixed
+     320 px the two margins matched at 390 (320 / 343, 6.7 %) but drifted to
+     21.3 % at 320 px wide. Derived, the two margins are equal at every narrow
+     width. Measured at 390 x 844: band 181 px, paper above 331 px, paper below
+     332 px, a difference of 0.3 %. The floor of 200 px is the content: mailto,
+     a two-line headline and the two labels. */
+  .split { --head-h: max(200px, calc((100dvh - var(--band-h)) / 2)); }
+  .frames {
+    inset: var(--head-h) 0 auto 0;
+    height: var(--band-h);
+  }
+  /* Both frames lay out against 1440 px and are scaled ONCE at mount, so a
+     phone shows the same crop the desktop shows, in miniature — two whole
+     pages, not two half pages. 390 / 1440 = 0.2708; 668 x 0.2708 = 181 px. */
+  .layer > iframe {
+    width: 1440px;
+    height: 668px;
+    transform: scale(var(--frame-scale));
+    transform-origin: 0 0;
+  }
+  .head { height: var(--head-h); padding-top: 24px; }
+  .mailto { top: 22px; font-size: 13px; }
+  .head__line { top: 62px; height: 76px; }
+  /* Below 640 the line is allowed to wrap. It never changes line count DURING
+     the act, which is what the one-line rule protects. */
+  .h1 { white-space: normal; }
+  /* The labels sit against the top edge of the band they name, not at a fixed
+     offset from the top of the sheet: they belong to the printouts. 44 % of a
+     390 px stage is 172 px and the block sits 12 px off the seam, so neither
+     can reach an edge. Read off fold-390.png, where 62 % pushed the Calyx
+     caption past the right edge. */
+  /* Anchored by the BOTTOM edge, not the top: the block wraps to two or three
+     lines depending on width, so a top offset let it grow down into the band —
+     measured 22 px of overlap at 320. Bottom-anchored it always sits 10 px
+     clear of the printouts it names, whatever it wraps to. */
+  .tag { top: auto; bottom: calc(100% - var(--head-h) + 10px); width: 44%; }
+  .tag--before { right: calc(100% + 12px); }
+  .tag--after  { left: 12px; }
+}
+</style>
+</head>
+<body>
+
+<main id="top">
+
+  <!-- ═══════════════════════════════════════════════════════════════════
+       a1 · DELAREN TIPPAR — the peak. Largest span on the page.
+       The first 0.10 of the act is authored silence: both sites stand
+       completely still while the visitor reads the headline. It is the
+       stillness before the peak, not dead scroll (BRIEF.md § Motion-tes).
+       ═══════════════════════════════════════════════════════════════════ -->
+  <section class="split" id="split" data-sc-act="pin" data-sc-span="2.4" data-sc-dwell="0.22">
+    <div class="sc-stage" data-sc-stage>
+      <div class="split__ground">
+
+        <div class="frames">
+          <!-- INNEHÅLL, inte en anti-referens att undvika: kedjans egen
+               mallsida, live, ärligt etiketterad. Den karikeras aldrig,
+               skakas aldrig och faller aldrig isär. Sidans enda kritik är
+               mätta tal. -->
+          <div class="layer layer--before">
+            <iframe id="frameBefore" title="En typisk mallsida" width="1440" height="900"
+                    loading="lazy" tabindex="-1" scrolling="no"
+                    data-src="/sites/before-ai-slop.html"></iframe>
+          </div>
+          <div class="layer layer--after">
+            <iframe id="frameAfter" title="Exempelsida: Calyx, florist i Stockholm"
+                    width="1440" height="900" loading="lazy" scrolling="no"
+                    data-src="/sites/calyx.html"></iframe>
+          </div>
+        </div>
+
+        <!-- No data-sc-cue. The act's cue would be "0 1 0 0" — greet and hold,
+             full opacity at p = 0 with no ramp at either end — which is
+             visually identical to no cue at all, and costs three things this
+             page cannot afford: scrollcraft.css puts a class-level
+             `will-change: opacity, transform` on every [data-sc-cue], which
+             perf_probe caught resting on this element and which cannot be
+             cleaned up without editing the engine; it starts the fold at
+             opacity 0, so a failed script leaves a blank sheet; and it buys no
+             behaviour, because the fold greets and holds either way. The cue
+             contract is honoured in substance, not by attribute. -->
+        <div class="chrome">
+          <div class="head">
+            <a class="mailto" href="mailto:kontakt@alunix.se">kontakt@alunix.se</a>
+
+            <div class="head__line">
+              <p class="h1 h1--before" aria-hidden="true">Er hemsida är nutidens visitkort</p>
+              <h1 class="h1 h1--after">Er hemsida är nutidens visitkort</h1>
+            </div>
+
+          </div>
+        </div>
+
+        <div class="shield" aria-hidden="true"></div>
+
+        <!-- The seam: divider, grab strip and the two mono labels, all on one
+             width basis. Its own x = 0 is the line. -->
+        <div class="seam" id="seam">
+          <div class="divider" aria-hidden="true"></div>
+          <p class="register tag tag--before"><b>Före</b>En typisk mallsida</p>
+          <p class="register tag tag--after"><b>Efter</b>Exempelsida: Calyx, florist i Stockholm</p>
+          <div class="hit" id="hit" tabindex="0" role="separator"
+               aria-orientation="vertical" aria-label="Gränsen mellan de två sidorna"
+               aria-valuemin="0" aria-valuemax="100" aria-valuenow="50"></div>
+        </div>
+
+      </div>
+    </div>
+  </section>
+
+  <!-- R3 · a2 skillnadsliggaren (s4). Sex mätta par, hårlinjerader, tesraden
+       VI BYGGER ERT VARUMÄRKE. som löphuvud. reveal per sida. -->
+  <section class="r3 r3--paper2" id="a2" aria-hidden="true"><!-- R3 --></section>
+
+  <!-- R3 · a3 Hōrai och Hyperborea som full-bleed objekt (s5, s6). flow + in. -->
+  <section class="r3 r3--tall" id="a3" aria-hidden="true"><!-- R3 --></section>
+
+  <!-- R3 · a4 tjänsterna 01–03 (s7). kinetic lines. -->
+  <section class="r3" id="a4" aria-hidden="true"><!-- R3 --></section>
+
+  <!-- R3 · a5 paketen och priserna (s8). count på 26 900 och 38 900. -->
+  <section class="r3" id="a5" aria-hidden="true"><!-- R3 --></section>
+
+  <!-- R3 · a6 avslutet (s9). Kollapsen till en kolumn, Alla har rätt till bra
+       design. i displayskala, mailto. reveal, cue 0.25. -->
+  <section class="r3 r3--paper2" id="a6" aria-hidden="true"><!-- R3 --></section>
+
+</main>
+
+<script src="scroll/scrollcraft.js"></script>
+<script>ScrollCraft.mount(document.body);</script>
+<script src="scroll/sc-smooth.js"></script>
+<script>
+(function () {
+  'use strict';
+
+  var act     = document.getElementById('split');
+  var hit     = document.getElementById('hit');
+  var ground  = act.querySelector('.split__ground');
+  var frames  = [document.getElementById('frameBefore'), document.getElementById('frameAfter')];
+
+  /* ── --split convention, written out because the target picture's own phrasing
+        ("delaren går från 50 % till 100 % höger") reads the other way round.
+        --split is the divider's x position as a fraction of the stage width,
+        measured from the LEFT edge:
+            0.5  the fold, 50/50
+            0    resolved: Calyx fills the frame   ← ps = 1
+            1    the template page fills the frame ← ?preview=before
+        Over the act it runs 0.5 → 0, so the divider travels LEFT and the
+        "after" surface grows from half the frame to all of it. Also in NOTES.md. */
+
+  var SILENCE = 0.10;      // authored stillness at the head of the act
+  var OMEGA   = 2 * Math.PI / 0.35;   // response 0.35 s
+  var EPS     = 0.0002;
+
+  /* Speed profile of the seam's journey. Measured, not chosen by feel.
+     Calyx's own display headline occupies roughly x 30–600 of its 1440 layout,
+     which is --split 0.42 down to 0.02. A linear journey parks the seam inside
+     that band for ~44 % of the act, and the act's display element then stops
+     being the divider and becomes three cut-off serif fragments from another
+     page — measured off shots/r2/act-mid-1440.png.
+
+     Neither form the plan proposes can hit its own targets, and both were
+     computed rather than assumed:
+       - a power curve needs n >= 1.930 for split(0.40) >= 0.44 and
+         n <= 0.343 for split(0.72) <= 0.06. The bounds do not overlap, so no
+         exponent exists; n = 1.5 / 2 / 2.5 / 3 give split(0.72) = 0.214 /
+         0.263 / 0.303 / 0.337 against a target of 0.06.
+       - the plan's window fallback (hold 0.44 to ps 0.62, then travel to 0)
+         gives split(0.72) = 0.324, also far over.
+     So: a small constant drift plus a concentrated rush. The drift keeps the
+     divider moving at every moment of the act — it is the act's display
+     element, and an element that stops moving stops being followed — and the
+     rush carries the seam across Calyx's type zone in one short passage.
+
+     Measured against the plan's target table:
+       split(0.40) = 0.480   (target >= 0.44)
+       split(0.72) = 0.019   (target <= 0.06)
+       band 0.42–0.02 spans ps 0.623–0.713 = 9.0 % of the act  (target <= 12 %)
+       monotone over the whole act, derivative never zero
+
+     On `ease-in`: emil-design-eng bans it on UI because a slow start delays the
+     moment the user is watching. That reasoning is about time-driven motion.
+     Here the reader owns the clock — every scroll input moves the seam in the
+     same frame, and the floor below guarantees the movement is never zero — so
+     there is no delayed start to feel. */
+  /* Read from the stylesheet so the seam's start value lives in exactly one
+     place. See the --split-start comment in :root for the measurement. */
+  var SPLIT_START = parseFloat(
+    getComputedStyle(document.documentElement).getPropertyValue('--split-start')
+  ) || 0.585;
+
+  var DRIFT    = 0.12;     // linear floor: the divider is never still
+  var RUSH_LO  = 0.555;    // t where the crossing begins
+  var RUSH_HI  = 0.685;    // t where it ends
+
+  var value  = SPLIT_START; // presentation value — the only thing ever painted
+  var vel    = 0;
+  var target = SPLIT_START;
+  var dragging = false;
+  var springing = false;
+  var grabOffset = 0;
+  var stageW = ground.clientWidth || innerWidth;
+  var lastT = 0;
+  var raf = null;
+  var wasLive = false;
+  var frozen = null;       // a ?preview= value pins --split and disables the drag
+  var lastPs = NaN;        // see the keep-alive note in tick()
+  var holdUntil = 0;
+
+  /* Pointer history for velocity handoff (apple-design § 5): the release
+     velocity is the average over the last few moves, not the last delta. */
+  var hist = [];
+
+  function clamp01(n) { return n < 0 ? 0 : n > 1 ? 1 : n; }
+
+  function paint() {
+    act.style.setProperty('--split', value.toFixed(4));
+    hit.setAttribute('aria-valuenow', Math.round(value * 100));
+  }
+
+  function readPs() {
+    var ps = parseFloat(getComputedStyle(act).getPropertyValue('--sc-ps'));
+    return isNaN(ps) ? 0 : ps;
+  }
+
+  /* Smoothstep: monotone, and zero-derivative at both ends so the rush joins the
+     drift without a visible kink. */
+  function smoothstep(lo, hi, x) {
+    var u = clamp01((x - lo) / (hi - lo));
+    return u * u * (3 - 2 * u);
+  }
+
+  /* The first 0.10 of the act is authored stillness: both sites stand completely
+     still while the visitor reads the headline. Remapping the remaining 0.90
+     onto the full travel is what makes that silence a designed thing rather than
+     dead scroll (BRIEF.md § Motion-tes).
+
+     The journey itself is drift + rush, per the measured profile above. It stays
+     monotone: both terms are non-decreasing in t, so the seam never reverses,
+     never bounces and never resets. */
+  function targetFrom(ps) {
+    var t = clamp01((ps - SILENCE) / (1 - SILENCE));
+    var e = DRIFT * t + (1 - DRIFT) * smoothstep(RUSH_LO, RUSH_HI, t);
+    return SPLIT_START * (1 - e);
+  }
+
+  function tick(now) {
+    raf = null;
+    var dt = lastT ? Math.min((now - lastT) / 1000, 0.05) : 0.016;
+    lastT = now;
+
+    if (frozen !== null) { value = frozen; paint(); return; }
+
+    /* --sc-ps is produced by sc-smooth.js in ITS own rAF loop, which keeps
+       running for many frames after the scroll event that started it. A loop
+       that woke only on `scroll` therefore read the pre-lerp value once, found
+       nothing to do and shut down before the shim had published anything — the
+       act sat frozen at 0.5 with a clean console and a correct --sc-p. Measured,
+       not theorised: that is exactly what the first build of this page did.
+       So the loop also stays awake while --sc-ps is still changing. */
+    var ps = readPs();
+    var psChanged = (ps !== lastPs);
+    lastPs = ps;
+
+    target = targetFrom(ps);
+
+    var live = target > 0.0005 && target < 0.4999;
+    if (live !== wasLive) { ground.classList.toggle('is-live', live); wasLive = live; }
+
+    var moving = false;
+
+    if (dragging) {
+      moving = true;                     // the pointer owns the value 1:1
+    } else if (springing) {
+      /* Critically damped spring, damping ratio 1.0, no overshoot. Integrated
+         from the presentation value, so a new grab mid-flight takes over at
+         exactly the position and speed the spring had (apple-design § 3). */
+      var a = -OMEGA * OMEGA * (value - target) - 2 * OMEGA * vel;
+      vel += a * dt;
+      value += vel * dt;
+      if (Math.abs(value - target) < EPS && Math.abs(vel) < EPS) {
+        value = target; vel = 0; springing = false;
+      }
+      moving = true;
+    } else if (Math.abs(value - target) > EPS) {
+      /* Not dragging, not returning: 1 % of act progress is 1 % of travel, in
+         both directions. --sc-ps is already damped by sc-smooth.js, so adding a
+         second lag here would only make the hand feel late. */
+      value = target;
+      moving = true;
+    }
+
+    if (moving) { paint(); }
+    if (dragging || springing || psChanged || now < holdUntil ||
+        Math.abs(value - target) > EPS) kick();
+  }
+
+  function kick() { if (raf === null) { raf = requestAnimationFrame(tick); } }
+
+  /* A short grace window covers the frames between a scroll event and the shim's
+     first write, when --sc-ps has not moved yet and there is nothing else to
+     keep the loop alive. After that, psChanged carries it. */
+  function wake() { holdUntil = performance.now() + 250; kick(); }
+
+  /* ── drag ─────────────────────────────────────────────────────────────── */
+  hit.addEventListener('pointerdown', function (e) {
+    if (frozen !== null || !matchMedia('(pointer: fine)').matches) return;
+    hit.setPointerCapture(e.pointerId);
+    dragging = true;
+    springing = false;                   // interrupting keeps position AND velocity
+    stageW = ground.clientWidth || innerWidth;
+    grabOffset = e.clientX - value * stageW;   // respect where on the line they grabbed
+    hist.length = 0;
+    hist.push({ x: e.clientX, t: performance.now() });
+    ground.classList.add('is-dragging', 'is-live');
+    e.preventDefault();
+    kick();
+  });
+
+  hit.addEventListener('pointermove', function (e) {
+    if (!dragging) return;
+    value = clamp01((e.clientX - grabOffset) / stageW);
+    hist.push({ x: e.clientX, t: performance.now() });
+    if (hist.length > 5) hist.shift();
+    paint();
+  });
+
+  function release(e) {
+    if (!dragging) return;
+    dragging = false;
+    ground.classList.remove('is-dragging');
+    try { hit.releasePointerCapture(e.pointerId); } catch (err) {}
+
+    /* Velocity handoff: seed the spring with the pointer's own speed at the
+       moment of release, converted into --split units per second. Without it
+       there is a visible seam between dragging and animating. */
+    var first = hist[0], last = hist[hist.length - 1];
+    var dtms = last && first ? (last.t - first.t) : 0;
+    vel = dtms > 8 ? ((last.x - first.x) / dtms) * 1000 / stageW : 0;
+
+    springing = true;   /* returns to the value the scroll owns — never to 50 % */
+    kick();
+  }
+  hit.addEventListener('pointerup', release);
+  hit.addEventListener('pointercancel', release);
+
+  /* Keyboard: the arrows move the same thing the wheel moves, by scrolling the
+     act, so a keyboard reader gets the same durable result a mouse gets. A local
+     nudge that springs straight back would be an affordance that does nothing. */
+  /* The step is expressed in --split and solved back into scroll, not the other
+     way round. With a linear journey a fixed slice of ps was a fixed slice of
+     --split; with drift + rush the same slice of ps is worth 0.3 % of the stage
+     in the drift and over 12 % inside the rush. Solving for the ps that produces
+     the wanted --split keeps one arrow press worth the same distance on screen
+     wherever the reader is in the act. Bisection, because targetFrom is monotone
+     and 24 halvings resolve ps to ~6e-8. */
+  var KEY_STEP = 0.02;                            // 2 % of the stage width
+  function psForSplit(wanted) {
+    var lo = SILENCE, hi = 1, mid;
+    for (var i = 0; i < 24; i++) {
+      mid = (lo + hi) / 2;
+      if (targetFrom(mid) > wanted) lo = mid; else hi = mid;
+    }
+    return (lo + hi) / 2;
+  }
+  /* Scroll position is NOT act progress. The engine applies its own dwell remap
+     before publishing --sc-p, so a fixed slice of scroll is a varying slice of
+     ps, and a step solved on the ps axis and then multiplied by the scroll
+     travel lands somewhere else entirely — measured, before this existed: one
+     press moved 47 % of the stage in the drift instead of 2 %.
+
+     The remap is a documented monotone curve with f(0)=0 and f(1)=1, so the two
+     maps compose and the whole thing inverts by bisection on the scroll axis.
+     The dwell value is read from the act's own attribute rather than copied, so
+     the two can never drift apart. Reading a documented behaviour is not
+     editing the engine; scroll/ is untouched. */
+  var DWELL = parseFloat(act.getAttribute('data-sc-dwell')) || 0;
+  function dwellAt(x) {
+    if (!DWELL) return x;
+    var c = x - 0.5;
+    return (1 - DWELL) * x + DWELL * (4 * c * c * c + 0.5);
+  }
+  function scrollFracForSplit(wanted) {
+    var lo = 0, hi = 1, mid;
+    for (var i = 0; i < 24; i++) {
+      mid = (lo + hi) / 2;
+      if (targetFrom(dwellAt(mid)) > wanted) lo = mid; else hi = mid;
+    }
+    return (lo + hi) / 2;
+  }
+  function nudge(dirSign) {
+    var travel = act.offsetHeight - innerHeight;
+    var top0 = act.offsetTop;
+    var f = clamp01((scrollY - top0) / travel);
+    var wanted = clamp01(targetFrom(dwellAt(f)) + dirSign * KEY_STEP);
+    scrollTo({ top: top0 + scrollFracForSplit(wanted) * travel, behavior: 'instant' });
+    wake();
+  }
+  hit.addEventListener('keydown', function (e) {
+    var travel = act.offsetHeight - innerHeight;
+    if (e.key === 'ArrowRight' || e.key === 'ArrowDown') { e.preventDefault(); nudge(-1); }
+    else if (e.key === 'ArrowLeft' || e.key === 'ArrowUp') { e.preventDefault(); nudge(1); }
+    else if (e.key === 'End')  { e.preventDefault(); scrollTo({ top: act.offsetTop + travel, behavior: 'instant' }); wake(); }
+    else if (e.key === 'Home') { e.preventDefault(); scrollTo({ top: act.offsetTop, behavior: 'instant' }); wake(); }
+  });
+
+  addEventListener('scroll', wake, { passive: true });
+  addEventListener('resize', function () {
+    stageW = ground.clientWidth || innerWidth;
+    sizeFrames();
+    wake();
+  }, { passive: true });
+
+  /* ── ?preview= ────────────────────────────────────────────────────────── */
+  /* split and drag are the fold, so they are the start value. mid and degraded
+     are fractions of the journey, so they derive from it too — otherwise
+     "mid-degradation" would mean a different amount of degradation than it did
+     before the start value moved. */
+  var MODES = {
+    before: 1,
+    split: SPLIT_START,
+    after: 0,
+    mid: SPLIT_START * 0.5,
+    degraded: SPLIT_START * 0.2,
+    drag: SPLIT_START
+  };
+  var mode = new URLSearchParams(location.search).get('preview');
+  if (mode && Object.prototype.hasOwnProperty.call(MODES, mode)) {
+    frozen = MODES[mode];
+    value = frozen;
+    window.__scFreezeMotion = true;       // sc-smooth tracks the raw value exactly
+    document.documentElement.dataset.preview = mode;
+    hit.style.pointerEvents = 'none';     // a screenshot can never catch a spring in flight
+    paint();
+  }
+
+  /* ── frames ───────────────────────────────────────────────────────────── */
+  /* performance.md § 6 Never: "An iframe mounted at load". Neither frame is.
+     Both are mounted by one IntersectionObserver; the left one is additionally
+     released at the first idle callback after first paint, so it is present for
+     the fold without competing with LCP. The LCP element is the headline, which
+     is text. */
+  function mount(f) {
+    if (f.dataset.src && !f.src) { f.src = f.dataset.src; }
+  }
+  var io = new IntersectionObserver(function (entries) {
+    entries.forEach(function (en) { if (en.isIntersecting) { mount(en.target); io.unobserve(en.target); } });
+  }, { rootMargin: '100% 0px' });
+  frames.forEach(function (f) { io.observe(f); });
+
+  var idle = window.requestIdleCallback || function (fn) { return setTimeout(fn, 200); };
+  addEventListener('load', function () { idle(function () { mount(frames[0]); }); });
+
+  /* ── narrow-view frame sizing ─────────────────────────────────────────────
+     Below 640 px the stage is narrower than 640, so each half is under 320 px
+     and a frame laid out against the stage renders half a phone page. Both
+     frames therefore lay out against a fixed 1440 px viewport and are scaled to
+     fit, which shows the same crop the desktop shows, in miniature.
+
+     Called at mount and on resize ONLY. Never from the rAF loop, never from
+     paint(): the scale is a layout constant, not an animated value, and the
+     whole point of it is that it does not move during the act. */
+  var LAYOUT_W = 1440;   // the viewport both example sites are composed for
+  var BAND_H   = 668;    // 900 - 232: the visible band at 1440, so the crop matches
+  function sizeFrames() {
+    var w = ground.clientWidth || innerWidth;
+    if (w > 640) {
+      act.style.removeProperty('--frame-scale');
+      act.style.removeProperty('--band-h');
+      return;
+    }
+    var scale = w / LAYOUT_W;
+    act.style.setProperty('--frame-scale', scale.toFixed(4));
+    act.style.setProperty('--band-h', Math.round(BAND_H * scale) + 'px');
+  }
+
+  /* ── failsafes ────────────────────────────────────────────────────────── */
+  /* The cue system fails toward VISIBLE. scrollcraft.css starts every
+     [data-sc-cue] at opacity 0; if the engine never lands, the fold would be a
+     blank sheet. This is the timed guard that stops that. */
+  setTimeout(function () {
+    if (!document.documentElement.classList.contains('sc-ready')) {
+      document.querySelectorAll('[data-sc-cue]').forEach(function (el) {
+        el.removeAttribute('data-sc-cue');
+        el.style.opacity = '1';
+      });
+      console.warn('[K4] scrollcraft did not report ready in 1200 ms — cues forced visible.');
+    }
+  }, 1200);
+
+  /* One resize once the window and the fonts have settled, so the engine
+     re-measures act heights against the real metrics (scroll/README.md
+     § The spacer is sized once, at mount). */
+  function relayout() { dispatchEvent(new Event('resize')); }
+  addEventListener('load', relayout);
+  if (document.fonts && document.fonts.ready) document.fonts.ready.then(relayout).catch(function () {});
+
+  sizeFrames();
+  paint();
+  wake();
+
+  /* Handle for motion_probe.py, so --split can be tracked as a second series. */
+  window.__k4 = {
+    get split() { return value; },
+    get target() { return target; },
+    get springing() { return springing; }
+  };
+})();
+</script>
+</body>
+</html>

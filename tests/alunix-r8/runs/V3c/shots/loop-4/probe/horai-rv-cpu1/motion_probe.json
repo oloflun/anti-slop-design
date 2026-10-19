@@ -1,0 +1,43 @@
+{
+  "url": "http://localhost:3090/tests/alunix-r8/runs/V3c/index.html",
+  "wheel": "100:60",
+  "cpu": 1.0,
+  "tracks": [
+    {
+      "track": ".horai-wrap:--rv",
+      "dead": false,
+      "frames": 169,
+      "frame_p95_ms": 35.46,
+      "frames_over_20ms": 13,
+      "frames_over_33ms": 13,
+      "value_range": [
+        0.1411,
+        1
+      ],
+      "max_step_pct": 5.41,
+      "staircase": 0,
+      "reversals": 0
+    },
+    {
+      "track": ".horai-wrap .rv:transform",
+      "dead": true,
+      "frames": 169,
+      "frame_p95_ms": 35.46,
+      "frames_over_20ms": 13,
+      "frames_over_33ms": 13,
+      "value_range": [
+        0,
+        0
+      ],
+      "max_step_pct": 0.0,
+      "staircase": 0,
+      "reversals": 0
+    }
+  ],
+  "pass": false,
+  "failures": [
+    ".horai-wrap:--rv: frame_p95 35.46 ms > 20",
+    ".horai-wrap:--rv: 13 frames > 33 ms",
+    ".horai-wrap .rv:transform: DEAD - vardet rorde sig inte alls medan sidan scrollades (kontrollera att elementet arver egenskapen och att akten faktiskt driver den)"
+  ]
+}

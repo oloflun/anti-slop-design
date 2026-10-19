@@ -1,0 +1,62 @@
+{
+  "url": "http://localhost:3090/tests/alunix-r8/board/cells/V3c-r8/index.html",
+  "wheel": "100:60",
+  "cpu": 4.0,
+  "tracks": [
+    {
+      "track": "#giant-section:--sc-ps",
+      "dead": false,
+      "frames": 309,
+      "frame_p95_ms": 159.52,
+      "frames_over_20ms": 149,
+      "frames_over_33ms": 149,
+      "value_range": [
+        0,
+        1
+      ],
+      "max_step_pct": 3.28,
+      "staircase": 0,
+      "reversals": 0
+    },
+    {
+      "track": ".panel-thesis:--sc-ps",
+      "dead": false,
+      "frames": 309,
+      "frame_p95_ms": 159.52,
+      "frames_over_20ms": 149,
+      "frames_over_33ms": 149,
+      "value_range": [
+        0,
+        1
+      ],
+      "max_step_pct": 4.01,
+      "staircase": 0,
+      "reversals": 0
+    },
+    {
+      "track": ".thesis-figure:transform",
+      "dead": true,
+      "frames": 309,
+      "frame_p95_ms": 159.52,
+      "frames_over_20ms": 149,
+      "frames_over_33ms": 149,
+      "value_range": [
+        0,
+        0
+      ],
+      "max_step_pct": 0.0,
+      "staircase": 0,
+      "reversals": 0
+    }
+  ],
+  "pass": false,
+  "failures": [
+    "#giant-section:--sc-ps: frame_p95 159.52 ms > 20",
+    "#giant-section:--sc-ps: 149 frames > 33 ms",
+    "#giant-section:--sc-ps: max_step 3.28 % > 3 (spelhuvud)",
+    ".panel-thesis:--sc-ps: frame_p95 159.52 ms > 20",
+    ".panel-thesis:--sc-ps: 149 frames > 33 ms",
+    ".panel-thesis:--sc-ps: max_step 4.01 % > 3 (spelhuvud)",
+    ".thesis-figure:transform: DEAD - vardet rorde sig inte alls medan sidan scrollades (kontrollera att elementet arver egenskapen och att akten faktiskt driver den)"
+  ]
+}

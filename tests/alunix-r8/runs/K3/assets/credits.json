@@ -1,0 +1,29 @@
+{
+  "cell": "K3",
+  "round": "r8",
+  "written_by": "architect",
+  "written": "2026-09-10",
+  "generated_material": {
+    "present": false,
+    "statement": "Inget genererat material ingar i K3 eller i r8 for denna cell. Higgsfield har 0 krediter (free plan, en enda privat workspace, matt av lead 2026-09-09), sa steg 1 i planens SS 10.6 faller pa krediter. Steg 2 (Codex image_gen) hoppades over for K3 av ett sakskal och inte av kostnadsskal: steg 3 ar strikt battre har. K3 ligger i ett ritat register (noll fotografier, en identitet byggd av linje) och generation.md SS 1 rangordnar da ett bespoke ritat system over bade sourcad och genererad bild. Papperstexturen ar ett feTurbulence-falt med stitchTiles=stitch, alltsa somlost genom konstruktion i stallet for somkontrollerat i efterhand, och de ritade elementen ar handforfattad inline-SVG som haller ihop via en skriven regel (en harlinjebredd, en pilspetsform, ett utropsregister) i stallet for via en genererad stilnyckelbild. Inga generate-prompter skrevs. Se assets/ASSETS.md SS 0 och SS B.2.",
+    "higgsfield_jobs": [],
+    "codex_image_gen_jobs": [],
+    "total_credits_spent": 0
+  },
+  "inherited": [
+    {
+      "file": "logo-black.svg",
+      "role": "ordmarket i a6:s specifikationsram, inline, fill currentColor = --ink, exakt en forekomst pa sidan",
+      "bytes": 3522,
+      "inherited_from": "tests/alunix-concepts-r3/build/assets/logo-black.svg",
+      "first_used": "tests/alunix-concepts-r3, darefter r4 och r5",
+      "origin": "Alunix eget ordmarke, levererat av Anton i r3.",
+      "post_processed": "ingen"
+    }
+  ],
+  "open": [
+    "logo-white.svg (3 522 B) arvs INTE. K3 har ingen mork grund i nagon av sina sex akter: arket ar kallt papper hela vagen, avslutet inverterar inte, och en vit logotyp har darfor ingen yta att ligga pa. Nasta konkreta steg om lead vill ha den anda som reserv: en rad i decision ledger som namner vilken mork yta som tillkommit, annars kopieras filen inte in.",
+    "Tva [needs: vendor]-rader star i assets/ASSETS.md SS C: Chivo (variabel woff2) och Martian Mono (variabel woff2). De ar typsnittsfiler, inte genererat material, och rors inte av kreditlaget. Nasta konkreta steg: lead hamtar bada, self-hostar dem under runs/K3/assets/, kontrollerar att summan ligger under 300 kB och subsatter med pyftsubset till latin plus a-ring, a-umlaut och o-umlaut om den inte gor det.",
+    "Inga demo-*.webp arvs. K3 visar de tre exempelsajterna levande i iframe; en skarmbild som reserv vore en tyst vag tillbaka till en statisk platta. Nasta konkreta steg om en ram inte kan monteras i R2: det rapporteras till lead som ett fynd och lead beslutar, byggaren byter aldrig ut en ram mot en bild pa egen hand."
+  ]
+}
