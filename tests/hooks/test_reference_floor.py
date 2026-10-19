@@ -111,4 +111,18 @@ scroll_ok = list(scroll_extra) + [
 build(base_rows(scroll_ok))
 dec, _ = run("E  scroll brief, refs + registry read")
 assert dec == "ALLOW", "E must allow"
-print("T3 fixtures: all five cases behaved as specified.")
+
+# F: a stale select row (unread slugs) followed by the real one, fully read
+# -> must ALLOW. r8 R1: the V3c builder ran select.py against the unfilled
+# skeleton first; the latest row is the lock, older rows do not accumulate.
+stale = [{"ts": "2026-09-08T09:59:00+00:00", "session": SID, "event": "catalogue-select",
+          "slugs": ["aarke", "alet"], "brief": "BRIEF.md"}]
+build(base_rows(stale + extra))
+dec, _ = run("F  stale select row, then the real one fully read")
+assert dec == "ALLOW", "F must allow: only the latest selection is the lock"
+
+# G: the same two rows in the other order -> must DENY (latest is the stale one)
+build(base_rows(extra + [dict(stale[0], ts="2026-09-08T10:59:00+00:00")]))
+dec, reason = run("G  real row, then a stale one last")
+assert dec == "deny" and "aarke" in reason, "G must deny on the latest (unread) selection"
+print("T3 fixtures: all seven cases behaved as specified.")

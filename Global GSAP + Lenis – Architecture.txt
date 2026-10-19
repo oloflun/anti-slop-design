@@ -1,0 +1,301 @@
+Global GSAP + Lenis – Agent Reference
+Status
+
+Den globala GSAP- och Lenis-infrastrukturen är redan installerad och konfigurerad på utvecklingsmaskinen.
+
+Installera eller konfigurera inte GSAP eller Lenis igen.
+
+Alla projekt ska använda den befintliga globala installationen genom npm-länkar.
+
+Global struktur
+
+Den centrala installationen finns under:
+
+C:\Users\Anton L\AppData\Roaming\npm\node_modules\
+
+
+GSAP:
+
+C:\Users\Anton L\AppData\Roaming\npm\node_modules\gsap
+
+
+Lenis:
+
+C:\Users\Anton L\AppData\Roaming\npm\node_modules\lenis
+
+
+GSAP-versionen som är installerad är:
+
+gsap@3.15.0
+
+
+GSAP-installationen innehåller även de plugins som används av projekten.
+
+Plugins installeras inte separat.
+
+Projektstruktur
+
+Varje projekt som använder GSAP och Lenis har länkar i sitt eget node_modules:
+
+project/
+├── node_modules/
+│   ├── gsap  -> global GSAP
+│   └── lenis -> global Lenis
+│
+├── package.json
+├── gsap.js
+├── smooth-scroll.js
+└── ...
+
+
+Projektets gsap och lenis ska vara npm-länkar till de globala installationerna.
+
+Kontrollera ett projekt med:
+
+npm list gsap lenis
+
+
+Ett korrekt projekt visar länkar tillbaka till den globala installationen.
+
+Länka ett nytt projekt
+
+När ett nytt projekt ska använda GSAP och Lenis ska projektet länkas till de befintliga installationerna.
+
+Från projektets rotmapp:
+
+npm link gsap
+npm link lenis
+
+
+Kontrollera sedan:
+
+npm list gsap lenis
+
+
+Installera inte gsap eller lenis med npm install i projektet om syftet är att använda den globala infrastrukturen.
+
+Använd:
+
+npm link gsap
+npm link lenis
+
+GSAP-användning
+
+Projektets centrala GSAP-fil är:
+
+gsap.js
+
+
+Den ansvarar för import och registrering av GSAP och dess plugins.
+
+Standardimporten är:
+
+import {
+  gsap,
+  ScrollTrigger,
+  ScrollToPlugin,
+  ScrollSmoother,
+  SplitText,
+  ScrambleTextPlugin,
+  TextPlugin,
+  DrawSVGPlugin,
+  MorphSVGPlugin,
+  MotionPathPlugin,
+  MotionPathHelper,
+  Flip,
+  Draggable,
+  InertiaPlugin,
+  Observer
+} from "gsap/all";
+
+
+Plugins som används ska registreras via:
+
+gsap.registerPlugin(
+  ScrollTrigger,
+  ScrollToPlugin,
+  ScrollSmoother,
+  SplitText,
+  ScrambleTextPlugin,
+  TextPlugin,
+  DrawSVGPlugin,
+  MorphSVGPlugin,
+  MotionPathPlugin,
+  MotionPathHelper,
+  Flip,
+  Draggable,
+  InertiaPlugin,
+  Observer
+);
+
+
+Övriga filer importerar GSAP från projektets gsap.js:
+
+import { gsap, ScrollTrigger } from "./gsap.js";
+
+
+Använd inte egna separata GSAP-installationer eller separata plugininstallationer.
+
+Tillgängliga GSAP-plugins
+
+Följande plugins är tillgängliga genom den globala GSAP-installationen:
+
+ScrollTrigger
+ScrollToPlugin
+ScrollSmoother
+SplitText
+ScrambleTextPlugin
+TextPlugin
+DrawSVGPlugin
+MorphSVGPlugin
+MotionPathPlugin
+MotionPathHelper
+Flip
+Draggable
+InertiaPlugin
+Observer
+
+
+Modulnamnen ovan är de namn som ska användas i JavaScript-importer.
+
+Lenis
+
+Lenis importeras från:
+
+import Lenis from "lenis";
+
+
+Lenis ska normalt initieras i:
+
+smooth-scroll.js
+
+
+Standardintegrationen med GSAP + ScrollTrigger är:
+
+import Lenis from "lenis";
+import { gsap, ScrollTrigger } from "./gsap.js";
+
+const lenis = new Lenis();
+
+lenis.on("scroll", ScrollTrigger.update);
+
+gsap.ticker.add((time) => {
+  lenis.raf(time * 1000);
+});
+
+gsap.ticker.lagSmoothing(0);
+
+export default lenis;
+
+GSAP + Lenis – scrollflöde
+
+Lenis och GSAP är integrerade enligt följande:
+
+User scroll
+     ↓
+   Lenis
+     ↓
+Lenis scroll event
+     ↓
+ScrollTrigger.update()
+     ↓
+  ScrollTrigger
+     ↓
+     GSAP
+     ↓
+Animations
+
+
+GSAP:s ticker driver Lenis:
+
+gsap.ticker.add((time) => {
+  lenis.raf(time * 1000);
+});
+
+
+Detta ska vara den normala integrationen när projekt använder både Lenis och ScrollTrigger.
+
+Användning i animationer
+
+Efter att projektets gsap.js och smooth-scroll.js har laddats kan komponenter använda GSAP normalt.
+
+Exempel:
+
+import "./smooth-scroll.js";
+import { gsap, ScrollTrigger } from "./gsap.js";
+
+gsap.to(".box", {
+  x: 500,
+  scrollTrigger: {
+    trigger: ".box",
+    start: "top 80%",
+    end: "top 20%",
+    scrub: true
+  }
+});
+
+
+Enskilda komponenter ska inte skapa en ny Lenis-instans om projektet redan har en central smooth-scroll.js.
+
+Agentregler
+Gör
+
+Använd den befintliga globala GSAP-installationen.
+
+Använd den befintliga globala Lenis-installationen.
+
+Länka nya projekt med npm link gsap och npm link lenis.
+
+Importera GSAP från projektets gsap.js.
+
+Använd den centrala Lenis-instansen.
+
+Använd ScrollTrigger.update som brygga mellan Lenis och ScrollTrigger.
+
+Använd GSAP-tickern för att driva Lenis.
+
+Gör inte
+
+Installera GSAP igen.
+
+Installera Lenis igen.
+
+Installera GSAP-plugins separat.
+
+Skapa en ny lokal kopia av GSAP utan uttryckligt krav.
+
+Skapa en separat Lenis-instans per komponent.
+
+Skriva JavaScript-importer direkt i PowerShell.
+
+Registrera samma GSAP-plugin upprepade gånger i olika komponenter.
+
+Snabbreferens
+Nytt projekt
+cd "SÖKVÄG_TILL_PROJEKT"
+npm link gsap
+npm link lenis
+npm list gsap lenis
+
+GSAP
+import { gsap, ScrollTrigger } from "./gsap.js";
+
+Lenis
+import Lenis from "lenis";
+
+GSAP + Lenis
+const lenis = new Lenis();
+
+lenis.on("scroll", ScrollTrigger.update);
+
+gsap.ticker.add((time) => {
+  lenis.raf(time * 1000);
+});
+
+gsap.ticker.lagSmoothing(0);
+
+Kontrollera länkar
+npm list gsap lenis
+
+
+Den globala infrastrukturen är redan etablerad. Agenter ska utgå från denna struktur och endast länka nya projekt till den.

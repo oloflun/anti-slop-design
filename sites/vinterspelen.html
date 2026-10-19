@@ -163,13 +163,7 @@ tailwind.config = {
   .scen-rad{font-family:var(--font-titel);letter-spacing:.42em;opacity:.16;
     text-transform:uppercase;will-change:letter-spacing,opacity}
 
-  @media (prefers-reduced-motion: reduce){
-    .avsloja{opacity:1!important;transform:none!important;transition:none!important}
-    *,*::before,*::after{animation-duration:1ms!important;animation-iteration-count:1!important;
-      transition-duration:120ms!important;scroll-behavior:auto!important}
-    .scen-rulle{height:auto}
-    .scen-klibb{position:static;height:auto;min-height:78vh}
-  }
+  /* F-011: reduced-motion-blocket utgår, rörelsen spelas alltid (superseded 2026-09-07) */
 
   @media (max-width:767px){
     body{font-size:17px}
@@ -941,7 +935,7 @@ tailwind.config = {
   var d = document, de = d.documentElement;
   var params = new URLSearchParams(location.search);
   var preview = params.get("preview");
-  var reduce = matchMedia("(prefers-reduced-motion: reduce)").matches;
+  var reduce = false; /* F-011: rörelsen spelas alltid (superseded 2026-09-07) */
 
   /* ---- AVSLOJANDE: felar mot synligt ---------------------------------- */
   var doldaElement = [].slice.call(d.querySelectorAll(".avsloja"));

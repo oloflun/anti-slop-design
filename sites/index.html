@@ -347,7 +347,7 @@
     transition: background .3s, transform .3s;
   }
   .reads a:hover { background: oklch(0.74 0.16 64 / .08); transform: translateX(0.6rem); }
-  @media (prefers-reduced-motion: reduce) { .reads a:hover { transform: none; } }
+  /* F-011: reduced-motion-blocket utgår, rörelsen spelas alltid (superseded 2026-09-07) */
   .reads .read-tag { font-family: 'JetBrains Mono', monospace; font-size: 10px; letter-spacing: 0.24em; text-transform: uppercase; color: var(--ochre-ink); }
   .reads .read-title { font-family: Fraunces, serif; font-style: italic; font-size: 1.45rem; margin-top: 0.3rem; line-height: 1.2; }
   .reads .read-desc { color: var(--mineral); font-size: 0.95rem; margin-top: 0.4rem; line-height: 1.5; }
@@ -463,9 +463,7 @@
     .demo-text.in { transform: none; }
   }
 
-  @media (prefers-reduced-motion: reduce) {
-    .reveal, .demo-text { opacity: 1; transform: none; transition: none; filter: none; }
-  }
+  /* F-011: reduced-motion-blocket utgår, rörelsen spelas alltid (superseded 2026-09-07) */
 </style>
 </head>
 <body>

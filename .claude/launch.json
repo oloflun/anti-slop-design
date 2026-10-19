@@ -5,8 +5,8 @@
       "name": "anti-slop-design",
       "runtimeExecutable": "python",
       "runtimeArgs": [
-        "-m",
-        "http.server",
+        "C:/Users/Anton L/.agents/skills/design/scripts/serve.py",
+        "--port",
         "3090"
       ],
       "port": 3090
@@ -94,6 +94,34 @@
         "."
       ],
       "port": 4625
+    },
+    {
+      "name": "memo-board",
+      "runtimeExecutable": "python",
+      "runtimeArgs": [
+        "C:/Users/Anton L/.agents/skills/design/scripts/board.py",
+        "tests/memoservices-koncept/board",
+        "--port",
+        "4630",
+        "--fallback-root",
+        ".",
+        "--single"
+      ],
+      "port": 4630
+    },
+    {
+      "name": "alunix-board-r8",
+      "runtimeExecutable": "python",
+      "runtimeArgs": [
+        "C:/Users/Anton L/.agents/skills/design/scripts/board.py",
+        "tests/alunix-r8/board",
+        "--port",
+        "4626",
+        "--fallback-root",
+        ".",
+        "--single"
+      ],
+      "port": 4626
     }
   ]
 }

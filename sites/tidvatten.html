@@ -90,12 +90,7 @@ tailwind.config = {
     mix-blend-mode: multiply; opacity: 0.45;
   }
 
-  @media (prefers-reduced-motion: reduce) {
-    html.js .reveal { opacity: 1; transform: none; transition: none; }
-    .pl-bg, .grad-el { transform: none !important; filter: none !important; opacity: 1 !important; }
-    .fig-img { transition: none; }
-    html { scroll-behavior: auto; }
-  }
+  /* F-011: reduced-motion-blocket utgår, rörelsen spelas alltid (superseded 2026-09-07) */
 </style>
 <noscript><style>.reveal { opacity: 1 !important; transform: none !important; }</style></noscript>
 </head>
@@ -432,7 +427,7 @@ tailwind.config = {
 
 <script>
 (function () {
-  var reduced = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+  var reduced = false; /* F-011: rörelsen spelas alltid (superseded 2026-09-07) */
 
   /* Nav: mörkna efter heron */
   var navWrap = document.getElementById('nav');
