@@ -536,3 +536,193 @@ Ta aldrig bort en post; en regel som visar sig fel får en ny post som upphäver
   3. Beställt och eget initiativ levereras i separata varianter (två flikar).
 - **Status:** `SKILL.md` Step 6 och `references/copy-gate.md` (Scope). Alunix: flik 7 =
   beställt, flik 9 = kreativt.
+
+## 2026-10-18 · Snajp koncept-boarden (`snipe-leads/koncept/`, port 4620), fem landningskoncept
+
+### F-029 · Dygnet är riktningen; rörelsen ska upp till byrånivå och referenserna ska blandas
+- **Visades:** boarden med fem koncept för Snajps landningssida: 01 Dygnet (warm photographic,
+  dagsljuslager i multiply över ett papper, Newsreader + Rethink Sans, bärnsten), 02 Inkorgen
+  (modern clean, delaren), 03 Meningen (typografisk affisch), 04 Katalogen (showroom-hylla),
+  05 Kapitlen (kall rapport, ritad horisont). Varje koncept byggt på EN primär katalogreferens.
+- **Antons ord:** "Nummer 1 kommer närmast estetiskt, skippa de övriga och bygg 5 nya koncept
+  utifrån Nr 1, behåll den i befintligt format. Ta inspiration från nya källor och blanda dem,
+  använd inte en för varje och ha fortfarande, ljus, skandinavisk Saas som målbild och öka
+  ambitionsnivån ytterligare för animationerna och övergångarna, det ska vara Saas blandat med
+  prisvinnande webbagenturer på världsnivå, fortsätt tills det är uppnått och slutversionerna
+  alla överträffar sina referenser"
+- **Dom:** bra för 01 (estetiken), dåligt för 02–05 (riktningen), och för alla fem: rörelsen
+  räcker inte, och en referens per koncept är för tunt (samma sak som F-024).
+- **Regel:** (1) För Snajp är Dygnets estetik riktningen: ljust papper i dagsljus, en lätt serif
+  med kursivt accentord, varma fotografier av nordiskt ljus, produktytor i hårlinjeramar,
+  liggare. Nya koncept är varianter av den, inte nya register. (2) Varje koncept blandar minst
+  tre nya källor (en dominant och två lån, F-024), och inget koncept tar samma dominanta källa
+  som ett syskon. (3) Rörelsen hålls mot byråsidorna i katalogen (motion_floor 2) och inte mot
+  husets golv: varje koncept har en dörr som är en enda tagning, en signaturakt med minst två
+  koordinerade lager och minst fyra materiella övergångsorsaker. (4) Rundan är inte klar förrän
+  leaden har sett varje koncept bredvid sina referensark och kan säga var det är bättre; går det
+  inte att säga, byggs en runda till.
+- **Status:** `snipe-leads/koncept/_delat/KONTRAKT-R3.md` (plan på disk); bara här tills det
+  visat sig hålla.
+
+## 2026-10-19 · Snajps startsida (localhost:3005), showcase-rutorna och översikten
+
+### F-030 · Ytor glider in på en fjäder; bara texten avtäcks, en yta i taget
+- **Visades:** startsidan efter 2026-10-18: showcase-rutorna klipptes fram nedifrån och
+  skrubbades samtidigt i y medan sidan passerade, och den isärtagna översikten pinnades.
+- **Antons ord:** "Showcase- rutorna är fortfarande laggiga och vibrerar vid scroll, särskilt om
+  man scrollar fram och tillbaka. Det är även fortfarande en tonad scroll-reveal, jag vill att
+  själva rutorna rör sig in mjukt på skärmen och att enbart den beskrivande texten revealas
+  istället, en ruta i taget, inte båda samtidigt. Rörelsen för rutan ska inte vara statisk och
+  spikrak, den vara mjuk och glida in stoppa och studsa tillbaka lite, men väldigt subtilt, tänk
+  apple"
+- **Dom:** dåligt. Orsaken till vibrationen var mätbar: en CSS-transition (`.rise`) på samma
+  `transform` som GSAP skrubbade varje bildruta.
+- **Regel:** en yta tonas eller klipps aldrig fram. Den glider in från sin sida på Apples fjäder
+  (apple-design § 4, dämpning ~0.75, respons ~0.75 s), passerar målet några pixlar och fjädrar
+  tillbaka; först när den landat avtäcks dess beskrivande text rad för rad. En yta i taget
+  (kö). Ankomsten spelar en gång och skrubbas aldrig, och ingen CSS-transition får ligga på en
+  egenskap GSAP skriver.
+- **Status:** `SKILL.md` § The craft floor (Motion-punkten "Objects arrive on a spring");
+  Snajp: `DESIGN.md` § Ankomstfjädern, `gsap.js: spring`. Värdena ersatta av F-031.
+
+## 2026-10-19 · Snajps startsida, polering i tre varv (commits `125cc38`, `6c478d1`, `57914a6`, `79d93cb`)
+
+Varje post nedan har en skill i `~/.agents/skills/` som bär beställningen, det som föll,
+ändringen och det godkända läget med värden: `spring-arrival`, `hero-on-photo`,
+`live-text-reveal`, `photo-stands-whole`, `showcase-surfaces`, `showcase-copy-scope`,
+`count-up-in-view` och processen `motion-verification-preview`. Routingtabellen
+(`component-routing.md`) pekar på dem när liknande kod skrivs.
+
+### F-031 · Studsen ska synas: `spring(0.66, 0.95)`, inte 0.75/0.75
+- **Visades:** startsidan 2026-10-19 efter F-030: rutorna gled in på `spring(0.75, 0.75)`,
+  cirka 3 % förbi målet (omkring 5 px på rutans inglidning), 1,1 s till vila.
+- **Antons ord:** "Gör även animeringarna för rutorna jämnare och mjukare, och gör
+  studsseffekten/tillbakafjädringen tydligare."
+- **Dom:** hade kunnat bli bra om studsen syntes. "Subtilt" i F-030 betydde inte
+  teatraliskt, inte osynligt. Godkänt efter ändringen: "ändringarna kom in precis som jag
+  ville".
+- **Regel:** ankomstfjädern är `spring(0.66, 0.95)`: cirka 6 % förbi målet (omkring 11 px
+  på rutans inglidning), cirka 1,6 s till vila, mjukare och längre glidning. En studs under
+  cirka 5 px räknas som ingen studs. Riktningen i F-030 står; värdena ersätts.
+- **Status:** `SKILL.md` § The craft floor (Motion-punkten), skillen `spring-arrival`,
+  Snajp `DESIGN.md` § Ankomstfjädern.
+
+### F-032 · Ingen skugga bakom hjältetexten; ett band i fotot, mätt
+- **Visades:** startsidan 2026-10-19: en oval mörkning bakom ingressen för läsbarheten på
+  mobil.
+- **Antons ord:** "Testa göra skuggan i heron svagare, eller skippa den helt."
+- **Dom:** dåligt. Mörkningen syntes som en skugga, ett föremål bakom texten, inte en del av
+  fotot.
+- **Regel:** text på ett foto får aldrig en form bakom sig. Räcker fotot inte (ingressen
+  under 4,5:1 mot horisontens ljusaste 5 % på 375 px) läggs ett mjukt band i fotot med
+  scrimmens ton (`.hero-band`, 0 → 0,48 → 0 över bandet) och höjs tills mätningen håller:
+  0,42 gav 4,29:1, 0,48 gav 5,32:1. Ingressen är helt papper med en mjuk textskugga, aldrig
+  dämpat papper ("knappt läsbar mot herobilden", 2026-10-19 morgon).
+- **Status:** skillen `hero-on-photo`; Snajp `DESIGN.md` § Measured floors.
+
+### F-033 · Agenttext skrivs fram live, vid varje knapptryck; motiveringar på vanliga ord
+- **Visades:** startsidan 2026-10-19: showcase-rutornas utkast avtäcktes rad för rad; demons
+  omskrivningar byttes ut på en gång; panelen visade motiveringar med principer, filer och
+  "CTA"; varje knapp på startsidans exempelmejl svarade att demot bara fanns för
+  /demo-bolagen.
+- **Antons ord:** "Skapa även effekten att texten skrivs live, för alla
+  omgenereringar/knappval också, ta även bort alla tekniska referenser, endast korta
+  motiveringar."
+- **Dom:** dåligt. Demon ska kännas som att agenten skriver, och motiveringen läses av en
+  kund, inte av en utvecklare.
+- **Regel:** text som en agent skriver (utkast, svar, motivering) skrivs fram med markör,
+  cirka 8 ms per tecken klämt till 0,7–2,6 s, efter att rutan landat, vid varje knapptryck.
+  Motiveringen är en kort mening på vanliga ord: prompten ber inte om referenser och en spärr
+  i kod stryker dem ändå. Varje demoknapp ger ett eget genererat svar, aldrig en reservmening
+  om demot. Skärmläsaren får hela texten direkt (`sr-only`), framskrivningen är
+  `aria-hidden`.
+- **Status:** skillarna `live-text-reveal` och `showcase-copy-scope`; Snajp `lib/skrivs.ts`,
+  `LiveText`, `lib/textkvalitet.ts: utanReferenser`.
+
+### F-034 · Ett betonat ord i hjälterubriken, sist, i en accent som syns mot fotot
+- **Visades:** /support 2026-10-19: rubriken `*Support 24/7*`, hela i accent. I första
+  rättningen: 7:an i `text-warning` (OKLCH L 0,50), osynlig mot solnedgången på desktop fast
+  DOM sade att den renderades.
+- **Antons ord:** "Hela herotexten för support är i färg, gör så att enbart 7:an är det."
+  Och: "med betoning på sover, samma med Support, men byt det till: Era kundärenden
+  hanterade, 24/7".
+- **Dom:** dåligt (hela rubriken i färg). Accentens ljushet upptäcktes av agenten i en zoomad
+  skärmbild innan push.
+- **Regel:** ett ord eller en siffra betonas, sist i meningen, i den ljusa accenten
+  (`text-ochre`, L 0,74), aldrig den mörka (`text-warning`, L 0,50). Synligheten kontrolleras
+  med zoomad skärmbild på desktop mot fotot, inte med DOM.
+- **Status:** skillarna `hero-on-photo` och `live-text-reveal`; Snajp `copy.ts`.
+
+### F-035 · Foton står hela; en avtäckning läses som långsam laddning
+- **Visades:** startsidan 2026-10-19: bildplattorna klipptes fram från vänster eller
+  nedifrån (`clip-path`, 1,2 s), fotobanden skrubbades fram uppifrån.
+- **Antons ord:** "Gör även så att bilderna laddas hela, nu ser det ut som att de renderas,
+  som att sidan laddas långsamt."
+- **Dom:** dåligt. En svepande avtäckning över ett fotografi ser ut som en bild som avkodas
+  rad för rad.
+- **Regel:** ingen `clip-path`, mask eller skrubbad klippning på ett element som innehåller
+  ett foto. Rörelse på ett foto är drift i ramen: parallax, långsam skala. `reveal`
+  (devices #4) är för konstruerade ytor och band utan bild.
+- **Status:** skillen `photo-stands-whole`; `scroll/devices.md` § 7-noten.
+
+### F-036 · En skärmdump bredvid konstruerade ytor är ett annat material; ytorna fyller rutan på desktop
+- **Visades:** den isärtagna översikten (en skärmdump i fyra delar, beställd 2026-10-18 och
+  rättad i tre rundor för hack tills den stod stilla på p95 17 ms) och showcase-rutorna med
+  mobilens typskala på 1920 px.
+- **Antons ord:** "Ta även bort hela dashboard-sektionen, den tillför inte något i nuläget och
+  skiljer sig från de konstruerade rutorna." Och: "Gör även texten i rutorna större i desktop
+  och låt den fylla upp dem mer".
+- **Dom:** dåligt. Rörelserättningarna var rätt men ändrade inte materialet: raster, egen
+  chrome och 9 px text bredvid handbyggda rutor i sidans typografi.
+- **Regel:** produktytor på marknadssidan är konstruerade (JSX, exempeldata, produktens
+  tokens) i en familj, aldrig skärmdumpar. På desktop fyller innehållet rutan: `zoom` 1,12
+  från 1280 px och 1,25 från 1536 px, `min-height` delad med zoomen så rutan behåller sin
+  höjd; under 1280 px orört.
+- **Status:** skillen `showcase-surfaces`; Snajp `.case-zoom`, `DashboardIsar` borttagen
+  (commit `6c478d1`).
+
+### F-037 · Delad copy skalas per produktsida
+- **Visades:** /support 2026-10-19: "Varför Snajp finns"-styckena, delade med /vart-team,
+  började med "B2B-prospektering är tidskrävande …".
+- **Antons ord:** "Se även till att texten för Om oss-sektionen på supportsidan inte
+  innehåller massa leads-referenser."
+- **Dom:** dåligt.
+- **Regel:** ett delat textblock läses på varje sida det visas. Nämner det den andra
+  produkten görs en variant per produkt (`varforSupport`) och väljs på `product`. Båda
+  språken i samma commit.
+- **Status:** skillen `showcase-copy-scope`; Snajp `copy.ts`, `LandingPhoto.tsx`.
+
+### F-038 · Hjälterubriken skrivs fram långsammare än rutorna, med paus före det betonade ordet
+- **Visades:** startsidan 2026-10-19 efter F-033: rutornas text skrevs fram, hjälterubriken
+  radmaskades fortfarande.
+- **Antons ord:** "Gör även så att hero-texten skrivs ut på samma sätt som rutan, fast
+  långsammare och mer effektfullt, med betoning på sover"
+- **Dom:** beställning, godkänd efter en rättning ("Allt är jättebra nu"). Första bygget hade
+  en `prefers-reduced-motion`-spärr som i Antons miljö (`reduce`) aldrig lät rubriken skrivas;
+  F-011 gäller, spärren togs bort innan push.
+- **Regel:** rubriken skrivs 58 ms per tecken, +260 ms efter kommatecken, +650 ms före det
+  betonade ordet, som skrivs 140 ms per tecken; markör i textens färg som blinkar; start när
+  dörren öppnat och fonterna laddat, reserv efter 4 s; ingen preferensspärr; `sr-only` hel
+  text. Ersätter radmaskningen för hjälterubriken: SplitText och framskrivning delar aldrig
+  element.
+- **Status:** skillen `live-text-reveal` (`HeroText`); Snajp `DESIGN.md` § Motion.
+
+### F-039 · Tal räknas fram först när de står helt i bild, och inte för fort
+- **Visades:** resultatvyns nyckeltal 2026-10-19, första bygget: `IntersectionObserver` med
+  threshold 0,6, 250 ms + 160 ms per tal, 1,6 s, kubisk utbromsning.
+- **Antons ord:** "Kan du göra så att dessa siffror 'genereras' i realtid när man kommer
+  dit?" och sedan: "De är helt fulladdade vid scroll och genereras endast snabbt vid
+  sidladdning om man redan befinner sig där, vilket man inte gör, det måste ske naturligt vid
+  scroll och när de är helt i bild, det får inte gå för snabbt"
+- **Dom:** dåligt. Räknaren startade när talet stack upp vid nederkanten, medan raden tonades
+  in, och var klar innan den syntes. Agentens verifiering hoppade direkt till raden mitt på
+  skärmen och kunde inte falla. Godkänt efter ändringen: "Allt är jättebra nu".
+- **Regel:** en räknare startar när hela talet står ovanför skärmens nedersta femtedel
+  (`threshold: 1`, `rootMargin` −20 % i botten), 450 ms efteråt (intoningen klar), ett tal i
+  taget med 280 ms mellan, 2,6 s per tal, kvadratisk utbromsning. Bredden reserveras med det
+  färdiga värdet; enhet och decimaler följer med; `sr-only`. Ersätter devices.md § 7 ("fires
+  at half visibility", "1,2–1,8 s") på sidor där raden själv tonas in. Verifiering: kom
+  nedifrån, läs 0 vid nederkanten, skrolla upp, skärmbilder vid 0/1/2/3,5 s med fliken
+  fronted.
+- **Status:** skillarna `count-up-in-view` och `motion-verification-preview`;
+  `scroll/devices.md` § 7; Snajp `RaknaUpp` i `AgentResultat.tsx`.

@@ -133,6 +133,21 @@ sekvens efter 'Det första intrycket …' som går över till 'Vi hjälper er sy
 → Infört: Alunix R9 (tessekvensen, A sjunker ur raderna medan B reser sig i samma maskar);
 house-physics har maskregeln som förhindrar fragment.
 
+**2026-10-19 · Ytor kommer in på en fjäder, agenttext skrivs fram, tal räknas i bild, foton
+står hela** (F-030–F-039, Snajps startsida i tre varv). *"de ska inte tonas, de ska röra på
+sig mjukt … glida in stoppa och studsa tillbaka lite, men väldigt subtilt, tänk apple"* →
+`spring(0.66, 0.95)`, en ruta i taget, texten efter landningen; 0,75/0,75 var för subtilt
+("gör studsseffekten tydligare"). *"effekten att texten skrivs live, för alla
+omgenereringar/knappval också"* och *"hero-texten skrivs ut på samma sätt som rutan, fast
+långsammare och mer effektfullt, med betoning på sover"* → agenttext och rubrik skrivs med
+markör, rubriken med paus före det betonade ordet. *"det måste ske naturligt vid scroll och
+när de är helt i bild, det får inte gå för snabbt"* → räknare startar först helt i bild,
+2,6 s. *"bilderna laddas hela, nu ser det ut som att de renderas"* → ingen avtäckning på
+foton. *"skiljer sig från de konstruerade rutorna"* → produktytor är konstruerade, aldrig
+skärmdumpar. Skills som bär beställning, fall och godkänt läge: `spring-arrival`,
+`live-text-reveal`, `count-up-in-view`, `hero-on-photo`, `photo-stands-whole`,
+`showcase-surfaces`, `showcase-copy-scope`, `motion-verification-preview`.
+
 ## 6. Arbetssätt — hur vi tar oss dit
 
 **2026-10-03 · Planera, låt Anton godkänna, bygg sedan.** *"Skapa en plan för allt detta som

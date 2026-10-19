@@ -129,6 +129,47 @@ state which cell and why the category default lost, and write the world's **styl
   letter-spacing), with **at least two coordinated layers** (Hōrai scrubs the
   quote AND word-lights the lede; one lerped element alone is an effect, not a
   set-piece), and a `?preview=` hook so its formed state can be screenshotted.
+- **Objects arrive on a spring, text reveals after** (Anton, 2026-10-19 —
+  FEEDBACK.md F-030, values F-031). A product surface or showcase card never
+  fades or clip-wipes in: it glides in from its side, overshoots visibly and
+  settles back on Apple's spring (`spring(0.66, 0.95)` from the project's
+  `gsap.js`: ~6 % past the target, ~11 px on a card's glide, ~1.6 s to rest;
+  0.75/0.75 was judged too subtle to see), and only its descriptive text is
+  revealed once it has landed. One object at a time — queue the next behind
+  the previous landing. Play once, never scrub an object's transform, and
+  never leave a CSS `transition` on a property GSAP writes: either one makes
+  the object shake when the reader scrolls back and forth. Overshoot only
+  where the entry carries momentum; menus and popovers stay critically
+  damped. `Skill(spring-arrival)`.
+
+- **Agent text is written live, never faded in** (Anton, 2026-10-19 — F-033,
+  F-038). A draft, a reply or a motivation a demo "generates" is typed with a
+  caret after its surface has landed, on every button press — ~8 ms/char
+  clamped to 0.7–2.6 s. A headline that should feel written in the moment is
+  typed slower, with a breath after a comma and a pause before its one
+  emphasised word, which is typed at half speed. Full text in `sr-only`, the
+  typing `aria-hidden`, no reduced-motion gate (F-011). `Skill(live-text-reveal)`.
+
+- **Numbers count up only when fully in view, and not fast** (Anton,
+  2026-10-19 — F-039). A stat row starts counting when the whole number stands
+  above the bottom fifth of the viewport and its own fade has finished, 2.6 s
+  per number with a quadratic ease-out, one number at a time. A counter that
+  has already finished when the reader arrives is a miss — verify by arriving
+  from below. `Skill(count-up-in-view)`.
+
+- **Photos stand whole; product surfaces are constructed** (Anton,
+  2026-10-19 — F-035, F-036). No clip reveal on a photograph: it reads as a
+  slow image load; parallax and slow scale only. A product surface on a
+  marketing page is JSX with example data in the page's own type and tokens,
+  never a screenshot — a screenshot beside constructed cards is a different
+  material and was removed after three rounds of motion fixes that could not
+  save it. On desktop the content fills the card (`zoom` 1.12 / 1.25, min-height
+  divided by the zoom). `Skill(photo-stands-whole)`, `Skill(showcase-surfaces)`.
+
+- **Display type on a photo** (Anton, 2026-10-19 — F-032, F-034): no shadow
+  shape behind the text; a soft band in the photo measured ≥ 4.5:1 against the
+  brightest 5 % of the horizon; one emphasised word, last, in the light accent
+  (the dark one vanished against the sunset). `Skill(hero-on-photo)`.
 - **Motion always plays** (Anton, 2026-09-07 — FEEDBACK.md F-011). This
   overrides the earlier reduced-motion-fallback rule below and is a permanent,
   project-wide design-system decision, not a per-build call: never read
@@ -601,6 +642,7 @@ Done when all of these are true:
 - Every numbered gate in [`gates.md`](references/gates.md) passes, including 66–88 in [`production-tells.md`](references/production-tells.md) on a marketing surface.
 - Zero em-dashes anywhere visible — headlines, eyebrows, pills, body, quotes, attribution, captions, buttons, alt text (gate 75).
 - All 8 states exist on every interactive element; every animation plays unconditionally — no `prefers-reduced-motion` gate, no static-fallback branch (F-011).
+- Every scroll- or load-triggered motion was verified by **arriving from below** with the preview tab fronted, at 375 and 1600+ px, with the preview's reduced-motion state read (it is `reduce` on Anton's machine and the motion must play anyway); an in-view counter or arrival that had already finished when the reader got there is a miss (F-039). `Skill(motion-verification-preview)`.
 - Verified at 320 / 375 / 414 / 768; no horizontal scroll.
 - `detect.mjs` clean, or every remaining finding consciously waived and named.
 - Copy gate clean in every language on the page.

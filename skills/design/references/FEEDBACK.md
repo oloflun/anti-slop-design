@@ -1,6 +1,7 @@
 # FEEDBACK.md — Antons domar, en regel per post
 
-Läses **alltid** i `design/SKILL.md` Step 1b, tillsammans med `TASTE.md`, innan Step 2.
+Läses **alltid** i `design/SKILL.md` Step 1b, tillsammans med `TASTE.md` och `ANTON-VISION-OCH-FEEDBACK.md`
+(repo-roten: den breda riktningen, inte domarna), innan Step 2.
 Referensgolvet i `hooks/design-gate.py` spärrar första UI-skrivningen i ett nybygge tills
 den här filen är läst. TASTE.md säger hur typ, bild, yta och rörelse ska samspela;
 den här filen säger vad Anton faktiskt sagt om det kedjan byggt, och vilken regel som
@@ -381,3 +382,347 @@ Ta aldrig bort en post; en regel som visar sig fel får en ny post som upphäver
 - **Status:** portad till `anti-patterns.md` § Descriptive microtext (ny underrubrik
   § The page narrating itself), `production-tells.md` gate 99, `gates.md` gate 99,
   `skills/design/references/copy-gate.md`.
+
+## 2026-09-25 · r8-boarden (port 4626), V3g "Rutverket · mjuk showcase" runda 2
+
+### F-019 · Textrutans rubrik får inte ta över
+- **Visades:** V3g R2, showcasens textruta på desktop med stegrubriken i cirka 120 px
+  (`En mening som saktar in`, `Ett mejl räcker`) över ett stort skuggat stegtal (`03`, `05`).
+- **Antons ord:** "showcasen är bättre men rubriken är alldeles för stor och ger inte önskad
+  effekt, det tar över på ett dåligt sätt, testa en annan layout på texten men behåll
+  mekanismen."
+- **Dom:** mekanismen bra (övertoning, räknare, mintspår), typografin i rutan dålig.
+- **Regel:** i en ruta som följer en levande sajt är sajten huvudsaken och texten
+  bildtexten. Stegrubriken står i rubrikskala (h3, ungefär 28–32 px), inte i displayskala.
+  Rutans tomma yta fylls med innehåll, aldrig med förstorad text eller jättesiffror, och
+  aldrig med ornament (se F-022, som upphäver den tidigare formuleringen "fylls med struktur").
+- **Status:** V3g EFFECTS.md, runda 3-briefen.
+
+### F-020 · Scrollen går för fort, och mjukheten får inte offras för farten
+- **Visades:** V3g R2, hela sidan med Lenis-standard (ett hjulsteg = 100 px) och hero-pinnen
+  `+=120%`.
+- **Antons ord:** "när man scrollar ned en gång på hjulet så hoppar man ned från toppen av
+  sidan och kastas förbi kortet så man knappt hinner se det vändas … tvinga sakta ned
+  scrollen … var extra noga med att se till att den är mjuk och jämn hela vägen." Om
+  showcasen: "den hoppar ned för sidan väldigt hastigt mellan texterna."
+- **Dom:** dåligt, generellt.
+- **Regel:** husets tempo är `wheelMultiplier: 0.6`, `lerp: 0.075`. En pin vars innehåll
+  läsaren ska se ske spänner minst 200 vh. Den inbäddade sajten glider mellan ankare över
+  större delen av segmentet, aldrig i ett ryck. Allt verifieras jämnt med `section_probe.py`.
+- **Status:** `references/scroll/devices.md` § Load-bearing rules.
+
+### F-021 · En bra effekt försämrades av en ändring någon annanstans
+- **Visades:** V3g R2 mot V3f. Tesrubriken "Det första intrycket är digitalt." var orörd i
+  koden men märkbart mer statisk och ryckig.
+- **Antons ord:** "var också bättre förra rundan, nu är den mer statisk och ryckig. Ta reda
+  på anledningen … systemet får inte ta fel på bra effekter och göra de sämre, agenterna
+  måste ha tydliga instruktioner och riktlinjer för vad som är bra."
+- **Grundorsak (mätt):** iframes i en pinnad scen laddades om vid varje
+  `ScrollTrigger.refresh()`, eftersom pin-spacern flyttar dem i DOM:en. Varje omladdning bad
+  om en ny refresh, och loopen gick hela besöket: 6–12 omladdningar per iframe per pass.
+  Felet fanns redan i V3f. R2 förladdade den andra sajten och dubblade kostnaden, och tesens
+  p95 gick från 33 till 50–100 ms.
+- **Regel:** godkända effekter skyddas. De står i körningens `EFFECTS.md` med en uppmätt
+  signatur. Varje runda kör `section_probe.py` på HELA sidan mot baslinjen, och en sektion
+  som blivit sämre blockerar rundan även om ingen rad i den ändrats. En iframe i en pin
+  kräver en egen `pinSpacer`, och en refresh anropas aldrig från en iframes `load`.
+- **Status:** `references/motion.md` § Approved effects are protected,
+  `references/scroll/devices.md`, `scripts/section_probe.py`.
+
+### F-022 · Dekorativa streck läses som ofärdig kod
+- **Visades:** V3g R4–R5, showcasens textruta med en lodrät "stegskala" (tunn linje, fem–sex
+  streck, glidande mintmarkör) som skulle bära rutans höjd. Specen var leadens egen (R3), och
+  leaden godkände den själv på skärmbild.
+- **Antons ord:** "Hur godkändes de gröna strecken? Det ser ut som något ofärdigt som släppts
+  igenom koden. Det räcker med att flytta upp stycket istället, men hela utseendet på det ser
+  fortfarande för platt ut, lös det."
+- **Dom:** dåligt, generellt.
+- **Regel:** ett element som inte bär innehåll och inte är ett godkänt husgrepp (rastret,
+  cellnätet, mintlinjen som markering) byggs inte för att fylla yta. Tom yta är ett
+  kompositionsproblem: flytta innehållet, eller ge ytan riktigt innehåll (bild, detalj ur
+  arbetet). "Det syns i alla fall" räcker inte som godkännande. Leadens egen spec granskas med
+  samma fråga som byggarens: skulle Anton se det här som färdigt?
+- **Status:** V3g runda 6-briefen; `references/motion.md` § Approved effects (leaden är inte
+  undantagen).
+
+### F-023 · Copyn ska beskriva vägvalen och låta som en byrå, inte som AI
+- **Visades:** V3g R7, showcasens stegtexter: en mening om vad som valdes och en om varför,
+  i en ruta per steg.
+- **Antons ord:** "Testa att ta bort rutorna och låta texten ta lite mer plats, gör den mer
+  visuellt intressant och låt den bli lite längre i 2 stycken, försök även att göra copyn
+  mindre 'AI'-ig och mer beskrivande kring själva processen och vägvalen, ta inspiration från
+  webbyråerna jag nämnde som referenser från början av Alunix bygget."
+- **Dom:** för kort och för tillrättalagd. Varje steg hade samma form.
+- **Regel:** case- och processtext skrivs i två stycken: situationen och valet med orsaken
+  först (Highway), sedan det som valdes bort eller vad valet kostar, plus en detalj som syns i
+  ramen (Hoy). Bortval skrivs som alternativ som fanns, aldrig som händelser i ett projekt som
+  inte funnits. Inga värdeord (Insigns "speglar", "stilren"). Alla tre pass körs som skills:
+  copywriting, copy-editing, humanizer-svenska. Faktan kontrolleras mot sajtens källkod.
+- **Status:** `tests/alunix-r8/runs/V3g/COPY-R8.md`, byggd i V3g R8/R8b.
+
+### F-024 · En enda referens räcker inte som riktning
+- **Visades:** V3f R2, hela sidan byggd på Aspen Search ensam efter ett `compare` som gav
+  `sameRegister:false`.
+- **Antons ord:** "Det ser bra ut, designen är mycket mer unik men den baseras enbart på en
+  referens istället för att ta inspiration från flera enligt de instruktioner som ska finnas
+  för MCP:n, finns det någon anledning för detta?" Senare: "nästan perfekt på en gång och
+  redan bättre och mer unikt än v3d."
+- **Dom:** resultatet bra, processen bröt instruktionen.
+- **Regel:** `compare` är ett trianguleringsverktyg. `sameRegister:false` är ett skäl att välja
+  vilket drag som tas ur varje referens, inte att välja bort alla utom en. Låset anger en
+  dominerande referens och minst två lån (komposition, typ, rörelse) med vad som lånas.
+- **Status:** `tests/alunix-r8/HANDOFF-V3f.md` § 2 och § 6 steg 1; ska in i `inspo-mcp.md`.
+
+### F-025 · Rörelse får inte stjäla läsningen, och bilder får inte förstoras för att nå ett mått
+- **Visades:** V3f R2–R4: tesrubriken drev förbi kanten, `Exempelcase` klipptes, tumnaglar
+  uppskalade till 140 vh.
+- **Antons ord:** "De stora rubrikerna klipps, 'första intrycket' hinner man knappt se.
+  Bilderna på de båda referenssidorna är fortfarande helt statiska och suddigt inzoomade."
+- **Dom:** dåligt, generellt.
+- **Regel:** varje rubrik står helt synlig, oklippt och stilla i minst 40 vh; rörelse sker före
+  och efter. Ett ytmått (t.ex. 30 % bildyta) får aldrig uppfyllas genom att förstora samma
+  lågupplösta bild. Referensbilder tas nya, skarpa och utzoomade (2× skala).
+- **Status:** `tests/alunix-r8/runs/V3f/RUNDA5-SPEC.md` § A–B; `references/motion.md` läsregel.
+
+### F-026 · En sektion måste ha en tanke, inte bara innehåll
+- **Visades:** V3f R5, kontakten: stor rubrik, ett kort och död yta.
+- **Antons ord:** "kontaktsektionen måste göras roligare, det finns ingen tydlig tanke där."
+- **Dom:** dåligt. Löstes med greppet "kortet lämnas över": heron speglad, kortet vänds av
+  besökaren och vänder sig självt vid 70 % scroll.
+- **Regel:** varje sektion bär ett grepp som går att säga i en mening. Saknas det är det
+  kompositionsproblemet, inte en dekorationsbrist (se F-022).
+- **Status:** `tests/alunix-r8/runs/V3f/RUNDA5-SPEC.md` § C. Verifierat i pixlar.
+
+### F-027 · Alunix V3g R9: en egenskap har en ägare, och exempelsidor bär inga riktiga namn
+- **Visades:** V3g R8 → R9, Antons nio skärmdumpar 2026-10-03. Problemen: hero-rubriken
+  fragmenterad efter scroll ned och upp, tesens stapel bredvid Hyperborea-ramen, showcase-text
+  som beskrev det ögat redan ser, rubriker som satt ihop med ingressen, och verkliga person- och
+  platsnamn på exempelsidorna.
+- **Antons ord:** "ta bort priserna och lägg istället till en beskrivning av de olika paketen";
+  "Kör sedan en design-audit på hela sidan utifrån det nya golvet".
+- **Dom:** planen (`PLAN-ALUNIX-R9.md`) godkändes och byggdes. Kritikern hittade samma tvåägarfel
+  i heron som R9 § 1 hade rättat för raderna (`.hero-nh` clipPath ägdes av både laddnings- och
+  scrolltidslinjen). Kritikern fann också `.32`-avståndet för snålt mot x-höjdsregeln, och att
+  Calyx-steg 2 påstod "ett enda typsnitt" om en sida satt i Cardo + PT Mono.
+- **Regel:** (1) Varje animerad egenskap på ett element har exakt en tidslinje som ägare. En
+  scrubbad `.to()`/`.fromTo()` på något som laddningen redan flyttat ger fel läge efter
+  tur-och-retur, så scrollrörelsen flyttas till ett annat element (masken, ett inre lager) eller
+  tas bort. Kontrollen är scroll ned och upp igen, sedan mätt läge vid scrollY 0. (2) Ingress
+  under display-rubrik: `calc(rubrikstorlek * .5)`, så att baslinje till ingress är minst en
+  x-höjd. (3) Exempel- och demosidor bär inga verkliga person- eller platsnamn (staden får stå);
+  `microtext_scan.py --names` ska ge 0 träffar. (4) Påståenden i case-text kontrolleras mot
+  sajtens källkod, även typsnittspåståenden (F-023).
+- **Status:** `tests/alunix-r8/runs/V3g/index.html` R9, mätt headless 1440/768/390;
+  `house-physics.md` (ägarregeln, x-höjdsavståndet, optisk mitt); `SKILL.md` (namnregeln).
+
+### F-028 · Ändra inget som inte är beställt; copy-gaten skriver inte om godkänd copy
+- **Visades:** Alunix V3g R10 (2026-10-03). Byggaren förlängde två godkända rader:
+  - "Så berättar vi vad vi kan göra för er." blev "… och föreslår en tid för ett första samtal."
+  - "Boka ett möte" blev "Mejla oss för att boka ett möte".
+
+  Den byggde också fler ändringar än Anton beställt: tumnaglar för casebytet, en frimärksbild i
+  processrubriken, kantiga mintövergångar och en större hero-rubrik som klipptes under
+  topplinjen.
+- **Antons ord:** "blir för långt, det var bättre innan. … Ändra inget om jag inte bett om det,
+  copy-gaten ska inte omarbeta redan godkänd copy, endast skapa ny där det inte finns eller
+  förbättra om det beställs av användaren". Och: "R10 gjorde mer ändringar än jag beställde - Dela
+  upp dem i 2 olika flikar - en med enbart vad jag beställde och en med dina kreativa ändringar".
+- **Dom:** dåligt.
+- **Regel:**
+  1. Copy-gaten körs bara på ny text, eller på text användaren bett om att förbättra. Godkänd copy
+     ändras aldrig av gaten, en byggare eller en granskare.
+  2. En plan som föreslår ändringar i godkänd copy eller layout bygger förslagen först efter ett
+     uttryckligt ja per punkt.
+  3. Beställt och eget initiativ levereras i separata varianter (två flikar).
+- **Status:** `SKILL.md` Step 6 och `references/copy-gate.md` (Scope). Alunix: flik 7 =
+  beställt, flik 9 = kreativt.
+
+## 2026-10-18 · Snajp koncept-boarden (`snipe-leads/koncept/`, port 4620), fem landningskoncept
+
+### F-029 · Dygnet är riktningen; rörelsen ska upp till byrånivå och referenserna ska blandas
+- **Visades:** boarden med fem koncept för Snajps landningssida: 01 Dygnet (warm photographic,
+  dagsljuslager i multiply över ett papper, Newsreader + Rethink Sans, bärnsten), 02 Inkorgen
+  (modern clean, delaren), 03 Meningen (typografisk affisch), 04 Katalogen (showroom-hylla),
+  05 Kapitlen (kall rapport, ritad horisont). Varje koncept byggt på EN primär katalogreferens.
+- **Antons ord:** "Nummer 1 kommer närmast estetiskt, skippa de övriga och bygg 5 nya koncept
+  utifrån Nr 1, behåll den i befintligt format. Ta inspiration från nya källor och blanda dem,
+  använd inte en för varje och ha fortfarande, ljus, skandinavisk Saas som målbild och öka
+  ambitionsnivån ytterligare för animationerna och övergångarna, det ska vara Saas blandat med
+  prisvinnande webbagenturer på världsnivå, fortsätt tills det är uppnått och slutversionerna
+  alla överträffar sina referenser"
+- **Dom:** bra för 01 (estetiken), dåligt för 02–05 (riktningen), och för alla fem: rörelsen
+  räcker inte, och en referens per koncept är för tunt (samma sak som F-024).
+- **Regel:** (1) För Snajp är Dygnets estetik riktningen: ljust papper i dagsljus, en lätt serif
+  med kursivt accentord, varma fotografier av nordiskt ljus, produktytor i hårlinjeramar,
+  liggare. Nya koncept är varianter av den, inte nya register. (2) Varje koncept blandar minst
+  tre nya källor (en dominant och två lån, F-024), och inget koncept tar samma dominanta källa
+  som ett syskon. (3) Rörelsen hålls mot byråsidorna i katalogen (motion_floor 2) och inte mot
+  husets golv: varje koncept har en dörr som är en enda tagning, en signaturakt med minst två
+  koordinerade lager och minst fyra materiella övergångsorsaker. (4) Rundan är inte klar förrän
+  leaden har sett varje koncept bredvid sina referensark och kan säga var det är bättre; går det
+  inte att säga, byggs en runda till.
+- **Status:** `snipe-leads/koncept/_delat/KONTRAKT-R3.md` (plan på disk); bara här tills det
+  visat sig hålla.
+
+## 2026-10-19 · Snajps startsida (localhost:3005), showcase-rutorna och översikten
+
+### F-030 · Ytor glider in på en fjäder; bara texten avtäcks, en yta i taget
+- **Visades:** startsidan efter 2026-10-18: showcase-rutorna klipptes fram nedifrån och
+  skrubbades samtidigt i y medan sidan passerade, och den isärtagna översikten pinnades.
+- **Antons ord:** "Showcase- rutorna är fortfarande laggiga och vibrerar vid scroll, särskilt om
+  man scrollar fram och tillbaka. Det är även fortfarande en tonad scroll-reveal, jag vill att
+  själva rutorna rör sig in mjukt på skärmen och att enbart den beskrivande texten revealas
+  istället, en ruta i taget, inte båda samtidigt. Rörelsen för rutan ska inte vara statisk och
+  spikrak, den vara mjuk och glida in stoppa och studsa tillbaka lite, men väldigt subtilt, tänk
+  apple"
+- **Dom:** dåligt. Orsaken till vibrationen var mätbar: en CSS-transition (`.rise`) på samma
+  `transform` som GSAP skrubbade varje bildruta.
+- **Regel:** en yta tonas eller klipps aldrig fram. Den glider in från sin sida på Apples fjäder
+  (apple-design § 4, dämpning ~0.75, respons ~0.75 s), passerar målet några pixlar och fjädrar
+  tillbaka; först när den landat avtäcks dess beskrivande text rad för rad. En yta i taget
+  (kö). Ankomsten spelar en gång och skrubbas aldrig, och ingen CSS-transition får ligga på en
+  egenskap GSAP skriver.
+- **Status:** `SKILL.md` § The craft floor (Motion-punkten "Objects arrive on a spring");
+  Snajp: `DESIGN.md` § Ankomstfjädern, `gsap.js: spring`. Värdena ersatta av F-031.
+
+## 2026-10-19 · Snajps startsida, polering i tre varv (commits `125cc38`, `6c478d1`, `57914a6`, `79d93cb`)
+
+Varje post nedan har en skill i `~/.agents/skills/` som bär beställningen, det som föll,
+ändringen och det godkända läget med värden: `spring-arrival`, `hero-on-photo`,
+`live-text-reveal`, `photo-stands-whole`, `showcase-surfaces`, `showcase-copy-scope`,
+`count-up-in-view` och processen `motion-verification-preview`. Routingtabellen
+(`component-routing.md`) pekar på dem när liknande kod skrivs.
+
+### F-031 · Studsen ska synas: `spring(0.66, 0.95)`, inte 0.75/0.75
+- **Visades:** startsidan 2026-10-19 efter F-030: rutorna gled in på `spring(0.75, 0.75)`,
+  cirka 3 % förbi målet (omkring 5 px på rutans inglidning), 1,1 s till vila.
+- **Antons ord:** "Gör även animeringarna för rutorna jämnare och mjukare, och gör
+  studsseffekten/tillbakafjädringen tydligare."
+- **Dom:** hade kunnat bli bra om studsen syntes. "Subtilt" i F-030 betydde inte
+  teatraliskt, inte osynligt. Godkänt efter ändringen: "ändringarna kom in precis som jag
+  ville".
+- **Regel:** ankomstfjädern är `spring(0.66, 0.95)`: cirka 6 % förbi målet (omkring 11 px
+  på rutans inglidning), cirka 1,6 s till vila, mjukare och längre glidning. En studs under
+  cirka 5 px räknas som ingen studs. Riktningen i F-030 står; värdena ersätts.
+- **Status:** `SKILL.md` § The craft floor (Motion-punkten), skillen `spring-arrival`,
+  Snajp `DESIGN.md` § Ankomstfjädern.
+
+### F-032 · Ingen skugga bakom hjältetexten; ett band i fotot, mätt
+- **Visades:** startsidan 2026-10-19: en oval mörkning bakom ingressen för läsbarheten på
+  mobil.
+- **Antons ord:** "Testa göra skuggan i heron svagare, eller skippa den helt."
+- **Dom:** dåligt. Mörkningen syntes som en skugga, ett föremål bakom texten, inte en del av
+  fotot.
+- **Regel:** text på ett foto får aldrig en form bakom sig. Räcker fotot inte (ingressen
+  under 4,5:1 mot horisontens ljusaste 5 % på 375 px) läggs ett mjukt band i fotot med
+  scrimmens ton (`.hero-band`, 0 → 0,48 → 0 över bandet) och höjs tills mätningen håller:
+  0,42 gav 4,29:1, 0,48 gav 5,32:1. Ingressen är helt papper med en mjuk textskugga, aldrig
+  dämpat papper ("knappt läsbar mot herobilden", 2026-10-19 morgon).
+- **Status:** skillen `hero-on-photo`; Snajp `DESIGN.md` § Measured floors.
+
+### F-033 · Agenttext skrivs fram live, vid varje knapptryck; motiveringar på vanliga ord
+- **Visades:** startsidan 2026-10-19: showcase-rutornas utkast avtäcktes rad för rad; demons
+  omskrivningar byttes ut på en gång; panelen visade motiveringar med principer, filer och
+  "CTA"; varje knapp på startsidans exempelmejl svarade att demot bara fanns för
+  /demo-bolagen.
+- **Antons ord:** "Skapa även effekten att texten skrivs live, för alla
+  omgenereringar/knappval också, ta även bort alla tekniska referenser, endast korta
+  motiveringar."
+- **Dom:** dåligt. Demon ska kännas som att agenten skriver, och motiveringen läses av en
+  kund, inte av en utvecklare.
+- **Regel:** text som en agent skriver (utkast, svar, motivering) skrivs fram med markör,
+  cirka 8 ms per tecken klämt till 0,7–2,6 s, efter att rutan landat, vid varje knapptryck.
+  Motiveringen är en kort mening på vanliga ord: prompten ber inte om referenser och en spärr
+  i kod stryker dem ändå. Varje demoknapp ger ett eget genererat svar, aldrig en reservmening
+  om demot. Skärmläsaren får hela texten direkt (`sr-only`), framskrivningen är
+  `aria-hidden`.
+- **Status:** skillarna `live-text-reveal` och `showcase-copy-scope`; Snajp `lib/skrivs.ts`,
+  `LiveText`, `lib/textkvalitet.ts: utanReferenser`.
+
+### F-034 · Ett betonat ord i hjälterubriken, sist, i en accent som syns mot fotot
+- **Visades:** /support 2026-10-19: rubriken `*Support 24/7*`, hela i accent. I första
+  rättningen: 7:an i `text-warning` (OKLCH L 0,50), osynlig mot solnedgången på desktop fast
+  DOM sade att den renderades.
+- **Antons ord:** "Hela herotexten för support är i färg, gör så att enbart 7:an är det."
+  Och: "med betoning på sover, samma med Support, men byt det till: Era kundärenden
+  hanterade, 24/7".
+- **Dom:** dåligt (hela rubriken i färg). Accentens ljushet upptäcktes av agenten i en zoomad
+  skärmbild innan push.
+- **Regel:** ett ord eller en siffra betonas, sist i meningen, i den ljusa accenten
+  (`text-ochre`, L 0,74), aldrig den mörka (`text-warning`, L 0,50). Synligheten kontrolleras
+  med zoomad skärmbild på desktop mot fotot, inte med DOM.
+- **Status:** skillarna `hero-on-photo` och `live-text-reveal`; Snajp `copy.ts`.
+
+### F-035 · Foton står hela; en avtäckning läses som långsam laddning
+- **Visades:** startsidan 2026-10-19: bildplattorna klipptes fram från vänster eller
+  nedifrån (`clip-path`, 1,2 s), fotobanden skrubbades fram uppifrån.
+- **Antons ord:** "Gör även så att bilderna laddas hela, nu ser det ut som att de renderas,
+  som att sidan laddas långsamt."
+- **Dom:** dåligt. En svepande avtäckning över ett fotografi ser ut som en bild som avkodas
+  rad för rad.
+- **Regel:** ingen `clip-path`, mask eller skrubbad klippning på ett element som innehåller
+  ett foto. Rörelse på ett foto är drift i ramen: parallax, långsam skala. `reveal`
+  (devices #4) är för konstruerade ytor och band utan bild.
+- **Status:** skillen `photo-stands-whole`; `scroll/devices.md` § 7-noten.
+
+### F-036 · En skärmdump bredvid konstruerade ytor är ett annat material; ytorna fyller rutan på desktop
+- **Visades:** den isärtagna översikten (en skärmdump i fyra delar, beställd 2026-10-18 och
+  rättad i tre rundor för hack tills den stod stilla på p95 17 ms) och showcase-rutorna med
+  mobilens typskala på 1920 px.
+- **Antons ord:** "Ta även bort hela dashboard-sektionen, den tillför inte något i nuläget och
+  skiljer sig från de konstruerade rutorna." Och: "Gör även texten i rutorna större i desktop
+  och låt den fylla upp dem mer".
+- **Dom:** dåligt. Rörelserättningarna var rätt men ändrade inte materialet: raster, egen
+  chrome och 9 px text bredvid handbyggda rutor i sidans typografi.
+- **Regel:** produktytor på marknadssidan är konstruerade (JSX, exempeldata, produktens
+  tokens) i en familj, aldrig skärmdumpar. På desktop fyller innehållet rutan: `zoom` 1,12
+  från 1280 px och 1,25 från 1536 px, `min-height` delad med zoomen så rutan behåller sin
+  höjd; under 1280 px orört.
+- **Status:** skillen `showcase-surfaces`; Snajp `.case-zoom`, `DashboardIsar` borttagen
+  (commit `6c478d1`).
+
+### F-037 · Delad copy skalas per produktsida
+- **Visades:** /support 2026-10-19: "Varför Snajp finns"-styckena, delade med /vart-team,
+  började med "B2B-prospektering är tidskrävande …".
+- **Antons ord:** "Se även till att texten för Om oss-sektionen på supportsidan inte
+  innehåller massa leads-referenser."
+- **Dom:** dåligt.
+- **Regel:** ett delat textblock läses på varje sida det visas. Nämner det den andra
+  produkten görs en variant per produkt (`varforSupport`) och väljs på `product`. Båda
+  språken i samma commit.
+- **Status:** skillen `showcase-copy-scope`; Snajp `copy.ts`, `LandingPhoto.tsx`.
+
+### F-038 · Hjälterubriken skrivs fram långsammare än rutorna, med paus före det betonade ordet
+- **Visades:** startsidan 2026-10-19 efter F-033: rutornas text skrevs fram, hjälterubriken
+  radmaskades fortfarande.
+- **Antons ord:** "Gör även så att hero-texten skrivs ut på samma sätt som rutan, fast
+  långsammare och mer effektfullt, med betoning på sover"
+- **Dom:** beställning, godkänd efter en rättning ("Allt är jättebra nu"). Första bygget hade
+  en `prefers-reduced-motion`-spärr som i Antons miljö (`reduce`) aldrig lät rubriken skrivas;
+  F-011 gäller, spärren togs bort innan push.
+- **Regel:** rubriken skrivs 58 ms per tecken, +260 ms efter kommatecken, +650 ms före det
+  betonade ordet, som skrivs 140 ms per tecken; markör i textens färg som blinkar; start när
+  dörren öppnat och fonterna laddat, reserv efter 4 s; ingen preferensspärr; `sr-only` hel
+  text. Ersätter radmaskningen för hjälterubriken: SplitText och framskrivning delar aldrig
+  element.
+- **Status:** skillen `live-text-reveal` (`HeroText`); Snajp `DESIGN.md` § Motion.
+
+### F-039 · Tal räknas fram först när de står helt i bild, och inte för fort
+- **Visades:** resultatvyns nyckeltal 2026-10-19, första bygget: `IntersectionObserver` med
+  threshold 0,6, 250 ms + 160 ms per tal, 1,6 s, kubisk utbromsning.
+- **Antons ord:** "Kan du göra så att dessa siffror 'genereras' i realtid när man kommer
+  dit?" och sedan: "De är helt fulladdade vid scroll och genereras endast snabbt vid
+  sidladdning om man redan befinner sig där, vilket man inte gör, det måste ske naturligt vid
+  scroll och när de är helt i bild, det får inte gå för snabbt"
+- **Dom:** dåligt. Räknaren startade när talet stack upp vid nederkanten, medan raden tonades
+  in, och var klar innan den syntes. Agentens verifiering hoppade direkt till raden mitt på
+  skärmen och kunde inte falla. Godkänt efter ändringen: "Allt är jättebra nu".
+- **Regel:** en räknare startar när hela talet står ovanför skärmens nedersta femtedel
+  (`threshold: 1`, `rootMargin` −20 % i botten), 450 ms efteråt (intoningen klar), ett tal i
+  taget med 280 ms mellan, 2,6 s per tal, kvadratisk utbromsning. Bredden reserveras med det
+  färdiga värdet; enhet och decimaler följer med; `sr-only`. Ersätter devices.md § 7 ("fires
+  at half visibility", "1,2–1,8 s") på sidor där raden själv tonas in. Verifiering: kom
+  nedifrån, läs 0 vid nederkanten, skrolla upp, skärmbilder vid 0/1/2/3,5 s med fliken
+  fronted.
+- **Status:** skillarna `count-up-in-view` och `motion-verification-preview`;
+  `scroll/devices.md` § 7; Snajp `RaknaUpp` i `AgentResultat.tsx`.

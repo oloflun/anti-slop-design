@@ -144,6 +144,13 @@ In order: `lenis` → `gsap-core` → `gsap-scrolltrigger` → `gsap-timeline` �
 needed). Plus the UI-skills registry's `ibelick/fixing-motion-performance` — see
 [`skill-orchestration.md`](../skill-orchestration.md).
 
+Then the verdict skills for the moment you are about to write (§ Arrivals, agent
+text and photos below): `spring-arrival` for anything entering on scroll,
+`live-text-reveal` for agent text or a typed headline, `count-up-in-view` for a
+number, `hero-on-photo` for type on a photograph, `photo-stands-whole` before any
+motion on a photo, `showcase-surfaces` for a product surface — and
+`motion-verification-preview` before calling any of it done.
+
 ## The cue contract — what verification actually catches you on
 
 `data-sc-cue="from [to [rampIn [rampOut]]]"`, all in act progress 0–1.
@@ -387,7 +394,14 @@ rather than simply fading.
 - **1.2–1.8 s.** Under a second and the reader misses that it moved; past two
   and they are waiting for a number they have already guessed.
 - **Fires at half visibility, once**, so the reader is looking at it when it
-  starts, and it never re-runs on the way back up.
+  starts, and it never re-runs on the way back up. **Superseded on a GSAP/Lenis
+  page where the row itself fades in (Anton 2026-10-19, FEEDBACK.md F-039):**
+  fire at full visibility above the bottom fifth (`threshold: 1`, `rootMargin`
+  −20 % bottom), 450 ms after so the fade has finished, 2.6 s per number with a
+  quadratic ease-out, numbers one at a time 280 ms apart. Half visibility fired
+  while the row was still invisible and the count was over before the reader
+  saw it — "det får inte gå för snabbt". Recipe and the arrive-from-below
+  verification: `Skill(count-up-in-view)`.
 - **Pair it with the fade.** A counter inside a `data-sc-in` stack rises in
   with its label and starts ticking as it arrives — *"the same numbers static
   on the page read as a spreadsheet."*
@@ -400,6 +414,25 @@ no counters.** The device suits a SaaS or agency page and will look good in
 the score table, *"which is exactly the trap: every number you could put in it
 would be invented."* Decide this before designing an act around a number, not
 after. Real brand, real stats, or a different device.
+
+## Arrivals, agent text and photos — Antons domar 2026-10-19 (F-030–F-039)
+
+Nine verdicts on Snajp's landing page, each carried by a skill in
+`~/.agents/skills/` that holds the order verbatim, what fell and why, the change,
+and the approved values. Load the skill the routing table names before writing
+the code; the values there are approved, not suggested.
+
+| Moment | Skill | The approved shape |
+|---|---|---|
+| A surface, card or panel entering on scroll | `spring-arrival` | Glides in from its side on `spring(0.66, 0.95)` (~6 % overshoot, ~11 px, ~1.6 s to rest), one at a time, text revealed after landing. Never faded, clipped or scrubbed; no CSS transition on a GSAP-written property |
+| Agent text (draft, reply, motivation) | `live-text-reveal` | Written live with a caret, ~8 ms/char clamped 0.7–2.6 s, on every button press, after the surface landed; full text in `sr-only` |
+| A headline written live | `live-text-reveal` (`HeroText`) | 58 ms/char, +260 ms after a comma, +650 ms before the emphasised word (140 ms/char), caret in the text colour, no reduced-motion gate |
+| A number counting up | `count-up-in-view` | Starts fully in view above the bottom fifth, after the fade, 2.6 s quadratic, 280 ms apart |
+| Display type on a photo | `hero-on-photo` | No shadow shape; a band in the photo measured ≥ 4.5:1 against the brightest 5 %; one accent word last, light accent |
+| A photo entering | `photo-stands-whole` | Whole from the first frame; parallax and slow scale only |
+| A product surface | `showcase-surfaces` | Constructed JSX with example data, one family, never a screenshot; `zoom` 1.12 / 1.25 on desktop with `min-height` divided by the zoom |
+| Copy inside a demo, copy shared across product pages | `showcase-copy-scope` | Short plain-word motivations, references stripped in code, one real answer per button, per-product variants |
+| Calling it done | `motion-verification-preview` | Arrive from below, front the tab, read the preview's reduced-motion state, zoom the screenshot, 375 + 1600 px, push to development |
 
 ## Appendix: pattern vocabulary
 

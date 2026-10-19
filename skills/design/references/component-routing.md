@@ -24,6 +24,14 @@ Skills are **tools invoked for craft**. They do not choose the direction — the
 | Next.js app surface | `next-best-practices` · `vercel-react-best-practices` | Framework-correct data flow and rendering |
 | Any user-facing string | **copy gate** → [`copy-gate.md`](copy-gate.md) | `copywriting` then `humanizer`, every language |
 | Landing page, portfolio, or marketing surface (page-scope) | `design-taste-frontend` | v2 brief-inference, intensity dials, design-system map, redesign protocol, and the production-test tells. **Craft and structure only — never lets it pick the palette at Tiers 0–2** |
+| A surface, card or panel entering on scroll | `spring-arrival` | Antons fjäder `spring(0.66, 0.95)`, en ruta i taget, texten efter landningen; the `.rise`-transition fault behind "vibrerar" (F-030, F-031) |
+| Agent text or a headline written live | `live-text-reveal` | Takt per tecken, pauser före betoningen, markör, `sr-only`, no reduced-motion gate (F-033, F-038) |
+| A number counting up | `count-up-in-view` | Starts only fully in view above the bottom fifth, after the row's fade, 2.6 s quadratic; how to verify by arriving from below (F-039) |
+| Display type on a photograph | `hero-on-photo` | No shadow shape, a measured band in the photo (≥ 4.5:1 vs the brightest 5 %), one accent word last, light accent (F-032, F-034) |
+| Entrance motion on a photo | `photo-stands-whole` | No clip reveal on photos — reads as slow loading; parallax only (F-035) |
+| A product surface on a marketing page | `showcase-surfaces` | Constructed in JSX with example data, one family, never a screenshot; `.case-zoom` fill on desktop (F-036) |
+| Copy a customer reads in a demo, or copy shared across product pages | `showcase-copy-scope` | Short plain-word motivations, a code-side strip of references, one real answer per demo button, per-product variants (F-033, F-037) |
+| Declaring scroll- or load-triggered motion done | `motion-verification-preview` | Arrive from below, front the preview tab, read reduced-motion in the preview, zoom the screenshot, 375 + 1600 px, push to development (F-039) |
 | **Dashboard, admin, settings, table, editor, any authenticated in-app surface** | **`impeccable operate`** | **Operate mode. Load [`product-surfaces.md`](product-surfaces.md).** Same tokens, different register: density and familiarity over expression, 150–250ms state-only motion, one font family, Restrained colour floor. Marketing references (hero-enrichment, macrostructures, structure, production-tells) do **not** load here |
 | Section or layout, no other signal | `impeccable layout` | Spacing, rhythm, hierarchy |
 | Accessibility pass | `ui-ux-pro-max` | 99-rule checklist. Craft only — never lets it set visual direction |
@@ -125,6 +133,34 @@ Skills are **tools invoked for craft**. They do not choose the direction — the
       "path": [],
       "code": ["gsap\\.|ScrollTrigger|new Lenis|SplitText"],
       "regex": true },
+
+    { "id": "spring-arrival", "skill": "spring-arrival",              "why": "a surface entering on scroll — Antons fjäder 0.66/0.95, en ruta i taget, texten efter landningen (F-030, F-031)",
+      "path": [],
+      "code": ["spring(", "data-case-box", "data-case", "caseEntry", "case:landed"] },
+
+    { "id": "live-text",  "skill": "live-text-reveal",                "why": "agent text or a headline written live — takt, markör, sr-only, ingen reduced-motion-spärr (F-033, F-038)",
+      "path": ["LiveText", "skrivs"],
+      "code": ["skrivFram(", "live-caret", "hero-caret", "typewriter", "typed-text", "HeroText"] },
+
+    { "id": "count-up",   "skill": "count-up-in-view",                "why": "a number counting up — startar först helt i bild, 2,6 s, kvadratisk (F-039)",
+      "path": [],
+      "code": ["RaknaUpp", "data-sc-count", "countUp", "CountUp", "count-up", "odometer", "toFixed(decimaler)"] },
+
+    { "id": "hero-photo", "skill": "hero-on-photo",                   "why": "display type on a photograph — ingen skugga, bandet mätt 4,5:1, ett betonat ord i ljus accent (F-032, F-034)",
+      "path": [],
+      "code": ["hero-scrim", "hero-band", "hero-lede", "data-mo=\"hero"] },
+
+    { "id": "photo-whole", "skill": "photo-stands-whole",             "why": "a clip reveal or parallax near a photo — foton står hela, bara drift i ramen (F-035)",
+      "path": [],
+      "code": ["data-parallax", "clipPath:", "clip-path: inset", "clipPath: \"inset"] },
+
+    { "id": "showcase-surface", "skill": "showcase-surfaces",         "why": "a constructed product surface — aldrig skärmdump, fyller rutan på desktop (F-036)",
+      "path": ["ProduktBilder", "showcase", "Showcase"],
+      "code": ["case-zoom", "exempeldata", "data-hole"] },
+
+    { "id": "showcase-copy", "skill": "showcase-copy-scope",          "why": "copy a customer reads in a demo or shared per product — korta motiveringar, inga referenser, varianter per produkt (F-033, F-037)",
+      "path": ["marketing/copy", "copy-sections", "lib/data/emails", "email-studio", "textkvalitet"],
+      "code": ["utanReferenser", "motivering", "varforSnajp", "varforSupport"] },
 
     { "id": "motion-review", "skill": "review-animations",            "why": "motion written — emil-design-eng builds it, review-animations grades it (both must be invoked by name)",
       "path": [],
